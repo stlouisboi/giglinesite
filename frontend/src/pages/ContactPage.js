@@ -1,0 +1,161 @@
+import React, { useEffect } from 'react';
+import { Mail, Phone, MapPin, Clock } from 'lucide-react';
+import ContactForm from '../components/ContactForm';
+
+const ContactPage = () => {
+  useEffect(() => {
+    document.title = "Contact | GigLine Safety & Compliance";
+  }, []);
+
+  return (
+    <main data-testid="contact-page">
+      {/* Hero Section */}
+      <section className="bg-primary text-white py-16 md:py-20">
+        <div className="container">
+          <div className="max-w-3xl">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6" data-testid="contact-headline">
+              Contact
+            </h1>
+            <p className="text-lg text-white/90">
+              Ready to find your gaps? Fill out the form below and I'll respond within one business day. 
+              Or reach out directly by email or phone.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Form Section */}
+      <section className="py-16 md:py-24">
+        <div className="container">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            {/* Contact Info */}
+            <div className="lg:col-span-1">
+              <h2 className="text-xl font-bold text-primary mb-6">Get in Touch</h2>
+              
+              <div className="space-y-6">
+                <a
+                  href="mailto:vince@giglinecompliance.com"
+                  className="flex items-start gap-4 group"
+                  data-testid="contact-page-email"
+                >
+                  <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">
+                    <Mail size={24} className="text-accent" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Email</p>
+                    <p className="font-medium text-primary group-hover:text-accent transition-colors">
+                      vince@giglinecompliance.com
+                    </p>
+                  </div>
+                </a>
+
+                <a
+                  href="tel:336-671-4967"
+                  className="flex items-start gap-4 group"
+                  data-testid="contact-page-phone"
+                >
+                  <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">
+                    <Phone size={24} className="text-accent" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Phone</p>
+                    <p className="font-medium text-primary group-hover:text-accent transition-colors">
+                      336-671-4967
+                    </p>
+                  </div>
+                </a>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <MapPin size={24} className="text-accent" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Location</p>
+                    <p className="font-medium text-primary">
+                      Kernersville, NC
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      Serving the Triad and surrounding region
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Availability Note */}
+              <div className="mt-8 bg-secondary rounded-lg p-6" data-testid="availability-note">
+                <div className="flex items-start gap-3">
+                  <Clock size={24} className="text-accent flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-primary mb-2">Availability</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Available for limited on-site days each month in the Triad and surrounding region. 
+                      Remote reviews available nationwide.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Response Time */}
+              <div className="mt-6 p-4 border border-accent/30 rounded-lg bg-accent/5">
+                <p className="text-sm text-primary">
+                  <strong>Response time:</strong> I respond to all inquiries within one business day. 
+                  For urgent incidents, note that in your message.
+                </p>
+              </div>
+            </div>
+
+            {/* Contact Form */}
+            <div className="lg:col-span-2">
+              <div className="card">
+                <h2 className="text-xl font-bold text-primary mb-6">Send a Message</h2>
+                <ContactForm />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-16 md:py-20 bg-secondary">
+        <div className="container">
+          <h2 className="text-2xl md:text-3xl font-bold text-primary mb-8 text-center">
+            Common Questions
+          </h2>
+          <div className="max-w-3xl mx-auto grid gap-6">
+            <div className="bg-white rounded-lg p-6 shadow-sm" data-testid="faq-1">
+              <h3 className="font-semibold text-primary mb-2">
+                How quickly can you schedule a walkthrough?
+              </h3>
+              <p className="text-muted-foreground">
+                Most walkthroughs can be scheduled within 1-2 weeks. For time-sensitive situations 
+                (pending audits, recent incidents), I can often accommodate faster.
+              </p>
+            </div>
+            
+            <div className="bg-white rounded-lg p-6 shadow-sm" data-testid="faq-2">
+              <h3 className="font-semibold text-primary mb-2">
+                Do you work outside of North Carolina?
+              </h3>
+              <p className="text-muted-foreground">
+                Remote documentation reviews are available nationwide. On-site walkthroughs outside 
+                the Triad area may incur travel costs. Contact me to discuss your location.
+              </p>
+            </div>
+            
+            <div className="bg-white rounded-lg p-6 shadow-sm" data-testid="faq-3">
+              <h3 className="font-semibold text-primary mb-2">
+                What if I'm not sure which service I need?
+              </h3>
+              <p className="text-muted-foreground">
+                No problem. Describe your situation in the form and I'll recommend the right approach. 
+                No pressure, no sales pitch — just honest guidance.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+};
+
+export default ContactPage;

@@ -11,7 +11,7 @@ export default function ContactForm({ compact = false }: ContactFormProps) {
       method="POST"
       className="flex flex-col gap-4"
     >
-      <div className={`grid grid-cols-1 ${compact ? 'sm:grid-cols-2' : 'sm:grid-cols-2'} gap-4`}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label htmlFor="name" className="block text-sm font-medium mb-1 text-white/80">
             Name <span className="text-accent">*</span>

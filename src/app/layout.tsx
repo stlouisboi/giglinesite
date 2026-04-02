@@ -7,8 +7,6 @@ export const metadata: Metadata = {
   title: "GigLine Compliance — Safety Walkthroughs & Gap Checks",
   description:
     "Safety walkthroughs, documentation reviews, and incident response for small shops, warehouses, fleets, and contractors. Serving the Triad and surrounding region.",
-  keywords:
-    "OSHA compliance, safety walkthrough, gap check, small business safety, warehouse safety, fleet compliance",
   openGraph: {
     title: "GigLine Compliance",
     description:

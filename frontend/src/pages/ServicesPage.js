@@ -1,17 +1,26 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CheckCircle, ArrowRight, Clock, Shield, FileText } from 'lucide-react';
+import { CheckCircle, ArrowRight, Clock, Shield, FileText, CreditCard, Calendar } from 'lucide-react';
+import BookingModal, { serviceConfig } from '../components/BookingModal';
 
 const ServicesPage = () => {
-  useEffect(() => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState(null);
+
+  React.useEffect(() => {
     document.title = "Services | GigLine Safety & Compliance";
   }, []);
+
+  const openBooking = (serviceKey) => {
+    setSelectedService(serviceConfig[serviceKey]);
+    setModalOpen(true);
+  };
 
   const services = [
     {
       number: '01',
       title: 'Safety Walkthrough & Top 10 Fixes Report',
-      tagline: 'See your operation through OSHA\'s eyes.',
+      tagline: "See your operation through OSHA's eyes.",
       description: `I walk your facility, observe your operations, and identify what OSHA would cite first. 
         No checklist audit — I look at how work actually gets done. You get a written report with your 
         top 10 fixes in priority order, ranked by risk and likelihood of citation.`,
@@ -23,10 +32,13 @@ const ServicesPage = () => {
         'Prioritized action list — what to fix first',
         'Brief phone call to discuss findings and answer questions',
       ],
-      pricing: 'Starting at $650–$750',
-      pricingNote: 'Price varies by facility size and complexity. Travel outside the Triad area may incur additional cost.',
+      pricing: [
+        { label: 'Small site (single building, 1 shift)', price: '$650', serviceKey: 'walkthrough_small' },
+        { label: 'Standard site', price: '$750', serviceKey: 'walkthrough_standard' },
+        { label: 'Large/complex site', price: 'Quote', serviceKey: 'walkthrough_large' },
+      ],
       bestFor: [
-        'Operations that haven\'t had an outside review in 12+ months',
+        "Operations that haven't had an outside review in 12+ months",
         'New facility managers wanting a baseline assessment',
         'Companies preparing for customer or insurance audits',
         'Businesses that have had recent near-misses or injuries',
@@ -42,15 +54,18 @@ const ServicesPage = () => {
         This is the review you need before an auditor, insurer, or inspector asks for your files.`,
       deliverables: [
         'Review of written safety programs and policies',
-        'Training record audit — who\'s current, who\'s expired',
+        "Training record audit — who's current, who's expired",
         'OSHA 300 log and recordkeeping compliance check',
         'SDS/chemical inventory review',
         'Equipment inspection record review',
         'Gap analysis report with specific action items',
         'Template recommendations for missing documentation',
       ],
-      pricing: 'Starting at $550 remote, $750 on-site',
-      pricingNote: 'Remote reviews work well for documentation-focused engagements. On-site reviews include physical file inspection.',
+      pricing: [
+        { label: 'Remote (send PDFs/scans)', price: '$550', serviceKey: 'documentation_remote' },
+        { label: 'On-site review', price: '$750', serviceKey: 'documentation_onsite' },
+        { label: 'Multiple locations', price: 'Quote', serviceKey: 'documentation_complex' },
+      ],
       bestFor: [
         'Companies preparing for customer or insurance audits',
         'Businesses updating or rebuilding safety programs',
@@ -75,8 +90,10 @@ const ServicesPage = () => {
         'Follow-up verification of corrective action implementation',
         'Training recommendations to prevent recurrence',
       ],
-      pricing: 'Starting at $900–$1,500',
-      pricingNote: 'Price depends on incident complexity and documentation requirements. Rush availability for time-sensitive situations.',
+      pricing: [
+        { label: 'Standard (non-emergency, 1 incident)', price: '$900', serviceKey: 'incident_standard' },
+        { label: 'Urgent/complex cases', price: 'From $1,200', serviceKey: 'incident_urgent' },
+      ],
       bestFor: [
         'Companies responding to recordable injuries',
         'Operations preparing for potential OSHA citations',
@@ -155,24 +172,45 @@ const ServicesPage = () => {
                     </div>
                   </div>
 
-                  {/* Sidebar */}
+                  {/* Sidebar - Pricing & Booking */}
                   <div className="lg:col-span-1">
                     <div className="bg-secondary rounded-lg p-6 sticky top-24">
-                      <p className="text-2xl font-bold text-accent mb-2">{service.pricing}</p>
-                      <p className="text-sm text-muted-foreground mb-4">{service.pricingNote}</p>
+                      <h3 className="text-lg font-bold text-primary mb-4">Pricing & Booking</h3>
                       
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
+                      <div className="space-y-3 mb-6">
+                        {service.pricing.map((tier, idx) => (
+                          <div key={idx} className="flex items-center justify-between p-3 bg-white rounded-md border border-border">
+                            <div>
+                              <p className="text-sm font-medium text-primary">{tier.label}</p>
+                              <p className="text-lg font-bold text-accent">{tier.price}</p>
+                            </div>
+                            <button
+                              onClick={() => openBooking(tier.serviceKey)}
+                              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                                tier.price === 'Quote' 
+                                  ? 'bg-primary text-white hover:bg-primary/90'
+                                  : 'bg-accent text-white hover:bg-accent/90'
+                              }`}
+                              data-testid={`book-${tier.serviceKey}`}
+                            >
+                              {tier.price === 'Quote' ? (
+                                <span className="flex items-center gap-1">
+                                  <Calendar size={14} /> Get Quote
+                                </span>
+                              ) : (
+                                <span className="flex items-center gap-1">
+                                  <CreditCard size={14} /> Book
+                                </span>
+                              )}
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                      
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
                         <Clock size={16} className="text-accent" />
                         {service.timeframe}
                       </div>
-
-                      <Link 
-                        to="/contact" 
-                        className="btn-primary w-full text-center"
-                        data-testid={`service-cta-${index}`}
-                      >
-                        Request This Service
-                      </Link>
                     </div>
                   </div>
                 </div>
@@ -196,6 +234,13 @@ const ServicesPage = () => {
           </Link>
         </div>
       </section>
+
+      {/* Booking Modal */}
+      <BookingModal 
+        isOpen={modalOpen} 
+        onClose={() => setModalOpen(false)} 
+        service={selectedService}
+      />
     </main>
   );
 };

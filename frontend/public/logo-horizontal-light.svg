@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" width="400" height="120">
+  <!-- GigLine Safety & Compliance - Horizontal Logo (Light/Reversed for dark backgrounds) -->
+  
+  <!-- Shield Icon -->
+  <g transform="translate(10, 10)">
+    <!-- Shield outline -->
+    <path d="M50 0 L95 10 L95 55 C95 80 50 100 50 100 C50 100 5 80 5 55 L5 10 Z" 
+          fill="none" 
+          stroke="#FFFFFF" 
+          stroke-width="4"/>
+    <!-- Gig Line (vertical bar) -->
+    <rect x="46" y="15" width="8" height="70" fill="#2E6B5E" rx="1"/>
+  </g>
+  
+  <!-- Wordmark -->
+  <g transform="translate(120, 0)">
+    <!-- GigLine -->
+    <text x="0" y="55" 
+          font-family="Inter, Montserrat, 'Source Sans Pro', system-ui, sans-serif" 
+          font-size="42" 
+          font-weight="700" 
+          fill="#FFFFFF">GigLine</text>
+    <!-- Safety & Compliance -->
+    <text x="0" y="85" 
+          font-family="Inter, Montserrat, 'Source Sans Pro', system-ui, sans-serif" 
+          font-size="16" 
+          font-weight="600" 
+          letter-spacing="3"
+          fill="#FFFFFF">SAFETY &amp; COMPLIANCE</text>
+  </g>
+</svg>

@@ -22,12 +22,21 @@ const Navbar = () => {
           {/* Logo */}
           <Link 
             to="/" 
-            className="flex items-center space-x-2"
+            className="flex items-center space-x-3"
             data-testid="navbar-logo"
           >
-            <span className="text-xl md:text-2xl font-bold text-white">
-              GigLine <span className="text-accent">Safety & Compliance</span>
-            </span>
+            {/* Shield Icon */}
+            <svg viewBox="0 0 100 100" className="w-10 h-10 md:w-12 md:h-12">
+              <path d="M50 5 L92 14 L92 55 C92 78 50 95 50 95 C50 95 8 78 8 55 L8 14 Z" 
+                    fill="none" 
+                    stroke="white" 
+                    strokeWidth="5"/>
+              <rect x="45" y="20" width="10" height="60" fill="#2E6B5E" rx="2"/>
+            </svg>
+            <div className="flex flex-col">
+              <span className="text-lg md:text-xl font-bold text-white leading-tight">GigLine</span>
+              <span className="text-[10px] md:text-xs font-semibold text-white/80 tracking-wider">SAFETY & COMPLIANCE</span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}

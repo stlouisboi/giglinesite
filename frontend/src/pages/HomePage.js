@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Shield, Factory, Warehouse, Truck, Wrench, CheckCircle, Award, Clock, FileText, ArrowRight, ExternalLink, Mail, Phone } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
+import SafetyCheckTeaser from '../components/SafetyCheckTeaser';
 
 const HomePage = () => {
   useEffect(() => {
@@ -123,6 +124,9 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
+      {/* Safety Check Teaser - After Hero, Before Who I Work With */}
+      <SafetyCheckTeaser />
 
       {/* Who I Work With */}
       <section className="py-16 md:py-24 bg-secondary" data-testid="clients-section">

@@ -8,6 +8,7 @@ import ServicesPage from './pages/ServicesPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import PaymentSuccessPage from './pages/PaymentSuccessPage';
+import SafetyCheckPage from './pages/SafetyCheckPage';
 import './App.css';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/payment-success" element={<PaymentSuccessPage />} />
+            <Route path="/safety-check" element={<SafetyCheckPage />} />
           </Routes>
         </div>
         <Footer />

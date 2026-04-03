@@ -69,6 +69,7 @@ class CheckoutRequest(BaseModel):
 # ============== SERVICE PACKAGES (Server-side only - never trust frontend prices) ==============
 
 SERVICE_PACKAGES = {
+    # Full payment options
     "walkthrough_small": {
         "name": "Safety Walkthrough & Top 10 Fixes Report (Small Site)",
         "amount": 650.00,
@@ -98,6 +99,29 @@ SERVICE_PACKAGES = {
         "name": "Incident Review & Corrective Action Support (Urgent)",
         "amount": 1200.00,
         "description": "High-urgency or complex incident support"
+    },
+    
+    # Deposit options (to lock in scheduling)
+    "deposit_walkthrough": {
+        "name": "Deposit - Safety Walkthrough (Balance due before visit)",
+        "amount": 200.00,
+        "description": "Reserve your walkthrough date. Remaining balance due before on-site visit.",
+        "is_deposit": True,
+        "deposit_for": "walkthrough"
+    },
+    "deposit_documentation": {
+        "name": "Deposit - Documentation Review (Balance due before delivery)",
+        "amount": 150.00,
+        "description": "Reserve your review slot. Remaining balance due before report delivery.",
+        "is_deposit": True,
+        "deposit_for": "documentation"
+    },
+    "deposit_incident": {
+        "name": "Deposit - Incident Review (Balance due before engagement)",
+        "amount": 300.00,
+        "description": "Secure immediate support. Remaining balance due before engagement begins.",
+        "is_deposit": True,
+        "deposit_for": "incident"
     }
 }
 

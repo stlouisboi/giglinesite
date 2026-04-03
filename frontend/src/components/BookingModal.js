@@ -1,14 +1,29 @@
 import React, { useState } from 'react';
-import { Calendar, CreditCard, Phone, ArrowRight, X } from 'lucide-react';
+import { Calendar, CreditCard, Phone, X, ChevronDown } from 'lucide-react';
 
 // Calendly URL placeholder - replace with actual URL when ready
 const CALENDLY_URL = "https://calendly.com/your-calendly-url";
 
 const BookingModal = ({ isOpen, onClose, service }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [paymentOption, setPaymentOption] = useState('full'); // 'full' or 'deposit'
   const [customerInfo, setCustomerInfo] = useState({ name: '', email: '' });
 
   if (!isOpen || !service) return null;
+
+  const getServiceKey = () => {
+    if (paymentOption === 'deposit' && service.depositKey) {
+      return service.depositKey;
+    }
+    return service.type;
+  };
+
+  const getDisplayAmount = () => {
+    if (paymentOption === 'deposit' && service.depositAmount) {
+      return service.depositAmount;
+    }
+    return service.amount;
+  };
 
   const handlePayment = async () => {
     setIsLoading(true);
@@ -17,7 +32,7 @@ const BookingModal = ({ isOpen, onClose, service }) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          service_type: service.type,
+          service_type: getServiceKey(),
           origin_url: window.location.origin,
           customer_email: customerInfo.email,
           customer_name: customerInfo.name
@@ -37,14 +52,13 @@ const BookingModal = ({ isOpen, onClose, service }) => {
   };
 
   const handleCalendlyClick = () => {
-    // Open Calendly in new tab or use popup
     window.open(CALENDLY_URL, '_blank');
     onClose();
   };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50" data-testid="booking-modal">
-      <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6 relative">
+      <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6 relative max-h-[90vh] overflow-y-auto">
         <button 
           onClick={onClose} 
           className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
@@ -53,17 +67,74 @@ const BookingModal = ({ isOpen, onClose, service }) => {
           <X size={24} />
         </button>
 
-        <h2 className="text-xl font-bold text-primary mb-2">{service.name}</h2>
+        <h2 className="text-xl font-bold text-primary mb-2 pr-8">{service.name}</h2>
         <p className="text-muted-foreground text-sm mb-4">{service.description}</p>
 
         {service.hasFixedPrice ? (
           <>
-            <div className="bg-secondary rounded-lg p-4 mb-6">
-              <p className="text-2xl font-bold text-accent">${service.amount.toFixed(2)}</p>
-              <p className="text-sm text-muted-foreground">One-time payment</p>
+            {/* Payment Option Toggle */}
+            {service.depositAmount && (
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-primary mb-2">Payment Option</label>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setPaymentOption('full')}
+                    className={`p-3 rounded-md border-2 text-left transition-all ${
+                      paymentOption === 'full' 
+                        ? 'border-accent bg-accent/5' 
+                        : 'border-border hover:border-accent/50'
+                    }`}
+                    data-testid="option-full"
+                  >
+                    <p className="font-semibold text-primary">Pay in Full</p>
+                    <p className="text-lg font-bold text-accent">${service.amount.toFixed(2)}</p>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setPaymentOption('deposit')}
+                    className={`p-3 rounded-md border-2 text-left transition-all ${
+                      paymentOption === 'deposit' 
+                        ? 'border-accent bg-accent/5' 
+                        : 'border-border hover:border-accent/50'
+                    }`}
+                    data-testid="option-deposit"
+                  >
+                    <p className="font-semibold text-primary">Deposit Only</p>
+                    <p className="text-lg font-bold text-accent">${service.depositAmount.toFixed(2)}</p>
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Price Display */}
+            <div className="bg-secondary rounded-lg p-4 mb-4">
+              <div className="flex justify-between items-center">
+                <div>
+                  <p className="text-2xl font-bold text-accent">${getDisplayAmount().toFixed(2)}</p>
+                  <p className="text-sm text-muted-foreground">
+                    {paymentOption === 'deposit' ? 'Deposit to reserve' : 'One-time payment'}
+                  </p>
+                </div>
+                {paymentOption === 'deposit' && (
+                  <div className="text-right">
+                    <p className="text-sm text-muted-foreground">Balance due:</p>
+                    <p className="font-semibold text-primary">
+                      ${(service.amount - service.depositAmount).toFixed(2)}
+                    </p>
+                  </div>
+                )}
+              </div>
+              
+              {paymentOption === 'deposit' && (
+                <p className="text-xs text-muted-foreground mt-2 pt-2 border-t border-border">
+                  Remaining balance due before service begins. Deposit is non-refundable but can be applied to rescheduling.
+                </p>
+              )}
             </div>
 
-            <div className="space-y-3 mb-6">
+            {/* Customer Info */}
+            <div className="space-y-3 mb-4">
               <input
                 type="text"
                 placeholder="Your Name"
@@ -89,7 +160,7 @@ const BookingModal = ({ isOpen, onClose, service }) => {
               data-testid="pay-now-button"
             >
               <CreditCard size={18} />
-              {isLoading ? 'Processing...' : 'Pay & Book Now'}
+              {isLoading ? 'Processing...' : paymentOption === 'deposit' ? 'Pay Deposit & Reserve' : 'Pay & Book Now'}
             </button>
           </>
         ) : (
@@ -130,6 +201,8 @@ export const serviceConfig = {
     name: 'Safety Walkthrough - Small Site',
     description: 'Local small site, single building, 1 shift. Full walkthrough with Top 10 Fixes Report.',
     amount: 650.00,
+    depositAmount: 200.00,
+    depositKey: 'deposit_walkthrough',
     hasFixedPrice: true
   },
   walkthrough_standard: {
@@ -137,6 +210,8 @@ export const serviceConfig = {
     name: 'Safety Walkthrough - Standard',
     description: 'Standard site walkthrough with comprehensive report.',
     amount: 750.00,
+    depositAmount: 200.00,
+    depositKey: 'deposit_walkthrough',
     hasFixedPrice: true
   },
   documentation_remote: {
@@ -144,6 +219,8 @@ export const serviceConfig = {
     name: 'Documentation Review - Remote',
     description: 'Send your PDFs/scans for remote safety documentation review.',
     amount: 550.00,
+    depositAmount: 150.00,
+    depositKey: 'deposit_documentation',
     hasFixedPrice: true
   },
   documentation_onsite: {
@@ -151,6 +228,8 @@ export const serviceConfig = {
     name: 'Documentation Review - On-site',
     description: 'On-site document review with follow-up.',
     amount: 750.00,
+    depositAmount: 150.00,
+    depositKey: 'deposit_documentation',
     hasFixedPrice: true
   },
   incident_standard: {
@@ -158,6 +237,8 @@ export const serviceConfig = {
     name: 'Incident Review - Standard',
     description: 'Non-emergency, single incident review with corrective action support.',
     amount: 900.00,
+    depositAmount: 300.00,
+    depositKey: 'deposit_incident',
     hasFixedPrice: true
   },
   

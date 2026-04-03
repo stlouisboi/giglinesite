@@ -10,6 +10,45 @@ const PaymentSuccessPage = () => {
   useEffect(() => {
     document.title = "Payment Status | GigLine Safety & Compliance";
     
+    const pollPaymentStatus = async (sessionId, attempts = 0) => {
+      const maxAttempts = 5;
+      const pollInterval = 2000;
+
+      if (attempts >= maxAttempts) {
+        setStatus('timeout');
+        return;
+      }
+
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_BACKEND_URL}/api/payments/status/${sessionId}`
+        );
+        
+        if (!response.ok) throw new Error('Failed to check status');
+        
+        const data = await response.json();
+        setPaymentData(data);
+
+        if (data.payment_status === 'paid') {
+          setStatus('success');
+          return;
+        } else if (data.status === 'expired') {
+          setStatus('expired');
+          return;
+        }
+
+        // Continue polling if still pending
+        setTimeout(() => pollPaymentStatus(sessionId, attempts + 1), pollInterval);
+      } catch (error) {
+        console.error('Status check error:', error);
+        if (attempts < maxAttempts - 1) {
+          setTimeout(() => pollPaymentStatus(sessionId, attempts + 1), pollInterval);
+        } else {
+          setStatus('error');
+        }
+      }
+    };
+
     const sessionId = searchParams.get('session_id');
     if (sessionId) {
       pollPaymentStatus(sessionId);
@@ -17,45 +56,6 @@ const PaymentSuccessPage = () => {
       setStatus('error');
     }
   }, [searchParams]);
-
-  const pollPaymentStatus = async (sessionId, attempts = 0) => {
-    const maxAttempts = 5;
-    const pollInterval = 2000;
-
-    if (attempts >= maxAttempts) {
-      setStatus('timeout');
-      return;
-    }
-
-    try {
-      const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/api/payments/status/${sessionId}`
-      );
-      
-      if (!response.ok) throw new Error('Failed to check status');
-      
-      const data = await response.json();
-      setPaymentData(data);
-
-      if (data.payment_status === 'paid') {
-        setStatus('success');
-        return;
-      } else if (data.status === 'expired') {
-        setStatus('expired');
-        return;
-      }
-
-      // Continue polling if still pending
-      setTimeout(() => pollPaymentStatus(sessionId, attempts + 1), pollInterval);
-    } catch (error) {
-      console.error('Status check error:', error);
-      if (attempts < maxAttempts - 1) {
-        setTimeout(() => pollPaymentStatus(sessionId, attempts + 1), pollInterval);
-      } else {
-        setStatus('error');
-      }
-    }
-  };
 
   return (
     <main className="min-h-[60vh] flex items-center justify-center py-16" data-testid="payment-success-page">

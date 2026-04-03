@@ -145,8 +145,8 @@ const SafetyCheckPage = () => {
     setFormStatus({ type: '', message: '' });
 
     try {
-      // Formspree endpoint - replace with actual form ID
-      const response = await fetch('https://formspree.io/f/xgvkbjze', {
+      // Formspree endpoint for Safety Check
+      const response = await fetch('https://formspree.io/f/xpqoyldy', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

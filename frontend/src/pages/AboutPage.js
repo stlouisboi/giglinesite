@@ -38,17 +38,17 @@ const AboutPage = () => {
       <section className="py-16 md:py-24">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Headshot Placeholder */}
+            {/* Headshot */}
             <div className="lg:col-span-1">
               <div 
-                className="bg-secondary rounded-lg aspect-square flex items-center justify-center"
-                data-testid="headshot-placeholder"
+                className="rounded-lg overflow-hidden"
+                data-testid="headshot"
               >
-                <div className="text-center">
-                  <User size={80} className="mx-auto text-muted-foreground/50 mb-4" />
-                  <p className="text-sm text-muted-foreground">Vince Lawrence</p>
-                  <p className="text-xs text-muted-foreground">Founder</p>
-                </div>
+                <img 
+                  src="/vince-founder.png" 
+                  alt="Vince Lawrence - Founder of GigLine Safety & Compliance"
+                  className="w-full h-auto"
+                />
               </div>
             </div>
 

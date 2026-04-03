@@ -32,8 +32,8 @@ const ContactForm = ({ compact = false }) => {
     setStatus({ type: '', message: '' });
 
     try {
-      // Formspree endpoint - replace xgvkbjze with actual form ID
-      const response = await fetch('https://formspree.io/f/xgvkbjze', {
+      // Formspree endpoint for Contact Form
+      const response = await fetch('https://formspree.io/f/xeeprzel', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

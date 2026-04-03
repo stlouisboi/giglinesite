@@ -2,14 +2,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle, ArrowRight, Clock, Shield, FileText, CreditCard, Calendar } from 'lucide-react';
 import BookingModal, { serviceConfig } from '../components/BookingModal';
+import SEO from '../components/SEO';
 
 const ServicesPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedService, setSelectedService] = useState(null);
-
-  React.useEffect(() => {
-    document.title = "Services | GigLine Safety & Compliance";
-  }, []);
 
   const openBooking = (serviceKey) => {
     setSelectedService(serviceConfig[serviceKey]);
@@ -106,6 +103,11 @@ const ServicesPage = () => {
 
   return (
     <main data-testid="services-page">
+      <SEO 
+        title="Services"
+        description="Three safety consulting engagements for small operations — Safety Walkthrough, Documentation Review, and Incident Response Support. Starting at $550."
+        canonical="/services"
+      />
       {/* Hero Section */}
       <section className="bg-primary text-white py-16 md:py-20">
         <div className="container">

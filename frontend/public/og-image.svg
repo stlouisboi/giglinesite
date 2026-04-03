@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#1C2B2B"/>
+  
+  <!-- Shield Icon -->
+  <g transform="translate(100, 165)">
+    <path d="M150 0 L285 30 L285 165 C285 240 150 300 150 300 C150 300 15 240 15 165 L15 30 Z" 
+          fill="none" 
+          stroke="#FFFFFF" 
+          stroke-width="12"/>
+    <rect x="138" y="45" width="24" height="210" fill="#2E6B5E" rx="4"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="450" y="260" font-family="Inter, system-ui, sans-serif" font-size="72" font-weight="700" fill="#FFFFFF">GigLine</text>
+  <text x="450" y="340" font-family="Inter, system-ui, sans-serif" font-size="32" font-weight="600" letter-spacing="4" fill="#FFFFFF">SAFETY &amp; COMPLIANCE</text>
+  
+  <!-- Tagline -->
+  <text x="450" y="420" font-family="Inter, system-ui, sans-serif" font-size="28" fill="#FFFFFF" opacity="0.8">Safety Walkthroughs &amp; Gap Checks</text>
+  <text x="450" y="460" font-family="Inter, system-ui, sans-serif" font-size="28" fill="#FFFFFF" opacity="0.8">for Small Operations</text>
+  
+  <!-- URL -->
+  <text x="450" y="540" font-family="Inter, system-ui, sans-serif" font-size="24" fill="#2E6B5E">www.giglinecompliance.com</text>
+</svg>

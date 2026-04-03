@@ -1,14 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Shield, Factory, Warehouse, Truck, Wrench, CheckCircle, Award, Clock, FileText, ArrowRight, ExternalLink, Mail, Phone } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 import SafetyCheckTeaser from '../components/SafetyCheckTeaser';
+import SEO from '../components/SEO';
 
 const HomePage = () => {
-  useEffect(() => {
-    document.title = "GigLine Safety & Compliance | Safety Walkthroughs & Gap Checks for Small Operations";
-  }, []);
-
   const clientTypes = [
     {
       icon: Factory,
@@ -82,11 +79,16 @@ const HomePage = () => {
 
   return (
     <main data-testid="homepage">
+      <SEO 
+        title={null}
+        description="Safety walkthroughs, documentation reviews, and incident response for small shops, warehouses, fleets, and contractors. One engagement. A written report. A clear list of what to fix first. Kernersville, NC — remote nationwide."
+        canonical="/"
+      />
       {/* Hero Section */}
       <section className="bg-primary text-white py-16 md:py-24" data-testid="hero-section">
         <div className="container">
           <div className="max-w-4xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6" data-testid="hero-headline">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6" data-testid="hero-headline">
               Your Operation Has Gaps.{' '}
               <span className="text-accent">Find Them Before OSHA Does.</span>
             </h1>
@@ -129,7 +131,7 @@ const HomePage = () => {
       <SafetyCheckTeaser />
 
       {/* Who I Work With */}
-      <section className="py-16 md:py-24 bg-secondary" data-testid="clients-section">
+      <section className="py-16 md:py-24 bg-secondary" data-testid="clients-section" id="who-we-serve">
         <div className="container">
           <h2 className="section-heading text-center mb-4">Who I Work With</h2>
           <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
@@ -156,7 +158,7 @@ const HomePage = () => {
       </section>
 
       {/* Three Offers */}
-      <section className="py-16 md:py-24" data-testid="offers-section">
+      <section className="py-16 md:py-24" data-testid="offers-section" id="services">
         <div className="container">
           <h2 className="section-heading text-center mb-4">What I Offer</h2>
           <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
@@ -215,7 +217,7 @@ const HomePage = () => {
       </section>
 
       {/* Background / Why Bring Me In */}
-      <section className="py-16 md:py-24 bg-primary text-white" data-testid="background-section">
+      <section className="py-16 md:py-24 bg-primary text-white" data-testid="background-section" id="about">
         <div className="container">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Why Bring Me In</h2>
@@ -242,25 +244,58 @@ const HomePage = () => {
               </div>
             </div>
 
+            {/* Credibility Block */}
+            <div className="bg-white/10 border border-white/20 rounded-lg p-6 text-left mb-8">
+              <p className="text-white font-semibold mb-4">What 25 years in this work looks like in practice:</p>
+              <div className="space-y-3 text-white/90">
+                <p className="flex items-start gap-2">
+                  <span className="text-accent">→</span>
+                  I have walked hundreds of floors across manufacturing, warehousing, and transportation operations.
+                </p>
+                <p className="flex items-start gap-2">
+                  <span className="text-accent">→</span>
+                  I know which OSHA violations appear in 30% or more of general industry inspections — because I have seen them repeat across facilities of every size.
+                </p>
+                <p className="flex items-start gap-2">
+                  <span className="text-accent">→</span>
+                  I know what an FMCSA investigator asks for in the first ten minutes of a New Entrant audit — because I built a compliance system specifically around those ten minutes.
+                </p>
+                <p className="flex items-start gap-2">
+                  <span className="text-accent">→</span>
+                  I know the difference between a program that exists on paper and one that exists on the floor — because I have seen both, and I know which one holds up when someone gets hurt or an inspector walks in.
+                </p>
+              </div>
+              <p className="text-white font-medium mt-4 pt-4 border-t border-white/20">
+                The credential is not the certificate. It is what I know to look for before you ask.
+              </p>
+            </div>
+
             <p className="text-white/80 max-w-2xl mx-auto">
-              I've managed safety programs in manufacturing, warehousing, and transportation. 
-              I know what OSHA looks for because I've been on both sides of the inspection clipboard.
+              I have managed safety programs in manufacturing, warehousing, and transportation. I know what OSHA looks for because I have been on both sides of the inspection clipboard.
             </p>
           </div>
         </div>
       </section>
 
       {/* For Carriers and Fleets */}
-      <section className="py-16 md:py-24 bg-secondary" data-testid="fleets-section">
+      <section className="py-16 md:py-24 bg-secondary" data-testid="fleets-section" id="fleets">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center">
-            <Truck size={48} className="mx-auto text-accent mb-4" />
-            <h2 className="section-heading mb-4">For Carriers and Fleets</h2>
-            <p className="text-muted-foreground mb-6">
-              If you're running a small trucking operation (5-25 trucks), check out LaunchPath Transportation EDU. 
-              Free resources to help you build compliant driver files, understand DOT requirements, and avoid 
-              the mistakes that get carriers shut down.
+            <p className="text-xs font-semibold tracking-widest text-muted-foreground uppercase mb-4">
+              For Carriers and Fleets
             </p>
+            <h2 className="section-heading mb-6">GigLine Finds the Gap. LaunchPath Installs the System.</h2>
+            <div className="text-muted-foreground text-left space-y-4 mb-8">
+              <p>
+                If you recently received your operating authority or you run a small fleet, a documentation review will tell you exactly where your compliance exposure is. That is what GigLine does.
+              </p>
+              <p>
+                If what the review finds goes deeper than a list of corrections — if your DQ files, drug and alcohol program, or maintenance records need a full system built, not just patched — that is where LaunchPath begins.
+              </p>
+              <p>
+                LaunchPath is a 90-day compliance installation program for new motor carriers. Built by the same person. Different tool. Different scope.
+              </p>
+            </div>
             <a
               href="https://launchpathedu.com/ground-0-briefing"
               target="_blank"
@@ -271,12 +306,15 @@ const HomePage = () => {
               Start with Ground 0 — Free
               <ExternalLink size={18} className="ml-2" />
             </a>
+            <p className="text-sm text-muted-foreground mt-4">
+              Ground 0 is free. It tells you whether you need GigLine, LaunchPath, or both.
+            </p>
           </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section className="py-16 md:py-24" data-testid="contact-section">
+      <section className="py-16 md:py-24 pb-24 md:pb-24" data-testid="contact-section" id="contact">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <div>

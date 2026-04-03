@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Send, CheckCircle, AlertCircle, Phone, Mail } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const SafetyCheckPage = () => {
   const [answers, setAnswers] = useState({});
@@ -17,10 +18,6 @@ const SafetyCheckPage = () => {
     concernedQuestion: '',
     whatPushed: ''
   });
-
-  React.useEffect(() => {
-    document.title = "GigLine Safety Check · GigLine Safety & Compliance";
-  }, []);
 
   const questions = [
     {
@@ -190,6 +187,11 @@ const SafetyCheckPage = () => {
 
   return (
     <main className="bg-white" data-testid="safety-check-page">
+      <SEO 
+        title="Safety Check"
+        description="Six questions mapped to OSHA's most cited violations in small operations. Answer honestly. Get your score. Send your results to Vince Lawrence, GigLine Safety & Compliance."
+        canonical="/safety-check"
+      />
       {/* Page Header */}
       <section className="bg-primary text-white py-16 md:py-20">
         <div className="container max-w-3xl">

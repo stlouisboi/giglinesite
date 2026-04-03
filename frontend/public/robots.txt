@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.giglinecompliance.com/sitemap.xml

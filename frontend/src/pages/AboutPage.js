@@ -1,12 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { Shield, Award, Clock, Factory, Truck, Warehouse, ExternalLink, ArrowRight, User } from 'lucide-react';
+import { Shield, Award, Clock, Factory, Truck, Warehouse, ExternalLink, ArrowRight } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const AboutPage = () => {
-  useEffect(() => {
-    document.title = "About | GigLine Safety & Compliance";
-  }, []);
-
   const credentials = [
     { icon: Clock, label: '25+ Years', description: 'Safety Leadership' },
     { icon: Award, label: 'OSHA Certified', description: '30 & 10 Hour' },
@@ -18,6 +15,11 @@ const AboutPage = () => {
 
   return (
     <main data-testid="about-page">
+      <SEO 
+        title="About"
+        description="Vince Lawrence — 25+ years in safety and compliance leadership. OSHA certified. Navy veteran. Founder of GigLine Safety & Compliance and LaunchPath Transportation EDU."
+        canonical="/about"
+      />
       {/* Hero Section */}
       <section className="bg-primary text-white py-16 md:py-20">
         <div className="container">

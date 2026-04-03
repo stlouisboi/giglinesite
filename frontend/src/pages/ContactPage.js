@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Mail, Phone, MapPin, Clock } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
+import SEO from '../components/SEO';
 
 const ContactPage = () => {
-  useEffect(() => {
-    document.title = "Contact | GigLine Safety & Compliance";
-  }, []);
-
   return (
     <main data-testid="contact-page">
+      <SEO 
+        title="Contact"
+        description="Contact GigLine Safety & Compliance. Request a walkthrough, documentation review, or incident response support. Vince Lawrence — 336-671-4967."
+        canonical="/contact"
+      />
       {/* Hero Section */}
       <section className="bg-primary text-white py-16 md:py-20">
         <div className="container">

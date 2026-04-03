@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Shield, Factory, Warehouse, Truck, Wrench, CheckCircle, Award, Clock, FileText, ArrowRight, ExternalLink, Mail, Phone } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 import SafetyCheckTeaser from '../components/SafetyCheckTeaser';
+import CallVinceBar from '../components/CallVinceBar';
 import SEO from '../components/SEO';
 
 const HomePage = () => {
@@ -123,9 +124,16 @@ const HomePage = () => {
                 </div>
               ))}
             </div>
+            {/* Local Trust Cue */}
+            <p className="text-sm text-white/70 mt-3">
+              Based in Kernersville, NC — on-site in the Triad, remote nationwide.
+            </p>
           </div>
         </div>
       </section>
+
+      {/* Call Vince Bar - Location A: Below Hero */}
+      <CallVinceBar />
 
       {/* Safety Check Teaser - After Hero, Before Who I Work With */}
       <SafetyCheckTeaser />
@@ -174,7 +182,7 @@ const HomePage = () => {
                 data-testid={`offer-card-${index}`}
               >
                 <span className="text-accent font-bold text-sm">OFFER {offer.number}</span>
-                <h3 className="text-xl font-bold text-primary mt-2 mb-3">{offer.title}</h3>
+                <h3 className="text-xl sm:text-2xl font-bold leading-tight tracking-tight text-primary mt-2 mb-3">{offer.title}</h3>
                 <p className="text-muted-foreground text-sm mb-4">{offer.description}</p>
                 
                 <div className="mb-4">
@@ -215,6 +223,9 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
+      {/* Call Vince Bar - Location B: Below Three Offers */}
+      <CallVinceBar />
 
       {/* Background / Why Bring Me In */}
       <section className="py-16 md:py-24 bg-primary text-white" data-testid="background-section" id="about">
@@ -267,6 +278,10 @@ const HomePage = () => {
               </div>
               <p className="text-white font-medium mt-4 pt-4 border-t border-white/20">
                 The credential is not the certificate. It is what I know to look for before you ask.
+              </p>
+              {/* Local Trust Cue */}
+              <p className="text-white/70 text-sm mt-3">
+                Based in Kernersville, NC — on-site in the Triad, remote nationwide.
               </p>
             </div>
 

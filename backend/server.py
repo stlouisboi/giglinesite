@@ -9,7 +9,7 @@ from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict, EmailStr
 from typing import List, Optional, Dict
 import uuid
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from emergentintegrations.payments.stripe.checkout import (
     StripeCheckout, 
     CheckoutSessionResponse, 
@@ -17,6 +17,7 @@ from emergentintegrations.payments.stripe.checkout import (
     CheckoutSessionRequest
 )
 import resend
+from email_sequences import get_flow_for_score, render_email
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -345,6 +346,33 @@ async def submit_safety_check(submission: SafetyCheckSubmission):
     }
     await db.safety_check_submissions.insert_one(doc)
     
+    # Schedule drip email sequence
+    flow_type, email_sequence = get_flow_for_score(gaps)
+    drip_doc = {
+        "submission_id": submission_id,
+        "email": submission.email,
+        "name": submission.name,
+        "company": submission.company,
+        "flow_type": flow_type,
+        "score_gaps": gaps,
+        "created_at": timestamp.isoformat(),
+        "emails": [],
+    }
+    for i, template in enumerate(email_sequence):
+        send_at = timestamp + timedelta(days=template["delay_days"])
+        # For day 0 emails, set send_at slightly in the future so the scheduler picks it up
+        # (or we send it immediately below)
+        drip_doc["emails"].append({
+            "seq": i,
+            "delay_days": template["delay_days"],
+            "subject": template["subject"],
+            "send_at": send_at.isoformat(),
+            "sent": False,
+            "sent_at": None,
+            "error": None,
+        })
+    await db.email_drip_queue.insert_one(drip_doc)
+    
     # Build answer summary for Vince's email
     question_labels = {
         "1": "HazCom & SDS (29 CFR 1910.1200)",
@@ -387,29 +415,11 @@ async def submit_safety_check(submission: SafetyCheckSubmission):
     </div>
     """
     
-    # EMAIL 2: Auto-response to lead
-    lead_html = f"""
-    <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;color:#1C2B2B;">
-      <p>{submission.name},</p>
-      <p>I received your Safety Check results.</p>
-      <p>Based on what you submitted, there are a few areas I would look at first if I walked your floor.</p>
-      <p>I'll review your answers and send you a quick breakdown within one business day.</p>
-      <p>If OSHA walked in tomorrow, the first 10 minutes would matter most. That's what I'll focus on.</p>
-      <br>
-      <p>Vince</p>
-      <p style="color:#666;">GigLine Safety & Compliance</p>
-      <p style="color:#666;font-size:13px;">
-        <a href="mailto:vince@giglinecompliance.com" style="color:#B8972C;">vince@giglinecompliance.com</a> &middot; 
-        <a href="tel:336-671-4967" style="color:#B8972C;">336-671-4967</a>
-      </p>
-    </div>
-    """
-    
     # Send emails (non-blocking, don't fail submission if email fails)
     email_errors = []
     
     try:
-        # Email to Vince
+        # Email to Vince (notification)
         await asyncio.to_thread(resend.Emails.send, {
             "from": SENDER_EMAIL,
             "to": [VINCE_EMAIL],
@@ -421,18 +431,25 @@ async def submit_safety_check(submission: SafetyCheckSubmission):
         email_errors.append(f"Vince notification: {str(e)}")
         logger.error(f"Failed to send Vince email: {str(e)}")
     
+    # Send Day 0 drip email immediately
     try:
-        # Auto-response to lead
+        day0_template = email_sequence[0]
+        day0_subject, day0_html = render_email(day0_template, submission.name)
         await asyncio.to_thread(resend.Emails.send, {
             "from": SENDER_EMAIL,
             "to": [submission.email],
-            "subject": "Your Safety Check Results",
-            "html": lead_html,
+            "subject": day0_subject,
+            "html": day0_html,
         })
-        logger.info(f"Auto-response sent to {submission.email} for submission {submission_id}")
+        # Mark Day 0 as sent
+        await db.email_drip_queue.update_one(
+            {"submission_id": submission_id, "emails.seq": 0},
+            {"$set": {"emails.$.sent": True, "emails.$.sent_at": datetime.now(timezone.utc).isoformat()}}
+        )
+        logger.info(f"Day 0 drip email ({flow_type}) sent to {submission.email}")
     except Exception as e:
-        email_errors.append(f"Lead auto-response: {str(e)}")
-        logger.error(f"Failed to send lead email: {str(e)}")
+        email_errors.append(f"Day 0 drip: {str(e)}")
+        logger.error(f"Failed to send Day 0 drip email: {str(e)}")
     
     return {
         "status": "success",
@@ -448,6 +465,92 @@ async def get_safety_check_submissions():
     """Get all safety check submissions (admin view)"""
     submissions = await db.safety_check_submissions.find({}, {"_id": 0}).sort("timestamp", -1).to_list(1000)
     return submissions
+
+@api_router.get("/email-drip/status")
+async def get_drip_status():
+    """Get status of all email drip sequences"""
+    queues = await db.email_drip_queue.find({}, {"_id": 0}).sort("created_at", -1).to_list(1000)
+    return queues
+
+@api_router.post("/email-drip/process")
+async def trigger_drip_processing():
+    """Manually trigger drip email processing"""
+    sent_count = await process_drip_emails()
+    return {"status": "processed", "emails_sent": sent_count}
+
+
+async def process_drip_emails():
+    """Check for and send due drip emails"""
+    now = datetime.now(timezone.utc)
+    sent_count = 0
+    
+    # Find all drip sequences with unsent emails
+    cursor = db.email_drip_queue.find({"emails.sent": False}, {"_id": 0})
+    async for drip in cursor:
+        flow_type = drip["flow_type"]
+        name = drip["name"]
+        email = drip["email"]
+        score_gaps = drip["score_gaps"]
+        
+        _, email_sequence = get_flow_for_score(score_gaps)
+        
+        for email_entry in drip["emails"]:
+            if email_entry["sent"]:
+                continue
+            
+            send_at = datetime.fromisoformat(email_entry["send_at"])
+            if send_at.tzinfo is None:
+                send_at = send_at.replace(tzinfo=timezone.utc)
+                
+            if now >= send_at:
+                seq = email_entry["seq"]
+                try:
+                    template = email_sequence[seq]
+                    subject, html = render_email(template, name)
+                    
+                    await asyncio.to_thread(resend.Emails.send, {
+                        "from": SENDER_EMAIL,
+                        "to": [email],
+                        "subject": subject,
+                        "html": html,
+                    })
+                    
+                    # Mark as sent
+                    await db.email_drip_queue.update_one(
+                        {"submission_id": drip["submission_id"], "emails.seq": seq},
+                        {"$set": {
+                            "emails.$.sent": True,
+                            "emails.$.sent_at": now.isoformat()
+                        }}
+                    )
+                    sent_count += 1
+                    logger.info(f"Drip email seq={seq} ({flow_type}) sent to {email}")
+                    
+                except Exception as e:
+                    # Record error but don't stop processing
+                    await db.email_drip_queue.update_one(
+                        {"submission_id": drip["submission_id"], "emails.seq": seq},
+                        {"$set": {"emails.$.error": str(e)}}
+                    )
+                    logger.error(f"Drip email seq={seq} failed for {email}: {str(e)}")
+                
+                # Only send one email per sequence per run (respect timing)
+                break
+    
+    return sent_count
+
+
+async def drip_scheduler():
+    """Background task that runs every 30 minutes to process drip emails"""
+    while True:
+        try:
+            sent = await process_drip_emails()
+            if sent > 0:
+                logger.info(f"Drip scheduler: sent {sent} email(s)")
+        except Exception as e:
+            logger.error(f"Drip scheduler error: {str(e)}")
+        await asyncio.sleep(1800)  # 30 minutes
+
 
 # Include the router in the main app
 app.include_router(api_router)
@@ -466,6 +569,12 @@ logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
+
+@app.on_event("startup")
+async def startup_event():
+    """Start the drip email scheduler"""
+    asyncio.create_task(drip_scheduler())
+    logger.info("Drip email scheduler started (runs every 30 minutes)")
 
 @app.on_event("shutdown")
 async def shutdown_db_client():

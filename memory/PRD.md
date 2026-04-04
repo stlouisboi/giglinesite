@@ -1,81 +1,57 @@
-# GigLine Safety & Compliance - PRD
+# GigLine Safety & Compliance — PRD
 
 ## Original Problem Statement
-Build a professional static marketing website for GigLine Safety & Compliance, a safety consulting business owned by Vince Lawrence based in Kernersville, NC. The site provides safety walkthroughs, documentation reviews, and incident response support for small manufacturers, warehouses, contractors, and trucking fleets.
+Build a professional service business website for GigLine Safety & Compliance (owned by Vince Lawrence) based in Kernersville, NC. Static marketing site with routes (Home, Services, About, Contact, Safety Check). Integrated with Formspree for forms, Stripe for payments, Calendly for booking.
 
 ## Tech Stack
-- React with React Router
-- Tailwind CSS
-- No backend required - static site with contact form
-- Contact form submissions via Formspree
+- **Frontend**: React (CRA) + Tailwind CSS + Craco
+- **Backend**: FastAPI (Stripe endpoint only)
+- **Deployment**: Vercel (via GitHub)
+- **Services**: Formspree (forms), Stripe (payments), Calendly (booking — placeholder)
 
-## Brand
-- **Business name:** GigLine Safety & Compliance
-- **Tagline:** Safety Walkthroughs & Gap Checks for Small Operations
-- **Owner:** Vince Lawrence
-- **Email:** vince@giglinecompliance.com
-- **Phone:** 336-671-4967
-- **Color palette:** 
-  - Primary: #1C2B2B (dark steel gray)
-  - Accent: #2E6B5E (steel green)
-  - Secondary: #F4F4F4 (light gray)
-- **Typography:** Inter font stack
+## What's Been Implemented
 
-## User Personas
-1. **Small Manufacturers** - Machine shops, metal fabricators (5-50 employees)
-2. **Warehouse Operators** - Distribution centers, forklift operations
-3. **Contractors** - Field crews, maintenance teams
-4. **Fleet Owners** - Small trucking operations (5-25 trucks)
+### Core Pages
+- Home, Services, About, Contact, Safety Check — all live and styled
 
-## Core Requirements (Static)
-- 4 pages: Homepage, Services, About, Contact
-- Responsive design (mobile-first)
-- Sticky navigation with mobile hamburger menu
-- Contact form with Formspree integration
-- SEO meta tags on all pages
-- No backend required
+### GL-WEB-001: Safety Check Tool
+- Standalone /safety-check page with client-side scoring
+- Homepage teaser component
 
-## What's Been Implemented (April 2, 2026)
+### GL-WEB-002: Critical SEO/Header Fixes
+- Working Formspree handlers (Contact: xeeprzel, Safety Check: xpqoyldy)
+- Sticky header with navigation
+- SEO component (meta tags, OpenGraph, JSON-LD Schema)
+- Mobile sticky CTA, sitemap.xml, robots.txt
 
-### Pages
-1. **Homepage** - Hero section, Who I Work With cards, Three Offers, Background section, LaunchPath fleet reference, Contact form
-2. **Services** - Expanded offer cards with full deliverable lists, pricing, "Best for" callouts
-3. **About** - Full bio, military gig line origin story, credentials grid, headshot placeholder, LaunchPath cross-reference
-4. **Contact** - Full contact form, contact info block, availability note, FAQ section
+### GL-WEB-003: Contact Prominence & Trust Cues
+- "Call Vince" contact bar in multiple placements
+- Mobile offer heading weight increase
+- Local trust cues (hero/about)
 
-### Components
-- `Navbar` - Sticky navigation, desktop nav + mobile drawer with hamburger toggle
-- `Footer` - Business info, nav links, LaunchPath reference, tagline
-- `ContactForm` - Form with Name, Company, Phone, Email, Service Type dropdown, Message; POSTs to Formspree
+### GL-WEB-004: Homepage Revision Spec (April 2026)
+- Rev 1: Safety Check topic list (Lockout/Tagout, Machine Guarding, Ladders, Training & Records) + outcome line below button
+- Rev 2: Hero "clear list" → "ranked list"
+- Rev 3: "5–50 people" qualifier in Who I Work With section
+- Rev 4: Second CTA bar changed to "Not sure where to start? Call or email and I'll tell you which review makes sense."
+- Rev 5: Duplicate geography line removed (kept hero instance only)
+- Rev 6: Two clarity bullets (GigLine vs LaunchPath) added before Ground 0 CTA
 
-### Features
-- Full responsive design
-- Mobile hamburger menu
-- Brand colors and Inter font
-- SEO meta tags
-- Data-testid attributes for testing
-- All CTA buttons link to contact page
-- External LaunchPath link opens in new tab
+### Infrastructure
+- Stripe backend endpoint (POST /api/create-payment-intent)
+- Custom domain: giglinecompliance.com via Vercel + Namecheap DNS
+- Founder headshot on About page
 
-## Prioritized Backlog
+## Pending / Blocked Items
+1. **Calendly URL** — placeholder in BookingModal.js, waiting on user's Calendly account
+2. **Stripe Live Keys** — using test keys until LLC is formed
 
-### P0 (Before Launch)
-- [ ] Replace Formspree placeholder endpoint (`xgvkbjze`) with actual form ID
-- [ ] Add actual headshot photo to About page
+## Upcoming Tasks (P1)
+1. **Video Embeds** — User wants videos on site, placement TBD
+2. **Ad Tracking & Analytics** — Google Analytics, Vercel Analytics, conversion tracking
 
-### P1 (Post-Launch Improvements)
-- [ ] Add testimonials section
-- [ ] Add case studies or success stories
-- [ ] Add blog/resources section
-- [ ] Analytics integration (Google Analytics)
-
-### P2 (Future Enhancements)
-- [ ] Online scheduling/booking integration
-- [ ] PDF download for service brochures
-- [ ] Newsletter signup
-
-## Next Tasks
-1. User needs to create Formspree account and get actual form ID
-2. Replace placeholder in ContactForm.js: `https://formspree.io/f/xgvkbjze` → actual endpoint
-3. Add real headshot image to About page
-4. Deploy to Vercel
+## Deployment Notes
+- Vercel Pro blocks commits from emergent-agent-e1 (not a team member)
+- Workaround: After "Save to Github", manually click Redeploy in Vercel dashboard
+- Build command: `yarn build` (runs `craco build`)
+- Root directory: `frontend`

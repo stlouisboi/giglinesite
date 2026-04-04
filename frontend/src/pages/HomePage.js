@@ -82,7 +82,7 @@ const HomePage = () => {
     <main data-testid="homepage">
       <SEO 
         title={null}
-        description="Safety walkthroughs, documentation reviews, and incident response for small shops, warehouses, fleets, and contractors. One engagement. A written report. A clear list of what to fix first. Kernersville, NC — remote nationwide."
+        description="Safety walkthroughs, documentation reviews, and incident response for small shops, warehouses, fleets, and contractors. One engagement. A written report. A ranked list of what to fix first. Kernersville, NC — remote nationwide."
         canonical="/"
       />
       {/* Hero Section */}
@@ -95,7 +95,7 @@ const HomePage = () => {
             </h1>
             <p className="text-lg md:text-xl text-white/90 mb-8 max-w-3xl" data-testid="hero-subhead">
               Safety walkthroughs, documentation reviews, and incident response for small shops, 
-              warehouses, fleets, and contractors. One engagement. A written report. A clear list 
+              warehouses, fleets, and contractors. One engagement. A written report. A ranked list 
               of what to fix first.
             </p>
             
@@ -143,7 +143,8 @@ const HomePage = () => {
         <div className="container">
           <h2 className="section-heading text-center mb-4">Who I Work With</h2>
           <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
-            Small operations that can't afford a full-time safety manager but need professional 
+            Small operations — typically 5 to 50 people — where the owner or manager is also 
+            the safety officer. They can't afford a full-time safety manager but need professional 
             guidance to stay compliant and protect their people.
           </p>
           
@@ -225,7 +226,7 @@ const HomePage = () => {
       </section>
 
       {/* Call Vince Bar - Location B: Below Three Offers */}
-      <CallVinceBar />
+      <CallVinceBar message="Not sure where to start? Call or email and I'll tell you which review makes sense." />
 
       {/* Background / Why Bring Me In */}
       <section className="py-16 md:py-24 bg-primary text-white" data-testid="background-section" id="about">
@@ -279,10 +280,6 @@ const HomePage = () => {
               <p className="text-white font-medium mt-4 pt-4 border-t border-white/20">
                 The credential is not the certificate. It is what I know to look for before you ask.
               </p>
-              {/* Local Trust Cue */}
-              <p className="text-white/70 text-sm mt-3">
-                Based in Kernersville, NC — on-site in the Triad, remote nationwide.
-              </p>
             </div>
 
             <p className="text-white/80 max-w-2xl mx-auto">
@@ -309,6 +306,16 @@ const HomePage = () => {
               </p>
               <p>
                 LaunchPath is a 90-day compliance installation program for new motor carriers. Built by the same person. Different tool. Different scope.
+              </p>
+            </div>
+            <div className="text-left mb-8" data-testid="gigline-launchpath-bullets">
+              <p className="text-muted-foreground flex items-start gap-2">
+                <span className="text-accent font-bold">—</span>
+                GigLine: one-time review to find your exposure.
+              </p>
+              <p className="text-muted-foreground flex items-start gap-2 mt-2">
+                <span className="text-accent font-bold">—</span>
+                LaunchPath: 90-day system installation for carriers.
               </p>
             </div>
             <a

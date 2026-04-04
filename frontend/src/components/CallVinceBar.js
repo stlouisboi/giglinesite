@@ -1,12 +1,12 @@
 import React from 'react';
 
-const CallVinceBar = () => {
+const CallVinceBar = ({ message = "Ready to talk through your operation?" }) => {
   return (
     <div className="w-full border-y border-border bg-white py-5 px-4">
       <div className="container mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 text-center sm:text-left">
         
         <p className="text-sm text-muted-foreground">
-          Ready to talk through your operation?
+          {message}
         </p>
         
         <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6">

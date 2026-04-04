@@ -35,6 +35,11 @@ const SafetyCheckTeaser = () => {
           </div>
         </div>
 
+        {/* Topic List */}
+        <p className="text-sm text-muted-foreground mb-8" data-testid="safety-check-topic-list">
+          Also covers: Lockout/Tagout &nbsp;&middot;&nbsp; Machine Guarding &nbsp;&middot;&nbsp; Ladders &nbsp;&middot;&nbsp; Training &amp; Records
+        </p>
+
         {/* CTA Button */}
         <Link 
           to="/safety-check" 
@@ -44,6 +49,11 @@ const SafetyCheckTeaser = () => {
           Run the Full Safety Check
           <ArrowRight size={18} />
         </Link>
+
+        {/* Outcome Line */}
+        <p className="text-sm text-muted-foreground mt-4" data-testid="safety-check-outcome-line">
+          You'll get a simple score and a short note from me explaining what it means for your operation.
+        </p>
 
         {/* Credential Anchor Line */}
         <p className="text-sm text-muted-foreground mt-6">

@@ -2,6 +2,7 @@
 GigLine Safety Check — PDF Report Generator
 
 Generates a professional Safety Check Report PDF matching the GL brand standard.
+Matches GL-SafetyCheck-GO/WAIT/NOGO sample PDFs exactly.
 """
 
 import io
@@ -29,15 +30,14 @@ YELLOW_BG = colors.HexColor("#FFFDE7")
 
 
 def get_styles():
-    """Return all paragraph styles"""
     return {
         "title": ParagraphStyle(
             "title", fontName="Helvetica-Bold", fontSize=18, leading=22,
             textColor=CHARCOAL, spaceAfter=4
         ),
         "subtitle": ParagraphStyle(
-            "subtitle", fontName="Helvetica", fontSize=10, leading=14,
-            textColor=MID_GRAY, spaceAfter=12
+            "subtitle", fontName="Helvetica", fontSize=11, leading=14,
+            textColor=MID_GRAY, spaceAfter=8
         ),
         "section_header": ParagraphStyle(
             "section_header", fontName="Helvetica-Bold", fontSize=9, leading=12,
@@ -52,10 +52,6 @@ def get_styles():
             "body_gray", fontName="Helvetica", fontSize=10, leading=14,
             textColor=MID_GRAY, spaceAfter=6
         ),
-        "question_num": ParagraphStyle(
-            "question_num", fontName="Helvetica-Bold", fontSize=14, leading=18,
-            textColor=CHARCOAL
-        ),
         "question_text": ParagraphStyle(
             "question_text", fontName="Helvetica", fontSize=10, leading=14,
             textColor=CHARCOAL
@@ -64,18 +60,6 @@ def get_styles():
             "citation", fontName="Helvetica", fontSize=8, leading=10,
             textColor=MID_GRAY
         ),
-        "status_go": ParagraphStyle(
-            "status_go", fontName="Helvetica-Bold", fontSize=12, leading=16,
-            textColor=GREEN_OK
-        ),
-        "status_nogo": ParagraphStyle(
-            "status_nogo", fontName="Helvetica-Bold", fontSize=12, leading=16,
-            textColor=RED_BG
-        ),
-        "status_wait": ParagraphStyle(
-            "status_wait", fontName="Helvetica-Bold", fontSize=12, leading=16,
-            textColor=GOLD
-        ),
         "bullet": ParagraphStyle(
             "bullet", fontName="Helvetica", fontSize=10, leading=14,
             textColor=CHARCOAL, leftIndent=12, spaceAfter=3
@@ -83,10 +67,6 @@ def get_styles():
         "footer": ParagraphStyle(
             "footer", fontName="Helvetica", fontSize=8, leading=10,
             textColor=MID_GRAY
-        ),
-        "cta_text": ParagraphStyle(
-            "cta_text", fontName="Helvetica-Bold", fontSize=11, leading=14,
-            textColor=CHARCOAL, alignment=TA_CENTER
         ),
     }
 
@@ -109,13 +89,13 @@ QUESTIONS = [
     },
     {
         "id": "4",
-        "text": "Are machine guards in place on all equipment \u2014 and have none been removed, bypassed, or modified?",
+        "text": "Are machine guards in place on all equipment and have none been removed, bypassed, or modified?",
         "citation": "29 CFR 1910.212"
     },
     {
         "id": "5",
         "text": "Are damaged ladders removed from service and tagged before they are used again?",
-        "citation": "29 CFR 1926.1053"
+        "citation": "29 CFR 1910.23"
     },
     {
         "id": "6",
@@ -126,26 +106,16 @@ QUESTIONS = [
 
 
 def generate_safety_check_pdf(submission_data):
-    """
-    Generate a PDF Safety Check Report.
-    
-    Args:
-        submission_data: dict with keys: name, company, email, phone,
-            operation_type, score_gaps, score_level, answers, timestamp, id
-    
-    Returns:
-        bytes: PDF content
-    """
     buffer = io.BytesIO()
     doc = SimpleDocTemplate(
         buffer, pagesize=letter,
         leftMargin=0.75*inch, rightMargin=0.75*inch,
         topMargin=0.6*inch, bottomMargin=0.8*inch
     )
-    
+
     styles = get_styles()
     story = []
-    
+
     gaps = submission_data.get("score_gaps", 0)
     if gaps <= 1:
         flow = "GO"
@@ -153,7 +123,7 @@ def generate_safety_check_pdf(submission_data):
         flow = "WAIT"
     else:
         flow = "NOGO"
-    
+
     ref_id = submission_data.get("id", "")[:8].upper()
     ts = submission_data.get("timestamp", "")
     try:
@@ -163,10 +133,11 @@ def generate_safety_check_pdf(submission_data):
     except Exception:
         date_str = "N/A"
         ref_code = ref_id
-    
+
     company = submission_data.get("company", "[Operator Name]")
     name = submission_data.get("name", "")
-    
+    operation_type = submission_data.get("operation_type", "")
+
     # ── HEADER ──
     header_data = [
         [
@@ -190,35 +161,34 @@ def generate_safety_check_pdf(submission_data):
         ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
     ]))
     story.append(header_table)
-    
-    # Gold rule
+
     story.append(Spacer(1, 8))
     story.append(HRFlowable(width="100%", thickness=1.5, color=GOLD, spaceAfter=12))
-    
+
     # Title block
     story.append(Paragraph("Safety Check Report", styles["title"]))
-    story.append(Paragraph("Initial Exposure Snapshot", ParagraphStyle(
-        "snap", fontName="Helvetica", fontSize=11, textColor=MID_GRAY, spaceAfter=8
-    )))
+    story.append(Paragraph("Initial Exposure Snapshot", styles["subtitle"]))
     story.append(Paragraph(
         "This reflects responses to six OSHA-critical areas commonly cited in small general-industry operations. "
         "It is not a full safety audit; it is a signal.",
         styles["body_gray"]
     ))
     story.append(Spacer(1, 8))
-    
-    # Company / Date info
+
+    # Company / Date / Completed by
     info_data = [
         [
             Paragraph("Company", ParagraphStyle("lbl", fontName="Helvetica", fontSize=8, textColor=MID_GRAY)),
-            Paragraph("Date Completed", ParagraphStyle("lbl", fontName="Helvetica", fontSize=8, textColor=MID_GRAY))
+            Paragraph("Date Completed", ParagraphStyle("lbl", fontName="Helvetica", fontSize=8, textColor=MID_GRAY)),
+            Paragraph("Completed by", ParagraphStyle("lbl", fontName="Helvetica", fontSize=8, textColor=MID_GRAY))
         ],
         [
             Paragraph(company, ParagraphStyle("val", fontName="Helvetica-Bold", fontSize=11, textColor=CHARCOAL)),
-            Paragraph(date_str, ParagraphStyle("val", fontName="Helvetica-Bold", fontSize=11, textColor=CHARCOAL))
+            Paragraph(date_str, ParagraphStyle("val", fontName="Helvetica-Bold", fontSize=11, textColor=CHARCOAL)),
+            Paragraph(name, ParagraphStyle("val", fontName="Helvetica-Bold", fontSize=11, textColor=CHARCOAL))
         ]
     ]
-    info_table = Table(info_data, colWidths=[3.5*inch, 3.5*inch])
+    info_table = Table(info_data, colWidths=[2.6*inch, 2.2*inch, 2.2*inch])
     info_table.setStyle(TableStyle([
         ('VALIGN', (0, 0), (-1, -1), 'TOP'),
         ('BOTTOMPADDING', (0, 0), (-1, 0), 2),
@@ -226,36 +196,46 @@ def generate_safety_check_pdf(submission_data):
     ]))
     story.append(info_table)
     story.append(Spacer(1, 6))
-    
+
     # ── SECTION 1: RESULT STATUS ──
     story.append(HRFlowable(width="100%", thickness=0.5, color=BORDER_GRAY, spaceAfter=4))
     story.append(Paragraph("SECTION 1 \u2014 RESULT STATUS", styles["section_header"]))
-    
+
     if flow == "GO":
-        status_label = "GO \u2014 Basic Controls Appear in Place"
+        status_label = "GO \u2014 Foundational Controls Present"
         status_color = GREEN_OK
         status_bg = colors.HexColor("#E8F5E9")
         status_body = (
-            "Your responses suggest basic controls are in place in most areas reviewed. "
-            "That does not mean everything will hold under full review \u2014 but it is a solid starting point."
+            "Your responses indicate that basic safety controls are in place across the areas reviewed. "
+            "This suggests your operation has structure where many do not."
+        )
+        status_extra = (
+            "However, this result does not confirm full compliance or audit readiness. "
+            "It indicates a starting position, not a final condition."
         )
     elif flow == "WAIT":
-        status_label = "WAIT \u2014 Mixed Exposure"
+        status_label = "WAIT \u2014 Partial Control, Gaps Present"
         status_color = GOLD
         status_bg = colors.HexColor("#FFF8E1")
         status_body = (
-            "Your responses show a mix. Some areas appear controlled. Others likely need attention. "
-            "This is the stage where small gaps become bigger problems later."
+            "Your responses indicate that some areas are controlled, while others likely require attention. "
+            "This is the most common position."
+        )
+        status_extra = (
+            "The operation is functional, but exposed in specific areas that may not be visible until reviewed."
         )
     else:
         status_label = "NO-GO \u2014 Exposure Likely"
         status_color = RED_BG
         status_bg = colors.HexColor("#FFEBEE")
         status_body = (
-            "Your responses indicate gaps in areas that are frequently cited. This does not mean failure. "
-            "It means the system is not fully in place."
+            "Your responses indicate gaps in areas that are frequently cited. "
+            "This does not mean failure. It means the system is not fully in place."
         )
-    
+        status_extra = (
+            "At this stage, clarity is more important than assumption."
+        )
+
     status_data = [
         [Paragraph(status_label, ParagraphStyle(
             "st", fontName="Helvetica-Bold", fontSize=13, textColor=status_color
@@ -263,10 +243,9 @@ def generate_safety_check_pdf(submission_data):
         [Paragraph(status_body, ParagraphStyle(
             "stb", fontName="Helvetica", fontSize=10, leading=14, textColor=CHARCOAL, spaceBefore=4
         ))],
-        [Paragraph(
-            "At this stage, clarity is more important than assumption.",
-            ParagraphStyle("stc", fontName="Helvetica-Bold", fontSize=10, textColor=CHARCOAL, spaceBefore=4)
-        )]
+        [Paragraph(status_extra, ParagraphStyle(
+            "stc", fontName="Helvetica", fontSize=10, leading=14, textColor=CHARCOAL, spaceBefore=4
+        ))]
     ]
     status_table = Table(status_data, colWidths=[6.5*inch])
     status_table.setStyle(TableStyle([
@@ -279,23 +258,20 @@ def generate_safety_check_pdf(submission_data):
     ]))
     story.append(status_table)
     story.append(Spacer(1, 16))
-    
+
     # ── SECTION 2: QUESTION BREAKDOWN ──
     story.append(HRFlowable(width="100%", thickness=0.5, color=BORDER_GRAY, spaceAfter=4))
     story.append(Paragraph("SECTION 2 \u2014 QUESTION BREAKDOWN", styles["section_header"]))
-    
+
     answers = submission_data.get("answers", {})
-    
+
     for q in QUESTIONS:
         answer = answers.get(str(q["id"]), answers.get(q["id"], "no"))
         is_yes = answer.lower() == "yes"
-        
+
         answer_text = "Yes \u2014 Confirmed" if is_yes else "No \u2014 Not in Place"
         answer_color = GREEN_OK if is_yes else RED_BG
-        
-        q_block = []
-        
-        # Question row
+
         q_data = [
             [
                 Paragraph(f"<b>{q['id'].zfill(2)}</b>", ParagraphStyle(
@@ -320,36 +296,31 @@ def generate_safety_check_pdf(submission_data):
             ('LINEBELOW', (0, 1), (-1, 1), 0.5, BORDER_GRAY),
         ]))
         story.append(q_table)
-    
+
     story.append(Spacer(1, 8))
-    
+
     # ── SECTION 3: WHAT THIS SUGGESTS ──
     story.append(HRFlowable(width="100%", thickness=0.5, color=BORDER_GRAY, spaceAfter=4))
     story.append(Paragraph("SECTION 3 \u2014 WHAT THIS SUGGESTS", styles["section_header"]))
-    
+
     if flow == "GO":
-        story.append(Paragraph("This result typically reflects:", styles["body"]))
+        story.append(Paragraph("Even strong operations typically show gaps in:", styles["body"]))
         for item in [
-            "basic controls are documented",
-            "primary programs are in place",
-            "core training appears current",
+            "documentation consistency",
+            "training record completeness",
+            "inspection documentation",
+            "real-world execution vs. written program",
         ]:
-            story.append(Paragraph(f"\u2014 {item}", styles["bullet"]))
-        story.append(Spacer(1, 4))
-        story.append(Paragraph(
-            "However, a positive response here does not confirm that documentation is complete, "
-            "that execution is consistent, or that conditions on the floor match what is written.",
-            styles["body_gray"]
-        ))
+            story.append(Paragraph(f"\u2014  {item}", styles["bullet"]))
     elif flow == "WAIT":
         story.append(Paragraph("This result usually indicates:", styles["body"]))
         for item in [
-            "some programs are in place but may not be current",
-            "partial documentation that may not hold under review",
-            "training that has been done but may not be verified",
-            "areas that function but have not been formally reviewed",
+            "partial systems in place",
+            "inconsistent execution",
+            "documentation gaps",
+            "overlooked exposure areas",
         ]:
-            story.append(Paragraph(f"\u2014 {item}", styles["bullet"]))
+            story.append(Paragraph(f"\u2014  {item}", styles["bullet"]))
     else:
         story.append(Paragraph("This result usually indicates:", styles["body"]))
         for item in [
@@ -358,52 +329,47 @@ def generate_safety_check_pdf(submission_data):
             "unverified training",
             "exposure that has not yet been reviewed",
         ]:
-            story.append(Paragraph(f"\u2014 {item}", styles["bullet"]))
-    
+            story.append(Paragraph(f"\u2014  {item}", styles["bullet"]))
+
     story.append(Spacer(1, 8))
-    
+
     # ── SECTION 4: WHAT THIS DOES NOT SHOW ──
     story.append(HRFlowable(width="100%", thickness=0.5, color=BORDER_GRAY, spaceAfter=4))
     story.append(Paragraph("SECTION 4 \u2014 WHAT THIS DOES NOT SHOW", styles["section_header"]))
-    story.append(Paragraph(
-        "This check is based on self-reported answers. It does not evaluate:",
-        styles["body"]
-    ))
+    story.append(Paragraph("This check does not evaluate:", styles["body"]))
     for item in [
+        "full OSHA compliance",
         "condition of equipment",
         "quality of training",
         "actual behavior on the floor",
         "depth of documentation",
     ]:
-        story.append(Paragraph(f"\u2014 {item}", styles["bullet"]))
+        story.append(Paragraph(f"\u2014  {item}", styles["bullet"]))
     story.append(Spacer(1, 4))
     story.append(Paragraph("It identifies where to look first.", ParagraphStyle(
         "bold", fontName="Helvetica-Bold", fontSize=10, textColor=CHARCOAL
     )))
     story.append(Spacer(1, 8))
-    
+
     # ── SECTION 5: RECOMMENDED NEXT STEP ──
     story.append(HRFlowable(width="100%", thickness=0.5, color=BORDER_GRAY, spaceAfter=4))
     story.append(Paragraph("SECTION 5 \u2014 RECOMMENDED NEXT STEP", styles["section_header"]))
     story.append(Paragraph("<b>What Comes Next</b>", styles["body"]))
-    story.append(Paragraph(
-        "A walkthrough or documentation review provides:",
-        styles["body"]
-    ))
+    story.append(Paragraph("A walkthrough or documentation review provides:", styles["body"]))
     for item in [
         "a clear picture of what is exposed",
         "a written report of findings",
         "a prioritized list of what to fix first",
         "documentation that holds under review",
     ]:
-        story.append(Paragraph(f"\u2014 {item}", styles["bullet"]))
+        story.append(Paragraph(f"\u2014  {item}", styles["bullet"]))
     story.append(Spacer(1, 4))
     story.append(Paragraph(
         "Pricing is straightforward and quoted up front; there are no retainers or long-term contracts.",
         styles["body_gray"]
     ))
     story.append(Spacer(1, 12))
-    
+
     # CTA Box
     cta_data = [
         [Paragraph(
@@ -426,7 +392,7 @@ def generate_safety_check_pdf(submission_data):
     ]))
     story.append(cta_table)
     story.append(Spacer(1, 20))
-    
+
     # ── FOOTER ──
     story.append(HRFlowable(width="100%", thickness=0.5, color=BORDER_GRAY, spaceAfter=8))
     footer_data = [
@@ -449,7 +415,7 @@ def generate_safety_check_pdf(submission_data):
         ('VALIGN', (0, 0), (-1, -1), 'TOP'),
     ]))
     story.append(footer_table)
-    
+
     doc.build(story)
     pdf_bytes = buffer.getvalue()
     buffer.close()

@@ -1,6 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" width="32" height="38">
-  <path d="M100 8 L188 52 L188 140 Q188 195 100 232 Q12 195 12 140 L12 52 Z" fill="#1C1C1E"/>
-  <path d="M100 20 L178 60 L178 138 Q178 188 100 222 Q22 188 22 138 L22 60 Z" fill="none" stroke="#2A2A2E" stroke-width="2"/>
-  <line x1="100" y1="48" x2="100" y2="205" stroke="#B8975A" stroke-width="5" stroke-linecap="round"/>
-  <rect x="86" y="116" width="28" height="18" rx="2" fill="#B8975A"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 34 120 142" width="32" height="32">
+  <!-- GL-LOGO-V3B favicon — shield mark only, no ticks, no text -->
+  <path d="M80,38 L136,57 L136,120 Q136,153 80,172 Q24,153 24,120 L24,57 Z"
+    fill="#FFFFFF" stroke="#1C2B2B" stroke-width="3"/>
+  <path d="M80,47 L127,64 L127,120 Q127,147 80,163 Q33,147 33,120 L33,64 Z"
+    fill="none" stroke="#B8972C" stroke-width="1.2"/>
+  <line x1="80" y1="57" x2="80" y2="96"
+    stroke="#1C2B2B" stroke-width="4" stroke-linecap="butt"/>
+  <rect x="70" y="96" width="20" height="10" rx="2" fill="#1C2B2B"/>
+  <rect x="74" y="97.5" width="12" height="7" rx="1" fill="#B8972C"/>
+  <line x1="80" y1="106" x2="80" y2="148"
+    stroke="#1C2B2B" stroke-width="4" stroke-linecap="butt"/>
 </svg>

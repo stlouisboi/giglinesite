@@ -26,16 +26,27 @@ const Navbar = () => {
             className="flex items-center space-x-3"
             data-testid="navbar-logo"
           >
-            {/* Shield Icon - Premium GigLine mark */}
-            <svg viewBox="0 0 200 240" className="w-11 h-14 md:w-14 md:h-16">
-              <path d="M100 8 L188 52 L188 140 Q188 195 100 232 Q12 195 12 140 L12 52 Z" fill="#FFFFFF"/>
-              <path d="M100 20 L178 60 L178 138 Q178 188 100 222 Q22 188 22 138 L22 60 Z" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5"/>
-              <line x1="100" y1="48" x2="100" y2="205" stroke="#B8975A" strokeWidth="3.5" strokeLinecap="round"/>
-              <rect x="88" y="118" width="24" height="16" rx="2" fill="#B8975A"/>
+            {/* Inspector Mark Shield - GL-LOGO-V2 */}
+            <svg viewBox="0 0 160 180" className="w-10 h-12 md:w-12 md:h-14">
+              <path d="M80,38 L136,57 L136,120 Q136,153 80,172 Q24,153 24,120 L24,57 Z"
+                fill="#FFFFFF" stroke="#1C2B2B" strokeWidth="2.2"/>
+              <path d="M80,47 L127,64 L127,120 Q127,147 80,163 Q33,147 33,120 L33,64 Z"
+                fill="none" stroke="#B8972C" strokeWidth="0.9"/>
+              <line x1="80" y1="57" x2="80" y2="96"
+                stroke="#1C2B2B" strokeWidth="3" strokeLinecap="butt"/>
+              <rect x="72" y="96" width="16" height="8" rx="1.5" fill="#1C2B2B"/>
+              <rect x="76" y="97.5" width="8" height="5" rx="0.5" fill="#B8972C"/>
+              <line x1="80" y1="104" x2="80" y2="148"
+                stroke="#1C2B2B" strokeWidth="3" strokeLinecap="butt"/>
+              <line x1="72" y1="65" x2="88" y2="65"
+                stroke="#B8972C" strokeWidth="1" strokeDasharray="2,2" strokeLinecap="round"/>
+              <line x1="72" y1="140" x2="88" y2="140"
+                stroke="#B8972C" strokeWidth="1" strokeDasharray="2,2" strokeLinecap="round"/>
             </svg>
             <div className="flex flex-col">
-              <span className="text-lg md:text-xl font-bold text-white leading-tight tracking-tight">GigLine</span>
-              <span className="text-[10px] md:text-xs font-medium text-[#B8975A] tracking-[0.2em]">SAFETY & COMPLIANCE</span>
+              <span className="text-lg md:text-xl font-bold text-white leading-tight tracking-tight" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>GigLine</span>
+              <span className="w-full h-px bg-[#B8972C] my-0.5"></span>
+              <span className="text-[9px] md:text-[10px] font-normal text-white tracking-[0.2em]" style={{fontFamily: "Arial, Helvetica, sans-serif"}}>SAFETY & COMPLIANCE</span>
             </div>
           </Link>
 

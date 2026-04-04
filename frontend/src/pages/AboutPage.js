@@ -47,7 +47,7 @@ const AboutPage = () => {
                 data-testid="headshot"
               >
                 <img 
-                  src="/vince-founder.png" 
+                  src="/vince-about.png" 
                   alt="Vince Lawrence - Founder of GigLine Safety & Compliance"
                   className="w-full h-auto"
                 />

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle, AlertCircle, Phone, Mail } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import SEO from '../components/SEO';
 
 const SafetyCheckPage = () => {
@@ -22,37 +23,37 @@ const SafetyCheckPage = () => {
   const questions = [
     {
       id: 1,
-      text: "Do you have a written Hazard Communication program and can your people find the SDS for every chemical on site right now?",
+      text: "Do you have a written Hazard Communication program — and can your team locate the SDS for every chemical on site without delay?",
       citation: "29 CFR 1910.1200",
       topic: "HazCom & SDS"
     },
     {
       id: 2,
-      text: "Are your forklift operators certified in the last three years and are daily pre-shift inspections documented?",
+      text: "Are forklift operators currently certified — and are daily pre-shift inspections consistently documented?",
       citation: "29 CFR 1910.178",
       topic: "Forklift Certification"
     },
     {
       id: 3,
-      text: "Do you have a written Lockout/Tagout program with documented annual inspections of each energy control procedure?",
+      text: "Do you have a written Lockout/Tagout program with documented annual inspections for each energy control procedure?",
       citation: "29 CFR 1910.147",
       topic: "Lockout-Tagout"
     },
     {
       id: 4,
-      text: "Are machine guards in place on every piece of equipment — and have none of them been removed or bypassed?",
+      text: "Are machine guards in place on all equipment — and have none been removed, bypassed, or modified?",
       citation: "29 CFR 1910.212",
       topic: "Machine Guarding"
     },
     {
       id: 5,
-      text: "Are damaged ladders removed from service and tagged before anyone uses them again?",
+      text: "Are damaged ladders removed from service and tagged before they are used again?",
       citation: "29 CFR 1926.1053",
       topic: "Ladder Safety"
     },
     {
       id: 6,
-      text: "Can you produce training records and toolbox talk documentation for the last 12 months?",
+      text: "Are safety training records current, documented, and accessible when requested?",
       citation: "29 CFR 1910.132",
       topic: "Training Records"
     }
@@ -90,8 +91,6 @@ const SafetyCheckPage = () => {
   const handleAnswer = (questionId, answer) => {
     const newAnswers = { ...answers, [questionId]: answer };
     setAnswers(newAnswers);
-    
-    // Check if all questions answered
     if (Object.keys(newAnswers).length === 6) {
       setShowResults(true);
     }
@@ -101,10 +100,14 @@ const SafetyCheckPage = () => {
     return Object.values(answers).filter(a => a === 'no').length;
   };
 
+  const getYesCount = () => {
+    return Object.values(answers).filter(a => a === 'yes').length;
+  };
+
   const getScoreLevel = () => {
     const noCount = getNoCount();
     if (noCount <= 1) return 'low';
-    if (noCount >= 2 && noCount <= 3) return 'medium';
+    if (noCount <= 3) return 'medium';
     return 'high';
   };
 
@@ -131,14 +134,12 @@ const SafetyCheckPage = () => {
     if (!formData.operationType) errors.operationType = "Select your operation type.";
     if (!formData.employeeCount) errors.employeeCount = "Select your employee count.";
     if (!formData.concernedQuestion) errors.concernedQuestion = "Select the question that concerned you most.";
-    
     setValidationErrors(errors);
     return Object.keys(errors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
     if (!validateForm()) return;
 
     setIsSubmitting(true);
@@ -147,12 +148,9 @@ const SafetyCheckPage = () => {
     const API_URL = process.env.REACT_APP_BACKEND_URL;
 
     try {
-      // Submit to backend API (stores in DB + sends emails)
       const response = await fetch(`${API_URL}/api/safety-check/submit`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: formData.name,
           company: formData.company,
@@ -167,21 +165,16 @@ const SafetyCheckPage = () => {
           answers: answers,
         }),
       });
-
       if (response.ok) {
         setFormSubmitted(true);
       } else {
         throw new Error('Submission failed');
       }
     } catch (error) {
-      // Fallback to Formspree if backend fails
       try {
         const formspreeResponse = await fetch('https://formspree.io/f/xpqoyldy', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
           body: JSON.stringify({
             name: formData.name,
             company: formData.company,
@@ -199,7 +192,7 @@ const SafetyCheckPage = () => {
         if (formspreeResponse.ok) {
           setFormSubmitted(true);
         } else {
-          throw new Error('Fallback submission failed');
+          throw new Error('Fallback failed');
         }
       } catch (fallbackError) {
         setFormStatus({
@@ -212,30 +205,28 @@ const SafetyCheckPage = () => {
     }
   };
 
-  const inputClasses = "w-full px-4 py-3 border border-border rounded-md bg-white text-primary placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent";
-  const labelClasses = "block text-sm font-medium text-primary mb-1";
+  const inputClasses = "w-full px-4 py-3 border border-[#1C2B2B]/15 rounded bg-white text-[#1C2B2B] placeholder:text-[#1C2B2B]/40 focus:outline-none focus:ring-2 focus:ring-[#B8972C]/50 focus:border-transparent";
+  const labelClasses = "block text-sm font-medium text-[#1C2B2B] mb-1";
 
   return (
     <main className="bg-white" data-testid="safety-check-page">
       <SEO 
         title="Safety Check"
-        description="Six questions mapped to OSHA's most cited violations in small operations. Answer honestly. Get your score. Send your results to Vince Lawrence, GigLine Safety & Compliance."
+        description="Six questions mapped to OSHA's most cited violations in small operations. Answer honestly. Get a clear picture of where you stand."
         canonical="/safety-check"
       />
-      {/* Page Header */}
-      <section className="bg-primary text-white py-16 md:py-20">
+
+      {/* Header */}
+      <section className="bg-[#1C2B2B] text-white py-16 md:py-20">
         <div className="container max-w-3xl">
-          <p className="text-xs font-semibold tracking-widest text-white/60 uppercase mb-4">
+          <p className="text-xs font-semibold tracking-widest text-white/50 uppercase mb-4">
             GigLine Safety Check
           </p>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6" data-testid="safety-check-headline">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6" data-testid="safety-check-headline" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
             The Six Questions OSHA Asks First
           </h1>
-          <p className="text-lg text-white/90 mb-4">
+          <p className="text-lg text-white/85 leading-relaxed">
             Built on OSHA's most cited violations in general industry. Takes 90 seconds. Answer honestly — this is for your operation, not for show.
-          </p>
-          <p className="text-sm text-white/70">
-            Built on OSHA's most cited violations in general industry. Reviewed by a 25-year safety professional.
           </p>
         </div>
       </section>
@@ -243,46 +234,59 @@ const SafetyCheckPage = () => {
       {/* Questions Section */}
       <section className="py-12 md:py-16">
         <div className="container max-w-3xl">
-          <div className="space-y-8">
+
+          {/* What This Is Measuring */}
+          <div className="mb-12 pb-8 border-b border-[#1C2B2B]/10">
+            <h2 className="text-base font-semibold text-[#1C2B2B] mb-2">What This Is Measuring</h2>
+            <p className="text-sm text-[#1C2B2B]/60 leading-relaxed">
+              These questions reflect conditions that are cited repeatedly across manufacturing, warehousing, and contractor operations.
+            </p>
+            <p className="text-sm text-[#1C2B2B]/60 mt-2">
+              If you cannot answer "yes" with confidence, that area likely needs attention.
+            </p>
+          </div>
+
+          {/* Questions */}
+          <div className="space-y-10">
             {questions.map((question) => (
               <div 
                 key={question.id} 
-                className="border-l-4 border-accent/30 pl-6 py-2"
+                className="border-l-2 border-[#B8972C]/30 pl-6 py-1"
                 data-testid={`question-${question.id}`}
               >
-                <p className="text-xs font-semibold tracking-widest text-muted-foreground uppercase mb-2">
+                <p className="text-[10px] font-medium tracking-widest text-[#1C2B2B]/30 uppercase mb-3">
                   {String(question.id).padStart(2, '0')}
                 </p>
-                <p className="text-lg text-primary mb-2">
+                <p className="text-base font-medium text-[#1C2B2B] mb-2 leading-relaxed">
                   {question.text}
                 </p>
-                <p className="text-sm text-muted-foreground mb-4">
+                <p className="text-xs text-[#1C2B2B]/40 mb-5">
                   {question.citation}
                 </p>
                 <div className="flex gap-3">
                   <button
                     type="button"
                     onClick={() => handleAnswer(question.id, 'yes')}
-                    className={`px-6 py-2 rounded-md font-medium transition-colors ${
+                    className={`px-6 py-2.5 rounded font-medium text-sm transition-colors ${
                       answers[question.id] === 'yes'
-                        ? 'bg-accent text-white'
-                        : 'bg-secondary text-primary hover:bg-secondary/80'
+                        ? 'bg-[#1C2B2B] text-white'
+                        : 'bg-[#F5F5F3] text-[#1C2B2B] hover:bg-[#E8E8E5]'
                     }`}
                     data-testid={`question-${question.id}-yes`}
                   >
-                    YES
+                    Yes — Confirmed
                   </button>
                   <button
                     type="button"
                     onClick={() => handleAnswer(question.id, 'no')}
-                    className={`px-6 py-2 rounded-md font-medium transition-colors ${
+                    className={`px-6 py-2.5 rounded font-medium text-sm transition-colors ${
                       answers[question.id] === 'no'
-                        ? 'bg-red-600 text-white'
-                        : 'bg-secondary text-primary hover:bg-secondary/80'
+                        ? 'bg-[#8B2500] text-white'
+                        : 'bg-[#F5F5F3] text-[#1C2B2B] hover:bg-[#E8E8E5]'
                     }`}
                     data-testid={`question-${question.id}-no`}
                   >
-                    NO
+                    No — Not in Place
                   </button>
                 </div>
               </div>
@@ -291,250 +295,149 @@ const SafetyCheckPage = () => {
 
           {/* Results Section */}
           {showResults && (
-            <div className="mt-12 pt-12 border-t border-border" data-testid="results-section">
-              {/* Low Score Result */}
-              {getScoreLevel() === 'low' && (
-                <div data-testid="result-low">
-                  <p className="text-lg font-bold text-green-600 mb-4">
-                    YOUR SCORE: 0–1 GAP
-                  </p>
-                  <div className="text-primary space-y-4">
-                    <p>
-                      Your documentation is ahead of most operations this size. A walkthrough would confirm what you have — and find what you cannot see from the inside.
-                    </p>
-                    <p>
-                      Even operations with strong written programs have gaps in the field. What is documented and what is practiced are not always the same thing.
-                    </p>
-                  </div>
-                </div>
-              )}
+            <div className="mt-16 pt-12 border-t border-[#1C2B2B]/10" data-testid="results-section">
+              
+              <h2 className="text-2xl font-bold text-[#1C2B2B] mb-6" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
+                What Your Answers Suggest
+              </h2>
 
-              {/* Medium Score Result */}
-              {getScoreLevel() === 'medium' && (
-                <div data-testid="result-medium">
-                  <p className="text-lg font-bold text-amber-600 mb-4">
-                    YOUR SCORE: 2–3 GAPS
-                  </p>
-                  <div className="text-primary space-y-4">
-                    <p>
-                      You have gaps an OSHA inspector would find in the first hour. These are not paperwork problems — they are the citations that come with penalties averaging $4,500 per instance for small employers.
-                    </p>
-                    <p>
-                      If you answered No to 2 or more of these, you also need to decide what you would hand an OSHA officer in the first 10 minutes. Most small operations do not know the answer to that. That is part of the exposure.
-                    </p>
-                  </div>
-                </div>
-              )}
+              {/* Score Badge */}
+              <div className={`inline-block px-4 py-2 rounded text-sm font-semibold mb-6 ${
+                getScoreLevel() === 'low' ? 'bg-[#1C2B2B]/10 text-[#1C2B2B]' :
+                getScoreLevel() === 'medium' ? 'bg-[#B8972C]/15 text-[#8B7222]' :
+                'bg-[#8B2500]/10 text-[#8B2500]'
+              }`} data-testid="score-badge">
+                {getNoCount()} of 6 areas flagged
+              </div>
 
-              {/* High Score Result */}
-              {getScoreLevel() === 'high' && (
-                <div data-testid="result-high">
-                  <p className="text-lg font-bold text-red-600 mb-4">
-                    YOUR SCORE: 4–6 GAPS
-                  </p>
-                  <div className="text-primary space-y-4">
+              {/* Result Messages */}
+              <div className="text-[#1C2B2B]/70 space-y-4 leading-relaxed mb-8">
+                {getScoreLevel() === 'low' && (
+                  <div data-testid="result-low">
                     <p>
-                      Your operation has significant exposure across multiple areas. This is the profile OSHA finds most often in general industry inspections of operations under 50 employees.
-                    </p>
-                    <p>
-                      Beyond the violations themselves — do you know what to hand an OSHA officer in the first 10 minutes? Most operations at this exposure level do not have that answer ready either. That is a second layer of risk on top of the gaps above.
+                      Your operation shows signs of basic control in key areas. That does not mean it will hold under full review — but it is a solid starting point.
                     </p>
                   </div>
-                </div>
-              )}
+                )}
+                {getScoreLevel() === 'medium' && (
+                  <div data-testid="result-medium">
+                    <p>
+                      Some areas appear controlled. Others likely need attention. This is where most operations fall — functional, but exposed in specific areas.
+                    </p>
+                  </div>
+                )}
+                {getScoreLevel() === 'high' && (
+                  <div data-testid="result-high">
+                    <p>
+                      Your operation is likely exposed in areas that are commonly cited. This does not mean failure — it means the system has gaps that need to be addressed.
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {/* Critical Line */}
+              <p className="text-sm text-[#1C2B2B] font-medium border-l-2 border-[#B8972C] pl-4 mb-12">
+                This check does not replace a walkthrough or documentation review. It shows where to look first.
+              </p>
+
+              {/* CTA Block */}
+              <div className="bg-[#F5F5F3] rounded p-8 mb-12">
+                <h3 className="text-xl font-bold text-[#1C2B2B] mb-3" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
+                  Want a Clear Picture of What's Exposed?
+                </h3>
+                <p className="text-[#1C2B2B]/60 mb-6 leading-relaxed">
+                  This check shows where issues may exist. A walkthrough or documentation review shows what actually needs to be fixed — and in what order.
+                </p>
+                <Link 
+                  to="/contact" 
+                  className="inline-flex items-center gap-2 bg-[#1C2B2B] hover:bg-[#2A3D3D] text-white font-medium px-6 py-3 rounded transition-colors text-sm"
+                  data-testid="results-cta"
+                >
+                  Request a Walkthrough or Review
+                  <ArrowRight size={16} />
+                </Link>
+                <p className="text-xs text-[#1C2B2B]/50 mt-3">
+                  No pressure. No ongoing contract. Just a clear assessment of what matters first.
+                </p>
+              </div>
 
               {/* Submission Form */}
-              <div className="mt-12 pt-12 border-t border-border">
+              <div className="pt-12 border-t border-[#1C2B2B]/10">
                 {!formSubmitted ? (
                   <>
-                    <h2 className="text-2xl font-bold text-primary mb-2">
+                    <h2 className="text-xl font-bold text-[#1C2B2B] mb-2" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
                       Send Your Results to Vince
                     </h2>
-                    <p className="text-muted-foreground mb-8">
-                      Name your score and the question that concerned you most. He will tell you what he would look at first if he walked your floor tomorrow.
+                    <p className="text-sm text-[#1C2B2B]/60 mb-8 leading-relaxed">
+                      Name your score and the question that concerned you most. Vince will review and respond with what he would look at first.
                     </p>
 
                     <form onSubmit={handleSubmit} className="space-y-5" data-testid="safety-check-form">
-                      {/* Name */}
-                      <div>
-                        <label htmlFor="name" className={labelClasses}>
-                          Name <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          id="name"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleFormChange}
-                          className={inputClasses}
-                          data-testid="form-name"
-                        />
-                        {validationErrors.name && (
-                          <p className="text-sm text-red-600 mt-1">{validationErrors.name}</p>
-                        )}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                          <label htmlFor="name" className={labelClasses}>Name <span className="text-[#8B2500]">*</span></label>
+                          <input type="text" id="name" name="name" value={formData.name} onChange={handleFormChange} className={inputClasses} data-testid="form-name" />
+                          {validationErrors.name && <p className="text-xs text-[#8B2500] mt-1">{validationErrors.name}</p>}
+                        </div>
+                        <div>
+                          <label htmlFor="company" className={labelClasses}>Company <span className="text-[#8B2500]">*</span></label>
+                          <input type="text" id="company" name="company" value={formData.company} onChange={handleFormChange} className={inputClasses} data-testid="form-company" />
+                          {validationErrors.company && <p className="text-xs text-[#8B2500] mt-1">{validationErrors.company}</p>}
+                        </div>
                       </div>
 
-                      {/* Company */}
-                      <div>
-                        <label htmlFor="company" className={labelClasses}>
-                          Company <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          id="company"
-                          name="company"
-                          value={formData.company}
-                          onChange={handleFormChange}
-                          className={inputClasses}
-                          data-testid="form-company"
-                        />
-                        {validationErrors.company && (
-                          <p className="text-sm text-red-600 mt-1">{validationErrors.company}</p>
-                        )}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                          <label htmlFor="phone" className={labelClasses}>Phone <span className="text-[#8B2500]">*</span></label>
+                          <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleFormChange} className={inputClasses} data-testid="form-phone" />
+                          {validationErrors.phone && <p className="text-xs text-[#8B2500] mt-1">{validationErrors.phone}</p>}
+                        </div>
+                        <div>
+                          <label htmlFor="email" className={labelClasses}>Email <span className="text-[#8B2500]">*</span></label>
+                          <input type="email" id="email" name="email" value={formData.email} onChange={handleFormChange} className={inputClasses} data-testid="form-email" />
+                          {validationErrors.email && <p className="text-xs text-[#8B2500] mt-1">{validationErrors.email}</p>}
+                        </div>
                       </div>
 
-                      {/* Phone */}
-                      <div>
-                        <label htmlFor="phone" className={labelClasses}>
-                          Phone <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                          type="tel"
-                          id="phone"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleFormChange}
-                          className={inputClasses}
-                          data-testid="form-phone"
-                        />
-                        {validationErrors.phone && (
-                          <p className="text-sm text-red-600 mt-1">{validationErrors.phone}</p>
-                        )}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                          <label htmlFor="operationType" className={labelClasses}>Operation Type <span className="text-[#8B2500]">*</span></label>
+                          <select id="operationType" name="operationType" value={formData.operationType} onChange={handleFormChange} className={inputClasses} data-testid="form-operation-type">
+                            {operationTypes.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
+                          </select>
+                          {validationErrors.operationType && <p className="text-xs text-[#8B2500] mt-1">{validationErrors.operationType}</p>}
+                        </div>
+                        <div>
+                          <label htmlFor="employeeCount" className={labelClasses}>Number of Employees <span className="text-[#8B2500]">*</span></label>
+                          <select id="employeeCount" name="employeeCount" value={formData.employeeCount} onChange={handleFormChange} className={inputClasses} data-testid="form-employee-count">
+                            {employeeCounts.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
+                          </select>
+                          {validationErrors.employeeCount && <p className="text-xs text-[#8B2500] mt-1">{validationErrors.employeeCount}</p>}
+                        </div>
                       </div>
 
-                      {/* Email */}
                       <div>
-                        <label htmlFor="email" className={labelClasses}>
-                          Email <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleFormChange}
-                          className={inputClasses}
-                          data-testid="form-email"
-                        />
-                        {validationErrors.email && (
-                          <p className="text-sm text-red-600 mt-1">{validationErrors.email}</p>
-                        )}
+                        <label htmlFor="score" className={labelClasses}>Your Score</label>
+                        <input type="text" id="score" name="score" value={getScoreDisplay()} readOnly className={`${inputClasses} bg-[#F5F5F3] cursor-not-allowed`} data-testid="form-score" />
                       </div>
 
-                      {/* Operation Type */}
                       <div>
-                        <label htmlFor="operationType" className={labelClasses}>
-                          Operation Type <span className="text-red-500">*</span>
-                        </label>
-                        <select
-                          id="operationType"
-                          name="operationType"
-                          value={formData.operationType}
-                          onChange={handleFormChange}
-                          className={inputClasses}
-                          data-testid="form-operation-type"
-                        >
-                          {operationTypes.map(opt => (
-                            <option key={opt.value} value={opt.value}>{opt.label}</option>
-                          ))}
+                        <label htmlFor="concernedQuestion" className={labelClasses}>Which question concerned you most? <span className="text-[#8B2500]">*</span></label>
+                        <select id="concernedQuestion" name="concernedQuestion" value={formData.concernedQuestion} onChange={handleFormChange} className={inputClasses} data-testid="form-concerned-question">
+                          {concernedQuestions.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
                         </select>
-                        {validationErrors.operationType && (
-                          <p className="text-sm text-red-600 mt-1">{validationErrors.operationType}</p>
-                        )}
+                        {validationErrors.concernedQuestion && <p className="text-xs text-[#8B2500] mt-1">{validationErrors.concernedQuestion}</p>}
                       </div>
 
-                      {/* Number of Employees */}
                       <div>
-                        <label htmlFor="employeeCount" className={labelClasses}>
-                          Number of employees <span className="text-red-500">*</span>
-                        </label>
-                        <select
-                          id="employeeCount"
-                          name="employeeCount"
-                          value={formData.employeeCount}
-                          onChange={handleFormChange}
-                          className={inputClasses}
-                          data-testid="form-employee-count"
-                        >
-                          {employeeCounts.map(opt => (
-                            <option key={opt.value} value={opt.value}>{opt.label}</option>
-                          ))}
-                        </select>
-                        {validationErrors.employeeCount && (
-                          <p className="text-sm text-red-600 mt-1">{validationErrors.employeeCount}</p>
-                        )}
+                        <label htmlFor="whatPushed" className={labelClasses}>What pushed you to run this check today?</label>
+                        <textarea id="whatPushed" name="whatPushed" value={formData.whatPushed} onChange={handleFormChange} rows={3} className={inputClasses} data-testid="form-what-pushed" />
                       </div>
 
-                      {/* Your Score (auto-populated, read-only) */}
-                      <div>
-                        <label htmlFor="score" className={labelClasses}>
-                          Your score
-                        </label>
-                        <input
-                          type="text"
-                          id="score"
-                          name="score"
-                          value={getScoreDisplay()}
-                          readOnly
-                          className={`${inputClasses} bg-secondary cursor-not-allowed`}
-                          data-testid="form-score"
-                        />
-                      </div>
-
-                      {/* Which question concerned you most */}
-                      <div>
-                        <label htmlFor="concernedQuestion" className={labelClasses}>
-                          Which question concerned you most? <span className="text-red-500">*</span>
-                        </label>
-                        <select
-                          id="concernedQuestion"
-                          name="concernedQuestion"
-                          value={formData.concernedQuestion}
-                          onChange={handleFormChange}
-                          className={inputClasses}
-                          data-testid="form-concerned-question"
-                        >
-                          {concernedQuestions.map(opt => (
-                            <option key={opt.value} value={opt.value}>{opt.label}</option>
-                          ))}
-                        </select>
-                        {validationErrors.concernedQuestion && (
-                          <p className="text-sm text-red-600 mt-1">{validationErrors.concernedQuestion}</p>
-                        )}
-                      </div>
-
-                      {/* What pushed you to run this check today */}
-                      <div>
-                        <label htmlFor="whatPushed" className={labelClasses}>
-                          What pushed you to run this check today?
-                        </label>
-                        <textarea
-                          id="whatPushed"
-                          name="whatPushed"
-                          value={formData.whatPushed}
-                          onChange={handleFormChange}
-                          rows={3}
-                          className={inputClasses}
-                          data-testid="form-what-pushed"
-                        />
-                      </div>
-
-                      {/* Honeypot field for spam protection */}
                       <input type="text" name="_gotcha" style={{ display: 'none' }} />
 
-                      {/* Error message */}
                       {formStatus.type === 'error' && (
-                        <div className="text-red-600 text-sm">
+                        <div className="text-[#8B2500] text-sm">
                           <p>{formStatus.message}</p>
                           <p className="mt-1">
                             <a href="mailto:vince@giglinecompliance.com" className="underline">vince@giglinecompliance.com</a>
@@ -544,37 +447,30 @@ const SafetyCheckPage = () => {
                         </div>
                       )}
 
-                      {/* Submit button */}
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full bg-[#1C2B2B] hover:bg-[#2A3D3D] text-white font-medium py-3.5 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                         data-testid="form-submit"
                       >
                         {isSubmitting ? 'Sending...' : 'Send Results'}
                       </button>
-
-                      {/* Expectation line */}
-                      <p className="text-sm text-muted-foreground text-center">
-                        This is not a sales call. Vince will review your results and respond within one business day with what he would look at first in your operation.
-                      </p>
                     </form>
                   </>
                 ) : (
-                  /* Success State */
                   <div data-testid="form-success">
-                    <h2 className="text-2xl font-bold text-primary mb-4">
+                    <h2 className="text-xl font-bold text-[#1C2B2B] mb-4" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
                       Results sent.
                     </h2>
-                    <div className="text-primary space-y-4">
+                    <div className="text-[#1C2B2B]/70 space-y-4">
                       <p>
                         Vince will review your submission and respond within one business day with what he would check first in your operation.
                       </p>
                       <p className="pt-4">
                         Questions before then:<br />
-                        <a href="mailto:vince@giglinecompliance.com" className="text-accent hover:underline">vince@giglinecompliance.com</a>
-                        {' \u00b7 '}
-                        <a href="tel:336-671-4967" className="text-accent hover:underline">336-671-4967</a>
+                        <a href="mailto:vince@giglinecompliance.com" className="text-[#B8972C] hover:underline">vince@giglinecompliance.com</a>
+                        {' · '}
+                        <a href="tel:336-671-4967" className="text-[#B8972C] hover:underline">336-671-4967</a>
                       </p>
                     </div>
                   </div>
@@ -582,28 +478,6 @@ const SafetyCheckPage = () => {
               </div>
             </div>
           )}
-        </div>
-      </section>
-
-      {/* Contact Block */}
-      <section className="py-12 border-t border-border">
-        <div className="container max-w-3xl">
-          <div className="text-muted-foreground space-y-1">
-            <p className="font-semibold text-primary">GigLine Safety & Compliance</p>
-            <p>Vince Lawrence</p>
-            <p>
-              <a href="mailto:vince@giglinecompliance.com" className="hover:text-accent">vince@giglinecompliance.com</a>
-            </p>
-            <p>
-              <a href="tel:336-671-4967" className="hover:text-accent">336-671-4967</a>
-            </p>
-            <p>
-              <a href="https://www.giglinecompliance.com" className="hover:text-accent">www.giglinecompliance.com</a>
-            </p>
-            <p className="pt-4 text-sm">
-              Available for limited on-site days each month in the Triad and surrounding region. Remote reviews available nationwide.
-            </p>
-          </div>
         </div>
       </section>
     </main>

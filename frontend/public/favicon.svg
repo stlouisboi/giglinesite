@@ -1,10 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
-  <!-- GigLine - Favicon 32x32 -->
-  <g transform="translate(0, 0)">
-    <!-- Shield outline -->
-    <path d="M16 2 L29 5 L29 17 C29 24 16 30 16 30 C16 30 3 24 3 17 L3 5 Z" 
-          fill="#22252A"/>
-    <!-- Gig Line (vertical bar) -->
-    <rect x="14" y="7" width="4" height="18" fill="#2E6B5E" rx="1"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" width="32" height="38">
+  <path d="M100 8 L188 52 L188 140 Q188 195 100 232 Q12 195 12 140 L12 52 Z" fill="#1C1C1E"/>
+  <path d="M100 20 L178 60 L178 138 Q178 188 100 222 Q22 188 22 138 L22 60 Z" fill="none" stroke="#2A2A2E" stroke-width="2"/>
+  <line x1="100" y1="48" x2="100" y2="205" stroke="#B8975A" stroke-width="5" stroke-linecap="round"/>
+  <rect x="86" y="116" width="28" height="18" rx="2" fill="#B8975A"/>
 </svg>

@@ -26,17 +26,16 @@ const Navbar = () => {
             className="flex items-center space-x-3"
             data-testid="navbar-logo"
           >
-            {/* Shield Icon */}
-            <svg viewBox="0 0 100 100" className="w-10 h-10 md:w-12 md:h-12">
-              <path d="M50 5 L92 14 L92 55 C92 78 50 95 50 95 C50 95 8 78 8 55 L8 14 Z" 
-                    fill="none" 
-                    stroke="white" 
-                    strokeWidth="5"/>
-              <rect x="45" y="20" width="10" height="60" fill="#2E6B5E" rx="2"/>
+            {/* Shield Icon - Premium GigLine mark */}
+            <svg viewBox="0 0 200 240" className="w-9 h-11 md:w-10 md:h-12">
+              <path d="M100 8 L188 52 L188 140 Q188 195 100 232 Q12 195 12 140 L12 52 Z" fill="#FFFFFF"/>
+              <path d="M100 20 L178 60 L178 138 Q178 188 100 222 Q22 188 22 138 L22 60 Z" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5"/>
+              <line x1="100" y1="48" x2="100" y2="205" stroke="#B8975A" strokeWidth="3.5" strokeLinecap="round"/>
+              <rect x="88" y="118" width="24" height="16" rx="2" fill="#B8975A"/>
             </svg>
             <div className="flex flex-col">
-              <span className="text-lg md:text-xl font-bold text-white leading-tight">GigLine</span>
-              <span className="text-[10px] md:text-xs font-semibold text-white/80 tracking-wider">SAFETY & COMPLIANCE</span>
+              <span className="text-lg md:text-xl font-bold text-white leading-tight tracking-tight">GigLine</span>
+              <span className="text-[10px] md:text-xs font-medium text-[#B8975A] tracking-[0.2em]">SAFETY & COMPLIANCE</span>
             </div>
           </Link>
 

@@ -18,9 +18,18 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           {/* Company Info */}
           <div>
-            <h3 className="text-xl font-bold mb-4">
-              GigLine <span className="text-accent">Safety & Compliance</span>
-            </h3>
+            <div className="flex items-center gap-3 mb-4">
+              <svg viewBox="0 0 200 240" className="w-8 h-10">
+                <path d="M100 8 L188 52 L188 140 Q188 195 100 232 Q12 195 12 140 L12 52 Z" fill="#FFFFFF"/>
+                <path d="M100 20 L178 60 L178 138 Q178 188 100 222 Q22 188 22 138 L22 60 Z" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5"/>
+                <line x1="100" y1="48" x2="100" y2="205" stroke="#B8975A" strokeWidth="3.5" strokeLinecap="round"/>
+                <rect x="88" y="118" width="24" height="16" rx="2" fill="#B8975A"/>
+              </svg>
+              <div>
+                <span className="text-lg font-bold text-white leading-tight tracking-tight block">GigLine</span>
+                <span className="text-[10px] font-medium text-[#B8975A] tracking-[0.2em]">SAFETY & COMPLIANCE</span>
+              </div>
+            </div>
             <p className="text-white/80 text-sm mb-4">
               Safety Walkthroughs & Gap Checks for Small Operations
             </p>

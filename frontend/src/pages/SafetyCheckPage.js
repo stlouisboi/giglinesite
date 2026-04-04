@@ -9,6 +9,7 @@ const SafetyCheckPage = () => {
   const [formStatus, setFormStatus] = useState({ type: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [submissionId, setSubmissionId] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     company: '',
@@ -166,6 +167,8 @@ const SafetyCheckPage = () => {
         }),
       });
       if (response.ok) {
+        const data = await response.json();
+        setSubmissionId(data.submission_id);
         setFormSubmitted(true);
       } else {
         throw new Error('Submission failed');
@@ -466,6 +469,17 @@ const SafetyCheckPage = () => {
                       <p>
                         Vince will review your submission and respond within one business day with what he would check first in your operation.
                       </p>
+                      {submissionId && (
+                        <a
+                          href={`${process.env.REACT_APP_BACKEND_URL}/api/safety-check/report/${submissionId}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 bg-[#1C2B2B] text-white font-medium px-5 py-2.5 rounded hover:bg-[#2A3D3D] transition-colors text-sm"
+                          data-testid="download-report"
+                        >
+                          Download Your Safety Check Report (PDF)
+                        </a>
+                      )}
                       <p className="pt-4">
                         Questions before then:<br />
                         <a href="mailto:vince@giglinecompliance.com" className="text-[#B8972C] hover:underline">vince@giglinecompliance.com</a>

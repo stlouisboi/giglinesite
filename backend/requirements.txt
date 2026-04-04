@@ -9,11 +9,15 @@ bcrypt==4.1.3
 black==26.3.1
 boto3==1.42.75
 botocore==1.42.75
+cairocffi==1.7.1
+CairoSVG==2.9.0
 certifi==2026.2.25
 cffi==2.0.0
 charset-normalizer==3.4.6
 click==8.3.1
 cryptography==46.0.5
+cssselect2==0.9.0
+defusedxml==0.7.1
 distro==1.9.0
 dnspython==2.8.0
 ecdsa==0.19.1
@@ -94,6 +98,7 @@ pytokens==0.4.1
 PyYAML==6.0.3
 referencing==0.37.0
 regex==2026.2.28
+reportlab==4.4.10
 requests==2.32.5
 requests-oauthlib==2.0.0
 resend==2.27.0
@@ -109,6 +114,7 @@ starlette==0.37.2
 stripe==14.4.1
 tenacity==9.1.4
 tiktoken==0.12.0
+tinycss2==1.5.1
 tokenizers==0.22.2
 tqdm==4.67.3
 typer==0.24.1
@@ -119,6 +125,7 @@ uritemplate==4.2.0
 urllib3==2.6.3
 uvicorn==0.25.0
 watchfiles==1.1.1
+webencodings==0.5.1
 websockets==16.0
 yarl==1.23.0
 zipp==3.23.0

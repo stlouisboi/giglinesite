@@ -18,6 +18,8 @@ from emergentintegrations.payments.stripe.checkout import (
 )
 import resend
 from email_sequences import get_flow_for_score, render_email
+from pdf_generator import generate_safety_check_pdf
+import base64
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -373,6 +375,39 @@ async def submit_safety_check(submission: SafetyCheckSubmission):
         })
     await db.email_drip_queue.insert_one(drip_doc)
     
+    # Generate PDF report
+    pdf_data = {
+        "id": submission_id,
+        "name": submission.name,
+        "company": submission.company,
+        "email": submission.email,
+        "phone": submission.phone,
+        "operation_type": submission.operation_type,
+        "score_gaps": gaps,
+        "score_level": score_level,
+        "answers": submission.answers,
+        "timestamp": timestamp.isoformat(),
+    }
+    try:
+        pdf_bytes = generate_safety_check_pdf(pdf_data)
+        pdf_b64 = base64.b64encode(pdf_bytes).decode("utf-8")
+        # Store PDF reference
+        await db.safety_check_submissions.update_one(
+            {"id": submission_id},
+            {"$set": {"has_pdf": True}}
+        )
+        # Save PDF to disk for download endpoint
+        import os
+        pdf_dir = "/app/backend/reports"
+        os.makedirs(pdf_dir, exist_ok=True)
+        with open(f"{pdf_dir}/{submission_id}.pdf", "wb") as f:
+            f.write(pdf_bytes)
+        logger.info(f"PDF report generated for submission {submission_id}")
+    except Exception as e:
+        pdf_bytes = None
+        pdf_b64 = None
+        logger.error(f"PDF generation failed: {str(e)}")
+    
     # Build answer summary for Vince's email
     question_labels = {
         "1": "HazCom & SDS (29 CFR 1910.1200)",
@@ -419,13 +454,19 @@ async def submit_safety_check(submission: SafetyCheckSubmission):
     email_errors = []
     
     try:
-        # Email to Vince (notification)
-        await asyncio.to_thread(resend.Emails.send, {
+        # Email to Vince (notification) with PDF attachment
+        email_payload = {
             "from": SENDER_EMAIL,
             "to": [VINCE_EMAIL],
             "subject": f"GigLine Safety Check — {submission.operation_type} — {submission.score_gaps} gaps",
             "html": vince_html,
-        })
+        }
+        if pdf_b64:
+            email_payload["attachments"] = [{
+                "filename": f"GigLine-SafetyCheck-{submission.company.replace(' ', '-')}.pdf",
+                "content": pdf_b64,
+            }]
+        await asyncio.to_thread(resend.Emails.send, email_payload)
         logger.info(f"Notification email sent to Vince for submission {submission_id}")
     except Exception as e:
         email_errors.append(f"Vince notification: {str(e)}")
@@ -465,6 +506,29 @@ async def get_safety_check_submissions():
     """Get all safety check submissions (admin view)"""
     submissions = await db.safety_check_submissions.find({}, {"_id": 0}).sort("timestamp", -1).to_list(1000)
     return submissions
+
+@api_router.get("/safety-check/report/{submission_id}")
+async def get_safety_check_report(submission_id: str):
+    """Download PDF report for a submission"""
+    from fastapi.responses import FileResponse
+    pdf_path = f"/app/backend/reports/{submission_id}.pdf"
+    if not os.path.exists(pdf_path):
+        # Try to regenerate
+        sub = await db.safety_check_submissions.find_one({"id": submission_id}, {"_id": 0})
+        if not sub:
+            raise HTTPException(status_code=404, detail="Submission not found")
+        try:
+            pdf_bytes = generate_safety_check_pdf(sub)
+            os.makedirs("/app/backend/reports", exist_ok=True)
+            with open(pdf_path, "wb") as f:
+                f.write(pdf_bytes)
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=f"PDF generation failed: {str(e)}")
+    return FileResponse(
+        pdf_path,
+        media_type="application/pdf",
+        filename=f"GigLine-SafetyCheck-Report.pdf"
+    )
 
 @api_router.get("/email-drip/status")
 async def get_drip_status():

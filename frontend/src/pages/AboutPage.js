@@ -149,6 +149,12 @@ const AboutPage = () => {
               operators. If you're running trucks and need help understanding DOT compliance, driver 
               qualification files, or safety management systems, start there.
             </p>
+            <img 
+              src="/launchpath-logo-white.png" 
+              alt="LaunchPath" 
+              className="h-12 mx-auto mb-6"
+              data-testid="about-launchpath-logo"
+            />
             <a
               href="https://launchpathedu.com/ground-0-briefing"
               target="_blank"

@@ -144,8 +144,8 @@ const HomePage = () => {
       {/* SECTION 2 — INSPECTION AUTHORITY */}
       <section className="relative" data-testid="inspection-section">
         <div 
-          className="relative bg-cover bg-center bg-no-repeat py-24 md:py-32"
-          style={{backgroundImage: "url('/vince-inspecting.png')"}}
+          className="relative bg-cover bg-no-repeat py-24 md:py-32"
+          style={{backgroundImage: "url('/vince-inspecting.png')", backgroundPosition: "center 40%"}}
         >
           <div className="absolute inset-0 bg-black/70"></div>
           <div className="container relative z-10">

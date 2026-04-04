@@ -79,6 +79,11 @@ const Footer = () => {
             <p className="text-sm text-white/80 mb-4">
               Get free safety training resources from LaunchPath Transportation EDU.
             </p>
+            <img 
+              src="/launchpath-logo-white.png" 
+              alt="LaunchPath" 
+              className="h-8 mb-3"
+            />
             <a
               href="https://launchpathedu.com/ground-0-briefing"
               target="_blank"

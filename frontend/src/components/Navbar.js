@@ -27,7 +27,7 @@ const Navbar = () => {
             data-testid="navbar-logo"
           >
             {/* Inspector Mark Shield - GL-LOGO-V2 */}
-            <svg viewBox="0 0 160 180" className="w-10 h-12 md:w-12 md:h-14">
+            <svg viewBox="0 0 160 180" className="w-12 h-14 md:w-16 md:h-[72px]">
               <path d="M80,38 L136,57 L136,120 Q136,153 80,172 Q24,153 24,120 L24,57 Z"
                 fill="#FFFFFF" stroke="#1C2B2B" strokeWidth="2.2"/>
               <path d="M80,47 L127,64 L127,120 Q127,147 80,163 Q33,147 33,120 L33,64 Z"
@@ -44,9 +44,9 @@ const Navbar = () => {
                 stroke="#B8972C" strokeWidth="1" strokeDasharray="2,2" strokeLinecap="round"/>
             </svg>
             <div className="flex flex-col">
-              <span className="text-lg md:text-xl font-bold text-white leading-tight tracking-tight" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>GigLine</span>
+              <span className="text-xl md:text-2xl font-bold text-white leading-tight tracking-tight" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>GigLine</span>
               <span className="w-full h-px bg-[#B8972C] my-0.5"></span>
-              <span className="text-[9px] md:text-[10px] font-normal text-white tracking-[0.2em]" style={{fontFamily: "Arial, Helvetica, sans-serif"}}>SAFETY & COMPLIANCE</span>
+              <span className="text-[10px] md:text-xs font-normal text-white tracking-[0.2em]" style={{fontFamily: "Arial, Helvetica, sans-serif"}}>SAFETY & COMPLIANCE</span>
             </div>
           </Link>
 

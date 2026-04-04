@@ -1,84 +1,85 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Shield, Award, Clock, Factory, Truck, Warehouse, ExternalLink, ArrowRight } from 'lucide-react';
+import { ExternalLink, ArrowRight } from 'lucide-react';
 import SEO from '../components/SEO';
 
 const AboutPage = () => {
-  const credentials = [
-    { icon: Clock, label: '25+ Years', description: 'Safety Leadership' },
-    { icon: Award, label: 'OSHA Certified', description: '30 & 10 Hour' },
-    { icon: Shield, label: 'U.S. Navy', description: 'Veteran' },
-    { icon: Factory, label: 'Manufacturing', description: 'Background' },
-    { icon: Warehouse, label: 'Warehousing', description: 'Experience' },
-    { icon: Truck, label: 'Transportation', description: 'Expertise' },
-  ];
-
   return (
     <main data-testid="about-page">
       <SEO 
         title="About"
-        description="Vince Lawrence — 25+ years in safety and compliance leadership. OSHA certified. Navy veteran. Founder of GigLine Safety & Compliance and LaunchPath Transportation EDU."
+        description="Built for small operations that need a clear picture of what is exposed before it becomes a citation, an injury, or a shutdown. Vince Lawrence, 25+ years safety leadership."
         canonical="/about"
       />
+
       {/* Hero Section */}
-      <section className="bg-primary text-white py-16 md:py-20">
+      <section className="bg-[#1C2B2B] text-white py-16 md:py-20">
         <div className="container">
           <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6" data-testid="about-headline">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6" style={{fontFamily: "Georgia, 'Times New Roman', serif"}} data-testid="about-headline">
               About GigLine Safety & Compliance
             </h1>
-            <p className="text-lg text-white/90">
-              Founded by Vince Lawrence — 25+ years of safety leadership, OSHA certified, 
-              U.S. Navy veteran. I help small operations find and fix safety gaps before 
-              they become citations or injuries.
+            <p className="text-lg text-white/85 leading-relaxed">
+              Built for small operations that need a clear picture of what is exposed — before it becomes a citation, an injury, or a shutdown.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Bio Section */}
+      {/* Founder Section */}
       <section className="py-16 md:py-24">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Headshot */}
+            {/* Portrait — slightly reduced brightness, more contrast */}
             <div className="lg:col-span-1">
               <div 
-                className="rounded-lg overflow-hidden"
+                className="rounded overflow-hidden"
                 data-testid="headshot"
               >
                 <img 
                   src="/vince-about.png" 
-                  alt="Vince Lawrence - Founder of GigLine Safety & Compliance"
+                  alt="Vince Lawrence — Founder, GigLine Safety and Compliance"
                   className="w-full h-auto"
+                  style={{filter: "brightness(0.92) contrast(1.08)"}}
                 />
               </div>
             </div>
 
-            {/* Bio Content */}
+            {/* Bio */}
             <div className="lg:col-span-2">
-              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6">
+              <h2 className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-6" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
                 Vince Lawrence
               </h2>
-              <div className="prose prose-lg text-muted-foreground space-y-4">
+              <div className="text-[#1C2B2B]/70 space-y-4 leading-relaxed">
                 <p>
-                  I've spent over 25 years managing safety programs in manufacturing, warehousing, 
-                  and transportation. I've worked on the floor, in the office, and everywhere in between. 
-                  I know what OSHA looks for because I've been on both sides of the inspection clipboard.
+                  I have spent over 25 years working in environments where safety is not optional — manufacturing floors, warehouses, and transportation operations where mistakes have consequences.
                 </p>
                 <p>
-                  Before consulting, I built and managed safety programs for operations ranging from 
-                  small fabrication shops to multi-facility distribution networks. I've trained hundreds 
-                  of supervisors and frontline workers. I've investigated incidents, written programs, 
-                  and testified in hearings.
+                  I have worked on the floor, in leadership, and across systems. I know what OSHA looks for because I have seen what happens when those expectations are not met.
                 </p>
                 <p>
-                  I started GigLine Safety & Compliance because small operations need professional safety 
-                  guidance but can't afford a full-time safety manager. My approach is simple: I come in, 
-                  find what's exposed, tell you exactly what to fix, and leave you with documentation 
-                  that holds up to scrutiny.
+                  Before consulting, I built and managed safety programs across operations ranging from small fabrication shops to multi-site distribution networks. I have trained supervisors, investigated incidents, written programs, and sat through the moments when something went wrong and everyone needed answers.
                 </p>
-                <p className="font-medium text-primary">
-                  No ongoing contracts. No monthly retainers. One engagement at a time.
+                <p className="font-medium text-[#1C2B2B]">
+                  GigLine was built for a specific problem:
+                </p>
+                <p>
+                  Small operations do not need a full-time safety department.<br />
+                  But they do need someone who can step in, identify what is exposed, and tell them what to fix first.
+                </p>
+                <p className="font-medium text-[#1C2B2B]">
+                  That is the role.
+                </p>
+                <div className="py-2">
+                  <p>I walk the operation.</p>
+                  <p>I review what exists.</p>
+                  <p>I identify what is missing.</p>
+                  <p>I document what matters.</p>
+                </div>
+                <p className="font-medium text-[#1C2B2B] pt-2">
+                  No ongoing contracts.<br />
+                  No monthly retainers.<br />
+                  One engagement at a time.
                 </p>
               </div>
             </div>
@@ -86,102 +87,150 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Gig Line Origin Story */}
-      <section className="py-16 md:py-20 bg-secondary" data-testid="origin-section">
+      {/* Why "GigLine" */}
+      <section className="py-16 md:py-20 bg-[#F5F5F3]" data-testid="origin-section">
         <div className="container">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6 text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-8 text-center" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
               Why "GigLine"?
             </h2>
-            <div className="bg-white rounded-lg p-8 shadow-sm">
-              <p className="text-lg text-muted-foreground mb-4">
-                In the military, your <strong className="text-primary">gig line</strong> is the straight 
-                line formed by the edge of your shirt placket, your belt buckle, and your trouser fly. 
-                If any of these are misaligned, you're "out of standard" — and an inspector will find it.
-              </p>
-              <p className="text-lg text-muted-foreground mb-4">
-                It's a small detail, but it represents something bigger: attention to standards, 
-                discipline in execution, and the understanding that inspectors notice what you overlook.
-              </p>
-              <p className="text-lg text-primary font-medium">
-                GigLine Safety & Compliance brings that same straight-line standard to safety and 
-                compliance for small operations. I find the misalignments before OSHA does.
-              </p>
+            <div className="bg-white rounded p-8 border border-[#1C2B2B]/10">
+              <div className="text-[#1C2B2B]/70 space-y-4 leading-relaxed">
+                <p>
+                  In the military, your <strong className="text-[#1C2B2B]">gig line</strong> is the straight line formed by your shirt, your belt buckle, and your trouser fly.
+                </p>
+                <p>
+                  If it is off — even slightly — you are out of standard.
+                </p>
+                <p>
+                  It is a small detail. But it represents something larger:
+                </p>
+                <div className="py-1">
+                  <p>Attention to alignment.</p>
+                  <p>Discipline in execution.</p>
+                  <p>And the understanding that inspectors notice what others ignore.</p>
+                </div>
+                <p className="font-medium text-[#1C2B2B]">
+                  That is where the name comes from.
+                </p>
+                <p>
+                  GigLine applies that same standard to safety and compliance.
+                </p>
+                <div className="py-1">
+                  <p>Not broad advice.</p>
+                  <p>Not general guidance.</p>
+                  <p className="font-medium text-[#1C2B2B]">Alignment.</p>
+                </div>
+                <p>
+                  Because in most operations, the problem is not effort.<br />
+                  It is misalignment.
+                </p>
+                <p className="font-medium text-[#1C2B2B]">
+                  And misalignment is what gets found.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Credentials Grid */}
+      {/* Credentials & Background */}
       <section className="py-16 md:py-24" data-testid="credentials-section">
         <div className="container">
-          <h2 className="text-2xl md:text-3xl font-bold text-primary mb-8 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-10 text-center" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
             Credentials & Background
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {credentials.map((cred, index) => (
+            {[
+              { label: '25+', sub: 'Years', desc: 'Safety Leadership' },
+              { label: 'OSHA', sub: '', desc: '30-Hour Certified' },
+              { label: 'USN', sub: '', desc: 'U.S. Navy Veteran' },
+              { label: 'MFG', sub: '', desc: 'Manufacturing Experience' },
+              { label: 'WHSE', sub: '', desc: 'Warehousing Operations' },
+              { label: 'TRANS', sub: '', desc: 'Transportation Safety' },
+            ].map((cred, index) => (
               <div 
                 key={index} 
-                className="card text-center p-4"
+                className="text-center border border-[#1C2B2B]/10 rounded p-5"
                 data-testid={`credential-${index}`}
               >
-                <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <cred.icon size={24} className="text-accent" />
-                </div>
-                <p className="font-bold text-primary">{cred.label}</p>
-                <p className="text-sm text-muted-foreground">{cred.description}</p>
+                <p className="text-2xl font-bold text-[#B8972C]">{cred.label}</p>
+                {cred.sub && <p className="text-xs text-[#1C2B2B]/50 uppercase tracking-wide">{cred.sub}</p>}
+                <p className="text-sm text-[#1C2B2B]/60 mt-1">{cred.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* LaunchPath Reference */}
-      <section className="py-16 md:py-20 bg-primary text-white" data-testid="launchpath-section">
+      {/* LaunchPath Section */}
+      <section className="py-16 md:py-20 bg-[#1C2B2B] text-white" data-testid="launchpath-section">
         <div className="container">
-          <div className="max-w-3xl mx-auto text-center">
-            <Truck size={48} className="mx-auto text-accent mb-4" />
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
               Also: LaunchPath Transportation EDU
             </h2>
-            <p className="text-white/80 mb-6">
-              I also run LaunchPath Transportation EDU, a free resource for small carriers and fleet 
-              operators. If you're running trucks and need help understanding DOT compliance, driver 
-              qualification files, or safety management systems, start there.
-            </p>
-            <img 
-              src="/launchpath-logo-white.png" 
-              alt="LaunchPath" 
-              className="h-12 mx-auto mb-6"
-              data-testid="about-launchpath-logo"
-            />
-            <a
-              href="https://launchpathedu.com/ground-0-briefing"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary bg-accent hover:bg-accent/90"
-              data-testid="about-launchpath-cta"
-            >
-              Start with Ground 0 — Free
-              <ExternalLink size={18} className="ml-2" />
-            </a>
+            <div className="text-white/80 space-y-4 leading-relaxed mb-8">
+              <p className="font-medium text-white">
+                GigLine handles review.<br />
+                LaunchPath handles installation.
+              </p>
+              <p>
+                If you operate a small fleet or are building a transportation operation, the issue is often not a single gap — it is the absence of a system.
+              </p>
+              <p>
+                That is what LaunchPath was built to solve.
+              </p>
+              <p>
+                GigLine is a one-time engagement to identify exposure.<br />
+                LaunchPath is a structured program to install what should have been there from the start.
+              </p>
+              <p>
+                Two different problems.<br />
+                Two different solutions.
+              </p>
+              <p className="font-medium text-white">
+                Start with the one that fits.
+              </p>
+            </div>
+            <div className="text-center">
+              <img 
+                src="/launchpath-logo-white.png" 
+                alt="LaunchPath" 
+                className="h-12 mx-auto mb-6"
+                data-testid="about-launchpath-logo"
+              />
+              <a
+                href="https://launchpathedu.com/ground-0-briefing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-[#B8972C] hover:bg-[#A6872A] text-white font-semibold px-8 py-4 rounded transition-colors"
+                data-testid="about-launchpath-cta"
+              >
+                Start with Ground 0 — Free
+                <ExternalLink size={18} />
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Contact CTA */}
+      {/* Final CTA */}
       <section className="py-16 md:py-20" data-testid="about-contact-cta">
-        <div className="container text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-primary mb-4">
+        <div className="container text-center max-w-2xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-4" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
             Ready to Find Your Gaps?
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-            If your operation hasn't had an outside review in the last year — or if you've had 
-            incidents, near-misses, or changes in your operation — let's talk.
+          <p className="text-[#1C2B2B]/70 mb-8 leading-relaxed">
+            If your operation has not had an outside review — or if something has already gone wrong — this is the point to take a closer look. Request a walkthrough or documentation review, and get a clear picture of what is exposed and what needs attention first.
           </p>
-          <Link to="/contact" className="btn-primary" data-testid="about-bottom-cta">
+          <Link 
+            to="/contact" 
+            className="inline-flex items-center gap-2 bg-[#1C2B2B] hover:bg-[#2A3D3D] text-white font-semibold px-8 py-4 rounded transition-colors"
+            data-testid="about-bottom-cta"
+          >
             Request a Walkthrough or Review
-            <ArrowRight size={18} className="ml-2" />
+            <ArrowRight size={18} />
           </Link>
         </div>
       </section>

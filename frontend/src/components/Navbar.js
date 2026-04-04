@@ -27,7 +27,7 @@ const Navbar = () => {
             data-testid="navbar-logo"
           >
             {/* Shield Icon - Premium GigLine mark */}
-            <svg viewBox="0 0 200 240" className="w-9 h-11 md:w-10 md:h-12">
+            <svg viewBox="0 0 200 240" className="w-11 h-14 md:w-14 md:h-16">
               <path d="M100 8 L188 52 L188 140 Q188 195 100 232 Q12 195 12 140 L12 52 Z" fill="#FFFFFF"/>
               <path d="M100 20 L178 60 L178 138 Q178 188 100 222 Q22 188 22 138 L22 60 Z" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5"/>
               <line x1="100" y1="48" x2="100" y2="205" stroke="#B8975A" strokeWidth="3.5" strokeLinecap="round"/>

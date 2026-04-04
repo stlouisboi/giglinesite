@@ -318,6 +318,12 @@ const HomePage = () => {
                 LaunchPath: 90-day system installation for carriers.
               </p>
             </div>
+            <img 
+              src="/launchpath-logo.png" 
+              alt="LaunchPath" 
+              className="h-12 mx-auto mb-6"
+              data-testid="launchpath-logo"
+            />
             <a
               href="https://launchpathedu.com/ground-0-briefing"
               target="_blank"

@@ -144,13 +144,14 @@ const SafetyCheckPage = () => {
     setIsSubmitting(true);
     setFormStatus({ type: '', message: '' });
 
+    const API_URL = process.env.REACT_APP_BACKEND_URL;
+
     try {
-      // Formspree endpoint for Safety Check
-      const response = await fetch('https://formspree.io/f/xpqoyldy', {
+      // Submit to backend API (stores in DB + sends emails)
+      const response = await fetch(`${API_URL}/api/safety-check/submit`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Accept: 'application/json',
         },
         body: JSON.stringify({
           name: formData.name,
@@ -159,11 +160,11 @@ const SafetyCheckPage = () => {
           email: formData.email,
           operation_type: formData.operationType,
           employee_count: formData.employeeCount,
-          score: getScoreDisplay(),
+          score_display: getScoreDisplay(),
           score_gaps: getNoCount(),
           concerned_question: formData.concernedQuestion,
-          what_pushed: formData.whatPushed || '(not provided)',
-          _subject: `GigLine Safety Check — ${formData.operationType} — ${getNoCount()} gaps`
+          what_pushed: formData.whatPushed || '',
+          answers: answers,
         }),
       });
 
@@ -173,10 +174,39 @@ const SafetyCheckPage = () => {
         throw new Error('Submission failed');
       }
     } catch (error) {
-      setFormStatus({
-        type: 'error',
-        message: 'Submission did not go through. Try again or contact Vince directly:'
-      });
+      // Fallback to Formspree if backend fails
+      try {
+        const formspreeResponse = await fetch('https://formspree.io/f/xpqoyldy', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            company: formData.company,
+            phone: formData.phone,
+            email: formData.email,
+            operation_type: formData.operationType,
+            employee_count: formData.employeeCount,
+            score: getScoreDisplay(),
+            score_gaps: getNoCount(),
+            concerned_question: formData.concernedQuestion,
+            what_pushed: formData.whatPushed || '(not provided)',
+            _subject: `GigLine Safety Check — ${formData.operationType} — ${getNoCount()} gaps`
+          }),
+        });
+        if (formspreeResponse.ok) {
+          setFormSubmitted(true);
+        } else {
+          throw new Error('Fallback submission failed');
+        }
+      } catch (fallbackError) {
+        setFormStatus({
+          type: 'error',
+          message: 'Submission did not go through. Try again or contact Vince directly:'
+        });
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -538,15 +568,12 @@ const SafetyCheckPage = () => {
                     </h2>
                     <div className="text-primary space-y-4">
                       <p>
-                        Vince will review what you submitted and respond within one business day.
-                      </p>
-                      <p>
-                        If OSHA walked in tomorrow, here is what they would ask for first — and whether what you told him suggests you have it ready. That is what his response will cover.
+                        Vince will review your submission and respond within one business day with what he would check first in your operation.
                       </p>
                       <p className="pt-4">
                         Questions before then:<br />
                         <a href="mailto:vince@giglinecompliance.com" className="text-accent hover:underline">vince@giglinecompliance.com</a>
-                        {' · '}
+                        {' \u00b7 '}
                         <a href="tel:336-671-4967" className="text-accent hover:underline">336-671-4967</a>
                       </p>
                     </div>

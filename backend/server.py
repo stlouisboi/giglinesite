@@ -3,9 +3,10 @@ from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
+import asyncio
 import logging
 from pathlib import Path
-from pydantic import BaseModel, Field, ConfigDict
+from pydantic import BaseModel, Field, ConfigDict, EmailStr
 from typing import List, Optional, Dict
 import uuid
 from datetime import datetime, timezone
@@ -15,6 +16,7 @@ from emergentintegrations.payments.stripe.checkout import (
     CheckoutStatusResponse, 
     CheckoutSessionRequest
 )
+import resend
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -26,6 +28,11 @@ db = client[os.environ['DB_NAME']]
 
 # Stripe API key
 stripe_api_key = os.environ.get('STRIPE_API_KEY', 'sk_test_emergent')
+
+# Resend email config
+resend.api_key = os.environ.get('RESEND_API_KEY', '')
+SENDER_EMAIL = os.environ.get('SENDER_EMAIL', 'onboarding@resend.dev')
+VINCE_EMAIL = os.environ.get('VINCE_EMAIL', 'vince@giglinecompliance.com')
 
 # Create the main app without a prefix
 app = FastAPI()
@@ -65,6 +72,20 @@ class CheckoutRequest(BaseModel):
     origin_url: str
     customer_email: Optional[str] = None
     customer_name: Optional[str] = None
+
+# Safety Check Submission Model
+class SafetyCheckSubmission(BaseModel):
+    name: str
+    company: str
+    phone: str
+    email: str
+    operation_type: str
+    employee_count: str = ""
+    score_display: str
+    score_gaps: int
+    concerned_question: str
+    what_pushed: str = ""
+    answers: Dict[str, str]
 
 # ============== SERVICE PACKAGES (Server-side only - never trust frontend prices) ==============
 
@@ -286,6 +307,147 @@ async def stripe_webhook(request: Request):
     except Exception as e:
         logger.error(f"Webhook error: {str(e)}")
         raise HTTPException(status_code=400, detail="Webhook processing failed")
+
+# ============== SAFETY CHECK ROUTES ==============
+
+@api_router.post("/safety-check/submit")
+async def submit_safety_check(submission: SafetyCheckSubmission):
+    """Store safety check submission, email Vince, and auto-respond to lead"""
+    
+    submission_id = str(uuid.uuid4())
+    timestamp = datetime.now(timezone.utc)
+    
+    # Determine score level
+    gaps = submission.score_gaps
+    if gaps <= 1:
+        score_level = "LOW"
+    elif gaps <= 3:
+        score_level = "MEDIUM"
+    else:
+        score_level = "HIGH"
+    
+    # Store in MongoDB
+    doc = {
+        "id": submission_id,
+        "name": submission.name,
+        "company": submission.company,
+        "phone": submission.phone,
+        "email": submission.email,
+        "operation_type": submission.operation_type,
+        "employee_count": submission.employee_count,
+        "score_display": submission.score_display,
+        "score_gaps": submission.score_gaps,
+        "score_level": score_level,
+        "concerned_question": submission.concerned_question,
+        "what_pushed": submission.what_pushed,
+        "answers": submission.answers,
+        "timestamp": timestamp.isoformat(),
+    }
+    await db.safety_check_submissions.insert_one(doc)
+    
+    # Build answer summary for Vince's email
+    question_labels = {
+        "1": "HazCom & SDS (29 CFR 1910.1200)",
+        "2": "Forklift Certification (29 CFR 1910.178)",
+        "3": "Lockout/Tagout (29 CFR 1910.147)",
+        "4": "Machine Guarding (29 CFR 1910.212)",
+        "5": "Ladder Safety (29 CFR 1926.1053)",
+        "6": "Training Records (29 CFR 1910.132)",
+    }
+    
+    answers_html = ""
+    for q_id, answer in sorted(submission.answers.items()):
+        label = question_labels.get(q_id, f"Question {q_id}")
+        color = "#c0392b" if answer == "no" else "#27ae60"
+        answers_html += f'<tr><td style="padding:6px 12px;border-bottom:1px solid #eee;">{label}</td><td style="padding:6px 12px;border-bottom:1px solid #eee;color:{color};font-weight:bold;">{answer.upper()}</td></tr>'
+    
+    # EMAIL 1: Notify Vince
+    vince_html = f"""
+    <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;">
+      <h2 style="color:#1C2B2B;border-bottom:2px solid #B8972C;padding-bottom:8px;">
+        GigLine Safety Check Submission
+      </h2>
+      <table style="width:100%;margin:16px 0;">
+        <tr><td style="padding:4px 0;color:#666;">Name:</td><td style="padding:4px 0;font-weight:bold;">{submission.name}</td></tr>
+        <tr><td style="padding:4px 0;color:#666;">Company:</td><td style="padding:4px 0;font-weight:bold;">{submission.company}</td></tr>
+        <tr><td style="padding:4px 0;color:#666;">Operation:</td><td style="padding:4px 0;font-weight:bold;">{submission.operation_type}</td></tr>
+        <tr><td style="padding:4px 0;color:#666;">Employees:</td><td style="padding:4px 0;">{submission.employee_count or 'Not provided'}</td></tr>
+        <tr><td style="padding:4px 0;color:#666;">Phone:</td><td style="padding:4px 0;"><a href="tel:{submission.phone}">{submission.phone}</a></td></tr>
+        <tr><td style="padding:4px 0;color:#666;">Email:</td><td style="padding:4px 0;"><a href="mailto:{submission.email}">{submission.email}</a></td></tr>
+      </table>
+      <h3 style="color:#1C2B2B;">Score: {submission.score_gaps} gaps ({score_level})</h3>
+      <table style="width:100%;border-collapse:collapse;margin:12px 0;">
+        <tr style="background:#1C2B2B;color:#fff;"><th style="padding:8px 12px;text-align:left;">Question</th><th style="padding:8px 12px;text-align:left;">Answer</th></tr>
+        {answers_html}
+      </table>
+      <p style="color:#666;"><strong>Most concerned about:</strong> {submission.concerned_question}</p>
+      <p style="color:#666;"><strong>What pushed them:</strong> {submission.what_pushed or 'Not provided'}</p>
+      <hr style="border:none;border-top:1px solid #ddd;margin:20px 0;">
+      <p style="color:#999;font-size:12px;">Submitted {timestamp.strftime('%B %d, %Y at %I:%M %p')} UTC</p>
+    </div>
+    """
+    
+    # EMAIL 2: Auto-response to lead
+    lead_html = f"""
+    <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;color:#1C2B2B;">
+      <p>{submission.name},</p>
+      <p>I received your Safety Check results.</p>
+      <p>Based on what you submitted, there are a few areas I would look at first if I walked your floor.</p>
+      <p>I'll review your answers and send you a quick breakdown within one business day.</p>
+      <p>If OSHA walked in tomorrow, the first 10 minutes would matter most. That's what I'll focus on.</p>
+      <br>
+      <p>Vince</p>
+      <p style="color:#666;">GigLine Safety & Compliance</p>
+      <p style="color:#666;font-size:13px;">
+        <a href="mailto:vince@giglinecompliance.com" style="color:#B8972C;">vince@giglinecompliance.com</a> &middot; 
+        <a href="tel:336-671-4967" style="color:#B8972C;">336-671-4967</a>
+      </p>
+    </div>
+    """
+    
+    # Send emails (non-blocking, don't fail submission if email fails)
+    email_errors = []
+    
+    try:
+        # Email to Vince
+        await asyncio.to_thread(resend.Emails.send, {
+            "from": SENDER_EMAIL,
+            "to": [VINCE_EMAIL],
+            "subject": f"GigLine Safety Check — {submission.operation_type} — {submission.score_gaps} gaps",
+            "html": vince_html,
+        })
+        logger.info(f"Notification email sent to Vince for submission {submission_id}")
+    except Exception as e:
+        email_errors.append(f"Vince notification: {str(e)}")
+        logger.error(f"Failed to send Vince email: {str(e)}")
+    
+    try:
+        # Auto-response to lead
+        await asyncio.to_thread(resend.Emails.send, {
+            "from": SENDER_EMAIL,
+            "to": [submission.email],
+            "subject": "Your Safety Check Results",
+            "html": lead_html,
+        })
+        logger.info(f"Auto-response sent to {submission.email} for submission {submission_id}")
+    except Exception as e:
+        email_errors.append(f"Lead auto-response: {str(e)}")
+        logger.error(f"Failed to send lead email: {str(e)}")
+    
+    return {
+        "status": "success",
+        "submission_id": submission_id,
+        "score_level": score_level,
+        "score_gaps": submission.score_gaps,
+        "emails_sent": len(email_errors) == 0,
+        "email_errors": email_errors if email_errors else None,
+    }
+
+@api_router.get("/safety-check/submissions")
+async def get_safety_check_submissions():
+    """Get all safety check submissions (admin view)"""
+    submissions = await db.safety_check_submissions.find({}, {"_id": 0}).sort("timestamp", -1).to_list(1000)
+    return submissions
 
 # Include the router in the main app
 app.include_router(api_router)

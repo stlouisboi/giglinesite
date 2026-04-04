@@ -8,12 +8,13 @@ const Footer = () => {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Services', path: '/services' },
+    { name: 'Safety Check', path: '/safety-check' },
     { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },
   ];
 
   return (
-    <footer className="bg-primary text-white" data-testid="footer">
+    <footer className="bg-[#1C2B2B] text-white" data-testid="footer">
       <div className="container py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           {/* Company Info */}
@@ -38,16 +39,17 @@ const Footer = () => {
               <div>
                 <span className="text-lg font-bold text-white leading-tight tracking-tight block" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>GigLine</span>
                 <span className="block w-full h-px bg-[#B8972C] my-0.5"></span>
-                <span className="text-[9px] font-normal text-white tracking-[0.2em]" style={{fontFamily: "Arial, Helvetica, sans-serif"}}>SAFETY & COMPLIANCE</span>
+                <span className="text-[9px] font-normal text-white/80 tracking-[0.2em]" style={{fontFamily: "Arial, Helvetica, sans-serif"}}>SAFETY & COMPLIANCE</span>
               </div>
             </div>
-            <p className="text-white/80 text-sm mb-4">
-              Safety Walkthroughs & Gap Checks for Small Operations
+            <p className="text-white/60 text-sm mb-4">
+              Safety Walkthroughs and Gap Checks for Small Operations
             </p>
+            <p className="text-white/50 text-sm mb-4">Winston-Salem, NC</p>
             <div className="space-y-2">
               <a
                 href="mailto:vince@giglinecompliance.com"
-                className="flex items-center gap-2 text-sm text-white/80 hover:text-accent transition-colors"
+                className="flex items-center gap-2 text-sm text-white/60 hover:text-[#B8972C] transition-colors"
                 data-testid="footer-email"
               >
                 <Mail size={16} />
@@ -55,7 +57,7 @@ const Footer = () => {
               </a>
               <a
                 href="tel:336-671-4967"
-                className="flex items-center gap-2 text-sm text-white/80 hover:text-accent transition-colors"
+                className="flex items-center gap-2 text-sm text-white/60 hover:text-[#B8972C] transition-colors"
                 data-testid="footer-phone"
               >
                 <Phone size={16} />
@@ -66,15 +68,15 @@ const Footer = () => {
 
           {/* Navigation */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+            <h4 className="text-base font-semibold mb-4 text-white/90">Quick Links</h4>
             <nav aria-label="Footer navigation">
               <ul className="space-y-2">
                 {navLinks.map((link) => (
                   <li key={link.path}>
                     <Link
                       to={link.path}
-                      className="text-sm text-white/80 hover:text-accent transition-colors"
-                      data-testid={`footer-link-${link.name.toLowerCase()}`}
+                      className="text-sm text-white/60 hover:text-[#B8972C] transition-colors"
+                      data-testid={`footer-link-${link.name.toLowerCase().replace(' ', '-')}`}
                     >
                       {link.name}
                     </Link>
@@ -86,9 +88,9 @@ const Footer = () => {
 
           {/* LaunchPath Reference */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">For Fleet Operators</h4>
-            <p className="text-sm text-white/80 mb-4">
-              Get free safety training resources from LaunchPath Transportation EDU.
+            <h4 className="text-base font-semibold mb-4 text-white/90">For Carriers</h4>
+            <p className="text-sm text-white/60 mb-4">
+              For new or early-stage carriers, structured system installation is available through LaunchPath.
             </p>
             <img 
               src="/launchpath-logo-white.png" 
@@ -99,7 +101,7 @@ const Footer = () => {
               href="https://launchpathedu.com/ground-0-briefing"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-accent hover:text-accent/80 transition-colors"
+              className="inline-flex items-center gap-2 text-sm text-[#B8972C] hover:text-[#B8972C]/80 transition-colors"
               data-testid="footer-launchpath-link"
             >
               Start with Ground 0 — Free
@@ -110,12 +112,12 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-white/10">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/60">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/40">
             <p data-testid="footer-copyright">
-              © {currentYear} GigLine Safety & Compliance. All rights reserved.
+              &copy; {currentYear} GigLine Safety & Compliance. All rights reserved.
             </p>
             <p data-testid="footer-tagline">
-              Verified against OSHA standards · Serving the Triad and surrounding region
+              Serving small operations that need clarity, not complexity.
             </p>
           </div>
         </div>

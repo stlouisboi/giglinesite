@@ -27,7 +27,7 @@ const Navbar = () => {
             data-testid="navbar-logo"
           >
             {/* Inspector Mark Shield - GL-LOGO-V2 */}
-            <svg viewBox="0 0 160 180" className="w-12 h-14 md:w-16 md:h-[72px]">
+            <svg viewBox="0 0 160 180" className="w-16 h-[72px] md:w-20 md:h-[90px]">
               <path d="M80,38 L136,57 L136,120 Q136,153 80,172 Q24,153 24,120 L24,57 Z"
                 fill="#FFFFFF" stroke="#1C2B2B" strokeWidth="2.2"/>
               <path d="M80,47 L127,64 L127,120 Q127,147 80,163 Q33,147 33,120 L33,64 Z"

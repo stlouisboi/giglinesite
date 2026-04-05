@@ -44,9 +44,9 @@ const Navbar = () => {
                 stroke="#B8972C" strokeWidth="1" strokeDasharray="2,2" strokeLinecap="round"/>
             </svg>
             <div className="flex flex-col">
-              <span className="text-xl md:text-2xl font-bold text-white leading-tight tracking-tight" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>GigLine</span>
+              <span className="text-2xl md:text-3xl font-bold text-white leading-tight tracking-tight" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>GigLine</span>
               <span className="w-full h-px bg-[#B8972C] my-0.5"></span>
-              <span className="text-[10px] md:text-xs font-normal text-white tracking-[0.2em]" style={{fontFamily: "Arial, Helvetica, sans-serif"}}>SAFETY & COMPLIANCE</span>
+              <span className="text-xs md:text-sm font-normal text-white tracking-[0.2em]" style={{fontFamily: "Arial, Helvetica, sans-serif"}}>SAFETY & COMPLIANCE</span>
             </div>
           </Link>
 

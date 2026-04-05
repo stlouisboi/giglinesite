@@ -19,7 +19,7 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 bg-primary shadow-md" data-testid="navbar">
       <nav className="container" aria-label="Main navigation">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex items-center justify-between h-20 md:h-24">
           {/* Logo */}
           <Link 
             to="/" 

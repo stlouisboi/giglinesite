@@ -88,7 +88,7 @@ const Footer = () => {
 
           {/* LaunchPath Reference */}
           <div>
-            <h4 className="text-base font-semibold mb-4 text-white/90">For Carriers</h4>
+            <h4 className="text-base font-semibold mb-4 text-white/90">For Fleet Operators</h4>
             <p className="text-sm text-white/60 mb-4">
               For new or early-stage carriers, structured system installation is available through LaunchPath.
             </p>
@@ -97,16 +97,29 @@ const Footer = () => {
               alt="LaunchPath" 
               className="h-8 mb-3"
             />
-            <a
-              href="https://launchpathedu.com/ground-0-briefing"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-[#B8972C] hover:text-[#B8972C]/80 transition-colors"
-              data-testid="footer-launchpath-link"
-            >
-              Start with Ground 0 — Free
-              <ExternalLink size={14} />
-            </a>
+            <div className="space-y-2">
+              <a
+                href="https://launchpathedu.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-white/60 hover:text-[#B8972C] transition-colors"
+                data-testid="footer-launchpath-site-link"
+              >
+                launchpathedu.com
+                <ExternalLink size={14} />
+              </a>
+              <br />
+              <a
+                href="https://launchpathedu.com/ground-0-briefing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-[#B8972C] hover:text-[#B8972C]/80 transition-colors"
+                data-testid="footer-launchpath-link"
+              >
+                Start with Ground 0 — Free
+                <ExternalLink size={14} />
+              </a>
+            </div>
           </div>
         </div>
 

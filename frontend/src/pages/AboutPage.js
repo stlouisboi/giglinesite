@@ -160,6 +160,16 @@ const AboutPage = () => {
               </div>
             ))}
           </div>
+          <div className="text-center mt-10">
+            <Link 
+              to="/contact" 
+              className="inline-flex items-center gap-2 bg-[#1C2B2B] hover:bg-[#2A3D3D] text-white font-semibold px-8 py-4 rounded transition-colors"
+              data-testid="credentials-request-walkthrough"
+            >
+              Request a Walkthrough
+              <ArrowRight size={18} />
+            </Link>
+          </div>
         </div>
       </section>
 

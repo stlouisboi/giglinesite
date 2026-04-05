@@ -4,7 +4,7 @@ import { Send, CheckCircle, AlertCircle } from 'lucide-react';
 const ContactForm = ({ compact = false }) => {
   const [formData, setFormData] = useState({
     name: '',
-    company: '',
+    operationType: '',
     phone: '',
     email: '',
     serviceType: '',
@@ -13,12 +13,21 @@ const ContactForm = ({ compact = false }) => {
   const [status, setStatus] = useState({ type: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const operationTypeOptions = [
+    { value: '', label: 'Select operation type' },
+    { value: 'Small Manufacturer / Fabrication Shop', label: 'Small Manufacturer / Fabrication Shop' },
+    { value: 'Warehouse / Distribution Center', label: 'Warehouse / Distribution Center' },
+    { value: 'Contractor / Maintenance Operation', label: 'Contractor / Maintenance Operation' },
+    { value: 'Trucking Fleet', label: 'Trucking Fleet' },
+    { value: 'Other', label: 'Other' },
+  ];
+
   const serviceOptions = [
     { value: '', label: 'Select a service' },
+    { value: 'not-sure', label: 'Not Sure — Need Advice' },
     { value: 'walkthrough', label: 'Safety Walkthrough & Top 10 Fixes Report' },
     { value: 'documentation', label: 'Safety Documentation Review & Gap Check' },
     { value: 'incident', label: 'Incident Review & Corrective Action Support' },
-    { value: 'other', label: 'Other / Not Sure' },
   ];
 
   const handleChange = (e) => {
@@ -41,7 +50,7 @@ const ContactForm = ({ compact = false }) => {
         },
         body: JSON.stringify({
           name: formData.name,
-          company: formData.company,
+          operation_type: formData.operationType,
           phone: formData.phone,
           email: formData.email,
           service_type: formData.serviceType,
@@ -56,7 +65,7 @@ const ContactForm = ({ compact = false }) => {
         });
         setFormData({
           name: '',
-          company: '',
+          operationType: '',
           phone: '',
           email: '',
           serviceType: '',
@@ -103,19 +112,24 @@ const ContactForm = ({ compact = false }) => {
         </div>
 
         <div>
-          <label htmlFor="company" className={labelClasses}>
-            Company
+          <label htmlFor="operationType" className={labelClasses}>
+            Operation Type <span className="text-red-500">*</span>
           </label>
-          <input
-            type="text"
-            id="company"
-            name="company"
-            value={formData.company}
+          <select
+            id="operationType"
+            name="operationType"
+            value={formData.operationType}
             onChange={handleChange}
-            placeholder="Your company name"
+            required
             className={inputClasses}
-            data-testid="contact-form-company"
-          />
+            data-testid="contact-form-operation-type"
+          >
+            {operationTypeOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
 
@@ -139,7 +153,7 @@ const ContactForm = ({ compact = false }) => {
 
         <div>
           <label htmlFor="phone" className={labelClasses}>
-            Phone
+            Phone <span className="text-[#1C2B2B]/40 font-normal">(optional)</span>
           </label>
           <input
             type="tel"
@@ -220,7 +234,7 @@ const ContactForm = ({ compact = false }) => {
         ) : (
           <>
             <Send size={18} className="mr-2" />
-            Send — I will respond within one business day
+            Request My Walkthrough
           </>
         )}
       </button>

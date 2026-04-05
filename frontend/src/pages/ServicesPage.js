@@ -362,6 +362,17 @@ const ServicesPage = () => {
               If the issue is deeper than a one-time review — driver files, drug and alcohol program gaps, maintenance records, or system installation — structured support is available through LaunchPath.
             </p>
             <a
+              href="https://launchpathedu.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-[#B8972C] font-medium hover:underline mb-3"
+              data-testid="services-launchpath-edu-link"
+            >
+              LaunchPath Transportation EDU
+              <ExternalLink size={14} />
+            </a>
+            <br />
+            <a
               href="https://launchpathedu.com/ground-0-briefing"
               target="_blank"
               rel="noopener noreferrer"

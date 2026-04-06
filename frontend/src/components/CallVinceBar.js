@@ -11,11 +11,11 @@ const CallVinceBar = ({ message = "Ready to talk through your operation?" }) => 
         
         <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6">
           <a 
-            href="tel:3366714967"
+            href="tel:3363298899"
             className="text-[#1C2B2B] font-medium text-base hover:text-[#B8972C] transition-colors"
             data-testid="call-vince-phone"
           >
-            336-671-4967
+            336-329-8899
           </a>
           <span className="hidden sm:inline text-[#1C2B2B]/30">&middot;</span>
           <a 

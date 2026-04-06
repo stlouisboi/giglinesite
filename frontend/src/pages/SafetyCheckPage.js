@@ -445,7 +445,7 @@ const SafetyCheckPage = () => {
                           <p className="mt-1">
                             <a href="mailto:vince@giglinecompliance.com" className="underline">vince@giglinecompliance.com</a>
                             {' · '}
-                            <a href="tel:336-671-4967" className="underline">336-671-4967</a>
+                            <a href="tel:336-329-8899" className="underline">336-329-8899</a>
                           </p>
                         </div>
                       )}
@@ -484,7 +484,7 @@ const SafetyCheckPage = () => {
                         Questions before then:<br />
                         <a href="mailto:vince@giglinecompliance.com" className="text-[#B8972C] hover:underline">vince@giglinecompliance.com</a>
                         {' · '}
-                        <a href="tel:336-671-4967" className="text-[#B8972C] hover:underline">336-671-4967</a>
+                        <a href="tel:336-329-8899" className="text-[#B8972C] hover:underline">336-329-8899</a>
                       </p>
                     </div>
                   </div>

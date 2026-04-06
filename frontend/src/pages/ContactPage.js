@@ -8,7 +8,7 @@ const ContactPage = () => {
     <main data-testid="contact-page">
       <SEO 
         title="Contact"
-        description="Contact GigLine Safety & Compliance. Request a walkthrough, documentation review, or incident response support. Vince Lawrence — 336-671-4967."
+        description="Contact GigLine Safety & Compliance. Request a walkthrough, documentation review, or incident response support. Vince Lawrence — 336-329-8899."
         canonical="/contact"
       />
       {/* Hero Section */}
@@ -52,7 +52,7 @@ const ContactPage = () => {
                 </a>
 
                 <a
-                  href="tel:336-671-4967"
+                  href="tel:336-329-8899"
                   className="flex items-start gap-4 group"
                   data-testid="contact-page-phone"
                 >
@@ -62,7 +62,7 @@ const ContactPage = () => {
                   <div>
                     <p className="text-sm text-muted-foreground">Phone</p>
                     <p className="font-medium text-primary group-hover:text-accent transition-colors">
-                      336-671-4967
+                      336-329-8899
                     </p>
                   </div>
                 </a>

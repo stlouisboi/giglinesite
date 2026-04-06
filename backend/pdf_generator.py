@@ -377,7 +377,7 @@ def generate_safety_check_pdf(submission_data):
             ParagraphStyle("cta", fontName="Helvetica-Bold", fontSize=12, textColor=CHARCOAL, alignment=TA_CENTER)
         )],
         [Paragraph(
-            "giglinecompliance.com &nbsp;&nbsp;&bull;&nbsp;&nbsp; vince@giglinecompliance.com &nbsp;&nbsp;&bull;&nbsp;&nbsp; 336-671-4967",
+            "giglinecompliance.com &nbsp;&nbsp;&bull;&nbsp;&nbsp; vince@giglinecompliance.com &nbsp;&nbsp;&bull;&nbsp;&nbsp; 336-329-8899",
             ParagraphStyle("ctasub", fontName="Helvetica", fontSize=9, textColor=MID_GRAY, alignment=TA_CENTER)
         )]
     ]
@@ -400,7 +400,7 @@ def generate_safety_check_pdf(submission_data):
             Paragraph(
                 "<b>GigLine Safety &amp; Compliance</b><br/>"
                 "Vince Lawrence &nbsp;&bull;&nbsp; Winston-Salem, NC<br/>"
-                "vince@giglinecompliance.com &nbsp;&bull;&nbsp; 336-671-4967",
+                "vince@giglinecompliance.com &nbsp;&bull;&nbsp; 336-329-8899",
                 styles["footer"]
             ),
             Paragraph(

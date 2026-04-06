@@ -445,7 +445,7 @@ const HomePage = () => {
                 </a>
 
                 <a
-                  href="tel:336-671-4967"
+                  href="tel:336-329-8899"
                   className="flex items-center gap-3 text-[#1C2B2B] hover:text-[#B8972C] transition-colors"
                   data-testid="contact-phone"
                 >
@@ -454,7 +454,7 @@ const HomePage = () => {
                   </div>
                   <div>
                     <p className="text-sm text-[#1C2B2B]/50">Phone</p>
-                    <p className="font-medium">336-671-4967</p>
+                    <p className="font-medium">336-329-8899</p>
                   </div>
                 </a>
               </div>

@@ -56,12 +56,12 @@ const Footer = () => {
                 vince@giglinecompliance.com
               </a>
               <a
-                href="tel:336-671-4967"
+                href="tel:336-329-8899"
                 className="flex items-center gap-2 text-sm text-white/60 hover:text-[#B8972C] transition-colors"
                 data-testid="footer-phone"
               >
                 <Phone size={16} />
-                336-671-4967
+                336-329-8899
               </a>
             </div>
           </div>

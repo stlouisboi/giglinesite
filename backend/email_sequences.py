@@ -15,7 +15,7 @@ SIGNATURE = """<br>
 <p style="color:#666;font-size:13px;margin-top:4px;">
   GigLine Safety &amp; Compliance<br>
   <a href="mailto:vince@giglinecompliance.com" style="color:#B8972C;">vince@giglinecompliance.com</a> &middot; 
-  <a href="tel:336-671-4967" style="color:#B8972C;">336-671-4967</a>
+  <a href="tel:336-329-8899" style="color:#B8972C;">336-329-8899</a>
 </p>"""
 
 

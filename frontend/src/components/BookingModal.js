@@ -185,7 +185,7 @@ const BookingModal = ({ isOpen, onClose, service }) => {
 
         <div className="mt-4 pt-4 border-t border-border">
           <p className="text-xs text-muted-foreground text-center">
-            Questions? Call <a href="tel:336-671-4967" className="text-accent hover:underline">336-671-4967</a>
+            Questions? Call <a href="tel:336-329-8899" className="text-accent hover:underline">336-329-8899</a>
           </p>
         </div>
       </div>

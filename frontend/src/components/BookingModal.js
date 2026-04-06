@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Calendar, CreditCard, Phone, X, ChevronDown } from 'lucide-react';
 
 // Calendly URL placeholder - replace with actual URL when ready
-const CALENDLY_URL = "https://calendly.com/your-calendly-url";
+const CALENDLY_URL = "https://calendly.com/vincelaw336/safety-consultation";
 
 const BookingModal = ({ isOpen, onClose, service }) => {
   const [isLoading, setIsLoading] = useState(false);

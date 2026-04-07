@@ -116,7 +116,7 @@ const HomePage = () => {
             </span>
           </h1>
 
-          <p className="text-base md:text-lg text-white/70 max-w-2xl mx-auto mb-6" data-testid="hero-subline">
+          <p className="text-base md:text-lg text-white/80 max-w-2xl mx-auto mb-6" data-testid="hero-subline">
             GigLine Safety & Compliance provides focused walkthroughs for small operations — identifying OSHA exposure before it becomes a problem.
           </p>
 
@@ -149,7 +149,7 @@ const HomePage = () => {
           </div>
 
           {/* Trust Bar */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-base text-white/50 mb-4" data-testid="hero-trust-bar">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-base text-white/60 mb-4" data-testid="hero-trust-bar">
             <span>25+ Years Safety Leadership</span>
             <span className="hidden sm:inline">&middot;</span>
             <span>OSHA 30-Hour Certified</span>
@@ -158,7 +158,7 @@ const HomePage = () => {
           </div>
 
           {/* Local Trust Cue */}
-          <p className="text-base text-white/40" data-testid="hero-local-trust">
+          <p className="text-base text-white/50" data-testid="hero-local-trust">
             Based in Kernersville, NC — on-site in the Triad, remote nationwide.
           </p>
         </div>
@@ -374,7 +374,7 @@ const HomePage = () => {
                 >
                   <div className="mb-4"><seg.Icon /></div>
                   <h3 className="text-lg font-bold text-white mb-2">{seg.title}</h3>
-                  <p className="text-base text-white/50">{seg.desc}</p>
+                  <p className="text-base text-white/70">{seg.desc}</p>
                 </div>
               ))}
             </div>
@@ -416,11 +416,11 @@ const HomePage = () => {
               {/* Bio */}
               <div className="flex-grow">
                 <h3 className="text-2xl font-bold text-white mb-1" data-testid="about-name">Vince Lawrence</h3>
-                <p className="text-base text-white/40 mb-6">
+                <p className="text-base text-white/50 mb-6">
                   Safety Coordinator &nbsp;&middot;&nbsp; OSHA 30-Hour &nbsp;&middot;&nbsp; U.S. Navy Veteran
                 </p>
 
-                <div className="space-y-4 text-white/60 text-base mb-8">
+                <div className="space-y-4 text-white/75 text-base mb-8">
                   <p>I have spent 25 years working in environments where safety was not theoretical — it was operational.</p>
                   <p>Manufacturing floors. Compliance systems. Real operations with real consequences when something was missed.</p>
                   <p>GigLine was built to give small operations a clear, straightforward way to understand their risk without needing a full consulting firm.</p>
@@ -442,10 +442,10 @@ const HomePage = () => {
                       className="inline-flex items-center px-3 py-1 rounded"
                       style={{
                         backgroundColor: '#1A2A2A',
-                        border: '1px solid #2A3A3A',
+                        border: '1px solid #3A4A4A',
                         fontFamily: "'JetBrains Mono', monospace",
                         fontSize: '11px',
-                        color: '#8A9099',
+                        color: '#B0B8C0',
                       }}
                     >
                       {cred}
@@ -485,7 +485,7 @@ const HomePage = () => {
               If You Run Trucks, the Gaps Run Deeper.
             </h2>
 
-            <div className="space-y-4 text-white/60 text-base mb-8">
+            <div className="space-y-4 text-white/75 text-base mb-8">
               <p>Fleet documentation gaps — driver qualification files, drug and alcohol programs, maintenance records — require more than a walkthrough to fix.</p>
               <p>GigLine finds the gaps. LaunchPath installs the system.</p>
               <p>LaunchPath Transportation EDU is a 90-day compliance installation program for new motor carriers built on the same standards GigLine applies on the floor.</p>
@@ -503,7 +503,7 @@ const HomePage = () => {
               <ExternalLink size={16} />
             </a>
 
-            <p className="text-base text-white/30">
+            <p className="text-base text-white/40">
               Ground 0 is free. It tells you whether you need GigLine, LaunchPath, or both.
             </p>
           </Reveal>
@@ -517,7 +517,7 @@ const HomePage = () => {
             <SectionLabel text="GET STARTED" />
 
             <h2 className="text-2xl md:text-3xl leading-tight mb-4" data-testid="final-cta-headline">
-              <span className="block font-normal" style={{ color: '#8A9099' }}>
+              <span className="block font-normal" style={{ color: '#B0B8C0' }}>
                 If You Are Not Sure Where Your Exposure Is —
               </span>
               <span className="block font-bold text-white">
@@ -525,10 +525,10 @@ const HomePage = () => {
               </span>
             </h2>
 
-            <p className="text-base mb-3" style={{ color: '#8A9099' }}>
+            <p className="text-base mb-3" style={{ color: '#B0B8C0' }}>
               Six questions. 90 seconds. A clear picture of where your operation stands.
             </p>
-            <p className="text-base mb-8" style={{ color: '#8A9099' }}>
+            <p className="text-base mb-8" style={{ color: '#B0B8C0' }}>
               Or skip the check and reach out directly.
             </p>
 
@@ -551,28 +551,29 @@ const HomePage = () => {
               </a>
             </div>
 
-            {/* Contact Block — monospace stamp */}
-            <div data-testid="final-contact-block" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', color: '#5A6170' }}>
-              <p className="mb-1"><strong className="text-white/70">Vince Lawrence</strong></p>
-              <p className="mb-1">GigLine Safety & Compliance</p>
-              <p className="mb-1">
-                <a href="mailto:vince@giglinecompliance.com" className="hover:text-[#C9A84C] transition-colors">
-                  vince@giglinecompliance.com
-                </a>
-              </p>
-              <p className="mb-1">
-                <a href="tel:3363298899" className="hover:text-[#C9A84C] transition-colors">
+            {/* Contact Block */}
+            <div data-testid="final-contact-block" className="mt-4 py-8 px-6 rounded inline-block" style={{ fontFamily: "'JetBrains Mono', monospace", backgroundColor: 'rgba(201, 168, 76, 0.06)', border: '1px solid rgba(201, 168, 76, 0.15)' }}>
+              <p className="mb-3"><strong className="text-white text-xl">Vince Lawrence</strong></p>
+              <p className="mb-3 text-white/60 text-sm">GigLine Safety & Compliance</p>
+              <div className="w-12 h-px mx-auto mb-3" style={{ backgroundColor: '#C9A84C' }} />
+              <p className="mb-2">
+                <a href="tel:3363298899" className="text-[#C9A84C] hover:text-white transition-colors text-2xl font-bold tracking-wide">
                   (336) 329-8899
                 </a>
               </p>
+              <p className="mb-2">
+                <a href="mailto:vince@giglinecompliance.com" className="text-white hover:text-[#C9A84C] transition-colors text-base font-medium">
+                  vince@giglinecompliance.com
+                </a>
+              </p>
               <p>
-                <a href="https://giglinecompliance.com" className="hover:text-[#C9A84C] transition-colors">
+                <a href="https://giglinecompliance.com" className="text-white/50 hover:text-[#C9A84C] transition-colors text-sm">
                   giglinecompliance.com
                 </a>
               </p>
             </div>
 
-            <div className="mt-8 text-base max-w-lg mx-auto" style={{ color: '#5A6170' }} data-testid="final-availability">
+            <div className="mt-8 text-base max-w-lg mx-auto text-white/40" data-testid="final-availability">
               <p>Available for limited on-site days each month in the Triad and surrounding region.</p>
               <p>Remote reviews available nationwide.</p>
             </div>

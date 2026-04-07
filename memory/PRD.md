@@ -7,7 +7,7 @@ Build a professional service business website for GigLine Safety & Compliance (o
 - **Frontend**: React (CRA) + Tailwind CSS + Craco
 - **Backend**: FastAPI + MongoDB (motor) + ReportLab (PDF) + Resend (Email)
 - **Deployment**: Vercel (via GitHub)
-- **Services**: Formspree (forms), Stripe (payments), Calendly (booking — placeholder), Resend (email drip — needs live key)
+- **Services**: Formspree (forms), Stripe (live payments), Calendly (live booking), Resend (live email drip)
 
 ## What's Been Implemented
 
@@ -29,12 +29,26 @@ Build a professional service business website for GigLine Safety & Compliance (o
 - Mobile offer heading weight increase
 - Local trust cues (hero/about)
 
-### GL-WEB-004: Homepage Revision Spec
-- Rev 1-6: Safety Check topic list, hero ranked list, 5-50 qualifier, second CTA bar, duplicate geography fix, GigLine vs LaunchPath bullets
+### GL-WEB-004: Homepage — Full Structured Replacement (April 2026)
+- **COMPLETE** — 8 sections in strict order per spec:
+  1. Hero (new H1, subline, positioning line, 2 CTAs, trust bar, local trust cue)
+  2. Safety Check Teaser (carried forward from GL-WEB-001)
+  3. Call Vince Bar (first placement)
+  4. The Reality (3 violation blocks with CFR citations)
+  5. What We Do (3 service cards: Walkthrough $650, Doc Review $550, Incident $900)
+  6. Call Vince Bar (second placement)
+  7. What You Get (5 deliverable bullets, callout)
+  8. Who We Work With (4 segment cards)
+  9. About (Vince bio, credentials, headshot, founder quote)
+  10. For Transportation Operations (LaunchPath bridge)
+  11. Final CTA (buttons + contact block)
+- All copy locked and matching spec exactly
+- Previous homepage content fully removed
+- 35/35 QA tests passed
 
 ### GL-WEB-005: Safety Check Backend & Email Drip
 - MongoDB storage for all form submissions
-- Automated email drip system via Resend (built but needs live API key)
+- Automated email drip system via Resend (LIVE — domain verified)
 - Background scheduler runs every 30 minutes
 
 ### GL-WEB-006: PDF Report Generation
@@ -42,40 +56,23 @@ Build a professional service business website for GigLine Safety & Compliance (o
 - Download link on Safety Check completion screen
 
 ### GL-WEB-007: Contact Form Revisions & Internal Linking Audit (April 2026)
-- **Workstream 1 — Contact Form Changes** (COMPLETED):
-  - Company field replaced with Operation Type dropdown (5 options in spec order)
-  - Phone field marked "(optional)", not required
-  - "Not Sure — Need Advice" added as first Service Type option
-  - Submit button changed to "Request My Walkthrough"
-- **Workstream 2 — GigLine Internal Linking** (COMPLETED):
-  - Homepage bridge section links to LaunchPath Ground 0
-  - Services page fleet section links to launchpathedu.com + Ground 0
-  - Safety Check completion CTA links to /contact
-  - Footer "For Fleet Operators" links to launchpathedu.com + Ground 0
-  - About page credential block links to /contact with "Request a Walkthrough"
-- **Workstream 2 — LaunchPath Linking** (OUT OF SCOPE — separate site)
-- **Workstream 3 — Risk Map Verification** (OUT OF SCOPE — separate site)
+- **COMPLETE** — All 4 contact form changes + GigLine internal linking
 
 ### Infrastructure
-- Stripe backend endpoint (POST /api/create-payment-intent)
+- Stripe live payments (sk_live key active)
+- Resend live emails (domain verified, drip sending)
+- Calendly live booking (vincelaw336/safety-consultation)
 - Custom domain: giglinecompliance.com via Vercel + Namecheap DNS
-- Founder headshot on About page
 - Google Search Console sitemap verified
+- Logo SVG files exported (shield-only, full with text, white variant)
 
-## Pending / Blocked Items
-1. **Resend API Key** — Email drip fully built, needs live key from user
-2. **Calendly URL** — Placeholder in BookingModal.js, waiting on user's Calendly account
-3. **Stripe Live Keys** — Using test keys until LLC is formed
-
-## Upcoming Tasks (P1)
-1. **Video Embeds** — User wants videos on site, placement TBD
-2. **Ad Tracking & Analytics** — Google Analytics, Vercel Analytics, conversion tracking
-
-## Deployment Notes
-- Vercel Pro blocks commits from emergent-agent-e1 (not a team member)
-- Workaround: After "Save to Github", manually click Redeploy in Vercel dashboard
-- Build command: `yarn build` (runs `craco build`)
-- Root directory: `frontend`
+## All Integrations — Status
+| Service | Status | Key |
+|---------|--------|-----|
+| Stripe | LIVE | sk_live_... in backend/.env |
+| Resend | LIVE | re_eESJoAbu... in backend/.env, domain verified |
+| Calendly | LIVE | calendly.com/vincelaw336/safety-consultation |
+| Formspree | LIVE | xeeprzel (contact), xpqoyldy (safety check) |
 
 ## Key API Endpoints
 - `POST /api/safety-check/submit` — Process form, calculate score, generate PDF, schedule emails
@@ -86,3 +83,12 @@ Build a professional service business website for GigLine Safety & Compliance (o
 ## DB Schema
 - `safety_check_submissions`: {id, name, company, operation_type, score, concern, phone, email, answers, timestamp, flow_type}
 - `drip_emails`: {id, submission_id, email, flow_type, sequence_index, status, send_at, sent_at, error}
+
+## Upcoming Tasks
+1. **Video Embeds** (P1) — User wants videos on site, placement TBD
+2. **Ad Tracking & Analytics** (P1) — Google Analytics, conversion tracking
+
+## Deployment Notes
+- After "Save to Github", manually click Redeploy in Vercel dashboard
+- Build command: `yarn build` (runs `craco build`)
+- Root directory: `frontend`

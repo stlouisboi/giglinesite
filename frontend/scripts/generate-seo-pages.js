@@ -1,0 +1,124 @@
+/**
+ * Post-build SEO script
+ * Generates per-route HTML files with correct meta tags pre-baked
+ * so Google's crawler sees unique metadata for each page without JS execution.
+ * 
+ * Runs after `craco build` — creates /about/index.html, /contact/index.html, etc.
+ */
+
+const fs = require('fs');
+const path = require('path');
+
+const BUILD_DIR = path.join(__dirname, '..', 'build');
+const BASE_URL = 'https://www.giglinecompliance.com';
+
+const routes = [
+  {
+    path: '/about',
+    title: 'About | GigLine Safety & Compliance',
+    description: 'Vince Lawrence — safety consultant, OSHA 30-Hour certified, U.S. Navy veteran. 25+ years in manufacturing, fleet, and warehouse safety. Based in Kernersville, NC.',
+    canonical: '/about',
+  },
+  {
+    path: '/services',
+    title: 'Services | GigLine Safety & Compliance',
+    description: 'Three focused safety services for small operations. Safety Walkthrough ($650), Documentation Review ($550), and Incident Response Support ($900). Each ends with a written report and clear action items.',
+    canonical: '/services',
+  },
+  {
+    path: '/contact',
+    title: 'Contact | GigLine Safety & Compliance',
+    description: 'Contact GigLine Safety & Compliance. Request a walkthrough, documentation review, or incident response support. Vince Lawrence — (336) 329-8899. Kernersville, NC.',
+    canonical: '/contact',
+  },
+  {
+    path: '/safety-check',
+    title: 'Safety Check | GigLine Safety & Compliance',
+    description: 'Free 90-second safety check. Six questions mapped to OSHA\'s most-cited violations. Get an instant GO / WAIT / NO-GO rating and a PDF report with next steps.',
+    canonical: '/safety-check',
+  },
+];
+
+function generateRouteHTML(templateHTML, route) {
+  let html = templateHTML;
+
+  // Replace <title>
+  html = html.replace(
+    /<title>[^<]*<\/title>/,
+    `<title>${route.title}</title>`
+  );
+
+  // Replace meta description
+  html = html.replace(
+    /<meta name="description" content="[^"]*"\s*\/>/,
+    `<meta name="description" content="${route.description}" />`
+  );
+
+  // Replace canonical
+  html = html.replace(
+    /<link rel="canonical" href="[^"]*"\s*\/>/,
+    `<link rel="canonical" href="${BASE_URL}${route.canonical}" />`
+  );
+
+  // Replace og:url
+  html = html.replace(
+    /<meta property="og:url" content="[^"]*"\s*\/>/,
+    `<meta property="og:url" content="${BASE_URL}${route.canonical}" />`
+  );
+
+  // Replace og:title
+  html = html.replace(
+    /<meta property="og:title" content="[^"]*"\s*\/>/,
+    `<meta property="og:title" content="${route.title}" />`
+  );
+
+  // Replace og:description
+  html = html.replace(
+    /<meta property="og:description" content="[^"]*"\s*\/>/,
+    `<meta property="og:description" content="${route.description}" />`
+  );
+
+  // Replace twitter:title
+  html = html.replace(
+    /<meta name="twitter:title" content="[^"]*"\s*\/>/,
+    `<meta name="twitter:title" content="${route.title}" />`
+  );
+
+  // Replace twitter:description
+  html = html.replace(
+    /<meta name="twitter:description" content="[^"]*"\s*\/>/,
+    `<meta name="twitter:description" content="${route.description}" />`
+  );
+
+  return html;
+}
+
+function main() {
+  const templatePath = path.join(BUILD_DIR, 'index.html');
+  
+  if (!fs.existsSync(templatePath)) {
+    console.error('Build index.html not found. Run craco build first.');
+    process.exit(1);
+  }
+
+  const templateHTML = fs.readFileSync(templatePath, 'utf-8');
+  let generated = 0;
+
+  for (const route of routes) {
+    const routeDir = path.join(BUILD_DIR, route.path);
+    const routeFile = path.join(routeDir, 'index.html');
+
+    // Create directory if it doesn't exist
+    fs.mkdirSync(routeDir, { recursive: true });
+
+    // Generate and write the route-specific HTML
+    const routeHTML = generateRouteHTML(templateHTML, route);
+    fs.writeFileSync(routeFile, routeHTML);
+    generated++;
+    console.log(`  SEO: ${route.path}/index.html`);
+  }
+
+  console.log(`\nSEO: Generated ${generated} route-specific HTML files.`);
+}
+
+main();

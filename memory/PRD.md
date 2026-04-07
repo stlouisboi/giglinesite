@@ -34,6 +34,8 @@ Build a professional service business website for GigLine Safety & Compliance (o
   - Added FAQPage schema to Contact page (3 Q&As → rich snippets)
   - Added Service ItemList schema to Services page (3 services + pricing)
   - SEO component extended with noindex + JSON-LD schema support
+  - **Post-build SSR meta injection**: `scripts/generate-seo-pages.js` creates per-route HTML files with unique title, description, canonical, OG, and Twitter meta tags so Google's crawler sees correct metadata without JS execution
+  - Added `vercel.json` with SPA fallback rewrite + security headers
 
 ## All Integrations — Status
 | Service | Status |

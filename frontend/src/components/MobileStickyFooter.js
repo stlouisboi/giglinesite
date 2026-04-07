@@ -15,8 +15,8 @@ const MobileStickyFooter = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Don't show on contact page
-  if (location.pathname === '/contact') return null;
+  // Don't show on contact or safety-check pages
+  if (location.pathname === '/contact' || location.pathname === '/safety-check') return null;
 
   if (!isVisible) return null;
 
@@ -26,10 +26,10 @@ const MobileStickyFooter = () => {
       data-testid="mobile-sticky-cta"
     >
       <Link 
-        to="/contact" 
+        to="/safety-check" 
         className="block w-full bg-accent text-white text-center py-3 px-6 rounded-md font-medium"
       >
-        Request a Walkthrough
+        Take the Free Safety Check
       </Link>
     </div>
   );

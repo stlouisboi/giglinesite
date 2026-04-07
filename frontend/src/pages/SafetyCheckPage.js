@@ -356,14 +356,23 @@ const SafetyCheckPage = () => {
                 <p className="text-[#1C2B2B]/60 mb-6 leading-relaxed">
                   This check shows where issues may exist. A walkthrough or documentation review shows what actually needs to be fixed — and in what order.
                 </p>
-                <Link 
-                  to="/contact" 
-                  className="inline-flex items-center gap-2 bg-[#1C2B2B] hover:bg-[#2A3D3D] text-white font-medium px-6 py-3 rounded transition-colors text-sm"
-                  data-testid="results-cta"
-                >
-                  Request a Walkthrough or Review
-                  <ArrowRight size={16} />
-                </Link>
+                <div className="flex flex-col sm:flex-row items-center gap-4">
+                  <Link 
+                    to="/contact" 
+                    className="inline-flex items-center gap-2 bg-[#1C2B2B] hover:bg-[#2A3D3D] text-white font-medium px-6 py-3 rounded transition-colors text-sm"
+                    data-testid="results-cta-walkthrough"
+                  >
+                    Schedule a Walkthrough
+                    <ArrowRight size={16} />
+                  </Link>
+                  <Link 
+                    to="/contact" 
+                    className="inline-flex items-center gap-2 border-2 border-[#1C2B2B]/20 hover:border-[#1C2B2B]/40 text-[#1C2B2B] font-medium px-6 py-3 rounded transition-colors text-sm"
+                    data-testid="results-cta-review"
+                  >
+                    Request a Documentation Review
+                  </Link>
+                </div>
                 <p className="text-xs text-[#1C2B2B]/50 mt-3">
                   No pressure. No ongoing contract. Just a clear assessment of what matters first.
                 </p>

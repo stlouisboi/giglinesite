@@ -15,17 +15,12 @@ Build a professional service business website for GigLine Safety & Compliance (o
 - **GL-WEB-003**: Contact Prominence (Call Vince bar, trust cues)
 - **GL-WEB-004**: Homepage Full Structured Replacement (8 sections, locked copy)
 - **GL-WEB-005**: Homepage Visual Design Upgrade — "Inspection Standard" (April 2026)
-  - Hero: Gold underlines on consequence words, dot grid bg, gold rules on positioning line
-  - The Reality: Ghost CFR watermark numbers behind violation cards
-  - What We Do: Large gold 01/02/03 display numbers, gold left border
-  - What You Get: Numbered sequence with connectors, display-size pull quote
-  - Who We Work With: Dark band, 4 columns with dividers, custom SVG icons
-  - About: Founder quote as section header, credential pills
-  - Transportation: "49 CFR" ghost watermark
-  - Final CTA: Pure black bg, two-tone headline, monospace contact block
-  - Global: Monospace section labels with gold square marker, scroll reveal animations, CFR in monospace
-  - 35/35 tests passed
 - **GL-WEB-007**: Contact Form Revisions & Internal Linking Audit
+- **GL-COPY-001**: CTA & Copy Funnel Updates — All Four Pages (April 2026)
+  - Home: "Take the Free Safety Check" primary CTA, "Request a Review" secondary CTA (hero + after offers + final CTA)
+  - Safety Check: Frame text above questions, "Get My Result" submit, dual post-result CTAs (Schedule a Walkthrough / Request a Documentation Review)
+  - About: "If That Sounds Like Your Operation" CTA → Safety Check, phone alternate CTA
+  - Contact: "Tell Me About Your Operation." headline, "Send It" submit, below-form expectation text
 
 ## All Integrations — Status
 | Service | Status |

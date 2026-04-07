@@ -16,11 +16,10 @@ const ContactPage = () => {
         <div className="container">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-bold mb-6" data-testid="contact-headline">
-              Contact
+              Tell Me About Your Operation.
             </h1>
             <p className="text-lg text-white/90">
-              Ready to find your gaps? Fill out the form below and I'll respond within one business day. 
-              Or reach out directly by email or phone.
+              One line is all it takes to start the conversation. Describe what you're running, and I'll tell you what makes sense.
             </p>
           </div>
         </div>

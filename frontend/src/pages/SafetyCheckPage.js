@@ -238,6 +238,11 @@ const SafetyCheckPage = () => {
       <section className="py-12 md:py-16">
         <div className="container max-w-3xl">
 
+          {/* Frame text — sets expectation */}
+          <p className="text-lg text-[#1C2B2B]/70 mb-10 leading-relaxed italic border-l-2 border-[#B8972C] pl-6" data-testid="safety-check-frame-text">
+            Six questions. Honest answers. You'll know where you stand.
+          </p>
+
           {/* What This Is Measuring */}
           <div className="mb-12 pb-8 border-b border-[#1C2B2B]/10">
             <h2 className="text-base font-semibold text-[#1C2B2B] mb-2">What This Is Measuring</h2>
@@ -456,7 +461,7 @@ const SafetyCheckPage = () => {
                         className="w-full bg-[#1C2B2B] hover:bg-[#2A3D3D] text-white font-medium py-3.5 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                         data-testid="form-submit"
                       >
-                        {isSubmitting ? 'Sending...' : 'Send Results'}
+                        {isSubmitting ? 'Sending...' : 'Get My Result'}
                       </button>
                     </form>
                   </>

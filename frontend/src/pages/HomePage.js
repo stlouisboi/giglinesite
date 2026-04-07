@@ -136,16 +136,16 @@ const HomePage = () => {
               className="bg-[#C9A84C] hover:bg-[#B8972C] text-white font-semibold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
               data-testid="hero-cta-safety-check"
             >
-              Run the Safety Check
+              Take the Free Safety Check
               <ArrowRight size={18} />
             </Link>
-            <a
-              href="#contact"
+            <Link
+              to="/contact"
               className="border-2 border-white/30 hover:border-white/60 text-white font-semibold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
               data-testid="hero-cta-walkthrough"
             >
-              Request a Walkthrough
-            </a>
+              Request a Review
+            </Link>
           </div>
 
           {/* Trust Bar */}
@@ -294,6 +294,19 @@ const HomePage = () => {
                   </a>
                 </div>
               ))}
+            </div>
+          </Reveal>
+
+          {/* Secondary CTA after offers */}
+          <Reveal>
+            <div className="text-center mt-12" data-testid="services-secondary-cta">
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 border-2 border-[#1C2B2B]/20 hover:border-[#1C2B2B]/40 text-[#1C2B2B] font-semibold px-8 py-4 rounded transition-colors"
+              >
+                Request a Review
+                <ArrowRight size={18} />
+              </Link>
             </div>
           </Reveal>
         </div>
@@ -544,16 +557,16 @@ const HomePage = () => {
                 className="bg-[#C9A84C] hover:bg-[#B8972C] text-white font-semibold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
                 data-testid="final-cta-safety-check"
               >
-                Run the Safety Check
+                Take the Free Safety Check
                 <ArrowRight size={18} />
               </Link>
-              <a
-                href="#contact"
+              <Link
+                to="/contact"
                 className="border-2 border-white/20 hover:border-white/40 text-white font-semibold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
                 data-testid="final-cta-walkthrough"
               >
-                Request a Walkthrough
-              </a>
+                Request a Review
+              </Link>
             </div>
 
             {/* Contact Block */}

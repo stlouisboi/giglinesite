@@ -234,10 +234,14 @@ const ContactForm = ({ compact = false }) => {
         ) : (
           <>
             <Send size={18} className="mr-2" />
-            Request My Walkthrough
+            Send It
           </>
         )}
       </button>
+
+      <p className="text-sm text-muted-foreground text-center mt-4" data-testid="contact-form-expectation">
+        I'll reply within one business day with a plain answer: what makes sense, what it costs, when I can be there.
+      </p>
     </form>
   );
 };

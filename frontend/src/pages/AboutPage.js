@@ -229,19 +229,25 @@ const AboutPage = () => {
       <section className="py-16 md:py-20" data-testid="about-contact-cta">
         <div className="container text-center max-w-2xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-4" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
-            Ready to Find Your Gaps?
+            If That Sounds Like Your Operation
           </h2>
           <p className="text-[#1C2B2B]/70 mb-8 leading-relaxed">
-            If your operation has not had an outside review — or if something has already gone wrong — this is the point to take a closer look. Request a walkthrough or documentation review, and get a clear picture of what is exposed and what needs attention first.
+            If that sounds like your operation, start with the Safety Check. Six questions. 90 seconds. A clear picture of where you stand.
           </p>
-          <Link 
-            to="/contact" 
-            className="inline-flex items-center gap-2 bg-[#1C2B2B] hover:bg-[#2A3D3D] text-white font-semibold px-8 py-4 rounded transition-colors"
-            data-testid="about-bottom-cta"
-          >
-            Request a Walkthrough or Review
-            <ArrowRight size={18} />
-          </Link>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+            <Link 
+              to="/safety-check" 
+              className="inline-flex items-center gap-2 bg-[#1C2B2B] hover:bg-[#2A3D3D] text-white font-semibold px-8 py-4 rounded transition-colors"
+              data-testid="about-bottom-cta"
+            >
+              Take the Free Safety Check
+              <ArrowRight size={18} />
+            </Link>
+          </div>
+          <p className="text-[#1C2B2B]/60 text-base">
+            Or reach out directly —{' '}
+            <a href="tel:3363298899" className="text-[#B8972C] hover:underline font-semibold">(336) 329-8899</a>
+          </p>
         </div>
       </section>
     </main>

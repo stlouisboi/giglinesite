@@ -37,6 +37,12 @@ const routes = [
     description: 'Free 90-second safety check. Six questions mapped to OSHA\'s most-cited violations. Get an instant GO / WAIT / NO-GO rating and a PDF report with next steps.',
     canonical: '/safety-check',
   },
+  {
+    path: '/hazcom',
+    title: 'HazCom Starter Pack | GigLine Safety & Compliance',
+    description: 'HazCom Starter Pack — $29. Written HazCom program, SDS binder checklist, and training log. 11 pages. Fill your company name. Print. Done. Fixes OSHA\'s #1 citation in general industry.',
+    canonical: '/hazcom',
+  },
 ];
 
 function generateRouteHTML(templateHTML, route) {

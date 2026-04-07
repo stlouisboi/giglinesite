@@ -11,6 +11,7 @@ const Footer = () => {
     { name: 'Safety Check', path: '/safety-check' },
     { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },
+    { name: 'HazCom Starter Pack', path: '/hazcom' },
   ];
 
   return (
@@ -45,7 +46,7 @@ const Footer = () => {
             <p className="text-white/60 text-sm mb-4">
               Safety Walkthroughs and Gap Checks for Small Operations
             </p>
-            <p className="text-white/50 text-sm mb-4">Winston-Salem, NC</p>
+            <p className="text-white/50 text-sm mb-4">Kernersville, NC</p>
             <div className="space-y-2">
               <a
                 href="mailto:vince@giglinecompliance.com"

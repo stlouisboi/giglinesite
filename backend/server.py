@@ -149,6 +149,20 @@ SERVICE_PACKAGES = {
     }
 }
 
+# ============== HAZCOM PRODUCT ==============
+
+HAZCOM_PRODUCT = {
+    "name": "HazCom Starter Pack — Small Shop Edition",
+    "amount": 29.00,
+    "description": "Written HazCom Program, SDS Binder Checklist + Index, Training Verification Log (11 pages total)"
+}
+
+HAZCOM_FILES = {
+    "GL-HAZCOM-001_Written_Program.pdf": ROOT_DIR / "hazcom_files" / "GL-HAZCOM-001_Written_Program.pdf",
+    "GL-HAZCOM-002_SDS_Binder_Checklist.pdf": ROOT_DIR / "hazcom_files" / "GL-HAZCOM-002_SDS_Binder_Checklist.pdf",
+    "GL-HAZCOM-003_Training_Log.pdf": ROOT_DIR / "hazcom_files" / "GL-HAZCOM-003_Training_Log.pdf",
+}
+
 # ============== ROUTES ==============
 
 @api_router.get("/")
@@ -310,6 +324,200 @@ async def stripe_webhook(request: Request):
     except Exception as e:
         logger.error(f"Webhook error: {str(e)}")
         raise HTTPException(status_code=400, detail="Webhook processing failed")
+
+# ============== HAZCOM ROUTES ==============
+
+class HazComCheckoutRequest(BaseModel):
+    origin_url: str
+
+@api_router.post("/hazcom/checkout")
+async def create_hazcom_checkout(request: HazComCheckoutRequest, http_request: Request):
+    """Create a Stripe checkout session for the HazCom Starter Pack"""
+    
+    success_url = f"{request.origin_url}/hazcom/thank-you?session_id={{CHECKOUT_SESSION_ID}}"
+    cancel_url = f"{request.origin_url}/hazcom"
+    
+    host_url = str(http_request.base_url).rstrip('/')
+    webhook_url = f"{host_url}/api/webhook/stripe"
+    stripe_checkout = StripeCheckout(api_key=stripe_api_key, webhook_url=webhook_url)
+    
+    checkout_request = CheckoutSessionRequest(
+        amount=HAZCOM_PRODUCT["amount"],
+        currency="usd",
+        success_url=success_url,
+        cancel_url=cancel_url,
+        metadata={
+            "product": "hazcom_starter_pack",
+            "service_name": HAZCOM_PRODUCT["name"]
+        }
+    )
+    
+    try:
+        session: CheckoutSessionResponse = await stripe_checkout.create_checkout_session(checkout_request)
+        
+        # Record the transaction
+        transaction = PaymentTransaction(
+            session_id=session.session_id,
+            service_type="hazcom_starter_pack",
+            service_name=HAZCOM_PRODUCT["name"],
+            amount=HAZCOM_PRODUCT["amount"],
+            currency="usd",
+            payment_status="pending",
+            metadata={"product": "hazcom_starter_pack"}
+        )
+        doc = transaction.model_dump()
+        doc['created_at'] = doc['created_at'].isoformat()
+        doc['updated_at'] = doc['updated_at'].isoformat()
+        await db.payment_transactions.insert_one(doc)
+        
+        return {"url": session.url, "session_id": session.session_id}
+    except Exception as e:
+        logger.error(f"HazCom checkout error: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to create checkout session")
+
+@api_router.get("/hazcom/verify")
+async def verify_hazcom_session(session_id: str, http_request: Request):
+    """Verify a HazCom purchase session and trigger delivery email"""
+    
+    host_url = str(http_request.base_url).rstrip('/')
+    webhook_url = f"{host_url}/api/webhook/stripe"
+    stripe_checkout = StripeCheckout(api_key=stripe_api_key, webhook_url=webhook_url)
+    
+    try:
+        status: CheckoutStatusResponse = await stripe_checkout.get_checkout_status(session_id)
+        
+        if status.payment_status == "paid":
+            # Update transaction
+            await db.payment_transactions.update_one(
+                {"session_id": session_id},
+                {"$set": {"payment_status": "paid", "updated_at": datetime.now(timezone.utc).isoformat()}}
+            )
+            
+            # Send delivery email (only once — check if already sent)
+            existing = await db.hazcom_deliveries.find_one({"session_id": session_id})
+            if not existing and status.metadata:
+                customer_email = status.metadata.get("customer_email") or status.metadata.get("email")
+                if customer_email:
+                    await send_hazcom_delivery_email(customer_email, session_id)
+            
+            return {"verified": True}
+        
+        return {"verified": False}
+    except Exception as e:
+        logger.error(f"HazCom verify error: {str(e)}")
+        return {"verified": False}
+
+from fastapi.responses import FileResponse
+
+@api_router.get("/hazcom/download/{filename}")
+async def download_hazcom_file(filename: str, session_id: str, http_request: Request):
+    """Protected download route — validates Stripe session before serving file"""
+    
+    if filename not in HAZCOM_FILES:
+        raise HTTPException(status_code=404, detail="File not found")
+    
+    # Verify payment
+    host_url = str(http_request.base_url).rstrip('/')
+    webhook_url = f"{host_url}/api/webhook/stripe"
+    stripe_checkout = StripeCheckout(api_key=stripe_api_key, webhook_url=webhook_url)
+    
+    try:
+        status: CheckoutStatusResponse = await stripe_checkout.get_checkout_status(session_id)
+        if status.payment_status != "paid":
+            raise HTTPException(status_code=403, detail="Payment not verified")
+    except HTTPException:
+        raise
+    except Exception:
+        raise HTTPException(status_code=403, detail="Unable to verify payment")
+    
+    filepath = HAZCOM_FILES[filename]
+    if not filepath.exists():
+        raise HTTPException(status_code=404, detail="File not found on server")
+    
+    return FileResponse(
+        path=str(filepath),
+        filename=filename,
+        media_type="application/pdf"
+    )
+
+async def send_hazcom_delivery_email(email: str, session_id: str):
+    """Send HazCom delivery email with PDF attachments via Resend"""
+    try:
+        attachments = []
+        for fname, fpath in HAZCOM_FILES.items():
+            if fpath.exists():
+                with open(fpath, "rb") as f:
+                    content = base64.b64encode(f.read()).decode("utf-8")
+                attachments.append({
+                    "filename": fname,
+                    "content": content,
+                    "type": "application/pdf"
+                })
+        
+        resend.Emails.send({
+            "from": SENDER_EMAIL,
+            "to": [email],
+            "subject": "Your HazCom Starter Pack is ready",
+            "html": f"""
+            <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; color: #1C2B2B;">
+                <h1 style="font-size: 24px; margin-bottom: 16px;">Your HazCom Starter Pack</h1>
+                <p>Thanks for your purchase. Your files are attached to this email.</p>
+                
+                <h3 style="margin-top: 24px; margin-bottom: 8px;">WHAT'S INCLUDED:</h3>
+                <ul style="color: #555;">
+                    <li>GL-HAZCOM-001 — Written HazCom Program (5 pages)</li>
+                    <li>GL-HAZCOM-002 — SDS Binder Checklist + Index (4 pages)</li>
+                    <li>GL-HAZCOM-003 — Training Verification Log (2 pages)</li>
+                </ul>
+                
+                <h3 style="margin-top: 24px; margin-bottom: 8px;">NEXT STEPS:</h3>
+                <ol style="color: #555;">
+                    <li>Open each PDF and fill in your company name</li>
+                    <li>Print and place in your SDS binder</li>
+                    <li>Train employees and document on the training log</li>
+                    <li>Review annually or when chemicals change</li>
+                </ol>
+                
+                <p style="margin-top: 24px;">If you have questions about implementation, reply to this email.</p>
+                
+                <hr style="margin: 24px 0; border: none; border-top: 1px solid #ddd;" />
+                <p style="color: #888; font-size: 14px;">
+                    — Vince Lawrence<br/>
+                    GigLine Safety & Compliance<br/>
+                    (336) 329-8899<br/>
+                    giglinecompliance.com
+                </p>
+            </div>
+            """,
+            "attachments": attachments,
+            "reply_to": VINCE_EMAIL
+        })
+        
+        # Record delivery
+        await db.hazcom_deliveries.insert_one({
+            "session_id": session_id,
+            "email": email,
+            "sent_at": datetime.now(timezone.utc).isoformat()
+        })
+        
+        logger.info(f"HazCom delivery email sent to {email}")
+        
+        # Also notify Vince
+        resend.Emails.send({
+            "from": SENDER_EMAIL,
+            "to": [VINCE_EMAIL],
+            "subject": f"HazCom Starter Pack — New Purchase ({email})",
+            "html": f"""
+            <p>New HazCom Starter Pack purchase:</p>
+            <p><strong>Email:</strong> {email}<br/>
+            <strong>Amount:</strong> $29.00<br/>
+            <strong>Session:</strong> {session_id}</p>
+            """,
+            "reply_to": email
+        })
+        
+    except Exception as e:
+        logger.error(f"HazCom delivery email error: {str(e)}")
 
 # ============== SAFETY CHECK ROUTES ==============
 

@@ -318,6 +318,18 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* ━━━━━ HAZCOM CALLOUT ━━━━━ */}
+      <section className="py-8 bg-[#F9F8F6] border-y border-[#1C2B2B]/10" data-testid="hazcom-callout">
+        <div className="container text-center">
+          <p className="text-sm text-[#1C2B2B]/60">
+            Fix HazCom paperwork yourself?{' '}
+            <Link to="/hazcom" className="text-[#B8972C] hover:underline font-semibold">
+              HazCom Starter Pack — $29 →
+            </Link>
+          </p>
+        </div>
+      </section>
+
       {/* ━━━━━ CALL VINCE BAR — Second Placement ━━━━━ */}
       <CallVinceBar />
 

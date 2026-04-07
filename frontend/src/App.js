@@ -12,6 +12,8 @@ import ContactPage from './pages/ContactPage';
 import PaymentSuccessPage from './pages/PaymentSuccessPage';
 import SafetyCheckPage from './pages/SafetyCheckPage';
 import NotFoundPage from './pages/NotFoundPage';
+import HazComPage from './pages/HazComPage';
+import HazComThankYouPage from './pages/HazComThankYouPage';
 import './App.css';
 
 function App() {
@@ -29,6 +31,8 @@ function App() {
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/payment-success" element={<PaymentSuccessPage />} />
               <Route path="/safety-check" element={<SafetyCheckPage />} />
+              <Route path="/hazcom" element={<HazComPage />} />
+              <Route path="/hazcom/thank-you" element={<HazComThankYouPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </div>

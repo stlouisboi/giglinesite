@@ -49,6 +49,12 @@ const routes = [
     description: 'The five most-cited OSHA violations in small manufacturing: Hazard Communication, Lockout/Tagout, Machine Guarding, Powered Industrial Trucks, and Walking-Working Surfaces. Includes CFR references, penalty amounts, and compliance requirements.',
     canonical: '/blog/top-5-osha-violations-small-manufacturing',
   },
+  {
+    path: '/blog/hazcom-requirements-small-business',
+    title: 'HazCom Requirements for Small Businesses | GigLine Safety & Compliance',
+    description: 'Complete guide to OSHA Hazard Communication requirements for small businesses. Covers written programs, Safety Data Sheets, labeling, training, and penalties under 29 CFR 1910.1200.',
+    canonical: '/blog/hazcom-requirements-small-business',
+  },
 ];
 
 function generateRouteHTML(templateHTML, route) {

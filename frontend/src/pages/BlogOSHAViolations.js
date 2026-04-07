@@ -79,6 +79,7 @@ const violations = [
     cfr: "29 CFR 1910.1200",
     tagline: "#1 OSHA citation in general industry — multiple consecutive years.",
     cta: { text: "Fix HazCom paperwork now — $29", to: "/hazcom" },
+    deepLink: { text: "Read the full HazCom compliance guide →", to: "/blog/hazcom-requirements-small-business" },
     why: [
       "Written HazCom program is missing or incomplete",
       "SDS binder doesn't include all chemicals on site",
@@ -305,11 +306,24 @@ const BlogOSHAViolations = () => {
             {v.cta && (
               <Link
                 to={v.cta.to}
-                className="inline-flex items-center gap-2 text-sm text-[#B8972C] font-medium hover:underline mb-8"
+                className="inline-flex items-center gap-2 text-sm text-[#B8972C] font-medium hover:underline mb-4"
               >
                 {v.cta.text} <ArrowRight size={14} />
               </Link>
             )}
+
+            {v.deepLink && (
+              <div className="mb-8">
+                <Link
+                  to={v.deepLink.to}
+                  className="inline-flex items-center gap-2 text-xs text-[#1C2B2B]/50 hover:text-[#B8972C] transition-colors"
+                >
+                  {v.deepLink.text}
+                </Link>
+              </div>
+            )}
+
+            {!v.cta && !v.deepLink && <div className="mb-8" />}
 
             <div className="grid md:grid-cols-2 gap-8">
               <div>

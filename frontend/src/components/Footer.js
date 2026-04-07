@@ -13,6 +13,7 @@ const Footer = () => {
     { name: 'Contact', path: '/contact' },
     { name: 'HazCom Starter Pack', path: '/hazcom' },
     { name: 'Top 5 OSHA Violations', path: '/blog/top-5-osha-violations-small-manufacturing' },
+    { name: 'HazCom Requirements', path: '/blog/hazcom-requirements-small-business' },
   ];
 
   return (

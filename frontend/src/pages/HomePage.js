@@ -231,7 +231,7 @@ const HomePage = () => {
       <section className="relative" data-testid="inspection-image-section">
         <div
           className="relative bg-cover bg-no-repeat py-24 md:py-32"
-          style={{ backgroundImage: "url('/vince-inspecting.png')", backgroundPosition: 'center 40%' }}
+          style={{ backgroundImage: "url('/vince-founder.png')", backgroundPosition: 'center 40%' }}
         >
           <div className="absolute inset-0 bg-black/70" />
           <div className="container relative z-10 max-w-2xl">
@@ -406,7 +406,7 @@ const HomePage = () => {
               {/* Photo */}
               <div className="w-full md:w-1/3 flex-shrink-0">
                 <img
-                  src="/vince-founder.png"
+                  src="/vince-inspecting.png"
                   alt="Vince Lawrence — Founder, GigLine Safety & Compliance, OSHA certified safety consultant, Kernersville NC"
                   className="w-full rounded"
                   data-testid="about-headshot"

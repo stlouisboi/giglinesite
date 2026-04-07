@@ -83,6 +83,10 @@ const fourRequirements = [
       "Precautionary statements",
       "Supplier identification",
     ],
+    exception: {
+      title: "Immediate Use Exception",
+      text: "Secondary containers do not require labels if the chemical is transferred and used immediately by the employee who made the transfer, within the same work shift, and the employee maintains exclusive control of the container. Once the container is set down, stored, or left unattended — even briefly — it must be labeled. This exception is narrow and commonly misapplied."
+    },
   },
   {
     num: 4,
@@ -145,8 +149,38 @@ const BlogHazComRequirements = () => {
         </div>
       </section>
 
+      {/* Table of Contents */}
+      <section className="py-8 border-b border-[#1C2B2B]/10" data-testid="hazcom-toc">
+        <div className="container max-w-3xl">
+          <p className="text-xs font-semibold tracking-widest text-[#1C2B2B]/40 uppercase mb-4" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+            IN THIS GUIDE
+          </p>
+          <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-2">
+            {[
+              { id: "do-i-need", label: "Do small businesses need HazCom?" },
+              { id: "what-is-hcs", label: "What is the HazCom Standard?" },
+              { id: "four-requirements", label: "The four requirements" },
+              { id: "chemicals-sds", label: "What chemicals require an SDS?" },
+              { id: "written-program", label: "Creating a written program" },
+              { id: "sds-location", label: "Where to keep the SDS binder" },
+              { id: "penalties", label: "Penalties for violations" },
+              { id: "training-frequency", label: "How often is training required?" },
+              { id: "consumer-exemption", label: "Household cleaning products?" },
+              { id: "msds-vs-sds", label: "MSDS vs SDS" },
+              { id: "getting-started", label: "Getting started" },
+            ].map((item) => (
+              <li key={item.id}>
+                <a href={`#${item.id}`} className="text-sm text-[#1C2B2B]/60 hover:text-[#B8972C] transition-colors">
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       {/* Do small businesses need HazCom? */}
-      <section className="py-12 md:py-16 border-b border-[#1C2B2B]/10">
+      <section className="py-12 md:py-16 border-b border-[#1C2B2B]/10" id="do-i-need">
         <div className="container max-w-3xl">
           <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             Do small businesses need a HazCom program?
@@ -171,8 +205,7 @@ const BlogHazComRequirements = () => {
         </div>
       </section>
 
-      {/* What is the HCS */}
-      <section className="py-12 md:py-16 border-b border-[#1C2B2B]/10">
+      <section className="py-12 md:py-16 border-b border-[#1C2B2B]/10" id="what-is-hcs">
         <div className="container max-w-3xl">
           <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             What is the OSHA Hazard Communication Standard?
@@ -226,14 +259,19 @@ const BlogHazComRequirements = () => {
                     </li>
                   ))}
                 </ul>
+                {req.exception && (
+                  <div className="mt-5 bg-[#F9F8F6] border-l-2 border-[#C9A84C] p-4 rounded-r">
+                    <h4 className="text-sm font-bold text-[#1C2B2B] mb-2">{req.exception.title}</h4>
+                    <p className="text-xs text-[#1C2B2B]/60 leading-relaxed">{req.exception.text}</p>
+                  </div>
+                )}
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* What chemicals require SDS */}
-      <section className="py-12 md:py-16 border-b border-[#1C2B2B]/10">
+      <section className="py-12 md:py-16 border-b border-[#1C2B2B]/10" id="chemicals-sds">
         <div className="container max-w-3xl">
           <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-6" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             What chemicals require an SDS?
@@ -268,7 +306,7 @@ const BlogHazComRequirements = () => {
       </section>
 
       {/* How to create a written program */}
-      <section className="py-12 md:py-16 border-b border-[#1C2B2B]/10">
+      <section className="py-12 md:py-16 border-b border-[#1C2B2B]/10" id="written-program">
         <div className="container max-w-3xl">
           <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-6" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             How do I create a written HazCom program?
@@ -301,8 +339,7 @@ const BlogHazComRequirements = () => {
         </div>
       </section>
 
-      {/* SDS Binder Location */}
-      <section className="py-12 md:py-16 border-b border-[#1C2B2B]/10">
+      <section className="py-12 md:py-16 border-b border-[#1C2B2B]/10" id="sds-location">
         <div className="container max-w-3xl">
           <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             Where should the SDS binder be located?
@@ -327,8 +364,7 @@ const BlogHazComRequirements = () => {
         </div>
       </section>
 
-      {/* Penalties */}
-      <section className="py-12 md:py-16 border-b border-[#1C2B2B]/10" data-testid="hazcom-penalties">
+      <section className="py-12 md:py-16 border-b border-[#1C2B2B]/10" id="penalties" data-testid="hazcom-penalties">
         <div className="container max-w-3xl">
           <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-2" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             What are the penalties for HazCom violations?
@@ -364,8 +400,7 @@ const BlogHazComRequirements = () => {
         </div>
       </section>
 
-      {/* Training frequency */}
-      <section className="py-12 md:py-16 border-b border-[#1C2B2B]/10">
+      <section className="py-12 md:py-16 border-b border-[#1C2B2B]/10" id="training-frequency">
         <div className="container max-w-3xl">
           <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-6" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             How often is HazCom training required?
@@ -394,8 +429,7 @@ const BlogHazComRequirements = () => {
         </div>
       </section>
 
-      {/* Consumer product exemption */}
-      <section className="py-12 md:py-16 border-b border-[#1C2B2B]/10">
+      <section className="py-12 md:py-16 border-b border-[#1C2B2B]/10" id="consumer-exemption">
         <div className="container max-w-3xl">
           <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             Do I need HazCom if I only use household cleaning products?
@@ -412,8 +446,7 @@ const BlogHazComRequirements = () => {
         </div>
       </section>
 
-      {/* MSDS vs SDS */}
-      <section className="py-12 md:py-16 border-b border-[#1C2B2B]/10">
+      <section className="py-12 md:py-16 border-b border-[#1C2B2B]/10" id="msds-vs-sds">
         <div className="container max-w-3xl">
           <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-6" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             What is the difference between MSDS and SDS?
@@ -442,8 +475,7 @@ const BlogHazComRequirements = () => {
         </div>
       </section>
 
-      {/* Getting Started */}
-      <section className="py-12 md:py-16 bg-[#F9F8F6]" data-testid="getting-started">
+      <section className="py-12 md:py-16 bg-[#F9F8F6]" id="getting-started" data-testid="getting-started">
         <div className="container max-w-3xl">
           <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-8" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             How do I get started with HazCom compliance?

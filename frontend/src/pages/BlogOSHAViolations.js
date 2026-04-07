@@ -78,6 +78,7 @@ const violations = [
     title: "Hazard Communication",
     cfr: "29 CFR 1910.1200",
     tagline: "#1 OSHA citation in general industry — multiple consecutive years.",
+    cta: { text: "Fix HazCom paperwork now — $29", to: "/hazcom" },
     why: [
       "Written HazCom program is missing or incomplete",
       "SDS binder doesn't include all chemicals on site",
@@ -116,6 +117,7 @@ const violations = [
     title: "Machine Guarding",
     cfr: "29 CFR 1910.212",
     tagline: "Guards removed for maintenance and not replaced is the most common finding.",
+    cta: { text: "Request a safety walkthrough — includes machine guarding audit", to: "/services" },
     why: [
       "Missing guards on grinders, lathes, presses, and saws",
       "Guards removed for maintenance and not replaced",
@@ -299,6 +301,15 @@ const BlogOSHAViolations = () => {
             </div>
 
             <p className="text-[#1C2B2B]/60 italic mb-8 text-sm">{v.tagline}</p>
+
+            {v.cta && (
+              <Link
+                to={v.cta.to}
+                className="inline-flex items-center gap-2 text-sm text-[#B8972C] font-medium hover:underline mb-8"
+              >
+                {v.cta.text} <ArrowRight size={14} />
+              </Link>
+            )}
 
             <div className="grid md:grid-cols-2 gap-8">
               <div>

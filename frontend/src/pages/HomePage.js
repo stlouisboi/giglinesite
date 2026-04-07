@@ -435,7 +435,7 @@ const HomePage = () => {
               <div className="flex-grow">
                 <h3 className="text-2xl font-bold text-white mb-1" data-testid="about-name">Vince Lawrence</h3>
                 <p className="text-base text-white/50 mb-6">
-                  Safety Coordinator &nbsp;&middot;&nbsp; OSHA 30-Hour &nbsp;&middot;&nbsp; U.S. Navy Veteran
+                  Safety Consultant &nbsp;&middot;&nbsp; OSHA 30-Hour &nbsp;&middot;&nbsp; U.S. Navy Veteran
                 </p>
 
                 <div className="space-y-4 text-white/75 text-base mb-8">

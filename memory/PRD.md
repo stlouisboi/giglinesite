@@ -18,9 +18,13 @@ Build a professional service business website for GigLine Safety & Compliance (o
 - **GL-WEB-007**: Contact Form Revisions & Internal Linking Audit
 - **GL-COPY-001**: CTA & Copy Funnel Updates — All Four Pages (April 2026)
   - Home: "Take the Free Safety Check" primary CTA, "Request a Review" secondary CTA (hero + after offers + final CTA)
-  - Safety Check: Frame text above questions, "Get My Result" submit, dual post-result CTAs (Schedule a Walkthrough / Request a Documentation Review)
+  - Safety Check: Frame text above questions, "Get My Result" submit, **conditional** post-result CTAs based on result band:
+    - NO-GO (4-6 gaps) → "Schedule a Walkthrough"
+    - WAIT (2-3 gaps) → "Request a Documentation Review"  
+    - GO (0-1 gaps) → soft nudge "Reach Out if You Want a Second Look"
   - About: "If That Sounds Like Your Operation" CTA → Safety Check, phone alternate CTA
   - Contact: "Tell Me About Your Operation." headline, "Send It" submit, below-form expectation text
+  - PDF bundle + ongoing support triggered by email drip (no product page needed)
 
 ## All Integrations — Status
 | Service | Status |

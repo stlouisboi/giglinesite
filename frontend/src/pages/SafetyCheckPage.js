@@ -348,31 +348,62 @@ const SafetyCheckPage = () => {
                 This check does not replace a walkthrough or documentation review. It shows where to look first.
               </p>
 
-              {/* CTA Block */}
-              <div className="bg-[#F5F5F3] rounded p-8 mb-12">
-                <h3 className="text-xl font-bold text-[#1C2B2B] mb-3" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
-                  Want a Clear Picture of What's Exposed?
-                </h3>
-                <p className="text-[#1C2B2B]/60 mb-6 leading-relaxed">
-                  This check shows where issues may exist. A walkthrough or documentation review shows what actually needs to be fixed — and in what order.
-                </p>
-                <div className="flex flex-col sm:flex-row items-center gap-4">
-                  <Link 
-                    to="/contact" 
-                    className="inline-flex items-center gap-2 bg-[#1C2B2B] hover:bg-[#2A3D3D] text-white font-medium px-6 py-3 rounded transition-colors text-sm"
-                    data-testid="results-cta-walkthrough"
-                  >
-                    Schedule a Walkthrough
-                    <ArrowRight size={16} />
-                  </Link>
-                  <Link 
-                    to="/contact" 
-                    className="inline-flex items-center gap-2 border-2 border-[#1C2B2B]/20 hover:border-[#1C2B2B]/40 text-[#1C2B2B] font-medium px-6 py-3 rounded transition-colors text-sm"
-                    data-testid="results-cta-review"
-                  >
-                    Request a Documentation Review
-                  </Link>
-                </div>
+              {/* CTA Block — conditional on result band */}
+              <div className="bg-[#F5F5F3] rounded p-8 mb-12" data-testid="results-cta-block">
+                {getScoreLevel() === 'high' && (
+                  <>
+                    <h3 className="text-xl font-bold text-[#1C2B2B] mb-3" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
+                      This Needs Eyes on the Floor.
+                    </h3>
+                    <p className="text-[#1C2B2B]/60 mb-6 leading-relaxed">
+                      With this level of exposure, a walkthrough is the right next step. Someone needs to see what is actually happening on-site — not just what the paperwork says.
+                    </p>
+                    <Link 
+                      to="/contact" 
+                      className="inline-flex items-center gap-2 bg-[#1C2B2B] hover:bg-[#2A3D3D] text-white font-medium px-6 py-3 rounded transition-colors text-sm"
+                      data-testid="results-cta-walkthrough"
+                    >
+                      Schedule a Walkthrough
+                      <ArrowRight size={16} />
+                    </Link>
+                  </>
+                )}
+                {getScoreLevel() === 'medium' && (
+                  <>
+                    <h3 className="text-xl font-bold text-[#1C2B2B] mb-3" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
+                      The Gaps Are Specific. A Review Will Find Them.
+                    </h3>
+                    <p className="text-[#1C2B2B]/60 mb-6 leading-relaxed">
+                      Your operation has controls in place — but the areas that flagged likely have documentation or program gaps. A focused review will show exactly what is missing and what to fix first.
+                    </p>
+                    <Link 
+                      to="/contact" 
+                      className="inline-flex items-center gap-2 bg-[#1C2B2B] hover:bg-[#2A3D3D] text-white font-medium px-6 py-3 rounded transition-colors text-sm"
+                      data-testid="results-cta-review"
+                    >
+                      Request a Documentation Review
+                      <ArrowRight size={16} />
+                    </Link>
+                  </>
+                )}
+                {getScoreLevel() === 'low' && (
+                  <>
+                    <h3 className="text-xl font-bold text-[#1C2B2B] mb-3" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
+                      Solid Start. Worth Confirming.
+                    </h3>
+                    <p className="text-[#1C2B2B]/60 mb-6 leading-relaxed">
+                      Your answers suggest basic controls are in place. If you want to confirm that they hold under review — or catch what a self-assessment cannot — a quick check is worth the time.
+                    </p>
+                    <Link 
+                      to="/contact" 
+                      className="inline-flex items-center gap-2 border-2 border-[#1C2B2B]/20 hover:border-[#1C2B2B]/40 text-[#1C2B2B] font-medium px-6 py-3 rounded transition-colors text-sm"
+                      data-testid="results-cta-confirm"
+                    >
+                      Reach Out if You Want a Second Look
+                      <ArrowRight size={16} />
+                    </Link>
+                  </>
+                )}
                 <p className="text-xs text-[#1C2B2B]/50 mt-3">
                   No pressure. No ongoing contract. Just a clear assessment of what matters first.
                 </p>

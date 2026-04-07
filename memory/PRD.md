@@ -58,6 +58,17 @@ Build a professional service business website for GigLine Safety & Compliance (o
 1. Video Embeds (P1) — placement TBD
 2. Ad Tracking & Analytics (P1)
 
+## Pages
+- `/` — Homepage
+- `/services` — Services & Pricing
+- `/about` — About Vince Lawrence
+- `/contact` — Contact form
+- `/safety-check` — Free Safety Check tool
+- `/hazcom` — HazCom Starter Pack ($29 product)
+- `/hazcom/thank-you` — Download page (session-validated)
+- `/blog/top-5-osha-violations-small-manufacturing` — SEO blog article
+- `/payment-success` — Stripe payment confirmation (noindex)
+
 ## Deployment Notes
 - Save to Github → Manually Redeploy in Vercel dashboard
 - Build: `yarn build` (runs `craco build`), Root: `frontend`

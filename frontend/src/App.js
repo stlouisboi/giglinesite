@@ -14,6 +14,7 @@ import SafetyCheckPage from './pages/SafetyCheckPage';
 import NotFoundPage from './pages/NotFoundPage';
 import HazComPage from './pages/HazComPage';
 import HazComThankYouPage from './pages/HazComThankYouPage';
+import BlogOSHAViolations from './pages/BlogOSHAViolations';
 import './App.css';
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
               <Route path="/safety-check" element={<SafetyCheckPage />} />
               <Route path="/hazcom" element={<HazComPage />} />
               <Route path="/hazcom/thank-you" element={<HazComThankYouPage />} />
+              <Route path="/blog/top-5-osha-violations-small-manufacturing" element={<BlogOSHAViolations />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </div>

@@ -43,6 +43,12 @@ const routes = [
     description: 'HazCom Starter Pack — $29. Written HazCom program, SDS binder checklist, and training log. 11 pages. Fill your company name. Print. Done. Fixes OSHA\'s #1 citation in general industry.',
     canonical: '/hazcom',
   },
+  {
+    path: '/blog/top-5-osha-violations-small-manufacturing',
+    title: 'Top 5 OSHA Violations in Small Manufacturing | GigLine Safety & Compliance',
+    description: 'The five most-cited OSHA violations in small manufacturing: Hazard Communication, Lockout/Tagout, Machine Guarding, Powered Industrial Trucks, and Walking-Working Surfaces. Includes CFR references, penalty amounts, and compliance requirements.',
+    canonical: '/blog/top-5-osha-violations-small-manufacturing',
+  },
 ];
 
 function generateRouteHTML(templateHTML, route) {

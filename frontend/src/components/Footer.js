@@ -12,6 +12,7 @@ const Footer = () => {
     { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },
     { name: 'HazCom Starter Pack', path: '/hazcom' },
+    { name: 'Top 5 OSHA Violations', path: '/blog/top-5-osha-violations-small-manufacturing' },
   ];
 
   return (

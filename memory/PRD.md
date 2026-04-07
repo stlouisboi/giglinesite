@@ -50,6 +50,9 @@ Build a professional service business website for GigLine Safety & Compliance (o
 - `GET /api/safety-check/report/{submission_id}`
 - `POST /api/create-payment-intent`
 - `POST /api/email-drip/process`
+- `POST /api/hazcom/checkout` — Creates Stripe $29 checkout session
+- `GET /api/hazcom/verify?session_id=` — Validates payment for download page
+- `GET /api/hazcom/download/{filename}?session_id=` — Protected PDF download
 
 ## Upcoming Tasks
 1. Video Embeds (P1) — placement TBD

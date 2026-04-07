@@ -261,12 +261,17 @@ const HomePage = () => {
             </h2>
           </Reveal>
 
+          {/* Solomon Line */}
+          <p className="text-base text-[#1C2B2B]/60 mb-10 max-w-3xl" data-testid="solomon-line">
+            Fixing the right five problems now is cheaper than one bad inspection, one lost worker, or one shut-down line.
+          </p>
+
           <Reveal>
             <div className="grid md:grid-cols-3 gap-6">
               {[
-                { num: '01', title: 'Safety Walkthrough', body1: 'A structured on-site review of common OSHA exposure areas. Walkthroughs run 15 minutes to 3 hours depending on the size and complexity of the operation.', body2: 'You leave with a written report and a clear list of what to address first.', price: 'Starting at $650', cta: 'Request a Walkthrough', testid: 'service-card-walkthrough' },
-                { num: '02', title: 'Documentation Review', body1: 'Basic compliance checks on required programs and records. Most operations have gaps they do not know about until an inspector asks for them.', body2: 'Remote or on-site. You get a red, yellow, and green gap score with a clear missing-items list.', price: 'Starting at $550 remote', cta: 'Request a Review', testid: 'service-card-documentation' },
-                { num: '03', title: 'Incident Response Support', body1: 'Post-incident review and corrective direction. Documents management\'s response for OSHA, insurance, or internal records.', body2: 'When something goes wrong, the response needs to be fast and documented correctly.', price: 'Starting at $900', cta: 'Contact About an Incident', testid: 'service-card-incident' },
+                { num: '01', title: 'Safety Walkthrough', body1: 'A structured on-site review of common OSHA exposure areas. Walkthroughs run 15 minutes to 3 hours depending on the size and complexity of the operation.', body2: 'You leave with a written report and a clear list of what to address first.', price: 'Starting at $650', cta: 'Request a Walkthrough', testid: 'service-card-walkthrough', value: 'Reduces the odds of a bad inspection disrupting production.' },
+                { num: '02', title: 'Documentation Review', body1: 'Basic compliance checks on required programs and records. Most operations have gaps they do not know about until an inspector asks for them.', body2: 'Remote or on-site. You get a red, yellow, and green gap score with a clear missing-items list.', price: 'Starting at $550 remote', cta: 'Request a Review', testid: 'service-card-documentation', value: 'Makes it easier to prove you\'re doing the right things when someone asks.' },
+                { num: '03', title: 'Incident Response Support', body1: 'Post-incident review and corrective direction. Documents management\'s response for OSHA, insurance, or internal records.', body2: 'When something goes wrong, the response needs to be fast and documented correctly.', price: 'Starting at $900', cta: 'Contact About an Incident', testid: 'service-card-incident', value: 'Turns one bad day into system improvements instead of repeat incidents.' },
               ].map((card) => (
                 <div
                   key={card.num}

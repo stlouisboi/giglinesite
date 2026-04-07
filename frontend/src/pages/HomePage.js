@@ -298,7 +298,14 @@ const HomePage = () => {
 
           {/* Secondary CTA after offers */}
           <Reveal>
-            <div className="text-center mt-12" data-testid="services-secondary-cta">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12" data-testid="services-secondary-cta">
+              <Link
+                to="/services"
+                className="inline-flex items-center gap-2 bg-[#1C2B2B] hover:bg-[#2A3D3D] text-white font-semibold px-8 py-4 rounded transition-colors"
+              >
+                View Full Service Details
+                <ArrowRight size={18} />
+              </Link>
               <Link
                 to="/contact"
                 className="inline-flex items-center gap-2 border-2 border-[#1C2B2B]/20 hover:border-[#1C2B2B]/40 text-[#1C2B2B] font-semibold px-8 py-4 rounded transition-colors"

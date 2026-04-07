@@ -248,6 +248,10 @@ const AboutPage = () => {
             Or reach out directly —{' '}
             <a href="tel:3363298899" className="text-[#B8972C] hover:underline font-semibold">(336) 329-8899</a>
           </p>
+          <p className="text-[#1C2B2B]/50 text-sm mt-4">
+            Want to see the full scope first?{' '}
+            <Link to="/services" className="text-[#B8972C] hover:underline font-medium">View all services and pricing</Link>
+          </p>
         </div>
       </section>
     </main>

@@ -407,6 +407,9 @@ const SafetyCheckPage = () => {
                 <p className="text-xs text-[#1C2B2B]/50 mt-3">
                   No pressure. No ongoing contract. Just a clear assessment of what matters first.
                 </p>
+                <p className="text-xs text-[#1C2B2B]/50 mt-2">
+                  <Link to="/services" className="text-[#B8972C] hover:underline">See full service details and pricing →</Link>
+                </p>
               </div>
 
               {/* Submission Form */}

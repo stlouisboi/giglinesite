@@ -8,8 +8,38 @@ const ContactPage = () => {
     <main data-testid="contact-page">
       <SEO 
         title="Contact"
-        description="Contact GigLine Safety & Compliance. Request a walkthrough, documentation review, or incident response support. Vince Lawrence — 336-329-8899."
+        description="Contact GigLine Safety & Compliance. Request a walkthrough, documentation review, or incident response support. Vince Lawrence — (336) 329-8899."
         canonical="/contact"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "How quickly can you schedule a walkthrough?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Most walkthroughs can be scheduled within 1-2 weeks. For time-sensitive situations (pending audits, recent incidents), faster scheduling is often available."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do you work outside of North Carolina?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Remote documentation reviews are available nationwide. On-site walkthroughs outside the Triad area may incur travel costs."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What if I'm not sure which service I need?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Describe your situation and Vince will recommend the right approach. No pressure, no sales pitch — just honest guidance."
+              }
+            }
+          ]
+        }}
       />
       {/* Hero Section */}
       <section className="bg-primary text-white py-16 md:py-20">

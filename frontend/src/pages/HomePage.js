@@ -82,10 +82,9 @@ const HomePage = () => {
   return (
     <main>
       <SEO
-        title="GigLine Safety & Compliance | Safety Walkthroughs & Gap Checks for Small Operations"
+        title="Safety Walkthroughs & Gap Checks for Small Operations"
         description="Safety walkthroughs, documentation reviews, and incident response for small manufacturers, warehouses, fleets, and contractors. One engagement. A written report. Based in Kernersville, NC."
-        ogTitle="GigLine Safety & Compliance"
-        ogDescription="Safety walkthroughs, documentation reviews, and incident response for small manufacturers, warehouses, fleets, and contractors. One engagement. A written report. Based in Kernersville, NC."
+        canonical="/"
       />
 
       {/* ── Global reveal animation styles ── */}

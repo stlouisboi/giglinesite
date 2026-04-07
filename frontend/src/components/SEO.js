@@ -5,7 +5,9 @@ const SEO = ({
   title, 
   description, 
   canonical,
-  ogType = 'website'
+  ogType = 'website',
+  noindex = false,
+  schema
 }) => {
   const siteName = 'GigLine Safety & Compliance';
   const fullTitle = title ? `${title} | ${siteName}` : `${siteName} | Safety Walkthroughs & Gap Checks for Small Operations`;
@@ -17,6 +19,7 @@ const SEO = ({
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={canonicalUrl} />
+      {noindex && <meta name="robots" content="noindex, nofollow" />}
       
       {/* Open Graph */}
       <meta property="og:type" content={ogType} />
@@ -31,6 +34,13 @@ const SEO = ({
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={`${baseUrl}/og-image.png`} />
+      
+      {/* Schema.org JSON-LD */}
+      {schema && (
+        <script type="application/ld+json">
+          {JSON.stringify(schema)}
+        </script>
+      )}
     </Helmet>
   );
 };

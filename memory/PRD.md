@@ -25,6 +25,15 @@ Build a professional service business website for GigLine Safety & Compliance (o
   - About: "If That Sounds Like Your Operation" CTA → Safety Check, phone alternate CTA
   - Contact: "Tell Me About Your Operation." headline, "Send It" submit, below-form expectation text
   - PDF bundle + ongoing support triggered by email drip (no product page needed)
+- **GL-SEO-001**: Full SEO Audit & Fixes (April 2026)
+  - 404 catch-all page with branded design and CTAs
+  - Fixed duplicate homepage title tag
+  - Added canonical="/" to homepage
+  - Fixed Schema.org address (Winston-Salem → Kernersville)
+  - Added noindex to /payment-success
+  - Added FAQPage schema to Contact page (3 Q&As → rich snippets)
+  - Added Service ItemList schema to Services page (3 services + pricing)
+  - SEO component extended with noindex + JSON-LD schema support
 
 ## All Integrations — Status
 | Service | Status |

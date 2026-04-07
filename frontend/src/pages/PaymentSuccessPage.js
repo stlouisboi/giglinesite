@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { CheckCircle, XCircle, Loader, ArrowRight, Phone, Mail } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 const PaymentSuccessPage = () => {
   const [searchParams] = useSearchParams();
@@ -59,6 +60,9 @@ const PaymentSuccessPage = () => {
 
   return (
     <main className="min-h-[60vh] flex items-center justify-center py-16" data-testid="payment-success-page">
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       <div className="container max-w-lg">
         <div className="card text-center p-8">
           {status === 'loading' && (

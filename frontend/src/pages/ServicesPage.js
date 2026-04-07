@@ -19,6 +19,49 @@ const ServicesPage = () => {
         title="Services"
         description="Three focused safety services for small operations. Safety Walkthrough, Documentation Review, and Incident Response Support. Each ends with a written report, clear action items, and a defined next step."
         canonical="/services"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "name": "GigLine Safety Consulting Services",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "item": {
+                "@type": "Service",
+                "name": "Safety Walkthrough & Top 10 Fixes Report",
+                "description": "A structured on-site review of common OSHA exposure areas. Walkthroughs run 15 minutes to 3 hours depending on the size and complexity of the operation. You leave with a written report and a clear list of what to address first.",
+                "provider": { "@type": "LocalBusiness", "name": "GigLine Safety & Compliance" },
+                "areaServed": "United States",
+                "offers": { "@type": "Offer", "price": "650", "priceCurrency": "USD" }
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "item": {
+                "@type": "Service",
+                "name": "Safety Documentation Review & Gap Check",
+                "description": "Review of written safety programs, training records, and inspection forms. Remote or on-site. You get a red, yellow, and green gap score with a clear missing-items list.",
+                "provider": { "@type": "LocalBusiness", "name": "GigLine Safety & Compliance" },
+                "areaServed": "United States",
+                "offers": { "@type": "Offer", "price": "550", "priceCurrency": "USD" }
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "item": {
+                "@type": "Service",
+                "name": "Incident Review & Corrective Action Support",
+                "description": "Post-incident review and corrective direction. Documents management's response for OSHA, insurance, or internal records. When something goes wrong, the response needs to be fast and documented correctly.",
+                "provider": { "@type": "LocalBusiness", "name": "GigLine Safety & Compliance" },
+                "areaServed": "United States",
+                "offers": { "@type": "Offer", "price": "900", "priceCurrency": "USD" }
+              }
+            }
+          ]
+        }}
       />
 
       {/* Hero */}

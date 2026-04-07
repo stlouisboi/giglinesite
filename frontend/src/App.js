@@ -11,6 +11,7 @@ import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import PaymentSuccessPage from './pages/PaymentSuccessPage';
 import SafetyCheckPage from './pages/SafetyCheckPage';
+import NotFoundPage from './pages/NotFoundPage';
 import './App.css';
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/payment-success" element={<PaymentSuccessPage />} />
               <Route path="/safety-check" element={<SafetyCheckPage />} />
+              <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </div>
           <Footer />

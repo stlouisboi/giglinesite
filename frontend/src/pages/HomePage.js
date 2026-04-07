@@ -52,7 +52,7 @@ const HomePage = () => {
           </div>
 
           {/* Trust Bar */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-sm text-white/50 mb-4" data-testid="hero-trust-bar">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-base text-white/50 mb-4" data-testid="hero-trust-bar">
             <span>25+ Years Safety Leadership</span>
             <span className="hidden sm:inline">&middot;</span>
             <span>OSHA 30-Hour Certified</span>
@@ -61,7 +61,7 @@ const HomePage = () => {
           </div>
 
           {/* Local Trust Cue */}
-          <p className="text-sm text-white/40" data-testid="hero-local-trust">
+          <p className="text-base text-white/40" data-testid="hero-local-trust">
             Based in Kernersville, NC — on-site in the Triad, remote nationwide.
           </p>
         </div>
@@ -84,7 +84,7 @@ const HomePage = () => {
             Most Small Operations Are Not Audited Until Something Goes Wrong. By That Point, the Issues Were Already There.
           </h2>
 
-          <p className="text-[#1C2B2B]/60 mb-10">
+          <p className="text-base text-[#1C2B2B]/60 mb-10">
             The risk is not hidden. It is just not being looked at correctly.
           </p>
 
@@ -94,10 +94,10 @@ const HomePage = () => {
             <div className="border border-[#1C2B2B]/10 rounded p-6" data-testid="violation-block-1">
               <h3 className="text-lg font-bold text-[#1C2B2B] mb-1">Blocked electrical panel</h3>
               <p className="text-sm font-medium text-[#B8972C] mb-3">29 CFR 1910.303</p>
-              <p className="text-[#1C2B2B]/60 text-sm mb-2">
+              <p className="text-base text-[#1C2B2B]/60 mb-2">
                 Serious violation — up to $16,550 per instance.
               </p>
-              <p className="text-[#1C2B2B]/60 text-sm">
+              <p className="text-base text-[#1C2B2B]/60">
                 Response time in an emergency depends on panel access. If it is blocked, seconds are lost.
               </p>
             </div>
@@ -106,7 +106,7 @@ const HomePage = () => {
             <div className="border border-[#1C2B2B]/10 rounded p-6" data-testid="violation-block-2">
               <h3 className="text-lg font-bold text-[#1C2B2B] mb-1">Trip hazards in walkways</h3>
               <p className="text-sm font-medium text-[#B8972C] mb-3">29 CFR 1910.22</p>
-              <p className="text-[#1C2B2B]/60 text-sm">
+              <p className="text-base text-[#1C2B2B]/60">
                 Direct injury exposure — the most common source of recordable incidents in general industry.
               </p>
             </div>
@@ -115,19 +115,43 @@ const HomePage = () => {
             <div className="border border-[#1C2B2B]/10 rounded p-6" data-testid="violation-block-3">
               <h3 className="text-lg font-bold text-[#1C2B2B] mb-1">Missing or incomplete chemical labels</h3>
               <p className="text-sm font-medium text-[#B8972C] mb-3">29 CFR 1910.1200</p>
-              <p className="text-[#1C2B2B]/60 text-sm mb-2">
+              <p className="text-base text-[#1C2B2B]/60 mb-2">
                 Compliance failure — every chemical on site requires a label and an accessible SDS.
               </p>
-              <p className="text-[#1C2B2B]/60 text-sm">
+              <p className="text-base text-[#1C2B2B]/60">
                 Most operations have gaps they do not know about.
               </p>
             </div>
           </div>
 
           {/* Closing Line */}
-          <p className="text-[#1C2B2B]/60 text-sm" data-testid="reality-closing">
+          <p className="text-base text-[#1C2B2B]/60" data-testid="reality-closing">
             These are not edge cases. They are the most commonly cited violations in small operations. One walkthrough finds them.
           </p>
+        </div>
+      </section>
+
+      {/* ━━━━━ INSPECTION IMAGE SECTION — Visual Depth Break ━━━━━ */}
+      <section className="relative" data-testid="inspection-image-section">
+        <div
+          className="relative bg-cover bg-no-repeat py-24 md:py-32"
+          style={{backgroundImage: "url('/vince-inspecting.png')", backgroundPosition: "center 40%"}}
+        >
+          <div className="absolute inset-0 bg-black/70"></div>
+          <div className="container relative z-10 max-w-2xl">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-8" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
+              This Is What Your Operation Looks Like Under Review.
+            </h2>
+            <div className="text-lg text-white/90 space-y-1 mb-8 leading-relaxed">
+              <p>Every lock.</p>
+              <p>Every tag.</p>
+              <p>Every ladder.</p>
+              <p>Every point of exposure.</p>
+            </div>
+            <p className="text-white/90 font-semibold text-lg mb-6">
+              If it is not correct, it gets found.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -147,16 +171,16 @@ const HomePage = () => {
             <div className="bg-white border border-[#1C2B2B]/10 rounded p-6 flex flex-col" data-testid="service-card-walkthrough">
               <p className="text-xs font-semibold tracking-widest text-[#B8972C] uppercase mb-3">OFFER 01</p>
               <h3 className="text-xl font-bold text-[#1C2B2B] mb-3">Safety Walkthrough</h3>
-              <p className="text-sm text-[#1C2B2B]/60 mb-3 flex-grow">
+              <p className="text-base text-[#1C2B2B]/60 mb-3 flex-grow">
                 A structured on-site review of common OSHA exposure areas. Walkthroughs run 15 minutes to 3 hours depending on the size and complexity of the operation.
               </p>
-              <p className="text-sm text-[#1C2B2B]/60 mb-4">
+              <p className="text-base text-[#1C2B2B]/60 mb-4">
                 You leave with a written report and a clear list of what to address first.
               </p>
               <p className="text-lg font-bold text-[#1C2B2B] mb-4">Starting at $650</p>
               <a
                 href="#contact"
-                className="bg-[#1C2B2B] hover:bg-[#2A3D3D] text-white text-sm font-semibold px-6 py-3 rounded transition-colors text-center"
+                className="bg-[#1C2B2B] hover:bg-[#2A3D3D] text-white text-base font-semibold px-6 py-3 rounded transition-colors text-center"
                 data-testid="service-cta-walkthrough"
               >
                 Request a Walkthrough
@@ -167,16 +191,16 @@ const HomePage = () => {
             <div className="bg-white border border-[#1C2B2B]/10 rounded p-6 flex flex-col" data-testid="service-card-documentation">
               <p className="text-xs font-semibold tracking-widest text-[#B8972C] uppercase mb-3">OFFER 02</p>
               <h3 className="text-xl font-bold text-[#1C2B2B] mb-3">Documentation Review</h3>
-              <p className="text-sm text-[#1C2B2B]/60 mb-3 flex-grow">
+              <p className="text-base text-[#1C2B2B]/60 mb-3 flex-grow">
                 Basic compliance checks on required programs and records. Most operations have gaps they do not know about until an inspector asks for them.
               </p>
-              <p className="text-sm text-[#1C2B2B]/60 mb-4">
+              <p className="text-base text-[#1C2B2B]/60 mb-4">
                 Remote or on-site. You get a red, yellow, and green gap score with a clear missing-items list.
               </p>
               <p className="text-lg font-bold text-[#1C2B2B] mb-4">Starting at $550 remote</p>
               <a
                 href="#contact"
-                className="bg-[#1C2B2B] hover:bg-[#2A3D3D] text-white text-sm font-semibold px-6 py-3 rounded transition-colors text-center"
+                className="bg-[#1C2B2B] hover:bg-[#2A3D3D] text-white text-base font-semibold px-6 py-3 rounded transition-colors text-center"
                 data-testid="service-cta-documentation"
               >
                 Request a Review
@@ -187,16 +211,16 @@ const HomePage = () => {
             <div className="bg-white border border-[#1C2B2B]/10 rounded p-6 flex flex-col" data-testid="service-card-incident">
               <p className="text-xs font-semibold tracking-widest text-[#B8972C] uppercase mb-3">OFFER 03</p>
               <h3 className="text-xl font-bold text-[#1C2B2B] mb-3">Incident Response Support</h3>
-              <p className="text-sm text-[#1C2B2B]/60 mb-3 flex-grow">
+              <p className="text-base text-[#1C2B2B]/60 mb-3 flex-grow">
                 Post-incident review and corrective direction. Documents management's response for OSHA, insurance, or internal records.
               </p>
-              <p className="text-sm text-[#1C2B2B]/60 mb-4">
+              <p className="text-base text-[#1C2B2B]/60 mb-4">
                 When something goes wrong, the response needs to be fast and documented correctly.
               </p>
               <p className="text-lg font-bold text-[#1C2B2B] mb-4">Starting at $900</p>
               <a
                 href="#contact"
-                className="bg-[#1C2B2B] hover:bg-[#2A3D3D] text-white text-sm font-semibold px-6 py-3 rounded transition-colors text-center"
+                className="bg-[#1C2B2B] hover:bg-[#2A3D3D] text-white text-base font-semibold px-6 py-3 rounded transition-colors text-center"
                 data-testid="service-cta-incident"
               >
                 Contact About an Incident
@@ -258,21 +282,21 @@ const HomePage = () => {
           <div className="grid sm:grid-cols-2 gap-6">
             <div className="border border-[#1C2B2B]/10 rounded p-6 bg-white" data-testid="segment-manufacturers">
               <h3 className="text-lg font-bold text-[#1C2B2B] mb-2">Small Manufacturers & Fabrication Shops</h3>
-              <p className="text-sm text-[#1C2B2B]/60">
+              <p className="text-base text-[#1C2B2B]/60">
                 Machine guarding, LOTO, HazCom, and training documentation.
               </p>
             </div>
 
             <div className="border border-[#1C2B2B]/10 rounded p-6 bg-white" data-testid="segment-warehouses">
               <h3 className="text-lg font-bold text-[#1C2B2B] mb-2">Warehouses & Distribution Centers</h3>
-              <p className="text-sm text-[#1C2B2B]/60">
+              <p className="text-base text-[#1C2B2B]/60">
                 Forklift safety, racking, dock operations, and pedestrian separation.
               </p>
             </div>
 
             <div className="border border-[#1C2B2B]/10 rounded p-6 bg-white" data-testid="segment-contractors">
               <h3 className="text-lg font-bold text-[#1C2B2B] mb-2">Contractors & Maintenance Operations</h3>
-              <p className="text-sm text-[#1C2B2B]/60">
+              <p className="text-base text-[#1C2B2B]/60">
                 Jobsite safety, PPE, fall protection basics, and documentation gaps.
               </p>
             </div>
@@ -308,11 +332,11 @@ const HomePage = () => {
             {/* Bio */}
             <div className="flex-grow">
               <h3 className="text-2xl font-bold text-[#1C2B2B] mb-1" data-testid="about-name">Vince Lawrence</h3>
-              <p className="text-sm text-[#1C2B2B]/50 mb-6">
+              <p className="text-base text-[#1C2B2B]/50 mb-6">
                 Safety Coordinator &nbsp;&middot;&nbsp; OSHA 30-Hour &nbsp;&middot;&nbsp; U.S. Navy Veteran
               </p>
 
-              <div className="space-y-4 text-[#1C2B2B]/60 text-sm mb-6">
+              <div className="space-y-4 text-[#1C2B2B]/60 text-base mb-6">
                 <p>
                   I have spent 25 years working in environments where safety was not theoretical — it was operational.
                 </p>
@@ -335,7 +359,7 @@ const HomePage = () => {
               </div>
 
               {/* Credential Block */}
-              <div className="space-y-2 text-sm text-[#1C2B2B]/60" data-testid="about-credentials">
+              <div className="space-y-2 text-base text-[#1C2B2B]/60" data-testid="about-credentials">
                 <p>25+ years in operations and safety leadership</p>
                 <p>OSHA 30-hour and 10-hour certified</p>
                 <p>Manufacturing, warehouse, and transportation background</p>
@@ -359,7 +383,7 @@ const HomePage = () => {
             If You Run Trucks, the Gaps Run Deeper.
           </h2>
 
-          <div className="space-y-4 text-white/60 text-sm mb-8">
+          <div className="space-y-4 text-white/60 text-base mb-8">
             <p>
               Fleet documentation gaps — driver qualification files, drug and alcohol programs, maintenance records — require more than a walkthrough to fix.
             </p>
@@ -385,7 +409,7 @@ const HomePage = () => {
             <ExternalLink size={16} />
           </a>
 
-          <p className="text-sm text-white/30">
+          <p className="text-base text-white/30">
             Ground 0 is free. It tells you whether you need GigLine, LaunchPath, or both.
           </p>
         </div>
@@ -402,11 +426,11 @@ const HomePage = () => {
             If You Are Not Sure Where Your Exposure Is — Start With the Safety Check.
           </h2>
 
-          <p className="text-[#1C2B2B]/60 mb-3">
+          <p className="text-base text-[#1C2B2B]/60 mb-3">
             Six questions. 90 seconds. A clear picture of where your operation stands.
           </p>
 
-          <p className="text-[#1C2B2B]/60 mb-8">
+          <p className="text-base text-[#1C2B2B]/60 mb-8">
             Or skip the check and reach out directly.
           </p>
 

@@ -16,6 +16,7 @@ import HazComPage from './pages/HazComPage';
 import HazComThankYouPage from './pages/HazComThankYouPage';
 import BlogOSHAViolations from './pages/BlogOSHAViolations';
 import BlogHazComRequirements from './pages/BlogHazComRequirements';
+import HeatGuidePage from './pages/HeatGuidePage';
 import './App.css';
 
 function App() {

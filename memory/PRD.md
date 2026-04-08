@@ -68,6 +68,7 @@ Build a professional service business website for GigLine Safety & Compliance (o
 - `/hazcom/thank-you` — Download page (session-validated)
 - `/blog/top-5-osha-violations-small-manufacturing` — SEO blog article
 - `/blog/hazcom-requirements-small-business` — SEO blog article
+- `/heat-guide` — Heat Stress Action Template lead magnet (email gate placeholder)
 - `/payment-success` — Stripe payment confirmation (noindex)
 
 ## Deployment Notes

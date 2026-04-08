@@ -93,7 +93,7 @@ const HomePage = () => {
         .reveal-fade.revealed { opacity: 1; transform: translateY(0); }
       `}</style>
 
-      {/* ━━━━━ SECTION 1 — HERO ━━━━━ */}
+      {/* ━━━━━ SECTION 1 — HERO (GL-WEB-009: Two-Column Split) ━━━━━ */}
       <section
         id="hero"
         className="py-20 md:py-28 relative"
@@ -104,62 +104,90 @@ const HomePage = () => {
         }}
         data-testid="hero-section"
       >
-        <div className="container max-w-4xl text-center relative z-10">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6" data-testid="hero-headline">
-            Safety Issues Don't Announce Themselves.{' '}
-            <span className="block mt-2">
-              They Show Up as{' '}
-              <span style={{ borderBottom: '2px solid #C9A84C', paddingBottom: '2px' }}>Injuries</span>,{' '}
-              <span style={{ borderBottom: '2px solid #C9A84C', paddingBottom: '2px' }}>Fines</span>, and{' '}
-              <span style={{ borderBottom: '2px solid #C9A84C', paddingBottom: '2px' }}>Downtime</span>.
-            </span>
-          </h1>
+        <div className="container max-w-6xl relative z-10">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
 
-          <p className="text-base md:text-lg text-white/80 max-w-2xl mx-auto mb-6" data-testid="hero-subline">
-            GigLine Safety & Compliance provides focused walkthroughs for small operations — identifying OSHA exposure before it becomes a problem.
-          </p>
+            {/* LEFT COLUMN — 55% */}
+            <div className="lg:w-[55%] text-center lg:text-left" data-testid="hero-left-column">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6" data-testid="hero-headline">
+                Safety Issues Don't Announce Themselves.{' '}
+                <span className="block mt-2">
+                  They Show Up as{' '}
+                  <span style={{ borderBottom: '2px solid #C9A84C', paddingBottom: '2px' }}>Injuries</span>,{' '}
+                  <span style={{ borderBottom: '2px solid #C9A84C', paddingBottom: '2px' }}>Fines</span>, and{' '}
+                  <span style={{ borderBottom: '2px solid #C9A84C', paddingBottom: '2px' }}>Downtime</span>.
+                </span>
+              </h1>
 
-          {/* Positioning Line with gold rules */}
-          <div className="flex flex-col items-center mb-10" data-testid="hero-positioning">
-            <div className="w-20 h-px bg-[#C9A84C] mb-3" />
-            <p className="text-sm md:text-base text-[#C9A84C] font-semibold tracking-wide uppercase py-1">
-              One engagement. A written report. No retainer.
-            </p>
-            <div className="w-20 h-px bg-[#C9A84C] mt-3" />
+              <p className="text-base md:text-lg text-white/80 max-w-2xl lg:max-w-none mx-auto lg:mx-0 mb-6" data-testid="hero-subline">
+                GigLine Safety & Compliance provides focused walkthroughs for small operations — identifying OSHA exposure before it becomes a problem.
+              </p>
+
+              {/* Positioning Line with gold rules */}
+              <div className="flex flex-col items-center lg:items-start mb-10" data-testid="hero-positioning">
+                <div className="w-20 h-px bg-[#C9A84C] mb-3" />
+                <p className="text-sm md:text-base text-[#C9A84C] font-semibold tracking-wide uppercase py-1">
+                  One engagement. A written report. No retainer.
+                </p>
+                <div className="w-20 h-px bg-[#C9A84C] mt-3" />
+              </div>
+
+              {/* Primary CTA — single button */}
+              <div className="mb-10" data-testid="hero-ctas">
+                <Link
+                  to="/safety-check"
+                  className="bg-[#C9A84C] hover:bg-[#B8972C] text-white font-semibold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
+                  data-testid="hero-cta-safety-check"
+                >
+                  Take the Free Safety Check
+                  <ArrowRight size={18} />
+                </Link>
+              </div>
+
+              {/* Trust Bar */}
+              <div className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-3 sm:gap-6 text-base text-white/60 mb-4" data-testid="hero-trust-bar">
+                <span>25+ Years Safety Leadership</span>
+                <span className="hidden sm:inline">&middot;</span>
+                <span>OSHA 30-Hour Certified</span>
+                <span className="hidden sm:inline">&middot;</span>
+                <span>U.S. Navy Veteran</span>
+              </div>
+
+              {/* Local Trust Cue */}
+              <p className="text-base text-white/50" data-testid="hero-local-trust">
+                Based in Kernersville, NC — on-site in the Triad, remote nationwide.
+              </p>
+            </div>
+
+            {/* RIGHT COLUMN — 45% */}
+            <div className="lg:w-[45%] flex flex-col items-center" data-testid="hero-right-column">
+              <div className="relative">
+                <img
+                  src="/GL_Heat_Stress_Mockup_Web.png"
+                  alt="2026 NC Heat Stress Action Template — GigLine Safety & Compliance"
+                  className="w-[280px] md:w-[400px] lg:w-[400px] rounded-lg lg:rotate-2"
+                  style={{
+                    boxShadow: '0 20px 60px rgba(0,0,0,0.35)',
+                  }}
+                  data-testid="hero-mockup-image"
+                />
+              </div>
+              <div className="mt-4 w-[280px] md:w-[400px] lg:w-[400px] flex flex-col items-center">
+                <Link
+                  to="/heat-guide"
+                  className="w-full text-center border-2 border-[#B8902A] text-[#C9A84C] hover:bg-[#B8902A] hover:text-[#0D1B2A] font-semibold px-8 py-3 rounded transition-colors inline-flex items-center justify-center gap-2"
+                  data-testid="hero-download-cta"
+                >
+                  Download Free Template
+                  <ArrowRight size={16} />
+                </Link>
+                <p className="text-xs text-white/40 mt-3">
+                  Free. No spam. One email.
+                </p>
+              </div>
+            </div>
+
           </div>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10" data-testid="hero-ctas">
-            <Link
-              to="/safety-check"
-              className="bg-[#C9A84C] hover:bg-[#B8972C] text-white font-semibold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
-              data-testid="hero-cta-safety-check"
-            >
-              Take the Free Safety Check
-              <ArrowRight size={18} />
-            </Link>
-            <Link
-              to="/contact"
-              className="border-2 border-white/30 hover:border-white/60 text-white font-semibold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
-              data-testid="hero-cta-walkthrough"
-            >
-              Request a Review
-            </Link>
-          </div>
-
-          {/* Trust Bar */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-base text-white/60 mb-4" data-testid="hero-trust-bar">
-            <span>25+ Years Safety Leadership</span>
-            <span className="hidden sm:inline">&middot;</span>
-            <span>OSHA 30-Hour Certified</span>
-            <span className="hidden sm:inline">&middot;</span>
-            <span>U.S. Navy Veteran</span>
-          </div>
-
-          {/* Local Trust Cue */}
-          <p className="text-base text-white/50" data-testid="hero-local-trust">
-            Based in Kernersville, NC — on-site in the Triad, remote nationwide.
-          </p>
         </div>
       </section>
 

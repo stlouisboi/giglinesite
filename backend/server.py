@@ -582,7 +582,6 @@ async def submit_heat_guide(request: HeatGuideRequest):
             "attachments": [{
                 "filename": "GL_Heat_Stress_Action_Template_2026.pdf",
                 "content": attachment_content,
-                "type": "application/pdf"
             }] if attachment_content else [],
             "reply_to": VINCE_EMAIL
         })

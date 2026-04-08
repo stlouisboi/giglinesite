@@ -3,7 +3,29 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Download } from 'lucide-react';
 import SEO from '../components/SEO';
 
+const API_URL = process.env.REACT_APP_BACKEND_URL;
+
 const HeatGuidePage = () => {
+  const [email, setEmail] = React.useState('');
+  const [status, setStatus] = React.useState('idle'); // idle, sending, sent
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus('sending');
+    try {
+      const res = await fetch(`${API_URL}/api/heat-guide/submit`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setStatus('sent');
+      }
+    } catch {
+      setStatus('sent');
+    }
+  };
   return (
     <main data-testid="heat-guide-page">
       <SEO
@@ -35,32 +57,51 @@ const HeatGuidePage = () => {
         <div className="container max-w-xl text-center">
           <div className="bg-[#F9F8F6] border border-[#1C2B2B]/10 rounded-lg p-8">
             <Download size={32} className="text-[#C9A84C] mx-auto mb-4" />
-            <h2 className="text-xl font-bold text-[#1C2B2B] mb-3" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
-              Get the Template
-            </h2>
-            <p className="text-sm text-[#1C2B2B]/60 mb-6">
-              Enter your email and we'll send the 2026 Heat Stress Action Template directly to your inbox. Free. No spam. One email.
-            </p>
-            <form className="space-y-3" onSubmit={(e) => { e.preventDefault(); alert('Email capture coming soon — GL-WEB-008'); }}>
-              <input
-                type="email"
-                placeholder="Your work email"
-                required
-                className="w-full px-4 py-3 border border-[#1C2B2B]/20 rounded text-sm focus:outline-none focus:border-[#C9A84C]"
-                data-testid="heat-guide-email-input"
-              />
-              <button
-                type="submit"
-                className="w-full bg-[#C9A84C] hover:bg-[#B8972C] text-white font-semibold py-3 rounded transition-colors inline-flex items-center justify-center gap-2"
-                data-testid="heat-guide-submit"
-              >
-                Send Me the Template
-                <ArrowRight size={16} />
-              </button>
-            </form>
-            <p className="text-xs text-[#1C2B2B]/40 mt-4">
-              Free. No spam. One email.
-            </p>
+            {status === 'sent' ? (
+              <div data-testid="heat-guide-success">
+                <h2 className="text-xl font-bold text-[#1C2B2B] mb-3" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+                  Check Your Inbox
+                </h2>
+                <p className="text-sm text-[#1C2B2B]/60 mb-4">
+                  The 2026 Heat Stress Action Template has been sent to <strong className="text-[#1C2B2B]">{email}</strong>. Print it and post it.
+                </p>
+                <Link to="/safety-check" className="inline-flex items-center gap-2 text-sm text-[#B8972C] font-medium hover:underline">
+                  Run the Free Safety Check while you're here <ArrowRight size={14} />
+                </Link>
+              </div>
+            ) : (
+              <>
+                <h2 className="text-xl font-bold text-[#1C2B2B] mb-3" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+                  Get the Template
+                </h2>
+                <p className="text-sm text-[#1C2B2B]/60 mb-6">
+                  Enter your email and we'll send the 2026 Heat Stress Action Template directly to your inbox. Free. No spam. One email.
+                </p>
+                <form className="space-y-3" onSubmit={handleSubmit}>
+                  <input
+                    type="email"
+                    placeholder="Your work email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full px-4 py-3 border border-[#1C2B2B]/20 rounded text-sm focus:outline-none focus:border-[#C9A84C]"
+                    data-testid="heat-guide-email-input"
+                  />
+                  <button
+                    type="submit"
+                    disabled={status === 'sending'}
+                    className="w-full bg-[#C9A84C] hover:bg-[#B8972C] text-white font-semibold py-3 rounded transition-colors inline-flex items-center justify-center gap-2 disabled:opacity-50"
+                    data-testid="heat-guide-submit"
+                  >
+                    {status === 'sending' ? 'Sending...' : 'Send Me the Template'}
+                    {status !== 'sending' && <ArrowRight size={16} />}
+                  </button>
+                </form>
+                <p className="text-xs text-[#1C2B2B]/40 mt-4">
+                  Free. No spam. One email.
+                </p>
+              </>
+            )}
           </div>
         </div>
       </section>

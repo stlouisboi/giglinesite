@@ -38,6 +38,7 @@ function App() {
               <Route path="/hazcom/thank-you" element={<HazComThankYouPage />} />
               <Route path="/blog/top-5-osha-violations-small-manufacturing" element={<BlogOSHAViolations />} />
               <Route path="/blog/hazcom-requirements-small-business" element={<BlogHazComRequirements />} />
+              <Route path="/heat-guide" element={<HeatGuidePage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </div>

@@ -1,0 +1,134 @@
+{
+  "theme": "dark",
+  "archetype": "High-Contrast & Authoritative",
+  "design_philosophy": "Authority-first, low-friction conversion. Tone is experienced operator, not marketer. No SaaS fluff. Short headlines, bold phrases, generous spacing.",
+  "colors": {
+    "background_dark_navy": "#0D1B2A",
+    "background_deep_teal": "#1C2B2B",
+    "background_light": "#F8F9FA",
+    "accent_gold": "#C9A84C",
+    "text_primary_light": "#FFFFFF",
+    "text_secondary_light": "rgba(255,255,255,0.7)",
+    "text_primary_dark": "#0D1B2A",
+    "text_secondary_dark": "rgba(13,27,42,0.7)",
+    "border_light": "rgba(255,255,255,0.1)",
+    "border_dark": "rgba(13,27,42,0.1)"
+  },
+  "typography": {
+    "fonts": {
+      "headings": "font-serif",
+      "labels_accents": "font-mono",
+      "body": "font-sans"
+    },
+    "font_families_to_import": [
+      "@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap');"
+    ],
+    "tailwind_config_additions": {
+      "theme": {
+        "extend": {
+          "fontFamily": {
+            "serif": ["'Playfair Display'", "serif"],
+            "mono": ["'JetBrains Mono'", "monospace"],
+            "sans": ["'Inter'", "sans-serif"]
+          },
+          "colors": {
+            "navy": "#0D1B2A",
+            "tealblack": "#1C2B2B",
+            "gold": "#C9A84C"
+          }
+        }
+      }
+    },
+    "hierarchy": {
+      "h1": "text-5xl md:text-6xl font-serif tracking-tight leading-tight",
+      "h2": "text-4xl md:text-5xl font-serif tracking-tight leading-tight",
+      "h3": "text-2xl md:text-3xl font-serif",
+      "label": "text-xs md:text-sm font-mono tracking-widest uppercase",
+      "body": "text-base md:text-lg font-sans leading-relaxed"
+    }
+  },
+  "layout_and_spacing": {
+    "section_padding": "py-20 md:py-32",
+    "container": "max-w-7xl mx-auto px-6 md:px-12",
+    "dividers": "border-t border-white/10 my-8 md:my-16",
+    "grid_patterns": {
+      "bento_4": "grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8",
+      "services_3": "grid grid-cols-1 md:grid-cols-3 gap-8",
+      "operations_4": "grid grid-cols-2 md:grid-cols-4 gap-6"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-gold text-navy font-mono font-bold uppercase tracking-wider text-sm px-8 py-4 hover:bg-gold/90 transition-colors inline-flex items-center justify-center",
+      "secondary": "border border-white/30 text-white font-mono font-medium uppercase tracking-wider text-sm px-8 py-4 hover:bg-white/10 transition-colors inline-flex items-center justify-center"
+    },
+    "cards": {
+      "service_card": "p-8 border border-white/10 bg-white/5 hover:bg-white/10 transition-colors group",
+      "image_card": "overflow-hidden relative group aspect-square"
+    }
+  },
+  "sections_instructions": {
+    "1_Hero": {
+      "background": "bg-navy relative overflow-hidden",
+      "overlay": "bg-black/40",
+      "content": "Centered or left-aligned. JetBrains Mono overline, large Playfair Display headline, short subheadline. Two CTAs.",
+      "image_url": "https://images.pexels.com/photos/6804263/pexels-photo-6804263.jpeg"
+    },
+    "2_Trust_Strip": {
+      "background": "bg-tealblack py-6 border-y border-white/10",
+      "content": "Single-line text in JetBrains Mono scrolling or spaced evenly. 'AUTHORITY-FIRST // LOW-FRICTION CONVERSION // EXPERIENCED OPERATORS'"
+    },
+    "3_Field_Reality": {
+      "background": "bg-navy",
+      "content": "Headline 'What We Actually See on the Floor'. 4 items in a clean grid with high-quality stock photos.",
+      "images": [
+        "https://images.unsplash.com/photo-1645736315000-6f788915923b",
+        "https://images.pexels.com/photos/209230/pexels-photo-209230.jpeg",
+        "https://images.unsplash.com/photo-1758966087150-f62127674cb8",
+        "https://images.pexels.com/photos/36003959/pexels-photo-36003959.jpeg"
+      ]
+    },
+    "4_Human_Layer": {
+      "background": "bg-light text-navy",
+      "content": "Alternate light section. Split 2 columns: Vince photo (left) + Video placeholder (right). Tight text explaining operator experience.",
+      "vince_image": "https://images.unsplash.com/photo-1586528116022-aeda1613c63d"
+    },
+    "5_Why_Private_vs_OSHA": {
+      "background": "bg-tealblack",
+      "content": "Comparison points using thin dividers and generous spacing. Bold key phrases, short descriptions."
+    },
+    "6_What_We_Do": {
+      "background": "bg-navy",
+      "content": "3 services in thin-bordered cards or rows. One-line each: Safety Walkthroughs, Documentation Reviews, Incident Response."
+    },
+    "7_What_You_Get": {
+      "background": "bg-navy",
+      "content": "List of 5 deliverables. JetBrains Mono numbering. Callout box at end: 'This is not a full audit. It is a signal.'"
+    },
+    "8_Who_We_Work_With": {
+      "background": "bg-tealblack border-t border-white/10",
+      "content": "4 operation types (Manufacturers, Warehouses, Contractors, Fleets) in a minimal grid."
+    },
+    "9_Testimonial": {
+      "background": "bg-navy",
+      "content": "Single powerful quote. Large serif font, gold quotation marks."
+    },
+    "10_About_Vince": {
+      "background": "bg-light text-navy",
+      "content": "Tight bio. JetBrains Mono labels."
+    },
+    "11_Final_CTA": {
+      "background": "bg-tealblack",
+      "content": "Dual button setup. Direct, operator tone."
+    }
+  },
+  "media": {
+    "hero_image": "https://images.pexels.com/photos/6804263/pexels-photo-6804263.jpeg",
+    "field_reality_1": "https://images.unsplash.com/photo-1645736315000-6f788915923b",
+    "field_reality_2": "https://images.pexels.com/photos/209230/pexels-photo-209230.jpeg",
+    "field_reality_3": "https://images.unsplash.com/photo-1758966087150-f62127674cb8",
+    "field_reality_4": "https://images.pexels.com/photos/36003959/pexels-photo-36003959.jpeg",
+    "vince_portrait": "https://images.unsplash.com/photo-1586528116022-aeda1613c63d"
+  },
+  "testing_attributes": "All interactive elements (buttons, links) must include `data-testid` attribute."
+}

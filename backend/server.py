@@ -90,6 +90,14 @@ class SafetyCheckSubmission(BaseModel):
     what_pushed: str = ""
     answers: Dict[str, str]
 
+# Walkthrough Intake Request Model
+class WalkthroughRequest(BaseModel):
+    name: str
+    company: str
+    operation_type: str
+    location: str
+    description: str = ""
+
 # ============== SERVICE PACKAGES (Server-side only - never trust frontend prices) ==============
 
 SERVICE_PACKAGES = {
@@ -187,6 +195,44 @@ async def get_status_checks():
         if isinstance(check['timestamp'], str):
             check['timestamp'] = datetime.fromisoformat(check['timestamp'])
     return status_checks
+
+# ============== WALKTHROUGH REQUEST ROUTES ==============
+
+@api_router.post("/walkthrough/request")
+async def submit_walkthrough_request(request: WalkthroughRequest):
+    """Accept walkthrough intake form and notify Vince via email"""
+    doc = {
+        "id": str(uuid.uuid4()),
+        "name": request.name,
+        "company": request.company,
+        "operation_type": request.operation_type,
+        "location": request.location,
+        "description": request.description,
+        "status": "new",
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+    }
+    await db.walkthrough_requests.insert_one(doc)
+
+    # Notify Vince via Resend
+    try:
+        resend.Emails.send({
+            "from": SENDER_EMAIL,
+            "to": [VINCE_EMAIL],
+            "subject": f"New Walkthrough Request: {request.company}",
+            "html": (
+                f"<h2>New Walkthrough Request</h2>"
+                f"<p><strong>Name:</strong> {request.name}</p>"
+                f"<p><strong>Company:</strong> {request.company}</p>"
+                f"<p><strong>Operation Type:</strong> {request.operation_type}</p>"
+                f"<p><strong>Location:</strong> {request.location}</p>"
+                f"<p><strong>Description:</strong> {request.description or 'N/A'}</p>"
+                f"<p><em>Submitted at {doc['timestamp']}</em></p>"
+            ),
+        })
+    except Exception as e:
+        logging.error(f"Failed to send walkthrough notification email: {e}")
+
+    return {"status": "ok", "id": doc["id"]}
 
 # ============== PAYMENT ROUTES ==============
 

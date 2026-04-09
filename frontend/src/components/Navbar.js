@@ -67,11 +67,11 @@ const Navbar = () => {
               </Link>
             ))}
             <Link
-              to="/contact"
+              to="/request-walkthrough"
               className="btn-primary text-sm"
               data-testid="nav-cta-button"
             >
-              Request a Review
+              Request a Walkthrough
             </Link>
           </div>
 
@@ -113,12 +113,12 @@ const Navbar = () => {
                 </Link>
               ))}
               <Link
-                to="/contact"
+                to="/request-walkthrough"
                 className="btn-primary w-full text-center mt-4"
                 onClick={() => setIsOpen(false)}
                 data-testid="mobile-nav-cta-button"
               >
-                Request a Review
+                Request a Walkthrough
               </Link>
             </div>
           </div>

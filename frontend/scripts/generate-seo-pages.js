@@ -55,6 +55,12 @@ const routes = [
     description: 'Complete guide to OSHA Hazard Communication requirements for small businesses. Covers written programs, Safety Data Sheets, labeling, training, and penalties under 29 CFR 1910.1200.',
     canonical: '/blog/hazcom-requirements-small-business',
   },
+  {
+    path: '/request-walkthrough',
+    title: 'Request a Safety Walkthrough | GigLine Safety & Compliance',
+    description: 'Request an on-site safety walkthrough for your operation. One visit. Clear findings. No retainer. Written report within 24-48 hours. Kernersville, NC.',
+    canonical: '/request-walkthrough',
+  },
 ];
 
 function generateRouteHTML(templateHTML, route) {

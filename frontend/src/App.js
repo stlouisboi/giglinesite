@@ -17,6 +17,7 @@ import HazComThankYouPage from './pages/HazComThankYouPage';
 import BlogOSHAViolations from './pages/BlogOSHAViolations';
 import BlogHazComRequirements from './pages/BlogHazComRequirements';
 import HeatGuidePage from './pages/HeatGuidePage';
+import IntakePage from './pages/IntakePage';
 import './App.css';
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
               <Route path="/blog/top-5-osha-violations-small-manufacturing" element={<BlogOSHAViolations />} />
               <Route path="/blog/hazcom-requirements-small-business" element={<BlogHazComRequirements />} />
               <Route path="/heat-guide" element={<HeatGuidePage />} />
+              <Route path="/request-walkthrough" element={<IntakePage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </div>

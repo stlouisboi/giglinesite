@@ -39,7 +39,7 @@ const Reveal = ({ children, className = '', delay = 0 }) => {
 
 /* ── Stock images ── */
 const IMG = {
-  hero: '/cluttered-aisles.png',
+  hero: '/hero-blocked-exit.png',
   grid1: '/cluttered-aisles.png',
   grid2: '/blocked-electrical-panel.png',
   grid3: '/machine-guarding.jpg',

@@ -81,7 +81,7 @@ const HomePage = () => {
             <div className="flex flex-col sm:flex-row items-start gap-4" data-testid="hero-ctas">
               <Link
                 to="/request-walkthrough"
-                className="bg-[#C9A84C] hover:bg-[#B8972C] text-white font-semibold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
+                className="bg-[#C9A84C] hover:bg-[#B8972C] text-white font-bold px-10 py-5 rounded text-lg transition-colors inline-flex items-center gap-2 shadow-lg shadow-[#C9A84C]/20"
                 data-testid="hero-cta-primary"
               >
                 Request a Walkthrough
@@ -89,7 +89,7 @@ const HomePage = () => {
               </Link>
               <Link
                 to="/safety-check"
-                className="border-2 border-white/20 hover:border-white/40 text-white font-semibold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
+                className="border border-white/15 hover:border-white/30 text-white/60 hover:text-white font-medium px-8 py-4 rounded transition-colors inline-flex items-center gap-2 text-sm"
                 data-testid="hero-cta-secondary"
               >
                 Take the Safety Check
@@ -371,17 +371,26 @@ const HomePage = () => {
                 >
                   About
                 </p>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 leading-tight" data-testid="founder-headline">
+                <h2 className="text-2xl md:text-3xl font-bold text-white mb-2 leading-tight" data-testid="founder-headline">
                   Built by someone who's worked the floor.
                 </h2>
-                <p className="text-base text-white/70 leading-relaxed mb-4">
-                  25 years in manufacturing, fleet operations, and compliance — where safety had to function in real conditions, not just on paper.
+                <p className="text-base text-[#C9A84C] mb-6" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '13px' }}>
+                  Navy veteran and shop-floor safety specialist
                 </p>
-                <p className="text-base text-white/70 leading-relaxed mb-6">
-                  GigLine exists so small operations can get a clear answer without a long contract.
+                <p className="text-base text-white/70 leading-relaxed mb-4">
+                  I have spent 25 years working in environments where safety was not theoretical — it was operational.
+                </p>
+                <p className="text-base text-white/70 leading-relaxed mb-4">
+                  Manufacturing floors. Compliance systems. Real operations with real consequences when something was missed.
+                </p>
+                <p className="text-base text-white/70 leading-relaxed mb-4">
+                  GigLine was built to give small operations a clear, straightforward way to understand their risk without needing a full consulting firm.
+                </p>
+                <p className="text-base text-white/70 leading-relaxed mb-6 font-medium">
+                  One visit. Clear findings. No confusion.
                 </p>
                 <div className="flex flex-wrap gap-2" data-testid="founder-credentials">
-                  {['OSHA 30-Hour', 'U.S. Navy Veteran', 'Kernersville, NC'].map((cred, i) => (
+                  {['25+ Years Leadership', 'OSHA 30-Hour', 'OSHA 10-Hour', 'Safety Coordinator', 'Navy Veteran', 'Kernersville, NC', 'On-site \u00b7 Remote Nationwide'].map((cred, i) => (
                     <span
                       key={i}
                       className="inline-flex items-center px-3 py-1 rounded"

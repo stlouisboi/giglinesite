@@ -10,35 +10,29 @@ Build a professional service business website for GigLine Safety & Compliance (o
 - **Services**: Formspree, Stripe (LIVE), Calendly (LIVE), Resend (LIVE)
 
 ## Completed Specs
-- **GL-WEB-001**: Safety Check Tool (standalone page + teaser)
-- **GL-WEB-002**: SEO/Header Fixes (Formspree, sticky nav, meta tags, sitemap)
-- **GL-WEB-003**: Contact Prominence (Call Vince bar, trust cues)
-- **GL-WEB-004**: Homepage Full Structured Replacement (8 sections, locked copy)
-- **GL-WEB-005**: Homepage Visual Design Upgrade — "Inspection Standard"
-- **GL-WEB-007**: Contact Form Revisions & Internal Linking Audit
-- **GL-COPY-001**: CTA & Copy Funnel Updates — All Four Pages
+- **GL-WEB-001**: Safety Check Tool
+- **GL-WEB-002**: SEO/Header Fixes
+- **GL-WEB-003**: Contact Prominence
+- **GL-WEB-004**: Homepage Structured Replacement
+- **GL-WEB-005**: Homepage Visual Design Upgrade
+- **GL-WEB-007**: Contact Form & Internal Linking
+- **GL-COPY-001**: CTA & Copy Funnel Updates
 - **GL-SEO-001**: Full SEO Audit & Fixes
-- **GL-WEB-008**: HazCom Starter Pack ($29 Stripe product page + PDF delivery)
-- **GL-WEB-009**: Homepage Hero Redesign (Heat Stress Mockup two-column)
-- **GL-WEB-010**: Blog Posts (2 SEO-optimized articles)
-- **GL-WEB-011**: Heat Guide email gate (/heat-guide)
+- **GL-WEB-008**: HazCom Starter Pack ($29 Stripe)
+- **GL-WEB-009**: Homepage Hero Redesign
+- **GL-WEB-010**: Blog Posts (2 SEO articles)
+- **GL-WEB-011**: Heat Guide email gate
 - **GL-WEB-012**: OG Image for social sharing
-- **GL-WEB-013**: Homepage Rebuild — Authority-First Conversion Funnel (April 2026)
-  - 9-section conversion flow: Hero → Reality → Signal → Solution → Deliverables → Objection → Proof → Founder → Final CTA
-  - "THIS IS NOT A FULL AUDIT. IT IS A SIGNAL." standalone visual emphasis section
-  - Outcome-based service descriptions ("Walk the floor. Find the gaps.")
-  - Strikethrough OSHA comparison in objection handling
-  - Full-width Vince background image proof section
-  - New `/request-walkthrough` intake page (form → Calendly post-submit)
-  - Backend `POST /api/walkthrough/request` stores leads + Resend notification to Vince
-
-## All Integrations — Status
-| Service | Status |
-|---------|--------|
-| Stripe | LIVE (sk_live key) |
-| Resend | LIVE (domain verified, drip sending) |
-| Calendly | LIVE (vincelaw336/safety-consultation) |
-| Formspree | LIVE (xeeprzel, xpqoyldy) |
+- **GL-WEB-013**: Homepage Rebuild — 9-Section Conversion Funnel (April 2026)
+  - Hero → Reality → Signal → Solution → Deliverables → Objection → Proof → Founder → Final CTA
+  - `/request-walkthrough` intake page with Calendly post-submit
+  - Backend `POST /api/walkthrough/request` with Resend notification
+- **GL-WEB-014**: Homepage Polish + UTM Tracking (April 2026)
+  - Hero CTA visual hierarchy (dominant primary, subtle secondary)
+  - Founder bio expanded (4 paragraphs + "Navy veteran and shop-floor safety specialist" subtitle)
+  - Credentials: removed "fleet operations", added "Safety Coordinator"
+  - UTM parameter auto-capture (utm_source/medium/campaign/term/content) on intake form
+  - UTM data stored in MongoDB and included in Vince's notification email
 
 ## Key API Endpoints
 - `POST /api/safety-check/submit`
@@ -48,7 +42,7 @@ Build a professional service business website for GigLine Safety & Compliance (o
 - `POST /api/hazcom/checkout`
 - `GET /api/hazcom/verify?session_id=`
 - `GET /api/hazcom/download/{filename}?session_id=`
-- `POST /api/walkthrough/request` — Intake form + Vince email notification
+- `POST /api/walkthrough/request` — Intake form + UTM tracking + Vince email
 - `POST /api/heat-guide/download`
 
 ## Pages
@@ -57,16 +51,16 @@ Build a professional service business website for GigLine Safety & Compliance (o
 - `/about` — About Vince Lawrence
 - `/contact` — Contact form
 - `/safety-check` — Free Safety Check tool
-- `/request-walkthrough` — Walkthrough intake form → Calendly scheduling
-- `/hazcom` — HazCom Starter Pack ($29 product)
-- `/hazcom/thank-you` — Download page (session-validated)
-- `/blog/top-5-osha-violations-small-manufacturing` — SEO blog article
-- `/blog/hazcom-requirements-small-business` — SEO blog article
-- `/heat-guide` — Heat Stress Action Template lead magnet (email gate)
-- `/payment-success` — Stripe payment confirmation (noindex)
+- `/request-walkthrough` — Walkthrough intake → Calendly scheduling
+- `/hazcom` — HazCom Starter Pack ($29)
+- `/hazcom/thank-you` — Download page
+- `/blog/top-5-osha-violations-small-manufacturing`
+- `/blog/hazcom-requirements-small-business`
+- `/heat-guide` — Heat Stress lead magnet
+- `/payment-success` — Stripe confirmation
 
 ## Upcoming Tasks
-1. Video Embeds (P1) — User has a 30-45s video for the proof section placeholder
+1. Video Embeds (P1) — Replace proof section placeholder when video ready
 2. Ad Tracking & Analytics (P1) — Google Analytics, FB Pixel, Google Ads conversion tracking
 
 ## Deployment Notes

@@ -97,6 +97,11 @@ class WalkthroughRequest(BaseModel):
     operation_type: str
     location: str
     description: str = ""
+    utm_source: str = ""
+    utm_medium: str = ""
+    utm_campaign: str = ""
+    utm_term: str = ""
+    utm_content: str = ""
 
 # ============== SERVICE PACKAGES (Server-side only - never trust frontend prices) ==============
 
@@ -210,6 +215,11 @@ async def submit_walkthrough_request(request: WalkthroughRequest):
         "description": request.description,
         "status": "new",
         "timestamp": datetime.now(timezone.utc).isoformat(),
+        "utm_source": request.utm_source,
+        "utm_medium": request.utm_medium,
+        "utm_campaign": request.utm_campaign,
+        "utm_term": request.utm_term,
+        "utm_content": request.utm_content,
     }
     await db.walkthrough_requests.insert_one(doc)
 
@@ -226,6 +236,7 @@ async def submit_walkthrough_request(request: WalkthroughRequest):
                 f"<p><strong>Operation Type:</strong> {request.operation_type}</p>"
                 f"<p><strong>Location:</strong> {request.location}</p>"
                 f"<p><strong>Description:</strong> {request.description or 'N/A'}</p>"
+                f"{'<p><strong>Source:</strong> ' + request.utm_source + ' / ' + request.utm_medium + ' / ' + request.utm_campaign + '</p>' if request.utm_source else ''}"
                 f"<p><em>Submitted at {doc['timestamp']}</em></p>"
             ),
         })

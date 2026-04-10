@@ -177,10 +177,10 @@ const HomePage = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6">
             {[
-              { img: IMG.grid1, caption: 'Cluttered aisles and obstructed walkways', label: 'Trip & Access Hazards' },
-              { img: IMG.grid2, caption: 'Blocked electrical panels with no clearance', label: 'Electrical Exposure' },
-              { img: IMG.grid3, caption: 'Missing guards on operating machinery', label: 'Machine Guarding Gaps' },
-              { img: IMG.grid4, caption: 'Fire riser blocked by pallets and debris', label: 'Emergency Access' },
+              { img: IMG.grid1, caption: 'Cluttered aisles and obstructed walkways', consequence: 'Increases slip-and-fall risk during daily operations', label: 'Trip & Access Hazards' },
+              { img: IMG.grid2, caption: 'Blocked electrical panels with no clearance', consequence: 'Can delay emergency shutoff and lead to penalties', label: 'Electrical Exposure', ref: 'OSHA 1910.303' },
+              { img: IMG.grid3, caption: 'Missing guards on operating machinery', consequence: 'One of the most cited violations in general industry', label: 'Machine Guarding Gaps', ref: 'OSHA 1910.212' },
+              { img: IMG.grid4, caption: 'Fire riser blocked by pallets and debris', consequence: 'Delays response time in an emergency', label: 'Emergency Access' },
             ].map((item, i) => (
               <Reveal key={i} delay={i * 80}>
                 <div
@@ -194,7 +194,7 @@ const HomePage = () => {
                     className="w-full h-full object-cover img-zoom"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
                   <div className="absolute bottom-0 left-0 p-5">
                     <p
                       className="text-[10px] uppercase tracking-[2px] text-[#C9A84C] mb-1"
@@ -202,12 +202,25 @@ const HomePage = () => {
                     >
                       {item.label}
                     </p>
-                    <p className="text-sm text-white/80">{item.caption}</p>
+                    <p className="text-sm text-white/90 font-medium mb-1">{item.caption}</p>
+                    <p className="text-xs text-white/50">{item.consequence}</p>
+                    {item.ref && (
+                      <p className="text-[10px] text-white/25 mt-1.5" style={mono}>Ref: {item.ref}</p>
+                    )}
                   </div>
                 </div>
               </Reveal>
             ))}
           </div>
+
+          <Reveal>
+            <p
+              className="text-center text-base sm:text-lg md:text-xl text-[#1C2B2B]/60 font-medium mt-12"
+              data-testid="grid-pressure-line"
+            >
+              These aren't just issues — they're the ones that show up in inspections.
+            </p>
+          </Reveal>
         </div>
       </section>
 

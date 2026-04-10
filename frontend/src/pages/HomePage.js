@@ -43,7 +43,7 @@ const IMG = {
   grid1: 'https://images.unsplash.com/photo-1768796373634-db43bfd5f064?w=640&q=80&fit=crop&auto=format',
   grid2: 'https://images.unsplash.com/photo-1773952136583-5175e906267c?w=640&q=80&fit=crop&auto=format',
   grid3: '/machine-guarding.jpg',
-  grid4: 'https://images.unsplash.com/photo-1769442263053-a60acf73f00a?w=640&q=80&fit=crop&auto=format',
+  grid4: '/blocked-fire-riser.png',
   proof: 'https://images.unsplash.com/photo-1644079446600-219068676743?w=1400&q=80&fit=crop&auto=format',
 };
 
@@ -180,7 +180,7 @@ const HomePage = () => {
               { img: IMG.grid1, caption: 'Cluttered aisles and obstructed walkways', label: 'Trip & Access Hazards' },
               { img: IMG.grid2, caption: 'Blocked electrical panels with no clearance', label: 'Electrical Exposure' },
               { img: IMG.grid3, caption: 'Missing guards on operating machinery', label: 'Machine Guarding Gaps' },
-              { img: IMG.grid4, caption: 'Fire equipment blocked or inaccessible', label: 'Emergency Access' },
+              { img: IMG.grid4, caption: 'Fire riser blocked by pallets and debris', label: 'Emergency Access' },
             ].map((item, i) => (
               <Reveal key={i} delay={i * 80}>
                 <div

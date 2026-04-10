@@ -1,10 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ExternalLink, Play } from 'lucide-react';
-import CallVinceBar from '../components/CallVinceBar';
+import { ArrowRight } from 'lucide-react';
 import SEO from '../components/SEO';
 
-/* ── Scroll-reveal hook ── */
+/* ── Scroll-reveal ── */
 const useReveal = () => {
   const ref = useRef(null);
   useEffect(() => {
@@ -25,52 +24,12 @@ const Reveal = ({ children, className = '' }) => {
   return <div ref={ref} className={`reveal-fade ${className}`}>{children}</div>;
 };
 
-/* ── Section label ── */
-const SectionLabel = ({ text, light = false }) => (
-  <div className="flex items-center gap-2 mb-4">
-    <span className="inline-block w-4 h-4 border-2 flex-shrink-0" style={{ borderColor: '#C9A84C' }} />
-    <span className="uppercase tracking-[3px]" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: '#C9A84C', fontWeight: 400 }}>
-      {text}
-    </span>
-  </div>
-);
-
-/* ── Inline SVG icons for Who We Work With ── */
-const GearIcon = () => (
-  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="#C9A84C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="16" cy="16" r="5" /><path d="M14 2h4l.5 3.5a9 9 0 012.2 1.3l3.3-1.3 2 3.5-2.8 2.2a9 9 0 010 2.6l2.8 2.2-2 3.5-3.3-1.3a9 9 0 01-2.2 1.3L18 30h-4l-.5-3.5a9 9 0 01-2.2-1.3l-3.3 1.3-2-3.5 2.8-2.2a9 9 0 010-2.6L6 16l-2.8-2.2 2-3.5 3.3 1.3a9 9 0 012.2-1.3z" />
-  </svg>
-);
-const WarehouseIcon = () => (
-  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="#C9A84C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="4" y="10" width="24" height="18" /><polygon points="2,10 16,2 30,10" /><line x1="12" y1="14" x2="12" y2="24" /><line x1="16" y1="14" x2="16" y2="24" /><line x1="20" y1="14" x2="20" y2="24" />
-  </svg>
-);
-const HardHatIcon = () => (
-  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="#C9A84C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M6 20h20" /><path d="M8 20c0-6 3.6-10 8-10s8 4 8 10" /><path d="M4 20c0 2 2 4 12 4s12-2 12-4" />
-  </svg>
-);
-const TruckIcon = () => (
-  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="#C9A84C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="2" y="10" width="18" height="12" /><path d="M20 14h6l4 6v2H20z" /><circle cx="9" cy="24" r="2" /><circle cx="25" cy="24" r="2" /><line x1="11" y1="22" x2="23" y2="22" />
-  </svg>
-);
-
-/* ── Stock photos for Field Reality ── */
-const FIELD_IMAGES = [
-  { src: 'https://images.unsplash.com/photo-1566417108845-5ba9c2f9ea1b?auto=format&fit=crop&w=600&q=80', alt: 'Electrical panel with high voltage warning' },
-  { src: 'https://images.unsplash.com/photo-1772299121503-cd62a57e3a26?auto=format&fit=crop&w=600&q=80', alt: 'Workers inspecting warehouse walkway' },
-  { src: 'https://images.unsplash.com/photo-1709293958490-1cc2f9bf0e42?auto=format&fit=crop&w=600&q=80', alt: 'Chemical storage containers on shelves' },
-  { src: 'https://images.unsplash.com/photo-1720036236855-9a1a2e4d3f26?auto=format&fit=crop&w=600&q=80', alt: 'Manufacturing floor with heavy machinery' },
-];
-
 const HomePage = () => {
   return (
     <main>
       <SEO
-        title="Safety Walkthroughs & Gap Checks for Small Operations"
-        description="Safety walkthroughs, documentation reviews, and incident response for small manufacturers, warehouses, fleets, and contractors. One engagement. A written report. Based in Kernersville, NC."
+        title="Safety Walkthroughs for Small Operations | GigLine Safety & Compliance"
+        description="Safety walkthroughs, documentation reviews, and incident response for small manufacturers, warehouses, fleets, and contractors. One engagement. A written report. No retainer."
         canonical="/"
       />
 
@@ -79,368 +38,291 @@ const HomePage = () => {
         .reveal-fade.revealed { opacity: 1; transform: translateY(0); }
       `}</style>
 
-      {/* ━━━ 1. HERO ━━━ */}
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          1. HERO — Real-world problem, simple explanation
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section
-        id="hero"
-        className="py-20 md:py-28 relative"
+        className="py-24 md:py-36 relative"
         style={{
           backgroundColor: '#0D1B2A',
-          backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)',
-          backgroundSize: '28px 28px',
+          backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)',
+          backgroundSize: '30px 30px',
         }}
         data-testid="hero-section"
       >
-        <div className="container max-w-6xl relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-            {/* LEFT COLUMN */}
-            <div className="lg:w-[55%] text-center lg:text-left" data-testid="hero-left-column">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6" data-testid="hero-headline">
-                Safety Issues Don't Announce Themselves.{' '}
-                <span className="block mt-2">
-                  They Show Up as{' '}
-                  <span style={{ borderBottom: '2px solid #C9A84C', paddingBottom: '2px' }}>Injuries</span>,{' '}
-                  <span style={{ borderBottom: '2px solid #C9A84C', paddingBottom: '2px' }}>Fines</span>, and{' '}
-                  <span style={{ borderBottom: '2px solid #C9A84C', paddingBottom: '2px' }}>Downtime</span>.
-                </span>
-              </h1>
-
-              <p className="text-base md:text-lg text-white/80 max-w-2xl lg:max-w-none mx-auto lg:mx-0 mb-6" data-testid="hero-sub">
-                Safety walkthroughs for small operations — identify exposure before it becomes operational loss.
-              </p>
-
-              <div className="flex flex-col items-center lg:items-start mb-10" data-testid="hero-positioning">
-                <div className="w-20 h-px bg-[#C9A84C] mb-3" />
-                <p className="text-sm md:text-base text-[#C9A84C] font-semibold tracking-wide uppercase py-1" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-                  One engagement. A written report. No retainer.
-                </p>
-                <div className="w-20 h-px bg-[#C9A84C] mt-3" />
-              </div>
-
-              {/* CTAs */}
-              <div className="flex flex-col sm:flex-row items-center lg:items-start gap-4 mb-10" data-testid="hero-ctas">
-                <Link
-                  to="/request-walkthrough"
-                  className="bg-[#C9A84C] hover:bg-[#B8972C] text-white font-semibold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
-                  data-testid="hero-cta-primary"
-                >
-                  Request a Walkthrough
-                  <ArrowRight size={18} />
-                </Link>
-                <Link
-                  to="/safety-check"
-                  className="border-2 border-white/20 hover:border-white/40 text-white font-semibold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
-                  data-testid="hero-cta-secondary"
-                >
-                  Run the Safety Check
-                </Link>
-              </div>
-
-              {/* Trust Bar */}
-              <div className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-3 sm:gap-6 text-base text-white/60 mb-4" data-testid="hero-trust-bar">
-                <span>25+ Years Safety Leadership</span>
-                <span className="hidden sm:inline">&middot;</span>
-                <span>OSHA 30-Hour Certified</span>
-                <span className="hidden sm:inline">&middot;</span>
-                <span>U.S. Navy Veteran</span>
-              </div>
-              <p className="text-base text-white/50" data-testid="hero-local-trust">
-                Based in Kernersville, NC — on-site in the Triad, remote nationwide.
-              </p>
-            </div>
-
-            {/* RIGHT COLUMN — Video placeholder + Human Layer */}
-            <div className="lg:w-[45%] flex flex-col items-center" data-testid="hero-right-column">
-              <div
-                className="w-[280px] md:w-[400px] lg:w-[400px] aspect-video bg-[#1C2B2B] rounded-lg border border-white/10 flex items-center justify-center cursor-pointer group relative overflow-hidden"
-                style={{ boxShadow: '0 20px 60px rgba(0,0,0,0.35)' }}
-                data-testid="video-placeholder"
-              >
-                <div className="w-16 h-16 rounded-full bg-[#C9A84C]/20 group-hover:bg-[#C9A84C]/30 transition-colors flex items-center justify-center">
-                  <Play size={28} className="text-[#C9A84C] ml-1" fill="currentColor" />
-                </div>
-                <p className="absolute bottom-3 left-0 right-0 text-center text-xs text-white/30" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-                  Video coming soon
-                </p>
-              </div>
-              <p className="text-sm text-white/50 mt-4 text-center max-w-[400px]">
-                Real operations. Real conditions. Most issues aren't complicated — they're overlooked.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ━━━ 2. TRUST STRIP ━━━ */}
-      <section className="py-4 border-y border-[#C9A84C]/20" style={{ backgroundColor: '#0D1B2A' }} data-testid="trust-strip">
-        <div className="container text-center">
-          <p className="text-xs md:text-sm text-white/50" style={{ fontFamily: "'JetBrains Mono', monospace", letterSpacing: '1px' }}>
-            Trusted for practical, floor-level walkthroughs that translate compliance into real operational action.
-          </p>
-        </div>
-      </section>
-
-      {/* ━━━ 3. FIELD REALITY ━━━ */}
-      <section id="reality" className="py-16 md:py-24 bg-white" data-testid="field-reality-section">
-        <div className="container max-w-4xl">
+        <div className="container max-w-4xl relative z-10">
           <Reveal>
-            <SectionLabel text="The Reality" />
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-4 leading-tight" data-testid="field-reality-headline">
-              What We Actually See on the Floor
-            </h2>
-          </Reveal>
+            <h1
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-8"
+              data-testid="hero-headline"
+            >
+              Safety Issues Don't Announce Themselves.{' '}
+              <span className="block mt-2">
+                They Show Up as{' '}
+                <span style={{ borderBottom: '2px solid #C9A84C', paddingBottom: '2px' }}>Injuries</span>,{' '}
+                <span style={{ borderBottom: '2px solid #C9A84C', paddingBottom: '2px' }}>Fines</span>, and{' '}
+                <span style={{ borderBottom: '2px solid #C9A84C', paddingBottom: '2px' }}>Downtime</span>.
+              </span>
+            </h1>
 
-          {/* Violation blocks with ghost CFR watermarks */}
-          <Reveal>
-            <div className="space-y-6 mb-10">
-              {[
-                { title: 'Blocked electrical panels', cfr: '29 CFR 1910.303', ghost: '1910.303', desc: 'Serious violation — up to $16,550 per instance. If a panel is blocked, seconds are lost in an emergency.' },
-                { title: 'Trip hazards in active walkways', cfr: '29 CFR 1910.22', ghost: '1910.22', desc: 'The most common source of recordable incidents in general industry.' },
-                { title: 'Missing or incomplete chemical labels', cfr: '29 CFR 1910.1200', ghost: '1910.1200', desc: 'Every chemical on site requires a label and an accessible SDS. Most operations have gaps they do not know about.' },
-                { title: 'Exit routes partially obstructed', cfr: '29 CFR 1910.37', ghost: '1910.37', desc: 'Exit access must be free and unobstructed at all times during occupancy.' },
-              ].map((block, i) => (
-                <div key={i} className="relative border border-[#1C2B2B]/10 rounded p-6 overflow-hidden" data-testid={`field-item-${i}`}>
-                  <span
-                    className="absolute select-none pointer-events-none font-extrabold"
-                    style={{
-                      fontFamily: "'JetBrains Mono', monospace",
-                      fontSize: '100px',
-                      color: 'rgba(201, 168, 76, 0.07)',
-                      bottom: '-8px',
-                      right: '12px',
-                      lineHeight: 1,
-                    }}
-                    aria-hidden="true"
-                  >
-                    {block.ghost}
-                  </span>
-                  <div className="relative z-10">
-                    <h3 className="text-lg font-bold text-[#1C2B2B] mb-1">{block.title}</h3>
-                    <p className="font-medium mb-3" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '13px', color: '#C9A84C' }}>{block.cfr}</p>
-                    <p className="text-base text-[#1C2B2B]/60">{block.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-
-          <p className="text-base text-[#1C2B2B]/60 mb-10" data-testid="field-reality-close">
-            These aren't rare. They're overlooked. One walkthrough finds them.
-          </p>
-
-          {/* Photo grid */}
-          <Reveal>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3" data-testid="field-reality-grid">
-              {FIELD_IMAGES.map((img, i) => (
-                <div key={i} className="aspect-square overflow-hidden rounded bg-[#1C2B2B]/5">
-                  <img src={img.src} alt={img.alt} className="w-full h-full object-cover" loading="lazy" data-testid={`field-photo-${i}`} />
-                </div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ━━━ 4. HUMAN LAYER — Full-width background image ━━━ */}
-      <section className="relative" data-testid="human-layer-section">
-        <div
-          className="relative bg-cover bg-no-repeat py-24 md:py-32"
-          style={{ backgroundImage: "url('/vince-inspecting.png')", backgroundPosition: 'center 40%' }}
-        >
-          <div className="absolute inset-0 bg-black/70" />
-          <div className="container relative z-10 max-w-2xl">
-            <Reveal>
-              <SectionLabel text="On the Floor" light />
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-8" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
-                Real Operations. Real Conditions.
-              </h2>
-              <div className="text-lg text-white/90 space-y-1 mb-8 leading-relaxed">
-                <p>Most issues aren't complicated — they're overlooked.</p>
-              </div>
-              <p className="text-white/90 font-semibold text-lg">
-                If it is not correct, it gets found.
-              </p>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* ━━━ CALL VINCE BAR ━━━ */}
-      <CallVinceBar />
-
-      {/* ━━━ 5. WHY PRIVATE VS OSHA ━━━ */}
-      <section className="py-16 md:py-24 bg-white" data-testid="why-private-section">
-        <div className="container max-w-4xl">
-          <Reveal>
-            <SectionLabel text="The Difference" />
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-4 leading-tight" data-testid="why-private-headline">
-              Why Not Just Use OSHA Consultation Services?
-            </h2>
-            <p className="text-base text-[#1C2B2B]/60 mb-10">
-              OSHA consultation is helpful — but general and compliance-focused. GigLine is different.
+            <p className="text-lg md:text-xl text-white/70 max-w-2xl mb-6 leading-relaxed" data-testid="hero-sub">
+              Safety walkthroughs for small operations — identify exposure before it becomes operational loss.
             </p>
-          </Reveal>
 
-          <Reveal>
-            <div className="space-y-4">
-              {[
-                'GigLine is operational and site-specific',
-                'We document real conditions in real time',
-                'No regulatory enforcement layer',
-                'Focused on corrective clarity, not paperwork',
-              ].map((point, i) => (
-                <div key={i} className="flex items-start gap-4 py-3 border-b border-[#1C2B2B]/10" data-testid={`comparison-item-${i}`}>
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#C9A84C] mt-2.5 flex-shrink-0" />
-                  <p className="text-base md:text-lg text-[#1C2B2B]/80 font-medium">{point}</p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
+            <p
+              className="text-sm text-[#C9A84C] font-semibold tracking-wide uppercase mb-12"
+              style={{ fontFamily: "'JetBrains Mono', monospace" }}
+              data-testid="hero-positioning"
+            >
+              One engagement. A written report. No retainer.
+            </p>
 
-      {/* ━━━ 6. WHAT WE DO — Service cards ━━━ */}
-      <section id="services" className="py-16 md:py-24 bg-[#F9F8F6]" data-testid="services-section">
-        <div className="container max-w-5xl">
-          <Reveal>
-            <SectionLabel text="What We Do" />
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-10 leading-tight" data-testid="services-headline">
-              Three Engagements. Each Produces a Written Deliverable.
-            </h2>
-          </Reveal>
-
-          <p className="text-base text-[#1C2B2B]/60 mb-10 max-w-3xl">
-            Fixing the right five problems now is cheaper than one bad inspection, one lost worker, or one shut-down line.
-          </p>
-
-          <Reveal>
-            <div className="grid md:grid-cols-3 gap-6">
-              {[
-                { num: '01', title: 'Safety Walkthrough', body: 'On-site review of common OSHA exposure areas. Written report with corrective actions.', price: 'Starting at $650', cta: 'Request a Walkthrough', link: '/request-walkthrough', testid: 'service-card-walkthrough' },
-                { num: '02', title: 'Documentation Review', body: 'Gap check on required programs and records. Red, yellow, green scoring.', price: 'Starting at $550 remote', cta: 'Request a Review', link: '/contact', testid: 'service-card-documentation' },
-                { num: '03', title: 'Incident Response', body: 'Post-incident review and corrective direction. Documented for OSHA and insurance.', price: 'Starting at $900', cta: 'Contact About an Incident', link: '/contact', testid: 'service-card-incident' },
-              ].map((card) => (
-                <div
-                  key={card.num}
-                  className="bg-white border border-[#1C2B2B]/10 rounded-r p-6 flex flex-col"
-                  style={{ borderLeft: '3px solid #C9A84C', borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
-                  data-testid={card.testid}
-                >
-                  <p className="font-extrabold leading-none text-[#C9A84C]" style={{ fontSize: '100px', marginBottom: '-12px' }}>{card.num}</p>
-                  <p className="text-xs font-semibold tracking-widest text-[#C9A84C] uppercase mb-3" style={{ fontFamily: "'JetBrains Mono', monospace" }}>OFFER {card.num}</p>
-                  <h3 className="text-xl font-bold text-[#1C2B2B] mb-3">{card.title}</h3>
-                  <p className="text-base text-[#1C2B2B]/60 mb-4 flex-grow">{card.body}</p>
-                  <p className="text-lg font-bold text-[#1C2B2B] mb-4">{card.price}</p>
-                  <Link
-                    to={card.link}
-                    className="bg-[#1C2B2B] hover:bg-[#2A3D3D] text-white text-base font-semibold px-6 py-3 rounded transition-colors text-center"
-                    data-testid={`service-cta-${card.num}`}
-                  >
-                    {card.cta}
-                  </Link>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-
-          <Reveal>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12" data-testid="services-secondary-cta">
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row items-start gap-4" data-testid="hero-ctas">
               <Link
-                to="/services"
-                className="inline-flex items-center gap-2 bg-[#1C2B2B] hover:bg-[#2A3D3D] text-white font-semibold px-8 py-4 rounded transition-colors"
+                to="/request-walkthrough"
+                className="bg-[#C9A84C] hover:bg-[#B8972C] text-white font-semibold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
+                data-testid="hero-cta-primary"
               >
-                View Full Service Details
+                Request a Walkthrough
                 <ArrowRight size={18} />
+              </Link>
+              <Link
+                to="/safety-check"
+                className="border-2 border-white/20 hover:border-white/40 text-white font-semibold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
+                data-testid="hero-cta-secondary"
+              >
+                Take the Safety Check
               </Link>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* ━━━ HAZCOM CALLOUT ━━━ */}
-      <section className="py-8 bg-[#F9F8F6] border-y border-[#1C2B2B]/10" data-testid="hazcom-callout">
-        <div className="container text-center">
-          <p className="text-sm text-[#1C2B2B]/60">
-            Fix HazCom paperwork yourself?{' '}
-            <Link to="/hazcom" className="text-[#B8972C] hover:underline font-semibold">
-              HazCom Starter Pack — $29 &rarr;
-            </Link>
-          </p>
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          2. REALITY / PROBLEM — What we actually see
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-20 md:py-28 bg-white" data-testid="reality-section">
+        <div className="container max-w-3xl">
+          <Reveal>
+            <p
+              className="uppercase tracking-[3px] text-[#C9A84C] mb-4"
+              style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }}
+            >
+              The Reality
+            </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-8 leading-tight" data-testid="reality-headline">
+              What We Actually See on the Floor
+            </h2>
+          </Reveal>
+
+          <Reveal>
+            <div className="space-y-5 mb-8">
+              {[
+                'Blocked electrical panels with no clearance',
+                'Trip hazards across active walkways',
+                'Missing guards on operating machinery',
+                'Exit routes partially obstructed',
+                'Chemicals without labels or accessible SDS',
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-4" data-testid={`reality-item-${i}`}>
+                  <span
+                    className="mt-1 flex-shrink-0"
+                    style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', color: '#C9A84C' }}
+                  >
+                    //
+                  </span>
+                  <p className="text-base md:text-lg text-[#1C2B2B]/70">{item}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal>
+            <p className="text-base text-[#1C2B2B]/50 font-medium">
+              These aren't rare. They're in almost every facility we walk into.
+            </p>
+          </Reveal>
         </div>
       </section>
 
-      <CallVinceBar />
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          3. SIGNAL — The brand statement. Full stop.
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-24 md:py-36" style={{ backgroundColor: '#0D1B2A' }} data-testid="signal-section">
+        <div className="container max-w-3xl text-center">
+          <Reveal>
+            <div className="w-16 h-px mx-auto mb-10" style={{ backgroundColor: '#C9A84C' }} />
 
-      {/* ━━━ 7. WHAT YOU GET ━━━ */}
-      <section id="deliverables" className="py-16 md:py-24 bg-white" data-testid="deliverables-section">
+            <p
+              className="text-2xl sm:text-3xl md:text-[44px] font-bold text-[#C9A84C] leading-tight tracking-tight mb-8"
+              data-testid="signal-headline"
+            >
+              THIS IS NOT A FULL AUDIT.<br />
+              IT IS A SIGNAL.
+            </p>
+
+            <p className="text-base md:text-lg text-white/50 max-w-md mx-auto" data-testid="signal-sub">
+              We identify exposure. You decide what to fix.
+            </p>
+
+            <div className="w-16 h-px mx-auto mt-10" style={{ backgroundColor: '#C9A84C' }} />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          4. SOLUTION / SERVICES — Three ways to fix it
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-20 md:py-28 bg-white" data-testid="solution-section">
         <div className="container max-w-4xl">
           <Reveal>
-            <SectionLabel text="What You Get" />
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-8" data-testid="deliverables-headline">
+            <p
+              className="uppercase tracking-[3px] text-[#C9A84C] mb-4"
+              style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }}
+            >
+              What We Do
+            </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-14 leading-tight" data-testid="solution-headline">
+              Three Ways to Fix What's Exposed
+            </h2>
+          </Reveal>
+
+          <Reveal>
+            <div className="space-y-0 border-t border-[#1C2B2B]/10" data-testid="solution-list">
+              {[
+                {
+                  num: '01',
+                  lead: 'Walk the floor. Find the gaps.',
+                  name: 'Safety Walkthrough',
+                  line: 'On-site. Photo-documented. Written report within 48 hours.',
+                },
+                {
+                  num: '02',
+                  lead: "Review the system. Find what's missing.",
+                  name: 'Documentation Review',
+                  line: 'Remote or on-site. Red / yellow / green gap score.',
+                },
+                {
+                  num: '03',
+                  lead: 'Investigate the incident. Prevent it from repeating.',
+                  name: 'Incident Response',
+                  line: 'Post-incident review. Documented for OSHA, insurance, internal records.',
+                },
+              ].map((svc) => (
+                <div
+                  key={svc.num}
+                  className="flex flex-col md:flex-row md:items-start gap-4 md:gap-8 py-8 border-b border-[#1C2B2B]/10"
+                  data-testid={`solution-card-${svc.num}`}
+                >
+                  <span
+                    className="text-[#C9A84C] font-bold flex-shrink-0"
+                    style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '14px', minWidth: '32px' }}
+                  >
+                    {svc.num}
+                  </span>
+                  <div>
+                    <p className="text-lg md:text-xl font-bold text-[#1C2B2B] mb-1">{svc.lead}</p>
+                    <p
+                      className="text-xs uppercase tracking-[2px] text-[#C9A84C] mb-2"
+                      style={{ fontFamily: "'JetBrains Mono', monospace" }}
+                    >
+                      {svc.name}
+                    </p>
+                    <p className="text-base text-[#1C2B2B]/60">{svc.line}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal>
+            <div className="mt-10">
+              <Link
+                to="/services"
+                className="text-sm text-[#C9A84C] hover:text-[#1C2B2B] transition-colors inline-flex items-center gap-2"
+                style={{ fontFamily: "'JetBrains Mono', monospace" }}
+                data-testid="solution-link"
+              >
+                View pricing and details <ArrowRight size={14} />
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          5. DELIVERABLES — What you actually get
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-20 md:py-28" style={{ backgroundColor: '#1C2B2B' }} data-testid="deliverables-section">
+        <div className="container max-w-3xl">
+          <Reveal>
+            <p
+              className="uppercase tracking-[3px] text-[#C9A84C] mb-4"
+              style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }}
+            >
+              What You Get
+            </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-10 leading-tight" data-testid="deliverables-headline">
               Every Engagement Produces a Written Report.
             </h2>
           </Reveal>
 
           <Reveal>
-            <div className="mb-12">
+            <div className="space-y-0">
               {[
-                'On-site walkthrough — 15 to 45 minutes depending on operation size',
+                'On-site walkthrough — 30 to 90 minutes',
                 'Photo-documented findings',
-                'CFR-referenced observations',
-                'Clear corrective actions in plain language',
-                'Written report delivered within 24\u201348 hours',
-              ].map((item, index) => (
-                <div key={index} data-testid={`deliverable-${index}`}>
-                  <div className="flex items-start gap-4">
-                    <span className="flex-shrink-0 mt-1" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', color: '#C9A84C', fontWeight: 500 }}>
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-                    <p className="text-[#1C2B2B]/70 text-base">{item}</p>
-                  </div>
-                  {index < 4 && <div className="ml-[7px] w-px h-4" style={{ backgroundColor: 'rgba(201, 168, 76, 0.2)' }} />}
+                'Risk-referenced observations',
+                'Clear corrective actions',
+                'Written report delivered within 24–48 hours',
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-5 py-4 border-b border-white/[0.08]" data-testid={`deliverable-${i}`}>
+                  <span
+                    className="flex-shrink-0 mt-0.5"
+                    style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', color: '#C9A84C' }}
+                  >
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <p className="text-base text-white/70">{item}</p>
                 </div>
               ))}
-            </div>
-          </Reveal>
-
-          <Reveal>
-            <div className="text-center my-12 md:my-16" data-testid="deliverables-callout">
-              <div className="w-[120px] h-px mx-auto mb-6" style={{ backgroundColor: '#C9A84C' }} />
-              <p className="text-[28px] md:text-[40px] font-bold text-[#C9A84C] leading-tight max-w-2xl mx-auto">
-                This is not a full audit. It is a signal.
-              </p>
-              <div className="w-[120px] h-px mx-auto mt-6" style={{ backgroundColor: '#C9A84C' }} />
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* ━━━ 8. WHO WE WORK WITH ━━━ */}
-      <section id="who-we-serve" className="py-16 md:py-24" style={{ backgroundColor: '#1A2A2A' }} data-testid="who-section">
-        <div className="container max-w-5xl">
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          6. OBJECTION HANDLING — Why not OSHA
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-20 md:py-28 bg-white" data-testid="objection-section">
+        <div className="container max-w-3xl">
           <Reveal>
-            <SectionLabel text="Who We Work With" light />
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-10 leading-tight" data-testid="who-headline">
-              Small Operations Where the Owner Is Also the Safety Manager.
+            <p
+              className="uppercase tracking-[3px] text-[#C9A84C] mb-4"
+              style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }}
+            >
+              The Difference
+            </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-4 leading-tight" data-testid="objection-headline">
+              Why Not Just Use OSHA Consultants?
             </h2>
+            <p className="text-base text-[#1C2B2B]/50 mb-10">
+              OSHA On-Site Consultation is a real program. It's free and it's useful. But it has limits.
+            </p>
           </Reveal>
 
           <Reveal>
-            <div className="grid grid-cols-1 md:grid-cols-4">
+            <div className="space-y-6">
               {[
-                { Icon: GearIcon, title: 'Small Manufacturers', desc: 'Machine guarding, LOTO, HazCom, and training documentation.', testid: 'segment-manufacturers' },
-                { Icon: WarehouseIcon, title: 'Warehouses', desc: 'Forklift safety, racking, dock operations, and pedestrian separation.', testid: 'segment-warehouses' },
-                { Icon: HardHatIcon, title: 'Contractors', desc: 'Jobsite safety, PPE, fall protection basics, and documentation gaps.', testid: 'segment-contractors' },
-                { Icon: TruckIcon, title: 'Fleet Operations', desc: 'Driver files, drug and alcohol programs, vehicle maintenance records, and FMCSA gaps.', testid: 'segment-trucking' },
-              ].map((seg, i) => (
-                <div
-                  key={i}
-                  className={`p-6 ${i < 3 ? 'md:border-r border-b md:border-b-0' : 'border-b-0'}`}
-                  style={{ borderColor: '#2A3A3A' }}
-                  data-testid={seg.testid}
-                >
-                  <div className="mb-4"><seg.Icon /></div>
-                  <h3 className="text-lg font-bold text-white mb-2">{seg.title}</h3>
-                  <p className="text-base text-white/70">{seg.desc}</p>
+                { them: 'General, compliance-focused guidance', us: 'Operational, site-specific findings' },
+                { them: 'May not document real-time conditions', us: 'Every observation is photo-documented' },
+                { them: 'Covers regulations, not your specific risks', us: 'Built around your floor, your crew, your exposure' },
+                { them: 'No enforcement — but no execution either', us: 'Clear priorities you can act on the same week' },
+              ].map((row, i) => (
+                <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-8 py-4 border-b border-[#1C2B2B]/10" data-testid={`objection-row-${i}`}>
+                  <p className="text-base text-[#1C2B2B]/40 line-through decoration-[#1C2B2B]/20">{row.them}</p>
+                  <p className="text-base text-[#1C2B2B]/80 font-medium">{row.us}</p>
                 </div>
               ))}
             </div>
@@ -448,32 +330,30 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* ━━━ 9. TESTIMONIAL + ABOUT ━━━ */}
-      <section id="about" className="py-16 md:py-24" style={{ backgroundColor: '#0D1B2A' }} data-testid="about-section">
-        <div className="container max-w-4xl">
-          {/* Testimonial */}
-          <Reveal>
-            <div className="text-center mb-16" data-testid="testimonial-section">
-              <span className="uppercase tracking-[3px] block mb-6" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: '#C9A84C' }}>
-                TESTIMONIAL
-              </span>
-              <p className="text-[22px] md:text-[32px] font-bold italic text-white max-w-[760px] mx-auto mb-6" data-testid="testimonial-quote">
-                "They operate at a different level than most safety consultants... provide solutions that can be executed on the floor."
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          7. PROOF / VISUAL — Real environment
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="relative" data-testid="proof-section">
+        <div
+          className="relative bg-cover bg-no-repeat py-28 md:py-40"
+          style={{ backgroundImage: "url('/vince-inspecting.png')", backgroundPosition: 'center 35%' }}
+        >
+          <div className="absolute inset-0 bg-black/75" />
+          <div className="container relative z-10 max-w-3xl text-center">
+            <Reveal>
+              <p className="text-xl md:text-2xl text-white/90 font-medium leading-relaxed" data-testid="proof-caption">
+                Most issues aren't hidden. They're overlooked.
               </p>
-              <div className="w-20 h-px mx-auto mb-4" style={{ backgroundColor: '#C9A84C' }} />
-              <p className="text-sm text-white/40" style={{ fontFamily: "'JetBrains Mono', monospace" }}>— Operations Client</p>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
+        </div>
+      </section>
 
-          {/* About */}
-          <Reveal>
-            <div className="text-center mb-12">
-              <span className="uppercase tracking-[3px] block mb-6" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: '#C9A84C' }}>
-                ABOUT
-              </span>
-            </div>
-          </Reveal>
-
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          8. FOUNDER — Built by someone who's worked the floor
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-20 md:py-28" style={{ backgroundColor: '#0D1B2A' }} data-testid="founder-section">
+        <div className="container max-w-3xl">
           <Reveal>
             <div className="flex flex-col md:flex-row gap-10 items-start">
               <div className="w-full md:w-1/3 flex-shrink-0">
@@ -481,18 +361,27 @@ const HomePage = () => {
                   src="/vince-portrait.png"
                   alt="Vince Lawrence — Founder, GigLine Safety & Compliance"
                   className="w-full rounded"
-                  data-testid="about-headshot"
+                  data-testid="founder-photo"
                 />
               </div>
               <div className="flex-grow">
-                <h3 className="text-2xl font-bold text-white mb-1" data-testid="about-name">Vince Lawrence</h3>
-                <p className="text-base text-white/50 mb-6">Safety Consultant &middot; OSHA 30-Hour &middot; U.S. Navy Veteran</p>
-                <div className="space-y-4 text-white/75 text-base mb-8">
-                  <p>I've spent years in real operations where safety had to function on the floor — not just on paper.</p>
-                  <p>One visit. Clear findings. No confusion.</p>
-                </div>
-                <div className="flex flex-wrap gap-2" data-testid="about-credentials">
-                  {['25+ Years Leadership', 'OSHA 30-Hour', 'OSHA 10-Hour', 'Navy Veteran', 'Kernersville, NC', 'On-site \u00b7 Remote Nationwide'].map((cred, i) => (
+                <p
+                  className="uppercase tracking-[3px] text-[#C9A84C] mb-4"
+                  style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }}
+                >
+                  About
+                </p>
+                <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 leading-tight" data-testid="founder-headline">
+                  Built by someone who's worked the floor.
+                </h2>
+                <p className="text-base text-white/70 leading-relaxed mb-4">
+                  25 years in manufacturing, fleet operations, and compliance — where safety had to function in real conditions, not just on paper.
+                </p>
+                <p className="text-base text-white/70 leading-relaxed mb-6">
+                  GigLine exists so small operations can get a clear answer without a long contract.
+                </p>
+                <div className="flex flex-wrap gap-2" data-testid="founder-credentials">
+                  {['OSHA 30-Hour', 'U.S. Navy Veteran', 'Kernersville, NC'].map((cred, i) => (
                     <span
                       key={i}
                       className="inline-flex items-center px-3 py-1 rounded"
@@ -514,64 +403,22 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* ━━━ 10. FOR TRANSPORTATION OPERATIONS ━━━ */}
-      <section id="transportation" className="py-16 md:py-24 relative overflow-hidden" style={{ backgroundColor: '#1C2B2B' }} data-testid="transportation-section">
-        <span
-          className="absolute select-none pointer-events-none font-black"
-          style={{
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: '200px',
-            color: 'rgba(201, 168, 76, 0.05)',
-            top: '50%', left: '50%',
-            transform: 'translate(-50%, -50%)',
-            lineHeight: 1, whiteSpace: 'nowrap',
-          }}
-          aria-hidden="true"
-        >
-          49 CFR
-        </span>
-        <div className="container max-w-4xl relative z-10">
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          9. FINAL CTA — Start with a walkthrough
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-24 md:py-36" style={{ backgroundColor: '#000000' }} data-testid="final-cta-section">
+        <div className="container max-w-3xl text-center">
           <Reveal>
-            <SectionLabel text="For Transportation Operations" light />
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 leading-tight" data-testid="transportation-headline">
-              If You Run Trucks, the Gaps Run Deeper.
-            </h2>
-            <div className="space-y-4 text-white/75 text-base mb-8">
-              <p>Fleet documentation gaps — driver qualification files, drug and alcohol programs, maintenance records — require more than a walkthrough to fix.</p>
-              <p>GigLine finds the gaps. LaunchPath installs the system.</p>
-            </div>
-            <a
-              href="https://launchpathedu.com/ground-0-briefing"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-[#C9A84C] hover:bg-[#B8972C] text-white font-semibold px-8 py-4 rounded transition-colors inline-flex items-center gap-2 mb-4"
-              data-testid="transportation-cta"
-            >
-              Start with Ground 0 — Free
-              <ExternalLink size={16} />
-            </a>
-            <p className="text-base text-white/40">
-              Ground 0 is free. It tells you whether you need GigLine, LaunchPath, or both.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ━━━ 11. FINAL CTA ━━━ */}
-      <section id="contact" className="py-24" style={{ backgroundColor: '#000000' }} data-testid="final-cta-section">
-        <div className="container max-w-4xl text-center">
-          <Reveal>
-            <SectionLabel text="Get Started" />
-            <h2 className="text-2xl md:text-3xl leading-tight mb-4" data-testid="final-cta-headline">
-              <span className="block font-normal" style={{ color: '#B0B8C0' }}>
-                If you're not sure where your exposure is —
+            <h2 className="text-2xl md:text-3xl leading-tight mb-8" data-testid="final-cta-headline">
+              <span className="block text-white/50 font-normal mb-2">
+                If you're not sure what's exposed —
               </span>
               <span className="block font-bold text-white">
                 start with a walkthrough.
               </span>
             </h2>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12" data-testid="final-cta-buttons">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14" data-testid="final-cta-buttons">
               <Link
                 to="/request-walkthrough"
                 className="bg-[#C9A84C] hover:bg-[#B8972C] text-white font-semibold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
@@ -585,25 +432,24 @@ const HomePage = () => {
                 className="border-2 border-white/20 hover:border-white/40 text-white font-semibold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
                 data-testid="final-cta-safety-check"
               >
-                Run the Safety Check
+                Take the Safety Check
               </Link>
             </div>
 
-            <div data-testid="final-contact-block" className="mt-4 py-8 px-6 rounded inline-block" style={{ fontFamily: "'JetBrains Mono', monospace", backgroundColor: 'rgba(201, 168, 76, 0.06)', border: '1px solid rgba(201, 168, 76, 0.15)' }}>
-              <p className="mb-3"><strong className="text-white text-xl">Vince Lawrence</strong></p>
-              <p className="mb-3 text-white/60 text-sm">GigLine Safety &amp; Compliance</p>
-              <div className="w-12 h-px mx-auto mb-3" style={{ backgroundColor: '#C9A84C' }} />
-              <p className="mb-2">
-                <a href="tel:3363298899" className="text-[#C9A84C] hover:text-white transition-colors text-2xl font-bold tracking-wide">(336) 329-8899</a>
-              </p>
-              <p className="mb-2">
-                <a href="mailto:vince@giglinecompliance.com" className="text-white hover:text-[#C9A84C] transition-colors text-base font-medium">vince@giglinecompliance.com</a>
-              </p>
-            </div>
-
-            <div className="mt-8 text-base max-w-lg mx-auto text-white/40">
-              <p>Based in Kernersville, NC — on-site in the Triad, remote nationwide.</p>
-            </div>
+            {/* Contact block */}
+            <div className="w-px h-10 mx-auto mb-8" style={{ backgroundColor: 'rgba(201, 168, 76, 0.2)' }} />
+            <p className="text-white font-bold text-lg mb-1">Vince Lawrence</p>
+            <p className="text-white/40 text-sm mb-4" style={{ fontFamily: "'JetBrains Mono', monospace" }}>GigLine Safety &amp; Compliance</p>
+            <p className="mb-2">
+              <a href="tel:3363298899" className="text-[#C9A84C] hover:text-white transition-colors text-2xl font-bold tracking-wide" data-testid="final-phone">
+                (336) 329-8899
+              </a>
+            </p>
+            <p>
+              <a href="mailto:vince@giglinecompliance.com" className="text-white/50 hover:text-[#C9A84C] transition-colors text-sm" data-testid="final-email">
+                vince@giglinecompliance.com
+              </a>
+            </p>
           </Reveal>
         </div>
       </section>

@@ -17,13 +17,23 @@ Build a professional service business website for GigLine Safety & Compliance (V
 - **GL-WEB-016**: Admin Dashboard + Download Tracking + Weekly Email Summary
 - **GL-WEB-017**: Layout/Rendering Fixes + Footer Restructure + Field Notes (April 2026)
   - Fixed rendering: confirmed no overlapping sections, no duplicated DOM, clean stacking
-  - Hero CTA: dominant gold "Request a Walkthrough →", subtle outline "Take the Safety Check", trust line underneath
-  - "What to Expect" section: 5 steps (Request, Schedule, Walkthrough, Report, Action) with pricing line
-  - "Why Private" section: OSHA vs GigLine side-by-side comparison (strikethrough vs bold)
   - Footer restructured: Resources column (Field Notes, Safety Check, HazCom Starter Pack, Contact)
-  - Field Notes index page: `/field-notes` — 6 topics (Heat Stress, Forklift Safety, Electrical Access, HazCom & SDS, Machine Guarding, Walking Surfaces)
-  - Field Notes detail pages: `/field-notes/:slug` — What It Is, What Gets Missed, What I See on the Floor, Quick Checklist, CTA
+  - Field Notes index page: `/field-notes` — 6 topics
+  - Field Notes detail pages: `/field-notes/:slug`
   - Field Notes NOT on homepage (conversion-focused)
+- **GL-WEB-018**: 10-Section Asymmetric Homepage Redesign (Feb 2026)
+  - S1: Asymmetric Hero — 60/40 split (left warehouse image, right text + gold CTA)
+  - S2: Problem Grid — 4 real-world industrial hazard images in 2×2 grid with overlays
+  - S3: Statement Band — "THIS IS NOT A FULL AUDIT. IT IS A SIGNAL."
+  - S4: Process — 40/60 split, 5 numbered steps with pricing note
+  - S5: Deliverables — 40/60 split, 6 checklist items with check icons
+  - S6: Why Not OSHA — 40/60 split, 2-column comparison (strikethrough vs bold)
+  - S7: Full-Width Proof Image — warehouse with overlay text
+  - S8: Founder — 35/65 split, vince-portrait.png, Navy Veteran + Safety Coordinator pills
+  - S9: Final CTA Band — dual buttons + Vince contact info
+  - S10: Footer component (unchanged, Resources column with Field Notes)
+  - All images from Unsplash CDN + local vince-portrait.png
+  - Tested: 100% pass — all sections, navigation, mobile responsiveness, no console errors
 
 ## Conversion Flow
 ```

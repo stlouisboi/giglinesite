@@ -222,45 +222,71 @@ const HomePage = () => {
       </section>
 
       {/* ═══════════════════════════════════════════════
-          PRESSURE LINE — Pause moment
-      ═══════════════════════════════════════════════ */}
-      <section className="py-14 md:py-20 bg-white border-t border-[#1C2B2B]/05" data-testid="pressure-section">
-        <div className="container max-w-3xl text-center">
-          <Reveal>
-            <p
-              className="text-lg sm:text-xl md:text-2xl text-[#1C2B2B]/70 font-medium leading-relaxed"
-              data-testid="pressure-line"
-            >
-              Most issues aren't new. They've just gone unchecked.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════
-          S3 — STATEMENT BAND
+          STATEMENT ANCHOR — Combined visual moment
       ═══════════════════════════════════════════════ */}
       <section
-        className="py-20 md:py-32"
-        style={{ backgroundColor: '#0D1B2A' }}
+        className="relative overflow-hidden"
         data-testid="statement-section"
       >
-        <div className="container max-w-3xl text-center">
-          <Reveal>
-            <div className="w-16 h-px mx-auto mb-10" style={{ backgroundColor: '#C9A84C' }} />
-            <p
-              className="text-2xl sm:text-3xl md:text-[42px] font-bold text-[#C9A84C] leading-tight tracking-tight mb-6"
-              data-testid="statement-headline"
-            >
-              THIS IS NOT A FULL AUDIT.
-              <br />
-              IT IS A SIGNAL.
-            </p>
-            <p className="text-base md:text-lg text-white/45 max-w-md mx-auto" data-testid="statement-sub">
-              We identify exposure. You decide what to fix.
-            </p>
-            <div className="w-16 h-px mx-auto mt-10" style={{ backgroundColor: '#C9A84C' }} />
-          </Reveal>
+        {/* Background: low-opacity industrial image + vignette */}
+        <div className="absolute inset-0">
+          <img
+            src={IMG.proof}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ filter: 'blur(12px) brightness(0.25)', opacity: 0.12 }}
+          />
+          <div className="absolute inset-0" style={{ backgroundColor: '#0D1B2A', opacity: 0.92 }} />
+          {/* Vignette — darker edges, lighter center */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: 'radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.35) 100%)',
+            }}
+          />
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 py-16 md:py-24">
+          <div className="container max-w-3xl text-center">
+            <Reveal>
+              {/* Top lines — medium weight, muted */}
+              <p
+                className="text-base sm:text-lg md:text-xl text-white/40 font-medium leading-relaxed mb-2"
+                data-testid="pressure-line"
+              >
+                Most issues aren't new.
+              </p>
+              <p
+                className="text-base sm:text-lg md:text-xl text-white/55 font-medium leading-relaxed mb-8"
+              >
+                They've just gone unchecked.
+              </p>
+
+              {/* Gold divider — visual entry point */}
+              <div className="w-12 h-[2px] mx-auto mb-8" style={{ backgroundColor: '#C9A84C' }} />
+
+              {/* Main headline — bold, gold, largest */}
+              <p
+                className="text-2xl sm:text-3xl md:text-[44px] font-bold text-[#C9A84C] leading-[1.15] tracking-tight mb-6"
+                data-testid="statement-headline"
+              >
+                THIS IS NOT A FULL AUDIT.
+                <br />
+                IT IS A SIGNAL.
+              </p>
+
+              {/* Subtext — smaller, lighter, spaced */}
+              <p
+                className="text-sm md:text-base text-white/35 max-w-sm mx-auto"
+                style={{ letterSpacing: '0.5px' }}
+                data-testid="statement-sub"
+              >
+                We identify exposure. You decide what to fix.
+              </p>
+            </Reveal>
+          </div>
         </div>
       </section>
 

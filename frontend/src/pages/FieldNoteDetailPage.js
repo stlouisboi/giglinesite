@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
-import { ArrowRight, ArrowLeft, Download } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Download, Check } from 'lucide-react';
 import SEO from '../components/SEO';
 
 const API = process.env.REACT_APP_BACKEND_URL;
@@ -11,6 +11,12 @@ const NOTES = {
     title: 'Heat Stress',
     subtitle: 'What Actually Matters on the Floor',
     seo: 'Heat stress safety for small operations. What gets missed, what OSHA looks for, and what to do about it.',
+    download: {
+      title: '2026 Heat Stress Action Template',
+      description: 'A printable checklist and action plan for managing heat stress on the floor. Built for small operations.',
+      image: '/GL_Heat_Stress_Mockup_Web.png',
+      endpoint: '/api/heat-guide/submit',
+    },
     sections: {
       whatItIs: 'Heat stress happens when the body can\'t cool itself fast enough. In warehouses, manufacturing floors, and outdoor operations, it shows up faster than most people expect — especially during summer in enclosed spaces with poor ventilation.',
       whatGetsMissed: [
@@ -162,8 +168,30 @@ const NOTES = {
 const FieldNoteDetailPage = () => {
   const { slug } = useParams();
   const note = NOTES[slug];
+  const [dlEmail, setDlEmail] = useState('');
+  const [dlStatus, setDlStatus] = useState('idle'); // idle | sending | sent | error
 
   if (!note) return <Navigate to="/field-notes" replace />;
+
+  const handleDownload = async (e) => {
+    e.preventDefault();
+    if (!dlEmail.trim()) return;
+    setDlStatus('sending');
+    try {
+      const res = await fetch(`${API}${note.download.endpoint}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: dlEmail.trim() }),
+      });
+      if (res.ok) {
+        setDlStatus('sent');
+      } else {
+        setDlStatus('error');
+      }
+    } catch {
+      setDlStatus('error');
+    }
+  };
 
   return (
     <main>
@@ -237,6 +265,71 @@ const FieldNoteDetailPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Download Resource (if available) */}
+      {note.download && (
+        <section className="py-12 md:py-20" style={{ backgroundColor: '#F9F8F6' }} data-testid="note-download">
+          <div className="container max-w-3xl">
+            <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
+              {/* Mockup image */}
+              <div className="w-full md:w-2/5 flex-shrink-0">
+                <img
+                  src={note.download.image}
+                  alt={note.download.title}
+                  className="w-full max-w-[260px] mx-auto md:mx-0 rounded shadow-lg"
+                  data-testid="download-mockup"
+                />
+              </div>
+
+              {/* Download form */}
+              <div className="flex-grow">
+                <p
+                  className="uppercase tracking-[3px] text-[#C9A84C] mb-3"
+                  style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }}
+                >
+                  Free Download
+                </p>
+                <h3 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-2" data-testid="download-title">
+                  {note.download.title}
+                </h3>
+                <p className="text-sm text-[#1C2B2B]/55 mb-6">{note.download.description}</p>
+
+                {dlStatus === 'sent' ? (
+                  <div className="flex items-center gap-3 text-[#1C2B2B]/70" data-testid="download-success">
+                    <Check size={20} className="text-[#C9A84C]" />
+                    <p className="text-sm font-medium">Sent to your inbox. Check your email.</p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleDownload} className="flex flex-col sm:flex-row gap-3" data-testid="download-form">
+                    <input
+                      type="email"
+                      required
+                      value={dlEmail}
+                      onChange={(e) => setDlEmail(e.target.value)}
+                      placeholder="Your work email"
+                      className="flex-grow px-4 py-3 rounded border border-[#1C2B2B]/15 bg-white text-sm text-[#1C2B2B] placeholder:text-[#1C2B2B]/30 focus:outline-none focus:border-[#C9A84C] focus:ring-1 focus:ring-[#C9A84C]/30"
+                      data-testid="download-email-input"
+                    />
+                    <button
+                      type="submit"
+                      disabled={dlStatus === 'sending'}
+                      className="bg-[#C9A84C] hover:bg-[#B8972C] text-white font-bold px-6 py-3 rounded transition-colors inline-flex items-center justify-center gap-2 text-sm disabled:opacity-60"
+                      data-testid="download-submit-btn"
+                    >
+                      <Download size={16} />
+                      {dlStatus === 'sending' ? 'Sending...' : 'Send Me the PDF'}
+                    </button>
+                  </form>
+                )}
+                {dlStatus === 'error' && (
+                  <p className="text-sm text-red-500 mt-2">Something went wrong. Try again.</p>
+                )}
+                <p className="text-xs text-[#1C2B2B]/30 mt-3">No spam. Just the PDF.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* CTA */}
       <section className="py-16 md:py-24 bg-[#0D1B2A]" data-testid="note-cta">

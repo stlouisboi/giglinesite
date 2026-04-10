@@ -41,7 +41,7 @@ const Reveal = ({ children, className = '', delay = 0 }) => {
 const IMG = {
   hero: 'https://images.unsplash.com/photo-1772298783095-be38fa901232?w=960&q=80&fit=crop&auto=format',
   grid1: 'https://images.unsplash.com/photo-1768796373634-db43bfd5f064?w=640&q=80&fit=crop&auto=format',
-  grid2: 'https://images.unsplash.com/photo-1773952136583-5175e906267c?w=640&q=80&fit=crop&auto=format',
+  grid2: '/blocked-electrical-panel.png',
   grid3: '/machine-guarding.jpg',
   grid4: '/blocked-fire-riser.png',
   proof: 'https://images.unsplash.com/photo-1644079446600-219068676743?w=1400&q=80&fit=crop&auto=format',

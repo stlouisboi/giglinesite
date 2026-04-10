@@ -40,7 +40,7 @@ const Reveal = ({ children, className = '', delay = 0 }) => {
 /* ── Stock images ── */
 const IMG = {
   hero: 'https://images.unsplash.com/photo-1772298783095-be38fa901232?w=960&q=80&fit=crop&auto=format',
-  grid1: 'https://images.unsplash.com/photo-1768796373634-db43bfd5f064?w=640&q=80&fit=crop&auto=format',
+  grid1: '/cluttered-aisles.png',
   grid2: '/blocked-electrical-panel.png',
   grid3: '/machine-guarding.jpg',
   grid4: '/blocked-fire-riser.png',

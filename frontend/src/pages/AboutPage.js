@@ -58,14 +58,16 @@ const AboutPage = () => {
                   I've worked the floor, in leadership, and across systems. I've seen what happens when expectations are not met — and how quickly small issues become real problems.
                 </p>
                 <p className="font-medium text-[#1C2B2B]">
-                  GigLine was built for a specific gap:
+                  GigLine was built for a specific gap.
                 </p>
                 <p>
-                  Most small operations don't have a full-time safety department.<br />
+                  Most small operations don't have a full-time safety department.
+                </p>
+                <p>
                   But they do need someone who can step in, walk the operation, and call out what actually matters.
                 </p>
                 <p className="font-medium text-[#1C2B2B]">
-                  That's the role.
+                  That's the role. That's what I do when I show up.
                 </p>
                 <div className="py-2">
                   <p>I walk the floor.</p>
@@ -78,12 +80,21 @@ const AboutPage = () => {
                   Clear findings.<br />
                   No contracts.
                 </p>
-                <p className="text-[#1C2B2B]/50 italic pt-4 border-t border-[#1C2B2B]/10 mt-4">
-                  Most issues aren't new. They've just gone unchecked.
-                </p>
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Statement Anchor */}
+      <section className="py-16 md:py-24 bg-[#0D1B2A]" data-testid="about-statement-anchor">
+        <div className="container text-center max-w-2xl mx-auto">
+          <p className="text-xl sm:text-2xl md:text-3xl font-bold text-white/90 leading-snug">
+            Most issues aren't new.
+          </p>
+          <p className="text-xl sm:text-2xl md:text-3xl font-bold text-[#C9A84C] leading-snug mt-2">
+            They've just gone unchecked.
+          </p>
         </div>
       </section>
 
@@ -91,9 +102,12 @@ const AboutPage = () => {
       <section className="py-16 md:py-20 bg-[#F5F5F3]" data-testid="origin-section">
         <div className="container">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-8 text-center" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-4 text-center" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
               Why "GigLine"?
             </h2>
+            <p className="text-center text-[#1C2B2B]/50 mb-8">
+              It's a small detail. But it explains everything.
+            </p>
             <div className="bg-white rounded p-8 border border-[#1C2B2B]/10">
               <div className="text-[#1C2B2B]/70 space-y-4 leading-relaxed">
                 <p>
@@ -189,6 +203,9 @@ const AboutPage = () => {
                 If you run a small fleet or are building a transportation operation, the issue is often not a single gap — it's the absence of a system.
               </p>
               <p>
+                If your issue is structural, not just visible — that's where LaunchPath comes in.
+              </p>
+              <p>
                 GigLine identifies exposure.<br />
                 LaunchPath installs what should have been there from the start.
               </p>
@@ -226,19 +243,26 @@ const AboutPage = () => {
       <section className="py-16 md:py-20" data-testid="about-contact-cta">
         <div className="container text-center max-w-2xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-4" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
-            If That Sounds Like Your Operation
+            If You're Not Sure What's Exposed — Start Here.
           </h2>
           <p className="text-[#1C2B2B]/70 mb-8 leading-relaxed">
-            If that sounds like your operation, start with the Safety Check. Six questions. 90 seconds. A clear picture of where you stand.
+            Six questions. 90 seconds. A clear picture of where you stand.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
             <Link 
+              to="/request-walkthrough" 
+              className="inline-flex items-center gap-2 bg-[#B8972C] hover:bg-[#A6872A] text-white font-bold px-8 py-4 rounded transition-colors"
+              data-testid="about-cta-walkthrough"
+            >
+              Request a Walkthrough
+              <ArrowRight size={18} />
+            </Link>
+            <Link 
               to="/safety-check" 
-              className="inline-flex items-center gap-2 bg-[#1C2B2B] hover:bg-[#2A3D3D] text-white font-semibold px-8 py-4 rounded transition-colors"
-              data-testid="about-bottom-cta"
+              className="inline-flex items-center gap-2 border-2 border-[#1C2B2B]/20 hover:border-[#1C2B2B]/40 text-[#1C2B2B] font-semibold px-8 py-4 rounded transition-colors"
+              data-testid="about-cta-safety-check"
             >
               Take the Free Safety Check
-              <ArrowRight size={18} />
             </Link>
           </div>
           <p className="text-[#1C2B2B]/60 text-base">

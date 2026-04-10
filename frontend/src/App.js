@@ -19,6 +19,8 @@ import BlogHazComRequirements from './pages/BlogHazComRequirements';
 import HeatGuidePage from './pages/HeatGuidePage';
 import IntakePage from './pages/IntakePage';
 import AdminPage from './pages/AdminPage';
+import FieldNotesPage from './pages/FieldNotesPage';
+import FieldNoteDetailPage from './pages/FieldNoteDetailPage';
 import './App.css';
 
 function App() {
@@ -43,6 +45,8 @@ function App() {
               <Route path="/heat-guide" element={<HeatGuidePage />} />
               <Route path="/request-walkthrough" element={<IntakePage />} />
               <Route path="/admin" element={<AdminPage />} />
+              <Route path="/field-notes" element={<FieldNotesPage />} />
+              <Route path="/field-notes/:slug" element={<FieldNoteDetailPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </div>

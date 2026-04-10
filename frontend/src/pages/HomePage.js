@@ -274,8 +274,8 @@ const HomePage = () => {
           <Reveal>
             <div className="space-y-0" data-testid="expect-steps">
               {[
-                { num: '01', label: 'Request', line: 'Tell me about your shop.' },
-                { num: '02', label: 'Schedule', line: "We pick a time. Most visits are 60\u201390 minutes." },
+                { num: '01', label: 'Request', line: 'Tell me about your operation.' },
+                { num: '02', label: 'Schedule', line: 'We pick a time. Most visits are 60\u201390 minutes.' },
                 { num: '03', label: 'Walkthrough', line: 'We walk the floor during normal operations.' },
                 { num: '04', label: 'Report', line: 'You get a short written report with photos in 24\u201348 hours.' },
                 { num: '05', label: 'Action', line: 'You decide what to fix now, later, or not at all.' },
@@ -298,7 +298,7 @@ const HomePage = () => {
 
           <Reveal>
             <p className="mt-8 text-sm text-[#1C2B2B]/40">
-              Most walkthroughs for small operations fall between $500\u2013$1,000 depending on size. You'll know your price before we schedule.
+              Most walkthroughs for small operations fall between $500–$1,000 depending on size. You'll know your price before we schedule.
             </p>
           </Reveal>
         </div>
@@ -358,7 +358,7 @@ const HomePage = () => {
               The Difference
             </p>
             <h2 className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-4 leading-tight" data-testid="objection-headline">
-              Why Not Just Use OSHA Consultants?
+              Why Not Just Use OSHA Consultation?
             </h2>
             <p className="text-base text-[#1C2B2B]/50 mb-10">
               OSHA On-Site Consultation is a real program. It's free and it's useful. But it has limits.
@@ -366,18 +366,33 @@ const HomePage = () => {
           </Reveal>
 
           <Reveal>
-            <div className="space-y-6">
-              {[
-                { them: 'General, compliance-focused guidance', us: 'Operational, site-specific findings' },
-                { them: 'May not document real-time conditions', us: 'Every observation is photo-documented' },
-                { them: 'Covers regulations, not your specific risks', us: 'Built around your floor, your crew, your exposure' },
-                { them: 'No enforcement — but no execution either', us: 'Clear priorities you can act on the same week' },
-              ].map((row, i) => (
-                <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-8 py-4 border-b border-[#1C2B2B]/10" data-testid={`objection-row-${i}`}>
-                  <p className="text-base text-[#1C2B2B]/40 line-through decoration-[#1C2B2B]/20">{row.them}</p>
-                  <p className="text-base text-[#1C2B2B]/80 font-medium">{row.us}</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-6">
+              {/* OSHA side */}
+              <div>
+                <p className="text-xs font-semibold tracking-widest text-[#1C2B2B]/30 uppercase mb-4" style={{ fontFamily: "'JetBrains Mono', monospace" }}>OSHA Consultation</p>
+                <div className="space-y-3">
+                  {[
+                    'General guidance',
+                    'Not based on real-time conditions',
+                    'Not focused on execution',
+                  ].map((item, i) => (
+                    <p key={i} className="text-base text-[#1C2B2B]/40 line-through decoration-[#1C2B2B]/15">{item}</p>
+                  ))}
                 </div>
-              ))}
+              </div>
+              {/* GigLine side */}
+              <div>
+                <p className="text-xs font-semibold tracking-widest text-[#C9A84C] uppercase mb-4" style={{ fontFamily: "'JetBrains Mono', monospace" }}>GigLine</p>
+                <div className="space-y-3">
+                  {[
+                    'Walks your floor',
+                    'Sees real conditions',
+                    'Gives clear priorities',
+                  ].map((item, i) => (
+                    <p key={i} className="text-base text-[#1C2B2B]/80 font-medium">{item}</p>
+                  ))}
+                </div>
+              </div>
             </div>
           </Reveal>
         </div>

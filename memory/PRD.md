@@ -13,18 +13,17 @@ Build a professional service business website for GigLine Safety & Compliance (V
 - **GL-WEB-001–012**: Safety Check, SEO, Contact, Homepage iterations, HazCom, Blog, Heat Guide, OG Image
 - **GL-WEB-013**: Homepage — 9-Section Conversion Funnel
 - **GL-WEB-014**: Homepage Polish + UTM Tracking
-- **GL-WEB-015**: Safety Check 3-Phase Funnel + Homepage "What to Expect" + Pricing + Trust Line
-- **GL-WEB-016**: Admin Dashboard + Download Tracking + Weekly Email Summary (April 2026)
-  - Password-protected admin dashboard at `/admin`
-  - 3 tabs: Overview (stats), Leads (tables), Downloads (event log)
-  - Overview shows: Lead counts, Risk Breakdown (HIGH/MEDIUM/LOW), Download counts
-  - Leads tab: Safety Check submissions with Score/Risk, Walkthrough Requests with UTM source, Heat Guide Leads
-  - Downloads tab: Event log for Safety Check PDFs, HazCom Packs, Heat Guides
-  - Download tracking on all 3 PDF endpoints (safety_check, hazcom, heat_guide)
-  - Risk Score [X/6] in Vince notification email subject line
-  - Role field in Vince email body
-  - Weekly email summary every Monday 8 AM EST (leads, risk breakdown, download counts)
-  - Manual "Send Weekly Summary" button in admin header
+- **GL-WEB-015**: Safety Check 3-Phase Funnel + Homepage additions
+- **GL-WEB-016**: Admin Dashboard + Download Tracking + Weekly Email Summary
+- **GL-WEB-017**: Layout/Rendering Fixes + Footer Restructure + Field Notes (April 2026)
+  - Fixed rendering: confirmed no overlapping sections, no duplicated DOM, clean stacking
+  - Hero CTA: dominant gold "Request a Walkthrough →", subtle outline "Take the Safety Check", trust line underneath
+  - "What to Expect" section: 5 steps (Request, Schedule, Walkthrough, Report, Action) with pricing line
+  - "Why Private" section: OSHA vs GigLine side-by-side comparison (strikethrough vs bold)
+  - Footer restructured: Resources column (Field Notes, Safety Check, HazCom Starter Pack, Contact)
+  - Field Notes index page: `/field-notes` — 6 topics (Heat Stress, Forklift Safety, Electrical Access, HazCom & SDS, Machine Guarding, Walking Surfaces)
+  - Field Notes detail pages: `/field-notes/:slug` — What It Is, What Gets Missed, What I See on the Floor, Quick Checklist, CTA
+  - Field Notes NOT on homepage (conversion-focused)
 
 ## Conversion Flow
 ```
@@ -38,7 +37,7 @@ Homepage → Take the Safety Check → 6 Questions → Email Gate → Results �
 - `POST /api/walkthrough/request` — Intake form + UTM + Vince notification
 - `POST /api/hazcom/checkout` — Stripe $29 checkout
 - `GET /api/hazcom/download/{filename}?session_id=` — HazCom PDF download (tracked)
-- `POST /api/heat-guide/submit` — Email gate + PDF delivery (tracked)
+- `POST /api/heat-guide/download` — Email gate + PDF delivery (tracked)
 - `POST /api/admin/login` — Admin auth
 - `GET /api/admin/stats?token=` — Dashboard stats
 - `GET /api/admin/leads?token=` — Lead tables
@@ -46,7 +45,7 @@ Homepage → Take the Safety Check → 6 Questions → Email Gate → Results �
 - `POST /api/admin/send-summary?token=` — Manual weekly email
 
 ## Pages
-- `/` — Homepage (10 sections)
+- `/` — Homepage (10 sections: Hero, Reality, Signal, Solution, What to Expect, Deliverables, Objection, Proof, Founder, Final CTA)
 - `/services` — Services & Pricing
 - `/about` — About Vince Lawrence
 - `/contact` — Contact form
@@ -55,16 +54,16 @@ Homepage → Take the Safety Check → 6 Questions → Email Gate → Results �
 - `/hazcom` — HazCom Starter Pack ($29)
 - `/heat-guide` — Lead magnet (accessible, not homepage-featured)
 - `/admin` — Password-protected admin dashboard
+- `/field-notes` — Field Notes index (6 topics)
+- `/field-notes/:slug` — Individual Field Note detail pages
 - `/blog/top-5-osha-violations-small-manufacturing`
 - `/blog/hazcom-requirements-small-business`
 
-## DB Collections
-- `safety_check_submissions`: name, company, phone, email, role, score_gaps, score_level, answers, timestamp
-- `walkthrough_requests`: name, company, operation_type, location, description, utm_*, status, timestamp
-- `download_events`: type (safety_check_pdf/hazcom_pdf/heat_guide), timestamp, metadata
-- `heat_guide_leads`: email, created_at
-- `hazcom_deliveries`: session_id, email, sent_at
-- `email_drip_queue`: submission_id, emails array with sequence/timing
+## Adding New Field Notes
+To add a new monthly topic:
+1. Add entry to `FIELD_NOTES` array in `FieldNotesPage.js` (slug, title, subtitle, description, topics)
+2. Add matching entry to `NOTES` object in `FieldNoteDetailPage.js` (whatItIs, whatGetsMissed, whatISee, checklist)
+3. Deploy — no backend changes needed
 
 ## Upcoming Tasks
 1. Video Embeds (P1) — Replace proof section placeholder

@@ -1,0 +1,140 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
+import SEO from '../components/SEO';
+
+const FIELD_NOTES = [
+  {
+    slug: 'heat-stress',
+    title: 'Heat Stress',
+    subtitle: 'What Actually Matters on the Floor',
+    description: 'How heat exposure gets missed, what triggers OSHA attention, and what small operations can do about it.',
+    topics: ['what it is', 'what gets missed', 'what I see on the floor'],
+  },
+  {
+    slug: 'forklift-safety',
+    title: 'Forklift Safety',
+    subtitle: 'Beyond the Certification Card',
+    description: 'Certification gets the headlines, but daily inspections and pedestrian separation are where most operations break down.',
+    topics: ['operator certification', 'daily inspections', 'pedestrian zones'],
+  },
+  {
+    slug: 'electrical-safety',
+    title: 'Electrical Access',
+    subtitle: 'The Panel Nobody Can Reach',
+    description: 'Blocked electrical panels are one of OSHA\'s most cited violations. Usually a forklift, a pallet, or a shelf is in the way.',
+    topics: ['panel clearance', 'lockout-tagout', 'arc flash basics'],
+  },
+  {
+    slug: 'hazcom',
+    title: 'HazCom & SDS',
+    subtitle: 'The #1 OSHA Citation',
+    description: 'Missing labels, outdated SDS binders, and no written program. The most common violation in general industry.',
+    topics: ['written program', 'SDS management', 'labeling requirements'],
+  },
+  {
+    slug: 'machine-guarding',
+    title: 'Machine Guarding',
+    subtitle: 'When the Guard Gets Removed',
+    description: 'Guards get removed for access, maintenance, or convenience. They don\'t always go back on. OSHA notices.',
+    topics: ['point of operation', 'nip points', 'guard types'],
+  },
+  {
+    slug: 'walking-surfaces',
+    title: 'Walking Surfaces',
+    subtitle: 'Trip Hazards You Walk Past Every Day',
+    description: 'The most common source of recordable injuries in general industry. Cords, hoses, uneven floors, and blocked aisles.',
+    topics: ['housekeeping', 'aisle markings', 'floor conditions'],
+  },
+];
+
+const FieldNotesPage = () => {
+  return (
+    <main>
+      <SEO
+        title="Field Notes | GigLine Safety & Compliance"
+        description="Real-world safety topics for small operations. Practical breakdowns of what gets cited, what gets missed, and what to do about it."
+        canonical="/field-notes"
+      />
+
+      {/* Header */}
+      <section className="bg-[#0D1B2A] py-16 md:py-24" data-testid="field-notes-header">
+        <div className="container max-w-4xl">
+          <p
+            className="uppercase tracking-[3px] text-[#C9A84C] mb-4"
+            style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }}
+          >
+            Field Notes
+          </p>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6" data-testid="field-notes-headline">
+            What We See. What Gets Missed.
+          </h1>
+          <p className="text-lg text-white/70 max-w-2xl leading-relaxed">
+            Practical breakdowns of the safety topics that come up most in small operations. Not theory — what we actually find on the floor.
+          </p>
+        </div>
+      </section>
+
+      {/* Notes Grid */}
+      <section className="py-16 md:py-24 bg-white" data-testid="field-notes-grid">
+        <div className="container max-w-4xl">
+          <div className="space-y-0 border-t border-[#1C2B2B]/10">
+            {FIELD_NOTES.map((note) => (
+              <Link
+                key={note.slug}
+                to={`/field-notes/${note.slug}`}
+                className="block py-8 border-b border-[#1C2B2B]/10 group"
+                data-testid={`field-note-${note.slug}`}
+              >
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                  <div className="flex-grow">
+                    <h2 className="text-xl font-bold text-[#1C2B2B] group-hover:text-[#B8972C] transition-colors mb-1">
+                      {note.title}
+                    </h2>
+                    <p className="text-sm text-[#C9A84C] mb-3" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                      {note.subtitle}
+                    </p>
+                    <p className="text-base text-[#1C2B2B]/60 leading-relaxed mb-3">
+                      {note.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {note.topics.map((topic) => (
+                        <span key={topic} className="text-xs px-2 py-1 rounded bg-[#1C2B2B]/5 text-[#1C2B2B]/50">
+                          {topic}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <ArrowRight size={20} className="text-[#1C2B2B]/20 group-hover:text-[#B8972C] transition-colors flex-shrink-0 mt-2 hidden md:block" />
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <p className="mt-12 text-sm text-[#1C2B2B]/40 text-center">
+            New topics added monthly based on what we're seeing in the field.
+          </p>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-16 md:py-24 bg-[#0D1B2A]" data-testid="field-notes-cta">
+        <div className="container max-w-3xl text-center">
+          <p className="text-lg text-white/60 mb-6">
+            Reading about it is useful. Having someone walk your floor is better.
+          </p>
+          <Link
+            to="/request-walkthrough"
+            className="bg-[#C9A84C] hover:bg-[#B8972C] text-white font-bold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
+            data-testid="field-notes-walkthrough-cta"
+          >
+            Request a Walkthrough
+            <ArrowRight size={18} />
+          </Link>
+        </div>
+      </section>
+    </main>
+  );
+};
+
+export default FieldNotesPage;

@@ -1,0 +1,267 @@
+import React from 'react';
+import { useParams, Link, Navigate } from 'react-router-dom';
+import { ArrowRight, ArrowLeft, Download } from 'lucide-react';
+import SEO from '../components/SEO';
+
+const API = process.env.REACT_APP_BACKEND_URL;
+
+/* ── Field Note content database ── */
+const NOTES = {
+  'heat-stress': {
+    title: 'Heat Stress',
+    subtitle: 'What Actually Matters on the Floor',
+    seo: 'Heat stress safety for small operations. What gets missed, what OSHA looks for, and what to do about it.',
+    sections: {
+      whatItIs: 'Heat stress happens when the body can\'t cool itself fast enough. In warehouses, manufacturing floors, and outdoor operations, it shows up faster than most people expect — especially during summer in enclosed spaces with poor ventilation.',
+      whatGetsMissed: [
+        'No written heat illness prevention plan',
+        'Water stations too far from work areas',
+        'No acclimatization plan for new or returning workers',
+        'Break schedules not adjusted for temperature',
+        'Supervisors untrained on early warning signs',
+      ],
+      whatISee: 'I walk into facilities in July where the floor temperature is 15–20 degrees hotter than the office. Workers are sweating through shirts by 10 AM. There\'s a water cooler by the break room — 200 feet from the press line. Nobody has been trained on what to watch for, and the new hire started Monday in full PPE without an acclimatization period.',
+      checklist: [
+        'Written heat illness prevention plan in place',
+        'Water available within 50 feet of all work areas',
+        'Acclimatization plan for new and returning workers',
+        'Break frequency increases with temperature',
+        'Supervisors trained on heat illness recognition',
+        'Buddy system or check-in protocol in place',
+        'Cool-down area accessible and shaded',
+      ],
+    },
+  },
+  'forklift-safety': {
+    title: 'Forklift Safety',
+    subtitle: 'Beyond the Certification Card',
+    seo: 'Forklift safety beyond certification. What OSHA actually checks, what gets missed in daily operations, and how to fix it.',
+    sections: {
+      whatItIs: 'Forklift safety is more than a certification card. OSHA requires operator training, evaluation, daily pre-shift inspections, and pedestrian separation. Most operations have the card — but the daily practices have slipped.',
+      whatGetsMissed: [
+        'Daily pre-shift inspections not documented',
+        'No pedestrian separation plan in high-traffic areas',
+        'Operators trained once, never re-evaluated',
+        'Seatbelts not worn consistently',
+        'Speed not controlled near intersections or docks',
+      ],
+      whatISee: 'I see operators who were certified three years ago and haven\'t been re-evaluated since. Pre-shift checklists are blank or don\'t exist. Pedestrians walk through forklift lanes without a second thought. Seatbelts are tucked behind seats. When I ask about the inspection log, it\'s either missing or hasn\'t been filled out in weeks.',
+      checklist: [
+        'Operator certification current (every 3 years or after incident)',
+        'Daily pre-shift inspection forms completed and filed',
+        'Pedestrian walkways clearly marked and separated',
+        'Seatbelt use enforced and observed',
+        'Speed limits posted and enforced in high-traffic zones',
+        'Blind intersections have mirrors or warning systems',
+        'Load capacity charts visible on each unit',
+      ],
+    },
+  },
+  'electrical-safety': {
+    title: 'Electrical Access',
+    subtitle: 'The Panel Nobody Can Reach',
+    seo: 'Electrical panel safety for small operations. Blocked panels, clearance requirements, and what OSHA cites most.',
+    sections: {
+      whatItIs: 'Electrical panels require 36 inches of clearance on all sides — no exceptions. This is one of OSHA\'s most cited violations because it\'s easy to check and almost always blocked in small operations. A pallet, a shelf, a parts bin, a forklift.',
+      whatGetsMissed: [
+        'Panels blocked by inventory or equipment',
+        'Clearance zone not marked on the floor',
+        'Panel doors missing or damaged',
+        'Labels inside panel faded or incorrect',
+        'No lockout-tagout procedures for electrical maintenance',
+      ],
+      whatISee: 'In almost every facility I walk into, at least one electrical panel is partially blocked. The most common offender is a pallet leaned against the wall "temporarily." I\'ve seen panels behind shelving units that can\'t be accessed without moving product. The floor isn\'t marked, and when I ask how they\'d shut power in an emergency, the answer is usually "we\'d figure it out."',
+      checklist: [
+        '36-inch clearance maintained on all sides of panels',
+        'Floor markings indicate clearance zone',
+        'All panel doors intact and closeable',
+        'Panel directories current and legible',
+        'Lockout-tagout procedures posted and trained',
+        'No storage or equipment within clearance zone',
+        'Emergency shutoff locations known by all shift leads',
+      ],
+    },
+  },
+  'hazcom': {
+    title: 'HazCom & SDS',
+    subtitle: 'The #1 OSHA Citation',
+    seo: 'Hazard Communication compliance for small businesses. Written programs, SDS management, labeling, and training requirements.',
+    sections: {
+      whatItIs: 'Hazard Communication (HazCom) is OSHA\'s most cited standard — year after year. It requires a written program, Safety Data Sheets for every chemical on site, proper labeling on every container, and documented employee training. Most small operations have pieces of this, but not the whole thing.',
+      whatGetsMissed: [
+        'No written HazCom program',
+        'SDS binder incomplete, outdated, or inaccessible',
+        'Secondary containers missing labels',
+        'New chemicals added without updating SDS',
+        'Training not documented or not specific to site chemicals',
+      ],
+      whatISee: 'I find spray bottles with no labels, cleaning chemicals under sinks with no SDS, and "the binder" in a manager\'s office that hasn\'t been updated since 2019. Workers know they use chemicals — they don\'t know what\'s in them or where the data sheets are. The written program, if it exists, is a template downloaded and never customized.',
+      checklist: [
+        'Written HazCom program specific to your operation',
+        'SDS available for every chemical on site',
+        'SDS accessible to all employees during every shift',
+        'All containers — including secondary — properly labeled',
+        'Employee training documented with dates and names',
+        'New chemical review process in place',
+        'Chemical inventory list current and complete',
+      ],
+    },
+  },
+  'machine-guarding': {
+    title: 'Machine Guarding',
+    subtitle: 'When the Guard Gets Removed',
+    seo: 'Machine guarding compliance for small manufacturers. What OSHA requires, what gets removed, and how to fix it.',
+    sections: {
+      whatItIs: 'Machine guarding protects workers from rotating parts, flying chips, and sparks. OSHA requires guards at every point of operation, nip point, and rotating shaft. Guards get removed for maintenance, cleaning, or access — and often don\'t go back on.',
+      whatGetsMissed: [
+        'Guards removed and not replaced after maintenance',
+        'Makeshift guards that don\'t meet OSHA requirements',
+        'Interlocks bypassed or disabled',
+        'No written machine guarding assessment',
+        'New equipment installed without proper guards',
+      ],
+      whatISee: 'I find guards zip-tied in the "open" position, interlocks bypassed with tape, and belt drives exposed because "the guard was in the way." Operators know it\'s wrong — they\'ve just worked around it long enough that it feels normal. The real risk isn\'t just the citation. It\'s the amputation, the lost finger, or the recordable that changes someone\'s life.',
+      checklist: [
+        'All points of operation guarded',
+        'Belt drives, gears, and shafts enclosed',
+        'Interlocks functional and tested',
+        'Guards secure and not modified',
+        'Written machine guarding assessment on file',
+        'Employees trained on guard requirements',
+        'Post-maintenance guard verification process',
+      ],
+    },
+  },
+  'walking-surfaces': {
+    title: 'Walking Surfaces',
+    subtitle: 'Trip Hazards You Walk Past Every Day',
+    seo: 'Walking surface safety for warehouses and manufacturing. Trip hazards, housekeeping, and aisle management.',
+    sections: {
+      whatItIs: 'Walking and working surfaces are the most common source of recordable injuries in general industry. Slips, trips, and falls — from cords on the floor, hoses across walkways, uneven surfaces, spills, and blocked aisles. Simple to see. Consistently ignored.',
+      whatGetsMissed: [
+        'Cords and hoses across walkways',
+        'Aisle markings faded or missing',
+        'Spills not cleaned up promptly',
+        'Floor damage or uneven surfaces',
+        'Aisles partially blocked by pallets or product',
+      ],
+      whatISee: 'Extension cords running across the main aisle. A puddle near the dock that\'s been there for three days. Pallets stacked in the walkway because the rack was full. Aisle lines that were painted two years ago and are barely visible. Everyone walks around the hazard. Nobody fixes it because it\'s "temporary."',
+      checklist: [
+        'Aisles clear and properly marked',
+        'No cords or hoses across walkways',
+        'Spill kits accessible and used promptly',
+        'Floor surfaces level and in good condition',
+        'Pallets and product stored in designated areas only',
+        'Lighting adequate in all walking areas',
+        'Housekeeping schedule in place and followed',
+      ],
+    },
+  },
+};
+
+const FieldNoteDetailPage = () => {
+  const { slug } = useParams();
+  const note = NOTES[slug];
+
+  if (!note) return <Navigate to="/field-notes" replace />;
+
+  return (
+    <main>
+      <SEO
+        title={`${note.title} — Field Notes | GigLine Safety & Compliance`}
+        description={note.seo}
+        canonical={`/field-notes/${slug}`}
+      />
+
+      {/* Header */}
+      <section className="bg-[#0D1B2A] py-16 md:py-24" data-testid="note-header">
+        <div className="container max-w-3xl">
+          <Link to="/field-notes" className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-[#C9A84C] transition-colors mb-6" data-testid="back-to-notes">
+            <ArrowLeft size={14} /> Field Notes
+          </Link>
+          <p
+            className="uppercase tracking-[3px] text-[#C9A84C] mb-3"
+            style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }}
+          >
+            Field Note
+          </p>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-3" data-testid="note-title">
+            {note.title}
+          </h1>
+          <p className="text-lg text-white/50">{note.subtitle}</p>
+        </div>
+      </section>
+
+      {/* Content */}
+      <section className="py-12 md:py-20 bg-white" data-testid="note-content">
+        <div className="container max-w-3xl">
+          {/* What It Is */}
+          <div className="mb-12" data-testid="note-what-it-is">
+            <h2 className="text-xl font-bold text-[#1C2B2B] mb-4">What It Is</h2>
+            <p className="text-base text-[#1C2B2B]/70 leading-relaxed">{note.sections.whatItIs}</p>
+          </div>
+
+          {/* What Gets Missed */}
+          <div className="mb-12" data-testid="note-what-gets-missed">
+            <h2 className="text-xl font-bold text-[#1C2B2B] mb-4">What Gets Missed</h2>
+            <div className="space-y-3">
+              {note.sections.whatGetsMissed.map((item, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <span className="text-[#C9A84C] mt-0.5" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px' }}>//</span>
+                  <p className="text-base text-[#1C2B2B]/70">{item}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* What I See */}
+          <div className="mb-12 bg-[#F9F8F6] border-l-2 border-[#C9A84C] p-6 rounded-r" data-testid="note-what-i-see">
+            <h2 className="text-xl font-bold text-[#1C2B2B] mb-4">What I See on the Floor</h2>
+            <p className="text-base text-[#1C2B2B]/70 leading-relaxed italic">{note.sections.whatISee}</p>
+          </div>
+
+          {/* Checklist */}
+          <div className="mb-12" data-testid="note-checklist">
+            <h2 className="text-xl font-bold text-[#1C2B2B] mb-4">Quick Checklist</h2>
+            <div className="space-y-3">
+              {note.sections.checklist.map((item, i) => (
+                <label key={i} className="flex items-start gap-3 cursor-pointer group">
+                  <input type="checkbox" className="mt-1 w-4 h-4 rounded border-[#1C2B2B]/20 text-[#C9A84C] focus:ring-[#C9A84C] accent-[#C9A84C]" />
+                  <span className="text-base text-[#1C2B2B]/70 group-hover:text-[#1C2B2B] transition-colors">{item}</span>
+                </label>
+              ))}
+            </div>
+            <p className="mt-6 text-xs text-[#1C2B2B]/40">
+              Print this page or use the browser print function (Ctrl+P / Cmd+P) to save a copy.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-16 md:py-24 bg-[#0D1B2A]" data-testid="note-cta">
+        <div className="container max-w-3xl text-center">
+          <p className="text-lg text-white/60 mb-2">
+            If you're not sure how this looks in your operation —
+          </p>
+          <p className="text-lg text-white font-medium mb-8">
+            start with a walkthrough.
+          </p>
+          <Link
+            to="/request-walkthrough"
+            className="bg-[#C9A84C] hover:bg-[#B8972C] text-white font-bold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
+            data-testid="note-walkthrough-cta"
+          >
+            Request a Walkthrough
+            <ArrowRight size={18} />
+          </Link>
+          <p className="text-sm text-white/30 mt-4">
+            One visit. Clear findings. No retainer.
+          </p>
+        </div>
+      </section>
+    </main>
+  );
+};
+
+export default FieldNoteDetailPage;

@@ -5,21 +5,10 @@ import { Mail, Phone, ExternalLink } from 'lucide-react';
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Services', path: '/services' },
-    { name: 'Safety Check', path: '/safety-check' },
-    { name: 'About', path: '/about' },
-    { name: 'Contact', path: '/contact' },
-    { name: 'HazCom Starter Pack', path: '/hazcom' },
-    { name: 'Top 5 OSHA Violations', path: '/blog/top-5-osha-violations-small-manufacturing' },
-    { name: 'HazCom Requirements', path: '/blog/hazcom-requirements-small-business' },
-  ];
-
   return (
     <footer className="bg-[#1C2B2B] text-white" data-testid="footer">
       <div className="container py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-10">
           {/* Company Info */}
           <div>
             <div className="flex items-center gap-3 mb-4">
@@ -69,17 +58,47 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Navigation */}
+          {/* Quick Links */}
           <div>
             <h4 className="text-base font-semibold mb-4 text-white/90">Quick Links</h4>
             <nav aria-label="Footer navigation">
               <ul className="space-y-2">
-                {navLinks.map((link) => (
+                {[
+                  { name: 'Home', path: '/' },
+                  { name: 'Services', path: '/services' },
+                  { name: 'About', path: '/about' },
+                  { name: 'Contact', path: '/contact' },
+                ].map((link) => (
                   <li key={link.path}>
                     <Link
                       to={link.path}
                       className="text-sm text-white/60 hover:text-[#B8972C] transition-colors"
                       data-testid={`footer-link-${link.name.toLowerCase().replace(' ', '-')}`}
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+
+          {/* Resources */}
+          <div>
+            <h4 className="text-base font-semibold mb-4 text-white/90">Resources</h4>
+            <nav aria-label="Footer resources">
+              <ul className="space-y-2">
+                {[
+                  { name: 'Field Notes', path: '/field-notes' },
+                  { name: 'Safety Check', path: '/safety-check' },
+                  { name: 'HazCom Starter Pack', path: '/hazcom' },
+                  { name: 'Contact', path: '/contact' },
+                ].map((link) => (
+                  <li key={link.path + link.name}>
+                    <Link
+                      to={link.path}
+                      className="text-sm text-white/60 hover:text-[#B8972C] transition-colors"
+                      data-testid={`footer-resource-${link.name.toLowerCase().replace(/\s+/g, '-')}`}
                     >
                       {link.name}
                     </Link>
@@ -95,9 +114,9 @@ const Footer = () => {
             <p className="text-sm text-white/60 mb-4">
               For new or early-stage carriers, structured system installation is available through LaunchPath.
             </p>
-            <img 
-              src="/launchpath-logo-white.png" 
-              alt="LaunchPath" 
+            <img
+              src="/launchpath-logo-white.png"
+              alt="LaunchPath"
               className="h-8 mb-3"
             />
             <div className="space-y-2">

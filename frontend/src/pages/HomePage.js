@@ -103,18 +103,28 @@ const HomePage = () => {
                 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.15] mb-6"
                 data-testid="hero-headline"
               >
-                Safety Issues Don't
-                <br className="hidden sm:block" /> Announce Themselves.
-                <span className="block mt-3 text-[#C9A84C]">
-                  We Find Them First.
+                Safety Issues Don't Announce Themselves.{' '}
+                <span className="block mt-3">
+                  They Show Up as{' '}
+                  <span style={{ borderBottom: '2px solid #C9A84C', paddingBottom: '2px' }}>Injuries</span>,{' '}
+                  <span style={{ borderBottom: '2px solid #C9A84C', paddingBottom: '2px' }}>Fines</span>, and{' '}
+                  <span style={{ borderBottom: '2px solid #C9A84C', paddingBottom: '2px' }}>Downtime</span>.
                 </span>
               </h1>
 
               <p
-                className="text-base md:text-lg text-white/60 leading-relaxed mb-8 max-w-md"
+                className="text-base md:text-lg text-white/60 leading-relaxed mb-6 max-w-md"
                 data-testid="hero-sub"
               >
-                On-site safety walkthroughs for small manufacturers, warehouses, and contractors. One visit. A written report. No retainer.
+                Safety walkthroughs for small operations — identify exposure before it becomes operational loss.
+              </p>
+
+              <p
+                className="text-sm text-[#C9A84C] font-semibold tracking-wide uppercase mb-8"
+                style={mono}
+                data-testid="hero-positioning"
+              >
+                One engagement. A written report. No retainer.
               </p>
 
               <div className="flex flex-col sm:flex-row items-start gap-3 mb-4" data-testid="hero-ctas">

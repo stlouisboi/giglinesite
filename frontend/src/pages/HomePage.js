@@ -42,7 +42,7 @@ const IMG = {
   hero: 'https://images.unsplash.com/photo-1772298783095-be38fa901232?w=960&q=80&fit=crop&auto=format',
   grid1: 'https://images.unsplash.com/photo-1768796373634-db43bfd5f064?w=640&q=80&fit=crop&auto=format',
   grid2: 'https://images.unsplash.com/photo-1773952136583-5175e906267c?w=640&q=80&fit=crop&auto=format',
-  grid3: 'https://images.unsplash.com/photo-1528953030358-b0c7de371f1f?w=640&q=80&fit=crop&auto=format',
+  grid3: '/machine-guarding.jpg',
   grid4: 'https://images.unsplash.com/photo-1769442263053-a60acf73f00a?w=640&q=80&fit=crop&auto=format',
   proof: 'https://images.unsplash.com/photo-1644079446600-219068676743?w=1400&q=80&fit=crop&auto=format',
 };

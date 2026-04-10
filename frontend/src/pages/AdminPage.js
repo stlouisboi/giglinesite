@@ -14,6 +14,7 @@ const AdminPage = () => {
 
   useEffect(() => {
     if (token) fetchStats(token);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
   const handleLogin = async (e) => {

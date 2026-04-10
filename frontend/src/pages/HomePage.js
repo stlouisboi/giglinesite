@@ -39,7 +39,7 @@ const Reveal = ({ children, className = '', delay = 0 }) => {
 
 /* ── Stock images ── */
 const IMG = {
-  hero: 'https://images.unsplash.com/photo-1772298783095-be38fa901232?w=960&q=80&fit=crop&auto=format',
+  hero: '/cluttered-aisles.png',
   grid1: '/cluttered-aisles.png',
   grid2: '/blocked-electrical-panel.png',
   grid3: '/machine-guarding.jpg',
@@ -144,7 +144,7 @@ const HomePage = () => {
                   Take the Safety Check
                 </Link>
               </div>
-              <p className="text-xs text-white/30" style={mono} data-testid="hero-trust-line">
+              <p className="text-sm text-white/50" style={mono} data-testid="hero-trust-line">
                 No contracts. One visit. Written report.
               </p>
             </Reveal>
@@ -212,6 +212,22 @@ const HomePage = () => {
       </section>
 
       {/* ═══════════════════════════════════════════════
+          PRESSURE LINE — Pause moment
+      ═══════════════════════════════════════════════ */}
+      <section className="py-14 md:py-20 bg-white border-t border-[#1C2B2B]/05" data-testid="pressure-section">
+        <div className="container max-w-3xl text-center">
+          <Reveal>
+            <p
+              className="text-lg sm:text-xl md:text-2xl text-[#1C2B2B]/70 font-medium leading-relaxed"
+              data-testid="pressure-line"
+            >
+              Most issues aren't new. They've just gone unchecked.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════
           S3 — STATEMENT BAND
       ═══════════════════════════════════════════════ */}
       <section
@@ -260,7 +276,7 @@ const HomePage = () => {
                   What to Expect
                 </h2>
                 <p className="text-base text-[#1C2B2B]/50 leading-relaxed">
-                  Most walkthroughs for small operations fall between $500–$1,000 depending on size. You'll know your price before we schedule.
+                  Simple, direct, no disruption to your day.
                 </p>
               </Reveal>
             </div>
@@ -270,11 +286,11 @@ const HomePage = () => {
               <Reveal>
                 <div className="space-y-0 border-t border-[#1C2B2B]/10" data-testid="process-steps">
                   {[
-                    { num: '01', label: 'Request', desc: 'Tell us about your operation and what concerns you.' },
-                    { num: '02', label: 'Schedule', desc: 'We pick a time. Most visits are 60–90 minutes.' },
-                    { num: '03', label: 'Walkthrough', desc: 'We walk the floor during normal operations. No shutdown required.' },
-                    { num: '04', label: 'Report', desc: 'A short written report with photos in 24–48 hours.' },
-                    { num: '05', label: 'Action', desc: 'You decide what to fix now, later, or not at all.' },
+                    { num: '01', label: 'Request', desc: 'Tell me about your operation.' },
+                    { num: '02', label: 'Schedule', desc: 'We set a time. No disruption.' },
+                    { num: '03', label: 'Walkthrough', desc: 'I walk your floor during normal work.' },
+                    { num: '04', label: 'Report', desc: 'You get clear findings with photos.' },
+                    { num: '05', label: 'Action', desc: 'You fix what matters. Ignore what doesn\'t.' },
                   ].map((step, i) => (
                     <div
                       key={step.num}
@@ -381,11 +397,11 @@ const HomePage = () => {
             {/* Right comparison — 60% */}
             <div className="md:w-3/5">
               <Reveal>
-                <div className="grid grid-cols-2 gap-8 md:gap-12" data-testid="comparison-grid">
+                <div className="grid grid-cols-2 gap-6 md:gap-10" data-testid="comparison-grid">
                   {/* OSHA column */}
-                  <div>
+                  <div className="p-5 rounded" style={{ backgroundColor: '#F5F5F3' }}>
                     <p
-                      className="text-xs font-semibold tracking-widest text-[#1C2B2B]/30 uppercase mb-5"
+                      className="text-xs font-semibold tracking-widest text-[#1C2B2B]/25 uppercase mb-5"
                       style={mono}
                     >
                       OSHA Consultation
@@ -394,12 +410,11 @@ const HomePage = () => {
                       {[
                         'General guidance',
                         'Not based on real-time conditions',
-                        'Not focused on execution',
-                        'Weeks-long wait times',
+                        "Doesn't walk your operation",
                       ].map((item, i) => (
                         <p
                           key={i}
-                          className="text-sm text-[#1C2B2B]/35 line-through decoration-[#1C2B2B]/15"
+                          className="text-sm text-[#1C2B2B]/30 line-through decoration-[#1C2B2B]/12"
                         >
                           {item}
                         </p>
@@ -408,7 +423,7 @@ const HomePage = () => {
                   </div>
 
                   {/* GigLine column */}
-                  <div>
+                  <div className="p-5 rounded border-2 border-[#C9A84C]/20" style={{ backgroundColor: '#FDFBF5' }}>
                     <p
                       className="text-xs font-semibold tracking-widest text-[#C9A84C] uppercase mb-5"
                       style={mono}
@@ -418,13 +433,13 @@ const HomePage = () => {
                     <div className="space-y-4">
                       {[
                         'Walks your floor',
-                        'Sees real conditions',
-                        'Gives clear priorities',
-                        'Scheduled within days',
+                        "Sees what's actually happening",
+                        'Gives priorities you can act on this week',
                       ].map((item, i) => (
-                        <p key={i} className="text-sm text-[#1C2B2B]/80 font-semibold">
-                          {item}
-                        </p>
+                        <div key={i} className="flex items-start gap-2">
+                          <Check size={15} className="flex-shrink-0 mt-0.5 text-[#C9A84C]" strokeWidth={3} />
+                          <p className="text-sm text-[#1C2B2B] font-bold">{item}</p>
+                        </div>
                       ))}
                     </div>
                   </div>
@@ -570,7 +585,7 @@ const HomePage = () => {
             </h2>
 
             <div
-              className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14"
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6"
               data-testid="final-cta-buttons"
             >
               <Link
@@ -589,6 +604,10 @@ const HomePage = () => {
                 Take the Safety Check
               </Link>
             </div>
+
+            <p className="text-sm text-white/35 mb-14" style={mono} data-testid="final-price-line">
+              Most walkthroughs fall between $500–$1,000 depending on size.
+            </p>
 
             {/* Contact block */}
             <div className="w-px h-10 mx-auto mb-8" style={{ backgroundColor: 'rgba(201,168,76,0.2)' }} />

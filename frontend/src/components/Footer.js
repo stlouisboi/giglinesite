@@ -91,7 +91,6 @@ const Footer = () => {
                 {[
                   { name: 'Field Notes', path: '/field-notes' },
                   { name: 'Safety Check', path: '/safety-check' },
-                  { name: 'HazCom Starter Pack', path: '/hazcom' },
                   { name: 'Contact', path: '/contact' },
                 ].map((link) => (
                   <li key={link.path + link.name}>

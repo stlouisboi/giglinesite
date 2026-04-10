@@ -177,10 +177,10 @@ const HomePage = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6">
             {[
-              { img: IMG.grid1, caption: 'Cluttered aisles and obstructed walkways', consequence: 'Increases slip-and-fall risk during daily operations', label: 'Trip & Access Hazards' },
-              { img: IMG.grid2, caption: 'Blocked electrical panels with no clearance', consequence: 'Can delay emergency shutoff and lead to penalties', label: 'Electrical Exposure', ref: 'OSHA 1910.303' },
-              { img: IMG.grid3, caption: 'Missing guards on operating machinery', consequence: 'One of the most cited violations in general industry', label: 'Machine Guarding Gaps', ref: 'OSHA 1910.212' },
-              { img: IMG.grid4, caption: 'Fire riser blocked by pallets and debris', consequence: 'Delays response time in an emergency', label: 'Emergency Access' },
+              { img: IMG.grid1, caption: 'Cluttered aisles and obstructed walkways', consequence: 'Trip hazards — commonly cited and easy to overlook', label: 'Trip & Access Hazards' },
+              { img: IMG.grid2, caption: 'Blocked electrical panels with no clearance', consequence: 'Can delay emergency shutoff and lead to penalties', label: 'Electrical Exposure' },
+              { img: IMG.grid3, caption: 'Missing guards on operating machinery', consequence: 'One of the most cited violations in general industry', label: 'Machine Guarding Gaps' },
+              { img: IMG.grid4, caption: 'Fire riser blocked by pallets and debris', consequence: 'Delays response time when it matters most', label: 'Emergency Access' },
             ].map((item, i) => (
               <Reveal key={i} delay={i * 80}>
                 <div
@@ -204,9 +204,6 @@ const HomePage = () => {
                     </p>
                     <p className="text-sm text-white/90 font-medium mb-1">{item.caption}</p>
                     <p className="text-xs text-white/50">{item.consequence}</p>
-                    {item.ref && (
-                      <p className="text-[10px] text-white/25 mt-1.5" style={mono}>Ref: {item.ref}</p>
-                    )}
                   </div>
                 </div>
               </Reveal>
@@ -270,7 +267,7 @@ const HomePage = () => {
       {/* ═══════════════════════════════════════════════
           S4 — PROCESS  (asymmetric 40/60)
       ═══════════════════════════════════════════════ */}
-      <section className="py-20 md:py-28" style={{ backgroundColor: '#F9F8F6' }} data-testid="process-section">
+      <section className="py-24 md:py-32" style={{ backgroundColor: '#F9F8F6' }} data-testid="process-section">
         <div className="container max-w-6xl">
           <div className="flex flex-col md:flex-row gap-12 md:gap-20">
             {/* Left label — 40% */}
@@ -332,7 +329,7 @@ const HomePage = () => {
       {/* ═══════════════════════════════════════════════
           S5 — DELIVERABLE CHECKLIST  (asymmetric 40/60)
       ═══════════════════════════════════════════════ */}
-      <section className="py-20 md:py-28" style={{ backgroundColor: '#1C2B2B' }} data-testid="deliverables-section">
+      <section className="py-24 md:py-32" style={{ backgroundColor: '#1C2B2B' }} data-testid="deliverables-section">
         <div className="container max-w-6xl">
           <div className="flex flex-col md:flex-row gap-12 md:gap-20">
             {/* Left label — 40% */}
@@ -383,7 +380,7 @@ const HomePage = () => {
       {/* ═══════════════════════════════════════════════
           S6 — WHY NOT OSHA  (2-column comparison)
       ═══════════════════════════════════════════════ */}
-      <section className="py-20 md:py-28 bg-white" data-testid="comparison-section">
+      <section className="py-24 md:py-32 bg-white" data-testid="comparison-section">
         <div className="container max-w-6xl">
           <div className="flex flex-col md:flex-row gap-12 md:gap-20">
             {/* Left intro — 40% */}
@@ -496,7 +493,7 @@ const HomePage = () => {
       {/* ═══════════════════════════════════════════════
           S8 — FOUNDER  (asymmetric 35/65)
       ═══════════════════════════════════════════════ */}
-      <section className="py-20 md:py-28" style={{ backgroundColor: '#0D1B2A' }} data-testid="founder-section">
+      <section className="py-24 md:py-32" style={{ backgroundColor: '#0D1B2A' }} data-testid="founder-section">
         <div className="container max-w-6xl">
           <div className="flex flex-col md:flex-row gap-10 md:gap-16 items-start">
             {/* Left — Photo (35%) */}
@@ -542,10 +539,13 @@ const HomePage = () => {
 
                 <div className="space-y-4 mb-8">
                   <p className="text-base text-white/65 leading-relaxed">
-                    I've spent 25 years working in environments where safety was not theoretical — it was operational. Manufacturing floors. Compliance systems. Real operations with real consequences when something was missed.
+                    25 years in environments where safety was operational — not theoretical.
                   </p>
                   <p className="text-base text-white/65 leading-relaxed">
-                    GigLine was built to give small operations a clear, straightforward way to understand their risk without needing a full consulting firm.
+                    Manufacturing floors. Compliance systems. Real consequences when something was missed.
+                  </p>
+                  <p className="text-base text-white/65 leading-relaxed">
+                    GigLine gives small operations a clear way to understand their risk — without a full consulting firm.
                   </p>
                   <p className="text-base text-white/80 leading-relaxed font-medium">
                     One visit. Clear findings. No confusion.

@@ -8,7 +8,7 @@ const AboutPage = () => {
     <main data-testid="about-page">
       <SEO 
         title="About"
-        description="Built for small operations that need a clear picture of what is exposed before it becomes a citation, an injury, or a shutdown. Vince Lawrence, 25+ years safety leadership."
+        description="Built for operations that don't have time for theory — only what actually works on the floor. Vince Lawrence, 25+ years safety leadership."
         canonical="/about"
       />
 
@@ -20,7 +20,7 @@ const AboutPage = () => {
               About GigLine Safety & Compliance
             </h1>
             <p className="text-lg text-white/85 leading-relaxed">
-              Built for small operations that need a clear picture of what is exposed — before it becomes a citation, an injury, or a shutdown.
+              Built for operations that don't have time for theory — only what actually works on the floor.
             </p>
           </div>
         </div>
@@ -52,34 +52,34 @@ const AboutPage = () => {
               </h2>
               <div className="text-[#1C2B2B]/70 space-y-4 leading-relaxed">
                 <p>
-                  I have spent over 25 years working in environments where safety is not optional — manufacturing floors, warehouses, and transportation operations where mistakes have consequences.
+                  I've spent over 25 years in environments where safety isn't optional — manufacturing floors, warehouses, and transportation operations.
                 </p>
                 <p>
-                  I have worked on the floor, in leadership, and across systems. I know what OSHA looks for because I have seen what happens when those expectations are not met.
-                </p>
-                <p>
-                  Before consulting, I built and managed safety programs across operations ranging from small fabrication shops to multi-site distribution networks. I have trained supervisors, investigated incidents, written programs, and sat through the moments when something went wrong and everyone needed answers.
+                  I've worked the floor, in leadership, and across systems. I've seen what happens when expectations are not met — and how quickly small issues become real problems.
                 </p>
                 <p className="font-medium text-[#1C2B2B]">
-                  GigLine was built for a specific problem:
+                  GigLine was built for a specific gap:
                 </p>
                 <p>
-                  Small operations do not need a full-time safety department.<br />
-                  But they do need someone who can step in, identify what is exposed, and tell them what to fix first.
+                  Most small operations don't have a full-time safety department.<br />
+                  But they do need someone who can step in, walk the operation, and call out what actually matters.
                 </p>
                 <p className="font-medium text-[#1C2B2B]">
-                  That is the role.
+                  That's the role.
                 </p>
                 <div className="py-2">
-                  <p>I walk the operation.</p>
+                  <p>I walk the floor.</p>
                   <p>I review what exists.</p>
-                  <p>I identify what is missing.</p>
+                  <p>I identify what's missing.</p>
                   <p>I document what matters.</p>
                 </div>
                 <p className="font-medium text-[#1C2B2B] pt-2">
-                  No ongoing contracts.<br />
-                  No monthly retainers.<br />
-                  One engagement at a time.
+                  One visit.<br />
+                  Clear findings.<br />
+                  No contracts.
+                </p>
+                <p className="text-[#1C2B2B]/50 italic pt-4 border-t border-[#1C2B2B]/10 mt-4">
+                  Most issues aren't new. They've just gone unchecked.
                 </p>
               </div>
             </div>
@@ -122,8 +122,8 @@ const AboutPage = () => {
                   <p className="font-medium text-[#1C2B2B]">Alignment.</p>
                 </div>
                 <p>
-                  Because in most operations, the problem is not effort.<br />
-                  It is misalignment.
+                  Because in most operations, the problem isn't effort.<br />
+                  It's misalignment.
                 </p>
                 <p className="font-medium text-[#1C2B2B]">
                   And misalignment is what gets found.
@@ -186,14 +186,11 @@ const AboutPage = () => {
                 LaunchPath handles installation.
               </p>
               <p>
-                If you operate a small fleet or are building a transportation operation, the issue is often not a single gap — it is the absence of a system.
+                If you run a small fleet or are building a transportation operation, the issue is often not a single gap — it's the absence of a system.
               </p>
               <p>
-                That is what LaunchPath was built to solve.
-              </p>
-              <p>
-                GigLine is a one-time engagement to identify exposure.<br />
-                LaunchPath is a structured program to install what should have been there from the start.
+                GigLine identifies exposure.<br />
+                LaunchPath installs what should have been there from the start.
               </p>
               <p>
                 Two different problems.<br />

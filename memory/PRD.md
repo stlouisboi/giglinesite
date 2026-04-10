@@ -14,24 +14,23 @@ Build a professional service business website for GigLine Safety & Compliance (o
 - **GL-WEB-002**: SEO/Header Fixes (Formspree, sticky nav, meta tags, sitemap)
 - **GL-WEB-003**: Contact Prominence (Call Vince bar, trust cues)
 - **GL-WEB-004**: Homepage Full Structured Replacement (8 sections, locked copy)
-- **GL-WEB-005**: Homepage Visual Design Upgrade — "Inspection Standard" (April 2026)
+- **GL-WEB-005**: Homepage Visual Design Upgrade — "Inspection Standard"
 - **GL-WEB-007**: Contact Form Revisions & Internal Linking Audit
-- **GL-COPY-001**: CTA & Copy Funnel Updates — All Four Pages (April 2026)
-- **GL-SEO-001**: Full SEO Audit & Fixes (April 2026)
+- **GL-COPY-001**: CTA & Copy Funnel Updates — All Four Pages
+- **GL-SEO-001**: Full SEO Audit & Fixes
 - **GL-WEB-008**: HazCom Starter Pack ($29 Stripe product page + PDF delivery)
 - **GL-WEB-009**: Homepage Hero Redesign (Heat Stress Mockup two-column)
 - **GL-WEB-010**: Blog Posts (2 SEO-optimized articles)
 - **GL-WEB-011**: Heat Guide email gate (/heat-guide)
 - **GL-WEB-012**: OG Image for social sharing
-- **GL-WEB-013**: Homepage Rebuild — Authority-First (April 2026)
-  - Complete 11-section rebuild: Hero, Trust Strip, Field Reality, Human Layer, Why Private vs OSHA, What We Do, What You Get, Who We Work With, Testimonial, About, Final CTA
-  - Alternating light/dark sections, Playfair Display serif headings, JetBrains Mono labels
-  - Stock photos in Field Reality grid (grayscale → color on hover)
-  - Video placeholder in Human Layer (ready for embed)
-  - New `/request-walkthrough` intake page with form → Calendly post-submit
-  - Backend endpoint `POST /api/walkthrough/request` stores submissions + notifies Vince via Resend
-  - Navbar CTA updated to "Request a Walkthrough" → /request-walkthrough
-  - Sitemap & SEO pre-rendering script updated for new route
+- **GL-WEB-013**: Homepage Rebuild — Authority-First Conversion Funnel (April 2026)
+  - 9-section conversion flow: Hero → Reality → Signal → Solution → Deliverables → Objection → Proof → Founder → Final CTA
+  - "THIS IS NOT A FULL AUDIT. IT IS A SIGNAL." standalone visual emphasis section
+  - Outcome-based service descriptions ("Walk the floor. Find the gaps.")
+  - Strikethrough OSHA comparison in objection handling
+  - Full-width Vince background image proof section
+  - New `/request-walkthrough` intake page (form → Calendly post-submit)
+  - Backend `POST /api/walkthrough/request` stores leads + Resend notification to Vince
 
 ## All Integrations — Status
 | Service | Status |
@@ -46,13 +45,14 @@ Build a professional service business website for GigLine Safety & Compliance (o
 - `GET /api/safety-check/report/{submission_id}`
 - `POST /api/create-payment-intent`
 - `POST /api/email-drip/process`
-- `POST /api/hazcom/checkout` — Creates Stripe $29 checkout session
-- `GET /api/hazcom/verify?session_id=` — Validates payment for download page
-- `GET /api/hazcom/download/{filename}?session_id=` — Protected PDF download
-- `POST /api/walkthrough/request` — Intake form submission + Vince email notification
+- `POST /api/hazcom/checkout`
+- `GET /api/hazcom/verify?session_id=`
+- `GET /api/hazcom/download/{filename}?session_id=`
+- `POST /api/walkthrough/request` — Intake form + Vince email notification
+- `POST /api/heat-guide/download`
 
 ## Pages
-- `/` — Homepage (11-section authority-first rebuild)
+- `/` — Homepage (9-section conversion funnel)
 - `/services` — Services & Pricing
 - `/about` — About Vince Lawrence
 - `/contact` — Contact form
@@ -66,7 +66,7 @@ Build a professional service business website for GigLine Safety & Compliance (o
 - `/payment-success` — Stripe payment confirmation (noindex)
 
 ## Upcoming Tasks
-1. Video Embeds (P1) — User has a 30-45s video for the Human Layer section placeholder
+1. Video Embeds (P1) — User has a 30-45s video for the proof section placeholder
 2. Ad Tracking & Analytics (P1) — Google Analytics, FB Pixel, Google Ads conversion tracking
 
 ## Deployment Notes

@@ -80,13 +80,14 @@ class CheckoutRequest(BaseModel):
 class SafetyCheckSubmission(BaseModel):
     name: str
     company: str
-    phone: str
+    phone: str = ""
     email: str
-    operation_type: str
+    role: str = ""
+    operation_type: str = ""
     employee_count: str = ""
     score_display: str
     score_gaps: int
-    concerned_question: str
+    concerned_question: str = ""
     what_pushed: str = ""
     answers: Dict[str, str]
 
@@ -684,6 +685,7 @@ async def submit_safety_check(submission: SafetyCheckSubmission):
         "company": submission.company,
         "phone": submission.phone,
         "email": submission.email,
+        "role": submission.role,
         "operation_type": submission.operation_type,
         "employee_count": submission.employee_count,
         "score_display": submission.score_display,
@@ -806,7 +808,7 @@ async def submit_safety_check(submission: SafetyCheckSubmission):
         email_payload = {
             "from": SENDER_EMAIL,
             "to": [VINCE_EMAIL],
-            "subject": f"GigLine Safety Check — {submission.operation_type} — {submission.score_gaps} gaps",
+            "subject": f"{'[HIGH RISK] ' if score_level == 'HIGH' else ''}GigLine Safety Check — {submission.company} — {submission.score_gaps} gaps",
             "html": vince_html,
         }
         if pdf_b64:

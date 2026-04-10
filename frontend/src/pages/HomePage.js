@@ -78,7 +78,7 @@ const HomePage = () => {
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row items-start gap-4" data-testid="hero-ctas">
+            <div className="flex flex-col sm:flex-row items-start gap-4 mb-5" data-testid="hero-ctas">
               <Link
                 to="/request-walkthrough"
                 className="bg-[#C9A84C] hover:bg-[#B8972C] text-white font-bold px-10 py-5 rounded text-lg transition-colors inline-flex items-center gap-2 shadow-lg shadow-[#C9A84C]/20"
@@ -95,6 +95,9 @@ const HomePage = () => {
                 Take the Safety Check
               </Link>
             </div>
+            <p className="text-sm text-white/40" data-testid="hero-trust-line">
+              No contracts. One visit. Written report.
+            </p>
           </Reveal>
         </div>
       </section>
@@ -247,6 +250,56 @@ const HomePage = () => {
                 View pricing and details <ArrowRight size={14} />
               </Link>
             </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          4B. WHAT TO EXPECT — The process
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-20 md:py-28" style={{ backgroundColor: '#F9F8F6' }} data-testid="expect-section">
+        <div className="container max-w-3xl">
+          <Reveal>
+            <p
+              className="uppercase tracking-[3px] text-[#C9A84C] mb-4"
+              style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }}
+            >
+              The Process
+            </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-10 leading-tight" data-testid="expect-headline">
+              What to Expect
+            </h2>
+          </Reveal>
+
+          <Reveal>
+            <div className="space-y-0" data-testid="expect-steps">
+              {[
+                { num: '01', label: 'Request', line: 'Tell me about your shop.' },
+                { num: '02', label: 'Schedule', line: "We pick a time. Most visits are 60\u201390 minutes." },
+                { num: '03', label: 'Walkthrough', line: 'We walk the floor during normal operations.' },
+                { num: '04', label: 'Report', line: 'You get a short written report with photos in 24\u201348 hours.' },
+                { num: '05', label: 'Action', line: 'You decide what to fix now, later, or not at all.' },
+              ].map((step, i) => (
+                <div key={step.num} className="flex items-start gap-6 py-5 border-b border-[#1C2B2B]/10" data-testid={`expect-step-${i}`}>
+                  <span
+                    className="flex-shrink-0 mt-0.5"
+                    style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '13px', color: '#C9A84C', fontWeight: 600 }}
+                  >
+                    {step.num}
+                  </span>
+                  <div>
+                    <p className="text-base font-bold text-[#1C2B2B] mb-1">{step.label}</p>
+                    <p className="text-base text-[#1C2B2B]/60">{step.line}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal>
+            <p className="mt-8 text-sm text-[#1C2B2B]/40">
+              Most walkthroughs for small operations fall between $500\u2013$1,000 depending on size. You'll know your price before we schedule.
+            </p>
           </Reveal>
         </div>
       </section>

@@ -8,7 +8,7 @@ GigLine Safety Check — Email Follow-Up Drip System
 """
 
 SITE_URL = "https://www.giglinecompliance.com"
-CTA_LINK = f'<a href="{SITE_URL}/contact" style="color:#B8972C;font-weight:bold;">Request a Walkthrough or Review</a>'
+CTA_LINK = f'<a href="{SITE_URL}/request-walkthrough" style="color:#B8972C;font-weight:bold;">Request a Walkthrough</a>'
 
 SIGNATURE = """<br>
 <p style="margin:0;">&mdash; Vince</p>

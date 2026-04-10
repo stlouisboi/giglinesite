@@ -39,11 +39,11 @@ const Reveal = ({ children, className = '', delay = 0 }) => {
 
 /* ── Stock images ── */
 const IMG = {
-  hero: '/hero-blocked-exit.png',
-  grid1: '/cluttered-aisles.png',
-  grid2: '/blocked-electrical-panel.png',
+  hero: '/hero-blocked-exit.jpg',
+  grid1: '/cluttered-aisles.jpg',
+  grid2: '/blocked-electrical-panel.jpg',
   grid3: '/machine-guarding.jpg',
-  grid4: '/blocked-fire-riser.png',
+  grid4: '/blocked-fire-riser.jpg',
   proof: 'https://images.unsplash.com/photo-1644079446600-219068676743?w=1400&q=80&fit=crop&auto=format',
 };
 
@@ -490,7 +490,7 @@ const HomePage = () => {
             <div className="w-full md:w-[35%] flex-shrink-0">
               <Reveal>
                 <img
-                  src="/vince-portrait.png"
+                  src="/vince-portrait.jpg"
                   alt="Vince Lawrence — Founder, GigLine Safety & Compliance"
                   className="w-full rounded"
                   data-testid="founder-photo"

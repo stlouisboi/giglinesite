@@ -494,6 +494,14 @@ async def download_hazcom_file(filename: str, session_id: str, http_request: Req
     if not filepath.exists():
         raise HTTPException(status_code=404, detail="File not found on server")
     
+    # Track the download
+    await db.download_events.insert_one({
+        "type": "hazcom_pdf",
+        "filename": filename,
+        "session_id": session_id,
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+    })
+    
     return FileResponse(
         path=str(filepath),
         filename=filename,
@@ -593,6 +601,13 @@ async def submit_heat_guide(request: HeatGuideRequest):
     await db.heat_guide_leads.insert_one({
         "email": email,
         "created_at": datetime.now(timezone.utc).isoformat()
+    })
+    
+    # Track the download
+    await db.download_events.insert_one({
+        "type": "heat_guide",
+        "email": email,
+        "timestamp": datetime.now(timezone.utc).isoformat(),
     })
     
     # Send PDF via Resend
@@ -778,23 +793,22 @@ async def submit_safety_check(submission: SafetyCheckSubmission):
     vince_html = f"""
     <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;">
       <h2 style="color:#1C2B2B;border-bottom:2px solid #B8972C;padding-bottom:8px;">
-        GigLine Safety Check Submission
+        Safety Check — {submission.score_gaps}/6 Gaps — {score_level}
       </h2>
       <table style="width:100%;margin:16px 0;">
         <tr><td style="padding:4px 0;color:#666;">Name:</td><td style="padding:4px 0;font-weight:bold;">{submission.name}</td></tr>
         <tr><td style="padding:4px 0;color:#666;">Company:</td><td style="padding:4px 0;font-weight:bold;">{submission.company}</td></tr>
-        <tr><td style="padding:4px 0;color:#666;">Operation:</td><td style="padding:4px 0;font-weight:bold;">{submission.operation_type}</td></tr>
-        <tr><td style="padding:4px 0;color:#666;">Employees:</td><td style="padding:4px 0;">{submission.employee_count or 'Not provided'}</td></tr>
-        <tr><td style="padding:4px 0;color:#666;">Phone:</td><td style="padding:4px 0;"><a href="tel:{submission.phone}">{submission.phone}</a></td></tr>
+        <tr><td style="padding:4px 0;color:#666;">Role:</td><td style="padding:4px 0;font-weight:bold;">{submission.role or 'Not provided'}</td></tr>
+        <tr><td style="padding:4px 0;color:#666;">Phone:</td><td style="padding:4px 0;"><a href="tel:{submission.phone}">{submission.phone or 'Not provided'}</a></td></tr>
         <tr><td style="padding:4px 0;color:#666;">Email:</td><td style="padding:4px 0;"><a href="mailto:{submission.email}">{submission.email}</a></td></tr>
       </table>
-      <h3 style="color:#1C2B2B;">Score: {submission.score_gaps} gaps ({score_level})</h3>
+      <div style="background:{'#c0392b' if score_level=='HIGH' else '#e67e22' if score_level=='MEDIUM' else '#27ae60'};color:#fff;padding:12px 16px;border-radius:4px;margin:12px 0;font-size:18px;font-weight:bold;">
+        Risk Score: {submission.score_gaps} / 6 &mdash; {score_level}
+      </div>
       <table style="width:100%;border-collapse:collapse;margin:12px 0;">
         <tr style="background:#1C2B2B;color:#fff;"><th style="padding:8px 12px;text-align:left;">Question</th><th style="padding:8px 12px;text-align:left;">Answer</th></tr>
         {answers_html}
       </table>
-      <p style="color:#666;"><strong>Most concerned about:</strong> {submission.concerned_question}</p>
-      <p style="color:#666;"><strong>What pushed them:</strong> {submission.what_pushed or 'Not provided'}</p>
       <hr style="border:none;border-top:1px solid #ddd;margin:20px 0;">
       <p style="color:#999;font-size:12px;">Submitted {timestamp.strftime('%B %d, %Y at %I:%M %p')} UTC</p>
     </div>
@@ -808,7 +822,7 @@ async def submit_safety_check(submission: SafetyCheckSubmission):
         email_payload = {
             "from": SENDER_EMAIL,
             "to": [VINCE_EMAIL],
-            "subject": f"{'[HIGH RISK] ' if score_level == 'HIGH' else ''}GigLine Safety Check — {submission.company} — {submission.score_gaps} gaps",
+            "subject": f"{'[HIGH RISK] ' if score_level == 'HIGH' else ''}Safety Check [{submission.score_gaps}/6] — {submission.company} — {score_level}",
             "html": vince_html,
         }
         if pdf_b64:
@@ -861,6 +875,12 @@ async def get_safety_check_submissions():
 async def get_safety_check_report(submission_id: str):
     """Download PDF report for a submission"""
     from fastapi.responses import FileResponse
+    # Track the download
+    await db.download_events.insert_one({
+        "type": "safety_check_pdf",
+        "submission_id": submission_id,
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+    })
     pdf_path = f"/app/backend/reports/{submission_id}.pdf"
     if not os.path.exists(pdf_path):
         # Try to regenerate
@@ -966,6 +986,152 @@ async def drip_scheduler():
         await asyncio.sleep(1800)  # 30 minutes
 
 
+# ============== ADMIN DASHBOARD ROUTES ==============
+
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "gigline2026")
+
+@api_router.post("/admin/login")
+async def admin_login(body: dict):
+    """Simple password auth for admin dashboard"""
+    if body.get("password") != ADMIN_PASSWORD:
+        raise HTTPException(status_code=401, detail="Invalid password")
+    return {"status": "ok", "token": ADMIN_PASSWORD}
+
+@api_router.get("/admin/stats")
+async def admin_stats(token: str = ""):
+    """Dashboard stats: leads, downloads, risk breakdown"""
+    if token != ADMIN_PASSWORD:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+    now = datetime.now(timezone.utc)
+    seven_days_ago = (now - timedelta(days=7)).isoformat()
+    thirty_days_ago = (now - timedelta(days=30)).isoformat()
+
+    # Safety Check submissions
+    total_checks = await db.safety_check_submissions.count_documents({})
+    checks_7d = await db.safety_check_submissions.count_documents({"timestamp": {"$gte": seven_days_ago}})
+    checks_30d = await db.safety_check_submissions.count_documents({"timestamp": {"$gte": thirty_days_ago}})
+    high_risk = await db.safety_check_submissions.count_documents({"score_level": "HIGH"})
+    medium_risk = await db.safety_check_submissions.count_documents({"score_level": "MEDIUM"})
+    low_risk = await db.safety_check_submissions.count_documents({"score_level": "LOW"})
+
+    # Walkthrough requests
+    total_walkthroughs = await db.walkthrough_requests.count_documents({})
+    walkthroughs_7d = await db.walkthrough_requests.count_documents({"timestamp": {"$gte": seven_days_ago}})
+
+    # Downloads
+    total_downloads = await db.download_events.count_documents({})
+    sc_downloads = await db.download_events.count_documents({"type": "safety_check_pdf"})
+    hazcom_downloads = await db.download_events.count_documents({"type": "hazcom_pdf"})
+    heat_downloads = await db.download_events.count_documents({"type": "heat_guide"})
+    downloads_7d = await db.download_events.count_documents({"timestamp": {"$gte": seven_days_ago}})
+
+    # Heat guide leads
+    heat_leads = await db.heat_guide_leads.count_documents({})
+
+    return {
+        "safety_checks": {"total": total_checks, "last_7d": checks_7d, "last_30d": checks_30d},
+        "risk_breakdown": {"high": high_risk, "medium": medium_risk, "low": low_risk},
+        "walkthrough_requests": {"total": total_walkthroughs, "last_7d": walkthroughs_7d},
+        "downloads": {
+            "total": total_downloads,
+            "last_7d": downloads_7d,
+            "safety_check_pdfs": sc_downloads,
+            "hazcom_pdfs": hazcom_downloads,
+            "heat_guide": heat_downloads,
+        },
+        "heat_guide_leads": heat_leads,
+    }
+
+@api_router.get("/admin/leads")
+async def admin_leads(token: str = "", limit: int = 50):
+    """Recent leads: safety checks + walkthrough requests"""
+    if token != ADMIN_PASSWORD:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+    checks = await db.safety_check_submissions.find({}, {"_id": 0}).sort("timestamp", -1).to_list(limit)
+    walkthroughs = await db.walkthrough_requests.find({}, {"_id": 0}).sort("timestamp", -1).to_list(limit)
+    heat_leads = await db.heat_guide_leads.find({}, {"_id": 0}).sort("created_at", -1).to_list(limit)
+
+    return {"safety_checks": checks, "walkthrough_requests": walkthroughs, "heat_guide_leads": heat_leads}
+
+@api_router.get("/admin/downloads")
+async def admin_downloads(token: str = "", limit: int = 100):
+    """Recent download events"""
+    if token != ADMIN_PASSWORD:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+    events = await db.download_events.find({}, {"_id": 0}).sort("timestamp", -1).to_list(limit)
+    return {"events": events}
+
+@api_router.post("/admin/send-summary")
+async def send_admin_summary(token: str = ""):
+    """Manually trigger the weekly summary email to Vince"""
+    if token != ADMIN_PASSWORD:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    await send_weekly_summary()
+    return {"status": "sent"}
+
+async def send_weekly_summary():
+    """Send weekly activity summary email to Vince"""
+    now = datetime.now(timezone.utc)
+    seven_days_ago = (now - timedelta(days=7)).isoformat()
+
+    checks_7d = await db.safety_check_submissions.count_documents({"timestamp": {"$gte": seven_days_ago}})
+    high_7d = await db.safety_check_submissions.count_documents({"timestamp": {"$gte": seven_days_ago}, "score_level": "HIGH"})
+    walkthroughs_7d = await db.walkthrough_requests.count_documents({"timestamp": {"$gte": seven_days_ago}})
+    downloads_7d = await db.download_events.count_documents({"timestamp": {"$gte": seven_days_ago}})
+    sc_dl_7d = await db.download_events.count_documents({"timestamp": {"$gte": seven_days_ago}, "type": "safety_check_pdf"})
+    hazcom_dl_7d = await db.download_events.count_documents({"timestamp": {"$gte": seven_days_ago}, "type": "hazcom_pdf"})
+    heat_dl_7d = await db.download_events.count_documents({"timestamp": {"$gte": seven_days_ago}, "type": "heat_guide"})
+
+    html = f"""
+    <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;">
+      <h2 style="color:#1C2B2B;border-bottom:2px solid #B8972C;padding-bottom:8px;">
+        GigLine Weekly Summary
+      </h2>
+      <p style="color:#666;">Week ending {now.strftime('%B %d, %Y')}</p>
+
+      <h3 style="color:#1C2B2B;margin-top:20px;">Leads</h3>
+      <table style="width:100%;border-collapse:collapse;">
+        <tr><td style="padding:6px 0;color:#666;">Safety Checks completed</td><td style="font-weight:bold;text-align:right;">{checks_7d}</td></tr>
+        <tr><td style="padding:6px 0;color:#c0392b;font-weight:bold;">  — HIGH risk</td><td style="font-weight:bold;text-align:right;color:#c0392b;">{high_7d}</td></tr>
+        <tr><td style="padding:6px 0;color:#666;">Walkthrough requests</td><td style="font-weight:bold;text-align:right;">{walkthroughs_7d}</td></tr>
+      </table>
+
+      <h3 style="color:#1C2B2B;margin-top:20px;">Downloads</h3>
+      <table style="width:100%;border-collapse:collapse;">
+        <tr><td style="padding:6px 0;color:#666;">Safety Check PDFs</td><td style="font-weight:bold;text-align:right;">{sc_dl_7d}</td></tr>
+        <tr><td style="padding:6px 0;color:#666;">HazCom Starter Packs</td><td style="font-weight:bold;text-align:right;">{hazcom_dl_7d}</td></tr>
+        <tr><td style="padding:6px 0;color:#666;">Heat Guide downloads</td><td style="font-weight:bold;text-align:right;">{heat_dl_7d}</td></tr>
+        <tr style="border-top:1px solid #ddd;"><td style="padding:6px 0;font-weight:bold;">Total downloads</td><td style="font-weight:bold;text-align:right;">{downloads_7d}</td></tr>
+      </table>
+
+      <hr style="border:none;border-top:1px solid #ddd;margin:20px 0;">
+      <p style="color:#999;font-size:12px;">Automated summary from GigLine Safety & Compliance</p>
+    </div>
+    """
+
+    try:
+        resend.Emails.send({
+            "from": SENDER_EMAIL,
+            "to": [VINCE_EMAIL],
+            "subject": f"GigLine Weekly Summary — {checks_7d} checks, {walkthroughs_7d} walkthrough requests",
+            "html": html,
+        })
+        logger.info("Weekly summary email sent")
+    except Exception as e:
+        logger.error(f"Weekly summary email failed: {e}")
+
+async def weekly_summary_scheduler():
+    """Send weekly summary every Monday at 8 AM EST"""
+    while True:
+        now = datetime.now(timezone.utc)
+        # Check if Monday and ~13:00 UTC (8 AM EST)
+        if now.weekday() == 0 and now.hour == 13 and now.minute < 30:
+            await send_weekly_summary()
+        await asyncio.sleep(1800)  # Check every 30 min
+
 # Include the router in the main app
 app.include_router(api_router)
 
@@ -986,9 +1152,11 @@ logger = logging.getLogger(__name__)
 
 @app.on_event("startup")
 async def startup_event():
-    """Start the drip email scheduler"""
+    """Start the drip email scheduler and weekly summary"""
     asyncio.create_task(drip_scheduler())
+    asyncio.create_task(weekly_summary_scheduler())
     logger.info("Drip email scheduler started (runs every 30 minutes)")
+    logger.info("Weekly summary scheduler started (runs Monday 8 AM EST)")
 
 @app.on_event("shutdown")
 async def shutdown_db_client():

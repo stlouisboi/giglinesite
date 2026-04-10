@@ -1,37 +1,30 @@
 # GigLine Safety & Compliance — PRD
 
 ## Original Problem Statement
-Build a professional service business website for GigLine Safety & Compliance (Vince Lawrence, Kernersville, NC). Direct-response marketing site designed to get small operators (manufacturing, warehouse, contractor, fleet) to request a paid safety walkthrough. Full-stack app with FastAPI/MongoDB backend.
+Build a professional service business website for GigLine Safety & Compliance (Vince Lawrence, Kernersville, NC). Direct-response marketing site designed to get small operators to request paid safety walkthroughs. Full-stack app with FastAPI/MongoDB backend.
 
 ## Tech Stack
-- **Frontend**: React (CRA) + Tailwind CSS + Craco + JetBrains Mono (Google Fonts)
+- **Frontend**: React (CRA) + Tailwind CSS + Craco + JetBrains Mono
 - **Backend**: FastAPI + MongoDB (motor) + ReportLab (PDF) + Resend (Email)
-- **Deployment**: Vercel (via GitHub, manual redeploy required)
+- **Deployment**: Vercel (via GitHub, manual redeploy)
 - **Services**: Formspree, Stripe (LIVE), Calendly (LIVE), Resend (LIVE)
 
 ## Completed Specs
-- **GL-WEB-001**: Safety Check Tool
-- **GL-WEB-002**: SEO/Header Fixes
-- **GL-WEB-003**: Contact Prominence
-- **GL-WEB-004–009**: Homepage iterations, visual upgrades, hero redesigns
-- **GL-COPY-001**: CTA & Copy Funnel Updates
-- **GL-SEO-001**: Full SEO Audit & Fixes
-- **GL-WEB-008**: HazCom Starter Pack ($29 Stripe)
-- **GL-WEB-010**: Blog Posts (2 SEO articles)
-- **GL-WEB-011**: Heat Guide email gate (/heat-guide — accessible but not featured on homepage)
-- **GL-WEB-012**: OG Image for social sharing
+- **GL-WEB-001–012**: Safety Check, SEO, Contact, Homepage iterations, HazCom, Blog, Heat Guide, OG Image
 - **GL-WEB-013**: Homepage — 9-Section Conversion Funnel
 - **GL-WEB-014**: Homepage Polish + UTM Tracking
-- **GL-WEB-015**: Conversion Overhaul (April 2026)
-  - **Safety Check 3-Phase Funnel**: Questions → Email Gate → Dedicated Results Page
-    - Email gate: Name*, Company*, Email*, Phone (opt), Role (opt dropdown)
-    - Results: "Here's Where Your Exposure Probably Is" + flagged topics + explanations + strong conversion CTA
-    - Risk tagging: LOW (0-1 gaps), MEDIUM (2-3), HIGH (4+)
-    - HIGH risk → [HIGH RISK] prefix in Vince email notification
-  - **Homepage "What to Expect"**: 5-step process section after services
-  - **Pricing clarity line**: "$500–$1,000" near walkthrough CTAs
-  - **Hero trust line**: "No contracts. One visit. Written report."
-  - **Email drip CTA** updated from /contact → /request-walkthrough
+- **GL-WEB-015**: Safety Check 3-Phase Funnel + Homepage "What to Expect" + Pricing + Trust Line
+- **GL-WEB-016**: Admin Dashboard + Download Tracking + Weekly Email Summary (April 2026)
+  - Password-protected admin dashboard at `/admin`
+  - 3 tabs: Overview (stats), Leads (tables), Downloads (event log)
+  - Overview shows: Lead counts, Risk Breakdown (HIGH/MEDIUM/LOW), Download counts
+  - Leads tab: Safety Check submissions with Score/Risk, Walkthrough Requests with UTM source, Heat Guide Leads
+  - Downloads tab: Event log for Safety Check PDFs, HazCom Packs, Heat Guides
+  - Download tracking on all 3 PDF endpoints (safety_check, hazcom, heat_guide)
+  - Risk Score [X/6] in Vince notification email subject line
+  - Role field in Vince email body
+  - Weekly email summary every Monday 8 AM EST (leads, risk breakdown, download counts)
+  - Manual "Send Weekly Summary" button in admin header
 
 ## Conversion Flow
 ```
@@ -40,29 +33,38 @@ Homepage → Take the Safety Check → 6 Questions → Email Gate → Results �
 ```
 
 ## Key API Endpoints
-- `POST /api/safety-check/submit` — 3-phase funnel submission (with role, risk tagging)
-- `GET /api/safety-check/report/{id}` — PDF download
+- `POST /api/safety-check/submit` — 3-phase funnel submission
+- `GET /api/safety-check/report/{id}` — PDF download (tracked)
 - `POST /api/walkthrough/request` — Intake form + UTM + Vince notification
 - `POST /api/hazcom/checkout` — Stripe $29 checkout
-- `GET /api/hazcom/verify?session_id=` — Payment validation
-- `POST /api/heat-guide/download` — Email gate + PDF delivery
+- `GET /api/hazcom/download/{filename}?session_id=` — HazCom PDF download (tracked)
+- `POST /api/heat-guide/submit` — Email gate + PDF delivery (tracked)
+- `POST /api/admin/login` — Admin auth
+- `GET /api/admin/stats?token=` — Dashboard stats
+- `GET /api/admin/leads?token=` — Lead tables
+- `GET /api/admin/downloads?token=` — Download events
+- `POST /api/admin/send-summary?token=` — Manual weekly email
 
 ## Pages
-- `/` — Homepage (10 sections: Hero, Reality, Signal, Solution, What to Expect, Deliverables, Objection, Proof, Founder, Final CTA)
+- `/` — Homepage (10 sections)
 - `/services` — Services & Pricing
 - `/about` — About Vince Lawrence
 - `/contact` — Contact form
-- `/safety-check` — 3-phase Safety Check (questions → gate → results)
-- `/request-walkthrough` — Intake form → Calendly scheduling
+- `/safety-check` — 3-phase Safety Check funnel
+- `/request-walkthrough` — Intake form → Calendly
 - `/hazcom` — HazCom Starter Pack ($29)
 - `/heat-guide` — Lead magnet (accessible, not homepage-featured)
+- `/admin` — Password-protected admin dashboard
 - `/blog/top-5-osha-violations-small-manufacturing`
 - `/blog/hazcom-requirements-small-business`
 
 ## DB Collections
 - `safety_check_submissions`: name, company, phone, email, role, score_gaps, score_level, answers, timestamp
-- `email_drip_queue`: submission_id, emails array with sequence/timing
 - `walkthrough_requests`: name, company, operation_type, location, description, utm_*, status, timestamp
+- `download_events`: type (safety_check_pdf/hazcom_pdf/heat_guide), timestamp, metadata
+- `heat_guide_leads`: email, created_at
+- `hazcom_deliveries`: session_id, email, sent_at
+- `email_drip_queue`: submission_id, emails array with sequence/timing
 
 ## Upcoming Tasks
 1. Video Embeds (P1) — Replace proof section placeholder
@@ -71,3 +73,4 @@ Homepage → Take the Safety Check → 6 Questions → Email Gate → Results �
 ## Deployment Notes
 - Save to Github → Manually Redeploy in Vercel dashboard
 - Build: `yarn build` (runs `craco build`), Root: `frontend`
+- Admin password: stored in backend/.env as ADMIN_PASSWORD

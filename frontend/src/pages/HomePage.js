@@ -124,7 +124,7 @@ const HomePage = () => {
                 style={mono}
                 data-testid="hero-positioning"
               >
-                One visit. $650 flat. No retainer.
+                One visit. Starting at $650. No retainer.
               </p>
 
               <div className="flex flex-col sm:flex-row items-start gap-3 mb-4" data-testid="hero-ctas">
@@ -645,7 +645,7 @@ const HomePage = () => {
             </div>
 
             <p className="text-sm text-white/35 mb-14" style={mono} data-testid="final-price-line">
-              Most walkthroughs fall between $500–$1,000 depending on size.
+              Most walkthroughs start at $650 depending on size.
             </p>
 
             {/* Contact block */}

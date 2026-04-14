@@ -15,8 +15,16 @@ def init_stripe():
 
 
 async def create_checkout(amount_cents, currency, success_url, cancel_url, metadata=None):
-    """Create a Stripe Checkout Session."""
+    """Create a Stripe Checkout Session. 
+    Note: amount_cents may actually be in dollars from SERVICE_PACKAGES — 
+    we convert to cents if value looks like dollars (< 10000).
+    """
     init_stripe()
+    # SERVICE_PACKAGES stores amounts in dollars (e.g., 650.00)
+    # Stripe needs cents (e.g., 65000)
+    amount = int(amount_cents)
+    if amount < 10000:  # Likely dollars, not cents
+        amount = amount * 100
     try:
         session = stripe.checkout.Session.create(
             payment_method_types=['card'],
@@ -26,7 +34,7 @@ async def create_checkout(amount_cents, currency, success_url, cancel_url, metad
                     'product_data': {
                         'name': metadata.get('service_name', 'GigLine Service') if metadata else 'GigLine Service',
                     },
-                    'unit_amount': int(amount_cents),
+                    'unit_amount': amount,
                 },
                 'quantity': 1,
             }],

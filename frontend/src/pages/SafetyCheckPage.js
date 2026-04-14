@@ -316,7 +316,7 @@ const SafetyCheckPage = () => {
                 One visit. Clear findings. No retainer.
               </p>
               <p className="text-sm text-white/40 mt-1">
-                Most walkthroughs for small operations fall between $500–$1,000 depending on size. You'll know your price before we schedule.
+                Most walkthroughs start at $650 depending on size. You'll know your price before we schedule.
               </p>
             </div>
 

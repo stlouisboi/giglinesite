@@ -341,8 +341,9 @@ async def create_checkout_session(request: CheckoutRequest, http_request: Reques
         }
         
     except Exception as e:
-        logger.error(f"Stripe checkout error: {str(e)}")
-        raise HTTPException(status_code=500, detail="Failed to create checkout session")
+        import traceback
+        logger.error(f"Stripe checkout error: {str(e)}\n{traceback.format_exc()}")
+        raise HTTPException(status_code=500, detail=f"Failed to create checkout session: {str(e)}")
 
 @api_router.get("/payments/status/{session_id}")
 async def get_payment_status(session_id: str, http_request: Request):

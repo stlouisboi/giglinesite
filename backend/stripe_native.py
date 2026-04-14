@@ -26,7 +26,7 @@ async def create_checkout(amount_cents, currency, success_url, cancel_url, metad
                     'product_data': {
                         'name': metadata.get('service_name', 'GigLine Service') if metadata else 'GigLine Service',
                     },
-                    'unit_amount': amount_cents,
+                    'unit_amount': int(amount_cents),
                 },
                 'quantity': 1,
             }],

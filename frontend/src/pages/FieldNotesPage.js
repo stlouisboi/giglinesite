@@ -46,6 +46,34 @@ const FIELD_NOTES = [
     description: 'The most common source of recordable injuries in general industry. Cords, hoses, uneven floors, and blocked aisles.',
     topics: ['housekeeping', 'aisle markings', 'floor conditions'],
   },
+  {
+    slug: 'lockout-tagout',
+    title: 'Lockout/Tagout (LOTO)',
+    subtitle: 'The Step That Gets Skipped',
+    description: 'Energy isolation during maintenance. Top 5 OSHA citation every year. Written procedures, locks, training, and annual inspections.',
+    topics: ['energy isolation', 'written procedures', 'annual inspections'],
+  },
+  {
+    slug: 'emergency-action-plans',
+    title: 'Emergency Action Plans',
+    subtitle: 'What Happens When the Alarm Goes Off',
+    description: 'Exit routes, fire extinguishers, evacuation procedures. Most small operations have a fire extinguisher and call that a plan.',
+    topics: ['evacuation procedures', 'fire extinguishers', 'exit routes'],
+  },
+  {
+    slug: 'ppe-assessment',
+    title: 'PPE Assessment & Use',
+    subtitle: 'More Than Just Handing Out Glasses',
+    description: 'OSHA requires a written hazard assessment, proper selection, and documented training. Not just buying safety glasses.',
+    topics: ['hazard assessment', 'PPE selection', 'documented training'],
+  },
+  {
+    slug: 'fall-protection',
+    title: 'Fall Protection',
+    subtitle: 'It\'s Not Just a Roofing Problem',
+    description: 'Mezzanines, loading docks, elevated platforms. The 4-foot rule applies to every warehouse with height exposure.',
+    topics: ['mezzanines', 'loading docks', 'guardrails'],
+  },
 ];
 
 const FieldNotesPage = () => {

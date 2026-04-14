@@ -116,7 +116,7 @@ const HomePage = () => {
                 className="text-base md:text-lg text-white/60 leading-relaxed mb-6 max-w-md"
                 data-testid="hero-sub"
               >
-                Safety walkthroughs for small operations — identify exposure before it becomes operational loss.
+                One OSHA citation runs $16,550. A Safety Walkthrough finds your exposures first — before an inspector does. You leave with a written report and a clear fix list.
               </p>
 
               <p
@@ -124,7 +124,7 @@ const HomePage = () => {
                 style={mono}
                 data-testid="hero-positioning"
               >
-                One engagement. A written report. No retainer.
+                One visit. $650 flat. No retainer.
               </p>
 
               <div className="flex flex-col sm:flex-row items-start gap-3 mb-4" data-testid="hero-ctas">

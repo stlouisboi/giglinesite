@@ -1,6 +1,7 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import { trackPageView } from './utils/analytics';
 import ScrollToTop from './components/ScrollToTop';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -23,10 +24,19 @@ import FieldNotesPage from './pages/FieldNotesPage';
 import FieldNoteDetailPage from './pages/FieldNoteDetailPage';
 import './App.css';
 
+function RouteTracker() {
+  const location = useLocation();
+  useEffect(() => {
+    trackPageView(location.pathname, document.title);
+  }, [location]);
+  return null;
+}
+
 function App() {
   return (
     <HelmetProvider>
       <Router>
+        <RouteTracker />
         <ScrollToTop />
         <div className="flex flex-col min-h-screen">
           <Navbar />

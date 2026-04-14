@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ExternalLink, Check } from 'lucide-react';
+import { trackServiceBooking } from '../utils/analytics';
 import BookingModal, { serviceConfig } from '../components/BookingModal';
 import SEO from '../components/SEO';
 
@@ -75,6 +76,7 @@ const ServicesPage = () => {
 
   const openBooking = (serviceKey) => {
     setSelectedService(serviceConfig[serviceKey]);
+    trackServiceBooking(serviceKey);
     setModalOpen(true);
   };
 

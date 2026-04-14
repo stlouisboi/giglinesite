@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { ArrowRight, ArrowLeft, Download, Check } from 'lucide-react';
+import { trackPDFDownload } from '../utils/analytics';
 import SEO from '../components/SEO';
 
 const API = process.env.REACT_APP_BACKEND_URL;
@@ -184,6 +185,7 @@ const FieldNoteDetailPage = () => {
         body: JSON.stringify({ email: dlEmail.trim() }),
       });
       if (res.ok) {
+        trackPDFDownload(note.download.title);
         setDlStatus('sent');
       } else {
         setDlStatus('error');

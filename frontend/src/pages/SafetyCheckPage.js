@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { trackSafetyCheckComplete } from '../utils/analytics';
 import SEO from '../components/SEO';
 
 const API = process.env.REACT_APP_BACKEND_URL;
@@ -99,6 +100,7 @@ const SafetyCheckPage = () => {
       if (res.ok) {
         const data = await res.json();
         setSubmissionId(data.submission_id);
+        trackSafetyCheckComplete(noCount, data.score_level);
         setPhase('results');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {

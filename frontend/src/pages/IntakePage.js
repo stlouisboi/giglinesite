@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowRight, Check, Calendar } from 'lucide-react';
+import { trackWalkthroughRequest } from '../utils/analytics';
 import SEO from '../components/SEO';
 
 const CALENDLY_URL = 'https://calendly.com/vincelaw336/safety-consultation';
@@ -40,6 +41,7 @@ const IntakePage = () => {
         body: JSON.stringify(form),
       });
       if (!res.ok) throw new Error('Submission failed');
+      trackWalkthroughRequest(form.operation_type);
       setSubmitted(true);
     } catch {
       setError('Something went wrong. Please try again or call (336) 329-8899.');

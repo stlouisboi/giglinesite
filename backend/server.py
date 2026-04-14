@@ -10,12 +10,18 @@ from pydantic import BaseModel, Field, ConfigDict, EmailStr
 from typing import List, Optional, Dict
 import uuid
 from datetime import datetime, timezone, timedelta
-from emergentintegrations.payments.stripe.checkout import (
-    StripeCheckout, 
-    CheckoutSessionResponse, 
-    CheckoutStatusResponse, 
-    CheckoutSessionRequest
-)
+try:
+    from emergentintegrations.payments.stripe.checkout import (
+        StripeCheckout, 
+        CheckoutSessionResponse, 
+        CheckoutStatusResponse, 
+        CheckoutSessionRequest
+    )
+    USE_NATIVE_STRIPE = False
+except ImportError:
+    USE_NATIVE_STRIPE = True
+
+import stripe as stripe_lib
 import resend
 from email_sequences import get_flow_for_score, render_email
 from pdf_generator import generate_safety_check_pdf
@@ -42,6 +48,10 @@ app = FastAPI()
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
+
+@api_router.get("/health")
+async def health_check():
+    return {"status": "ok", "service": "gigline-backend"}
 
 # ============== MODELS ==============
 
@@ -267,31 +277,46 @@ async def create_checkout_session(request: CheckoutRequest, http_request: Reques
     success_url = f"{request.origin_url}/payment-success?session_id={{CHECKOUT_SESSION_ID}}"
     cancel_url = f"{request.origin_url}/services"
     
-    # Initialize Stripe checkout
-    host_url = str(http_request.base_url).rstrip('/')
-    webhook_url = f"{host_url}/api/webhook/stripe"
-    stripe_checkout = StripeCheckout(api_key=stripe_api_key, webhook_url=webhook_url)
-    
-    # Create checkout session with server-defined amount
-    checkout_request = CheckoutSessionRequest(
-        amount=service["amount"],
-        currency="usd",
-        success_url=success_url,
-        cancel_url=cancel_url,
-        metadata={
-            "service_type": request.service_type,
-            "service_name": service["name"],
-            "customer_email": request.customer_email or "",
-            "customer_name": request.customer_name or ""
-        }
-    )
-    
     try:
-        session: CheckoutSessionResponse = await stripe_checkout.create_checkout_session(checkout_request)
+        if USE_NATIVE_STRIPE:
+            from stripe_native import create_checkout
+            result = await create_checkout(
+                amount_cents=service["amount"],
+                currency="usd",
+                success_url=success_url,
+                cancel_url=cancel_url,
+                metadata={
+                    "service_type": request.service_type,
+                    "service_name": service["name"],
+                    "customer_email": request.customer_email or "",
+                    "customer_name": request.customer_name or ""
+                }
+            )
+            session_url = result['url']
+            session_id = result['session_id']
+        else:
+            host_url = str(http_request.base_url).rstrip('/')
+            webhook_url = f"{host_url}/api/webhook/stripe"
+            stripe_checkout = StripeCheckout(api_key=stripe_api_key, webhook_url=webhook_url)
+            checkout_request = CheckoutSessionRequest(
+                amount=service["amount"],
+                currency="usd",
+                success_url=success_url,
+                cancel_url=cancel_url,
+                metadata={
+                    "service_type": request.service_type,
+                    "service_name": service["name"],
+                    "customer_email": request.customer_email or "",
+                    "customer_name": request.customer_name or ""
+                }
+            )
+            session: CheckoutSessionResponse = await stripe_checkout.create_checkout_session(checkout_request)
+            session_url = session.url
+            session_id = session.session_id
         
         # Create payment transaction record BEFORE redirect
         transaction = PaymentTransaction(
-            session_id=session.session_id,
+            session_id=session_id,
             service_type=request.service_type,
             service_name=service["name"],
             amount=service["amount"],
@@ -311,8 +336,8 @@ async def create_checkout_session(request: CheckoutRequest, http_request: Reques
         await db.payment_transactions.insert_one(doc)
         
         return {
-            "url": session.url,
-            "session_id": session.session_id
+            "url": session_url,
+            "session_id": session_id
         }
         
     except Exception as e:
@@ -323,31 +348,43 @@ async def create_checkout_session(request: CheckoutRequest, http_request: Reques
 async def get_payment_status(session_id: str, http_request: Request):
     """Check the status of a payment session"""
     
-    # Initialize Stripe checkout
-    host_url = str(http_request.base_url).rstrip('/')
-    webhook_url = f"{host_url}/api/webhook/stripe"
-    stripe_checkout = StripeCheckout(api_key=stripe_api_key, webhook_url=webhook_url)
-    
     try:
-        status: CheckoutStatusResponse = await stripe_checkout.get_checkout_status(session_id)
+        if USE_NATIVE_STRIPE:
+            from stripe_native import get_checkout_status
+            result = await get_checkout_status(session_id)
+            status_val = result['status']
+            payment_status = result['payment_status']
+            amount_total = result['amount_total']
+            currency = result['currency']
+            metadata = result['metadata']
+        else:
+            host_url = str(http_request.base_url).rstrip('/')
+            webhook_url = f"{host_url}/api/webhook/stripe"
+            stripe_checkout = StripeCheckout(api_key=stripe_api_key, webhook_url=webhook_url)
+            status: CheckoutStatusResponse = await stripe_checkout.get_checkout_status(session_id)
+            status_val = status.status
+            payment_status = status.payment_status
+            amount_total = status.amount_total
+            currency = status.currency
+            metadata = status.metadata
         
         # Update transaction in database
         await db.payment_transactions.update_one(
             {"session_id": session_id},
             {
                 "$set": {
-                    "payment_status": status.payment_status,
+                    "payment_status": payment_status,
                     "updated_at": datetime.now(timezone.utc).isoformat()
                 }
             }
         )
         
         return {
-            "status": status.status,
-            "payment_status": status.payment_status,
-            "amount_total": status.amount_total,
-            "currency": status.currency,
-            "metadata": status.metadata
+            "status": status_val,
+            "payment_status": payment_status,
+            "amount_total": amount_total,
+            "currency": currency,
+            "metadata": metadata
         }
         
     except Exception as e:
@@ -361,19 +398,29 @@ async def stripe_webhook(request: Request):
         body = await request.body()
         signature = request.headers.get("Stripe-Signature")
         
-        host_url = str(request.base_url).rstrip('/')
-        webhook_url = f"{host_url}/api/webhook/stripe"
-        stripe_checkout = StripeCheckout(api_key=stripe_api_key, webhook_url=webhook_url)
-        
-        webhook_response = await stripe_checkout.handle_webhook(body, signature)
+        if USE_NATIVE_STRIPE:
+            # For native stripe, just parse the event directly
+            import json
+            event_data = json.loads(body)
+            event_type = event_data.get('type', '')
+            session_data = event_data.get('data', {}).get('object', {})
+            session_id = session_data.get('id')
+            payment_status = session_data.get('payment_status', 'unknown')
+        else:
+            host_url = str(request.base_url).rstrip('/')
+            webhook_url = f"{host_url}/api/webhook/stripe"
+            stripe_checkout = StripeCheckout(api_key=stripe_api_key, webhook_url=webhook_url)
+            webhook_response = await stripe_checkout.handle_webhook(body, signature)
+            session_id = webhook_response.session_id
+            payment_status = webhook_response.payment_status
         
         # Update transaction based on webhook event
-        if webhook_response.session_id:
+        if session_id:
             await db.payment_transactions.update_one(
-                {"session_id": webhook_response.session_id},
+                {"session_id": session_id},
                 {
                     "$set": {
-                        "payment_status": webhook_response.payment_status,
+                        "payment_status": payment_status,
                         "updated_at": datetime.now(timezone.utc).isoformat()
                     }
                 }
@@ -397,27 +444,42 @@ async def create_hazcom_checkout(request: HazComCheckoutRequest, http_request: R
     success_url = f"{request.origin_url}/hazcom/thank-you?session_id={{CHECKOUT_SESSION_ID}}"
     cancel_url = f"{request.origin_url}/hazcom"
     
-    host_url = str(http_request.base_url).rstrip('/')
-    webhook_url = f"{host_url}/api/webhook/stripe"
-    stripe_checkout = StripeCheckout(api_key=stripe_api_key, webhook_url=webhook_url)
-    
-    checkout_request = CheckoutSessionRequest(
-        amount=HAZCOM_PRODUCT["amount"],
-        currency="usd",
-        success_url=success_url,
-        cancel_url=cancel_url,
-        metadata={
-            "product": "hazcom_starter_pack",
-            "service_name": HAZCOM_PRODUCT["name"]
-        }
-    )
-    
     try:
-        session: CheckoutSessionResponse = await stripe_checkout.create_checkout_session(checkout_request)
+        if USE_NATIVE_STRIPE:
+            from stripe_native import create_checkout
+            result = await create_checkout(
+                amount_cents=HAZCOM_PRODUCT["amount"],
+                currency="usd",
+                success_url=success_url,
+                cancel_url=cancel_url,
+                metadata={
+                    "product": "hazcom_starter_pack",
+                    "service_name": HAZCOM_PRODUCT["name"]
+                }
+            )
+            session_url = result['url']
+            session_id = result['session_id']
+        else:
+            host_url = str(http_request.base_url).rstrip('/')
+            webhook_url = f"{host_url}/api/webhook/stripe"
+            stripe_checkout = StripeCheckout(api_key=stripe_api_key, webhook_url=webhook_url)
+            checkout_request = CheckoutSessionRequest(
+                amount=HAZCOM_PRODUCT["amount"],
+                currency="usd",
+                success_url=success_url,
+                cancel_url=cancel_url,
+                metadata={
+                    "product": "hazcom_starter_pack",
+                    "service_name": HAZCOM_PRODUCT["name"]
+                }
+            )
+            session: CheckoutSessionResponse = await stripe_checkout.create_checkout_session(checkout_request)
+            session_url = session.url
+            session_id = session.session_id
         
         # Record the transaction
         transaction = PaymentTransaction(
-            session_id=session.session_id,
+            session_id=session_id,
             service_type="hazcom_starter_pack",
             service_name=HAZCOM_PRODUCT["name"],
             amount=HAZCOM_PRODUCT["amount"],
@@ -430,7 +492,7 @@ async def create_hazcom_checkout(request: HazComCheckoutRequest, http_request: R
         doc['updated_at'] = doc['updated_at'].isoformat()
         await db.payment_transactions.insert_one(doc)
         
-        return {"url": session.url, "session_id": session.session_id}
+        return {"url": session_url, "session_id": session_id}
     except Exception as e:
         logger.error(f"HazCom checkout error: {str(e)}")
         raise HTTPException(status_code=500, detail="Failed to create checkout session")
@@ -439,14 +501,21 @@ async def create_hazcom_checkout(request: HazComCheckoutRequest, http_request: R
 async def verify_hazcom_session(session_id: str, http_request: Request):
     """Verify a HazCom purchase session and trigger delivery email"""
     
-    host_url = str(http_request.base_url).rstrip('/')
-    webhook_url = f"{host_url}/api/webhook/stripe"
-    stripe_checkout = StripeCheckout(api_key=stripe_api_key, webhook_url=webhook_url)
-    
     try:
-        status: CheckoutStatusResponse = await stripe_checkout.get_checkout_status(session_id)
+        if USE_NATIVE_STRIPE:
+            from stripe_native import get_checkout_status
+            result = await get_checkout_status(session_id)
+            payment_status = result['payment_status']
+            metadata = result['metadata']
+        else:
+            host_url = str(http_request.base_url).rstrip('/')
+            webhook_url = f"{host_url}/api/webhook/stripe"
+            stripe_checkout = StripeCheckout(api_key=stripe_api_key, webhook_url=webhook_url)
+            status: CheckoutStatusResponse = await stripe_checkout.get_checkout_status(session_id)
+            payment_status = status.payment_status
+            metadata = status.metadata
         
-        if status.payment_status == "paid":
+        if payment_status == "paid":
             # Update transaction
             await db.payment_transactions.update_one(
                 {"session_id": session_id},
@@ -455,8 +524,8 @@ async def verify_hazcom_session(session_id: str, http_request: Request):
             
             # Send delivery email (only once — check if already sent)
             existing = await db.hazcom_deliveries.find_one({"session_id": session_id})
-            if not existing and status.metadata:
-                customer_email = status.metadata.get("customer_email") or status.metadata.get("email")
+            if not existing and metadata:
+                customer_email = metadata.get("customer_email") or metadata.get("email")
                 if customer_email:
                     await send_hazcom_delivery_email(customer_email, session_id)
             
@@ -477,14 +546,19 @@ async def download_hazcom_file(filename: str, session_id: str, http_request: Req
         raise HTTPException(status_code=404, detail="File not found")
     
     # Verify payment
-    host_url = str(http_request.base_url).rstrip('/')
-    webhook_url = f"{host_url}/api/webhook/stripe"
-    stripe_checkout = StripeCheckout(api_key=stripe_api_key, webhook_url=webhook_url)
-    
     try:
-        status: CheckoutStatusResponse = await stripe_checkout.get_checkout_status(session_id)
-        if status.payment_status != "paid":
-            raise HTTPException(status_code=403, detail="Payment not verified")
+        if USE_NATIVE_STRIPE:
+            from stripe_native import get_checkout_status
+            result = await get_checkout_status(session_id)
+            if result['payment_status'] != "paid":
+                raise HTTPException(status_code=403, detail="Payment not verified")
+        else:
+            host_url = str(http_request.base_url).rstrip('/')
+            webhook_url = f"{host_url}/api/webhook/stripe"
+            stripe_checkout = StripeCheckout(api_key=stripe_api_key, webhook_url=webhook_url)
+            status: CheckoutStatusResponse = await stripe_checkout.get_checkout_status(session_id)
+            if status.payment_status != "paid":
+                raise HTTPException(status_code=403, detail="Payment not verified")
     except HTTPException:
         raise
     except Exception:

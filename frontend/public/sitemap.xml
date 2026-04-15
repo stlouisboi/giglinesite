@@ -44,7 +44,7 @@
   </url>
   <url>
     <loc>https://www.giglinecompliance.com/field-notes</loc>
-    <lastmod>2026-04-10</lastmod>
+    <lastmod>2026-04-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -56,18 +56,18 @@
   </url>
   <url>
     <loc>https://www.giglinecompliance.com/field-notes/forklift-safety</loc>
-    <lastmod>2026-04-10</lastmod>
+    <lastmod>2026-04-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.giglinecompliance.com/field-notes/electrical-access</loc>
-    <lastmod>2026-04-10</lastmod>
+    <loc>https://www.giglinecompliance.com/field-notes/electrical-safety</loc>
+    <lastmod>2026-04-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.giglinecompliance.com/field-notes/hazcom-sds</loc>
+    <loc>https://www.giglinecompliance.com/field-notes/hazcom</loc>
     <lastmod>2026-04-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -105,6 +105,18 @@
   <url>
     <loc>https://www.giglinecompliance.com/field-notes/fall-protection</loc>
     <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.giglinecompliance.com/field-notes/confined-space</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.giglinecompliance.com/field-notes/scaffolding-safety</loc>
+    <lastmod>2026-04-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

@@ -40,11 +40,25 @@ const NOTES = {
     },
   },
   'forklift-safety': {
-    title: 'Forklift Safety',
+    title: 'Forklift Safety & Daily Inspections',
     subtitle: 'Beyond the Certification Card',
-    seo: 'Forklift safety beyond certification. What OSHA actually checks, what gets missed in daily operations, and how to fix it.',
+    seo: 'OSHA forklift inspection requirements for small operations in NC. Daily pre-shift checklists, operator certification, and pedestrian separation — what gets cited.',
+    cfrCitation: '29 CFR 1910.178',
+    oshaChecks: [
+      'Operator certification records — initial training, evaluation, and 3-year refresher',
+      'Daily pre-shift inspection documentation',
+      'Pedestrian separation — marked walkways and traffic management',
+      'Seatbelt use and enforcement',
+      'Load capacity charts visible on each unit',
+    ],
+    faqSchema: [
+      { question: 'How often do forklift operators need to be recertified under OSHA?', answer: 'OSHA requires forklift operator evaluation at least every three years under 29 CFR 1910.178(l)(4)(iii). Re-evaluation is also required after an accident, near-miss, or observed unsafe operation.' },
+      { question: 'Are daily forklift inspections required by OSHA?', answer: 'Yes. 29 CFR 1910.178(q)(7) requires that industrial trucks be examined before being placed in service. Daily pre-shift inspections must be documented with a written checklist.' },
+      { question: 'What is the most common forklift violation cited by OSHA?', answer: 'The most common forklift violations involve incomplete or missing operator training documentation, lack of daily pre-shift inspection records, and failure to maintain pedestrian separation in high-traffic areas.' },
+    ],
+    relatedNotes: ['walking-surfaces', 'lockout-tagout'],
     sections: {
-      whatItIs: 'Forklift safety is more than a certification card. OSHA requires operator training, evaluation, daily pre-shift inspections, and pedestrian separation. Most operations have the card — but the daily practices have slipped.',
+      whatItIs: 'Forklift safety is more than a certification card. OSHA requires operator training, evaluation, daily pre-shift inspections, and pedestrian separation. Most operations have the card — but the daily practices have slipped. Pre-shift inspections are required under 29 CFR 1910.178(q) and must be documented. Missing records are a citable condition on the first OSHA visit.',
       whatGetsMissed: [
         'Daily pre-shift inspections not documented',
         'No pedestrian separation plan in high-traffic areas',
@@ -65,24 +79,40 @@ const NOTES = {
     },
   },
   'electrical-safety': {
-    title: 'Electrical Access',
+    title: 'Electrical Safety & Arc Flash',
     subtitle: 'The Panel Nobody Can Reach',
-    seo: 'Electrical panel safety for small operations. Blocked panels, clearance requirements, and what OSHA cites most.',
+    seo: 'OSHA electrical safety for small manufacturing in the Piedmont Triad NC. Panel clearance, arc flash, lockout-tagout — what gets cited and how to fix it.',
+    cfrCitation: '29 CFR 1910.303 / NFPA 70E',
+    oshaChecks: [
+      'Electrical panel clearance — 36 inches minimum on all sides',
+      'Panel directories current and legible',
+      'Arc flash hazard labels on all panels and switchgear',
+      'Lockout-tagout procedures posted for electrical maintenance',
+      'Qualified vs. unqualified worker boundaries established',
+    ],
+    faqSchema: [
+      { question: 'What is the OSHA clearance requirement for electrical panels?', answer: 'OSHA requires a minimum of 36 inches of clear space in front of all electrical panels per 29 CFR 1910.303(g)(1). The area must be free of storage, equipment, and product at all times.' },
+      { question: 'Do small manufacturers need arc flash labels?', answer: 'Yes. NFPA 70E requires arc flash hazard labels on all electrical equipment likely to require examination, adjustment, servicing, or maintenance while energized. This applies to operations of all sizes.' },
+      { question: 'What happens if an electrical panel is blocked during an OSHA inspection?', answer: 'Blocked electrical panels are one of the most frequently cited OSHA violations. Citations under 29 CFR 1910.303 can result in penalties starting at $16,550 per violation.' },
+    ],
+    relatedNotes: ['lockout-tagout', 'machine-guarding'],
     sections: {
-      whatItIs: 'Electrical panels require 36 inches of clearance on all sides — no exceptions. This is one of OSHA\'s most cited violations because it\'s easy to check and almost always blocked in small operations. A pallet, a shelf, a parts bin, a forklift.',
+      whatItIs: 'Electrical panels require 36 inches of clearance on all sides — no exceptions. This is one of OSHA\'s most cited violations because it\'s easy to check and almost always blocked in small operations. A pallet, a shelf, a parts bin, a forklift. Beyond access, NFPA 70E requires arc flash hazard labels on all electrical equipment and establishes approach boundaries for qualified and unqualified workers.',
       whatGetsMissed: [
         'Panels blocked by inventory or equipment',
         'Clearance zone not marked on the floor',
         'Panel doors missing or damaged',
         'Labels inside panel faded or incorrect',
+        'No arc flash hazard labels on panels or switchgear',
         'No lockout-tagout procedures for electrical maintenance',
       ],
-      whatISee: 'In almost every facility I walk into, at least one electrical panel is partially blocked. The most common offender is a pallet leaned against the wall "temporarily." I\'ve seen panels behind shelving units that can\'t be accessed without moving product. The floor isn\'t marked, and when I ask how they\'d shut power in an emergency, the answer is usually "we\'d figure it out."',
+      whatISee: 'In almost every facility I walk into, at least one electrical panel is partially blocked. The most common offender is a pallet leaned against the wall "temporarily." I\'ve seen panels behind shelving units that can\'t be accessed without moving product. The floor isn\'t marked, and when I ask how they\'d shut power in an emergency, the answer is usually "we\'d figure it out." Arc flash labels are missing entirely in most small shops — and nobody has been trained on approach boundaries.',
       checklist: [
         '36-inch clearance maintained on all sides of panels',
         'Floor markings indicate clearance zone',
         'All panel doors intact and closeable',
         'Panel directories current and legible',
+        'Arc flash hazard labels on all panels and switchgear',
         'Lockout-tagout procedures posted and trained',
         'No storage or equipment within clearance zone',
         'Emergency shutoff locations known by all shift leads',
@@ -264,6 +294,90 @@ const NOTES = {
       ],
     },
   },
+  'confined-space': {
+    title: 'Confined Space Entry',
+    subtitle: 'The Permit Nobody Wrote',
+    seo: 'OSHA confined space entry permit program for small manufacturers and warehouses in NC. What gets missed, what gets cited, and what to do about it.',
+    cfrCitation: '29 CFR 1910.146',
+    oshaChecks: [
+      'Written permit-required confined space program',
+      'Atmospheric testing before and during entry',
+      'Entry permits completed for each entry',
+      'Attendant stationed at each active entry point',
+      'Rescue procedures established and practiced',
+      'Annual program review documented',
+    ],
+    faqSchema: [
+      { question: 'What qualifies as a permit-required confined space under OSHA?', answer: 'A permit-required confined space has limited or restricted means of entry or exit, is large enough for an employee to enter and perform work, is not designed for continuous occupancy, and has one or more recognized hazards — such as atmospheric hazards, engulfment potential, or configuration that could trap an entrant. Examples include tanks, vats, pits, silos, and some ductwork.' },
+      { question: 'Do small manufacturers need a confined space program?', answer: 'Yes. If your facility has any space that meets the OSHA definition of a permit-required confined space — even if employees rarely enter it — you must have a written program under 29 CFR 1910.146. This includes identifying all such spaces, posting danger signs, and establishing entry procedures.' },
+      { question: 'What is the most common confined space violation?', answer: 'The most common citation is failure to have a written permit-required confined space program. Many small operations have spaces that qualify but have never been formally identified or assessed.' },
+    ],
+    relatedNotes: ['lockout-tagout', 'ppe-assessment'],
+    sections: {
+      whatItIs: 'A permit-required confined space has limited entry, is large enough for a worker to enter, is not designed for continuous occupancy, and contains a recognized hazard. Tanks, vats, pits, silos, storage bins, and some mechanical enclosures all qualify. OSHA 29 CFR 1910.146 requires a written program, atmospheric testing, entry permits, trained attendants, and rescue procedures. Most small operations either don\'t know they have confined spaces or haven\'t built the program.',
+      whatGetsMissed: [
+        'Confined spaces not identified or labeled',
+        'No written permit-required confined space program',
+        'Atmospheric testing not performed before entry',
+        'Entry permits not completed or filed',
+        'No trained attendant at the entry point',
+        'Rescue plan missing or untested',
+      ],
+      whatISee: 'I find pits and tanks that workers enter routinely without a permit, without testing the atmosphere, and without an attendant. The space was never formally identified as a confined space because "it\'s just a pit." Nobody has a gas monitor. Nobody is watching the opening. The rescue plan is "call 911" — which means a 15-minute response for a space where an atmospheric hazard can incapacitate someone in seconds.',
+      checklist: [
+        'All permit-required confined spaces identified and posted',
+        'Written confined space entry program on file',
+        'Entry permits completed and signed for each entry',
+        'Atmospheric testing (O2, LEL, CO, H2S) before and during entry',
+        'Trained attendant stationed at entry during all operations',
+        'Rescue equipment available and rescue team identified',
+        'Annual program review documented',
+        'All entrants, attendants, and supervisors trained and documented',
+      ],
+    },
+  },
+  'scaffolding-safety': {
+    title: 'Scaffolding Safety',
+    subtitle: 'Set Up Wrong, Used Anyway',
+    seo: 'OSHA scaffolding safety requirements for small operations in the Piedmont Triad NC. What gets cited, what gets missed, and how to fix it.',
+    cfrCitation: '29 CFR 1926.451',
+    oshaChecks: [
+      'Scaffold erected under direction of a competent person',
+      'Guardrails on all open sides and ends above 10 feet',
+      'Planking fully decked and secured — no gaps over 1 inch',
+      'Access ladder or stairway provided',
+      'Load capacity known and not exceeded',
+      'Daily inspection by competent person before each shift',
+    ],
+    faqSchema: [
+      { question: 'Who can erect a scaffold under OSHA rules?', answer: 'OSHA requires scaffolds to be erected, moved, dismantled, or altered only under the supervision of a competent person — someone capable of identifying existing and predictable hazards and authorized to take corrective measures. This is defined under 29 CFR 1926.451(f)(7).' },
+      { question: 'What are the guardrail requirements for scaffolding?', answer: 'Scaffolds more than 10 feet above a lower level must have guardrails on all open sides and ends. The top rail must be between 38 and 45 inches high, with a midrail and toeboard. Cross bracing can serve as a top rail only if the crossing point is between 38 and 48 inches.' },
+      { question: 'How often must scaffolding be inspected?', answer: 'A competent person must inspect scaffolding before each work shift and after any event that could affect structural integrity — such as high winds, heavy rain, or impact damage. Inspections must be documented.' },
+    ],
+    relatedNotes: ['fall-protection', 'ppe-assessment'],
+    sections: {
+      whatItIs: 'Scaffolding violations are consistently in OSHA\'s top 10 most cited standards. 29 CFR 1926.451 requires scaffolds to be erected under the direction of a competent person, inspected before each shift, and equipped with guardrails when the platform is more than 10 feet above a lower level. Most small operations either rent scaffolding and set it up without training, or use makeshift platforms that don\'t meet any standard.',
+      whatGetsMissed: [
+        'No competent person designated for scaffold erection',
+        'Guardrails missing or incomplete on elevated platforms',
+        'Planking not fully decked or not secured',
+        'No access ladder — workers climbing the frame',
+        'Scaffold not inspected before each shift',
+        'Load capacity unknown or exceeded',
+      ],
+      whatISee: 'I see scaffolds assembled by whoever was available, with no training documentation and no competent person oversight. Guardrails are missing on one side because "we\'re working from the wall." Planks are laid across without being secured — they shift underfoot. Workers climb the cross-bracing instead of using a ladder. Nobody knows the load rating, and I\'ve seen material stacked on platforms well beyond capacity. The scaffold went up and nobody checked it again.',
+      checklist: [
+        'Competent person designated and documented for erection/inspection',
+        'Guardrails on all open sides and ends (top rail 38-45 inches)',
+        'Midrails and toeboards in place',
+        'Planking fully decked, secured, and extending 6-12 inches past supports',
+        'Access ladder or stairway provided — no climbing the frame',
+        'Load capacity posted and not exceeded',
+        'Daily inspection before each shift, documented',
+        'Scaffold on firm, level base with base plates or mudsills',
+      ],
+    },
+  },
 };
 
 const FieldNoteDetailPage = () => {
@@ -301,7 +415,33 @@ const FieldNoteDetailPage = () => {
         title={`${note.title} — Field Notes | GigLine Safety & Compliance`}
         description={note.seo}
         canonical={`/field-notes/${slug}`}
+        schema={note.faqSchema ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": note.faqSchema.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
+          }))
+        } : undefined}
       />
+
+      {/* Article Schema JSON-LD */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": note.title,
+        "description": note.seo,
+        "author": { "@type": "Person", "name": "Vince Lawrence" },
+        "publisher": {
+          "@type": "Organization",
+          "name": "GigLine Safety & Compliance",
+          "url": "https://giglinecompliance.com"
+        },
+        "datePublished": "2026-04-15",
+        "dateModified": "2026-04-15",
+        "mainEntityOfPage": `https://giglinecompliance.com/field-notes/${slug}`
+      })}} />
 
       {/* Header */}
       <section className="bg-[#0D1B2A] py-16 md:py-24" data-testid="note-header">
@@ -331,9 +471,26 @@ const FieldNoteDetailPage = () => {
             <p className="text-base text-[#1C2B2B]/70 leading-relaxed">{note.sections.whatItIs}</p>
           </div>
 
+          {/* What OSHA Checks (if available) */}
+          {note.oshaChecks && (
+            <div className="mb-12" data-testid="note-osha-checks">
+              <h2 className="text-xl font-bold text-[#1C2B2B] mb-4">What OSHA Checks</h2>
+              <div className="space-y-3">
+                {note.oshaChecks.map((item, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <span className="text-[#B8972C] mt-1 flex-shrink-0">
+                      <Check size={16} />
+                    </span>
+                    <p className="text-base text-[#1C2B2B]/70">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* What Gets Missed */}
           <div className="mb-12" data-testid="note-what-gets-missed">
-            <h2 className="text-xl font-bold text-[#1C2B2B] mb-4">What Gets Missed</h2>
+            <h2 className="text-xl font-bold text-[#1C2B2B] mb-4">What Most Operations Get Wrong</h2>
             <div className="space-y-3">
               {note.sections.whatGetsMissed.map((item, i) => (
                 <div key={i} className="flex items-start gap-3">
@@ -346,7 +503,7 @@ const FieldNoteDetailPage = () => {
 
           {/* What I See */}
           <div className="mb-12 bg-[#F9F8F6] border-l-2 border-[#C9A84C] p-6 rounded-r" data-testid="note-what-i-see">
-            <h2 className="text-xl font-bold text-[#1C2B2B] mb-4">What I See on the Floor</h2>
+            <h2 className="text-xl font-bold text-[#1C2B2B] mb-4">What GigLine Looks For</h2>
             <p className="text-base text-[#1C2B2B]/70 leading-relaxed italic">{note.sections.whatISee}</p>
           </div>
 
@@ -365,6 +522,50 @@ const FieldNoteDetailPage = () => {
               Print this page or use the browser print function (Ctrl+P / Cmd+P) to save a copy.
             </p>
           </div>
+
+          {/* CFR Citation */}
+          {note.cfrCitation && (
+            <div className="mb-12 py-4 border-t border-[#1C2B2B]/10" data-testid="note-cfr-citation">
+              <p className="text-xs text-[#1C2B2B]/40 uppercase tracking-wider" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                Regulation Reference
+              </p>
+              <p className="text-sm text-[#1C2B2B]/60 font-medium mt-1">{note.cfrCitation}</p>
+            </div>
+          )}
+
+          {/* Related Field Notes */}
+          {note.relatedNotes && (
+            <div className="mb-8" data-testid="note-related">
+              <p className="text-xs text-[#1C2B2B]/40 uppercase tracking-wider mb-3" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                Related Field Notes
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {note.relatedNotes.map(rSlug => {
+                  const related = NOTES[rSlug];
+                  if (!related) return null;
+                  return (
+                    <Link
+                      key={rSlug}
+                      to={`/field-notes/${rSlug}`}
+                      className="text-sm text-[#1C2B2B]/60 hover:text-[#B8972C] transition-colors flex items-center gap-1"
+                      data-testid={`related-note-${rSlug}`}
+                    >
+                      <ArrowRight size={12} />
+                      {related.title}
+                    </Link>
+                  );
+                })}
+                <Link
+                  to="/services"
+                  className="text-sm text-[#C9A84C] hover:text-[#B8972C] transition-colors flex items-center gap-1"
+                  data-testid="related-services-link"
+                >
+                  <ArrowRight size={12} />
+                  Safety Walkthrough Services
+                </Link>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 

@@ -341,6 +341,75 @@ const HomePage = () => {
       </section>
 
       {/* ═══════════════════════════════════════════════
+          S3b — TESTIMONIALS
+      ═══════════════════════════════════════════════ */}
+      <section className="py-20 md:py-28 bg-white" data-testid="testimonials-section">
+        <div className="container max-w-6xl">
+          <Reveal>
+            <h2
+              className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-12 md:mb-16"
+              data-testid="testimonials-heading"
+            >
+              What Clients Say
+            </h2>
+          </Reveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Card 1 — Real Review */}
+            <Reveal delay={0}>
+              <div
+                className="border-l-2 border-[#C9A84C] pl-6 py-2 h-full flex flex-col"
+                data-testid="testimonial-card-1"
+              >
+                <p className="text-base md:text-lg text-[#1C2B2B]/80 leading-relaxed font-medium mb-4">
+                  "If you're looking for a partner that can bridge the gap between compliance and real-world execution, GigLine delivers results."
+                </p>
+                <p className="text-sm text-[#1C2B2B]/50 leading-relaxed mb-6 flex-grow">
+                  "I've worked with GigLine Safety & Compliance and can say they operate at a different level than most safety consultants. They don't just point out issues — they understand how operations actually run and provide solutions that can be executed on the floor. Their support with audits and compliance reviews helped us quickly identify gaps, tighten controls, and improve overall accountability without slowing down production. Where they really stand out is in incident investigations. Their approach is disciplined, focused on true root cause, and built around preventing repeat events — not just checking a box. That level of structure has a direct impact on long-term safety performance."
+                </p>
+                <div className="mt-auto">
+                  <p className="text-sm font-bold text-[#1C2B2B]">Demar Archie</p>
+                  <p className="text-xs text-[#1C2B2B]/40 mt-0.5">Local Guide — Google Review</p>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Card 2 — Placeholder */}
+            <Reveal delay={100}>
+              <div
+                className="border-l border-[#1C2B2B]/10 pl-6 py-2 h-full flex flex-col"
+                data-testid="testimonial-card-2"
+              >
+                <p className="text-base text-[#1C2B2B]/40 leading-relaxed font-medium mb-6 flex-grow italic">
+                  [Client quote — coming soon]
+                </p>
+                <div className="mt-auto">
+                  <p className="text-sm font-bold text-[#1C2B2B]/50">Operations Manager</p>
+                  <p className="text-xs text-[#1C2B2B]/30 mt-0.5">Small Manufacturer — Forsyth County, NC</p>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Card 3 — Placeholder */}
+            <Reveal delay={200}>
+              <div
+                className="border-l border-[#1C2B2B]/10 pl-6 py-2 h-full flex flex-col"
+                data-testid="testimonial-card-3"
+              >
+                <p className="text-base text-[#1C2B2B]/40 leading-relaxed font-medium mb-6 flex-grow italic">
+                  [Client quote — coming soon]
+                </p>
+                <div className="mt-auto">
+                  <p className="text-sm font-bold text-[#1C2B2B]/50">Fleet Manager</p>
+                  <p className="text-xs text-[#1C2B2B]/30 mt-0.5">Trucking Operation — Guilford County, NC</p>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════
           S4 — PROCESS  (asymmetric 40/60)
       ═══════════════════════════════════════════════ */}
       <section className="py-24 md:py-32" style={{ backgroundColor: '#F9F8F6' }} data-testid="process-section">

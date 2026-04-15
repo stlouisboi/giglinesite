@@ -74,6 +74,20 @@ const FIELD_NOTES = [
     description: 'Mezzanines, loading docks, elevated platforms. The 4-foot rule applies to every warehouse with height exposure.',
     topics: ['mezzanines', 'loading docks', 'guardrails'],
   },
+  {
+    slug: 'confined-space',
+    title: 'Confined Space Entry',
+    subtitle: 'The Permit Nobody Wrote',
+    description: 'Tanks, vats, pits, silos. If it has limited entry and isn\'t designed for continuous occupancy, it\'s a permit-required confined space. Most small operations don\'t have the program.',
+    topics: ['permit program', 'atmospheric testing', 'rescue procedures'],
+  },
+  {
+    slug: 'scaffolding-safety',
+    title: 'Scaffolding Safety',
+    subtitle: 'Set Up Wrong, Used Anyway',
+    description: 'Scaffolds assembled without a competent person, missing guardrails, and overloaded platforms. One of OSHA\'s top 10 citations every year.',
+    topics: ['competent person', 'guardrails', 'load capacity'],
+  },
 ];
 
 const FieldNotesPage = () => {

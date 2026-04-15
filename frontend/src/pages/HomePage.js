@@ -227,10 +227,10 @@ const HomePage = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6">
             {[
-              { img: IMG.grid1, caption: 'Cluttered aisles and obstructed walkways', consequence: 'Trip hazards — commonly cited and easy to overlook', label: 'Trip & Access Hazards' },
-              { img: IMG.grid2, caption: 'Blocked electrical panels with no clearance', consequence: 'Can delay emergency shutoff and lead to penalties', label: 'Electrical Exposure' },
-              { img: IMG.grid3, caption: 'Missing guards on operating machinery', consequence: 'One of the most cited violations in general industry', label: 'Machine Guarding Gaps' },
-              { img: IMG.grid4, caption: 'Fire riser blocked by pallets and debris', consequence: 'Delays response time when it matters most', label: 'Emergency Access' },
+              { img: IMG.grid1, label: 'Blocked Egress', caption: 'Blocked egress', consequence: 'Cited in 22% of general industry inspections. Instant citation if found during an OSHA visit.' },
+              { img: IMG.grid2, label: 'Electrical Access', caption: 'Electrical panel clearance', consequence: 'Blocked panels delay emergency shutoff and are automatic citations under OSHA 1910.303.' },
+              { img: IMG.grid3, label: 'Machine Guarding', caption: 'Machine guarding', consequence: 'One of OSHA\u2019s top 10 most cited violations. Missing guards are automatic citations.' },
+              { img: IMG.grid4, label: 'Emergency Access', caption: 'Fire riser clearance', consequence: 'Blocked fire equipment delays response time and is citable on first observation.' },
             ].map((item, i) => (
               <Reveal key={i} delay={i * 80}>
                 <div
@@ -252,8 +252,8 @@ const HomePage = () => {
                     >
                       {item.label}
                     </p>
-                    <p className="text-sm text-white/90 font-medium mb-1">{item.caption}</p>
-                    <p className="text-xs text-white/50">{item.consequence}</p>
+                    <p className="text-[13px] text-white/90 font-semibold mb-1">{item.caption}</p>
+                    <p className="text-[12px] text-white/55 leading-relaxed">{item.consequence}</p>
                   </div>
                 </div>
               </Reveal>

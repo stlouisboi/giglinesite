@@ -252,6 +252,36 @@ const ServicesPage = () => {
         </div>
       </section>
 
+      {/* ── HazCom Add-On ── */}
+      <section className="py-12 md:py-16" style={{ backgroundColor: '#F9F8F6' }} data-testid="services-hazcom">
+        <div className="container max-w-3xl">
+          <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-10 p-6 md:p-8 bg-white rounded-lg border border-[#1C2B2B]/08 shadow-sm">
+            <div className="flex-grow">
+              <p className="uppercase tracking-[3px] text-[#C9A84C] mb-2" style={{ ...mono, fontSize: '10px' }}>
+                Standalone Resource
+              </p>
+              <h3 className="text-lg font-bold text-[#1C2B2B] mb-1" style={serif}>
+                HazCom Starter Pack
+              </h3>
+              <p className="text-sm text-[#1C2B2B]/55 mb-0">
+                A ready-made written Hazard Communication program. Download immediately — no walkthrough required.
+              </p>
+            </div>
+            <div className="flex-shrink-0 text-center">
+              <p className="text-2xl font-bold text-[#1C2B2B] mb-2">$29</p>
+              <Link
+                to="/hazcom"
+                className="inline-flex items-center gap-2 bg-[#1C2B2B] hover:bg-[#2A3D3D] text-white font-bold px-6 py-3 rounded transition-colors text-sm"
+                data-testid="services-hazcom-link"
+              >
+                Get It Now
+                <ArrowRight size={16} />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Not Sure CTA ── */}
       <section className="py-20 md:py-28 bg-[#0D1B2A] text-white" data-testid="services-not-sure">
         <div className="container text-center max-w-2xl mx-auto">

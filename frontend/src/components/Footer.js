@@ -91,6 +91,9 @@ const Footer = () => {
                 {[
                   { name: 'Field Notes', path: '/field-notes' },
                   { name: 'Safety Check', path: '/safety-check' },
+                  { name: 'Heat Stress Guide', path: '/field-notes/heat-stress' },
+                  { name: 'HazCom Starter Pack', path: '/hazcom' },
+                  { name: 'Top 5 OSHA Violations', path: '/blog/top-5-osha-violations-small-manufacturing' },
                   { name: 'Contact', path: '/contact' },
                 ].map((link) => (
                   <li key={link.path + link.name}>

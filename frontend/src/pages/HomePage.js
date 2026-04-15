@@ -54,9 +54,59 @@ const HomePage = () => {
   return (
     <main className="overflow-x-hidden">
       <SEO
-        title="Safety Walkthroughs for Small Operations | GigLine Safety & Compliance"
-        description="Safety walkthroughs, documentation reviews, and incident response for small manufacturers, warehouses, fleets, and contractors. One engagement. A written report. No retainer."
+        title="Safety Walkthroughs for Small Operations | Kernersville, NC"
+        description="OSHA safety walkthroughs for small manufacturers, warehouses, and contractors in the Piedmont Triad and Central NC. One visit. A written report. Starting at $650. Serving a 75-mile radius from Kernersville."
         canonical="/"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "@id": "https://www.giglinecompliance.com",
+          "name": "GigLine Safety & Compliance",
+          "description": "On-site safety walkthroughs, documentation reviews, and incident response for small manufacturers, warehouses, and contractors.",
+          "url": "https://www.giglinecompliance.com",
+          "telephone": "+13363298899",
+          "email": "vince@giglinecompliance.com",
+          "image": "https://www.giglinecompliance.com/og-image.png",
+          "founder": {
+            "@type": "Person",
+            "name": "Vince Lawrence"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Kernersville",
+            "addressRegion": "NC",
+            "postalCode": "27107",
+            "addressCountry": "US"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 36.1198,
+            "longitude": -80.0735
+          },
+          "areaServed": [
+            { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 36.1198, "longitude": -80.0735 }, "geoRadius": "75 mi" },
+            { "@type": "City", "name": "Kernersville", "sameAs": "https://en.wikipedia.org/wiki/Kernersville,_North_Carolina" },
+            { "@type": "City", "name": "Winston-Salem" },
+            { "@type": "City", "name": "Greensboro" },
+            { "@type": "City", "name": "High Point" },
+            { "@type": "City", "name": "Charlotte" },
+            { "@type": "City", "name": "Burlington" },
+            { "@type": "City", "name": "Durham" },
+            { "@type": "City", "name": "Raleigh" }
+          ],
+          "priceRange": "$550–$1200",
+          "openingHours": "Mo-Fr 08:00-18:00",
+          "sameAs": [],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Safety Services",
+            "itemListElement": [
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Safety Walkthrough & Top 10 Fixes Report", "description": "On-site facility walkthrough with written report." }, "price": "650", "priceCurrency": "USD" },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Documentation Review & Gap Check", "description": "Review of written safety programs and training records." }, "price": "550", "priceCurrency": "USD" },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Incident Review & Corrective Action Support", "description": "Post-incident documentation and corrective action." }, "price": "900", "priceCurrency": "USD" }
+            ]
+          }
+        }}
       />
 
       <style>{`

@@ -7,9 +7,18 @@ const AboutPage = () => {
   return (
     <main data-testid="about-page">
       <SEO 
-        title="About"
-        description="Built for operations that don't have time for theory — only what actually works on the floor. Vince Lawrence, 25+ years safety leadership."
+        title="About Vince Lawrence | Safety Coordinator, Kernersville NC"
+        description="25+ years safety leadership in manufacturing, warehousing, and transportation. Navy veteran. Serving the Piedmont Triad and Central NC within 75 miles of Kernersville."
         canonical="/about"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "Person",
+          "name": "Vince Lawrence",
+          "jobTitle": "Safety Coordinator & Founder",
+          "worksFor": { "@type": "LocalBusiness", "name": "GigLine Safety & Compliance" },
+          "address": { "@type": "PostalAddress", "addressLocality": "Kernersville", "addressRegion": "NC", "postalCode": "27107" },
+          "knowsAbout": ["OSHA compliance", "safety walkthroughs", "hazard communication", "incident investigation", "machine guarding", "fall protection"]
+        }}
       />
 
       {/* Hero Section */}

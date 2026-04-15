@@ -31,24 +31,30 @@ Build and expand a professional service business website for GigLine Safety & Co
 ```
 
 ## Completed Specs
-- **GL-WEB-001–012**: Safety Check, SEO, Contact, Homepage iterations, HazCom, Blog, Heat Guide, OG Image
-- **GL-WEB-013**: Homepage — 9-Section Conversion Funnel
-- **GL-WEB-014**: Homepage Polish + UTM Tracking
-- **GL-WEB-015**: Safety Check 3-Phase Funnel + Homepage additions
-- **GL-WEB-016**: Admin Dashboard + Download Tracking + Weekly Email Summary
-- **GL-WEB-017**: Layout/Rendering Fixes + Footer Restructure + Field Notes
-- **GL-WEB-018**: 10-Section Asymmetric Homepage Redesign (Apr 2026)
-- **GL-WEB-019**: Homepage Refinements (Apr 2026)
-- **GL-WEB-020**: About Page Overhaul (Apr 2026)
-- **GL-WEB-021**: Services Page Redesign (Apr 2026)
-- **GL-WEB-022**: Production Deployment (Apr 2026)
-- **GL-WEB-023**: GA4 Analytics (Apr 2026)
-- **GL-WEB-024**: Pricing Standardization (Apr 2026)
-- **GL-WEB-025**: Image Optimization (Apr 2026)
-- **GL-WEB-026**: Heat Stress PDF Download on Field Notes (Apr 2026)
+- **GL-WEB-001–010**: Safety Check, SEO, Contact, Homepage iterations, HazCom, Blog, Heat Guide, OG Image, City Pages, Service Area
+- **GL-WEB-013–026**: Homepage Funnel, UTM, Safety Check Funnel, Admin Dashboard, Layout Fixes, Asymmetric Redesign, Page Overhauls, Production Deploy, GA4, Pricing, Image Optimization, Heat Guide
 - **GL-WEB-027**: Backend Refactoring — server.py split into modular /routes (Apr 2026)
 - **GL-WEB-028**: Homepage parsing error fix (Apr 2026)
 - **GL-WEB-029**: Production E2E Testing — all forms, Stripe, admin verified (Apr 2026)
+- **GL-WEB-011**: Field Notes Expansion + Client Testimonials (Apr 2026)
+  - 4 new/enhanced Field Notes: Electrical Safety/Arc Flash, Forklift Safety, Confined Space Entry, Scaffolding Safety
+  - Each with oshaChecks, cfrCitation, FAQPage schema, Article JSON-LD, internal links
+  - 3-card Testimonials section on Homepage (Demar Archie real review + 2 placeholders)
+  - Sitemap updated to 30 URLs
+
+## Field Notes (12 total)
+1. Heat Stress
+2. Forklift Safety & Daily Inspections (enhanced — oshaChecks, CFR, FAQ schema)
+3. Electrical Safety & Arc Flash (enhanced — oshaChecks, CFR, FAQ schema)
+4. HazCom & SDS
+5. Machine Guarding
+6. Walking Surfaces
+7. Lockout/Tagout
+8. Emergency Action Plans
+9. PPE Assessment & Use
+10. Fall Protection
+11. Confined Space Entry (NEW — oshaChecks, CFR, FAQ schema)
+12. Scaffolding Safety (NEW — oshaChecks, CFR, FAQ schema)
 
 ## Key Endpoints
 - POST /api/walkthrough/request
@@ -71,8 +77,8 @@ Build and expand a professional service business website for GigLine Safety & Co
 ## Upcoming Tasks
 - Video embeds (P1) — waiting on YouTube/Vimeo links
 - Facebook Pixel / Google Ads conversion tracking (P1)
-- Monthly Field Notes content expansion (P2)
-- Client testimonials / social proof section (P2)
+- Monthly Field Notes content expansion (P2) — next round could target Hearing Conservation, Bloodborne Pathogens
+- Swap placeholder testimonials with real client quotes when available (P2)
 
 ## Deployment
 - Frontend: Vercel (manual redeploy after GitHub push)

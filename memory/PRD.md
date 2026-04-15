@@ -11,6 +11,25 @@ Build and expand a professional service business website for GigLine Safety & Co
 - **Analytics:** Google Analytics 4 (G-FNX42NP1QT)
 - **Database:** MongoDB Atlas (cluster0.nb1dqdq.mongodb.net/gigline)
 
+## Backend Architecture (Refactored Apr 2026)
+```
+/app/backend/
+├── server.py          # Thin entry point — mounts routes, CORS, schedulers
+├── config.py          # Shared config: DB, Stripe, Resend, constants, SERVICE_PACKAGES
+├── models.py          # All Pydantic models
+├── stripe_native.py   # Native Stripe SDK wrapper (for Railway)
+├── email_sequences.py # Drip email templates + rendering
+├── pdf_generator.py   # Safety Check PDF report generation
+├── routes/
+│   ├── health.py      # GET /health, GET /, status CRUD
+│   ├── walkthrough.py # POST /walkthrough/request
+│   ├── payments.py    # POST /payments/checkout, GET /payments/status, webhook
+│   ├── hazcom.py      # POST /hazcom/checkout, GET /hazcom/verify, download
+│   ├── heat_guide.py  # POST /heat-guide/submit
+│   ├── safety_check.py# POST /safety-check/submit, submissions, report, drip processing
+│   └── admin.py       # Login, stats, leads, downloads, weekly summary
+```
+
 ## Completed Specs
 - **GL-WEB-001–012**: Safety Check, SEO, Contact, Homepage iterations, HazCom, Blog, Heat Guide, OG Image
 - **GL-WEB-013**: Homepage — 9-Section Conversion Funnel
@@ -20,33 +39,16 @@ Build and expand a professional service business website for GigLine Safety & Co
 - **GL-WEB-017**: Layout/Rendering Fixes + Footer Restructure + Field Notes
 - **GL-WEB-018**: 10-Section Asymmetric Homepage Redesign (Apr 2026)
 - **GL-WEB-019**: Homepage Refinements (Apr 2026)
-  - Hero copy: "$16,550 citation" hook + "Starting at $650"
-  - Unified statement anchor with background depth + vignette
-  - Consequence lines on grid cards (no CFR codes)
-  - Tightened process copy, OSHA comparison visual contrast
-  - Pricing only at final CTA
 - **GL-WEB-020**: About Page Overhaul (Apr 2026)
-  - Shorter paragraphs, standalone statement anchor
-  - Dual CTA (Walkthrough + Safety Check)
-  - "Why GigLine" transition line, LaunchPath distinction
 - **GL-WEB-021**: Services Page Redesign (Apr 2026)
-  - 3-card layout with hover effects, pricing tiers, gold CTAs
-  - "Not Sure?" bottom CTA section
 - **GL-WEB-022**: Production Deployment (Apr 2026)
-  - MongoDB Atlas connected
-  - Backend deployed to Railway
-  - Stripe refactored to native library (no emergentintegrations dependency)
-  - Fixed dollar-to-cents conversion
-  - Health check endpoint added
 - **GL-WEB-023**: GA4 Analytics (Apr 2026)
-  - Route-change tracking on all pages
-  - Conversion events: walkthrough requests, safety check completions, PDF downloads, service bookings
 - **GL-WEB-024**: Pricing Standardization (Apr 2026)
-  - All references updated to "Starting at $650"
 - **GL-WEB-025**: Image Optimization (Apr 2026)
-  - All field photos compressed (30MB → 800KB total)
-  - Sitemap updated with all pages
 - **GL-WEB-026**: Heat Stress PDF Download on Field Notes (Apr 2026)
+- **GL-WEB-027**: Backend Refactoring — server.py split into modular /routes (Apr 2026)
+- **GL-WEB-028**: Homepage parsing error fix (Apr 2026)
+- **GL-WEB-029**: Production E2E Testing — all forms, Stripe, admin verified (Apr 2026)
 
 ## Key Endpoints
 - POST /api/walkthrough/request

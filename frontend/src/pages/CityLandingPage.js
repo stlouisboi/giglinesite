@@ -181,6 +181,11 @@ const CityLandingPage = () => {
           <p className="text-white/50 mb-8">
             Most walkthroughs for small operations in {data.name} fall between $650–$1,000 depending on size. You'll know your price before we schedule.
           </p>
+          {(city === 'charlotte' || city === 'raleigh') && (
+            <p className="text-white/50 mb-8">
+              Charlotte and Raleigh area engagements are available on a scheduled basis. Contact to confirm availability and any applicable travel considerations before booking.
+            </p>
+          )}
           <Link
             to="/request-walkthrough"
             className="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#B8972C] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#C9A84C]/20"

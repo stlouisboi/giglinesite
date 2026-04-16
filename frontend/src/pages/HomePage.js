@@ -354,8 +354,8 @@ const HomePage = () => {
             </h2>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Card 1 — Real Review */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+            {/* Card 1 — Real Review (featured, spans emphasis) */}
             <Reveal delay={0}>
               <div
                 className="border-l-2 border-[#C9A84C] pl-6 py-2 h-full flex flex-col"
@@ -374,34 +374,54 @@ const HomePage = () => {
               </div>
             </Reveal>
 
-            {/* Card 2 — Placeholder */}
+            {/* Card 2 — Outcome Fact */}
             <Reveal delay={100}>
               <div
                 className="border-l border-[#1C2B2B]/10 pl-6 py-2 h-full flex flex-col"
                 data-testid="testimonial-card-2"
               >
-                <p className="text-base text-[#1C2B2B]/40 leading-relaxed font-medium mb-6 flex-grow italic">
-                  [Client quote — coming soon]
+                <p
+                  className="text-3xl md:text-4xl font-bold text-[#C9A84C] mb-3"
+                  data-testid="outcome-stat-1"
+                >
+                  8–12
                 </p>
-                <div className="mt-auto">
-                  <p className="text-sm font-bold text-[#1C2B2B]/50">Operations Manager</p>
-                  <p className="text-xs text-[#1C2B2B]/30 mt-0.5">Small Manufacturer — Forsyth County, NC</p>
+                <p className="text-base font-bold text-[#1C2B2B] mb-3">
+                  Corrective actions identified per walkthrough
+                </p>
+                <p className="text-sm text-[#1C2B2B]/50 leading-relaxed flex-grow">
+                  Every engagement produces a prioritized list of findings — not a binder full of theory. Most clients resolve their top issues within 30 days.
+                </p>
+                <div className="mt-auto pt-4">
+                  <p className="text-xs text-[#1C2B2B]/30 uppercase tracking-wider" style={mono}>
+                    Based on completed walkthroughs
+                  </p>
                 </div>
               </div>
             </Reveal>
 
-            {/* Card 3 — Placeholder */}
+            {/* Card 3 — Outcome Fact */}
             <Reveal delay={200}>
               <div
                 className="border-l border-[#1C2B2B]/10 pl-6 py-2 h-full flex flex-col"
                 data-testid="testimonial-card-3"
               >
-                <p className="text-base text-[#1C2B2B]/40 leading-relaxed font-medium mb-6 flex-grow italic">
-                  [Client quote — coming soon]
+                <p
+                  className="text-3xl md:text-4xl font-bold text-[#C9A84C] mb-3"
+                  data-testid="outcome-stat-2"
+                >
+                  5 days
                 </p>
-                <div className="mt-auto">
-                  <p className="text-sm font-bold text-[#1C2B2B]/50">Fleet Manager</p>
-                  <p className="text-xs text-[#1C2B2B]/30 mt-0.5">Trucking Operation — Guilford County, NC</p>
+                <p className="text-base font-bold text-[#1C2B2B] mb-3">
+                  Written report delivered after your visit
+                </p>
+                <p className="text-sm text-[#1C2B2B]/50 leading-relaxed flex-grow">
+                  A written report with findings, photos, and a fix list — not a phone call summary. Yours to keep, share with your team, or hand to your insurer.
+                </p>
+                <div className="mt-auto pt-4">
+                  <p className="text-xs text-[#1C2B2B]/30 uppercase tracking-wider" style={mono}>
+                    Standard turnaround
+                  </p>
                 </div>
               </div>
             </Reveal>

@@ -384,7 +384,7 @@ const HomePage = () => {
                   className="text-3xl md:text-4xl font-bold text-[#C9A84C] mb-3"
                   data-testid="outcome-stat-1"
                 >
-                  8–12
+                  6–10
                 </p>
                 <p className="text-base font-bold text-[#1C2B2B] mb-3">
                   Corrective actions identified per walkthrough
@@ -410,7 +410,7 @@ const HomePage = () => {
                   className="text-3xl md:text-4xl font-bold text-[#C9A84C] mb-3"
                   data-testid="outcome-stat-2"
                 >
-                  5 days
+                  24–48 hrs
                 </p>
                 <p className="text-base font-bold text-[#1C2B2B] mb-3">
                   Written report delivered after your visit

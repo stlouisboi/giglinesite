@@ -121,6 +121,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.giglinecompliance.com/field-notes/hearing-conservation</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.giglinecompliance.com/field-notes/bloodborne-pathogens</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.giglinecompliance.com/heat-guide</loc>
     <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>

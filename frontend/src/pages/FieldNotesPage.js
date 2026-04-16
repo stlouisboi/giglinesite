@@ -88,6 +88,20 @@ const FIELD_NOTES = [
     description: 'Scaffolds assembled without a competent person, missing guardrails, and overloaded platforms. One of OSHA\'s top 10 citations every year.',
     topics: ['competent person', 'guardrails', 'load capacity'],
   },
+  {
+    slug: 'hearing-conservation',
+    title: 'Hearing Conservation',
+    subtitle: 'The Damage You Don\'t Feel Until It\'s Done',
+    description: 'Noise exposure above 85 dBA triggers a full hearing conservation program. Most small shops have the noise but not the program.',
+    topics: ['noise monitoring', 'audiometric testing', 'hearing protection'],
+  },
+  {
+    slug: 'bloodborne-pathogens',
+    title: 'Bloodborne Pathogens',
+    subtitle: 'Not Just a Healthcare Problem',
+    description: 'Any operation where employees could be exposed to blood or body fluids needs a written exposure control plan. First aid responders count.',
+    topics: ['exposure control plan', 'first aid', 'sharps disposal'],
+  },
 ];
 
 const FieldNotesPage = () => {

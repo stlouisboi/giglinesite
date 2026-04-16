@@ -369,7 +369,7 @@ const HomePage = () => {
                 </p>
                 <div className="mt-auto">
                   <p className="text-sm font-bold text-[#1C2B2B]">Demar Archie</p>
-                  <p className="text-xs text-[#1C2B2B]/40 mt-0.5">Local Guide — Google Review</p>
+                  <p className="text-xs text-[#1C2B2B]/40 mt-0.5">Warehouse Receiving Manager — Google Review</p>
                 </div>
               </div>
             </Reveal>

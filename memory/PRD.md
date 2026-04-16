@@ -77,11 +77,14 @@ Build and expand a professional service business website for GigLine Safety & Co
 ## Upcoming Tasks
 - Video embeds (P1) — waiting on YouTube/Vimeo links
 - Facebook Pixel / Google Ads conversion tracking (P1)
-- Monthly Field Notes content expansion (P2) — next round could target Hearing Conservation, Bloodborne Pathogens
+- Monthly Field Notes content expansion (P2) — 14 articles live, next round TBD
 - Swap placeholder testimonials with real client quotes when available (P2)
 
 ## Deployment
 - Frontend: Vercel (manual redeploy after GitHub push)
 - Backend: Railway (auto-deploys on GitHub push)
+- Database: MongoDB Atlas (gigline cluster)
+- REACT_APP_BACKEND_URL in Vercel must point to Railway URL
+deploys on GitHub push)
 - Database: MongoDB Atlas (gigline cluster)
 - REACT_APP_BACKEND_URL in Vercel must point to Railway URL

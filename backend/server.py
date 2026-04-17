@@ -15,6 +15,8 @@ from routes.hazcom import router as hazcom_router
 from routes.heat_guide import router as heat_guide_router
 from routes.safety_check import router as safety_check_router, process_drip_emails
 from routes.admin import router as admin_router, send_weekly_summary
+from routes.intake import router as intake_router
+from routes.onboarding import router as onboarding_router
 
 app = FastAPI()
 
@@ -27,6 +29,8 @@ api_router.include_router(hazcom_router)
 api_router.include_router(heat_guide_router)
 api_router.include_router(safety_check_router)
 api_router.include_router(admin_router)
+api_router.include_router(intake_router)
+api_router.include_router(onboarding_router)
 
 app.include_router(api_router)
 

@@ -1,0 +1,92 @@
+{
+  "summary": "GL-PORT-001 Portal Pages Testing Complete. Both /intake and /onboarding standalone portal pages are fully functional. Fixed a critical bug in RadioGroup component (missing onClick handler). All 14 backend API tests pass. All frontend features verified.",
+
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+
+  "passed_tests": [
+    "=== INTAKE PAGE (/intake) ===",
+    "✓ Page loads with dark brand system (#1A1A1A background, #E8B84B gold accents)",
+    "✓ Sidebar nav shows 7 sections (Company, Operations, Safety, Documents, Needs, Budget, Consent)",
+    "✓ Section 1 (Company) has all required fields: company name, address, contact, email, phone, employees, schedule",
+    "✓ Conditional schedule fields appear when selecting 2-shifts (Employees per shift, Same operations, Shifts to include)",
+    "✓ Conditional schedule fields appear when selecting 12hr-rotating (Employees per rotation, Rotation pattern)",
+    "✓ Sidebar section navigation works (click Continue, sidebar updates)",
+    "✓ Section 2 (Operations) has industry dropdown, operations checkboxes",
+    "✓ Section 3 (Safety) has required programs matrix with color-coded radio dots (Yes/No/N/A/Not Sure)",
+    "✓ Section 4 (Documents) has existing docs matrix and file upload zone",
+    "✓ Section 5 (Needs) has help needed checkboxes and urgency radio",
+    "✓ Section 6 (Budget) has budget options and preferred days",
+    "✓ Section 7 (Consent) has acknowledgment checkbox, submit button",
+    "✓ No global Navbar/Footer visible (standalone portal)",
+    "",
+    "=== ONBOARDING PAGE (/onboarding) ===",
+    "✓ Page loads with dark brand system and step indicators (1-5)",
+    "✓ Step 1 (Overview) shows stat tiles (On-site, Written, 24-48 hrs) and info cards (Included, Not Included, Retainer Option)",
+    "✓ Step 2 (Facility) has company, contact, email, phone, employees fields",
+    "✓ Step 3 (Service Tier) shows 3 tier cards (Small $650, Medium $750, Large $900)",
+    "✓ Step 4 (Retainer) shows Walkthrough Only vs Compliance Retainer cards with 'Recommended' badge",
+    "✓ Step 5 (Payment) shows order summary with tier price and preferred date field",
+    "✓ No global Navbar/Footer visible (standalone portal)",
+    "",
+    "=== HOMEPAGE REGRESSION ===",
+    "✓ Homepage still works with global Navbar and Footer",
+    "",
+    "=== BACKEND API TESTS (14/14 passed) ===",
+    "✓ GET /api/health returns {status: ok}",
+    "✓ GET /api/onboarding/tiers returns 3 tiers (small, medium, large)",
+    "✓ Small tier: $650, 1-75 employees",
+    "✓ Medium tier: $750, 75-250 employees",
+    "✓ Large tier: $900, 250+ employees",
+    "✓ POST /api/intake/submit stores submission in MongoDB (returns submissionId)",
+    "✓ POST /api/intake/submit rejects without consent (400)",
+    "✓ POST /api/intake/submit handles full data payload",
+    "✓ POST /api/onboarding/checkout creates valid Stripe checkout URL (https://checkout.stripe.com/...)",
+    "✓ POST /api/onboarding/checkout works for all tiers (small, medium, large)",
+    "✓ POST /api/onboarding/checkout works with retainer option",
+    "✓ POST /api/onboarding/checkout rejects invalid tier (400)"
+  ],
+
+  "bugs_fixed": [
+    {
+      "file": "/app/frontend/src/pages/ClientIntakePage.js",
+      "issue": "RadioGroup component missing onClick handler - radio buttons were not responding to clicks",
+      "fix": "Added onClick={() => onChange(opt.value)} to the label element in RadioGroup component",
+      "line": "62"
+    }
+  ],
+
+  "test_report_links": [
+    "/app/backend/tests/test_portal_api.py",
+    "/app/test_reports/pytest/portal_api_results.xml"
+  ],
+
+  "action_items": [],
+
+  "critical_code_review_comments": [],
+
+  "updated_files": [
+    "/app/frontend/src/pages/ClientIntakePage.js"
+  ],
+
+  "success_rate": {
+    "backend": "100% (14/14 tests passed)",
+    "frontend": "100% (all GL-PORT-001 features verified)"
+  },
+
+  "seed_data_creation": "Test submissions created with TEST_ prefix in MongoDB collections gl_intake_submissions and gl_bookings",
+
+  "retest_needed": false,
+
+  "should_main_agent_self_test": false,
+
+  "context_for_next_testing_agent": "GL-PORT-001 portal pages fully implemented and tested. /intake is a 7-section client safety intake form with sidebar nav, conditional fields for schedule types, file uploads, and consent checkbox. /onboarding is a 5-step walkthrough booking portal with tier selection ($650/$750/$900), retainer option, and Stripe checkout integration. Both pages are STANDALONE (no global Navbar/Footer) with dark brand system (#1A1A1A backgrounds, #E8B84B gold accents). All data-testid attributes in place for testing. RadioGroup bug was fixed (missing onClick handler)."
+}

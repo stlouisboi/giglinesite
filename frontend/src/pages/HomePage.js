@@ -343,88 +343,146 @@ const HomePage = () => {
       {/* ═══════════════════════════════════════════════
           S3b — TESTIMONIALS
       ═══════════════════════════════════════════════ */}
-      <section className="py-20 md:py-28 bg-white" data-testid="testimonials-section">
-        <div className="container max-w-6xl">
+      <section className="relative py-24 md:py-32 overflow-hidden" style={{ backgroundColor: '#0D1B2A' }} data-testid="testimonials-section">
+        {/* Subtle texture overlay */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(201,168,76,0.4) 1px, transparent 0)',
+          backgroundSize: '32px 32px',
+        }} />
+        {/* Vignette */}
+        <div className="absolute inset-0" style={{
+          background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.4) 100%)',
+        }} />
+
+        <div className="container max-w-6xl relative z-10">
+          {/* Section label */}
           <Reveal>
+            <p
+              className="uppercase tracking-[3px] text-[#C9A84C] mb-4"
+              style={{ ...mono, fontSize: '11px' }}
+            >
+              Client Review
+            </p>
             <h2
-              className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-12 md:mb-16"
+              className="text-2xl md:text-3xl font-bold text-white mb-16 md:mb-20"
               data-testid="testimonials-heading"
             >
               What Clients Say
             </h2>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
-            {/* Card 1 — Real Review (featured, spans emphasis) */}
-            <Reveal delay={0}>
-              <div
-                className="border-l-2 border-[#C9A84C] pl-6 py-2 h-full flex flex-col"
-                data-testid="testimonial-card-1"
-              >
-                <p className="text-base md:text-lg text-[#1C2B2B]/80 leading-relaxed font-medium mb-4">
-                  "If you're looking for a partner that can bridge the gap between compliance and real-world execution, GigLine delivers results."
-                </p>
-                <p className="text-sm text-[#1C2B2B]/50 leading-relaxed mb-6 flex-grow">
-                  "I've worked with GigLine Safety & Compliance and can say they operate at a different level than most safety consultants. They don't just point out issues — they understand how operations actually run and provide solutions that can be executed on the floor. Their support with audits and compliance reviews helped us quickly identify gaps, tighten controls, and improve overall accountability without slowing down production. Where they really stand out is in incident investigations. Their approach is disciplined, focused on true root cause, and built around preventing repeat events — not just checking a box. That level of structure has a direct impact on long-term safety performance."
-                </p>
-                <div className="mt-auto">
-                  <p className="text-sm font-bold text-[#1C2B2B]">Demar Archie</p>
-                  <p className="text-xs text-[#1C2B2B]/40 mt-0.5">Warehouse Receiving Manager — Google Review</p>
-                </div>
-              </div>
-            </Reveal>
-
-            {/* Card 2 — Outcome Fact */}
-            <Reveal delay={100}>
-              <div
-                className="border-l border-[#1C2B2B]/10 pl-6 py-2 h-full flex flex-col"
-                data-testid="testimonial-card-2"
-              >
-                <p
-                  className="text-3xl md:text-4xl font-bold text-[#C9A84C] mb-3"
-                  data-testid="outcome-stat-1"
+          {/* Featured quote block */}
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
+            {/* Left — Pull Quote (60%) */}
+            <div className="lg:w-3/5">
+              <Reveal delay={0}>
+                <div
+                  className="relative"
+                  data-testid="testimonial-card-1"
                 >
-                  6–10
-                </p>
-                <p className="text-base font-bold text-[#1C2B2B] mb-3">
-                  Corrective actions identified per walkthrough
-                </p>
-                <p className="text-sm text-[#1C2B2B]/50 leading-relaxed flex-grow">
-                  Every engagement produces a prioritized list of findings — not a binder full of theory. Most clients resolve their top issues within 30 days.
-                </p>
-                <div className="mt-auto pt-4">
-                  <p className="text-xs text-[#1C2B2B]/30 uppercase tracking-wider" style={mono}>
+                  {/* Large decorative quote mark */}
+                  <span
+                    className="absolute -top-6 -left-2 text-[120px] md:text-[160px] leading-none text-[#C9A84C]/10 select-none pointer-events-none"
+                    aria-hidden="true"
+                    style={{ fontFamily: 'Georgia, serif' }}
+                  >
+                    &ldquo;
+                  </span>
+
+                  {/* Pull quote */}
+                  <p className="relative text-xl sm:text-2xl md:text-[28px] text-white/90 leading-[1.5] font-medium mb-8 pl-1" style={{ fontFamily: 'Georgia, serif' }}>
+                    If you're looking for a partner that can bridge the gap between compliance and real-world execution, GigLine delivers results.
+                  </p>
+
+                  {/* Gold divider */}
+                  <div className="w-16 h-[2px] mb-8" style={{ backgroundColor: '#C9A84C' }} />
+
+                  {/* Full review — glass card */}
+                  <div
+                    className="rounded-lg p-6 md:p-8"
+                    style={{
+                      background: 'rgba(255,255,255,0.03)',
+                      border: '1px solid rgba(201,168,76,0.12)',
+                      backdropFilter: 'blur(8px)',
+                    }}
+                  >
+                    <p className="text-sm md:text-base text-white/45 leading-relaxed">
+                      "I've worked with GigLine Safety & Compliance and can say they operate at a different level than most safety consultants. They don't just point out issues — they understand how operations actually run and provide solutions that can be executed on the floor. Their support with audits and compliance reviews helped us quickly identify gaps, tighten controls, and improve overall accountability without slowing down production. Where they really stand out is in incident investigations. Their approach is disciplined, focused on true root cause, and built around preventing repeat events — not just checking a box. That level of structure has a direct impact on long-term safety performance."
+                    </p>
+                  </div>
+
+                  {/* Attribution */}
+                  <div className="mt-6 flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold text-[#0D1B2A]" style={{ backgroundColor: '#C9A84C' }}>
+                      DA
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold text-white">Demar Archie</p>
+                      <p className="text-xs text-white/30 mt-0.5">Warehouse Receiving Manager — Google Review</p>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+            </div>
+
+            {/* Right — Outcome Stats (40%) */}
+            <div className="lg:w-2/5 flex flex-col gap-6 md:gap-8">
+              {/* Stat Card 1 */}
+              <Reveal delay={150}>
+                <div
+                  className="rounded-lg p-6 md:p-8 group hover:scale-[1.02] transition-transform duration-300"
+                  style={{
+                    background: 'rgba(255,255,255,0.03)',
+                    border: '1px solid rgba(201,168,76,0.12)',
+                  }}
+                  data-testid="testimonial-card-2"
+                >
+                  <p
+                    className="text-4xl md:text-5xl font-bold text-[#C9A84C] mb-2 tracking-tight"
+                    data-testid="outcome-stat-1"
+                  >
+                    6–10
+                  </p>
+                  <p className="text-base font-bold text-white mb-3">
+                    Corrective actions per walkthrough
+                  </p>
+                  <p className="text-sm text-white/35 leading-relaxed">
+                    Every engagement produces a prioritized list of findings — not a binder full of theory. Most clients resolve their top issues within 30 days.
+                  </p>
+                  <p className="text-[10px] text-white/15 uppercase tracking-wider mt-4" style={mono}>
                     Based on completed walkthroughs
                   </p>
                 </div>
-              </div>
-            </Reveal>
+              </Reveal>
 
-            {/* Card 3 — Outcome Fact */}
-            <Reveal delay={200}>
-              <div
-                className="border-l border-[#1C2B2B]/10 pl-6 py-2 h-full flex flex-col"
-                data-testid="testimonial-card-3"
-              >
-                <p
-                  className="text-3xl md:text-4xl font-bold text-[#C9A84C] mb-3"
-                  data-testid="outcome-stat-2"
+              {/* Stat Card 2 */}
+              <Reveal delay={300}>
+                <div
+                  className="rounded-lg p-6 md:p-8 group hover:scale-[1.02] transition-transform duration-300"
+                  style={{
+                    background: 'rgba(255,255,255,0.03)',
+                    border: '1px solid rgba(201,168,76,0.12)',
+                  }}
+                  data-testid="testimonial-card-3"
                 >
-                  24–48 hrs
-                </p>
-                <p className="text-base font-bold text-[#1C2B2B] mb-3">
-                  Written report delivered after your visit
-                </p>
-                <p className="text-sm text-[#1C2B2B]/50 leading-relaxed flex-grow">
-                  A written report with findings, photos, and a fix list — not a phone call summary. Yours to keep, share with your team, or hand to your insurer.
-                </p>
-                <div className="mt-auto pt-4">
-                  <p className="text-xs text-[#1C2B2B]/30 uppercase tracking-wider" style={mono}>
+                  <p
+                    className="text-4xl md:text-5xl font-bold text-[#C9A84C] mb-2 tracking-tight"
+                    data-testid="outcome-stat-2"
+                  >
+                    24–48 hrs
+                  </p>
+                  <p className="text-base font-bold text-white mb-3">
+                    Written report delivered after your visit
+                  </p>
+                  <p className="text-sm text-white/35 leading-relaxed">
+                    A written report with findings, photos, and a fix list — not a phone call summary. Yours to keep, share with your team, or hand to your insurer.
+                  </p>
+                  <p className="text-[10px] text-white/15 uppercase tracking-wider mt-4" style={mono}>
                     Standard turnaround
                   </p>
                 </div>
-              </div>
-            </Reveal>
+              </Reveal>
+            </div>
           </div>
         </div>
       </section>

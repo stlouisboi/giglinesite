@@ -1,322 +1,519 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { X, Upload, ChevronRight, Eye, RefreshCw, FileText, Users, Briefcase, DollarSign, Clock } from 'lucide-react';
 import SEO from '../components/SEO';
 
 const API = process.env.REACT_APP_BACKEND_URL;
+
+const STATUS_COLORS = {
+  intake_received: 'bg-gray-500', proposal_sent: 'bg-yellow-500', agreement_signed: 'bg-blue-500',
+  payment_confirmed: 'bg-green-500', walkthrough_scheduled: 'bg-green-600', report_delivered: 'bg-emerald-500',
+};
+const STATUS_LABELS = {
+  intake_received: 'Intake Received', proposal_sent: 'Proposal Sent', agreement_signed: 'Agreement Signed',
+  payment_confirmed: 'Payment Confirmed', walkthrough_scheduled: 'Walkthrough Scheduled', report_delivered: 'Report Delivered',
+};
+const URGENCY_COLORS = { asap: 'bg-red-500 text-white', '30_days': 'bg-yellow-500 text-black', '60_90': 'bg-gray-400 text-black', info: 'bg-gray-300 text-gray-600' };
+const URGENCY_LABELS = { asap: 'ASAP', '30_days': '30 days', '60_90': '60-90 days', info: 'Info' };
+
+const Badge = ({ color, children }) => (
+  <span className={`inline-block px-2 py-0.5 rounded text-[10px] font-bold ${color}`}>{children}</span>
+);
 
 const AdminPage = () => {
   const [token, setToken] = useState(localStorage.getItem('gl_admin') || '');
   const [password, setPassword] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
+  const [loginError, setLoginError] = useState('');
+  const [tab, setTab] = useState('portal');
+
+  // Data
+  const [portalStats, setPortalStats] = useState(null);
+  const [intakes, setIntakes] = useState(null);
+  const [bookings, setBookings] = useState(null);
   const [stats, setStats] = useState(null);
   const [leads, setLeads] = useState(null);
-  const [tab, setTab] = useState('overview');
-  const [loginError, setLoginError] = useState('');
 
-  useEffect(() => {
-    if (token) fetchStats(token);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token]);
+  // Modals/drawers
+  const [viewItem, setViewItem] = useState(null);
+  const [statusModal, setStatusModal] = useState(null);
+  const [uploadModal, setUploadModal] = useState(null);
+  const [newStatus, setNewStatus] = useState('');
+  const [uploading, setUploading] = useState(false);
+
+  const logout = () => { localStorage.removeItem('gl_admin'); setToken(''); setLoggedIn(false); };
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoginError('');
     try {
-      const res = await fetch(`${API}/api/admin/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password }),
-      });
+      const res = await fetch(`${API}/api/admin/login`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password }) });
       if (!res.ok) throw new Error();
       const data = await res.json();
       localStorage.setItem('gl_admin', data.token);
       setToken(data.token);
-    } catch {
-      setLoginError('Invalid password');
-    }
+    } catch { setLoginError('Invalid password'); }
   };
 
-  const fetchStats = async (t) => {
+  const fetchAll = useCallback(async (t) => {
     try {
-      const res = await fetch(`${API}/api/admin/stats?token=${t}`);
-      if (res.status === 401) { logout(); return; }
-      const data = await res.json();
-      setStats(data);
+      const [psRes, iRes, bRes, sRes] = await Promise.all([
+        fetch(`${API}/api/admin/portal-stats?token=${t}`),
+        fetch(`${API}/api/admin/intake-submissions?token=${t}`),
+        fetch(`${API}/api/admin/bookings?token=${t}`),
+        fetch(`${API}/api/admin/stats?token=${t}`),
+      ]);
+      if (psRes.status === 401) { logout(); return; }
+      setPortalStats(await psRes.json());
+      setIntakes(await iRes.json());
+      setBookings(await bRes.json());
+      setStats(await sRes.json());
       setLoggedIn(true);
-    } catch {
-      logout();
-    }
-  };
+    } catch { logout(); }
+  }, []);
+
+  useEffect(() => { if (token) fetchAll(token); }, [token, fetchAll]);
 
   const fetchLeads = async () => {
-    try {
-      const res = await fetch(`${API}/api/admin/leads?token=${token}&limit=50`);
-      if (res.ok) setLeads(await res.json());
-    } catch { /* ignore */ }
+    const res = await fetch(`${API}/api/admin/leads?token=${token}&limit=50`);
+    if (res.ok) setLeads(await res.json());
+  };
+
+  const handleStatusUpdate = async () => {
+    if (!statusModal || !newStatus) return;
+    await fetch(`${API}/api/admin/intake/${statusModal.clientToken}/status?token=${token}`, {
+      method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ status: newStatus }),
+    });
+    setStatusModal(null);
+    setNewStatus('');
+    fetchAll(token);
+  };
+
+  const handleReportUpload = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file || !uploadModal) return;
+    setUploading(true);
+    const fd = new FormData();
+    fd.append('file', file);
+    await fetch(`${API}/api/admin/intake/${uploadModal.clientToken}/report?token=${token}`, { method: 'POST', body: fd });
+    setUploading(false);
+    setUploadModal(null);
+    fetchAll(token);
   };
 
   const sendSummary = async () => {
     await fetch(`${API}/api/admin/send-summary?token=${token}`, { method: 'POST' });
-    alert('Weekly summary email sent to Vince');
+    alert('Weekly summary sent');
   };
 
-  const logout = () => { localStorage.removeItem('gl_admin'); setToken(''); setLoggedIn(false); setStats(null); setLeads(null); };
+  const getTier = (emp) => {
+    const n = emp || 0;
+    if (n <= 75) return 'Small';
+    if (n <= 250) return 'Medium';
+    return 'Large';
+  };
 
-  const Stat = ({ label, value, sub }) => (
-    <div className="bg-white border border-[#1C2B2B]/10 rounded p-5">
-      <p className="text-sm text-[#1C2B2B]/50 mb-1">{label}</p>
-      <p className="text-3xl font-bold text-[#1C2B2B]">{value}</p>
-      {sub && <p className="text-xs text-[#1C2B2B]/40 mt-1">{sub}</p>}
-    </div>
-  );
+  const getFlags = (item) => {
+    const flags = [];
+    if ((item.helpNeeded || []).includes('Build or clean up written safety programs')) flags.push('W');
+    if (item.additionalLocations === '4+') flags.push('C');
+    else if (item.additionalLocations === '2-3') flags.push('M');
+    const sched = item.schedule || '';
+    const detail = item.scheduleDetail || {};
+    if ((sched === '2_shifts' || sched === '3_shifts') && (detail.shiftsToInclude || []).includes('All shifts (may require multiple visits)')) flags.push('M');
+    if (sched === '12hr_rotating' && (detail.rotationsToInclude || []).includes('All rotations (multiple visits)')) flags.push('M');
+    return [...new Set(flags)];
+  };
 
-  if (!loggedIn) {
-    return (
-      <main>
-        <SEO title="Admin" canonical="/admin" noindex />
-        <section className="py-24" style={{ backgroundColor: '#0D1B2A' }}>
-          <div className="container max-w-sm">
-            <h1 className="text-2xl font-bold text-white mb-6 text-center" data-testid="admin-login-title">Admin Dashboard</h1>
-            <form onSubmit={handleLogin} className="space-y-4" data-testid="admin-login-form">
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 bg-white/5 border border-white/15 text-white rounded focus:outline-none focus:border-[#C9A84C] placeholder:text-white/30"
-                placeholder="Enter admin password"
-                data-testid="admin-password"
-              />
-              {loginError && <p className="text-red-400 text-sm">{loginError}</p>}
-              <button
-                type="submit"
-                className="w-full bg-[#C9A84C] hover:bg-[#B8972C] text-white font-semibold py-3 rounded transition-colors"
-                data-testid="admin-login-btn"
-              >
-                Log In
-              </button>
-            </form>
-          </div>
-        </section>
-      </main>
-    );
-  }
-
-  return (
+  /* ── Login Screen ── */
+  if (!loggedIn) return (
     <main>
-      <SEO title="Admin Dashboard" canonical="/admin" noindex />
-      <section className="py-8 border-b" style={{ backgroundColor: '#0D1B2A' }}>
-        <div className="container flex items-center justify-between">
-          <h1 className="text-xl font-bold text-white" data-testid="admin-title">GigLine Admin</h1>
-          <div className="flex items-center gap-4">
-            <button onClick={sendSummary} className="text-sm text-[#C9A84C] hover:text-white transition-colors" data-testid="send-summary-btn">
-              Send Weekly Summary
-            </button>
-            <button onClick={logout} className="text-sm text-white/50 hover:text-white transition-colors" data-testid="admin-logout">
-              Log Out
-            </button>
-          </div>
+      <SEO title="Admin" canonical="/admin" noindex />
+      <section className="min-h-screen flex items-center justify-center" style={{ background: '#0D1B2A' }}>
+        <div className="w-full max-w-sm px-4">
+          <h1 className="text-2xl font-bold text-white mb-6 text-center" data-testid="admin-login-title">Admin Dashboard</h1>
+          <form onSubmit={handleLogin} className="space-y-4" data-testid="admin-login-form">
+            <input type="password" value={password} onChange={e => setPassword(e.target.value)}
+              className="w-full px-4 py-3 bg-white/5 border border-white/15 text-white rounded-lg focus:outline-none focus:border-[#C9A84C] placeholder:text-white/30"
+              placeholder="Enter admin password" data-testid="admin-password" />
+            {loginError && <p className="text-red-400 text-sm">{loginError}</p>}
+            <button type="submit" className="w-full bg-[#C9A84C] hover:bg-[#B8972C] text-white font-semibold py-3 rounded-lg transition-colors" data-testid="admin-login-btn">Log In</button>
+          </form>
         </div>
       </section>
+    </main>
+  );
 
-      <section className="py-8" style={{ backgroundColor: '#F9F8F6' }}>
-        <div className="container">
-          {/* Tabs */}
-          <div className="flex gap-4 mb-8 border-b border-[#1C2B2B]/10 pb-3" data-testid="admin-tabs">
-            {['overview', 'leads', 'downloads'].map((t) => (
-              <button
-                key={t}
-                onClick={() => { setTab(t); if (t === 'leads' && !leads) fetchLeads(); }}
-                className={`text-sm font-medium px-3 py-1 rounded transition-colors ${tab === t ? 'bg-[#1C2B2B] text-white' : 'text-[#1C2B2B]/50 hover:text-[#1C2B2B]'}`}
-                data-testid={`tab-${t}`}
-              >
-                {t.charAt(0).toUpperCase() + t.slice(1)}
-              </button>
-            ))}
+  const TABS = [
+    { id: 'portal', label: 'Portal', icon: <Briefcase size={14} /> },
+    { id: 'intakes', label: 'Intake Submissions', icon: <FileText size={14} /> },
+    { id: 'bookings', label: 'Bookings', icon: <DollarSign size={14} /> },
+    { id: 'leads', label: 'Leads', icon: <Users size={14} /> },
+    { id: 'downloads', label: 'Downloads', icon: <Clock size={14} /> },
+  ];
+
+  /* ── Dashboard ── */
+  return (
+    <main className="min-h-screen" style={{ background: '#F4F3F1' }}>
+      <SEO title="Admin Dashboard" canonical="/admin" noindex />
+
+      {/* Top bar */}
+      <div className="sticky top-0 z-40" style={{ background: '#0D1B2A', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+        <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between py-3">
+          <h1 className="text-base font-bold text-white flex items-center gap-2" data-testid="admin-title">
+            <span className="w-6 h-6 rounded flex items-center justify-center text-xs font-bold" style={{ background: '#C9A84C', color: '#111' }}>G</span>
+            GigLine Admin
+          </h1>
+          <div className="flex items-center gap-3">
+            <button onClick={sendSummary} className="text-xs text-[#C9A84C] hover:text-white transition-colors hidden md:block" data-testid="send-summary-btn">Send Weekly Summary</button>
+            <button onClick={() => fetchAll(token)} className="text-white/40 hover:text-white transition-colors"><RefreshCw size={14} /></button>
+            <button onClick={logout} className="text-xs text-white/40 hover:text-white transition-colors" data-testid="admin-logout">Log Out</button>
           </div>
+        </div>
+      </div>
 
-          {/* ── OVERVIEW TAB ── */}
-          {tab === 'overview' && stats && (
-            <div data-testid="overview-tab">
-              <h2 className="text-lg font-bold text-[#1C2B2B] mb-4">Leads</h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                <Stat label="Safety Checks (Total)" value={stats.safety_checks.total} sub={`${stats.safety_checks.last_7d} last 7 days`} />
-                <Stat label="Walkthrough Requests" value={stats.walkthrough_requests.total} sub={`${stats.walkthrough_requests.last_7d} last 7 days`} />
-                <Stat label="Heat Guide Leads" value={stats.heat_guide_leads} />
-                <Stat label="Safety Checks (30d)" value={stats.safety_checks.last_30d} />
+      {/* Summary strip */}
+      {portalStats && (
+        <div className="border-b" style={{ background: '#fff', borderColor: '#e5e5e5' }}>
+          <div className="max-w-7xl mx-auto px-4 md:px-6 py-4">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4" data-testid="portal-summary-strip">
+              {[
+                { label: 'Intakes this month', value: portalStats.intakeThisMonth },
+                { label: 'Pending proposals', value: portalStats.pendingProposals },
+                { label: 'Confirmed bookings', value: portalStats.confirmedBookings },
+                { label: 'Reports delivered', value: portalStats.reportsDelivered },
+                { label: 'Revenue this month', value: `$${(portalStats.revenueThisMonth || 0).toLocaleString()}`, gold: true },
+              ].map((s, i) => (
+                <div key={i} className="text-center md:text-left">
+                  <p className="text-xs text-gray-400">{s.label}</p>
+                  <p className={`text-xl font-bold ${s.gold ? 'text-[#B8972C]' : 'text-[#1C2B2B]'}`} data-testid={`stat-${i}`}>{s.value}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Tabs */}
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
+        <div className="flex gap-1 pt-4 pb-0 overflow-x-auto" data-testid="admin-tabs">
+          {TABS.map(t => (
+            <button key={t.id}
+              onClick={() => { setTab(t.id); if (t.id === 'leads' && !leads) fetchLeads(); }}
+              className={`flex items-center gap-1.5 text-sm font-medium px-4 py-2.5 rounded-t-lg transition-colors whitespace-nowrap ${tab === t.id ? 'bg-white text-[#1C2B2B] border border-b-0 border-gray-200' : 'text-gray-400 hover:text-gray-600'}`}
+              data-testid={`tab-${t.id}`}
+            >
+              {t.icon} {t.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="max-w-7xl mx-auto px-4 md:px-6 pb-12">
+        <div className="bg-white rounded-b-lg rounded-tr-lg border border-gray-200 p-4 md:p-6 min-h-[400px]">
+
+          {/* ── PORTAL OVERVIEW ── */}
+          {tab === 'portal' && stats && (
+            <div data-testid="portal-tab">
+              <h2 className="text-lg font-bold text-[#1C2B2B] mb-4">Website Leads</h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+                {[
+                  { l: 'Safety Checks', v: stats.safety_checks.total, s: `${stats.safety_checks.last_7d} last 7d` },
+                  { l: 'Walkthrough Requests', v: stats.walkthrough_requests.total, s: `${stats.walkthrough_requests.last_7d} last 7d` },
+                  { l: 'Heat Guide Leads', v: stats.heat_guide_leads },
+                  { l: 'Downloads (7d)', v: stats.downloads.last_7d },
+                ].map((s, i) => (
+                  <div key={i} className="border border-gray-100 rounded-lg p-4">
+                    <p className="text-xs text-gray-400 mb-1">{s.l}</p>
+                    <p className="text-2xl font-bold text-[#1C2B2B]">{s.v}</p>
+                    {s.s && <p className="text-[10px] text-gray-300 mt-0.5">{s.s}</p>}
+                  </div>
+                ))}
               </div>
-
-              <h2 className="text-lg font-bold text-[#1C2B2B] mb-4">Risk Breakdown</h2>
-              <div className="grid grid-cols-3 gap-4 mb-8">
-                <div className="bg-white border-l-4 border-[#c0392b] rounded p-5">
-                  <p className="text-sm text-[#1C2B2B]/50">HIGH Risk</p>
-                  <p className="text-3xl font-bold text-[#c0392b]" data-testid="high-risk-count">{stats.risk_breakdown.high}</p>
-                </div>
-                <div className="bg-white border-l-4 border-[#e67e22] rounded p-5">
-                  <p className="text-sm text-[#1C2B2B]/50">MEDIUM Risk</p>
-                  <p className="text-3xl font-bold text-[#e67e22]" data-testid="medium-risk-count">{stats.risk_breakdown.medium}</p>
-                </div>
-                <div className="bg-white border-l-4 border-[#27ae60] rounded p-5">
-                  <p className="text-sm text-[#1C2B2B]/50">LOW Risk</p>
-                  <p className="text-3xl font-bold text-[#27ae60]" data-testid="low-risk-count">{stats.risk_breakdown.low}</p>
-                </div>
-              </div>
-
-              <h2 className="text-lg font-bold text-[#1C2B2B] mb-4">Downloads</h2>
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-                <Stat label="Total Downloads" value={stats.downloads.total} sub={`${stats.downloads.last_7d} last 7 days`} />
-                <Stat label="Safety Check PDFs" value={stats.downloads.safety_check_pdfs} />
-                <Stat label="HazCom Packs" value={stats.downloads.hazcom_pdfs} />
-                <Stat label="Heat Guides" value={stats.downloads.heat_guide} />
-                <Stat label="All Downloads (7d)" value={stats.downloads.last_7d} />
+              <h2 className="text-lg font-bold text-[#1C2B2B] mb-3">Risk Breakdown</h2>
+              <div className="grid grid-cols-3 gap-3">
+                {[
+                  { l: 'HIGH', v: stats.risk_breakdown.high, c: 'border-red-500 text-red-600' },
+                  { l: 'MEDIUM', v: stats.risk_breakdown.medium, c: 'border-orange-400 text-orange-500' },
+                  { l: 'LOW', v: stats.risk_breakdown.low, c: 'border-green-500 text-green-600' },
+                ].map((r, i) => (
+                  <div key={i} className={`border-l-4 ${r.c} rounded-lg p-4 bg-gray-50`}>
+                    <p className="text-xs text-gray-400">{r.l} Risk</p>
+                    <p className={`text-2xl font-bold`}>{r.v}</p>
+                  </div>
+                ))}
               </div>
             </div>
           )}
 
-          {/* ── LEADS TAB ── */}
-          {tab === 'leads' && leads && (
-            <div data-testid="leads-tab">
-              <h2 className="text-lg font-bold text-[#1C2B2B] mb-4">Safety Check Submissions</h2>
-              <div className="bg-white rounded border border-[#1C2B2B]/10 overflow-x-auto mb-8">
-                <table className="w-full text-sm">
+          {/* ── INTAKE SUBMISSIONS ── */}
+          {tab === 'intakes' && (
+            <div data-testid="intakes-tab">
+              <h2 className="text-lg font-bold text-[#1C2B2B] mb-4">Intake Submissions</h2>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm" data-testid="intakes-table">
                   <thead>
-                    <tr className="bg-[#1C2B2B] text-white">
-                      <th className="px-4 py-3 text-left">Date</th>
-                      <th className="px-4 py-3 text-left">Name</th>
-                      <th className="px-4 py-3 text-left">Company</th>
-                      <th className="px-4 py-3 text-left">Email</th>
-                      <th className="px-4 py-3 text-left">Role</th>
-                      <th className="px-4 py-3 text-center">Score</th>
-                      <th className="px-4 py-3 text-center">Risk</th>
+                    <tr className="bg-[#1C2B2B] text-white text-left">
+                      <th className="px-3 py-2.5 text-xs font-medium">Submitted</th>
+                      <th className="px-3 py-2.5 text-xs font-medium">Company</th>
+                      <th className="px-3 py-2.5 text-xs font-medium">Contact</th>
+                      <th className="px-3 py-2.5 text-xs font-medium">Tier</th>
+                      <th className="px-3 py-2.5 text-xs font-medium">Status</th>
+                      <th className="px-3 py-2.5 text-xs font-medium">Urgency</th>
+                      <th className="px-3 py-2.5 text-xs font-medium">Flags</th>
+                      <th className="px-3 py-2.5 text-xs font-medium">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {leads.safety_checks.map((lead, i) => (
-                      <tr key={i} className="border-b border-[#1C2B2B]/5 hover:bg-[#F9F8F6]">
-                        <td className="px-4 py-3 text-[#1C2B2B]/50">{lead.timestamp ? new Date(lead.timestamp).toLocaleDateString() : '—'}</td>
-                        <td className="px-4 py-3 font-medium">{lead.name}</td>
-                        <td className="px-4 py-3">{lead.company}</td>
-                        <td className="px-4 py-3"><a href={`mailto:${lead.email}`} className="text-[#B8972C] hover:underline">{lead.email}</a></td>
-                        <td className="px-4 py-3 text-[#1C2B2B]/50">{lead.role || '—'}</td>
-                        <td className="px-4 py-3 text-center font-bold">{lead.score_gaps}/6</td>
-                        <td className="px-4 py-3 text-center">
-                          <span className={`inline-block px-2 py-0.5 rounded text-xs font-bold text-white ${
-                            lead.score_level === 'HIGH' ? 'bg-[#c0392b]' : lead.score_level === 'MEDIUM' ? 'bg-[#e67e22]' : 'bg-[#27ae60]'
-                          }`}>{lead.score_level}</span>
+                    {(intakes || []).map((item, i) => {
+                      const flags = getFlags(item);
+                      return (
+                        <tr key={i} className="border-b border-gray-100 hover:bg-gray-50" data-testid={`intake-row-${i}`}>
+                          <td className="px-3 py-3 text-xs text-gray-400">{item.submittedAt ? new Date(item.submittedAt).toLocaleDateString() : '—'}</td>
+                          <td className="px-3 py-3 font-medium text-[#1C2B2B]">{item.company || '—'}</td>
+                          <td className="px-3 py-3 text-gray-500">{item.contactName || '—'}</td>
+                          <td className="px-3 py-3 text-xs">{getTier(item.totalEmployees)}</td>
+                          <td className="px-3 py-3">
+                            <Badge color={`${STATUS_COLORS[item.status] || 'bg-gray-400'} text-white`}>
+                              {STATUS_LABELS[item.status] || item.status || 'Unknown'}
+                            </Badge>
+                          </td>
+                          <td className="px-3 py-3">
+                            {item.urgency && <Badge color={URGENCY_COLORS[item.urgency] || 'bg-gray-300 text-gray-600'}>{URGENCY_LABELS[item.urgency] || item.urgency}</Badge>}
+                          </td>
+                          <td className="px-3 py-3">
+                            <div className="flex gap-1">
+                              {flags.includes('W') && <Badge color="bg-purple-100 text-purple-700">W</Badge>}
+                              {flags.includes('M') && <Badge color="bg-blue-100 text-blue-700">M</Badge>}
+                              {flags.includes('C') && <Badge color="bg-red-100 text-red-700">C</Badge>}
+                            </div>
+                          </td>
+                          <td className="px-3 py-3">
+                            <div className="flex gap-1.5">
+                              <button onClick={() => setViewItem(item)} className="text-[10px] font-medium px-2 py-1 rounded border border-gray-200 hover:bg-gray-50 transition-colors flex items-center gap-1" data-testid={`view-intake-${i}`}>
+                                <Eye size={10} /> View
+                              </button>
+                              <button onClick={() => { setStatusModal(item); setNewStatus(item.status || 'intake_received'); }} className="text-[10px] font-medium px-2 py-1 rounded border border-[#C9A84C] text-[#B8972C] hover:bg-[#C9A84C]/10 transition-colors" data-testid={`update-status-${i}`}>
+                                Status
+                              </button>
+                              {item.clientToken && !item.reportUrl && (
+                                <button onClick={() => setUploadModal(item)} className="text-[10px] font-medium px-2 py-1 rounded border border-green-400 text-green-600 hover:bg-green-50 transition-colors flex items-center gap-1" data-testid={`upload-report-${i}`}>
+                                  <Upload size={10} /> Report
+                                </button>
+                              )}
+                              {item.reportUrl && <Badge color="bg-emerald-100 text-emerald-700">Delivered</Badge>}
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+                {(!intakes || intakes.length === 0) && <p className="py-8 text-center text-gray-300">No intake submissions yet</p>}
+              </div>
+              <p className="text-[10px] text-gray-300 mt-3">Flags: W = Written programs requested · M = Multi-visit likely · C = Custom quote required</p>
+            </div>
+          )}
+
+          {/* ── BOOKINGS ── */}
+          {tab === 'bookings' && (
+            <div data-testid="bookings-tab">
+              <h2 className="text-lg font-bold text-[#1C2B2B] mb-4">Bookings</h2>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm" data-testid="bookings-table">
+                  <thead>
+                    <tr className="bg-[#1C2B2B] text-white text-left">
+                      <th className="px-3 py-2.5 text-xs font-medium">Date</th>
+                      <th className="px-3 py-2.5 text-xs font-medium">Company</th>
+                      <th className="px-3 py-2.5 text-xs font-medium">Tier</th>
+                      <th className="px-3 py-2.5 text-xs font-medium">Amount</th>
+                      <th className="px-3 py-2.5 text-xs font-medium">Payment</th>
+                      <th className="px-3 py-2.5 text-xs font-medium">Preferred Date</th>
+                      <th className="px-3 py-2.5 text-xs font-medium">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {(bookings || []).map((item, i) => (
+                      <tr key={i} className="border-b border-gray-100 hover:bg-gray-50" data-testid={`booking-row-${i}`}>
+                        <td className="px-3 py-3 text-xs text-gray-400">{item.createdAt ? new Date(item.createdAt).toLocaleDateString() : '—'}</td>
+                        <td className="px-3 py-3 font-medium text-[#1C2B2B]">{item.company || '—'}</td>
+                        <td className="px-3 py-3 text-xs">{(item.tier || '').charAt(0).toUpperCase() + (item.tier || '').slice(1)}{item.addRetainer ? ' + Retainer' : ''}</td>
+                        <td className="px-3 py-3 font-bold text-[#B8972C]">${item.totalCharged || 0}</td>
+                        <td className="px-3 py-3">
+                          <Badge color={item.paymentStatus === 'paid' ? 'bg-green-500 text-white' : 'bg-yellow-500 text-black'}>
+                            {item.paymentStatus === 'paid' ? 'Confirmed' : 'Pending'}
+                          </Badge>
+                        </td>
+                        <td className="px-3 py-3 text-xs text-gray-500">{item.preferredDate || '—'}</td>
+                        <td className="px-3 py-3">
+                          <button onClick={() => setViewItem(item)} className="text-[10px] font-medium px-2 py-1 rounded border border-gray-200 hover:bg-gray-50 transition-colors flex items-center gap-1" data-testid={`view-booking-${i}`}>
+                            <Eye size={10} /> View
+                          </button>
                         </td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
-                {leads.safety_checks.length === 0 && <p className="p-6 text-center text-[#1C2B2B]/40">No submissions yet</p>}
-              </div>
-
-              <h2 className="text-lg font-bold text-[#1C2B2B] mb-4">Walkthrough Requests</h2>
-              <div className="bg-white rounded border border-[#1C2B2B]/10 overflow-x-auto mb-8">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="bg-[#1C2B2B] text-white">
-                      <th className="px-4 py-3 text-left">Date</th>
-                      <th className="px-4 py-3 text-left">Name</th>
-                      <th className="px-4 py-3 text-left">Company</th>
-                      <th className="px-4 py-3 text-left">Type</th>
-                      <th className="px-4 py-3 text-left">Location</th>
-                      <th className="px-4 py-3 text-left">Source</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {leads.walkthrough_requests.map((lead, i) => (
-                      <tr key={i} className="border-b border-[#1C2B2B]/5 hover:bg-[#F9F8F6]">
-                        <td className="px-4 py-3 text-[#1C2B2B]/50">{lead.timestamp ? new Date(lead.timestamp).toLocaleDateString() : '—'}</td>
-                        <td className="px-4 py-3 font-medium">{lead.name}</td>
-                        <td className="px-4 py-3">{lead.company}</td>
-                        <td className="px-4 py-3 text-[#1C2B2B]/50">{lead.operation_type}</td>
-                        <td className="px-4 py-3">{lead.location}</td>
-                        <td className="px-4 py-3 text-xs text-[#1C2B2B]/40">{lead.utm_source ? `${lead.utm_source}/${lead.utm_medium}` : 'Direct'}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-                {leads.walkthrough_requests.length === 0 && <p className="p-6 text-center text-[#1C2B2B]/40">No requests yet</p>}
-              </div>
-
-              <h2 className="text-lg font-bold text-[#1C2B2B] mb-4">Heat Guide Leads</h2>
-              <div className="bg-white rounded border border-[#1C2B2B]/10 overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="bg-[#1C2B2B] text-white">
-                      <th className="px-4 py-3 text-left">Date</th>
-                      <th className="px-4 py-3 text-left">Email</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {leads.heat_guide_leads.map((lead, i) => (
-                      <tr key={i} className="border-b border-[#1C2B2B]/5 hover:bg-[#F9F8F6]">
-                        <td className="px-4 py-3 text-[#1C2B2B]/50">{lead.created_at ? new Date(lead.created_at).toLocaleDateString() : '—'}</td>
-                        <td className="px-4 py-3"><a href={`mailto:${lead.email}`} className="text-[#B8972C] hover:underline">{lead.email}</a></td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-                {leads.heat_guide_leads.length === 0 && <p className="p-6 text-center text-[#1C2B2B]/40">No leads yet</p>}
+                {(!bookings || bookings.length === 0) && <p className="py-8 text-center text-gray-300">No bookings yet</p>}
               </div>
             </div>
           )}
 
-          {/* ── DOWNLOADS TAB ── */}
-          {tab === 'downloads' && (
-            <div data-testid="downloads-tab">
-              <DownloadsTab token={token} />
+          {/* ── LEADS (existing) ── */}
+          {tab === 'leads' && (
+            <div data-testid="leads-tab">
+              {!leads ? <p className="text-gray-400">Loading...</p> : (
+                <>
+                  <h2 className="text-lg font-bold text-[#1C2B2B] mb-4">Safety Check Submissions</h2>
+                  <div className="overflow-x-auto mb-8">
+                    <table className="w-full text-sm">
+                      <thead><tr className="bg-[#1C2B2B] text-white text-left">
+                        <th className="px-3 py-2.5 text-xs">Date</th><th className="px-3 py-2.5 text-xs">Name</th><th className="px-3 py-2.5 text-xs">Company</th><th className="px-3 py-2.5 text-xs">Email</th><th className="px-3 py-2.5 text-xs text-center">Score</th><th className="px-3 py-2.5 text-xs text-center">Risk</th>
+                      </tr></thead>
+                      <tbody>
+                        {leads.safety_checks.map((l, i) => (
+                          <tr key={i} className="border-b border-gray-100 hover:bg-gray-50">
+                            <td className="px-3 py-3 text-xs text-gray-400">{l.timestamp ? new Date(l.timestamp).toLocaleDateString() : '—'}</td>
+                            <td className="px-3 py-3 font-medium">{l.name}</td>
+                            <td className="px-3 py-3">{l.company}</td>
+                            <td className="px-3 py-3"><a href={`mailto:${l.email}`} className="text-[#B8972C] hover:underline">{l.email}</a></td>
+                            <td className="px-3 py-3 text-center font-bold">{l.score_gaps}/6</td>
+                            <td className="px-3 py-3 text-center"><Badge color={l.score_level === 'HIGH' ? 'bg-red-500 text-white' : l.score_level === 'MEDIUM' ? 'bg-orange-400 text-white' : 'bg-green-500 text-white'}>{l.score_level}</Badge></td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                    {leads.safety_checks.length === 0 && <p className="py-6 text-center text-gray-300">No submissions</p>}
+                  </div>
+                  <h2 className="text-lg font-bold text-[#1C2B2B] mb-4">Walkthrough Requests</h2>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-sm">
+                      <thead><tr className="bg-[#1C2B2B] text-white text-left">
+                        <th className="px-3 py-2.5 text-xs">Date</th><th className="px-3 py-2.5 text-xs">Name</th><th className="px-3 py-2.5 text-xs">Company</th><th className="px-3 py-2.5 text-xs">Type</th><th className="px-3 py-2.5 text-xs">Location</th>
+                      </tr></thead>
+                      <tbody>
+                        {leads.walkthrough_requests.map((l, i) => (
+                          <tr key={i} className="border-b border-gray-100 hover:bg-gray-50">
+                            <td className="px-3 py-3 text-xs text-gray-400">{l.timestamp ? new Date(l.timestamp).toLocaleDateString() : '—'}</td>
+                            <td className="px-3 py-3 font-medium">{l.name}</td>
+                            <td className="px-3 py-3">{l.company}</td>
+                            <td className="px-3 py-3 text-gray-500">{l.operation_type}</td>
+                            <td className="px-3 py-3">{l.location}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                    {leads.walkthrough_requests.length === 0 && <p className="py-6 text-center text-gray-300">No requests</p>}
+                  </div>
+                </>
+              )}
             </div>
           )}
+
+          {/* ── DOWNLOADS ── */}
+          {tab === 'downloads' && <DownloadsTab token={token} />}
         </div>
-      </section>
+      </div>
+
+      {/* ── View Drawer ── */}
+      {viewItem && (
+        <div className="fixed inset-0 z-50 flex justify-end" onClick={() => setViewItem(null)}>
+          <div className="absolute inset-0 bg-black/40" />
+          <div className="relative w-full max-w-lg bg-white h-full overflow-y-auto shadow-2xl" onClick={e => e.stopPropagation()} data-testid="view-drawer">
+            <div className="sticky top-0 bg-[#1C2B2B] px-6 py-4 flex items-center justify-between z-10">
+              <h3 className="text-base font-bold text-white">{viewItem.company || 'Details'}</h3>
+              <button onClick={() => setViewItem(null)} className="text-white/50 hover:text-white"><X size={18} /></button>
+            </div>
+            <div className="p-6 space-y-4 text-sm">
+              {Object.entries(viewItem).filter(([k]) => !['_id', 'consentGiven'].includes(k)).map(([k, v]) => {
+                if (v === null || v === undefined || v === '') return null;
+                const val = typeof v === 'object' ? JSON.stringify(v, null, 2) : String(v);
+                return (
+                  <div key={k}>
+                    <p className="text-[10px] text-gray-400 uppercase tracking-wider">{k}</p>
+                    {typeof v === 'object' ? (
+                      <pre className="text-xs text-gray-600 bg-gray-50 p-2 rounded mt-1 overflow-x-auto whitespace-pre-wrap">{val}</pre>
+                    ) : (
+                      <p className="text-gray-700">{val}</p>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── Status Update Modal ── */}
+      {statusModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center" onClick={() => setStatusModal(null)}>
+          <div className="absolute inset-0 bg-black/40" />
+          <div className="relative bg-white rounded-xl p-6 w-full max-w-sm shadow-2xl" onClick={e => e.stopPropagation()} data-testid="status-modal">
+            <h3 className="text-base font-bold text-[#1C2B2B] mb-1">Update Status</h3>
+            <p className="text-xs text-gray-400 mb-4">{statusModal.company}</p>
+            <select value={newStatus} onChange={e => setNewStatus(e.target.value)}
+              className="w-full px-3 py-2.5 rounded-lg border border-gray-200 text-sm mb-4 focus:outline-none focus:border-[#C9A84C]"
+              data-testid="status-select"
+            >
+              {Object.entries(STATUS_LABELS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
+            </select>
+            <div className="flex gap-2">
+              <button onClick={() => setStatusModal(null)} className="flex-1 text-sm py-2 rounded-lg border border-gray-200 text-gray-500">Cancel</button>
+              <button onClick={handleStatusUpdate} className="flex-1 text-sm py-2 rounded-lg bg-[#C9A84C] text-white font-bold hover:bg-[#B8972C] transition-colors" data-testid="status-save-btn">Save</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── Report Upload Modal ── */}
+      {uploadModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center" onClick={() => setUploadModal(null)}>
+          <div className="absolute inset-0 bg-black/40" />
+          <div className="relative bg-white rounded-xl p-6 w-full max-w-sm shadow-2xl" onClick={e => e.stopPropagation()} data-testid="upload-modal">
+            <h3 className="text-base font-bold text-[#1C2B2B] mb-1">Upload Report</h3>
+            <p className="text-xs text-gray-400 mb-4">{uploadModal.company} — {uploadModal.clientToken}</p>
+            <label className="block cursor-pointer rounded-lg border-2 border-dashed border-gray-200 p-6 text-center hover:border-[#C9A84C] transition-colors">
+              <Upload size={24} className="mx-auto text-gray-300 mb-2" />
+              <p className="text-sm text-gray-500">{uploading ? 'Uploading...' : 'Click to select PDF (max 20MB)'}</p>
+              <input type="file" accept=".pdf" className="hidden" onChange={handleReportUpload} disabled={uploading} data-testid="report-file-input" />
+            </label>
+            <button onClick={() => setUploadModal(null)} className="w-full text-sm py-2 rounded-lg border border-gray-200 text-gray-500 mt-3">Cancel</button>
+          </div>
+        </div>
+      )}
     </main>
   );
 };
 
+/* ── Downloads sub-tab (kept separate) ── */
 const DownloadsTab = ({ token }) => {
   const [events, setEvents] = useState(null);
-
   useEffect(() => {
     (async () => {
-      try {
-        const res = await fetch(`${API}/api/admin/downloads?token=${token}&limit=100`);
-        if (res.ok) setEvents(await res.json());
-      } catch { /* ignore */ }
+      try { const res = await fetch(`${API}/api/admin/downloads?token=${token}&limit=100`); if (res.ok) setEvents(await res.json()); } catch {}
     })();
   }, [token]);
-
-  if (!events) return <p className="text-[#1C2B2B]/40">Loading...</p>;
-
-  const typeLabel = (t) => t === 'safety_check_pdf' ? 'Safety Check PDF' : t === 'hazcom_pdf' ? 'HazCom Pack' : 'Heat Guide';
-  const typeBg = (t) => t === 'safety_check_pdf' ? 'bg-[#1C2B2B]/10' : t === 'hazcom_pdf' ? 'bg-[#B8972C]/10 text-[#8B7222]' : 'bg-[#27ae60]/10 text-[#1a8044]';
-
+  if (!events) return <p className="text-gray-400">Loading...</p>;
+  const typeLabel = t => t === 'safety_check_pdf' ? 'Safety Check' : t === 'hazcom_pdf' ? 'HazCom' : 'Heat Guide';
   return (
-    <>
+    <div data-testid="downloads-tab">
       <h2 className="text-lg font-bold text-[#1C2B2B] mb-4">Recent Downloads</h2>
-      <div className="bg-white rounded border border-[#1C2B2B]/10 overflow-x-auto">
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="bg-[#1C2B2B] text-white">
-              <th className="px-4 py-3 text-left">Date</th>
-              <th className="px-4 py-3 text-left">Type</th>
-              <th className="px-4 py-3 text-left">Details</th>
+      <table className="w-full text-sm">
+        <thead><tr className="bg-[#1C2B2B] text-white text-left">
+          <th className="px-3 py-2.5 text-xs">Date</th><th className="px-3 py-2.5 text-xs">Type</th><th className="px-3 py-2.5 text-xs">Details</th>
+        </tr></thead>
+        <tbody>
+          {events.events.map((ev, i) => (
+            <tr key={i} className="border-b border-gray-100 hover:bg-gray-50">
+              <td className="px-3 py-3 text-xs text-gray-400">{new Date(ev.timestamp).toLocaleString()}</td>
+              <td className="px-3 py-3"><Badge color="bg-gray-100 text-gray-600">{typeLabel(ev.type)}</Badge></td>
+              <td className="px-3 py-3 text-gray-500 text-xs">{ev.email || ev.submission_id || ev.filename || '—'}</td>
             </tr>
-          </thead>
-          <tbody>
-            {events.events.map((ev, i) => (
-              <tr key={i} className="border-b border-[#1C2B2B]/5 hover:bg-[#F9F8F6]">
-                <td className="px-4 py-3 text-[#1C2B2B]/50">{new Date(ev.timestamp).toLocaleString()}</td>
-                <td className="px-4 py-3">
-                  <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium ${typeBg(ev.type)}`}>{typeLabel(ev.type)}</span>
-                </td>
-                <td className="px-4 py-3 text-[#1C2B2B]/50">{ev.email || ev.submission_id || ev.filename || '—'}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        {events.events.length === 0 && <p className="p-6 text-center text-[#1C2B2B]/40">No downloads yet</p>}
-      </div>
-    </>
+          ))}
+        </tbody>
+      </table>
+      {events.events.length === 0 && <p className="py-8 text-center text-gray-300">No downloads yet</p>}
+    </div>
   );
 };
 

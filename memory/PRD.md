@@ -85,6 +85,13 @@ Build and expand a professional service business website for GigLine Safety & Co
 - Monthly Field Notes content expansion (P2) — 14 articles live, next round TBD
 - Swap placeholder testimonials with real client quotes when available (P2)
 - GL-PORT-001 Addendum: Automated pricing logic in Vince notification email (DONE)
+- GL-PORT-001 Section B: Client Status Page, Secure Report Delivery, Admin Enhancements, E-Signature (Apr 2026)
+  - /status/{token}: 6-stage client status timeline, token-based access, no login
+  - /report/{token}: Secure report delivery with PDF viewer, token-based access logged
+  - /onboarding: Now 6 steps (added Agreement signing step), payment locked until signed
+  - Server-side agreement PDF via reportlab, stored per clientToken
+  - Admin: intake-submissions list, bookings list, status updates, report upload, portal-stats summary
+  - Single clientToken per engagement ties together intake, status, agreement, booking, and report
 
 ## Deployment
 - Frontend: Vercel (manual redeploy after GitHub push)

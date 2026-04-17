@@ -505,7 +505,7 @@ const HomePage = () => {
               alt="Vince Lawrence conducting LOTO compliance review with clipboard"
               className="absolute inset-0 w-full h-full object-cover object-center"
             />
-            <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, #F9F8F6 0%, rgba(249,248,246,0.3) 40%, transparent 100%)' }} />
+            <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, #F9F8F6 0%, rgba(249,248,246,0.15) 25%, transparent 50%)' }} />
           </div>
         </div>
 

@@ -496,8 +496,19 @@ const HomePage = () => {
       {/* ═══════════════════════════════════════════════
           S4 — PROCESS  (asymmetric 40/60)
       ═══════════════════════════════════════════════ */}
-      <section className="py-24 md:py-32" style={{ backgroundColor: '#F9F8F6' }} data-testid="process-section">
-        <div className="container max-w-6xl">
+      <section className="relative py-24 md:py-32 overflow-hidden" data-testid="process-section">
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <img
+            src="/vince-inspecting.png"
+            alt="Vince Lawrence conducting LOTO compliance review with clipboard"
+            className="absolute inset-0 w-full h-full object-cover object-center"
+            style={{ filter: 'brightness(0.15)' }}
+          />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(13,27,42,0.92) 0%, rgba(28,43,43,0.88) 100%)' }} />
+        </div>
+
+        <div className="container max-w-6xl relative z-10">
           <div className="flex flex-col md:flex-row gap-12 md:gap-20">
             {/* Left label — 40% */}
             <div className="md:w-2/5">
@@ -509,12 +520,12 @@ const HomePage = () => {
                   The Process
                 </p>
                 <h2
-                  className="text-2xl md:text-3xl font-bold text-[#1C2B2B] leading-tight mb-6"
+                  className="text-2xl md:text-3xl font-bold text-white leading-tight mb-6"
                   data-testid="process-headline"
                 >
                   What to Expect from a Safety Walkthrough
                 </h2>
-                <p className="text-base text-[#1C2B2B]/50 leading-relaxed">
+                <p className="text-base text-white/50 leading-relaxed">
                   Simple, direct, no disruption to your day.
                 </p>
               </Reveal>
@@ -523,7 +534,7 @@ const HomePage = () => {
             {/* Right steps — 60% */}
             <div className="md:w-3/5">
               <Reveal>
-                <div className="space-y-0 border-t border-[#1C2B2B]/10" data-testid="process-steps">
+                <div className="space-y-0 border-t border-white/10" data-testid="process-steps">
                   {[
                     { num: '01', label: 'Request', desc: 'Tell me about your operation.' },
                     { num: '02', label: 'Schedule', desc: 'We set a time. No disruption.' },
@@ -533,7 +544,7 @@ const HomePage = () => {
                   ].map((step, i) => (
                     <div
                       key={step.num}
-                      className="flex items-start gap-5 py-5 border-b border-[#1C2B2B]/10"
+                      className="flex items-start gap-5 py-5 border-b border-white/10"
                       data-testid={`process-step-${i}`}
                     >
                       <span
@@ -543,8 +554,8 @@ const HomePage = () => {
                         {step.num}
                       </span>
                       <div>
-                        <p className="text-base font-bold text-[#1C2B2B] mb-0.5">{step.label}</p>
-                        <p className="text-sm text-[#1C2B2B]/55">{step.desc}</p>
+                        <p className="text-base font-bold text-white mb-0.5">{step.label}</p>
+                        <p className="text-sm text-white/55">{step.desc}</p>
                       </div>
                     </div>
                   ))}

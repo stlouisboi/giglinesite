@@ -65,6 +65,11 @@ Build and expand a professional service business website for GigLine Safety & Co
 - POST /api/heat-guide/submit
 - POST /api/admin/login
 - GET /api/admin/stats
+- POST /api/intake/submit
+- POST /api/intake/upload
+- GET /api/onboarding/tiers
+- POST /api/onboarding/checkout
+- GET /api/onboarding/confirm
 - GET /api/health
 
 ## Pricing (Backend SERVICE_PACKAGES)

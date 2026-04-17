@@ -84,6 +84,7 @@ Build and expand a professional service business website for GigLine Safety & Co
 - Facebook Pixel / Google Ads conversion tracking (P1)
 - Monthly Field Notes content expansion (P2) — 14 articles live, next round TBD
 - Swap placeholder testimonials with real client quotes when available (P2)
+- GL-PORT-001 Addendum: Automated pricing logic in Vince notification email (DONE)
 
 ## Deployment
 - Frontend: Vercel (manual redeploy after GitHub push)

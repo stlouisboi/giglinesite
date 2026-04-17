@@ -17,6 +17,169 @@ logger = logging.getLogger('gigline')
 UPLOAD_DIR = "/app/backend/intake_uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
+# ── Human-readable label maps for matrix keys ──
+PROGRAM_LABELS = {
+    'hazcom': 'Hazard Communication (SDS, labels, training)',
+    'loto': 'Lockout/Tagout',
+    'ppe': 'Personal Protective Equipment (PPE)',
+    'forklift': 'Forklift / PIT safety',
+    'eap': 'Emergency Action Plan',
+    'respiratory': 'Respiratory protection',
+    'hearing': 'Hearing conservation',
+}
+
+DOC_LABELS = {
+    'safety_manual': 'Written safety manual',
+    'hazcom_program': 'Written HazCom program',
+    'loto_procedures': 'Written LOTO procedures',
+    'forklift_training': 'Forklift training docs',
+    'new_hire_checklist': 'New-hire safety orientation',
+    'toolbox_talks': 'Toolbox talk / training records',
+    'osha_logs': 'OSHA 300/300A logs',
+}
+
+
+def calculate_proposed_scope(data):
+    """Server-side only. Never exposed to client."""
+    # Base price from employee count
+    emp = data.totalEmployees or 0
+    if emp <= 75:
+        tier, base = "Small", 650
+    elif emp <= 250:
+        tier, base = "Medium", 750
+    else:
+        tier, base = "Large", 900
+
+    adjustments = []
+    flags = []
+    custom_quote = False
+    total_adjustment = 0
+
+    # 1. Schedule complexity
+    sched = data.schedule or ""
+    detail = data.scheduleDetail or {}
+    shifts_to_include = detail.get('shiftsToInclude', [])
+    rotations_to_include = detail.get('rotationsToInclude', [])
+    same_ops = detail.get('sameOps', '')
+
+    if sched in ('1_shift', 'weekends_seasonal', ''):
+        pass  # no adjustment
+    elif sched in ('2_shifts', '3_shifts'):
+        if same_ops in ('no', 'varies', 'No', 'Varies') and 'All shifts (may require multiple visits)' in shifts_to_include:
+            adjustments.append({"reason": f"Multi-visit ({sched.replace('_', ' ')}, operations vary)", "amount": base})
+            total_adjustment += base
+            flags.append("Multi-visit likely")
+        elif 'One representative shift is fine' in shifts_to_include:
+            pass  # single visit confirmed
+    elif sched == '12hr_rotating':
+        if 'All rotations (multiple visits)' in rotations_to_include:
+            adjustments.append({"reason": "Multi-visit (all rotations requested)", "amount": base})
+            total_adjustment += base
+            flags.append("Multi-visit likely")
+        elif 'One representative rotation is fine' in rotations_to_include:
+            pass  # single visit confirmed
+
+    # 2. Additional locations
+    loc = data.additionalLocations or ""
+    if loc == '2-3':
+        adjustments.append({"reason": "Additional locations (2-3)", "amount": base})
+        total_adjustment += base
+        flags.append("Multiple locations")
+    elif loc == '4+':
+        custom_quote = True
+        flags.append("4+ locations — custom quote required")
+
+    # 3. Urgency
+    if data.urgency == 'asap':
+        flags.append("Rush — confirm availability")
+
+    # 4. Written programs requested
+    if 'Build or clean up written safety programs' in (data.helpNeeded or []):
+        flags.append("Written programs requested — quote separately")
+
+    # Section 3 gaps (programs marked No or Not sure)
+    section3_gaps = []
+    if data.requiredPrograms:
+        for key, val in data.requiredPrograms.items():
+            if val in ('no', 'not_sure'):
+                section3_gaps.append(PROGRAM_LABELS.get(key, key))
+
+    # Section 4 gaps (docs marked No or Not sure)
+    section4_gaps = []
+    if data.existingDocs:
+        for key, val in data.existingDocs.items():
+            if val in ('no', 'not_sure'):
+                section4_gaps.append(DOC_LABELS.get(key, key))
+
+    total_low = base + total_adjustment
+    total_high = int(total_low * 1.2)  # 20% range buffer
+
+    return {
+        "tier": tier,
+        "employeeCount": emp,
+        "basePrice": base,
+        "adjustments": adjustments,
+        "totalLow": total_low,
+        "totalHigh": total_high,
+        "flags": flags,
+        "section3Gaps": section3_gaps,
+        "section4Gaps": section4_gaps,
+        "customQuoteRequired": custom_quote,
+    }
+
+
+def build_pricing_block_html(scope):
+    """Build the HTML pricing block for the Vince email."""
+    if scope["customQuoteRequired"]:
+        price_line = '<p style="color:#f87171;font-weight:bold;font-size:16px;margin:8px 0;">Custom quote required — do not use calculated price.</p>'
+    else:
+        adj_rows = ""
+        for a in scope["adjustments"]:
+            adj_rows += f'<tr><td style="padding:3px 0;color:#ccc;">+ {a["reason"]}</td><td style="padding:3px 0;color:#E8B84B;text-align:right;font-weight:bold;">+${a["amount"]:,}</td></tr>'
+
+        price_line = f"""
+        <table style="width:100%;margin:8px 0;border-collapse:collapse;">
+          <tr><td style="padding:3px 0;color:#ccc;">Base price</td><td style="padding:3px 0;color:#fff;text-align:right;font-weight:bold;">${scope["basePrice"]:,}</td></tr>
+          {adj_rows}
+          <tr><td colspan="2" style="border-top:1px solid #444;padding-top:8px;"></td></tr>
+          <tr><td style="padding:3px 0;color:#fff;font-weight:bold;font-size:15px;">Starting range</td><td style="padding:3px 0;color:#E8B84B;text-align:right;font-weight:bold;font-size:15px;">${scope["totalLow"]:,}–${scope["totalHigh"]:,}</td></tr>
+        </table>
+        """
+        if scope["adjustments"]:
+            price_line += '<p style="color:#999;font-size:12px;margin:4px 0;">(Confirm visit count before sending proposal)</p>'
+
+    flags_html = ""
+    if scope["flags"]:
+        flags_html = '<div style="margin:12px 0;">'
+        for fl in scope["flags"]:
+            flags_html += f'<p style="color:#E8B84B;margin:2px 0;font-size:13px;">&#9888; {fl}</p>'
+        flags_html += '</div>'
+
+    gaps3_html = ""
+    if scope["section3Gaps"]:
+        gaps3_html = '<div style="margin:10px 0;"><p style="color:#E8B84B;font-size:12px;font-weight:bold;margin:0 0 4px;">Section 3 gaps (programs marked No or Not sure):</p>'
+        for g in scope["section3Gaps"]:
+            gaps3_html += f'<p style="color:#ccc;font-size:12px;margin:1px 0 1px 8px;">&middot; {g}</p>'
+        gaps3_html += '</div>'
+
+    gaps4_html = ""
+    if scope["section4Gaps"]:
+        gaps4_html = '<div style="margin:10px 0;"><p style="color:#E8B84B;font-size:12px;font-weight:bold;margin:0 0 4px;">Section 4 gaps (docs marked No or Not sure):</p>'
+        for g in scope["section4Gaps"]:
+            gaps4_html += f'<p style="color:#ccc;font-size:12px;margin:1px 0 1px 8px;">&middot; {g}</p>'
+        gaps4_html += '</div>'
+
+    return f"""
+    <div style="background:#111;border:2px solid #E8B84B;border-radius:8px;padding:20px;margin-bottom:24px;">
+      <p style="color:#E8B84B;font-size:11px;font-weight:bold;letter-spacing:2px;margin:0 0 12px;">PROPOSED SCOPE &amp; STARTING PRICE</p>
+      <p style="color:#fff;margin:4px 0;"><strong>Tier:</strong> {scope["tier"]} ({scope["employeeCount"]} employees)</p>
+      {price_line}
+      {flags_html}
+      {gaps3_html}
+      {gaps4_html}
+    </div>
+    """
+
 
 class IntakeSubmission(BaseModel):
     company: str
@@ -102,6 +265,10 @@ async def submit_intake(data: IntakeSubmission):
     }
     await db.gl_intake_submissions.insert_one(doc)
 
+    # Calculate proposed scope (server-side only, never exposed to client)
+    scope = calculate_proposed_scope(data)
+    pricing_block = build_pricing_block_html(scope)
+
     # Build formatted email for Vince
     programs_html = ""
     if data.requiredPrograms:
@@ -126,6 +293,8 @@ async def submit_intake(data: IntakeSubmission):
         <h2 style="color:#E8B84B;margin:0;">New GigLine Intake — {data.company}</h2>
         <p style="color:#999;font-size:13px;margin:4px 0 0;">Submitted {timestamp.strftime('%B %d, %Y at %I:%M %p')} UTC</p>
       </div>
+
+      {pricing_block}
 
       <h3 style="color:#E8B84B;font-size:14px;margin:16px 0 8px;">COMPANY</h3>
       <p style="color:#ccc;margin:2px 0;"><strong>Company:</strong> {data.company} {f'(DBA: {data.dba})' if data.dba else ''}</p>

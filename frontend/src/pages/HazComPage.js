@@ -193,6 +193,19 @@ const HazComPage = () => {
         </div>
       </section>
 
+      {/* Walkthrough Callout */}
+      <section className="py-12 bg-[#F9F8F6]">
+        <div className="container max-w-2xl">
+          <div className="border border-[#C9A84C]/20 bg-white rounded-lg p-6 md:p-8 text-center" data-testid="hazcom-walkthrough-callout">
+            <p className="text-lg font-bold text-[#1C2B2B] mb-2">Not sure if these violations exist in your shop?</p>
+            <p className="text-sm text-[#1C2B2B]/60 mb-5">A GigLine Safety Walkthrough will flag them with photos and a prioritized fix list — usually within 48 hours.</p>
+            <Link to="/request-walkthrough" className="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#B8972C] text-white font-bold px-6 py-3 rounded transition-colors">
+              Request a Safety Walkthrough <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Footer Note */}
       <section className="py-10 border-t border-[#1C2B2B]/10">
         <div className="container max-w-2xl text-center">

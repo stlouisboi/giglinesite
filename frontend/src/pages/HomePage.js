@@ -54,8 +54,8 @@ const HomePage = () => {
   return (
     <main className="overflow-x-hidden">
       <SEO
-        title="Safety Walkthroughs for Small Operations | Kernersville, NC"
-        description="OSHA safety walkthroughs for small manufacturers, warehouses, and contractors in the Piedmont Triad and Central NC. One visit. A written report. Starting at $650. Serving a 75-mile radius from Kernersville."
+        title="On-Site Safety Walkthroughs | Kernersville, NC | GigLine Safety & Compliance"
+        description="On-site safety walkthroughs for small warehouses and manufacturers in Kernersville, NC. Find OSHA exposures before an inspector does. No retainer. No ongoing contract."
         canonical="/"
         schema={{
           "@context": "https://schema.org",
@@ -129,7 +129,7 @@ const HomePage = () => {
           <div className="relative w-full md:w-3/5 h-[45vh] md:h-auto overflow-hidden">
             <img
               src={IMG.hero}
-              alt="Safety inspection on an active warehouse floor"
+              alt="Warehouse safety walkthrough — GigLine on-site OSHA inspection"
               className="absolute inset-0 w-full h-full object-cover img-zoom"
               data-testid="hero-image"
             />
@@ -165,6 +165,12 @@ const HomePage = () => {
               <p
                 className="text-base md:text-lg text-white/60 leading-relaxed mb-6 max-w-md"
                 data-testid="hero-sub"
+              >
+                GigLine provides on-site safety walkthroughs and OSHA-focused compliance inspections for small warehouses and manufacturing operations in the Piedmont Triad.
+              </p>
+
+              <p
+                className="text-sm text-white/45 leading-relaxed mb-6 max-w-md"
               >
                 One OSHA citation runs $16,550. A Safety Walkthrough finds your exposures first — before an inspector does. You leave with a written report and a clear fix list.
               </p>
@@ -218,7 +224,7 @@ const HomePage = () => {
               className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-4 leading-tight"
               data-testid="problem-headline"
             >
-              What We Actually See on the Floor
+              Common OSHA Safety Issues We See on the Floor
             </h2>
             <p className="text-base text-[#1C2B2B]/50 mb-12 max-w-lg">
               These aren't rare edge cases. They're in almost every facility we walk into.
@@ -282,7 +288,7 @@ const HomePage = () => {
         <div className="absolute inset-0">
           <img
             src={IMG.proof}
-            alt=""
+            alt="Safety walkthrough report with photo documentation and fix list"
             aria-hidden="true"
             className="absolute inset-0 w-full h-full object-cover"
             style={{ filter: 'blur(12px) brightness(0.25)', opacity: 0.12 }}
@@ -506,7 +512,7 @@ const HomePage = () => {
                   className="text-2xl md:text-3xl font-bold text-[#1C2B2B] leading-tight mb-6"
                   data-testid="process-headline"
                 >
-                  What to Expect
+                  What to Expect from a Safety Walkthrough
                 </h2>
                 <p className="text-base text-[#1C2B2B]/50 leading-relaxed">
                   Simple, direct, no disruption to your day.
@@ -690,7 +696,7 @@ const HomePage = () => {
         <div className="relative overflow-hidden" style={{ height: 'clamp(280px, 45vw, 520px)' }}>
           <img
             src={IMG.proof}
-            alt="Warehouse interior during operations"
+            alt="Warehouse floor during on-site OSHA compliance inspection"
             className="w-full h-full object-cover"
             loading="lazy"
           />
@@ -806,7 +812,18 @@ const HomePage = () => {
       </section>
 
       {/* ═══════════════════════════════════════════════
-          S9 — FINAL CTA BAND
+          S9 — LOCAL SERVICE AREA STATEMENT
+      ═══════════════════════════════════════════════ */}
+      <section className="py-6" style={{ backgroundColor: '#0D1B2A' }}>
+        <div className="container max-w-5xl text-center">
+          <p className="text-sm" style={{ color: 'rgba(255,255,255,0.35)' }} data-testid="service-area-statement">
+            Serving small manufacturing shops, warehouses, and repair facilities in Kernersville, Greensboro, Winston-Salem, and the surrounding area.
+          </p>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════
+          S10 — FINAL CTA BAND
       ═══════════════════════════════════════════════ */}
       <section className="py-24 md:py-36" style={{ backgroundColor: '#000000' }} data-testid="final-cta-section">
         <div className="container max-w-3xl text-center">

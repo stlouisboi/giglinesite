@@ -182,7 +182,7 @@ const HomePage = () => {
               </p>
 
               <p
-                className="text-sm text-white/45 leading-relaxed mb-6 max-w-md"
+                className="text-sm text-white/55 leading-relaxed mb-6 max-w-md"
               >
                 One OSHA citation runs $16,550. A Safety Walkthrough finds your exposures first — before an inspector does. You leave with a written report and a clear fix list.
               </p>
@@ -280,7 +280,7 @@ const HomePage = () => {
 
           <Reveal>
             <p
-              className="text-center text-base sm:text-lg md:text-xl text-[#1C2B2B]/60 font-medium mt-12"
+              className="text-center text-base sm:text-lg md:text-xl text-[#1C2B2B]/70 font-medium mt-12"
               data-testid="grid-pressure-line"
             >
               These aren't just issues — they're the ones that show up in inspections.
@@ -321,13 +321,13 @@ const HomePage = () => {
             <Reveal>
               {/* Top lines — medium weight, muted */}
               <p
-                className="text-base sm:text-lg md:text-xl text-white/40 font-medium leading-relaxed mb-2"
+                className="text-base sm:text-lg md:text-xl text-white/55 font-medium leading-relaxed mb-2"
                 data-testid="pressure-line"
               >
                 Most issues aren't new.
               </p>
               <p
-                className="text-base sm:text-lg md:text-xl text-white/55 font-medium leading-relaxed mb-8"
+                className="text-base sm:text-lg md:text-xl text-white/65 font-medium leading-relaxed mb-8"
               >
                 They've just gone unchecked.
               </p>
@@ -347,7 +347,7 @@ const HomePage = () => {
 
               {/* Subtext — smaller, lighter, spaced */}
               <p
-                className="text-sm md:text-base text-white/35 max-w-sm mx-auto"
+                className="text-sm md:text-base text-white/50 max-w-sm mx-auto"
                 style={{ letterSpacing: '0.5px' }}
                 data-testid="statement-sub"
               >
@@ -424,7 +424,7 @@ const HomePage = () => {
                       backdropFilter: 'blur(8px)',
                     }}
                   >
-                    <p className="text-sm md:text-base text-white/45 leading-relaxed">
+                    <p className="text-sm md:text-base text-white/55 leading-relaxed">
                       "I've worked with GigLine Safety & Compliance and can say they operate at a different level than most safety consultants. They don't just point out issues — they understand how operations actually run and provide solutions that can be executed on the floor. Their support with audits and compliance reviews helped us quickly identify gaps, tighten controls, and improve overall accountability without slowing down production. Where they really stand out is in incident investigations. Their approach is disciplined, focused on true root cause, and built around preventing repeat events — not just checking a box. That level of structure has a direct impact on long-term safety performance."
                     </p>
                   </div>
@@ -436,7 +436,7 @@ const HomePage = () => {
                     </div>
                     <div>
                       <p className="text-sm font-bold text-white">Demar Archie</p>
-                      <p className="text-xs text-white/30 mt-0.5">Warehouse Receiving Manager — Google Review</p>
+                      <p className="text-xs text-white/40 mt-0.5">Warehouse Receiving Manager — Google Review</p>
                     </div>
                   </div>
                 </div>
@@ -492,7 +492,7 @@ const HomePage = () => {
                   <p className="text-base font-bold text-white mb-3">
                     Written report delivered after your visit
                   </p>
-                  <p className="text-sm text-white/35 leading-relaxed">
+                  <p className="text-sm text-white/50 leading-relaxed">
                     A written report with findings, photos, and a fix list — not a phone call summary. Yours to keep, share with your team, or hand to your insurer.
                   </p>
                   <p className="text-[10px] text-white/15 uppercase tracking-wider mt-4" style={mono}>
@@ -855,8 +855,8 @@ const HomePage = () => {
           <div className="space-y-8" data-testid="faq-list">
             <Reveal>
               <div className="pb-8 border-b border-[#1C2B2B]/10">
-                <h3 className="text-base font-bold text-[#1C2B2B] mb-3" data-testid="faq-q1">How long are you on-site?</h3>
-                <p className="text-sm text-[#1C2B2B]/60 leading-relaxed">
+                <h3 className="text-lg font-bold text-[#1C2B2B] mb-3" data-testid="faq-q1">How long are you on-site?</h3>
+                <p className="text-base text-[#1C2B2B]/70 leading-relaxed">
                   Most walkthroughs run 1 to 3 hours depending on the size of the operation. A small shop may take under an hour. A multi-bay warehouse or production floor typically runs 2 to 3 hours. You'll know the range before I arrive.
                 </p>
               </div>
@@ -873,8 +873,8 @@ const HomePage = () => {
 
             <Reveal delay={100}>
               <div className="pb-8 border-b border-[#1C2B2B]/10">
-                <h3 className="text-base font-bold text-[#1C2B2B] mb-3" data-testid="faq-q3">Do you work with my insurance company or report to OSHA?</h3>
-                <p className="text-sm text-[#1C2B2B]/60 leading-relaxed">
+                <h3 className="text-lg font-bold text-[#1C2B2B] mb-3" data-testid="faq-q3">Do you work with my insurance company or report to OSHA?</h3>
+                <p className="text-base text-[#1C2B2B]/70 leading-relaxed">
                   No. This is a private engagement. Nothing leaves the building except the report I give you. I don't contact your insurer, your carrier, or any regulatory agency. What you do with the findings is entirely your decision.
                 </p>
               </div>
@@ -882,8 +882,8 @@ const HomePage = () => {
 
             <Reveal delay={150}>
               <div>
-                <h3 className="text-base font-bold text-[#1C2B2B] mb-3" data-testid="faq-q4">What if my operation is outside the Triad?</h3>
-                <p className="text-sm text-[#1C2B2B]/60 leading-relaxed">
+                <h3 className="text-lg font-bold text-[#1C2B2B] mb-3" data-testid="faq-q4">What if my operation is outside the Triad?</h3>
+                <p className="text-base text-[#1C2B2B]/70 leading-relaxed">
                   On-site walkthroughs are available within roughly 60 miles of Winston-Salem — covering the full Triad and surrounding areas. For locations beyond that range, contact me directly. Travel engagements are available and travel fees may apply.
                 </p>
               </div>
@@ -895,14 +895,22 @@ const HomePage = () => {
       {/* ═══════════════════════════════════════════════
           S9 — LOCAL SERVICE AREA STATEMENT
       ═══════════════════════════════════════════════ */}
-      <section className="py-6" style={{ backgroundColor: '#0D1B2A' }}>
-        <div className="container max-w-5xl text-center">
-          <p className="text-sm" style={{ color: 'rgba(255,255,255,0.35)' }} data-testid="service-area-statement">
-            On-site walkthroughs within roughly 60 miles of Winston-Salem, including Greensboro, High Point, Kernersville, Lexington, Thomasville, Salisbury, Burlington, and nearby towns.
-          </p>
-          <p className="text-xs mt-2" style={{ color: 'rgba(255,255,255,0.22)' }}>
-            Need a visit a bit farther out? I can often travel to Mooresville, Concord, Huntersville, or Danville, VA — travel fees may apply.
-          </p>
+      <section className="py-12 md:py-16" style={{ backgroundColor: '#0D1B2A' }}>
+        <div className="container max-w-4xl">
+          <div className="rounded-lg px-6 py-8 md:px-10 md:py-10 text-center" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
+            <p
+              className="uppercase tracking-[3px] text-[#C9A84C] mb-4"
+              style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }}
+            >
+              Service Area
+            </p>
+            <p className="text-base md:text-lg text-white/80 leading-relaxed mb-3" data-testid="service-area-statement">
+              On-site walkthroughs within roughly 60 miles of Winston-Salem, including Greensboro, High Point, Kernersville, Lexington, Thomasville, Salisbury, Burlington, and nearby towns.
+            </p>
+            <p className="text-sm text-white/45 leading-relaxed">
+              Need a visit a bit farther out? I can often travel to Mooresville, Concord, Huntersville, or Danville, VA — travel fees may apply.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -913,7 +921,7 @@ const HomePage = () => {
         <div className="container max-w-3xl text-center">
           <Reveal>
             <h2 className="text-2xl md:text-3xl leading-tight mb-8" data-testid="final-cta-headline">
-              <span className="block text-white/45 font-normal mb-2">
+              <span className="block text-white/55 font-normal mb-2">
                 If you're not sure what's exposed —
               </span>
               <span className="block font-bold text-white">
@@ -942,7 +950,7 @@ const HomePage = () => {
               </Link>
             </div>
 
-            <p className="text-sm text-white/35 mb-14" style={mono} data-testid="final-price-line">
+            <p className="text-sm text-white/50 mb-14" style={mono} data-testid="final-price-line">
               Most walkthroughs start at $650 depending on size.
             </p>
 

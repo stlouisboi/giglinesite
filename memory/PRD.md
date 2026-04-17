@@ -91,6 +91,7 @@ Build and expand a professional service business website for GigLine Safety & Co
   - /onboarding: Now 6 steps (added Agreement signing step), payment locked until signed
   - Server-side agreement PDF via reportlab, stored per clientToken
   - Admin: intake-submissions list, bookings list, status updates, report upload, portal-stats summary
+  - Enhanced Admin Dashboard UI: summary strip (5 metrics), 5 tabs (Portal/Intakes/Bookings/Leads/Downloads), status badges, urgency badges, flags (W/M/C), view drawer, status update modal, report upload modal
   - Single clientToken per engagement ties together intake, status, agreement, booking, and report
 
 ## Deployment

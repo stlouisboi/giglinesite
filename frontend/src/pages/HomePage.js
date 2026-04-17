@@ -503,9 +503,9 @@ const HomePage = () => {
             src="/vince-inspecting.png"
             alt="Vince Lawrence conducting LOTO compliance review with clipboard"
             className="absolute inset-0 w-full h-full object-cover object-center"
-            style={{ filter: 'brightness(0.15)' }}
+            style={{ filter: 'brightness(0.35)' }}
           />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(13,27,42,0.92) 0%, rgba(28,43,43,0.88) 100%)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(13,27,42,0.85) 0%, rgba(13,27,42,0.5) 50%, rgba(13,27,42,0.3) 100%)' }} />
         </div>
 
         <div className="container max-w-6xl relative z-10">

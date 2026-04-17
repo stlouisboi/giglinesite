@@ -499,14 +499,13 @@ const HomePage = () => {
       <section className="relative py-24 md:py-32 overflow-hidden" style={{ backgroundColor: '#F9F8F6' }} data-testid="process-section">
         {/* Background image — right side only */}
         <div className="absolute inset-0 hidden md:block">
-          <div className="absolute top-0 right-0 bottom-0 w-1/2">
+          <div className="absolute top-0 right-0 bottom-0 w-3/5">
             <img
               src="/vince-inspecting.png"
               alt="Vince Lawrence conducting LOTO compliance review with clipboard"
               className="absolute inset-0 w-full h-full object-cover object-center"
-              style={{ filter: 'brightness(0.9) saturate(0.6)' }}
             />
-            <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, #F9F8F6 0%, rgba(249,248,246,0.6) 30%, rgba(249,248,246,0.15) 100%)' }} />
+            <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, #F9F8F6 0%, rgba(249,248,246,0.3) 40%, transparent 100%)' }} />
           </div>
         </div>
 

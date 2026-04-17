@@ -82,7 +82,7 @@ const CheckboxGroup = ({ label, options, values, onChange, columns = 1 }) => (
     <label className="block text-sm mb-2" style={{ color: C.sec }}>{label}</label>
     <div className={`grid gap-2 ${columns === 2 ? 'grid-cols-2' : 'grid-cols-1'}`}>
       {options.map(opt => (
-        <label key={opt} className="flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer transition-all"
+        <div key={opt} onClick={() => onChange(opt)} className="flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer transition-all"
           style={{
             background: values.includes(opt) ? 'rgba(232,184,75,0.07)' : C.deep,
             border: `1px solid ${values.includes(opt) ? 'rgba(232,184,75,0.4)' : C.border}`,
@@ -93,7 +93,7 @@ const CheckboxGroup = ({ label, options, values, onChange, columns = 1 }) => (
             {values.includes(opt) && <Check size={10} color="#111" />}
           </div>
           <span className="text-sm text-white">{opt}</span>
-        </label>
+        </div>
       ))}
     </div>
   </div>

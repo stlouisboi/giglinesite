@@ -439,13 +439,39 @@ const OnboardingPage = () => {
       case 6: return (
         <div data-testid="onboarding-step-6">
           <h2 className="text-xl font-bold text-white mb-1">Schedule & Payment</h2>
-          <p className="text-sm mb-8" style={{ color: C.muted }}>Review your order and proceed to payment.</p>
+          <p className="text-sm mb-8" style={{ color: C.muted }}>Pick your walkthrough date, then proceed to payment.</p>
 
           {!agreementSigned && (
             <div className="rounded-lg p-4 mb-6" style={{ background: 'rgba(248,113,113,0.08)', border: '1px solid rgba(248,113,113,0.2)' }}>
               <p className="text-sm" style={{ color: '#f87171' }}>Complete your service agreement in Step 4 to unlock payment.</p>
             </div>
           )}
+
+          {/* Calendly embed */}
+          <div className="mb-6">
+            <label className="block text-sm mb-2" style={{ color: C.sec }}>Select your preferred date & time</label>
+            <div className="rounded-lg overflow-hidden" style={{ border: `1px solid ${C.border}` }}>
+              <iframe
+                src="https://calendly.com/vincelaw336/safety-consultation?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=e8b84b"
+                title="Schedule your walkthrough"
+                className="w-full"
+                style={{ height: '580px', border: 'none' }}
+                data-testid="calendly-embed"
+              />
+            </div>
+            <p className="text-xs mt-2" style={{ color: C.muted }}>After selecting a time above, confirm your date below.</p>
+          </div>
+
+          <Input label="Confirm your selected date" required value={f.preferredDate} onChange={e => set('preferredDate', e.target.value)} placeholder="e.g. May 6, 9:00 AM" data-testid="onboarding-date" />
+
+          <div className="mb-4">
+            <label className="block text-sm mb-1.5" style={{ color: C.sec }}>Anything we should know before arriving?</label>
+            <textarea value={f.notes} onChange={e => set('notes', e.target.value)} rows={3}
+              className="w-full px-4 py-3 rounded-lg text-sm text-white placeholder:text-white/25 focus:outline-none resize-none"
+              style={{ background: C.deep, border: `1px solid ${C.border}` }}
+              placeholder="Optional"
+            />
+          </div>
 
           {/* Order summary */}
           <div className="rounded-lg p-5 mb-6" style={{ background: C.deep, border: `1px solid ${C.border}` }}>
@@ -467,16 +493,6 @@ const OnboardingPage = () => {
               </div>
             </div>
             <p className="text-xs mt-3" style={{ color: C.muted }}>Payment collected via Stripe. Invoice sent by email after confirmation.</p>
-          </div>
-
-          <Input label="Preferred date range" required value={f.preferredDate} onChange={e => set('preferredDate', e.target.value)} placeholder="e.g. Anytime after May 5, prefer mornings" data-testid="onboarding-date" />
-          <div className="mb-4">
-            <label className="block text-sm mb-1.5" style={{ color: C.sec }}>Anything we should know before arriving?</label>
-            <textarea value={f.notes} onChange={e => set('notes', e.target.value)} rows={3}
-              className="w-full px-4 py-3 rounded-lg text-sm text-white placeholder:text-white/25 focus:outline-none resize-none"
-              style={{ background: C.deep, border: `1px solid ${C.border}` }}
-              placeholder="Optional"
-            />
           </div>
         </div>
       );

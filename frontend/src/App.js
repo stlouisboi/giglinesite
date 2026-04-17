@@ -21,6 +21,8 @@ import HeatGuidePage from './pages/HeatGuidePage';
 import IntakePage from './pages/IntakePage';
 import ClientIntakePage from './pages/ClientIntakePage';
 import OnboardingPage from './pages/OnboardingPage';
+import StatusPage from './pages/StatusPage';
+import ReportPage from './pages/ReportPage';
 import AdminPage from './pages/AdminPage';
 import FieldNotesPage from './pages/FieldNotesPage';
 import FieldNoteDetailPage from './pages/FieldNoteDetailPage';
@@ -46,6 +48,8 @@ function App() {
           <Route path="/intake" element={<ClientIntakePage />} />
           <Route path="/onboarding" element={<OnboardingPage />} />
           <Route path="/onboarding/confirmed" element={<OnboardingPage />} />
+          <Route path="/status/:clientToken" element={<StatusPage />} />
+          <Route path="/report/:clientToken" element={<ReportPage />} />
 
           {/* Standard pages with global Navbar + Footer */}
           <Route path="*" element={

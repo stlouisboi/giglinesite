@@ -23,8 +23,9 @@ const STEPS = [
   { id: 1, label: 'Overview' },
   { id: 2, label: 'Facility' },
   { id: 3, label: 'Service Tier' },
-  { id: 4, label: 'Retainer' },
-  { id: 5, label: 'Payment' },
+  { id: 4, label: 'Agreement' },
+  { id: 5, label: 'Retainer' },
+  { id: 6, label: 'Payment' },
 ];
 
 const Input = ({ label, required, ...props }) => (
@@ -109,6 +110,10 @@ const OnboardingPage = () => {
 
   const [step, setStep] = useState(1);
   const [submitting, setSubmitting] = useState(false);
+  const [agreementSigned, setAgreementSigned] = useState(false);
+  const [signingName, setSigningName] = useState('');
+  const [signing, setSigning] = useState(false);
+  const [clientToken, setClientToken] = useState('');
 
   const [f, setF] = useState({
     company: '', contactName: '', email: '', phone: '',
@@ -153,13 +158,55 @@ const OnboardingPage = () => {
     setSubmitting(false);
   };
 
+  const handleSignAgreement = async () => {
+    if (!signingName.trim()) return;
+    setSigning(true);
+    try {
+      // Use existing clientToken or generate via intake lookup
+      let token = clientToken;
+      if (!token) {
+        // Create a pseudo-token for bookings that don't go through intake
+        const intakeRes = await fetch(`${API}/api/intake/submit`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            company: f.company, address: 'Via onboarding portal', contactName: f.contactName,
+            email: f.email, phone: f.phone, totalEmployees: parseInt(f.employeeCount) || 0,
+            siteEmployees: parseInt(f.employeeCount) || 0, consentGiven: true,
+          }),
+        });
+        const intakeData = await intakeRes.json();
+        token = intakeData.clientToken || '';
+        setClientToken(token);
+      }
+
+      const res = await fetch(`${API}/api/onboarding/sign-agreement`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          clientToken: token,
+          typedName: signingName.trim(),
+          company: f.company,
+          tier: f.tier,
+          addRetainer: f.addRetainer,
+        }),
+      });
+      const data = await res.json();
+      if (data.signed) setAgreementSigned(true);
+    } catch (e) {
+      console.error(e);
+    }
+    setSigning(false);
+  };
+
   const canProceed = () => {
     switch (step) {
       case 1: return true;
       case 2: return f.company && f.contactName && f.email;
       case 3: return !!f.tier;
-      case 4: return true; // always can proceed (default is walkthrough only)
-      case 5: return !!f.preferredDate;
+      case 4: return agreementSigned;
+      case 5: return true;
+      case 6: return agreementSigned && !!f.preferredDate;
       default: return false;
     }
   };
@@ -198,7 +245,7 @@ const OnboardingPage = () => {
             </div>
             <div className="rounded-lg p-4" style={{ background: 'rgba(232,184,75,0.06)', border: '1px solid rgba(232,184,75,0.15)' }}>
               <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: C.gold }}>Retainer option</p>
-              <p className="text-sm" style={{ color: C.sec }}>Scheduled walkthroughs, remote support, and micro-projects on a monthly retainer. Selected in Step 4.</p>
+              <p className="text-sm" style={{ color: C.sec }}>Scheduled walkthroughs, remote support, and micro-projects on a monthly retainer. Selected in Step 5.</p>
             </div>
           </div>
         </div>
@@ -268,6 +315,76 @@ const OnboardingPage = () => {
 
       case 4: return (
         <div data-testid="onboarding-step-4">
+          <h2 className="text-xl font-bold text-white mb-1">Review and Sign Your Service Agreement</h2>
+          <p className="text-sm mb-8" style={{ color: C.muted }}>This takes about 60 seconds. Your payment step unlocks after signing.</p>
+
+          {/* Agreement content */}
+          <div className="rounded-lg p-5 md:p-6 mb-6 space-y-4" style={{ background: C.deep, border: `1px solid ${C.border}` }}>
+            <div>
+              <p className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: C.gold }}>Scope</p>
+              <p className="text-sm" style={{ color: C.sec }}>One on-site safety walkthrough at the address provided. Visual assessment of workplace safety conditions, compliance gaps, and hazard exposures.</p>
+            </div>
+            <div>
+              <p className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: C.gold }}>Deliverable</p>
+              <p className="text-sm" style={{ color: C.sec }}>Written Safety Check PDF report delivered within 48-72 hours. Includes findings, photographs, and prioritized corrective action list.</p>
+            </div>
+            <div>
+              <p className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: C.muted }}>Exclusions</p>
+              <p className="text-sm" style={{ color: C.sec }}>Program rewrites, incident investigation, new safety program development, engineering assessments, or industrial hygiene sampling. Available as separate engagements.</p>
+            </div>
+            {f.addRetainer && (
+              <div>
+                <p className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: C.gold }}>Retainer Terms</p>
+                <p className="text-sm" style={{ color: C.sec }}>Month-to-month after 6-month minimum. 30-day written notice to cancel. Includes scheduled walkthroughs, remote support, and micro-project capacity per tier. Full program builds quoted separately.</p>
+              </div>
+            )}
+            <div>
+              <p className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: C.muted }}>Payment</p>
+              <p className="text-sm" style={{ color: C.sec }}>Collected via Stripe at time of booking. Non-refundable after walkthrough is conducted. Cancellation 48+ hours before scheduled date: full refund.</p>
+            </div>
+            <div>
+              <p className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: C.muted }}>Relationship</p>
+              <p className="text-sm" style={{ color: C.sec }}>Independent contractor. Not an employee or agent of the Client.</p>
+            </div>
+            <div>
+              <p className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: C.muted }}>Governing Law</p>
+              <p className="text-sm" style={{ color: C.sec }}>North Carolina.</p>
+            </div>
+          </div>
+
+          {/* Signing area */}
+          {agreementSigned ? (
+            <div className="rounded-lg p-5 flex items-center gap-3" style={{ background: 'rgba(74,222,128,0.08)', border: '1px solid rgba(74,222,128,0.2)' }} data-testid="agreement-signed">
+              <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ background: '#4ade80' }}><Check size={16} color="#111" /></div>
+              <div>
+                <p className="text-sm font-bold text-white">Agreement signed</p>
+                <p className="text-xs" style={{ color: C.muted }}>Signed as {signingName}. PDF stored securely.</p>
+              </div>
+            </div>
+          ) : (
+            <div className="rounded-lg p-5" style={{ background: 'rgba(232,184,75,0.06)', border: '1px solid rgba(232,184,75,0.15)' }}>
+              <p className="text-sm font-bold text-white mb-3">Type your full name to sign</p>
+              <input
+                type="text" value={signingName} onChange={e => setSigningName(e.target.value)}
+                placeholder="Your full legal name"
+                className="w-full px-4 py-3 rounded-lg text-sm text-white placeholder:text-white/25 focus:outline-none mb-3"
+                style={{ background: C.deep, border: `1px solid ${C.border}` }}
+                data-testid="agreement-name-input"
+              />
+              <button onClick={handleSignAgreement} disabled={!signingName.trim() || signing}
+                className="text-sm font-bold px-6 py-2.5 rounded-lg transition-all disabled:opacity-40 hover:brightness-110"
+                style={{ background: C.gold, color: '#111' }}
+                data-testid="agreement-sign-btn"
+              >
+                {signing ? 'Signing...' : 'Sign Agreement'}
+              </button>
+            </div>
+          )}
+        </div>
+      );
+
+      case 5: return (
+        <div data-testid="onboarding-step-5">
           <h2 className="text-xl font-bold text-white mb-1">Service Option</h2>
           <p className="text-sm mb-8" style={{ color: C.muted }}>Choose one-time or ongoing support.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -319,10 +436,16 @@ const OnboardingPage = () => {
         </div>
       );
 
-      case 5: return (
-        <div data-testid="onboarding-step-5">
+      case 6: return (
+        <div data-testid="onboarding-step-6">
           <h2 className="text-xl font-bold text-white mb-1">Schedule & Payment</h2>
           <p className="text-sm mb-8" style={{ color: C.muted }}>Review your order and proceed to payment.</p>
+
+          {!agreementSigned && (
+            <div className="rounded-lg p-4 mb-6" style={{ background: 'rgba(248,113,113,0.08)', border: '1px solid rgba(248,113,113,0.2)' }}>
+              <p className="text-sm" style={{ color: '#f87171' }}>Complete your service agreement in Step 4 to unlock payment.</p>
+            </div>
+          )}
 
           {/* Order summary */}
           <div className="rounded-lg p-5 mb-6" style={{ background: C.deep, border: `1px solid ${C.border}` }}>
@@ -384,7 +507,7 @@ const OnboardingPage = () => {
           </div>
         </div>
         <div className="w-full" style={{ height: '3px', background: C.border }}>
-          <div style={{ width: `${((step - 1) / 4) * 100}%`, height: '3px', background: C.gold, transition: 'width 0.4s ease' }} />
+          <div style={{ width: `${((step - 1) / 5) * 100}%`, height: '3px', background: C.gold, transition: 'width 0.4s ease' }} />
         </div>
       </nav>
 
@@ -402,7 +525,7 @@ const OnboardingPage = () => {
                 {step > s.id ? <Check size={12} /> : <span>{s.id}</span>}
                 <span className="hidden sm:inline">{s.label}</span>
               </div>
-              {s.id < 5 && <ChevronRight size={12} style={{ color: C.muted }} />}
+              {s.id < 6 && <ChevronRight size={12} style={{ color: C.muted }} />}
             </div>
           ))}
         </div>
@@ -419,7 +542,7 @@ const OnboardingPage = () => {
               </button>
             ) : <div />}
 
-            {step < 5 ? (
+            {step < 6 ? (
               <button onClick={() => setStep(step + 1)} disabled={!canProceed()}
                 className="text-sm font-bold px-6 py-2.5 rounded-lg transition-all flex items-center gap-2 disabled:opacity-40 hover:brightness-110"
                 style={{ background: C.gold, color: '#111' }}
@@ -428,7 +551,7 @@ const OnboardingPage = () => {
                 {step === 1 ? 'Start — tell us about your facility' : 'Continue'} <ChevronRight size={16} />
               </button>
             ) : (
-              <button onClick={handleCheckout} disabled={submitting || !f.preferredDate}
+              <button onClick={handleCheckout} disabled={submitting || !agreementSigned || !f.preferredDate}
                 className="text-sm font-bold px-6 py-2.5 rounded-lg transition-all flex items-center gap-2 disabled:opacity-40 hover:brightness-110"
                 style={{ background: C.gold, color: '#111' }}
                 data-testid="onboarding-pay-btn"

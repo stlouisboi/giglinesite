@@ -7,6 +7,7 @@ from pydantic import BaseModel
 import uuid
 import os
 import logging
+import secrets
 
 import resend
 from config import db, SENDER_EMAIL, VINCE_EMAIL
@@ -256,11 +257,18 @@ async def submit_intake(data: IntakeSubmission):
         raise HTTPException(status_code=400, detail="Consent required")
 
     submission_id = str(uuid.uuid4())
+    client_token = secrets.token_urlsafe(9)  # ~12 chars, unique per engagement
     timestamp = datetime.now(timezone.utc)
 
     doc = {
         "id": submission_id,
+        "clientToken": client_token,
         "submittedAt": timestamp.isoformat(),
+        "status": "intake_received",
+        "statusUpdatedAt": timestamp.isoformat(),
+        "reportUrl": None,
+        "reportDeliveredAt": None,
+        "reportAccessedAt": None,
         **data.model_dump(),
     }
     await db.gl_intake_submissions.insert_one(doc)
@@ -337,13 +345,17 @@ async def submit_intake(data: IntakeSubmission):
     </div>
     """
 
-    # Client confirmation email
+    # Client confirmation email — includes status page URL
+    status_url = f"https://giglinecompliance.com/status/{client_token}"
     client_html = f"""
     <div style="font-family:Georgia,serif;max-width:600px;margin:0 auto;color:#1C2B2B;">
       <h1 style="font-size:22px;margin-bottom:16px;">GigLine received your intake form</h1>
-      <p>Thanks, {data.contactName}. We've received the safety intake for <strong>{data.company}</strong>.</p>
+      <p>Thanks, {data.contactName}. We have received the safety intake for <strong>{data.company}</strong>.</p>
       <p style="margin-top:16px;"><strong>What happens next:</strong></p>
       <p>Vince will review your information and follow up within <strong>1 business day</strong> to schedule a call or walkthrough and discuss next steps.</p>
+      <p style="margin-top:16px;"><strong>Track your progress:</strong></p>
+      <p><a href="{status_url}" style="color:#B8972C;font-weight:bold;">{status_url}</a></p>
+      <p style="font-size:13px;color:#888;">This link is private to you. Bookmark it to check your status at any time.</p>
       <hr style="margin:24px 0;border:none;border-top:1px solid #ddd;" />
       <p style="color:#888;font-size:14px;">
         — Vince Lawrence<br/>
@@ -375,4 +387,4 @@ async def submit_intake(data: IntakeSubmission):
     except Exception as e:
         logger.error(f"Intake client email error: {e}")
 
-    return {"status": "success", "submissionId": submission_id}
+    return {"status": "success", "submissionId": submission_id, "clientToken": client_token}

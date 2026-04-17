@@ -17,6 +17,7 @@ from routes.safety_check import router as safety_check_router, process_drip_emai
 from routes.admin import router as admin_router, send_weekly_summary
 from routes.intake import router as intake_router
 from routes.onboarding import router as onboarding_router
+from routes.portal import router as portal_router
 
 app = FastAPI()
 
@@ -31,6 +32,7 @@ api_router.include_router(safety_check_router)
 api_router.include_router(admin_router)
 api_router.include_router(intake_router)
 api_router.include_router(onboarding_router)
+api_router.include_router(portal_router)
 
 app.include_router(api_router)
 

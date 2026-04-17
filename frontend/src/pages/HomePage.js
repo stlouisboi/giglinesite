@@ -84,15 +84,15 @@ const HomePage = () => {
             "longitude": -80.0735
           },
           "areaServed": [
-            { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 36.1198, "longitude": -80.0735 }, "geoRadius": "75 mi" },
-            { "@type": "City", "name": "Kernersville", "sameAs": "https://en.wikipedia.org/wiki/Kernersville,_North_Carolina" },
+            { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 36.0999, "longitude": -80.2442 }, "geoRadius": "60 mi" },
             { "@type": "City", "name": "Winston-Salem" },
             { "@type": "City", "name": "Greensboro" },
             { "@type": "City", "name": "High Point" },
-            { "@type": "City", "name": "Charlotte" },
-            { "@type": "City", "name": "Burlington" },
-            { "@type": "City", "name": "Durham" },
-            { "@type": "City", "name": "Raleigh" }
+            { "@type": "City", "name": "Kernersville", "sameAs": "https://en.wikipedia.org/wiki/Kernersville,_North_Carolina" },
+            { "@type": "City", "name": "Lexington" },
+            { "@type": "City", "name": "Thomasville" },
+            { "@type": "City", "name": "Salisbury" },
+            { "@type": "City", "name": "Burlington" }
           ],
           "priceRange": "$550–$1200",
           "openingHours": "Mo-Fr 08:00-18:00",
@@ -108,6 +108,18 @@ const HomePage = () => {
           }
         }}
       />
+
+      {/* FAQ Schema */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "How long are you on-site?", "acceptedAnswer": { "@type": "Answer", "text": "Most walkthroughs run 1 to 3 hours depending on the size of the operation. A small shop may take under an hour. A multi-bay warehouse or production floor typically runs 2 to 3 hours. You'll know the range before I arrive." } },
+          { "@type": "Question", "name": "What do I get when it's done?", "acceptedAnswer": { "@type": "Answer", "text": "A written report delivered within 48 hours. It includes photo-documented findings, the specific OSHA standard referenced for each one, and a plain-language corrective action for each item. No guesswork about what to fix or why." } },
+          { "@type": "Question", "name": "Do you work with my insurance company or report to OSHA?", "acceptedAnswer": { "@type": "Answer", "text": "No. This is a private engagement. Nothing leaves the building except the report I give you. I don't contact your insurer, your carrier, or any regulatory agency. What you do with the findings is entirely your decision." } },
+          { "@type": "Question", "name": "What if my operation is outside the Triad?", "acceptedAnswer": { "@type": "Answer", "text": "On-site walkthroughs are available within roughly 60 miles of Winston-Salem — covering the full Triad and surrounding areas. For locations beyond that range, contact me directly. Travel engagements are available and travel fees may apply." } }
+        ]
+      })}} />
 
       <style>{`
         .reveal-fade{opacity:0;transform:translateY(20px);transition:opacity 500ms ease-out,transform 500ms ease-out}
@@ -824,12 +836,72 @@ const HomePage = () => {
       </section>
 
       {/* ═══════════════════════════════════════════════
+          S8b — FAQ BLOCK
+      ═══════════════════════════════════════════════ */}
+      <section className="py-20 md:py-28 bg-white" data-testid="faq-section">
+        <div className="container max-w-3xl">
+          <Reveal>
+            <p
+              className="uppercase tracking-[3px] text-[#C9A84C] mb-4"
+              style={{ ...mono, fontSize: '11px' }}
+            >
+              Common Questions
+            </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-12" data-testid="faq-heading">
+              Frequently Asked Questions
+            </h2>
+          </Reveal>
+
+          <div className="space-y-8" data-testid="faq-list">
+            <Reveal>
+              <div className="pb-8 border-b border-[#1C2B2B]/10">
+                <h3 className="text-base font-bold text-[#1C2B2B] mb-3" data-testid="faq-q1">How long are you on-site?</h3>
+                <p className="text-sm text-[#1C2B2B]/60 leading-relaxed">
+                  Most walkthroughs run 1 to 3 hours depending on the size of the operation. A small shop may take under an hour. A multi-bay warehouse or production floor typically runs 2 to 3 hours. You'll know the range before I arrive.
+                </p>
+              </div>
+            </Reveal>
+
+            <Reveal delay={50}>
+              <div className="pb-8 border-b border-[#1C2B2B]/10">
+                <h3 className="text-base font-bold text-[#1C2B2B] mb-3" data-testid="faq-q2">What do I get when it's done?</h3>
+                <p className="text-sm text-[#1C2B2B]/60 leading-relaxed">
+                  A written report delivered within 48 hours. It includes photo-documented findings, the specific OSHA standard referenced for each one, and a plain-language corrective action for each item. No guesswork about what to fix or why.
+                </p>
+              </div>
+            </Reveal>
+
+            <Reveal delay={100}>
+              <div className="pb-8 border-b border-[#1C2B2B]/10">
+                <h3 className="text-base font-bold text-[#1C2B2B] mb-3" data-testid="faq-q3">Do you work with my insurance company or report to OSHA?</h3>
+                <p className="text-sm text-[#1C2B2B]/60 leading-relaxed">
+                  No. This is a private engagement. Nothing leaves the building except the report I give you. I don't contact your insurer, your carrier, or any regulatory agency. What you do with the findings is entirely your decision.
+                </p>
+              </div>
+            </Reveal>
+
+            <Reveal delay={150}>
+              <div>
+                <h3 className="text-base font-bold text-[#1C2B2B] mb-3" data-testid="faq-q4">What if my operation is outside the Triad?</h3>
+                <p className="text-sm text-[#1C2B2B]/60 leading-relaxed">
+                  On-site walkthroughs are available within roughly 60 miles of Winston-Salem — covering the full Triad and surrounding areas. For locations beyond that range, contact me directly. Travel engagements are available and travel fees may apply.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════
           S9 — LOCAL SERVICE AREA STATEMENT
       ═══════════════════════════════════════════════ */}
       <section className="py-6" style={{ backgroundColor: '#0D1B2A' }}>
         <div className="container max-w-5xl text-center">
           <p className="text-sm" style={{ color: 'rgba(255,255,255,0.35)' }} data-testid="service-area-statement">
-            Serving small manufacturing shops, warehouses, and repair facilities in Kernersville, Greensboro, Winston-Salem, and the surrounding area.
+            On-site walkthroughs within roughly 60 miles of Winston-Salem, including Greensboro, High Point, Kernersville, Lexington, Thomasville, Salisbury, Burlington, and nearby towns.
+          </p>
+          <p className="text-xs mt-2" style={{ color: 'rgba(255,255,255,0.22)' }}>
+            Need a visit a bit farther out? I can often travel to Mooresville, Concord, Huntersville, or Danville, VA — travel fees may apply.
           </p>
         </div>
       </section>

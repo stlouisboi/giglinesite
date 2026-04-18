@@ -372,13 +372,13 @@ const HomePage = () => {
               className="uppercase tracking-[3px] text-[#102133]/45 mb-4"
               style={{ ...mono, fontSize: '11px' }}
             >
-              Client Review
+              Proof
             </p>
             <h2
               className="text-2xl md:text-3xl font-bold text-[#102133] mb-12 md:mb-16"
               data-testid="testimonials-heading"
             >
-              What Clients Say
+              Client Review · Track Record · What You Get
             </h2>
           </Reveal>
 
@@ -430,43 +430,85 @@ const HomePage = () => {
               </div>
             </Reveal>
 
-            {/* Card 2 — Placeholder */}
+            {/* Card 2 — Credentials / Track Record (not a testimonial) */}
             <Reveal delay={120}>
               <div
-                className="h-full rounded-xl p-7 md:p-8 flex flex-col items-center justify-center text-center"
+                className="h-full rounded-xl p-7 md:p-8 flex flex-col"
                 style={{
                   backgroundColor: '#F7F9FC',
-                  border: '1px dashed rgba(16,33,51,0.12)',
-                  minHeight: '340px',
+                  border: '1px solid rgba(16,33,51,0.08)',
+                  boxShadow: '0 2px 12px rgba(11,31,51,0.04)',
                 }}
                 data-testid="testimonial-card-2"
               >
-                <p className="text-xs uppercase tracking-[2px] text-[#102133]/45 mb-3" style={mono}>
-                  Coming soon
+                <p className="text-xs uppercase tracking-[2px] text-[#1F6FEB] mb-4 font-semibold" style={mono}>
+                  Track Record
                 </p>
-                <p className="text-base md:text-sm text-[#102133]/60 max-w-[220px] leading-relaxed">
-                  Additional client reviews from recent Triad engagements will appear here.
+                <p className="text-[44px] md:text-[52px] leading-none font-bold text-[#102133] mb-2 tracking-tight">
+                  25<span className="text-[#1F6FEB]">+</span>
                 </p>
+                <p className="text-base md:text-lg font-bold text-[#102133] mb-4">
+                  Years in manufacturing, fleet, and warehouse safety
+                </p>
+                <p className="text-base md:text-sm text-[#102133]/75 leading-relaxed mb-6 flex-grow">
+                  Plastics manufacturing, building materials distribution, and trucking operations across the Triad. The same violations come up over and over.
+                </p>
+                <div className="pt-5 border-t border-[#102133]/10">
+                  <div className="flex flex-wrap gap-2" data-testid="track-record-credentials">
+                    {['OSHA 30-Hour', 'OSHA 10-Hour', 'U.S. Navy Veteran'].map((cred) => (
+                      <span
+                        key={cred}
+                        className="inline-flex items-center px-3 py-1 rounded text-[#102133] border border-[#102133]/15"
+                        style={{ ...mono, fontSize: '11px' }}
+                      >
+                        {cred}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
             </Reveal>
 
-            {/* Card 3 — Placeholder */}
+            {/* Card 3 — Outcome stats (not a testimonial) */}
             <Reveal delay={240}>
               <div
-                className="h-full rounded-xl p-7 md:p-8 flex flex-col items-center justify-center text-center"
+                className="h-full rounded-xl p-7 md:p-8 flex flex-col"
                 style={{
                   backgroundColor: '#F7F9FC',
-                  border: '1px dashed rgba(16,33,51,0.12)',
-                  minHeight: '340px',
+                  border: '1px solid rgba(16,33,51,0.08)',
+                  boxShadow: '0 2px 12px rgba(11,31,51,0.04)',
                 }}
                 data-testid="testimonial-card-3"
               >
-                <p className="text-xs uppercase tracking-[2px] text-[#102133]/45 mb-3" style={mono}>
-                  Coming soon
+                <p className="text-xs uppercase tracking-[2px] text-[#1F6FEB] mb-4 font-semibold" style={mono}>
+                  What You Get
                 </p>
-                <p className="text-base md:text-sm text-[#102133]/60 max-w-[220px] leading-relaxed">
-                  Additional client reviews from recent Triad engagements will appear here.
-                </p>
+
+                {/* Stat block 1 */}
+                <div className="mb-6">
+                  <p className="text-[40px] md:text-[48px] leading-none font-bold text-[#102133] mb-2 tracking-tight">
+                    6<span className="text-[#102133]/40 text-2xl md:text-3xl">–</span>10
+                  </p>
+                  <p className="text-base font-bold text-[#102133] mb-1">
+                    Corrective actions per walkthrough
+                  </p>
+                  <p className="text-sm md:text-xs text-[#102133]/65 leading-relaxed">
+                    Prioritized. Most clients resolve top items within 30 days.
+                  </p>
+                </div>
+
+                {/* Stat block 2 */}
+                <div className="pt-5 border-t border-[#102133]/10 flex-grow">
+                  <p className="text-[40px] md:text-[48px] leading-none font-bold text-[#102133] mb-2 tracking-tight">
+                    24<span className="text-[#102133]/40 text-2xl md:text-3xl">–</span>48<span className="text-[#1F6FEB] text-2xl md:text-3xl"> hrs</span>
+                  </p>
+                  <p className="text-base font-bold text-[#102133] mb-1">
+                    Written report delivery
+                  </p>
+                  <p className="text-sm md:text-xs text-[#102133]/65 leading-relaxed">
+                    Photo-documented findings. CFR-referenced. Yours to keep.
+                  </p>
+                </div>
               </div>
             </Reveal>
           </div>

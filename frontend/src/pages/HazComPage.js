@@ -50,10 +50,10 @@ const HazComPage = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#1C2B2B] text-white py-16 md:py-24">
+      <section className="bg-[#102133] text-white py-16 md:py-24">
         <div className="container max-w-3xl">
           <p
-            className="text-xs font-semibold tracking-widest text-[#C9A84C] uppercase mb-4"
+            className="text-xs font-semibold tracking-widest text-[#1F6FEB] uppercase mb-4"
             style={{ fontFamily: "'JetBrains Mono', monospace" }}
             data-testid="hazcom-label"
           >
@@ -67,9 +67,9 @@ const HazComPage = () => {
             HazCom Starter Pack
           </h1>
           <p className="text-xl md:text-2xl text-white/80 mb-8">
-            Small Shop Edition — <span className="text-[#C9A84C] font-bold">$29</span>
+            Small Shop Edition — <span className="text-[#1F6FEB] font-bold">$29</span>
           </p>
-          <div className="border-l-2 border-[#C9A84C] pl-6">
+          <div className="border-l-2 border-[#1F6FEB] pl-6">
             <p className="text-lg text-white/90 font-medium mb-2">
               #1 OSHA citation in general industry.
             </p>
@@ -81,10 +81,10 @@ const HazComPage = () => {
       </section>
 
       {/* Problem Statement */}
-      <section className="py-14 md:py-20 border-b border-[#1C2B2B]/10">
+      <section className="py-14 md:py-20 border-b border-[#102133]/10">
         <div className="container max-w-3xl">
           <h2
-            className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-6"
+            className="text-xl md:text-2xl font-bold text-[#102133] mb-6"
             style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
             Most small operations are missing:
@@ -95,13 +95,13 @@ const HazComPage = () => {
               'An SDS binder that\'s actually complete',
               'Training records that prove it happened',
             ].map((item, i) => (
-              <li key={i} className="flex items-start gap-3 text-[#1C2B2B]/70 text-base">
-                <span className="text-[#C9A84C] font-bold mt-0.5">•</span>
+              <li key={i} className="flex items-start gap-3 text-[#102133]/70 text-base">
+                <span className="text-[#1F6FEB] font-bold mt-0.5">•</span>
                 {item}
               </li>
             ))}
           </ul>
-          <p className="text-[#1C2B2B]/80 font-medium text-lg">
+          <p className="text-[#102133]/80 font-medium text-lg">
             One inspection finds all three. This pack fixes them.
           </p>
         </div>
@@ -111,7 +111,7 @@ const HazComPage = () => {
       <section className="py-14 md:py-20 bg-[#F9F8F6]" data-testid="hazcom-whats-included">
         <div className="container max-w-4xl">
           <h2
-            className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-10"
+            className="text-xl md:text-2xl font-bold text-[#102133] mb-10"
             style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
             What's Included
@@ -143,26 +143,26 @@ const HazComPage = () => {
             ].map((doc) => (
               <div
                 key={doc.id}
-                className="bg-white border border-[#1C2B2B]/10 rounded p-6"
-                style={{ borderTop: '3px solid #C9A84C' }}
+                className="bg-white border border-[#102133]/10 rounded p-6"
+                style={{ borderTop: '3px solid #1F6FEB' }}
                 data-testid={`hazcom-card-${doc.id}`}
               >
-                <doc.icon size={28} className="text-[#C9A84C] mb-4" />
+                <doc.icon size={28} className="text-[#1F6FEB] mb-4" />
                 <p
-                  className="text-[10px] font-semibold tracking-widest text-[#1C2B2B]/40 uppercase mb-2"
+                  className="text-[10px] font-semibold tracking-widest text-[#102133]/40 uppercase mb-2"
                   style={{ fontFamily: "'JetBrains Mono', monospace" }}
                 >
                   {doc.id}
                 </p>
-                <h3 className="text-base font-bold text-[#1C2B2B] mb-1">{doc.title}</h3>
-                <p className="text-xs text-[#C9A84C] font-medium mb-3">{doc.pages}</p>
-                <p className="text-sm text-[#1C2B2B]/60 leading-relaxed">{doc.desc}</p>
+                <h3 className="text-base font-bold text-[#102133] mb-1">{doc.title}</h3>
+                <p className="text-xs text-[#1F6FEB] font-medium mb-3">{doc.pages}</p>
+                <p className="text-sm text-[#102133]/60 leading-relaxed">{doc.desc}</p>
               </div>
             ))}
           </div>
 
           <p
-            className="text-center text-[#1C2B2B]/70 mt-8 font-medium"
+            className="text-center text-[#102133]/70 mt-8 font-medium"
             style={{ fontFamily: "'JetBrains Mono', monospace" }}
             data-testid="hazcom-total"
           >
@@ -172,7 +172,7 @@ const HazComPage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-[#1C2B2B] text-white" data-testid="hazcom-cta-section">
+      <section className="py-16 md:py-24 bg-[#102133] text-white" data-testid="hazcom-cta-section">
         <div className="container max-w-2xl text-center">
           <p className="text-white/70 text-lg mb-8">
             Most owners have this running same afternoon.
@@ -180,7 +180,7 @@ const HazComPage = () => {
           <button
             onClick={handleCheckout}
             disabled={isLoading}
-            className="bg-[#C9A84C] hover:bg-[#B8972C] text-[#1C2B2B] font-bold text-lg px-10 py-4 rounded transition-colors disabled:opacity-50 inline-flex items-center gap-2"
+            className="bg-[#1F6FEB] hover:bg-[#1558C0] text-[#102133] font-bold text-lg px-10 py-4 rounded transition-colors disabled:opacity-50 inline-flex items-center gap-2"
             data-testid="hazcom-buy-button"
           >
             {isLoading ? 'Redirecting...' : 'Buy Now — $29'}
@@ -196,10 +196,10 @@ const HazComPage = () => {
       {/* Walkthrough Callout */}
       <section className="py-12 bg-[#F9F8F6]">
         <div className="container max-w-2xl">
-          <div className="border border-[#C9A84C]/20 bg-white rounded-lg p-6 md:p-8 text-center" data-testid="hazcom-walkthrough-callout">
-            <p className="text-lg font-bold text-[#1C2B2B] mb-2">Not sure if these violations exist in your shop?</p>
-            <p className="text-sm text-[#1C2B2B]/60 mb-5">A GigLine Safety Walkthrough will flag them with photos and a prioritized fix list — usually within 48 hours.</p>
-            <Link to="/request-walkthrough" className="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#B8972C] text-white font-bold px-6 py-3 rounded transition-colors">
+          <div className="border border-[#1F6FEB]/20 bg-white rounded-lg p-6 md:p-8 text-center" data-testid="hazcom-walkthrough-callout">
+            <p className="text-lg font-bold text-[#102133] mb-2">Not sure if these violations exist in your shop?</p>
+            <p className="text-sm text-[#102133]/60 mb-5">A GigLine Safety Walkthrough will flag them with photos and a prioritized fix list — usually within 48 hours.</p>
+            <Link to="/request-walkthrough" className="inline-flex items-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-6 py-3 rounded transition-colors">
               Request a Safety Walkthrough <ArrowRight size={16} />
             </Link>
           </div>
@@ -207,9 +207,9 @@ const HazComPage = () => {
       </section>
 
       {/* Footer Note */}
-      <section className="py-10 border-t border-[#1C2B2B]/10">
+      <section className="py-10 border-t border-[#102133]/10">
         <div className="container max-w-2xl text-center">
-          <p className="text-sm text-[#1C2B2B]/50">
+          <p className="text-sm text-[#102133]/50">
             Built on OSHA's most cited violations in general industry.<br />
             Reviewed by a 25-year safety professional.
           </p>

@@ -22,7 +22,7 @@ const AboutPage = () => {
       />
 
       {/* Hero Section */}
-      <section className="bg-[#1C2B2B] text-white py-16 md:py-20">
+      <section className="bg-[#102133] text-white py-16 md:py-20">
         <div className="container">
           <div className="max-w-3xl">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6" style={{fontFamily: "Georgia, 'Times New Roman', serif"}} data-testid="about-headline">
@@ -56,17 +56,17 @@ const AboutPage = () => {
 
             {/* Bio */}
             <div className="lg:col-span-2">
-              <h2 className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-6" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
+              <h2 className="text-2xl md:text-3xl font-bold text-[#102133] mb-6" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
                 Vince Lawrence
               </h2>
-              <div className="text-[#1C2B2B]/70 space-y-4 leading-relaxed">
+              <div className="text-[#102133]/70 space-y-4 leading-relaxed">
                 <p>
                   I've spent over 25 years in environments where safety isn't optional — manufacturing floors, warehouses, and transportation operations.
                 </p>
                 <p>
                   I've worked the floor, in leadership, and across systems. I've seen what happens when expectations are not met — and how quickly small issues become real problems.
                 </p>
-                <p className="font-medium text-[#1C2B2B]">
+                <p className="font-medium text-[#102133]">
                   GigLine was built for a specific gap.
                 </p>
                 <p>
@@ -75,7 +75,7 @@ const AboutPage = () => {
                 <p>
                   But they do need someone who can step in, walk the operation, and call out what actually matters.
                 </p>
-                <p className="font-medium text-[#1C2B2B]">
+                <p className="font-medium text-[#102133]">
                   That's the role. That's what I do when I show up.
                 </p>
                 <div className="py-2">
@@ -84,7 +84,7 @@ const AboutPage = () => {
                   <p>I identify what's missing.</p>
                   <p>I document what matters.</p>
                 </div>
-                <p className="font-medium text-[#1C2B2B] pt-2">
+                <p className="font-medium text-[#102133] pt-2">
                   One visit.<br />
                   Clear findings.<br />
                   No contracts.
@@ -96,12 +96,12 @@ const AboutPage = () => {
       </section>
 
       {/* Statement Anchor */}
-      <section className="py-16 md:py-24 bg-[#0D1B2A]" data-testid="about-statement-anchor">
+      <section className="py-16 md:py-24 bg-[#0B1F33]" data-testid="about-statement-anchor">
         <div className="container text-center max-w-2xl mx-auto">
           <p className="text-xl sm:text-2xl md:text-3xl font-bold text-white/90 leading-snug">
             Most issues aren't new.
           </p>
-          <p className="text-xl sm:text-2xl md:text-3xl font-bold text-[#C9A84C] leading-snug mt-2">
+          <p className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1F6FEB] leading-snug mt-2">
             They've just gone unchecked.
           </p>
         </div>
@@ -111,16 +111,16 @@ const AboutPage = () => {
       <section className="py-16 md:py-20 bg-[#F5F5F3]" data-testid="origin-section">
         <div className="container">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-4 text-center" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#102133] mb-4 text-center" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
               Why "GigLine"?
             </h2>
-            <p className="text-center text-[#1C2B2B]/50 mb-8">
+            <p className="text-center text-[#102133]/50 mb-8">
               It's a small detail. But it explains everything.
             </p>
-            <div className="bg-white rounded p-8 border border-[#1C2B2B]/10">
-              <div className="text-[#1C2B2B]/70 space-y-4 leading-relaxed">
+            <div className="bg-white rounded p-8 border border-[#102133]/10">
+              <div className="text-[#102133]/70 space-y-4 leading-relaxed">
                 <p>
-                  In the military, your <strong className="text-[#1C2B2B]">gig line</strong> is the straight line formed by your shirt, your belt buckle, and your trouser fly.
+                  In the military, your <strong className="text-[#102133]">gig line</strong> is the straight line formed by your shirt, your belt buckle, and your trouser fly.
                 </p>
                 <p>
                   If it is off — even slightly — you are out of standard.
@@ -133,7 +133,7 @@ const AboutPage = () => {
                   <p>Discipline in execution.</p>
                   <p>And the understanding that inspectors notice what others ignore.</p>
                 </div>
-                <p className="font-medium text-[#1C2B2B]">
+                <p className="font-medium text-[#102133]">
                   That is where the name comes from.
                 </p>
                 <p>
@@ -142,13 +142,13 @@ const AboutPage = () => {
                 <div className="py-1">
                   <p>Not broad advice.</p>
                   <p>Not general guidance.</p>
-                  <p className="font-medium text-[#1C2B2B]">Alignment.</p>
+                  <p className="font-medium text-[#102133]">Alignment.</p>
                 </div>
                 <p>
                   Because in most operations, the problem isn't effort.<br />
                   It's misalignment.
                 </p>
-                <p className="font-medium text-[#1C2B2B]">
+                <p className="font-medium text-[#102133]">
                   And misalignment is what gets found.
                 </p>
               </div>
@@ -160,7 +160,7 @@ const AboutPage = () => {
       {/* Credentials & Background */}
       <section className="py-16 md:py-24" data-testid="credentials-section">
         <div className="container">
-          <h2 className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-10 text-center" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#102133] mb-10 text-center" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
             Credentials & Background
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -174,19 +174,19 @@ const AboutPage = () => {
             ].map((cred, index) => (
               <div 
                 key={index} 
-                className="text-center border border-[#1C2B2B]/10 rounded p-5"
+                className="text-center border border-[#102133]/10 rounded p-5"
                 data-testid={`credential-${index}`}
               >
-                <p className="text-2xl font-bold text-[#B8972C]">{cred.label}</p>
-                {cred.sub && <p className="text-xs text-[#1C2B2B]/50 uppercase tracking-wide">{cred.sub}</p>}
-                <p className="text-sm text-[#1C2B2B]/60 mt-1">{cred.desc}</p>
+                <p className="text-2xl font-bold text-[#1558C0]">{cred.label}</p>
+                {cred.sub && <p className="text-xs text-[#102133]/50 uppercase tracking-wide">{cred.sub}</p>}
+                <p className="text-sm text-[#102133]/60 mt-1">{cred.desc}</p>
               </div>
             ))}
           </div>
           <div className="text-center mt-10">
             <Link 
               to="/contact" 
-              className="inline-flex items-center gap-2 bg-[#1C2B2B] hover:bg-[#2A3D3D] text-white font-semibold px-8 py-4 rounded transition-colors"
+              className="inline-flex items-center gap-2 bg-[#102133] hover:bg-[#2A3D3D] text-white font-semibold px-8 py-4 rounded transition-colors"
               data-testid="credentials-request-walkthrough"
             >
               Request a Walkthrough
@@ -197,7 +197,7 @@ const AboutPage = () => {
       </section>
 
       {/* LaunchPath Section */}
-      <section className="py-16 md:py-20 bg-[#1C2B2B] text-white" data-testid="launchpath-section">
+      <section className="py-16 md:py-20 bg-[#102133] text-white" data-testid="launchpath-section">
         <div className="container">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
@@ -237,7 +237,7 @@ const AboutPage = () => {
                 href="https://launchpathedu.com/ground-0-briefing"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-[#B8972C] hover:bg-[#A6872A] text-white font-semibold px-8 py-4 rounded transition-colors"
+                className="inline-flex items-center gap-2 bg-[#1558C0] hover:bg-[#A6872A] text-white font-semibold px-8 py-4 rounded transition-colors"
                 data-testid="about-launchpath-cta"
               >
                 Start with Ground 0 — Free
@@ -251,16 +251,16 @@ const AboutPage = () => {
       {/* Final CTA */}
       <section className="py-16 md:py-20" data-testid="about-contact-cta">
         <div className="container text-center max-w-2xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-4" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#102133] mb-4" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
             If You're Not Sure What's Exposed — Start Here.
           </h2>
-          <p className="text-[#1C2B2B]/70 mb-8 leading-relaxed">
+          <p className="text-[#102133]/70 mb-8 leading-relaxed">
             Six questions. 90 seconds. A clear picture of where you stand.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
             <Link 
               to="/request-walkthrough" 
-              className="inline-flex items-center gap-2 bg-[#B8972C] hover:bg-[#A6872A] text-white font-bold px-8 py-4 rounded transition-colors"
+              className="inline-flex items-center gap-2 bg-[#1558C0] hover:bg-[#A6872A] text-white font-bold px-8 py-4 rounded transition-colors"
               data-testid="about-cta-walkthrough"
             >
               Request a Walkthrough
@@ -268,19 +268,19 @@ const AboutPage = () => {
             </Link>
             <Link 
               to="/safety-check" 
-              className="inline-flex items-center gap-2 border-2 border-[#1C2B2B]/20 hover:border-[#1C2B2B]/40 text-[#1C2B2B] font-semibold px-8 py-4 rounded transition-colors"
+              className="inline-flex items-center gap-2 border-2 border-[#102133]/20 hover:border-[#102133]/40 text-[#102133] font-semibold px-8 py-4 rounded transition-colors"
               data-testid="about-cta-safety-check"
             >
               Take the Free Safety Check
             </Link>
           </div>
-          <p className="text-[#1C2B2B]/60 text-base">
+          <p className="text-[#102133]/60 text-base">
             Or reach out directly —{' '}
-            <a href="tel:3363298899" className="text-[#B8972C] hover:underline font-semibold">(336) 329-8899</a>
+            <a href="tel:3363298899" className="text-[#1558C0] hover:underline font-semibold">(336) 329-8899</a>
           </p>
-          <p className="text-[#1C2B2B]/50 text-sm mt-4">
+          <p className="text-[#102133]/50 text-sm mt-4">
             Want to see the full scope first?{' '}
-            <Link to="/services" className="text-[#B8972C] hover:underline font-medium">View all services and pricing</Link>
+            <Link to="/services" className="text-[#1558C0] hover:underline font-medium">View all services and pricing</Link>
           </p>
         </div>
       </section>

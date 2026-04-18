@@ -138,10 +138,10 @@ const ServicesPage = () => {
       />
 
       {/* ── Hero Band ── */}
-      <section className="bg-[#0D1B2A] text-white py-16 md:py-24" data-testid="services-hero">
+      <section className="bg-[#0B1F33] text-white py-16 md:py-24" data-testid="services-hero">
         <div className="container max-w-4xl text-center">
           <p
-            className="uppercase tracking-[3px] text-[#C9A84C] mb-4"
+            className="uppercase tracking-[3px] text-[#1F6FEB] mb-4"
             style={{ ...mono, fontSize: '11px' }}
           >
             Services
@@ -160,10 +160,10 @@ const ServicesPage = () => {
       </section>
 
       {/* ── Free Safety Check — Distinct Card ── */}
-      <section className="py-12 md:py-16" style={{ backgroundColor: '#F9F8F6' }} data-testid="services-free-check">
+      <section className="py-12 md:py-16" style={{ backgroundColor: '#F7F9FC' }} data-testid="services-free-check">
         <div className="container max-w-7xl">
-          <div className="rounded-xl p-6 md:p-8 text-center" style={{ background: '#0D1B2A', border: '2px solid rgba(201,168,76,0.3)' }}>
-            <span className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider mb-4" style={{ background: '#C9A84C', color: '#111' }}>
+          <div className="rounded-xl p-6 md:p-8 text-center" style={{ background: '#0B1F33', border: '2px solid rgba(201,168,76,0.3)' }}>
+            <span className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider mb-4" style={{ background: '#1F6FEB', color: '#111' }}>
               Free — No Payment Required
             </span>
             <h2 className="text-xl md:text-2xl font-bold text-white mb-2" style={serif}>
@@ -174,7 +174,7 @@ const ServicesPage = () => {
             </p>
             <Link
               to="/safety-check"
-              className="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#B8972C] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#C9A84C]/20"
+              className="inline-flex items-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#1F6FEB]/20"
               data-testid="services-free-check-cta"
             >
               Take the Free Safety Check
@@ -185,13 +185,13 @@ const ServicesPage = () => {
       </section>
 
       {/* ── Service Cards ── */}
-      <section className="py-16 md:py-24" style={{ backgroundColor: '#F9F8F6' }} data-testid="services-cards-section">
+      <section className="py-16 md:py-24" style={{ backgroundColor: '#F7F9FC' }} data-testid="services-cards-section">
         <div className="container max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 items-stretch">
             {SERVICES.map((svc) => (
               <div
                 key={svc.num}
-                className="bg-white rounded-lg border border-[#1C2B2B]/08 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col"
+                className="bg-white rounded-lg border border-[#102133]/08 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col"
                 data-testid={`service-card-${svc.num}`}
               >
                 {/* Card Top */}
@@ -199,39 +199,39 @@ const ServicesPage = () => {
                   {/* Number + Starting Price */}
                   <div className="flex items-center justify-between mb-4">
                     <span
-                      className="text-[#C9A84C]/40 font-bold"
+                      className="text-[#1F6FEB]/40 font-bold"
                       style={{ ...mono, fontSize: '13px' }}
                     >
                       {svc.num}
                     </span>
-                    <span className="text-lg font-bold text-[#C9A84C]" data-testid={`price-${svc.num}`}>
+                    <span className="text-lg font-bold text-[#1F6FEB]" data-testid={`price-${svc.num}`}>
                       Starting at {svc.startingAt}
                     </span>
                   </div>
 
                   {/* Title */}
                   <h2
-                    className="text-xl md:text-[22px] font-bold text-[#1C2B2B] leading-snug mb-2"
+                    className="text-xl md:text-[22px] font-bold text-[#102133] leading-snug mb-2"
                     style={serif}
                   >
                     {svc.title}
                   </h2>
 
                   {/* Who it's for */}
-                  <p className="text-sm text-[#C9A84C] font-medium mb-3">{svc.whoFor}</p>
+                  <p className="text-sm text-[#1F6FEB] font-medium mb-3">{svc.whoFor}</p>
 
                   {/* Tagline */}
-                  <p className="text-sm text-[#1C2B2B]/50 mb-5">{svc.tagline}</p>
+                  <p className="text-sm text-[#102133]/50 mb-5">{svc.tagline}</p>
 
                   {/* Summary */}
-                  <p className="text-sm text-[#1C2B2B]/65 leading-relaxed mb-6">
+                  <p className="text-sm text-[#102133]/65 leading-relaxed mb-6">
                     {svc.summary}
                   </p>
 
                   {/* Best For */}
                   <div className="mb-6 flex-grow">
                     <p
-                      className="text-[10px] uppercase tracking-[2px] text-[#C9A84C] mb-3 font-semibold"
+                      className="text-[10px] uppercase tracking-[2px] text-[#1F6FEB] mb-3 font-semibold"
                       style={mono}
                     >
                       Best For
@@ -239,24 +239,24 @@ const ServicesPage = () => {
                     <div className="space-y-2.5">
                       {svc.bestFor.map((item, i) => (
                         <div key={i} className="flex items-start gap-2.5">
-                          <Check size={14} className="flex-shrink-0 mt-0.5 text-[#C9A84C]" strokeWidth={2.5} />
-                          <p className="text-sm text-[#1C2B2B]/60">{item}</p>
+                          <Check size={14} className="flex-shrink-0 mt-0.5 text-[#1F6FEB]" strokeWidth={2.5} />
+                          <p className="text-sm text-[#102133]/60">{item}</p>
                         </div>
                       ))}
                     </div>
                   </div>
 
                   {/* Pricing */}
-                  <div className="border-t border-[#1C2B2B]/08 pt-5 mb-5">
+                  <div className="border-t border-[#102133]/08 pt-5 mb-5">
                     <div className="space-y-2">
                       {svc.pricing.map((tier, i) => (
                         <div key={i} className="flex justify-between items-baseline">
-                          <span className="text-xs text-[#1C2B2B]/45">{tier.label}</span>
-                          <span className="text-sm font-bold text-[#1C2B2B] ml-3">{tier.price}</span>
+                          <span className="text-xs text-[#102133]/45">{tier.label}</span>
+                          <span className="text-sm font-bold text-[#102133] ml-3">{tier.price}</span>
                         </div>
                       ))}
                     </div>
-                    <p className="text-[11px] text-[#1C2B2B]/30 mt-3" style={mono}>{svc.timeline}</p>
+                    <p className="text-[11px] text-[#102133]/30 mt-3" style={mono}>{svc.timeline}</p>
                   </div>
                 </div>
 
@@ -264,17 +264,17 @@ const ServicesPage = () => {
                 <div className="px-7 md:px-8 pb-7 md:pb-8">
                   <button
                     onClick={() => openBooking(svc.key)}
-                    className="w-full bg-[#C9A84C] hover:bg-[#B8972C] text-white font-bold py-3.5 rounded transition-colors text-sm"
+                    className="w-full bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold py-3.5 rounded transition-colors text-sm"
                     data-testid={svc.testId}
                   >
                     Book This Service
                   </button>
-                  <p className="text-[11px] text-[#1C2B2B]/40 text-center mt-2.5">
+                  <p className="text-[11px] text-[#102133]/40 text-center mt-2.5">
                     After payment, you'll receive a scheduling confirmation within one business day.
                   </p>
                   <Link
                     to="/request-walkthrough"
-                    className="block w-full text-center text-xs text-[#1C2B2B]/40 hover:text-[#C9A84C] mt-3 transition-colors"
+                    className="block w-full text-center text-xs text-[#102133]/40 hover:text-[#1F6FEB] mt-3 transition-colors"
                   >
                     Or request a call first
                   </Link>
@@ -288,32 +288,32 @@ const ServicesPage = () => {
       {/* ── Trust Line ── */}
       <section className="py-14 md:py-20 bg-white" data-testid="services-trust-line">
         <div className="container max-w-2xl text-center">
-          <p className="text-base sm:text-lg md:text-xl text-[#1C2B2B]/55 font-medium leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-[#102133]/55 font-medium leading-relaxed">
             Every engagement produces a written report. No verbal summaries. No promises. Just documented findings and clear next steps.
           </p>
         </div>
       </section>
 
       {/* ── HazCom Add-On ── */}
-      <section className="py-12 md:py-16" style={{ backgroundColor: '#F9F8F6' }} data-testid="services-hazcom">
+      <section className="py-12 md:py-16" style={{ backgroundColor: '#F7F9FC' }} data-testid="services-hazcom">
         <div className="container max-w-3xl">
-          <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-10 p-6 md:p-8 bg-white rounded-lg border border-[#1C2B2B]/08 shadow-sm">
+          <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-10 p-6 md:p-8 bg-white rounded-lg border border-[#102133]/08 shadow-sm">
             <div className="flex-grow">
-              <p className="uppercase tracking-[3px] text-[#C9A84C] mb-2" style={{ ...mono, fontSize: '10px' }}>
+              <p className="uppercase tracking-[3px] text-[#1F6FEB] mb-2" style={{ ...mono, fontSize: '10px' }}>
                 Standalone Resource
               </p>
-              <h3 className="text-lg font-bold text-[#1C2B2B] mb-1" style={serif}>
+              <h3 className="text-lg font-bold text-[#102133] mb-1" style={serif}>
                 HazCom Starter Pack
               </h3>
-              <p className="text-sm text-[#1C2B2B]/55 mb-0">
+              <p className="text-sm text-[#102133]/55 mb-0">
                 A ready-made written Hazard Communication program. Download immediately — no walkthrough required.
               </p>
             </div>
             <div className="flex-shrink-0 text-center">
-              <p className="text-2xl font-bold text-[#1C2B2B] mb-2">$29</p>
+              <p className="text-2xl font-bold text-[#102133] mb-2">$29</p>
               <Link
                 to="/hazcom"
-                className="inline-flex items-center gap-2 bg-[#1C2B2B] hover:bg-[#2A3D3D] text-white font-bold px-6 py-3 rounded transition-colors text-sm"
+                className="inline-flex items-center gap-2 bg-[#102133] hover:bg-[#2A3D3D] text-white font-bold px-6 py-3 rounded transition-colors text-sm"
                 data-testid="services-hazcom-link"
               >
                 Get It Now
@@ -325,10 +325,10 @@ const ServicesPage = () => {
       </section>
 
       {/* ── Not Sure CTA ── */}
-      <section className="py-20 md:py-28 bg-[#0D1B2A] text-white" data-testid="services-not-sure">
+      <section className="py-20 md:py-28 bg-[#0B1F33] text-white" data-testid="services-not-sure">
         <div className="container text-center max-w-2xl mx-auto">
           <p
-            className="uppercase tracking-[3px] text-[#C9A84C] mb-4"
+            className="uppercase tracking-[3px] text-[#1F6FEB] mb-4"
             style={{ ...mono, fontSize: '11px' }}
           >
             Not Sure?
@@ -342,7 +342,7 @@ const ServicesPage = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to="/request-walkthrough"
-              className="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#B8972C] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#C9A84C]/20"
+              className="inline-flex items-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#1F6FEB]/20"
               data-testid="services-bottom-cta"
             >
               Request a Walkthrough
@@ -360,23 +360,23 @@ const ServicesPage = () => {
       </section>
 
       {/* ── Fleet Operators ── */}
-      <section className="py-12 md:py-16" style={{ backgroundColor: '#F9F8F6' }} data-testid="services-fleet">
+      <section className="py-12 md:py-16" style={{ backgroundColor: '#F7F9FC' }} data-testid="services-fleet">
         <div className="container">
           <div className="max-w-2xl mx-auto text-center">
             <p
-              className="uppercase tracking-[3px] text-[#1C2B2B]/30 mb-3"
+              className="uppercase tracking-[3px] text-[#102133]/30 mb-3"
               style={{ ...mono, fontSize: '10px' }}
             >
               For Fleet Operators
             </p>
-            <p className="text-sm text-[#1C2B2B]/50 mb-5">
+            <p className="text-sm text-[#102133]/50 mb-5">
               If the issue is deeper than a one-time review — driver files, drug and alcohol program gaps, maintenance records, or system installation — structured support is available through LaunchPath.
             </p>
             <a
               href="https://launchpathedu.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-[#C9A84C] font-medium hover:underline"
+              className="inline-flex items-center gap-2 text-sm text-[#1F6FEB] font-medium hover:underline"
               data-testid="services-launchpath-edu-link"
             >
               LaunchPath Transportation EDU

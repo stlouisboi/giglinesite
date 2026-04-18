@@ -181,7 +181,7 @@ const HomePage = () => {
               </p>
 
               <p
-                className="text-sm text-white/50 leading-relaxed mb-8 max-w-md"
+                className="text-sm text-white/90 leading-relaxed mb-8 max-w-md"
               >
                 GigLine provides on-site safety walkthroughs and OSHA-focused compliance inspections for small warehouses and manufacturing operations in the Piedmont Triad.
               </p>
@@ -199,7 +199,7 @@ const HomePage = () => {
 
               {/* Credentials block */}
               <p
-                className="text-xs text-white/40 leading-relaxed"
+                className="text-xs text-white/70 leading-relaxed"
                 style={mono}
                 data-testid="hero-credentials"
               >
@@ -228,7 +228,7 @@ const HomePage = () => {
             >
               Common OSHA Safety Issues We See on the Floor
             </h2>
-            <p className="text-base text-[#102133]/50 mb-12 max-w-lg">
+            <p className="text-base text-[#102133] mb-12 max-w-lg">
               These aren't rare edge cases. They're in almost every facility we walk into.
             </p>
           </Reveal>
@@ -255,13 +255,13 @@ const HomePage = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
                   <div className="absolute bottom-0 left-0 p-5">
                     <p
-                      className="text-[10px] uppercase tracking-[2px] text-[#1F6FEB] mb-1"
+                      className="text-xs uppercase tracking-[2px] text-[#1F6FEB] mb-1"
                       style={mono}
                     >
                       {item.label}
                     </p>
-                    <p className="text-[13px] text-white/90 font-semibold mb-1">{item.caption}</p>
-                    <p className="text-[12px] text-white/55 leading-relaxed">{item.consequence}</p>
+                    <p className="text-base text-white font-bold mb-1">{item.caption}</p>
+                    <p className="text-sm text-white/90 leading-relaxed">{item.consequence}</p>
                   </div>
                 </div>
               </Reveal>
@@ -270,7 +270,7 @@ const HomePage = () => {
 
           <Reveal>
             <p
-              className="text-center text-base sm:text-lg md:text-xl text-[#102133]/70 font-medium mt-12"
+              className="text-center text-lg sm:text-xl md:text-2xl text-[#102133] font-semibold mt-12"
               data-testid="grid-pressure-line"
             >
               These aren't just issues — they're the ones that show up in inspections.
@@ -311,13 +311,13 @@ const HomePage = () => {
             <Reveal>
               {/* Top lines — medium weight, muted */}
               <p
-                className="text-base sm:text-lg md:text-xl text-white/55 font-medium leading-relaxed mb-2"
+                className="text-base sm:text-lg md:text-xl text-white/80 font-medium leading-relaxed mb-2"
                 data-testid="pressure-line"
               >
                 Most issues aren't new.
               </p>
               <p
-                className="text-base sm:text-lg md:text-xl text-white/65 font-medium leading-relaxed mb-8"
+                className="text-base sm:text-lg md:text-xl text-white/85 font-medium leading-relaxed mb-8"
               >
                 They've just gone unchecked.
               </p>
@@ -337,7 +337,7 @@ const HomePage = () => {
 
               {/* Subtext — smaller, lighter, spaced */}
               <p
-                className="text-sm md:text-base text-white/50 max-w-sm mx-auto"
+                className="text-sm md:text-base text-white/75 max-w-sm mx-auto"
                 style={{ letterSpacing: '0.5px' }}
                 data-testid="statement-sub"
               >
@@ -354,7 +354,7 @@ const HomePage = () => {
       <section className="relative py-24 md:py-32 overflow-hidden" style={{ backgroundColor: '#0B1F33' }} data-testid="testimonials-section">
         {/* Subtle texture overlay */}
         <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(201,168,76,0.4) 1px, transparent 0)',
+          backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(31,111,235,0.4) 1px, transparent 0)',
           backgroundSize: '32px 32px',
         }} />
         {/* Vignette */}
@@ -409,12 +409,12 @@ const HomePage = () => {
                   <div
                     className="rounded-lg p-6 md:p-8"
                     style={{
-                      background: 'rgba(255,255,255,0.03)',
-                      border: '1px solid rgba(201,168,76,0.12)',
+                      background: 'rgba(255,255,255,0.05)',
+                      border: '1px solid rgba(31,111,235,0.15)',
                       backdropFilter: 'blur(8px)',
                     }}
                   >
-                    <p className="text-sm md:text-base text-white/55 leading-relaxed">
+                    <p className="text-base md:text-lg text-white/90 leading-relaxed">
                       "I've worked with GigLine Safety & Compliance and can say they operate at a different level than most safety consultants. They don't just point out issues — they understand how operations actually run and provide solutions that can be executed on the floor. Their support with audits and compliance reviews helped us quickly identify gaps, tighten controls, and improve overall accountability without slowing down production. Where they really stand out is in incident investigations. Their approach is disciplined, focused on true root cause, and built around preventing repeat events — not just checking a box. That level of structure has a direct impact on long-term safety performance."
                     </p>
                   </div>
@@ -426,7 +426,7 @@ const HomePage = () => {
                     </div>
                     <div>
                       <p className="text-sm font-bold text-white">Demar Archie</p>
-                      <p className="text-xs text-white/40 mt-0.5">Warehouse Receiving Manager — Google Review</p>
+                      <p className="text-xs text-white/70 mt-0.5">Warehouse Receiving Manager — Google Review</p>
                     </div>
                   </div>
                 </div>
@@ -441,7 +441,7 @@ const HomePage = () => {
                   className="rounded-lg p-6 md:p-8 group hover:scale-[1.02] transition-transform duration-300"
                   style={{
                     background: 'rgba(255,255,255,0.03)',
-                    border: '1px solid rgba(201,168,76,0.12)',
+                    border: '1px solid rgba(31,111,235,0.15)',
                   }}
                   data-testid="testimonial-card-2"
                 >
@@ -454,10 +454,10 @@ const HomePage = () => {
                   <p className="text-base font-bold text-white mb-3">
                     Corrective actions per walkthrough
                   </p>
-                  <p className="text-sm text-white/35 leading-relaxed">
+                  <p className="text-base text-white/90 leading-relaxed">
                     Every engagement produces a prioritized list of findings — not a binder full of theory. Most clients resolve their top issues within 30 days.
                   </p>
-                  <p className="text-[10px] text-white/15 uppercase tracking-wider mt-4" style={mono}>
+                  <p className="text-xs text-white/60 uppercase tracking-wider mt-4" style={mono}>
                     Based on completed walkthroughs
                   </p>
                 </div>
@@ -469,7 +469,7 @@ const HomePage = () => {
                   className="rounded-lg p-6 md:p-8 group hover:scale-[1.02] transition-transform duration-300"
                   style={{
                     background: 'rgba(255,255,255,0.03)',
-                    border: '1px solid rgba(201,168,76,0.12)',
+                    border: '1px solid rgba(31,111,235,0.15)',
                   }}
                   data-testid="testimonial-card-3"
                 >
@@ -482,10 +482,10 @@ const HomePage = () => {
                   <p className="text-base font-bold text-white mb-3">
                     Written report delivered after your visit
                   </p>
-                  <p className="text-sm text-white/50 leading-relaxed">
+                  <p className="text-sm text-white/90 leading-relaxed">
                     A written report with findings, photos, and a fix list — not a phone call summary. Yours to keep, share with your team, or hand to your insurer.
                   </p>
-                  <p className="text-[10px] text-white/15 uppercase tracking-wider mt-4" style={mono}>
+                  <p className="text-[10px] text-white/40 uppercase tracking-wider mt-4" style={mono}>
                     Standard turnaround
                   </p>
                 </div>
@@ -507,7 +507,7 @@ const HomePage = () => {
               alt="Vince Lawrence conducting LOTO compliance review with clipboard"
               className="absolute inset-0 w-full h-full object-cover object-center"
             />
-            <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, #F7F9FC 0%, rgba(249,248,246,0.15) 25%, transparent 50%)' }} />
+            <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, #F7F9FC 0%, rgba(247,249,252,0.15) 25%, transparent 50%)' }} />
           </div>
         </div>
 
@@ -528,7 +528,7 @@ const HomePage = () => {
                 >
                   What to Expect from a Safety Walkthrough
                 </h2>
-                <p className="text-base text-[#102133]/50 leading-relaxed">
+                <p className="text-base text-[#102133] leading-relaxed">
                   Simple, direct, no disruption to your day.
                 </p>
               </Reveal>
@@ -558,7 +558,7 @@ const HomePage = () => {
                       </span>
                       <div>
                         <p className="text-base font-bold text-[#102133] mb-0.5">{step.label}</p>
-                        <p className="text-sm text-[#102133]/55">{step.desc}</p>
+                        <p className="text-base text-[#102133]/80">{step.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -590,7 +590,7 @@ const HomePage = () => {
                 >
                   Every Engagement Produces a Written Report.
                 </h2>
-                <p className="text-base text-white/40 leading-relaxed">
+                <p className="text-base text-white/70 leading-relaxed">
                   No verbal summaries. No promises. A documented walkthrough with findings, photos, and corrective actions.
                 </p>
               </Reveal>
@@ -641,7 +641,7 @@ const HomePage = () => {
                 >
                   Why Not Just Use OSHA Consultation?
                 </h2>
-                <p className="text-base text-[#102133]/50 leading-relaxed">
+                <p className="text-base text-[#102133]/75 leading-relaxed">
                   OSHA On-Site Consultation is a real program. It's free and it's useful. But it has limits.
                 </p>
               </Reveal>
@@ -667,7 +667,7 @@ const HomePage = () => {
                       ].map((item, i) => (
                         <p
                           key={i}
-                          className="text-sm text-[#102133]/30 line-through decoration-[#102133]/12"
+                          className="text-base text-[#102133]/30 line-through decoration-[#102133]/12"
                         >
                           {item}
                         </p>
@@ -691,7 +691,7 @@ const HomePage = () => {
                       ].map((item, i) => (
                         <div key={i} className="flex items-start gap-2">
                           <Check size={15} className="flex-shrink-0 mt-0.5 text-[#1F6FEB]" strokeWidth={3} />
-                          <p className="text-sm text-[#102133] font-bold">{item}</p>
+                          <p className="text-base text-[#102133] font-bold">{item}</p>
                         </div>
                       ))}
                     </div>
@@ -725,7 +725,7 @@ const HomePage = () => {
                 <br />
                 They're overlooked.
               </p>
-              <p className="text-sm text-white/40" style={mono}>
+              <p className="text-sm text-white/70" style={mono}>
                 Every facility has blind spots. We walk in and find them.
               </p>
             </Reveal>
@@ -846,7 +846,7 @@ const HomePage = () => {
             <Reveal>
               <div className="pb-8 border-b border-[#102133]/10">
                 <h3 className="text-lg font-bold text-[#102133] mb-3" data-testid="faq-q1">How long are you on-site?</h3>
-                <p className="text-base text-[#102133]/70 leading-relaxed">
+                <p className="text-base text-[#102133]/85 leading-relaxed">
                   Most walkthroughs run 1 to 3 hours depending on the size of the operation. A small shop may take under an hour. A multi-bay warehouse or production floor typically runs 2 to 3 hours. You'll know the range before I arrive.
                 </p>
               </div>
@@ -855,7 +855,7 @@ const HomePage = () => {
             <Reveal delay={50}>
               <div className="pb-8 border-b border-[#102133]/10">
                 <h3 className="text-base font-bold text-[#102133] mb-3" data-testid="faq-q2">What do I get when it's done?</h3>
-                <p className="text-sm text-[#102133]/60 leading-relaxed">
+                <p className="text-base text-[#102133]/80 leading-relaxed">
                   A written report delivered within 48 hours. It includes photo-documented findings, the specific OSHA standard referenced for each one, and a plain-language corrective action for each item. No guesswork about what to fix or why.
                 </p>
               </div>
@@ -864,7 +864,7 @@ const HomePage = () => {
             <Reveal delay={100}>
               <div className="pb-8 border-b border-[#102133]/10">
                 <h3 className="text-lg font-bold text-[#102133] mb-3" data-testid="faq-q3">Do you work with my insurance company or report to OSHA?</h3>
-                <p className="text-base text-[#102133]/70 leading-relaxed">
+                <p className="text-base text-[#102133]/85 leading-relaxed">
                   No. This is a private engagement. Nothing leaves the building except the report I give you. I don't contact your insurer, your carrier, or any regulatory agency. What you do with the findings is entirely your decision.
                 </p>
               </div>
@@ -873,7 +873,7 @@ const HomePage = () => {
             <Reveal delay={150}>
               <div>
                 <h3 className="text-lg font-bold text-[#102133] mb-3" data-testid="faq-q4">What if my operation is outside the Triad?</h3>
-                <p className="text-base text-[#102133]/70 leading-relaxed">
+                <p className="text-base text-[#102133]/85 leading-relaxed">
                   On-site walkthroughs are available within roughly 60 miles of Winston-Salem — covering the full Triad and surrounding areas. For locations beyond that range, contact me directly. Travel engagements are available and travel fees may apply.
                 </p>
               </div>
@@ -897,7 +897,7 @@ const HomePage = () => {
             <p className="text-base md:text-lg text-white/80 leading-relaxed mb-3" data-testid="service-area-statement">
               On-site walkthroughs within roughly 60 miles of Winston-Salem, including Greensboro, High Point, Kernersville, Lexington, Thomasville, Salisbury, Burlington, and nearby towns.
             </p>
-            <p className="text-sm text-white/45 leading-relaxed">
+            <p className="text-sm text-white/70 leading-relaxed">
               Need a visit a bit farther out? I can often travel to Mooresville, Concord, Huntersville, or Danville, VA — travel fees may apply.
             </p>
           </div>
@@ -911,7 +911,7 @@ const HomePage = () => {
         <div className="container max-w-3xl text-center">
           <Reveal>
             <h2 className="text-2xl md:text-3xl leading-tight mb-8" data-testid="final-cta-headline">
-              <span className="block text-white/55 font-normal mb-2">
+              <span className="block text-white/80 font-normal mb-2">
                 If you're not sure what's exposed —
               </span>
               <span className="block font-bold text-white">
@@ -940,14 +940,14 @@ const HomePage = () => {
               </Link>
             </div>
 
-            <p className="text-sm text-white/50 mb-14" style={mono} data-testid="final-price-line">
+            <p className="text-sm text-white/75 mb-14" style={mono} data-testid="final-price-line">
               Most walkthroughs start at $650 depending on size.
             </p>
 
             {/* Contact block */}
             <div className="w-px h-10 mx-auto mb-8" style={{ backgroundColor: 'rgba(201,168,76,0.2)' }} />
             <p className="text-white font-bold text-lg mb-1">Vince Lawrence</p>
-            <p className="text-white/40 text-sm mb-4" style={mono}>
+            <p className="text-white/70 text-sm mb-4" style={mono}>
               GigLine Safety & Compliance
             </p>
             <p className="mb-2">
@@ -962,7 +962,7 @@ const HomePage = () => {
             <p>
               <a
                 href="mailto:vince@giglinecompliance.com"
-                className="text-white/50 hover:text-[#1F6FEB] transition-colors text-sm"
+                className="text-white/75 hover:text-[#1F6FEB] transition-colors text-sm"
                 data-testid="final-email"
               >
                 vince@giglinecompliance.com

@@ -914,17 +914,17 @@ const HomePage = () => {
         </div>
 
         <div className="container max-w-4xl relative z-10">
-          <div className="rounded-xl px-6 py-8 md:px-10 md:py-10 text-center" style={{ background: 'rgba(255,255,255,0.85)', border: '1px solid #D9E2EC', backdropFilter: 'blur(8px)', boxShadow: '0 4px 24px rgba(0,0,0,0.06)' }}>
+          <div className="rounded-xl px-6 py-8 md:px-10 md:py-10 text-center" style={{ background: '#0B1F33', border: '1px solid rgba(74,124,201,0.2)', boxShadow: '0 8px 32px rgba(0,0,0,0.15)' }}>
             <p
               className="uppercase tracking-[3px] text-[#4A7CC9] mb-4"
               style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }}
             >
               Service Area
             </p>
-            <p className="text-base md:text-lg text-[#102133] leading-relaxed mb-3 font-medium" data-testid="service-area-statement">
+            <p className="text-base md:text-lg text-white/90 leading-relaxed mb-3 font-medium" data-testid="service-area-statement">
               On-site walkthroughs within roughly 60 miles of Winston-Salem, including Greensboro, High Point, Kernersville, Lexington, Thomasville, Salisbury, Burlington, and nearby towns.
             </p>
-            <p className="text-sm text-[#5B6B7A] leading-relaxed">
+            <p className="text-sm text-white/60 leading-relaxed">
               Need a visit a bit farther out? I can often travel to Mooresville, Concord, Huntersville, or Danville, VA — travel fees may apply.
             </p>
           </div>

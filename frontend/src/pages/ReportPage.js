@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Check, Download, Phone, Mail } from 'lucide-react';
+import { Check, Download, Phone, Mail, Star, ExternalLink } from 'lucide-react';
 import SEO from '../components/SEO';
 
 const API = process.env.REACT_APP_BACKEND_URL;
@@ -73,6 +73,39 @@ const ReportPage = () => {
           </a>
           <p className="text-xs" style={{ color: C.muted }}>
             <a href="tel:3363298899" className="hover:text-white transition-colors">(336) 329-8899</a> · <a href="mailto:vince@giglinecompliance.com" className="hover:text-white transition-colors">vince@giglinecompliance.com</a>
+          </p>
+        </div>
+
+        {/* Review prompt — highest-intent moment (after reading the report) */}
+        <div
+          className="mt-8 rounded-lg p-6"
+          style={{ background: C.surface, border: `1px solid ${C.border}` }}
+          data-testid="review-prompt"
+        >
+          <div className="flex items-center gap-1 mb-3" aria-hidden="true">
+            {[0, 1, 2, 3, 4].map((i) => (
+              <Star key={i} size={16} fill={C.gold} color={C.gold} strokeWidth={0} />
+            ))}
+          </div>
+          <p className="text-base font-bold text-white mb-2" data-testid="review-prompt-headline">
+            If this report was useful, would you share a quick review?
+          </p>
+          <p className="text-sm mb-5 leading-relaxed" style={{ color: C.sec }}>
+            Small operations trust other operators more than marketing. A few sentences on Google helps other Triad businesses find GigLine.
+          </p>
+          <a
+            href="https://share.google/iUzTnuRSCNdguZQww"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-md font-bold text-sm transition-opacity hover:opacity-90"
+            style={{ background: C.gold, color: '#111', minHeight: '44px' }}
+            data-testid="review-prompt-cta"
+          >
+            Leave a Review on Google
+            <ExternalLink size={14} />
+          </a>
+          <p className="text-xs mt-4" style={{ color: C.muted }}>
+            Honest feedback only — good, bad, or indifferent.
           </p>
         </div>
       </div>

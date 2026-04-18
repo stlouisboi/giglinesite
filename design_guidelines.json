@@ -1,134 +1,123 @@
 {
-  "theme": "dark",
-  "archetype": "High-Contrast & Authoritative",
-  "design_philosophy": "Authority-first, low-friction conversion. Tone is experienced operator, not marketer. No SaaS fluff. Short headlines, bold phrases, generous spacing.",
-  "colors": {
-    "background_dark_navy": "#0D1B2A",
-    "background_deep_teal": "#1C2B2B",
-    "background_light": "#F8F9FA",
-    "accent_gold": "#C9A84C",
-    "text_primary_light": "#FFFFFF",
-    "text_secondary_light": "rgba(255,255,255,0.7)",
-    "text_primary_dark": "#0D1B2A",
-    "text_secondary_dark": "rgba(13,27,42,0.7)",
-    "border_light": "rgba(255,255,255,0.1)",
-    "border_dark": "rgba(13,27,42,0.1)"
-  },
+  "project_name": "GigLine Safety & Compliance UI Refresh",
+  "theme": "light",
+  "archetype": "Archetype 4: Swiss & High-Contrast (Tailored for Calm, Practical, Local Credibility)",
+  "brand_tone": "calm, practical, credible, local, professional safety report",
   "typography": {
-    "fonts": {
-      "headings": "font-serif",
-      "labels_accents": "font-mono",
-      "body": "font-sans"
-    },
-    "font_families_to_import": [
-      "@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap');"
-    ],
-    "tailwind_config_additions": {
-      "theme": {
-        "extend": {
-          "fontFamily": {
-            "serif": ["'Playfair Display'", "serif"],
-            "mono": ["'JetBrains Mono'", "monospace"],
-            "sans": ["'Inter'", "sans-serif"]
-          },
-          "colors": {
-            "navy": "#0D1B2A",
-            "tealblack": "#1C2B2B",
-            "gold": "#C9A84C"
-          }
-        }
-      }
-    },
+    "heading_font": "Manrope",
+    "body_font": "Inter",
     "hierarchy": {
-      "h1": "text-5xl md:text-6xl font-serif tracking-tight leading-tight",
-      "h2": "text-4xl md:text-5xl font-serif tracking-tight leading-tight",
-      "h3": "text-2xl md:text-3xl font-serif",
-      "label": "text-xs md:text-sm font-mono tracking-widest uppercase",
-      "body": "text-base md:text-lg font-sans leading-relaxed"
+      "h1": "text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#102133] (or text-white on Navy)",
+      "h2": "text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-[#102133]",
+      "h3": "text-xl sm:text-2xl font-semibold text-[#102133]",
+      "h4": "text-lg sm:text-xl font-medium text-[#102133]",
+      "body": "text-base text-[#5B6B7A] leading-relaxed",
+      "small": "text-sm text-[#5B6B7A]"
     }
+  },
+  "colors": {
+    "primary": "#0B1F33",
+    "primary_hover": "#102A43",
+    "secondary": "#102A43",
+    "surface": "#F7F9FC",
+    "card": "#FFFFFF",
+    "text_primary": "#102133",
+    "text_secondary": "#5B6B7A",
+    "border": "#D9E2EC",
+    "cta": "#1F6FEB",
+    "cta_hover": "#1558C0",
+    "accent_teal": "#2A9D8F",
+    "warning": "#B45309",
+    "background": "#F7F9FC"
   },
   "layout_and_spacing": {
-    "section_padding": "py-20 md:py-32",
-    "container": "max-w-7xl mx-auto px-6 md:px-12",
-    "dividers": "border-t border-white/10 my-8 md:my-16",
-    "grid_patterns": {
-      "bento_4": "grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8",
-      "services_3": "grid grid-cols-1 md:grid-cols-3 gap-8",
-      "operations_4": "grid grid-cols-2 md:grid-cols-4 gap-6"
-    }
+    "container": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+    "section_padding": "py-16 md:py-24",
+    "card_padding": "p-6 md:p-8",
+    "grid_strategy": {
+      "services": "grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8",
+      "process": "grid grid-cols-1 md:grid-cols-4 gap-6"
+    },
+    "border_radius": "rounded-lg (subtle, max 8px for professional feel)"
   },
   "components": {
+    "navigation": {
+      "style": "bg-white border-b border-[#D9E2EC] sticky top-0 z-50",
+      "elements": ["Logo", "Navigation Links", "Phone Number: (336) 329-8899 (Clickable on mobile)"]
+    },
+    "hero": {
+      "style": "bg-[#0B1F33] text-white relative overflow-hidden",
+      "overlay": "bg-[#0B1F33]/90 (over background image)",
+      "headline": "If OSHA walked in tomorrow, would you pass?",
+      "cta": "Take the 90-Second Safety Check (bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-semibold px-8 py-4 rounded-lg)",
+      "credentials": "Text below CTA: e.g., 'Trusted by 50+ Kernersville/Triad NC manufacturers'"
+    },
+    "service_area": {
+      "style": "bg-[#F7F9FC] py-6 border-b border-[#D9E2EC] text-center",
+      "content": "Local safety consulting for small manufacturers, warehouses, contractors in Kernersville/Triad NC."
+    },
+    "service_cards": {
+      "style": "bg-white border border-[#D9E2EC] rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200",
+      "elements": ["Visible Pricing", "Who it's for", "Post-purchase clarity checklist", "Blue CTA"]
+    },
+    "free_check_callout": {
+      "style": "bg-[#F7F9FC] border-l-4 border-[#2A9D8F] p-6 rounded-r-lg shadow-sm",
+      "contrast_note": "Visually distinct from paid tiers using the accent teal."
+    },
+    "testimonials": {
+      "style": "bg-[#102A43] text-white py-16"
+    },
     "buttons": {
-      "primary": "bg-gold text-navy font-mono font-bold uppercase tracking-wider text-sm px-8 py-4 hover:bg-gold/90 transition-colors inline-flex items-center justify-center",
-      "secondary": "border border-white/30 text-white font-mono font-medium uppercase tracking-wider text-sm px-8 py-4 hover:bg-white/10 transition-colors inline-flex items-center justify-center"
-    },
-    "cards": {
-      "service_card": "p-8 border border-white/10 bg-white/5 hover:bg-white/10 transition-colors group",
-      "image_card": "overflow-hidden relative group aspect-square"
+      "primary": "bg-[#1F6FEB] hover:bg-[#1558C0] text-white rounded-lg px-6 py-3 font-medium transition-colors",
+      "secondary": "bg-white text-[#102133] border border-[#D9E2EC] hover:bg-[#F7F9FC] rounded-lg px-6 py-3 font-medium transition-colors"
     }
   },
-  "sections_instructions": {
-    "1_Hero": {
-      "background": "bg-navy relative overflow-hidden",
-      "overlay": "bg-black/40",
-      "content": "Centered or left-aligned. JetBrains Mono overline, large Playfair Display headline, short subheadline. Two CTAs.",
-      "image_url": "https://images.pexels.com/photos/6804263/pexels-photo-6804263.jpeg"
+  "animations": {
+    "hover_states": "subtle background color shifts and slight shadow increases",
+    "transitions": "transition-all duration-200 ease-in-out",
+    "restrictions": "No flashy animations or busy patterns. Keep it calm and practical."
+  },
+  "icons": {
+    "library": "lucide-react",
+    "style": "Stroke width 2, stroke-current, precise and technical"
+  },
+  "images": [
+    {
+      "category": "hero_background",
+      "url": "https://images.unsplash.com/photo-1773966071353-0956f870e034?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNzl8MHwxfHNlYXJjaHwzfHx3YXJlaG91c2UlMjBpbnRlcmlvciUyMHdvcmtlcnxlbnwwfHx8fDE3NzY0NzM5Njl8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Industrial warehouse setting. Use with heavy #0B1F33 overlay (e.g. bg-[#0B1F33]/80) to ensure text legibility.",
+      "placement": "Homepage Hero Background"
     },
-    "2_Trust_Strip": {
-      "background": "bg-tealblack py-6 border-y border-white/10",
-      "content": "Single-line text in JetBrains Mono scrolling or spaced evenly. 'AUTHORITY-FIRST // LOW-FRICTION CONVERSION // EXPERIENCED OPERATORS'"
+    {
+      "category": "process_or_about",
+      "url": "https://images.unsplash.com/photo-1764154739233-659b2681d162?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzN8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBzYWZldHklMjBpbmR1c3RyaWFsfGVufDB8fHx8MTc3NjQ3Mzk3NHww&ixlib=rb-4.1.0&q=85",
+      "description": "Worker in high-visibility vest operating machinery. Professional and safe.",
+      "placement": "About Section or Process Section"
     },
-    "3_Field_Reality": {
-      "background": "bg-navy",
-      "content": "Headline 'What We Actually See on the Floor'. 4 items in a clean grid with high-quality stock photos.",
-      "images": [
-        "https://images.unsplash.com/photo-1645736315000-6f788915923b",
-        "https://images.pexels.com/photos/209230/pexels-photo-209230.jpeg",
-        "https://images.unsplash.com/photo-1758966087150-f62127674cb8",
-        "https://images.pexels.com/photos/36003959/pexels-photo-36003959.jpeg"
-      ]
-    },
-    "4_Human_Layer": {
-      "background": "bg-light text-navy",
-      "content": "Alternate light section. Split 2 columns: Vince photo (left) + Video placeholder (right). Tight text explaining operator experience.",
-      "vince_image": "https://images.unsplash.com/photo-1586528116022-aeda1613c63d"
-    },
-    "5_Why_Private_vs_OSHA": {
-      "background": "bg-tealblack",
-      "content": "Comparison points using thin dividers and generous spacing. Bold key phrases, short descriptions."
-    },
-    "6_What_We_Do": {
-      "background": "bg-navy",
-      "content": "3 services in thin-bordered cards or rows. One-line each: Safety Walkthroughs, Documentation Reviews, Incident Response."
-    },
-    "7_What_You_Get": {
-      "background": "bg-navy",
-      "content": "List of 5 deliverables. JetBrains Mono numbering. Callout box at end: 'This is not a full audit. It is a signal.'"
-    },
-    "8_Who_We_Work_With": {
-      "background": "bg-tealblack border-t border-white/10",
-      "content": "4 operation types (Manufacturers, Warehouses, Contractors, Fleets) in a minimal grid."
-    },
-    "9_Testimonial": {
-      "background": "bg-navy",
-      "content": "Single powerful quote. Large serif font, gold quotation marks."
-    },
-    "10_About_Vince": {
-      "background": "bg-light text-navy",
-      "content": "Tight bio. JetBrains Mono labels."
-    },
-    "11_Final_CTA": {
-      "background": "bg-tealblack",
-      "content": "Dual button setup. Direct, operator tone."
+    {
+      "category": "generic_industrial",
+      "url": "https://images.unsplash.com/photo-1716016435588-f5db7da707d5?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNzl8MHwxfHNlYXJjaHwxfHx3YXJlaG91c2UlMjBpbnRlcmlvciUyMHdvcmtlcnxlbnwwfHx8fDE3NzY0NzM5Njl8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Conveyor belt in warehouse.",
+      "placement": "Services supporting image or Field Notes fallback"
+    }
+  ],
+  "accessibility_and_testing": {
+    "contrast": "Ensure white text on #0B1F33, #1F6FEB, and #2A9D8F meets WCAG AA standards. Text on #F7F9FC must use #102133 or #5B6B7A.",
+    "test_ids": {
+      "nav_phone": "data-testid='nav-phone-link'",
+      "hero_cta": "data-testid='hero-safety-check-cta'",
+      "service_card": "data-testid='service-card-{id}'",
+      "free_check_card": "data-testid='free-check-card'"
     }
   },
-  "media": {
-    "hero_image": "https://images.pexels.com/photos/6804263/pexels-photo-6804263.jpeg",
-    "field_reality_1": "https://images.unsplash.com/photo-1645736315000-6f788915923b",
-    "field_reality_2": "https://images.pexels.com/photos/209230/pexels-photo-209230.jpeg",
-    "field_reality_3": "https://images.unsplash.com/photo-1758966087150-f62127674cb8",
-    "field_reality_4": "https://images.pexels.com/photos/36003959/pexels-photo-36003959.jpeg",
-    "vince_portrait": "https://images.unsplash.com/photo-1586528116022-aeda1613c63d"
-  },
-  "testing_attributes": "All interactive elements (buttons, links) must include `data-testid` attribute."
+  "instructions_to_main_agent": [
+    "Use the exact color hex codes provided in the colors section. Do not use Tailwind default colors (e.g., blue-600) for primary elements, use the hex codes.",
+    "Apply the styling rules only to public pages. Portal pages (/intake, etc.) should not be modified to keep their existing dark brand.",
+    "Do not build a dark mode toggle. The marketing site is exclusively light mode (with Navy block sections for contrast).",
+    "Keep the phone number visible and sticky in the header. Make it a clickable tel: link on mobile.",
+    "Use standard HTML + Tailwind for marketing layout structure. Do not over-rely on Shadcn Card if it restricts the pricing table design.",
+    "Include a single primary CTA above the fold in the Hero section.",
+    "Ensure 'Take the 90-Second Safety Check' is visually prioritized over paid service CTAs using size and prominent #1F6FEB color.",
+    "Install 'lucide-react' for icons."
+  ]
 }

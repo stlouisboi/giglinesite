@@ -26,7 +26,7 @@ body {
   :root {
     --primary: #0B1F33;
     --primary-foreground: #FFFFFF;
-    --accent: #4A7CC9;
+    --accent: #1F6FEB;
     --accent-foreground: #FFFFFF;
     --secondary: #F7F9FC;
     --secondary-foreground: #102133;
@@ -35,12 +35,12 @@ body {
     --muted: #F7F9FC;
     --muted-foreground: #5B6B7A;
     --border: #D9E2EC;
-    --teal: #4A7CC9;
+    --teal: #2A9D8F;
     --warning: #B45309;
     --navy: #0B1F33;
-    --navy-light: #0F2940;
-    --cta: #4A7CC9;
-    --cta-hover: #3B6AB5;
+    --navy-light: #102A43;
+    --cta: #1F6FEB;
+    --cta-hover: #1558C0;
     --text-primary: #102133;
     --text-secondary: #5B6B7A;
     --surface: #F7F9FC;
@@ -55,14 +55,14 @@ body {
 
   .btn-primary {
     @apply inline-flex items-center justify-center px-6 py-3 font-semibold rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2;
-    background-color: #4A7CC9;
+    background-color: #1F6FEB;
     color: #FFFFFF;
   }
   .btn-primary:hover {
-    background-color: #3B6AB5;
+    background-color: #1558C0;
   }
   .btn-primary:focus {
-    --tw-ring-color: #4A7CC9;
+    --tw-ring-color: #1F6FEB;
   }
 
   .btn-secondary {
@@ -91,10 +91,10 @@ body {
   }
 
   .text-accent {
-    color: #4A7CC9 !important;
+    color: #1F6FEB !important;
   }
 
   .bg-accent {
-    background-color: #4A7CC9 !important;
+    background-color: #1F6FEB !important;
   }
 }

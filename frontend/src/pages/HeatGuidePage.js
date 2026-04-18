@@ -37,7 +37,7 @@ const HeatGuidePage = () => {
       {/* Hero */}
       <section className="bg-[#0B1F33] text-white py-16 md:py-24">
         <div className="container max-w-3xl">
-          <p className="text-xs font-semibold tracking-widest text-[#4A7CC9] uppercase mb-4" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+          <p className="text-xs font-semibold tracking-widest text-[#1F6FEB] uppercase mb-4" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
             FREE DOWNLOAD
           </p>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }} data-testid="heat-guide-headline">
@@ -56,7 +56,7 @@ const HeatGuidePage = () => {
       <section className="py-14 md:py-20" data-testid="heat-guide-gate">
         <div className="container max-w-xl text-center">
           <div className="bg-[#F9F8F6] border border-[#102133]/10 rounded-lg p-8">
-            <Download size={32} className="text-[#4A7CC9] mx-auto mb-4" />
+            <Download size={32} className="text-[#1F6FEB] mx-auto mb-4" />
             {status === 'sent' ? (
               <div data-testid="heat-guide-success">
                 <h2 className="text-xl font-bold text-[#102133] mb-3" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
@@ -65,7 +65,7 @@ const HeatGuidePage = () => {
                 <p className="text-sm text-[#102133]/60 mb-4">
                   The 2026 Heat Stress Action Template has been sent to <strong className="text-[#102133]">{email}</strong>. Print it and post it.
                 </p>
-                <Link to="/safety-check" className="inline-flex items-center gap-2 text-sm text-[#3B6AB5] font-medium hover:underline">
+                <Link to="/safety-check" className="inline-flex items-center gap-2 text-sm text-[#1558C0] font-medium hover:underline">
                   Run the Free Safety Check while you're here <ArrowRight size={14} />
                 </Link>
               </div>
@@ -84,13 +84,13 @@ const HeatGuidePage = () => {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-4 py-3 border border-[#102133]/20 rounded text-sm focus:outline-none focus:border-[#4A7CC9]"
+                    className="w-full px-4 py-3 border border-[#102133]/20 rounded text-sm focus:outline-none focus:border-[#1F6FEB]"
                     data-testid="heat-guide-email-input"
                   />
                   <button
                     type="submit"
                     disabled={status === 'sending'}
-                    className="w-full bg-[#4A7CC9] hover:bg-[#3B6AB5] text-white font-semibold py-3 rounded transition-colors inline-flex items-center justify-center gap-2 disabled:opacity-50"
+                    className="w-full bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-semibold py-3 rounded transition-colors inline-flex items-center justify-center gap-2 disabled:opacity-50"
                     data-testid="heat-guide-submit"
                   >
                     {status === 'sending' ? 'Sending...' : 'Send Me the Template'}
@@ -120,7 +120,7 @@ const HeatGuidePage = () => {
               'Enforcement Reference — NC DOL General Duty Clause, penalty amounts, inspector expectations',
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-3 text-sm text-[#102133]/70">
-                <span className="text-[#4A7CC9] font-bold">•</span>
+                <span className="text-[#1F6FEB] font-bold">•</span>
                 {item}
               </li>
             ))}

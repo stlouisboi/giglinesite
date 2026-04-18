@@ -42,7 +42,7 @@ const HazComThankYouPage = () => {
     return (
       <main className="min-h-[60vh] flex items-center justify-center" data-testid="hazcom-thankyou-loading">
         <div className="text-center">
-          <Loader size={32} className="animate-spin text-[#4A7CC9] mx-auto mb-4" />
+          <Loader size={32} className="animate-spin text-[#1F6FEB] mx-auto mb-4" />
           <p className="text-[#102133]/60">Verifying your purchase...</p>
         </div>
       </main>
@@ -88,8 +88,8 @@ const HazComThankYouPage = () => {
       <section className="bg-[#102133] text-white py-12 md:py-16">
         <div className="container max-w-3xl">
           <div className="flex items-center gap-3 mb-4">
-            <CheckCircle size={28} className="text-[#4A7CC9]" />
-            <p className="text-xs font-semibold tracking-widest text-[#4A7CC9] uppercase" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+            <CheckCircle size={28} className="text-[#1F6FEB]" />
+            <p className="text-xs font-semibold tracking-widest text-[#1F6FEB] uppercase" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
               PURCHASE COMPLETE
             </p>
           </div>
@@ -116,16 +116,16 @@ const HazComThankYouPage = () => {
                 href={downloadUrl(file.filename)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between p-5 bg-[#F9F8F6] border border-[#102133]/10 rounded hover:border-[#4A7CC9]/40 transition-colors group"
+                className="flex items-center justify-between p-5 bg-[#F9F8F6] border border-[#102133]/10 rounded hover:border-[#1F6FEB]/40 transition-colors group"
                 data-testid={`download-${file.filename.split('.')[0]}`}
               >
                 <div>
-                  <p className="font-medium text-[#102133] text-sm group-hover:text-[#4A7CC9] transition-colors">
+                  <p className="font-medium text-[#102133] text-sm group-hover:text-[#1F6FEB] transition-colors">
                     {file.label}
                   </p>
                   <p className="text-xs text-[#102133]/50 mt-1">{file.desc} — PDF</p>
                 </div>
-                <Download size={20} className="text-[#102133]/40 group-hover:text-[#4A7CC9] transition-colors flex-shrink-0" />
+                <Download size={20} className="text-[#102133]/40 group-hover:text-[#1F6FEB] transition-colors flex-shrink-0" />
               </a>
             ))}
           </div>
@@ -150,7 +150,7 @@ const HazComThankYouPage = () => {
                 'Review annually or when chemicals change',
               ].map((step, i) => (
                 <li key={i} className="flex items-start gap-3 text-[#102133]/70 text-sm">
-                  <span className="bg-[#4A7CC9] text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="bg-[#1F6FEB] text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                     {i + 1}
                   </span>
                   {step}

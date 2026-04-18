@@ -141,7 +141,7 @@ const ServicesPage = () => {
       <section className="bg-[#0B1F33] text-white py-16 md:py-24" data-testid="services-hero">
         <div className="container max-w-4xl text-center">
           <p
-            className="uppercase tracking-[3px] text-[#4A7CC9] mb-4"
+            className="uppercase tracking-[3px] text-[#1F6FEB] mb-4"
             style={{ ...mono, fontSize: '11px' }}
           >
             Services
@@ -163,7 +163,7 @@ const ServicesPage = () => {
       <section className="py-12 md:py-16" style={{ backgroundColor: '#F7F9FC' }} data-testid="services-free-check">
         <div className="container max-w-7xl">
           <div className="rounded-xl p-6 md:p-8 text-center" style={{ background: '#0B1F33', border: '2px solid rgba(201,168,76,0.3)' }}>
-            <span className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider mb-4" style={{ background: '#4A7CC9', color: '#111' }}>
+            <span className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider mb-4" style={{ background: '#1F6FEB', color: '#111' }}>
               Free — No Payment Required
             </span>
             <h2 className="text-xl md:text-2xl font-bold text-white mb-2" style={serif}>
@@ -174,7 +174,7 @@ const ServicesPage = () => {
             </p>
             <Link
               to="/safety-check"
-              className="inline-flex items-center gap-2 bg-[#4A7CC9] hover:bg-[#3B6AB5] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#4A7CC9]/20"
+              className="inline-flex items-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#1F6FEB]/20"
               data-testid="services-free-check-cta"
             >
               Take the Free Safety Check
@@ -199,12 +199,12 @@ const ServicesPage = () => {
                   {/* Number + Starting Price */}
                   <div className="flex items-center justify-between mb-4">
                     <span
-                      className="text-[#4A7CC9]/40 font-bold"
+                      className="text-[#1F6FEB]/40 font-bold"
                       style={{ ...mono, fontSize: '13px' }}
                     >
                       {svc.num}
                     </span>
-                    <span className="text-lg font-bold text-[#4A7CC9]" data-testid={`price-${svc.num}`}>
+                    <span className="text-lg font-bold text-[#1F6FEB]" data-testid={`price-${svc.num}`}>
                       Starting at {svc.startingAt}
                     </span>
                   </div>
@@ -218,7 +218,7 @@ const ServicesPage = () => {
                   </h2>
 
                   {/* Who it's for */}
-                  <p className="text-sm text-[#4A7CC9] font-medium mb-3">{svc.whoFor}</p>
+                  <p className="text-sm text-[#1F6FEB] font-medium mb-3">{svc.whoFor}</p>
 
                   {/* Tagline */}
                   <p className="text-sm text-[#102133]/50 mb-5">{svc.tagline}</p>
@@ -231,7 +231,7 @@ const ServicesPage = () => {
                   {/* Best For */}
                   <div className="mb-6 flex-grow">
                     <p
-                      className="text-[10px] uppercase tracking-[2px] text-[#4A7CC9] mb-3 font-semibold"
+                      className="text-[10px] uppercase tracking-[2px] text-[#1F6FEB] mb-3 font-semibold"
                       style={mono}
                     >
                       Best For
@@ -239,7 +239,7 @@ const ServicesPage = () => {
                     <div className="space-y-2.5">
                       {svc.bestFor.map((item, i) => (
                         <div key={i} className="flex items-start gap-2.5">
-                          <Check size={14} className="flex-shrink-0 mt-0.5 text-[#4A7CC9]" strokeWidth={2.5} />
+                          <Check size={14} className="flex-shrink-0 mt-0.5 text-[#1F6FEB]" strokeWidth={2.5} />
                           <p className="text-sm text-[#102133]/60">{item}</p>
                         </div>
                       ))}
@@ -264,7 +264,7 @@ const ServicesPage = () => {
                 <div className="px-7 md:px-8 pb-7 md:pb-8">
                   <button
                     onClick={() => openBooking(svc.key)}
-                    className="w-full bg-[#4A7CC9] hover:bg-[#3B6AB5] text-white font-bold py-3.5 rounded transition-colors text-sm"
+                    className="w-full bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold py-3.5 rounded transition-colors text-sm"
                     data-testid={svc.testId}
                   >
                     Book This Service
@@ -274,7 +274,7 @@ const ServicesPage = () => {
                   </p>
                   <Link
                     to="/request-walkthrough"
-                    className="block w-full text-center text-xs text-[#102133]/40 hover:text-[#4A7CC9] mt-3 transition-colors"
+                    className="block w-full text-center text-xs text-[#102133]/40 hover:text-[#1F6FEB] mt-3 transition-colors"
                   >
                     Or request a call first
                   </Link>
@@ -299,7 +299,7 @@ const ServicesPage = () => {
         <div className="container max-w-3xl">
           <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-10 p-6 md:p-8 bg-white rounded-lg border border-[#102133]/08 shadow-sm">
             <div className="flex-grow">
-              <p className="uppercase tracking-[3px] text-[#4A7CC9] mb-2" style={{ ...mono, fontSize: '10px' }}>
+              <p className="uppercase tracking-[3px] text-[#1F6FEB] mb-2" style={{ ...mono, fontSize: '10px' }}>
                 Standalone Resource
               </p>
               <h3 className="text-lg font-bold text-[#102133] mb-1" style={serif}>
@@ -328,7 +328,7 @@ const ServicesPage = () => {
       <section className="py-20 md:py-28 bg-[#0B1F33] text-white" data-testid="services-not-sure">
         <div className="container text-center max-w-2xl mx-auto">
           <p
-            className="uppercase tracking-[3px] text-[#4A7CC9] mb-4"
+            className="uppercase tracking-[3px] text-[#1F6FEB] mb-4"
             style={{ ...mono, fontSize: '11px' }}
           >
             Not Sure?
@@ -342,7 +342,7 @@ const ServicesPage = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to="/request-walkthrough"
-              className="inline-flex items-center gap-2 bg-[#4A7CC9] hover:bg-[#3B6AB5] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#4A7CC9]/20"
+              className="inline-flex items-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#1F6FEB]/20"
               data-testid="services-bottom-cta"
             >
               Request a Walkthrough
@@ -376,7 +376,7 @@ const ServicesPage = () => {
               href="https://launchpathedu.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-[#4A7CC9] font-medium hover:underline"
+              className="inline-flex items-center gap-2 text-sm text-[#1F6FEB] font-medium hover:underline"
               data-testid="services-launchpath-edu-link"
             >
               LaunchPath Transportation EDU

@@ -155,7 +155,7 @@ const HomePage = () => {
           <div className="w-full md:w-2/5 flex items-center px-6 md:px-14 lg:px-20 py-12 md:py-0 relative z-10">
             <Reveal>
               <p
-                className="uppercase tracking-[3px] text-[#4A7CC9] mb-5"
+                className="uppercase tracking-[3px] text-[#CBD5E1] mb-5"
                 style={{ ...mono, fontSize: '11px' }}
                 data-testid="hero-label"
               >
@@ -169,19 +169,19 @@ const HomePage = () => {
                 If OSHA Walked In Tomorrow,{' '}
                 <span className="block mt-3">
                   Would You{' '}
-                  <span style={{ borderBottom: '2px solid #4A7CC9', paddingBottom: '2px' }}>Pass</span>?
+                  <span style={{ borderBottom: '2px solid #1F6FEB', paddingBottom: '2px' }}>Pass</span>?
                 </span>
               </h1>
 
               <p
-                className="text-base md:text-lg text-white/70 leading-relaxed mb-6 max-w-md"
+                className="text-base md:text-lg text-[#CBD5E1] leading-relaxed mb-6 max-w-md"
                 data-testid="hero-sub"
               >
                 A single OSHA citation averages $15,625. A GigLine safety walkthrough costs a fraction of that — and gives you a clear picture of where you stand.
               </p>
 
               <p
-                className="text-sm text-white/90 leading-relaxed mb-8 max-w-md"
+                className="text-sm text-[#CBD5E1] leading-relaxed mb-8 max-w-md"
               >
                 GigLine provides on-site safety walkthroughs and OSHA-focused compliance inspections for small warehouses and manufacturing operations in the Piedmont Triad.
               </p>
@@ -189,7 +189,7 @@ const HomePage = () => {
               <div className="flex flex-col items-start gap-4 mb-6" data-testid="hero-ctas">
                 <Link
                   to="/safety-check"
-                  className="bg-[#4A7CC9] hover:bg-[#3B6AB5] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center gap-2 shadow-lg shadow-[#4A7CC9]/20"
+                  className="bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center gap-2 shadow-lg shadow-[#1F6FEB]/20"
                   data-testid="hero-cta-primary"
                 >
                   Take the Free 90-Second Safety Check
@@ -199,7 +199,7 @@ const HomePage = () => {
 
               {/* Credentials block */}
               <p
-                className="text-xs text-white/70 leading-relaxed"
+                className="text-xs text-[#CBD5E1] leading-relaxed"
                 style={mono}
                 data-testid="hero-credentials"
               >
@@ -217,7 +217,7 @@ const HomePage = () => {
         <div className="container max-w-6xl">
           <Reveal>
             <p
-              className="uppercase tracking-[3px] text-[#4A7CC9] mb-4"
+              className="uppercase tracking-[3px] text-[#CBD5E1] mb-4"
               style={{ ...mono, fontSize: '11px' }}
             >
               The Reality
@@ -255,13 +255,13 @@ const HomePage = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
                   <div className="absolute bottom-0 left-0 p-5">
                     <p
-                      className="text-xs uppercase tracking-[2px] text-[#4A7CC9] mb-1"
+                      className="text-xs uppercase tracking-[2px] text-[#1F6FEB] mb-1"
                       style={mono}
                     >
                       {item.label}
                     </p>
                     <p className="text-base text-white font-bold mb-1">{item.caption}</p>
-                    <p className="text-sm text-white/90 leading-relaxed">{item.consequence}</p>
+                    <p className="text-sm text-[#F8FAFC] leading-relaxed">{item.consequence}</p>
                   </div>
                 </div>
               </Reveal>
@@ -311,13 +311,13 @@ const HomePage = () => {
             <Reveal>
               {/* Top lines — medium weight, muted */}
               <p
-                className="text-base sm:text-lg md:text-xl text-white/80 font-medium leading-relaxed mb-2"
+                className="text-base sm:text-lg md:text-xl text-[#F8FAFC] font-medium leading-relaxed mb-2"
                 data-testid="pressure-line"
               >
                 Most issues aren't new.
               </p>
               <p
-                className="text-base sm:text-lg md:text-xl text-white/85 font-medium leading-relaxed mb-8"
+                className="text-base sm:text-lg md:text-xl text-[#F8FAFC] font-medium leading-relaxed mb-8"
               >
                 They've just gone unchecked.
               </p>
@@ -337,7 +337,7 @@ const HomePage = () => {
 
               {/* Subtext — smaller, lighter, spaced */}
               <p
-                className="text-sm md:text-base text-white/75 max-w-sm mx-auto"
+                className="text-sm md:text-base text-[#CBD5E1] max-w-sm mx-auto"
                 style={{ letterSpacing: '0.5px' }}
                 data-testid="statement-sub"
               >
@@ -366,7 +366,7 @@ const HomePage = () => {
           {/* Section label */}
           <Reveal>
             <p
-              className="uppercase tracking-[3px] text-[#4A7CC9] mb-4"
+              className="uppercase tracking-[3px] text-[#CBD5E1] mb-4"
               style={{ ...mono, fontSize: '11px' }}
             >
               Client Review
@@ -390,7 +390,7 @@ const HomePage = () => {
                 >
                   {/* Large decorative quote mark */}
                   <span
-                    className="absolute -top-6 -left-2 text-[120px] md:text-[160px] leading-none text-[#4A7CC9]/10 select-none pointer-events-none"
+                    className="absolute -top-6 -left-2 text-[120px] md:text-[160px] leading-none text-[#1F6FEB]/10 select-none pointer-events-none"
                     aria-hidden="true"
                     style={{ fontFamily: 'Georgia, serif' }}
                   >
@@ -398,35 +398,35 @@ const HomePage = () => {
                   </span>
 
                   {/* Pull quote */}
-                  <p className="relative text-xl sm:text-2xl md:text-[28px] text-white/90 leading-[1.5] font-medium mb-8 pl-1" style={{ fontFamily: 'Georgia, serif' }}>
+                  <p className="relative text-xl sm:text-2xl md:text-[28px] text-[#F8FAFC] leading-[1.5] font-medium mb-8 pl-1" style={{ fontFamily: 'Georgia, serif' }}>
                     If you're looking for a partner that can bridge the gap between compliance and real-world execution, GigLine delivers results.
                   </p>
 
                   {/* Gold divider */}
-                  <div className="w-16 h-[2px] mb-8" style={{ backgroundColor: '#4A7CC9' }} />
+                  <div className="w-16 h-[2px] mb-8" style={{ backgroundColor: '#1F6FEB' }} />
 
                   {/* Full review — glass card */}
                   <div
                     className="rounded-lg p-6 md:p-8"
                     style={{
-                      background: 'rgba(255,255,255,0.08)',
-                      border: '1px solid rgba(31,111,235,0.15)',
+                      background: 'rgba(255,255,255,0.06)',
+                      border: '1px solid rgba(255,255,255,0.06)',
                       backdropFilter: 'blur(8px)',
                     }}
                   >
-                    <p className="text-base md:text-lg text-white/90 leading-relaxed">
+                    <p className="text-base md:text-lg text-[#F8FAFC] leading-relaxed">
                       "I've worked with GigLine Safety & Compliance and can say they operate at a different level than most safety consultants. They don't just point out issues — they understand how operations actually run and provide solutions that can be executed on the floor. Their support with audits and compliance reviews helped us quickly identify gaps, tighten controls, and improve overall accountability without slowing down production. Where they really stand out is in incident investigations. Their approach is disciplined, focused on true root cause, and built around preventing repeat events — not just checking a box. That level of structure has a direct impact on long-term safety performance."
                     </p>
                   </div>
 
                   {/* Attribution */}
                   <div className="mt-6 flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold text-[#0B1F33]" style={{ backgroundColor: '#4A7CC9' }}>
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold text-[#0B1F33]" style={{ backgroundColor: '#1F6FEB' }}>
                       DA
                     </div>
                     <div>
                       <p className="text-sm font-bold text-white">Demar Archie</p>
-                      <p className="text-xs text-white/70 mt-0.5">Warehouse Receiving Manager — Google Review</p>
+                      <p className="text-xs text-[#CBD5E1] mt-0.5">Warehouse Receiving Manager — Google Review</p>
                     </div>
                   </div>
                 </div>
@@ -441,12 +441,12 @@ const HomePage = () => {
                   className="rounded-lg p-6 md:p-8 group hover:scale-[1.02] transition-transform duration-300"
                   style={{
                     background: 'rgba(255,255,255,0.06)',
-                    border: '1px solid rgba(31,111,235,0.15)',
+                    border: '1px solid rgba(255,255,255,0.06)',
                   }}
                   data-testid="testimonial-card-2"
                 >
                   <p
-                    className="text-4xl md:text-5xl font-bold text-[#4A7CC9] mb-2 tracking-tight"
+                    className="text-4xl md:text-5xl font-bold text-[#1F6FEB] mb-2 tracking-tight"
                     data-testid="outcome-stat-1"
                   >
                     6–10
@@ -454,7 +454,7 @@ const HomePage = () => {
                   <p className="text-base font-bold text-white mb-3">
                     Corrective actions per walkthrough
                   </p>
-                  <p className="text-base text-white/90 leading-relaxed">
+                  <p className="text-base text-[#F8FAFC] leading-relaxed">
                     Every engagement produces a prioritized list of findings — not a binder full of theory. Most clients resolve their top issues within 30 days.
                   </p>
                   <p className="text-xs text-white/60 uppercase tracking-wider mt-4" style={mono}>
@@ -469,12 +469,12 @@ const HomePage = () => {
                   className="rounded-lg p-6 md:p-8 group hover:scale-[1.02] transition-transform duration-300"
                   style={{
                     background: 'rgba(255,255,255,0.06)',
-                    border: '1px solid rgba(31,111,235,0.15)',
+                    border: '1px solid rgba(255,255,255,0.06)',
                   }}
                   data-testid="testimonial-card-3"
                 >
                   <p
-                    className="text-4xl md:text-5xl font-bold text-[#4A7CC9] mb-2 tracking-tight"
+                    className="text-4xl md:text-5xl font-bold text-[#1F6FEB] mb-2 tracking-tight"
                     data-testid="outcome-stat-2"
                   >
                     24–48 hrs
@@ -482,7 +482,7 @@ const HomePage = () => {
                   <p className="text-base font-bold text-white mb-3">
                     Written report delivered after your visit
                   </p>
-                  <p className="text-sm text-white/90 leading-relaxed">
+                  <p className="text-sm text-[#F8FAFC] leading-relaxed">
                     A written report with findings, photos, and a fix list — not a phone call summary. Yours to keep, share with your team, or hand to your insurer.
                   </p>
                   <p className="text-[10px] text-white/40 uppercase tracking-wider mt-4" style={mono}>
@@ -517,7 +517,7 @@ const HomePage = () => {
             <div className="md:w-2/5">
               <Reveal>
                 <p
-                  className="uppercase tracking-[3px] text-[#4A7CC9] mb-4"
+                  className="uppercase tracking-[3px] text-[#CBD5E1] mb-4"
                   style={{ ...mono, fontSize: '11px' }}
                 >
                   The Process
@@ -551,7 +551,7 @@ const HomePage = () => {
                       data-testid={`process-step-${i}`}
                     >
                       <span
-                        className="flex-shrink-0 mt-0.5 text-[#4A7CC9] font-semibold"
+                        className="flex-shrink-0 mt-0.5 text-[#1F6FEB] font-semibold"
                         style={{ ...mono, fontSize: '13px' }}
                       >
                         {step.num}
@@ -572,14 +572,14 @@ const HomePage = () => {
       {/* ═══════════════════════════════════════════════
           S5 — DELIVERABLE CHECKLIST  (asymmetric 40/60)
       ═══════════════════════════════════════════════ */}
-      <section className="py-24 md:py-32" style={{ backgroundColor: '#102133' }} data-testid="deliverables-section">
+      <section className="py-24 md:py-32" style={{ backgroundColor: '#102A43' }} data-testid="deliverables-section">
         <div className="container max-w-6xl">
           <div className="flex flex-col md:flex-row gap-12 md:gap-20">
             {/* Left label — 40% */}
             <div className="md:w-2/5">
               <Reveal>
                 <p
-                  className="uppercase tracking-[3px] text-[#4A7CC9] mb-4"
+                  className="uppercase tracking-[3px] text-[#CBD5E1] mb-4"
                   style={{ ...mono, fontSize: '11px' }}
                 >
                   What You Get
@@ -590,7 +590,7 @@ const HomePage = () => {
                 >
                   Every Engagement Produces a Written Report.
                 </h2>
-                <p className="text-base text-white/70 leading-relaxed">
+                <p className="text-base text-[#CBD5E1] leading-relaxed">
                   No verbal summaries. No promises. A documented walkthrough with findings, photos, and corrective actions.
                 </p>
               </Reveal>
@@ -609,8 +609,8 @@ const HomePage = () => {
                     'No retainer, no recurring fee',
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-4" data-testid={`deliverable-${i}`}>
-                      <Check size={18} className="flex-shrink-0 mt-0.5 text-[#4A7CC9]" strokeWidth={2.5} />
-                      <p className="text-base text-white/70">{item}</p>
+                      <Check size={18} className="flex-shrink-0 mt-0.5 text-[#1F6FEB]" strokeWidth={2.5} />
+                      <p className="text-base text-[#CBD5E1]">{item}</p>
                     </div>
                   ))}
                 </div>
@@ -630,7 +630,7 @@ const HomePage = () => {
             <div className="md:w-2/5">
               <Reveal>
                 <p
-                  className="uppercase tracking-[3px] text-[#4A7CC9] mb-4"
+                  className="uppercase tracking-[3px] text-[#CBD5E1] mb-4"
                   style={{ ...mono, fontSize: '11px' }}
                 >
                   The Difference
@@ -676,9 +676,9 @@ const HomePage = () => {
                   </div>
 
                   {/* GigLine column */}
-                  <div className="p-5 rounded border-2 border-[#4A7CC9]/20" style={{ backgroundColor: '#FDFBF5' }}>
+                  <div className="p-5 rounded border-2 border-[#1F6FEB]/20" style={{ backgroundColor: '#FDFBF5' }}>
                     <p
-                      className="text-xs font-semibold tracking-widest text-[#4A7CC9] uppercase mb-5"
+                      className="text-xs font-semibold tracking-widest text-[#1F6FEB] uppercase mb-5"
                       style={mono}
                     >
                       GigLine
@@ -690,7 +690,7 @@ const HomePage = () => {
                         'Gives priorities you can act on this week',
                       ].map((item, i) => (
                         <div key={i} className="flex items-start gap-2">
-                          <Check size={15} className="flex-shrink-0 mt-0.5 text-[#4A7CC9]" strokeWidth={3} />
+                          <Check size={15} className="flex-shrink-0 mt-0.5 text-[#1F6FEB]" strokeWidth={3} />
                           <p className="text-base text-[#102133] font-bold">{item}</p>
                         </div>
                       ))}
@@ -725,7 +725,7 @@ const HomePage = () => {
                 <br />
                 They're overlooked.
               </p>
-              <p className="text-sm text-white/70" style={mono}>
+              <p className="text-sm text-[#CBD5E1]" style={mono}>
                 Every facility has blind spots. We walk in and find them.
               </p>
             </Reveal>
@@ -755,7 +755,7 @@ const HomePage = () => {
             <div className="flex-grow">
               <Reveal>
                 <p
-                  className="uppercase tracking-[3px] text-[#4A7CC9] mb-4"
+                  className="uppercase tracking-[3px] text-[#CBD5E1] mb-4"
                   style={{ ...mono, fontSize: '11px' }}
                 >
                   About
@@ -772,7 +772,7 @@ const HomePage = () => {
                   {['Navy Veteran', 'Safety Coordinator'].map((pill) => (
                     <span
                       key={pill}
-                      className="inline-flex items-center px-3 py-1 rounded text-[#4A7CC9] border border-[#4A7CC9]/30"
+                      className="inline-flex items-center px-3 py-1 rounded text-[#1F6FEB] border border-[#1F6FEB]/30"
                       style={{ ...mono, fontSize: '11px' }}
                     >
                       {pill}
@@ -790,7 +790,7 @@ const HomePage = () => {
                   <p className="text-base text-white/65 leading-relaxed">
                     GigLine gives small operations a clear way to understand their risk — without a full consulting firm.
                   </p>
-                  <p className="text-base text-white/80 leading-relaxed font-medium">
+                  <p className="text-base text-[#F8FAFC] leading-relaxed font-medium">
                     One visit. Clear findings. No confusion.
                   </p>
                 </div>
@@ -809,7 +809,7 @@ const HomePage = () => {
                       className="inline-flex items-center px-3 py-1 rounded"
                       style={{
                         backgroundColor: 'rgba(255,255,255,0.04)',
-                        border: '1px solid rgba(255,255,255,0.08)',
+                        border: '1px solid rgba(255,255,255,0.06)',
                         ...mono,
                         fontSize: '10px',
                         color: 'rgba(255,255,255,0.45)',
@@ -832,7 +832,7 @@ const HomePage = () => {
         <div className="container max-w-3xl">
           <Reveal>
             <p
-              className="uppercase tracking-[3px] text-[#4A7CC9] mb-4"
+              className="uppercase tracking-[3px] text-[#CBD5E1] mb-4"
               style={{ ...mono, fontSize: '11px' }}
             >
               Common Questions
@@ -931,12 +931,12 @@ const HomePage = () => {
 
           {/* Navigation route line — blue, curved through streets */}
           <path d="M 150,450 L 150,280 L 190,280 L 190,125 L 390,125 L 390,200 L 570,200 L 570,200 L 810,200 L 810,200 L 810,130 L 700,130" 
-            stroke="#4A7CC9" strokeWidth="5" fill="none" strokeLinecap="round" strokeLinejoin="round" opacity="0.7" />
+            stroke="#1F6FEB" strokeWidth="5" fill="none" strokeLinecap="round" strokeLinejoin="round" opacity="0.7" />
           <path d="M 150,450 L 150,280 L 190,280 L 190,125 L 390,125 L 390,200 L 570,200 L 570,200 L 810,200 L 810,200 L 810,130 L 700,130" 
-            stroke="#4A7CC9" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+            stroke="#1F6FEB" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
 
           {/* Start marker — blue dot */}
-          <circle cx="150" cy="450" r="6" fill="#4A7CC9" />
+          <circle cx="150" cy="450" r="6" fill="#1F6FEB" />
           <circle cx="150" cy="450" r="3" fill="white" />
 
           {/* Destination pin */}
@@ -950,12 +950,12 @@ const HomePage = () => {
         <div className="container max-w-4xl relative z-10">
           <div className="rounded-xl px-6 py-8 md:px-10 md:py-10 text-center" style={{ background: '#0B1F33', border: '1px solid rgba(74,124,201,0.2)', boxShadow: '0 8px 32px rgba(0,0,0,0.15)' }}>
             <p
-              className="uppercase tracking-[3px] text-[#4A7CC9] mb-4"
+              className="uppercase tracking-[3px] text-[#CBD5E1] mb-4"
               style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }}
             >
               Service Area
             </p>
-            <p className="text-base md:text-lg text-white/90 leading-relaxed mb-3 font-medium" data-testid="service-area-statement">
+            <p className="text-base md:text-lg text-[#F8FAFC] leading-relaxed mb-3 font-medium" data-testid="service-area-statement">
               On-site walkthroughs within roughly 60 miles of Winston-Salem, including Greensboro, High Point, Kernersville, Lexington, Thomasville, Salisbury, Burlington, and nearby towns.
             </p>
             <p className="text-sm text-white/60 leading-relaxed">
@@ -972,7 +972,7 @@ const HomePage = () => {
         <div className="container max-w-3xl text-center">
           <Reveal>
             <h2 className="text-2xl md:text-3xl leading-tight mb-8" data-testid="final-cta-headline">
-              <span className="block text-white/80 font-normal mb-2">
+              <span className="block text-[#F8FAFC] font-normal mb-2">
                 If you're not sure what's exposed —
               </span>
               <span className="block font-bold text-white">
@@ -986,7 +986,7 @@ const HomePage = () => {
             >
               <Link
                 to="/request-walkthrough"
-                className="bg-[#4A7CC9] hover:bg-[#3B6AB5] text-white font-bold px-8 py-4 rounded transition-colors inline-flex items-center gap-2 shadow-lg shadow-[#4A7CC9]/20"
+                className="bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded transition-colors inline-flex items-center gap-2 shadow-lg shadow-[#1F6FEB]/20"
                 data-testid="final-cta-walkthrough"
               >
                 Request a Walkthrough
@@ -1001,20 +1001,20 @@ const HomePage = () => {
               </Link>
             </div>
 
-            <p className="text-sm text-white/75 mb-14" style={mono} data-testid="final-price-line">
+            <p className="text-sm text-[#CBD5E1] mb-14" style={mono} data-testid="final-price-line">
               Most walkthroughs start at $650 depending on size.
             </p>
 
             {/* Contact block */}
             <div className="w-px h-10 mx-auto mb-8" style={{ backgroundColor: 'rgba(201,168,76,0.2)' }} />
             <p className="text-white font-bold text-lg mb-1">Vince Lawrence</p>
-            <p className="text-white/70 text-sm mb-4" style={mono}>
+            <p className="text-[#CBD5E1] text-sm mb-4" style={mono}>
               GigLine Safety & Compliance
             </p>
             <p className="mb-2">
               <a
                 href="tel:3363298899"
-                className="text-[#4A7CC9] hover:text-white transition-colors text-2xl font-bold tracking-wide"
+                className="text-[#1F6FEB] hover:text-white transition-colors text-2xl font-bold tracking-wide"
                 data-testid="final-phone"
               >
                 (336) 329-8899
@@ -1023,7 +1023,7 @@ const HomePage = () => {
             <p>
               <a
                 href="mailto:vince@giglinecompliance.com"
-                className="text-white/75 hover:text-[#4A7CC9] transition-colors text-sm"
+                className="text-[#CBD5E1] hover:text-[#1F6FEB] transition-colors text-sm"
                 data-testid="final-email"
               >
                 vince@giglinecompliance.com

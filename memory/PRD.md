@@ -83,7 +83,20 @@ Build and expand a professional service business website for GigLine Safety & Co
 - Video embeds (P1) — waiting on YouTube/Vimeo links
 - Facebook Pixel / Google Ads conversion tracking (P1)
 - Monthly Field Notes content expansion (P2) — 14 articles live, next round TBD
-- Swap placeholder testimonials with real client quotes when available (P2)
+- Swap placeholder testimonials with real client quotes when available (P2) — 2 placeholder slots ready on Homepage
+- GL-WEB-030: Homepage + Service Page Conversion Fixes (Feb 2026) — DONE
+  - Hero CTA changed to "Request a Safety Walkthrough" → /services with pricing direction line below
+  - Pricing direction line repeated above footer
+  - CTA buttons added after Process and FAQ sections
+  - OSHA Issues section: added lead-in sentence + consequence line ("single citation averages $15,625")
+  - Testimonials redesigned: 3-card grid (light #F7F9FC bg) — Demar quote in card 1, 2 "Coming soon" placeholder cards
+  - About/Founder copy replaced with new Vince Lawrence bio (plastics/building materials/trucking background)
+  - "From the Field" Recent Articles section added above final CTA with 4 Field Notes links (heat, forklift, electrical, hazcom)
+  - Service Page tier qualifiers updated on all 3 cards (Walkthrough, Documentation, Incident)
+  - Post-submit confirmation copy: "After you submit, you'll receive your custom pricing and a scheduling confirmation within one business day."
+  - Meta description tightened to 147 chars (under 160) — OSHA 30-Hour Certified emphasized
+  - Homepage H1 confirmed in static HTML shell
+  - Phone (336) 329-8899 confirmed sitewide (desktop nav + mobile)
 - GL-PORT-001 Addendum: Automated pricing logic in Vince notification email (DONE)
 - GL-PORT-001 Section B: Client Status Page, Secure Report Delivery, Admin Enhancements, E-Signature (Apr 2026)
   - /status/{token}: 6-stage client status timeline, token-based access, no login

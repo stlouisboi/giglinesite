@@ -56,7 +56,7 @@ const HomePage = () => {
     <main className="overflow-x-hidden">
       <SEO
         title="On-Site Safety Walkthroughs | Kernersville, NC | GigLine Safety & Compliance"
-        description="On-site safety walkthroughs for small warehouses and manufacturers in Kernersville, NC. Find OSHA exposures before an inspector does. No retainer. No ongoing contract."
+        description="GigLine provides on-site OSHA safety walkthroughs for small manufacturers and warehouses in Kernersville and the Triad, NC. OSHA 30-Hour Certified."
         canonical="/"
         schema={{
           "@context": "https://schema.org",
@@ -186,15 +186,21 @@ const HomePage = () => {
                 GigLine provides on-site safety walkthroughs and OSHA-focused compliance inspections for small warehouses and manufacturing operations in the Piedmont Triad.
               </p>
 
-              <div className="flex flex-col items-start gap-4 mb-6" data-testid="hero-ctas">
+              <div className="flex flex-col items-start gap-3 mb-5" data-testid="hero-ctas">
                 <Link
-                  to="/safety-check"
+                  to="/services"
                   className="bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center gap-2 shadow-lg shadow-[#1F6FEB]/20"
                   data-testid="hero-cta-primary"
                 >
-                  Take the Free 90-Second Safety Check
+                  Request a Safety Walkthrough
                   <ArrowRight size={18} />
                 </Link>
+                <p className="text-sm text-[#CBD5E1] leading-relaxed max-w-md" data-testid="hero-pricing-direction">
+                  Walkthrough pricing is based on the size and type of your operation.{' '}
+                  <Link to="/services" className="text-[#1F6FEB] hover:text-white underline decoration-[#1F6FEB]/40 hover:decoration-white transition-colors">
+                    See service options &rarr;
+                  </Link>
+                </p>
               </div>
 
               {/* Credentials block */}
@@ -228,8 +234,11 @@ const HomePage = () => {
             >
               Common OSHA Safety Issues We See on the Floor
             </h2>
-            <p className="text-base text-[#102133] mb-12 max-w-lg">
-              These aren't rare edge cases. They're in almost every facility we walk into.
+            <p className="text-base text-[#102133] mb-4 max-w-2xl leading-relaxed" data-testid="problem-leadin">
+              These are the violations we find most often in small operations — most owners don't know they're there until an inspector shows up.
+            </p>
+            <p className="text-base text-[#102133]/70 mb-12 max-w-2xl leading-relaxed">
+              Blocked electrical panels. Expired forklift certifications. Missing lockout-tagout procedures. No written HazCom program. These aren't rare edge cases — they're in almost every facility we walk into.
             </p>
           </Reveal>
 
@@ -274,6 +283,9 @@ const HomePage = () => {
               data-testid="grid-pressure-line"
             >
               These aren't just issues — they're the ones that show up in inspections.
+            </p>
+            <p className="text-center text-base md:text-lg text-[#102133]/75 mt-4 max-w-2xl mx-auto" data-testid="grid-consequence-line">
+              A single citation for any of these averages $15,625. Most walkthroughs cost a fraction of that.
             </p>
           </Reveal>
         </div>
@@ -349,148 +361,113 @@ const HomePage = () => {
       </section>
 
       {/* ═══════════════════════════════════════════════
-          S3b — TESTIMONIALS
+          S3b — TESTIMONIALS (3-card grid, light bg)
       ═══════════════════════════════════════════════ */}
-      <section className="relative py-24 md:py-32 overflow-hidden" style={{ backgroundColor: '#0B1F33' }} data-testid="testimonials-section">
-        {/* Subtle texture overlay */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(31,111,235,0.4) 1px, transparent 0)',
-          backgroundSize: '32px 32px',
-        }} />
-        {/* Vignette */}
-        <div className="absolute inset-0" style={{
-          background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.4) 100%)',
-        }} />
-
+      <section className="relative py-24 md:py-32 overflow-hidden bg-white" data-testid="testimonials-section">
         <div className="container max-w-6xl relative z-10">
           {/* Section label */}
           <Reveal>
             <p
-              className="uppercase tracking-[3px] text-[#CBD5E1] mb-4"
+              className="uppercase tracking-[3px] text-[#102133]/45 mb-4"
               style={{ ...mono, fontSize: '11px' }}
             >
               Client Review
             </p>
             <h2
-              className="text-2xl md:text-3xl font-bold text-white mb-16 md:mb-20"
+              className="text-2xl md:text-3xl font-bold text-[#102133] mb-12 md:mb-16"
               data-testid="testimonials-heading"
             >
               What Clients Say
             </h2>
           </Reveal>
 
-          {/* Featured quote block */}
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
-            {/* Left — Pull Quote (60%) */}
-            <div className="lg:w-3/5">
-              <Reveal delay={0}>
-                <div
-                  className="relative"
-                  data-testid="testimonial-card-1"
+          {/* 3-card grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8" data-testid="testimonial-grid">
+            {/* Card 1 — Demar Archie (real) */}
+            <Reveal delay={0}>
+              <div
+                className="relative h-full rounded-xl p-7 md:p-8 flex flex-col"
+                style={{
+                  backgroundColor: '#F7F9FC',
+                  border: '1px solid rgba(31,111,235,0.15)',
+                  boxShadow: '0 2px 12px rgba(11,31,51,0.04)',
+                }}
+                data-testid="testimonial-card-1"
+              >
+                {/* Decorative quote mark */}
+                <span
+                  className="absolute top-3 right-4 text-[80px] leading-none text-[#1F6FEB]/15 select-none pointer-events-none"
+                  aria-hidden="true"
+                  style={{ fontFamily: 'Georgia, serif' }}
                 >
-                  {/* Large decorative quote mark */}
-                  <span
-                    className="absolute -top-6 -left-2 text-[120px] md:text-[160px] leading-none text-[#1F6FEB]/10 select-none pointer-events-none"
-                    aria-hidden="true"
-                    style={{ fontFamily: 'Georgia, serif' }}
-                  >
-                    &ldquo;
-                  </span>
+                  &ldquo;
+                </span>
 
-                  {/* Pull quote */}
-                  <p className="relative text-xl sm:text-2xl md:text-[28px] text-[#F8FAFC] leading-[1.5] font-medium mb-8 pl-1" style={{ fontFamily: 'Georgia, serif' }}>
-                    If you're looking for a partner that can bridge the gap between compliance and real-world execution, GigLine delivers results.
-                  </p>
+                {/* Pull quote */}
+                <p className="relative text-lg md:text-xl text-[#102133] leading-[1.55] font-semibold mb-5" style={{ fontFamily: 'Georgia, serif' }}>
+                  If you're looking for a partner that can bridge the gap between compliance and real-world execution, GigLine delivers results.
+                </p>
 
-                  {/* Gold divider */}
-                  <div className="w-16 h-[2px] mb-8" style={{ backgroundColor: '#1F6FEB' }} />
+                {/* Divider */}
+                <div className="w-10 h-[2px] mb-5" style={{ backgroundColor: '#1F6FEB' }} />
 
-                  {/* Full review — glass card */}
-                  <div
-                    className="rounded-lg p-6 md:p-8"
-                    style={{
-                      background: 'rgba(255,255,255,0.06)',
-                      border: '1px solid rgba(255,255,255,0.06)',
-                      backdropFilter: 'blur(8px)',
-                    }}
-                  >
-                    <p className="text-base md:text-lg text-[#F8FAFC] leading-relaxed">
-                      "I've worked with GigLine Safety & Compliance and can say they operate at a different level than most safety consultants. They don't just point out issues — they understand how operations actually run and provide solutions that can be executed on the floor. Their support with audits and compliance reviews helped us quickly identify gaps, tighten controls, and improve overall accountability without slowing down production. Where they really stand out is in incident investigations. Their approach is disciplined, focused on true root cause, and built around preventing repeat events — not just checking a box. That level of structure has a direct impact on long-term safety performance."
-                    </p>
+                {/* Full review */}
+                <p className="text-sm text-[#102133]/75 leading-relaxed mb-6 flex-grow">
+                  "I've worked with GigLine Safety & Compliance and can say they operate at a different level than most safety consultants. They don't just point out issues — they understand how operations actually run and provide solutions that can be executed on the floor. Where they really stand out is in incident investigations. Their approach is disciplined, focused on true root cause, and built around preventing repeat events."
+                </p>
+
+                {/* Attribution */}
+                <div className="flex items-center gap-3 pt-5 border-t border-[#102133]/10">
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold text-white flex-shrink-0" style={{ backgroundColor: '#1F6FEB' }}>
+                    DA
                   </div>
-
-                  {/* Attribution */}
-                  <div className="mt-6 flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold text-[#0B1F33]" style={{ backgroundColor: '#1F6FEB' }}>
-                      DA
-                    </div>
-                    <div>
-                      <p className="text-sm font-bold text-white">Demar Archie</p>
-                      <p className="text-xs text-[#CBD5E1] mt-0.5">Warehouse Receiving Manager — Google Review</p>
-                    </div>
+                  <div>
+                    <p className="text-sm font-bold text-[#102133]">Demar Archie</p>
+                    <p className="text-xs text-[#102133]/55 mt-0.5">Warehouse Receiving Manager — Google Review</p>
                   </div>
                 </div>
-              </Reveal>
-            </div>
+              </div>
+            </Reveal>
 
-            {/* Right — Outcome Stats (40%) */}
-            <div className="lg:w-2/5 flex flex-col gap-6 md:gap-8">
-              {/* Stat Card 1 */}
-              <Reveal delay={150}>
-                <div
-                  className="rounded-lg p-6 md:p-8 group hover:scale-[1.02] transition-transform duration-300"
-                  style={{
-                    background: 'rgba(255,255,255,0.06)',
-                    border: '1px solid rgba(255,255,255,0.06)',
-                  }}
-                  data-testid="testimonial-card-2"
-                >
-                  <p
-                    className="text-4xl md:text-5xl font-bold text-[#1F6FEB] mb-2 tracking-tight"
-                    data-testid="outcome-stat-1"
-                  >
-                    6–10
-                  </p>
-                  <p className="text-base font-bold text-white mb-3">
-                    Corrective actions per walkthrough
-                  </p>
-                  <p className="text-base text-[#F8FAFC] leading-relaxed">
-                    Every engagement produces a prioritized list of findings — not a binder full of theory. Most clients resolve their top issues within 30 days.
-                  </p>
-                  <p className="text-xs text-white/60 uppercase tracking-wider mt-4" style={mono}>
-                    Based on completed walkthroughs
-                  </p>
-                </div>
-              </Reveal>
+            {/* Card 2 — Placeholder */}
+            <Reveal delay={120}>
+              <div
+                className="h-full rounded-xl p-7 md:p-8 flex flex-col items-center justify-center text-center"
+                style={{
+                  backgroundColor: '#F7F9FC',
+                  border: '1px dashed rgba(16,33,51,0.12)',
+                  minHeight: '340px',
+                }}
+                data-testid="testimonial-card-2"
+              >
+                <p className="text-xs uppercase tracking-[2px] text-[#102133]/35 mb-3" style={mono}>
+                  Coming soon
+                </p>
+                <p className="text-sm text-[#102133]/50 max-w-[220px] leading-relaxed">
+                  Additional client reviews from recent Triad engagements will appear here.
+                </p>
+              </div>
+            </Reveal>
 
-              {/* Stat Card 2 */}
-              <Reveal delay={300}>
-                <div
-                  className="rounded-lg p-6 md:p-8 group hover:scale-[1.02] transition-transform duration-300"
-                  style={{
-                    background: 'rgba(255,255,255,0.06)',
-                    border: '1px solid rgba(255,255,255,0.06)',
-                  }}
-                  data-testid="testimonial-card-3"
-                >
-                  <p
-                    className="text-4xl md:text-5xl font-bold text-[#1F6FEB] mb-2 tracking-tight"
-                    data-testid="outcome-stat-2"
-                  >
-                    24–48 hrs
-                  </p>
-                  <p className="text-base font-bold text-white mb-3">
-                    Written report delivered after your visit
-                  </p>
-                  <p className="text-sm text-[#F8FAFC] leading-relaxed">
-                    A written report with findings, photos, and a fix list — not a phone call summary. Yours to keep, share with your team, or hand to your insurer.
-                  </p>
-                  <p className="text-[10px] text-white/40 uppercase tracking-wider mt-4" style={mono}>
-                    Standard turnaround
-                  </p>
-                </div>
-              </Reveal>
-            </div>
+            {/* Card 3 — Placeholder */}
+            <Reveal delay={240}>
+              <div
+                className="h-full rounded-xl p-7 md:p-8 flex flex-col items-center justify-center text-center"
+                style={{
+                  backgroundColor: '#F7F9FC',
+                  border: '1px dashed rgba(16,33,51,0.12)',
+                  minHeight: '340px',
+                }}
+                data-testid="testimonial-card-3"
+              >
+                <p className="text-xs uppercase tracking-[2px] text-[#102133]/35 mb-3" style={mono}>
+                  Coming soon
+                </p>
+                <p className="text-sm text-[#102133]/50 max-w-[220px] leading-relaxed">
+                  Additional client reviews from recent Triad engagements will appear here.
+                </p>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -562,6 +539,18 @@ const HomePage = () => {
                       </div>
                     </div>
                   ))}
+                </div>
+
+                {/* CTA after Process steps */}
+                <div className="mt-8 flex justify-start" data-testid="process-cta-wrap">
+                  <Link
+                    to="/services"
+                    className="bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-7 py-3.5 rounded-lg text-base transition-colors inline-flex items-center gap-2 shadow-lg shadow-[#1F6FEB]/20"
+                    data-testid="process-cta"
+                  >
+                    Request a Safety Walkthrough
+                    <ArrowRight size={18} />
+                  </Link>
                 </div>
               </Reveal>
             </div>
@@ -780,18 +769,18 @@ const HomePage = () => {
                   ))}
                 </div>
 
-                <div className="space-y-4 mb-8">
-                  <p className="text-base text-white/65 leading-relaxed">
-                    25 years in environments where safety was operational — not theoretical.
+                <div className="space-y-4 mb-8" data-testid="founder-bio">
+                  <p className="text-base text-[#F8FAFC] leading-relaxed">
+                    Vince Lawrence is a safety consultant based in Kernersville, NC. OSHA 30-Hour Certified. 25+ years in manufacturing, fleet, and warehouse safety operations. U.S. Navy veteran.
                   </p>
-                  <p className="text-base text-white/65 leading-relaxed">
-                    Manufacturing floors. Compliance systems. Real consequences when something was missed.
+                  <p className="text-base text-[#CBD5E1] leading-relaxed">
+                    I've walked floors in plastics manufacturing, building materials distribution, and trucking operations across the Triad. I know what inspectors look for because I've helped operations correct the same violations hundreds of times.
                   </p>
-                  <p className="text-base text-white/65 leading-relaxed">
-                    GigLine gives small operations a clear way to understand their risk — without a full consulting firm.
+                  <p className="text-base text-[#CBD5E1] leading-relaxed">
+                    GigLine is a private engagement. Nothing leaves your facility except the report I hand you.
                   </p>
-                  <p className="text-base text-[#F8FAFC] leading-relaxed font-medium">
-                    One visit. Clear findings. No confusion.
+                  <p className="text-sm text-[#CBD5E1]/80 leading-relaxed">
+                    Service area: On-site walkthroughs within 60 miles of Winston-Salem, including Greensboro, High Point, Kernersville, Lexington, Thomasville, Salisbury, Burlington, and surrounding communities.
                   </p>
                 </div>
 
@@ -879,6 +868,20 @@ const HomePage = () => {
               </div>
             </Reveal>
           </div>
+
+          {/* CTA after FAQ */}
+          <Reveal>
+            <div className="mt-12 md:mt-14 flex justify-center" data-testid="faq-cta-wrap">
+              <Link
+                to="/services"
+                className="bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-7 py-3.5 rounded-lg text-base transition-colors inline-flex items-center gap-2 shadow-lg shadow-[#1F6FEB]/20"
+                data-testid="faq-cta"
+              >
+                Request a Safety Walkthrough
+                <ArrowRight size={18} />
+              </Link>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -966,6 +969,91 @@ const HomePage = () => {
       </section>
 
       {/* ═══════════════════════════════════════════════
+          S9b — FROM THE FIELD (Recent Articles)
+      ═══════════════════════════════════════════════ */}
+      <section className="py-20 md:py-28 bg-white" data-testid="recent-articles-section">
+        <div className="container max-w-6xl">
+          <Reveal>
+            <p
+              className="uppercase tracking-[3px] text-[#102133]/45 mb-4"
+              style={{ ...mono, fontSize: '11px' }}
+            >
+              Safety Resources
+            </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#102133] mb-3" data-testid="recent-articles-heading">
+              From the Field
+            </h2>
+            <p className="text-base text-[#102133]/70 mb-12 max-w-2xl leading-relaxed">
+              Plain-language notes on the OSHA issues that show up most often during walkthroughs.
+            </p>
+          </Reveal>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6" data-testid="recent-articles-grid">
+            {[
+              { slug: 'heat-stress', title: 'Heat Stress', desc: 'How heat exposure gets missed, what triggers OSHA attention, and what small operations can do about it.' },
+              { slug: 'forklift-safety', title: 'Forklift Safety', desc: 'Certification gets the headlines, but daily inspections and pedestrian separation are where most operations break down.' },
+              { slug: 'electrical-safety', title: 'Electrical Access', desc: "Blocked electrical panels are one of OSHA's most cited violations. Usually a forklift, a pallet, or a shelf is in the way." },
+              { slug: 'hazcom', title: 'HazCom & SDS', desc: 'Missing labels, outdated SDS binders, and no written program. The most common violation in general industry.' },
+            ].map((post, i) => (
+              <Reveal key={post.slug} delay={i * 80}>
+                <Link
+                  to={`/field-notes/${post.slug}`}
+                  className="group block h-full rounded-lg p-6 transition-all duration-200"
+                  style={{
+                    backgroundColor: '#F7F9FC',
+                    border: '1px solid rgba(16,33,51,0.08)',
+                  }}
+                  data-testid={`recent-article-${i}`}
+                >
+                  <p
+                    className="text-[10px] uppercase tracking-[2px] text-[#1F6FEB] mb-3 font-semibold"
+                    style={mono}
+                  >
+                    Field Note
+                  </p>
+                  <h3 className="text-lg font-bold text-[#102133] mb-2 leading-snug group-hover:text-[#1F6FEB] transition-colors">
+                    {post.title}
+                  </h3>
+                  <p className="text-sm text-[#102133]/70 leading-relaxed mb-4">
+                    {post.desc}
+                  </p>
+                  <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#1F6FEB] group-hover:gap-2 transition-all">
+                    Read the note
+                    <ArrowRight size={14} />
+                  </span>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal>
+            <div className="mt-10 text-center">
+              <Link
+                to="/field-notes"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-[#102133] hover:text-[#1F6FEB] transition-colors"
+                data-testid="all-field-notes-link"
+              >
+                See all field notes
+                <ArrowRight size={14} />
+              </Link>
+            </div>
+          </Reveal>
+
+          {/* Pricing direction line above footer — Fix 2 secondary */}
+          <Reveal>
+            <div className="mt-16 pt-10 border-t border-[#102133]/08 text-center" data-testid="pricing-direction-footer">
+              <p className="text-sm text-[#102133]/65 max-w-xl mx-auto leading-relaxed">
+                Walkthrough pricing is based on the size and type of your operation.{' '}
+                <Link to="/services" className="text-[#1F6FEB] font-semibold underline decoration-[#1F6FEB]/40 hover:decoration-[#1F6FEB] transition-colors">
+                  See service options &rarr;
+                </Link>
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════
           S10 — FINAL CTA BAND
       ═══════════════════════════════════════════════ */}
       <section className="py-24 md:py-36" style={{ backgroundColor: '#000000' }} data-testid="final-cta-section">
@@ -985,11 +1073,11 @@ const HomePage = () => {
               data-testid="final-cta-buttons"
             >
               <Link
-                to="/request-walkthrough"
+                to="/services"
                 className="bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded transition-colors inline-flex items-center gap-2 shadow-lg shadow-[#1F6FEB]/20"
                 data-testid="final-cta-walkthrough"
               >
-                Request a Walkthrough
+                Request a Safety Walkthrough
                 <ArrowRight size={18} />
               </Link>
               <Link
@@ -1002,7 +1090,7 @@ const HomePage = () => {
             </div>
 
             <p className="text-sm text-[#CBD5E1] mb-14" style={mono} data-testid="final-price-line">
-              Most walkthroughs start at $650 depending on size.
+              Walkthrough pricing is based on the size and type of your operation — see service options.
             </p>
 
             {/* Contact block */}

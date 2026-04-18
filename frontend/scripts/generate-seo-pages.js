@@ -20,15 +20,17 @@ const routes = [
   {
     path: '/',
     title: 'On-Site Safety Walkthroughs | Kernersville, NC | GigLine Safety & Compliance',
-    description: 'On-site safety walkthroughs for small warehouses and manufacturers in Kernersville, NC. Find OSHA exposures before an inspector does. No retainer. No ongoing contract.',
+    description: 'GigLine provides on-site OSHA safety walkthroughs for small manufacturers and warehouses in Kernersville and the Triad, NC. OSHA 30-Hour Certified.',
     canonical: '/',
     content: `
       <h1>If OSHA Walked In Tomorrow, Would You Pass?</h1>
       <p>A single OSHA citation averages $15,625. A GigLine safety walkthrough costs a fraction of that — and gives you a clear picture of where you stand.</p>
       <p>GigLine provides on-site safety walkthroughs and OSHA-focused compliance inspections for small warehouses and manufacturing operations in the Piedmont Triad.</p>
+      <p><a href="/services">Request a Safety Walkthrough</a> — Walkthrough pricing is based on the size and type of your operation.</p>
       <p>OSHA 30-Hour Certified · 25+ Years Experience · U.S. Navy Veteran · Serving the Triad</p>
       <h2>Common OSHA Safety Issues We See on the Floor</h2>
-      <p>Blocked electrical panels. Expired forklift certifications. Missing lockout-tagout procedures. No written HazCom program.</p>
+      <p>These are the violations we find most often in small operations — most owners don't know they're there until an inspector shows up. Blocked electrical panels. Expired forklift certifications. Missing lockout-tagout procedures. No written HazCom program.</p>
+      <p>A single citation for any of these averages $15,625. Most walkthroughs cost a fraction of that.</p>
       <h2>What to Expect from a Safety Walkthrough</h2>
       <ol><li>Request — Tell me about your operation.</li><li>Schedule — We set a time. No disruption.</li><li>Walkthrough — I walk your floor during normal work.</li><li>Report — You get clear findings with photos.</li><li>Action — You fix what matters.</li></ol>
       <h2>What You Get in Your Safety Walkthrough Report</h2>
@@ -41,8 +43,15 @@ const routes = [
       <h3>Do you work with my insurance company or report to OSHA?</h3><p>No. This is a private engagement. Nothing leaves the building except the report I give you.</p>
       <h3>What if my operation is outside the Triad?</h3><p>On-site walkthroughs are available within roughly 60 miles of Winston-Salem. Travel engagements available beyond that range.</p>
       <h2>About Vince Lawrence</h2>
-      <p>Safety consultant based in Kernersville, NC. OSHA 30-Hour Certified. 25+ years in manufacturing, fleet, and warehouse safety operations. U.S. Navy veteran.</p>
-      <p>Service Area: On-site walkthroughs within roughly 60 miles of Winston-Salem, including Greensboro, High Point, Kernersville, Lexington, Thomasville, Salisbury, Burlington, and nearby towns.</p>
+      <p>Vince Lawrence is a safety consultant based in Kernersville, NC. OSHA 30-Hour Certified. 25+ years in manufacturing, fleet, and warehouse safety operations. U.S. Navy veteran.</p>
+      <p>I've walked floors in plastics manufacturing, building materials distribution, and trucking operations across the Triad. I know what inspectors look for because I've helped operations correct the same violations hundreds of times.</p>
+      <p>GigLine is a private engagement. Nothing leaves your facility except the report I hand you.</p>
+      <p>Service area: On-site walkthroughs within 60 miles of Winston-Salem, including Greensboro, High Point, Kernersville, Lexington, Thomasville, Salisbury, Burlington, and surrounding communities.</p>
+      <h2>From the Field</h2>
+      <p><a href="/field-notes/heat-stress">Heat Stress</a> — How heat exposure gets missed, what triggers OSHA attention, and what small operations can do about it.</p>
+      <p><a href="/field-notes/forklift-safety">Forklift Safety</a> — Certification gets the headlines, but daily inspections and pedestrian separation are where most operations break down.</p>
+      <p><a href="/field-notes/electrical-safety">Electrical Access</a> — Blocked electrical panels are one of OSHA's most cited violations.</p>
+      <p><a href="/field-notes/hazcom">HazCom &amp; SDS</a> — Missing labels, outdated SDS binders, and no written program.</p>
       <p>GigLine Safety &amp; Compliance — (336) 329-8899 — vince@giglinecompliance.com</p>
     `,
   },

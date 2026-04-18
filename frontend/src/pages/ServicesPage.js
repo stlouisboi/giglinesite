@@ -14,7 +14,7 @@ const SERVICES = [
     key: 'walkthrough_standard',
     title: 'Safety Walkthrough & Top 10 Fixes Report',
     tagline: 'See what your operation looks like under review.',
-    whoFor: 'Best for single-building facilities under 50,000 sq ft.',
+    whoFor: 'Best for facilities under 50,000 sq ft — small site (under 10,000 sq ft / fewer than 15 employees) or standard site (10,000–50,000 sq ft / 15–75 employees).',
     summary: 'I walk the facility, observe the operation, and identify what creates the most immediate exposure. You receive a written report with the ten issues most likely to create trouble first.',
     bestFor: [
       'No outside review in the last 12 months',
@@ -36,7 +36,7 @@ const SERVICES = [
     key: 'documentation_remote',
     title: 'Documentation Review & Gap Check',
     tagline: 'Make sure the paperwork holds up.',
-    whoFor: 'Best for operations preparing for audits or rebuilding safety files.',
+    whoFor: 'For operations that need their written programs, OSHA 300 logs, and safety records reviewed without an on-site visit.',
     summary: 'I review written programs, training records, inspection logs, and required documentation. The goal — identify what is present, what is weak, and what is missing before someone else finds it.',
     bestFor: [
       'Preparing for customer or insurance audits',
@@ -58,7 +58,7 @@ const SERVICES = [
     key: 'incident_standard',
     title: 'Incident Review & Corrective Action Support',
     tagline: 'Document what happened. Fix what caused it.',
-    whoFor: 'Best for operations responding to a recordable injury or near-miss.',
+    whoFor: 'For operations that have experienced a workplace injury, near-miss, or OSHA contact and need a structured response.',
     summary: 'After an injury, near-miss, or serious incident, I help document what happened, identify what broke down, and build corrective action that holds up under review — OSHA, insurance, or internal.',
     bestFor: [
       'Responding to recordable injuries',
@@ -269,8 +269,8 @@ const ServicesPage = () => {
                   >
                     Book This Service
                   </button>
-                  <p className="text-[11px] text-[#102133]/40 text-center mt-2.5">
-                    After payment, you'll receive a scheduling confirmation within one business day.
+                  <p className="text-[11px] text-[#102133]/40 text-center mt-2.5" data-testid={`confirmation-line-${svc.num}`}>
+                    After you submit, you'll receive your custom pricing and a scheduling confirmation within one business day.
                   </p>
                   <Link
                     to="/request-walkthrough"

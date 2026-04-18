@@ -885,29 +885,46 @@ const HomePage = () => {
       {/* ═══════════════════════════════════════════════
           S9 — LOCAL SERVICE AREA STATEMENT
       ═══════════════════════════════════════════════ */}
-      <section className="relative py-12 md:py-16 overflow-hidden" style={{ backgroundColor: '#0B1F33' }}>
-        {/* Map background */}
-        <div className="absolute inset-0">
-          <img
-            src="/service-area-map.jpg"
-            alt="Aerial city map view representing GigLine service area"
-            className="absolute inset-0 w-full h-full object-cover"
-            style={{ filter: 'brightness(0.25) saturate(0.5) hue-rotate(10deg)' }}
-          />
-          <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, rgba(11,31,51,0.7) 0%, rgba(11,31,51,0.92) 70%)' }} />
+      <section className="relative py-14 md:py-20 overflow-hidden" style={{ backgroundColor: '#EEF2F7' }}>
+        {/* Light map-style background pattern */}
+        <div className="absolute inset-0" style={{
+          backgroundImage: `
+            linear-gradient(rgba(74,124,201,0.08) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(74,124,201,0.08) 1px, transparent 1px),
+            linear-gradient(rgba(74,124,201,0.04) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(74,124,201,0.04) 1px, transparent 1px)
+          `,
+          backgroundSize: '100px 100px, 100px 100px, 20px 20px, 20px 20px',
+        }} />
+        {/* Road-like lines */}
+        <div className="absolute inset-0 opacity-[0.06]" style={{
+          backgroundImage: `
+            linear-gradient(45deg, rgba(74,124,201,0.5) 1px, transparent 1px),
+            linear-gradient(-45deg, rgba(74,124,201,0.3) 1px, transparent 1px),
+            linear-gradient(15deg, rgba(74,124,201,0.4) 2px, transparent 2px)
+          `,
+          backgroundSize: '200px 200px, 300px 300px, 400px 400px',
+        }} />
+        {/* GPS pin dot in center */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0">
+          <div className="w-40 h-40 rounded-full" style={{ background: 'radial-gradient(circle, rgba(74,124,201,0.12) 0%, transparent 70%)' }} />
         </div>
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0">
+          <div className="w-4 h-4 rounded-full" style={{ background: '#4A7CC9', boxShadow: '0 0 0 6px rgba(74,124,201,0.15), 0 0 0 12px rgba(74,124,201,0.08)' }} />
+        </div>
+
         <div className="container max-w-4xl relative z-10">
-          <div className="rounded-lg px-6 py-8 md:px-10 md:py-10 text-center" style={{ background: 'rgba(11,31,51,0.6)', border: '1px solid rgba(74,124,201,0.15)', backdropFilter: 'blur(4px)' }}>
+          <div className="rounded-xl px-6 py-8 md:px-10 md:py-10 text-center" style={{ background: 'rgba(255,255,255,0.85)', border: '1px solid #D9E2EC', backdropFilter: 'blur(8px)', boxShadow: '0 4px 24px rgba(0,0,0,0.06)' }}>
             <p
               className="uppercase tracking-[3px] text-[#4A7CC9] mb-4"
               style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }}
             >
               Service Area
             </p>
-            <p className="text-base md:text-lg text-white/90 leading-relaxed mb-3" data-testid="service-area-statement">
+            <p className="text-base md:text-lg text-[#102133] leading-relaxed mb-3 font-medium" data-testid="service-area-statement">
               On-site walkthroughs within roughly 60 miles of Winston-Salem, including Greensboro, High Point, Kernersville, Lexington, Thomasville, Salisbury, Burlington, and nearby towns.
             </p>
-            <p className="text-sm text-white/70 leading-relaxed">
+            <p className="text-sm text-[#5B6B7A] leading-relaxed">
               Need a visit a bit farther out? I can often travel to Mooresville, Concord, Huntersville, or Danville, VA — travel fees may apply.
             </p>
           </div>

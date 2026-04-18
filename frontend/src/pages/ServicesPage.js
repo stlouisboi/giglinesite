@@ -153,7 +153,7 @@ const ServicesPage = () => {
           >
             Three Services. One Standard.
           </h1>
-          <p className="text-base md:text-lg text-white/55 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-white/75 max-w-2xl mx-auto leading-relaxed">
             Each ends with a written report, clear action items, and a defined next step. No ongoing contracts. No retainers.
           </p>
         </div>
@@ -169,12 +169,12 @@ const ServicesPage = () => {
             <h2 className="text-xl md:text-2xl font-bold text-white mb-2" style={serif}>
               90-Second Safety Check
             </h2>
-            <p className="text-sm text-white/55 mb-6 max-w-lg mx-auto">
+            <p className="text-base md:text-sm text-white/75 mb-6 max-w-lg mx-auto leading-relaxed">
               Answer 6 yes-or-no questions about your operation. Get an immediate risk score and a clear next step — no email required to start.
             </p>
             <Link
               to="/safety-check"
-              className="inline-flex items-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#1F6FEB]/20"
+              className="inline-flex items-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#1F6FEB]/20 text-base"
               data-testid="services-free-check-cta"
             >
               Take the Free Safety Check
@@ -218,20 +218,20 @@ const ServicesPage = () => {
                   </h2>
 
                   {/* Who it's for */}
-                  <p className="text-sm text-[#1F6FEB] font-medium mb-3">{svc.whoFor}</p>
+                  <p className="text-base md:text-sm text-[#1F6FEB] font-semibold mb-3" data-testid={`service-whofor-${svc.num}`}>{svc.whoFor}</p>
 
                   {/* Tagline */}
-                  <p className="text-sm text-[#102133]/50 mb-5">{svc.tagline}</p>
+                  <p className="text-base md:text-sm text-[#102133]/60 mb-5">{svc.tagline}</p>
 
                   {/* Summary */}
-                  <p className="text-sm text-[#102133]/65 leading-relaxed mb-6">
+                  <p className="text-base md:text-sm text-[#102133]/80 leading-relaxed mb-6">
                     {svc.summary}
                   </p>
 
                   {/* Best For */}
                   <div className="mb-6 flex-grow">
                     <p
-                      className="text-[10px] uppercase tracking-[2px] text-[#1F6FEB] mb-3 font-semibold"
+                      className="text-[11px] uppercase tracking-[2px] text-[#1F6FEB] mb-3 font-semibold"
                       style={mono}
                     >
                       Best For
@@ -240,7 +240,7 @@ const ServicesPage = () => {
                       {svc.bestFor.map((item, i) => (
                         <div key={i} className="flex items-start gap-2.5">
                           <Check size={14} className="flex-shrink-0 mt-0.5 text-[#1F6FEB]" strokeWidth={2.5} />
-                          <p className="text-sm text-[#102133]/60">{item}</p>
+                          <p className="text-base md:text-sm text-[#102133]/75">{item}</p>
                         </div>
                       ))}
                     </div>
@@ -251,12 +251,12 @@ const ServicesPage = () => {
                     <div className="space-y-2">
                       {svc.pricing.map((tier, i) => (
                         <div key={i} className="flex justify-between items-baseline">
-                          <span className="text-xs text-[#102133]/45">{tier.label}</span>
-                          <span className="text-sm font-bold text-[#102133] ml-3">{tier.price}</span>
+                          <span className="text-sm md:text-xs text-[#102133]/60">{tier.label}</span>
+                          <span className="text-base md:text-sm font-bold text-[#102133] ml-3">{tier.price}</span>
                         </div>
                       ))}
                     </div>
-                    <p className="text-[11px] text-[#102133]/30 mt-3" style={mono}>{svc.timeline}</p>
+                    <p className="text-xs text-[#102133]/55 mt-3" style={mono}>{svc.timeline}</p>
                   </div>
                 </div>
 
@@ -264,17 +264,17 @@ const ServicesPage = () => {
                 <div className="px-7 md:px-8 pb-7 md:pb-8">
                   <button
                     onClick={() => openBooking(svc.key)}
-                    className="w-full bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold py-3.5 rounded transition-colors text-sm"
+                    className="w-full bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold py-3.5 rounded transition-colors text-base"
                     data-testid={svc.testId}
                   >
                     Book This Service
                   </button>
-                  <p className="text-[11px] text-[#102133]/40 text-center mt-2.5" data-testid={`confirmation-line-${svc.num}`}>
+                  <p className="text-sm md:text-xs text-[#102133]/65 text-center mt-3 leading-relaxed" data-testid={`confirmation-line-${svc.num}`}>
                     After you submit, you'll receive your custom pricing and a scheduling confirmation within one business day.
                   </p>
                   <Link
                     to="/request-walkthrough"
-                    className="block w-full text-center text-xs text-[#102133]/40 hover:text-[#1F6FEB] mt-3 transition-colors"
+                    className="block w-full text-center text-sm md:text-xs text-[#102133]/55 hover:text-[#1F6FEB] mt-3 transition-colors font-medium"
                   >
                     Or request a call first
                   </Link>
@@ -288,7 +288,7 @@ const ServicesPage = () => {
       {/* ── Trust Line ── */}
       <section className="py-14 md:py-20 bg-white" data-testid="services-trust-line">
         <div className="container max-w-2xl text-center">
-          <p className="text-base sm:text-lg md:text-xl text-[#102133]/55 font-medium leading-relaxed">
+          <p className="text-lg md:text-xl text-[#102133]/75 font-medium leading-relaxed">
             Every engagement produces a written report. No verbal summaries. No promises. Just documented findings and clear next steps.
           </p>
         </div>
@@ -305,7 +305,7 @@ const ServicesPage = () => {
               <h3 className="text-lg font-bold text-[#102133] mb-1" style={serif}>
                 HazCom Starter Pack
               </h3>
-              <p className="text-sm text-[#102133]/55 mb-0">
+              <p className="text-base md:text-sm text-[#102133]/70 mb-0 leading-relaxed">
                 A ready-made written Hazard Communication program. Download immediately — no walkthrough required.
               </p>
             </div>
@@ -313,7 +313,7 @@ const ServicesPage = () => {
               <p className="text-2xl font-bold text-[#102133] mb-2">$29</p>
               <Link
                 to="/hazcom"
-                className="inline-flex items-center gap-2 bg-[#102133] hover:bg-[#2A3D3D] text-white font-bold px-6 py-3 rounded transition-colors text-sm"
+                className="inline-flex items-center gap-2 bg-[#102133] hover:bg-[#2A3D3D] text-white font-bold px-6 py-3 rounded transition-colors text-base md:text-sm"
                 data-testid="services-hazcom-link"
               >
                 Get It Now
@@ -336,7 +336,7 @@ const ServicesPage = () => {
           <h2 className="text-2xl md:text-3xl font-bold mb-4" style={serif}>
             Not Sure Which Service Fits?
           </h2>
-          <p className="text-white/50 mb-10 leading-relaxed">
+          <p className="text-base md:text-lg text-white/80 mb-10 leading-relaxed">
             Describe the situation. I'll recommend a starting point. No sales pitch. Just a clear recommendation based on what will actually help.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -369,14 +369,14 @@ const ServicesPage = () => {
             >
               For Fleet Operators
             </p>
-            <p className="text-sm text-[#102133]/50 mb-5">
+            <p className="text-base md:text-sm text-[#102133]/70 mb-5 leading-relaxed">
               If the issue is deeper than a one-time review — driver files, drug and alcohol program gaps, maintenance records, or system installation — structured support is available through LaunchPath.
             </p>
             <a
               href="https://launchpathedu.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-[#1F6FEB] font-medium hover:underline"
+              className="inline-flex items-center gap-2 text-base md:text-sm text-[#1F6FEB] font-semibold hover:underline"
               data-testid="services-launchpath-edu-link"
             >
               LaunchPath Transportation EDU

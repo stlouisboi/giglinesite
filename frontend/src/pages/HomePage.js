@@ -195,9 +195,9 @@ const HomePage = () => {
                   Request a Safety Walkthrough
                   <ArrowRight size={18} />
                 </Link>
-                <p className="text-sm text-[#CBD5E1] leading-relaxed max-w-md" data-testid="hero-pricing-direction">
+                <p className="text-base text-[#CBD5E1] leading-relaxed max-w-md" data-testid="hero-pricing-direction">
                   Walkthrough pricing is based on the size and type of your operation.{' '}
-                  <Link to="/services" className="text-[#1F6FEB] hover:text-white underline decoration-[#1F6FEB]/40 hover:decoration-white transition-colors">
+                  <Link to="/services" className="text-[#1F6FEB] hover:text-white underline decoration-[#1F6FEB]/40 hover:decoration-white transition-colors font-semibold">
                     See service options &rarr;
                   </Link>
                 </p>
@@ -205,7 +205,7 @@ const HomePage = () => {
 
               {/* Credentials block */}
               <p
-                className="text-xs text-[#CBD5E1] leading-relaxed"
+                className="text-sm text-[#CBD5E1] leading-relaxed"
                 style={mono}
                 data-testid="hero-credentials"
               >
@@ -412,7 +412,7 @@ const HomePage = () => {
                 <div className="w-10 h-[2px] mb-5" style={{ backgroundColor: '#1F6FEB' }} />
 
                 {/* Full review */}
-                <p className="text-sm text-[#102133]/75 leading-relaxed mb-6 flex-grow">
+                <p className="text-base md:text-sm text-[#102133]/75 leading-relaxed mb-6 flex-grow">
                   "I've worked with GigLine Safety & Compliance and can say they operate at a different level than most safety consultants. They don't just point out issues — they understand how operations actually run and provide solutions that can be executed on the floor. Where they really stand out is in incident investigations. Their approach is disciplined, focused on true root cause, and built around preventing repeat events."
                 </p>
 
@@ -422,8 +422,8 @@ const HomePage = () => {
                     DA
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-[#102133]">Demar Archie</p>
-                    <p className="text-xs text-[#102133]/55 mt-0.5">Warehouse Receiving Manager — Google Review</p>
+                    <p className="text-base md:text-sm font-bold text-[#102133]">Demar Archie</p>
+                    <p className="text-sm md:text-xs text-[#102133]/65 mt-0.5">Warehouse Receiving Manager — Google Review</p>
                   </div>
                 </div>
               </div>
@@ -440,10 +440,10 @@ const HomePage = () => {
                 }}
                 data-testid="testimonial-card-2"
               >
-                <p className="text-xs uppercase tracking-[2px] text-[#102133]/35 mb-3" style={mono}>
+                <p className="text-xs uppercase tracking-[2px] text-[#102133]/45 mb-3" style={mono}>
                   Coming soon
                 </p>
-                <p className="text-sm text-[#102133]/50 max-w-[220px] leading-relaxed">
+                <p className="text-base md:text-sm text-[#102133]/60 max-w-[220px] leading-relaxed">
                   Additional client reviews from recent Triad engagements will appear here.
                 </p>
               </div>
@@ -460,10 +460,10 @@ const HomePage = () => {
                 }}
                 data-testid="testimonial-card-3"
               >
-                <p className="text-xs uppercase tracking-[2px] text-[#102133]/35 mb-3" style={mono}>
+                <p className="text-xs uppercase tracking-[2px] text-[#102133]/45 mb-3" style={mono}>
                   Coming soon
                 </p>
-                <p className="text-sm text-[#102133]/50 max-w-[220px] leading-relaxed">
+                <p className="text-base md:text-sm text-[#102133]/60 max-w-[220px] leading-relaxed">
                   Additional client reviews from recent Triad engagements will appear here.
                 </p>
               </div>
@@ -714,7 +714,7 @@ const HomePage = () => {
                 <br />
                 They're overlooked.
               </p>
-              <p className="text-sm text-[#CBD5E1]" style={mono}>
+              <p className="text-base md:text-sm text-[#CBD5E1]" style={mono}>
                 Every facility has blind spots. We walk in and find them.
               </p>
             </Reveal>
@@ -779,7 +779,7 @@ const HomePage = () => {
                   <p className="text-base text-[#CBD5E1] leading-relaxed">
                     GigLine is a private engagement. Nothing leaves your facility except the report I hand you.
                   </p>
-                  <p className="text-sm text-[#CBD5E1]/80 leading-relaxed">
+                  <p className="text-base md:text-sm text-[#CBD5E1]/90 leading-relaxed">
                     Service area: On-site walkthroughs within 60 miles of Winston-Salem, including Greensboro, High Point, Kernersville, Lexington, Thomasville, Salisbury, Burlington, and surrounding communities.
                   </p>
                 </div>
@@ -961,7 +961,7 @@ const HomePage = () => {
             <p className="text-base md:text-lg text-[#F8FAFC] leading-relaxed mb-3 font-medium" data-testid="service-area-statement">
               On-site walkthroughs within roughly 60 miles of Winston-Salem, including Greensboro, High Point, Kernersville, Lexington, Thomasville, Salisbury, Burlington, and nearby towns.
             </p>
-            <p className="text-sm text-white/60 leading-relaxed">
+            <p className="text-base md:text-sm text-white/70 leading-relaxed">
               Need a visit a bit farther out? I can often travel to Mooresville, Concord, Huntersville, or Danville, VA — travel fees may apply.
             </p>
           </div>
@@ -1014,10 +1014,10 @@ const HomePage = () => {
                   <h3 className="text-lg font-bold text-[#102133] mb-2 leading-snug group-hover:text-[#1F6FEB] transition-colors">
                     {post.title}
                   </h3>
-                  <p className="text-sm text-[#102133]/70 leading-relaxed mb-4">
+                  <p className="text-base md:text-sm text-[#102133]/75 leading-relaxed mb-4">
                     {post.desc}
                   </p>
-                  <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#1F6FEB] group-hover:gap-2 transition-all">
+                  <span className="inline-flex items-center gap-1.5 text-base md:text-sm font-semibold text-[#1F6FEB] group-hover:gap-2 transition-all">
                     Read the note
                     <ArrowRight size={14} />
                   </span>
@@ -1030,7 +1030,7 @@ const HomePage = () => {
             <div className="mt-10 text-center">
               <Link
                 to="/field-notes"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-[#102133] hover:text-[#1F6FEB] transition-colors"
+                className="inline-flex items-center gap-2 text-base md:text-sm font-semibold text-[#102133] hover:text-[#1F6FEB] transition-colors"
                 data-testid="all-field-notes-link"
               >
                 See all field notes
@@ -1042,7 +1042,7 @@ const HomePage = () => {
           {/* Pricing direction line above footer — Fix 2 secondary */}
           <Reveal>
             <div className="mt-16 pt-10 border-t border-[#102133]/08 text-center" data-testid="pricing-direction-footer">
-              <p className="text-sm text-[#102133]/65 max-w-xl mx-auto leading-relaxed">
+              <p className="text-base md:text-sm text-[#102133]/70 max-w-xl mx-auto leading-relaxed">
                 Walkthrough pricing is based on the size and type of your operation.{' '}
                 <Link to="/services" className="text-[#1F6FEB] font-semibold underline decoration-[#1F6FEB]/40 hover:decoration-[#1F6FEB] transition-colors">
                   See service options &rarr;
@@ -1089,14 +1089,14 @@ const HomePage = () => {
               </Link>
             </div>
 
-            <p className="text-sm text-[#CBD5E1] mb-14" style={mono} data-testid="final-price-line">
+            <p className="text-base md:text-sm text-[#CBD5E1] mb-14" style={mono} data-testid="final-price-line">
               Walkthrough pricing is based on the size and type of your operation — see service options.
             </p>
 
             {/* Contact block */}
             <div className="w-px h-10 mx-auto mb-8" style={{ backgroundColor: 'rgba(201,168,76,0.2)' }} />
             <p className="text-white font-bold text-lg mb-1">Vince Lawrence</p>
-            <p className="text-[#CBD5E1] text-sm mb-4" style={mono}>
+            <p className="text-base md:text-sm text-[#CBD5E1] mb-4" style={mono}>
               GigLine Safety & Compliance
             </p>
             <p className="mb-2">
@@ -1111,7 +1111,7 @@ const HomePage = () => {
             <p>
               <a
                 href="mailto:vince@giglinecompliance.com"
-                className="text-[#CBD5E1] hover:text-[#1F6FEB] transition-colors text-sm"
+                className="text-[#CBD5E1] hover:text-[#1F6FEB] transition-colors text-base md:text-sm"
                 data-testid="final-email"
               >
                 vince@giglinecompliance.com

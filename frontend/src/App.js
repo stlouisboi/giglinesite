@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { trackPageView } from './utils/analytics';
+import { trackPageView, initAttribution } from './utils/analytics';
 import ScrollToTop from './components/ScrollToTop';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -38,6 +38,9 @@ function RouteTracker() {
 }
 
 function App() {
+  useEffect(() => {
+    initAttribution();
+  }, []);
   return (
     <HelmetProvider>
       <Router>

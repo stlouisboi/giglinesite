@@ -885,33 +885,67 @@ const HomePage = () => {
       {/* ═══════════════════════════════════════════════
           S9 — LOCAL SERVICE AREA STATEMENT
       ═══════════════════════════════════════════════ */}
-      <section className="relative py-14 md:py-20 overflow-hidden" style={{ backgroundColor: '#EEF2F7' }}>
-        {/* Light map-style background pattern */}
-        <div className="absolute inset-0" style={{
-          backgroundImage: `
-            linear-gradient(rgba(74,124,201,0.08) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(74,124,201,0.08) 1px, transparent 1px),
-            linear-gradient(rgba(74,124,201,0.04) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(74,124,201,0.04) 1px, transparent 1px)
-          `,
-          backgroundSize: '100px 100px, 100px 100px, 20px 20px, 20px 20px',
-        }} />
-        {/* Road-like lines */}
-        <div className="absolute inset-0 opacity-[0.06]" style={{
-          backgroundImage: `
-            linear-gradient(45deg, rgba(74,124,201,0.5) 1px, transparent 1px),
-            linear-gradient(-45deg, rgba(74,124,201,0.3) 1px, transparent 1px),
-            linear-gradient(15deg, rgba(74,124,201,0.4) 2px, transparent 2px)
-          `,
-          backgroundSize: '200px 200px, 300px 300px, 400px 400px',
-        }} />
-        {/* GPS pin dot in center */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0">
-          <div className="w-40 h-40 rounded-full" style={{ background: 'radial-gradient(circle, rgba(74,124,201,0.12) 0%, transparent 70%)' }} />
-        </div>
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0">
-          <div className="w-4 h-4 rounded-full" style={{ background: '#4A7CC9', boxShadow: '0 0 0 6px rgba(74,124,201,0.15), 0 0 0 12px rgba(74,124,201,0.08)' }} />
-        </div>
+      <section className="relative py-14 md:py-20 overflow-hidden" style={{ backgroundColor: '#E8ECF0' }}>
+        {/* Realistic light-mode map background */}
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          {/* Base */}
+          <rect width="1200" height="500" fill="#E8ECF0" />
+
+          {/* City blocks */}
+          <rect x="50" y="30" width="120" height="80" rx="2" fill="#F2F4F6" stroke="#D0D5DC" strokeWidth="0.5" />
+          <rect x="200" y="30" width="180" height="120" rx="2" fill="#F2F4F6" stroke="#D0D5DC" strokeWidth="0.5" />
+          <rect x="50" y="140" width="120" height="100" rx="2" fill="#F2F4F6" stroke="#D0D5DC" strokeWidth="0.5" />
+          <rect x="200" y="180" width="180" height="90" rx="2" fill="#F2F4F6" stroke="#D0D5DC" strokeWidth="0.5" />
+          <rect x="420" y="30" width="140" height="160" rx="2" fill="#F2F4F6" stroke="#D0D5DC" strokeWidth="0.5" />
+          <rect x="420" y="220" width="140" height="130" rx="2" fill="#F2F4F6" stroke="#D0D5DC" strokeWidth="0.5" />
+          <rect x="600" y="30" width="200" height="100" rx="2" fill="#F2F4F6" stroke="#D0D5DC" strokeWidth="0.5" />
+          <rect x="600" y="160" width="100" height="110" rx="2" fill="#F2F4F6" stroke="#D0D5DC" strokeWidth="0.5" />
+          <rect x="730" y="160" width="70" height="110" rx="2" fill="#F2F4F6" stroke="#D0D5DC" strokeWidth="0.5" />
+          <rect x="840" y="30" width="160" height="180" rx="2" fill="#F2F4F6" stroke="#D0D5DC" strokeWidth="0.5" />
+          <rect x="840" y="240" width="160" height="120" rx="2" fill="#F2F4F6" stroke="#D0D5DC" strokeWidth="0.5" />
+          <rect x="1040" y="30" width="130" height="120" rx="2" fill="#F2F4F6" stroke="#D0D5DC" strokeWidth="0.5" />
+          <rect x="1040" y="180" width="130" height="180" rx="2" fill="#F2F4F6" stroke="#D0D5DC" strokeWidth="0.5" />
+          <rect x="50" y="270" width="120" height="100" rx="2" fill="#F2F4F6" stroke="#D0D5DC" strokeWidth="0.5" />
+          <rect x="200" y="300" width="180" height="100" rx="2" fill="#F2F4F6" stroke="#D0D5DC" strokeWidth="0.5" />
+          <rect x="50" y="400" width="320" height="80" rx="2" fill="#F2F4F6" stroke="#D0D5DC" strokeWidth="0.5" />
+          <rect x="420" y="380" width="140" height="100" rx="2" fill="#F2F4F6" stroke="#D0D5DC" strokeWidth="0.5" />
+          <rect x="600" y="300" width="200" height="80" rx="2" fill="#F2F4F6" stroke="#D0D5DC" strokeWidth="0.5" />
+          <rect x="600" y="410" width="200" height="70" rx="2" fill="#F2F4F6" stroke="#D0D5DC" strokeWidth="0.5" />
+          <rect x="840" y="390" width="330" height="90" rx="2" fill="#F2F4F6" stroke="#D0D5DC" strokeWidth="0.5" />
+
+          {/* Green spaces */}
+          <rect x="710" y="165" width="15" height="100" rx="2" fill="#C8E6C0" />
+          <rect x="95" y="145" width="30" height="30" rx="3" fill="#C8E6C0" />
+          <rect x="950" y="50" width="40" height="40" rx="4" fill="#C8E6C0" />
+
+          {/* Street names */}
+          <text x="190" y="125" fontSize="7" fill="#8899AA" fontFamily="Arial" letterSpacing="1">MAIN ST</text>
+          <text x="560" y="205" fontSize="7" fill="#8899AA" fontFamily="Arial" letterSpacing="1">UNIVERSITY PKWY</text>
+          <text x="180" y="280" fontSize="7" fill="#8899AA" fontFamily="Arial" transform="rotate(-90, 180, 280)" letterSpacing="1">CHERRY ST</text>
+          <text x="820" y="225" fontSize="7" fill="#8899AA" fontFamily="Arial" transform="rotate(-90, 820, 225)" letterSpacing="1">HANES MILL RD</text>
+          <text x="410" y="375" fontSize="7" fill="#8899AA" fontFamily="Arial" letterSpacing="1">BUSINESS 40</text>
+          <text x="600" y="400" fontSize="7" fill="#8899AA" fontFamily="Arial" letterSpacing="1">KERNERSVILLE RD</text>
+          <text x="900" y="375" fontSize="7" fill="#8899AA" fontFamily="Arial" letterSpacing="1">I-40</text>
+          <text x="50" y="265" fontSize="7" fill="#8899AA" fontFamily="Arial" letterSpacing="1">S STRATFORD RD</text>
+          <text x="1050" y="170" fontSize="7" fill="#8899AA" fontFamily="Arial" letterSpacing="1">OLD HOLLOW RD</text>
+
+          {/* Navigation route line — blue, curved through streets */}
+          <path d="M 150,450 L 150,280 L 190,280 L 190,125 L 390,125 L 390,200 L 570,200 L 570,200 L 810,200 L 810,200 L 810,130 L 700,130" 
+            stroke="#4A7CC9" strokeWidth="5" fill="none" strokeLinecap="round" strokeLinejoin="round" opacity="0.7" />
+          <path d="M 150,450 L 150,280 L 190,280 L 190,125 L 390,125 L 390,200 L 570,200 L 570,200 L 810,200 L 810,200 L 810,130 L 700,130" 
+            stroke="#4A7CC9" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+
+          {/* Start marker — blue dot */}
+          <circle cx="150" cy="450" r="6" fill="#4A7CC9" />
+          <circle cx="150" cy="450" r="3" fill="white" />
+
+          {/* Destination pin */}
+          <g transform="translate(700, 108)">
+            <ellipse cx="0" cy="20" rx="6" ry="3" fill="rgba(0,0,0,0.15)" />
+            <path d="M0,-14 C-8,-14 -14,-8 -14,0 C-14,10 0,22 0,22 C0,22 14,10 14,0 C14,-8 8,-14 0,-14 Z" fill="#D94040" />
+            <circle cx="0" cy="-1" r="5" fill="white" />
+          </g>
+        </svg>
 
         <div className="container max-w-4xl relative z-10">
           <div className="rounded-xl px-6 py-8 md:px-10 md:py-10 text-center" style={{ background: '#0B1F33', border: '1px solid rgba(74,124,201,0.2)', boxShadow: '0 8px 32px rgba(0,0,0,0.15)' }}>

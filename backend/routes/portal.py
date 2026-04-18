@@ -307,6 +307,75 @@ async def get_portal_stats(token: str = ""):
     }
 
 
+@router.get("/admin/leads-by-source")
+async def get_leads_by_source(token: str = ""):
+    """Aggregate leads by first-touch UTM source for conversion analysis."""
+    if token != ADMIN_PASSWORD:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+    leads = await db.gl_intake_submissions.find(
+        {}, {"_id": 0, "attribution": 1, "status": 1, "referralSource": 1, "clientToken": 1, "submittedAt": 1}
+    ).to_list(2000)
+
+    # Collect revenue by clientToken from paid bookings
+    paid_bookings = await db.gl_bookings.find(
+        {"paymentStatus": "paid"}, {"_id": 0, "clientToken": 1, "totalCharged": 1}
+    ).to_list(2000)
+    revenue_by_token = {}
+    for b in paid_bookings:
+        ct = b.get("clientToken")
+        if ct:
+            revenue_by_token[ct] = revenue_by_token.get(ct, 0) + (b.get("totalCharged") or 0)
+
+    buckets = {}
+    for lead in leads:
+        first = (lead.get("attribution") or {}).get("firstTouch") or {}
+        src = first.get("utm_source")
+        med = first.get("utm_medium")
+        if src:
+            if med == "cpc" or first.get("gclid"):
+                label = f"{src} (paid)"
+                tone = "paid"
+            elif med == "paid_social" or first.get("fbclid"):
+                label = f"{src} (paid social)"
+                tone = "paid"
+            elif med == "email":
+                label = f"{src} (email)"
+                tone = "email"
+            elif med == "referral":
+                label = f"{src} (referral)"
+                tone = "referral"
+            else:
+                label = src
+                tone = "organic"
+        elif lead.get("referralSource"):
+            label = f"Referral: {lead['referralSource']}"
+            tone = "referral"
+        else:
+            label = "Direct / Unknown"
+            tone = "direct"
+
+        bucket = buckets.setdefault(label, {
+            "source": label, "tone": tone, "leads": 0, "reports_delivered": 0, "revenue": 0,
+        })
+        bucket["leads"] += 1
+        if lead.get("status") == "report_delivered":
+            bucket["reports_delivered"] += 1
+        token_revenue = revenue_by_token.get(lead.get("clientToken"), 0)
+        bucket["revenue"] += token_revenue
+
+    # Sort: leads desc
+    sorted_buckets = sorted(buckets.values(), key=lambda b: b["leads"], reverse=True)
+
+    totals = {
+        "total_leads": sum(b["leads"] for b in sorted_buckets),
+        "total_reports_delivered": sum(b["reports_delivered"] for b in sorted_buckets),
+        "total_revenue": sum(b["revenue"] for b in sorted_buckets),
+    }
+
+    return {"sources": sorted_buckets, "totals": totals}
+
+
 # ── Agreement signing ──
 
 from pydantic import BaseModel as PydanticBaseModel

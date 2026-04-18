@@ -67,6 +67,7 @@ const AdminPage = () => {
   const [bookings, setBookings] = useState(null);
   const [stats, setStats] = useState(null);
   const [leads, setLeads] = useState(null);
+  const [sourcesData, setSourcesData] = useState(null);
 
   // Modals/drawers
   const [viewItem, setViewItem] = useState(null);
@@ -91,17 +92,19 @@ const AdminPage = () => {
 
   const fetchAll = useCallback(async (t) => {
     try {
-      const [psRes, iRes, bRes, sRes] = await Promise.all([
+      const [psRes, iRes, bRes, sRes, srcRes] = await Promise.all([
         fetch(`${API}/api/admin/portal-stats?token=${t}`),
         fetch(`${API}/api/admin/intake-submissions?token=${t}`),
         fetch(`${API}/api/admin/bookings?token=${t}`),
         fetch(`${API}/api/admin/stats?token=${t}`),
+        fetch(`${API}/api/admin/leads-by-source?token=${t}`),
       ]);
       if (psRes.status === 401) { logout(); return; }
       setPortalStats(await psRes.json());
       setIntakes(await iRes.json());
       setBookings(await bRes.json());
       setStats(await sRes.json());
+      setSourcesData(srcRes.ok ? await srcRes.json() : null);
       setLoggedIn(true);
     } catch { logout(); }
   }, []);
@@ -278,6 +281,63 @@ const AdminPage = () => {
                   </div>
                 ))}
               </div>
+
+              {/* ── Conversions by Source ── */}
+              {sourcesData && sourcesData.sources && sourcesData.sources.length > 0 && (
+                <div className="mt-10" data-testid="leads-by-source">
+                  <div className="flex items-baseline justify-between mb-3">
+                    <h2 className="text-lg font-bold text-[#1C2B2B]">Conversions by Source</h2>
+                    <p className="text-xs text-gray-400">
+                      {sourcesData.totals.total_leads} leads · {sourcesData.totals.total_reports_delivered} converted · ${(sourcesData.totals.total_revenue || 0).toLocaleString()} revenue
+                    </p>
+                  </div>
+                  <div className="overflow-x-auto border border-gray-100 rounded-lg">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="bg-gray-50 text-left">
+                          <th className="px-4 py-2.5 text-[11px] font-medium text-gray-500 uppercase tracking-wider">Source</th>
+                          <th className="px-4 py-2.5 text-[11px] font-medium text-gray-500 uppercase tracking-wider text-right">Leads</th>
+                          <th className="px-4 py-2.5 text-[11px] font-medium text-gray-500 uppercase tracking-wider text-right">Converted</th>
+                          <th className="px-4 py-2.5 text-[11px] font-medium text-gray-500 uppercase tracking-wider text-right">Conv. Rate</th>
+                          <th className="px-4 py-2.5 text-[11px] font-medium text-gray-500 uppercase tracking-wider text-right">Revenue</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {sourcesData.sources.map((s, i) => {
+                          const toneColor = {
+                            paid: 'bg-purple-100 text-purple-700',
+                            referral: 'bg-blue-100 text-blue-700',
+                            email: 'bg-teal-100 text-teal-700',
+                            organic: 'bg-gray-100 text-gray-700',
+                            direct: 'bg-gray-100 text-gray-500',
+                          }[s.tone] || 'bg-gray-100 text-gray-700';
+                          const convRate = s.leads > 0 ? ((s.reports_delivered / s.leads) * 100).toFixed(0) : '0';
+                          const barMax = Math.max(...sourcesData.sources.map(x => x.leads), 1);
+                          const barWidth = (s.leads / barMax) * 100;
+                          return (
+                            <tr key={i} className="border-t border-gray-100" data-testid={`source-row-${i}`}>
+                              <td className="px-4 py-3">
+                                <Badge color={toneColor}>{s.source}</Badge>
+                                <div className="mt-2 h-1.5 bg-gray-100 rounded-full overflow-hidden max-w-[200px]">
+                                  <div
+                                    className="h-full rounded-full"
+                                    style={{ width: `${barWidth}%`, backgroundColor: s.tone === 'paid' ? '#a855f7' : s.tone === 'referral' ? '#3b82f6' : s.tone === 'email' ? '#14b8a6' : '#9ca3af' }}
+                                  />
+                                </div>
+                              </td>
+                              <td className="px-4 py-3 text-right font-bold text-[#1C2B2B]">{s.leads}</td>
+                              <td className="px-4 py-3 text-right font-medium text-gray-600">{s.reports_delivered}</td>
+                              <td className="px-4 py-3 text-right text-gray-500">{convRate}%</td>
+                              <td className="px-4 py-3 text-right font-bold text-[#B8972C]">${(s.revenue || 0).toLocaleString()}</td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                  <p className="text-[10px] text-gray-300 mt-2">Revenue counted from paid bookings linked via clientToken. Conversion = report delivered.</p>
+                </div>
+              )}
             </div>
           )}
 

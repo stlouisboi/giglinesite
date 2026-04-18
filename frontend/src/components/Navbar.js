@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Phone } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -51,7 +51,7 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8" data-testid="desktop-nav">
+          <div className="hidden md:flex items-center space-x-6 lg:space-x-8" data-testid="desktop-nav">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -66,6 +66,14 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
+            <a
+              href="tel:3363298899"
+              className="flex items-center gap-1.5 text-sm font-medium text-[#C9A84C] hover:text-white transition-colors"
+              data-testid="nav-phone"
+            >
+              <Phone size={14} />
+              (336) 329-8899
+            </a>
             <Link
               to="/request-walkthrough"
               className="btn-primary text-sm"
@@ -75,18 +83,28 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            type="button"
-            className="md:hidden p-2 text-white hover:text-accent"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-expanded={isOpen}
-            aria-controls="mobile-menu"
-            aria-label={isOpen ? 'Close menu' : 'Open menu'}
-            data-testid="mobile-menu-button"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile: Phone + Menu */}
+          <div className="flex items-center gap-3 md:hidden">
+            <a
+              href="tel:3363298899"
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-[#C9A84C]/15 text-[#C9A84C]"
+              aria-label="Call GigLine"
+              data-testid="mobile-phone-btn"
+            >
+              <Phone size={18} />
+            </a>
+            <button
+              type="button"
+              className="p-2 text-white hover:text-accent"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
+              data-testid="mobile-menu-button"
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation Drawer */}
@@ -112,6 +130,14 @@ const Navbar = () => {
                   {link.name}
                 </Link>
               ))}
+              <a
+                href="tel:3363298899"
+                className="flex items-center gap-2 text-lg font-medium text-[#C9A84C]"
+                data-testid="mobile-nav-phone"
+              >
+                <Phone size={18} />
+                (336) 329-8899
+              </a>
               <Link
                 to="/request-walkthrough"
                 className="btn-primary w-full text-center mt-4"

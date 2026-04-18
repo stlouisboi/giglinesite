@@ -165,55 +165,44 @@ const HomePage = () => {
                 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.15] mb-6"
                 data-testid="hero-headline"
               >
-                Safety Issues Don't Announce Themselves.{' '}
+                If OSHA Walked In Tomorrow,{' '}
                 <span className="block mt-3">
-                  They Show Up as{' '}
-                  <span style={{ borderBottom: '2px solid #C9A84C', paddingBottom: '2px' }}>Injuries</span>,{' '}
-                  <span style={{ borderBottom: '2px solid #C9A84C', paddingBottom: '2px' }}>Fines</span>, and{' '}
-                  <span style={{ borderBottom: '2px solid #C9A84C', paddingBottom: '2px' }}>Downtime</span>.
+                  Would You{' '}
+                  <span style={{ borderBottom: '2px solid #C9A84C', paddingBottom: '2px' }}>Pass</span>?
                 </span>
               </h1>
 
               <p
-                className="text-base md:text-lg text-white/60 leading-relaxed mb-6 max-w-md"
+                className="text-base md:text-lg text-white/70 leading-relaxed mb-6 max-w-md"
                 data-testid="hero-sub"
+              >
+                A single OSHA citation averages $15,625. A GigLine safety walkthrough costs a fraction of that — and gives you a clear picture of where you stand.
+              </p>
+
+              <p
+                className="text-sm text-white/50 leading-relaxed mb-8 max-w-md"
               >
                 GigLine provides on-site safety walkthroughs and OSHA-focused compliance inspections for small warehouses and manufacturing operations in the Piedmont Triad.
               </p>
 
-              <p
-                className="text-sm text-white/55 leading-relaxed mb-6 max-w-md"
-              >
-                One OSHA citation runs $16,550. A Safety Walkthrough finds your exposures first — before an inspector does. You leave with a written report and a clear fix list.
-              </p>
-
-              <p
-                className="text-sm text-[#C9A84C] font-semibold tracking-wide uppercase mb-8"
-                style={mono}
-                data-testid="hero-positioning"
-              >
-                One visit. Starting at $650. No retainer.
-              </p>
-
-              <div className="flex flex-col sm:flex-row items-start gap-3 mb-4" data-testid="hero-ctas">
+              <div className="flex flex-col items-start gap-4 mb-6" data-testid="hero-ctas">
                 <Link
-                  to="/request-walkthrough"
+                  to="/safety-check"
                   className="bg-[#C9A84C] hover:bg-[#B8972C] text-white font-bold px-8 py-4 rounded text-base transition-colors inline-flex items-center gap-2 shadow-lg shadow-[#C9A84C]/20"
                   data-testid="hero-cta-primary"
                 >
-                  Request a Walkthrough
+                  Take the Free 90-Second Safety Check
                   <ArrowRight size={18} />
                 </Link>
-                <Link
-                  to="/safety-check"
-                  className="border border-white/20 hover:border-white/40 text-white/60 hover:text-white font-medium px-6 py-4 rounded transition-colors inline-flex items-center gap-2 text-sm"
-                  data-testid="hero-cta-secondary"
-                >
-                  Take the Safety Check
-                </Link>
               </div>
-              <p className="text-sm text-white/50" style={mono} data-testid="hero-trust-line">
-                No contracts. One visit. Written report.
+
+              {/* Credentials block */}
+              <p
+                className="text-xs text-white/40 leading-relaxed"
+                style={mono}
+                data-testid="hero-credentials"
+              >
+                OSHA 30-Hour Certified · 25+ Years Experience · U.S. Navy Veteran · Serving the Triad
               </p>
             </Reveal>
           </div>

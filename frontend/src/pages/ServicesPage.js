@@ -14,6 +14,7 @@ const SERVICES = [
     key: 'walkthrough_standard',
     title: 'Safety Walkthrough & Top 10 Fixes Report',
     tagline: 'See what your operation looks like under review.',
+    whoFor: 'Best for single-building facilities under 50,000 sq ft.',
     summary: 'I walk the facility, observe the operation, and identify what creates the most immediate exposure. You receive a written report with the ten issues most likely to create trouble first.',
     bestFor: [
       'No outside review in the last 12 months',
@@ -22,10 +23,11 @@ const SERVICES = [
       'Recent near-misses or recurring concerns',
     ],
     pricing: [
-      { label: 'Small site', price: '$650' },
-      { label: 'Standard site', price: '$750' },
-      { label: 'Large / complex', price: 'Quote' },
+      { label: 'Small site (1–75 employees)', price: '$650' },
+      { label: 'Standard site (75–250)', price: '$750' },
+      { label: 'Large / complex (250+)', price: 'From $900' },
     ],
+    startingAt: '$650',
     timeline: 'Typically completed within 1–2 weeks.',
     testId: 'book-walkthrough',
   },
@@ -34,6 +36,7 @@ const SERVICES = [
     key: 'documentation_remote',
     title: 'Documentation Review & Gap Check',
     tagline: 'Make sure the paperwork holds up.',
+    whoFor: 'Best for operations preparing for audits or rebuilding safety files.',
     summary: 'I review written programs, training records, inspection logs, and required documentation. The goal — identify what is present, what is weak, and what is missing before someone else finds it.',
     bestFor: [
       'Preparing for customer or insurance audits',
@@ -46,6 +49,7 @@ const SERVICES = [
       { label: 'On-site review', price: '$750' },
       { label: 'Multiple locations', price: 'Quote' },
     ],
+    startingAt: '$550',
     timeline: 'Remote: ~1 week. On-site: ~2 weeks.',
     testId: 'book-documentation',
   },
@@ -54,6 +58,7 @@ const SERVICES = [
     key: 'incident_standard',
     title: 'Incident Review & Corrective Action Support',
     tagline: 'Document what happened. Fix what caused it.',
+    whoFor: 'Best for operations responding to a recordable injury or near-miss.',
     summary: 'After an injury, near-miss, or serious incident, I help document what happened, identify what broke down, and build corrective action that holds up under review — OSHA, insurance, or internal.',
     bestFor: [
       'Responding to recordable injuries',
@@ -65,6 +70,7 @@ const SERVICES = [
       { label: 'Standard incident', price: '$900' },
       { label: 'Urgent / complex', price: 'From $1,200' },
     ],
+    startingAt: '$900',
     timeline: 'Initial response within 24–48 hours.',
     testId: 'book-incident',
   },
@@ -153,6 +159,31 @@ const ServicesPage = () => {
         </div>
       </section>
 
+      {/* ── Free Safety Check — Distinct Card ── */}
+      <section className="py-12 md:py-16" style={{ backgroundColor: '#F9F8F6' }} data-testid="services-free-check">
+        <div className="container max-w-7xl">
+          <div className="rounded-xl p-6 md:p-8 text-center" style={{ background: '#0D1B2A', border: '2px solid rgba(201,168,76,0.3)' }}>
+            <span className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider mb-4" style={{ background: '#C9A84C', color: '#111' }}>
+              Free — No Payment Required
+            </span>
+            <h2 className="text-xl md:text-2xl font-bold text-white mb-2" style={serif}>
+              90-Second Safety Check
+            </h2>
+            <p className="text-sm text-white/55 mb-6 max-w-lg mx-auto">
+              Answer 6 yes-or-no questions about your operation. Get an immediate risk score and a clear next step — no email required to start.
+            </p>
+            <Link
+              to="/safety-check"
+              className="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#B8972C] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#C9A84C]/20"
+              data-testid="services-free-check-cta"
+            >
+              Take the Free Safety Check
+              <ArrowRight size={18} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ── Service Cards ── */}
       <section className="py-16 md:py-24" style={{ backgroundColor: '#F9F8F6' }} data-testid="services-cards-section">
         <div className="container max-w-7xl">
@@ -165,13 +196,18 @@ const ServicesPage = () => {
               >
                 {/* Card Top */}
                 <div className="p-7 md:p-8 flex-grow flex flex-col">
-                  {/* Number */}
-                  <span
-                    className="text-[#C9A84C]/40 font-bold mb-4 block"
-                    style={{ ...mono, fontSize: '13px' }}
-                  >
-                    {svc.num}
-                  </span>
+                  {/* Number + Starting Price */}
+                  <div className="flex items-center justify-between mb-4">
+                    <span
+                      className="text-[#C9A84C]/40 font-bold"
+                      style={{ ...mono, fontSize: '13px' }}
+                    >
+                      {svc.num}
+                    </span>
+                    <span className="text-lg font-bold text-[#C9A84C]" data-testid={`price-${svc.num}`}>
+                      Starting at {svc.startingAt}
+                    </span>
+                  </div>
 
                   {/* Title */}
                   <h2
@@ -181,8 +217,11 @@ const ServicesPage = () => {
                     {svc.title}
                   </h2>
 
+                  {/* Who it's for */}
+                  <p className="text-sm text-[#C9A84C] font-medium mb-3">{svc.whoFor}</p>
+
                   {/* Tagline */}
-                  <p className="text-sm text-[#1C2B2B]/45 mb-5">{svc.tagline}</p>
+                  <p className="text-sm text-[#1C2B2B]/50 mb-5">{svc.tagline}</p>
 
                   {/* Summary */}
                   <p className="text-sm text-[#1C2B2B]/65 leading-relaxed mb-6">
@@ -230,6 +269,9 @@ const ServicesPage = () => {
                   >
                     Book This Service
                   </button>
+                  <p className="text-[11px] text-[#1C2B2B]/40 text-center mt-2.5">
+                    After payment, you'll receive a scheduling confirmation within one business day.
+                  </p>
                   <Link
                     to="/request-walkthrough"
                     className="block w-full text-center text-xs text-[#1C2B2B]/40 hover:text-[#C9A84C] mt-3 transition-colors"

@@ -81,16 +81,16 @@ const Navbar = () => {
           <div className="flex items-center gap-3 md:hidden">
             <a
               href="tel:3363298899"
-              className="flex items-center justify-center w-10 h-10 rounded-full"
+              className="flex items-center justify-center w-12 h-12 rounded-full"
               style={{ background: 'rgba(31,111,235,0.08)', color: '#1F6FEB' }}
               aria-label="Call GigLine"
               data-testid="mobile-phone-btn"
             >
-              <Phone size={18} />
+              <Phone size={20} />
             </a>
             <button
               type="button"
-              className="p-2"
+              className="flex items-center justify-center w-12 h-12 rounded-md"
               style={{ color: '#102133' }}
               onClick={() => setIsOpen(!isOpen)}
               aria-expanded={isOpen}
@@ -98,7 +98,7 @@ const Navbar = () => {
               aria-label={isOpen ? 'Close menu' : 'Open menu'}
               data-testid="mobile-menu-button"
             >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
+              {isOpen ? <X size={26} /> : <Menu size={26} />}
             </button>
           </div>
         </div>
@@ -106,26 +106,34 @@ const Navbar = () => {
         {/* Mobile Navigation Drawer */}
         {isOpen && (
           <div id="mobile-menu" className="md:hidden bg-white" style={{ borderTop: '1px solid #D9E2EC' }} data-testid="mobile-menu">
-            <div className="px-4 py-6 space-y-4">
+            <div className="px-4 py-6 space-y-1">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
-                  className="block text-lg font-medium"
-                  style={{ color: isActive(link.path) ? '#1F6FEB' : '#102133' }}
+                  className="flex items-center text-lg font-medium px-2 rounded-md"
+                  style={{
+                    color: isActive(link.path) ? '#1F6FEB' : '#102133',
+                    minHeight: '52px',
+                  }}
                   onClick={() => setIsOpen(false)}
                   data-testid={`mobile-nav-link-${link.name.toLowerCase().replace(' ', '-')}`}
                 >
                   {link.name}
                 </Link>
               ))}
-              <a href="tel:3363298899" className="flex items-center gap-2 text-lg font-medium" style={{ color: '#102133' }} data-testid="mobile-nav-phone">
-                <Phone size={18} /> (336) 329-8899
+              <a
+                href="tel:3363298899"
+                className="flex items-center gap-2 text-lg font-medium px-2 rounded-md"
+                style={{ color: '#102133', minHeight: '52px' }}
+                data-testid="mobile-nav-phone"
+              >
+                <Phone size={20} /> (336) 329-8899
               </a>
               <Link
                 to="/request-walkthrough"
-                className="block w-full text-center font-semibold py-3 rounded-lg mt-4"
-                style={{ background: '#1F6FEB', color: '#FFFFFF' }}
+                className="flex items-center justify-center w-full text-center font-semibold rounded-lg mt-4"
+                style={{ background: '#1F6FEB', color: '#FFFFFF', minHeight: '56px', fontSize: '16px' }}
                 onClick={() => setIsOpen(false)}
                 data-testid="mobile-nav-cta-button"
               >

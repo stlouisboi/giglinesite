@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Check, Phone, Mail, Star, ExternalLink } from 'lucide-react';
 import SEO from '../components/SEO';
+import { trackReviewClick } from '../utils/analytics';
 
 const API = process.env.REACT_APP_BACKEND_URL;
 const C = { bg: '#1A1A1A', surface: '#222222', deep: '#111111', gold: '#E8B84B', white: '#FFFFFF', sec: 'rgba(255,255,255,0.65)', muted: 'rgba(255,255,255,0.38)', border: 'rgba(255,255,255,0.08)' };
@@ -133,6 +134,7 @@ const StatusPage = () => {
               href="https://share.google/iUzTnuRSCNdguZQww"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackReviewClick('status_page')}
               className="inline-flex items-center gap-2 px-5 py-3 rounded-md font-bold text-sm transition-opacity hover:opacity-90"
               style={{ background: C.gold, color: '#111', minHeight: '44px' }}
               data-testid="review-prompt-cta"

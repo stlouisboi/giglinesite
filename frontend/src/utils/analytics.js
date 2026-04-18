@@ -63,3 +63,10 @@ export function trackPhoneClick(location = 'unknown') {
     event_label: location,
   });
 }
+
+export function trackReviewClick(location = 'unknown') {
+  trackEvent('review_click', {
+    event_category: 'reviews',
+    event_label: location,
+  });
+}

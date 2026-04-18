@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check } from 'lucide-react';
 import SEO from '../components/SEO';
-import { trackPhoneClick } from '../utils/analytics';
+import { trackPhoneClick, trackReviewClick } from '../utils/analytics';
 
 /* ── Scroll-reveal ── */
 const useReveal = () => {
@@ -520,6 +520,7 @@ const HomePage = () => {
                 href="https://share.google/iUzTnuRSCNdguZQww"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackReviewClick('homepage_badge')}
                 className="group inline-flex items-center gap-4 rounded-full pl-5 pr-6 py-3 transition-all hover:shadow-md"
                 style={{
                   backgroundColor: '#FFFFFF',

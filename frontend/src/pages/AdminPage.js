@@ -19,6 +19,41 @@ const Badge = ({ color, children }) => (
   <span className={`inline-block px-2 py-0.5 rounded text-[10px] font-bold ${color}`}>{children}</span>
 );
 
+/* ── Attribution summary helper ── */
+const summarizeAttribution = (attribution) => {
+  if (!attribution || typeof attribution !== 'object') return null;
+  const first = attribution.firstTouch || {};
+  const src = first.utm_source;
+  const med = first.utm_medium;
+  const camp = first.utm_campaign;
+  if (!src) return null;
+  if (med === 'cpc' || first.gclid) return { label: src === 'google' ? 'Google Ads' : `${src} (paid)`, campaign: camp, tone: 'paid' };
+  if (med === 'paid_social' || first.fbclid) return { label: `${src} (ads)`, campaign: camp, tone: 'paid' };
+  if (med === 'referral') return { label: src, campaign: null, tone: 'referral' };
+  if (med === 'email') return { label: `${src} (email)`, campaign: camp, tone: 'email' };
+  return { label: src, campaign: camp, tone: 'organic' };
+};
+
+const SourceCell = ({ attribution, referralSource }) => {
+  const s = summarizeAttribution(attribution);
+  if (s) {
+    const toneColor = {
+      paid: 'bg-purple-100 text-purple-700',
+      referral: 'bg-blue-100 text-blue-700',
+      email: 'bg-teal-100 text-teal-700',
+      organic: 'bg-gray-100 text-gray-700',
+    }[s.tone] || 'bg-gray-100 text-gray-700';
+    return (
+      <div>
+        <Badge color={toneColor}>{s.label}</Badge>
+        {s.campaign && <p className="text-[10px] text-gray-400 mt-1 truncate max-w-[140px]" title={s.campaign}>{s.campaign}</p>}
+      </div>
+    );
+  }
+  if (referralSource) return <span className="text-[11px] text-gray-500">{referralSource}</span>;
+  return <span className="text-[10px] text-gray-300">Direct</span>;
+};
+
 const AdminPage = () => {
   const [token, setToken] = useState(localStorage.getItem('gl_admin') || '');
   const [password, setPassword] = useState('');
@@ -257,6 +292,7 @@ const AdminPage = () => {
                       <th className="px-3 py-2.5 text-xs font-medium">Submitted</th>
                       <th className="px-3 py-2.5 text-xs font-medium">Company</th>
                       <th className="px-3 py-2.5 text-xs font-medium">Contact</th>
+                      <th className="px-3 py-2.5 text-xs font-medium">Source</th>
                       <th className="px-3 py-2.5 text-xs font-medium">Tier</th>
                       <th className="px-3 py-2.5 text-xs font-medium">Status</th>
                       <th className="px-3 py-2.5 text-xs font-medium">Urgency</th>
@@ -272,6 +308,9 @@ const AdminPage = () => {
                           <td className="px-3 py-3 text-xs text-gray-400">{item.submittedAt ? new Date(item.submittedAt).toLocaleDateString() : '—'}</td>
                           <td className="px-3 py-3 font-medium text-[#1C2B2B]">{item.company || '—'}</td>
                           <td className="px-3 py-3 text-gray-500">{item.contactName || '—'}</td>
+                          <td className="px-3 py-3 text-xs">
+                            <SourceCell attribution={item.attribution} referralSource={item.referralSource} />
+                          </td>
                           <td className="px-3 py-3 text-xs">{getTier(item.totalEmployees)}</td>
                           <td className="px-3 py-3">
                             <Badge color={`${STATUS_COLORS[item.status] || 'bg-gray-400'} text-white`}>
@@ -425,7 +464,31 @@ const AdminPage = () => {
               <button onClick={() => setViewItem(null)} className="text-white/50 hover:text-white"><X size={18} /></button>
             </div>
             <div className="p-6 space-y-4 text-sm">
-              {Object.entries(viewItem).filter(([k]) => !['_id', 'consentGiven'].includes(k)).map(([k, v]) => {
+              {(() => {
+                const s = summarizeAttribution(viewItem.attribution);
+                const first = viewItem.attribution?.firstTouch;
+                if (!s && !first) return null;
+                return (
+                  <div className="rounded-lg border border-[#C9A84C]/30 bg-[#C9A84C]/5 p-4" data-testid="attribution-summary">
+                    <p className="text-[10px] uppercase tracking-wider text-[#B8972C] font-bold mb-2">Lead Source</p>
+                    {s && (
+                      <p className="text-sm font-bold text-[#1C2B2B] mb-1">
+                        {s.label}
+                        {s.campaign && <span className="text-xs text-gray-500 font-normal"> · {s.campaign}</span>}
+                      </p>
+                    )}
+                    {first && (
+                      <div className="text-[11px] text-gray-500 space-y-0.5 mt-2">
+                        {first.utm_medium && <p>Medium: <span className="text-gray-700">{first.utm_medium}</span></p>}
+                        {first.first_landing_path && <p>Landing page: <span className="text-gray-700">{first.first_landing_path}</span></p>}
+                        {first.gclid && <p>Google Click ID: <span className="text-gray-700 font-mono">{first.gclid.slice(0, 20)}...</span></p>}
+                        {first.fbclid && <p>Facebook Click ID: <span className="text-gray-700 font-mono">{first.fbclid.slice(0, 20)}...</span></p>}
+                      </div>
+                    )}
+                  </div>
+                );
+              })()}
+              {Object.entries(viewItem).filter(([k]) => !['_id', 'consentGiven', 'attribution'].includes(k)).map(([k, v]) => {
                 if (v === null || v === undefined || v === '') return null;
                 const val = typeof v === 'object' ? JSON.stringify(v, null, 2) : String(v);
                 return (

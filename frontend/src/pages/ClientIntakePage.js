@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Check, ChevronRight, Upload, X, Phone, Mail } from 'lucide-react';
 import SEO from '../components/SEO';
+import { getAttribution } from '../utils/analytics';
 
 const API = process.env.REACT_APP_BACKEND_URL;
 
@@ -206,6 +207,7 @@ const ClientIntakePage = () => {
         totalEmployees: parseInt(f.totalEmployees) || 0,
         siteEmployees: parseInt(f.siteEmployees) || 0,
         uploadedFileUrls: uploadedUrls,
+        attribution: getAttribution(),
       };
 
       const res = await fetch(`${API}/api/intake/submit`, {

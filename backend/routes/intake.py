@@ -18,6 +18,61 @@ logger = logging.getLogger('gigline')
 UPLOAD_DIR = "/app/backend/intake_uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
+
+def _format_attribution_html(attribution: Optional[dict]) -> str:
+    """Render the UTM + referrer attribution block for the Vince notification email."""
+    if not attribution or not isinstance(attribution, dict):
+        return ""
+    first = attribution.get("firstTouch") or {}
+    last = attribution.get("lastTouch") or {}
+    if not first and not last:
+        return ""
+
+    def row(label, value):
+        if not value:
+            return ""
+        return (
+            f"<tr><td style='padding:3px 8px;color:#999;font-size:12px;'>{label}</td>"
+            f"<td style='padding:3px 8px;color:#E8B84B;font-size:12px;font-weight:bold;'>{value}</td></tr>"
+        )
+
+    first_rows = (
+        row("Source", first.get("utm_source"))
+        + row("Medium", first.get("utm_medium"))
+        + row("Campaign", first.get("utm_campaign"))
+        + row("Term", first.get("utm_term"))
+        + row("Content", first.get("utm_content"))
+        + row("Google Click ID", first.get("gclid"))
+        + row("Facebook Click ID", first.get("fbclid"))
+        + row("First landing", first.get("first_landing_path"))
+        + row("Captured at", first.get("captured_at"))
+    )
+    same_as_first = (
+        last
+        and first
+        and last.get("utm_source") == first.get("utm_source")
+        and last.get("utm_campaign") == first.get("utm_campaign")
+    )
+    last_rows = ""
+    if last and not same_as_first:
+        last_rows = (
+            row("Last source", last.get("utm_source"))
+            + row("Last medium", last.get("utm_medium"))
+            + row("Last campaign", last.get("utm_campaign"))
+        )
+
+    if not first_rows and not last_rows:
+        return ""
+
+    return (
+        "<h3 style='color:#E8B84B;font-size:14px;margin:16px 0 8px;'>ATTRIBUTION</h3>"
+        "<table style='border-collapse:collapse;width:100%;'>"
+        f"{first_rows}"
+        + (f"<tr><td colspan='2' style='padding:6px 8px 2px;color:#666;font-size:10px;text-transform:uppercase;letter-spacing:1px;'>Last touch (different)</td></tr>{last_rows}" if last_rows else "")
+        + "</table>"
+    )
+
+
 # ── Human-readable label maps for matrix keys ──
 PROGRAM_LABELS = {
     'hazcom': 'Hazard Communication (SDS, labels, training)',
@@ -218,6 +273,7 @@ class IntakeSubmission(BaseModel):
     preferredTime: str = ""
     referralSource: str = ""
     consentGiven: bool = False
+    attribution: Optional[dict] = None
 
 
 @router.post("/intake/upload")
@@ -342,6 +398,8 @@ async def submit_intake(data: IntakeSubmission):
       <p style="color:#ccc;margin:2px 0;"><strong>Preferred days:</strong> {', '.join(data.preferredDays) if data.preferredDays else 'Not provided'}</p>
       <p style="color:#ccc;margin:2px 0;"><strong>Preferred time:</strong> {data.preferredTime or 'Not provided'}</p>
       <p style="color:#ccc;margin:2px 0;"><strong>Referral source:</strong> {data.referralSource or 'Not provided'}</p>
+
+      {_format_attribution_html(data.attribution)}
     </div>
     """
 

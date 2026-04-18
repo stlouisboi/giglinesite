@@ -83,6 +83,19 @@ function getAttributionParams() {
   }
 }
 
+/** Returns the full first-touch + last-touch record for sending to backend. */
+export function getAttribution() {
+  if (typeof window === 'undefined') return null;
+  try {
+    const first = JSON.parse(window.localStorage.getItem(FIRST_TOUCH_KEY) || 'null');
+    const last = JSON.parse(window.localStorage.getItem(LAST_TOUCH_KEY) || 'null');
+    if (!first && !last) return null;
+    return { firstTouch: first, lastTouch: last };
+  } catch (_) {
+    return null;
+  }
+}
+
 /* ── Core tracking ── */
 
 /** Track a page view (called on route change) */

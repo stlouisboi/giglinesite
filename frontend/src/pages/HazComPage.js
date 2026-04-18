@@ -53,7 +53,7 @@ const HazComPage = () => {
       <section className="bg-[#102133] text-white py-16 md:py-24">
         <div className="container max-w-3xl">
           <p
-            className="text-xs font-semibold tracking-widest text-[#1F6FEB] uppercase mb-4"
+            className="text-xs font-semibold tracking-widest text-[#4A7CC9] uppercase mb-4"
             style={{ fontFamily: "'JetBrains Mono', monospace" }}
             data-testid="hazcom-label"
           >
@@ -67,9 +67,9 @@ const HazComPage = () => {
             HazCom Starter Pack
           </h1>
           <p className="text-xl md:text-2xl text-white/80 mb-8">
-            Small Shop Edition — <span className="text-[#1F6FEB] font-bold">$29</span>
+            Small Shop Edition — <span className="text-[#4A7CC9] font-bold">$29</span>
           </p>
-          <div className="border-l-2 border-[#1F6FEB] pl-6">
+          <div className="border-l-2 border-[#4A7CC9] pl-6">
             <p className="text-lg text-white/90 font-medium mb-2">
               #1 OSHA citation in general industry.
             </p>
@@ -96,7 +96,7 @@ const HazComPage = () => {
               'Training records that prove it happened',
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-3 text-[#102133]/70 text-base">
-                <span className="text-[#1F6FEB] font-bold mt-0.5">•</span>
+                <span className="text-[#4A7CC9] font-bold mt-0.5">•</span>
                 {item}
               </li>
             ))}
@@ -144,10 +144,10 @@ const HazComPage = () => {
               <div
                 key={doc.id}
                 className="bg-white border border-[#102133]/10 rounded p-6"
-                style={{ borderTop: '3px solid #1F6FEB' }}
+                style={{ borderTop: '3px solid #4A7CC9' }}
                 data-testid={`hazcom-card-${doc.id}`}
               >
-                <doc.icon size={28} className="text-[#1F6FEB] mb-4" />
+                <doc.icon size={28} className="text-[#4A7CC9] mb-4" />
                 <p
                   className="text-[10px] font-semibold tracking-widest text-[#102133]/40 uppercase mb-2"
                   style={{ fontFamily: "'JetBrains Mono', monospace" }}
@@ -155,7 +155,7 @@ const HazComPage = () => {
                   {doc.id}
                 </p>
                 <h3 className="text-base font-bold text-[#102133] mb-1">{doc.title}</h3>
-                <p className="text-xs text-[#1F6FEB] font-medium mb-3">{doc.pages}</p>
+                <p className="text-xs text-[#4A7CC9] font-medium mb-3">{doc.pages}</p>
                 <p className="text-sm text-[#102133]/60 leading-relaxed">{doc.desc}</p>
               </div>
             ))}
@@ -180,7 +180,7 @@ const HazComPage = () => {
           <button
             onClick={handleCheckout}
             disabled={isLoading}
-            className="bg-[#1F6FEB] hover:bg-[#1558C0] text-[#102133] font-bold text-lg px-10 py-4 rounded transition-colors disabled:opacity-50 inline-flex items-center gap-2"
+            className="bg-[#4A7CC9] hover:bg-[#3B6AB5] text-[#102133] font-bold text-lg px-10 py-4 rounded transition-colors disabled:opacity-50 inline-flex items-center gap-2"
             data-testid="hazcom-buy-button"
           >
             {isLoading ? 'Redirecting...' : 'Buy Now — $29'}
@@ -196,10 +196,10 @@ const HazComPage = () => {
       {/* Walkthrough Callout */}
       <section className="py-12 bg-[#F9F8F6]">
         <div className="container max-w-2xl">
-          <div className="border border-[#1F6FEB]/20 bg-white rounded-lg p-6 md:p-8 text-center" data-testid="hazcom-walkthrough-callout">
+          <div className="border border-[#4A7CC9]/20 bg-white rounded-lg p-6 md:p-8 text-center" data-testid="hazcom-walkthrough-callout">
             <p className="text-lg font-bold text-[#102133] mb-2">Not sure if these violations exist in your shop?</p>
             <p className="text-sm text-[#102133]/60 mb-5">A GigLine Safety Walkthrough will flag them with photos and a prioritized fix list — usually within 48 hours.</p>
-            <Link to="/request-walkthrough" className="inline-flex items-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-6 py-3 rounded transition-colors">
+            <Link to="/request-walkthrough" className="inline-flex items-center gap-2 bg-[#4A7CC9] hover:bg-[#3B6AB5] text-white font-bold px-6 py-3 rounded transition-colors">
               Request a Safety Walkthrough <ArrowRight size={16} />
             </Link>
           </div>

@@ -196,7 +196,7 @@ const BlogOSHAViolations = () => {
       <section className="bg-[#102133] text-white py-16 md:py-24">
         <div className="container max-w-3xl">
           <p
-            className="text-xs font-semibold tracking-widest text-[#1F6FEB] uppercase mb-4"
+            className="text-xs font-semibold tracking-widest text-[#4A7CC9] uppercase mb-4"
             style={{ fontFamily: "'JetBrains Mono', monospace" }}
           >
             COMPLIANCE GUIDE
@@ -224,12 +224,12 @@ const BlogOSHAViolations = () => {
       {/* Quick Summary */}
       <section className="py-10 border-b border-[#102133]/10">
         <div className="container max-w-3xl">
-          <div className="bg-[#F9F8F6] border-l-3 border-[#1F6FEB] p-6 rounded" style={{ borderLeft: '3px solid #1F6FEB' }}>
+          <div className="bg-[#F9F8F6] border-l-3 border-[#4A7CC9] p-6 rounded" style={{ borderLeft: '3px solid #4A7CC9' }}>
             <h2 className="text-base font-bold text-[#102133] mb-3">The Five Standards</h2>
             <ol className="space-y-2">
               {violations.map((v) => (
                 <li key={v.num} className="flex items-start gap-3 text-sm text-[#102133]/70">
-                  <span className="font-bold text-[#1F6FEB] flex-shrink-0">{v.num}.</span>
+                  <span className="font-bold text-[#4A7CC9] flex-shrink-0">{v.num}.</span>
                   <span><strong className="text-[#102133]">{v.title}</strong> — <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px' }}>{v.cfr}</span></span>
                 </li>
               ))}
@@ -306,7 +306,7 @@ const BlogOSHAViolations = () => {
             {v.cta && (
               <Link
                 to={v.cta.to}
-                className="inline-flex items-center gap-2 text-sm text-[#1558C0] font-medium hover:underline mb-4"
+                className="inline-flex items-center gap-2 text-sm text-[#3B6AB5] font-medium hover:underline mb-4"
               >
                 {v.cta.text} <ArrowRight size={14} />
               </Link>
@@ -316,7 +316,7 @@ const BlogOSHAViolations = () => {
               <div className="mb-8">
                 <Link
                   to={v.deepLink.to}
-                  className="inline-flex items-center gap-2 text-xs text-[#102133]/50 hover:text-[#1558C0] transition-colors"
+                  className="inline-flex items-center gap-2 text-xs text-[#102133]/50 hover:text-[#3B6AB5] transition-colors"
                 >
                   {v.deepLink.text}
                 </Link>
@@ -342,7 +342,7 @@ const BlogOSHAViolations = () => {
                 <ul className="space-y-2">
                   {v.requires.map((item, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm text-[#102133]/70">
-                      <span className="text-[#1F6FEB] mt-0.5 flex-shrink-0 text-xs">&#x2713;</span>
+                      <span className="text-[#4A7CC9] mt-0.5 flex-shrink-0 text-xs">&#x2713;</span>
                       {item}
                     </li>
                   ))}
@@ -404,7 +404,7 @@ const BlogOSHAViolations = () => {
               "Lockout/Tagout procedures exist only verbally",
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-3 text-sm text-[#102133]/70">
-                <span className="text-[#1F6FEB] font-bold">•</span>
+                <span className="text-[#4A7CC9] font-bold">•</span>
                 {item}
               </li>
             ))}
@@ -427,36 +427,36 @@ const BlogOSHAViolations = () => {
           <div className="space-y-4 mb-10">
             <Link
               to="/safety-check"
-              className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#1F6FEB]/40 transition-colors group"
+              className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#4A7CC9]/40 transition-colors group"
               data-testid="blog-cta-safety-check"
             >
               <div>
-                <p className="font-medium text-white group-hover:text-[#1F6FEB] transition-colors text-sm">Run the GigLine Safety Check</p>
+                <p className="font-medium text-white group-hover:text-[#4A7CC9] transition-colors text-sm">Run the GigLine Safety Check</p>
                 <p className="text-xs text-white/50 mt-1">Free 90-second self-assessment</p>
               </div>
-              <ArrowRight size={18} className="text-white/30 group-hover:text-[#1F6FEB] transition-colors flex-shrink-0" />
+              <ArrowRight size={18} className="text-white/30 group-hover:text-[#4A7CC9] transition-colors flex-shrink-0" />
             </Link>
             <Link
               to="/contact"
-              className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#1F6FEB]/40 transition-colors group"
+              className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#4A7CC9]/40 transition-colors group"
               data-testid="blog-cta-contact"
             >
               <div>
-                <p className="font-medium text-white group-hover:text-[#1F6FEB] transition-colors text-sm">Request a Safety Walkthrough</p>
+                <p className="font-medium text-white group-hover:text-[#4A7CC9] transition-colors text-sm">Request a Safety Walkthrough</p>
                 <p className="text-xs text-white/50 mt-1">On-site review starting at $650</p>
               </div>
-              <ArrowRight size={18} className="text-white/30 group-hover:text-[#1F6FEB] transition-colors flex-shrink-0" />
+              <ArrowRight size={18} className="text-white/30 group-hover:text-[#4A7CC9] transition-colors flex-shrink-0" />
             </Link>
             <Link
               to="/hazcom"
-              className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#1F6FEB]/40 transition-colors group"
+              className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#4A7CC9]/40 transition-colors group"
               data-testid="blog-cta-hazcom"
             >
               <div>
-                <p className="font-medium text-white group-hover:text-[#1F6FEB] transition-colors text-sm">HazCom Starter Pack</p>
+                <p className="font-medium text-white group-hover:text-[#4A7CC9] transition-colors text-sm">HazCom Starter Pack</p>
                 <p className="text-xs text-white/50 mt-1">Written program, SDS checklist, training log — $29</p>
               </div>
-              <ArrowRight size={18} className="text-white/30 group-hover:text-[#1F6FEB] transition-colors flex-shrink-0" />
+              <ArrowRight size={18} className="text-white/30 group-hover:text-[#4A7CC9] transition-colors flex-shrink-0" />
             </Link>
           </div>
         </div>
@@ -465,10 +465,10 @@ const BlogOSHAViolations = () => {
       {/* Walkthrough Callout */}
       <section className="py-12 bg-[#F9F8F6]">
         <div className="container max-w-3xl">
-          <div className="border border-[#1F6FEB]/20 bg-white rounded-lg p-6 md:p-8 text-center" data-testid="blog-walkthrough-callout">
+          <div className="border border-[#4A7CC9]/20 bg-white rounded-lg p-6 md:p-8 text-center" data-testid="blog-walkthrough-callout">
             <p className="text-lg font-bold text-[#102133] mb-2">Not sure if these violations exist in your shop?</p>
             <p className="text-sm text-[#102133]/60 mb-5">A GigLine Safety Walkthrough will flag them with photos and a prioritized fix list — usually within 48 hours.</p>
-            <Link to="/request-walkthrough" className="inline-flex items-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-6 py-3 rounded transition-colors">
+            <Link to="/request-walkthrough" className="inline-flex items-center gap-2 bg-[#4A7CC9] hover:bg-[#3B6AB5] text-white font-bold px-6 py-3 rounded transition-colors">
               Request a Safety Walkthrough <ArrowRight size={16} />
             </Link>
           </div>
@@ -488,9 +488,9 @@ const BlogOSHAViolations = () => {
               <p className="text-xs text-[#102133]/50">
                 GigLine Safety & Compliance — Kernersville, NC{' '}
                 <span className="text-[#102133]/30 mx-1">|</span>
-                <a href="tel:3363298899" className="text-[#1558C0] hover:underline">(336) 329-8899</a>
+                <a href="tel:3363298899" className="text-[#3B6AB5] hover:underline">(336) 329-8899</a>
                 <span className="text-[#102133]/30 mx-1">|</span>
-                <a href="mailto:vince@giglinecompliance.com" className="text-[#1558C0] hover:underline">vince@giglinecompliance.com</a>
+                <a href="mailto:vince@giglinecompliance.com" className="text-[#3B6AB5] hover:underline">vince@giglinecompliance.com</a>
               </p>
               <p className="text-xs text-[#102133]/40 mt-2 italic">
                 Penalty amounts reflect January 2025 OSHA adjustments and are subject to annual increases.

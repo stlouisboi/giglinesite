@@ -66,7 +66,7 @@ const IntakePage = () => {
           {!submitted ? (
             <>
               {/* Header */}
-              <p className="font-mono text-xs tracking-[3px] uppercase text-[#1F6FEB] mb-4" data-testid="intake-label">
+              <p className="font-mono text-xs tracking-[3px] uppercase text-[#4A7CC9] mb-4" data-testid="intake-label">
                 Get Started
               </p>
               <h1 className="font-serif text-4xl md:text-5xl font-bold text-white leading-tight mb-4" data-testid="intake-headline">
@@ -80,7 +80,7 @@ const IntakePage = () => {
               </p>
 
               {/* Qualifier */}
-              <div className="border-l-2 border-[#1F6FEB]/40 pl-4 mb-10">
+              <div className="border-l-2 border-[#4A7CC9]/40 pl-4 mb-10">
                 <p className="text-sm text-white/40 italic">
                   Walkthroughs are best suited for active operations with 5+ employees or ongoing production.
                 </p>
@@ -92,7 +92,7 @@ const IntakePage = () => {
                   <label className="block text-sm text-white/60 mb-1.5 font-mono tracking-wide uppercase" htmlFor="name">Name</label>
                   <input
                     id="name" name="name" required value={form.name} onChange={handleChange}
-                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3 rounded focus:outline-none focus:border-[#1F6FEB] transition-colors placeholder:text-white/30"
+                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3 rounded focus:outline-none focus:border-[#4A7CC9] transition-colors placeholder:text-white/30"
                     placeholder="Your name"
                     data-testid="intake-name"
                   />
@@ -102,7 +102,7 @@ const IntakePage = () => {
                   <label className="block text-sm text-white/60 mb-1.5 font-mono tracking-wide uppercase" htmlFor="company">Company</label>
                   <input
                     id="company" name="company" required value={form.company} onChange={handleChange}
-                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3 rounded focus:outline-none focus:border-[#1F6FEB] transition-colors placeholder:text-white/30"
+                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3 rounded focus:outline-none focus:border-[#4A7CC9] transition-colors placeholder:text-white/30"
                     placeholder="Company or operation name"
                     data-testid="intake-company"
                   />
@@ -112,7 +112,7 @@ const IntakePage = () => {
                   <label className="block text-sm text-white/60 mb-1.5 font-mono tracking-wide uppercase" htmlFor="operation_type">Type of Operation</label>
                   <select
                     id="operation_type" name="operation_type" required value={form.operation_type} onChange={handleChange}
-                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3 rounded focus:outline-none focus:border-[#1F6FEB] transition-colors appearance-none"
+                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3 rounded focus:outline-none focus:border-[#4A7CC9] transition-colors appearance-none"
                     data-testid="intake-operation-type"
                   >
                     <option value="" disabled className="bg-[#0B1F33]">Select operation type</option>
@@ -126,7 +126,7 @@ const IntakePage = () => {
                   <label className="block text-sm text-white/60 mb-1.5 font-mono tracking-wide uppercase" htmlFor="location">Location</label>
                   <input
                     id="location" name="location" required value={form.location} onChange={handleChange}
-                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3 rounded focus:outline-none focus:border-[#1F6FEB] transition-colors placeholder:text-white/30"
+                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3 rounded focus:outline-none focus:border-[#4A7CC9] transition-colors placeholder:text-white/30"
                     placeholder="City, State"
                     data-testid="intake-location"
                   />
@@ -138,7 +138,7 @@ const IntakePage = () => {
                   </label>
                   <textarea
                     id="description" name="description" rows={4} value={form.description} onChange={handleChange}
-                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3 rounded focus:outline-none focus:border-[#1F6FEB] transition-colors placeholder:text-white/30 resize-none"
+                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3 rounded focus:outline-none focus:border-[#4A7CC9] transition-colors placeholder:text-white/30 resize-none"
                     placeholder="Optional — share anything that would help us prepare."
                     data-testid="intake-description"
                   />
@@ -148,7 +148,7 @@ const IntakePage = () => {
 
                 <button
                   type="submit" disabled={submitting}
-                  className="w-full bg-[#1F6FEB] text-[#0B1F33] font-mono font-bold uppercase tracking-wider text-sm px-8 py-4 hover:bg-[#1558C0] transition-colors inline-flex items-center justify-center gap-2 disabled:opacity-50"
+                  className="w-full bg-[#4A7CC9] text-[#0B1F33] font-mono font-bold uppercase tracking-wider text-sm px-8 py-4 hover:bg-[#3B6AB5] transition-colors inline-flex items-center justify-center gap-2 disabled:opacity-50"
                   data-testid="intake-submit"
                 >
                   {submitting ? 'Submitting...' : 'Submit Request'}
@@ -159,14 +159,14 @@ const IntakePage = () => {
               {/* Contact fallback */}
               <p className="text-center text-sm text-white/30 mt-6">
                 Prefer to talk? Call{' '}
-                <a href="tel:3363298899" className="text-[#1F6FEB] hover:text-white transition-colors">(336) 329-8899</a>
+                <a href="tel:3363298899" className="text-[#4A7CC9] hover:text-white transition-colors">(336) 329-8899</a>
               </p>
             </>
           ) : (
             /* ── POST-SUBMIT: Thank You + Calendly ── */
             <div className="text-center" data-testid="intake-success">
-              <div className="w-16 h-16 rounded-full bg-[#1F6FEB]/20 flex items-center justify-center mx-auto mb-6">
-                <Check size={32} className="text-[#1F6FEB]" />
+              <div className="w-16 h-16 rounded-full bg-[#4A7CC9]/20 flex items-center justify-center mx-auto mb-6">
+                <Check size={32} className="text-[#4A7CC9]" />
               </div>
 
               <h2 className="font-serif text-3xl md:text-4xl font-bold text-white mb-4">
@@ -196,7 +196,7 @@ const IntakePage = () => {
                   href={CALENDLY_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-[#1F6FEB] text-[#0B1F33] font-mono font-bold uppercase tracking-wider text-sm px-8 py-4 hover:bg-[#1558C0] transition-colors inline-flex items-center gap-2"
+                  className="bg-[#4A7CC9] text-[#0B1F33] font-mono font-bold uppercase tracking-wider text-sm px-8 py-4 hover:bg-[#3B6AB5] transition-colors inline-flex items-center gap-2"
                   data-testid="calendly-cta"
                 >
                   <Calendar size={16} />

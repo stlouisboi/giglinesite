@@ -155,7 +155,7 @@ const HomePage = () => {
           <div className="w-full md:w-2/5 flex items-center px-6 md:px-14 lg:px-20 py-12 md:py-0 relative z-10">
             <Reveal>
               <p
-                className="uppercase tracking-[3px] text-[#2A9D8F] mb-5"
+                className="uppercase tracking-[3px] text-[#4A7CC9] mb-5"
                 style={{ ...mono, fontSize: '11px' }}
                 data-testid="hero-label"
               >
@@ -169,7 +169,7 @@ const HomePage = () => {
                 If OSHA Walked In Tomorrow,{' '}
                 <span className="block mt-3">
                   Would You{' '}
-                  <span style={{ borderBottom: '2px solid #1F6FEB', paddingBottom: '2px' }}>Pass</span>?
+                  <span style={{ borderBottom: '2px solid #4A7CC9', paddingBottom: '2px' }}>Pass</span>?
                 </span>
               </h1>
 
@@ -189,7 +189,7 @@ const HomePage = () => {
               <div className="flex flex-col items-start gap-4 mb-6" data-testid="hero-ctas">
                 <Link
                   to="/safety-check"
-                  className="bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center gap-2 shadow-lg shadow-[#1F6FEB]/20"
+                  className="bg-[#4A7CC9] hover:bg-[#3B6AB5] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center gap-2 shadow-lg shadow-[#4A7CC9]/20"
                   data-testid="hero-cta-primary"
                 >
                   Take the Free 90-Second Safety Check
@@ -217,7 +217,7 @@ const HomePage = () => {
         <div className="container max-w-6xl">
           <Reveal>
             <p
-              className="uppercase tracking-[3px] text-[#2A9D8F] mb-4"
+              className="uppercase tracking-[3px] text-[#4A7CC9] mb-4"
               style={{ ...mono, fontSize: '11px' }}
             >
               The Reality
@@ -255,7 +255,7 @@ const HomePage = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
                   <div className="absolute bottom-0 left-0 p-5">
                     <p
-                      className="text-xs uppercase tracking-[2px] text-[#1F6FEB] mb-1"
+                      className="text-xs uppercase tracking-[2px] text-[#4A7CC9] mb-1"
                       style={mono}
                     >
                       {item.label}
@@ -323,11 +323,11 @@ const HomePage = () => {
               </p>
 
               {/* Gold divider — visual entry point */}
-              <div className="w-12 h-[2px] mx-auto mb-8" style={{ backgroundColor: '#1F6FEB' }} />
+              <div className="w-12 h-[2px] mx-auto mb-8" style={{ backgroundColor: 'rgba(74,124,201,0.4)' }} />
 
               {/* Main headline — bold, gold, largest */}
               <p
-                className="text-2xl sm:text-3xl md:text-[44px] font-bold text-[#1F6FEB] leading-[1.15] tracking-tight mb-6"
+                className="text-2xl sm:text-3xl md:text-[44px] font-bold text-white leading-[1.15] tracking-tight mb-6"
                 data-testid="statement-headline"
               >
                 THIS IS NOT A FULL AUDIT.
@@ -366,7 +366,7 @@ const HomePage = () => {
           {/* Section label */}
           <Reveal>
             <p
-              className="uppercase tracking-[3px] text-[#2A9D8F] mb-4"
+              className="uppercase tracking-[3px] text-[#4A7CC9] mb-4"
               style={{ ...mono, fontSize: '11px' }}
             >
               Client Review
@@ -390,7 +390,7 @@ const HomePage = () => {
                 >
                   {/* Large decorative quote mark */}
                   <span
-                    className="absolute -top-6 -left-2 text-[120px] md:text-[160px] leading-none text-[#1F6FEB]/10 select-none pointer-events-none"
+                    className="absolute -top-6 -left-2 text-[120px] md:text-[160px] leading-none text-[#4A7CC9]/10 select-none pointer-events-none"
                     aria-hidden="true"
                     style={{ fontFamily: 'Georgia, serif' }}
                   >
@@ -403,13 +403,13 @@ const HomePage = () => {
                   </p>
 
                   {/* Gold divider */}
-                  <div className="w-16 h-[2px] mb-8" style={{ backgroundColor: '#1F6FEB' }} />
+                  <div className="w-16 h-[2px] mb-8" style={{ backgroundColor: '#4A7CC9' }} />
 
                   {/* Full review — glass card */}
                   <div
                     className="rounded-lg p-6 md:p-8"
                     style={{
-                      background: 'rgba(255,255,255,0.05)',
+                      background: 'rgba(255,255,255,0.08)',
                       border: '1px solid rgba(31,111,235,0.15)',
                       backdropFilter: 'blur(8px)',
                     }}
@@ -421,7 +421,7 @@ const HomePage = () => {
 
                   {/* Attribution */}
                   <div className="mt-6 flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold text-[#0B1F33]" style={{ backgroundColor: '#1F6FEB' }}>
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold text-[#0B1F33]" style={{ backgroundColor: '#4A7CC9' }}>
                       DA
                     </div>
                     <div>
@@ -440,13 +440,13 @@ const HomePage = () => {
                 <div
                   className="rounded-lg p-6 md:p-8 group hover:scale-[1.02] transition-transform duration-300"
                   style={{
-                    background: 'rgba(255,255,255,0.03)',
+                    background: 'rgba(255,255,255,0.06)',
                     border: '1px solid rgba(31,111,235,0.15)',
                   }}
                   data-testid="testimonial-card-2"
                 >
                   <p
-                    className="text-4xl md:text-5xl font-bold text-[#1F6FEB] mb-2 tracking-tight"
+                    className="text-4xl md:text-5xl font-bold text-[#4A7CC9] mb-2 tracking-tight"
                     data-testid="outcome-stat-1"
                   >
                     6–10
@@ -468,13 +468,13 @@ const HomePage = () => {
                 <div
                   className="rounded-lg p-6 md:p-8 group hover:scale-[1.02] transition-transform duration-300"
                   style={{
-                    background: 'rgba(255,255,255,0.03)',
+                    background: 'rgba(255,255,255,0.06)',
                     border: '1px solid rgba(31,111,235,0.15)',
                   }}
                   data-testid="testimonial-card-3"
                 >
                   <p
-                    className="text-4xl md:text-5xl font-bold text-[#1F6FEB] mb-2 tracking-tight"
+                    className="text-4xl md:text-5xl font-bold text-[#4A7CC9] mb-2 tracking-tight"
                     data-testid="outcome-stat-2"
                   >
                     24–48 hrs
@@ -517,7 +517,7 @@ const HomePage = () => {
             <div className="md:w-2/5">
               <Reveal>
                 <p
-                  className="uppercase tracking-[3px] text-[#2A9D8F] mb-4"
+                  className="uppercase tracking-[3px] text-[#4A7CC9] mb-4"
                   style={{ ...mono, fontSize: '11px' }}
                 >
                   The Process
@@ -551,7 +551,7 @@ const HomePage = () => {
                       data-testid={`process-step-${i}`}
                     >
                       <span
-                        className="flex-shrink-0 mt-0.5 text-[#1F6FEB] font-semibold"
+                        className="flex-shrink-0 mt-0.5 text-[#4A7CC9] font-semibold"
                         style={{ ...mono, fontSize: '13px' }}
                       >
                         {step.num}
@@ -579,7 +579,7 @@ const HomePage = () => {
             <div className="md:w-2/5">
               <Reveal>
                 <p
-                  className="uppercase tracking-[3px] text-[#2A9D8F] mb-4"
+                  className="uppercase tracking-[3px] text-[#4A7CC9] mb-4"
                   style={{ ...mono, fontSize: '11px' }}
                 >
                   What You Get
@@ -609,7 +609,7 @@ const HomePage = () => {
                     'No retainer, no recurring fee',
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-4" data-testid={`deliverable-${i}`}>
-                      <Check size={18} className="flex-shrink-0 mt-0.5 text-[#1F6FEB]" strokeWidth={2.5} />
+                      <Check size={18} className="flex-shrink-0 mt-0.5 text-[#4A7CC9]" strokeWidth={2.5} />
                       <p className="text-base text-white/70">{item}</p>
                     </div>
                   ))}
@@ -630,7 +630,7 @@ const HomePage = () => {
             <div className="md:w-2/5">
               <Reveal>
                 <p
-                  className="uppercase tracking-[3px] text-[#2A9D8F] mb-4"
+                  className="uppercase tracking-[3px] text-[#4A7CC9] mb-4"
                   style={{ ...mono, fontSize: '11px' }}
                 >
                   The Difference
@@ -676,9 +676,9 @@ const HomePage = () => {
                   </div>
 
                   {/* GigLine column */}
-                  <div className="p-5 rounded border-2 border-[#2A9D8F]/20" style={{ backgroundColor: '#FDFBF5' }}>
+                  <div className="p-5 rounded border-2 border-[#4A7CC9]/20" style={{ backgroundColor: '#FDFBF5' }}>
                     <p
-                      className="text-xs font-semibold tracking-widest text-[#1F6FEB] uppercase mb-5"
+                      className="text-xs font-semibold tracking-widest text-[#4A7CC9] uppercase mb-5"
                       style={mono}
                     >
                       GigLine
@@ -690,7 +690,7 @@ const HomePage = () => {
                         'Gives priorities you can act on this week',
                       ].map((item, i) => (
                         <div key={i} className="flex items-start gap-2">
-                          <Check size={15} className="flex-shrink-0 mt-0.5 text-[#1F6FEB]" strokeWidth={3} />
+                          <Check size={15} className="flex-shrink-0 mt-0.5 text-[#4A7CC9]" strokeWidth={3} />
                           <p className="text-base text-[#102133] font-bold">{item}</p>
                         </div>
                       ))}
@@ -755,7 +755,7 @@ const HomePage = () => {
             <div className="flex-grow">
               <Reveal>
                 <p
-                  className="uppercase tracking-[3px] text-[#2A9D8F] mb-4"
+                  className="uppercase tracking-[3px] text-[#4A7CC9] mb-4"
                   style={{ ...mono, fontSize: '11px' }}
                 >
                   About
@@ -772,7 +772,7 @@ const HomePage = () => {
                   {['Navy Veteran', 'Safety Coordinator'].map((pill) => (
                     <span
                       key={pill}
-                      className="inline-flex items-center px-3 py-1 rounded text-[#1F6FEB] border border-[#2A9D8F]/30"
+                      className="inline-flex items-center px-3 py-1 rounded text-[#4A7CC9] border border-[#4A7CC9]/30"
                       style={{ ...mono, fontSize: '11px' }}
                     >
                       {pill}
@@ -832,7 +832,7 @@ const HomePage = () => {
         <div className="container max-w-3xl">
           <Reveal>
             <p
-              className="uppercase tracking-[3px] text-[#2A9D8F] mb-4"
+              className="uppercase tracking-[3px] text-[#4A7CC9] mb-4"
               style={{ ...mono, fontSize: '11px' }}
             >
               Common Questions
@@ -889,7 +889,7 @@ const HomePage = () => {
         <div className="container max-w-4xl">
           <div className="rounded-lg px-6 py-8 md:px-10 md:py-10 text-center" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
             <p
-              className="uppercase tracking-[3px] text-[#2A9D8F] mb-4"
+              className="uppercase tracking-[3px] text-[#4A7CC9] mb-4"
               style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }}
             >
               Service Area
@@ -925,7 +925,7 @@ const HomePage = () => {
             >
               <Link
                 to="/request-walkthrough"
-                className="bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded transition-colors inline-flex items-center gap-2 shadow-lg shadow-[#1F6FEB]/20"
+                className="bg-[#4A7CC9] hover:bg-[#3B6AB5] text-white font-bold px-8 py-4 rounded transition-colors inline-flex items-center gap-2 shadow-lg shadow-[#4A7CC9]/20"
                 data-testid="final-cta-walkthrough"
               >
                 Request a Walkthrough
@@ -953,7 +953,7 @@ const HomePage = () => {
             <p className="mb-2">
               <a
                 href="tel:3363298899"
-                className="text-[#1F6FEB] hover:text-white transition-colors text-2xl font-bold tracking-wide"
+                className="text-[#4A7CC9] hover:text-white transition-colors text-2xl font-bold tracking-wide"
                 data-testid="final-phone"
               >
                 (336) 329-8899
@@ -962,7 +962,7 @@ const HomePage = () => {
             <p>
               <a
                 href="mailto:vince@giglinecompliance.com"
-                className="text-white/75 hover:text-[#1F6FEB] transition-colors text-sm"
+                className="text-white/75 hover:text-[#4A7CC9] transition-colors text-sm"
                 data-testid="final-email"
               >
                 vince@giglinecompliance.com

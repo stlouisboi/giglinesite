@@ -130,7 +130,7 @@ const BlogHazComRequirements = () => {
       {/* Hero */}
       <section className="bg-[#102133] text-white py-16 md:py-24">
         <div className="container max-w-3xl">
-          <p className="text-xs font-semibold tracking-widest text-[#1F6FEB] uppercase mb-4" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+          <p className="text-xs font-semibold tracking-widest text-[#4A7CC9] uppercase mb-4" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
             COMPLIANCE GUIDE
           </p>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }} data-testid="blog-hazcom-headline">
@@ -170,7 +170,7 @@ const BlogHazComRequirements = () => {
               { id: "getting-started", label: "Getting started" },
             ].map((item) => (
               <li key={item.id}>
-                <a href={`#${item.id}`} className="text-sm text-[#102133]/60 hover:text-[#1558C0] transition-colors">
+                <a href={`#${item.id}`} className="text-sm text-[#102133]/60 hover:text-[#3B6AB5] transition-colors">
                   {item.label}
                 </a>
               </li>
@@ -194,7 +194,7 @@ const BlogHazComRequirements = () => {
           <ol className="space-y-2 mb-6">
             {["A written Hazard Communication program", "Safety Data Sheets (SDS) for every hazardous chemical", "Proper labels on all chemical containers", "Documented employee training"].map((item, i) => (
               <li key={i} className="flex items-start gap-3 text-sm text-[#102133]/70">
-                <span className="font-bold text-[#1F6FEB] flex-shrink-0">{i + 1}.</span>
+                <span className="font-bold text-[#4A7CC9] flex-shrink-0">{i + 1}.</span>
                 {item}
               </li>
             ))}
@@ -219,7 +219,7 @@ const BlogHazComRequirements = () => {
           <ul className="space-y-2 mb-6">
             {["Hazard classification criteria", "Label elements (pictograms, signal words, hazard statements)", "Safety Data Sheet format (16 sections)"].map((item, i) => (
               <li key={i} className="flex items-start gap-2 text-sm text-[#102133]/70">
-                <span className="text-[#1F6FEB] font-bold">•</span>{item}
+                <span className="text-[#4A7CC9] font-bold">•</span>{item}
               </li>
             ))}
           </ul>
@@ -240,9 +240,9 @@ const BlogHazComRequirements = () => {
           </p>
           <div className="space-y-8">
             {fourRequirements.map((req) => (
-              <div key={req.num} className="bg-white border border-[#102133]/10 rounded p-6" style={{ borderTop: '3px solid #1F6FEB' }}>
+              <div key={req.num} className="bg-white border border-[#102133]/10 rounded p-6" style={{ borderTop: '3px solid #4A7CC9' }}>
                 <div className="flex items-start gap-3 mb-4">
-                  <req.icon size={22} className="text-[#1F6FEB] flex-shrink-0 mt-0.5" />
+                  <req.icon size={22} className="text-[#4A7CC9] flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="text-xs text-[#102133]/40 font-semibold tracking-widest uppercase" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
                       {req.cfr}
@@ -254,13 +254,13 @@ const BlogHazComRequirements = () => {
                 <ul className="space-y-2">
                   {req.items.map((item, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm text-[#102133]/60">
-                      <span className="text-[#1F6FEB] mt-0.5 flex-shrink-0 text-xs">&#x2713;</span>
+                      <span className="text-[#4A7CC9] mt-0.5 flex-shrink-0 text-xs">&#x2713;</span>
                       {item}
                     </li>
                   ))}
                 </ul>
                 {req.exception && (
-                  <div className="mt-5 bg-[#F9F8F6] border-l-2 border-[#1F6FEB] p-4 rounded-r">
+                  <div className="mt-5 bg-[#F9F8F6] border-l-2 border-[#4A7CC9] p-4 rounded-r">
                     <h4 className="text-sm font-bold text-[#102133] mb-2">{req.exception.title}</h4>
                     <p className="text-xs text-[#102133]/60 leading-relaxed">{req.exception.text}</p>
                   </div>
@@ -333,7 +333,7 @@ const BlogHazComRequirements = () => {
           <p className="text-sm text-[#102133]/60 mb-4">
             The written program must be available to employees upon request and must be reviewed and updated when chemicals or processes change.
           </p>
-          <Link to="/hazcom" className="inline-flex items-center gap-2 text-sm text-[#1558C0] font-medium hover:underline">
+          <Link to="/hazcom" className="inline-flex items-center gap-2 text-sm text-[#3B6AB5] font-medium hover:underline">
             Get a ready-made written HazCom program — $29 <ArrowRight size={14} />
           </Link>
         </div>
@@ -348,7 +348,7 @@ const BlogHazComRequirements = () => {
           <ul className="space-y-2 mb-6">
             {["Employees can access SDS without asking permission", "SDS are available in the work area or can be immediately obtained", "Electronic access is acceptable if employees can retrieve SDS without delay"].map((item, i) => (
               <li key={i} className="flex items-start gap-2 text-sm text-[#102133]/70">
-                <span className="text-[#1F6FEB] font-bold">•</span>{item}
+                <span className="text-[#4A7CC9] font-bold">•</span>{item}
               </li>
             ))}
           </ul>
@@ -490,7 +490,7 @@ const BlogHazComRequirements = () => {
               { title: "Maintain", desc: "Update the chemical inventory and SDS when products change. Train new employees before they work with chemicals." },
             ].map((step, i) => (
               <li key={i} className="flex items-start gap-4">
-                <span className="bg-[#1F6FEB] text-white text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">{i + 1}</span>
+                <span className="bg-[#4A7CC9] text-white text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">{i + 1}</span>
                 <div>
                   <p className="font-semibold text-[#102133] text-sm">{step.title}</p>
                   <p className="text-sm text-[#102133]/60">{step.desc}</p>
@@ -508,26 +508,26 @@ const BlogHazComRequirements = () => {
             Related Resources
           </h2>
           <div className="space-y-4 mb-10">
-            <Link to="/hazcom" className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#1F6FEB]/40 transition-colors group" data-testid="hazcom-blog-cta-pack">
+            <Link to="/hazcom" className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#4A7CC9]/40 transition-colors group" data-testid="hazcom-blog-cta-pack">
               <div>
-                <p className="font-medium text-white group-hover:text-[#1F6FEB] transition-colors text-sm">HazCom Starter Pack — $29</p>
+                <p className="font-medium text-white group-hover:text-[#4A7CC9] transition-colors text-sm">HazCom Starter Pack — $29</p>
                 <p className="text-xs text-white/50 mt-1">Written program, SDS checklist, training log. Fill in your company name and print.</p>
               </div>
-              <ArrowRight size={18} className="text-white/30 group-hover:text-[#1F6FEB] transition-colors flex-shrink-0" />
+              <ArrowRight size={18} className="text-white/30 group-hover:text-[#4A7CC9] transition-colors flex-shrink-0" />
             </Link>
-            <Link to="/safety-check" className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#1F6FEB]/40 transition-colors group">
+            <Link to="/safety-check" className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#4A7CC9]/40 transition-colors group">
               <div>
-                <p className="font-medium text-white group-hover:text-[#1F6FEB] transition-colors text-sm">Run the Safety Check</p>
+                <p className="font-medium text-white group-hover:text-[#4A7CC9] transition-colors text-sm">Run the Safety Check</p>
                 <p className="text-xs text-white/50 mt-1">Free 90-second assessment to identify HazCom gaps</p>
               </div>
-              <ArrowRight size={18} className="text-white/30 group-hover:text-[#1F6FEB] transition-colors flex-shrink-0" />
+              <ArrowRight size={18} className="text-white/30 group-hover:text-[#4A7CC9] transition-colors flex-shrink-0" />
             </Link>
-            <Link to="/contact" className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#1F6FEB]/40 transition-colors group">
+            <Link to="/contact" className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#4A7CC9]/40 transition-colors group">
               <div>
-                <p className="font-medium text-white group-hover:text-[#1F6FEB] transition-colors text-sm">Request a Walkthrough</p>
+                <p className="font-medium text-white group-hover:text-[#4A7CC9] transition-colors text-sm">Request a Walkthrough</p>
                 <p className="text-xs text-white/50 mt-1">On-site review starting at $650</p>
               </div>
-              <ArrowRight size={18} className="text-white/30 group-hover:text-[#1F6FEB] transition-colors flex-shrink-0" />
+              <ArrowRight size={18} className="text-white/30 group-hover:text-[#4A7CC9] transition-colors flex-shrink-0" />
             </Link>
           </div>
         </div>
@@ -536,10 +536,10 @@ const BlogHazComRequirements = () => {
       {/* Walkthrough Callout */}
       <section className="py-12 bg-[#F9F8F6]">
         <div className="container max-w-3xl">
-          <div className="border border-[#1F6FEB]/20 bg-white rounded-lg p-6 md:p-8 text-center" data-testid="blog-walkthrough-callout">
+          <div className="border border-[#4A7CC9]/20 bg-white rounded-lg p-6 md:p-8 text-center" data-testid="blog-walkthrough-callout">
             <p className="text-lg font-bold text-[#102133] mb-2">Not sure if these violations exist in your shop?</p>
             <p className="text-sm text-[#102133]/60 mb-5">A GigLine Safety Walkthrough will flag them with photos and a prioritized fix list — usually within 48 hours.</p>
-            <Link to="/request-walkthrough" className="inline-flex items-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-6 py-3 rounded transition-colors">
+            <Link to="/request-walkthrough" className="inline-flex items-center gap-2 bg-[#4A7CC9] hover:bg-[#3B6AB5] text-white font-bold px-6 py-3 rounded transition-colors">
               Request a Safety Walkthrough <ArrowRight size={16} />
             </Link>
           </div>
@@ -559,9 +559,9 @@ const BlogHazComRequirements = () => {
               <p className="text-xs text-[#102133]/50">
                 GigLine Safety & Compliance — Kernersville, NC{' '}
                 <span className="text-[#102133]/30 mx-1">|</span>
-                <a href="tel:3363298899" className="text-[#1558C0] hover:underline">(336) 329-8899</a>
+                <a href="tel:3363298899" className="text-[#3B6AB5] hover:underline">(336) 329-8899</a>
                 <span className="text-[#102133]/30 mx-1">|</span>
-                <a href="mailto:vince@giglinecompliance.com" className="text-[#1558C0] hover:underline">vince@giglinecompliance.com</a>
+                <a href="mailto:vince@giglinecompliance.com" className="text-[#3B6AB5] hover:underline">vince@giglinecompliance.com</a>
               </p>
               <p className="text-xs text-[#102133]/40 mt-2 italic">Penalty amounts reflect January 2025 OSHA adjustments.</p>
             </div>

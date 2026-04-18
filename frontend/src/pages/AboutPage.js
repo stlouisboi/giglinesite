@@ -101,7 +101,7 @@ const AboutPage = () => {
           <p className="text-xl sm:text-2xl md:text-3xl font-bold text-white/90 leading-snug">
             Most issues aren't new.
           </p>
-          <p className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1F6FEB] leading-snug mt-2">
+          <p className="text-xl sm:text-2xl md:text-3xl font-bold text-[#4A7CC9] leading-snug mt-2">
             They've just gone unchecked.
           </p>
         </div>
@@ -177,7 +177,7 @@ const AboutPage = () => {
                 className="text-center border border-[#102133]/10 rounded p-5"
                 data-testid={`credential-${index}`}
               >
-                <p className="text-2xl font-bold text-[#1558C0]">{cred.label}</p>
+                <p className="text-2xl font-bold text-[#3B6AB5]">{cred.label}</p>
                 {cred.sub && <p className="text-xs text-[#102133]/50 uppercase tracking-wide">{cred.sub}</p>}
                 <p className="text-sm text-[#102133]/60 mt-1">{cred.desc}</p>
               </div>
@@ -237,7 +237,7 @@ const AboutPage = () => {
                 href="https://launchpathedu.com/ground-0-briefing"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-[#1558C0] hover:bg-[#A6872A] text-white font-semibold px-8 py-4 rounded transition-colors"
+                className="inline-flex items-center gap-2 bg-[#3B6AB5] hover:bg-[#A6872A] text-white font-semibold px-8 py-4 rounded transition-colors"
                 data-testid="about-launchpath-cta"
               >
                 Start with Ground 0 — Free
@@ -260,7 +260,7 @@ const AboutPage = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
             <Link 
               to="/request-walkthrough" 
-              className="inline-flex items-center gap-2 bg-[#1558C0] hover:bg-[#A6872A] text-white font-bold px-8 py-4 rounded transition-colors"
+              className="inline-flex items-center gap-2 bg-[#3B6AB5] hover:bg-[#A6872A] text-white font-bold px-8 py-4 rounded transition-colors"
               data-testid="about-cta-walkthrough"
             >
               Request a Walkthrough
@@ -276,11 +276,11 @@ const AboutPage = () => {
           </div>
           <p className="text-[#102133]/60 text-base">
             Or reach out directly —{' '}
-            <a href="tel:3363298899" className="text-[#1558C0] hover:underline font-semibold">(336) 329-8899</a>
+            <a href="tel:3363298899" className="text-[#3B6AB5] hover:underline font-semibold">(336) 329-8899</a>
           </p>
           <p className="text-[#102133]/50 text-sm mt-4">
             Want to see the full scope first?{' '}
-            <Link to="/services" className="text-[#1558C0] hover:underline font-medium">View all services and pricing</Link>
+            <Link to="/services" className="text-[#3B6AB5] hover:underline font-medium">View all services and pricing</Link>
           </p>
         </div>
       </section>

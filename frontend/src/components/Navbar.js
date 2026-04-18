@@ -26,17 +26,17 @@ const Navbar = () => {
               <path d="M80,38 L136,57 L136,120 Q136,153 80,172 Q24,153 24,120 L24,57 Z"
                 fill="#0B1F33" stroke="#0B1F33" strokeWidth="2.2"/>
               <path d="M80,47 L127,64 L127,120 Q127,147 80,163 Q33,147 33,120 L33,64 Z"
-                fill="none" stroke="#2A9D8F" strokeWidth="0.9"/>
+                fill="none" stroke="#4A7CC9" strokeWidth="0.9"/>
               <line x1="80" y1="57" x2="80" y2="96" stroke="#FFFFFF" strokeWidth="3" strokeLinecap="butt"/>
               <rect x="72" y="96" width="16" height="8" rx="1.5" fill="#FFFFFF"/>
-              <rect x="76" y="97.5" width="8" height="5" rx="0.5" fill="#2A9D8F"/>
+              <rect x="76" y="97.5" width="8" height="5" rx="0.5" fill="#4A7CC9"/>
               <line x1="80" y1="104" x2="80" y2="148" stroke="#FFFFFF" strokeWidth="3" strokeLinecap="butt"/>
-              <line x1="72" y1="65" x2="88" y2="65" stroke="#2A9D8F" strokeWidth="1" strokeDasharray="2,2" strokeLinecap="round"/>
-              <line x1="72" y1="140" x2="88" y2="140" stroke="#2A9D8F" strokeWidth="1" strokeDasharray="2,2" strokeLinecap="round"/>
+              <line x1="72" y1="65" x2="88" y2="65" stroke="#4A7CC9" strokeWidth="1" strokeDasharray="2,2" strokeLinecap="round"/>
+              <line x1="72" y1="140" x2="88" y2="140" stroke="#4A7CC9" strokeWidth="1" strokeDasharray="2,2" strokeLinecap="round"/>
             </svg>
             <div className="flex flex-col">
               <span className="text-xl md:text-2xl font-bold leading-tight tracking-tight" style={{ fontFamily: "'Manrope', sans-serif", color: '#0B1F33' }}>GigLine</span>
-              <span className="w-full h-px my-0.5" style={{ background: '#2A9D8F' }} />
+              <span className="w-full h-px my-0.5" style={{ background: '#4A7CC9' }} />
               <span className="text-[10px] md:text-xs font-medium tracking-[0.2em]" style={{ color: '#5B6B7A' }}>SAFETY & COMPLIANCE</span>
             </div>
           </Link>
@@ -48,7 +48,7 @@ const Navbar = () => {
                 key={link.path}
                 to={link.path}
                 className="text-sm font-medium transition-colors"
-                style={{ color: isActive(link.path) ? '#1F6FEB' : '#5B6B7A' }}
+                style={{ color: isActive(link.path) ? '#4A7CC9' : '#5B6B7A' }}
                 onMouseEnter={e => { if (!isActive(link.path)) e.target.style.color = '#102133'; }}
                 onMouseLeave={e => { if (!isActive(link.path)) e.target.style.color = '#5B6B7A'; }}
                 data-testid={`nav-link-${link.name.toLowerCase().replace(' ', '-')}`}
@@ -79,7 +79,7 @@ const Navbar = () => {
             <a
               href="tel:3363298899"
               className="flex items-center justify-center w-10 h-10 rounded-full transition-colors"
-              style={{ background: 'rgba(31,111,235,0.08)', color: '#1F6FEB' }}
+              style={{ background: 'rgba(31,111,235,0.08)', color: '#4A7CC9' }}
               aria-label="Call GigLine"
               data-testid="mobile-phone-btn"
             >
@@ -109,7 +109,7 @@ const Navbar = () => {
                   key={link.path}
                   to={link.path}
                   className="block text-lg font-medium transition-colors"
-                  style={{ color: isActive(link.path) ? '#1F6FEB' : '#102133' }}
+                  style={{ color: isActive(link.path) ? '#4A7CC9' : '#102133' }}
                   onClick={() => setIsOpen(false)}
                   data-testid={`mobile-nav-link-${link.name.toLowerCase().replace(' ', '-')}`}
                 >

@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check } from 'lucide-react';
 import SEO from '../components/SEO';
+import { trackPhoneClick } from '../utils/analytics';
 
 /* ── Scroll-reveal ── */
 const useReveal = () => {
@@ -1102,6 +1103,7 @@ const HomePage = () => {
             <p className="mb-2">
               <a
                 href="tel:3363298899"
+                onClick={() => trackPhoneClick('homepage_final_cta')}
                 className="text-[#1F6FEB] hover:text-white transition-colors text-2xl font-bold tracking-wide"
                 data-testid="final-phone"
               >

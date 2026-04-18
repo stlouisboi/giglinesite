@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Phone } from 'lucide-react';
+import { trackPhoneClick } from '../utils/analytics';
 
 const MobileStickyFooter = () => {
   const location = useLocation();
@@ -24,6 +25,7 @@ const MobileStickyFooter = () => {
         {/* Primary — Call */}
         <a
           href="tel:3363298899"
+          onClick={() => trackPhoneClick('mobile_sticky_bar')}
           className="flex-grow flex items-center justify-center gap-2 rounded-lg font-bold text-white"
           style={{
             background: '#1F6FEB',

@@ -57,9 +57,9 @@ export function trackServiceBooking(serviceName) {
   });
 }
 
-export function trackPhoneClick() {
-  trackEvent('contact', {
-    event_category: 'phone',
-    event_label: 'header_or_cta',
+export function trackPhoneClick(location = 'unknown') {
+  trackEvent('phone_call_click', {
+    event_category: 'contact',
+    event_label: location,
   });
 }

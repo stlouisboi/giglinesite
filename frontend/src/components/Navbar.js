@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone } from 'lucide-react';
+import { trackPhoneClick } from '../utils/analytics';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -58,6 +59,7 @@ const Navbar = () => {
             ))}
             <a
               href="tel:3363298899"
+              onClick={() => trackPhoneClick('navbar_desktop')}
               className="flex items-center gap-1.5 text-sm font-medium transition-colors"
               style={{ color: '#102133' }}
               data-testid="nav-phone"
@@ -81,6 +83,7 @@ const Navbar = () => {
           <div className="flex items-center gap-3 md:hidden">
             <a
               href="tel:3363298899"
+              onClick={() => trackPhoneClick('navbar_mobile_icon')}
               className="flex items-center justify-center w-12 h-12 rounded-full"
               style={{ background: 'rgba(31,111,235,0.08)', color: '#1F6FEB' }}
               aria-label="Call GigLine"
@@ -124,6 +127,7 @@ const Navbar = () => {
               ))}
               <a
                 href="tel:3363298899"
+                onClick={() => trackPhoneClick('navbar_mobile_drawer')}
                 className="flex items-center gap-2 text-lg font-medium px-2 rounded-md"
                 style={{ color: '#102133', minHeight: '52px' }}
                 data-testid="mobile-nav-phone"

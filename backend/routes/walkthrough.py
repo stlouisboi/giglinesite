@@ -15,14 +15,14 @@ logger = logging.getLogger('gigline')
 
 @router.post("/walkthrough/request")
 async def submit_walkthrough_request(request: WalkthroughRequest):
-    """Accept walkthrough intake form and notify Vince via email."""
+    """Accept lead capture form (GL-WEB-010) and notify Vince via email."""
     doc = {
         "id": str(uuid.uuid4()),
         "name": request.name,
         "company": request.company,
-        "operation_type": request.operation_type,
-        "location": request.location,
-        "description": request.description,
+        "phone": request.phone,
+        "service": request.service,
+        "email": request.email,
         "status": "new",
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "utm_source": request.utm_source,
@@ -37,16 +37,17 @@ async def submit_walkthrough_request(request: WalkthroughRequest):
         resend.Emails.send({
             "from": SENDER_EMAIL,
             "to": [VINCE_EMAIL],
-            "subject": f"New Walkthrough Request: {request.company}",
+            "subject": f"GigLine Lead: {request.name} — {request.service}",
             "html": (
-                f"<h2>New Walkthrough Request</h2>"
+                f"<h2>New Lead — {request.service}</h2>"
                 f"<p><strong>Name:</strong> {request.name}</p>"
-                f"<p><strong>Company:</strong> {request.company}</p>"
-                f"<p><strong>Operation Type:</strong> {request.operation_type}</p>"
-                f"<p><strong>Location:</strong> {request.location}</p>"
-                f"<p><strong>Description:</strong> {request.description or 'N/A'}</p>"
+                f"<p><strong>Business:</strong> {request.company}</p>"
+                f"<p><strong>Phone:</strong> <a href=\"tel:{request.phone}\">{request.phone}</a></p>"
+                f"<p><strong>Email:</strong> {request.email or '<em>Not provided</em>'}</p>"
+                f"<p><strong>Needs:</strong> {request.service}</p>"
                 f"{'<p><strong>Source:</strong> ' + request.utm_source + ' / ' + request.utm_medium + ' / ' + request.utm_campaign + '</p>' if request.utm_source else ''}"
                 f"<p><em>Submitted at {doc['timestamp']}</em></p>"
+                f"<hr><p><em>Call within one business day per GigLine SOP.</em></p>"
             ),
         })
     except Exception as e:

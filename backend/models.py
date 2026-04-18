@@ -58,9 +58,9 @@ class SafetyCheckSubmission(BaseModel):
 class WalkthroughRequest(BaseModel):
     name: str
     company: str
-    operation_type: str
-    location: str
-    description: str = ""
+    phone: str
+    service: str
+    email: str = ""
     utm_source: str = ""
     utm_medium: str = ""
     utm_campaign: str = ""

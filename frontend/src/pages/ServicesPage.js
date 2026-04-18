@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ExternalLink, Check } from 'lucide-react';
 import { trackServiceBooking } from '../utils/analytics';
-import BookingModal, { serviceConfig } from '../components/BookingModal';
 import SEO from '../components/SEO';
 
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
@@ -77,15 +76,6 @@ const SERVICES = [
 ];
 
 const ServicesPage = () => {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedService, setSelectedService] = useState(null);
-
-  const openBooking = (serviceKey) => {
-    setSelectedService(serviceConfig[serviceKey]);
-    trackServiceBooking(serviceKey);
-    setModalOpen(true);
-  };
-
   return (
     <main data-testid="services-page">
       <SEO
@@ -260,24 +250,25 @@ const ServicesPage = () => {
                   </div>
                 </div>
 
-                {/* Card CTA */}
+                {/* Card CTA — now links to lead capture form per GL-WEB-010 */}
                 <div className="px-7 md:px-8 pb-7 md:pb-8">
-                  <button
-                    onClick={() => openBooking(svc.key)}
-                    className="w-full bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold py-3.5 rounded transition-colors text-base"
+                  <Link
+                    to={`/request-walkthrough?service=${svc.key}`}
+                    onClick={() => trackServiceBooking(svc.key)}
+                    className="block w-full text-center bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold py-3.5 rounded transition-colors text-base"
                     data-testid={svc.testId}
                   >
-                    Book This Service
-                  </button>
+                    Request a Safety Walkthrough
+                  </Link>
                   <p className="text-sm md:text-xs text-[#102133]/65 text-center mt-3 leading-relaxed" data-testid={`confirmation-line-${svc.num}`}>
-                    After you submit, you'll receive your custom pricing and a scheduling confirmation within one business day.
+                    Short 90-second form. Vince calls within one business day to talk through your situation.
                   </p>
-                  <Link
-                    to="/request-walkthrough"
+                  <a
+                    href="tel:3363298899"
                     className="block w-full text-center text-sm md:text-xs text-[#102133]/55 hover:text-[#1F6FEB] mt-3 transition-colors font-medium"
                   >
-                    Or request a call first
-                  </Link>
+                    Or call (336) 329-8899 directly
+                  </a>
                 </div>
               </div>
             ))}
@@ -385,13 +376,6 @@ const ServicesPage = () => {
           </div>
         </div>
       </section>
-
-      {/* Booking Modal */}
-      <BookingModal
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        service={selectedService}
-      />
     </main>
   );
 };

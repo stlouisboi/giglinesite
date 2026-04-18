@@ -1,13 +1,36 @@
-import React, { useState } from 'react';
-import { ArrowRight, Check, Calendar } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { ArrowRight, Check, Phone, Shield } from 'lucide-react';
 import { trackWalkthroughRequest } from '../utils/analytics';
 import SEO from '../components/SEO';
 
-const CALENDLY_URL = 'https://calendly.com/vincelaw336/safety-consultation';
 const API = process.env.REACT_APP_BACKEND_URL;
 
+const SERVICES = [
+  { value: 'Safety Walkthrough', label: 'Safety Walkthrough — on-site visit and written report' },
+  { value: 'Documentation Review', label: 'Documentation Review — review of written programs and records' },
+  { value: 'Incident Review', label: 'Incident Review — post-injury or near-miss response' },
+  { value: 'Not sure', label: "Not sure — I want to talk through my situation first" },
+];
+
+// Map services page tier keys → human-readable service values
+const TIER_TO_SERVICE = {
+  walkthrough_standard: 'Safety Walkthrough',
+  documentation_remote: 'Documentation Review',
+  incident_standard: 'Incident Review',
+};
+
 const IntakePage = () => {
-  const [form, setForm] = useState({ name: '', company: '', operation_type: '', location: '', description: '' });
+  const [searchParams] = useSearchParams();
+  const preselectedService = TIER_TO_SERVICE[searchParams.get('service')] || '';
+
+  const [form, setForm] = useState({
+    name: '',
+    company: '',
+    phone: '',
+    email: '',
+    service: preselectedService,
+  });
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
@@ -22,13 +45,12 @@ const IntakePage = () => {
     };
   });
 
-  const operationTypes = [
-    'Small Manufacturing / Fabrication',
-    'Warehouse / Distribution',
-    'Contractor / Maintenance',
-    'Fleet / Transportation',
-    'Other',
-  ];
+  // If user lands with ?service= and it's valid, honour it
+  useEffect(() => {
+    if (preselectedService && !form.service) {
+      setForm((f) => ({ ...f, service: preselectedService }));
+    }
+  }, [preselectedService, form.service]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,10 +60,10 @@ const IntakePage = () => {
       const res = await fetch(`${API}/api/walkthrough/request`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, ...utmParams }),
       });
       if (!res.ok) throw new Error('Submission failed');
-      trackWalkthroughRequest(form.operation_type);
+      trackWalkthroughRequest(form.service);
       setSubmitted(true);
     } catch {
       setError('Something went wrong. Please try again or call (336) 329-8899.');
@@ -56,11 +78,11 @@ const IntakePage = () => {
     <main>
       <SEO
         title="Request a Safety Walkthrough | GigLine Safety & Compliance"
-        description="Request an on-site safety walkthrough for your operation. One visit. Clear findings. No retainer. Written report within 24-48 hours."
+        description="Request an on-site safety walkthrough. One visit. Clear findings. Written report within 24–48 hours. Serving the Kernersville / Triad area."
         canonical="/request-walkthrough"
       />
 
-      <section className="py-20 md:py-32" style={{ backgroundColor: '#0B1F33' }} data-testid="intake-page">
+      <section className="py-20 md:py-28" style={{ backgroundColor: '#0B1F33' }} data-testid="intake-page">
         <div className="max-w-2xl mx-auto px-6">
 
           {!submitted ? (
@@ -72,144 +94,161 @@ const IntakePage = () => {
               <h1 className="font-serif text-4xl md:text-5xl font-bold text-white leading-tight mb-4" data-testid="intake-headline">
                 Request a Safety Walkthrough
               </h1>
-              <p className="text-lg text-white/70 mb-3">
-                One visit. Clear findings. No retainer.
+              <p className="text-lg text-white/75 mb-3 leading-relaxed">
+                Schedule an on-site safety walkthrough with GigLine Safety & Compliance. One visit. Clear findings. Written report within 24–48 hours.
               </p>
-              <p className="text-base text-white/50 mb-10">
-                You'll receive a clear report within 24-48 hours after the walkthrough.
+              <p className="text-base text-white/60 mb-6 leading-relaxed">
+                Serving small manufacturers, warehouses, contractors, and fleets in the Kernersville / Triad, NC area.
               </p>
 
-              {/* Qualifier */}
-              <div className="border-l-2 border-[#1F6FEB]/40 pl-4 mb-10">
-                <p className="text-sm text-white/40 italic">
-                  Walkthroughs are best suited for active operations with 5+ employees or ongoing production.
-                </p>
+              {/* Credential chips — visible trust signal near form */}
+              <div className="flex flex-wrap gap-2 mb-10" data-testid="intake-credentials">
+                {['OSHA 30-Hour Certified', '25+ Years Experience', 'U.S. Navy Veteran'].map((c) => (
+                  <span
+                    key={c}
+                    className="inline-flex items-center px-3 py-1 rounded text-[#1F6FEB] border border-[#1F6FEB]/30 font-mono text-[11px]"
+                  >
+                    {c}
+                  </span>
+                ))}
               </div>
 
               {/* Form */}
               <form onSubmit={handleSubmit} className="space-y-5" data-testid="intake-form">
                 <div>
-                  <label className="block text-sm text-white/60 mb-1.5 font-mono tracking-wide uppercase" htmlFor="name">Name</label>
+                  <label className="block text-sm text-white/70 mb-1.5 font-mono tracking-wide uppercase" htmlFor="name">
+                    Your name *
+                  </label>
                   <input
-                    id="name" name="name" required value={form.name} onChange={handleChange}
-                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3 rounded focus:outline-none focus:border-[#1F6FEB] transition-colors placeholder:text-white/30"
-                    placeholder="Your name"
+                    id="name" name="name" type="text" required autoComplete="name"
+                    value={form.name} onChange={handleChange}
+                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3.5 rounded focus:outline-none focus:border-[#1F6FEB] transition-colors placeholder:text-white/30"
+                    placeholder="First and last"
                     data-testid="intake-name"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm text-white/60 mb-1.5 font-mono tracking-wide uppercase" htmlFor="company">Company</label>
+                  <label className="block text-sm text-white/70 mb-1.5 font-mono tracking-wide uppercase" htmlFor="company">
+                    Business name *
+                  </label>
                   <input
-                    id="company" name="company" required value={form.company} onChange={handleChange}
-                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3 rounded focus:outline-none focus:border-[#1F6FEB] transition-colors placeholder:text-white/30"
-                    placeholder="Company or operation name"
+                    id="company" name="company" type="text" required autoComplete="organization"
+                    value={form.company} onChange={handleChange}
+                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3.5 rounded focus:outline-none focus:border-[#1F6FEB] transition-colors placeholder:text-white/30"
+                    placeholder="Company or DBA"
                     data-testid="intake-company"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm text-white/60 mb-1.5 font-mono tracking-wide uppercase" htmlFor="operation_type">Type of Operation</label>
+                  <label className="block text-sm text-white/70 mb-1.5 font-mono tracking-wide uppercase" htmlFor="phone">
+                    Phone *
+                  </label>
+                  <input
+                    id="phone" name="phone" type="tel" required autoComplete="tel"
+                    value={form.phone} onChange={handleChange}
+                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3.5 rounded focus:outline-none focus:border-[#1F6FEB] transition-colors placeholder:text-white/30"
+                    placeholder="(336) 555-1234"
+                    inputMode="tel"
+                    data-testid="intake-phone"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm text-white/70 mb-1.5 font-mono tracking-wide uppercase" htmlFor="service">
+                    What do you need help with? *
+                  </label>
                   <select
-                    id="operation_type" name="operation_type" required value={form.operation_type} onChange={handleChange}
-                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3 rounded focus:outline-none focus:border-[#1F6FEB] transition-colors appearance-none"
-                    data-testid="intake-operation-type"
+                    id="service" name="service" required
+                    value={form.service} onChange={handleChange}
+                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3.5 rounded focus:outline-none focus:border-[#1F6FEB] transition-colors appearance-none"
+                    data-testid="intake-service"
                   >
-                    <option value="" disabled className="bg-[#0B1F33]">Select operation type</option>
-                    {operationTypes.map((t) => (
-                      <option key={t} value={t} className="bg-[#0B1F33]">{t}</option>
+                    <option value="" disabled className="bg-[#0B1F33]">Select one</option>
+                    {SERVICES.map((s) => (
+                      <option key={s.value} value={s.value} className="bg-[#0B1F33]">{s.label}</option>
                     ))}
                   </select>
                 </div>
 
                 <div>
-                  <label className="block text-sm text-white/60 mb-1.5 font-mono tracking-wide uppercase" htmlFor="location">Location</label>
-                  <input
-                    id="location" name="location" required value={form.location} onChange={handleChange}
-                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3 rounded focus:outline-none focus:border-[#1F6FEB] transition-colors placeholder:text-white/30"
-                    placeholder="City, State"
-                    data-testid="intake-location"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm text-white/60 mb-1.5 font-mono tracking-wide uppercase" htmlFor="description">
-                    What concerns or areas would you like reviewed?
+                  <label className="block text-sm text-white/50 mb-1.5 font-mono tracking-wide uppercase" htmlFor="email">
+                    Email <span className="text-white/30 normal-case font-sans">(optional)</span>
                   </label>
-                  <textarea
-                    id="description" name="description" rows={4} value={form.description} onChange={handleChange}
-                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3 rounded focus:outline-none focus:border-[#1F6FEB] transition-colors placeholder:text-white/30 resize-none"
-                    placeholder="Optional — share anything that would help us prepare."
-                    data-testid="intake-description"
+                  <input
+                    id="email" name="email" type="email" autoComplete="email"
+                    value={form.email} onChange={handleChange}
+                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3.5 rounded focus:outline-none focus:border-[#1F6FEB] transition-colors placeholder:text-white/30"
+                    placeholder="Only if you prefer email follow-up"
+                    data-testid="intake-email"
                   />
                 </div>
 
                 {error && <p className="text-red-400 text-sm" data-testid="intake-error">{error}</p>}
 
+                {/* Trust line ABOVE submit — addresses "will this be reported" objection before click */}
+                <div
+                  className="flex items-start gap-3 rounded-lg p-4"
+                  style={{ background: 'rgba(31,111,235,0.06)', border: '1px solid rgba(31,111,235,0.18)' }}
+                  data-testid="intake-trust-line"
+                >
+                  <Shield size={16} className="flex-shrink-0 mt-0.5 text-[#1F6FEB]" />
+                  <p className="text-sm text-white/80 leading-relaxed">
+                    This is a private engagement. Nothing you share here is reported to OSHA or any regulatory agency.
+                  </p>
+                </div>
+
                 <button
                   type="submit" disabled={submitting}
-                  className="w-full bg-[#1F6FEB] text-[#0B1F33] font-mono font-bold uppercase tracking-wider text-sm px-8 py-4 hover:bg-[#1558C0] transition-colors inline-flex items-center justify-center gap-2 disabled:opacity-50"
+                  className="w-full bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold uppercase tracking-wider text-base px-8 py-4 rounded-lg transition-colors inline-flex items-center justify-center gap-2 disabled:opacity-50"
+                  style={{ minHeight: '56px' }}
                   data-testid="intake-submit"
                 >
-                  {submitting ? 'Submitting...' : 'Submit Request'}
-                  {!submitting && <ArrowRight size={16} />}
+                  {submitting ? 'Submitting...' : 'Request a Safety Walkthrough'}
+                  {!submitting && <ArrowRight size={18} />}
                 </button>
               </form>
 
-              {/* Contact fallback */}
-              <p className="text-center text-sm text-white/30 mt-6">
-                Prefer to talk? Call{' '}
-                <a href="tel:3363298899" className="text-[#1F6FEB] hover:text-white transition-colors">(336) 329-8899</a>
+              {/* Fallback contact */}
+              <p className="text-center text-sm text-white/60 mt-6" data-testid="intake-fallback">
+                Prefer to call? Reach Vince directly at{' '}
+                <a href="tel:3363298899" className="text-[#1F6FEB] hover:text-white font-semibold transition-colors">
+                  (336) 329-8899
+                </a>
+                .
               </p>
             </>
           ) : (
-            /* ── POST-SUBMIT: Thank You + Calendly ── */
+            /* ── POST-SUBMIT: Inline confirmation (no redirect) ── */
             <div className="text-center" data-testid="intake-success">
               <div className="w-16 h-16 rounded-full bg-[#1F6FEB]/20 flex items-center justify-center mx-auto mb-6">
                 <Check size={32} className="text-[#1F6FEB]" />
               </div>
 
-              <h2 className="font-serif text-3xl md:text-4xl font-bold text-white mb-4">
-                Request Received
+              <h2 className="font-serif text-3xl md:text-4xl font-bold text-white mb-5">
+                Got it.
               </h2>
-              <p className="text-lg text-white/70 mb-2">
-                Thanks, {form.name} — based on your request, you can schedule a quick call to confirm details.
+              <p className="text-lg text-white/80 mb-3 leading-relaxed max-w-lg mx-auto">
+                Vince will be in touch within one business day to talk through your situation and schedule a time.
               </p>
-              <p className="text-base text-white/50 mb-10">
-                You'll receive a clear report within 24-48 hours after the walkthrough.
+              <p className="text-base text-white/60 mb-10 max-w-lg mx-auto">
+                In the meantime, you can reach him directly at{' '}
+                <a href="tel:3363298899" className="text-[#1F6FEB] hover:text-white font-semibold transition-colors">
+                  (336) 329-8899
+                </a>
+                .
               </p>
 
-              {/* Calendly embed */}
-              <div className="border border-white/10 rounded overflow-hidden mb-8" data-testid="calendly-embed">
-                <iframe
-                  src={`${CALENDLY_URL}?hide_gdpr_banner=1&background_color=0d1b2a&text_color=ffffff&primary_color=c9a84c`}
-                  width="100%"
-                  height="630"
-                  frameBorder="0"
-                  title="Schedule a consultation with Vince Lawrence"
-                  style={{ minWidth: '280px' }}
-                />
-              </div>
-
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a
-                  href={CALENDLY_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-[#1F6FEB] text-[#0B1F33] font-mono font-bold uppercase tracking-wider text-sm px-8 py-4 hover:bg-[#1558C0] transition-colors inline-flex items-center gap-2"
-                  data-testid="calendly-cta"
-                >
-                  <Calendar size={16} />
-                  Open Full Scheduler
-                </a>
-                <a
-                  href="tel:3363298899"
-                  className="border border-white/20 text-white font-mono text-sm px-8 py-4 hover:bg-white/5 transition-colors inline-flex items-center gap-2"
-                  data-testid="call-cta"
-                >
-                  Or Call (336) 329-8899
-                </a>
-              </div>
+              <a
+                href="tel:3363298899"
+                className="inline-flex items-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded-lg transition-colors"
+                style={{ minHeight: '56px' }}
+                data-testid="success-call-cta"
+              >
+                <Phone size={18} />
+                Call (336) 329-8899
+              </a>
             </div>
           )}
         </div>

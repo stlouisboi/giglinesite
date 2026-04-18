@@ -8,7 +8,7 @@ const API = process.env.REACT_APP_BACKEND_URL;
 /* ── Brand tokens ── */
 const C = {
   bg: '#1A1A1A', surface: '#222222', deep: '#111111',
-  gold: '#E8B84B', white: '#FFFFFF',
+  gold: '#1F6FEB', white: '#FFFFFF',
   sec: 'rgba(255,255,255,0.65)', muted: 'rgba(255,255,255,0.38)',
   border: 'rgba(255,255,255,0.08)', borderHover: 'rgba(255,255,255,0.20)',
 };
@@ -62,8 +62,8 @@ const RadioGroup = ({ label, name, options, value, onChange, required }) => (
       {options.map(opt => (
         <label key={opt.value} className="flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer transition-all"
           style={{
-            background: value === opt.value ? 'rgba(232,184,75,0.07)' : C.deep,
-            border: `1px solid ${value === opt.value ? 'rgba(232,184,75,0.4)' : C.border}`,
+            background: value === opt.value ? 'rgba(31,111,235,0.07)' : C.deep,
+            border: `1px solid ${value === opt.value ? 'rgba(31,111,235,0.4)' : C.border}`,
           }}
           onClick={() => onChange(opt.value)}
         >
@@ -85,8 +85,8 @@ const CheckboxGroup = ({ label, options, values, onChange, columns = 1 }) => (
       {options.map(opt => (
         <div key={opt} onClick={() => onChange(opt)} className="flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer transition-all"
           style={{
-            background: values.includes(opt) ? 'rgba(232,184,75,0.07)' : C.deep,
-            border: `1px solid ${values.includes(opt) ? 'rgba(232,184,75,0.4)' : C.border}`,
+            background: values.includes(opt) ? 'rgba(31,111,235,0.07)' : C.deep,
+            border: `1px solid ${values.includes(opt) ? 'rgba(31,111,235,0.4)' : C.border}`,
           }}
         >
           <div className="w-4 h-4 rounded border flex items-center justify-center flex-shrink-0"
@@ -104,7 +104,7 @@ const CheckboxGroup = ({ label, options, values, onChange, columns = 1 }) => (
 const MatrixRow = ({ label, value, onChange }) => {
   const opts = [
     { v: 'yes', color: '#4ade80' }, { v: 'no', color: '#f87171' },
-    { v: 'na', color: 'rgba(255,255,255,0.4)' }, { v: 'not_sure', color: '#E8B84B' },
+    { v: 'na', color: 'rgba(255,255,255,0.4)' }, { v: 'not_sure', color: '#F59E0B' },
   ];
   return (
     <div className="grid grid-cols-5 items-center py-3 border-b" style={{ borderColor: C.border }}>
@@ -130,7 +130,7 @@ const MatrixGrid = ({ label, rows, values, onChange }) => (
       <div className="grid grid-cols-5 pb-2 border-b mb-1" style={{ borderColor: C.border }}>
         <div className="col-span-1" />
         {['Yes', 'No', 'N/A', 'Not Sure'].map(h => (
-          <div key={h} className="text-center text-xs font-bold" style={{ color: h === 'Yes' ? '#4ade80' : h === 'No' ? '#f87171' : h === 'Not Sure' ? '#E8B84B' : C.muted }}>{h}</div>
+          <div key={h} className="text-center text-xs font-bold" style={{ color: h === 'Yes' ? '#4ade80' : h === 'No' ? '#f87171' : h === 'Not Sure' ? '#F59E0B' : C.muted }}>{h}</div>
         ))}
       </div>
       {rows.map(r => (
@@ -242,7 +242,7 @@ const ClientIntakePage = () => {
               <p className="text-xs" style={{ color: C.muted }}>Response within 1 business day</p>
             </div>
           </div>
-          <div className="rounded-lg p-5 text-left text-sm" style={{ background: 'rgba(232,184,75,0.06)', border: '1px solid rgba(232,184,75,0.15)' }}>
+          <div className="rounded-lg p-5 text-left text-sm" style={{ background: 'rgba(31,111,235,0.06)', border: '1px solid rgba(31,111,235,0.15)' }}>
             <p style={{ color: C.sec }}>Vince will review your intake and send a proposed scope and price within <strong className="text-white">1 business day</strong>.</p>
           </div>
           <p className="mt-8 text-xs" style={{ color: C.muted }}>
@@ -288,7 +288,7 @@ const ClientIntakePage = () => {
             ]}
           />
           {(f.schedule === '2_shifts' || f.schedule === '3_shifts') && (
-            <div className="rounded-lg p-5 mt-2 mb-4 transition-all" style={{ background: 'rgba(232,184,75,0.05)', border: '1px solid rgba(232,184,75,0.18)' }}>
+            <div className="rounded-lg p-5 mt-2 mb-4 transition-all" style={{ background: 'rgba(31,111,235,0.05)', border: '1px solid rgba(31,111,235,0.18)' }}>
               <Input label="Employees per shift" type="number" value={f.scheduleDetail.empPerShift || ''} onChange={e => setNested('scheduleDetail', 'empPerShift', e.target.value)} />
               <RadioGroup label="Do all shifts run the same operations?" name="sameOps" value={f.scheduleDetail.sameOps || ''}
                 onChange={v => setNested('scheduleDetail', 'sameOps', v)}
@@ -302,7 +302,7 @@ const ClientIntakePage = () => {
             </div>
           )}
           {f.schedule === '12hr_rotating' && (
-            <div className="rounded-lg p-5 mt-2 mb-4 transition-all" style={{ background: 'rgba(232,184,75,0.05)', border: '1px solid rgba(232,184,75,0.18)' }}>
+            <div className="rounded-lg p-5 mt-2 mb-4 transition-all" style={{ background: 'rgba(31,111,235,0.05)', border: '1px solid rgba(31,111,235,0.18)' }}>
               <Input label="Employees per rotation" type="number" value={f.scheduleDetail.empPerRotation || ''} onChange={e => setNested('scheduleDetail', 'empPerRotation', e.target.value)} />
               <RadioGroup label="Rotation pattern" name="rotationPattern" value={f.scheduleDetail.rotationPattern || ''}
                 onChange={v => setNested('scheduleDetail', 'rotationPattern', v)}
@@ -495,7 +495,7 @@ const ClientIntakePage = () => {
               I understand this form is for an initial safety consultation and does not create a client relationship until we both sign a written agreement.
             </span>
           </label>
-          <div className="rounded-lg p-5 mt-6" style={{ background: 'rgba(232,184,75,0.06)', border: '1px solid rgba(232,184,75,0.15)' }}>
+          <div className="rounded-lg p-5 mt-6" style={{ background: 'rgba(31,111,235,0.06)', border: '1px solid rgba(31,111,235,0.15)' }}>
             <p className="text-sm" style={{ color: C.sec }}>
               After you submit this form, GigLine will review your information and follow up within <strong className="text-white">1 business day</strong> to schedule a call or walkthrough and discuss next steps.
             </p>
@@ -556,7 +556,7 @@ const ClientIntakePage = () => {
                   data-testid={`intake-sidebar-${s.id}`}
                 >
                   {isDone && !isActive ? (
-                    <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ background: 'rgba(232,184,75,0.2)' }}>
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ background: 'rgba(31,111,235,0.2)' }}>
                       <div className="w-2 h-2 rounded-full" style={{ background: C.gold }} />
                     </div>
                   ) : (

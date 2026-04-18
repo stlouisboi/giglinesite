@@ -5,7 +5,7 @@ import SEO from '../components/SEO';
 import { trackReviewClick } from '../utils/analytics';
 
 const API = process.env.REACT_APP_BACKEND_URL;
-const C = { bg: '#1A1A1A', surface: '#222222', deep: '#111111', gold: '#E8B84B', white: '#FFFFFF', sec: 'rgba(255,255,255,0.65)', muted: 'rgba(255,255,255,0.38)', border: 'rgba(255,255,255,0.08)' };
+const C = { bg: '#1A1A1A', surface: '#222222', deep: '#111111', gold: '#1F6FEB', white: '#FFFFFF', sec: 'rgba(255,255,255,0.65)', muted: 'rgba(255,255,255,0.38)', border: 'rgba(255,255,255,0.08)' };
 
 const StatusPage = () => {
   const { clientToken } = useParams();
@@ -92,7 +92,7 @@ const StatusPage = () => {
                   </p>
                   <p className="text-xs mb-2" style={{ color: C.muted }}>{stage.description}</p>
                   {stage.state === 'current' && (
-                    <div className="rounded-lg p-4 mt-2" style={{ background: 'rgba(232,184,75,0.06)', border: '1px solid rgba(232,184,75,0.15)' }}>
+                    <div className="rounded-lg p-4 mt-2" style={{ background: 'rgba(31,111,235,0.06)', border: '1px solid rgba(31,111,235,0.15)' }}>
                       <p className="text-sm" style={{ color: C.sec }}>{stage.message}</p>
                     </div>
                   )}

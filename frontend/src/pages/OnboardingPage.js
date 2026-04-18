@@ -7,7 +7,7 @@ const API = process.env.REACT_APP_BACKEND_URL;
 
 const C = {
   bg: '#1A1A1A', surface: '#222222', deep: '#111111',
-  gold: '#E8B84B', white: '#FFFFFF',
+  gold: '#1F6FEB', white: '#FFFFFF',
   sec: 'rgba(255,255,255,0.65)', muted: 'rgba(255,255,255,0.38)',
   border: 'rgba(255,255,255,0.08)', borderHover: 'rgba(255,255,255,0.20)',
 };
@@ -92,7 +92,7 @@ const ConfirmedView = () => {
         <p className="text-xs" style={{ color: C.muted }}>
           <a href="tel:3363298899" className="hover:text-white transition-colors">(336) 329-8899</a> · <a href="mailto:vince@giglinecompliance.com" className="hover:text-white transition-colors">vince@giglinecompliance.com</a>
         </p>
-        <a href="/" className="inline-block mt-6 text-sm font-medium px-6 py-2.5 rounded-lg transition-colors" style={{ color: C.gold, border: `1px solid rgba(232,184,75,0.3)` }}>
+        <a href="/" className="inline-block mt-6 text-sm font-medium px-6 py-2.5 rounded-lg transition-colors" style={{ color: C.gold, border: `1px solid rgba(31,111,235,0.3)` }}>
           Return home
         </a>
       </div>
@@ -243,7 +243,7 @@ const OnboardingPage = () => {
               <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: C.muted }}>Not included</p>
               <p className="text-sm" style={{ color: C.sec }}>Full OSHA audit, program rewrites, or ongoing monitoring. Those are available as add-ons or retainer services.</p>
             </div>
-            <div className="rounded-lg p-4" style={{ background: 'rgba(232,184,75,0.06)', border: '1px solid rgba(232,184,75,0.15)' }}>
+            <div className="rounded-lg p-4" style={{ background: 'rgba(31,111,235,0.06)', border: '1px solid rgba(31,111,235,0.15)' }}>
               <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: C.gold }}>Retainer option</p>
               <p className="text-sm" style={{ color: C.sec }}>Scheduled walkthroughs, remote support, and micro-projects on a monthly retainer. Selected in Step 5.</p>
             </div>
@@ -290,7 +290,7 @@ const OnboardingPage = () => {
               <button key={key} onClick={() => set('tier', key)}
                 className="w-full text-left rounded-lg p-5 transition-all"
                 style={{
-                  background: f.tier === key ? 'rgba(232,184,75,0.07)' : C.deep,
+                  background: f.tier === key ? 'rgba(31,111,235,0.07)' : C.deep,
                   border: `1.5px solid ${f.tier === key ? C.gold : C.border}`,
                 }}
                 data-testid={`tier-${key}`}
@@ -362,7 +362,7 @@ const OnboardingPage = () => {
               </div>
             </div>
           ) : (
-            <div className="rounded-lg p-5" style={{ background: 'rgba(232,184,75,0.06)', border: '1px solid rgba(232,184,75,0.15)' }}>
+            <div className="rounded-lg p-5" style={{ background: 'rgba(31,111,235,0.06)', border: '1px solid rgba(31,111,235,0.15)' }}>
               <p className="text-sm font-bold text-white mb-3">Type your full name to sign</p>
               <input
                 type="text" value={signingName} onChange={e => setSigningName(e.target.value)}
@@ -392,7 +392,7 @@ const OnboardingPage = () => {
             <button onClick={() => set('addRetainer', false)}
               className="text-left rounded-lg p-5 transition-all"
               style={{
-                background: !f.addRetainer ? 'rgba(232,184,75,0.07)' : C.deep,
+                background: !f.addRetainer ? 'rgba(31,111,235,0.07)' : C.deep,
                 border: `1.5px solid ${!f.addRetainer ? C.gold : C.border}`,
               }}
               data-testid="option-walkthrough"
@@ -409,7 +409,7 @@ const OnboardingPage = () => {
             <button onClick={() => set('addRetainer', true)}
               className="text-left rounded-lg p-5 transition-all relative"
               style={{
-                background: f.addRetainer ? 'rgba(232,184,75,0.07)' : C.deep,
+                background: f.addRetainer ? 'rgba(31,111,235,0.07)' : C.deep,
                 border: `1.5px solid ${f.addRetainer ? C.gold : C.border}`,
               }}
               data-testid="option-retainer"
@@ -535,7 +535,7 @@ const OnboardingPage = () => {
             <div key={s.id} className="flex items-center gap-2 flex-shrink-0">
               <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all"
                 style={{
-                  background: step === s.id ? C.gold : step > s.id ? 'rgba(232,184,75,0.15)' : 'rgba(255,255,255,0.04)',
+                  background: step === s.id ? C.gold : step > s.id ? 'rgba(31,111,235,0.15)' : 'rgba(255,255,255,0.04)',
                   color: step === s.id ? '#111' : step > s.id ? C.gold : C.muted,
                 }}>
                 {step > s.id ? <Check size={12} /> : <span>{s.id}</span>}

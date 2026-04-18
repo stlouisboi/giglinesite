@@ -885,16 +885,26 @@ const HomePage = () => {
       {/* ═══════════════════════════════════════════════
           S9 — LOCAL SERVICE AREA STATEMENT
       ═══════════════════════════════════════════════ */}
-      <section className="py-12 md:py-16" style={{ backgroundColor: '#0B1F33' }}>
-        <div className="container max-w-4xl">
-          <div className="rounded-lg px-6 py-8 md:px-10 md:py-10 text-center" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
+      <section className="relative py-12 md:py-16 overflow-hidden" style={{ backgroundColor: '#0B1F33' }}>
+        {/* Map background */}
+        <div className="absolute inset-0">
+          <img
+            src="/service-area-map.jpg"
+            alt="Aerial city map view representing GigLine service area"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ filter: 'brightness(0.25) saturate(0.5) hue-rotate(10deg)' }}
+          />
+          <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, rgba(11,31,51,0.7) 0%, rgba(11,31,51,0.92) 70%)' }} />
+        </div>
+        <div className="container max-w-4xl relative z-10">
+          <div className="rounded-lg px-6 py-8 md:px-10 md:py-10 text-center" style={{ background: 'rgba(11,31,51,0.6)', border: '1px solid rgba(74,124,201,0.15)', backdropFilter: 'blur(4px)' }}>
             <p
               className="uppercase tracking-[3px] text-[#4A7CC9] mb-4"
               style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }}
             >
               Service Area
             </p>
-            <p className="text-base md:text-lg text-white/80 leading-relaxed mb-3" data-testid="service-area-statement">
+            <p className="text-base md:text-lg text-white/90 leading-relaxed mb-3" data-testid="service-area-statement">
               On-site walkthroughs within roughly 60 miles of Winston-Salem, including Greensboro, High Point, Kernersville, Lexington, Thomasville, Salisbury, Burlington, and nearby towns.
             </p>
             <p className="text-sm text-white/70 leading-relaxed">

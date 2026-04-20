@@ -153,34 +153,10 @@ async def update_intake_status(client_token: str, body: dict, token: str = ""):
         {"$set": {"status": new_status, "statusUpdatedAt": datetime.now(timezone.utc).isoformat()}},
     )
 
-    # Send client notification for key status changes
-    stage_info = STATUS_STAGES.get(new_status, {})
-    notify_statuses = ["proposal_sent", "walkthrough_scheduled"]
-    if new_status in notify_statuses:
-        email = record.get("email")
-        name = record.get("contactName", "")
-        company = record.get("company", "")
-        status_url = f"https://giglinecompliance.com/status/{client_token}"
-        if email:
-            try:
-                resend.Emails.send({
-                    "from": SENDER_EMAIL,
-                    "to": [email],
-                    "subject": f"GigLine — {stage_info['label']}",
-                    "html": f"""
-                    <div style="font-family:Georgia,serif;max-width:600px;margin:0 auto;color:#1C2B2B;">
-                      <h1 style="font-size:22px;margin-bottom:8px;">{stage_info['label']}</h1>
-                      <p>{name}, here is an update on your engagement with GigLine for <strong>{company}</strong>:</p>
-                      <p style="margin:16px 0;padding:16px;background:#f8f7f5;border-left:3px solid #B8972C;border-radius:4px;">{stage_info['message']}</p>
-                      <p><a href="{status_url}" style="color:#B8972C;font-weight:bold;">View your status</a></p>
-                      <hr style="margin:24px 0;border:none;border-top:1px solid #ddd;" />
-                      <p style="color:#888;font-size:14px;">— Vince Lawrence<br/>GigLine Safety & Compliance<br/>(336) 329-8899</p>
-                    </div>
-                    """,
-                    "reply_to": VINCE_EMAIL,
-                })
-            except Exception as e:
-                logger.error(f"Status notification email error: {e}")
+    # Note: No automatic client email on stage transitions. Client has /status/{token}
+    # link from their intake confirmation email and can check progress anytime.
+    # Event-driven emails (intake confirmation, booking confirmation, report ready)
+    # cover the moments that matter for the client.
 
     return {"status": "updated", "newStatus": new_status}
 
@@ -224,7 +200,6 @@ async def upload_report(client_token: str, token: str = "", file: UploadFile = F
     # Send report delivery email to client
     email = record.get("email")
     company = record.get("company", "")
-    name = record.get("contactName", "")
     report_page_url = f"https://giglinecompliance.com/report/{client_token}"
     if email:
         try:

@@ -1,7 +1,9 @@
 """Admin dashboard routes (login, stats, leads, downloads, summary)."""
 
 from fastapi import APIRouter, HTTPException
+from fastapi.responses import FileResponse
 from datetime import datetime, timezone, timedelta
+import os
 import logging
 
 import resend
@@ -9,6 +11,22 @@ from config import db, ADMIN_PASSWORD, SENDER_EMAIL, VINCE_EMAIL
 
 router = APIRouter()
 logger = logging.getLogger('gigline')
+
+
+INTERNAL_DOCS_DIR = "/app/backend/internal_docs"
+
+
+@router.get("/admin/internal-docs/{filename}")
+async def download_internal_doc(filename: str, token: str = ""):
+    """Admin-only: download internal reference docs (field checklists, SOPs, etc.)."""
+    if token != ADMIN_PASSWORD:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    # Prevent path traversal
+    safe_name = os.path.basename(filename)
+    filepath = os.path.join(INTERNAL_DOCS_DIR, safe_name)
+    if not os.path.isfile(filepath):
+        raise HTTPException(status_code=404, detail="Document not found")
+    return FileResponse(filepath, media_type="application/pdf", filename=safe_name)
 
 
 @router.post("/admin/login")

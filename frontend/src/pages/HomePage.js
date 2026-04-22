@@ -40,7 +40,7 @@ const Reveal = ({ children, className = '', delay = 0 }) => {
 
 /* ── Stock images ── */
 const IMG = {
-  hero: '/hero-blocked-exit.jpg',
+  hero: 'https://www.giglinecompliance.com/vince-inspecting.png',
   grid1: '/cluttered-aisles.jpg',
   grid2: '/blocked-electrical-panel.jpg',
   grid3: '/machine-guarding.jpg',
@@ -143,8 +143,10 @@ const HomePage = () => {
           <div className="relative w-full md:w-3/5 h-[45vh] md:h-auto overflow-hidden">
             <img
               src={IMG.hero}
-              alt="Warehouse safety walkthrough — GigLine on-site OSHA inspection"
+              alt="Vince Lawrence of GigLine Safety & Compliance inspecting a facility during an on-site OSHA safety walkthrough"
               className="absolute inset-0 w-full h-full object-cover img-zoom"
+              loading="eager"
+              fetchpriority="high"
               data-testid="hero-image"
             />
             {/* Gradient bleed into text column */}

@@ -142,7 +142,7 @@ const HomePage = () => {
           {/* Left — Photo */}
           <div className="relative w-full md:w-3/5 h-[45vh] md:h-auto overflow-hidden">
             <img
-              src={IMG.hero}
+              src="/vince-inspecting.webp"
               alt="Vince Lawrence of GigLine Safety & Compliance inspecting a facility during an on-site OSHA safety walkthrough"
               className="absolute inset-0 w-full h-full object-cover img-zoom"
               loading="eager"

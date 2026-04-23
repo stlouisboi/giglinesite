@@ -79,8 +79,8 @@ const ServicesPage = () => {
   return (
     <main data-testid="services-page">
       <SEO
-        title="Services"
-        description="Three focused safety services for small operations. Safety Walkthrough, Documentation Review, and Incident Response Support. Each ends with a written report, clear action items, and a defined next step."
+        title="OSHA Safety Walkthrough & Compliance Services | Kernersville NC | GigLine"
+        description="On-site OSHA safety walkthroughs, documentation reviews, and incident response for small manufacturers, warehouses, and fleets in Kernersville, NC. From $650."
         canonical="/services"
         schema={{
           "@context": "https://schema.org",

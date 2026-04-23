@@ -108,8 +108,8 @@ const FieldNotesPage = () => {
   return (
     <main>
       <SEO
-        title="Field Notes | GigLine Safety & Compliance"
-        description="Real-world safety topics for small operations. Practical breakdowns of what gets cited, what gets missed, and what to do about it."
+        title="OSHA Safety Tips for Small Manufacturers | GigLine Field Notes"
+        description="OSHA safety tips and plain-language guidance for small manufacturers. Field notes on HazCom, forklift safety, electrical, LOTO, PPE, and fall protection."
         canonical="/field-notes"
       />
 

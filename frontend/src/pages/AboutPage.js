@@ -7,8 +7,8 @@ const AboutPage = () => {
   return (
     <main data-testid="about-page">
       <SEO 
-        title="About Vince Lawrence | Safety Coordinator, Kernersville NC"
-        description="25+ years safety leadership in manufacturing, warehousing, and transportation. Navy veteran. Serving the Piedmont Triad and Central NC within 75 miles of Kernersville."
+        title="Safety Consultant for Small Manufacturers | Kernersville NC | GigLine"
+        description="Vince Lawrence — safety consultant for small manufacturers in Kernersville, NC and the Triad. OSHA 30-Hour certified, Navy veteran, 25+ years experience."
         canonical="/about"
         schema={{
           "@context": "https://schema.org",

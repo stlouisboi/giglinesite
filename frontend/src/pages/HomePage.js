@@ -56,8 +56,8 @@ const HomePage = () => {
   return (
     <main className="overflow-x-hidden">
       <SEO
-        title="On-Site Safety Walkthroughs | Kernersville, NC | GigLine Safety & Compliance"
-        description="GigLine provides on-site OSHA safety walkthroughs for small manufacturers and warehouses in Kernersville and the Triad, NC. OSHA 30-Hour Certified."
+        title="OSHA Safety Walkthroughs for Small Manufacturers | Kernersville NC | GigLine Safety & Compliance"
+        description="GigLine Safety & Compliance provides on-site OSHA safety walkthroughs and compliance inspections for small manufacturers, warehouses, and fleets in Kernersville, NC and the Piedmont Triad. Starting at $650."
         canonical="/"
         schema={{
           "@context": "https://schema.org",

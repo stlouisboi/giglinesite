@@ -19,8 +19,8 @@ const BASE_URL = 'https://www.giglinecompliance.com';
 const routes = [
   {
     path: '/',
-    title: 'On-Site Safety Walkthroughs | Kernersville, NC | GigLine Safety & Compliance',
-    description: 'GigLine provides on-site OSHA safety walkthroughs for small manufacturers and warehouses in Kernersville and the Triad, NC. OSHA 30-Hour Certified.',
+    title: 'OSHA Safety Walkthroughs for Small Manufacturers | Kernersville NC | GigLine Safety & Compliance',
+    description: 'GigLine Safety & Compliance provides on-site OSHA safety walkthroughs and compliance inspections for small manufacturers, warehouses, and fleets in Kernersville, NC and the Piedmont Triad. Starting at $650.',
     canonical: '/',
     content: `
       <h1>If OSHA Walked In Tomorrow, Would You Pass?</h1>
@@ -57,8 +57,8 @@ const routes = [
   },
   {
     path: '/about',
-    title: 'About Vince Lawrence | GigLine Safety & Compliance',
-    description: 'Vince Lawrence — safety consultant, OSHA 30-Hour certified, U.S. Navy veteran. 25+ years in manufacturing, fleet, and warehouse safety. Based in Kernersville, NC.',
+    title: 'Safety Consultant for Small Manufacturers | Kernersville NC | GigLine',
+    description: 'Vince Lawrence — safety consultant for small manufacturers in Kernersville, NC and the Triad. OSHA 30-Hour certified, Navy veteran, 25+ years experience.',
     canonical: '/about',
     content: `
       <h1>About Vince Lawrence</h1>
@@ -69,8 +69,8 @@ const routes = [
   },
   {
     path: '/services',
-    title: 'Safety Walkthrough Services & Pricing | GigLine Safety & Compliance',
-    description: 'Three focused safety services for small operations. Safety Walkthrough (from $650), Documentation Review (from $550), and Incident Response ($900). Each ends with a written report.',
+    title: 'OSHA Safety Walkthrough & Compliance Services | Kernersville NC | GigLine',
+    description: 'On-site OSHA safety walkthroughs, documentation reviews, and incident response for small manufacturers, warehouses, and fleets in Kernersville, NC. From $650.',
     canonical: '/services',
     content: `
       <h1>Safety Services for Small Operations</h1>
@@ -168,8 +168,8 @@ const routes = [
   },
   {
     path: '/field-notes',
-    title: 'Field Notes — OSHA Safety Topics | GigLine Safety & Compliance',
-    description: 'Field notes on OSHA safety topics for small operations. Covering HazCom, forklift safety, electrical access, lockout-tagout, emergency action plans, PPE, fall protection, and more.',
+    title: 'OSHA Safety Tips for Small Manufacturers | GigLine Field Notes',
+    description: 'OSHA safety tips and plain-language guidance for small manufacturers. Field notes on HazCom, forklift safety, electrical, LOTO, PPE, and fall protection.',
     canonical: '/field-notes',
     content: `
       <h1>Field Notes</h1>

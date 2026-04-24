@@ -561,25 +561,13 @@ const HomePage = () => {
         </div>
       </section>
       <section className="relative py-24 md:py-32 overflow-hidden" style={{ backgroundColor: '#F7F9FC' }} data-testid="process-section">
-        {/* Background image — right side only */}
-        <div className="absolute inset-0 hidden md:block">
-          <div className="absolute top-0 right-0 bottom-0 w-3/5">
-            <img
-              src="/vince-inspecting.png"
-              alt="Vince Lawrence conducting LOTO compliance review with clipboard"
-              className="absolute inset-0 w-full h-full object-cover object-center"
-            />
-            <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, #F7F9FC 0%, rgba(247,249,252,0.15) 25%, transparent 50%)' }} />
-          </div>
-        </div>
-
         <div className="container max-w-6xl relative z-10">
           <div className="flex flex-col md:flex-row gap-12 md:gap-20">
             {/* Left label — 40% */}
             <div className="md:w-2/5">
               <Reveal>
                 <p
-                  className="uppercase tracking-[3px] text-[#CBD5E1] mb-4"
+                  className="uppercase tracking-[3px] text-[#1F6FEB] mb-4 font-semibold"
                   style={{ ...mono, fontSize: '11px' }}
                 >
                   The Process
@@ -590,7 +578,7 @@ const HomePage = () => {
                 >
                   What to Expect from a Safety Walkthrough
                 </h2>
-                <p className="text-base text-[#102133] leading-relaxed">
+                <p className="text-base text-[#102133]/75 leading-relaxed">
                   Simple, direct, no disruption to your day.
                 </p>
               </Reveal>

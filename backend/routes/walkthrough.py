@@ -2,11 +2,13 @@
 
 from fastapi import APIRouter
 from datetime import datetime, timezone
+import asyncio
 import uuid
 import logging
 
 import resend
 from config import db, SENDER_EMAIL, VINCE_EMAIL
+from integrations.mailerlite import add_to_lead_nurture
 from models import WalkthroughRequest
 
 router = APIRouter()
@@ -32,6 +34,23 @@ async def submit_walkthrough_request(request: WalkthroughRequest):
         "utm_content": request.utm_content,
     }
     await db.walkthrough_requests.insert_one(doc)
+
+    # Push to MailerLite Lead Nurture (only if email provided — it's optional on this form)
+    if request.email:
+        attribution = {}
+        if request.utm_source:
+            attribution = {"firstTouch": {
+                "utm_source": request.utm_source,
+                "utm_medium": request.utm_medium,
+                "utm_campaign": request.utm_campaign,
+            }}
+        asyncio.create_task(add_to_lead_nurture(
+            email=request.email,
+            name=request.name,
+            company=request.company,
+            source_form="walkthrough_request",
+            attribution=attribution if attribution else None,
+        ))
 
     try:
         resend.Emails.send({

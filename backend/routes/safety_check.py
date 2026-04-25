@@ -7,6 +7,8 @@ import asyncio
 import uuid
 import os
 import base64
+
+from integrations.mailerlite import add_to_lead_nurture
 import logging
 
 import resend
@@ -51,6 +53,14 @@ async def submit_safety_check(submission: SafetyCheckSubmission):
         "timestamp": timestamp.isoformat(),
     }
     await db.safety_check_submissions.insert_one(doc)
+
+    # Push to MailerLite Lead Nurture (fire-and-forget, never blocks)
+    asyncio.create_task(add_to_lead_nurture(
+        email=submission.email,
+        name=submission.name,
+        company=submission.company,
+        source_form="safety_check",
+    ))
 
     # Schedule drip email sequence
     flow_type, email_sequence = get_flow_for_score(gaps)

@@ -3,6 +3,7 @@
 from fastapi import APIRouter, Request, HTTPException
 from fastapi.responses import FileResponse
 from datetime import datetime, timezone
+import asyncio
 import base64
 import logging
 
@@ -12,6 +13,7 @@ from config import (
     HAZCOM_PRODUCT, HAZCOM_FILES,
     SENDER_EMAIL, VINCE_EMAIL,
 )
+from integrations.mailerlite import add_to_lead_nurture
 from models import PaymentTransaction, HazComCheckoutRequest
 
 router = APIRouter()
@@ -100,6 +102,11 @@ async def verify_hazcom_session(session_id: str, http_request: Request):
                 customer_email = metadata.get("customer_email") or metadata.get("email")
                 if customer_email:
                     await _send_hazcom_delivery_email(customer_email, session_id)
+                    # Push to MailerLite Lead Nurture (fire-and-forget)
+                    asyncio.create_task(add_to_lead_nurture(
+                        email=customer_email,
+                        source_form="hazcom_purchase",
+                    ))
             return {"verified": True}
 
         return {"verified": False}

@@ -3,11 +3,13 @@
 from fastapi import APIRouter, HTTPException, UploadFile, File
 from fastapi.responses import FileResponse
 from datetime import datetime, timezone
+import asyncio
 import os
 import logging
 
 import resend
 from config import db, SENDER_EMAIL, VINCE_EMAIL, ADMIN_PASSWORD
+from integrations.mailerlite import move_to_past_client
 
 router = APIRouter()
 logger = logging.getLogger('gigline')
@@ -201,6 +203,11 @@ async def upload_report(client_token: str, token: str = "", file: UploadFile = F
     email = record.get("email")
     company = record.get("company", "")
     report_page_url = f"https://giglinecompliance.com/report/{client_token}"
+
+    # MailerLite: move to Past Client list, kicks off the 4-touch retention sequence
+    if email:
+        asyncio.create_task(move_to_past_client(email))
+
     if email:
         try:
             resend.Emails.send({

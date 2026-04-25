@@ -15,6 +15,9 @@ from config import db, SENDER_EMAIL, VINCE_EMAIL
 router = APIRouter()
 logger = logging.getLogger('gigline')
 
+import asyncio
+from integrations.mailerlite import add_to_lead_nurture, pause_engagement
+
 UPLOAD_DIR = "/app/backend/intake_uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
@@ -328,6 +331,20 @@ async def submit_intake(data: IntakeSubmission):
         **data.model_dump(),
     }
     await db.gl_intake_submissions.insert_one(doc)
+
+    # MailerLite: intake = active engagement, so add to Lead Nurture but flag as paused
+    # so they don't receive prospect-stage drip emails while we're working with them.
+    if data.email:
+        attribution_dict = data.attribution if isinstance(data.attribution, dict) else None
+        asyncio.create_task(add_to_lead_nurture(
+            email=data.email,
+            name=data.contactName or "",
+            company=data.company or "",
+            source_form="intake",
+            attribution=attribution_dict,
+        ))
+        # Then pause — moves to "Paused — Active Engagement" group, no automation runs there
+        asyncio.create_task(pause_engagement(data.email))
 
     # Calculate proposed scope (server-side only, never exposed to client)
     scope = calculate_proposed_scope(data)

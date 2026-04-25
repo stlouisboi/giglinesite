@@ -2,11 +2,13 @@
 
 from fastapi import APIRouter
 from datetime import datetime, timezone
+import asyncio
 import base64
 import logging
 
 import resend
 from config import db, SENDER_EMAIL, VINCE_EMAIL, HEAT_STRESS_PDF
+from integrations.mailerlite import add_to_lead_nurture
 from models import HeatGuideRequest
 
 router = APIRouter()
@@ -27,6 +29,9 @@ async def submit_heat_guide(request: HeatGuideRequest):
         "email": email,
         "timestamp": datetime.now(timezone.utc).isoformat(),
     })
+
+    # Push to MailerLite Lead Nurture (fire-and-forget)
+    asyncio.create_task(add_to_lead_nurture(email=email, source_form="heat_guide"))
 
     try:
         attachment_content = ""

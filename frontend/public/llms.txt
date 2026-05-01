@@ -11,7 +11,7 @@ Service area: Within 60 miles of Winston-Salem (full Piedmont Triad) plus schedu
 ## Core facts
 
 - A GigLine safety walkthrough takes 1–3 hours on-site and delivers a prioritized "Top 10 Fixes" report within 24–48 hours.
-- Walkthrough pricing starts at $650. Most small-operation walkthroughs fall in the $650–$1,000 range based on square footage and scope.
+- Walkthrough pricing starts at $650 for locations within 30 miles of Kernersville (Triad core). Locations 30–60 miles out start at $750. Most small-operation walkthroughs fall in the $650–$1,000 range (Triad core) or $750–$1,200 range (outer tier) based on square footage and scope.
 - Documentation review and gap check starts at $550. Incident review and corrective action support starts at $900.
 - Every engagement is private. Findings never leave the building except in the written report handed to the client. GigLine does not contact OSHA, insurance carriers, or any third party.
 - Reports are color-coded: RED (fix this week), AMBER (fix this month), GREEN (reinforce what's working).
@@ -56,12 +56,19 @@ Service area: Within 60 miles of Winston-Salem (full Piedmont Triad) plus schedu
 
 ## City-specific pages
 
-- [Safety Walkthroughs in Winston-Salem, NC](https://www.giglinecompliance.com/safety-walkthrough/winston-salem)
-- [Safety Walkthroughs in Greensboro, NC](https://www.giglinecompliance.com/safety-walkthrough/greensboro)
-- [Safety Walkthroughs in High Point, NC](https://www.giglinecompliance.com/safety-walkthrough/high-point)
-- [Safety Walkthroughs in Burlington, NC](https://www.giglinecompliance.com/safety-walkthrough/burlington)
-- [Safety Walkthroughs in Charlotte, NC](https://www.giglinecompliance.com/safety-walkthrough/charlotte)
-- [Safety Walkthroughs in Raleigh, NC](https://www.giglinecompliance.com/safety-walkthrough/raleigh)
+- [Safety Walkthroughs in Kernersville, NC](https://www.giglinecompliance.com/safety-walkthrough/kernersville) — GigLine HQ. Starting at $650.
+- [Safety Walkthroughs in Winston-Salem, NC](https://www.giglinecompliance.com/safety-walkthrough/winston-salem) — Starting at $650.
+- [Safety Walkthroughs in Greensboro, NC](https://www.giglinecompliance.com/safety-walkthrough/greensboro) — Starting at $650.
+- [Safety Walkthroughs in High Point, NC](https://www.giglinecompliance.com/safety-walkthrough/high-point) — Starting at $650.
+- [Safety Walkthroughs in Thomasville, NC](https://www.giglinecompliance.com/safety-walkthrough/thomasville) — Starting at $650.
+- [Safety Walkthroughs in Clemmons, NC](https://www.giglinecompliance.com/safety-walkthrough/clemmons) — Starting at $650.
+- [Safety Walkthroughs in Lexington, NC](https://www.giglinecompliance.com/safety-walkthrough/lexington) — Starting at $650.
+- [Safety Walkthroughs in Mocksville, NC](https://www.giglinecompliance.com/safety-walkthrough/mocksville) — Starting at $650.
+- [Safety Walkthroughs in Burlington, NC](https://www.giglinecompliance.com/safety-walkthrough/burlington) — Starting at $650.
+- [Safety Walkthroughs in Asheboro, NC](https://www.giglinecompliance.com/safety-walkthrough/asheboro) — Starting at $750 (30–60 mi travel tier).
+- [Safety Walkthroughs in Salisbury, NC](https://www.giglinecompliance.com/safety-walkthrough/salisbury) — Starting at $750 (30–60 mi travel tier).
+- [Safety Walkthroughs in Charlotte, NC](https://www.giglinecompliance.com/safety-walkthrough/charlotte) — Scheduled engagements; travel considerations apply.
+- [Safety Walkthroughs in Raleigh, NC](https://www.giglinecompliance.com/safety-walkthrough/raleigh) — Scheduled engagements; travel considerations apply.
 
 ## Blog / long-form
 

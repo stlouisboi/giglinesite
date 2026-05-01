@@ -91,8 +91,11 @@ const HomePage = () => {
             { "@type": "City", "name": "Greensboro" },
             { "@type": "City", "name": "High Point" },
             { "@type": "City", "name": "Kernersville", "sameAs": "https://en.wikipedia.org/wiki/Kernersville,_North_Carolina" },
+            { "@type": "City", "name": "Clemmons" },
             { "@type": "City", "name": "Lexington" },
             { "@type": "City", "name": "Thomasville" },
+            { "@type": "City", "name": "Mocksville" },
+            { "@type": "City", "name": "Asheboro" },
             { "@type": "City", "name": "Salisbury" },
             { "@type": "City", "name": "Burlington" }
           ],

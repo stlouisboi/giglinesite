@@ -47,8 +47,11 @@ const LOCAL_BUSINESS = {
     { '@type': 'City', name: 'Greensboro' },
     { '@type': 'City', name: 'High Point' },
     { '@type': 'City', name: 'Kernersville' },
+    { '@type': 'City', name: 'Clemmons' },
     { '@type': 'City', name: 'Lexington' },
     { '@type': 'City', name: 'Thomasville' },
+    { '@type': 'City', name: 'Mocksville' },
+    { '@type': 'City', name: 'Asheboro' },
     { '@type': 'City', name: 'Salisbury' },
     { '@type': 'City', name: 'Burlington' },
     { '@type': 'City', name: 'Charlotte' },
@@ -116,7 +119,7 @@ const HOMEPAGE_FAQS = [
 
 // Canonical 18-question FAQ for /faq page
 const FULL_FAQS = [
-  { q: 'How much does an OSHA safety walkthrough cost in North Carolina?', a: "A GigLine safety walkthrough starts at $650. Most small-operation walkthroughs fall between $650 and $1,000 depending on square footage and scope. You'll receive a fixed price before scheduling — no hourly billing, no retainer." },
+  { q: 'How much does an OSHA safety walkthrough cost in North Carolina?', a: "GigLine safety walkthroughs start at $650 for operations within 30 miles of Kernersville (Winston-Salem, Greensboro, High Point, and the Triad core). Locations 30–60 miles out start at $750 to account for travel — this is all-in, no separate travel fee. Most small-operation walkthroughs fall between $650 and $1,200 depending on square footage and scope. You'll receive a fixed price before scheduling — no hourly billing, no retainer." },
   { q: "What's included in a GigLine safety walkthrough?", a: "An on-site walkthrough of your operation (1–3 hours), photo-documented hazard findings, the specific OSHA standard referenced for each finding, and a written 'Top 10 Fixes' report delivered within 24–48 hours. Findings are color-coded: RED (fix this week), AMBER (fix this month), GREEN (what you're doing right)." },
   { q: 'How long does a safety walkthrough take on-site?', a: 'Most walkthroughs run 1 to 3 hours. A small shop under 10,000 sq ft may take under an hour. A multi-bay warehouse or production floor typically runs 2 to 3 hours. You will know the time estimate before the visit.' },
   { q: "What's the difference between a safety walkthrough and an OSHA inspection?", a: 'An OSHA inspection is performed by a federal compliance officer and can result in citations and fines. A GigLine safety walkthrough is a private, voluntary review performed by an independent consultant. Findings are delivered only to you — nothing is reported to OSHA, your insurance carrier, or any third party.' },
@@ -417,18 +420,26 @@ const routes = [
 
 // City landing pages
 const CITY_META = {
-  'winston-salem':  { name: 'Winston-Salem',  distance: '10 miles from Kernersville', industries: 'manufacturing plants, food processing facilities, and distribution centers' },
-  'greensboro':     { name: 'Greensboro',     distance: '15 miles from Kernersville', industries: 'warehouses, light manufacturing, and logistics operations' },
-  'high-point':     { name: 'High Point',     distance: '12 miles from Kernersville', industries: 'furniture manufacturing, warehousing, and small fabrication shops' },
-  'charlotte':      { name: 'Charlotte',      distance: '75 miles from Kernersville', industries: 'manufacturing, construction contractors, and warehouse operations' },
-  'raleigh':        { name: 'Raleigh',        distance: '75 miles from Kernersville', industries: 'growing manufacturing operations, warehouse facilities, and construction sites' },
-  'burlington':     { name: 'Burlington',     distance: '30 miles from Kernersville', industries: 'textile operations, small manufacturers, and distribution facilities' },
+  'winston-salem':  { name: 'Winston-Salem',  distance: '10 miles from Kernersville', industries: 'manufacturing plants, food processing facilities, and distribution centers', price: 650 },
+  'greensboro':     { name: 'Greensboro',     distance: '15 miles from Kernersville', industries: 'warehouses, light manufacturing, and logistics operations', price: 650 },
+  'high-point':     { name: 'High Point',     distance: '12 miles from Kernersville', industries: 'furniture manufacturing, warehousing, and small fabrication shops', price: 650 },
+  'charlotte':      { name: 'Charlotte',      distance: '75 miles from Kernersville', industries: 'manufacturing, construction contractors, and warehouse operations', price: 650 },
+  'raleigh':        { name: 'Raleigh',        distance: '75 miles from Kernersville', industries: 'growing manufacturing operations, warehouse facilities, and construction sites', price: 650 },
+  'burlington':     { name: 'Burlington',     distance: '30 miles from Kernersville', industries: 'textile operations, small manufacturers, and distribution facilities', price: 650 },
+  'kernersville':   { name: 'Kernersville',   distance: 'GigLine HQ',                  industries: 'manufacturing, light industrial operations, and warehousing', price: 650 },
+  'lexington':      { name: 'Lexington',      distance: '20 miles from Kernersville', industries: 'furniture manufacturing, food production, and small fabrication shops', price: 650 },
+  'thomasville':    { name: 'Thomasville',    distance: '15 miles from Kernersville', industries: 'furniture manufacturing, cabinetry, and small production operations', price: 650 },
+  'clemmons':       { name: 'Clemmons',       distance: '15 miles from Kernersville', industries: 'small manufacturers, trade contractors, and light industrial operations', price: 650 },
+  'mocksville':     { name: 'Mocksville',     distance: '25 miles from Kernersville', industries: 'manufacturing, agricultural operations, and small fabrication shops', price: 650 },
+  'salisbury':      { name: 'Salisbury',      distance: '50 miles from Kernersville', industries: 'manufacturing plants, distribution centers, and industrial operations', price: 750, travelNote: true },
+  'asheboro':       { name: 'Asheboro',       distance: '35 miles from Kernersville', industries: 'manufacturing, metal fabrication, and distribution operations', price: 750, travelNote: true },
 };
 
 Object.keys(CITY_META).forEach((city) => {
   const m = CITY_META[city];
+  const priceTop = m.price === 650 ? 1000 : 1200;
   const cityFaqs = [
-    { q: `How much does a safety walkthrough cost in ${m.name}, NC?`, a: `Safety walkthroughs for ${m.name}-area operations start at $650. Most small operations fall in the $650–$1,000 range depending on square footage and scope. You'll receive a fixed quote before scheduling.` },
+    { q: `How much does a safety walkthrough cost in ${m.name}, NC?`, a: `Safety walkthroughs for ${m.name}-area operations start at $${m.price}. Most small operations fall in the $${m.price}–$${priceTop} range depending on square footage and scope. You'll receive a fixed quote before scheduling.${m.travelNote ? ` ${m.name} pricing includes travel from Kernersville — no separate travel fee at the time of the walkthrough.` : ''}` },
     { q: `How quickly can GigLine get on-site in ${m.name}?`, a: `${m.name} is ${m.distance}, so most walkthroughs are scheduled within 5–10 business days of the initial request. Urgent or post-incident visits can often be scheduled the same week.` },
     { q: `What kind of operations does GigLine walk through in ${m.name}?`, a: `${m.industries.charAt(0).toUpperCase() + m.industries.slice(1)}. Typical client size is 5 to 100 employees — operations without a full-time safety manager that need a trained outside eye on the floor.` },
     { q: `Will findings from my ${m.name} walkthrough be reported to OSHA?`, a: `No. The engagement is private. The only deliverable is the written report handed to you — nothing is shared with OSHA, insurance carriers, or any third party.` },
@@ -437,24 +448,24 @@ Object.keys(CITY_META).forEach((city) => {
   routes.push({
     path: `/safety-walkthrough/${city}`,
     title: `Safety Walkthrough ${m.name}, NC | GigLine Safety & Compliance`,
-    description: `On-site OSHA safety walkthroughs for small manufacturers and warehouses in ${m.name}, NC. Written report with findings, photos, and corrective actions. Starting at $650.`,
+    description: `On-site OSHA safety walkthroughs for small manufacturers and warehouses in ${m.name}, NC. Written report with findings, photos, and corrective actions. Starting at $${m.price}.`,
     canonical: `/safety-walkthrough/${city}`,
     schemas: [
       {
         '@context': 'https://schema.org',
         '@type': 'Service',
         name: `Safety Walkthrough in ${m.name}, NC`,
-        description: `On-site OSHA safety walkthroughs for ${m.industries} in ${m.name} and surrounding areas. Written report delivered within 24–48 hours. Starting at $650.`,
+        description: `On-site OSHA safety walkthroughs for ${m.industries} in ${m.name} and surrounding areas. Written report delivered within 24–48 hours. Starting at $${m.price}.`,
         provider: { '@id': `${BASE_URL}/#business` },
         areaServed: { '@type': 'City', name: m.name, containedInPlace: { '@type': 'State', name: 'North Carolina' } },
-        offers: { '@type': 'Offer', price: '650', priceCurrency: 'USD' },
+        offers: { '@type': 'Offer', price: String(m.price), priceCurrency: 'USD' },
       },
       faqSchema(cityFaqs),
       breadcrumb([{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }, { name: `${m.name} Walkthrough`, path: `/safety-walkthrough/${city}` }]),
     ],
     content: `
       <h1>Safety Walkthrough — ${m.name}, NC</h1>
-      <p>On-site OSHA safety walkthroughs for ${m.industries} in ${m.name} and surrounding areas. Starting at $650. Written report delivered within 24-48 hours.</p>
+      <p>On-site OSHA safety walkthroughs for ${m.industries} in ${m.name} and surrounding areas. Starting at $${m.price}. Written report delivered within 24-48 hours.</p>
       <h2>${m.name} Safety Walkthrough FAQ</h2>
       ${cityFaqs.map((f) => `<h3>${f.q}</h3><p>${f.a}</p>`).join('')}
       <p><a href="/faq">See all 18 frequently asked questions →</a></p>

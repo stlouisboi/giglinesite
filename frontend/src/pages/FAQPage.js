@@ -10,7 +10,7 @@ const mono = { fontFamily: "'JetBrains Mono', monospace" };
 export const FAQS = [
   {
     q: 'How much does an OSHA safety walkthrough cost in North Carolina?',
-    a: "A GigLine safety walkthrough starts at $650. Most small-operation walkthroughs fall between $650 and $1,000 depending on square footage and scope. You'll receive a fixed price before scheduling — no hourly billing, no retainer.",
+    a: "GigLine safety walkthroughs start at $650 for operations within 30 miles of Kernersville (Winston-Salem, Greensboro, High Point, and the Triad core). Locations 30–60 miles out start at $750 to account for travel — this is all-in, no separate travel fee. Most small-operation walkthroughs fall between $650 and $1,200 depending on square footage and scope. You'll receive a fixed price before scheduling — no hourly billing, no retainer.",
   },
   {
     q: "What's included in a GigLine safety walkthrough?",

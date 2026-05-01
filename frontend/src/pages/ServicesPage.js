@@ -82,49 +82,69 @@ const ServicesPage = () => {
         title="OSHA Safety Walkthrough & Compliance Services | Kernersville NC | GigLine"
         description="On-site OSHA safety walkthroughs, documentation reviews, and incident response for small manufacturers, warehouses, and fleets in Kernersville, NC. From $650."
         canonical="/services"
-        schema={{
-          "@context": "https://schema.org",
-          "@type": "ItemList",
-          "name": "GigLine Safety Consulting Services",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "item": {
-                "@type": "Service",
-                "name": "Safety Walkthrough & Top 10 Fixes Report",
-                "description": "A structured on-site review of common OSHA exposure areas.",
-                "provider": { "@type": "LocalBusiness", "name": "GigLine Safety & Compliance" },
-                "areaServed": "United States",
-                "offers": { "@type": "Offer", "price": "650", "priceCurrency": "USD" }
+        schema={[
+          {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "name": "GigLine Safety Consulting Services",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                  "@type": "Service",
+                  "name": "Safety Walkthrough & Top 10 Fixes Report",
+                  "description": "A structured on-site review of common OSHA exposure areas.",
+                  "provider": { "@type": "LocalBusiness", "name": "GigLine Safety & Compliance" },
+                  "areaServed": "United States",
+                  "offers": { "@type": "Offer", "price": "650", "priceCurrency": "USD" }
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                  "@type": "Service",
+                  "name": "Safety Documentation Review & Gap Check",
+                  "description": "Review of written safety programs, training records, and inspection forms.",
+                  "provider": { "@type": "LocalBusiness", "name": "GigLine Safety & Compliance" },
+                  "areaServed": "United States",
+                  "offers": { "@type": "Offer", "price": "550", "priceCurrency": "USD" }
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                  "@type": "Service",
+                  "name": "Incident Review & Corrective Action Support",
+                  "description": "Post-incident review and corrective direction.",
+                  "provider": { "@type": "LocalBusiness", "name": "GigLine Safety & Compliance" },
+                  "areaServed": "United States",
+                  "offers": { "@type": "Offer", "price": "900", "priceCurrency": "USD" }
+                }
               }
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "item": {
-                "@type": "Service",
-                "name": "Safety Documentation Review & Gap Check",
-                "description": "Review of written safety programs, training records, and inspection forms.",
-                "provider": { "@type": "LocalBusiness", "name": "GigLine Safety & Compliance" },
-                "areaServed": "United States",
-                "offers": { "@type": "Offer", "price": "550", "priceCurrency": "USD" }
-              }
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "item": {
-                "@type": "Service",
-                "name": "Incident Review & Corrective Action Support",
-                "description": "Post-incident review and corrective direction.",
-                "provider": { "@type": "LocalBusiness", "name": "GigLine Safety & Compliance" },
-                "areaServed": "United States",
-                "offers": { "@type": "Offer", "price": "900", "priceCurrency": "USD" }
-              }
-            }
-          ]
-        }}
+            ]
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              { "@type": "Question", "name": "How much does a GigLine safety walkthrough cost?", "acceptedAnswer": { "@type": "Answer", "text": "Walkthroughs start at $650. Most small-operation walkthroughs fall in the $650–$1,000 range based on square footage and scope. You'll receive a fixed quote before scheduling." } },
+              { "@type": "Question", "name": "What's included in a documentation review and gap check?", "acceptedAnswer": { "@type": "Answer", "text": "A review of your written safety programs, training records, inspection logs, and required documentation — with a gap analysis that lists what's missing, what needs updating, and what's in good order. Starts at $550." } },
+              { "@type": "Question", "name": "When do I need incident review and corrective action support?", "acceptedAnswer": { "@type": "Answer", "text": "After a recordable injury, near-miss, or OSHA visit — anytime you need to document what happened, identify what broke down, and build corrective action that holds up under review. Starts at $900." } },
+              { "@type": "Question", "name": "Do services require a retainer or long-term contract?", "acceptedAnswer": { "@type": "Answer", "text": "No. Every GigLine service is a single engagement with a fixed fee. No monthly retainer, no long-term contract. You pay once, you get the report, the engagement is closed." } }
+            ]
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.giglinecompliance.com/" },
+              { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://www.giglinecompliance.com/services" }
+            ]
+          }
+        ]}
       />
 
       {/* ── Hero Band ── */}

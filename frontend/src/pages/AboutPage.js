@@ -10,15 +10,54 @@ const AboutPage = () => {
         title="Safety Consultant for Small Manufacturers | Kernersville NC | GigLine"
         description="Vince Lawrence — safety consultant for small manufacturers in Kernersville, NC and the Triad. OSHA 30-Hour certified, Navy veteran, 25+ years experience."
         canonical="/about"
-        schema={{
-          "@context": "https://schema.org",
-          "@type": "Person",
-          "name": "Vince Lawrence",
-          "jobTitle": "Safety Coordinator & Founder",
-          "worksFor": { "@type": "LocalBusiness", "name": "GigLine Safety & Compliance" },
-          "address": { "@type": "PostalAddress", "addressLocality": "Kernersville", "addressRegion": "NC", "postalCode": "27107" },
-          "knowsAbout": ["OSHA compliance", "safety walkthroughs", "hazard communication", "incident investigation", "machine guarding", "fall protection"]
-        }}
+        schema={[
+          {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Vince Lawrence",
+            "jobTitle": "Safety Coordinator & Founder",
+            "worksFor": {
+              "@type": "LocalBusiness",
+              "name": "GigLine Safety & Compliance",
+              "url": "https://www.giglinecompliance.com",
+              "telephone": "+13363298899",
+              "address": { "@type": "PostalAddress", "addressLocality": "Kernersville", "addressRegion": "NC", "postalCode": "27107", "addressCountry": "US" }
+            },
+            "address": { "@type": "PostalAddress", "addressLocality": "Kernersville", "addressRegion": "NC", "postalCode": "27107" },
+            "telephone": "+13363298899",
+            "email": "vince@giglinecompliance.com",
+            "url": "https://www.giglinecompliance.com/about",
+            "image": "https://www.giglinecompliance.com/vince-portrait.jpg",
+            "description": "Vince Lawrence is a safety consultant with 25+ years of experience in manufacturing, fleet, and warehouse operations. OSHA 30-Hour Certified in General Industry. U.S. Navy veteran. Founder of GigLine Safety & Compliance in Kernersville, NC.",
+            "hasCredential": [
+              { "@type": "EducationalOccupationalCredential", "credentialCategory": "certification", "name": "OSHA 30-Hour General Industry Certification" },
+              { "@type": "EducationalOccupationalCredential", "credentialCategory": "military service", "name": "U.S. Navy Veteran" }
+            ],
+            "knowsAbout": [
+              "OSHA compliance",
+              "safety walkthroughs",
+              "hazard communication",
+              "incident investigation",
+              "machine guarding",
+              "fall protection",
+              "lockout/tagout",
+              "forklift safety",
+              "small-business safety programs",
+              "manufacturing safety",
+              "warehouse safety",
+              "fleet safety"
+            ],
+            "areaServed": { "@type": "State", "name": "North Carolina" }
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.giglinecompliance.com/" },
+              { "@type": "ListItem", "position": 2, "name": "About", "item": "https://www.giglinecompliance.com/about" }
+            ]
+          }
+        ]}
       />
 
       {/* Hero Section */}

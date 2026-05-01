@@ -27,6 +27,7 @@ import AdminPage from './pages/AdminPage';
 import FieldNotesPage from './pages/FieldNotesPage';
 import FieldNoteDetailPage from './pages/FieldNoteDetailPage';
 import CityLandingPage from './pages/CityLandingPage';
+import FAQPage from './pages/FAQPage';
 import './App.css';
 
 function RouteTracker() {
@@ -76,6 +77,7 @@ function App() {
                   <Route path="/field-notes" element={<FieldNotesPage />} />
                   <Route path="/field-notes/:slug" element={<FieldNoteDetailPage />} />
                   <Route path="/safety-walkthrough/:city" element={<CityLandingPage />} />
+                  <Route path="/faq" element={<FAQPage />} />
                   <Route path="*" element={<NotFoundPage />} />
                 </Routes>
               </div>

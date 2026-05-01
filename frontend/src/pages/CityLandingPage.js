@@ -62,26 +62,67 @@ const CityLandingPage = () => {
 
   if (!data) return <Navigate to="/services" replace />;
 
+  const cityFaqs = [
+    {
+      q: `How much does a safety walkthrough cost in ${data.name}, NC?`,
+      a: `Safety walkthroughs for ${data.name}-area operations start at $650. Most small operations fall in the $650–$1,000 range depending on square footage and scope. You'll receive a fixed quote before scheduling.`,
+    },
+    {
+      q: `How quickly can GigLine get on-site in ${data.name}?`,
+      a: `${data.name} is ${data.distance}, so most walkthroughs are scheduled within 5–10 business days of the initial request. Urgent or post-incident visits can often be scheduled the same week.`,
+    },
+    {
+      q: `What kind of operations does GigLine walk through in ${data.name}?`,
+      a: `${data.industries.charAt(0).toUpperCase() + data.industries.slice(1)}. Typical client size is 5 to 100 employees — operations without a full-time safety manager that need a trained outside eye on the floor.`,
+    },
+    {
+      q: `Will findings from my ${data.name} walkthrough be reported to OSHA?`,
+      a: `No. The engagement is private. The only deliverable is the written report handed to you — nothing is shared with OSHA, insurance carriers, or any third party.`,
+    },
+  ];
+
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": `Safety Walkthrough in ${data.name}, NC`,
+    "description": data.seoDesc,
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "GigLine Safety & Compliance",
+      "telephone": "+13363298899",
+      "address": { "@type": "PostalAddress", "addressLocality": "Kernersville", "addressRegion": "NC", "postalCode": "27107" },
+    },
+    "areaServed": { "@type": "City", "name": data.name, "containedInPlace": { "@type": "State", "name": "North Carolina" } },
+    "offers": { "@type": "Offer", "price": "650", "priceCurrency": "USD" }
+  };
+
+  const cityFaqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": cityFaqs.map(f => ({
+      "@type": "Question",
+      "name": f.q,
+      "acceptedAnswer": { "@type": "Answer", "text": f.a }
+    }))
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.giglinecompliance.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://www.giglinecompliance.com/services" },
+      { "@type": "ListItem", "position": 3, "name": `Safety Walkthrough — ${data.name}, NC`, "item": `https://www.giglinecompliance.com/safety-walkthrough/${city}` },
+    ]
+  };
+
   return (
     <main data-testid={`city-page-${city}`}>
       <SEO
         title={data.seoTitle}
         description={data.seoDesc}
         canonical={`/safety-walkthrough/${city}`}
-        schema={{
-          "@context": "https://schema.org",
-          "@type": "Service",
-          "name": `Safety Walkthrough in ${data.name}, NC`,
-          "description": data.seoDesc,
-          "provider": {
-            "@type": "LocalBusiness",
-            "name": "GigLine Safety & Compliance",
-            "telephone": "+13363298899",
-            "address": { "@type": "PostalAddress", "addressLocality": "Kernersville", "addressRegion": "NC", "postalCode": "27107" },
-          },
-          "areaServed": { "@type": "City", "name": data.name, "containedInPlace": { "@type": "State", "name": "North Carolina" } },
-          "offers": { "@type": "Offer", "price": "650", "priceCurrency": "USD" }
-        }}
+        schema={[serviceSchema, cityFaqSchema, breadcrumbSchema]}
       />
 
       {/* Hero */}
@@ -168,6 +209,44 @@ const CityLandingPage = () => {
             <p className="font-medium text-[#102133]">
               A walkthrough finds what's actually exposed — before an inspector does.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* City-specific FAQ */}
+      <section className="py-16 md:py-24 bg-white">
+        <div className="container max-w-3xl">
+          <p className="uppercase tracking-[3px] text-[#1F6FEB] mb-4" style={{ ...mono, fontSize: '11px' }}>
+            Common Questions
+          </p>
+          <h2
+            className="text-2xl md:text-3xl font-bold text-[#102133] mb-8"
+            style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+          >
+            {data.name} Safety Walkthrough FAQ
+          </h2>
+          <div className="space-y-6" data-testid={`city-faq-${city}`}>
+            {cityFaqs.map((f, i) => (
+              <div key={i} className="border-l-2 border-[#1F6FEB]/30 pl-5">
+                <h3
+                  className="font-semibold text-[#102133] mb-2 text-base md:text-lg"
+                  style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+                >
+                  {f.q}
+                </h3>
+                <p className="text-sm md:text-base text-[#102133]/70 leading-relaxed">{f.a}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 pt-6 border-t border-[#102133]/10">
+            <Link
+              to="/faq"
+              className="inline-flex items-center gap-2 text-[#1F6FEB] hover:text-[#1558C0] font-semibold text-sm"
+              data-testid={`city-faq-more-${city}`}
+            >
+              See all 18 frequently asked questions
+              <ArrowRight size={14} />
+            </Link>
           </div>
         </div>
       </section>

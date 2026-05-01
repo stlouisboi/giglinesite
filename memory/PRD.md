@@ -107,6 +107,18 @@ Build and expand a professional service business website for GigLine Safety & Co
   - Enhanced Admin Dashboard UI: summary strip (5 metrics), 5 tabs (Portal/Intakes/Bookings/Leads/Downloads), status badges, urgency badges, flags (W/M/C), view drawer, status update modal, report upload modal
   - Single clientToken per engagement ties together intake, status, agreement, booking, and report
 
+## Generative Engine Optimization (GEO) — May 2026
+Goal: get GigLine cited in answers from ChatGPT, Perplexity, Claude, Google AI Overviews, Gemini.
+- Full schema package on homepage, services, about, and every city page — LocalBusiness, Service, Person (Vince w/ credentials), FAQPage, BreadcrumbList, Article (blog). All JSON-LD blocks now injected into the pre-rendered static HTML via generate-seo-pages.js (no JS required to read them).
+- SEO component upgraded to accept either a single schema object or an array of schemas.
+- New /faq page (`/app/frontend/src/pages/FAQPage.js`) with 18 answer-engine-optimized Q&As covering cost, scope, duration, differences vs OSHA inspection, NC service area, report content, credentials, booking. Includes FAQPage + BreadcrumbList schema.
+- Each city landing page (/safety-walkthrough/{city}) now has 4 city-specific FAQs + FAQPage schema.
+- /faq linked from Footer → Quick Links and from each city FAQ section.
+- /faq added to sitemap.xml (priority 0.9).
+- llms.txt created at /app/frontend/public/llms.txt — canonical content map for AI crawlers.
+- robots.txt expanded with explicit Allow for GPTBot, ChatGPT-User, OAI-SearchBot, ClaudeBot, Claude-Web, anthropic-ai, PerplexityBot, Perplexity-User, Google-Extended, Applebot-Extended, Bytespider, CCBot, cohere-ai, Meta-ExternalAgent, Meta-ExternalFetcher.
+- generate-seo-pages.js rewritten to strip the template LocalBusiness block and inject a route-specific JSON-LD set per page (Person for /about, Article for blog posts, Service+FAQPage for city pages, full FAQPage for /faq, LocalBusiness+Person+FAQPage on home).
+
 ## Deployment
 - Frontend: Vercel (manual redeploy after GitHub push)
 - Backend: Railway (auto-deploys on GitHub push)

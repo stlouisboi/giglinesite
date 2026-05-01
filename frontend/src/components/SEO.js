@@ -35,12 +35,12 @@ const SEO = ({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={`${baseUrl}/og-image.png`} />
       
-      {/* Schema.org JSON-LD */}
-      {schema && (
-        <script type="application/ld+json">
-          {JSON.stringify(schema)}
+      {/* Schema.org JSON-LD — supports single object or array of schemas */}
+      {schema && (Array.isArray(schema) ? schema : [schema]).map((s, i) => (
+        <script key={i} type="application/ld+json">
+          {JSON.stringify(s)}
         </script>
-      )}
+      ))}
     </Helmet>
   );
 };

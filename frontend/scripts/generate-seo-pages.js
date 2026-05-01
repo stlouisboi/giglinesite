@@ -1,12 +1,13 @@
 /**
  * Post-build SEO Pre-rendering Script — GL-PORT-001 Priority 1
- * 
+ *
  * Generates per-route HTML files with:
  *   1. Correct meta tags (title, description, OG, Twitter, canonical)
  *   2. Real page content injected into the HTML body for crawlers
- *   3. LocalBusiness + FAQPage JSON-LD schema in the static shell
- * 
- * This ensures Google sees full content without JavaScript execution.
+ *   3. LocalBusiness + FAQPage + Service + Person + BreadcrumbList JSON-LD
+ *      injected directly into the <head> of every pre-rendered page so AI
+ *      answer engines and classic crawlers see structured facts without JS.
+ *
  * Runs after `craco build`.
  */
 
@@ -16,12 +17,165 @@ const path = require('path');
 const BUILD_DIR = path.join(__dirname, '..', 'build');
 const BASE_URL = 'https://www.giglinecompliance.com';
 
+// ───────────────────────────────────────────────
+// Shared schema fragments
+// ───────────────────────────────────────────────
+const LOCAL_BUSINESS = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': `${BASE_URL}/#business`,
+  name: 'GigLine Safety & Compliance',
+  description:
+    'On-site OSHA safety walkthroughs, documentation reviews, and incident response for small manufacturers, warehouses, and contractors in North Carolina.',
+  url: BASE_URL,
+  telephone: '+13363298899',
+  email: 'vince@giglinecompliance.com',
+  image: `${BASE_URL}/og-image.png`,
+  logo: `${BASE_URL}/gigline-logo-full.svg`,
+  founder: { '@type': 'Person', '@id': `${BASE_URL}/#vince`, name: 'Vince Lawrence' },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Kernersville',
+    addressRegion: 'NC',
+    postalCode: '27107',
+    addressCountry: 'US',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: 36.1198, longitude: -80.0735 },
+  areaServed: [
+    { '@type': 'State', name: 'North Carolina' },
+    { '@type': 'City', name: 'Winston-Salem' },
+    { '@type': 'City', name: 'Greensboro' },
+    { '@type': 'City', name: 'High Point' },
+    { '@type': 'City', name: 'Kernersville' },
+    { '@type': 'City', name: 'Lexington' },
+    { '@type': 'City', name: 'Thomasville' },
+    { '@type': 'City', name: 'Salisbury' },
+    { '@type': 'City', name: 'Burlington' },
+    { '@type': 'City', name: 'Charlotte' },
+    { '@type': 'City', name: 'Raleigh' },
+  ],
+  priceRange: '$550–$1200',
+  openingHours: 'Mo-Fr 08:00-18:00',
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Safety Services',
+    itemListElement: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Safety Walkthrough & Top 10 Fixes Report' }, price: '650', priceCurrency: 'USD' },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Documentation Review & Gap Check' }, price: '550', priceCurrency: 'USD' },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Incident Review & Corrective Action Support' }, price: '900', priceCurrency: 'USD' },
+    ],
+  },
+};
+
+const VINCE_PERSON = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': `${BASE_URL}/#vince`,
+  name: 'Vince Lawrence',
+  jobTitle: 'Safety Coordinator & Founder',
+  worksFor: { '@id': `${BASE_URL}/#business` },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Kernersville',
+    addressRegion: 'NC',
+    postalCode: '27107',
+  },
+  telephone: '+13363298899',
+  email: 'vince@giglinecompliance.com',
+  url: `${BASE_URL}/about`,
+  image: `${BASE_URL}/vince-portrait.jpg`,
+  description:
+    'Vince Lawrence is a safety consultant with 25+ years of experience in manufacturing, fleet, and warehouse operations. OSHA 30-Hour Certified in General Industry. U.S. Navy veteran. Founder of GigLine Safety & Compliance in Kernersville, NC.',
+  hasCredential: [
+    { '@type': 'EducationalOccupationalCredential', credentialCategory: 'certification', name: 'OSHA 30-Hour General Industry Certification' },
+    { '@type': 'EducationalOccupationalCredential', credentialCategory: 'military service', name: 'U.S. Navy Veteran' },
+  ],
+  knowsAbout: [
+    'OSHA compliance',
+    'safety walkthroughs',
+    'hazard communication',
+    'incident investigation',
+    'machine guarding',
+    'fall protection',
+    'lockout/tagout',
+    'forklift safety',
+    'manufacturing safety',
+    'warehouse safety',
+    'fleet safety',
+  ],
+  areaServed: { '@type': 'State', name: 'North Carolina' },
+};
+
+// Homepage FAQ mirrors the visible FAQ section on the homepage
+const HOMEPAGE_FAQS = [
+  { q: 'How long are you on-site?', a: "Most walkthroughs run 1 to 3 hours depending on the size of the operation. A small shop may take under an hour. A multi-bay warehouse or production floor typically runs 2 to 3 hours. You'll know the range before I arrive." },
+  { q: "What do I get when it's done?", a: "A written report delivered within 48 hours. It includes photo-documented findings, the specific OSHA standard referenced for each one, and a plain-language corrective action for each item. No guesswork about what to fix or why." },
+  { q: 'Do you work with my insurance company or report to OSHA?', a: "No. This is a private engagement. Nothing leaves the building except the report I give you. I don't contact your insurer, your carrier, or any regulatory agency. What you do with the findings is entirely your decision." },
+  { q: 'What if my operation is outside the Triad?', a: 'On-site walkthroughs are available within roughly 60 miles of Winston-Salem — covering the full Triad and surrounding areas. For locations beyond that range, contact me directly. Travel engagements are available and travel fees may apply.' },
+];
+
+// Canonical 18-question FAQ for /faq page
+const FULL_FAQS = [
+  { q: 'How much does an OSHA safety walkthrough cost in North Carolina?', a: "A GigLine safety walkthrough starts at $650. Most small-operation walkthroughs fall between $650 and $1,000 depending on square footage and scope. You'll receive a fixed price before scheduling — no hourly billing, no retainer." },
+  { q: "What's included in a GigLine safety walkthrough?", a: "An on-site walkthrough of your operation (1–3 hours), photo-documented hazard findings, the specific OSHA standard referenced for each finding, and a written 'Top 10 Fixes' report delivered within 24–48 hours. Findings are color-coded: RED (fix this week), AMBER (fix this month), GREEN (what you're doing right)." },
+  { q: 'How long does a safety walkthrough take on-site?', a: 'Most walkthroughs run 1 to 3 hours. A small shop under 10,000 sq ft may take under an hour. A multi-bay warehouse or production floor typically runs 2 to 3 hours. You will know the time estimate before the visit.' },
+  { q: "What's the difference between a safety walkthrough and an OSHA inspection?", a: 'An OSHA inspection is performed by a federal compliance officer and can result in citations and fines. A GigLine safety walkthrough is a private, voluntary review performed by an independent consultant. Findings are delivered only to you — nothing is reported to OSHA, your insurance carrier, or any third party.' },
+  { q: 'Do I need a written HazCom program if I have fewer than 10 employees?', a: 'Yes. Under OSHA 29 CFR 1910.1200, any employer with hazardous chemicals in the workplace must have a written Hazard Communication program, regardless of headcount. Exemptions are very narrow and apply only to sealed consumer-packaged products used in the same way a household consumer would use them.' },
+  { q: 'What areas of North Carolina does GigLine serve?', a: 'GigLine is based in Kernersville, NC and serves the full Piedmont Triad — Winston-Salem, Greensboro, High Point, Burlington, Lexington, Thomasville, Salisbury, and surrounding towns — within roughly 60 miles of Winston-Salem. Scheduled engagements are available in the Charlotte and Raleigh metros with travel considered.' },
+  { q: 'Will GigLine report findings to OSHA?', a: "No. Every engagement is private. The only deliverable is the written report handed to the business owner. GigLine does not contact OSHA, the owner's insurance carrier, or any regulatory agency under any circumstances." },
+  { q: 'How fast do I get my walkthrough report?', a: 'Reports are delivered within 24 to 48 hours of the on-site visit. The report is a PDF with photos, OSHA citations, and prioritized corrective actions. Most clients receive the report the next business day.' },
+  { q: 'What is a "Top 10 Fixes" report?', a: "The GigLine deliverable for a safety walkthrough. It ranks the ten most important findings from your on-site visit, organized RED (fix this week), AMBER (fix this month), and GREEN (reinforce what's working). Each item includes what was observed, why it matters, the OSHA standard cited, and the specific corrective action." },
+  { q: 'Does GigLine work with my insurance carrier?', a: 'No. The engagement is strictly between the business owner and GigLine. Nothing is shared with insurance carriers, brokers, or third parties. What you choose to do with the report — including sharing it with your carrier — is entirely your decision.' },
+  { q: 'Can I see a sample safety walkthrough report before I book?', a: "Yes. Email vince@giglinecompliance.com or call (336) 329-8899 and request a sanitized sample. Sensitive client details are redacted but the structure, depth, and OSHA references are identical to what you'll receive." },
+  { q: 'What industries does GigLine typically work with?', a: 'Small manufacturers, warehouses, distribution centers, fleet operations, general contractors, and specialty trades. Most clients have 5 to 100 employees. The common thread is operations that do not have a full-time safety manager.' },
+  { q: 'Does GigLine offer safety training or just inspections?', a: 'GigLine does not deliver formal OSHA training courses. The walkthrough includes on-site coaching while walking the floor, and the report includes corrective actions that often reference training requirements. For formal certification-based training, GigLine can recommend local providers.' },
+  { q: 'Is Vince Lawrence OSHA certified?', a: 'Vince Lawrence is OSHA 30-Hour Certified in General Industry and has 25+ years of hands-on experience in manufacturing, fleet, and warehouse safety. He is also a U.S. Navy veteran. GigLine is owner-operated — every walkthrough and report is performed personally by Vince.' },
+  { q: 'What happens if OSHA shows up after my walkthrough?', a: 'You have the written record of every hazard identified, every corrective action taken, and every training record reviewed. An OSHA compliance officer who sees an active corrective-action log is usually looking at a cooperative-employer outcome instead of a willful-violation outcome. Documentation is the single biggest factor in how an OSHA visit goes.' },
+  { q: 'Do you offer follow-up walkthroughs for past clients?', a: "Yes. Follow-up walkthroughs for past clients are offered at a reduced rate of $550 (versus $650 for a first-time visit). Most operations benefit from a semi-annual or annual follow-up to catch the drift that happens when safety isn't the primary focus." },
+  { q: 'How should I prepare for a safety walkthrough?', a: 'Nothing special. Do not stage, clean up, or hide anything — the walkthrough is most valuable when the floor looks the way it normally does. Have your written safety programs, SDS binder, and training records accessible. A brief floor manager or supervisor introduction at the start helps.' },
+  { q: 'How do I book a safety walkthrough with GigLine?', a: "Visit https://www.giglinecompliance.com/request-walkthrough and fill the four-field form, or call (336) 329-8899 directly. You'll hear back within one business day with scheduling options and a confirmed price." },
+];
+
+function faqSchema(faqs) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  };
+}
+
+function breadcrumb(items) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((it, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: it.name,
+      item: `${BASE_URL}${it.path}`,
+    })),
+  };
+}
+
+// ───────────────────────────────────────────────
+// Routes
+// ───────────────────────────────────────────────
 const routes = [
   {
     path: '/',
     title: 'OSHA Safety Walkthroughs for Small Manufacturers | Kernersville NC | GigLine Safety & Compliance',
     description: 'GigLine Safety & Compliance provides on-site OSHA safety walkthroughs and compliance inspections for small manufacturers, warehouses, and fleets in Kernersville, NC and the Piedmont Triad. Starting at $650.',
     canonical: '/',
+    schemas: [
+      LOCAL_BUSINESS,
+      VINCE_PERSON,
+      faqSchema(HOMEPAGE_FAQS),
+      breadcrumb([{ name: 'Home', path: '/' }]),
+    ],
     content: `
       <h1>If OSHA Walked In Tomorrow, Would You Pass?</h1>
       <p>A single OSHA citation averages $15,625. A GigLine safety walkthrough costs a fraction of that — and gives you a clear picture of where you stand.</p>
@@ -38,10 +192,8 @@ const routes = [
       <h2>What Clients Say</h2>
       <p>"If you're looking for a partner that can bridge the gap between compliance and real-world execution, GigLine delivers results." — Demar Archie, Warehouse Receiving Manager</p>
       <h2>Frequently Asked Questions</h2>
-      <h3>How long are you on-site?</h3><p>Most walkthroughs run 1 to 3 hours depending on the size of the operation.</p>
-      <h3>What do I get when it's done?</h3><p>A written report delivered within 48 hours with photo-documented findings and corrective actions.</p>
-      <h3>Do you work with my insurance company or report to OSHA?</h3><p>No. This is a private engagement. Nothing leaves the building except the report I give you.</p>
-      <h3>What if my operation is outside the Triad?</h3><p>On-site walkthroughs are available within roughly 60 miles of Winston-Salem. Travel engagements available beyond that range.</p>
+      ${HOMEPAGE_FAQS.map((f) => `<h3>${f.q}</h3><p>${f.a}</p>`).join('')}
+      <p><a href="/faq">See all 18 frequently asked questions →</a></p>
       <h2>About Vince Lawrence</h2>
       <p>Vince Lawrence is a safety consultant based in Kernersville, NC. OSHA 30-Hour Certified. 25+ years in manufacturing, fleet, and warehouse safety operations. U.S. Navy veteran.</p>
       <p>I've walked floors in plastics manufacturing, building materials distribution, and trucking operations across the Triad. I know what inspectors look for because I've helped operations correct the same violations hundreds of times.</p>
@@ -60,6 +212,7 @@ const routes = [
     title: 'Safety Consultant for Small Manufacturers | Kernersville NC | GigLine',
     description: 'Vince Lawrence — safety consultant for small manufacturers in Kernersville, NC and the Triad. OSHA 30-Hour certified, Navy veteran, 25+ years experience.',
     canonical: '/about',
+    schemas: [VINCE_PERSON, breadcrumb([{ name: 'Home', path: '/' }, { name: 'About', path: '/about' }])],
     content: `
       <h1>About Vince Lawrence</h1>
       <p>Safety consultant based in Kernersville, NC. OSHA 30-Hour Certified. 25+ years in manufacturing, fleet, and warehouse safety operations. U.S. Navy veteran.</p>
@@ -72,6 +225,25 @@ const routes = [
     title: 'OSHA Safety Walkthrough & Compliance Services | Kernersville NC | GigLine',
     description: 'On-site OSHA safety walkthroughs, documentation reviews, and incident response for small manufacturers, warehouses, and fleets in Kernersville, NC. From $650.',
     canonical: '/services',
+    schemas: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        name: 'GigLine Safety Consulting Services',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, item: { '@type': 'Service', name: 'Safety Walkthrough & Top 10 Fixes Report', description: 'A structured on-site review of common OSHA exposure areas.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '650', priceCurrency: 'USD' } } },
+          { '@type': 'ListItem', position: 2, item: { '@type': 'Service', name: 'Safety Documentation Review & Gap Check', description: 'Review of written safety programs, training records, and inspection forms.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '550', priceCurrency: 'USD' } } },
+          { '@type': 'ListItem', position: 3, item: { '@type': 'Service', name: 'Incident Review & Corrective Action Support', description: 'Post-incident review and corrective direction.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '900', priceCurrency: 'USD' } } },
+        ],
+      },
+      faqSchema([
+        { q: 'How much does a GigLine safety walkthrough cost?', a: "Walkthroughs start at $650. Most small-operation walkthroughs fall in the $650–$1,000 range based on square footage and scope. You'll receive a fixed quote before scheduling." },
+        { q: "What's included in a documentation review and gap check?", a: "A review of your written safety programs, training records, inspection logs, and required documentation — with a gap analysis that lists what's missing, what needs updating, and what's in good order. Starts at $550." },
+        { q: 'When do I need incident review and corrective action support?', a: 'After a recordable injury, near-miss, or OSHA visit — anytime you need to document what happened, identify what broke down, and build corrective action that holds up under review. Starts at $900.' },
+        { q: 'Do services require a retainer or long-term contract?', a: 'No. Every GigLine service is a single engagement with a fixed fee. No monthly retainer, no long-term contract. You pay once, you get the report, the engagement is closed.' },
+      ]),
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }]),
+    ],
     content: `
       <h1>Safety Services for Small Operations</h1>
       <p>Each engagement ends with a written report, clear action items, and a defined next step. No ongoing contracts. No retainers.</p>
@@ -88,10 +260,28 @@ const routes = [
     `,
   },
   {
+    path: '/faq',
+    title: 'Safety Walkthrough FAQ | OSHA Compliance Questions Answered | GigLine',
+    description: "Answers to the most common questions about OSHA safety walkthroughs in North Carolina — cost, duration, what's included, how reports work, and who GigLine serves.",
+    canonical: '/faq',
+    schemas: [
+      faqSchema(FULL_FAQS),
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'FAQ', path: '/faq' }]),
+    ],
+    content: `
+      <h1>Frequently Asked Questions</h1>
+      <p>Straight answers about safety walkthroughs and OSHA compliance. If your question isn't here, call (336) 329-8899 or email vince@giglinecompliance.com.</p>
+      ${FULL_FAQS.map((f) => `<h2>${f.q}</h2><p>${f.a}</p>`).join('')}
+      <p><a href="/request-walkthrough">Request a Safety Walkthrough →</a></p>
+      <p>GigLine Safety &amp; Compliance — (336) 329-8899 — Kernersville, NC</p>
+    `,
+  },
+  {
     path: '/contact',
     title: 'Contact | GigLine Safety & Compliance',
     description: 'Contact GigLine Safety & Compliance. Request a walkthrough, documentation review, or incident response support. Vince Lawrence — (336) 329-8899. Kernersville, NC.',
     canonical: '/contact',
+    schemas: [LOCAL_BUSINESS, breadcrumb([{ name: 'Home', path: '/' }, { name: 'Contact', path: '/contact' }])],
     content: `
       <h1>Contact GigLine Safety &amp; Compliance</h1>
       <p>Phone: (336) 329-8899</p>
@@ -102,8 +292,9 @@ const routes = [
   {
     path: '/safety-check',
     title: 'Free 90-Second Safety Check | GigLine Safety & Compliance',
-    description: 'Free 90-second safety check. Six questions mapped to OSHA\'s most-cited violations. Get an instant risk rating and clear next steps.',
+    description: "Free 90-second safety check. Six questions mapped to OSHA's most-cited violations. Get an instant risk rating and clear next steps.",
     canonical: '/safety-check',
+    schemas: [LOCAL_BUSINESS],
     content: `
       <h1>90-Second Safety Check</h1>
       <p>Six yes-or-no questions mapped to OSHA's most-cited violations. Get an immediate risk score and clear next steps — free, no email required to start.</p>
@@ -114,8 +305,9 @@ const routes = [
   {
     path: '/hazcom',
     title: 'HazCom Starter Pack — $29 | GigLine Safety & Compliance',
-    description: 'HazCom Starter Pack — $29. Written HazCom program, SDS binder checklist, and training log. 11 pages. Fixes OSHA\'s #1 citation in general industry.',
+    description: "HazCom Starter Pack — $29. Written HazCom program, SDS binder checklist, and training log. 11 pages. Fixes OSHA's #1 citation in general industry.",
     canonical: '/hazcom',
+    schemas: [LOCAL_BUSINESS],
     content: `
       <h1>HazCom Starter Pack — $29</h1>
       <p>Written HazCom Program, SDS Binder Checklist + Index, Training Verification Log. 11 pages total. Fill your company name. Print. Done.</p>
@@ -128,6 +320,18 @@ const routes = [
     title: 'Top 5 OSHA Violations in Small Manufacturing | GigLine Safety & Compliance',
     description: 'The five most-cited OSHA violations in small manufacturing: Hazard Communication, Lockout/Tagout, Machine Guarding, Powered Industrial Trucks, and Walking-Working Surfaces.',
     canonical: '/blog/top-5-osha-violations-small-manufacturing',
+    schemas: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: 'The Top 5 OSHA Violations in Small Manufacturing — And What They Actually Cost',
+        author: { '@id': `${BASE_URL}/#vince` },
+        publisher: { '@id': `${BASE_URL}/#business` },
+        mainEntityOfPage: `${BASE_URL}/blog/top-5-osha-violations-small-manufacturing`,
+        datePublished: '2026-04-17',
+      },
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Blog', path: '/field-notes' }, { name: 'Top 5 OSHA Violations', path: '/blog/top-5-osha-violations-small-manufacturing' }]),
+    ],
     content: `
       <h1>The Top 5 OSHA Violations in Small Manufacturing — And What They Actually Cost</h1>
       <p>By Vince Lawrence — GigLine Safety &amp; Compliance</p>
@@ -144,6 +348,18 @@ const routes = [
     title: 'HazCom Requirements for Small Businesses | GigLine Safety & Compliance',
     description: 'Complete guide to OSHA Hazard Communication requirements for small businesses. Written programs, Safety Data Sheets, labeling, training, and penalties under 29 CFR 1910.1200.',
     canonical: '/blog/hazcom-requirements-small-business',
+    schemas: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: 'HazCom Requirements Every Small Business Needs to Know',
+        author: { '@id': `${BASE_URL}/#vince` },
+        publisher: { '@id': `${BASE_URL}/#business` },
+        mainEntityOfPage: `${BASE_URL}/blog/hazcom-requirements-small-business`,
+        datePublished: '2026-04-17',
+      },
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Blog', path: '/field-notes' }, { name: 'HazCom Requirements', path: '/blog/hazcom-requirements-small-business' }]),
+    ],
     content: `
       <h1>HazCom Requirements Every Small Business Needs to Know</h1>
       <p>By Vince Lawrence — GigLine Safety &amp; Compliance</p>
@@ -159,6 +375,7 @@ const routes = [
     title: 'Request a Safety Walkthrough | GigLine Safety & Compliance',
     description: 'Request an on-site safety walkthrough for your operation. One visit. Clear findings. Written report within 24-48 hours. Kernersville, NC.',
     canonical: '/request-walkthrough',
+    schemas: [LOCAL_BUSINESS],
     content: `
       <h1>Request a Safety Walkthrough</h1>
       <p>Schedule an on-site safety walkthrough with GigLine Safety &amp; Compliance. One visit. Clear findings. Written report within 24-48 hours.</p>
@@ -171,6 +388,7 @@ const routes = [
     title: 'OSHA Safety Tips for Small Manufacturers | GigLine Field Notes',
     description: 'OSHA safety tips and plain-language guidance for small manufacturers. Field notes on HazCom, forklift safety, electrical, LOTO, PPE, and fall protection.',
     canonical: '/field-notes',
+    schemas: [LOCAL_BUSINESS],
     content: `
       <h1>Field Notes</h1>
       <p>Practical safety topics for small manufacturers, warehouses, and contractors. Each field note covers what OSHA requires, what gets missed, and a quick checklist.</p>
@@ -188,6 +406,7 @@ const routes = [
     title: 'Heat Stress Action Template 2026 | GigLine Safety & Compliance',
     description: 'Free 2026 Heat Stress Action Template for NC manufacturing and warehouse operations. Daily heat check, trigger levels, required controls.',
     canonical: '/heat-guide',
+    schemas: [LOCAL_BUSINESS],
     content: `
       <h1>2026 Heat Stress Action Template</h1>
       <p>Free heat stress prevention template for NC manufacturing and warehouse operations. Daily heat check with three trigger levels, required controls, and HIIPP checklist.</p>
@@ -197,15 +416,50 @@ const routes = [
 ];
 
 // City landing pages
-const cities = ['greensboro', 'winston-salem', 'high-point', 'charlotte', 'raleigh', 'burlington'];
-cities.forEach(city => {
-  const name = city.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+const CITY_META = {
+  'winston-salem':  { name: 'Winston-Salem',  distance: '10 miles from Kernersville', industries: 'manufacturing plants, food processing facilities, and distribution centers' },
+  'greensboro':     { name: 'Greensboro',     distance: '15 miles from Kernersville', industries: 'warehouses, light manufacturing, and logistics operations' },
+  'high-point':     { name: 'High Point',     distance: '12 miles from Kernersville', industries: 'furniture manufacturing, warehousing, and small fabrication shops' },
+  'charlotte':      { name: 'Charlotte',      distance: '75 miles from Kernersville', industries: 'manufacturing, construction contractors, and warehouse operations' },
+  'raleigh':        { name: 'Raleigh',        distance: '75 miles from Kernersville', industries: 'growing manufacturing operations, warehouse facilities, and construction sites' },
+  'burlington':     { name: 'Burlington',     distance: '30 miles from Kernersville', industries: 'textile operations, small manufacturers, and distribution facilities' },
+};
+
+Object.keys(CITY_META).forEach((city) => {
+  const m = CITY_META[city];
+  const cityFaqs = [
+    { q: `How much does a safety walkthrough cost in ${m.name}, NC?`, a: `Safety walkthroughs for ${m.name}-area operations start at $650. Most small operations fall in the $650–$1,000 range depending on square footage and scope. You'll receive a fixed quote before scheduling.` },
+    { q: `How quickly can GigLine get on-site in ${m.name}?`, a: `${m.name} is ${m.distance}, so most walkthroughs are scheduled within 5–10 business days of the initial request. Urgent or post-incident visits can often be scheduled the same week.` },
+    { q: `What kind of operations does GigLine walk through in ${m.name}?`, a: `${m.industries.charAt(0).toUpperCase() + m.industries.slice(1)}. Typical client size is 5 to 100 employees — operations without a full-time safety manager that need a trained outside eye on the floor.` },
+    { q: `Will findings from my ${m.name} walkthrough be reported to OSHA?`, a: `No. The engagement is private. The only deliverable is the written report handed to you — nothing is shared with OSHA, insurance carriers, or any third party.` },
+  ];
+
   routes.push({
     path: `/safety-walkthrough/${city}`,
-    title: `Safety Walkthrough ${name}, NC | GigLine Safety & Compliance`,
-    description: `On-site OSHA safety walkthroughs for small manufacturers and warehouses in ${name}, NC. Written report with findings, photos, and corrective actions. Starting at $650.`,
+    title: `Safety Walkthrough ${m.name}, NC | GigLine Safety & Compliance`,
+    description: `On-site OSHA safety walkthroughs for small manufacturers and warehouses in ${m.name}, NC. Written report with findings, photos, and corrective actions. Starting at $650.`,
     canonical: `/safety-walkthrough/${city}`,
-    content: `<h1>Safety Walkthrough — ${name}, NC</h1><p>On-site OSHA safety walkthroughs for small manufacturers, warehouses, and contractors in ${name}, NC and surrounding areas. Starting at $650. Written report delivered within 24-48 hours.</p><p>GigLine Safety &amp; Compliance — (336) 329-8899</p>`,
+    schemas: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        name: `Safety Walkthrough in ${m.name}, NC`,
+        description: `On-site OSHA safety walkthroughs for ${m.industries} in ${m.name} and surrounding areas. Written report delivered within 24–48 hours. Starting at $650.`,
+        provider: { '@id': `${BASE_URL}/#business` },
+        areaServed: { '@type': 'City', name: m.name, containedInPlace: { '@type': 'State', name: 'North Carolina' } },
+        offers: { '@type': 'Offer', price: '650', priceCurrency: 'USD' },
+      },
+      faqSchema(cityFaqs),
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }, { name: `${m.name} Walkthrough`, path: `/safety-walkthrough/${city}` }]),
+    ],
+    content: `
+      <h1>Safety Walkthrough — ${m.name}, NC</h1>
+      <p>On-site OSHA safety walkthroughs for ${m.industries} in ${m.name} and surrounding areas. Starting at $650. Written report delivered within 24-48 hours.</p>
+      <h2>${m.name} Safety Walkthrough FAQ</h2>
+      ${cityFaqs.map((f) => `<h3>${f.q}</h3><p>${f.a}</p>`).join('')}
+      <p><a href="/faq">See all 18 frequently asked questions →</a></p>
+      <p>GigLine Safety &amp; Compliance — (336) 329-8899 — Kernersville, NC (${m.distance})</p>
+    `,
   });
 });
 
@@ -226,50 +480,80 @@ const fieldNotes = [
   { slug: 'hearing-conservation', title: 'Hearing Conservation', desc: 'Hearing conservation program requirements. Noise monitoring, audiometric testing, hearing protection.' },
   { slug: 'bloodborne-pathogens', title: 'Bloodborne Pathogens', desc: 'Bloodborne pathogens exposure control plan. First aid responders, Hepatitis B, sharps disposal.' },
 ];
-fieldNotes.forEach(note => {
+fieldNotes.forEach((note) => {
   routes.push({
     path: `/field-notes/${note.slug}`,
     title: `${note.title} — Field Notes | GigLine Safety & Compliance`,
     description: note.desc,
     canonical: `/field-notes/${note.slug}`,
+    schemas: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: note.title,
+        description: note.desc,
+        author: { '@id': `${BASE_URL}/#vince` },
+        publisher: { '@id': `${BASE_URL}/#business` },
+        mainEntityOfPage: `${BASE_URL}/field-notes/${note.slug}`,
+      },
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Field Notes', path: '/field-notes' }, { name: note.title, path: `/field-notes/${note.slug}` }]),
+    ],
     content: `<h1>${note.title}</h1><p>${note.desc}</p><p>Field Note by Vince Lawrence — GigLine Safety &amp; Compliance — (336) 329-8899</p>`,
   });
 });
 
+// ───────────────────────────────────────────────
+// HTML generation
+// ───────────────────────────────────────────────
+function buildSchemaBlock(schemas) {
+  if (!schemas || !schemas.length) return '';
+  return schemas
+    .map((s) => `    <script type="application/ld+json">${JSON.stringify(s)}</script>`)
+    .join('\n');
+}
+
 function generateRouteHTML(templateHTML, route) {
   let html = templateHTML;
 
-  // Replace <title>
+  // <title>
   html = html.replace(/<title>[^<]*<\/title>/, `<title>${route.title}</title>`);
 
-  // Replace meta description
+  // description
   html = html.replace(
     /<meta name="description" content="[^"]*"\s*\/?>/,
-    `<meta name="description" content="${route.description}" />`
+    `<meta name="description" content="${route.description}" />`,
   );
 
-  // Replace canonical
+  // canonical
   html = html.replace(
     /<link rel="canonical" href="[^"]*"\s*\/?>/,
-    `<link rel="canonical" href="${BASE_URL}${route.canonical}" />`
+    `<link rel="canonical" href="${BASE_URL}${route.canonical}" />`,
   );
 
-  // Replace og tags
+  // OG
   html = html.replace(/<meta property="og:url" content="[^"]*"\s*\/?>/, `<meta property="og:url" content="${BASE_URL}${route.canonical}" />`);
   html = html.replace(/<meta property="og:title" content="[^"]*"\s*\/?>/, `<meta property="og:title" content="${route.title}" />`);
   html = html.replace(/<meta property="og:description" content="[^"]*"\s*\/?>/, `<meta property="og:description" content="${route.description}" />`);
 
-  // Replace twitter tags
+  // Twitter
   html = html.replace(/<meta name="twitter:title" content="[^"]*"\s*\/?>/, `<meta name="twitter:title" content="${route.title}" />`);
   html = html.replace(/<meta name="twitter:description" content="[^"]*"\s*\/?>/, `<meta name="twitter:description" content="${route.description}" />`);
 
-  // Inject real content into the body for crawlers
-  // Content goes inside the root div as a server-rendered snapshot
-  // React will hydrate over this when JS loads
+  // Strip ALL existing JSON-LD schema blocks from the template (LocalBusiness
+  // from index.html) so every route gets a clean, route-specific schema set.
+  html = html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g, '');
+
+  // Inject route-specific schema block right before </head>
+  const schemaBlock = buildSchemaBlock(route.schemas || []);
+  if (schemaBlock) {
+    html = html.replace('</head>', `${schemaBlock}\n  </head>`);
+  }
+
+  // Inject crawler-visible content into #root
   if (route.content) {
     html = html.replace(
       '<div id="root"></div>',
-      `<div id="root"><div data-server-rendered="true" style="font-family:Georgia,serif;max-width:800px;margin:0 auto;padding:40px 20px;color:#1C2B2B;">${route.content.trim()}</div></div>`
+      `<div id="root"><div data-server-rendered="true" style="font-family:Georgia,serif;max-width:800px;margin:0 auto;padding:40px 20px;color:#1C2B2B;">${route.content.trim()}</div></div>`,
     );
   }
 
@@ -302,8 +586,8 @@ function main() {
     console.log(`  SEO: ${route.path || '/'} → ${routePath ? routePath + '/index.html' : 'index.html'}`);
   }
 
-  console.log(`\n  SEO: Generated ${generated} pre-rendered HTML files with content.`);
-  console.log('  All pages include real text content visible to crawlers without JS.\n');
+  console.log(`\n  SEO: Generated ${generated} pre-rendered HTML files with content + JSON-LD schema.`);
+  console.log('  All pages include route-specific LocalBusiness / FAQPage / Service / Person / BreadcrumbList JSON-LD.\n');
 }
 
 main();

@@ -159,3 +159,44 @@ async def send_weekly_summary():
         logger.info("Weekly summary email sent")
     except Exception as e:
         logger.error(f"Weekly summary email failed: {e}")
+
+
+@router.get("/admin/seo-health")
+async def seo_health_check_endpoint(token: str = "", email: bool = False):
+    """Run the SEO/AI-engine health check on production and return the report.
+
+    Usage:
+        GET /api/admin/seo-health?token=ADMIN_PW           → JSON report only
+        GET /api/admin/seo-health?token=ADMIN_PW&email=1   → JSON report + email Vince if issues found
+
+    Designed to be hit weekly by an external cron service (e.g. cron-job.org)
+    with email=1 to get an alert only when something breaks.
+    """
+    if token != ADMIN_PASSWORD:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+    import sys as _sys
+    _sys.path.insert(0, "/app/backend/scripts")
+    # Reuse the standalone script's logic
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("seo_health_check", "/app/backend/scripts/seo_health_check.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+
+    results = [module.check_route(p, sch) for p, sch in module.ROUTES]
+    sitemap_info = module.check_sitemap()
+    total_issues = sum(len(r["issues"]) for r in results) + len(sitemap_info["issues"])
+
+    if email and total_issues > 0:
+        module.email_report(results, sitemap_info, total_issues)
+
+    return {
+        "checked_at": datetime.now(timezone.utc).isoformat(),
+        "base_url": module.BASE,
+        "total_issues": total_issues,
+        "routes_checked": len(results),
+        "sitemap": sitemap_info,
+        "routes": results,
+        "email_sent": bool(email and total_issues > 0),
+    }
+

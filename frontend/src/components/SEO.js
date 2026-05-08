@@ -35,12 +35,11 @@ const SEO = ({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={`${baseUrl}/og-image.png`} />
       
-      {/* Schema.org JSON-LD — supports single object or array of schemas */}
-      {schema && (Array.isArray(schema) ? schema : [schema]).map((s, i) => (
-        <script key={i} type="application/ld+json">
-          {JSON.stringify(s)}
-        </script>
-      ))}
+      {/* JSON-LD schemas are injected exclusively by /scripts/generate-seo-pages.js
+          into the pre-rendered static HTML. We deliberately do NOT emit them via
+          Helmet at runtime to avoid duplicate-schema warnings in Google Search
+          Console (e.g. "Duplicate field FAQPage"). The `schema` prop is still
+          accepted for API compatibility but ignored here. */}
     </Helmet>
   );
 };

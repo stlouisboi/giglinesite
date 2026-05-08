@@ -114,17 +114,9 @@ const HomePage = () => {
         }}
       />
 
-      {/* FAQ Schema */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          { "@type": "Question", "name": "How long are you on-site?", "acceptedAnswer": { "@type": "Answer", "text": "Most walkthroughs run 1 to 3 hours depending on the size of the operation. A small shop may take under an hour. A multi-bay warehouse or production floor typically runs 2 to 3 hours. You'll know the range before I arrive." } },
-          { "@type": "Question", "name": "What do I get when it's done?", "acceptedAnswer": { "@type": "Answer", "text": "A written report delivered within 48 hours. It includes photo-documented findings, the specific OSHA standard referenced for each one, and a plain-language corrective action for each item. No guesswork about what to fix or why." } },
-          { "@type": "Question", "name": "Do you work with my insurance company or report to OSHA?", "acceptedAnswer": { "@type": "Answer", "text": "No. This is a private engagement. Nothing leaves the building except the report I give you. I don't contact your insurer, your carrier, or any regulatory agency. What you do with the findings is entirely your decision." } },
-          { "@type": "Question", "name": "What if my operation is outside the Triad?", "acceptedAnswer": { "@type": "Answer", "text": "On-site walkthroughs are available within roughly 60 miles of Winston-Salem — covering the full Triad and surrounding areas. For locations beyond that range, contact me directly. Travel engagements are available and travel fees may apply." } }
-        ]
-      })}} />
+      {/* FAQPage JSON-LD lives only in the pre-rendered static HTML via
+          /scripts/generate-seo-pages.js. We do NOT emit it from React to avoid
+          Google "Duplicate field FAQPage" warnings. */}
 
       <style>{`
         .reveal-fade{opacity:0;transform:translateY(20px);transition:opacity 500ms ease-out,transform 500ms ease-out}

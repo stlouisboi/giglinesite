@@ -498,33 +498,11 @@ const FieldNoteDetailPage = () => {
         title={`${note.title} — Field Notes | GigLine Safety & Compliance`}
         description={note.seo}
         canonical={`/field-notes/${slug}`}
-        schema={note.faqSchema ? {
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": note.faqSchema.map(faq => ({
-            "@type": "Question",
-            "name": faq.question,
-            "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
-          }))
-        } : undefined}
       />
 
-      {/* Article Schema JSON-LD */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": note.title,
-        "description": note.seo,
-        "author": { "@type": "Person", "name": "Vince Lawrence" },
-        "publisher": {
-          "@type": "Organization",
-          "name": "GigLine Safety & Compliance",
-          "url": "https://giglinecompliance.com"
-        },
-        "datePublished": "2026-04-15",
-        "dateModified": "2026-04-15",
-        "mainEntityOfPage": `https://giglinecompliance.com/field-notes/${slug}`
-      })}} />
+      {/* JSON-LD Article + FAQPage schemas live in the pre-rendered static
+          HTML via /scripts/generate-seo-pages.js. We do NOT inject them at
+          runtime to avoid Google "Duplicate field" warnings. */}
 
       {/* Header */}
       <section className="bg-[#0B1F33] py-16 md:py-24" data-testid="note-header">

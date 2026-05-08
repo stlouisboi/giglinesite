@@ -1,0 +1,266 @@
+{
+  "timestamp": "2026-05-08T00:17:33.705413+00:00",
+  "base_url": "https://www.giglinecompliance.com",
+  "total_issues": 0,
+  "sitemap": {
+    "status": 200,
+    "url_count": 41,
+    "issues": []
+  },
+  "routes": [
+    {
+      "path": "/",
+      "status": 200,
+      "issues": [],
+      "schemas": [
+        "LocalBusiness",
+        "Person",
+        "FAQPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/services",
+      "status": 200,
+      "issues": [],
+      "schemas": [
+        "ItemList",
+        "FAQPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/about",
+      "status": 200,
+      "issues": [],
+      "schemas": [
+        "Person",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/contact",
+      "status": 200,
+      "issues": [],
+      "schemas": [
+        "LocalBusiness",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/faq",
+      "status": 200,
+      "issues": [],
+      "schemas": [
+        "FAQPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/safety-check",
+      "status": 200,
+      "issues": [],
+      "schemas": [
+        "LocalBusiness"
+      ]
+    },
+    {
+      "path": "/hazcom",
+      "status": 200,
+      "issues": [],
+      "schemas": [
+        "LocalBusiness"
+      ]
+    },
+    {
+      "path": "/heat-guide",
+      "status": 200,
+      "issues": [],
+      "schemas": [
+        "LocalBusiness"
+      ]
+    },
+    {
+      "path": "/request-walkthrough",
+      "status": 200,
+      "issues": [],
+      "schemas": [
+        "LocalBusiness"
+      ]
+    },
+    {
+      "path": "/field-notes",
+      "status": 200,
+      "issues": [],
+      "schemas": [
+        "LocalBusiness"
+      ]
+    },
+    {
+      "path": "/blog/top-5-osha-violations-small-manufacturing",
+      "status": 200,
+      "issues": [],
+      "schemas": [
+        "Article",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/blog/hazcom-requirements-small-business",
+      "status": 200,
+      "issues": [],
+      "schemas": [
+        "Article",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/safety-walkthrough/winston-salem",
+      "status": 200,
+      "issues": [],
+      "schemas": [
+        "Service",
+        "FAQPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/safety-walkthrough/greensboro",
+      "status": 200,
+      "issues": [],
+      "schemas": [
+        "Service",
+        "FAQPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/safety-walkthrough/high-point",
+      "status": 200,
+      "issues": [],
+      "schemas": [
+        "Service",
+        "FAQPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/safety-walkthrough/burlington",
+      "status": 200,
+      "issues": [],
+      "schemas": [
+        "Service",
+        "FAQPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/safety-walkthrough/charlotte",
+      "status": 200,
+      "issues": [],
+      "schemas": [
+        "Service",
+        "FAQPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/safety-walkthrough/raleigh",
+      "status": 200,
+      "issues": [],
+      "schemas": [
+        "Service",
+        "FAQPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/safety-walkthrough/kernersville",
+      "status": 200,
+      "issues": [],
+      "schemas": [
+        "Service",
+        "FAQPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/safety-walkthrough/lexington",
+      "status": 200,
+      "issues": [],
+      "schemas": [
+        "Service",
+        "FAQPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/safety-walkthrough/thomasville",
+      "status": 200,
+      "issues": [],
+      "schemas": [
+        "Service",
+        "FAQPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/safety-walkthrough/clemmons",
+      "status": 200,
+      "issues": [],
+      "schemas": [
+        "Service",
+        "FAQPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/safety-walkthrough/mocksville",
+      "status": 200,
+      "issues": [],
+      "schemas": [
+        "Service",
+        "FAQPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/safety-walkthrough/salisbury",
+      "status": 200,
+      "issues": [],
+      "schemas": [
+        "Service",
+        "FAQPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/safety-walkthrough/asheboro",
+      "status": 200,
+      "issues": [],
+      "schemas": [
+        "Service",
+        "FAQPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "issues": [],
+      "schemas": []
+    },
+    {
+      "path": "/robots.txt",
+      "status": 200,
+      "issues": [],
+      "schemas": []
+    },
+    {
+      "path": "/llms.txt",
+      "status": 200,
+      "issues": [],
+      "schemas": []
+    }
+  ]
+}

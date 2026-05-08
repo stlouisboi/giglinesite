@@ -129,6 +129,14 @@ def check_route(path: str, expected_schemas):
     if invalid:
         issues.append(f"{invalid} invalid JSON-LD block(s)")
 
+    # Detect duplicate schema types on the same page (Google flags these as
+    # "Duplicate field" errors that disqualify the page from rich results).
+    from collections import Counter
+    counts = Counter(schemas)
+    dupes = [t for t, c in counts.items() if c > 1]
+    for t in dupes:
+        issues.append(f"duplicate {t} schema (x{counts[t]})")
+
     if expected_schemas is not None:
         for required in expected_schemas:
             if required not in schemas:

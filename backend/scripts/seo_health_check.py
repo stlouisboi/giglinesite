@@ -54,6 +54,7 @@ ROUTES = [
     ("/about", ["Person", "BreadcrumbList"]),
     ("/contact", ["LocalBusiness", "BreadcrumbList"]),
     ("/faq", ["FAQPage", "BreadcrumbList"]),
+    ("/service-areas", ["BreadcrumbList"]),
     ("/safety-check", ["LocalBusiness"]),
     ("/hazcom", ["LocalBusiness"]),
     ("/heat-guide", ["LocalBusiness"]),

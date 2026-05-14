@@ -280,6 +280,41 @@ const routes = [
     `,
   },
   {
+    path: '/service-areas',
+    title: 'Service Areas — NC Safety Walkthroughs | GigLine Safety & Compliance',
+    description: 'GigLine provides on-site OSHA safety walkthroughs across 13 North Carolina cities — Kernersville, Winston-Salem, Greensboro, High Point, Burlington and more. Find your city.',
+    canonical: '/service-areas',
+    schemas: [breadcrumb([{ name: 'Home', path: '/' }, { name: 'Service Areas', path: '/service-areas' }])],
+    content: `
+      <h1>Service Areas — On-Site Safety Walkthroughs Across North Carolina</h1>
+      <p>Based in Kernersville, NC. Routine engagements within 60 miles of Winston-Salem. Scheduled engagements available in Charlotte and Raleigh metros.</p>
+      <h2>Triad Core — Starting at $650 (within 30 miles of Kernersville)</h2>
+      <ul>
+        <li><a href="/safety-walkthrough/kernersville">Kernersville, NC</a> — GigLine HQ</li>
+        <li><a href="/safety-walkthrough/winston-salem">Winston-Salem, NC</a> — 10 miles</li>
+        <li><a href="/safety-walkthrough/high-point">High Point, NC</a> — 12 miles</li>
+        <li><a href="/safety-walkthrough/greensboro">Greensboro, NC</a> — 15 miles</li>
+        <li><a href="/safety-walkthrough/clemmons">Clemmons, NC</a> — 15 miles</li>
+        <li><a href="/safety-walkthrough/thomasville">Thomasville, NC</a> — 15 miles</li>
+        <li><a href="/safety-walkthrough/lexington">Lexington, NC</a> — 20 miles</li>
+        <li><a href="/safety-walkthrough/mocksville">Mocksville, NC</a> — 25 miles</li>
+        <li><a href="/safety-walkthrough/burlington">Burlington, NC</a> — 30 miles</li>
+      </ul>
+      <h2>Outer Tier — Starting at $750 (travel included)</h2>
+      <ul>
+        <li><a href="/safety-walkthrough/asheboro">Asheboro, NC</a> — 35 miles</li>
+        <li><a href="/safety-walkthrough/salisbury">Salisbury, NC</a> — 50 miles</li>
+      </ul>
+      <h2>Scheduled Engagements — Charlotte and Raleigh metros</h2>
+      <p>Charlotte and Raleigh area walkthroughs are available on a scheduled basis. Travel considerations apply. Contact directly to confirm.</p>
+      <ul>
+        <li><a href="/safety-walkthrough/charlotte">Charlotte, NC</a> — 75 miles</li>
+        <li><a href="/safety-walkthrough/raleigh">Raleigh, NC</a> — 75 miles</li>
+      </ul>
+      <p>Operations beyond 60 miles: call (336) 329-8899 — travel engagements available case-by-case.</p>
+    `,
+  },
+  {
     path: '/contact',
     title: 'Contact | GigLine Safety & Compliance',
     description: 'Contact GigLine Safety & Compliance. Request a walkthrough, documentation review, or incident response support. Vince Lawrence — (336) 329-8899. Kernersville, NC.',

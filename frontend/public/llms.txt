@@ -32,6 +32,7 @@ Service area: Within 60 miles of Winston-Salem (full Piedmont Triad) plus schedu
 
 - [Home](https://www.giglinecompliance.com/)
 - [Services](https://www.giglinecompliance.com/services)
+- [Service Areas](https://www.giglinecompliance.com/service-areas)
 - [About Vince Lawrence](https://www.giglinecompliance.com/about)
 - [Frequently Asked Questions](https://www.giglinecompliance.com/faq)
 - [Request a Walkthrough](https://www.giglinecompliance.com/request-walkthrough)

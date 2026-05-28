@@ -15,6 +15,7 @@ from routes.hazcom import router as hazcom_router
 from routes.heat_guide import router as heat_guide_router
 from routes.safety_check import router as safety_check_router, process_drip_emails
 from routes.admin import router as admin_router, send_weekly_summary
+from routes.admin_crm import router as admin_crm_router
 from routes.intake import router as intake_router
 from routes.onboarding import router as onboarding_router
 from routes.portal import router as portal_router
@@ -30,6 +31,7 @@ api_router.include_router(hazcom_router)
 api_router.include_router(heat_guide_router)
 api_router.include_router(safety_check_router)
 api_router.include_router(admin_router)
+api_router.include_router(admin_crm_router)
 api_router.include_router(intake_router)
 api_router.include_router(onboarding_router)
 api_router.include_router(portal_router)

@@ -26,6 +26,7 @@ async def submit_walkthrough_request(request: WalkthroughRequest):
         "service": request.service,
         "email": request.email,
         "status": "new",
+        "notes": [],
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "utm_source": request.utm_source,
         "utm_medium": request.utm_medium,

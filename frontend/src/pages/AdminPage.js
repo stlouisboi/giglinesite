@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { X, Upload, ChevronRight, Eye, RefreshCw, FileText, Users, Briefcase, DollarSign, Clock } from 'lucide-react';
 import SEO from '../components/SEO';
+import WalkthroughLeadsCRM from '../components/WalkthroughLeadsCRM';
 
 const API = process.env.REACT_APP_BACKEND_URL;
 
@@ -484,26 +485,7 @@ const AdminPage = () => {
                     </table>
                     {leads.safety_checks.length === 0 && <p className="py-6 text-center text-gray-300">No submissions</p>}
                   </div>
-                  <h2 className="text-lg font-bold text-[#1C2B2B] mb-4">Walkthrough Requests</h2>
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-sm">
-                      <thead><tr className="bg-[#1C2B2B] text-white text-left">
-                        <th className="px-3 py-2.5 text-xs">Date</th><th className="px-3 py-2.5 text-xs">Name</th><th className="px-3 py-2.5 text-xs">Company</th><th className="px-3 py-2.5 text-xs">Type</th><th className="px-3 py-2.5 text-xs">Location</th>
-                      </tr></thead>
-                      <tbody>
-                        {leads.walkthrough_requests.map((l, i) => (
-                          <tr key={i} className="border-b border-gray-100 hover:bg-gray-50">
-                            <td className="px-3 py-3 text-xs text-gray-400">{l.timestamp ? new Date(l.timestamp).toLocaleDateString() : '—'}</td>
-                            <td className="px-3 py-3 font-medium">{l.name}</td>
-                            <td className="px-3 py-3">{l.company}</td>
-                            <td className="px-3 py-3 text-gray-500">{l.operation_type}</td>
-                            <td className="px-3 py-3">{l.location}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                    {leads.walkthrough_requests.length === 0 && <p className="py-6 text-center text-gray-300">No requests</p>}
-                  </div>
+                  <WalkthroughLeadsCRM token={token} />
                 </>
               )}
             </div>

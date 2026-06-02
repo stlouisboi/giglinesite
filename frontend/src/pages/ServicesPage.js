@@ -145,15 +145,20 @@ const ServicesPage = () => {
       >
         <div className="flex flex-col md:flex-row min-h-[55vh] md:min-h-[68vh]">
           {/* Left — Photo */}
-          <div className="relative w-full md:w-3/5 h-[40vh] md:h-auto overflow-hidden">
-            <img
-              src="/blocked-electrical-panel.jpg"
-              alt="Blocked electrical panel — one of OSHA's most-cited workplace hazards"
-              className="absolute inset-0 w-full h-full object-cover"
-              loading="eager"
-              fetchpriority="high"
-            />
+          <div className="relative w-full md:w-3/5 h-[40vh] md:h-auto overflow-hidden bg-[#0B1F33]">
+            <picture>
+              <source srcSet="/services-hero.webp" type="image/webp" />
+              <img
+                src="/services-hero.jpg"
+                alt="GigLine safety walkthrough — inspector in PPE documenting a blocked electrical panel violation"
+                className="absolute inset-0 w-full h-full object-cover object-[65%_center]"
+                loading="eager"
+                fetchpriority="high"
+              />
+            </picture>
+            {/* Right-edge fade into navy */}
             <div className="hidden md:block absolute inset-y-0 right-0 w-1/3 bg-gradient-to-r from-transparent to-[#0B1F33]" />
+            {/* Bottom fade for mobile */}
             <div className="md:hidden absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#0B1F33] to-transparent" />
           </div>
 

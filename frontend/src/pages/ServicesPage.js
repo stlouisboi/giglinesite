@@ -147,8 +147,8 @@ const ServicesPage = () => {
           {/* Left — Photo */}
           <div className="relative w-full md:w-3/5 h-[40vh] md:h-auto overflow-hidden">
             <img
-              src="/vince-inspecting.webp"
-              alt="Vince Lawrence of GigLine Safety walking a facility floor"
+              src="/blocked-electrical-panel.jpg"
+              alt="Blocked electrical panel — one of OSHA's most-cited workplace hazards"
               className="absolute inset-0 w-full h-full object-cover"
               loading="eager"
               fetchpriority="high"

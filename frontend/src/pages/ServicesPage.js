@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, MapPin, Phone, Shield, RefreshCw } from 'lucide-react';
 import { trackServiceBooking } from '../utils/analytics';
 import SEO from '../components/SEO';
 
@@ -11,7 +11,8 @@ const SERVICES = [
   {
     num: '01',
     key: 'walkthrough_standard',
-    title: 'Safety Walkthrough & Top 10 Fixes Report',
+    title: 'Safety Walkthrough &',
+    titleLine2: 'Top 10 Fixes Report',
     bestWhen: [
       'You want to know where you stand before OSHA shows up',
       'You\u2019ve had recent growth, new employees, or facility changes',
@@ -24,16 +25,17 @@ const SERVICES = [
       'Top 10 Fixes report \u2014 RED / AMBER / GREEN priority',
       'Delivered within 24\u201348 hours',
     ],
-    priceLabel: 'Starting at',
-    priceValue: '$650',
-    priceSubline: 'fixed quote before scheduling',
+    price: '$650',
+    priceNote: 'fixed quote before scheduling',
     cta: { label: 'Request a Walkthrough', subline: 'Vince calls back within one business day.' },
     testId: 'book-walkthrough',
+    featured: true,
   },
   {
     num: '02',
     key: 'documentation_remote',
-    title: 'Documentation Review & Gap Check',
+    title: 'Documentation Review',
+    titleLine2: '& Gap Check',
     bestWhen: [
       'You\u2019re preparing for an audit or OSHA inspection',
       'Your written programs, training records, or SDS files haven\u2019t been reviewed in a while',
@@ -46,16 +48,17 @@ const SERVICES = [
       'Written gap report with missing elements identified',
       'Available remote or on-site',
     ],
-    priceLabel: 'Starting at',
-    priceValue: '$550',
-    priceSubline: 'fixed quote before scheduling',
+    price: '$550',
+    priceNote: 'fixed quote before scheduling',
     cta: { label: 'Request a Review', subline: 'Vince calls back within one business day.' },
     testId: 'book-documentation',
+    featured: false,
   },
   {
     num: '03',
     key: 'incident_standard',
-    title: 'Incident Review & Corrective Action Support',
+    title: 'Incident Review &',
+    titleLine2: 'Corrective Action Support',
     bestWhen: [
       'You\u2019ve had a recordable injury or near-miss',
       'You need documentation that holds up under OSHA or insurance review',
@@ -68,11 +71,11 @@ const SERVICES = [
       'OSHA recordkeeping guidance',
       'Support for insurance or compliance follow-up',
     ],
-    priceLabel: 'Starting at',
-    priceValue: '$900',
-    priceSubline: 'fixed quote before scheduling',
+    price: '$900',
+    priceNote: 'fixed quote before scheduling',
     cta: { label: 'Request Support', subline: 'Initial response within 24\u201348 hours.' },
     testId: 'book-incident',
+    featured: false,
   },
 ];
 
@@ -106,38 +109,77 @@ const ServicesPage = () => {
       />
 
       {/* ═══════════════════════════════════════════════
-          SECTION 1 — INTRO PANEL  (editorial, asymmetric)
+          SECTION 1 — INTRO PANEL
+          Dark navy "hangar" feel. Photo accent on the right. Asymmetric.
       ═══════════════════════════════════════════════ */}
       <section
-        className="pt-28 md:pt-36 pb-20 md:pb-28 bg-white"
+        className="relative overflow-hidden bg-[#0B1F33] text-white"
         data-testid="services-intro"
       >
-        <div className="container max-w-6xl">
-          <div className="grid grid-cols-12 gap-x-8 gap-y-6">
-            <div className="col-span-12 md:col-span-3">
-              <p
-                className="uppercase text-[#1F6FEB] font-semibold tracking-[0.3em]"
-                style={{ ...mono, fontSize: '11px' }}
-                data-testid="services-kicker"
-              >
-                Services
-              </p>
+        {/* Subtle grid texture */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)',
+            backgroundSize: '64px 64px',
+          }}
+        />
+        {/* Right photo accent — only visible on desktop */}
+        <div
+          aria-hidden="true"
+          className="hidden lg:block absolute -right-10 top-0 bottom-0 w-[44%] pointer-events-none"
+        >
+          <img
+            src="/vince-inspecting.webp"
+            alt=""
+            className="w-full h-full object-cover opacity-[0.18]"
+            style={{ filter: 'grayscale(100%) contrast(1.1)' }}
+          />
+          {/* Hard left fade so it dissolves into the navy */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                'linear-gradient(to right, #0B1F33 0%, rgba(11,31,51,0.85) 18%, rgba(11,31,51,0.35) 55%, rgba(11,31,51,0.1) 100%)',
+            }}
+          />
+        </div>
+
+        <div className="container max-w-6xl relative z-10 pt-32 pb-24 md:pt-40 md:pb-32">
+          <div className="grid grid-cols-12 gap-x-8">
+            <div className="col-span-12 md:col-span-2 mb-6 md:mb-0">
+              <div className="flex items-center gap-3 md:flex-col md:items-start md:gap-4">
+                <span
+                  className="text-[#1F6FEB] font-semibold uppercase"
+                  style={{ ...mono, fontSize: '11px', letterSpacing: '0.35em' }}
+                  data-testid="services-kicker"
+                >
+                  Services
+                </span>
+                <span className="hidden md:block h-12 w-px bg-white/15" aria-hidden="true" />
+              </div>
             </div>
-            <div className="col-span-12 md:col-span-9 md:pl-2 border-l md:border-l-[1px] border-[#102133]/12 md:pl-10">
-              <p
-                className="text-[#102133] leading-[1.45] text-2xl md:text-[28px] mb-6"
+
+            <div className="col-span-12 md:col-span-10 lg:col-span-8">
+              <h1
+                className="text-white leading-[1.15] mb-6 text-[34px] md:text-[44px] lg:text-[52px] font-normal tracking-tight"
                 style={serif}
                 data-testid="services-intro-1"
               >
                 GigLine serves small manufacturers, warehouses, contractors, and fleet operations in the Piedmont Triad that don&rsquo;t have a full-time safety manager on staff.
-              </p>
-              <p
-                className="text-[#102133]/65 leading-relaxed text-base md:text-lg"
-                style={serif}
-                data-testid="services-intro-2"
-              >
-                Every engagement is a fixed quote before scheduling. No retainer. No hourly billing.
-              </p>
+              </h1>
+
+              <div className="flex items-start gap-4 mt-10">
+                <span className="block w-10 h-[2px] bg-[#1F6FEB] mt-3 flex-shrink-0" aria-hidden="true" />
+                <p
+                  className="text-white/70 text-lg md:text-xl leading-relaxed"
+                  data-testid="services-intro-2"
+                >
+                  Every engagement is a <span className="text-white font-semibold">fixed quote before scheduling.</span> No retainer. No hourly billing.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -145,114 +187,152 @@ const ServicesPage = () => {
 
       {/* ═══════════════════════════════════════════════
           SECTION 2 — THREE SERVICE CARDS
-          Editorial column treatment: large numerals, serif titles,
-          italic prose-style lists (no checkmark icons), serif pricing.
+          Real cards on warm cream. Permanent blue accent bar.
+          Each card: large numeral + serif title, distinct
+          "Best When" and "What You Get" zones, anchored price module,
+          full-width CTA with depth.
       ═══════════════════════════════════════════════ */}
       <section
-        className="pt-4 pb-24 md:pb-32 border-t border-[#102133]/10"
+        className="py-24 md:py-32 relative"
+        style={{ backgroundColor: '#F4EFE6' }}
         data-testid="services-cards-section"
       >
-        <div className="container max-w-6xl">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-px bg-[#102133]/12">
+        <div className="container max-w-7xl relative">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-7">
             {SERVICES.map((svc) => (
               <article
                 key={svc.num}
-                className="group relative bg-white flex flex-col"
+                className="relative bg-white flex flex-col group transition-all duration-300 shadow-[0_2px_24px_rgba(11,31,51,0.07)] hover:shadow-[0_8px_40px_rgba(11,31,51,0.13)] hover:-translate-y-1"
                 data-testid={`service-card-${svc.num}`}
               >
-                {/* Soft top accent (only on hover or focus-within for restraint) */}
+                {/* Top accent bar — permanent */}
                 <span
                   aria-hidden="true"
-                  className="absolute top-0 left-0 right-0 h-[2px] bg-[#1F6FEB] origin-left scale-x-0 group-hover:scale-x-100 group-focus-within:scale-x-100 transition-transform duration-500"
+                  className="absolute top-0 left-0 right-0 h-1 bg-[#1F6FEB]"
                 />
 
-                <div className="px-8 md:px-10 pt-12 pb-10 flex flex-col flex-grow">
-                  {/* Numeral */}
-                  <p
-                    className="text-[#102133]/25 mb-8 leading-none"
-                    style={{ ...mono, fontSize: '12px', letterSpacing: '0.25em' }}
+                {/* "Most-booked" ribbon on featured card */}
+                {svc.featured && (
+                  <span
+                    className="absolute -top-3 right-6 bg-[#0B1F33] text-white px-3 py-1 text-[10px] uppercase font-bold tracking-[0.2em]"
+                    style={mono}
+                    aria-label="Most-booked service"
+                    data-testid={`featured-badge-${svc.num}`}
                   >
-                    {svc.num}
-                  </p>
+                    Most Booked
+                  </span>
+                )}
 
-                  {/* Title */}
+                {/* HEADER ZONE — numeral + title */}
+                <div className="px-8 pt-10 pb-8 border-b border-[#102133]/08">
+                  <div className="flex items-baseline gap-4 mb-4">
+                    <span
+                      className="text-[#1F6FEB] leading-none"
+                      style={{ ...serif, fontSize: '56px' }}
+                    >
+                      {svc.num}
+                    </span>
+                    <span
+                      className="text-[#102133]/30 uppercase pb-2"
+                      style={{ ...mono, fontSize: '10px', letterSpacing: '0.3em' }}
+                    >
+                      Service
+                    </span>
+                  </div>
                   <h2
-                    className="text-[#102133] leading-[1.25] mb-10 text-[22px] md:text-[26px] font-normal"
+                    className="text-[#102133] leading-[1.15] text-[26px] md:text-[28px] font-normal"
                     style={serif}
                   >
                     {svc.title}
+                    <br />
+                    {svc.titleLine2}
                   </h2>
+                </div>
 
-                  {/* Best When */}
-                  <div className="mb-10">
+                {/* BODY ZONE — Best When + What You Get */}
+                <div className="px-8 py-8 flex-grow flex flex-col">
+                  <div className="mb-8">
                     <p
-                      className="text-[#1F6FEB] font-semibold mb-4 uppercase"
-                      style={{ ...mono, fontSize: '10px', letterSpacing: '0.25em' }}
+                      className="text-[#0B1F33] mb-4 uppercase font-bold flex items-center gap-2"
+                      style={{ ...mono, fontSize: '10px', letterSpacing: '0.28em' }}
                     >
+                      <span className="block w-3 h-[2px] bg-[#1F6FEB]" aria-hidden="true" />
                       Best When
                     </p>
                     <ul className="space-y-3" data-testid={`service-bestwhen-${svc.num}`}>
                       {svc.bestWhen.map((line, i) => (
-                        <li key={i} className="flex gap-3 text-[#102133]/80 text-[15px] leading-[1.55]">
-                          <span className="text-[#102133]/30 flex-shrink-0 select-none" aria-hidden="true">&mdash;</span>
+                        <li key={i} className="flex gap-3 text-[#102133]/85 text-[15px] leading-[1.5]">
+                          <span
+                            className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#1F6FEB] mt-2.5"
+                            aria-hidden="true"
+                          />
                           <span>{line}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  {/* What You Get */}
-                  <div className="mb-10 flex-grow">
+                  <div className="flex-grow">
                     <p
-                      className="text-[#1F6FEB] font-semibold mb-4 uppercase"
-                      style={{ ...mono, fontSize: '10px', letterSpacing: '0.25em' }}
+                      className="text-[#0B1F33] mb-4 uppercase font-bold flex items-center gap-2"
+                      style={{ ...mono, fontSize: '10px', letterSpacing: '0.28em' }}
                     >
+                      <span className="block w-3 h-[2px] bg-[#1F6FEB]" aria-hidden="true" />
                       What You Get
                     </p>
                     <ul className="space-y-3" data-testid={`service-whatyouget-${svc.num}`}>
                       {svc.whatYouGet.map((line, i) => (
-                        <li key={i} className="flex gap-3 text-[#102133]/80 text-[15px] leading-[1.55]">
-                          <span className="text-[#102133]/30 flex-shrink-0 select-none" aria-hidden="true">&mdash;</span>
+                        <li key={i} className="flex gap-3 text-[#102133]/85 text-[15px] leading-[1.5]">
+                          <span
+                            className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#102133]/30 mt-2.5"
+                            aria-hidden="true"
+                          />
                           <span>{line}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
+                </div>
 
-                  {/* Price */}
-                  <div className="border-t border-[#102133]/10 pt-7 mb-7" data-testid={`price-${svc.num}`}>
-                    <p
-                      className="uppercase text-[#102133]/45 mb-2"
-                      style={{ ...mono, fontSize: '10px', letterSpacing: '0.25em' }}
-                    >
-                      {svc.priceLabel}
-                    </p>
-                    <p
-                      className="text-[#102133] leading-none mb-3 text-[40px] md:text-[44px] font-normal"
-                      style={serif}
-                    >
-                      {svc.priceValue}
-                    </p>
-                    <p className="text-[#102133]/55 text-sm italic" style={serif}>
-                      {svc.priceSubline}
-                    </p>
-                  </div>
+                {/* PRICE MODULE — distinct color block */}
+                <div
+                  className="px-8 py-6 flex items-baseline gap-3"
+                  style={{ backgroundColor: '#0B1F33' }}
+                  data-testid={`price-${svc.num}`}
+                >
+                  <span
+                    className="text-white/55 uppercase"
+                    style={{ ...mono, fontSize: '10px', letterSpacing: '0.28em' }}
+                  >
+                    Starting at
+                  </span>
+                  <span
+                    className="text-white leading-none"
+                    style={{ ...serif, fontSize: '32px' }}
+                  >
+                    {svc.price}
+                  </span>
+                  <span className="text-white/45 italic text-xs ml-auto" style={serif}>
+                    {svc.priceNote}
+                  </span>
+                </div>
 
-                  {/* CTA */}
+                {/* CTA */}
+                <div className="px-8 py-7 bg-white">
                   <Link
                     to={`/request-walkthrough?service=${svc.key}`}
                     onClick={() => trackServiceBooking(svc.key)}
-                    className="inline-flex items-center justify-between w-full bg-[#102133] hover:bg-[#1F6FEB] text-white font-semibold py-4 px-5 rounded-none transition-colors text-[15px] group/cta"
+                    className="inline-flex items-center justify-between w-full bg-[#1F6FEB] hover:bg-[#0B1F33] text-white font-bold py-4 px-5 transition-colors text-[15px] group/cta shadow-[0_4px_14px_rgba(31,111,235,0.25)] hover:shadow-[0_6px_18px_rgba(11,31,51,0.3)]"
                     data-testid={svc.testId}
                   >
                     <span>{svc.cta.label}</span>
-                    <ArrowRight size={16} className="transition-transform group-hover/cta:translate-x-1" />
+                    <ArrowRight size={17} className="transition-transform group-hover/cta:translate-x-1.5" />
                   </Link>
                   <p
-                    className="mt-3 text-[#102133]/55 text-[13px] leading-relaxed"
-                    style={serif}
+                    className="mt-4 text-[#102133]/60 text-[13px] flex items-center gap-2"
                     data-testid={`cta-subline-${svc.num}`}
                   >
+                    <Phone size={11} className="flex-shrink-0 text-[#1F6FEB]" />
                     {svc.cta.subline}
                   </p>
                 </div>
@@ -264,42 +344,68 @@ const ServicesPage = () => {
 
       {/* ═══════════════════════════════════════════════
           SECTION 3 — COVERAGE AND LOGISTICS
-          Quiet two-column editorial. Hairline divider on desktop only.
+          Mid-tone navy → strong rhythm break from cream above.
       ═══════════════════════════════════════════════ */}
       <section
-        className="py-24 md:py-32 bg-[#F7F5F0]"
+        className="py-24 md:py-32 bg-[#102C44] text-white relative overflow-hidden"
         data-testid="services-coverage"
       >
-        <div className="container max-w-5xl">
-          <div className="grid md:grid-cols-2 gap-12 md:gap-20">
-            <div className="md:border-r md:border-[#102133]/15 md:pr-16">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)',
+            backgroundSize: '48px 48px',
+          }}
+        />
+        <div className="container max-w-6xl relative z-10">
+          <div className="grid md:grid-cols-2 gap-12 md:gap-16">
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <MapPin size={18} className="text-[#1F6FEB]" />
+                <p
+                  className="uppercase text-[#1F6FEB] font-semibold"
+                  style={{ ...mono, fontSize: '11px', letterSpacing: '0.3em' }}
+                >
+                  Service Area
+                </p>
+              </div>
               <p
-                className="uppercase text-[#1F6FEB] mb-5 font-semibold"
-                style={{ ...mono, fontSize: '10px', letterSpacing: '0.3em' }}
+                className="text-white text-2xl md:text-[28px] leading-[1.35] mb-6 font-normal"
+                style={serif}
               >
-                Service Area
+                On-site walkthroughs within <span className="text-[#1F6FEB]">60 miles</span> of Winston-Salem.
               </p>
               <p
-                className="text-[#102133] leading-[1.6] text-lg"
-                style={serif}
+                className="text-white/65 leading-relaxed text-base md:text-lg"
                 data-testid="services-coverage-area"
               >
-                On-site walkthroughs within <span className="font-bold">60 miles of Winston-Salem</span> &mdash; including Greensboro, High Point, Kernersville, Lexington, Thomasville, Salisbury, Burlington, and surrounding communities. Documentation Review is available remotely for operations outside the Triad.
+                Including Greensboro, High Point, Kernersville, Lexington, Thomasville, Salisbury, Burlington, and surrounding communities. Documentation Review is available remotely for operations outside the Triad.
               </p>
             </div>
-            <div>
+
+            <div className="md:border-l md:border-white/15 md:pl-12 lg:pl-16">
+              <div className="flex items-center gap-3 mb-6">
+                <RefreshCw size={18} className="text-[#1F6FEB]" />
+                <p
+                  className="uppercase text-[#1F6FEB] font-semibold"
+                  style={{ ...mono, fontSize: '11px', letterSpacing: '0.3em' }}
+                >
+                  How Booking Works
+                </p>
+              </div>
               <p
-                className="uppercase text-[#1F6FEB] mb-5 font-semibold"
-                style={{ ...mono, fontSize: '10px', letterSpacing: '0.3em' }}
+                className="text-white text-2xl md:text-[28px] leading-[1.35] mb-6 font-normal"
+                style={serif}
               >
-                How Booking Works
+                Nothing is scheduled until the <span className="text-[#1F6FEB]">price is agreed.</span>
               </p>
               <p
-                className="text-[#102133] leading-[1.6] text-lg"
-                style={serif}
+                className="text-white/65 leading-relaxed text-base md:text-lg"
                 data-testid="services-coverage-booking"
               >
-                Submit the short request form. Vince calls back within one business day with scheduling options and a confirmed fixed price. <span className="font-bold">Nothing is scheduled until the price is agreed.</span>
+                Submit the short request form. Vince calls back within one business day with scheduling options and a confirmed fixed price.
               </p>
             </div>
           </div>
@@ -307,36 +413,43 @@ const ServicesPage = () => {
       </section>
 
       {/* ═══════════════════════════════════════════════
-          SECTION 4 — SAFETY CHECK BAND  (deliberately low-weight)
+          SECTION 4 — SAFETY CHECK BAND
+          Warm cream, low-weight, but with real visual interest.
       ═══════════════════════════════════════════════ */}
       <section
-        className="py-14 md:py-16 bg-white border-y border-[#102133]/12"
+        className="py-16 md:py-20 relative overflow-hidden"
+        style={{ backgroundColor: '#F4EFE6' }}
         data-testid="services-safety-check-band"
       >
-        <div className="container max-w-5xl">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-            <div className="md:max-w-2xl">
+        {/* Soft right-side accent shape */}
+        <div
+          aria-hidden="true"
+          className="absolute -right-32 top-1/2 -translate-y-1/2 w-96 h-96 rounded-full opacity-30 blur-3xl pointer-events-none"
+          style={{ background: 'radial-gradient(circle, #1F6FEB 0%, transparent 70%)' }}
+        />
+        <div className="container max-w-6xl relative z-10">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+            <div className="md:max-w-3xl">
               <p
-                className="uppercase text-[#102133]/40 mb-3 font-semibold"
-                style={{ ...mono, fontSize: '10px', letterSpacing: '0.3em' }}
+                className="uppercase text-[#1F6FEB] mb-3 font-semibold"
+                style={{ ...mono, fontSize: '11px', letterSpacing: '0.3em' }}
               >
                 Not sure where to start?
               </p>
               <p
-                className="text-[#102133] leading-snug text-xl md:text-2xl"
+                className="text-[#0B1F33] leading-[1.25] text-2xl md:text-[32px] font-normal"
                 style={serif}
               >
-                Take the free 90-Second Safety Check. Six yes-or-no questions. Instant risk score. No email required.
+                Take the free 90-Second Safety Check. <span className="text-[#102133]/55">Six yes-or-no questions. Instant risk score. No email required.</span>
               </p>
             </div>
             <Link
               to="/safety-check"
-              className="inline-flex items-center gap-2 text-[#1F6FEB] hover:text-[#102133] font-semibold whitespace-nowrap transition-colors"
-              style={{ ...mono, fontSize: '13px', letterSpacing: '0.05em' }}
+              className="inline-flex items-center gap-2 bg-[#0B1F33] hover:bg-[#1F6FEB] text-white font-bold px-6 py-4 whitespace-nowrap transition-all text-[14px] tracking-wide shadow-[0_4px_14px_rgba(11,31,51,0.2)]"
               data-testid="services-safety-check-link"
             >
               Take the Safety Check
-              <ArrowUpRight size={16} />
+              <ArrowUpRight size={17} />
             </Link>
           </div>
         </div>
@@ -344,49 +457,59 @@ const ServicesPage = () => {
 
       {/* ═══════════════════════════════════════════════
           SECTION 5 — PROOF & REASSURANCE
-          Two compact panels side-by-side.
+          Two distinct cards on dark navy. Real shadow, real depth.
       ═══════════════════════════════════════════════ */}
       <section
         className="py-24 md:py-32 bg-[#0B1F33] text-white"
         data-testid="services-proof"
       >
         <div className="container max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-px bg-white/10">
+          <p
+            className="uppercase text-[#1F6FEB] mb-12 md:mb-16 font-semibold text-center"
+            style={{ ...mono, fontSize: '11px', letterSpacing: '0.3em' }}
+          >
+            How GigLine Works
+          </p>
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
             {/* Proof — Not an OSHA inspection */}
-            <div className="bg-[#0B1F33] p-10 md:p-14" data-testid="proof-private">
-              <p
-                className="uppercase text-[#1F6FEB] mb-6 font-semibold"
-                style={{ ...mono, fontSize: '10px', letterSpacing: '0.3em' }}
-              >
-                Private Engagement
-              </p>
+            <div
+              className="relative bg-[#102C44] p-10 md:p-12 border border-white/10"
+              data-testid="proof-private"
+            >
+              <span
+                aria-hidden="true"
+                className="absolute top-0 left-0 right-0 h-1 bg-[#1F6FEB]"
+              />
+              <Shield size={24} className="text-[#1F6FEB] mb-6" />
               <h3
-                className="text-2xl md:text-[28px] font-normal mb-6 leading-tight"
+                className="text-[26px] md:text-[30px] font-normal mb-5 leading-tight"
                 style={serif}
               >
                 This is not an OSHA inspection.
               </h3>
-              <p className="text-white/65 leading-[1.7] text-base">
-                A GigLine walkthrough is a private engagement. Findings are delivered only to you. GigLine does not contact OSHA, your insurance carrier, or any regulatory agency. What you do with the report is your decision.
+              <p className="text-white/70 leading-[1.7] text-base md:text-lg">
+                A GigLine walkthrough is a private engagement. Findings are delivered only to you. GigLine does not contact OSHA, your insurance carrier, or any regulatory agency. <span className="text-white">What you do with the report is your decision.</span>
               </p>
             </div>
 
             {/* Reassurance — Follow-ups */}
-            <div className="bg-[#0B1F33] p-10 md:p-14" data-testid="proof-followup">
-              <p
-                className="uppercase text-[#1F6FEB] mb-6 font-semibold"
-                style={{ ...mono, fontSize: '10px', letterSpacing: '0.3em' }}
-              >
-                Returning Clients
-              </p>
+            <div
+              className="relative bg-[#102C44] p-10 md:p-12 border border-white/10"
+              data-testid="proof-followup"
+            >
+              <span
+                aria-hidden="true"
+                className="absolute top-0 left-0 right-0 h-1 bg-[#1F6FEB]"
+              />
+              <RefreshCw size={24} className="text-[#1F6FEB] mb-6" />
               <h3
-                className="text-2xl md:text-[28px] font-normal mb-6 leading-tight"
+                className="text-[26px] md:text-[30px] font-normal mb-5 leading-tight"
                 style={serif}
               >
                 Follow-up walkthroughs available.
               </h3>
-              <p className="text-white/65 leading-[1.7] text-base">
-                Returning clients receive follow-up walkthroughs at <span className="text-white font-semibold">$550</span> &mdash; reduced from the standard $650. Most operations benefit from a semi-annual or annual review.
+              <p className="text-white/70 leading-[1.7] text-base md:text-lg">
+                Returning clients receive follow-up walkthroughs at <span className="text-[#1F6FEB] font-bold">$550</span> &mdash; reduced from the standard $650. Most operations benefit from a semi-annual or annual review.
               </p>
             </div>
           </div>

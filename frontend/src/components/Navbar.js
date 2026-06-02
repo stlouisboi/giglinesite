@@ -20,13 +20,13 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 bg-white" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }} data-testid="navbar">
       <nav className="container" aria-label="Main navigation">
-        <div className="flex items-center justify-between h-20 md:h-24">
+        <div className="flex items-center justify-between h-16 md:h-20 lg:h-24">
           {/* Logo */}
           <Link to="/" className="flex items-center" data-testid="navbar-logo">
             <img
               src="/gigline-logo-2026.png"
               alt="GigLine Safety & Compliance"
-              className="h-14 md:h-20 w-auto"
+              className="h-12 md:h-12 lg:h-16 xl:h-20 w-auto"
               loading="eager"
               fetchpriority="high"
               width="232"
@@ -35,7 +35,7 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6 lg:space-x-8" data-testid="desktop-nav">
+          <div className="hidden md:flex items-center space-x-4 lg:space-x-7 xl:space-x-8" data-testid="desktop-nav">
             {navLinks.map((link) => (
               <Link
                 key={link.path}

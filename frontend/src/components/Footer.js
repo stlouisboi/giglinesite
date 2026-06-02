@@ -15,7 +15,7 @@ const Footer = () => {
               <img
                 src="/gigline-logo-2026-white.png"
                 alt="GigLine Safety & Compliance"
-                className="h-10 w-auto"
+                className="h-14 w-auto"
                 loading="lazy"
                 width="232"
                 height="90"

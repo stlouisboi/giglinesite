@@ -586,9 +586,17 @@ const HomePage = () => {
                 >
                   What to Expect from a Safety Walkthrough
                 </h2>
-                <p className="text-base text-[#102133]/75 leading-relaxed">
-                  Simple, direct, no disruption to your day.
-                </p>
+                <div className="space-y-5" data-testid="process-reassurances">
+                  <p className="text-base text-[#102133]/75 leading-relaxed">
+                    Most walkthroughs run during normal work hours. Your crew keeps moving.
+                  </p>
+                  <p className="text-base text-[#102133]/75 leading-relaxed">
+                    You don&rsquo;t need to prepare anything. The floor tells the story.
+                  </p>
+                  <p className="text-base text-[#102133]/75 leading-relaxed">
+                    You&rsquo;ll have a written report before the week is out.
+                  </p>
+                </div>
               </Reveal>
             </div>
 

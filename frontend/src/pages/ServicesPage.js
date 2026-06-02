@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ExternalLink, Check } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { trackServiceBooking } from '../utils/analytics';
 import SEO from '../components/SEO';
 
@@ -12,363 +12,383 @@ const SERVICES = [
     num: '01',
     key: 'walkthrough_standard',
     title: 'Safety Walkthrough & Top 10 Fixes Report',
-    tagline: 'See what your operation looks like under review.',
-    summary: 'I walk the facility, observe the operation, and identify what creates the most immediate exposure. You receive a written report with the ten issues most likely to create trouble first.',
-    bestFor: [
-      'No outside review in the last 12 months',
-      'New managers who need a clear baseline',
-      'Preparing for customer or insurance review',
-      'Recent near-misses or recurring concerns',
+    bestWhen: [
+      'You want to know where you stand before OSHA shows up',
+      'You\u2019ve had recent growth, new employees, or facility changes',
+      'You\u2019re about to go through an insurance review',
     ],
-    startingAt: '$650',
-    cta: {
-      label: 'Request a Walkthrough',
-      subline: 'Fixed quote before scheduling. No retainer.',
-    },
+    whatYouGet: [
+      'On-site walkthrough (1\u20133 hours)',
+      'Photo-documented hazard findings',
+      'OSHA standard referenced for each finding',
+      'Top 10 Fixes report \u2014 RED / AMBER / GREEN priority',
+      'Delivered within 24\u201348 hours',
+    ],
+    priceLabel: 'Starting at',
+    priceValue: '$650',
+    priceSubline: 'fixed quote before scheduling',
+    cta: { label: 'Request a Walkthrough', subline: 'Vince calls back within one business day.' },
     testId: 'book-walkthrough',
   },
   {
     num: '02',
     key: 'documentation_remote',
     title: 'Documentation Review & Gap Check',
-    tagline: 'Make sure the paperwork holds up.',
-    summary: 'I review written programs, training records, inspection logs, and required documentation. The goal — identify what is present, what is weak, and what is missing before someone else finds it.',
-    bestFor: [
-      'Preparing for customer or insurance audits',
-      'Rebuilding or updating safety programs',
-      'Added equipment or changed processes',
-      'New managers inheriting existing files',
+    bestWhen: [
+      'You\u2019re preparing for an audit or OSHA inspection',
+      'Your written programs, training records, or SDS files haven\u2019t been reviewed in a while',
+      'You need to know what\u2019s missing before someone else finds it',
     ],
-    startingAt: '$550',
-    cta: {
-      label: 'Request a Review',
-      subline: 'Fixed quote before scheduling. No retainer.',
-    },
+    whatYouGet: [
+      'Review of written safety programs',
+      'Training record and inspection log audit',
+      'SDS binder and HazCom program check',
+      'Written gap report with missing elements identified',
+      'Available remote or on-site',
+    ],
+    priceLabel: 'Starting at',
+    priceValue: '$550',
+    priceSubline: 'fixed quote before scheduling',
+    cta: { label: 'Request a Review', subline: 'Vince calls back within one business day.' },
     testId: 'book-documentation',
   },
   {
     num: '03',
     key: 'incident_standard',
     title: 'Incident Review & Corrective Action Support',
-    tagline: 'Document what happened. Fix what caused it.',
-    summary: 'After an injury, near-miss, or serious incident, I help document what happened, identify what broke down, and build corrective action that holds up under review — OSHA, insurance, or internal.',
-    bestFor: [
-      'Responding to recordable injuries',
-      'Preparing for possible OSHA scrutiny',
-      'Documentation for insurance claims',
-      'Preventing repeat incidents',
+    bestWhen: [
+      'You\u2019ve had a recordable injury or near-miss',
+      'You need documentation that holds up under OSHA or insurance review',
+      'You need to identify what broke down and build a corrective action record',
     ],
-    startingAt: '$900',
-    cta: {
-      label: 'Request Support',
-      subline: 'Initial response within 24–48 hours. Fixed quote before scheduling.',
-    },
+    whatYouGet: [
+      'On-site or remote incident review',
+      'Root cause documentation',
+      'Written corrective action plan',
+      'OSHA recordkeeping guidance',
+      'Support for insurance or compliance follow-up',
+    ],
+    priceLabel: 'Starting at',
+    priceValue: '$900',
+    priceSubline: 'fixed quote before scheduling',
+    cta: { label: 'Request Support', subline: 'Initial response within 24\u201348 hours.' },
     testId: 'book-incident',
   },
 ];
 
 const ServicesPage = () => {
   return (
-    <main data-testid="services-page">
+    <main data-testid="services-page" className="bg-white">
       <SEO
         title="OSHA Safety Walkthrough & Compliance Services | Kernersville NC | GigLine"
         description="On-site OSHA safety walkthroughs, documentation reviews, and incident response for small manufacturers, warehouses, and fleets in Kernersville, NC. From $650."
         canonical="/services"
         schema={[
           {
-            "@context": "https://schema.org",
-            "@type": "ItemList",
-            "name": "GigLine Safety Consulting Services",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "item": {
-                  "@type": "Service",
-                  "name": "Safety Walkthrough & Top 10 Fixes Report",
-                  "description": "A structured on-site review of common OSHA exposure areas.",
-                  "provider": { "@type": "LocalBusiness", "name": "GigLine Safety & Compliance" },
-                  "areaServed": "United States",
-                  "offers": { "@type": "Offer", "price": "650", "priceCurrency": "USD" }
-                }
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "item": {
-                  "@type": "Service",
-                  "name": "Documentation Review & Gap Check",
-                  "description": "Review of written safety programs, training records, and inspection forms.",
-                  "provider": { "@type": "LocalBusiness", "name": "GigLine Safety & Compliance" },
-                  "areaServed": "United States",
-                  "offers": { "@type": "Offer", "price": "550", "priceCurrency": "USD" }
-                }
-              },
-              {
-                "@type": "ListItem",
-                "position": 3,
-                "item": {
-                  "@type": "Service",
-                  "name": "Incident Review & Corrective Action Support",
-                  "description": "Post-incident review and corrective direction.",
-                  "provider": { "@type": "LocalBusiness", "name": "GigLine Safety & Compliance" },
-                  "areaServed": "United States",
-                  "offers": { "@type": "Offer", "price": "900", "priceCurrency": "USD" }
-                }
-              }
-            ]
+            '@context': 'https://schema.org',
+            '@type': 'ItemList',
+            name: 'GigLine Safety Consulting Services',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, item: { '@type': 'Service', name: 'Safety Walkthrough & Top 10 Fixes Report', provider: { '@type': 'LocalBusiness', name: 'GigLine Safety & Compliance' }, offers: { '@type': 'Offer', price: '650', priceCurrency: 'USD' } } },
+              { '@type': 'ListItem', position: 2, item: { '@type': 'Service', name: 'Documentation Review & Gap Check', provider: { '@type': 'LocalBusiness', name: 'GigLine Safety & Compliance' }, offers: { '@type': 'Offer', price: '550', priceCurrency: 'USD' } } },
+              { '@type': 'ListItem', position: 3, item: { '@type': 'Service', name: 'Incident Review & Corrective Action Support', provider: { '@type': 'LocalBusiness', name: 'GigLine Safety & Compliance' }, offers: { '@type': 'Offer', price: '900', priceCurrency: 'USD' } } },
+            ],
           },
           {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [
-              { "@type": "Question", "name": "How much does a GigLine safety walkthrough cost?", "acceptedAnswer": { "@type": "Answer", "text": "Walkthroughs start at $650. Most small-operation walkthroughs fall in the $650–$1,000 range based on square footage and scope. You'll receive a fixed quote before scheduling." } },
-              { "@type": "Question", "name": "What's included in a documentation review and gap check?", "acceptedAnswer": { "@type": "Answer", "text": "A review of your written safety programs, training records, inspection logs, and required documentation — with a gap analysis that lists what's missing, what needs updating, and what's in good order. Starts at $550." } },
-              { "@type": "Question", "name": "When do I need incident review and corrective action support?", "acceptedAnswer": { "@type": "Answer", "text": "After a recordable injury, near-miss, or OSHA visit — anytime you need to document what happened, identify what broke down, and build corrective action that holds up under review. Starts at $900." } },
-              { "@type": "Question", "name": "Do services require a retainer or long-term contract?", "acceptedAnswer": { "@type": "Answer", "text": "No. Every GigLine service is a single engagement with a fixed fee. No monthly retainer, no long-term contract. You pay once, you get the report, the engagement is closed." } }
-            ]
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.giglinecompliance.com/' },
+              { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://www.giglinecompliance.com/services' },
+            ],
           },
-          {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.giglinecompliance.com/" },
-              { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://www.giglinecompliance.com/services" }
-            ]
-          }
         ]}
       />
 
-      {/* ── Hero Band ── */}
-      <section className="bg-[#0B1F33] text-white py-16 md:py-24" data-testid="services-hero">
-        <div className="container max-w-4xl text-center">
-          <p
-            className="uppercase tracking-[3px] text-[#1F6FEB] mb-4"
-            style={{ ...mono, fontSize: '11px' }}
-          >
-            Services
-          </p>
-          <h1
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight"
-            style={serif}
-            data-testid="services-headline"
-          >
-            Three Services. One Standard.
-          </h1>
-          <p className="text-lg md:text-xl text-white/75 max-w-2xl mx-auto leading-relaxed">
-            Each ends with a written report, clear action items, and a defined next step. No ongoing contracts. No retainers.
-          </p>
-        </div>
-      </section>
-
-      {/* ── Free Safety Check — Distinct Card ── */}
-      <section className="py-12 md:py-16" style={{ backgroundColor: '#F7F9FC' }} data-testid="services-free-check">
-        <div className="container max-w-7xl">
-          <div className="rounded-xl p-6 md:p-8 text-center" style={{ background: '#0B1F33', border: '2px solid rgba(201,168,76,0.3)' }}>
-            <span className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider mb-4" style={{ background: '#1F6FEB', color: '#111' }}>
-              Free — No Payment Required
-            </span>
-            <h2 className="text-xl md:text-2xl font-bold text-white mb-2" style={serif}>
-              90-Second Safety Check
-            </h2>
-            <p className="text-base md:text-sm text-white/75 mb-6 max-w-lg mx-auto leading-relaxed">
-              Answer 6 yes-or-no questions about your operation. Get an immediate risk score and a clear next step — no email required to start.
-            </p>
-            <Link
-              to="/safety-check"
-              className="inline-flex items-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#1F6FEB]/20 text-base"
-              data-testid="services-free-check-cta"
-            >
-              Take the Free Safety Check
-              <ArrowRight size={18} />
-            </Link>
+      {/* ═══════════════════════════════════════════════
+          SECTION 1 — INTRO PANEL  (editorial, asymmetric)
+      ═══════════════════════════════════════════════ */}
+      <section
+        className="pt-28 md:pt-36 pb-20 md:pb-28 bg-white"
+        data-testid="services-intro"
+      >
+        <div className="container max-w-6xl">
+          <div className="grid grid-cols-12 gap-x-8 gap-y-6">
+            <div className="col-span-12 md:col-span-3">
+              <p
+                className="uppercase text-[#1F6FEB] font-semibold tracking-[0.3em]"
+                style={{ ...mono, fontSize: '11px' }}
+                data-testid="services-kicker"
+              >
+                Services
+              </p>
+            </div>
+            <div className="col-span-12 md:col-span-9 md:pl-2 border-l md:border-l-[1px] border-[#102133]/12 md:pl-10">
+              <p
+                className="text-[#102133] leading-[1.45] text-2xl md:text-[28px] mb-6"
+                style={serif}
+                data-testid="services-intro-1"
+              >
+                GigLine serves small manufacturers, warehouses, contractors, and fleet operations in the Piedmont Triad that don&rsquo;t have a full-time safety manager on staff.
+              </p>
+              <p
+                className="text-[#102133]/65 leading-relaxed text-base md:text-lg"
+                style={serif}
+                data-testid="services-intro-2"
+              >
+                Every engagement is a fixed quote before scheduling. No retainer. No hourly billing.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── Service Cards ── */}
-      <section className="py-16 md:py-24" style={{ backgroundColor: '#F7F9FC' }} data-testid="services-cards-section">
-        <div className="container max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 items-stretch">
+      {/* ═══════════════════════════════════════════════
+          SECTION 2 — THREE SERVICE CARDS
+          Editorial column treatment: large numerals, serif titles,
+          italic prose-style lists (no checkmark icons), serif pricing.
+      ═══════════════════════════════════════════════ */}
+      <section
+        className="pt-4 pb-24 md:pb-32 border-t border-[#102133]/10"
+        data-testid="services-cards-section"
+      >
+        <div className="container max-w-6xl">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-px bg-[#102133]/12">
             {SERVICES.map((svc) => (
-              <div
+              <article
                 key={svc.num}
-                className="bg-white rounded-lg border border-[#102133]/08 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col"
+                className="group relative bg-white flex flex-col"
                 data-testid={`service-card-${svc.num}`}
               >
-                {/* Card Top */}
-                <div className="p-7 md:p-8 flex-grow flex flex-col">
-                  {/* Number + Starting Price */}
-                  <div className="flex items-center justify-between mb-4">
-                    <span
-                      className="text-[#1F6FEB]/40 font-bold"
-                      style={{ ...mono, fontSize: '13px' }}
-                    >
-                      {svc.num}
-                    </span>
-                    <span className="text-lg font-bold text-[#1F6FEB]" data-testid={`price-${svc.num}`}>
-                      Starting at {svc.startingAt}
-                    </span>
-                  </div>
+                {/* Soft top accent (only on hover or focus-within for restraint) */}
+                <span
+                  aria-hidden="true"
+                  className="absolute top-0 left-0 right-0 h-[2px] bg-[#1F6FEB] origin-left scale-x-0 group-hover:scale-x-100 group-focus-within:scale-x-100 transition-transform duration-500"
+                />
+
+                <div className="px-8 md:px-10 pt-12 pb-10 flex flex-col flex-grow">
+                  {/* Numeral */}
+                  <p
+                    className="text-[#102133]/25 mb-8 leading-none"
+                    style={{ ...mono, fontSize: '12px', letterSpacing: '0.25em' }}
+                  >
+                    {svc.num}
+                  </p>
 
                   {/* Title */}
                   <h2
-                    className="text-xl md:text-[22px] font-bold text-[#102133] leading-snug mb-2"
+                    className="text-[#102133] leading-[1.25] mb-10 text-[22px] md:text-[26px] font-normal"
                     style={serif}
                   >
                     {svc.title}
                   </h2>
 
-                  {/* Tagline */}
-                  <p className="text-base md:text-sm text-[#102133]/60 mb-5">{svc.tagline}</p>
-
-                  {/* Summary */}
-                  <p className="text-base md:text-sm text-[#102133]/80 leading-relaxed mb-6">
-                    {svc.summary}
-                  </p>
-
-                  {/* Best For */}
-                  <div className="mb-6 flex-grow">
+                  {/* Best When */}
+                  <div className="mb-10">
                     <p
-                      className="text-[11px] uppercase tracking-[2px] text-[#1F6FEB] mb-3 font-semibold"
-                      style={mono}
+                      className="text-[#1F6FEB] font-semibold mb-4 uppercase"
+                      style={{ ...mono, fontSize: '10px', letterSpacing: '0.25em' }}
                     >
-                      Best For
+                      Best When
                     </p>
-                    <div className="space-y-2.5">
-                      {svc.bestFor.map((item, i) => (
-                        <div key={i} className="flex items-start gap-2.5">
-                          <Check size={14} className="flex-shrink-0 mt-0.5 text-[#1F6FEB]" strokeWidth={2.5} />
-                          <p className="text-base md:text-sm text-[#102133]/75">{item}</p>
-                        </div>
+                    <ul className="space-y-3" data-testid={`service-bestwhen-${svc.num}`}>
+                      {svc.bestWhen.map((line, i) => (
+                        <li key={i} className="flex gap-3 text-[#102133]/80 text-[15px] leading-[1.55]">
+                          <span className="text-[#102133]/30 flex-shrink-0 select-none" aria-hidden="true">&mdash;</span>
+                          <span>{line}</span>
+                        </li>
                       ))}
-                    </div>
+                    </ul>
                   </div>
-                </div>
 
-                {/* Card CTA — service-specific button label + sub-line per GL-WEB-011-A */}
-                <div className="px-7 md:px-8 pb-7 md:pb-8 border-t border-[#102133]/08 pt-6">
+                  {/* What You Get */}
+                  <div className="mb-10 flex-grow">
+                    <p
+                      className="text-[#1F6FEB] font-semibold mb-4 uppercase"
+                      style={{ ...mono, fontSize: '10px', letterSpacing: '0.25em' }}
+                    >
+                      What You Get
+                    </p>
+                    <ul className="space-y-3" data-testid={`service-whatyouget-${svc.num}`}>
+                      {svc.whatYouGet.map((line, i) => (
+                        <li key={i} className="flex gap-3 text-[#102133]/80 text-[15px] leading-[1.55]">
+                          <span className="text-[#102133]/30 flex-shrink-0 select-none" aria-hidden="true">&mdash;</span>
+                          <span>{line}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Price */}
+                  <div className="border-t border-[#102133]/10 pt-7 mb-7" data-testid={`price-${svc.num}`}>
+                    <p
+                      className="uppercase text-[#102133]/45 mb-2"
+                      style={{ ...mono, fontSize: '10px', letterSpacing: '0.25em' }}
+                    >
+                      {svc.priceLabel}
+                    </p>
+                    <p
+                      className="text-[#102133] leading-none mb-3 text-[40px] md:text-[44px] font-normal"
+                      style={serif}
+                    >
+                      {svc.priceValue}
+                    </p>
+                    <p className="text-[#102133]/55 text-sm italic" style={serif}>
+                      {svc.priceSubline}
+                    </p>
+                  </div>
+
+                  {/* CTA */}
                   <Link
                     to={`/request-walkthrough?service=${svc.key}`}
                     onClick={() => trackServiceBooking(svc.key)}
-                    className="block w-full text-center bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold py-3.5 rounded transition-colors text-base"
+                    className="inline-flex items-center justify-between w-full bg-[#102133] hover:bg-[#1F6FEB] text-white font-semibold py-4 px-5 rounded-none transition-colors text-[15px] group/cta"
                     data-testid={svc.testId}
                   >
-                    {svc.cta.label}
+                    <span>{svc.cta.label}</span>
+                    <ArrowRight size={16} className="transition-transform group-hover/cta:translate-x-1" />
                   </Link>
-                  <p className="text-sm md:text-xs text-[#102133]/65 text-center mt-3 leading-relaxed" data-testid={`cta-subline-${svc.num}`}>
+                  <p
+                    className="mt-3 text-[#102133]/55 text-[13px] leading-relaxed"
+                    style={serif}
+                    data-testid={`cta-subline-${svc.num}`}
+                  >
                     {svc.cta.subline}
                   </p>
-                  <a
-                    href="tel:3363298899"
-                    className="block w-full text-center text-sm md:text-xs text-[#102133]/55 hover:text-[#1F6FEB] mt-3 transition-colors font-medium"
-                  >
-                    Or call (336) 329-8899 directly
-                  </a>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── Trust Line ── */}
-      <section className="py-14 md:py-20 bg-white" data-testid="services-trust-line">
-        <div className="container max-w-2xl text-center">
-          <p className="text-lg md:text-xl text-[#102133]/75 font-medium leading-relaxed">
-            Every engagement produces a written report. No verbal summaries. No promises. Just documented findings and clear next steps.
-          </p>
-        </div>
-      </section>
-
-      {/* ── HazCom Add-On ── */}
-      <section className="py-12 md:py-16" style={{ backgroundColor: '#F7F9FC' }} data-testid="services-hazcom">
-        <div className="container max-w-3xl">
-          <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-10 p-6 md:p-8 bg-white rounded-lg border border-[#102133]/08 shadow-sm">
-            <div className="flex-grow">
-              <p className="uppercase tracking-[3px] text-[#1F6FEB] mb-2" style={{ ...mono, fontSize: '10px' }}>
-                Standalone Resource
+      {/* ═══════════════════════════════════════════════
+          SECTION 3 — COVERAGE AND LOGISTICS
+          Quiet two-column editorial. Hairline divider on desktop only.
+      ═══════════════════════════════════════════════ */}
+      <section
+        className="py-24 md:py-32 bg-[#F7F5F0]"
+        data-testid="services-coverage"
+      >
+        <div className="container max-w-5xl">
+          <div className="grid md:grid-cols-2 gap-12 md:gap-20">
+            <div className="md:border-r md:border-[#102133]/15 md:pr-16">
+              <p
+                className="uppercase text-[#1F6FEB] mb-5 font-semibold"
+                style={{ ...mono, fontSize: '10px', letterSpacing: '0.3em' }}
+              >
+                Service Area
               </p>
-              <h3 className="text-lg font-bold text-[#102133] mb-1" style={serif}>
-                HazCom Starter Pack
-              </h3>
-              <p className="text-base md:text-sm text-[#102133]/70 mb-0 leading-relaxed">
-                A ready-made written Hazard Communication program. Download immediately — no walkthrough required.
+              <p
+                className="text-[#102133] leading-[1.6] text-lg"
+                style={serif}
+                data-testid="services-coverage-area"
+              >
+                On-site walkthroughs within <span className="font-bold">60 miles of Winston-Salem</span> &mdash; including Greensboro, High Point, Kernersville, Lexington, Thomasville, Salisbury, Burlington, and surrounding communities. Documentation Review is available remotely for operations outside the Triad.
               </p>
             </div>
-            <div className="flex-shrink-0 text-center">
-              <p className="text-2xl font-bold text-[#102133] mb-2">$29</p>
-              <Link
-                to="/hazcom"
-                className="inline-flex items-center gap-2 bg-[#102133] hover:bg-[#2A3D3D] text-white font-bold px-6 py-3 rounded transition-colors text-base md:text-sm"
-                data-testid="services-hazcom-link"
+            <div>
+              <p
+                className="uppercase text-[#1F6FEB] mb-5 font-semibold"
+                style={{ ...mono, fontSize: '10px', letterSpacing: '0.3em' }}
               >
-                Get It Now
-                <ArrowRight size={16} />
-              </Link>
+                How Booking Works
+              </p>
+              <p
+                className="text-[#102133] leading-[1.6] text-lg"
+                style={serif}
+                data-testid="services-coverage-booking"
+              >
+                Submit the short request form. Vince calls back within one business day with scheduling options and a confirmed fixed price. <span className="font-bold">Nothing is scheduled until the price is agreed.</span>
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── Not Sure CTA ── */}
-      <section className="py-20 md:py-28 bg-[#0B1F33] text-white" data-testid="services-not-sure">
-        <div className="container text-center max-w-2xl mx-auto">
-          <p
-            className="uppercase tracking-[3px] text-[#1F6FEB] mb-4"
-            style={{ ...mono, fontSize: '11px' }}
-          >
-            Not Sure?
-          </p>
-          <h2 className="text-2xl md:text-3xl font-bold mb-4" style={serif}>
-            Not Sure Which Service Fits?
-          </h2>
-          <p className="text-base md:text-lg text-white/80 mb-10 leading-relaxed">
-            Describe the situation. I'll recommend a starting point. No sales pitch. Just a clear recommendation based on what will actually help.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              to="/request-walkthrough"
-              className="inline-flex items-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#1F6FEB]/20"
-              data-testid="services-bottom-cta"
-            >
-              Request a Walkthrough
-              <ArrowRight size={18} />
-            </Link>
+      {/* ═══════════════════════════════════════════════
+          SECTION 4 — SAFETY CHECK BAND  (deliberately low-weight)
+      ═══════════════════════════════════════════════ */}
+      <section
+        className="py-14 md:py-16 bg-white border-y border-[#102133]/12"
+        data-testid="services-safety-check-band"
+      >
+        <div className="container max-w-5xl">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div className="md:max-w-2xl">
+              <p
+                className="uppercase text-[#102133]/40 mb-3 font-semibold"
+                style={{ ...mono, fontSize: '10px', letterSpacing: '0.3em' }}
+              >
+                Not sure where to start?
+              </p>
+              <p
+                className="text-[#102133] leading-snug text-xl md:text-2xl"
+                style={serif}
+              >
+                Take the free 90-Second Safety Check. Six yes-or-no questions. Instant risk score. No email required.
+              </p>
+            </div>
             <Link
               to="/safety-check"
-              className="inline-flex items-center gap-2 border-2 border-white/20 hover:border-white/40 text-white font-semibold px-8 py-4 rounded transition-colors"
-              data-testid="services-safety-check-cta"
+              className="inline-flex items-center gap-2 text-[#1F6FEB] hover:text-[#102133] font-semibold whitespace-nowrap transition-colors"
+              style={{ ...mono, fontSize: '13px', letterSpacing: '0.05em' }}
+              data-testid="services-safety-check-link"
             >
               Take the Safety Check
+              <ArrowUpRight size={16} />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* ── Fleet Operators ── */}
-      <section className="py-12 md:py-16" style={{ backgroundColor: '#F7F9FC' }} data-testid="services-fleet">
-        <div className="container">
-          <div className="max-w-2xl mx-auto text-center">
-            <p
-              className="uppercase tracking-[3px] text-[#102133]/30 mb-3"
-              style={{ ...mono, fontSize: '10px' }}
-            >
-              For Fleet Operators
-            </p>
-            <p className="text-base md:text-sm text-[#102133]/70 mb-5 leading-relaxed">
-              If the issue is deeper than a one-time review — driver files, drug and alcohol program gaps, maintenance records, or system installation — structured support is available through LaunchPath.
-            </p>
-            <a
-              href="https://launchpathedu.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-base md:text-sm text-[#1F6FEB] font-semibold hover:underline"
-              data-testid="services-launchpath-edu-link"
-            >
-              LaunchPath Transportation EDU
-              <ExternalLink size={14} />
-            </a>
+      {/* ═══════════════════════════════════════════════
+          SECTION 5 — PROOF & REASSURANCE
+          Two compact panels side-by-side.
+      ═══════════════════════════════════════════════ */}
+      <section
+        className="py-24 md:py-32 bg-[#0B1F33] text-white"
+        data-testid="services-proof"
+      >
+        <div className="container max-w-6xl">
+          <div className="grid md:grid-cols-2 gap-px bg-white/10">
+            {/* Proof — Not an OSHA inspection */}
+            <div className="bg-[#0B1F33] p-10 md:p-14" data-testid="proof-private">
+              <p
+                className="uppercase text-[#1F6FEB] mb-6 font-semibold"
+                style={{ ...mono, fontSize: '10px', letterSpacing: '0.3em' }}
+              >
+                Private Engagement
+              </p>
+              <h3
+                className="text-2xl md:text-[28px] font-normal mb-6 leading-tight"
+                style={serif}
+              >
+                This is not an OSHA inspection.
+              </h3>
+              <p className="text-white/65 leading-[1.7] text-base">
+                A GigLine walkthrough is a private engagement. Findings are delivered only to you. GigLine does not contact OSHA, your insurance carrier, or any regulatory agency. What you do with the report is your decision.
+              </p>
+            </div>
+
+            {/* Reassurance — Follow-ups */}
+            <div className="bg-[#0B1F33] p-10 md:p-14" data-testid="proof-followup">
+              <p
+                className="uppercase text-[#1F6FEB] mb-6 font-semibold"
+                style={{ ...mono, fontSize: '10px', letterSpacing: '0.3em' }}
+              >
+                Returning Clients
+              </p>
+              <h3
+                className="text-2xl md:text-[28px] font-normal mb-6 leading-tight"
+                style={serif}
+              >
+                Follow-up walkthroughs available.
+              </h3>
+              <p className="text-white/65 leading-[1.7] text-base">
+                Returning clients receive follow-up walkthroughs at <span className="text-white font-semibold">$550</span> &mdash; reduced from the standard $650. Most operations benefit from a semi-annual or annual review.
+              </p>
+            </div>
           </div>
         </div>
       </section>

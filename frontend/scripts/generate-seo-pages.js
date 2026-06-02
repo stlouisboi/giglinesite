@@ -171,7 +171,7 @@ const routes = [
   {
     path: '/',
     title: 'OSHA Safety Walkthroughs for Small Manufacturers | Kernersville NC | GigLine Safety & Compliance',
-    description: 'GigLine Safety & Compliance provides on-site OSHA safety walkthroughs and compliance inspections for small manufacturers, warehouses, and fleets in Kernersville, NC and the Piedmont Triad. Starting at $650.',
+    description: 'GigLine Safety & Compliance provides on-site OSHA safety walkthroughs, documentation reviews, and incident response support for small manufacturers, warehouses, and fleets in Kernersville, NC and the Piedmont Triad. Starting at $650.',
     canonical: '/',
     schemas: [
       LOCAL_BUSINESS,
@@ -182,7 +182,7 @@ const routes = [
     content: `
       <h1>If OSHA Walked In Tomorrow, Would You Pass?</h1>
       <p>A single OSHA citation averages $15,625. A GigLine safety walkthrough costs a fraction of that — and gives you a clear picture of where you stand.</p>
-      <p>GigLine provides on-site safety walkthroughs and OSHA-focused compliance inspections for small warehouses and manufacturing operations in the Piedmont Triad.</p>
+      <p>GigLine provides on-site safety walkthroughs and documentation reviews for small warehouses and manufacturing operations in the Piedmont Triad.</p>
       <p><a href="/services">Request a Safety Walkthrough</a> — Walkthrough pricing is based on the size and type of your operation.</p>
       <p>OSHA 30-Hour Certified · 25+ Years Experience · U.S. Navy Veteran · Serving the Triad</p>
       <h2>Common OSHA Safety Issues We See on the Floor</h2>
@@ -235,7 +235,7 @@ const routes = [
         name: 'GigLine Safety Consulting Services',
         itemListElement: [
           { '@type': 'ListItem', position: 1, item: { '@type': 'Service', name: 'Safety Walkthrough & Top 10 Fixes Report', description: 'A structured on-site review of common OSHA exposure areas.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '650', priceCurrency: 'USD' } } },
-          { '@type': 'ListItem', position: 2, item: { '@type': 'Service', name: 'Safety Documentation Review & Gap Check', description: 'Review of written safety programs, training records, and inspection forms.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '550', priceCurrency: 'USD' } } },
+          { '@type': 'ListItem', position: 2, item: { '@type': 'Service', name: 'Documentation Review & Gap Check', description: 'Review of written safety programs, training records, and inspection forms.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '550', priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 3, item: { '@type': 'Service', name: 'Incident Review & Corrective Action Support', description: 'Post-incident review and corrective direction.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '900', priceCurrency: 'USD' } } },
         ],
       },
@@ -416,9 +416,18 @@ const routes = [
     schemas: [LOCAL_BUSINESS],
     content: `
       <h1>Request a Safety Walkthrough</h1>
-      <p>Schedule an on-site safety walkthrough with GigLine Safety &amp; Compliance. One visit. Clear findings. Written report within 24-48 hours.</p>
+      <p>Schedule an on-site safety walkthrough with GigLine Safety &amp; Compliance. One visit. Clear findings. Written report within 24-48 hours. <strong>Starting at $650</strong>.</p>
       <p>Serving small manufacturers, warehouses, contractors, and fleets in the Kernersville/Triad, NC area.</p>
-      <p>(336) 329-8899 · vince@giglinecompliance.com</p>
+
+      <h2>Three ways to reach Vince</h2>
+      <p style="margin: 24px 0;">
+        <a href="tel:+13363298899" style="display:inline-block; background:#1F6FEB; color:#fff; padding:14px 28px; border-radius:8px; font-weight:700; text-decoration:none; margin: 4px 8px 4px 0;">Call (336) 329-8899</a>
+        <a href="mailto:vince@giglinecompliance.com?subject=Safety%20Walkthrough%20Request&amp;body=Hi%20Vince%2C%0A%0AI%27d%20like%20to%20schedule%20a%20safety%20walkthrough%20for%20my%20operation.%0A%0ABusiness%3A%20%0AOperation%20type%3A%20%0ALocation%20(city%2C%20NC)%3A%20%0AHeadcount%3A%20%0AReason%20for%20outreach%3A%20%0A%0APreferred%20contact%20method%3A%20%0A%0AThanks%2C%0A" style="display:inline-block; background:#0B1F33; color:#fff; padding:14px 28px; border-radius:8px; font-weight:700; text-decoration:none; margin: 4px 0;">Email Vince Directly</a>
+      </p>
+      <p>Or fill out the 4-field form on this page if JavaScript is enabled.</p>
+      <p>Email: <a href="mailto:vince@giglinecompliance.com">vince@giglinecompliance.com</a><br>
+      Phone: <a href="tel:+13363298899">(336) 329-8899</a><br>
+      Hours: Monday&ndash;Friday 8 AM&ndash;6 PM ET</p>
     `,
   },
   {

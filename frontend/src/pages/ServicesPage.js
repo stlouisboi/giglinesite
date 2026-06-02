@@ -105,7 +105,7 @@ const ServicesPage = () => {
                 "position": 2,
                 "item": {
                   "@type": "Service",
-                  "name": "Safety Documentation Review & Gap Check",
+                  "name": "Documentation Review & Gap Check",
                   "description": "Review of written safety programs, training records, and inspection forms.",
                   "provider": { "@type": "LocalBusiness", "name": "GigLine Safety & Compliance" },
                   "areaServed": "United States",

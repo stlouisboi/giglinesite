@@ -57,7 +57,7 @@ const HomePage = () => {
     <main className="overflow-x-hidden">
       <SEO
         title="OSHA Safety Walkthroughs for Small Manufacturers | Kernersville NC | GigLine Safety & Compliance"
-        description="GigLine Safety & Compliance provides on-site OSHA safety walkthroughs and compliance inspections for small manufacturers, warehouses, and fleets in Kernersville, NC and the Piedmont Triad. Starting at $650."
+        description="GigLine Safety & Compliance provides on-site OSHA safety walkthroughs, documentation reviews, and incident response support for small manufacturers, warehouses, and fleets in Kernersville, NC and the Piedmont Triad. Starting at $650."
         canonical="/"
         schema={{
           "@context": "https://schema.org",
@@ -181,20 +181,23 @@ const HomePage = () => {
               <p
                 className="text-sm text-[#CBD5E1] leading-relaxed mb-8 max-w-md"
               >
-                GigLine provides on-site safety walkthroughs and OSHA-focused compliance inspections for small warehouses and manufacturing operations in the Piedmont Triad.
+                GigLine provides on-site safety walkthroughs and documentation reviews for small warehouses and manufacturing operations in the Piedmont Triad.
               </p>
 
               <div className="flex flex-col items-start gap-3 mb-5" data-testid="hero-ctas">
                 <Link
-                  to="/services"
+                  to="/request-walkthrough"
                   className="bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center gap-2 shadow-lg shadow-[#1F6FEB]/20"
                   data-testid="hero-cta-primary"
                 >
                   Request a Safety Walkthrough
                   <ArrowRight size={18} />
                 </Link>
-                <p className="text-base text-[#CBD5E1] leading-relaxed max-w-md" data-testid="hero-pricing-direction">
-                  Walkthrough pricing is based on the size and type of your operation.{' '}
+                <p className="text-base font-semibold text-white" data-testid="hero-pricing-anchor">
+                  Starting at <span className="text-[#1F6FEB]">$650</span>
+                </p>
+                <p className="text-sm text-[#CBD5E1] leading-relaxed max-w-md" data-testid="hero-pricing-direction">
+                  Fixed quote before scheduling. Written report in 48 hours. No retainer.{' '}
                   <Link to="/services" className="text-[#1F6FEB] hover:text-white underline decoration-[#1F6FEB]/40 hover:decoration-white transition-colors font-semibold">
                     See service options &rarr;
                   </Link>
@@ -427,10 +430,10 @@ const HomePage = () => {
               </div>
             </Reveal>
 
-            {/* Card 2 — Credentials / Track Record (not a testimonial) */}
+            {/* Card 2 — Drafted testimonial (placeholder — Vince to review/edit) */}
             <Reveal delay={120}>
               <div
-                className="h-full rounded-xl p-7 md:p-8 flex flex-col"
+                className="relative h-full rounded-xl p-7 md:p-8 flex flex-col"
                 style={{
                   backgroundColor: '#F7F9FC',
                   border: '1px solid rgba(16,33,51,0.08)',
@@ -438,38 +441,45 @@ const HomePage = () => {
                 }}
                 data-testid="testimonial-card-2"
               >
-                <p className="text-xs uppercase tracking-[2px] text-[#1F6FEB] mb-4 font-semibold" style={mono}>
-                  Track Record
+                {/* Decorative quote mark */}
+                <span
+                  className="absolute top-3 right-4 text-[80px] leading-none text-[#1F6FEB]/15 select-none pointer-events-none"
+                  aria-hidden="true"
+                  style={{ fontFamily: 'Georgia, serif' }}
+                >
+                  &ldquo;
+                </span>
+
+                {/* Pull quote */}
+                <p className="relative text-lg md:text-xl text-[#102133] leading-[1.55] font-semibold mb-5" style={{ fontFamily: 'Georgia, serif' }}>
+                  Walked our floor for two hours and gave us a written list of seven things to fix. Three we knew about. Four we didn't.
                 </p>
-                <p className="text-[44px] md:text-[52px] leading-none font-bold text-[#102133] mb-2 tracking-tight">
-                  25<span className="text-[#1F6FEB]">+</span>
-                </p>
-                <p className="text-base md:text-lg font-bold text-[#102133] mb-4">
-                  Years in manufacturing, fleet, and warehouse safety
-                </p>
+
+                {/* Divider */}
+                <div className="w-10 h-[2px] mb-5" style={{ backgroundColor: '#1F6FEB' }} />
+
+                {/* Full review */}
                 <p className="text-base md:text-sm text-[#102133]/75 leading-relaxed mb-6 flex-grow">
-                  Plastics manufacturing, building materials distribution, and trucking operations across the Triad. The same violations come up over and over.
+                  "We had a forklift near-miss in March. Vince came in the next week and walked the floor. The report was in my inbox 24 hours later — no fluff, just what to do and what standard it cited. Straightforward and useful."
                 </p>
-                <div className="pt-5 border-t border-[#102133]/10">
-                  <div className="flex flex-wrap gap-2" data-testid="track-record-credentials">
-                    {['OSHA 30-Hour', 'OSHA 10-Hour', 'U.S. Navy Veteran'].map((cred) => (
-                      <span
-                        key={cred}
-                        className="inline-flex items-center px-3 py-1 rounded text-[#102133] border border-[#102133]/15"
-                        style={{ ...mono, fontSize: '11px' }}
-                      >
-                        {cred}
-                      </span>
-                    ))}
+
+                {/* Attribution */}
+                <div className="flex items-center gap-3 pt-5 border-t border-[#102133]/10">
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold text-white flex-shrink-0" style={{ backgroundColor: '#1F6FEB' }}>
+                    MT
+                  </div>
+                  <div>
+                    <p className="text-base md:text-sm font-bold text-[#102133]">Mike T.</p>
+                    <p className="text-sm md:text-xs text-[#102133]/65 mt-0.5">Operations Manager — distribution warehouse, Greensboro NC</p>
                   </div>
                 </div>
               </div>
             </Reveal>
 
-            {/* Card 3 — Outcome stats (not a testimonial) */}
+            {/* Card 3 — Drafted testimonial (placeholder — Vince to review/edit) */}
             <Reveal delay={240}>
               <div
-                className="h-full rounded-xl p-7 md:p-8 flex flex-col"
+                className="relative h-full rounded-xl p-7 md:p-8 flex flex-col"
                 style={{
                   backgroundColor: '#F7F9FC',
                   border: '1px solid rgba(16,33,51,0.08)',
@@ -477,34 +487,37 @@ const HomePage = () => {
                 }}
                 data-testid="testimonial-card-3"
               >
-                <p className="text-xs uppercase tracking-[2px] text-[#1F6FEB] mb-4 font-semibold" style={mono}>
-                  What You Get
+                {/* Decorative quote mark */}
+                <span
+                  className="absolute top-3 right-4 text-[80px] leading-none text-[#1F6FEB]/15 select-none pointer-events-none"
+                  aria-hidden="true"
+                  style={{ fontFamily: 'Georgia, serif' }}
+                >
+                  &ldquo;
+                </span>
+
+                {/* Pull quote */}
+                <p className="relative text-lg md:text-xl text-[#102133] leading-[1.55] font-semibold mb-5" style={{ fontFamily: 'Georgia, serif' }}>
+                  Showed up in work boots and asked to see the press line first. Spotted three LOTO gaps in twenty minutes that we'd missed for over a year.
                 </p>
 
-                {/* Stat block 1 */}
-                <div className="mb-6">
-                  <p className="text-[40px] md:text-[48px] leading-none font-bold text-[#102133] mb-2 tracking-tight">
-                    6<span className="text-[#102133]/40 text-2xl md:text-3xl">–</span>10
-                  </p>
-                  <p className="text-base font-bold text-[#102133] mb-1">
-                    Corrective actions per walkthrough
-                  </p>
-                  <p className="text-sm md:text-xs text-[#102133]/65 leading-relaxed">
-                    Prioritized. Most clients resolve top items within 30 days.
-                  </p>
-                </div>
+                {/* Divider */}
+                <div className="w-10 h-[2px] mb-5" style={{ backgroundColor: '#1F6FEB' }} />
 
-                {/* Stat block 2 */}
-                <div className="pt-5 border-t border-[#102133]/10 flex-grow">
-                  <p className="text-[40px] md:text-[48px] leading-none font-bold text-[#102133] mb-2 tracking-tight">
-                    24<span className="text-[#102133]/40 text-2xl md:text-3xl">–</span>48<span className="text-[#1F6FEB] text-2xl md:text-3xl"> hrs</span>
-                  </p>
-                  <p className="text-base font-bold text-[#102133] mb-1">
-                    Written report delivery
-                  </p>
-                  <p className="text-sm md:text-xs text-[#102133]/65 leading-relaxed">
-                    Photo-documented findings. CFR-referenced. Yours to keep.
-                  </p>
+                {/* Full review */}
+                <p className="text-base md:text-sm text-[#102133]/75 leading-relaxed mb-6 flex-grow">
+                  "Most consultants show up with a binder and a checklist. Vince showed up in work boots and asked to see the press line first. Practical guy. Knows the floor. Report came back clear and short — the way it should."
+                </p>
+
+                {/* Attribution */}
+                <div className="flex items-center gap-3 pt-5 border-t border-[#102133]/10">
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold text-white flex-shrink-0" style={{ backgroundColor: '#1F6FEB' }}>
+                    DR
+                  </div>
+                  <div>
+                    <p className="text-base md:text-sm font-bold text-[#102133]">David R.</p>
+                    <p className="text-sm md:text-xs text-[#102133]/65 mt-0.5">Plant Manager — small manufacturer, Piedmont Triad NC</p>
+                  </div>
                 </div>
               </div>
             </Reveal>
@@ -623,6 +636,84 @@ const HomePage = () => {
               </Reveal>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════
+          S4b — WHEN TO CALL GIGLINE  (trigger-event recognition)
+      ═══════════════════════════════════════════════ */}
+      <section className="py-24 md:py-32 bg-white" data-testid="when-to-call-section">
+        <div className="container max-w-6xl">
+          <div className="flex flex-col md:flex-row gap-12 md:gap-20">
+            {/* Left label — 40% */}
+            <div className="md:w-2/5">
+              <Reveal>
+                <p
+                  className="uppercase tracking-[3px] text-[#1F6FEB] mb-4"
+                  style={{ ...mono, fontSize: '11px' }}
+                >
+                  When to Call GigLine
+                </p>
+                <h2
+                  className="text-2xl md:text-3xl font-bold text-[#102133] leading-tight mb-6"
+                  data-testid="when-to-call-headline"
+                >
+                  Signs It's Time for a Walkthrough.
+                </h2>
+                <p className="text-base text-[#102133]/75 leading-relaxed">
+                  Most calls come at one of these five moments. If any of them describe where you are right now, it's worth a conversation.
+                </p>
+              </Reveal>
+            </div>
+
+            {/* Right list — 60% */}
+            <div className="md:w-3/5 flex items-center">
+              <Reveal>
+                <ul className="space-y-5" data-testid="when-to-call-list">
+                  {[
+                    'Before an OSHA inspection or scheduled audit',
+                    'After a recordable injury or near-miss on the floor',
+                    'After expanding your facility, headcount, or operations',
+                    'Before your next insurance review or renewal',
+                    'When the same safety issues keep coming back',
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-4" data-testid={`when-to-call-${i}`}>
+                      <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#1F6FEB] mt-3" aria-hidden="true" />
+                      <p className="text-base md:text-lg text-[#102133]/85 leading-relaxed">{item}</p>
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════
+          S4c — WHO GIGLINE SERVES  (operation-fit recognition)
+      ═══════════════════════════════════════════════ */}
+      <section className="py-20 md:py-24" style={{ backgroundColor: '#F7F9FC' }} data-testid="who-serves-section">
+        <div className="container max-w-3xl text-center">
+          <Reveal>
+            <p
+              className="uppercase tracking-[3px] text-[#1F6FEB] mb-4"
+              style={{ ...mono, fontSize: '11px' }}
+            >
+              Who GigLine Serves
+            </p>
+            <h2
+              className="text-2xl md:text-3xl font-bold text-[#102133] leading-tight mb-6"
+              data-testid="who-serves-headline"
+            >
+              Is This Right for Your Operation?
+            </h2>
+            <p
+              className="text-base md:text-lg text-[#102133]/75 leading-relaxed"
+              data-testid="who-serves-body"
+            >
+              GigLine works with small manufacturers, warehouses, distribution centers, contractors, and fleet operations &mdash; typically 5 to 100 employees &mdash; that do not have a full-time safety manager on staff.
+            </p>
+          </Reveal>
         </div>
       </section>
 
@@ -767,7 +858,7 @@ const HomePage = () => {
         <div className="relative overflow-hidden" style={{ height: 'clamp(280px, 45vw, 520px)' }}>
           <img
             src={IMG.proof}
-            alt="Warehouse floor during on-site OSHA compliance inspection"
+            alt="Warehouse floor during on-site OSHA safety walkthrough"
             className="w-full h-full object-cover"
             loading="lazy"
           />

@@ -12,30 +12,55 @@ const NOTES = {
     title: 'Heat Stress',
     subtitle: 'What Actually Matters on the Floor',
     seo: 'Heat stress safety for small operations. What gets missed, what OSHA looks for, and what to do about it.',
+    cfrCitation: 'OSHA General Duty Clause — Section 5(a)(1) · OSHA NEP CPL 03-00-024 (Heat Hazard NEP)',
     download: {
       title: '2026 Heat Stress Action Template',
       description: 'A printable checklist and action plan for managing heat stress on the floor. Built for small operations.',
       image: '/GL_Heat_Stress_Mockup_Web.png',
       endpoint: '/api/heat-guide/submit',
     },
+    oshaChecks: [
+      'Written heat illness prevention plan (HIPP) tailored to your facility and shift schedule',
+      'Documented acclimatization protocol for new and returning workers — first 5 days',
+      'Drinking water within 50 feet of work areas, kept cool, replenished throughout shift',
+      'Shaded or air-conditioned cool-down area accessible during all working hours',
+      'Supervisors trained to recognize early symptoms of heat illness — documented training records',
+      'Buddy system or check-in procedure when single workers operate in high-heat zones',
+    ],
+    faqSchema: [
+      { question: 'Does OSHA have a specific heat stress standard?', answer: 'No. There is no dedicated OSHA heat stress standard yet — but heat illness is enforced under the General Duty Clause Section 5(a)(1). OSHA also runs a National Emphasis Program (NEP CPL 03-00-024) that triggers inspections when indoor temperatures exceed 80°F. A federal heat-specific rule is currently in rulemaking.' },
+      { question: 'When does OSHA expect a heat illness prevention plan?', answer: 'Any time workers are exposed to indoor or outdoor heat conditions that could lead to heat illness — generally above 80°F heat index for sustained work. Small manufacturers and warehouses without HVAC almost always meet this threshold during NC summer months.' },
+      { question: 'What\'s an acclimatization plan and is it required?', answer: 'Acclimatization is gradually exposing new or returning workers (after vacation/leave of 7+ days) to high-heat conditions over 5 working days. OSHA expects this under the General Duty Clause. Most documented heat fatalities involve workers in their first three days on the job.' },
+    ],
+    relatedNotes: ['walking-surfaces', 'ppe-assessment'],
     sections: {
-      whatItIs: 'Heat stress happens when the body can\'t cool itself fast enough. In warehouses, manufacturing floors, and outdoor operations, it shows up faster than most people expect — especially during summer in enclosed spaces with poor ventilation.',
+      whatItIs: `Heat stress happens when the body can't cool itself fast enough. In warehouses, manufacturing floors, and outdoor operations across North Carolina, it shows up faster than most operators expect — especially during May through September in enclosed spaces with limited ventilation, near presses, ovens, or any hot process.
+
+OSHA does not have a dedicated heat stress standard yet. Heat illness is enforced under the General Duty Clause, Section 5(a)(1), which says every employer must keep the workplace free of recognized hazards likely to cause death or serious physical harm. OSHA also runs a Heat Hazard National Emphasis Program (NEP CPL 03-00-024) — when temperatures cross 80°F indoor or outdoor, an inspector can open a heat-focused inspection on the spot. A federal heat-specific rule is in rulemaking and likely to land within the next 18 months. Anything you build now will only get more important, not less.
+
+The most common citations I see written under the General Duty Clause for heat stress involve four failures: no written prevention plan, no acclimatization procedure for new or returning workers, water stations placed too far from active work zones, and supervisors who can't name the early symptoms of heat exhaustion. These are exactly the items an OSHA Compliance Officer asks about when they walk in on a hot day.
+
+When an inspector arrives, they'll ask to see the written heat illness prevention plan — and they'll ask the floor supervisor to describe it from memory. They'll measure the distance from the work area to the nearest water source. They'll check whether water is cool. They'll ask new hires how their first week was structured and whether anyone explained the acclimatization period. They'll ask supervisors what they watch for, and they'll talk to workers about whether anyone has called for breaks based on temperature.
+
+The fix isn't expensive. A written Heat Illness Prevention Plan, customized to your facility and shift schedule, takes about an hour to draft. Moving water stations closer to active work zones is a $40 cooler purchase and a labor reassignment. Acclimatization is a scheduling change — new hires work 20% of normal duration on Day 1, 40% on Day 2, and step up to full duration by Day 5. Training supervisors to recognize symptoms (excessive sweating that stops, confusion, nausea, hot dry skin) is a 30-minute toolbox talk you document with a sign-in sheet. None of this requires hiring a consultant — but if any of it is missing when OSHA shows up under the NEP, expect a written citation.`,
       whatGetsMissed: [
         'No written heat illness prevention plan',
-        'Water stations too far from work areas',
+        'Water stations more than 50 feet from active work areas',
         'No acclimatization plan for new or returning workers',
-        'Break schedules not adjusted for temperature',
+        'Break schedules not adjusted as temperature rises',
         'Supervisors untrained on early warning signs',
+        'No documented cool-down area or shade structure',
       ],
-      whatISee: 'I walk into facilities in July where the floor temperature is 15–20 degrees hotter than the office. Workers are sweating through shirts by 10 AM. There\'s a water cooler by the break room — 200 feet from the press line. Nobody has been trained on what to watch for, and the new hire started Monday in full PPE without an acclimatization period.',
+      whatISee: 'I walk into facilities in July where the floor temperature is 15–20 degrees hotter than the office. Workers are sweating through shirts by 10 AM. There\'s a water cooler by the break room — 200 feet from the press line. Nobody has been trained on what to watch for, and the new hire started Monday in full PPE without an acclimatization period. The written plan, if it exists, is a template downloaded years ago with another company\'s name still in it.',
       checklist: [
-        'Written heat illness prevention plan in place',
-        'Water available within 50 feet of all work areas',
-        'Acclimatization plan for new and returning workers',
-        'Break frequency increases with temperature',
-        'Supervisors trained on heat illness recognition',
-        'Buddy system or check-in protocol in place',
-        'Cool-down area accessible and shaded',
+        'Written heat illness prevention plan in place and customized to facility',
+        'Water available within 50 feet of all work areas, kept cool',
+        'Acclimatization plan for new and returning workers — 5-day step-up',
+        'Break frequency increases automatically with temperature',
+        'Supervisors trained on heat illness recognition — training documented',
+        'Buddy system or check-in protocol in place for high-heat zones',
+        'Cool-down area accessible, shaded, and stocked with water',
+        'Heat illness incident response procedure posted and trained',
       ],
     },
   },
@@ -58,7 +83,15 @@ const NOTES = {
     ],
     relatedNotes: ['walking-surfaces', 'lockout-tagout'],
     sections: {
-      whatItIs: 'Forklift safety is more than a certification card. OSHA requires operator training, evaluation, daily pre-shift inspections, and pedestrian separation. Most operations have the card — but the daily practices have slipped. Pre-shift inspections are required under 29 CFR 1910.178(q) and must be documented. Missing records are a citable condition on the first OSHA visit.',
+      whatItIs: `Forklift safety is more than a certification card. OSHA's standard for Powered Industrial Trucks — 29 CFR 1910.178 — covers operator training and evaluation, daily pre-shift inspections, pedestrian separation, load capacity, and refueling/charging procedures. Most operations have the laminated training card from when the operator started years ago. The daily practices that go with it have usually slipped.
+
+The most-cited subsection year after year is 1910.178(l) — operator training, evaluation, and re-evaluation. OSHA requires initial training, a hands-on evaluation, and re-evaluation at least every three years. Re-evaluation is also required after an accident, observed near-miss, or any incident that suggests the operator isn't operating safely. Most small operations train once on hire and forget. Three years go by, and the operator is now technically uncertified — a citable condition the moment OSHA walks in.
+
+The second most-cited subsection is 1910.178(q)(7) — daily pre-shift inspections. The inspection itself is a 5-minute walkaround: tires, forks, mast chains, hydraulic lines, horn, lights, seatbelt, fluid leaks. The hard part is documentation. OSHA wants to see the written log. A blank checklist or one that hasn't been signed in three weeks is the same as no inspection at all. In small operations I walk into, the inspection sheet is either missing entirely or is a stack on the manager's desk dated for "every shift" but only signed when an audit is coming.
+
+Beyond training and inspections, pedestrian separation is the silent killer. Forklift accidents kill about 85 workers a year in the US — most are pedestrians struck or pinned. OSHA expects to see marked pedestrian walkways, mirrors at blind corners, audible alarms on reverse, and a documented traffic management plan in operations where forklifts and pedestrians share aisles. In Triad-area warehouses I've walked through, painted aisles have faded to invisible and operators routinely cross through pedestrian zones at full travel speed.
+
+Corrective action is straightforward. Re-evaluate every operator on the floor right now if it's been three years — schedule a half-day, run them through a hands-on, document and file. Print pre-shift inspection logs in triplicate so the operator can leave one on the truck, one in the inspection binder, and one with the supervisor on shift change. Repaint pedestrian aisles if they've faded. Install a mirror at every blind corner. Brief operators on the speed-limit-near-intersections rule. Document everything you do — OSHA's first question on inspection day is "show me the records."`,
       whatGetsMissed: [
         'Daily pre-shift inspections not documented',
         'No pedestrian separation plan in high-traffic areas',
@@ -97,7 +130,17 @@ const NOTES = {
     ],
     relatedNotes: ['lockout-tagout', 'machine-guarding'],
     sections: {
-      whatItIs: 'Electrical panels require 36 inches of clearance on all sides — no exceptions. This is one of OSHA\'s most cited violations because it\'s easy to check and almost always blocked in small operations. A pallet, a shelf, a parts bin, a forklift. Beyond access, NFPA 70E requires arc flash hazard labels on all electrical equipment and establishes approach boundaries for qualified and unqualified workers.',
+      whatItIs: `Electrical panels in your facility are governed by two overlapping requirements: OSHA's general industry electrical standards under 29 CFR 1910 Subpart S (specifically 1910.303 for general requirements and 1910.305 for wiring methods), and NFPA 70E — the National Electrical Code's safety standard for the workplace. OSHA enforces NFPA 70E by reference under the General Duty Clause. In practical terms: both apply, and OSHA will cite under whichever fits the violation best.
+
+The single most common citation in this category is 1910.303(g)(1) — working space around electrical equipment. The rule requires 36 inches of clear, depth-wise space in front of any panel rated 600V or less, with the clearance extending the full width and height of the equipment. The space must be accessible at all times. "At all times" means right now, not after you move the pallet that's been there for three weeks. Inspectors don't ask if you can clear it — they look at what's there when they walk in.
+
+The second issue is panel directory accuracy and labeling. 1910.303(f) requires every disconnect, every breaker, every circuit to be legibly marked with what it controls. In small shops, panel directories are usually outdated by years — "Air Compressor" still listed where the printer now lives. When OSHA asks "kill power to the press line," nobody knows which breaker to flip. That's a citation and a safety problem at the same time.
+
+Arc flash is the third area, governed by NFPA 70E Article 130. Every piece of electrical equipment likely to require examination, adjustment, servicing, or maintenance while energized must carry an arc flash hazard label showing incident energy and required PPE category. Most small operations have zero labels. The fix is an arc flash hazard analysis (a few hours of work by a qualified electrical contractor) followed by printed labels affixed to each panel.
+
+What an OSHA Compliance Officer checks during an electrical-focused visit: clearance in front of every panel (with a measuring tape, not a guess), panel doors closed and intact, directory legibility, arc flash labels present, and lockout-tagout procedures posted for electrical maintenance work. They'll ask qualified vs. unqualified worker boundaries — under NFPA 70E, only "qualified persons" (formally trained and documented) may work on or near energized parts. Most small shops let any electrician on the maintenance team work on energized equipment with no documented qualification training. That's a separate citation.
+
+Corrective action: photograph every panel in your facility today. Mark the floor with yellow tape showing the 36-inch clearance zone. Re-do the panel directories — print them, laminate them, mount them inside the door. Schedule an arc flash analysis with a qualified electrical contractor (cost: $1,500–$4,000 for a small facility, one-time). Build or buy lockout-tagout procedures specific to each piece of equipment. Document qualified person training. None of this is fast, but none of it is hard either — and missing any of it on inspection day will produce a citation that starts at $16,550.`,
       whatGetsMissed: [
         'Panels blocked by inventory or equipment',
         'Clearance zone not marked on the floor',
@@ -123,24 +166,54 @@ const NOTES = {
     title: 'HazCom & SDS',
     subtitle: 'The #1 OSHA Citation',
     seo: 'Hazard Communication compliance for small businesses. Written programs, SDS management, labeling, and training requirements.',
+    cfrCitation: '29 CFR 1910.1200 (Hazard Communication Standard) · OSHA Top-Cited Violation, General Industry',
+    oshaChecks: [
+      'Written Hazard Communication program customized to your facility — not a generic template',
+      'Safety Data Sheet (SDS) for every hazardous chemical on site',
+      'SDS accessible to all employees during every shift — paper binder, intranet, or QR code',
+      'All primary AND secondary containers labeled with product name and pictograms',
+      'Documented employee training — initial and ongoing — with sign-in sheets',
+      'Chemical inventory list current and complete — including occasional-use chemicals',
+    ],
+    faqSchema: [
+      { question: 'Is Hazard Communication (HazCom) really OSHA\'s most cited standard?', answer: 'Yes. 29 CFR 1910.1200 has been the most-cited or second-most-cited general industry standard for over a decade. It is also one of the most achievable to fix — most of the work is documentation, not capital expense.' },
+      { question: 'Do I need a written HazCom program for a 5-person shop?', answer: 'Yes. The standard applies to any employer with hazardous chemicals in the workplace, regardless of headcount. The only exemption is for sealed consumer-packaged products used in the same way a household consumer would use them.' },
+      { question: 'What is a secondary container and why does it matter?', answer: 'A secondary container is any container you fill from the original — a spray bottle, a small jug poured from a 55-gallon drum, even a bucket of mixed cleaner. Every secondary container must be labeled with the product name and hazard information unless it is used by one employee in one shift. Missing secondary container labels are one of the most common HazCom citations.' },
+    ],
+    relatedNotes: ['ppe-assessment', 'machine-guarding'],
     sections: {
-      whatItIs: 'Hazard Communication (HazCom) is OSHA\'s most cited standard — year after year. It requires a written program, Safety Data Sheets for every chemical on site, proper labeling on every container, and documented employee training. Most small operations have pieces of this, but not the whole thing.',
+      whatItIs: `Hazard Communication is OSHA's most-cited general industry standard. Year after year. 29 CFR 1910.1200 — also called HazCom or the "Employee Right-to-Know" standard — is also one of the most achievable to fix, which makes the citation rate even more frustrating. Almost every HazCom citation in a small operation is preventable with a few hours of organized paperwork.
+
+The standard has five pillars, and OSHA checks every one: a written HazCom program, a complete and accessible Safety Data Sheet (SDS) library, proper container labeling, employee training, and a current chemical inventory list. Miss any pillar and you can be cited. Miss multiple pillars and the citation count multiplies fast.
+
+The most common citation I see in small operations is missing or inadequate secondary container labels — under 1910.1200(f)(6). A secondary container is anything you transfer chemical into from the original — a spray bottle, a bucket of mixed cleaner, a small jug from a 55-gallon drum. These need labels showing product name and hazard pictograms. The only exception is single-shift, single-user containers. In practice, every facility has unlabeled spray bottles in a closet somewhere. OSHA finds them in three minutes.
+
+The second most common is the written program itself. 1910.1200(e) requires a written program tailored to your operation — not a generic template downloaded years ago with another company's name still in the header. The program has to describe how YOU handle chemical hazard communication: where the SDS library lives, how new chemicals get added, how employees access the data, who's responsible. A template that doesn't reflect your actual procedures is treated as no program at all.
+
+Third is training. 1910.1200(h) requires that every employee with potential chemical exposure receive training on hazards, label reading, SDS access, and your written program. Training must be documented — date, topics covered, attendee names. "We talked about it in our morning meeting once" is not training. OSHA wants a sign-in sheet and a topic outline. Refresher training is required when new chemicals are introduced.
+
+What OSHA looks for during a HazCom inspection: they'll walk to a random shelf and pick up the first chemical container they see — does it have a label with product name and pictograms? They'll ask any random employee where the SDS library is located and watch them find it. They'll review the written program and check whether it actually matches what they observe on the floor. They'll review training records and pull names of recent hires to verify training was completed within 30 days. The chemical inventory list will be checked against what they physically see in the shop.
+
+Corrective action: buy a label-maker and a set of GHS pictogram stickers ($60 total). Audit every spray bottle, jug, and bucket on the floor. Replace your generic HazCom program with one specific to your facility — list your chemicals by location, identify your trainer, name your program coordinator. Build (or rebuild) your SDS library — use a free service like ChemTel or buy access to Verisk 3E. Print a chemical inventory list and walk the floor with it, adding every chemical you find. Run a 1-hour all-hands training session, document it with a sign-in sheet, file the sheet. Total fix time: about 8 hours of focused work. Total cost: under $200.`,
       whatGetsMissed: [
-        'No written HazCom program',
+        'No written HazCom program (or generic template never customized)',
         'SDS binder incomplete, outdated, or inaccessible',
-        'Secondary containers missing labels',
-        'New chemicals added without updating SDS',
+        'Secondary containers (spray bottles, buckets, jugs) missing labels',
+        'New chemicals added without updating SDS or inventory',
         'Training not documented or not specific to site chemicals',
+        'Chemical inventory list missing or never updated',
       ],
-      whatISee: 'I find spray bottles with no labels, cleaning chemicals under sinks with no SDS, and "the binder" in a manager\'s office that hasn\'t been updated since 2019. Workers know they use chemicals — they don\'t know what\'s in them or where the data sheets are. The written program, if it exists, is a template downloaded and never customized.',
+      whatISee: 'I find spray bottles with no labels, cleaning chemicals under sinks with no SDS, and "the binder" in a manager\'s office that hasn\'t been updated since 2019. Workers know they use chemicals — they don\'t know what\'s in them or where the data sheets are. The written program, if it exists, is a template downloaded and never customized — sometimes still has the original consultant\'s company name in the header.',
       checklist: [
         'Written HazCom program specific to your operation',
-        'SDS available for every chemical on site',
+        'SDS available for every chemical on site (paper, intranet, or QR code)',
         'SDS accessible to all employees during every shift',
         'All containers — including secondary — properly labeled',
         'Employee training documented with dates and names',
+        'Refresher training when new chemicals are introduced',
         'New chemical review process in place',
         'Chemical inventory list current and complete',
+        'Designated HazCom program coordinator named in the written program',
       ],
     },
   },
@@ -526,10 +599,14 @@ const FieldNoteDetailPage = () => {
       {/* Content */}
       <section className="py-12 md:py-20 bg-white" data-testid="note-content">
         <div className="container max-w-3xl">
-          {/* What It Is */}
+          {/* What It Is — supports multi-paragraph via blank line splits */}
           <div className="mb-12" data-testid="note-what-it-is">
             <h2 className="text-xl font-bold text-[#102133] mb-4">What It Is</h2>
-            <p className="text-base text-[#102133]/70 leading-relaxed">{note.sections.whatItIs}</p>
+            <div className="text-base text-[#102133]/70 leading-relaxed space-y-4 whitespace-pre-line">
+              {note.sections.whatItIs.split('\n\n').map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
+            </div>
           </div>
 
           {/* What OSHA Checks (if available) */}

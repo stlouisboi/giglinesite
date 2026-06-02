@@ -115,9 +115,9 @@ const Footer = () => {
 
           {/* LaunchPath Reference */}
           <div>
-            <h4 className="text-base font-semibold mb-4 text-white/90">For Fleet Operators</h4>
-            <p className="text-sm text-white/60 mb-4">
-              For new or early-stage carriers, structured system installation is available through LaunchPath.
+            <h4 className="text-base font-semibold mb-4 text-white/90">For Motor Carriers</h4>
+            <p className="text-sm text-white/60 mb-4 leading-relaxed">
+              GigLine handles on-site safety for local operations. If you're a new motor carrier building FMCSA compliance, visit LaunchPath Transportation EDU.
             </p>
             <img
               src="/launchpath-logo-white.png"

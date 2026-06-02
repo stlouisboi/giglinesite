@@ -161,8 +161,8 @@ const ServicesPage = () => {
           <div className="w-full md:w-2/5 flex items-center px-6 md:px-14 lg:px-20 py-16 md:py-0 relative z-10">
             <Reveal>
               <p
-                className="uppercase tracking-[3px] text-[#CBD5E1] mb-5"
-                style={{ ...mono, fontSize: '11px' }}
+                className="uppercase tracking-[3px] text-[#1F6FEB] mb-5 font-bold"
+                style={{ ...mono, fontSize: '12px' }}
                 data-testid="services-kicker"
               >
                 The Services
@@ -205,8 +205,8 @@ const ServicesPage = () => {
           <Reveal>
             <div className="mb-14 md:mb-16 max-w-3xl">
               <p
-                className="uppercase tracking-[3px] text-[#102133]/45 mb-4"
-                style={{ ...mono, fontSize: '11px' }}
+                className="uppercase tracking-[3px] text-[#1F6FEB] mb-4 font-bold"
+                style={{ ...mono, fontSize: '12px' }}
               >
                 Choose Your Engagement
               </p>
@@ -245,8 +245,8 @@ const ServicesPage = () => {
                   {/* HEAD — numeral + title */}
                   <div className="px-7 md:px-8 pt-9 pb-7">
                     <p
-                      className="uppercase tracking-[3px] text-[#1F6FEB] mb-3"
-                      style={{ ...mono, fontSize: '11px' }}
+                      className="uppercase tracking-[3px] text-[#1F6FEB] mb-3 font-bold"
+                      style={{ ...mono, fontSize: '12px' }}
                     >
                       Service {svc.num}
                     </p>
@@ -259,8 +259,8 @@ const ServicesPage = () => {
                   <div className="px-7 md:px-8 flex-grow flex flex-col gap-7 pb-8">
                     <div>
                       <p
-                        className="uppercase tracking-[2.5px] text-[#102133]/45 mb-3 font-bold"
-                        style={{ ...mono, fontSize: '10px' }}
+                        className="uppercase tracking-[2.5px] text-[#0B1F33] mb-3 font-bold"
+                        style={{ ...mono, fontSize: '11px' }}
                       >
                         Best When
                       </p>
@@ -279,8 +279,8 @@ const ServicesPage = () => {
 
                     <div className="flex-grow">
                       <p
-                        className="uppercase tracking-[2.5px] text-[#102133]/45 mb-3 font-bold"
-                        style={{ ...mono, fontSize: '10px' }}
+                        className="uppercase tracking-[2.5px] text-[#0B1F33] mb-3 font-bold"
+                        style={{ ...mono, fontSize: '11px' }}
                       >
                         What You Get
                       </p>
@@ -302,8 +302,8 @@ const ServicesPage = () => {
                   <div className="mx-7 md:mx-8 mb-5 rounded-lg bg-white border border-[#1F6FEB]/15 px-5 py-4 flex items-baseline justify-between" data-testid={`price-${svc.num}`}>
                     <div className="flex items-baseline gap-2">
                       <span
-                        className="uppercase tracking-[2px] text-[#102133]/55"
-                        style={{ ...mono, fontSize: '10px' }}
+                        className="uppercase tracking-[2px] text-[#0B1F33] font-bold"
+                        style={{ ...mono, fontSize: '11px' }}
                       >
                         Starting at
                       </span>
@@ -351,8 +351,8 @@ const ServicesPage = () => {
         <div className="container max-w-6xl">
           <Reveal>
             <p
-              className="uppercase tracking-[3px] text-[#102133]/45 mb-4"
-              style={{ ...mono, fontSize: '11px' }}
+              className="uppercase tracking-[3px] text-[#1F6FEB] mb-4 font-bold"
+              style={{ ...mono, fontSize: '12px' }}
             >
               Logistics
             </p>
@@ -376,7 +376,7 @@ const ServicesPage = () => {
                   </span>
                   <p
                     className="uppercase tracking-[3px] text-[#1F6FEB] font-bold"
-                    style={{ ...mono, fontSize: '11px' }}
+                    style={{ ...mono, fontSize: '12px' }}
                   >
                     Service Area
                   </p>
@@ -407,7 +407,7 @@ const ServicesPage = () => {
                   </span>
                   <p
                     className="uppercase tracking-[3px] text-[#1F6FEB] font-bold"
-                    style={{ ...mono, fontSize: '11px' }}
+                    style={{ ...mono, fontSize: '12px' }}
                   >
                     How Booking Works
                   </p>
@@ -440,7 +440,7 @@ const ServicesPage = () => {
               <div className="md:max-w-2xl">
                 <p
                   className="uppercase tracking-[3px] text-[#1F6FEB] mb-3 font-bold"
-                  style={{ ...mono, fontSize: '11px' }}
+                  style={{ ...mono, fontSize: '12px' }}
                 >
                   Not sure where to start?
                 </p>
@@ -483,7 +483,7 @@ const ServicesPage = () => {
             <div className="mb-12 md:mb-16 max-w-3xl">
               <p
                 className="uppercase tracking-[3px] text-[#1F6FEB] mb-4 font-bold"
-                style={{ ...mono, fontSize: '11px' }}
+                style={{ ...mono, fontSize: '12px' }}
               >
                 How GigLine Works
               </p>

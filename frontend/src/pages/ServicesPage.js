@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ArrowUpRight, MapPin, Phone, Shield, RefreshCw } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, MapPin, Phone, Shield, RefreshCw, FileText, Download } from 'lucide-react';
 import { trackServiceBooking } from '../utils/analytics';
 import SEO from '../components/SEO';
 
@@ -491,6 +491,73 @@ const ServicesPage = () => {
                 <ArrowUpRight size={17} />
               </Link>
             </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════
+          S4b — HAZCOM STARTER PACK (standalone $29 resource)
+      ═══════════════════════════════════════════════ */}
+      <section
+        className="py-20 md:py-24"
+        style={{ backgroundColor: '#F7F9FC' }}
+        data-testid="services-hazcom-pack"
+      >
+        <div className="container max-w-5xl">
+          <Reveal>
+            <article
+              className="bg-white rounded-xl overflow-hidden"
+              style={{
+                border: '1px solid rgba(31,111,235,0.15)',
+                boxShadow: '0 4px 24px rgba(11,31,51,0.06)',
+              }}
+            >
+              <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 md:gap-10 p-8 md:p-10 items-center">
+                {/* LEFT — copy */}
+                <div>
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="w-9 h-9 rounded-lg bg-[#1F6FEB]/10 flex items-center justify-center flex-shrink-0">
+                      <FileText size={17} className="text-[#1F6FEB]" />
+                    </span>
+                    <p
+                      className="uppercase tracking-[3px] text-[#1F6FEB] font-bold"
+                      style={{ ...mono, fontSize: '12px' }}
+                      data-testid="hazcom-kicker"
+                    >
+                      Standalone Resource
+                    </p>
+                  </div>
+                  <h2 className="text-2xl md:text-3xl font-bold text-[#102133] leading-tight mb-4">
+                    HazCom Starter Pack
+                  </h2>
+                  <p className="text-base md:text-lg text-[#102133]/75 leading-relaxed max-w-xl">
+                    A ready-made written Hazard Communication program. Download immediately &mdash; no walkthrough required.
+                  </p>
+                </div>
+
+                {/* RIGHT — price + CTA */}
+                <div className="flex flex-col items-start md:items-end gap-4 md:min-w-[200px]">
+                  <div className="flex items-baseline gap-2">
+                    <span
+                      className="uppercase tracking-[2px] text-[#0B1F33] font-bold"
+                      style={{ ...mono, fontSize: '11px' }}
+                    >
+                      One-time
+                    </span>
+                    <span className="text-[#1F6FEB] font-bold text-[40px] leading-none">$29</span>
+                  </div>
+                  <Link
+                    to="/hazcom"
+                    className="inline-flex items-center justify-center gap-2 bg-[#0B1F33] hover:bg-[#1F6FEB] text-white font-bold py-3.5 px-6 rounded-lg transition-colors text-[15px] shadow-lg shadow-[#0B1F33]/15 group/cta whitespace-nowrap"
+                    data-testid="hazcom-cta"
+                  >
+                    <Download size={16} />
+                    <span>Get It Now</span>
+                    <ArrowRight size={16} className="transition-transform group-hover/cta:translate-x-1" />
+                  </Link>
+                </div>
+              </div>
+            </article>
           </Reveal>
         </div>
       </section>

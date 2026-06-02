@@ -11,28 +11,15 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-10">
           {/* Company Info */}
           <div>
-            <div className="flex items-center gap-3 mb-4">
-              <svg viewBox="0 0 160 180" className="w-8 h-10">
-                <path d="M80,38 L136,57 L136,120 Q136,153 80,172 Q24,153 24,120 L24,57 Z"
-                  fill="#FFFFFF" stroke="#091725" strokeWidth="2.2"/>
-                <path d="M80,47 L127,64 L127,120 Q127,147 80,163 Q33,147 33,120 L33,64 Z"
-                  fill="none" stroke="#1558C0" strokeWidth="0.9"/>
-                <line x1="80" y1="57" x2="80" y2="96"
-                  stroke="#091725" strokeWidth="3" strokeLinecap="butt"/>
-                <rect x="72" y="96" width="16" height="8" rx="1.5" fill="#091725"/>
-                <rect x="76" y="97.5" width="8" height="5" rx="0.5" fill="#1558C0"/>
-                <line x1="80" y1="104" x2="80" y2="148"
-                  stroke="#091725" strokeWidth="3" strokeLinecap="butt"/>
-                <line x1="72" y1="65" x2="88" y2="65"
-                  stroke="#1558C0" strokeWidth="1" strokeDasharray="2,2" strokeLinecap="round"/>
-                <line x1="72" y1="140" x2="88" y2="140"
-                  stroke="#1558C0" strokeWidth="1" strokeDasharray="2,2" strokeLinecap="round"/>
-              </svg>
-              <div>
-                <span className="text-lg font-bold text-white leading-tight tracking-tight block" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>GigLine</span>
-                <span className="block w-full h-px bg-[#1558C0] my-0.5"></span>
-                <span className="text-[9px] font-normal text-white/80 tracking-[0.2em]" style={{fontFamily: "Arial, Helvetica, sans-serif"}}>SAFETY & COMPLIANCE</span>
-              </div>
+            <div className="mb-4">
+              <img
+                src="/gigline-logo-2026-white.png"
+                alt="GigLine Safety & Compliance"
+                className="h-10 w-auto"
+                loading="lazy"
+                width="232"
+                height="90"
+              />
             </div>
             <p className="text-white/60 text-sm mb-4">
               Safety Walkthroughs and Gap Checks for Small Operations

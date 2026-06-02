@@ -151,15 +151,41 @@ const ServicesPage = () => {
               <img
                 src="/services-hero.jpg"
                 alt="GigLine safety walkthrough — inspector in PPE documenting a blocked electrical panel violation"
-                className="absolute inset-0 w-full h-full object-cover object-[65%_center]"
+                className="absolute inset-0 w-full h-full object-cover object-[82%_center] scale-110"
+                style={{ filter: 'contrast(1.10) saturate(1.05) brightness(0.93)' }}
                 loading="eager"
                 fetchpriority="high"
               />
             </picture>
-            {/* Right-edge fade into navy */}
-            <div className="hidden md:block absolute inset-y-0 right-0 w-1/3 bg-gradient-to-r from-transparent to-[#0B1F33]" />
+
+            {/* Cinematic vignette — dark at top corners */}
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background:
+                  'radial-gradient(120% 80% at 50% 60%, transparent 50%, rgba(11,31,51,0.55) 100%)',
+              }}
+            />
+
+            {/* Top bar darken — adds drama, separates from nav */}
+            <div
+              aria-hidden="true"
+              className="absolute inset-x-0 top-0 h-32 pointer-events-none"
+              style={{ background: 'linear-gradient(to bottom, rgba(11,31,51,0.5), transparent)' }}
+            />
+
+            {/* Right-edge fade into navy panel */}
+            <div className="hidden md:block absolute inset-y-0 right-0 w-2/5 bg-gradient-to-r from-transparent via-[#0B1F33]/55 to-[#0B1F33] pointer-events-none" />
+
             {/* Bottom fade for mobile */}
-            <div className="md:hidden absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#0B1F33] to-transparent" />
+            <div className="md:hidden absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#0B1F33] to-transparent pointer-events-none" />
+
+            {/* Sharp blue accent rule — drama */}
+            <div
+              aria-hidden="true"
+              className="hidden md:block absolute left-0 bottom-12 w-20 h-[3px] bg-[#1F6FEB]"
+            />
           </div>
 
           {/* Right — Copy */}

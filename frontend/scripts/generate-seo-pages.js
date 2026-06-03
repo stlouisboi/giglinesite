@@ -431,6 +431,26 @@ const routes = [
     `,
   },
   {
+    path: '/walkthrough',
+    title: 'Request a Safety Walkthrough | GigLine Safety & Compliance',
+    description: 'Schedule an on-site safety walkthrough with Vince Lawrence. GigLine identifies your top OSHA exposure points and delivers a written report ranked by risk. One visit. No retainer. Serving the Piedmont Triad, NC.',
+    canonical: '/walkthrough',
+    schemas: [LOCAL_BUSINESS],
+    content: `
+      <h1>Request a Safety Walkthrough</h1>
+      <p>Vince Lawrence will walk your floor, identify your top exposure points, and deliver a written report &mdash; ranked by risk. One visit. No retainer.</p>
+      <p>Most facilities have gaps they don't know about. This is how you <strong>find them before OSHA does.</strong></p>
+      <h2>Here's what happens next</h2>
+      <ol>
+        <li>Vince reviews your request within 24 hours.</li>
+        <li>He confirms a walkthrough date and time that works for your operation.</li>
+        <li>He arrives on-site, walks your floor, and delivers a written report within 48 hours of the visit.</li>
+      </ol>
+      <p>Contact: <a href="tel:3363298899">(336) 329-8899</a> &middot; <a href="mailto:vince@giglinecompliance.com">vince@giglinecompliance.com</a> &middot; <a href="https://www.giglinecompliance.com">giglinecompliance.com</a></p>
+      <p>Serving the Piedmont Triad, North Carolina.</p>
+    `,
+  },
+  {
     path: '/field-notes',
     title: 'OSHA Safety Tips for Small Manufacturers | GigLine Field Notes',
     description: 'OSHA safety tips and plain-language guidance for small manufacturers. Field notes on HazCom, forklift safety, electrical, LOTO, PPE, and fall protection.',

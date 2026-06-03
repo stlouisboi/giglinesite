@@ -29,6 +29,7 @@ import FieldNoteDetailPage from './pages/FieldNoteDetailPage';
 import CityLandingPage from './pages/CityLandingPage';
 import FAQPage from './pages/FAQPage';
 import ServiceAreasPage from './pages/ServiceAreasPage';
+import WalkthroughLandingPage from './pages/WalkthroughLandingPage';
 import './App.css';
 
 function RouteTracker() {
@@ -50,6 +51,7 @@ function App() {
         <ScrollToTop />
         <Routes>
           {/* Standalone portal pages — own nav, no global Navbar/Footer */}
+          <Route path="/walkthrough" element={<WalkthroughLandingPage />} />
           <Route path="/intake" element={<ClientIntakePage />} />
           <Route path="/onboarding" element={<OnboardingPage />} />
           <Route path="/onboarding/confirmed" element={<OnboardingPage />} />

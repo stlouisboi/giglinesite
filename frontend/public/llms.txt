@@ -24,6 +24,7 @@ Service area: Within 60 miles of Winston-Salem (full Piedmont Triad) plus schedu
 
 ## Free resources
 
+- [Top 5 OSHA Violations in Triad Manufacturing &amp; Warehousing &mdash; Free PDF Report](https://www.giglinecompliance.com/assets/gl-lm-001-digital.pdf): One-page reference document. Each of the five most-cited violations in NC small-to-mid-size manufacturing, warehouse, and distribution operations &mdash; with the OSHA citation number, penalty range, what it looks like on the floor, and the corrective fix. Delivered free after submitting the walkthrough request form.
 - [90-Second Safety Check](https://www.giglinecompliance.com/safety-check): Six yes-or-no questions mapped to OSHA's most-cited violations. Instant risk score.
 - [2026 Heat Stress Action Template](https://www.giglinecompliance.com/heat-guide): Printable daily heat check with trigger levels and required controls for NC operations.
 - [HazCom Starter Pack — $29](https://www.giglinecompliance.com/hazcom): Written HazCom program, SDS binder checklist, and training log. Addresses OSHA 29 CFR 1910.1200.

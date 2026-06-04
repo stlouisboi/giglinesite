@@ -3,6 +3,7 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import { ArrowRight, ArrowLeft, Download, Check } from 'lucide-react';
 import { trackPDFDownload } from '../utils/analytics';
 import SEO from '../components/SEO';
+import FieldNotesNewsletter from '../components/FieldNotesNewsletter';
 
 const API = process.env.REACT_APP_BACKEND_URL;
 
@@ -670,6 +671,9 @@ const FieldNoteDetailPage = () => {
               <p className="text-sm text-[#102133]/60 font-medium mt-1">{note.cfrCitation}</p>
             </div>
           )}
+
+          {/* Newsletter capture — soft list-builder per article */}
+          <FieldNotesNewsletter source={`field-note-${slug}`} />
 
           {/* Related Field Notes */}
           {note.relatedNotes && (

@@ -17,6 +17,7 @@ from routes.safety_check import router as safety_check_router, process_drip_emai
 from routes.admin import router as admin_router, send_weekly_summary
 from routes.admin_crm import router as admin_crm_router
 from routes.walkthrough_landing import router as walkthrough_landing_router
+from routes.newsletter import router as newsletter_router
 from routes.intake import router as intake_router
 from routes.onboarding import router as onboarding_router
 from routes.portal import router as portal_router
@@ -34,6 +35,7 @@ api_router.include_router(safety_check_router)
 api_router.include_router(admin_router)
 api_router.include_router(admin_crm_router)
 api_router.include_router(walkthrough_landing_router)
+api_router.include_router(newsletter_router)
 api_router.include_router(intake_router)
 api_router.include_router(onboarding_router)
 api_router.include_router(portal_router)

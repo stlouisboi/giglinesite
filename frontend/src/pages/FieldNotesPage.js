@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import SEO from '../components/SEO';
+import FieldNotesNewsletter from '../components/FieldNotesNewsletter';
 
 const FIELD_NOTES = [
   {
@@ -170,6 +171,11 @@ const FieldNotesPage = () => {
           <p className="mt-12 text-sm text-[#102133]/40 text-center">
             New topics added monthly based on what we're seeing in the field.
           </p>
+
+          {/* Newsletter capture — soft list-builder */}
+          <div className="max-w-4xl mx-auto">
+            <FieldNotesNewsletter source="field-notes-index" />
+          </div>
         </div>
       </section>
 

@@ -440,7 +440,7 @@ const WalkthroughLandingPage = () => {
 
           {/* Google rating badge — light variant */}
           <a
-            href="https://search.google.com/local/reviews?placeid=ChIJ_____GigLine"
+            href="https://share.google/iUzTnuRSCNdguZQww"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-6 inline-flex items-center gap-3 px-5 py-3 transition-colors hover:bg-white"

@@ -451,6 +451,77 @@ const routes = [
     `,
   },
   {
+    path: '/case-studies/mocksville-plastics-osha-inspection',
+    title: 'OSHA Inspection Case Study: Mocksville Plastics Manufacturer Cleared with Zero Citations | GigLine',
+    description: 'A 60-person plastics manufacturer in Mocksville, NC had a scheduled OSHA inspection six weeks away. After a GigLine walkthrough flagged 4 high-risk findings, all were fixed before inspection day. Outcome: zero citations.',
+    canonical: '/case-studies/mocksville-plastics-osha-inspection',
+    schemas: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: 'How a 60-Person Plastics Manufacturer in Mocksville Passed OSHA — With Zero Citations',
+        description: 'A 60-person plastics manufacturer in Mocksville, NC had a scheduled OSHA inspection six weeks away. After a GigLine walkthrough flagged 4 high-risk findings, all were fixed before inspection day. Outcome: zero citations.',
+        author: { '@id': `${BASE_URL}/#vince` },
+        publisher: { '@id': `${BASE_URL}/#business` },
+        mainEntityOfPage: `${BASE_URL}/case-studies/mocksville-plastics-osha-inspection`,
+        datePublished: '2026-06-04',
+        articleSection: 'Case Study',
+      },
+      breadcrumb([
+        { name: 'Home', path: '/' },
+        { name: 'Case Studies', path: '/case-studies' },
+        { name: 'Mocksville Plastics Manufacturer', path: '/case-studies/mocksville-plastics-osha-inspection' },
+      ]),
+    ],
+    content: `
+      <h1>How a 60-Person Plastics Manufacturer in Mocksville Passed OSHA &mdash; With Zero Citations</h1>
+      <p><em>What changed in the six weeks between the walkthrough and inspection day.</em></p>
+
+      <p><strong>Location:</strong> Mocksville, NC &middot; <strong>Headcount:</strong> ~60 employees &middot; <strong>Engagement:</strong> Spring 2026 &middot; <strong>Time to Inspection:</strong> 6 weeks &middot; <strong>Outcome:</strong> Zero Citations</p>
+
+      <h2>The Situation</h2>
+      <p>A plastics manufacturer in Mocksville, NC &mdash; roughly 60 employees, two-shift operation &mdash; had OSHA on the calendar. Not a complaint. Not a referral. A scheduled inspection.</p>
+      <p>The plant manager called Vince in Spring 2026, about six weeks out from the inspection date. He hired GigLine for one purpose: walk the floor like an OSHA Compliance Officer would, find what they'd find, and tell him what to fix and in what order.</p>
+
+      <h2>The Walkthrough &mdash; Four High-Risk Findings</h2>
+      <p>Vince walked the facility for three hours. The Top 10 Fixes report landed in the plant manager's inbox 36 hours later. Four findings would have been almost-certain citations on inspection day:</p>
+
+      <h3>01 &mdash; Recordkeeping (29 CFR 1904.32)</h3>
+      <p>OSHA 300 Log not posted; no 300A Annual Summary signed by a company executive. Penalty range: $1,190 to $16,131 per violation. Recordkeeping citations stack &mdash; each missing record can be cited separately.</p>
+
+      <h3>02 &mdash; Powered Industrial Trucks (29 CFR 1910.178(l))</h3>
+      <p>Three forklift operators with certifications older than three years. No daily pre-shift inspection log. Refresher training is required every three years. Penalty range: $1,190 to $16,131 per operator, per violation.</p>
+
+      <h3>03 &mdash; Walking and Working Surfaces (29 CFR 1910.22(a)(1))</h3>
+      <p>Scrap accumulated under press lines. Pallets in pedestrian zones. Material handlers stepping around obstructions. Housekeeping isn't an aesthetic complaint &mdash; it's a written OSHA standard.</p>
+
+      <h3>04 &mdash; Emergency Egress (29 CFR 1910.37(a)(3))</h3>
+      <p>Two of four emergency exits had partial obstructions in the path of egress. Exit routes must be unobstructed at all times.</p>
+
+      <h2>The Six Weeks Between</h2>
+      <p>The plant manager assigned each finding to someone with a fix-by date within 48 hours. By inspection day, all four high-risk items were closed and documented:</p>
+      <ul>
+        <li><strong>Recordkeeping:</strong> 300A Summary signed by the president and posted. 5-year retention file reorganized.</li>
+        <li><strong>Forklift program:</strong> All three operators completed refresher training with documented evaluation. Daily pre-shift inspection log on every truck.</li>
+        <li><strong>Housekeeping:</strong> Written program drafted. Daily end-of-shift sweep routines. Pedestrian aisles repainted.</li>
+        <li><strong>Egress:</strong> All four exit paths cleared. "No storage zone" marked. Monthly egress audits added to the standing checklist.</li>
+      </ul>
+
+      <h2>Inspection Day</h2>
+      <p>The OSHA Compliance Officer arrived on the scheduled date. The walkthrough took about four hours. The plant manager and supervisors had documentation ready for every question. At the closing conference, the Compliance Officer noted observations but did not issue a single citation. <strong>No formal findings. No fines. Clean record.</strong></p>
+
+      <h2>What This Buys</h2>
+      <p>Four findings at the higher end of the penalty range &mdash; plus the multiplier for willful or repeated classifications &mdash; could have run past $75,000. A safety walkthrough plus six weeks of disciplined corrective action got them to zero.</p>
+
+      <h2>What's Repeatable</h2>
+      <p>Most manufacturers Vince walks into have at least three of the same four issues. Recordkeeping gaps, expired forklift certifications, housekeeping drift, egress obstructions. Not lazy problems &mdash; the kind of problems that come from running a 60-person operation without a full-time safety manager.</p>
+
+      <p>If you have OSHA on the calendar, or worried they're coming, <a href="https://www.giglinecompliance.com/walkthrough">request a walkthrough</a>. One visit. A written report within 48 hours. A list of things to fix in priority order. No retainer.</p>
+
+      <p>GigLine Safety &amp; Compliance &mdash; Vince Lawrence &mdash; (336) 329-8899 &mdash; <a href="https://www.giglinecompliance.com">giglinecompliance.com</a></p>
+    `,
+  },
+  {
     path: '/field-notes',
     title: 'OSHA Safety Tips for Small Manufacturers | GigLine Field Notes',
     description: 'OSHA safety tips and plain-language guidance for small manufacturers. Field notes on HazCom, forklift safety, electrical, LOTO, PPE, and fall protection.',

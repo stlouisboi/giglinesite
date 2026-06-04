@@ -30,6 +30,7 @@ import CityLandingPage from './pages/CityLandingPage';
 import FAQPage from './pages/FAQPage';
 import ServiceAreasPage from './pages/ServiceAreasPage';
 import WalkthroughLandingPage from './pages/WalkthroughLandingPage';
+import CaseStudyMocksvillePage from './pages/CaseStudyMocksvillePage';
 import './App.css';
 
 function RouteTracker() {
@@ -82,6 +83,7 @@ function App() {
                   <Route path="/safety-walkthrough/:city" element={<CityLandingPage />} />
                   <Route path="/faq" element={<FAQPage />} />
                   <Route path="/service-areas" element={<ServiceAreasPage />} />
+                  <Route path="/case-studies/mocksville-plastics-osha-inspection" element={<CaseStudyMocksvillePage />} />
                   <Route path="*" element={<NotFoundPage />} />
                 </Routes>
               </div>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight, MapPin, Phone, Shield, RefreshCw, FileText, Download } from 'lucide-react';
 import { trackServiceBooking } from '../utils/analytics';
 import SEO from '../components/SEO';
+import CaseStudyTeaser from '../components/CaseStudyTeaser';
 
 /* ── Scroll-reveal — mirrors HomePage.js exactly ── */
 const useReveal = () => {
@@ -370,6 +371,11 @@ const ServicesPage = () => {
           </div>
         </div>
       </section>
+
+      {/* ═══════════════════════════════════════════════
+          CASE STUDY TEASER  (real outcome before coverage/logistics)
+      ═══════════════════════════════════════════════ */}
+      <CaseStudyTeaser source="services" />
 
       {/* ═══════════════════════════════════════════════
           S3 — COVERAGE AND LOGISTICS  (light blue-grey, on-brand)

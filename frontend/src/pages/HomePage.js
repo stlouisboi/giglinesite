@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check } from 'lucide-react';
 import SEO from '../components/SEO';
+import CaseStudyTeaser from '../components/CaseStudyTeaser';
 import { trackPhoneClick, trackReviewClick } from '../utils/analytics';
 
 /* ── Scroll-reveal ── */
@@ -568,6 +569,12 @@ const HomePage = () => {
           </Reveal>
         </div>
       </section>
+
+      {/* ═══════════════════════════════════════════════
+          CASE STUDY TEASER  (real outcome anchor between proof and process)
+      ═══════════════════════════════════════════════ */}
+      <CaseStudyTeaser source="homepage" />
+
       <section className="relative py-24 md:py-32 overflow-hidden" style={{ backgroundColor: '#F7F9FC' }} data-testid="process-section">
         <div className="container max-w-6xl relative z-10">
           <div className="flex flex-col md:flex-row gap-12 md:gap-20">

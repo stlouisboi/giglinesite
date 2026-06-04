@@ -119,6 +119,13 @@ Goal: get GigLine cited in answers from ChatGPT, Perplexity, Claude, Google AI O
 - robots.txt expanded with explicit Allow for GPTBot, ChatGPT-User, OAI-SearchBot, ClaudeBot, Claude-Web, anthropic-ai, PerplexityBot, Perplexity-User, Google-Extended, Applebot-Extended, Bytespider, CCBot, cohere-ai, Meta-ExternalAgent, Meta-ExternalFetcher.
 - generate-seo-pages.js rewritten to strip the template LocalBusiness block and inject a route-specific JSON-LD set per page (Person for /about, Article for blog posts, Service+FAQPage for city pages, full FAQPage for /faq, LocalBusiness+Person+FAQPage on home).
 
+## Case Study — Mocksville Plastics OSHA Inspection (Jun 2026)
+- New page `/case-studies/mocksville-plastics-osha-inspection` (`/app/frontend/src/pages/CaseStudyMocksvillePage.js`)
+- Structured as Hero (kicker + headline + 4-up stats bar) → The Situation → The Walkthrough → 4 Findings (cards with CFR codes + penalty ranges: 1904.32 recordkeeping, 1910.178(l) forklifts, 1910.22(a)(1) housekeeping, 1910.37(a)(3) egress) → The Six Weeks Between (4 FixBlocks) → Inspection Day → What This Buys → What's Repeatable → Navy/gold CTA band routing to /walkthrough
+- Article + BreadcrumbList JSON-LD wired into generate-seo-pages.js
+- Sitemap entry added (priority 0.9)
+- Internal discoverability: shared `/app/frontend/src/components/CaseStudyTeaser.js` (navy + gold band, 3 outcome stat chips, gold CTA) embedded on Homepage (between Google review badge and Process section) and Services page (between Service Cards and Coverage section). Static HTML pre-renderer also includes a "Recent Outcome — Case Study" anchor link on both / and /services for crawler discoverability.
+
 ## Deployment
 - Frontend: Vercel (manual redeploy after GitHub push)
 - Backend: Railway (auto-deploys on GitHub push)

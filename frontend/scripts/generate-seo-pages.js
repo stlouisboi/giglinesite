@@ -194,6 +194,8 @@ const routes = [
       <p>A written Safety Check report delivered within 24-48 hours. Photo-documented findings. The OSHA standard referenced for each one. A plain-language corrective action for each item.</p>
       <h2>What Clients Say</h2>
       <p>"If you're looking for a partner that can bridge the gap between compliance and real-world execution, GigLine delivers results." — Demar Archie, Warehouse Receiving Manager</p>
+      <h2>Recent Outcome &mdash; Case Study</h2>
+      <p><a href="/case-studies/mocksville-plastics-osha-inspection">How a 60-Person Plastics Manufacturer in Mocksville Passed OSHA &mdash; With Zero Citations</a>. Scheduled inspection, four high-risk findings flagged in the walkthrough, six weeks of corrective action, clean record on inspection day.</p>
       <h2>Frequently Asked Questions</h2>
       ${HOMEPAGE_FAQS.map((f) => `<h3>${f.q}</h3><p>${f.a}</p>`).join('')}
       <p><a href="/faq">See all 18 frequently asked questions →</a></p>
@@ -258,6 +260,8 @@ const routes = [
       <p>Best for operations preparing for audits or rebuilding safety files. Review of written programs, training records, inspection logs, and required documentation.</p>
       <h2>Incident Review &amp; Corrective Action Support — Starting at $900</h2>
       <p>Best for operations responding to a recordable injury or near-miss. Document what happened, identify what broke down, build corrective action that holds up under review.</p>
+      <h2>Recent Outcome &mdash; Case Study</h2>
+      <p><a href="/case-studies/mocksville-plastics-osha-inspection">How a 60-Person Plastics Manufacturer in Mocksville Passed OSHA &mdash; With Zero Citations</a>. Scheduled inspection. Four findings flagged. Six weeks of corrective action. Zero citations.</p>
       <p>After payment, you'll receive a scheduling confirmation within one business day.</p>
       <p>GigLine Safety &amp; Compliance — Kernersville, NC — (336) 329-8899</p>
     `,

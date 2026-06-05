@@ -26,7 +26,7 @@ const Navbar = () => {
             <img
               src="/gigline-logo-2026.png"
               alt="GigLine Safety & Compliance"
-              className="h-12 md:h-12 lg:h-16 xl:h-20 w-auto"
+              className="h-14 md:h-14 lg:h-16 xl:h-20 w-auto"
               loading="eager"
               fetchpriority="high"
               width="232"

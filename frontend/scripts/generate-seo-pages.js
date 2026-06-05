@@ -700,10 +700,15 @@ function generateRouteHTML(templateHTML, route) {
   }
 
   // Inject crawler-visible content into #root
+  // ── FOUC fix ──
+  // We position the pre-rendered content off-screen (sr-only style) so it stays
+  // in the HTML source (indexable by AI engines / crawlers that read raw HTML),
+  // but does not visually render for human visitors before React hydrates.
+  // Result: no flash of unstyled serif text before the React tree mounts.
   if (route.content) {
     html = html.replace(
       '<div id="root"></div>',
-      `<div id="root"><div data-server-rendered="true" style="font-family:Georgia,serif;max-width:800px;margin:0 auto;padding:40px 20px;color:#1C2B2B;">${route.content.trim()}</div></div>`,
+      `<div id="root"><div data-server-rendered="true" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;font-family:Georgia,serif;color:#1C2B2B;">${route.content.trim()}</div></div>`,
     );
   }
 

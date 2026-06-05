@@ -26,7 +26,7 @@ const Navbar = () => {
             <img
               src="/gigline-logo-2026.png"
               alt="GigLine Safety & Compliance"
-              className="h-14 md:h-14 lg:h-16 xl:h-20 w-auto"
+              className="h-14 md:h-16 lg:h-16 xl:h-20 w-auto"
               loading="eager"
               fetchpriority="high"
               width="232"
@@ -34,8 +34,8 @@ const Navbar = () => {
             />
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-4 lg:space-x-7 xl:space-x-8" data-testid="desktop-nav">
+          {/* Desktop Navigation — appears at lg (1024px+); tablet portrait gets the hamburger menu */}
+          <div className="hidden lg:flex items-center space-x-7 xl:space-x-8" data-testid="desktop-nav">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -71,8 +71,8 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Mobile: Phone + Menu */}
-          <div className="flex items-center gap-3 md:hidden">
+          {/* Mobile + Tablet: Phone + Menu */}
+          <div className="flex items-center gap-3 lg:hidden">
             <a
               href="tel:3363298899"
               onClick={() => trackPhoneClick('navbar_mobile_icon')}
@@ -100,7 +100,7 @@ const Navbar = () => {
 
         {/* Mobile Navigation Drawer */}
         {isOpen && (
-          <div id="mobile-menu" className="md:hidden bg-white" style={{ borderTop: '1px solid #D9E2EC' }} data-testid="mobile-menu">
+          <div id="mobile-menu" className="lg:hidden bg-white" style={{ borderTop: '1px solid #D9E2EC' }} data-testid="mobile-menu">
             <div className="px-4 py-6 space-y-1">
               {navLinks.map((link) => (
                 <Link

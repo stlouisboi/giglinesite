@@ -4,6 +4,7 @@ import { ArrowRight, ArrowUpRight, MapPin, Phone, Shield, RefreshCw, FileText, D
 import { trackServiceBooking } from '../utils/analytics';
 import SEO from '../components/SEO';
 import CaseStudyTeaser from '../components/CaseStudyTeaser';
+import SampleReportSection from '../components/SampleReportSection';
 
 /* ── Scroll-reveal — mirrors HomePage.js exactly ── */
 const useReveal = () => {
@@ -373,9 +374,15 @@ const ServicesPage = () => {
       </section>
 
       {/* ═══════════════════════════════════════════════
-          CASE STUDY TEASER  (real outcome before coverage/logistics)
+          CASE STUDY TEASER  (real outcome before sample report)
       ═══════════════════════════════════════════════ */}
       <CaseStudyTeaser source="services" />
+
+      {/* ═══════════════════════════════════════════════
+          GL-WEB-012 — SAMPLE REPORT SECTION
+          Static, document-style example of the actual deliverable.
+      ═══════════════════════════════════════════════ */}
+      <SampleReportSection />
 
       {/* ═══════════════════════════════════════════════
           S3 — COVERAGE AND LOGISTICS  (light blue-grey, on-brand)

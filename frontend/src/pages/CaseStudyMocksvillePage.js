@@ -90,6 +90,14 @@ const CaseStudyMocksvillePage = () => {
           </h1>
 
           <p
+            className="italic text-[13px] md:text-[14px] leading-relaxed mb-6 max-w-3xl"
+            style={{ color: TEXT_SUBTLE, ...serif }}
+            data-testid="case-disclaimer"
+          >
+            Illustrative example. Findings, citations, and outcomes are representative of common GigLine engagements. Client details are composite and do not reflect a specific named engagement.
+          </p>
+
+          <p
             className="text-lg md:text-xl leading-relaxed mb-8 max-w-3xl"
             style={{ color: TEXT_MUTED, ...serif }}
             data-testid="case-subhead"

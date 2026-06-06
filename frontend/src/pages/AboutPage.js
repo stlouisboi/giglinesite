@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ExternalLink, ArrowRight } from 'lucide-react';
 import SEO from '../components/SEO';
+import FieldManualBand from '../components/FieldManualBand';
 
 const AboutPage = () => {
   return (
@@ -234,6 +235,9 @@ const AboutPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Field Manual Lead Magnet — anchors Vince as a published authority */}
+      <FieldManualBand source="about" />
 
       {/* LaunchPath Section */}
       <section className="py-16 md:py-20 bg-[#102133] text-white" data-testid="launchpath-section">

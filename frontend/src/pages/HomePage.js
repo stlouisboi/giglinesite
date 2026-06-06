@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Check } from 'lucide-react';
 import SEO from '../components/SEO';
 import CaseStudyTeaser from '../components/CaseStudyTeaser';
+import FieldManualBand from '../components/FieldManualBand';
 import { trackPhoneClick, trackReviewClick } from '../utils/analytics';
 
 /* ── Scroll-reveal ── */
@@ -574,6 +575,11 @@ const HomePage = () => {
           CASE STUDY TEASER  (real outcome anchor between proof and process)
       ═══════════════════════════════════════════════ */}
       <CaseStudyTeaser source="homepage" />
+
+      {/* ═══════════════════════════════════════════════
+          FIELD MANUAL LEAD MAGNET  (anchor expert credibility)
+      ═══════════════════════════════════════════════ */}
+      <FieldManualBand source="homepage" />
 
       <section className="relative py-24 md:py-32 overflow-hidden" style={{ backgroundColor: '#F7F9FC' }} data-testid="process-section">
         <div className="container max-w-6xl relative z-10">

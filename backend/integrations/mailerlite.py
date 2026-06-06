@@ -25,6 +25,13 @@ LIST_LEAD_NURTURE = "Lead Nurture"
 LIST_PAST_CLIENT = "Past Client"
 LIST_PAUSED = "Paused — Active Engagement"
 
+# GL-WEB-013 — service-specific groups (one single-email confirmation automation per service)
+SERVICE_GROUP_NAMES = {
+    "Safety Walkthrough": "Service - Safety Walkthrough",
+    "Documentation Review": "Service - Documentation Review",
+    "Incident Review": "Service - Incident Review",
+}
+
 
 def _headers() -> Dict[str, str]:
     return {
@@ -215,4 +222,78 @@ async def pause_engagement(email: str) -> bool:
             return True
     except Exception as e:
         logger.error(f"MailerLite pause error: {e}")
+    return False
+
+
+async def add_to_service_request(
+    email: str,
+    service: str,
+    name: str = "",
+    company: str = "",
+    attribution: Optional[Dict[str, Any]] = None,
+) -> bool:
+    """
+    GL-WEB-013 — Service request routing.
+
+    Walkthrough request form submissions route to one of three service-specific
+    MailerLite groups based on the selected service. Each group has its own
+    single-email confirmation automation in MailerLite ('I received your
+    request for X...'). Service requesters do NOT enter the Lead Nurture
+    7-touch sequence — they are hot leads expecting a real call within one
+    business day, not a 6-week marketing drip.
+
+    Falls back to Lead Nurture only when the visitor picked 'Not sure' or
+    left the service field blank.
+    """
+    if not ML_TOKEN or not email:
+        return False
+
+    group_name = SERVICE_GROUP_NAMES.get(service)
+    if not group_name:
+        # Unknown / "Not sure" / empty — default to Lead Nurture cold-lead drip
+        return await add_to_lead_nurture(
+            email=email,
+            name=name,
+            company=company,
+            source_form="walkthrough_request_other",
+            attribution=attribution,
+        )
+
+    group_id = await _ensure_group(group_name)
+    if not group_id:
+        logger.error(f"MailerLite: service group '{group_name}' could not be resolved")
+        return False
+
+    first_name = (name.split(" ")[0] if name else "").strip()
+
+    fields: Dict[str, Any] = {
+        "name": first_name,
+        "company": company or "",
+        "source_form": "walkthrough_request",
+    }
+    if attribution and isinstance(attribution, dict):
+        first = attribution.get("firstTouch") or {}
+        if first.get("utm_source"):
+            fields["first_touch_source"] = first.get("utm_source", "")
+        if first.get("utm_campaign"):
+            fields["first_touch_campaign"] = first.get("utm_campaign", "")
+
+    payload = {
+        "email": email,
+        "fields": fields,
+        "groups": [group_id],
+        "status": "active",
+    }
+
+    try:
+        async with httpx.AsyncClient(timeout=10) as client:
+            r = await client.post(
+                f"{ML_BASE}/subscribers", headers=_headers(), json=payload
+            )
+            if r.status_code in (200, 201):
+                logger.info(f"MailerLite: added {email} to {group_name}")
+                return True
+            logger.warning(f"MailerLite service-request add failed {r.status_code}: {r.text[:200]}")
+    except Exception as e:
+        logger.error(f"MailerLite service-request error: {e}")
     return False

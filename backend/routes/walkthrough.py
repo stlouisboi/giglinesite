@@ -8,7 +8,7 @@ import logging
 
 import resend
 from config import db, SENDER_EMAIL, VINCE_EMAIL
-from integrations.mailerlite import add_to_lead_nurture
+from integrations.mailerlite import add_to_service_request
 from models import WalkthroughRequest
 
 router = APIRouter()
@@ -36,7 +36,10 @@ async def submit_walkthrough_request(request: WalkthroughRequest):
     }
     await db.walkthrough_requests.insert_one(doc)
 
-    # Push to MailerLite Lead Nurture (only if email provided — it's optional on this form)
+    # GL-WEB-013 — route to service-specific MailerLite group based on the
+    # selected service. Known services trigger a single-email confirmation
+    # automation. "Not sure" / blank falls back to the Lead Nurture cold-lead
+    # drip (handled inside add_to_service_request).
     if request.email:
         attribution = {}
         if request.utm_source:
@@ -45,11 +48,11 @@ async def submit_walkthrough_request(request: WalkthroughRequest):
                 "utm_medium": request.utm_medium,
                 "utm_campaign": request.utm_campaign,
             }}
-        asyncio.create_task(add_to_lead_nurture(
+        asyncio.create_task(add_to_service_request(
             email=request.email,
+            service=request.service,
             name=request.name,
             company=request.company,
-            source_form="walkthrough_request",
             attribution=attribution if attribution else None,
         ))
 

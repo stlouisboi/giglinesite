@@ -29,6 +29,7 @@ const IntakePage = () => {
     company: '',
     phone: '',
     email: '',
+    city: '',
     service: preselectedService,
   });
   const [submitting, setSubmitting] = useState(false);
@@ -156,6 +157,32 @@ const IntakePage = () => {
                 </div>
 
                 <div>
+                  <label className="block text-sm text-white/70 mb-1.5 font-mono tracking-wide uppercase" htmlFor="email">
+                    Email *
+                  </label>
+                  <input
+                    id="email" name="email" type="email" required autoComplete="email"
+                    value={form.email} onChange={handleChange}
+                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3.5 rounded focus:outline-none focus:border-[#1F6FEB] transition-colors placeholder:text-white/30"
+                    placeholder="you@yourcompany.com"
+                    data-testid="intake-email"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm text-white/70 mb-1.5 font-mono tracking-wide uppercase" htmlFor="city">
+                    City *
+                  </label>
+                  <input
+                    id="city" name="city" type="text" required autoComplete="address-level2"
+                    value={form.city} onChange={handleChange}
+                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3.5 rounded focus:outline-none focus:border-[#1F6FEB] transition-colors placeholder:text-white/30"
+                    placeholder="Kernersville, NC"
+                    data-testid="intake-city"
+                  />
+                </div>
+
+                <div>
                   <label className="block text-sm text-white/70 mb-1.5 font-mono tracking-wide uppercase" htmlFor="service">
                     What do you need help with? *
                   </label>
@@ -170,19 +197,6 @@ const IntakePage = () => {
                       <option key={s.value} value={s.value} className="bg-[#0B1F33]">{s.label}</option>
                     ))}
                   </select>
-                </div>
-
-                <div>
-                  <label className="block text-sm text-white/50 mb-1.5 font-mono tracking-wide uppercase" htmlFor="email">
-                    Email <span className="text-white/30 normal-case font-sans">(optional)</span>
-                  </label>
-                  <input
-                    id="email" name="email" type="email" autoComplete="email"
-                    value={form.email} onChange={handleChange}
-                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3.5 rounded focus:outline-none focus:border-[#1F6FEB] transition-colors placeholder:text-white/30"
-                    placeholder="Only if you prefer email follow-up"
-                    data-testid="intake-email"
-                  />
                 </div>
 
                 {error && <p className="text-red-400 text-sm" data-testid="intake-error">{error}</p>}

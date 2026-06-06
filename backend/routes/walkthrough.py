@@ -25,6 +25,7 @@ async def submit_walkthrough_request(request: WalkthroughRequest):
         "phone": request.phone,
         "service": request.service,
         "email": request.email,
+        "city": request.city,
         "status": "new",
         "notes": [],
         "timestamp": datetime.now(timezone.utc).isoformat(),
@@ -65,8 +66,9 @@ async def submit_walkthrough_request(request: WalkthroughRequest):
                 f"<h2>New Lead — {request.service}</h2>"
                 f"<p><strong>Name:</strong> {request.name}</p>"
                 f"<p><strong>Business:</strong> {request.company}</p>"
+                f"<p><strong>City:</strong> {request.city}</p>"
                 f"<p><strong>Phone:</strong> <a href=\"tel:{request.phone}\">{request.phone}</a></p>"
-                f"<p><strong>Email:</strong> {request.email or '<em>Not provided</em>'}</p>"
+                f"<p><strong>Email:</strong> {request.email}</p>"
                 f"<p><strong>Needs:</strong> {request.service}</p>"
                 f"{'<p><strong>Source:</strong> ' + request.utm_source + ' / ' + request.utm_medium + ' / ' + request.utm_campaign + '</p>' if request.utm_source else ''}"
                 f"<p><em>Submitted at {doc['timestamp']}</em></p>"

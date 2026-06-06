@@ -1,6 +1,6 @@
 """Pydantic models shared across route modules."""
 
-from pydantic import BaseModel, Field, ConfigDict
+from pydantic import BaseModel, Field, ConfigDict, EmailStr
 from typing import Optional, Dict
 from datetime import datetime, timezone
 import uuid
@@ -60,7 +60,8 @@ class WalkthroughRequest(BaseModel):
     company: str
     phone: str
     service: str
-    email: str = ""
+    email: EmailStr
+    city: str
     utm_source: str = ""
     utm_medium: str = ""
     utm_campaign: str = ""

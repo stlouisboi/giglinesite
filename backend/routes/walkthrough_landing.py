@@ -65,9 +65,13 @@ async def submit_walkthrough_landing(payload: WalkthroughLandingSubmission):
         if doc['specifics'] else ""
     )
     try:
+        # Friendly "from" so the Gmail inbox column shows the lead's name.
+        # Reply-to is set to the lead's actual email — pressing Reply auto-fills them.
+        friendly_from = f"{doc['name']} via GigLine <{SENDER_EMAIL}>"
         resend.Emails.send({
-            "from": SENDER_EMAIL,
+            "from": friendly_from,
             "to": [VINCE_EMAIL],
+            "reply_to": doc["email"],
             "subject": f"New walkthrough request — {doc['company']} — {doc['city']}",
             "html": (
                 f"<h2>New Walkthrough Request — QR Door-Knock</h2>"

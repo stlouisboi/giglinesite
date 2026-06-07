@@ -58,9 +58,14 @@ async def submit_walkthrough_request(request: WalkthroughRequest):
         ))
 
     try:
+        # Friendly "from" so the Gmail inbox column shows the lead's name
+        # (still sent through your verified SENDER_EMAIL domain so it delivers).
+        # reply-to is the lead's actual email — Reply in Gmail auto-fills them.
+        friendly_from = f"{request.name} via GigLine <{SENDER_EMAIL}>"
         resend.Emails.send({
-            "from": SENDER_EMAIL,
+            "from": friendly_from,
             "to": [VINCE_EMAIL],
+            "reply_to": request.email,
             "subject": f"GigLine Lead: {request.name} — {request.service}",
             "html": (
                 f"<h2>New Lead — {request.service}</h2>"
@@ -68,7 +73,7 @@ async def submit_walkthrough_request(request: WalkthroughRequest):
                 f"<p><strong>Business:</strong> {request.company}</p>"
                 f"<p><strong>City:</strong> {request.city}</p>"
                 f"<p><strong>Phone:</strong> <a href=\"tel:{request.phone}\">{request.phone}</a></p>"
-                f"<p><strong>Email:</strong> {request.email}</p>"
+                f"<p><strong>Email:</strong> <a href=\"mailto:{request.email}\">{request.email}</a></p>"
                 f"<p><strong>Needs:</strong> {request.service}</p>"
                 f"{'<p><strong>Source:</strong> ' + request.utm_source + ' / ' + request.utm_medium + ' / ' + request.utm_campaign + '</p>' if request.utm_source else ''}"
                 f"<p><em>Submitted at {doc['timestamp']}</em></p>"

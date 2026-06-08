@@ -241,14 +241,61 @@ def build_pricing_block_html(scope):
 
 
 class IntakeSubmission(BaseModel):
-    company: str
+    # ─── Section 1 — Company & Contact (per GL-WEB-013) ───
+    companyName: str = ""
+    facilityAddress: str = ""
+    contactName: str = ""
+    contactTitle: str = ""
+    phone: str = ""
+    email: str = ""
+    operationType: str = ""           # steel_supply | manufacturing | warehouse | contractor | fleet | mixed | other
+    operationTypeOther: str = ""
+    employeeCountBucket: str = ""     # under_10 | 10_24 | 25_74 | 75_149 | 150_plus
+    shiftPattern: str = ""            # days_only | days_nights | 24_7 | variable
+
+    # ─── Section 2 — Why You Called & Urgency ───
+    reasonForContact: str = ""
+    upcomingAudit: str = ""           # yes | no | not_sure
+    auditDetails: str = ""
+    urgencyTimeline: str = ""         # asap | 2_4_weeks | flexible
+    serviceRequested: str = ""        # walkthrough | doc_review | incident_review | not_sure
+    remoteOrOnsite: str = ""          # onsite | remote | no_preference
+
+    # ─── Section 3 — Current Safety Setup ───
+    q_safety_program: str = ""
+    q_osha_logs: str = ""
+    q_new_hire: str = ""
+    q_training: str = ""
+    q_eap: str = ""
+    q_hazcom: str = ""
+    q_inspections: str = ""
+    q_prior_osha: str = ""            # yes | no | prefer_not_to_say
+    q_known_gaps: str = ""
+
+    # ─── Section 4 — Equipment & Hazards ───
+    equipment: List[str] = []
+    otherHazards: str = ""
+
+    # ─── Section 5 — Documentation & Logistics ───
+    docPrepReadiness: str = ""        # yes | mostly | need_help
+    preferredDays: List[str] = []
+    preferredTime: str = ""           # morning | afternoon | either
+    contactMethod: str = ""           # phone | text | email
+    accessNotes: str = ""
+
+    # ─── Section 6 — Acknowledgment ───
+    acknowledgmentChecked: bool = False
+
+    # ─── System fields ───
+    uploadedFileUrls: list = []
+    attribution: Optional[dict] = None
+
+    # ─── Legacy fields (kept for backward compatibility — never used by new form) ───
+    company: str = ""
     dba: str = ""
-    address: str
+    address: str = ""
     additionalLocations: str = ""
-    contactName: str
     jobTitle: str = ""
-    email: str
-    phone: str
     totalEmployees: int = 0
     siteEmployees: int = 0
     schedule: str = ""
@@ -265,18 +312,14 @@ class IntakeSubmission(BaseModel):
     oshaInspections: str = ""
     recordableInjuries: str = ""
     existingDocs: Optional[dict] = None
-    uploadedFileUrls: list = []
     helpNeeded: list = []
     helpOther: str = ""
     ninetyDayProblem: str = ""
     urgency: str = ""
     budget: str = ""
     approver: str = ""
-    preferredDays: list = []
-    preferredTime: str = ""
     referralSource: str = ""
     consentGiven: bool = False
-    attribution: Optional[dict] = None
 
 
 @router.post("/intake/upload")
@@ -311,13 +354,20 @@ async def upload_intake_file(file: UploadFile = File(...)):
 
 @router.post("/intake/submit")
 async def submit_intake(data: IntakeSubmission):
-    """Store intake submission and send notification emails."""
-    if not data.consentGiven:
-        raise HTTPException(status_code=400, detail="Consent required")
+    """
+    GL-WEB-013 — Intake form rebuild.
+    Stores submission, fires two emails:
+      1. Client confirmation (plain-styled HTML with Field Manual link + status page)
+      2. Vince notification (plain-text monospaced summary, sized for phone scan)
+    Conditionally attaches the Doc Review prep checklist when service = doc_review.
+    """
+    if not data.acknowledgmentChecked:
+        raise HTTPException(status_code=400, detail="Acknowledgment required")
 
     submission_id = str(uuid.uuid4())
-    client_token = secrets.token_urlsafe(9)  # ~12 chars, unique per engagement
+    client_token = secrets.token_urlsafe(9)
     timestamp = datetime.now(timezone.utc)
+    submitted_ts = timestamp.strftime("%B %d, %Y at %I:%M %p UTC")
 
     doc = {
         "id": submission_id,
@@ -332,134 +382,231 @@ async def submit_intake(data: IntakeSubmission):
     }
     await db.gl_intake_submissions.insert_one(doc)
 
-    # MailerLite: intake = active engagement, so add to Lead Nurture but flag as paused
-    # so they don't receive prospect-stage drip emails while we're working with them.
+    # ── MailerLite ── intake = active engagement → Paused group, no automation runs
     if data.email:
         attribution_dict = data.attribution if isinstance(data.attribution, dict) else None
         asyncio.create_task(add_to_lead_nurture(
             email=data.email,
             name=data.contactName or "",
-            company=data.company or "",
+            company=data.companyName or "",
             source_form="intake",
             attribution=attribution_dict,
         ))
-        # Then pause — moves to "Paused — Active Engagement" group, no automation runs there
         asyncio.create_task(pause_engagement(data.email))
 
-    # Calculate proposed scope (server-side only, never exposed to client)
-    scope = calculate_proposed_scope(data)
-    pricing_block = build_pricing_block_html(scope)
+    # ── Label dictionaries for human-readable email rendering ──
+    OP_TYPES = {
+        "steel_supply": "Steel supply / fabrication", "manufacturing": "Manufacturing",
+        "warehouse": "Warehouse / distribution", "contractor": "Contractor / construction",
+        "fleet": "Fleet operations", "mixed": "Mixed use", "other": "Other",
+    }
+    EMP_COUNTS = {
+        "under_10": "Under 10", "10_24": "10–24", "25_74": "25–74",
+        "75_149": "75–149", "150_plus": "150+",
+    }
+    SHIFTS = {
+        "days_only": "Days only", "days_nights": "Days + nights",
+        "24_7": "24/7 operation", "variable": "Variable",
+    }
+    UPCOMING_AUDIT = {"yes": "Yes", "no": "No", "not_sure": "Not sure"}
+    URGENCY = {"asap": "As soon as possible", "2_4_weeks": "Next 2–4 weeks", "flexible": "Flexible — no specific deadline"}
+    SERVICES = {
+        "walkthrough": "Safety Walkthrough & Top 10 Fixes Report",
+        "doc_review": "Documentation & Gap Check",
+        "incident_review": "Incident Review & Corrective Action Support",
+        "not_sure": "Not sure — let Vince recommend",
+    }
+    REMOTE = {"onsite": "On-site", "remote": "Remote", "no_preference": "No preference"}
+    YNS = {"yes": "YES", "no": "NO", "not_sure": "NOT SURE", "prefer_not_to_say": "PREFER NOT TO SAY"}
+    DOC_PREP = {
+        "yes": "Yes — can pull most of it",
+        "mostly": "Mostly — some items may be missing",
+        "need_help": "Need help knowing where to start",
+    }
+    TIMES = {"morning": "Morning (before noon)", "afternoon": "Afternoon", "either": "Either"}
+    CONTACT_M = {"phone": "Phone call", "text": "Text message", "email": "Email"}
 
-    # Build formatted email for Vince
-    programs_html = ""
-    if data.requiredPrograms:
-        programs_html = "<table style='border-collapse:collapse;width:100%;margin:8px 0;'>"
-        programs_html += "<tr style='background:#222;color:#E8B84B;'><th style='padding:6px 8px;text-align:left;'>Program</th><th style='padding:6px 8px;'>Status</th></tr>"
-        for prog, status in data.requiredPrograms.items():
-            color = "#4ade80" if status == "yes" else "#f87171" if status == "no" else "#E8B84B" if status == "not_sure" else "#999"
-            programs_html += f"<tr><td style='padding:4px 8px;border-bottom:1px solid #333;color:#ccc;'>{prog}</td><td style='padding:4px 8px;border-bottom:1px solid #333;color:{color};font-weight:bold;text-align:center;'>{status.upper()}</td></tr>"
-        programs_html += "</table>"
+    def L(d, k):
+        return d.get(k, k) if k else "—"
 
-    docs_html = ""
-    if data.existingDocs:
-        docs_html = "<table style='border-collapse:collapse;width:100%;margin:8px 0;'>"
-        for doc_name, status in data.existingDocs.items():
-            color = "#4ade80" if status == "yes" else "#f87171" if status == "no" else "#E8B84B" if status == "not_sure" else "#999"
-            docs_html += f"<tr><td style='padding:4px 8px;border-bottom:1px solid #333;color:#ccc;'>{doc_name}</td><td style='padding:4px 8px;border-bottom:1px solid #333;color:{color};font-weight:bold;text-align:center;'>{status.upper()}</td></tr>"
-        docs_html += "</table>"
-
-    vince_html = f"""
-    <div style="font-family:Arial,sans-serif;max-width:640px;margin:0 auto;background:#1A1A1A;color:#fff;padding:24px;border-radius:8px;">
-      <div style="border-bottom:2px solid #E8B84B;padding-bottom:12px;margin-bottom:20px;">
-        <h2 style="color:#E8B84B;margin:0;">New GigLine Intake — {data.company}</h2>
-        <p style="color:#999;font-size:13px;margin:4px 0 0;">Submitted {timestamp.strftime('%B %d, %Y at %I:%M %p')} UTC</p>
-      </div>
-
-      {pricing_block}
-
-      <h3 style="color:#E8B84B;font-size:14px;margin:16px 0 8px;">COMPANY</h3>
-      <p style="color:#ccc;margin:2px 0;"><strong>Company:</strong> {data.company} {f'(DBA: {data.dba})' if data.dba else ''}</p>
-      <p style="color:#ccc;margin:2px 0;"><strong>Address:</strong> {data.address}</p>
-      <p style="color:#ccc;margin:2px 0;"><strong>Additional Locations:</strong> {data.additionalLocations or 'No'}</p>
-      <p style="color:#ccc;margin:2px 0;"><strong>Total Employees:</strong> {data.totalEmployees} | <strong>At this site:</strong> {data.siteEmployees}</p>
-      <p style="color:#ccc;margin:2px 0;"><strong>Schedule:</strong> {data.schedule}</p>
-
-      <h3 style="color:#E8B84B;font-size:14px;margin:16px 0 8px;">CONTACT</h3>
-      <p style="color:#ccc;margin:2px 0;"><strong>{data.contactName}</strong> — {data.jobTitle or 'N/A'}</p>
-      <p style="color:#ccc;margin:2px 0;"><a href="mailto:{data.email}" style="color:#E8B84B;">{data.email}</a> · <a href="tel:{data.phone}" style="color:#E8B84B;">{data.phone}</a></p>
-
-      <h3 style="color:#E8B84B;font-size:14px;margin:16px 0 8px;">OPERATIONS</h3>
-      <p style="color:#ccc;margin:2px 0;"><strong>Industry:</strong> {data.industry} {f'({data.industryOther})' if data.industryOther else ''}</p>
-      <p style="color:#ccc;margin:2px 0;"><strong>Day-to-day:</strong> {data.dayToDay or 'N/A'}</p>
-      <p style="color:#ccc;margin:2px 0;"><strong>Operations:</strong> {', '.join(data.operations) if data.operations else 'None selected'}</p>
-      <p style="color:#ccc;margin:2px 0;"><strong>Top hazards:</strong> {data.topHazards or 'N/A'}</p>
-
-      <h3 style="color:#E8B84B;font-size:14px;margin:16px 0 8px;">SAFETY & COMPLIANCE</h3>
-      <p style="color:#ccc;margin:2px 0;"><strong>Written program:</strong> {data.safetyProgram}</p>
-      <p style="color:#ccc;margin:2px 0;"><strong>Safety owner:</strong> {data.safetyOwner}</p>
-      {programs_html}
-      <p style="color:#ccc;margin:2px 0;"><strong>OSHA 300 logs:</strong> {data.oshaLogs} | <strong>Inspections (3yr):</strong> {data.oshaInspections} | <strong>Recordables:</strong> {data.recordableInjuries}</p>
-
-      <h3 style="color:#E8B84B;font-size:14px;margin:16px 0 8px;">DOCUMENTATION</h3>
-      {docs_html}
-      <p style="color:#ccc;margin:2px 0;"><strong>Uploaded files:</strong> {len(data.uploadedFileUrls)} file(s)</p>
-
-      <h3 style="color:#E8B84B;font-size:14px;margin:16px 0 8px;">WHY THEY REACHED OUT</h3>
-      <p style="color:#ccc;margin:2px 0;"><strong>Help needed:</strong> {', '.join(data.helpNeeded) if data.helpNeeded else 'N/A'}</p>
-      <p style="color:#ccc;margin:2px 0;"><strong>90-day problem:</strong> {data.ninetyDayProblem or 'N/A'}</p>
-      <p style="color:#ccc;margin:2px 0;"><strong>Urgency:</strong> {data.urgency}</p>
-
-      <h3 style="color:#E8B84B;font-size:14px;margin:16px 0 8px;">BUDGET & LOGISTICS</h3>
-      <p style="color:#ccc;margin:2px 0;"><strong>Budget:</strong> {data.budget or 'Not provided'}</p>
-      <p style="color:#ccc;margin:2px 0;"><strong>Approver:</strong> {data.approver or 'Not provided'}</p>
-      <p style="color:#ccc;margin:2px 0;"><strong>Preferred days:</strong> {', '.join(data.preferredDays) if data.preferredDays else 'Not provided'}</p>
-      <p style="color:#ccc;margin:2px 0;"><strong>Preferred time:</strong> {data.preferredTime or 'Not provided'}</p>
-      <p style="color:#ccc;margin:2px 0;"><strong>Referral source:</strong> {data.referralSource or 'Not provided'}</p>
-
-      {_format_attribution_html(data.attribution)}
-    </div>
-    """
-
-    # Client confirmation email — includes status page URL
+    first_name = (data.contactName or "").split(" ")[0] if data.contactName else ""
     status_url = f"https://giglinecompliance.com/status/{client_token}"
+
+    # ─────────────────────────────────────────────────────────
+    # CLIENT CONFIRMATION EMAIL (per spec — Section 5)
+    # ─────────────────────────────────────────────────────────
+    client_subject = "GigLine received your intake — here's what happens next"
     client_html = f"""
-    <div style="font-family:Georgia,serif;max-width:600px;margin:0 auto;color:#1C2B2B;">
-      <h1 style="font-size:22px;margin-bottom:16px;">GigLine received your intake form</h1>
-      <p>Thanks, {data.contactName}. We have received the safety intake for <strong>{data.company}</strong>.</p>
-      <p style="margin-top:16px;"><strong>What happens next:</strong></p>
-      <p>Vince will review your information and follow up within <strong>1 business day</strong> to schedule a call or walkthrough and discuss next steps.</p>
-      <p style="margin-top:16px;"><strong>Track your progress:</strong></p>
-      <p><a href="{status_url}" style="color:#B8972C;font-weight:bold;">{status_url}</a></p>
-      <p style="font-size:13px;color:#888;">This link is private to you. Bookmark it to check your status at any time.</p>
-      <hr style="margin:24px 0;border:none;border-top:1px solid #ddd;" />
-      <p style="color:#888;font-size:14px;">
-        — Vince Lawrence<br/>
-        GigLine Safety & Compliance<br/>
-        (336) 329-8899<br/>
-        vince@giglinecompliance.com
-      </p>
-    </div>
-    """
+<div style="font-family:Georgia,'Times New Roman',serif;max-width:600px;margin:0 auto;color:#1C2B2B;line-height:1.55;padding:0 18px;">
+  <p style="font-size:15px;">Hi {first_name or 'there'},</p>
+  <p style="font-size:15px;">Got it — your intake has been received. Here&rsquo;s what happens next:</p>
+  <ol style="font-size:15px;padding-left:22px;margin:8px 0 18px;">
+    <li style="margin-bottom:4px;">Vince will review your answers and confirm a fixed quote within 1 business day.</li>
+    <li style="margin-bottom:4px;">You&rsquo;ll receive a proposed scope of work and price by email.</li>
+    <li style="margin-bottom:4px;">Once you confirm, Vince will schedule the walkthrough or review at a time that works for your operation.</li>
+  </ol>
+  <p style="font-size:15px;">In the meantime &mdash; here&rsquo;s something worth keeping regardless of what you decide:</p>
+  <p style="font-size:15px;">The <strong>2026 Triad OSHA Field Manual</strong>. 12 pages. The 7 violations OSHA cites Piedmont Triad operations for most often &mdash; CFR citations, penalty ranges, and the fix for each one.</p>
+  <p style="font-size:15px;margin:14px 0;">
+    <a href="https://www.giglinecompliance.com/assets/gl-fm-2026.pdf"
+       style="background:#0A1628;color:#FFFFFF;text-decoration:none;padding:11px 22px;font-weight:bold;font-family:Arial,sans-serif;display:inline-block;">
+      Download the 2026 Field Manual (PDF)
+    </a>
+  </p>
+  <p style="font-size:13px;color:#777;margin-top:0;">No forms. No opt-in. Yours to keep.</p>
+  <hr style="margin:24px 0;border:none;border-top:1px solid #E5E5E5;" />
+  <p style="font-size:15px;"><strong>You can check the status of your engagement anytime at:</strong></p>
+  <p style="font-size:15px;margin:8px 0 20px;">
+    <a href="{status_url}"
+       style="background:#1F6FEB;color:#FFFFFF;text-decoration:none;padding:11px 22px;font-weight:bold;font-family:Arial,sans-serif;display:inline-block;">
+      View your engagement status &rarr;
+    </a>
+  </p>
+  <p style="font-size:13px;color:#777;">This link is private to you. Bookmark it to track your engagement at any time.</p>
+  <hr style="margin:24px 0;border:none;border-top:1px solid #E5E5E5;" />
+  <p style="font-size:15px;">Questions before then? Call or text <a href="tel:+13363298899" style="color:#0A1628;font-weight:bold;text-decoration:none;">(336) 329-8899</a>.</p>
+  <p style="font-size:15px;margin-top:18px;">
+    &mdash; Vince Lawrence<br />
+    GigLine Safety &amp; Compliance<br />
+    <span style="color:#777;font-size:13px;">(336) 329-8899 &middot; giglinecompliance.com</span>
+  </p>
+</div>"""
+
+    # Conditional attachment: prep checklist only when service = doc_review
+    client_send_payload = {
+        "from": f"Vince Lawrence <{SENDER_EMAIL}>",
+        "to": [data.email],
+        "subject": client_subject,
+        "html": client_html,
+        "reply_to": VINCE_EMAIL,
+    }
+    if data.serviceRequested == "doc_review":
+        prep_path = "/app/frontend/public/assets/gl-doc-review-prep-checklist.pdf"
+        try:
+            with open(prep_path, "rb") as fp:
+                import base64
+                client_send_payload["attachments"] = [{
+                    "filename": "GigLine_DocReview_PrepChecklist.pdf",
+                    "content": base64.b64encode(fp.read()).decode("ascii"),
+                }]
+        except Exception as e:
+            logger.warning(f"Prep checklist attachment skipped: {e}")
+
+    # ─────────────────────────────────────────────────────────
+    # VINCE NOTIFICATION EMAIL (per spec — Section 6, plain-text monospaced)
+    # ─────────────────────────────────────────────────────────
+    op_type_display = L(OP_TYPES, data.operationType)
+    if data.operationType in ("mixed", "other") and data.operationTypeOther:
+        op_type_display += f" — {data.operationTypeOther}"
+
+    emp_count_display = L(EMP_COUNTS, data.employeeCountBucket)
+    vince_subject = (
+        f"New intake — {data.companyName or 'Unknown company'} "
+        f"· {op_type_display} · {emp_count_display} employees"
+    )
+
+    equipment_lines = "\n".join(f"  • {item}" for item in (data.equipment or [])) or "  • (none selected)"
+    audit_line = L(UPCOMING_AUDIT, data.upcomingAudit)
+    if data.upcomingAudit == "yes" and data.auditDetails:
+        audit_line += f"  ({data.auditDetails})"
+    preferred_days_line = ", ".join(data.preferredDays) if data.preferredDays else "—"
+
+    def pad(label):
+        return label.ljust(26)
+
+    vince_plaintext = f"""\
+NEW INTAKE SUBMISSION
+═══════════════════════════════════════════════════════
+
+Submitted: {submitted_ts}
+
+───────────────────────────────────────────────────────
+COMPANY & CONTACT
+───────────────────────────────────────────────────────
+{pad('Company:')}{data.companyName or '—'}
+{pad('Facility:')}{data.facilityAddress or '—'}
+{pad('Contact:')}{data.contactName or '—'}{(', ' + data.contactTitle) if data.contactTitle else ''}
+{pad('Phone:')}{data.phone or '—'}
+{pad('Email:')}{data.email or '—'}
+{pad('Operation type:')}{op_type_display}
+{pad('Employees:')}{emp_count_display}
+{pad('Shifts:')}{L(SHIFTS, data.shiftPattern)}
+
+───────────────────────────────────────────────────────
+WHY THEY CALLED
+───────────────────────────────────────────────────────
+{pad('Prompt:')}{data.reasonForContact or '—'}
+{pad('Upcoming audit:')}{audit_line}
+{pad('Urgency:')}{L(URGENCY, data.urgencyTimeline)}
+{pad('Service:')}{L(SERVICES, data.serviceRequested)}
+{pad('Preference:')}{L(REMOTE, data.remoteOrOnsite)}
+
+───────────────────────────────────────────────────────
+CURRENT SAFETY SETUP
+───────────────────────────────────────────────────────
+{pad('Written safety program:')}{L(YNS, data.q_safety_program)}
+{pad('OSHA 300/300A logs:')}{L(YNS, data.q_osha_logs)}
+{pad('New-hire orientation:')}{L(YNS, data.q_new_hire)}
+{pad('Regular safety training:')}{L(YNS, data.q_training)}
+{pad('Emergency action plan:')}{L(YNS, data.q_eap)}
+{pad('HazCom program + SDS:')}{L(YNS, data.q_hazcom)}
+{pad('Regular inspections:')}{L(YNS, data.q_inspections)}
+{pad('Prior OSHA citation:')}{L(YNS, data.q_prior_osha)}
+{pad('Known gaps / concerns:')}{(data.q_known_gaps or '—')}
+
+───────────────────────────────────────────────────────
+EQUIPMENT & HAZARDS
+───────────────────────────────────────────────────────
+{equipment_lines}
+{pad('Other hazards:')}{data.otherHazards or '—'}
+
+───────────────────────────────────────────────────────
+LOGISTICS
+───────────────────────────────────────────────────────
+{pad('Doc prep readiness:')}{L(DOC_PREP, data.docPrepReadiness)}
+{pad('Preferred days:')}{preferred_days_line}
+{pad('Preferred time:')}{L(TIMES, data.preferredTime)}
+{pad('Contact method:')}{L(CONTACT_M, data.contactMethod)}
+{pad('Access notes:')}{data.accessNotes or '—'}
+
+───────────────────────────────────────────────────────
+PRICING REFERENCE
+───────────────────────────────────────────────────────
+Under 25 employees → $550 base
+25–74            → $650
+75–149           → $800
+150+             → custom
+On-site add $100–150  |  High complexity → adjust up
+
+───────────────────────────────────────────────────────
+STATUS PAGE: {status_url}
+REPLY TO:    {data.email}
+CALL:        {data.phone}
+"""
+
+    # Wrap plain text in monospaced HTML for browser-safe rendering
+    vince_html = (
+        f"<pre style=\"font-family:'JetBrains Mono','Courier New',monospace;"
+        f"font-size:12.5px;line-height:1.5;color:#1C2B2B;white-space:pre-wrap;"
+        f"margin:0;padding:18px;\">{vince_plaintext}</pre>"
+    )
 
     try:
         resend.Emails.send({
-            "from": SENDER_EMAIL,
+            "from": f"GigLine Intake <{SENDER_EMAIL}>",
             "to": [VINCE_EMAIL],
-            "subject": f"New GigLine Intake — {data.company}",
+            "reply_to": data.email or VINCE_EMAIL,
+            "subject": vince_subject,
             "html": vince_html,
+            "text": vince_plaintext,
         })
     except Exception as e:
         logger.error(f"Intake Vince email error: {e}")
 
-    try:
-        resend.Emails.send({
-            "from": SENDER_EMAIL,
-            "to": [data.email],
-            "subject": "GigLine received your intake form",
-            "html": client_html,
-            "reply_to": VINCE_EMAIL,
-        })
-    except Exception as e:
-        logger.error(f"Intake client email error: {e}")
+    if data.email:
+        try:
+            resend.Emails.send(client_send_payload)
+        except Exception as e:
+            logger.error(f"Intake client email error: {e}")
 
     return {"status": "success", "submissionId": submission_id, "clientToken": client_token}

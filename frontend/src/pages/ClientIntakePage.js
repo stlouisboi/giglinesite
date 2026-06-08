@@ -1,213 +1,265 @@
-import React, { useState } from 'react';
-import { Check, ChevronRight, Upload, X } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { Check, Upload, X, ArrowRight, ArrowUpRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import { getAttribution } from '../utils/analytics';
 
 const API = process.env.REACT_APP_BACKEND_URL;
 
+/*
+  GL-WEB-013 — Client Intake Form
+  Single-scroll 6-section layout. Premium dark palette.
+  Per spec — restrained, serious, polished. No AI-slop patterns.
+*/
+
 /* ── Brand tokens ── */
 const C = {
-  bg: '#1A1A1A', surface: '#222222', deep: '#111111',
-  gold: '#1F6FEB', white: '#FFFFFF',
-  sec: 'rgba(255,255,255,0.65)', muted: 'rgba(255,255,255,0.38)',
+  bg: '#1A1A1A', surface: '#222222', deep: '#111111', deeper: '#0B0B0B',
+  blue: '#1F6FEB', blueDim: 'rgba(31,111,235,0.08)', blueBorder: 'rgba(31,111,235,0.32)',
+  white: '#FFFFFF', sec: 'rgba(255,255,255,0.72)', muted: 'rgba(255,255,255,0.42)',
+  subtle: 'rgba(255,255,255,0.26)',
   border: 'rgba(255,255,255,0.08)', borderHover: 'rgba(255,255,255,0.20)',
+  red: '#EF4444', green: '#22C55E', amber: '#F59E0B',
 };
 
-/* ── Section defs ── */
-const SECTIONS = [
-  { id: 1, label: 'Company' },
-  { id: 2, label: 'Operation' },
-  { id: 3, label: 'Needs' },
-];
+const mono = { fontFamily: "'JetBrains Mono', monospace" };
 
-/* ── Reusable components ── */
-const Input = ({ label, required, ...props }) => (
-  <div className="mb-4">
-    <label className="block text-sm mb-1.5" style={{ color: C.sec }}>
-      {label}{required && <span style={{ color: C.gold }}> *</span>}
+/* ─────────────────────────────────────────────────────────
+   PRIMITIVES
+───────────────────────────────────────────────────────── */
+
+const SectionHeader = ({ number, title, subtitle }) => (
+  <div className="mb-7">
+    <p
+      className="font-bold tracking-[3px] mb-2"
+      style={{ color: C.blue, ...mono, fontSize: '11px' }}
+    >
+      {number} &middot; SECTION {parseInt(number, 10)}
+    </p>
+    <h2 className="text-[22px] md:text-[26px] font-bold leading-tight text-white" style={{ fontFamily: "'Manrope', sans-serif" }}>
+      {title}
+    </h2>
+    {subtitle && (
+      <p className="text-sm mt-2 leading-relaxed max-w-2xl" style={{ color: C.muted }}>
+        {subtitle}
+      </p>
+    )}
+  </div>
+);
+
+const Field = ({ label, required, hint, children, error }) => (
+  <div className="mb-5">
+    <label className="block text-sm mb-1.5 font-medium" style={{ color: C.sec }}>
+      {label}{required && <span style={{ color: C.blue, marginLeft: '4px' }}>*</span>}
     </label>
-    <input
-      {...props}
-      required={required}
-      className="w-full px-4 py-3 rounded-lg text-sm text-white placeholder:text-white/25 focus:outline-none transition-colors"
-      style={{ background: C.deep, border: `1px solid ${C.border}` }}
-      onFocus={e => e.target.style.borderColor = C.gold}
-      onBlur={e => e.target.style.borderColor = C.border}
-    />
+    {children}
+    {hint && (
+      <p className="text-xs mt-1.5 leading-relaxed" style={{ color: C.muted }}>
+        {hint}
+      </p>
+    )}
+    {error && (
+      <p className="text-xs mt-1.5 font-medium" style={{ color: C.red }}>
+        {error}
+      </p>
+    )}
   </div>
 );
 
-const Textarea = ({ label, required, ...props }) => (
-  <div className="mb-4">
-    <label className="block text-sm mb-1.5" style={{ color: C.sec }}>{label}{required && <span style={{ color: C.gold }}> *</span>}</label>
-    <textarea
-      {...props} required={required} rows={3}
-      className="w-full px-4 py-3 rounded-lg text-sm text-white placeholder:text-white/25 focus:outline-none resize-none transition-colors"
-      style={{ background: C.deep, border: `1px solid ${C.border}` }}
-      onFocus={e => e.target.style.borderColor = C.gold}
-      onBlur={e => e.target.style.borderColor = C.border}
-    />
-  </div>
+const TextInput = ({ ...p }) => (
+  <input
+    {...p}
+    className="w-full px-4 py-3 rounded-md text-sm text-white placeholder:text-white/22 focus:outline-none transition-colors"
+    style={{ background: C.deep, border: `1px solid ${C.border}` }}
+    onFocus={(e) => { e.target.style.borderColor = C.blue; }}
+    onBlur={(e) => { e.target.style.borderColor = C.border; }}
+  />
 );
 
-const RadioGroup = ({ label, name, options, value, onChange, required, columns = 1 }) => (
-  <div className="mb-4">
-    <label className="block text-sm mb-2" style={{ color: C.sec }}>{label}{required && <span style={{ color: C.gold }}> *</span>}</label>
-    <div className={`grid gap-2 ${columns === 2 ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1'}`}>
-      {options.map(opt => (
-        <label key={opt.value} className="flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer transition-all"
-          style={{
-            background: value === opt.value ? 'rgba(31,111,235,0.07)' : C.deep,
-            border: `1px solid ${value === opt.value ? 'rgba(31,111,235,0.4)' : C.border}`,
-          }}
+const TextArea = ({ rows = 3, ...p }) => (
+  <textarea
+    rows={rows} {...p}
+    className="w-full px-4 py-3 rounded-md text-sm text-white placeholder:text-white/22 focus:outline-none resize-none transition-colors"
+    style={{ background: C.deep, border: `1px solid ${C.border}` }}
+    onFocus={(e) => { e.target.style.borderColor = C.blue; }}
+    onBlur={(e) => { e.target.style.borderColor = C.border; }}
+  />
+);
+
+const SelectInput = ({ options, ...p }) => (
+  <select
+    {...p}
+    className="w-full px-4 py-3 rounded-md text-sm text-white focus:outline-none appearance-none transition-colors"
+    style={{
+      background: C.deep, border: `1px solid ${C.border}`,
+      backgroundImage: "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path d='M3 4.5l3 3 3-3' fill='none' stroke='%23ffffff' stroke-opacity='0.55' stroke-width='1.5'/></svg>\")",
+      backgroundRepeat: 'no-repeat', backgroundPosition: 'right 14px center',
+    }}
+    onFocus={(e) => { e.target.style.borderColor = C.blue; }}
+    onBlur={(e) => { e.target.style.borderColor = C.border; }}
+  >
+    <option value="" disabled className="bg-[#111]">Select...</option>
+    {options.map((o) => (
+      <option key={o.value} value={o.value} className="bg-[#111]">{o.label}</option>
+    ))}
+  </select>
+);
+
+const PillToggle = ({ value, onChange, options }) => (
+  <div className="inline-flex p-0.5 rounded-md" style={{ background: C.deep, border: `1px solid ${C.border}` }}>
+    {options.map((opt) => {
+      const active = value === opt.value;
+      return (
+        <button
+          key={opt.value} type="button"
           onClick={() => onChange(opt.value)}
+          className="px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all rounded-[5px]"
+          style={{
+            background: active ? C.blue : 'transparent',
+            color: active ? C.white : C.muted,
+            ...mono,
+            letterSpacing: '0.08em',
+          }}
         >
-          <div className="w-4 h-4 rounded-full border-2 flex items-center justify-center flex-shrink-0"
-            style={{ borderColor: value === opt.value ? C.gold : 'rgba(255,255,255,0.2)' }}>
-            {value === opt.value && <div className="w-2 h-2 rounded-full" style={{ background: C.gold }} />}
-          </div>
-          <span className="text-sm text-white">{opt.label}</span>
-        </label>
-      ))}
-    </div>
+          {opt.label}
+        </button>
+      );
+    })}
   </div>
 );
 
-const CheckboxGroup = ({ label, options, values, onChange, columns = 1 }) => (
-  <div className="mb-4">
-    <label className="block text-sm mb-2" style={{ color: C.sec }}>{label}</label>
-    <div className={`grid gap-2 ${columns === 2 ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1'}`}>
-      {options.map(opt => {
-        const optVal = typeof opt === 'string' ? opt : opt.value;
-        const optLabel = typeof opt === 'string' ? opt : opt.label;
-        const checked = values.includes(optVal);
-        return (
-          <label key={optVal} className="flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer transition-all"
-            style={{
-              background: checked ? 'rgba(31,111,235,0.07)' : C.deep,
-              border: `1px solid ${checked ? 'rgba(31,111,235,0.4)' : C.border}`,
-            }}
-            onClick={() => onChange(optVal)}
+const RadioList = ({ value, onChange, options, columns = 1 }) => (
+  <div className={`grid gap-2 ${columns === 2 ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1'}`}>
+    {options.map((opt) => {
+      const active = value === opt.value;
+      return (
+        <button
+          key={opt.value} type="button"
+          onClick={() => onChange(opt.value)}
+          className="flex items-center gap-3 px-4 py-3 rounded-md text-left transition-all"
+          style={{
+            background: active ? C.blueDim : C.deep,
+            border: `1px solid ${active ? C.blueBorder : C.border}`,
+          }}
+        >
+          <span
+            className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0"
+            style={{ border: `2px solid ${active ? C.blue : 'rgba(255,255,255,0.22)'}` }}
           >
-            <div className="w-4 h-4 rounded border flex items-center justify-center flex-shrink-0"
-              style={{ borderColor: checked ? C.gold : 'rgba(255,255,255,0.2)', background: checked ? C.gold : 'transparent' }}>
-              {checked && <Check size={10} color="#111" />}
-            </div>
-            <span className="text-sm text-white">{optLabel}</span>
-          </label>
-        );
-      })}
-    </div>
+            {active && <span className="w-2 h-2 rounded-full" style={{ background: C.blue }} />}
+          </span>
+          <span className="text-sm text-white">{opt.label}</span>
+        </button>
+      );
+    })}
   </div>
 );
 
-const MatrixRow = ({ label, value, onChange }) => {
-  const opts = [
-    { v: 'yes', color: '#22C55E' },
-    { v: 'no', color: '#EF4444' },
-    { v: 'na', color: 'rgba(255,255,255,0.55)' },
-    { v: 'not_sure', color: '#F59E0B' },
-  ];
-  return (
-    <div className="grid grid-cols-12 gap-3 items-center py-3" style={{ borderBottom: `1px solid ${C.border}` }}>
-      <div className="col-span-6 sm:col-span-5 text-sm pr-2" style={{ color: C.sec }}>{label}</div>
-      <div className="col-span-6 sm:col-span-7 grid grid-cols-4 gap-1">
-        {opts.map(({ v, color }) => {
-          const active = value === v;
-          return (
-            <button key={v} type="button" onClick={() => onChange(v)}
-              aria-pressed={active}
-              className="flex items-center justify-center py-2 transition-all focus:outline-none"
-              style={{ background: 'transparent' }}
-            >
-              <span
-                className="w-5 h-5 rounded-full flex items-center justify-center transition-all"
-                style={{
-                  border: `2px solid ${active ? color : 'rgba(255,255,255,0.18)'}`,
-                  background: 'transparent',
-                }}
-              >
-                {active && (
-                  <span className="w-2.5 h-2.5 rounded-full" style={{ background: color }} />
-                )}
-              </span>
-            </button>
-          );
-        })}
-      </div>
+const EquipmentCard = ({ option, checked, onToggle }) => (
+  <button
+    type="button"
+    onClick={onToggle}
+    className="text-left px-4 py-3.5 rounded-md transition-all"
+    style={{
+      background: checked ? C.blueDim : C.deep,
+      border: `1px solid ${checked ? C.blueBorder : C.border}`,
+    }}
+  >
+    <div className="flex items-start gap-3">
+      <span
+        className="w-5 h-5 rounded flex items-center justify-center flex-shrink-0 mt-0.5"
+        style={{
+          background: checked ? C.blue : 'transparent',
+          border: `2px solid ${checked ? C.blue : 'rgba(255,255,255,0.22)'}`,
+        }}
+      >
+        {checked && <Check size={11} color="#FFF" strokeWidth={3} />}
+      </span>
+      <span className="text-sm text-white leading-snug">{option}</span>
     </div>
-  );
-};
-
-const MatrixGrid = ({ label, rows, values, onChange }) => (
-  <div className="mb-4">
-    <label className="block text-sm mb-3" style={{ color: C.sec }}>{label}</label>
-    <div className="rounded-lg p-4 sm:p-5" style={{ background: C.deep, border: `1px solid ${C.border}` }}>
-      {/* Column headers */}
-      <div className="grid grid-cols-12 gap-3 items-center pb-3" style={{ borderBottom: `1px solid ${C.border}` }}>
-        <div className="col-span-6 sm:col-span-5" />
-        <div className="col-span-6 sm:col-span-7 grid grid-cols-4 gap-1 text-center">
-          <span className="text-[11px] font-bold uppercase tracking-wider" style={{ color: '#22C55E' }}>Yes</span>
-          <span className="text-[11px] font-bold uppercase tracking-wider" style={{ color: '#EF4444' }}>No</span>
-          <span className="text-[11px] font-bold uppercase tracking-wider" style={{ color: 'rgba(255,255,255,0.55)' }}>N/A</span>
-          <span className="text-[11px] font-bold uppercase tracking-wider" style={{ color: '#F59E0B' }}>Not Sure</span>
-        </div>
-      </div>
-      {rows.map(r => (
-        <MatrixRow key={r.key} label={r.label} value={values[r.key] || ''} onChange={v => onChange(r.key, v)} />
-      ))}
-    </div>
-  </div>
+  </button>
 );
 
+/* ─────────────────────────────────────────────────────────
+   MAIN COMPONENT
+───────────────────────────────────────────────────────── */
 
-/* ═══════════════════════════════════════════ */
-/*  MAIN COMPONENT                            */
-/* ═══════════════════════════════════════════ */
+const yns = (val) => val || '';
 
 const ClientIntakePage = () => {
-  const [section, setSection] = useState(1);
-  const [completed, setCompleted] = useState(new Set());
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState({});
   const [files, setFiles] = useState([]);
+  const [confirmation, setConfirmation] = useState({ email: '', clientToken: '' });
 
-  /* Form state — pricing-driver + service-needs + qualitative scoping fields */
   const [f, setF] = useState({
-    company: '', address: '', additionalLocations: '',
-    contactName: '', email: '', phone: '',
-    totalEmployees: '', siteEmployees: '', schedule: '',
-    industry: '', industryOther: '', dayToDay: '', operations: [], topHazards: '',
-    safetyProgram: '',
-    existingDocs: {}, uploadedFileUrls: [],
-    helpNeeded: [], helpOther: '',
-    urgency: '',
-    preferredDays: [], preferredTime: '',
-    referralSource: '',
-    consentGiven: false,
+    // Section 1
+    companyName: '', facilityAddress: '', contactName: '', contactTitle: '',
+    phone: '', email: '',
+    operationType: '', operationTypeOther: '',
+    employeeCountBucket: '', shiftPattern: '',
+    // Section 2
+    reasonForContact: '', upcomingAudit: '', auditDetails: '',
+    urgencyTimeline: '', serviceRequested: '', remoteOrOnsite: '',
+    // Section 3
+    q_safety_program: '', q_osha_logs: '', q_new_hire: '', q_training: '',
+    q_eap: '', q_hazcom: '', q_inspections: '',
+    q_prior_osha: '', q_known_gaps: '',
+    // Section 4
+    equipment: [], otherHazards: '',
+    // Section 5
+    docPrepReadiness: '', preferredDays: [], preferredTime: '',
+    contactMethod: '', accessNotes: '',
+    // Section 6
+    acknowledgmentChecked: false,
   });
 
-  const set = (key, val) => setF(prev => ({ ...prev, [key]: val }));
-  const setNested = (parent, key, val) => setF(prev => ({ ...prev, [parent]: { ...prev[parent], [key]: val } }));
-  const toggleArr = (key, val) => setF(prev => ({
-    ...prev, [key]: prev[key].includes(val) ? prev[key].filter(v => v !== val) : [...prev[key], val],
+  const set = (key, val) => setF((p) => ({ ...p, [key]: val }));
+  const toggleArr = (key, val) => setF((p) => ({
+    ...p, [key]: p[key].includes(val) ? p[key].filter((v) => v !== val) : [...p[key], val],
   }));
-
-  const progress = Math.round((completed.size / SECTIONS.length) * 100);
-
-  const goNext = () => {
-    setCompleted(prev => new Set([...prev, section]));
-    setSection(Math.min(section + 1, SECTIONS.length));
-  };
-  const goBack = () => setSection(Math.max(section - 1, 1));
 
   const handleFileSelect = (e) => {
     const newFiles = Array.from(e.target.files).slice(0, 5 - files.length);
-    setFiles(prev => [...prev, ...newFiles]);
+    setFiles((p) => [...p, ...newFiles]);
   };
-  const removeFile = (idx) => setFiles(prev => prev.filter((_, i) => i !== idx));
+  const removeFile = (idx) => setFiles((p) => p.filter((_, i) => i !== idx));
+
+  const errorRef = useRef(null);
+  const validate = () => {
+    const e = {};
+    if (!f.companyName.trim()) e.companyName = 'Required';
+    if (!f.facilityAddress.trim()) e.facilityAddress = 'Required';
+    if (!f.contactName.trim()) e.contactName = 'Required';
+    if (!f.phone.trim()) e.phone = 'Required';
+    if (!f.email.trim()) e.email = 'Required';
+    if (!f.operationType) e.operationType = 'Required';
+    if (!f.employeeCountBucket) e.employeeCountBucket = 'Required';
+    if (!f.shiftPattern) e.shiftPattern = 'Required';
+    if (!f.reasonForContact.trim()) e.reasonForContact = 'Required';
+    if (!f.upcomingAudit) e.upcomingAudit = 'Required';
+    if (!f.urgencyTimeline) e.urgencyTimeline = 'Required';
+    if (!f.serviceRequested) e.serviceRequested = 'Required';
+    if (!f.remoteOrOnsite) e.remoteOrOnsite = 'Required';
+    const sec3 = ['q_safety_program', 'q_osha_logs', 'q_new_hire', 'q_training', 'q_eap', 'q_hazcom', 'q_inspections', 'q_prior_osha'];
+    sec3.forEach((k) => { if (!f[k]) e[k] = 'Required'; });
+    if (!f.equipment.length) e.equipment = 'Select at least one (or "None of the above")';
+    if (!f.docPrepReadiness) e.docPrepReadiness = 'Required';
+    if (!f.contactMethod) e.contactMethod = 'Required';
+    if (!f.acknowledgmentChecked) e.acknowledgmentChecked = 'Please confirm to submit';
+    setErrors(e);
+    return Object.keys(e).length === 0;
+  };
 
   const handleSubmit = async () => {
+    if (!validate()) {
+      setTimeout(() => {
+        const firstError = document.querySelector('[data-error="true"]');
+        if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 50);
+      return;
+    }
     setSubmitting(true);
     try {
       const uploadedUrls = [];
@@ -216,35 +268,34 @@ const ClientIntakePage = () => {
         fd.append('file', file);
         const res = await fetch(`${API}/api/intake/upload`, { method: 'POST', body: fd });
         if (res.ok) {
-          const data = await res.json();
-          uploadedUrls.push({ filename: data.filename, uploadId: data.uploadId });
+          const d = await res.json();
+          uploadedUrls.push({ filename: d.filename, uploadId: d.uploadId });
         }
       }
 
-      const payload = {
-        ...f,
-        totalEmployees: parseInt(f.totalEmployees) || 0,
-        siteEmployees: parseInt(f.siteEmployees) || 0,
-        uploadedFileUrls: uploadedUrls,
-        attribution: getAttribution(),
-      };
-
+      const payload = { ...f, uploadedFileUrls: uploadedUrls, attribution: getAttribution() };
       const res = await fetch(`${API}/api/intake/submit`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
-      if (res.ok) setSubmitted(true);
-    } catch (e) {
-      console.error(e);
+      if (res.ok) {
+        const d = await res.json();
+        setConfirmation({ email: f.email, clientToken: d.clientToken });
+        setSubmitted(true);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    } catch (err) {
+      console.error(err);
     }
     setSubmitting(false);
   };
 
-  /* ── Confirmation Screen ── */
+  /* ─── Confirmation Screen ─── */
   if (submitted) {
+    const statusUrl = `/status/${confirmation.clientToken}`;
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center px-4" style={{ background: C.bg }}>
+      <div className="min-h-screen flex flex-col items-center justify-center px-4 py-16" style={{ background: C.bg }}>
         <SEO title="Form Received | GigLine Safety & Compliance" description="Your intake form has been received." canonical="/intake" />
         <img
           src="/gigline-logo-full-horizontal-white.svg"
@@ -252,324 +303,552 @@ const ClientIntakePage = () => {
           className="h-12 w-auto mb-10"
         />
         <div className="max-w-md w-full text-center">
-          <div className="w-16 h-16 rounded-full mx-auto mb-6 flex items-center justify-center" style={{ background: C.gold }}>
-            <Check size={32} color="#111" />
+          <div className="w-16 h-16 rounded-full mx-auto mb-6 flex items-center justify-center" style={{ background: C.blue }}>
+            <Check size={32} color="#FFF" strokeWidth={2.5} />
           </div>
-          <h1 className="text-2xl font-bold text-white mb-2">Form received</h1>
+          <h1 className="text-2xl font-bold text-white mb-2" data-testid="intake-confirmation-heading">Form received</h1>
           <p className="text-sm mb-8" style={{ color: C.sec }}>Vince has what he needs to scope your engagement.</p>
-          <div className="rounded-lg p-6 mb-6 text-left" style={{ background: C.surface, border: `1px solid ${C.border}` }}>
-            <div className="space-y-3 text-sm">
-              <div className="flex justify-between"><span style={{ color: C.muted }}>Company</span><span className="text-white font-medium">{f.company}</span></div>
-              <div className="flex justify-between"><span style={{ color: C.muted }}>Contact</span><span className="text-white font-medium">{f.contactName}</span></div>
-              <div className="flex justify-between"><span style={{ color: C.muted }}>Email</span><span className="text-white font-medium">{f.email}</span></div>
-            </div>
+
+          <div
+            className="rounded-lg p-5 mb-4 text-left"
+            style={{ background: C.blueDim, border: `1px solid ${C.blueBorder}` }}
+          >
+            <p className="text-sm leading-relaxed" style={{ color: C.sec }}>
+              Vince will review your intake and send a proposed scope and price within <strong className="text-white">1 business day</strong>.
+            </p>
           </div>
-          <div className="rounded-lg p-5 text-left text-sm" style={{ background: 'rgba(31,111,235,0.06)', border: '1px solid rgba(31,111,235,0.15)' }}>
-            <p style={{ color: C.sec }}>Vince will review your intake and send a proposed scope and price within <strong className="text-white">1 business day</strong>.</p>
+
+          {/* GL-WEB-013 Enhancement 1 — check your inbox */}
+          <div
+            className="rounded-lg p-5 mb-4 text-left"
+            style={{ background: C.deep, border: `1px solid ${C.border}` }}
+            data-testid="intake-inbox-line"
+          >
+            <p className="text-sm leading-relaxed" style={{ color: C.sec }}>
+              Check your inbox &mdash; a confirmation has been sent to{' '}
+              <strong className="text-white">{confirmation.email}</strong>. It includes the 2026 Triad OSHA Field Manual and a link to your engagement status page.
+            </p>
           </div>
+
+          {/* GL-WEB-013 Enhancement 2 — status page button */}
+          <Link
+            to={statusUrl}
+            className="inline-flex items-center justify-center gap-2 w-full px-6 py-3.5 rounded-md font-bold transition-all text-sm hover:brightness-110"
+            style={{ background: C.blue, color: C.white, fontFamily: "'Manrope', sans-serif" }}
+            data-testid="intake-status-button"
+          >
+            View your engagement status
+            <ArrowRight size={16} />
+          </Link>
+
           <p className="mt-8 text-xs" style={{ color: C.muted }}>
-            <a href="tel:3363298899" className="hover:text-white transition-colors">(336) 329-8899</a> · <a href="mailto:vince@giglinecompliance.com" className="hover:text-white transition-colors">vince@giglinecompliance.com</a>
+            <a href="tel:3363298899" className="hover:text-white transition-colors">(336) 329-8899</a>{' '}
+            &middot;{' '}
+            <a href="mailto:vince@giglinecompliance.com" className="hover:text-white transition-colors">vince@giglinecompliance.com</a>
           </p>
         </div>
       </div>
     );
   }
 
-  /* ── Section renderers ── */
-  const renderSection = () => {
-    switch (section) {
-      case 1: return (
-        <div data-testid="intake-section-1">
-          <h2 className="text-xl font-bold text-white mb-1">Company &amp; Contact</h2>
-          <p className="text-sm mb-8" style={{ color: C.muted }}>The essentials. Takes about 1 minute.</p>
-
-          <Input label="Company legal name" required value={f.company} onChange={e => set('company', e.target.value)} data-testid="intake-company" />
-          <Input label="Primary site address" required value={f.address} onChange={e => set('address', e.target.value)} data-testid="intake-address" />
-          <RadioGroup label="Additional locations" name="locations" value={f.additionalLocations}
-            onChange={v => set('additionalLocations', v)}
-            options={[{ value: 'no', label: 'No, just this site' }, { value: '2-3', label: 'Yes, 2–3 locations' }, { value: '4+', label: 'Yes, 4+ locations' }]}
-          />
-
-          <div className="h-px my-6" style={{ background: C.border }} />
-
-          <Input label="Primary contact name" required value={f.contactName} onChange={e => set('contactName', e.target.value)} data-testid="intake-contact" />
-          <Input label="Email address" required type="email" value={f.email} onChange={e => set('email', e.target.value)} data-testid="intake-email" />
-          <Input label="Phone number" required type="tel" value={f.phone} onChange={e => set('phone', e.target.value)} data-testid="intake-phone" />
-
-          <div className="grid grid-cols-2 gap-4">
-            <Input label="Total employees (all locations)" required type="number" value={f.totalEmployees} onChange={e => set('totalEmployees', e.target.value)} />
-            <Input label="Employees at this site" required type="number" value={f.siteEmployees} onChange={e => set('siteEmployees', e.target.value)} />
-          </div>
-
-          <RadioGroup label="Primary work schedule" name="schedule" required value={f.schedule}
-            onChange={v => set('schedule', v)}
-            options={[
-              { value: '1_shift', label: '1 shift (days only)' },
-              { value: '2_shifts', label: '2 shifts (days/evenings)' },
-              { value: '3_shifts', label: '3 shifts (24/7 continuous)' },
-              { value: '12hr_rotating', label: '12-hour rotating shifts' },
-              { value: 'other', label: 'Other / varies' },
-            ]}
-          />
-        </div>
-      );
-
-      case 2: return (
-        <div data-testid="intake-section-2">
-          <h2 className="text-xl font-bold text-white mb-1">Operation &amp; Current State</h2>
-          <p className="text-sm mb-8" style={{ color: C.muted }}>What you do, and where things stand.</p>
-
-          <div className="mb-4">
-            <label className="block text-sm mb-1.5" style={{ color: C.sec }}>Industry / type of work</label>
-            <select value={f.industry} onChange={e => set('industry', e.target.value)}
-              className="w-full px-4 py-3 rounded-lg text-sm text-white focus:outline-none appearance-none"
-              style={{ background: C.deep, border: `1px solid ${C.border}` }}>
-              <option value="">Select...</option>
-              <option value="machine_shop">Machine shop / metal fabrication</option>
-              <option value="manufacturing">Manufacturing</option>
-              <option value="construction">Construction / field service</option>
-              <option value="warehouse">Warehouse / distribution</option>
-              <option value="auto_truck">Auto / truck repair</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          {f.industry === 'other' && <Input label="Describe your industry" value={f.industryOther} onChange={e => set('industryOther', e.target.value)} />}
-
-          <Textarea label="Briefly describe what you do day-to-day" value={f.dayToDay} onChange={e => set('dayToDay', e.target.value)} placeholder="Example: CNC machining, welding, assembly, material handling." />
-
-          <CheckboxGroup label="Which of these are in your operation?" columns={2} options={[
-            'Forklifts or powered industrial trucks', 'Overhead cranes/hoists', 'Welding/cutting/hot work',
-            'Machine tools (lathes, mills, presses, saws)',
-            'Hydraulic die press', 'Pneumatic (air) die press',
-            'Chemicals/paints/solvents', 'Confined spaces',
-            'Working at heights (ladders, roofs, platforms)', 'None of the above',
-          ]} values={f.operations} onChange={v => toggleArr('operations', v)} />
-
-          <Textarea label="Top 1–2 things that could seriously hurt someone at your company" value={f.topHazards} onChange={e => set('topHazards', e.target.value)} />
-
-          <RadioGroup label="Do you have a written safety program?" name="safetyProgram" value={f.safetyProgram}
-            onChange={v => set('safetyProgram', v)}
-            options={[{ value: 'current', label: 'Yes, current and used' }, { value: 'outdated', label: 'Yes, but outdated' }, { value: 'partial', label: 'We have bits and pieces' }, { value: 'no', label: 'No' }, { value: 'not_sure', label: 'Not sure' }]}
-          />
-
-          <MatrixGrid label="Existing documents" values={f.existingDocs} onChange={(k, v) => setNested('existingDocs', k, v)}
-            rows={[
-              { key: 'safety_manual', label: 'Written safety manual' },
-              { key: 'hazcom_program', label: 'Written HazCom program' },
-              { key: 'loto_procedures', label: 'Written LOTO procedures' },
-              { key: 'forklift_training', label: 'Forklift training docs' },
-              { key: 'new_hire_checklist', label: 'New-hire safety orientation' },
-              { key: 'toolbox_talks', label: 'Toolbox talk / training records' },
-              { key: 'osha_logs', label: 'OSHA 300/300A logs' },
-            ]}
-          />
-
-          <div className="mb-4">
-            <label className="block text-sm mb-2" style={{ color: C.sec }}>Upload existing safety documents <span style={{ color: C.muted }}>(optional)</span></label>
-            <div className="rounded-lg p-6 text-center cursor-pointer transition-all hover:border-white/20"
-              style={{ background: C.deep, border: `2px dashed ${C.border}` }}
-              onClick={() => document.getElementById('file-input').click()}
-              data-testid="intake-file-upload"
-            >
-              <Upload size={24} className="mx-auto mb-2" style={{ color: C.muted }} />
-              <p className="text-sm" style={{ color: C.sec }}>Click to upload PDF, Word, or Excel</p>
-              <p className="text-xs mt-1" style={{ color: C.muted }}>Up to 10MB each &middot; Max 5 files</p>
-              <input id="file-input" type="file" multiple accept=".pdf,.doc,.docx,.xls,.xlsx" className="hidden" onChange={handleFileSelect} />
-            </div>
-            {files.length > 0 && (
-              <div className="mt-3 space-y-2">
-                {files.map((file, i) => (
-                  <div key={i} className="flex items-center justify-between px-4 py-2 rounded-lg" style={{ background: C.deep, border: `1px solid ${C.border}` }}>
-                    <span className="text-sm text-white truncate">{file.name}</span>
-                    <button onClick={() => removeFile(i)} className="ml-2 text-white/30 hover:text-red-400 transition-colors"><X size={14} /></button>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-      );
-
-      case 3: return (
-        <div data-testid="intake-section-3">
-          <h2 className="text-xl font-bold text-white mb-1">What You Need &amp; When</h2>
-          <p className="text-sm mb-8" style={{ color: C.muted }}>How Vince can help and what timing looks like.</p>
-
-          <CheckboxGroup label="What do you want help with?" options={[
-            'Safety Walkthrough — on-site visit and Top 10 Fixes report',
-            'Documentation Review — review of written programs and records',
-            'Incident Review — post-injury or near-miss response',
-            'Get ready for an OSHA visit (compliance audit)',
-            'Ongoing support / retainer option',
-            'Other (please describe)',
-          ]} values={f.helpNeeded} onChange={v => toggleArr('helpNeeded', v)} />
-          {f.helpNeeded.includes('Other (please describe)') && <Input label="Describe" value={f.helpOther} onChange={e => set('helpOther', e.target.value)} />}
-
-          <RadioGroup label="How urgent is this?" name="urgency" value={f.urgency}
-            onChange={v => set('urgency', v)}
-            options={[
-              { value: 'asap', label: "We've had an incident/inspection — need help ASAP" },
-              { value: '30_days', label: 'Want this done in the next 30 days' },
-              { value: '60_90', label: 'Within 60–90 days is fine' },
-              { value: 'info', label: 'Just gathering information' },
-            ]}
-          />
-
-          <CheckboxGroup label="Preferred days for on-site visit" columns={2}
-            options={['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Remote (no on-site visit required)']}
-            values={f.preferredDays} onChange={v => toggleArr('preferredDays', v)}
-          />
-
-          <RadioGroup label="Best time window" name="preferredTime" value={f.preferredTime}
-            onChange={v => set('preferredTime', v)}
-            options={[
-              { value: 'early_morning', label: 'Early morning' },
-              { value: 'late_morning', label: 'Late morning' },
-              { value: 'early_afternoon', label: 'Early afternoon' },
-              { value: 'late_afternoon', label: 'Late afternoon' },
-              { value: 'na', label: 'N/A (no preference / remote engagement)' },
-            ]}
-          />
-
-          <div className="h-px my-6" style={{ background: C.border }} />
-
-          <RadioGroup label="How did you hear about GigLine?" name="referralSource" value={f.referralSource}
-            onChange={v => set('referralSource', v)}
-            options={[
-              { value: 'referral', label: 'Referral' },
-              { value: 'web', label: 'Web search' },
-              { value: 'social', label: 'Social media' },
-              { value: 'employer', label: 'Previous employer' },
-              { value: 'other', label: 'Other' },
-            ]}
-          />
-
-          <label className="flex items-start gap-3 mt-6 cursor-pointer" data-testid="intake-consent">
-            <div className="mt-0.5 w-5 h-5 rounded border flex items-center justify-center flex-shrink-0 transition-all"
-              style={{ borderColor: f.consentGiven ? C.gold : 'rgba(255,255,255,0.2)', background: f.consentGiven ? C.gold : 'transparent' }}
-              onClick={() => set('consentGiven', !f.consentGiven)}>
-              {f.consentGiven && <Check size={12} color="#111" />}
-            </div>
-            <span className="text-sm" style={{ color: C.sec }}>
-              I understand this form is for an initial safety consultation and does not create a client relationship until we both sign a written agreement.
-            </span>
-          </label>
-
-          <div className="rounded-lg p-5 mt-6" style={{ background: 'rgba(31,111,235,0.06)', border: '1px solid rgba(31,111,235,0.15)' }}>
-            <p className="text-sm" style={{ color: C.sec }}>
-              After you submit, Vince will review your information and follow up within <strong className="text-white">1 business day</strong> with a proposed scope and price.
-            </p>
-          </div>
-        </div>
-      );
-
-      default: return null;
-    }
-  };
+  /* ─── Form ─── */
+  const setField = (k) => ({ value: f[k], onChange: (e) => set(k, e.target.value) });
+  const sec3Questions = [
+    { key: 'q_safety_program', label: 'We have a written safety program or safety policies.' },
+    { key: 'q_osha_logs', label: 'We keep OSHA 300 / 300A injury and illness logs for this site.' },
+    { key: 'q_new_hire', label: 'We provide new-hire safety orientation for all employees.' },
+    { key: 'q_training', label: 'We conduct and document regular safety training (toolbox talks, annual topics, etc.).' },
+    { key: 'q_eap', label: 'We have written procedures for emergency evacuation.' },
+    { key: 'q_hazcom', label: 'We have a written Hazard Communication program and SDS access for chemicals.' },
+    { key: 'q_inspections', label: 'We perform and document regular safety inspections or walkthroughs.' },
+  ];
 
   return (
     <div className="min-h-screen" style={{ background: C.bg }}>
       <SEO title="Client Safety Intake | GigLine Safety & Compliance" description="Complete the GigLine safety intake form to start your engagement." canonical="/intake" />
 
       {/* ── Nav ── */}
-      <nav className="sticky top-0 z-50" style={{ background: C.deep, borderBottom: `1px solid ${C.border}` }}>
-        <div className="flex items-center justify-between px-6 py-3 max-w-5xl mx-auto">
+      <nav className="sticky top-0 z-50" style={{ background: C.deeper, borderBottom: `1px solid ${C.border}` }}>
+        <div className="flex items-center justify-between px-6 py-3 max-w-3xl mx-auto">
           <a href="/" className="flex items-center gap-3 hover:opacity-90 transition-opacity" data-testid="intake-logo">
-            <img
-              src="/gigline-logo-full-horizontal-white.svg"
-              alt="GigLine Safety & Compliance"
-              className="h-10 md:h-12 w-auto"
-            />
-            <div className="hidden sm:block" style={{ borderLeft: `1px solid ${C.border}`, paddingLeft: '12px' }}>
-              <span className="text-xs block" style={{ color: C.muted }}>Client Safety Intake</span>
-            </div>
+            <img src="/gigline-logo-full-horizontal-white.svg" alt="GigLine Safety & Compliance" className="h-10 md:h-12 w-auto" />
           </a>
-          <div className="hidden md:flex items-center gap-3 text-right">
-            <span className="text-xs font-medium" style={{ color: C.gold }}>{SECTIONS.find(s => s.id === section)?.label}</span>
+          <div className="hidden md:flex items-center gap-2 text-right">
+            <span className="text-xs font-bold uppercase tracking-[2px]" style={{ color: C.blue, ...mono }}>Client Intake</span>
+            <span style={{ color: C.subtle }}>|</span>
             <span className="text-xs" style={{ color: C.muted }}>Secure portal</span>
           </div>
         </div>
-        {/* Progress bar */}
-        <div className="w-full" style={{ height: '3px', background: C.border }}>
-          <div style={{ width: `${progress}%`, height: '3px', background: C.gold, transition: 'width 0.4s ease' }} />
-        </div>
       </nav>
 
-      {/* ── Layout: sidebar + main ── */}
-      <div className="max-w-5xl mx-auto px-4 md:px-6 py-8 md:py-12 flex flex-col md:flex-row gap-8 md:gap-12">
-        {/* Sidebar */}
-        <div className="md:w-44 flex-shrink-0">
-          <div className="md:sticky md:top-24 space-y-1">
-            {SECTIONS.map(s => {
-              const isActive = s.id === section;
-              const isDone = completed.has(s.id);
-              const isLocked = s.id > section && !isDone;
-              return (
-                <button key={s.id}
-                  onClick={() => { if (isDone || isActive) setSection(s.id); }}
-                  disabled={isLocked}
-                  className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-all"
-                  style={{
-                    background: isActive ? C.gold : 'transparent',
-                    opacity: isLocked ? 0.22 : 1,
-                    cursor: isLocked ? 'default' : 'pointer',
-                  }}
-                  data-testid={`intake-sidebar-${s.id}`}
-                >
-                  {isDone && !isActive ? (
-                    <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ background: 'rgba(31,111,235,0.2)' }}>
-                      <div className="w-2 h-2 rounded-full" style={{ background: C.gold }} />
-                    </div>
-                  ) : (
-                    <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold"
-                      style={{ background: isActive ? '#111' : 'rgba(255,255,255,0.06)', color: isActive ? C.gold : C.muted }}>
-                      {s.id}
-                    </div>
-                  )}
-                  <span className="text-sm font-medium" style={{ color: isActive ? '#111' : C.muted }}>
-                    {s.label}
-                  </span>
-                </button>
-              );
-            })}
+      {/* ── Header ── */}
+      <header className="max-w-3xl mx-auto px-5 md:px-8 pt-12 md:pt-20 pb-8">
+        <p
+          className="font-bold tracking-[3px] mb-3"
+          style={{ color: C.blue, ...mono, fontSize: '11px' }}
+        >
+          GL-INTAKE-001 &middot; 6 SECTIONS &middot; ≈ 5 MIN
+        </p>
+        <h1 className="text-3xl md:text-4xl font-bold leading-tight text-white mb-4" style={{ fontFamily: "'Manrope', sans-serif" }}>
+          Tell us about your operation.
+        </h1>
+        <p className="text-base md:text-[17px] leading-relaxed max-w-2xl" style={{ color: C.sec }}>
+          This takes about 5 minutes. Vince will review your answers and confirm a fixed quote within 1 business day. Nothing here goes to OSHA, your insurer, or anyone outside GigLine.
+        </p>
+      </header>
+
+      <div className="h-px max-w-3xl mx-auto" style={{ background: C.border }} />
+
+      <main className="max-w-3xl mx-auto px-5 md:px-8 py-12 md:py-16 space-y-16 md:space-y-20">
+
+        {/* ═══════════════════════════════════════════════
+            SECTION 01 — Company & Contact Info
+        ═══════════════════════════════════════════════ */}
+        <section data-testid="intake-section-01">
+          <SectionHeader number="01" title="Company & Contact Info" subtitle="Where you are and how Vince reaches you." />
+
+          <Field label="Company / facility name" required error={errors.companyName}>
+            <span data-error={!!errors.companyName}>
+              <TextInput {...setField('companyName')} placeholder="Acme Manufacturing, Inc." data-testid="intake-companyName" />
+            </span>
+          </Field>
+
+          <Field label="Facility address" required hint="Street address, city, state — used to confirm service area and travel time." error={errors.facilityAddress}>
+            <span data-error={!!errors.facilityAddress}>
+              <TextInput {...setField('facilityAddress')} placeholder="1234 Industrial Park Dr, Kernersville, NC" data-testid="intake-facilityAddress" />
+            </span>
+          </Field>
+
+          <div className="grid md:grid-cols-2 gap-x-5">
+            <Field label="Primary contact name" required error={errors.contactName}>
+              <span data-error={!!errors.contactName}>
+                <TextInput {...setField('contactName')} placeholder="John Smith" data-testid="intake-contactName" />
+              </span>
+            </Field>
+            <Field label="Title / role" hint="Plant Manager, Operations Manager, Owner">
+              <TextInput {...setField('contactTitle')} placeholder="Plant Manager" data-testid="intake-contactTitle" />
+            </Field>
           </div>
-        </div>
 
-        {/* Main card */}
-        <div className="flex-grow max-w-[740px]">
-          <div className="rounded-xl p-6 md:p-8" style={{ background: C.surface, border: `1px solid ${C.border}` }}>
-            {renderSection()}
+          <div className="grid md:grid-cols-2 gap-x-5">
+            <Field label="Phone" required hint="Best number to reach you — call or text" error={errors.phone}>
+              <span data-error={!!errors.phone}>
+                <TextInput type="tel" {...setField('phone')} placeholder="(336) 555-1234" data-testid="intake-phone" />
+              </span>
+            </Field>
+            <Field label="Email" required error={errors.email}>
+              <span data-error={!!errors.email}>
+                <TextInput type="email" {...setField('email')} placeholder="you@company.com" data-testid="intake-email" />
+              </span>
+            </Field>
+          </div>
 
-            {/* Nav buttons */}
-            <div className="flex items-center justify-between mt-8 pt-6" style={{ borderTop: `1px solid ${C.border}` }}>
-              {section > 1 ? (
-                <button onClick={goBack} className="text-sm font-medium px-5 py-2.5 rounded-lg transition-colors"
-                  style={{ color: C.sec, border: `1px solid ${C.border}` }}>
-                  Back
-                </button>
-              ) : <div />}
+          <Field label="Type of operation" required error={errors.operationType}>
+            <span data-error={!!errors.operationType}>
+              <SelectInput
+                {...setField('operationType')}
+                data-testid="intake-operationType"
+                options={[
+                  { value: 'steel_supply', label: 'Steel supply / fabrication' },
+                  { value: 'manufacturing', label: 'Manufacturing' },
+                  { value: 'warehouse', label: 'Warehouse / distribution' },
+                  { value: 'contractor', label: 'Contractor / construction' },
+                  { value: 'fleet', label: 'Fleet operations' },
+                  { value: 'mixed', label: 'Mixed use' },
+                  { value: 'other', label: 'Other' },
+                ]}
+              />
+            </span>
+          </Field>
+          {(f.operationType === 'mixed' || f.operationType === 'other') && (
+            <Field label="Describe your operation type">
+              <TextInput {...setField('operationTypeOther')} placeholder="Brief description" />
+            </Field>
+          )}
 
-              {section < SECTIONS.length ? (
-                <button onClick={goNext} className="text-sm font-bold px-6 py-2.5 rounded-lg transition-all flex items-center gap-2 hover:brightness-110"
-                  style={{ background: C.gold, color: '#111' }}
-                  data-testid="intake-next-btn"
-                >
-                  Continue <ChevronRight size={16} />
-                </button>
-              ) : (
-                <button onClick={handleSubmit}
-                  disabled={!f.consentGiven || submitting}
-                  className="text-sm font-bold px-6 py-2.5 rounded-lg transition-all flex items-center gap-2 disabled:opacity-40"
-                  style={{ background: C.gold, color: '#111' }}
-                  data-testid="intake-submit-btn"
-                >
-                  {submitting ? 'Submitting...' : 'Submit Intake Form'}
-                </button>
-              )}
+          <div className="grid md:grid-cols-2 gap-x-5">
+            <Field label="Approximate employee count at this site" required error={errors.employeeCountBucket}>
+              <span data-error={!!errors.employeeCountBucket}>
+                <SelectInput
+                  {...setField('employeeCountBucket')}
+                  data-testid="intake-employeeCount"
+                  options={[
+                    { value: 'under_10', label: 'Under 10' },
+                    { value: '10_24', label: '10–24' },
+                    { value: '25_74', label: '25–74' },
+                    { value: '75_149', label: '75–149' },
+                    { value: '150_plus', label: '150+' },
+                  ]}
+                />
+              </span>
+            </Field>
+            <Field label="Typical shift pattern" required error={errors.shiftPattern}>
+              <span data-error={!!errors.shiftPattern}>
+                <SelectInput
+                  {...setField('shiftPattern')}
+                  data-testid="intake-shiftPattern"
+                  options={[
+                    { value: 'days_only', label: 'Days only' },
+                    { value: 'days_nights', label: 'Days + nights' },
+                    { value: '24_7', label: '24/7 operation' },
+                    { value: 'variable', label: 'Variable' },
+                  ]}
+                />
+              </span>
+            </Field>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════
+            SECTION 02 — Why You Called & Urgency
+        ═══════════════════════════════════════════════ */}
+        <section data-testid="intake-section-02">
+          <SectionHeader number="02" title="Why You Called & Urgency" subtitle="What's behind this request and when you need it done." />
+
+          <Field
+            label="What prompted you to reach out right now?"
+            required
+            hint="e.g. upcoming OSHA visit, insurance requirement, recent incident, internal concern, just getting organized"
+            error={errors.reasonForContact}
+          >
+            <span data-error={!!errors.reasonForContact}>
+              <TextArea rows={3} {...setField('reasonForContact')} placeholder="Brief — 2 to 3 sentences." data-testid="intake-reason" />
+            </span>
+          </Field>
+
+          <Field label="Do you have any upcoming audits, inspections, or compliance deadlines?" required error={errors.upcomingAudit}>
+            <span data-error={!!errors.upcomingAudit}>
+              <PillToggle
+                value={f.upcomingAudit}
+                onChange={(v) => set('upcomingAudit', v)}
+                options={[{ value: 'yes', label: 'Yes' }, { value: 'no', label: 'No' }, { value: 'not_sure', label: 'Not sure' }]}
+              />
+            </span>
+          </Field>
+
+          {f.upcomingAudit === 'yes' && (
+            <Field label="If yes — date or details" hint="e.g. OSHA inspection scheduled for August 15, insurance renewal in 90 days">
+              <TextInput {...setField('auditDetails')} placeholder="Date and what's coming" />
+            </Field>
+          )}
+
+          <Field label="How soon do you want the walkthrough or review completed?" required error={errors.urgencyTimeline}>
+            <span data-error={!!errors.urgencyTimeline}>
+              <RadioList
+                value={f.urgencyTimeline}
+                onChange={(v) => set('urgencyTimeline', v)}
+                options={[
+                  { value: 'asap', label: 'As soon as possible' },
+                  { value: '2_4_weeks', label: 'Next 2–4 weeks' },
+                  { value: 'flexible', label: 'Flexible — no specific deadline' },
+                ]}
+              />
+            </span>
+          </Field>
+
+          <Field label="Which service are you requesting?" required error={errors.serviceRequested}>
+            <span data-error={!!errors.serviceRequested}>
+              <RadioList
+                value={f.serviceRequested}
+                onChange={(v) => set('serviceRequested', v)}
+                options={[
+                  { value: 'walkthrough', label: 'Safety Walkthrough & Top 10 Fixes Report' },
+                  { value: 'doc_review', label: 'Documentation & Gap Check' },
+                  { value: 'incident_review', label: 'Incident Review & Corrective Action Support' },
+                  { value: 'not_sure', label: 'Not sure — let Vince recommend' },
+                ]}
+              />
+            </span>
+          </Field>
+
+          <Field label="Do you prefer the review to be remote or on-site?" required error={errors.remoteOrOnsite}>
+            <span data-error={!!errors.remoteOrOnsite}>
+              <RadioList
+                value={f.remoteOrOnsite}
+                onChange={(v) => set('remoteOrOnsite', v)}
+                options={[
+                  { value: 'onsite', label: 'On-site (Vince comes to the facility)' },
+                  { value: 'remote', label: 'Remote (you send documents, Vince returns a report)' },
+                  { value: 'no_preference', label: 'No preference' },
+                ]}
+              />
+            </span>
+          </Field>
+        </section>
+
+        {/* ═══════════════════════════════════════════════
+            SECTION 03 — Current Safety Setup
+        ═══════════════════════════════════════════════ */}
+        <section data-testid="intake-section-03">
+          <SectionHeader number="03" title="Current Safety Setup" subtitle="Quick read on what's already in place. No judgment — Vince uses this to scope, not score." />
+
+          <div className="rounded-lg overflow-hidden" style={{ background: C.deep, border: `1px solid ${C.border}` }}>
+            {sec3Questions.map((q, i) => (
+              <div
+                key={q.key}
+                className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 px-4 sm:px-5 py-4"
+                style={{ borderTop: i === 0 ? 'none' : `1px solid ${C.border}` }}
+                data-error={!!errors[q.key]}
+              >
+                <p className="text-sm flex-1 leading-snug" style={{ color: C.sec }}>{q.label}</p>
+                <div className="flex-shrink-0">
+                  <PillToggle
+                    value={f[q.key]}
+                    onChange={(v) => set(q.key, v)}
+                    options={[
+                      { value: 'yes', label: 'Yes' },
+                      { value: 'no', label: 'No' },
+                      { value: 'not_sure', label: 'Not sure' },
+                    ]}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+          {sec3Questions.some((q) => errors[q.key]) && (
+            <p className="text-xs mt-2 font-medium" style={{ color: C.red }}>Please answer all 7 questions above.</p>
+          )}
+
+          <div className="mt-6">
+            <Field
+              label="Have you received an OSHA citation or been inspected in the last 3 years?"
+              required
+              hint="Helps Vince identify any repeat violation exposure before the walkthrough."
+              error={errors.q_prior_osha}
+            >
+              <span data-error={!!errors.q_prior_osha}>
+                <RadioList
+                  value={f.q_prior_osha}
+                  onChange={(v) => set('q_prior_osha', v)}
+                  options={[
+                    { value: 'yes', label: 'Yes' },
+                    { value: 'no', label: 'No' },
+                    { value: 'prefer_not_to_say', label: 'Prefer not to say' },
+                  ]}
+                />
+              </span>
+            </Field>
+          </div>
+
+          <Field
+            label="Anything you already know is missing or worrying you?"
+            hint="No wrong answers — the more specific you are, the better prepared Vince will be."
+          >
+            <TextArea rows={3} {...setField('q_known_gaps')} placeholder="Optional — what's on your mind?" />
+          </Field>
+        </section>
+
+        {/* ═══════════════════════════════════════════════
+            SECTION 04 — Equipment, Vehicles & Special Hazards
+        ═══════════════════════════════════════════════ */}
+        <section data-testid="intake-section-04">
+          <SectionHeader number="04" title="Equipment, Vehicles & Special Hazards" subtitle="Check everything that applies at this facility." />
+
+          <Field label="Equipment and hazards present at this facility" required error={errors.equipment}>
+            <span data-error={!!errors.equipment}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5" data-testid="intake-equipment">
+                {[
+                  'Forklifts or powered industrial trucks',
+                  'Overhead cranes or hoists',
+                  'Cutting, grinding, or fixed machinery',
+                  'Company trucks or trailers operating from this site',
+                  'Significant chemical use (solvents, coatings, fuels, lubricants)',
+                  'Hot work / welding',
+                  'Electrical work or panel servicing performed on-site',
+                  'Hydraulic die press',
+                  'Pneumatic (air) die press',
+                  'None of the above',
+                ].map((opt) => (
+                  <EquipmentCard
+                    key={opt}
+                    option={opt}
+                    checked={f.equipment.includes(opt)}
+                    onToggle={() => toggleArr('equipment', opt)}
+                  />
+                ))}
+              </div>
+            </span>
+          </Field>
+
+          <Field label="Other notable hazards or processes not listed above" hint="Optional">
+            <TextInput {...setField('otherHazards')} placeholder="e.g. spray paint booth, autoclave, on-site generators" />
+          </Field>
+        </section>
+
+        {/* ═══════════════════════════════════════════════
+            SECTION 05 — Documentation & Logistics
+        ═══════════════════════════════════════════════ */}
+        <section data-testid="intake-section-05">
+          <SectionHeader number="05" title="Documentation & Logistics" subtitle="A few practical questions to plan the visit or review." />
+
+          <Field
+            label="Can you gather the documents on the prep checklist before the visit?"
+            required
+            hint="GigLine will send the prep checklist after this form is submitted."
+            error={errors.docPrepReadiness}
+          >
+            <span data-error={!!errors.docPrepReadiness}>
+              <RadioList
+                value={f.docPrepReadiness}
+                onChange={(v) => set('docPrepReadiness', v)}
+                options={[
+                  { value: 'yes', label: 'Yes — I can pull most of it together' },
+                  { value: 'mostly', label: 'Mostly — some items may be missing' },
+                  { value: 'need_help', label: 'I need help knowing where to start' },
+                ]}
+              />
+            </span>
+          </Field>
+
+          <Field label="Preferred days for a walkthrough or review" hint="Optional">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+              {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Flexible'].map((d) => {
+                const checked = f.preferredDays.includes(d);
+                return (
+                  <button
+                    key={d} type="button"
+                    onClick={() => toggleArr('preferredDays', d)}
+                    className="px-3 py-2.5 rounded-md text-sm font-medium transition-all"
+                    style={{
+                      background: checked ? C.blueDim : C.deep,
+                      border: `1px solid ${checked ? C.blueBorder : C.border}`,
+                      color: checked ? C.white : C.sec,
+                    }}
+                  >
+                    {d}
+                  </button>
+                );
+              })}
             </div>
+          </Field>
+
+          <Field label="Preferred time of day" hint="Optional">
+            <RadioList
+              value={f.preferredTime}
+              onChange={(v) => set('preferredTime', v)}
+              options={[
+                { value: 'morning', label: 'Morning (before noon)' },
+                { value: 'afternoon', label: 'Afternoon' },
+                { value: 'either', label: 'Either' },
+              ]}
+            />
+          </Field>
+
+          <Field label="Preferred contact method for scheduling" required error={errors.contactMethod}>
+            <span data-error={!!errors.contactMethod}>
+              <RadioList
+                value={f.contactMethod}
+                onChange={(v) => set('contactMethod', v)}
+                options={[
+                  { value: 'phone', label: 'Phone call' },
+                  { value: 'text', label: 'Text message' },
+                  { value: 'email', label: 'Email' },
+                ]}
+              />
+            </span>
+          </Field>
+
+          <Field
+            label="Anything we should know about access, PPE requirements, or security when we arrive?"
+            hint="e.g. check in at front office, hard hat required, gate code needed"
+          >
+            <TextArea rows={3} {...setField('accessNotes')} placeholder="Optional" />
+          </Field>
+
+          <div className="mt-8">
+            <p className="text-sm mb-2 font-medium" style={{ color: C.sec }}>
+              Upload existing safety documents <span className="font-normal" style={{ color: C.muted }}>(optional)</span>
+            </p>
+            <div
+              className="rounded-md p-6 text-center cursor-pointer transition-all hover:border-white/20"
+              style={{ background: C.deep, border: `2px dashed ${C.border}` }}
+              onClick={() => document.getElementById('intake-file-input').click()}
+              data-testid="intake-file-upload"
+            >
+              <Upload size={22} className="mx-auto mb-2" style={{ color: C.muted }} />
+              <p className="text-sm" style={{ color: C.sec }}>Click to upload PDF, Word, or Excel</p>
+              <p className="text-xs mt-1" style={{ color: C.muted }}>Up to 10MB each &middot; Max 5 files</p>
+              <input id="intake-file-input" type="file" multiple accept=".pdf,.doc,.docx,.xls,.xlsx" className="hidden" onChange={handleFileSelect} />
+            </div>
+            {files.length > 0 && (
+              <div className="mt-3 space-y-2">
+                {files.map((file, i) => (
+                  <div key={i} className="flex items-center justify-between px-4 py-2 rounded-md" style={{ background: C.deep, border: `1px solid ${C.border}` }}>
+                    <span className="text-sm text-white truncate">{file.name}</span>
+                    <button onClick={() => removeFile(i)} className="ml-2 text-white/30 hover:text-red-400 transition-colors">
+                      <X size={14} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════
+            SECTION 06 — Engagement Acknowledgment
+        ═══════════════════════════════════════════════ */}
+        <section data-testid="intake-section-06">
+          <SectionHeader number="06" title="Engagement Acknowledgment" />
+
+          <div
+            className="rounded-lg p-6 md:p-7"
+            style={{ background: C.deeper, border: `1px solid ${C.border}` }}
+          >
+            <label
+              className="flex items-start gap-4 cursor-pointer"
+              data-error={!!errors.acknowledgmentChecked}
+              data-testid="intake-acknowledgment"
+            >
+              <span
+                className="mt-0.5 w-5 h-5 rounded flex items-center justify-center flex-shrink-0 transition-all"
+                style={{
+                  background: f.acknowledgmentChecked ? C.blue : 'transparent',
+                  border: `2px solid ${f.acknowledgmentChecked ? C.blue : 'rgba(255,255,255,0.32)'}`,
+                }}
+                onClick={() => set('acknowledgmentChecked', !f.acknowledgmentChecked)}
+              >
+                {f.acknowledgmentChecked && <Check size={12} color="#FFF" strokeWidth={3} />}
+              </span>
+              <span className="text-sm leading-relaxed" style={{ color: C.sec }} onClick={() => set('acknowledgmentChecked', !f.acknowledgmentChecked)}>
+                I understand this visit is a documentation and gap assessment with written recommendations. Any new or rewritten safety programs can be scoped separately if requested. This engagement is private &mdash; nothing goes to OSHA, my insurer, or any outside party.
+              </span>
+            </label>
+            {errors.acknowledgmentChecked && (
+              <p className="text-xs mt-3 font-medium" style={{ color: C.red }}>{errors.acknowledgmentChecked}</p>
+            )}
+          </div>
+
+          <button
+            type="button"
+            onClick={handleSubmit}
+            disabled={submitting}
+            className="mt-8 w-full md:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-md font-bold transition-all text-sm hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed"
+            style={{ background: C.blue, color: C.white, fontFamily: "'Manrope', sans-serif" }}
+            data-testid="intake-submit"
+          >
+            {submitting ? 'Submitting...' : 'Submit intake'}
+            <ArrowRight size={16} />
+          </button>
+
+          <p className="text-xs mt-4 leading-relaxed" style={{ color: C.muted }}>
+            After you submit, you&rsquo;ll receive an instant confirmation email and Vince will be in touch within 1 business day.
+          </p>
+        </section>
+
+      </main>
+
+      {/* Footer */}
+      <footer className="border-t" style={{ borderColor: C.border }}>
+        <div className="max-w-3xl mx-auto px-5 md:px-8 py-8 text-center">
+          <p className="text-xs" style={{ color: C.muted }}>
+            GigLine Safety &amp; Compliance &middot; (336) 329-8899 &middot;{' '}
+            <a href="mailto:vince@giglinecompliance.com" className="hover:text-white transition-colors">
+              vince@giglinecompliance.com
+            </a>
+          </p>
         </div>
-      </div>
+      </footer>
     </div>
   );
 };

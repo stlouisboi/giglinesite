@@ -89,22 +89,38 @@ const CheckboxGroup = ({ label, options, values, onChange, columns = 1 }) => (
 );
 
 const MatrixRow = ({ label, value, onChange }) => {
+  const opts = [
+    { v: 'yes', color: '#22C55E' },
+    { v: 'no', color: '#EF4444' },
+    { v: 'na', color: 'rgba(255,255,255,0.55)' },
+    { v: 'not_sure', color: '#F59E0B' },
+  ];
   return (
-    <div className="grid grid-cols-12 gap-3 items-center py-2.5" style={{ borderBottom: `1px solid ${C.border}` }}>
-      <div className="col-span-7 sm:col-span-8 text-sm pr-2" style={{ color: C.sec }}>{label}</div>
-      <div className="col-span-5 sm:col-span-4 grid grid-cols-3 gap-1">
-        {['yes', 'no', 'na'].map(v => (
-          <button key={v} type="button" onClick={() => onChange(v)}
-            className="text-xs font-medium px-2 py-1.5 rounded transition-colors"
-            style={{
-              background: value === v ? C.gold : C.deep,
-              border: `1px solid ${value === v ? C.gold : C.border}`,
-              color: value === v ? '#111' : C.sec,
-            }}
-          >
-            {v === 'yes' ? 'Yes' : v === 'no' ? 'No' : 'N/A'}
-          </button>
-        ))}
+    <div className="grid grid-cols-12 gap-3 items-center py-3" style={{ borderBottom: `1px solid ${C.border}` }}>
+      <div className="col-span-6 sm:col-span-5 text-sm pr-2" style={{ color: C.sec }}>{label}</div>
+      <div className="col-span-6 sm:col-span-7 grid grid-cols-4 gap-1">
+        {opts.map(({ v, color }) => {
+          const active = value === v;
+          return (
+            <button key={v} type="button" onClick={() => onChange(v)}
+              aria-pressed={active}
+              className="flex items-center justify-center py-2 transition-all focus:outline-none"
+              style={{ background: 'transparent' }}
+            >
+              <span
+                className="w-5 h-5 rounded-full flex items-center justify-center transition-all"
+                style={{
+                  border: `2px solid ${active ? color : 'rgba(255,255,255,0.18)'}`,
+                  background: 'transparent',
+                }}
+              >
+                {active && (
+                  <span className="w-2.5 h-2.5 rounded-full" style={{ background: color }} />
+                )}
+              </span>
+            </button>
+          );
+        })}
       </div>
     </div>
   );
@@ -113,7 +129,17 @@ const MatrixRow = ({ label, value, onChange }) => {
 const MatrixGrid = ({ label, rows, values, onChange }) => (
   <div className="mb-4">
     <label className="block text-sm mb-3" style={{ color: C.sec }}>{label}</label>
-    <div className="rounded-lg p-3" style={{ background: C.deep, border: `1px solid ${C.border}` }}>
+    <div className="rounded-lg p-4 sm:p-5" style={{ background: C.deep, border: `1px solid ${C.border}` }}>
+      {/* Column headers */}
+      <div className="grid grid-cols-12 gap-3 items-center pb-3" style={{ borderBottom: `1px solid ${C.border}` }}>
+        <div className="col-span-6 sm:col-span-5" />
+        <div className="col-span-6 sm:col-span-7 grid grid-cols-4 gap-1 text-center">
+          <span className="text-[11px] font-bold uppercase tracking-wider" style={{ color: '#22C55E' }}>Yes</span>
+          <span className="text-[11px] font-bold uppercase tracking-wider" style={{ color: '#EF4444' }}>No</span>
+          <span className="text-[11px] font-bold uppercase tracking-wider" style={{ color: 'rgba(255,255,255,0.55)' }}>N/A</span>
+          <span className="text-[11px] font-bold uppercase tracking-wider" style={{ color: '#F59E0B' }}>Not Sure</span>
+        </div>
+      </div>
       {rows.map(r => (
         <MatrixRow key={r.key} label={r.label} value={values[r.key] || ''} onChange={v => onChange(r.key, v)} />
       ))}
@@ -204,8 +230,13 @@ const ClientIntakePage = () => {
   /* ── Confirmation Screen ── */
   if (submitted) {
     return (
-      <div className="min-h-screen flex items-center justify-center px-4" style={{ background: C.bg }}>
+      <div className="min-h-screen flex flex-col items-center justify-center px-4" style={{ background: C.bg }}>
         <SEO title="Form Received | GigLine Safety & Compliance" description="Your intake form has been received." canonical="/intake" />
+        <img
+          src="/gigline-logo-full-horizontal-white.svg"
+          alt="GigLine Safety & Compliance"
+          className="h-9 w-auto mb-10"
+        />
         <div className="max-w-md w-full text-center">
           <div className="w-16 h-16 rounded-full mx-auto mb-6 flex items-center justify-center" style={{ background: C.gold }}>
             <Check size={32} color="#111" />
@@ -410,15 +441,16 @@ const ClientIntakePage = () => {
       {/* ── Nav ── */}
       <nav className="sticky top-0 z-50" style={{ background: C.deep, borderBottom: `1px solid ${C.border}` }}>
         <div className="flex items-center justify-between px-6 py-3 max-w-5xl mx-auto">
-          <div className="flex items-center gap-3">
-            <div className="w-7 h-7 rounded flex items-center justify-center" style={{ background: C.gold }}>
-              <Check size={14} color="#111" />
-            </div>
-            <div>
-              <span className="text-sm font-bold text-white">GigLine Safety &amp; Compliance</span>
+          <a href="/" className="flex items-center gap-3 hover:opacity-90 transition-opacity" data-testid="intake-logo">
+            <img
+              src="/gigline-logo-full-horizontal-white.svg"
+              alt="GigLine Safety & Compliance"
+              className="h-7 md:h-8 w-auto"
+            />
+            <div className="hidden sm:block" style={{ borderLeft: `1px solid ${C.border}`, paddingLeft: '12px' }}>
               <span className="text-xs block" style={{ color: C.muted }}>Client Safety Intake</span>
             </div>
-          </div>
+          </a>
           <div className="hidden md:flex items-center gap-3 text-right">
             <span className="text-xs font-medium" style={{ color: C.gold }}>{SECTIONS.find(s => s.id === section)?.label}</span>
             <span className="text-xs" style={{ color: C.muted }}>Secure portal</span>

@@ -1,16 +1,15 @@
 import React from 'react';
-import { Download, FileText } from 'lucide-react';
+import { Download } from 'lucide-react';
 
 /*
   FieldManualBand
   ──────────────────────────────────────────────────────
   Reusable lead-magnet band for the 2026 Triad OSHA Field Manual.
   Used on Homepage (after case study teaser) and About (after credentials).
-  Navy + gold palette to match site brand and case study visual continuity.
+  Renders the actual PDF cover as a clickable thumbnail.
 */
 
 const NAVY = '#0A1628';
-const GOLD = '#C5A059';
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
 const heading = { fontFamily: "'Manrope', sans-serif" };
 
@@ -30,41 +29,30 @@ const FieldManualBand = ({ source = 'homepage' }) => {
             boxShadow: '0 2px 12px rgba(11,31,51,0.04)',
           }}
         >
-          {/* Left — cover thumbnail / icon */}
+          {/* Left — actual PDF cover thumbnail */}
           <div className="md:col-span-4 flex justify-center md:justify-start">
-            <div
-              className="relative flex flex-col items-center justify-center text-center w-full max-w-[200px] aspect-[3/4]"
-              style={{
-                backgroundColor: NAVY,
-                color: 'white',
-                boxShadow: '0 12px 30px rgba(11,31,51,0.18)',
-              }}
-              data-testid="field-manual-cover"
+            <a
+              href="/assets/gl-fm-2026.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block group transition-transform hover:-translate-y-1"
+              style={{ width: '100%', maxWidth: '220px' }}
+              data-testid="field-manual-cover-link"
+              aria-label="Open the 2026 Triad OSHA Field Manual"
             >
-              <FileText size={28} style={{ color: GOLD }} className="mb-3" />
-              <p
-                className="uppercase tracking-[0.18em] mb-2"
-                style={{ ...mono, fontSize: '9px', color: 'rgba(255,255,255,0.55)' }}
-              >
-                2026 Edition
-              </p>
-              <p
-                className="font-bold text-[15px] leading-tight px-3 mb-3"
-                style={heading}
-              >
-                The Triad OSHA Field Manual
-              </p>
-              <span
-                className="block w-10 h-px"
-                style={{ backgroundColor: GOLD }}
+              <img
+                src="/assets/gl-fm-2026-cover.jpg"
+                alt="The 2026 Triad OSHA Field Manual — cover"
+                className="w-full h-auto block"
+                style={{
+                  aspectRatio: '772 / 1000',
+                  objectFit: 'cover',
+                  boxShadow: '0 14px 36px rgba(11,31,51,0.22)',
+                }}
+                loading="lazy"
+                data-testid="field-manual-cover"
               />
-              <p
-                className="text-[10px] mt-3 px-3"
-                style={{ color: 'rgba(255,255,255,0.7)' }}
-              >
-                GigLine Safety &amp; Compliance
-              </p>
-            </div>
+            </a>
           </div>
 
           {/* Right — copy + CTA */}

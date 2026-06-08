@@ -37,6 +37,19 @@ const Input = ({ label, required, ...props }) => (
   </div>
 );
 
+const Textarea = ({ label, required, ...props }) => (
+  <div className="mb-4">
+    <label className="block text-sm mb-1.5" style={{ color: C.sec }}>{label}{required && <span style={{ color: C.gold }}> *</span>}</label>
+    <textarea
+      {...props} required={required} rows={3}
+      className="w-full px-4 py-3 rounded-lg text-sm text-white placeholder:text-white/25 focus:outline-none resize-none transition-colors"
+      style={{ background: C.deep, border: `1px solid ${C.border}` }}
+      onFocus={e => e.target.style.borderColor = C.gold}
+      onBlur={e => e.target.style.borderColor = C.border}
+    />
+  </div>
+);
+
 const RadioGroup = ({ label, name, options, value, onChange, required, columns = 1 }) => (
   <div className="mb-4">
     <label className="block text-sm mb-2" style={{ color: C.sec }}>{label}{required && <span style={{ color: C.gold }}> *</span>}</label>
@@ -159,17 +172,18 @@ const ClientIntakePage = () => {
   const [submitted, setSubmitted] = useState(false);
   const [files, setFiles] = useState([]);
 
-  /* Form state — trimmed to pricing-driver + service-needs fields only */
+  /* Form state — pricing-driver + service-needs + qualitative scoping fields */
   const [f, setF] = useState({
     company: '', address: '', additionalLocations: '',
     contactName: '', email: '', phone: '',
     totalEmployees: '', siteEmployees: '', schedule: '',
-    industry: '', industryOther: '', operations: [],
+    industry: '', industryOther: '', dayToDay: '', operations: [], topHazards: '',
     safetyProgram: '',
     existingDocs: {}, uploadedFileUrls: [],
     helpNeeded: [], helpOther: '',
     urgency: '',
     preferredDays: [], preferredTime: '',
+    referralSource: '',
     consentGiven: false,
   });
 
@@ -408,6 +422,19 @@ const ClientIntakePage = () => {
               { value: 'early_afternoon', label: 'Early afternoon' },
               { value: 'late_afternoon', label: 'Late afternoon' },
               { value: 'na', label: 'N/A (no preference / remote engagement)' },
+            ]}
+          />
+
+          <div className="h-px my-6" style={{ background: C.border }} />
+
+          <RadioGroup label="How did you hear about GigLine?" name="referralSource" value={f.referralSource}
+            onChange={v => set('referralSource', v)}
+            options={[
+              { value: 'referral', label: 'Referral' },
+              { value: 'web', label: 'Web search' },
+              { value: 'social', label: 'Social media' },
+              { value: 'employer', label: 'Previous employer' },
+              { value: 'other', label: 'Other' },
             ]}
           />
 

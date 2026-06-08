@@ -249,7 +249,7 @@ const ClientIntakePage = () => {
         <img
           src="/gigline-logo-full-horizontal-white.svg"
           alt="GigLine Safety & Compliance"
-          className="h-9 w-auto mb-10"
+          className="h-12 w-auto mb-10"
         />
         <div className="max-w-md w-full text-center">
           <div className="w-16 h-16 rounded-full mx-auto mb-6 flex items-center justify-center" style={{ background: C.gold }}>
@@ -478,7 +478,7 @@ const ClientIntakePage = () => {
             <img
               src="/gigline-logo-full-horizontal-white.svg"
               alt="GigLine Safety & Compliance"
-              className="h-7 md:h-8 w-auto"
+              className="h-10 md:h-12 w-auto"
             />
             <div className="hidden sm:block" style={{ borderLeft: `1px solid ${C.border}`, paddingLeft: '12px' }}>
               <span className="text-xs block" style={{ color: C.muted }}>Client Safety Intake</span>

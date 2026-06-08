@@ -335,11 +335,17 @@ const ClientIntakePage = () => {
           </div>
           {f.industry === 'other' && <Input label="Describe your industry" value={f.industryOther} onChange={e => set('industryOther', e.target.value)} />}
 
+          <Textarea label="Briefly describe what you do day-to-day" value={f.dayToDay} onChange={e => set('dayToDay', e.target.value)} placeholder="Example: CNC machining, welding, assembly, material handling." />
+
           <CheckboxGroup label="Which of these are in your operation?" columns={2} options={[
             'Forklifts or powered industrial trucks', 'Overhead cranes/hoists', 'Welding/cutting/hot work',
-            'Machine tools (lathes, mills, presses, saws)', 'Chemicals/paints/solvents', 'Confined spaces',
+            'Machine tools (lathes, mills, presses, saws)',
+            'Hydraulic die press', 'Pneumatic (air) die press',
+            'Chemicals/paints/solvents', 'Confined spaces',
             'Working at heights (ladders, roofs, platforms)', 'None of the above',
           ]} values={f.operations} onChange={v => toggleArr('operations', v)} />
+
+          <Textarea label="Top 1–2 things that could seriously hurt someone at your company" value={f.topHazards} onChange={e => set('topHazards', e.target.value)} />
 
           <RadioGroup label="Do you have a written safety program?" name="safetyProgram" value={f.safetyProgram}
             onChange={v => set('safetyProgram', v)}

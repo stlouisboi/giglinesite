@@ -32,6 +32,22 @@ SERVICE_GROUP_NAMES = {
     "Incident Review": "Service - Incident Review",
 }
 
+# GL-INTAKE-002 — service lane → MailerLite group routing
+# Maps the intake form's serviceSelected value to its destination group.
+INTAKE_LANE_GROUPS = {
+    "walkthrough": "Service - Safety Walkthrough",
+    "doc_review": "Service - Documentation Review",
+    "incident_review": "Service - Incident Review",
+    "doc_creation": "Service - Doc Creation",
+    "not_sure": "Lead Nurture",
+}
+
+# GL-INTAKE-002 — priority flag groups for same-day Vince notification
+PRIORITY_GROUPS = {
+    "urgent": "Priority - Urgent",
+    "injury": "Priority - Injury Reported",
+}
+
 
 def _headers() -> Dict[str, str]:
     return {
@@ -296,4 +312,87 @@ async def add_to_service_request(
             logger.warning(f"MailerLite service-request add failed {r.status_code}: {r.text[:200]}")
     except Exception as e:
         logger.error(f"MailerLite service-request error: {e}")
+    return False
+
+
+async def add_to_intake_lane(
+    email: str,
+    lane: str,
+    priority_flags: Optional[list] = None,
+    name: str = "",
+    company: str = "",
+    attribution: Optional[Dict[str, Any]] = None,
+) -> bool:
+    """
+    GL-INTAKE-002 — Master intake form routing.
+
+    Adds the prospect to the appropriate service-lane group AND any active
+    priority-flag groups (urgent / injury reported). One subscriber can be
+    in multiple groups simultaneously; each group can carry its own
+    welcome / notification automation.
+
+    Args:
+        email: prospect email (required)
+        lane: one of walkthrough | doc_review | incident_review | doc_creation | not_sure
+        priority_flags: optional list of 'urgent' | 'injury' to add same-day flags
+        name, company, attribution: subscriber metadata
+
+    Returns:
+        True if at least the lane group write succeeded.
+    """
+    if not ML_TOKEN or not email:
+        return False
+
+    lane_group_name = INTAKE_LANE_GROUPS.get(lane, "Lead Nurture")
+    lane_gid = await _ensure_group(lane_group_name)
+
+    # Resolve priority group IDs (skip silently if flag not recognized)
+    priority_gids = []
+    for flag in (priority_flags or []):
+        gname = PRIORITY_GROUPS.get(flag)
+        if gname:
+            gid = await _ensure_group(gname)
+            if gid:
+                priority_gids.append(gid)
+
+    if not lane_gid:
+        logger.error(f"MailerLite: intake lane group '{lane_group_name}' could not be resolved")
+        return False
+
+    first_name = (name.split(" ")[0] if name else "").strip()
+    fields: Dict[str, Any] = {
+        "name": first_name,
+        "company": company or "",
+        "source_form": "master_intake",
+        "service_lane": lane,
+    }
+    if attribution and isinstance(attribution, dict):
+        first = attribution.get("firstTouch") or {}
+        if first.get("utm_source"):
+            fields["first_touch_source"] = first.get("utm_source", "")
+        if first.get("utm_campaign"):
+            fields["first_touch_campaign"] = first.get("utm_campaign", "")
+
+    all_groups = [lane_gid] + priority_gids
+    payload = {
+        "email": email,
+        "fields": fields,
+        "groups": all_groups,
+        "status": "active",
+    }
+
+    try:
+        async with httpx.AsyncClient(timeout=10) as client:
+            r = await client.post(
+                f"{ML_BASE}/subscribers", headers=_headers(), json=payload
+            )
+            if r.status_code in (200, 201):
+                logger.info(
+                    f"MailerLite: intake {email} → {lane_group_name} "
+                    f"+ {len(priority_gids)} priority flag(s): {priority_flags or []}"
+                )
+                return True
+            logger.warning(f"MailerLite intake-lane add failed {r.status_code}: {r.text[:200]}")
+    except Exception as e:
+        logger.error(f"MailerLite intake-lane error: {e}")
     return False

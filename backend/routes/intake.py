@@ -241,56 +241,100 @@ def build_pricing_block_html(scope):
 
 
 class IntakeSubmission(BaseModel):
-    # ─── Section 1 — Company & Contact (per GL-WEB-013) ───
+    # ─── Section 1 — Company & Contact (GL-INTAKE-002) ───
     companyName: str = ""
-    facilityAddress: str = ""
+    facilityCityState: str = ""        # "City, State" — replaces full address
     contactName: str = ""
-    contactTitle: str = ""
+    contactTitle: str = ""             # required per spec
     phone: str = ""
     email: str = ""
-    operationType: str = ""           # steel_supply | manufacturing | warehouse | contractor | fleet | mixed | other
+    operationType: str = ""
     operationTypeOther: str = ""
-    employeeCountBucket: str = ""     # under_10 | 10_24 | 25_74 | 75_149 | 150_plus
-    shiftPattern: str = ""            # days_only | days_nights | 24_7 | variable
+    employeeCountBucket: str = ""      # under_10 | 10_25 | 26_50 | 51_100 | 100_plus
+    referralSource: str = ""           # search | referral | linkedin | repeat | other
+    referralSourceOther: str = ""
 
-    # ─── Section 2 — Why You Called & Urgency ───
-    reasonForContact: str = ""
-    upcomingAudit: str = ""           # yes | no | not_sure
-    auditDetails: str = ""
-    urgencyTimeline: str = ""         # asap | 2_4_weeks | flexible
-    serviceRequested: str = ""        # walkthrough | doc_review | incident_review | not_sure
-    remoteOrOnsite: str = ""          # onsite | remote | no_preference
+    # ─── Section 2 — Service Selection ───
+    serviceSelected: str = ""          # walkthrough | doc_review | incident_review | doc_creation | not_sure
 
-    # ─── Section 3 — Current Safety Setup ───
-    q_safety_program: str = ""
-    q_osha_logs: str = ""
-    q_new_hire: str = ""
-    q_training: str = ""
-    q_eap: str = ""
-    q_hazcom: str = ""
-    q_inspections: str = ""
-    q_prior_osha: str = ""            # yes | no | prefer_not_to_say
-    q_known_gaps: str = ""
+    # ─── Section 3 — Urgency & Context ───
+    promptingReason: str = ""          # dropdown
+    promptingReasonOther: str = ""
+    hasDeadline: str = ""              # yes | no
+    deadlineDate: str = ""             # YYYY-MM-DD if hasDeadline = yes
+    deadlineDriver: str = ""           # osha | insurance | customer | internal | other (if hasDeadline = yes)
+    hadInjuryOrClaim: str = ""         # yes | no | not_sure
+    injuryClaimDescription: str = ""   # if hadInjuryOrClaim = yes
 
-    # ─── Section 4 — Equipment & Hazards ───
-    equipment: List[str] = []
-    otherHazards: str = ""
+    # ─── Section 4 — Core Safety Setup ───
+    q_safety_program: str = ""         # yes | no | not_sure
+    q_osha_logs: str = ""              # yes | no | not_sure
+    q_osha_inspection_ever: str = ""   # yes | no | not_sure
+    oshaInspectionYear: str = ""       # if q_osha_inspection_ever = yes
+    oshaInspectionCitations: str = ""  # if q_osha_inspection_ever = yes
 
-    # ─── Section 5 — Documentation & Logistics ───
-    docPrepReadiness: str = ""        # yes | mostly | need_help
+    # ─── Section 4 — Lane: Doc Review / Gap Check ───
+    docReviewConcerns: List[str] = []  # multi-select
+    docReviewApproach: str = ""        # review_existing | start_scratch | not_sure
+
+    # ─── Section 4 — Lane: Incident Review ───
+    incidentDescription: str = ""
+    incidentOshaNotified: str = ""     # yes | no | not_sure
+    incidentWcFiled: str = ""          # yes | no | in_process
+    incidentInternalReportStarted: str = ""  # yes | no
+    incidentNeededOutcomes: List[str] = []
+
+    # ─── Section 4 — Lane: Doc Creation (hybrid pricing) ───
+    docCreationItems: List[str] = []    # selected docs/programs
+    docCreationApproach: str = ""       # scratch | revising | mix
+    docCreationFacilities: str = ""     # one | multiple
+    docCreationScopeType: str = ""      # review | updates | full_creation
+    docCreationHasDeadline: str = ""    # yes | no
+    docCreationDeadlineDetails: str = ""
+    docCreationPricingDisplayed: str = ""  # bundle_399 | individual_sum | phone_quote (logged for analytics)
+
+    # ─── Section 5 — Hazards & Facility Profile (Walkthrough OR Doc Creation only) ───
+    hazardsPresent: List[str] = []
+    safetyBoardPosted: str = ""        # yes | no | not_sure
+    facilityAdditionalNotes: str = ""
+
+    # ─── Section 6 — Scheduling & Logistics ───
+    contactMethod: str = ""            # phone | text | email
+    bestTime: str = ""                 # morning | midday | afternoon | after_4pm
     preferredDays: List[str] = []
-    preferredTime: str = ""           # morning | afternoon | either
-    contactMethod: str = ""           # phone | text | email
-    accessNotes: str = ""
+    preferredStartDate: str = ""
+    blockers: str = ""
 
-    # ─── Section 6 — Acknowledgment ───
-    acknowledgmentChecked: bool = False
+    # ─── Section 7 — Acknowledgments ───
+    engagementAcknowledged: bool = False
+    privacyAccepted: bool = False
 
     # ─── System fields ───
     uploadedFileUrls: list = []
     attribution: Optional[dict] = None
 
-    # ─── Legacy fields (kept for backward compatibility — never used by new form) ───
+    # ─── Legacy field aliases kept for backward compatibility ───
+    facilityAddress: str = ""
+    shiftPattern: str = ""
+    reasonForContact: str = ""
+    upcomingAudit: str = ""
+    auditDetails: str = ""
+    urgencyTimeline: str = ""
+    serviceRequested: str = ""
+    remoteOrOnsite: str = ""
+    q_new_hire: str = ""
+    q_training: str = ""
+    q_eap: str = ""
+    q_hazcom: str = ""
+    q_inspections: str = ""
+    q_prior_osha: str = ""
+    q_known_gaps: str = ""
+    equipment: List[str] = []
+    otherHazards: str = ""
+    docPrepReadiness: str = ""
+    preferredTime: str = ""
+    accessNotes: str = ""
+    acknowledgmentChecked: bool = False
     company: str = ""
     dba: str = ""
     address: str = ""
@@ -318,7 +362,6 @@ class IntakeSubmission(BaseModel):
     urgency: str = ""
     budget: str = ""
     approver: str = ""
-    referralSource: str = ""
     consentGiven: bool = False
 
 
@@ -355,14 +398,12 @@ async def upload_intake_file(file: UploadFile = File(...)):
 @router.post("/intake/submit")
 async def submit_intake(data: IntakeSubmission):
     """
-    GL-WEB-013 — Intake form rebuild.
-    Stores submission, fires two emails:
-      1. Client confirmation (plain-styled HTML with Field Manual link + status page)
-      2. Vince notification (plain-text monospaced summary, sized for phone scan)
-    Conditionally attaches the Doc Review prep checklist when service = doc_review.
+    GL-INTAKE-002 — Master Service Intake submit handler.
+    Stores submission, fires two emails, routes to correct MailerLite lane
+    with priority flags.
     """
-    if not data.acknowledgmentChecked:
-        raise HTTPException(status_code=400, detail="Acknowledgment required")
+    if not data.engagementAcknowledged or not data.privacyAccepted:
+        raise HTTPException(status_code=400, detail="Both acknowledgments required")
 
     submission_id = str(uuid.uuid4())
     client_token = secrets.token_urlsafe(9)
@@ -382,71 +423,99 @@ async def submit_intake(data: IntakeSubmission):
     }
     await db.gl_intake_submissions.insert_one(doc)
 
-    # ── MailerLite ── intake = active engagement → Paused group, no automation runs
+    # ─── Determine priority flags for MailerLite ───
+    priority_flags = []
+    # Urgent flag: prompting reason = OSHA visit/inspection OR has near-term deadline
+    if data.promptingReason in ("upcoming_osha_inspection", "upcoming_osha_visit") or (
+        data.hasDeadline == "yes" and data.deadlineDate
+    ):
+        priority_flags.append("urgent")
+    # Injury flag: hadInjuryOrClaim = yes OR service = incident_review
+    if data.hadInjuryOrClaim == "yes" or data.serviceSelected == "incident_review":
+        priority_flags.append("injury")
+
+    # ─── MailerLite — route to service lane + apply priority flags ───
     if data.email:
+        from integrations.mailerlite import add_to_intake_lane
         attribution_dict = data.attribution if isinstance(data.attribution, dict) else None
-        asyncio.create_task(add_to_lead_nurture(
+        asyncio.create_task(add_to_intake_lane(
             email=data.email,
+            lane=data.serviceSelected or "not_sure",
+            priority_flags=priority_flags or None,
             name=data.contactName or "",
             company=data.companyName or "",
-            source_form="intake",
             attribution=attribution_dict,
         ))
-        asyncio.create_task(pause_engagement(data.email))
+        # Active engagement → pause Lead Nurture so they don't get prospect drip
+        if data.serviceSelected and data.serviceSelected != "not_sure":
+            asyncio.create_task(pause_engagement(data.email))
 
-    # ── Label dictionaries for human-readable email rendering ──
+    # ─── Label dictionaries for human-readable email rendering ───
     OP_TYPES = {
-        "steel_supply": "Steel supply / fabrication", "manufacturing": "Manufacturing",
-        "warehouse": "Warehouse / distribution", "contractor": "Contractor / construction",
-        "fleet": "Fleet operations", "mixed": "Mixed use", "other": "Other",
+        "steel_supply": "Steel supply / fabrication",
+        "manufacturing": "Manufacturing", "warehouse": "Warehouse / distribution",
+        "contractor": "Contractor / construction", "fleet": "Fleet operations",
+        "mixed": "Mixed use", "other": "Other",
     }
     EMP_COUNTS = {
-        "under_10": "Under 10", "10_24": "10–24", "25_74": "25–74",
-        "75_149": "75–149", "150_plus": "150+",
+        "under_10": "Under 10", "10_25": "10–25", "26_50": "26–50",
+        "51_100": "51–100", "100_plus": "100+",
     }
-    SHIFTS = {
-        "days_only": "Days only", "days_nights": "Days + nights",
-        "24_7": "24/7 operation", "variable": "Variable",
-    }
-    UPCOMING_AUDIT = {"yes": "Yes", "no": "No", "not_sure": "Not sure"}
-    URGENCY = {"asap": "As soon as possible", "2_4_weeks": "Next 2–4 weeks", "flexible": "Flexible — no specific deadline"}
     SERVICES = {
         "walkthrough": "Safety Walkthrough & Top 10 Fixes Report",
         "doc_review": "Documentation & Gap Check",
         "incident_review": "Incident Review & Corrective Action Support",
-        "not_sure": "Not sure — let Vince recommend",
+        "doc_creation": "Safety Documents / Program Creation",
+        "not_sure": "Not sure — needs guidance",
     }
-    REMOTE = {"onsite": "On-site", "remote": "Remote", "no_preference": "No preference"}
+    PROMPT_REASONS = {
+        "upcoming_osha_inspection": "Upcoming OSHA inspection",
+        "upcoming_osha_visit": "Upcoming OSHA visit",
+        "recent_incident": "Recent incident or injury",
+        "insurance_request": "Insurance carrier request",
+        "customer_request": "Customer / client request",
+        "internal_concern": "Internal concern",
+        "growth_expansion": "Growth / expansion",
+        "general_review": "General safety review",
+        "other": "Other",
+    }
     YNS = {"yes": "YES", "no": "NO", "not_sure": "NOT SURE", "prefer_not_to_say": "PREFER NOT TO SAY"}
-    DOC_PREP = {
-        "yes": "Yes — can pull most of it",
-        "mostly": "Mostly — some items may be missing",
-        "need_help": "Need help knowing where to start",
-    }
-    TIMES = {"morning": "Morning (before noon)", "afternoon": "Afternoon", "either": "Either"}
     CONTACT_M = {"phone": "Phone call", "text": "Text message", "email": "Email"}
+    TIMES = {"morning": "Morning", "midday": "Midday", "afternoon": "Afternoon", "after_4pm": "After 4 PM"}
 
     def L(d, k):
         return d.get(k, k) if k else "—"
 
     first_name = (data.contactName or "").split(" ")[0] if data.contactName else ""
     status_url = f"https://giglinecompliance.com/status/{client_token}"
+    service_display = L(SERVICES, data.serviceSelected)
 
     # ─────────────────────────────────────────────────────────
-    # CLIENT CONFIRMATION EMAIL (per spec — Section 5)
+    # CLIENT CONFIRMATION EMAIL — lane-aware variant
     # ─────────────────────────────────────────────────────────
-    client_subject = "GigLine received your intake — here's what happens next"
+    client_subject = f"GigLine received your request — {service_display}"
+
+    # Service-lane-specific opening line
+    lane_opener = {
+        "walkthrough": "Thanks for requesting a Safety Walkthrough. Vince will be in touch within 1 business day to confirm scope and schedule.",
+        "doc_review": "Thanks for requesting a Documentation & Gap Check. The prep checklist is attached. Vince will follow up within 1 business day with a fixed quote.",
+        "incident_review": "Thanks for reaching out about an incident review. These move fast — Vince will be in touch shortly, often same day.",
+        "doc_creation": "Thanks for the program creation request. Vince will review your selections and follow up within 1 business day with a quote.",
+        "not_sure": "Thanks for reaching out. Vince will review what you submitted and follow up within 1 business day to figure out the right fit.",
+    }.get(data.serviceSelected, "Thanks for reaching out. Vince will follow up within 1 business day.")
+
     client_html = f"""
 <div style="font-family:Georgia,'Times New Roman',serif;max-width:600px;margin:0 auto;color:#1C2B2B;line-height:1.55;padding:0 18px;">
   <p style="font-size:15px;">Hi {first_name or 'there'},</p>
-  <p style="font-size:15px;">Got it — your intake has been received. Here&rsquo;s what happens next:</p>
+  <p style="font-size:15px;">{lane_opener}</p>
+  <p style="font-size:15px;">Here&rsquo;s what happens next:</p>
   <ol style="font-size:15px;padding-left:22px;margin:8px 0 18px;">
-    <li style="margin-bottom:4px;">Vince will review your answers and confirm a fixed quote within 1 business day.</li>
-    <li style="margin-bottom:4px;">You&rsquo;ll receive a proposed scope of work and price by email.</li>
-    <li style="margin-bottom:4px;">Once you confirm, Vince will schedule the walkthrough or review at a time that works for your operation.</li>
+    <li style="margin-bottom:4px;">Vince reviews your intake.</li>
+    <li style="margin-bottom:4px;">You receive a proposed scope and fixed quote within 1 business day.</li>
+    <li style="margin-bottom:4px;">Once confirmed, the engagement is scheduled at a time that works for your operation.</li>
   </ol>
-  <p style="font-size:15px;">In the meantime &mdash; here&rsquo;s something worth keeping regardless of what you decide:</p>
-  <p style="font-size:15px;">The <strong>2026 Triad OSHA Field Manual</strong>. 12 pages. The 7 violations OSHA cites Piedmont Triad operations for most often &mdash; CFR citations, penalty ranges, and the fix for each one.</p>
+  <p style="font-size:15px;">While you&rsquo;re waiting, here&rsquo;s something worth keeping:</p>
+  <p style="font-size:15px;">The <strong>2026 Triad OSHA Field Manual</strong>. 12 pages. The 7 violations OSHA cites Piedmont Triad operations for most often &mdash; CFR codes, penalty ranges, and the fix for each one.</p>
   <p style="font-size:15px;margin:14px 0;">
     <a href="https://www.giglinecompliance.com/assets/gl-fm-2026.pdf"
        style="background:#0A1628;color:#FFFFFF;text-decoration:none;padding:11px 22px;font-weight:bold;font-family:Arial,sans-serif;display:inline-block;">
@@ -455,7 +524,7 @@ async def submit_intake(data: IntakeSubmission):
   </p>
   <p style="font-size:13px;color:#777;margin-top:0;">No forms. No opt-in. Yours to keep.</p>
   <hr style="margin:24px 0;border:none;border-top:1px solid #E5E5E5;" />
-  <p style="font-size:15px;"><strong>You can check the status of your engagement anytime at:</strong></p>
+  <p style="font-size:15px;"><strong>Your engagement status page:</strong></p>
   <p style="font-size:15px;margin:8px 0 20px;">
     <a href="{status_url}"
        style="background:#1F6FEB;color:#FFFFFF;text-decoration:none;padding:11px 22px;font-weight:bold;font-family:Arial,sans-serif;display:inline-block;">
@@ -472,7 +541,6 @@ async def submit_intake(data: IntakeSubmission):
   </p>
 </div>"""
 
-    # Conditional attachment: prep checklist only when service = doc_review
     client_send_payload = {
         "from": f"Vince Lawrence <{SENDER_EMAIL}>",
         "to": [data.email],
@@ -480,7 +548,8 @@ async def submit_intake(data: IntakeSubmission):
         "html": client_html,
         "reply_to": VINCE_EMAIL,
     }
-    if data.serviceRequested == "doc_review":
+    # Attach prep checklist for Doc Review lane only
+    if data.serviceSelected == "doc_review":
         prep_path = "/app/frontend/public/assets/gl-doc-review-prep-checklist.pdf"
         try:
             with open(prep_path, "rb") as fp:
@@ -493,90 +562,145 @@ async def submit_intake(data: IntakeSubmission):
             logger.warning(f"Prep checklist attachment skipped: {e}")
 
     # ─────────────────────────────────────────────────────────
-    # VINCE NOTIFICATION EMAIL (per spec — Section 6, plain-text monospaced)
+    # VINCE NOTIFICATION EMAIL — monospaced, structured, includes priority flags
     # ─────────────────────────────────────────────────────────
     op_type_display = L(OP_TYPES, data.operationType)
     if data.operationType in ("mixed", "other") and data.operationTypeOther:
         op_type_display += f" — {data.operationTypeOther}"
-
     emp_count_display = L(EMP_COUNTS, data.employeeCountBucket)
-    vince_subject = (
-        f"New intake — {data.companyName or 'Unknown company'} "
-        f"· {op_type_display} · {emp_count_display} employees"
-    )
 
-    equipment_lines = "\n".join(f"  • {item}" for item in (data.equipment or [])) or "  • (none selected)"
-    audit_line = L(UPCOMING_AUDIT, data.upcomingAudit)
-    if data.upcomingAudit == "yes" and data.auditDetails:
-        audit_line += f"  ({data.auditDetails})"
-    preferred_days_line = ", ".join(data.preferredDays) if data.preferredDays else "—"
+    priority_banner = ""
+    if priority_flags:
+        flag_labels = ", ".join(f.upper() for f in priority_flags)
+        priority_banner = (
+            f"\n┌─────────────────────────────────────────────────────┐\n"
+            f"│  *** PRIORITY: {flag_labels.ljust(36)} ***  │\n"
+            f"└─────────────────────────────────────────────────────┘\n"
+        )
+
+    vince_subject = (
+        f"{'[PRIORITY] ' if priority_flags else ''}New intake — {data.companyName or 'Unknown'} "
+        f"· {service_display}"
+    )
 
     def pad(label):
         return label.ljust(26)
 
-    vince_plaintext = f"""\
-NEW INTAKE SUBMISSION
-═══════════════════════════════════════════════════════
+    # Build lane-specific block
+    lane_block = ""
+    if data.serviceSelected == "doc_review":
+        concerns = "\n".join(f"  • {item}" for item in (data.docReviewConcerns or [])) or "  (none specified)"
+        lane_block = f"""
 
+───────────────────────────────────────────────────────
+LANE: DOCUMENTATION & GAP CHECK
+───────────────────────────────────────────────────────
+{pad('Concerned documents:')}
+{concerns}
+{pad('Approach:')}{data.docReviewApproach or '—'}"""
+    elif data.serviceSelected == "incident_review":
+        outcomes = "\n".join(f"  • {item}" for item in (data.incidentNeededOutcomes or [])) or "  (none specified)"
+        lane_block = f"""
+
+───────────────────────────────────────────────────────
+LANE: INCIDENT REVIEW
+───────────────────────────────────────────────────────
+{pad('Description:')}{data.incidentDescription or '—'}
+{pad('OSHA notified:')}{L(YNS, data.incidentOshaNotified)}
+{pad('WC filed:')}{data.incidentWcFiled or '—'}
+{pad('Internal report started:')}{L(YNS, data.incidentInternalReportStarted)}
+{pad('Needed outcomes:')}
+{outcomes}"""
+    elif data.serviceSelected == "doc_creation":
+        items = "\n".join(f"  • {item}" for item in (data.docCreationItems or [])) or "  (none specified)"
+        lane_block = f"""
+
+───────────────────────────────────────────────────────
+LANE: DOCUMENT / PROGRAM CREATION
+───────────────────────────────────────────────────────
+{pad('Items requested:')}
+{items}
+{pad('Approach:')}{data.docCreationApproach or '—'}
+{pad('Facilities:')}{data.docCreationFacilities or '—'}
+{pad('Scope type:')}{data.docCreationScopeType or '—'}
+{pad('Has deadline:')}{data.docCreationHasDeadline or '—'} {f'({data.docCreationDeadlineDetails})' if data.docCreationDeadlineDetails else ''}
+{pad('Pricing displayed:')}{data.docCreationPricingDisplayed or '—'}"""
+    elif data.serviceSelected == "walkthrough" or data.serviceSelected == "doc_creation":
+        hazards = "\n".join(f"  • {item}" for item in (data.hazardsPresent or [])) or "  (none flagged)"
+        lane_block = f"""
+
+───────────────────────────────────────────────────────
+HAZARDS & FACILITY PROFILE
+───────────────────────────────────────────────────────
+{pad('Hazards present:')}
+{hazards}
+{pad('Safety board posted:')}{L(YNS, data.safetyBoardPosted)}
+{pad('Additional notes:')}{data.facilityAdditionalNotes or '—'}"""
+
+    # Section 5 hazards block also for walkthrough/doc_creation
+    s5_block = ""
+    if data.serviceSelected in ("walkthrough", "doc_creation") and data.hazardsPresent:
+        hazards = "\n".join(f"  • {item}" for item in data.hazardsPresent)
+        s5_block = f"""
+
+───────────────────────────────────────────────────────
+FACILITY HAZARDS PROFILE
+───────────────────────────────────────────────────────
+{hazards}
+{pad('Safety board posted:')}{L(YNS, data.safetyBoardPosted)}
+{pad('Other facility notes:')}{data.facilityAdditionalNotes or '—'}"""
+
+    vince_plaintext = f"""\
+NEW MASTER INTAKE — {service_display.upper()}
+═══════════════════════════════════════════════════════
+{priority_banner}
 Submitted: {submitted_ts}
 
 ───────────────────────────────────────────────────────
 COMPANY & CONTACT
 ───────────────────────────────────────────────────────
 {pad('Company:')}{data.companyName or '—'}
-{pad('Facility:')}{data.facilityAddress or '—'}
-{pad('Contact:')}{data.contactName or '—'}{(', ' + data.contactTitle) if data.contactTitle else ''}
+{pad('Facility (city, state):')}{data.facilityCityState or '—'}
+{pad('Contact:')}{data.contactName or '—'}, {data.contactTitle or '—'}
 {pad('Phone:')}{data.phone or '—'}
 {pad('Email:')}{data.email or '—'}
 {pad('Operation type:')}{op_type_display}
-{pad('Employees:')}{emp_count_display}
-{pad('Shifts:')}{L(SHIFTS, data.shiftPattern)}
+{pad('Employee count:')}{emp_count_display}
+{pad('Heard about GigLine:')}{data.referralSource or '—'} {f'({data.referralSourceOther})' if data.referralSourceOther else ''}
 
 ───────────────────────────────────────────────────────
-WHY THEY CALLED
+SERVICE & URGENCY
 ───────────────────────────────────────────────────────
-{pad('Prompt:')}{data.reasonForContact or '—'}
-{pad('Upcoming audit:')}{audit_line}
-{pad('Urgency:')}{L(URGENCY, data.urgencyTimeline)}
-{pad('Service:')}{L(SERVICES, data.serviceRequested)}
-{pad('Preference:')}{L(REMOTE, data.remoteOrOnsite)}
+{pad('Service requested:')}{service_display}
+{pad('Prompting reason:')}{L(PROMPT_REASONS, data.promptingReason)} {f'({data.promptingReasonOther})' if data.promptingReasonOther else ''}
+{pad('Has deadline:')}{data.hasDeadline or '—'} {f'(by {data.deadlineDate}, driven by {data.deadlineDriver})' if data.hasDeadline == 'yes' else ''}
+{pad('Recent injury/claim:')}{L(YNS, data.hadInjuryOrClaim)}
+{(pad('Injury detail:') + (data.injuryClaimDescription or '')) if data.hadInjuryOrClaim == 'yes' else ''}
 
 ───────────────────────────────────────────────────────
-CURRENT SAFETY SETUP
+CORE SAFETY SETUP
 ───────────────────────────────────────────────────────
 {pad('Written safety program:')}{L(YNS, data.q_safety_program)}
-{pad('OSHA 300/300A logs:')}{L(YNS, data.q_osha_logs)}
-{pad('New-hire orientation:')}{L(YNS, data.q_new_hire)}
-{pad('Regular safety training:')}{L(YNS, data.q_training)}
-{pad('Emergency action plan:')}{L(YNS, data.q_eap)}
-{pad('HazCom program + SDS:')}{L(YNS, data.q_hazcom)}
-{pad('Regular inspections:')}{L(YNS, data.q_inspections)}
-{pad('Prior OSHA citation:')}{L(YNS, data.q_prior_osha)}
-{pad('Known gaps / concerns:')}{(data.q_known_gaps or '—')}
+{pad('OSHA 300 log kept:')}{L(YNS, data.q_osha_logs)}
+{pad('Prior OSHA inspection:')}{L(YNS, data.q_osha_inspection_ever)} {f'({data.oshaInspectionYear}, citations: {data.oshaInspectionCitations})' if data.q_osha_inspection_ever == 'yes' else ''}
+{lane_block}{s5_block}
 
 ───────────────────────────────────────────────────────
-EQUIPMENT & HAZARDS
+SCHEDULING & LOGISTICS
 ───────────────────────────────────────────────────────
-{equipment_lines}
-{pad('Other hazards:')}{data.otherHazards or '—'}
-
-───────────────────────────────────────────────────────
-LOGISTICS
-───────────────────────────────────────────────────────
-{pad('Doc prep readiness:')}{L(DOC_PREP, data.docPrepReadiness)}
-{pad('Preferred days:')}{preferred_days_line}
-{pad('Preferred time:')}{L(TIMES, data.preferredTime)}
 {pad('Contact method:')}{L(CONTACT_M, data.contactMethod)}
-{pad('Access notes:')}{data.accessNotes or '—'}
+{pad('Best time:')}{L(TIMES, data.bestTime)}
+{pad('Preferred days:')}{', '.join(data.preferredDays) if data.preferredDays else '—'}
+{pad('Preferred start date:')}{data.preferredStartDate or '—'}
+{pad('Blockers:')}{data.blockers or '—'}
 
 ───────────────────────────────────────────────────────
-PRICING REFERENCE
+PRICING REFERENCE  (GL-INTAKE-002 hybrid pricing)
 ───────────────────────────────────────────────────────
-Under 25 employees → $550 base
-25–74            → $650
-75–149           → $800
-150+             → custom
-On-site add $100–150  |  High complexity → adjust up
+Walkthrough        : $650 base (≤25 emp) → $800+ (75+ emp), on-site +$100–150
+Doc Review         : $550 remote → $750 on-site, complexity adjust
+Incident Review    : $900–$1,500 depending on scope
+Doc Creation       : $129–$199 each | $399 bundle (3+) | custom = quote
 
 ───────────────────────────────────────────────────────
 STATUS PAGE: {status_url}
@@ -584,7 +708,6 @@ REPLY TO:    {data.email}
 CALL:        {data.phone}
 """
 
-    # Wrap plain text in monospaced HTML for browser-safe rendering
     vince_html = (
         f"<pre style=\"font-family:'JetBrains Mono','Courier New',monospace;"
         f"font-size:12.5px;line-height:1.5;color:#1C2B2B;white-space:pre-wrap;"

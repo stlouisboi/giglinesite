@@ -1,37 +1,42 @@
 """
-Regenerate the GigLine Open Graph social card image (og-image.png).
-Bold, readable, brand-aligned. 1200x630 standard.
+Regenerate GigLine Open Graph social card (og-image.png) — v2.
+
+Layout updates from v1:
+  - Real horizontal GigLine logo replaces the gold accent bar (top-left)
+  - Phone number anchored top-right (callable contact at a glance)
+  - Headline shifts to a tighter 2-line stack with gold underline rule
+  - 3-up stat band at bottom inside a darker tinted strip (visual ledge)
+  - All copy stays bold and readable at thumbnail / preview sizes
 
 Run: python3 /app/backend/scripts/generate_og_image.py
 Output: /app/frontend/public/og-image.png
 """
 
 import os
+import io
 from PIL import Image, ImageDraw, ImageFont
+import cairosvg
 
 OUT = "/app/frontend/public/og-image.png"
+LOGO_SVG = "/app/frontend/public/gigline-logo-full-horizontal-white.svg"
 SIZE = (1200, 630)
 
 # ── Brand palette ──
-NAVY = (10, 22, 40)           # #0A1628
-NAVY_DEEPER = (7, 16, 30)     # gradient darker
-GOLD = (197, 160, 89)         # #C5A059
-GOLD_LIGHT = (217, 187, 124)
+NAVY = (10, 22, 40)               # #0A1628
+NAVY_DARKER = (7, 16, 30)
+NAVY_BAR = (5, 14, 26)            # darker strip behind stats
+GOLD = (197, 160, 89)             # #C5A059
 WHITE = (255, 255, 255)
-WHITE_60 = (255, 255, 255, 153)
-WHITE_75 = (255, 255, 255, 191)
 
-# ── Font fallbacks (system fonts available in Linux containers) ──
+
 def load_font(size, bold=False):
     candidates_bold = [
         "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
         "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
-        "/usr/share/fonts/TTF/DejaVuSans-Bold.ttf",
     ]
     candidates_regular = [
         "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
         "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
-        "/usr/share/fonts/TTF/DejaVuSans.ttf",
     ]
     for path in (candidates_bold if bold else candidates_regular):
         if os.path.exists(path):
@@ -39,84 +44,106 @@ def load_font(size, bold=False):
     return ImageFont.load_default()
 
 
+def render_logo(target_height):
+    """Convert horizontal white SVG to PNG, scaled to target height."""
+    png_bytes = cairosvg.svg2png(
+        url=LOGO_SVG,
+        output_height=target_height,
+    )
+    return Image.open(io.BytesIO(png_bytes)).convert("RGBA")
+
+
 def build():
-    # Start with solid navy background (cleaner than gradient for previews)
-    img = Image.new("RGB", SIZE, NAVY)
-    draw = ImageDraw.Draw(img)
+    img = Image.new("RGBA", SIZE, NAVY + (255,))
 
-    # ── Subtle radial darkening at the bottom-right for depth (not too fancy) ──
-    overlay = Image.new("RGBA", SIZE, (0, 0, 0, 0))
-    odraw = ImageDraw.Draw(overlay)
-    # A simple gradient strip on the left edge — keeps it clean
-    for i in range(40):
-        odraw.line([(i, 0), (i, SIZE[1])], fill=(*GOLD, max(0, 35 - i)))
-    img = Image.alpha_composite(img.convert("RGBA"), overlay).convert("RGB")
-    draw = ImageDraw.Draw(img)
+    # ── Darker tinted ledge strip across the bottom for stat band ──
+    draw_base = ImageDraw.Draw(img)
+    draw_base.rectangle([(0, 460), (SIZE[0], SIZE[1])], fill=NAVY_DARKER + (255,))
+    # Top edge of strip — thin gold rule
+    draw_base.rectangle([(0, 458), (SIZE[0], 460)], fill=GOLD + (255,))
 
-    # ── Gold accent line top-left ──
-    draw.rectangle([(80, 80), (160, 86)], fill=GOLD)
+    # ── Header band: logo top-left, phone top-right ──
+    logo_height = 56
+    logo = render_logo(logo_height)
+    img.paste(logo, (72, 60), logo)
+
+    # Phone number top-right
+    phone_font = load_font(26, bold=True)
+    phone_label_font = load_font(14, bold=True)
+    phone_text = "(336) 329-8899"
+    bbox = ImageDraw.Draw(img).textbbox((0, 0), phone_text, font=phone_font)
+    phone_w = bbox[2] - bbox[0]
+    ImageDraw.Draw(img).text(
+        (SIZE[0] - 72 - phone_w, 62),
+        "CALL OR TEXT",
+        font=phone_label_font,
+        fill=GOLD + (255,),
+    )
+    ImageDraw.Draw(img).text(
+        (SIZE[0] - 72 - phone_w, 84),
+        phone_text,
+        font=phone_font,
+        fill=WHITE + (255,),
+    )
 
     # ── Kicker label (above headline) ──
-    kicker_font = load_font(22, bold=True)
-    draw.text(
-        (80, 110),
+    kicker_font = load_font(20, bold=True)
+    ImageDraw.Draw(img).text(
+        (72, 178),
         "OSHA SAFETY WALKTHROUGHS  ·  TRIAD NC",
         font=kicker_font,
-        fill=GOLD,
+        fill=GOLD + (255,),
     )
 
-    # ── Headline (the main value prop, big and bold) ──
+    # ── Gold underline rule beneath kicker ──
+    ImageDraw.Draw(img).rectangle([(72, 215), (140, 219)], fill=GOLD + (255,))
+
+    # ── Headline — 2 lines, big and bold ──
     headline_font = load_font(72, bold=True)
-    headline_y = 175
-    draw.text(
-        (80, headline_y),
-        "If OSHA Walked In",
+    headline_y = 240
+    ImageDraw.Draw(img).text(
+        (72, headline_y),
+        "If OSHA Walked In Tomorrow,",
         font=headline_font,
-        fill=WHITE,
+        fill=WHITE + (255,),
     )
-    draw.text(
-        (80, headline_y + 88),
-        "Tomorrow,",
-        font=headline_font,
-        fill=WHITE,
-    )
-    draw.text(
-        (80, headline_y + 176),
+    ImageDraw.Draw(img).text(
+        (72, headline_y + 90),
         "Would You Pass?",
         font=headline_font,
-        fill=GOLD,
+        fill=GOLD + (255,),
     )
 
-    # ── Stats / proof points row ──
-    proof_label_font = load_font(16, bold=True)
+    # ── Stats band (inside the darker ledge) ──
+    proof_label_font = load_font(15, bold=True)
     proof_value_font = load_font(34, bold=True)
-    
+
     proofs = [
         ("AVG OSHA CITATION", "$15,625"),
-        ("REPORT IN", "48 HOURS"),
-        ("CALLBACK IN", "1 BUSINESS DAY"),
+        ("REPORT DELIVERED", "48 HOURS"),
+        ("CALLBACK WITHIN", "1 BUSINESS DAY"),
     ]
-    
-    proof_y = 470
-    x_positions = [80, 470, 850]
+    x_positions = [72, 480, 870]
+    proof_label_y = 498
+    proof_value_y = 525
     for (label, value), x in zip(proofs, x_positions):
-        draw.text((x, proof_y), label, font=proof_label_font, fill=GOLD)
-        draw.text((x, proof_y + 28), value, font=proof_value_font, fill=WHITE)
+        ImageDraw.Draw(img).text((x, proof_label_y), label, font=proof_label_font, fill=GOLD + (255,))
+        ImageDraw.Draw(img).text((x, proof_value_y), value, font=proof_value_font, fill=WHITE + (255,))
 
-    # ── Bottom gold line + brand mark ──
-    draw.rectangle([(80, 580), (160, 586)], fill=GOLD)
-    
-    brand_font = load_font(22, bold=True)
-    draw.text((80, 596), "GigLine Safety & Compliance", font=brand_font, fill=WHITE)
-    
-    # Right-side phone number — easy contact for skimmers
-    phone_font = load_font(28, bold=True)
-    phone_text = "(336) 329-8899"
-    bbox = draw.textbbox((0, 0), phone_text, font=phone_font)
-    phone_w = bbox[2] - bbox[0]
-    draw.text((SIZE[0] - 80 - phone_w, 596), phone_text, font=phone_font, fill=GOLD)
+    # ── Bottom-right brand tagline ──
+    tag_font = load_font(14, bold=False)
+    tag_text = "GIGLINECOMPLIANCE.COM"
+    bbox = ImageDraw.Draw(img).textbbox((0, 0), tag_text, font=tag_font)
+    tag_w = bbox[2] - bbox[0]
+    tag_font_bold = load_font(14, bold=True)
+    ImageDraw.Draw(img).text(
+        (SIZE[0] - 72 - tag_w, SIZE[1] - 30),
+        tag_text,
+        font=tag_font_bold,
+        fill=GOLD + (255,),
+    )
 
-    img.save(OUT, "PNG", optimize=True)
+    img.convert("RGB").save(OUT, "PNG", optimize=True)
     print(f"✓ Generated: {OUT}")
     print(f"  Size: {os.path.getsize(OUT) / 1024:.1f} KB ({SIZE[0]}x{SIZE[1]})")
 

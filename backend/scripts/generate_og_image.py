@@ -224,13 +224,13 @@ def build():
 
     # ── Tagline beneath logo ──
     draw = ImageDraw.Draw(img)
-    tagline_font = load_font(28, bold=True)
-    # "Practical Safety. Real Compliance." with gold accent on key words
-    # Composing parts to color individually
+    tagline_font = load_font(32, bold=True)
     tag_x = 72
     tag_y = 230
-    # Use a simpler tagline for cleaner read
-    draw.text((tag_x, tag_y), "Find it before OSHA does.", font=tagline_font, fill=GOLD + (255,))
+    # Small vertical gold accent bar to the left of the tagline (survives downscaling)
+    draw.rectangle([(tag_x - 14, tag_y + 4), (tag_x - 10, tag_y + 38)], fill=GOLD + (255,))
+    # Tagline in WHITE for max contrast at small preview sizes (200–400px wide)
+    draw.text((tag_x, tag_y), "Find it before OSHA does.", font=tagline_font, fill=WHITE + (255,))
 
     # ── Gold rule below tagline ──
     draw.rectangle([(tag_x, tag_y + 44), (tag_x + 80, tag_y + 48)], fill=GOLD + (255,))

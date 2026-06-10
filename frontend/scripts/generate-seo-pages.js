@@ -170,8 +170,8 @@ function breadcrumb(items) {
 const routes = [
   {
     path: '/',
-    title: 'OSHA Safety Walkthroughs for Small Manufacturers | Kernersville NC | GigLine Safety & Compliance',
-    description: 'GigLine Safety & Compliance provides on-site OSHA safety walkthroughs, documentation reviews, and incident response support for small manufacturers, warehouses, and fleets in Kernersville, NC and the Piedmont Triad. Starting at $650.',
+    title: 'OSHA Safety Walkthroughs — Triad NC | GigLine (336) 329-8899',
+    description: "Avg OSHA citation: $15,625. A GigLine walkthrough costs a fraction. Written report in 48 hours. Vince Lawrence calls back in 1 business day. Kernersville, NC.",
     canonical: '/',
     schemas: [
       LOCAL_BUSINESS,
@@ -214,8 +214,8 @@ const routes = [
   },
   {
     path: '/about',
-    title: 'Safety Consultant for Small Manufacturers | Kernersville NC | GigLine',
-    description: 'Vince Lawrence — safety consultant for small manufacturers in Kernersville, NC and the Triad. OSHA 30-Hour certified, Navy veteran, 25+ years experience.',
+    title: 'Vince Lawrence — Safety Consultant | Kernersville NC | GigLine',
+    description: '25+ years on the floor. OSHA 30-Hour certified. Navy veteran. The same eyes an inspector uses — before they show up. (336) 329-8899.',
     canonical: '/about',
     schemas: [VINCE_PERSON, breadcrumb([{ name: 'Home', path: '/' }, { name: 'About', path: '/about' }])],
     content: `
@@ -227,8 +227,8 @@ const routes = [
   },
   {
     path: '/services',
-    title: 'OSHA Safety Walkthrough & Compliance Services | Kernersville NC | GigLine',
-    description: 'On-site OSHA safety walkthroughs, documentation reviews, and incident response for small manufacturers, warehouses, and fleets in Kernersville, NC. From $650.',
+    title: 'OSHA Walkthrough & Compliance Services — From $550 | GigLine',
+    description: 'On-site walkthroughs from $650. Documentation reviews from $550. Incident response from $900. Fixed quote before scheduling. No retainer.',
     canonical: '/services',
     schemas: [
       {

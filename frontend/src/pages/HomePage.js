@@ -58,8 +58,8 @@ const HomePage = () => {
   return (
     <main className="overflow-x-hidden">
       <SEO
-        title="OSHA Safety Walkthroughs for Small Manufacturers | Kernersville NC | GigLine Safety & Compliance"
-        description="GigLine Safety & Compliance provides on-site OSHA safety walkthroughs, documentation reviews, and incident response support for small manufacturers, warehouses, and fleets in Kernersville, NC and the Piedmont Triad. Starting at $650."
+        title="OSHA Safety Walkthroughs — Triad NC | GigLine (336) 329-8899"
+        description="Avg OSHA citation: $15,625. A GigLine walkthrough costs a fraction. Written report in 48 hours. Vince Lawrence calls back in 1 business day. Kernersville, NC."
         canonical="/"
         schema={{
           "@context": "https://schema.org",

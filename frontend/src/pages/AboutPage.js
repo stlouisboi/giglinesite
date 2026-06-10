@@ -8,8 +8,8 @@ const AboutPage = () => {
   return (
     <main data-testid="about-page">
       <SEO 
-        title="Safety Consultant for Small Manufacturers | Kernersville NC | GigLine"
-        description="Vince Lawrence — safety consultant for small manufacturers in Kernersville, NC and the Triad. OSHA 30-Hour certified, Navy veteran, 25+ years experience."
+        title="Vince Lawrence — Safety Consultant | Kernersville NC | GigLine"
+        description="25+ years on the floor. OSHA 30-Hour certified. Navy veteran. The same eyes an inspector uses — before they show up. (336) 329-8899."
         canonical="/about"
         schema={[
           {

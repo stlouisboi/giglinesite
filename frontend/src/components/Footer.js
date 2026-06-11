@@ -76,7 +76,7 @@ const Footer = () => {
           <div>
             <h4 className="text-base font-semibold mb-4 text-white/90">Resources</h4>
             <nav aria-label="Footer resources">
-              <ul className="space-y-2">
+              <ul className="space-y-1.5">
                 {[
                   { name: 'Field Notes', path: '/field-notes' },
                   { name: 'Safety Check', path: '/safety-check' },
@@ -84,7 +84,6 @@ const Footer = () => {
                   { name: 'HazCom Starter Pack', path: '/hazcom' },
                   { name: 'Top 5 OSHA Violations', path: '/blog/top-5-osha-violations-small-manufacturing' },
                   { name: 'HazCom Requirements Guide', path: '/blog/hazcom-requirements-small-business' },
-                  { name: 'Contact', path: '/contact' },
                 ].map((link) => (
                   <li key={link.path + link.name}>
                     <Link

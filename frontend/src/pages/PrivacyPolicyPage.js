@@ -77,7 +77,13 @@ const PrivacyPolicyPage = () => {
           <p>To run the GigLine website and operations, the following third-party services have access to portions of your data:</p>
           <ul className="list-disc pl-6 space-y-1.5 mt-3">
             <li><strong>Resend</strong> &mdash; transactional email delivery (confirmation emails, scope quotes, report delivery notifications)</li>
-            <li><strong>MailerLite</strong> &mdash; marketing email delivery and subscriber lists</li>
+            <li><strong>MailerLite</strong> &mdash; email marketing and automation</li>
+            <li><strong>MailerSend</strong> &mdash; transactional email delivery</li>
+            <li><strong>RingCentral</strong> &mdash; SMS and voice communications. Your phone number may be used to send SMS messages per your opt-in consent. Governed by{' '}
+              <a href="https://www.ringcentral.com/legal/privacy-notice.html" target="_blank" rel="noopener noreferrer" className="font-bold underline" style={{ color: '#1F6FEB' }}>
+                RingCentral&rsquo;s Privacy Policy
+              </a>.
+            </li>
             <li><strong>MongoDB Atlas</strong> &mdash; database storage for intake submissions and engagement records</li>
             <li><strong>Vercel</strong> &mdash; website hosting and static asset delivery</li>
             <li><strong>Railway</strong> &mdash; backend API hosting</li>
@@ -104,13 +110,33 @@ const PrivacyPolicyPage = () => {
           </p>
         </Section>
 
-        <Section title="6. Your rights">
+        <Section title="6. SMS Communications">
+          <p>
+            We use SMS (text messaging) to communicate with clients and program participants regarding appointment confirmations, service updates, program enrollment notifications, and general business communications for both GigLine Safety &amp; Compliance and LaunchPath Transportation EDU LLC.
+          </p>
+          <ul className="list-disc pl-6 space-y-1.5 mt-3">
+            <li><strong>Opt-in:</strong> By providing your mobile phone number through any form on our websites, you consent to receive SMS messages from us.</li>
+            <li><strong>SMS consent is not shared with third parties or affiliates for any purpose.</strong></li>
+            <li><strong>Opt-out:</strong> Reply <strong>STOP</strong> at any time to unsubscribe. You will receive one confirmation message and no further SMS messages will be sent.</li>
+            <li><strong>Help:</strong> Reply <strong>HELP</strong> or call <a href="tel:3363298899" className="font-bold underline" style={{ color: '#1F6FEB' }}>(336) 329-8899</a>.</li>
+            <li><strong>Message and data rates may apply.</strong> Messaging frequency varies.</li>
+          </ul>
+        </Section>
+
+        <Section title="7. Children">
+          <p>
+            GigLine&rsquo;s services are for industrial and commercial operators and are not directed at individuals under 18. We do not knowingly collect information from anyone under 18.
+          </p>
+        </Section>
+
+        <Section title="8. Your rights">
           <p>You have the right to:</p>
           <ul className="list-disc pl-6 space-y-1.5 mt-3">
             <li>Request a copy of all information GigLine holds about you</li>
             <li>Request correction of any inaccurate information</li>
             <li>Request deletion of your information (with the exception of records required to be retained for legal or tax purposes)</li>
             <li>Unsubscribe from marketing emails at any time</li>
+            <li>Opt out of SMS communications by replying <strong>STOP</strong></li>
           </ul>
           <p className="mt-3">
             To exercise any of these rights, email Vince directly at{' '}
@@ -121,19 +147,13 @@ const PrivacyPolicyPage = () => {
           </p>
         </Section>
 
-        <Section title="7. Children">
-          <p>
-            GigLine&rsquo;s services are for industrial and commercial operators and are not directed at individuals under 18. We do not knowingly collect information from anyone under 18.
-          </p>
-        </Section>
-
-        <Section title="8. Changes to this policy">
+        <Section title="9. Changes to this policy">
           <p>
             If this policy changes meaningfully, the &ldquo;Last Updated&rdquo; date at the top will be revised and active clients will be notified by email.
           </p>
         </Section>
 
-        <Section title="9. Contact">
+        <Section title="10. Contact">
           <div
             className="rounded-lg p-6 mt-3"
             style={{ background: 'white', border: '1px solid rgba(11,31,51,0.10)' }}

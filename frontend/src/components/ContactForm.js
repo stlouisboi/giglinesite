@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Send, CheckCircle, AlertCircle } from 'lucide-react';
 
 const ContactForm = ({ compact = false }) => {
@@ -9,6 +10,7 @@ const ContactForm = ({ compact = false }) => {
     email: '',
     serviceType: '',
     message: '',
+    smsConsent: false,
   });
   const [status, setStatus] = useState({ type: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -31,8 +33,8 @@ const ContactForm = ({ compact = false }) => {
   ];
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
   };
 
   const handleSubmit = async (e) => {
@@ -55,6 +57,7 @@ const ContactForm = ({ compact = false }) => {
           email: formData.email,
           service_type: formData.serviceType,
           message: formData.message,
+          sms_consent: formData.smsConsent ? 'YES — opted in' : 'NO',
         }),
       });
 
@@ -70,6 +73,7 @@ const ContactForm = ({ compact = false }) => {
           email: '',
           serviceType: '',
           message: '',
+          smsConsent: false,
         });
       } else {
         throw new Error('Form submission failed');
@@ -222,6 +226,31 @@ const ContactForm = ({ compact = false }) => {
           <p className="text-sm">{status.message}</p>
         </div>
       )}
+
+      {/* GL-WEB-014 — SMS opt-in consent checkbox (RingCentral 10DLC requirement) */}
+      <div
+        className="rounded-md p-4"
+        style={{ background: '#F7F9FC', border: '1px solid rgba(11,31,51,0.10)' }}
+        data-testid="contact-form-sms-consent-block"
+      >
+        <label className="flex items-start gap-3 cursor-pointer">
+          <input
+            type="checkbox"
+            id="smsConsent"
+            name="smsConsent"
+            checked={formData.smsConsent}
+            onChange={handleChange}
+            className="mt-1 w-4 h-4 flex-shrink-0 cursor-pointer accent-[#1F6FEB]"
+            data-testid="contact-form-sms-consent"
+          />
+          <span className="text-xs leading-relaxed text-[#1C2B2B]/80">
+            By checking this box, I agree to receive SMS communications from GigLine Safety &amp; Compliance regarding my inquiry, appointment confirmations, and service updates. Messaging frequency may vary. Message and data rates may apply. Reply <strong>STOP</strong> to opt out at any time. Reply <strong>HELP</strong> for assistance or call <a href="tel:3363298899" className="font-bold underline">(336) 329-8899</a>.{' '}
+            <Link to="/privacy-policy" className="font-bold underline" target="_blank" rel="noopener noreferrer">Privacy Policy</Link>
+            {' '}&middot;{' '}
+            <Link to="/terms-of-service" className="font-bold underline" target="_blank" rel="noopener noreferrer">Terms of Service</Link>
+          </span>
+        </label>
+      </div>
 
       <button
         type="submit"

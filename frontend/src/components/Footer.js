@@ -143,10 +143,19 @@ const Footer = () => {
             <p data-testid="footer-copyright">
               &copy; {currentYear} GigLine Safety & Compliance. All rights reserved.
             </p>
-            <p data-testid="footer-tagline">
-              Serving small operations that need clarity, not complexity.
-            </p>
+            <nav className="flex items-center gap-4 flex-wrap justify-center" data-testid="footer-legal-links">
+              <Link to="/privacy-policy" className="hover:text-white transition-colors" data-testid="footer-privacy-link">
+                Privacy Policy
+              </Link>
+              <span className="text-white/20">&middot;</span>
+              <Link to="/terms-of-service" className="hover:text-white transition-colors" data-testid="footer-terms-link">
+                Terms of Service
+              </Link>
+            </nav>
           </div>
+          <p data-testid="footer-tagline" className="text-center md:text-right text-sm text-white/40 mt-4 md:mt-2">
+            Serving small operations that need clarity, not complexity.
+          </p>
         </div>
       </div>
     </footer>

@@ -540,6 +540,8 @@ Corrective action: buy a label-maker and a set of GHS pictogram stickers ($60 to
     subtitle: "What ChatGPT can't see on your floor — and why OSHA can.",
     seoTitle: "AI-Generated Safety Programs vs. OSHA Compliance: What ChatGPT Can't See on Your Floor",
     seo: "Operators are using ChatGPT to generate OSHA safety programs. The output looks compliant — until an inspector arrives. Here's why AI-generated programs fail at the floor level, and what a real walkthrough surfaces that AI cannot.",
+    heroImage: '/assets/field-notes/ai-safety-programs-hero.png',
+    heroImageAlt: 'AI Can Write a Safety Program. It Cannot Walk Your Floor — GigLine Field Note',
     cfrCitation: 'Applies across General Industry — 29 CFR 1910 · Inspection Methods reference: OSHA Field Operations Manual',
     oshaChecks: [
       'Whether written programs match the equipment and chemicals actually on site',
@@ -629,6 +631,8 @@ const FieldNoteDetailPage = () => {
         title={note.seoTitle || `${note.title} — Field Notes | GigLine Safety & Compliance`}
         description={note.seo}
         canonical={`/field-notes/${slug}`}
+        ogType="article"
+        ogImage={note.heroImage}
       />
 
       {/* JSON-LD Article + FAQPage schemas live in the pre-rendered static
@@ -657,6 +661,19 @@ const FieldNoteDetailPage = () => {
       {/* Content */}
       <section className="py-12 md:py-20 bg-white" data-testid="note-content">
         <div className="container max-w-3xl">
+          {/* Hero promo image (when present) */}
+          {note.heroImage && (
+            <div className="mb-10 md:mb-12 -mt-2" data-testid="note-hero-image">
+              <img
+                src={note.heroImage}
+                alt={note.heroImageAlt || note.title}
+                className="w-full h-auto rounded-xl shadow-lg"
+                style={{ boxShadow: '0 18px 36px -16px rgba(11,31,51,0.35), 0 0 0 1px rgba(11,31,51,0.06)' }}
+                loading="eager"
+              />
+            </div>
+          )}
+
           {/* What It Is — supports multi-paragraph via blank line splits */}
           <div className="mb-12" data-testid="note-what-it-is">
             <h2 className="text-xl font-bold text-[#102133] mb-4">What It Is</h2>

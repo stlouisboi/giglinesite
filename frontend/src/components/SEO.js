@@ -6,6 +6,7 @@ const SEO = ({
   description, 
   canonical,
   ogType = 'website',
+  ogImage,
   noindex = false,
   schema
 }) => {
@@ -13,6 +14,7 @@ const SEO = ({
   const fullTitle = title ? `${title} | ${siteName}` : `${siteName} | Safety Walkthroughs & Gap Checks for Small Operations`;
   const baseUrl = 'https://www.giglinecompliance.com';
   const canonicalUrl = canonical ? `${baseUrl}${canonical}` : baseUrl;
+  const ogImageUrl = ogImage ? `${baseUrl}${ogImage}` : `${baseUrl}/og-image.png`;
 
   return (
     <Helmet>
@@ -27,13 +29,13 @@ const SEO = ({
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:site_name" content={siteName} />
-      <meta property="og:image" content={`${baseUrl}/og-image.png`} />
+      <meta property="og:image" content={ogImageUrl} />
       
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={`${baseUrl}/og-image.png`} />
+      <meta name="twitter:image" content={ogImageUrl} />
       
       {/* JSON-LD schemas are injected exclusively by /scripts/generate-seo-pages.js
           into the pre-rendered static HTML. We deliberately do NOT emit them via

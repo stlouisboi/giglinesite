@@ -739,6 +739,7 @@ const fieldNotes = [
     desc: 'Operators are using ChatGPT to generate OSHA safety programs. The output looks compliant — until an inspector arrives. Why AI-generated programs fail at the floor level.',
     customSeoTitle: "AI-Generated Safety Programs vs. OSHA Compliance: What ChatGPT Can't See on Your Floor | GigLine Safety & Compliance",
     customH1: "An AI-Generated Safety Program Is Not a Working Safety Program",
+    ogImage: '/assets/field-notes/ai-safety-programs-hero.png',
     customContent: `
       <h1>An AI-Generated Safety Program Is Not a Working Safety Program</h1>
       <p><em>What ChatGPT can't see on your floor — and why OSHA can.</em></p>
@@ -823,6 +824,7 @@ fieldNotes.forEach((note) => {
     title: note.customSeoTitle || `${note.title} — Field Notes | GigLine Safety & Compliance`,
     description: note.desc,
     canonical: `/field-notes/${note.slug}`,
+    ogImage: note.ogImage,
     schemas,
     content: note.customContent || `<h1>${note.title}</h1><p>${note.desc}</p><p>Field Note by Vince Lawrence — GigLine Safety &amp; Compliance — (336) 329-8899</p>`,
   });
@@ -860,6 +862,11 @@ function generateRouteHTML(templateHTML, route) {
   html = html.replace(/<meta property="og:url" content="[^"]*"\s*\/?>/, `<meta property="og:url" content="${BASE_URL}${route.canonical}" />`);
   html = html.replace(/<meta property="og:title" content="[^"]*"\s*\/?>/, `<meta property="og:title" content="${route.title}" />`);
   html = html.replace(/<meta property="og:description" content="[^"]*"\s*\/?>/, `<meta property="og:description" content="${route.description}" />`);
+  if (route.ogImage) {
+    const ogImageUrl = route.ogImage.startsWith('http') ? route.ogImage : `${BASE_URL}${route.ogImage}`;
+    html = html.replace(/<meta property="og:image" content="[^"]*"\s*\/?>/, `<meta property="og:image" content="${ogImageUrl}" />`);
+    html = html.replace(/<meta name="twitter:image" content="[^"]*"\s*\/?>/, `<meta name="twitter:image" content="${ogImageUrl}" />`);
+  }
 
   // Twitter
   html = html.replace(/<meta name="twitter:title" content="[^"]*"\s*\/?>/, `<meta name="twitter:title" content="${route.title}" />`);

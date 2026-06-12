@@ -142,6 +142,14 @@ Goal: get GigLine cited in answers from ChatGPT, Perplexity, Claude, Google AI O
 - **Backlog (P1)**: 5 local Triad SEO pages (Greensboro, Winston-Salem, High Point, Kernersville, Statesville) — note `/safety-walkthrough/:city` city pages already exist for Triad cities; consider whether new dedicated pages are needed or just refresh existing.
 - **Backlog (P2)**: Problem-Based Field Notes articles from Findability Framework list · Google Review short link in delivered PDF reports · Stripe Invoice creation inside `/admin` panel · 4-touch Past Client Retention MailerLite sequence · Supervisor Training Kit shell (GL-WEB-013, blocked on user PDFs).
 
+## Brand Mark + Form Polish (Jun 12, 2026)
+- **Carolina-Built emblem badge** — User-supplied AI-generated circular badge ("CAROLINA-BUILT" rim text, NC silhouette w/ Kernersville star, foul anchor, "NAVY VETERAN OWNED" sub-medallion). Downloaded to `/app/frontend/public/assets/carolina-built-badge.png`, flood-fill processed to remove flattened light-gray background (~52% pixels keyed to alpha 0).
+- **Badge placement** — Inline after "North Carolina." in homepage hero H1 subhead at `w-24 sm:w-28 lg:w-32` (96/112/128 px) with `drop-shadow(0 6px 14px rgba(0,0,0,0.35))`. Added to all 13 city landing pages (`CityLandingPage.js`) below the H1 at `w-20 sm:w-24 lg:w-28` — uses inline-flex with flex-wrap so badge cleanly drops below long city names.
+- **SMS consent copy rewritten** on `/contact` form (`ContactForm.js`) per user's verbatim spec — now references `launchpathedu.com/privacy-policy` and `launchpathedu.com/terms-of-service` (sister-business unified privacy per RingCentral 10DLC). STOP/HELP/rate/frequency language preserved.
+- **SMS checkbox `required` removed** — confirmed already absent in current code; live site is running stale build. Tested via headless Playwright: form submits successfully with SMS unchecked. Awaiting deploy.
+- **Contact page email overflow fixed** — `vince@giglinecompliance.com` was breaking out of its column after the typography bump. Added `text-sm sm:text-base break-all` + `min-w-0` parent.
+- Removed dead `CarolinaBuiltBadge.js` + `NCStateMark.js` SVG experiments (replaced by user's PNG badge).
+
 ## Deployment
 - Frontend: Vercel (manual redeploy after GitHub push)
 - Backend: Railway (auto-deploys on GitHub push)

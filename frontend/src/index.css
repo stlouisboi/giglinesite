@@ -12,6 +12,17 @@
 
 html {
   scroll-behavior: smooth;
+  /* Global typography bump — ~15% larger across the site.
+     Tailwind sizes (text-base, text-lg, spacing rems) scale from this root. */
+  font-size: 18.4px;
+}
+
+/* Mobile readability: keep base font readable on small screens without
+   over-inflating tap targets and spacing. */
+@media (max-width: 640px) {
+  html {
+    font-size: 17.2px;
+  }
 }
 
 body {

@@ -34,6 +34,9 @@ import CaseStudyMocksvillePage from './pages/CaseStudyMocksvillePage';
 import ThankYouIntakePage from './pages/ThankYouIntakePage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsOfServicePage from './pages/TermsOfServicePage';
+import SafetyWalkthroughPage from './pages/SafetyWalkthroughPage';
+import DocumentationGapCheckPage from './pages/DocumentationGapCheckPage';
+import OshaComplianceGapCheckPage from './pages/OshaComplianceGapCheckPage';
 import './App.css';
 
 function RouteTracker() {
@@ -84,6 +87,11 @@ function App() {
                   <Route path="/admin" element={<AdminPage />} />
                   <Route path="/field-notes" element={<FieldNotesPage />} />
                   <Route path="/field-notes/:slug" element={<FieldNoteDetailPage />} />
+                  {/* Buyer-intent service landing pages (Findability Framework) — must be defined
+                      before the dynamic /safety-walkthrough/:city route below. */}
+                  <Route path="/safety-walkthrough" element={<SafetyWalkthroughPage />} />
+                  <Route path="/documentation-gap-check" element={<DocumentationGapCheckPage />} />
+                  <Route path="/osha-compliance-gap-check" element={<OshaComplianceGapCheckPage />} />
                   <Route path="/safety-walkthrough/:city" element={<CityLandingPage />} />
                   <Route path="/faq" element={<FAQPage />} />
                   <Route path="/service-areas" element={<ServiceAreasPage />} />

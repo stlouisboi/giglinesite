@@ -170,8 +170,8 @@ function breadcrumb(items) {
 const routes = [
   {
     path: '/',
-    title: 'OSHA Safety Walkthroughs — Triad NC | GigLine (336) 329-8899',
-    description: "Avg OSHA citation: $15,625. A GigLine walkthrough costs a fraction. Written report in 48 hours. Vince Lawrence calls back in 1 business day. Kernersville, NC.",
+    title: 'Safety Walkthroughs & OSHA Gap Checks for NC Manufacturers, Warehouses & Fleets | GigLine',
+    description: 'Practical safety walkthroughs and OSHA-focused documentation gap checks for manufacturers, warehouses, contractors, and fleet operations in North Carolina. Written report in 48 hours. (336) 329-8899.',
     canonical: '/',
     schemas: [
       LOCAL_BUSINESS,
@@ -180,11 +180,17 @@ const routes = [
       breadcrumb([{ name: 'Home', path: '/' }]),
     ],
     content: `
-      <h1>If OSHA Walked In Tomorrow, Would You Pass?</h1>
-      <p>A single OSHA citation averages $15,625. A GigLine safety walkthrough costs a fraction of that — and gives you a clear picture of where you stand.</p>
-      <p>GigLine provides on-site safety walkthroughs and documentation reviews for small warehouses and manufacturing operations in the Piedmont Triad.</p>
-      <p><a href="/services">Request a Safety Walkthrough</a> — Walkthrough pricing is based on the size and type of your operation.</p>
-      <p>OSHA 30-Hour Certified · 25+ Years Experience · U.S. Navy Veteran · Serving the Triad</p>
+      <h1>Practical Safety Walkthroughs &amp; OSHA-Focused Gap Checks for Manufacturers, Warehouses, Contractors &amp; Fleet Operations in North Carolina</h1>
+      <p>On-site walkthroughs, documentation gap checks, and OSHA-focused compliance reviews — clear findings, photo-documented reports in 48 hours, no retainer. Based in Kernersville, NC.</p>
+      <p>A single OSHA citation averages $15,625. A GigLine engagement costs a fraction — and gives you a clear picture of where you stand before an inspector shows up.</p>
+      <p><a href="/request-walkthrough">Request a Safety Walkthrough</a> &middot; <a href="/intake">Start Client Intake</a> &middot; Walkthroughs from $650. Documentation Gap Checks from $550.</p>
+      <p>OSHA 30-Hour Certified · 25+ Years Experience · U.S. Navy Veteran · Serving the Triad &amp; statewide NC</p>
+      <h2>Dedicated Service Pages</h2>
+      <ul>
+        <li><a href="/safety-walkthrough">Safety Walkthrough</a> — On-site OSHA-focused review of your facility.</li>
+        <li><a href="/documentation-gap-check">Documentation Gap Check</a> — Written programs, training records, and SDS binder review.</li>
+        <li><a href="/osha-compliance-gap-check">OSHA Compliance Gap Check</a> — Full compliance overview before an inspection or audit.</li>
+      </ul>
       <h2>Common OSHA Safety Issues We See on the Floor</h2>
       <p>These are the violations we find most often in small operations — most owners don't know they're there until an inspector shows up. Blocked electrical panels. Expired forklift certifications. Missing lockout-tagout procedures. No written HazCom program.</p>
       <p>A single citation for any of these averages $15,625. Most walkthroughs cost a fraction of that.</p>

@@ -58,8 +58,8 @@ const HomePage = () => {
   return (
     <main className="overflow-x-hidden">
       <SEO
-        title="OSHA Safety Walkthroughs — Triad NC | GigLine (336) 329-8899"
-        description="Avg OSHA citation: $15,625. A GigLine walkthrough costs a fraction. Written report in 48 hours. Vince Lawrence calls back in 1 business day. Kernersville, NC."
+        title="Safety Walkthroughs & OSHA Gap Checks for NC Manufacturers, Warehouses & Fleets | GigLine"
+        description="Practical safety walkthroughs and OSHA-focused documentation gap checks for manufacturers, warehouses, contractors, and fleet operations in North Carolina. Written report in 48 hours. (336) 329-8899."
         canonical="/"
         schema={{
           "@context": "https://schema.org",
@@ -166,10 +166,11 @@ const HomePage = () => {
                 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.15] mb-6"
                 data-testid="hero-headline"
               >
-                If OSHA Walked In Tomorrow,{' '}
-                <span className="block mt-3">
-                  Would You{' '}
-                  <span style={{ borderBottom: '2px solid #1F6FEB', paddingBottom: '2px' }}>Pass</span>?
+                Practical{' '}
+                <span style={{ borderBottom: '2px solid #1F6FEB', paddingBottom: '2px' }}>Safety Walkthroughs</span>{' '}
+                &amp; OSHA-Focused Gap Checks
+                <span className="block mt-3 text-[#CBD5E1] font-semibold text-2xl sm:text-3xl lg:text-4xl">
+                  for Manufacturers, Warehouses, Contractors &amp; Fleets in North Carolina.
                 </span>
               </h1>
 
@@ -177,26 +178,35 @@ const HomePage = () => {
                 className="text-base md:text-lg text-[#CBD5E1] leading-relaxed mb-6 max-w-md"
                 data-testid="hero-sub"
               >
-                A single OSHA citation averages $15,625. A GigLine safety walkthrough costs a fraction of that — and gives you a clear picture of where you stand.
+                On-site walkthroughs, documentation gap checks, and OSHA-focused compliance reviews — clear findings, photo-documented reports in 48 hours, no retainer. Based in Kernersville, NC.
               </p>
 
               <p
                 className="text-sm text-[#CBD5E1] leading-relaxed mb-8 max-w-md"
               >
-                GigLine provides on-site safety walkthroughs and documentation reviews for small warehouses and manufacturing operations in the Piedmont Triad.
+                A single OSHA citation averages $15,625. A GigLine engagement costs a fraction — and gives you a clear picture of where you stand before an inspector shows up.
               </p>
 
               <div className="flex flex-col items-start gap-3 mb-5" data-testid="hero-ctas">
-                <Link
-                  to="/request-walkthrough"
-                  className="bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center gap-2 shadow-lg shadow-[#1F6FEB]/20"
-                  data-testid="hero-cta-primary"
-                >
-                  Request a Safety Walkthrough
-                  <ArrowRight size={18} />
-                </Link>
+                <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                  <Link
+                    to="/request-walkthrough"
+                    className="bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center justify-center gap-2 shadow-lg shadow-[#1F6FEB]/20"
+                    data-testid="hero-cta-primary"
+                  >
+                    Request a Safety Walkthrough
+                    <ArrowRight size={18} />
+                  </Link>
+                  <Link
+                    to="/intake"
+                    className="border-2 border-white/25 hover:border-white/55 text-white font-semibold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center justify-center gap-2"
+                    data-testid="hero-cta-secondary"
+                  >
+                    Start Client Intake
+                  </Link>
+                </div>
                 <p className="text-base font-semibold text-white" data-testid="hero-pricing-anchor">
-                  Starting at <span className="text-[#1F6FEB]">$650</span>
+                  Walkthroughs from <span className="text-[#1F6FEB]">$650</span> &middot; Doc Gap Checks from <span className="text-[#1F6FEB]">$550</span>
                 </p>
                 <p className="text-sm text-[#CBD5E1] leading-relaxed max-w-md" data-testid="hero-pricing-direction">
                   Fixed quote before scheduling. Written report in 48 hours. No retainer.{' '}

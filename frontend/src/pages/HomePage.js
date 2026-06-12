@@ -291,7 +291,7 @@ const HomePage = () => {
             ].map(({ icon: Icon, title, sub }, i) => (
               <Reveal key={i} delay={i * 100}>
                 <div
-                  className="relative h-full p-6 md:p-7 rounded-lg bg-white transition-all duration-300 hover:translate-y-[-2px]"
+                  className="relative h-full p-5 md:p-5 lg:p-7 rounded-lg bg-white transition-all duration-300 hover:translate-y-[-2px]"
                   style={{
                     border: '1px solid rgba(16,33,51,0.10)',
                     boxShadow: '0 1px 0 rgba(255,255,255,0.5) inset, 0 6px 14px rgba(16,33,51,0.04)',
@@ -300,18 +300,18 @@ const HomePage = () => {
                 >
                   {/* Gold top accent stripe */}
                   <div
-                    className="absolute top-0 left-6 right-6 h-[3px] rounded-b"
+                    className="absolute top-0 left-5 right-5 lg:left-6 lg:right-6 h-[3px] rounded-b"
                     style={{ background: 'linear-gradient(90deg, transparent 0%, #D4A93E 30%, #D4A93E 70%, transparent 100%)', opacity: 0.55 }}
                     aria-hidden="true"
                   />
-                  <Icon size={28} strokeWidth={1.5} className="text-[#102133]/35 mb-5" />
+                  <Icon size={26} strokeWidth={1.5} className="text-[#102133]/35 mb-4 md:mb-5" />
                   <p
-                    className="text-xl md:text-2xl text-[#102133]/55 leading-tight mb-3"
+                    className="text-lg md:text-xl lg:text-2xl text-[#102133]/55 leading-tight mb-2 md:mb-3"
                     style={{ fontFamily: "Georgia, 'Times New Roman', serif", fontStyle: 'italic' }}
                   >
                     {title}
                   </p>
-                  <p className="text-sm text-[#102133]/55 leading-relaxed" style={mono}>
+                  <p className="text-xs md:text-sm text-[#102133]/55 leading-relaxed" style={mono}>
                     {sub}
                   </p>
                 </div>
@@ -350,7 +350,7 @@ const HomePage = () => {
 
               {/* Premium "what we do instead" eyebrow */}
               <div className="flex items-center gap-3 mb-5">
-                <div className="h-[2px] w-8" style={{ backgroundColor: '#D4A93E' }} />
+                <div className="h-[2px] w-8 flex-shrink-0" style={{ backgroundColor: '#D4A93E' }} />
                 <p
                   className="uppercase tracking-[3px] text-[#D4A93E] font-bold"
                   style={{ ...mono, fontSize: '11px' }}
@@ -366,17 +366,17 @@ const HomePage = () => {
                 <span className="text-[#1F6FEB]">GigLine</span> identifies what is actually happening on your floor — so you can decide what needs attention first.
               </p>
 
-              {/* CTA + supporting line — inside the card */}
-              <div className="mt-8 flex flex-col sm:flex-row gap-4 items-start" data-testid="differentiator-cta-row">
+              {/* CTA + supporting line — inside the card. Stack until lg so button never wraps. */}
+              <div className="mt-8 flex flex-col lg:flex-row gap-4 lg:items-start" data-testid="differentiator-cta-row">
                 <Link
                   to="/request-walkthrough"
-                  className="bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-7 py-3.5 rounded-lg text-base transition-colors inline-flex items-center gap-2 shadow-lg shadow-[#1F6FEB]/30"
+                  className="bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-7 py-3.5 rounded-lg text-base transition-colors inline-flex items-center gap-2 shadow-lg shadow-[#1F6FEB]/30 whitespace-nowrap self-start"
                   data-testid="differentiator-cta"
                 >
                   Request a Safety Walkthrough
                   <ArrowRight size={18} />
                 </Link>
-                <p className="text-sm text-white/65 leading-relaxed pt-1.5 max-w-sm" style={mono}>
+                <p className="text-sm text-white/65 leading-relaxed pt-1 lg:pt-1.5 max-w-md" style={mono}>
                   No training to schedule. No software to learn. Just a written report you can act on this week.
                 </p>
               </div>

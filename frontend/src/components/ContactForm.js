@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Send, CheckCircle, AlertCircle } from 'lucide-react';
 
 const ContactForm = ({ compact = false }) => {
@@ -244,10 +243,25 @@ const ContactForm = ({ compact = false }) => {
             data-testid="contact-form-sms-consent"
           />
           <span className="text-xs leading-relaxed text-[#1C2B2B]/80">
-            By checking this box, I agree to receive SMS communications from GigLine Safety &amp; Compliance regarding my inquiry, appointment confirmations, and service updates. Messaging frequency may vary. Message and data rates may apply. Reply <strong>STOP</strong> to opt out at any time. Reply <strong>HELP</strong> for assistance or call <a href="tel:3363298899" className="font-bold underline">(336) 329-8899</a>.{' '}
-            <Link to="/privacy-policy" className="font-bold underline" target="_blank" rel="noopener noreferrer">Privacy Policy</Link>
-            {' '}&middot;{' '}
-            <Link to="/terms-of-service" className="font-bold underline" target="_blank" rel="noopener noreferrer">Terms of Service</Link>
+            By checking this box, I consent to receive SMS from GigLine Safety &amp; Compliance. Reply <strong>STOP</strong> to opt-out; Reply <strong>HELP</strong> for support; Message &amp; data rates may apply; Messaging frequency may vary. Visit{' '}
+            <a
+              href="https://launchpathedu.com/privacy-policy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold underline"
+            >
+              https://launchpathedu.com/privacy-policy
+            </a>
+            {' '}to see our privacy policy and{' '}
+            <a
+              href="https://launchpathedu.com/terms-of-service"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold underline"
+            >
+              https://launchpathedu.com/terms-of-service
+            </a>
+            {' '}for our Terms of Service.
           </span>
         </label>
       </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check } from 'lucide-react';
+import { ArrowRight, Check, GraduationCap, MonitorSmartphone, FileText } from 'lucide-react';
 import SEO from '../components/SEO';
 import CaseStudyTeaser from '../components/CaseStudyTeaser';
 import FieldManualBand from '../components/FieldManualBand';
@@ -243,19 +243,26 @@ const HomePage = () => {
 
       {/* ═══════════════════════════════════════════════
           S1.5 — DIFFERENTIATOR  ("Others sell…" → "GigLine identifies…")
+          Warm cream background — deliberate visual pause between
+          the navy hero and the white problem grid that follows.
       ═══════════════════════════════════════════════ */}
       <section
         className="py-24 md:py-32 relative overflow-hidden"
-        style={{ backgroundColor: '#02080F' }}
+        style={{
+          backgroundColor: '#F7F1E0',
+          backgroundImage: 'radial-gradient(circle at 80% 20%, rgba(31,111,235,0.05) 0%, transparent 55%)',
+        }}
         data-testid="differentiator-section"
       >
-        {/* Subtle decorative gold pinstripe across the top */}
-        <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(242,208,114,0.45) 50%, transparent 100%)' }} />
+        {/* Top gold pinstripe — separator from hero */}
+        <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(212,169,62,0.7) 50%, transparent 100%)' }} />
+        {/* Bottom gold pinstripe — separator from problem grid */}
+        <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(212,169,62,0.45) 50%, transparent 100%)' }} />
 
-        <div className="container max-w-4xl">
+        <div className="container max-w-6xl relative">
           <Reveal>
             <p
-              className="uppercase tracking-[3px] text-[#1F6FEB] mb-10 font-semibold"
+              className="uppercase tracking-[3px] text-[#1F6FEB] mb-10 font-bold"
               style={{ ...mono, fontSize: '11px' }}
               data-testid="differentiator-eyebrow"
             >
@@ -263,17 +270,51 @@ const HomePage = () => {
             </p>
           </Reveal>
 
-          {/* The three "Others sell" lines — faded, italic serif */}
-          <div className="space-y-4 mb-12">
-            {['Others sell training.', 'Others sell software.', 'Others sell reports.'].map((line, i) => (
+          {/* The three "Others sell" lines — premium cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 mb-12">
+            {[
+              {
+                icon: GraduationCap,
+                title: 'Others sell training.',
+                sub: 'Generic curricula. Recycled slides. No one walks your floor.',
+              },
+              {
+                icon: MonitorSmartphone,
+                title: 'Others sell software.',
+                sub: 'Dashboards full of inputs. None of them flag the pallet in front of your panel.',
+              },
+              {
+                icon: FileText,
+                title: 'Others sell reports.',
+                sub: 'Templated checklists. Same PDF for every operation. No real eyes on the work.',
+              },
+            ].map(({ icon: Icon, title, sub }, i) => (
               <Reveal key={i} delay={i * 100}>
-                <p
-                  className="text-2xl md:text-3xl lg:text-4xl text-white/30 leading-tight"
-                  style={{ fontFamily: "Georgia, 'Times New Roman', serif", fontStyle: 'italic' }}
+                <div
+                  className="relative h-full p-6 md:p-7 rounded-lg bg-white transition-all duration-300 hover:translate-y-[-2px]"
+                  style={{
+                    border: '1px solid rgba(16,33,51,0.10)',
+                    boxShadow: '0 1px 0 rgba(255,255,255,0.5) inset, 0 6px 14px rgba(16,33,51,0.04)',
+                  }}
                   data-testid={`differentiator-others-${i}`}
                 >
-                  {line}
-                </p>
+                  {/* Gold top accent stripe */}
+                  <div
+                    className="absolute top-0 left-6 right-6 h-[3px] rounded-b"
+                    style={{ background: 'linear-gradient(90deg, transparent 0%, #D4A93E 30%, #D4A93E 70%, transparent 100%)', opacity: 0.55 }}
+                    aria-hidden="true"
+                  />
+                  <Icon size={28} strokeWidth={1.5} className="text-[#102133]/35 mb-5" />
+                  <p
+                    className="text-xl md:text-2xl text-[#102133]/55 leading-tight mb-3"
+                    style={{ fontFamily: "Georgia, 'Times New Roman', serif", fontStyle: 'italic' }}
+                  >
+                    {title}
+                  </p>
+                  <p className="text-sm text-[#102133]/55 leading-relaxed" style={mono}>
+                    {sub}
+                  </p>
+                </div>
               </Reveal>
             ))}
           </div>
@@ -281,36 +322,64 @@ const HomePage = () => {
           {/* Visual divider — small gold mark */}
           <Reveal delay={350}>
             <div className="flex items-center gap-3 mb-8" aria-hidden="true">
-              <div className="h-px w-12" style={{ backgroundColor: '#F2D072', opacity: 0.55 }} />
-              <div className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: '#F2D072' }} />
-              <div className="h-px flex-grow" style={{ backgroundColor: '#F2D072', opacity: 0.2 }} />
+              <div className="h-px w-12" style={{ backgroundColor: '#D4A93E' }} />
+              <div className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: '#D4A93E' }} />
+              <div className="h-px flex-grow" style={{ backgroundColor: '#D4A93E', opacity: 0.35 }} />
             </div>
           </Reveal>
 
-          {/* The GigLine punchline */}
+          {/* The GigLine punchline — premium callout card */}
           <Reveal delay={420}>
-            <p
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.2] max-w-4xl"
-              data-testid="differentiator-punchline"
+            <div
+              className="relative p-8 md:p-10 lg:p-12 rounded-xl overflow-hidden"
+              style={{
+                background: 'linear-gradient(135deg, #0B1F33 0%, #102A43 50%, #0B1F33 100%)',
+                border: '1px solid rgba(212,169,62,0.35)',
+                boxShadow: '0 20px 40px -12px rgba(11,31,51,0.35), 0 0 0 1px rgba(212,169,62,0.10) inset',
+              }}
+              data-testid="differentiator-punchline-card"
             >
-              <span className="text-[#1F6FEB]">GigLine</span> identifies what is actually happening on your floor — so you can decide what needs attention first.
-            </p>
-          </Reveal>
+              {/* Decorative gold corner */}
+              <div
+                className="absolute top-0 right-0 w-32 h-32 pointer-events-none"
+                style={{
+                  background: 'radial-gradient(circle at top right, rgba(212,169,62,0.18) 0%, transparent 65%)',
+                }}
+                aria-hidden="true"
+              />
 
-          {/* Supporting CTA row */}
-          <Reveal delay={560}>
-            <div className="mt-12 flex flex-col sm:flex-row gap-4 items-start" data-testid="differentiator-cta-row">
-              <Link
-                to="/request-walkthrough"
-                className="bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-7 py-3.5 rounded-lg text-base transition-colors inline-flex items-center gap-2 shadow-lg shadow-[#1F6FEB]/20"
-                data-testid="differentiator-cta"
+              {/* Premium "what we do instead" eyebrow */}
+              <div className="flex items-center gap-3 mb-5">
+                <div className="h-[2px] w-8" style={{ backgroundColor: '#D4A93E' }} />
+                <p
+                  className="uppercase tracking-[3px] text-[#D4A93E] font-bold"
+                  style={{ ...mono, fontSize: '11px' }}
+                >
+                  What GigLine Does Instead
+                </p>
+              </div>
+
+              <p
+                className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-[1.2] max-w-4xl"
+                data-testid="differentiator-punchline"
               >
-                Request a Safety Walkthrough
-                <ArrowRight size={18} />
-              </Link>
-              <p className="text-sm text-white/55 leading-relaxed pt-1.5 max-w-sm" style={mono}>
-                No training to schedule. No software to learn. Just a written report you can act on this week.
+                <span className="text-[#1F6FEB]">GigLine</span> identifies what is actually happening on your floor — so you can decide what needs attention first.
               </p>
+
+              {/* CTA + supporting line — inside the card */}
+              <div className="mt-8 flex flex-col sm:flex-row gap-4 items-start" data-testid="differentiator-cta-row">
+                <Link
+                  to="/request-walkthrough"
+                  className="bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-7 py-3.5 rounded-lg text-base transition-colors inline-flex items-center gap-2 shadow-lg shadow-[#1F6FEB]/30"
+                  data-testid="differentiator-cta"
+                >
+                  Request a Safety Walkthrough
+                  <ArrowRight size={18} />
+                </Link>
+                <p className="text-sm text-white/65 leading-relaxed pt-1.5 max-w-sm" style={mono}>
+                  No training to schedule. No software to learn. Just a written report you can act on this week.
+                </p>
+              </div>
             </div>
           </Reveal>
         </div>

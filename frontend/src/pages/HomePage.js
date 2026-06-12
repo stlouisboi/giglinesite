@@ -242,6 +242,81 @@ const HomePage = () => {
       </section>
 
       {/* ═══════════════════════════════════════════════
+          S1.5 — DIFFERENTIATOR  ("Others sell…" → "GigLine identifies…")
+      ═══════════════════════════════════════════════ */}
+      <section
+        className="py-24 md:py-32 relative overflow-hidden"
+        style={{ backgroundColor: '#02080F' }}
+        data-testid="differentiator-section"
+      >
+        {/* Subtle decorative gold pinstripe across the top */}
+        <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(242,208,114,0.45) 50%, transparent 100%)' }} />
+
+        <div className="container max-w-4xl">
+          <Reveal>
+            <p
+              className="uppercase tracking-[3px] text-[#1F6FEB] mb-10 font-semibold"
+              style={{ ...mono, fontSize: '11px' }}
+              data-testid="differentiator-eyebrow"
+            >
+              Why GigLine
+            </p>
+          </Reveal>
+
+          {/* The three "Others sell" lines — faded, italic serif */}
+          <div className="space-y-4 mb-12">
+            {['Others sell training.', 'Others sell software.', 'Others sell reports.'].map((line, i) => (
+              <Reveal key={i} delay={i * 100}>
+                <p
+                  className="text-2xl md:text-3xl lg:text-4xl text-white/30 leading-tight"
+                  style={{ fontFamily: "Georgia, 'Times New Roman', serif", fontStyle: 'italic' }}
+                  data-testid={`differentiator-others-${i}`}
+                >
+                  {line}
+                </p>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* Visual divider — small gold mark */}
+          <Reveal delay={350}>
+            <div className="flex items-center gap-3 mb-8" aria-hidden="true">
+              <div className="h-px w-12" style={{ backgroundColor: '#F2D072', opacity: 0.55 }} />
+              <div className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: '#F2D072' }} />
+              <div className="h-px flex-grow" style={{ backgroundColor: '#F2D072', opacity: 0.2 }} />
+            </div>
+          </Reveal>
+
+          {/* The GigLine punchline */}
+          <Reveal delay={420}>
+            <p
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.2] max-w-4xl"
+              data-testid="differentiator-punchline"
+            >
+              <span className="text-[#1F6FEB]">GigLine</span> identifies what is actually happening on your floor — so you can decide what needs attention first.
+            </p>
+          </Reveal>
+
+          {/* Supporting CTA row */}
+          <Reveal delay={560}>
+            <div className="mt-12 flex flex-col sm:flex-row gap-4 items-start" data-testid="differentiator-cta-row">
+              <Link
+                to="/request-walkthrough"
+                className="bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-7 py-3.5 rounded-lg text-base transition-colors inline-flex items-center gap-2 shadow-lg shadow-[#1F6FEB]/20"
+                data-testid="differentiator-cta"
+              >
+                Request a Safety Walkthrough
+                <ArrowRight size={18} />
+              </Link>
+              <p className="text-sm text-white/55 leading-relaxed pt-1.5 max-w-sm" style={mono}>
+                No training to schedule. No software to learn. Just a written report you can act on this week.
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════
           S2 — PROBLEM GRID  (4 real-world hazard images)
       ═══════════════════════════════════════════════ */}
       <section className="py-20 md:py-28 bg-white" data-testid="problem-grid-section">

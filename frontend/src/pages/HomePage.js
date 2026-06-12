@@ -4,6 +4,8 @@ import { ArrowRight, Check } from 'lucide-react';
 import SEO from '../components/SEO';
 import CaseStudyTeaser from '../components/CaseStudyTeaser';
 import FieldManualBand from '../components/FieldManualBand';
+import CarolinaBuiltBadge from '../components/CarolinaBuiltBadge';
+import NCStateMark from '../components/NCStateMark';
 import { trackPhoneClick, trackReviewClick } from '../utils/analytics';
 
 /* ── Scroll-reveal ── */
@@ -154,13 +156,30 @@ const HomePage = () => {
           {/* Right — Copy */}
           <div className="w-full md:w-2/5 flex items-center px-6 md:px-14 lg:px-20 py-12 md:py-0 relative z-10">
             <Reveal>
-              <p
-                className="uppercase tracking-[3px] text-[#CBD5E1] mb-5"
-                style={{ ...mono, fontSize: '11px' }}
-                data-testid="hero-label"
+              <div
+                className="inline-flex items-center gap-2.5 pl-2 pr-3 py-1.5 mb-5 rounded-full"
+                style={{
+                  background: 'linear-gradient(90deg, rgba(31,111,235,0.18) 0%, rgba(31,111,235,0.06) 100%)',
+                  border: '1px solid rgba(242,208,114,0.45)',
+                  boxShadow: '0 1px 0 rgba(255,255,255,0.04) inset',
+                }}
+                data-testid="hero-eyebrow-chip"
               >
-                GigLine Safety & Compliance
-              </p>
+                <NCStateMark width={26} fill="#F2D072" starFill="#FFFFFF" />
+                <span
+                  className="uppercase font-bold text-[#F2D072]"
+                  style={{ ...mono, fontSize: '11px', letterSpacing: '2px' }}
+                >
+                  Kernersville NC
+                </span>
+                <span className="text-[#F2D072]/40">|</span>
+                <span
+                  className="uppercase font-bold text-[#CBD5E1]"
+                  style={{ ...mono, fontSize: '11px', letterSpacing: '2px' }}
+                >
+                  Veteran-Owned
+                </span>
+              </div>
 
               <h1
                 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.15] mb-6"

@@ -6,6 +6,13 @@ import FieldNotesNewsletter from '../components/FieldNotesNewsletter';
 
 const FIELD_NOTES = [
   {
+    slug: 'ai-generated-safety-programs',
+    title: 'AI-Generated Safety Programs',
+    subtitle: "What ChatGPT Can't See on Your Floor",
+    description: 'Operators are using AI to write OSHA programs. The output looks compliant — until an inspector arrives. Here\'s why AI-generated programs fail at the floor level, and what a walkthrough surfaces that AI cannot.',
+    topics: ['AI documentation gaps', 'paperwork vs. floor reality', 'inspection readiness'],
+  },
+  {
     slug: 'heat-stress',
     title: 'Heat Stress',
     subtitle: 'What Actually Matters on the Floor',

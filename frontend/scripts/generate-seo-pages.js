@@ -733,6 +733,60 @@ Object.keys(CITY_META).forEach((city) => {
 
 // Field note detail pages
 const fieldNotes = [
+  {
+    slug: 'ai-generated-safety-programs',
+    title: 'AI-Generated Safety Programs',
+    desc: 'Operators are using ChatGPT to generate OSHA safety programs. The output looks compliant — until an inspector arrives. Why AI-generated programs fail at the floor level.',
+    customSeoTitle: "AI-Generated Safety Programs vs. OSHA Compliance: What ChatGPT Can't See on Your Floor | GigLine Safety & Compliance",
+    customH1: "An AI-Generated Safety Program Is Not a Working Safety Program",
+    customContent: `
+      <h1>An AI-Generated Safety Program Is Not a Working Safety Program</h1>
+      <p><em>What ChatGPT can't see on your floor — and why OSHA can.</em></p>
+      <p>A lot of operators are using ChatGPT and similar tools to generate safety programs right now. The output may look legitimate. It may cite real OSHA standards. The formatting may be clean. You can print it, put it in a binder, and feel like the box is checked.</p>
+      <p>The problem is this: <strong>OSHA does not just look at your binder. OSHA looks at your operation.</strong></p>
+      <p>An AI-generated program does not know your equipment. It does not know about the machine in the back corner with a missing guard. It does not know your employees are skipping lockout steps because nobody showed them the correct process. It does not know your SDS binder lists chemicals you no longer use while missing chemicals used every day.</p>
+      <p>A generic program describes what a compliant operation should look like. It does not prove what your operation actually looks like.</p>
+      <p>When an OSHA compliance officer walks in, they may review paperwork, ask employees questions, observe equipment, and compare written procedures against what is happening on the floor. When the paperwork and the work do not match, that gap can become a problem.</p>
+      <p><strong>The document is not the program. The program is what your people do every day.</strong></p>
+      <h2>What Gets Missed in AI-Generated Programs</h2>
+      <ul>
+        <li>The unguarded machine in the back corner — never appears in any AI-generated written program</li>
+        <li>Employees skipping lockout/tagout steps because the AI program does not match the equipment</li>
+        <li>SDS binders that include chemicals removed from service and miss chemicals added last month</li>
+        <li>Training records that reference generic AI-suggested topics, not the actual equipment in use</li>
+        <li>Written procedures that describe a different facility — wrong square footage, wrong layout, wrong hazards</li>
+        <li>Lockout-tagout procedures with no machine-specific energy isolation — generic boilerplate that would not pass an inspection</li>
+        <li>Employees and supervisors who cannot describe procedures the written program says they should follow</li>
+      </ul>
+      <h2>What an OSHA Compliance Officer Actually Checks</h2>
+      <ul>
+        <li>Whether written programs match the equipment and chemicals actually on site</li>
+        <li>Employee interviews — supervisors and operators asked to describe procedures from memory</li>
+        <li>Training records traceable to specific employees, dates, and tasks</li>
+        <li>SDS binder cross-referenced against current chemical inventory</li>
+        <li>Floor observation matched against written lockout/tagout and machine-specific procedures</li>
+        <li>Recordkeeping (OSHA 300 log, 300A summary) reconciled against incident history</li>
+      </ul>
+      <h2>What GigLine Looks For on the Floor</h2>
+      <p><em>When I walk an operation with AI-generated documentation, the binder usually looks polished. Real OSHA standards are cited. Formatting is clean. Then I ask the floor supervisor to describe the lockout procedure for the press they ran this morning — and they cannot. I check the SDS binder against the chemical drum I just walked past — and it is not in there. The gap between the document and the work is exactly what an inspector will find.</em></p>
+      <h2>What to Do About It</h2>
+      <p>If you used AI to generate safety documentation — or you are not sure whether your safety program reflects your current operation — a GigLine walkthrough can help you find out where you stand. Practical review of visible safety gaps, documentation concerns, and corrective action priorities. No software to learn. No generic binder talk. Just ground truth from the floor.</p>
+      <h2>Frequently Asked Questions</h2>
+      <h3>Can I use ChatGPT to write my OSHA safety program?</h3>
+      <p>You can use it as a starting point, but an AI-generated safety program does not reflect your actual operation. It does not know your equipment, your chemicals, your training history, or your facility layout. OSHA does not just review your binder — they walk your floor, interview your supervisors, and compare what is written against what is happening.</p>
+      <h3>What does OSHA actually look at during an inspection?</h3>
+      <p>OSHA Compliance Officers review paperwork, ask employees questions, observe equipment and work practices, and compare written procedures against the floor reality. They pay close attention to whether supervisors can describe procedures from memory, whether SDS binders match current chemical use, and whether training records can be traced back to specific employees and tasks.</p>
+      <h3>Why do AI-generated safety programs fail OSHA inspections?</h3>
+      <p>Generic AI-generated programs describe what a compliant operation should look like — they do not prove what your operation actually looks like. They miss site-specific hazards. When OSHA sees a polished written program that does not match floor reality, the gap itself becomes evidence.</p>
+      <p>Request a Safety Walkthrough: <a href="${BASE_URL}/request-walkthrough">${BASE_URL}/request-walkthrough</a> · Call or text (336) 329-8899 · GigLine Safety &amp; Compliance — Kernersville, NC</p>
+    `,
+    customFaqs: [
+      { q: 'Can I use ChatGPT to write my OSHA safety program?', a: 'You can use it as a starting point, but an AI-generated safety program does not reflect your actual operation. It does not know your equipment, your chemicals, your training history, or your facility layout. OSHA does not just review your binder — they walk your floor, interview your supervisors, and compare what is written against what is happening. When the two do not match, that gap can become a citation.' },
+      { q: 'What does OSHA actually look at during an inspection?', a: 'OSHA Compliance Officers review paperwork, ask employees questions, observe equipment and work practices, and compare written procedures against the floor reality. They pay close attention to whether supervisors can describe procedures from memory, whether SDS binders match current chemical use, and whether training records can be traced back to specific employees and tasks.' },
+      { q: 'Why do AI-generated safety programs fail OSHA inspections?', a: 'Generic AI-generated programs describe what a compliant operation should look like — they do not prove what your operation actually looks like. They miss site-specific hazards. When OSHA sees a polished written program that does not match floor reality, the gap itself becomes evidence.' },
+      { q: 'What is the difference between a document and a working safety program?', a: 'A document describes procedures. A working safety program is what your people do every day. OSHA cites the gap between the two. The fastest way to find that gap is an outside walkthrough — someone who looks at your floor with fresh eyes and compares what they see against what is written.' },
+    ],
+  },
   { slug: 'heat-stress', title: 'Heat Stress', desc: 'Heat illness prevention for NC manufacturing and warehouse operations.' },
   { slug: 'forklift-safety', title: 'Forklift Safety & Daily Inspections', desc: 'OSHA forklift inspection requirements. Daily pre-shift checklists, operator certification, pedestrian separation.' },
   { slug: 'electrical-safety', title: 'Electrical Safety & Arc Flash', desc: 'OSHA electrical panel clearance, arc flash labeling, lockout-tagout for electrical maintenance.' },
@@ -749,24 +803,28 @@ const fieldNotes = [
   { slug: 'bloodborne-pathogens', title: 'Bloodborne Pathogens', desc: 'Bloodborne pathogens exposure control plan. First aid responders, Hepatitis B, sharps disposal.' },
 ];
 fieldNotes.forEach((note) => {
+  const schemas = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: note.customH1 || note.title,
+      description: note.desc,
+      author: { '@id': `${BASE_URL}/#vince` },
+      publisher: { '@id': `${BASE_URL}/#business` },
+      mainEntityOfPage: `${BASE_URL}/field-notes/${note.slug}`,
+    },
+    breadcrumb([{ name: 'Home', path: '/' }, { name: 'Field Notes', path: '/field-notes' }, { name: note.title, path: `/field-notes/${note.slug}` }]),
+  ];
+  if (note.customFaqs && note.customFaqs.length) {
+    schemas.push(faqSchema(note.customFaqs));
+  }
   routes.push({
     path: `/field-notes/${note.slug}`,
-    title: `${note.title} — Field Notes | GigLine Safety & Compliance`,
+    title: note.customSeoTitle || `${note.title} — Field Notes | GigLine Safety & Compliance`,
     description: note.desc,
     canonical: `/field-notes/${note.slug}`,
-    schemas: [
-      {
-        '@context': 'https://schema.org',
-        '@type': 'Article',
-        headline: note.title,
-        description: note.desc,
-        author: { '@id': `${BASE_URL}/#vince` },
-        publisher: { '@id': `${BASE_URL}/#business` },
-        mainEntityOfPage: `${BASE_URL}/field-notes/${note.slug}`,
-      },
-      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Field Notes', path: '/field-notes' }, { name: note.title, path: `/field-notes/${note.slug}` }]),
-    ],
-    content: `<h1>${note.title}</h1><p>${note.desc}</p><p>Field Note by Vince Lawrence — GigLine Safety &amp; Compliance — (336) 329-8899</p>`,
+    schemas,
+    content: note.customContent || `<h1>${note.title}</h1><p>${note.desc}</p><p>Field Note by Vince Lawrence — GigLine Safety &amp; Compliance — (336) 329-8899</p>`,
   });
 });
 

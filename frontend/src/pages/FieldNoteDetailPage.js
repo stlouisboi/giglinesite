@@ -535,6 +535,63 @@ Corrective action: buy a label-maker and a set of GHS pictogram stickers ($60 to
       ],
     },
   },
+  'ai-generated-safety-programs': {
+    title: "An AI-Generated Safety Program Is Not a Working Safety Program",
+    subtitle: "What ChatGPT can't see on your floor — and why OSHA can.",
+    seoTitle: "AI-Generated Safety Programs vs. OSHA Compliance: What ChatGPT Can't See on Your Floor",
+    seo: "Operators are using ChatGPT to generate OSHA safety programs. The output looks compliant — until an inspector arrives. Here's why AI-generated programs fail at the floor level, and what a real walkthrough surfaces that AI cannot.",
+    cfrCitation: 'Applies across General Industry — 29 CFR 1910 · Inspection Methods reference: OSHA Field Operations Manual',
+    oshaChecks: [
+      'Whether written programs match the equipment and chemicals actually on site',
+      'Employee interviews — supervisors and operators asked to describe procedures from memory',
+      'Training records traceable to specific employees, dates, and tasks',
+      'SDS binder cross-referenced against current chemical inventory',
+      'Floor observation matched against written lockout/tagout and machine-specific procedures',
+      'Recordkeeping (OSHA 300 log, 300A summary) reconciled against incident history',
+    ],
+    faqSchema: [
+      { question: 'Can I use ChatGPT to write my OSHA safety program?', answer: 'You can use it as a starting point, but an AI-generated safety program does not reflect your actual operation. It does not know your equipment, your chemicals, your training history, or your facility layout. OSHA does not just review your binder — they walk your floor, interview your supervisors, and compare what is written against what is happening. When the two do not match, that gap can become a citation.' },
+      { question: 'What does OSHA actually look at during an inspection?', answer: 'OSHA Compliance Officers review paperwork, ask employees questions, observe equipment and work practices, and compare written procedures against the floor reality. They pay close attention to whether supervisors can describe procedures from memory, whether SDS binders match current chemical use, and whether training records can be traced back to specific employees and tasks.' },
+      { question: 'Why do AI-generated safety programs fail OSHA inspections?', answer: 'Generic AI-generated programs describe what a compliant operation should look like — they do not prove what your operation actually looks like. They miss site-specific hazards (the unguarded press in the back, the chemical added last month, the lockout step nobody is following). When OSHA sees a polished written program that does not match floor reality, the gap itself becomes evidence.' },
+      { question: 'What is the difference between a document and a working safety program?', answer: 'A document describes procedures. A working safety program is what your people do every day. OSHA cites the gap between the two. The fastest way to find that gap is an outside walkthrough — someone who looks at your floor with fresh eyes and compares what they see against what is written.' },
+    ],
+    relatedNotes: ['hazcom', 'lockout-tagout'],
+    sections: {
+      whatItIs: `A lot of operators are using ChatGPT and similar tools to generate safety programs right now. The output may look legitimate. It may cite real OSHA standards. The formatting may be clean. You can print it, put it in a binder, and feel like the box is checked.
+
+The problem is this: OSHA does not just look at your binder. OSHA looks at your operation.
+
+An AI-generated program does not know your equipment. It does not know about the machine in the back corner with a missing guard. It does not know your employees are skipping lockout steps because nobody showed them the correct process. It does not know your SDS binder lists chemicals you no longer use while missing chemicals used every day.
+
+A generic program describes what a compliant operation should look like. It does not prove what your operation actually looks like.
+
+When an OSHA compliance officer walks in, they may review paperwork, ask employees questions, observe equipment, and compare written procedures against what is happening on the floor. When the paperwork and the work do not match, that gap can become a problem.
+
+The document is not the program. The program is what your people do every day.
+
+If you used AI to generate safety documentation — or you are not sure whether your safety program reflects your current operation — GigLine Safety & Compliance can help you find out where you stand. A GigLine walkthrough provides a practical review of visible safety gaps, documentation concerns, and corrective action priorities. No software to learn. No generic binder talk. Just ground truth from the floor.`,
+      whatGetsMissed: [
+        'The unguarded machine in the back corner — never appears in any AI-generated written program',
+        'Employees skipping lockout/tagout steps because the AI program does not match the equipment',
+        'SDS binders that include chemicals removed from service and miss chemicals added last month',
+        'Training records that reference generic AI-suggested topics, not the actual equipment in use',
+        'Written procedures that describe a different facility — wrong square footage, wrong layout, wrong hazards',
+        'Lockout-tagout procedures with no machine-specific energy isolation — generic boilerplate that would not pass an inspection',
+        'Employees and supervisors who cannot describe procedures the written program says they should follow',
+      ],
+      whatISee: 'When I walk an operation with AI-generated documentation, the binder usually looks polished. Real OSHA standards are cited. Formatting is clean. Then I ask the floor supervisor to describe the lockout procedure for the press they ran this morning — and they cannot. I check the SDS binder against the chemical drum I just walked past — and it is not in there. The gap between the document and the work is exactly what an inspector will find.',
+      checklist: [
+        'Walk your floor with the written program in hand — note any equipment, chemical, or procedure that does not match',
+        'Verify SDS binder matches current chemical inventory: remove old, add new, date the update',
+        'Ask 2-3 supervisors to describe lockout/tagout for a specific machine from memory — compare to the written procedure',
+        'Confirm training records show specific employees, specific dates, specific equipment — not generic topic lists',
+        'Cross-check every OSHA standard cited in your written program against the equipment, chemicals, and processes actually present',
+        'Check whether your written program matches your facility — square footage, layout, number of exits, type of operations',
+        'Test it: ask yourself, if OSHA walked in today, would what is in this binder match what they would see on the floor?',
+        'If the document and the work do not match — schedule a walkthrough before an inspector does it for you',
+      ],
+    },
+  },
 };
 
 const FieldNoteDetailPage = () => {
@@ -569,7 +626,7 @@ const FieldNoteDetailPage = () => {
   return (
     <main>
       <SEO
-        title={`${note.title} — Field Notes | GigLine Safety & Compliance`}
+        title={note.seoTitle || `${note.title} — Field Notes | GigLine Safety & Compliance`}
         description={note.seo}
         canonical={`/field-notes/${slug}`}
       />

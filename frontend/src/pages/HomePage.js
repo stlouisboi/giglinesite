@@ -157,7 +157,7 @@ const HomePage = () => {
           <div className="w-full md:w-2/5 flex items-center px-6 md:px-14 lg:px-20 py-12 md:py-0 relative z-10">
             <Reveal>
               <div
-                className="inline-flex items-center gap-2.5 pl-2 pr-3 py-1.5 mb-5 rounded-full"
+                className="inline-flex items-center gap-2.5 pl-2 pr-3 py-2 mb-5 rounded-full"
                 style={{
                   background: 'linear-gradient(90deg, rgba(31,111,235,0.18) 0%, rgba(31,111,235,0.06) 100%)',
                   border: '1px solid rgba(242,208,114,0.45)',
@@ -165,7 +165,7 @@ const HomePage = () => {
                 }}
                 data-testid="hero-eyebrow-chip"
               >
-                <NCStateMark width={26} fill="#F2D072" starFill="#FFFFFF" />
+                <NCStateMark width={38} fill="#F2D072" starFill="#FFFFFF" />
                 <span
                   className="uppercase font-bold text-[#F2D072]"
                   style={{ ...mono, fontSize: '11px', letterSpacing: '2px' }}

@@ -1,25 +1,28 @@
 import React from 'react';
 
 /**
- * NCStateMark — minimal inline NC silhouette with a Kernersville star.
- * No coin frame. No curved text. Just the state shape, sized to sit cleanly
- * inline with surrounding text.
+ * NCStateMark — recognizable NC silhouette.
  *
- * The silhouette honors NC's true ~5.5:1 horizontal aspect ratio with a
- * pointed western tip and a slight Outer Banks bulge on the east coast.
+ * ~2.2:1 aspect ratio (vs real ~3.3:1) — slightly compressed so the state
+ * stays legible at icon sizes (24–40px wide). Captures the key features:
+ *   • pointed western tip (Smoky Mountains panhandle extending left)
+ *   • mostly-straight northern border with VA
+ *   • Outer Banks bulge on the eastern coast
+ *   • angled SE corner sloping toward the southern point
  */
 const NCStateMark = ({
-  width = 96,
+  width = 36,
   className = '',
   fill = '#1F6FEB',
   starFill = '#F2D072',
+  showStar = true,
   ariaLabel = 'North Carolina — Kernersville',
 }) => {
-  // Native aspect ratio of the path below: 116 wide × 20 tall ≈ 5.8:1
-  const height = (width * 20) / 116;
+  // Native viewBox aspect: 220 × 100 ≈ 2.2:1
+  const height = (width * 100) / 220;
   return (
     <svg
-      viewBox="0 0 116 20"
+      viewBox="0 0 220 100"
       width={width}
       height={height}
       role="img"
@@ -28,56 +31,67 @@ const NCStateMark = ({
       data-testid="nc-state-mark"
       style={{ display: 'inline-block', flexShrink: 0, verticalAlign: 'middle' }}
     >
-      {/*
-        Stylized NC silhouette.
-        Anchored to viewBox so it fills the box with consistent padding.
-      */}
       <path
         d="
-          M 2,14
-          L 8,9
-          L 16,6
-          L 28,3
-          L 44,1.5
-          L 62,1
-          L 80,1
-          L 96,2
-          L 108,4
-          L 114,6.5
-          L 116,9
-          L 112,10
-          L 116,12
-          L 113,14
-          L 106,14.5
-          L 100,15
-          L 88,16.5
-          L 72,17.5
-          L 56,18
-          L 40,17.5
-          L 26,17
-          L 14,16.5
-          L 6,15.5
+          M 6,58
+          L 4,62
+          L 12,67
+          L 26,68
+          L 42,67
+          L 54,64
+          L 60,55
+          L 66,44
+          L 74,34
+          L 86,26
+          L 102,20
+          L 122,16
+          L 144,14
+          L 166,15
+          L 184,19
+          L 198,24
+          L 208,30
+          L 213,38
+          L 210,44
+          L 215,50
+          L 208,54
+          L 213,60
+          L 206,66
+          L 196,71
+          L 188,76
+          L 184,84
+          L 176,92
+          L 162,95
+          L 146,93
+          L 128,90
+          L 108,86
+          L 88,82
+          L 72,78
+          L 58,74
+          L 46,70
+          L 32,67
+          L 20,64
           Z
         "
         fill={fill}
         stroke="#04101F"
-        strokeWidth="0.6"
+        strokeWidth="1.4"
         strokeLinejoin="round"
+        strokeLinecap="round"
       />
 
-      {/*
-        Kernersville star — roughly central-west Piedmont on this stylized path.
-        Coordinates: x≈64, y≈10.
-      */}
-      <g transform="translate(64, 10)">
-        <polygon
-          points="0,-2.4 0.66,-0.74 2.4,-0.74 1,0.28 1.5,2 0,1 -1.5,2 -1,0.28 -2.4,-0.74 -0.66,-0.74"
-          fill={starFill}
-          stroke="#3A2810"
-          strokeWidth="0.25"
-          strokeLinejoin="round"
-        />
-      </g>
+      {showStar && (
+        <g transform="translate(118, 50)">
+          {/* Halo for contrast against state fill */}
+          <circle cx="0" cy="0" r="7" fill="#FFFFFF" opacity="0.25" />
+          <polygon
+            points="0,-6 1.65,-1.85 6,-1.85 2.5,0.7 3.8,5.2 0,2.6 -3.8,5.2 -2.5,0.7 -6,-1.85 -1.65,-1.85"
+            fill={starFill}
+            stroke="#3A2810"
+            strokeWidth="0.5"
+            strokeLinejoin="round"
+          />
+        </g>
+      )}
     </svg>
   );
 };

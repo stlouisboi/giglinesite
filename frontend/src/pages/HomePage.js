@@ -442,13 +442,13 @@ const HomePage = () => {
               </div>
             </Reveal>
 
-            {/* Card 2 — Drafted testimonial (placeholder — Vince to review/edit) */}
+            {/* Card 2 — Michael Humphrey (real Google Review, Jun 11) */}
             <Reveal delay={120}>
               <div
                 className="relative h-full rounded-xl p-7 md:p-8 flex flex-col"
                 style={{
                   backgroundColor: '#F7F9FC',
-                  border: '1px solid rgba(16,33,51,0.08)',
+                  border: '1px solid rgba(31,111,235,0.15)',
                   boxShadow: '0 2px 12px rgba(11,31,51,0.04)',
                 }}
                 data-testid="testimonial-card-2"
@@ -464,7 +464,7 @@ const HomePage = () => {
 
                 {/* Pull quote */}
                 <p className="relative text-lg md:text-xl text-[#102133] leading-[1.55] font-semibold mb-5" style={{ fontFamily: 'Georgia, serif' }}>
-                  Walked our floor for two hours and gave us a written list of seven things to fix. Three we knew about. Four we didn't.
+                  Vince knows OSHA compliance cold. Straightforward, knowledgeable, and no wasted time.
                 </p>
 
                 {/* Divider */}
@@ -472,17 +472,17 @@ const HomePage = () => {
 
                 {/* Full review */}
                 <p className="text-base md:text-sm text-[#102133]/75 leading-relaxed mb-6 flex-grow">
-                  "We had a forklift near-miss in March. Vince came in the next week and walked the floor. The report was in my inbox 24 hours later — no fluff, just what to do and what standard it cited. Straightforward and useful."
+                  "Vince knows OSHA compliance cold. I watched him work through complex situations on the floor and always trusted his judgment. Straightforward, knowledgeable, and no wasted time. Exactly what a small business needs."
                 </p>
 
                 {/* Attribution */}
                 <div className="flex items-center gap-3 pt-5 border-t border-[#102133]/10">
                   <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold text-white flex-shrink-0" style={{ backgroundColor: '#1F6FEB' }}>
-                    MT
+                    MH
                   </div>
                   <div>
-                    <p className="text-base md:text-sm font-bold text-[#102133]">Mike T.</p>
-                    <p className="text-sm md:text-xs text-[#102133]/65 mt-0.5">Operations Manager — distribution warehouse, Greensboro NC</p>
+                    <p className="text-base md:text-sm font-bold text-[#102133]">Michael Humphrey</p>
+                    <p className="text-sm md:text-xs text-[#102133]/65 mt-0.5">Google Review</p>
                   </div>
                 </div>
               </div>
@@ -572,7 +572,7 @@ const HomePage = () => {
                     </span>
                   </div>
                   <span className="text-xs text-[#102133]/65 mt-0.5" style={mono}>
-                    1 Google Review &middot; Read on Google &rarr;
+                    3 Google Reviews &middot; Read on Google &rarr;
                   </span>
                 </div>
               </a>

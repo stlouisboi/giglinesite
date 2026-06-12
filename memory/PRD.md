@@ -126,6 +126,22 @@ Goal: get GigLine cited in answers from ChatGPT, Perplexity, Claude, Google AI O
 - Sitemap entry added (priority 0.9)
 - Internal discoverability: shared `/app/frontend/src/components/CaseStudyTeaser.js` (navy + gold band, 3 outcome stat chips, gold CTA) embedded on Homepage (between Google review badge and Process section) and Services page (between Service Cards and Coverage section). Static HTML pre-renderer also includes a "Recent Outcome — Case Study" anchor link on both / and /services for crawler discoverability.
 
+## Findability Framework — Inbound SEO Push (Jun 11, 2026)
+- **Global typography bump** — `html { font-size: 18.4px }` (~15% larger) in `index.css`; mobile dialed to 17.2px. Scales all rem-based Tailwind sizes and spacing uniformly. Noticeably more readable across hero, body, buttons, and forms.
+- **Homepage hero rewrite** — Replaced "If OSHA Walked In Tomorrow, Would You Pass?" with buyer-intent headline: "Practical Safety Walkthroughs & OSHA-Focused Gap Checks for Manufacturers, Warehouses, Contractors & Fleets in North Carolina." New 2-line subhead, dual CTAs (Primary → /request-walkthrough, Secondary → /intake), updated pricing line ("Walkthroughs from $650 · Doc Gap Checks from $550").
+- **3 new buyer-intent service landing pages** (all built via shared `ServiceLandingTemplate.js`):
+  - `/safety-walkthrough` — On-site OSHA review for NC operations (from $650)
+  - `/documentation-gap-check` — Written programs, SDS, training records review (from $550)
+  - `/osha-compliance-gap-check` — Combined walkthrough + documentation review (custom-quoted, typically $1,200–$2,400)
+- Each new page includes: Who It's For · The Problem · What's Reviewed · What You Receive (deliverables grid) · Field Manual lead magnet · Next Steps (numbered) · Final CTA band with 3 actions (Walkthrough / Intake / Call).
+- **SEO mirror** — `generate-seo-pages.js` updated with: new homepage copy + headline/meta, plus full static pre-rendered HTML for the 3 new service pages (each with Service JSON-LD, FAQPage JSON-LD, BreadcrumbList JSON-LD, and crawler-visible H1/H2 content).
+- Updated homepage testimonials Card 2 with real Google review from **Michael Humphrey** (Jun 11, 2026): "Vince knows OSHA compliance cold..." Badge updated from "1 Google Review" → "3 Google Reviews."
+
+## Pending — User-Side / Backlog
+- **GBP optimization** (manual at business.google.com): Set Primary Chat = Text message, add Place page attributes (Onsite services, Online appointments), add Burlington + Asheboro to service areas, tighten Description copy, confirm booking URL → /request-walkthrough, seed 5–6 Q&A entries, post weekly Google Posts.
+- **Backlog (P1)**: 5 local Triad SEO pages (Greensboro, Winston-Salem, High Point, Kernersville, Statesville) — note `/safety-walkthrough/:city` city pages already exist for Triad cities; consider whether new dedicated pages are needed or just refresh existing.
+- **Backlog (P2)**: Problem-Based Field Notes articles from Findability Framework list · Google Review short link in delivered PDF reports · Stripe Invoice creation inside `/admin` panel · 4-touch Past Client Retention MailerLite sequence · Supervisor Training Kit shell (GL-WEB-013, blocked on user PDFs).
+
 ## Deployment
 - Frontend: Vercel (manual redeploy after GitHub push)
 - Backend: Railway (auto-deploys on GitHub push)

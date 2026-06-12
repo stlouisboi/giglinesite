@@ -171,7 +171,18 @@ const HomePage = () => {
                 {' '}&amp;{' '}
                 <span className="text-[#1F6FEB]">OSHA-Focused Gap Checks</span>
                 <span className="block mt-3 text-[#CBD5E1] font-semibold text-2xl sm:text-3xl lg:text-4xl">
-                  for Manufacturers, Warehouses, Contractors &amp; Fleets in North Carolina.
+                  for Manufacturers, Warehouses, Contractors &amp; Fleets in{' '}
+                  <span className="inline-flex items-center gap-3 align-middle">
+                    <span>North Carolina.</span>
+                    <img
+                      src="/assets/carolina-built-badge.png"
+                      alt="Carolina-Built · Navy Veteran Owned · Kernersville NC"
+                      className="inline-block w-14 sm:w-16 lg:w-20 h-auto select-none align-middle"
+                      style={{ filter: 'drop-shadow(0 6px 14px rgba(0,0,0,0.35))' }}
+                      loading="eager"
+                      data-testid="hero-carolina-badge"
+                    />
+                  </span>
                 </span>
               </h1>
 

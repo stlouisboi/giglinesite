@@ -72,9 +72,9 @@ const ContactPage = () => {
                   <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">
                     <Mail size={24} className="text-accent" />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <p className="text-sm text-muted-foreground">Email</p>
-                    <p className="font-medium text-primary group-hover:text-accent transition-colors">
+                    <p className="font-medium text-primary group-hover:text-accent transition-colors text-sm sm:text-base break-all">
                       vince@giglinecompliance.com
                     </p>
                   </div>

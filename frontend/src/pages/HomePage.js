@@ -167,8 +167,9 @@ const HomePage = () => {
                 data-testid="hero-headline"
               >
                 Practical{' '}
-                <span style={{ borderBottom: '2px solid #1F6FEB', paddingBottom: '2px' }}>Safety Walkthroughs</span>{' '}
-                &amp; OSHA-Focused Gap Checks
+                <span className="text-[#1F6FEB]">Safety Walkthroughs</span>
+                {' '}&amp;{' '}
+                <span className="text-[#1F6FEB]">OSHA-Focused Gap Checks</span>
                 <span className="block mt-3 text-[#CBD5E1] font-semibold text-2xl sm:text-3xl lg:text-4xl">
                   for Manufacturers, Warehouses, Contractors &amp; Fleets in North Carolina.
                 </span>

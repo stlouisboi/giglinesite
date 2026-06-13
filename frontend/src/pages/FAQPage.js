@@ -14,7 +14,7 @@ export const FAQS = [
   },
   {
     q: "What's included in a GigLine safety walkthrough?",
-    a: "An on-site walkthrough of your operation (1–3 hours), photo-documented hazard findings, the specific OSHA standard referenced for each finding, and a written 'Top 10 Fixes' report delivered within 24–48 hours. Findings are color-coded: RED (fix this week), AMBER (fix this month), GREEN (what you're doing right).",
+    a: "A GigLine safety walkthrough includes a 1–3-hour on-site review, photo-documented safety observations, OSHA-related references where applicable, and a written \"Top 10 Fixes\" report delivered within 24–48 hours. Findings are color-coded: RED for urgent items, AMBER for near-term corrections, and GREEN for what your team is doing well.",
   },
   {
     q: 'How long does a safety walkthrough take on-site?',

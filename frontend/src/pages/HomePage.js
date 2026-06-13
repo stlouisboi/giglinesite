@@ -1191,7 +1191,7 @@ const HomePage = () => {
               <div className="pb-8 border-b border-[#102133]/10">
                 <h3 className="text-base font-bold text-[#102133] mb-3" data-testid="faq-q2">What do I get when it's done?</h3>
                 <p className="text-base text-[#102133]/80 leading-relaxed">
-                  A written report delivered within 48 hours. It includes photo-documented findings, the specific OSHA standard referenced for each one, and a plain-language corrective action for each item. No guesswork about what to fix or why.
+                  A written report delivered within 24 to 48 hours. It includes photo-documented findings, OSHA-related references where applicable, and a plain-language corrective action recommendation for each item. No guesswork about what to fix or why.
                 </p>
               </div>
             </Reveal>

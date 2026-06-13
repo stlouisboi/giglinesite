@@ -50,7 +50,7 @@ const SERVICES = [
     whatYouGet: [
       'On-site walkthrough (1\u20133 hours)',
       'Photo-documented hazard findings',
-      'OSHA standard referenced for each finding',
+      'OSHA-related references where applicable',
       'Top 10 Fixes report \u2014 RED / AMBER / GREEN priority',
       'Delivered within 24\u201348 hours',
     ],

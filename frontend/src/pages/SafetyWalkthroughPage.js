@@ -49,7 +49,7 @@ const SafetyWalkthroughPage = () => (
         'Every walkthrough produces a written report — no verbal-only summaries. Reports are delivered as a PDF within 24 to 48 hours of the on-site visit.',
       bullets: [
         'Photo-documented findings — what was observed and where.',
-        'The specific OSHA standard referenced for each finding.',
+        'OSHA-related references where applicable.',
         'A plain-language corrective action for each item — what to fix and how.',
         'Color-coded priorities: RED (fix this week), AMBER (fix this month), GREEN (reinforce what is working).',
         "A 'Top 10 Fixes' summary so you know where to start Monday morning.",

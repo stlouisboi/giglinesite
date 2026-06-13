@@ -49,7 +49,7 @@ const OshaComplianceGapCheckPage = () => (
         'The most comprehensive deliverable GigLine produces. Built so an owner, plant manager, or safety lead can hand it to the team and start closing gaps Monday morning.',
       bullets: [
         'Executive summary — the 5 to 10 biggest exposures, in priority order, with citation-risk ranking.',
-        'Floor findings — photo-documented hazards with OSHA standard references and corrective actions.',
+        'Floor findings — photo-documented hazards with OSHA-related references where applicable and corrective action recommendations.',
         'Documentation findings — written program gaps, missing records, expired certifications.',
         'Training matrix — every employee, every required training, current status and next due date.',
         'Recordkeeping report — what is in compliance, what needs reconstruction, what needs to be posted.',

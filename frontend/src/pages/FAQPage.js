@@ -18,31 +18,31 @@ export const FAQS = [
   },
   {
     q: 'How long does a safety walkthrough take on-site?',
-    a: 'Most walkthroughs run 1 to 3 hours. A small shop under 10,000 sq ft may take under an hour. A multi-bay warehouse or production floor typically runs 2 to 3 hours. You will know the time estimate before the visit.',
+    a: 'Most walkthroughs take 1 to 3 hours on-site. A small shop under 10,000 sq ft may take less than an hour. Larger warehouses, production floors, or multi-area operations may take 2 to 3 hours or require a larger scoped visit. You will receive a time estimate before the visit.',
   },
   {
     q: "What's the difference between a safety walkthrough and an OSHA inspection?",
-    a: "An OSHA inspection is performed by a federal compliance officer and can result in citations and fines. A GigLine safety walkthrough is a private, voluntary review performed by an independent consultant. Findings are delivered only to you — nothing is reported to OSHA, your insurance carrier, or any third party.",
+    a: "An OSHA inspection is performed by a federal or state compliance officer and may result in citations, penalties, and required abatement. A GigLine safety walkthrough is a private, voluntary review performed by an independent consultant. Findings are delivered only to you — nothing is reported to OSHA, your insurance carrier, or any third party.",
   },
   {
     q: 'Do I need a written HazCom program if I have fewer than 10 employees?',
-    a: 'Yes. Under OSHA 29 CFR 1910.1200, any employer with hazardous chemicals in the workplace must have a written Hazard Communication program, regardless of headcount. Exemptions are very narrow and apply only to sealed consumer-packaged products used in the same way a household consumer would use them.',
+    a: 'In most cases, yes. Under OSHA 29 CFR 1910.1200, employers with hazardous chemicals in the workplace must maintain a written Hazard Communication program, regardless of headcount. Exceptions are limited and generally apply only to sealed consumer-packaged products used in the same way a household consumer would use them.',
   },
   {
     q: 'What areas of North Carolina does GigLine serve?',
-    a: 'GigLine is based in Kernersville, NC and serves the full Piedmont Triad — Winston-Salem, Greensboro, High Point, Burlington, Lexington, Thomasville, Salisbury, and surrounding towns — within roughly 60 miles of Winston-Salem. Scheduled engagements are available in the Charlotte and Raleigh metros with travel considered.',
+    a: 'GigLine is based in Kernersville, NC and serves the Piedmont Triad, including Winston-Salem, Greensboro, High Point, Burlington, Lexington, Thomasville, Salisbury, and surrounding communities. Most on-site work is scheduled within roughly 60 miles of Winston-Salem. Charlotte and Raleigh metro engagements may be considered based on scope and travel.',
   },
   {
     q: 'Will GigLine report findings to OSHA?',
-    a: 'No. Every engagement is private. The only deliverable is the written report handed to the business owner. GigLine does not contact OSHA, the owner\'s insurance carrier, or any regulatory agency under any circumstances.',
+    a: "No. GigLine engagements are private. The written report is delivered to the client only. GigLine does not contact OSHA, your insurance carrier, or any regulatory agency as part of a standard walkthrough or documentation review.",
   },
   {
     q: 'How fast do I get my walkthrough report?',
-    a: 'Reports are delivered within 24 to 48 hours of the on-site visit. The report is a PDF with photos, OSHA citations, and prioritized corrective actions. Most clients receive the report the next business day.',
+    a: 'Reports are typically delivered within 24 to 48 hours of the on-site visit. The report is provided as a PDF and may include photos, OSHA-related references where applicable, and prioritized corrective action recommendations. Many clients receive the report by the next business day.',
   },
   {
     q: 'What is a "Top 10 Fixes" report?',
-    a: "The GigLine deliverable for a safety walkthrough. It ranks the ten most important findings from your on-site visit, organized RED (fix this week), AMBER (fix this month), and GREEN (reinforce what's working). Each item includes what was observed, why it matters, the OSHA standard cited, and the specific corrective action.",
+    a: "The GigLine deliverable for a safety walkthrough. It ranks the ten most important findings from your on-site visit, organized RED for urgent items, AMBER for near-term corrections, and GREEN for what your team is doing well. Each item includes what was observed, why it matters, the OSHA-related reference where applicable, and a recommended corrective action.",
   },
   {
     q: 'Does GigLine work with my insurance carrier?',

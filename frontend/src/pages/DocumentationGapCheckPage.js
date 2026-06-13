@@ -52,7 +52,7 @@ const DocumentationGapCheckPage = () => (
       bullets: [
         'Document-by-document inventory — what was reviewed and what was found.',
         'Gap analysis — missing programs, missing records, expired certifications.',
-        'OSHA standard reference for each gap so the citation risk is explicit.',
+        'OSHA-related references where applicable for each gap so the exposure risk is explicit.',
         'Prioritized corrective action list — what to fix this week, this month, and this quarter.',
         'Plain-language templates and checklists for the most common missing programs.',
         'Optional 30-minute follow-up call to walk through findings.',

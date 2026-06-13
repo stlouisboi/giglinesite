@@ -3,13 +3,13 @@ import ServiceLandingTemplate from '../components/ServiceLandingTemplate';
 
 const OshaComplianceGapCheckPage = () => (
   <ServiceLandingTemplate
-    seoTitle="OSHA Compliance Gap Check — Pre-Inspection Review for NC Operations"
-    seoDescription="Full OSHA compliance gap check — combined on-site walkthrough and documentation review. Built for operations preparing for an OSHA inspection, audit, or insurance review. Written report in 48 hours. Serving NC manufacturers, warehouses, contractors, and fleets."
+    seoTitle="Compliance Readiness Visit — Pre-Inspection Review for NC Operations"
+    seoDescription="Full Compliance Readiness Visit — combined on-site walkthrough and OSHA Documentation Readiness Review. Built for operations preparing for an OSHA inspection, audit, or insurance review. Written report in 48 hours. Serving NC manufacturers, warehouses, contractors, and fleets."
     canonical="/osha-compliance-gap-check"
-    eyebrow="Service · OSHA Compliance Gap Check"
-    headline="A Full OSHA Compliance Gap Check Before an Inspection, Audit, or Insurance Review."
+    eyebrow="Service · Compliance Readiness Visit"
+    headline="A Compliance Readiness Visit Before an Inspection, Audit, or Insurance Review."
     subheadline="The most thorough engagement GigLine offers. A combined on-site walkthrough and documentation review — covering the floor AND the binder — so you know exactly where you stand against the OSHA standards that apply to your operation."
-    priceLine="Custom-quoted by operation size and scope · Most engagements fall between $1,200 and $2,400 · No retainer."
+    priceLine="Custom-quoted by operation size and scope · Most Compliance Readiness Visits start at $1,500 · No retainer."
     whoItsFor={{
       intro: 'This is the right engagement if any of these describe where you are right now:',
       bullets: [
@@ -22,7 +22,7 @@ const OshaComplianceGapCheckPage = () => (
     }}
     theProblem={{
       intro:
-        'A safety walkthrough catches what is exposed on the floor. A documentation review catches what is missing in the binder. An OSHA Compliance Officer looks at both — and most operations have gaps in both. A compliance gap check is built to surface every one of them, in priority order, before the inspector does.',
+        'A safety walkthrough catches what is exposed on the floor. An OSHA Documentation Readiness Review catches what is missing in the binder. An OSHA Compliance Officer looks at both — and most operations have gaps in both. A Compliance Readiness Visit is built to surface every one of them, in priority order, before the inspector does.',
       bullets: [
         'Floor conditions that contradict the written program — guards removed, panels blocked, exits obstructed.',
         'Training records that exist but cannot be matched to the employees and tasks observed on the floor.',
@@ -33,7 +33,7 @@ const OshaComplianceGapCheckPage = () => (
     }}
     whatIsReviewed={{
       intro:
-        'A full compliance gap check is the combination of a walkthrough and a documentation review, plus a cross-check between them. Typical engagements run 1 day on-site plus 2 to 3 days of independent review.',
+        'A full Compliance Readiness Visit is the combination of a walkthrough and an OSHA Documentation Readiness Review, plus a cross-check between them. Typical engagements run 1 day on-site plus 2 to 3 days of independent review.',
       bullets: [
         'On-site walkthrough — every floor area, every work cell, every storage and egress path.',
         'Written program review — HazCom, LOTO, PIT, PPE, EAP, Bloodborne, and any industry-specific programs.',
@@ -59,10 +59,10 @@ const OshaComplianceGapCheckPage = () => (
     }}
     nextSteps={{
       intro:
-        'Most operations move quickly once they decide to do a gap check — especially when OSHA is already on the calendar. The first conversation is free.',
+        'Most operations move quickly once they decide to do a Compliance Readiness Visit — especially when OSHA is already on the calendar. The first conversation is free.',
       steps: [
         { label: 'Start the Conversation', desc: 'Call (336) 329-8899 or start a client intake. We discuss your operation, your timing, and what triggered the request.' },
-        { label: 'Receive a Custom Quote', desc: 'Compliance gap checks are scoped to your size, industry, and timeline. Most quotes are returned within one business day.' },
+        { label: 'Receive a Custom Quote', desc: 'Compliance Readiness Visits are scoped to your size, industry, and timeline. Most quotes are returned within one business day.' },
         { label: 'Schedule the Engagement', desc: 'We agree on an on-site date and a documentation window. Most engagements complete within 7 to 14 days end-to-end.' },
         { label: 'On-Site Walkthrough + Documentation Review', desc: 'Typically 1 full day on-site followed by 2 to 3 days of independent documentation review and cross-check.' },
         { label: 'Written Compliance Report', desc: 'PDF delivered with executive summary, findings, training matrix, recordkeeping report, and 30-60-90 day roadmap.' },

@@ -2,7 +2,7 @@
 GL-DOC-REVIEW-PREP-CHECKLIST — Documentation Review Prep Checklist PDF generator.
 
 A one-page actionable checklist Vince attaches to the client confirmation email
-when the submitted service is 'Documentation & Gap Check'. Lists every program,
+when the submitted service is 'OSHA Documentation Readiness Review'. Lists every program,
 log, and record Vince typically needs to review before the engagement, with
 brief context on where each item is usually found.
 
@@ -233,7 +233,7 @@ def build_pdf():
     story.append(Paragraph("Documentation Review &mdash; Prep Checklist", S["title"]))
     story.append(Paragraph(
         "Gather what you can before our review. If something on this list doesn&rsquo;t apply, "
-        "leave it blank. The more we have in front of us, the faster the gap report comes back.",
+        "leave it blank. The more we have in front of us, the faster the findings report comes back.",
         S["subtitle"],
     ))
 

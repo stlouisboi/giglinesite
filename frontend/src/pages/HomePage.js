@@ -58,8 +58,8 @@ const HomePage = () => {
   return (
     <main className="overflow-x-hidden">
       <SEO
-        title="Safety Walkthroughs & OSHA Gap Checks for NC Manufacturers, Warehouses & Fleets | GigLine"
-        description="Practical safety walkthroughs and OSHA-focused documentation gap checks for manufacturers, warehouses, contractors, and fleet operations in North Carolina. Written report in 48 hours. (336) 329-8899."
+        title="Safety Walkthroughs & OSHA Documentation Readiness Reviews for NC Manufacturers, Warehouses & Fleets | GigLine"
+        description="Practical safety walkthroughs and OSHA Documentation Readiness Reviews for manufacturers, warehouses, contractors, and fleet operations in North Carolina. Written report in 48 hours. (336) 329-8899."
         canonical="/"
         schema={{
           "@context": "https://schema.org",
@@ -101,7 +101,7 @@ const HomePage = () => {
             { "@type": "City", "name": "Salisbury" },
             { "@type": "City", "name": "Burlington" }
           ],
-          "priceRange": "$550–$1200",
+          "priceRange": "$750–$4500",
           "openingHours": "Mo-Fr 08:00-18:00",
           "sameAs": [],
           "hasOfferCatalog": {
@@ -109,7 +109,7 @@ const HomePage = () => {
             "name": "Safety Services",
             "itemListElement": [
               { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Safety Walkthrough & Top 10 Fixes Report", "description": "On-site facility walkthrough with written report." }, "price": "650", "priceCurrency": "USD" },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Documentation Review & Gap Check", "description": "Review of written safety programs and training records." }, "price": "550", "priceCurrency": "USD" },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "OSHA Documentation Readiness Review", "description": "Review of written safety programs and training records." }, "price": "750", "priceCurrency": "USD" },
               { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Incident Review & Corrective Action Support", "description": "Post-incident documentation and corrective action." }, "price": "900", "priceCurrency": "USD" }
             ]
           }
@@ -169,7 +169,7 @@ const HomePage = () => {
                 Practical{' '}
                 <span className="text-[#1F6FEB]">Safety Walkthroughs</span>
                 {' '}&amp;{' '}
-                <span className="text-[#1F6FEB]">OSHA-Focused Gap Checks</span>
+                <span className="text-[#1F6FEB]">OSHA Documentation Readiness Reviews</span>
                 <span className="block mt-3 text-[#CBD5E1] font-semibold text-2xl sm:text-3xl lg:text-4xl">
                   for Manufacturers, Warehouses, Contractors &amp; Fleets in{' '}
                   <span className="inline-flex items-center gap-3 align-middle">
@@ -190,7 +190,7 @@ const HomePage = () => {
                 className="text-base md:text-lg text-[#CBD5E1] leading-relaxed mb-6 max-w-md"
                 data-testid="hero-sub"
               >
-                On-site walkthroughs, documentation gap checks, and OSHA-focused compliance reviews — clear findings, photo-documented reports in 48 hours, no retainer. Based in Kernersville, NC.
+                On-site walkthroughs, OSHA Documentation Readiness Reviews, and OSHA-focused compliance visits — clear findings, photo-documented reports in 48 hours, no retainer. Based in Kernersville, NC.
               </p>
 
               <p
@@ -218,7 +218,7 @@ const HomePage = () => {
                   </Link>
                 </div>
                 <p className="text-base font-semibold text-white" data-testid="hero-pricing-anchor">
-                  Walkthroughs from <span className="text-[#1F6FEB]">$650</span> &middot; Doc Gap Checks from <span className="text-[#1F6FEB]">$550</span>
+                  Walkthroughs from <span className="text-[#1F6FEB]">$850</span> &middot; Documentation Readiness Reviews from <span className="text-[#1F6FEB]">$750</span>
                 </p>
                 <p className="text-sm text-[#CBD5E1] leading-relaxed max-w-md" data-testid="hero-pricing-direction">
                   Fixed quote before scheduling. Written report in 48 hours. No retainer.{' '}

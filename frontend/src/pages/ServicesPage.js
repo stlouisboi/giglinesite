@@ -1,10 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ArrowUpRight, MapPin, Phone, Shield, RefreshCw, FileText, Download } from 'lucide-react';
+import { ArrowRight, Phone, Check, Star } from 'lucide-react';
 import { trackServiceBooking } from '../utils/analytics';
 import SEO from '../components/SEO';
 import CaseStudyTeaser from '../components/CaseStudyTeaser';
-import SampleReportSection from '../components/SampleReportSection';
 
 /* ── Scroll-reveal — mirrors HomePage.js exactly ── */
 const useReveal = () => {
@@ -37,618 +36,387 @@ const Reveal = ({ children, className = '', delay = 0 }) => {
 
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
 
-const SERVICES = [
+/* ── PRIMARY CARDS (Section 1) ── */
+const PRIMARY = [
   {
-    num: '01',
-    key: 'walkthrough_standard',
-    title: 'Safety Walkthrough & Top 10 Fixes Report',
-    bestWhen: [
-      'You want to know where you stand before OSHA shows up',
-      'You\u2019ve had recent growth, new employees, or facility changes',
-      'You\u2019re about to go through an insurance review',
-    ],
-    whatYouGet: [
-      'On-site walkthrough (1\u20133 hours)',
-      'Photo-documented hazard findings',
-      'OSHA-related references where applicable',
-      'Top 10 Fixes report \u2014 RED / AMBER / GREEN priority',
-      'Delivered within 24\u201348 hours',
-    ],
-    price: '$650',
-    cta: { label: 'Request a Walkthrough', subline: 'Vince calls back within one business day.' },
-    testId: 'book-walkthrough',
-    featured: true,
-  },
-  {
-    num: '02',
-    key: 'documentation_remote',
-    title: 'Documentation Review & Gap Check',
-    bestWhen: [
-      'You\u2019re preparing for an audit or OSHA inspection',
-      'Your written programs, training records, or SDS files haven\u2019t been reviewed in a while',
-      'You need to know what\u2019s missing before someone else finds it',
-    ],
-    whatYouGet: [
-      'Review of written safety programs',
-      'Training record and inspection log audit',
-      'SDS binder and HazCom program check',
-      'Written gap report with missing elements identified',
-      'Available remote or on-site',
-    ],
-    price: '$550',
-    cta: { label: 'Request a Review', subline: 'Vince calls back within one business day.' },
-    testId: 'book-documentation',
+    badge: 'ENTRY POINT',
+    title: 'Safety Walkthrough Report',
+    price: 'From $850',
+    body: 'GigLine walks your floor and tells you specifically what an OSHA inspector would find. Every finding is documented with photos, the applicable CFR citation, the 2026 penalty exposure, and a plain-language corrective action. Written report delivered within 48 hours.',
+    bodyExtra: 'No training to schedule. No software to learn. Just ground truth from the floor.',
+    fine: "Best for operations that want to start with a physical hazard assessment — or facilities that have recently completed a documentation review and need a floor walkthrough.",
+    cta: 'Request a Walkthrough',
+    intakeService: 'safety-walkthrough-report',
+    testid: 'svc-card-walkthrough',
     featured: false,
   },
   {
-    num: '03',
-    key: 'incident_standard',
-    title: 'Incident Review & Corrective Action Support',
-    bestWhen: [
-      'You\u2019ve had a recordable injury or near-miss',
-      'You need documentation that holds up under OSHA or insurance review',
-      'You need to identify what broke down and build a corrective action record',
-    ],
-    whatYouGet: [
-      'On-site or remote incident review',
-      'Root cause documentation',
-      'Written corrective action plan',
-      'OSHA recordkeeping guidance',
-      'Support for insurance or compliance follow-up',
-    ],
-    price: '$900',
-    cta: { label: 'Request Support', subline: 'Initial response within 24\u201348 hours.' },
-    testId: 'book-incident',
+    badge: 'MOST POPULAR',
+    title: 'Compliance Readiness Visit',
+    price: 'From $1,500',
+    body: 'GigLine checks what OSHA sees on the floor and what OSHA asks for in the office — in one visit. Includes a full safety walkthrough, OSHA Documentation Readiness Review, compliance score, photo documentation, CFR citations, and a written report delivered within 48 hours.',
+    bodyExtra: 'The Supervisor Safety Starter System ($199 value) is included with every Compliance Readiness Visit.',
+    fine: 'Best for operations that want complete coverage — physical hazards and documentation gaps — in one engagement.',
+    cta: 'Schedule a Compliance Readiness Visit',
+    intakeService: 'compliance-readiness-visit',
+    testid: 'svc-card-compliance-readiness',
+    featured: true,
+  },
+  {
+    badge: 'PREMIUM',
+    title: 'GigLine OSHA-Ready Control System',
+    price: 'Starting at $4,500',
+    body: 'GigLine builds your inspection-ready documentation system from the ground up. Four-binder physical command system. Digital folder architecture. Master document index. Training matrix. SDS organization. Corrective action tracker. 90-day maintenance calendar. Supervisor walkthrough included.',
+    bodyExtra: 'When OSHA, a customer, an auditor, or an insurance carrier asks for your safety documentation — your team knows exactly where it is, what is current, and what still needs action.',
+    fine: 'Best for operations with scattered documentation that need order, structure, and defensibility fast.',
+    cta: 'Request a Buildout Consultation',
+    intakeService: 'osha-ready-control-system',
+    testid: 'svc-card-control-system',
     featured: false,
   },
 ];
 
+/* ── SECONDARY (Section 2) ── */
+const ADDITIONAL = [
+  {
+    title: 'OSHA Documentation Readiness Review',
+    price: 'From $750',
+    body: 'Structured review of written programs, training records, OSHA logs, inspection records, and SDS compliance. 53-item checklist across seven OSHA categories. Compliance percentage score. Priority readiness report with corrective action sequence. Available as a standalone service or included in the Compliance Readiness Visit.',
+    best: 'Operations preparing for an audit, insurance review, or customer pre-qualification that need to know specifically what documentation gaps exist before scheduling an on-site visit.',
+    cta: 'Request a Documentation Review',
+    intakeService: 'documentation-readiness-review',
+    testid: 'svc-add-doc-review',
+  },
+  {
+    title: 'Incident Review & Corrective Action Support',
+    price: 'From $1,200',
+    body: 'Post-injury or post-near-miss response. Root cause analysis. OSHA recordability determination. OSHA 301 completion. Corrective action plan. Documentation of closure.',
+    body2: 'Call GigLine before you file anything or talk to anyone.',
+    cta: 'Request Incident Support',
+    intakeService: 'incident-review',
+    testid: 'svc-add-incident',
+  },
+  {
+    title: 'Document Development',
+    price: 'Quote after documentation review',
+    body: 'GigLine writes the programs you are missing. LOTO program and machine-specific procedures. HazCom program. PPE hazard assessment. Emergency Action Plan. Scoped and quoted after the OSHA Documentation Readiness Review identifies specific gaps.',
+    floorPricing: [
+      ['Single written program', 'From $350'],
+      ['LOTO program + up to 5 machine procedures', 'From $650'],
+      ['LOTO program + 6–15 machine procedures', 'From $950'],
+      ['Full written program suite (5+ programs)', 'From $1,500'],
+    ],
+    cta: 'Ask About Document Development',
+    intakeService: 'document-development',
+    testid: 'svc-add-doc-dev',
+  },
+  {
+    title: 'Documentation Readiness Review — Entry Level',
+    price: '$950 flat',
+    body: 'Not sure where to start? GigLine conducts a focused 60–90 minute review of your existing safety documentation and tells you specifically what is missing, what is outdated, and what to fix first. Written findings report included.',
+    best: 'Smaller operations that are not ready for a full engagement yet — or operations that want a professional assessment before committing to a larger service.',
+    cta: 'Schedule a Readiness Review',
+    intakeService: 'documentation-readiness-review-entry',
+    testid: 'svc-add-readiness-entry',
+  },
+];
+
+/* ── RECURRING (Section 3) ── */
+const RECURRING = [
+  {
+    title: 'Quarterly Compliance Maintenance',
+    price: '$750–$1,750 per quarter',
+    body: 'GigLine keeps the system current between annual walkthroughs. Documentation review, training record audit, SDS inventory check, corrective action tracker review, and a brief site visit if needed.',
+    best: 'Operations that want the system kept alive after it is built.',
+    cta: 'Ask About Quarterly Maintenance',
+    intakeService: 'quarterly-compliance-maintenance',
+    testid: 'svc-rec-quarterly',
+  },
+  {
+    title: 'Annual Compliance Control Partner',
+    price: '$9,000–$18,000 per year',
+    body: 'Two full walkthroughs per year. Quarterly documentation reviews. Training record maintenance. OSHA 300A posting reminders. Pre-inspection readiness review. Management safety review. GigLine becomes your ongoing compliance resource — available when something happens and proactive between visits.',
+    best: 'Operations that want a consultant they can call, not just a one-time report.',
+    cta: 'Ask About Annual Partnership',
+    intakeService: 'annual-compliance-partner',
+    testid: 'svc-rec-annual',
+  },
+];
+
+const intakeLink = (svc) => `/intake?service=${encodeURIComponent(svc)}`;
+
 const ServicesPage = () => {
   return (
-    <main data-testid="services-page" className="overflow-x-hidden">
+    <main className="overflow-x-hidden bg-white">
       <SEO
-        title="OSHA Walkthrough & Compliance Services — From $550 | GigLine"
-        description="On-site walkthroughs from $650. Documentation reviews from $550. Incident response from $900. Fixed quote before scheduling. No retainer."
+        title="GigLine Safety Services — Walkthroughs, Compliance Visits & OSHA-Ready Systems | From $850"
+        description="GigLine walks your floor, reviews your documentation, and builds inspection-ready systems for small manufacturers, warehouses, contractors, and fleet operations in the Piedmont Triad. Fixed pricing. No retainer."
         canonical="/services"
-        schema={[
-          {
-            '@context': 'https://schema.org',
-            '@type': 'ItemList',
-            name: 'GigLine Safety Consulting Services',
-            itemListElement: [
-              { '@type': 'ListItem', position: 1, item: { '@type': 'Service', name: 'Safety Walkthrough & Top 10 Fixes Report', provider: { '@type': 'LocalBusiness', name: 'GigLine Safety & Compliance' }, offers: { '@type': 'Offer', price: '650', priceCurrency: 'USD' } } },
-              { '@type': 'ListItem', position: 2, item: { '@type': 'Service', name: 'Documentation Review & Gap Check', provider: { '@type': 'LocalBusiness', name: 'GigLine Safety & Compliance' }, offers: { '@type': 'Offer', price: '550', priceCurrency: 'USD' } } },
-              { '@type': 'ListItem', position: 3, item: { '@type': 'Service', name: 'Incident Review & Corrective Action Support', provider: { '@type': 'LocalBusiness', name: 'GigLine Safety & Compliance' }, offers: { '@type': 'Offer', price: '900', priceCurrency: 'USD' } } },
-            ],
-          },
-          {
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.giglinecompliance.com/' },
-              { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://www.giglinecompliance.com/services' },
-            ],
-          },
-        ]}
       />
 
-      <style>{`
-        .reveal-fade{opacity:0;transform:translateY(20px);transition:opacity 500ms ease-out,transform 500ms ease-out}
-        .reveal-fade.revealed{opacity:1;transform:translateY(0)}
-      `}</style>
-
-      {/* ═══════════════════════════════════════════════
-          S1 — INTRO  (asymmetric 60/40, mirrors homepage hero)
-      ═══════════════════════════════════════════════ */}
-      <section
-        className="relative"
-        style={{ backgroundColor: '#0B1F33' }}
-        data-testid="services-intro"
-      >
-        <div className="flex flex-col md:flex-row min-h-[55vh] md:min-h-[68vh]">
-          {/* Left — Photo */}
-          <div className="relative w-full md:w-3/5 h-[40vh] md:h-auto overflow-hidden bg-[#0B1F33]">
-            <picture>
-              <source srcSet="/services-hero.webp" type="image/webp" />
-              <img
-                src="/services-hero.jpg"
-                alt="GigLine safety walkthrough — inspector in PPE documenting a blocked electrical panel violation"
-                className="absolute inset-0 w-full h-full object-cover object-[82%_center] scale-110"
-                style={{ filter: 'contrast(1.10) saturate(1.05) brightness(0.93)' }}
-                loading="eager"
-                fetchpriority="high"
-              />
-            </picture>
-
-            {/* Cinematic vignette — dark at top corners */}
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background:
-                  'radial-gradient(120% 80% at 50% 60%, transparent 50%, rgba(11,31,51,0.55) 100%)',
-              }}
-            />
-
-            {/* Top bar darken — adds drama, separates from nav */}
-            <div
-              aria-hidden="true"
-              className="absolute inset-x-0 top-0 h-32 pointer-events-none"
-              style={{ background: 'linear-gradient(to bottom, rgba(11,31,51,0.5), transparent)' }}
-            />
-
-            {/* Right-edge fade into navy panel */}
-            <div className="hidden md:block absolute inset-y-0 right-0 w-2/5 bg-gradient-to-r from-transparent via-[#0B1F33]/55 to-[#0B1F33] pointer-events-none" />
-
-            {/* Bottom fade for mobile */}
-            <div className="md:hidden absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#0B1F33] to-transparent pointer-events-none" />
-
-            {/* Sharp blue accent rule — drama */}
-            <div
-              aria-hidden="true"
-              className="hidden md:block absolute left-0 bottom-12 w-20 h-[3px] bg-[#1F6FEB]"
-            />
-          </div>
-
-          {/* Right — Copy */}
-          <div className="w-full md:w-2/5 flex items-center px-6 md:px-14 lg:px-20 py-16 md:py-0 relative z-10">
-            <Reveal>
-              <p
-                className="uppercase tracking-[3px] text-[#1F6FEB] mb-5 font-bold"
-                style={{ ...mono, fontSize: '12px' }}
-                data-testid="services-kicker"
-              >
-                The Services
-              </p>
-              <h1
-                className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.15] mb-6"
-                data-testid="services-intro-1"
-              >
-                Three engagements.{' '}
-                <span className="block mt-3">
-                  <span style={{ borderBottom: '2px solid #1F6FEB', paddingBottom: '2px' }}>
-                    One standard.
-                  </span>
-                </span>
-              </h1>
-              <p className="text-base md:text-lg text-[#CBD5E1] leading-relaxed mb-6 max-w-md">
-                GigLine serves small manufacturers, warehouses, contractors, and fleet operations in the Piedmont Triad that don&rsquo;t have a full-time safety manager on staff.
-              </p>
-              <p
-                className="text-sm md:text-base text-white leading-relaxed max-w-md font-semibold"
-                data-testid="services-intro-2"
-              >
-                Every engagement is a <span className="text-[#1F6FEB]">fixed quote</span> before scheduling. No retainer. No hourly billing.
-              </p>
-            </Reveal>
-          </div>
+      {/* ═══ HERO ═══ */}
+      <section className="relative py-20 md:py-28" style={{ backgroundColor: '#0B1F33' }} data-testid="services-hero">
+        <div className="container max-w-5xl">
+          <Reveal>
+            <p className="uppercase tracking-[3px] text-[#1F6FEB] mb-5 font-bold" style={{ ...mono, fontSize: '11px' }}>
+              Services · GigLine Safety & Compliance
+            </p>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.15] mb-6 max-w-4xl" data-testid="services-headline">
+              Three ways GigLine can help — before OSHA asks.
+            </h1>
+            <p className="text-base md:text-lg text-[#CBD5E1] leading-relaxed max-w-3xl" data-testid="services-sub">
+              Every engagement ends with a written report, clear action items, and a defined next step. Fixed pricing. No retainer. No long contracts.
+            </p>
+          </Reveal>
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════
-          S2 — THREE SERVICE CARDS
-          Light blue-grey bg matches Testimonials section on homepage.
-          Cards use rounded-xl + soft blue-tinted border + soft shadow.
-      ═══════════════════════════════════════════════ */}
-      <section
-        className="relative py-24 md:py-32 bg-white"
-        data-testid="services-cards-section"
-      >
-        <div className="container max-w-6xl">
-          <Reveal>
-            <div className="mb-14 md:mb-16 max-w-3xl">
-              <p
-                className="uppercase tracking-[3px] text-[#1F6FEB] mb-4 font-bold"
-                style={{ ...mono, fontSize: '12px' }}
-              >
-                Choose Your Engagement
-              </p>
-              <h2 className="text-2xl md:text-3xl font-bold text-[#102133] leading-tight" data-testid="services-cards-heading">
-                Each service starts with a fixed price, ends with a written deliverable.
-              </h2>
-            </div>
-          </Reveal>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-7">
-            {SERVICES.map((svc, idx) => (
-              <Reveal key={svc.num} delay={idx * 120}>
-                <article
-                  className="relative h-full rounded-xl flex flex-col bg-[#F7F9FC] overflow-hidden"
+      {/* ═══ S1 — PRIMARY CARDS ═══ */}
+      <section className="py-20 md:py-28 bg-white" data-testid="services-primary">
+        <div className="container max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-7 items-stretch">
+            {PRIMARY.map((s) => (
+              <Reveal key={s.testid} delay={s.featured ? 0 : 80}>
+                <div
+                  className={`relative h-full flex flex-col rounded-xl bg-white transition-all duration-300 ${
+                    s.featured ? 'lg:-mt-3 lg:mb-3 lg:scale-[1.02]' : ''
+                  }`}
                   style={{
-                    border: svc.featured
-                      ? '1px solid rgba(31,111,235,0.35)'
-                      : '1px solid rgba(31,111,235,0.15)',
-                    boxShadow: svc.featured
-                      ? '0 4px 24px rgba(31,111,235,0.10)'
-                      : '0 2px 12px rgba(11,31,51,0.04)',
+                    border: s.featured ? '2px solid #1F6FEB' : '1px solid rgba(16,33,51,0.12)',
+                    boxShadow: s.featured
+                      ? '0 24px 48px -16px rgba(31,111,235,0.30), 0 0 0 1px rgba(31,111,235,0.10) inset'
+                      : '0 6px 14px rgba(16,33,51,0.05)',
                   }}
-                  data-testid={`service-card-${svc.num}`}
+                  data-testid={s.testid}
+                  data-featured={s.featured ? 'true' : 'false'}
                 >
-                  {/* Featured ribbon */}
-                  {svc.featured && (
-                    <div
-                      className="absolute top-5 right-5 bg-[#1F6FEB] text-white px-3 py-1 rounded-full"
-                      style={{ ...mono, fontSize: '9px', letterSpacing: '0.18em' }}
-                      data-testid={`featured-badge-${svc.num}`}
+                  {/* Badge */}
+                  <div className="px-7 pt-7 pb-2 flex items-center gap-2">
+                    {s.featured && <Star size={14} className="text-[#F2D072]" fill="#F2D072" />}
+                    <span
+                      className="uppercase tracking-[2.5px] font-bold"
+                      style={{
+                        ...mono,
+                        fontSize: '10.5px',
+                        color: s.featured ? '#1F6FEB' : '#102133',
+                        opacity: s.featured ? 1 : 0.55,
+                      }}
                     >
-                      MOST BOOKED
-                    </div>
-                  )}
+                      {s.badge}
+                    </span>
+                  </div>
 
-                  {/* HEAD — numeral + title */}
-                  <div className="px-7 md:px-8 pt-9 pb-7">
-                    <p
-                      className="uppercase tracking-[3px] text-[#1F6FEB] mb-3 font-bold"
-                      style={{ ...mono, fontSize: '12px' }}
-                    >
-                      Service {svc.num}
+                  {/* Title + Price */}
+                  <div className="px-7 pb-5">
+                    <h2 className="text-xl md:text-2xl font-bold text-[#102133] leading-tight mb-3">
+                      {s.title}
+                    </h2>
+                    <p className="text-2xl md:text-3xl font-bold text-[#1F6FEB]" style={mono}>
+                      {s.price}
                     </p>
-                    <h3 className="text-xl md:text-[22px] font-bold text-[#102133] leading-[1.25]">
-                      {svc.title}
-                    </h3>
                   </div>
 
-                  {/* BODY */}
-                  <div className="px-7 md:px-8 flex-grow flex flex-col gap-7 pb-8">
-                    <div>
-                      <p
-                        className="uppercase tracking-[2.5px] text-[#0B1F33] mb-3 font-bold"
-                        style={{ ...mono, fontSize: '11px' }}
-                      >
-                        Best When
-                      </p>
-                      <ul className="space-y-2.5" data-testid={`service-bestwhen-${svc.num}`}>
-                        {svc.bestWhen.map((line, i) => (
-                          <li key={i} className="flex gap-3 text-[#102133]/85 text-[14.5px] leading-[1.55]">
-                            <span
-                              className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#1F6FEB] mt-[8px]"
-                              aria-hidden="true"
-                            />
-                            <span>{line}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                  {/* Divider */}
+                  <div className="mx-7 h-px" style={{ backgroundColor: s.featured ? 'rgba(31,111,235,0.25)' : 'rgba(16,33,51,0.10)' }} />
 
-                    <div className="flex-grow">
-                      <p
-                        className="uppercase tracking-[2.5px] text-[#0B1F33] mb-3 font-bold"
-                        style={{ ...mono, fontSize: '11px' }}
-                      >
-                        What You Get
-                      </p>
-                      <ul className="space-y-2.5" data-testid={`service-whatyouget-${svc.num}`}>
-                        {svc.whatYouGet.map((line, i) => (
-                          <li key={i} className="flex gap-3 text-[#102133]/85 text-[14.5px] leading-[1.55]">
-                            <span
-                              className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#102133]/30 mt-[8px]"
-                              aria-hidden="true"
-                            />
-                            <span>{line}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-
-                  {/* PRICE — soft-edged module */}
-                  <div className="mx-7 md:mx-8 mb-5 rounded-lg bg-white border border-[#1F6FEB]/15 px-5 py-4 flex items-baseline justify-between" data-testid={`price-${svc.num}`}>
-                    <div className="flex items-baseline gap-2">
-                      <span
-                        className="uppercase tracking-[2px] text-[#0B1F33] font-bold"
-                        style={{ ...mono, fontSize: '11px' }}
-                      >
-                        Starting at
-                      </span>
-                      <span className="text-[#1F6FEB] font-bold text-[28px] leading-none">
-                        {svc.price}
-                      </span>
-                    </div>
-                    <span className="text-[11px] text-[#102133]/45 italic">fixed quote</span>
+                  {/* Body */}
+                  <div className="px-7 py-6 flex-grow flex flex-col">
+                    <p className="text-base text-[#102133]/85 leading-relaxed mb-4">{s.body}</p>
+                    <p className="text-base text-[#102133]/85 leading-relaxed mb-6">{s.bodyExtra}</p>
+                    <p className="text-sm text-[#102133]/55 leading-relaxed mt-auto italic" style={mono}>
+                      {s.fine}
+                    </p>
                   </div>
 
                   {/* CTA */}
-                  <div className="px-7 md:px-8 pb-8">
+                  <div className="px-7 pb-7">
                     <Link
-                      to={`/request-walkthrough?service=${svc.key}`}
-                      onClick={() => trackServiceBooking(svc.key)}
-                      className="inline-flex items-center justify-center gap-2 w-full bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold py-4 rounded-lg transition-colors text-[15px] shadow-lg shadow-[#1F6FEB]/20 group/cta"
-                      data-testid={svc.testId}
+                      to={intakeLink(s.intakeService)}
+                      onClick={() => trackServiceBooking && trackServiceBooking(s.title)}
+                      className={`w-full inline-flex items-center justify-center gap-2 font-bold px-6 py-3.5 rounded-lg text-base transition-colors ${
+                        s.featured
+                          ? 'bg-[#1F6FEB] hover:bg-[#1558C0] text-white shadow-lg shadow-[#1F6FEB]/25'
+                          : 'border-2 border-[#102133]/15 hover:border-[#1F6FEB] text-[#102133] hover:text-[#1F6FEB]'
+                      }`}
+                      data-testid={`${s.testid}-cta`}
                     >
-                      <span>{svc.cta.label}</span>
-                      <ArrowRight size={17} className="transition-transform group-hover/cta:translate-x-1" />
+                      {s.cta}
+                      <ArrowRight size={18} />
                     </Link>
-                    <p
-                      className="mt-3 text-[#102133]/60 text-[13px] flex items-center justify-center gap-2"
-                      data-testid={`cta-subline-${svc.num}`}
-                    >
-                      <Phone size={11} className="flex-shrink-0 text-[#1F6FEB]" />
-                      {svc.cta.subline}
-                    </p>
                   </div>
-                </article>
+                </div>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════
-          CASE STUDY TEASER  (real outcome before sample report)
-      ═══════════════════════════════════════════════ */}
-      <CaseStudyTeaser source="services" />
-
-      {/* ═══════════════════════════════════════════════
-          GL-WEB-012 — SAMPLE REPORT SECTION
-          Static, document-style example of the actual deliverable.
-      ═══════════════════════════════════════════════ */}
-      <SampleReportSection />
-
-      {/* ═══════════════════════════════════════════════
-          S3 — COVERAGE AND LOGISTICS  (light blue-grey, on-brand)
-      ═══════════════════════════════════════════════ */}
-      <section
-        className="py-24 md:py-32"
-        style={{ backgroundColor: '#F7F9FC' }}
-        data-testid="services-coverage"
-      >
+      {/* ═══ S2 — ADDITIONAL SERVICES ═══ */}
+      <section className="py-20 md:py-24" style={{ backgroundColor: '#F7F9FC' }} data-testid="services-additional">
         <div className="container max-w-6xl">
           <Reveal>
-            <p
-              className="uppercase tracking-[3px] text-[#1F6FEB] mb-4 font-bold"
-              style={{ ...mono, fontSize: '12px' }}
-            >
-              Logistics
+            <p className="uppercase tracking-[3px] text-[#1F6FEB] mb-3 font-bold" style={{ ...mono, fontSize: '11px' }}>
+              Additional Services
             </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#102133] mb-12 md:mb-16 max-w-3xl leading-tight">
-              Where GigLine works &mdash; and how booking flows from request to scheduled date.
+            <h2 className="text-2xl md:text-3xl font-bold text-[#102133] mb-12 max-w-3xl">
+              Targeted engagements when you need a specific outcome.
             </h2>
           </Reveal>
 
-          <div className="grid md:grid-cols-2 gap-6 md:gap-7">
-            <Reveal>
-              <div
-                className="h-full rounded-xl p-8 md:p-10 bg-white"
-                style={{
-                  border: '1px solid rgba(31,111,235,0.15)',
-                  boxShadow: '0 2px 12px rgba(11,31,51,0.04)',
-                }}
-              >
-                <div className="flex items-center gap-3 mb-5">
-                  <span className="w-9 h-9 rounded-lg bg-[#1F6FEB]/10 flex items-center justify-center flex-shrink-0">
-                    <MapPin size={18} className="text-[#1F6FEB]" />
-                  </span>
-                  <p
-                    className="uppercase tracking-[3px] text-[#1F6FEB] font-bold"
-                    style={{ ...mono, fontSize: '12px' }}
-                  >
-                    Service Area
-                  </p>
-                </div>
-                <h3 className="text-xl md:text-2xl font-bold text-[#102133] mb-4 leading-snug">
-                  Within 60 miles of Winston-Salem.
-                </h3>
-                <p
-                  className="text-[#102133]/75 leading-relaxed text-base"
-                  data-testid="services-coverage-area"
+          <div className="space-y-6">
+            {ADDITIONAL.map((s) => (
+              <Reveal key={s.testid}>
+                <div
+                  className="bg-white rounded-lg p-6 md:p-7 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-start"
+                  style={{
+                    border: '1px solid rgba(16,33,51,0.10)',
+                    boxShadow: '0 2px 6px rgba(16,33,51,0.03)',
+                  }}
+                  data-testid={s.testid}
                 >
-                  Including Greensboro, High Point, Kernersville, Lexington, Thomasville, Salisbury, Burlington, and surrounding communities. Documentation Review is available remotely for operations outside the Triad.
-                </p>
-              </div>
-            </Reveal>
+                  <div>
+                    <div className="flex items-baseline gap-4 flex-wrap mb-3">
+                      <h3 className="text-lg md:text-xl font-bold text-[#102133]">{s.title}</h3>
+                      <span className="text-base font-bold text-[#1F6FEB]" style={mono}>{s.price}</span>
+                    </div>
+                    <p className="text-base text-[#102133]/80 leading-relaxed mb-3">{s.body}</p>
+                    {s.body2 && (
+                      <p className="text-base text-[#102133]/80 leading-relaxed mb-3 font-semibold">{s.body2}</p>
+                    )}
 
-            <Reveal delay={120}>
-              <div
-                className="h-full rounded-xl p-8 md:p-10 bg-white"
-                style={{
-                  border: '1px solid rgba(31,111,235,0.15)',
-                  boxShadow: '0 2px 12px rgba(11,31,51,0.04)',
-                }}
-              >
-                <div className="flex items-center gap-3 mb-5">
-                  <span className="w-9 h-9 rounded-lg bg-[#1F6FEB]/10 flex items-center justify-center flex-shrink-0">
-                    <RefreshCw size={18} className="text-[#1F6FEB]" />
-                  </span>
-                  <p
-                    className="uppercase tracking-[3px] text-[#1F6FEB] font-bold"
-                    style={{ ...mono, fontSize: '12px' }}
-                  >
-                    How Booking Works
-                  </p>
-                </div>
-                <h3 className="text-xl md:text-2xl font-bold text-[#102133] mb-4 leading-snug">
-                  Nothing is scheduled until the price is agreed.
-                </h3>
-                <p
-                  className="text-[#102133]/75 leading-relaxed text-base"
-                  data-testid="services-coverage-booking"
-                >
-                  Submit the short request form. Vince calls back within one business day with scheduling options and a confirmed fixed price.
-                </p>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
+                    {s.floorPricing && (
+                      <div className="mt-4 mb-3 p-4 rounded bg-[#F7F1E0]" style={{ border: '1px solid rgba(212,169,62,0.35)' }}>
+                        <p className="text-xs uppercase tracking-wider text-[#102133]/65 mb-2 font-bold" style={mono}>
+                          Floor Pricing Reference
+                        </p>
+                        <ul className="space-y-1.5">
+                          {s.floorPricing.map(([item, price], i) => (
+                            <li key={i} className="flex justify-between gap-4 text-sm text-[#102133]/85">
+                              <span>{item}</span>
+                              <span className="font-bold text-[#102133] whitespace-nowrap" style={mono}>{price}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
 
-      {/* ═══════════════════════════════════════════════
-          S4 — SAFETY CHECK BAND  (deliberately quieter)
-      ═══════════════════════════════════════════════ */}
-      <section
-        className="py-16 md:py-20 bg-white border-y border-[#1F6FEB]/12"
-        data-testid="services-safety-check-band"
-      >
-        <div className="container max-w-5xl">
-          <Reveal>
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-              <div className="md:max-w-2xl">
-                <p
-                  className="uppercase tracking-[3px] text-[#1F6FEB] mb-3 font-bold"
-                  style={{ ...mono, fontSize: '12px' }}
-                >
-                  Not sure where to start?
-                </p>
-                <h2 className="text-xl md:text-2xl font-bold text-[#102133] leading-snug">
-                  Take the free 90-Second Safety Check.
-                </h2>
-                <p className="text-base text-[#102133]/70 mt-2">
-                  Six yes-or-no questions. Instant risk score. No email required.
-                </p>
-              </div>
-              <Link
-                to="/safety-check"
-                className="inline-flex items-center justify-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-7 py-4 rounded-lg whitespace-nowrap transition-colors text-[15px] shadow-lg shadow-[#1F6FEB]/20"
-                data-testid="services-safety-check-link"
-              >
-                Take the Safety Check
-                <ArrowUpRight size={17} />
-              </Link>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════
-          S4b — HAZCOM STARTER PACK (standalone $29 resource)
-      ═══════════════════════════════════════════════ */}
-      <section
-        className="py-20 md:py-24"
-        style={{ backgroundColor: '#F7F9FC' }}
-        data-testid="services-hazcom-pack"
-      >
-        <div className="container max-w-5xl">
-          <Reveal>
-            <article
-              className="bg-white rounded-xl overflow-hidden"
-              style={{
-                border: '1px solid rgba(31,111,235,0.15)',
-                boxShadow: '0 4px 24px rgba(11,31,51,0.06)',
-              }}
-            >
-              <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 md:gap-10 p-8 md:p-10 items-center">
-                {/* LEFT — copy */}
-                <div>
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="w-9 h-9 rounded-lg bg-[#1F6FEB]/10 flex items-center justify-center flex-shrink-0">
-                      <FileText size={17} className="text-[#1F6FEB]" />
-                    </span>
-                    <p
-                      className="uppercase tracking-[3px] text-[#1F6FEB] font-bold"
-                      style={{ ...mono, fontSize: '12px' }}
-                      data-testid="hazcom-kicker"
-                    >
-                      Standalone Resource
-                    </p>
+                    {s.best && (
+                      <p className="text-sm text-[#102133]/60 leading-relaxed mt-3 italic" style={mono}>
+                        Best for: {s.best}
+                      </p>
+                    )}
                   </div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-[#102133] leading-tight mb-4">
-                    HazCom Starter Pack
-                  </h2>
-                  <p className="text-base md:text-lg text-[#102133]/75 leading-relaxed max-w-xl">
-                    A ready-made written Hazard Communication program. Download immediately &mdash; no walkthrough required.
-                  </p>
-                </div>
 
-                {/* RIGHT — price + CTA */}
-                <div className="flex flex-col items-start md:items-end gap-4 md:min-w-[200px]">
-                  <div className="flex items-baseline gap-2">
-                    <span
-                      className="uppercase tracking-[2px] text-[#0B1F33] font-bold"
-                      style={{ ...mono, fontSize: '11px' }}
-                    >
-                      One-time
-                    </span>
-                    <span className="text-[#1F6FEB] font-bold text-[40px] leading-none">$29</span>
-                  </div>
                   <Link
-                    to="/hazcom"
-                    className="inline-flex items-center justify-center gap-2 bg-[#0B1F33] hover:bg-[#1F6FEB] text-white font-bold py-3.5 px-6 rounded-lg transition-colors text-[15px] shadow-lg shadow-[#0B1F33]/15 group/cta whitespace-nowrap"
-                    data-testid="hazcom-cta"
+                    to={intakeLink(s.intakeService)}
+                    className="inline-flex items-center justify-center gap-2 border-2 border-[#1F6FEB] hover:bg-[#1F6FEB] hover:text-white text-[#1F6FEB] font-bold px-5 py-3 rounded-lg text-sm transition-colors whitespace-nowrap self-start md:self-center"
+                    data-testid={`${s.testid}-cta`}
                   >
-                    <Download size={16} />
-                    <span>Get It Now</span>
-                    <ArrowRight size={16} className="transition-transform group-hover/cta:translate-x-1" />
+                    {s.cta}
+                    <ArrowRight size={16} />
                   </Link>
                 </div>
-              </div>
-            </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ S3 — RECURRING SERVICES ═══ */}
+      <section className="py-20 md:py-24 bg-white" data-testid="services-recurring">
+        <div className="container max-w-6xl">
+          <Reveal>
+            <p className="uppercase tracking-[3px] text-[#1F6FEB] mb-3 font-bold" style={{ ...mono, fontSize: '11px' }}>
+              Ongoing Compliance Support
+            </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#102133] mb-3 max-w-3xl">
+              Keep the system current.
+            </h2>
+            <p className="text-base md:text-lg text-[#102133]/70 leading-relaxed mb-12 max-w-3xl">
+              Every GigLine engagement includes a compliance calendar. These services keep it current.
+            </p>
+          </Reveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {RECURRING.map((s) => (
+              <Reveal key={s.testid}>
+                <div
+                  className="bg-white h-full rounded-xl p-7 md:p-8 flex flex-col"
+                  style={{
+                    border: '1px solid rgba(16,33,51,0.10)',
+                    boxShadow: '0 6px 14px rgba(16,33,51,0.04)',
+                  }}
+                  data-testid={s.testid}
+                >
+                  <h3 className="text-xl md:text-2xl font-bold text-[#102133] mb-3">{s.title}</h3>
+                  <p className="text-xl font-bold text-[#1F6FEB] mb-5" style={mono}>{s.price}</p>
+                  <p className="text-base text-[#102133]/85 leading-relaxed mb-4">{s.body}</p>
+                  <p className="text-sm text-[#102133]/60 leading-relaxed mb-6 italic flex-grow" style={mono}>
+                    Best for: {s.best}
+                  </p>
+                  <Link
+                    to={intakeLink(s.intakeService)}
+                    className="inline-flex items-center justify-center gap-2 border-2 border-[#1F6FEB] hover:bg-[#1F6FEB] hover:text-white text-[#1F6FEB] font-bold px-6 py-3 rounded-lg text-base transition-colors self-start"
+                    data-testid={`${s.testid}-cta`}
+                  >
+                    {s.cta}
+                    <ArrowRight size={18} />
+                  </Link>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ S4 — Case Study Teaser ═══ */}
+      <CaseStudyTeaser source="services" />
+
+      {/* ═══ 90-SECOND SAFETY CHECK BAND ═══ */}
+      <section className="py-20 md:py-24" style={{ backgroundColor: '#F7F1E0' }} data-testid="services-safety-check-band">
+        <div className="container max-w-3xl text-center">
+          <Reveal>
+            <p className="uppercase tracking-[3px] text-[#1F6FEB] mb-4 font-bold" style={{ ...mono, fontSize: '11px' }}>
+              Free Tool
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#102133] mb-5 leading-tight">
+              Not sure where you stand?
+            </h2>
+            <p className="text-base md:text-lg text-[#102133]/80 leading-relaxed mb-8 max-w-2xl mx-auto">
+              Answer 6 yes-or-no questions about your operation. Get an immediate risk score and a clear next step — no email required to start.
+            </p>
+            <Link
+              to="/safety-check"
+              className="inline-flex items-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#1F6FEB]/25"
+              data-testid="services-safety-check-link"
+            >
+              Take the Safety Check
+              <ArrowRight size={18} />
+            </Link>
           </Reveal>
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════
-          S5 — PROOF & REASSURANCE  (atmospheric navy, layered)
-      ═══════════════════════════════════════════════ */}
-      <section
-        className="relative py-24 md:py-32 overflow-hidden"
-        style={{ backgroundColor: '#0B1F33' }}
-        data-testid="services-proof"
-      >
-        {/* Subtle radial accent */}
-        <div
-          aria-hidden="true"
-          className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full pointer-events-none opacity-30"
-          style={{ background: 'radial-gradient(circle, rgba(31,111,235,0.25) 0%, transparent 60%)' }}
-        />
-        <div className="container max-w-6xl relative z-10">
-          <Reveal>
-            <div className="mb-12 md:mb-16 max-w-3xl">
-              <p
-                className="uppercase tracking-[3px] text-[#1F6FEB] mb-4 font-bold"
-                style={{ ...mono, fontSize: '12px' }}
-              >
-                How GigLine Works
-              </p>
-              <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight">
-                Private engagement. Returning-client rate. No surprises.
-              </h2>
-            </div>
-          </Reveal>
-
-          <div className="grid md:grid-cols-2 gap-6 md:gap-7">
-            <Reveal>
-              <div
-                className="h-full rounded-xl p-8 md:p-10 relative"
-                style={{
-                  backgroundColor: 'rgba(255,255,255,0.04)',
-                  border: '1px solid rgba(31,111,235,0.25)',
-                  backdropFilter: 'blur(8px)',
-                }}
-                data-testid="proof-private"
-              >
-                <span className="inline-flex items-center justify-center w-11 h-11 rounded-lg bg-[#1F6FEB]/15 mb-5">
-                  <Shield size={20} className="text-[#1F6FEB]" />
-                </span>
-                <h3 className="text-xl md:text-2xl font-bold text-white mb-4 leading-snug">
-                  This is not an OSHA inspection.
-                </h3>
-                <p className="text-white/70 leading-[1.7] text-base">
-                  A GigLine walkthrough is a private engagement. Findings are delivered only to you. GigLine does not contact OSHA, your insurance carrier, or any regulatory agency. <span className="text-white">What you do with the report is your decision.</span>
-                </p>
-              </div>
-            </Reveal>
-
-            <Reveal delay={120}>
-              <div
-                className="h-full rounded-xl p-8 md:p-10 relative"
-                style={{
-                  backgroundColor: 'rgba(255,255,255,0.04)',
-                  border: '1px solid rgba(31,111,235,0.25)',
-                  backdropFilter: 'blur(8px)',
-                }}
-                data-testid="proof-followup"
-              >
-                <span className="inline-flex items-center justify-center w-11 h-11 rounded-lg bg-[#1F6FEB]/15 mb-5">
-                  <RefreshCw size={20} className="text-[#1F6FEB]" />
-                </span>
-                <h3 className="text-xl md:text-2xl font-bold text-white mb-4 leading-snug">
-                  Follow-up walkthroughs available.
-                </h3>
-                <p className="text-white/70 leading-[1.7] text-base">
-                  Returning clients receive follow-up walkthroughs at <span className="text-[#1F6FEB] font-bold">$550</span> &mdash; reduced from the standard $650. Most operations benefit from a semi-annual or annual review.
-                </p>
-              </div>
-            </Reveal>
-          </div>
+      {/* ═══ S5 — BOTTOM CTA ═══ */}
+      <section className="py-20 md:py-28" style={{ backgroundColor: '#000000' }} data-testid="services-bottom-cta">
+        <div className="container max-w-3xl text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
+            Not sure which service fits your operation?
+          </h2>
+          <p className="text-base md:text-lg text-[#CBD5E1] leading-relaxed mb-10 max-w-2xl mx-auto">
+            Call or text (336) 329-8899. GigLine will tell you exactly what makes sense before you schedule anything. No pressure. No sales pitch. Just a straight answer.
+          </p>
+          <a
+            href="tel:+13363298899"
+            className="inline-flex items-center gap-3 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#1F6FEB]/25"
+            data-testid="services-bottom-cta-call"
+          >
+            <Phone size={20} />
+            Call or Text Now
+          </a>
+          <p className="text-sm text-[#CBD5E1] mt-6" style={mono}>
+            (336) 329-8899 · vince@giglinecompliance.com
+          </p>
         </div>
       </section>
     </main>

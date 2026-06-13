@@ -421,7 +421,7 @@ const ClientIntakePage = () => {
             <span {...wrap('serviceSelected')}>
               <RadioList value={f.serviceSelected} onChange={(v) => set('serviceSelected', v)} options={[
                 { value: 'walkthrough', label: 'Safety Walkthrough & Top 10 Fixes Report — On-site visit + written report' },
-                { value: 'doc_review', label: 'Documentation & Gap Check — Review of written programs, training records, logs' },
+                { value: 'doc_review', label: 'OSHA Documentation Readiness Review — Review of written programs, training records, logs' },
                 { value: 'incident_review', label: 'Incident Review & Corrective Action Support — Post-injury / near-miss response' },
                 { value: 'doc_creation', label: 'Safety Documents / Program Creation — New programs, manuals, training packs' },
                 { value: 'not_sure', label: "I need guidance — let Vince recommend" },

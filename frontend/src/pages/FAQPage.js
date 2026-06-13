@@ -10,7 +10,7 @@ const mono = { fontFamily: "'JetBrains Mono', monospace" };
 export const FAQS = [
   {
     q: 'How much does an OSHA safety walkthrough cost in North Carolina?',
-    a: "GigLine safety walkthroughs start at $650 for operations within 30 miles of Kernersville (Winston-Salem, Greensboro, High Point, and the Triad core). Locations 30–60 miles out start at $750 to account for travel — this is all-in, no separate travel fee. Most small-operation walkthroughs fall between $650 and $1,200 depending on square footage and scope. You'll receive a fixed price before scheduling — no hourly billing, no retainer.",
+    a: "GigLine safety walkthroughs start at $850. Larger or more complex operations may scope higher. Most small-operation walkthroughs fall between $850 and $1,500 depending on square footage and scope. You'll receive a fixed price before scheduling — no hourly billing, no retainer.",
   },
   {
     q: "What's included in a GigLine safety walkthrough?",
@@ -70,7 +70,7 @@ export const FAQS = [
   },
   {
     q: 'Do you offer follow-up walkthroughs for past clients?',
-    a: "Yes. Follow-up walkthroughs for past clients are offered at a reduced rate of $550 (versus $650 for a first-time visit). Most operations benefit from a semi-annual or annual follow-up to catch the drift that happens when safety isn't the primary focus.",
+    a: "Yes. Follow-up walkthroughs for past clients are offered at a reduced rate. Ongoing support is also available through Quarterly Compliance Maintenance ($750–$1,750 per quarter) and the Annual Compliance Control Partner program ($9,000–$18,000 per year).",
   },
   {
     q: 'How should I prepare for a safety walkthrough?',
@@ -191,7 +191,7 @@ const FAQPage = () => {
             Ready to schedule a walkthrough?
           </h2>
           <p className="text-white/55 mb-8 text-base md:text-lg">
-            One on-site visit. A written report within 48 hours. Starting at $650.
+            One on-site visit. A written report within 48 hours. Starting at $850.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

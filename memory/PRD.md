@@ -150,6 +150,14 @@ Goal: get GigLine cited in answers from ChatGPT, Perplexity, Claude, Google AI O
 - **Contact page email overflow fixed** — `vince@giglinecompliance.com` was breaking out of its column after the typography bump. Added `text-sm sm:text-base break-all` + `min-w-0` parent.
 - Removed dead `CarolinaBuiltBadge.js` + `NCStateMark.js` SVG experiments (replaced by user's PNG badge).
 
+## GL-WEB-014 — Services Page Rebuild + Global Rename (Jun 13, 2026)
+- **Services page complete rebuild** at `/services` per GL-WEB-014 spec: hero, 3 primary cards (Walkthrough $850 / Compliance Readiness Visit $1,500 / OSHA-Ready Control System $4,500), Card 2 visually elevated with blue border + Star icon + MOST POPULAR badge. 4 additional services (OSHA Documentation Readiness Review, Incident Review, Document Development with floor-pricing block, Readiness Review Entry $950). 2 recurring services (Quarterly Maintenance, Annual Compliance Partner). Preserved CaseStudyTeaser + 90-Second Safety Check band. Bottom CTA tap-to-call.
+- **Global rename "Gap Check" → "Documentation Readiness Review"** applied across React frontend, FastAPI backend, public assets, SEO generator, llms.txt, OG image SVG, index.html schema, build scripts. URLs `/documentation-gap-check` and `/osha-compliance-gap-check` **preserved** per Option A (SEO continuity). H1/meta/body all renamed.
+- **Sitewide pricing update**: walkthrough $650→$850, doc review $550→$750, compliance visit $1,200→$1,500. All 13 city pages, FAQ, HazCom/OSHA blog CTAs, SafetyCheck, ServiceAreas, HeatGuide, llms.txt, Stripe product names, intake form, schemas. Amero Steel pre-existing $675 quote grandfathered.
+- Compliance Readiness Visit page (formerly OSHA Compliance Gap Check) repositioned with $1,500 entry, Supervisor Safety Starter System ($199) included.
+- Full file-by-file deliverable written to `/app/memory/GL-WEB-014_Deliverable.md` per Part A acceptance criteria.
+- Manual tasks delegated to Vince: MailerLite sequence labels, GBP services section, RingCentral Knowledge Hub, field-app PDF templates (separate codebase).
+
 ## Deployment
 - Frontend: Vercel (manual redeploy after GitHub push)
 - Backend: Railway (auto-deploys on GitHub push)

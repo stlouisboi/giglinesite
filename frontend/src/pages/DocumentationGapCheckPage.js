@@ -3,13 +3,13 @@ import ServiceLandingTemplate from '../components/ServiceLandingTemplate';
 
 const DocumentationGapCheckPage = () => (
   <ServiceLandingTemplate
-    seoTitle="Documentation Gap Check — OSHA Written Programs, SDS & Training Records Review"
-    seoDescription="Independent review of your written safety programs, SDS binder, training records, and required OSHA documentation. Written gap report in 48 hours. Starting at $550. Serving NC manufacturers, warehouses, contractors, and fleets."
+    seoTitle="OSHA Documentation Readiness Review — Written Programs, SDS & Training Records"
+    seoDescription="Independent OSHA Documentation Readiness Review of your written safety programs, SDS binder, training records, and required OSHA documentation. Written findings report in 48 hours. Starting at $750. Serving NC manufacturers, warehouses, contractors, and fleets."
     canonical="/documentation-gap-check"
-    eyebrow="Service · Documentation Gap Check"
+    eyebrow="Service · OSHA Documentation Readiness Review"
     headline="Independent Review of Your Safety Documentation — Programs, SDS & Training Records."
-    subheadline="If OSHA opened your binder tomorrow, what would they find? A documentation gap check walks every written program, training record, and SDS file against the actual standards — and tells you exactly what is missing, expired, or out of date."
-    priceLine="Starting at $550 · Fixed quote before scheduling · Remote-friendly or on-site."
+    subheadline="If OSHA opened your binder tomorrow, what would they find? An OSHA Documentation Readiness Review walks every written program, training record, and SDS file against the actual standards — and tells you exactly what is missing, expired, or out of date."
+    priceLine="Starting at $750 · Fixed quote before scheduling · Remote-friendly or on-site."
     whoItsFor={{
       intro: 'This engagement is built for operations that have safety paperwork — but aren\'t sure it would hold up under an inspector\'s review.',
       bullets: [
@@ -34,7 +34,7 @@ const DocumentationGapCheckPage = () => (
     }}
     whatIsReviewed={{
       intro:
-        'A documentation gap check covers every written safety program, training record, and required document that an OSHA Compliance Officer would request during an inspection — typically delivered as a remote review with a follow-up call.',
+        'An OSHA Documentation Readiness Review covers every written safety program, training record, and required document that an OSHA Compliance Officer would request during an inspection — typically delivered as a remote review with a follow-up call.',
       bullets: [
         'Written Hazard Communication program and SDS binder index against your actual chemical inventory.',
         'Lockout/Tagout written program, machine-specific procedures, and annual audit records.',
@@ -48,7 +48,7 @@ const DocumentationGapCheckPage = () => (
     }}
     whatYouReceive={{
       intro:
-        'A written gap report listing every document reviewed, what is in place, what is missing, what needs updating — and what to do about each one.',
+        'A written findings report listing every document reviewed, what is in place, what is missing, what needs updating — and what to do about each one.',
       bullets: [
         'Document-by-document inventory — what was reviewed and what was found.',
         'Gap analysis — missing programs, missing records, expired certifications.',
@@ -60,16 +60,16 @@ const DocumentationGapCheckPage = () => (
     }}
     nextSteps={{
       intro:
-        'Documentation gap checks are usually remote-friendly. We ask you to share a small batch of programs and records securely, and the report comes back within 48 hours.',
+        'OSHA Documentation Readiness Reviews are usually remote-friendly. We ask you to share a small batch of programs and records securely, and the findings report comes back within 48 hours.',
       steps: [
-        { label: 'Request a Documentation Gap Check', desc: 'Use the master intake form and select "Documentation Review & Gap Check" as the service. You get a response within one business day.' },
+        { label: 'Request a Documentation Readiness Review', desc: 'Use the master intake form and select "OSHA Documentation Readiness Review" as the service. You get a response within one business day.' },
         { label: 'Share Your Documents Securely', desc: 'We send a secure upload link or a prep checklist by email so you know exactly what to gather. No mailing physical binders.' },
         { label: 'Independent Review', desc: 'Vince reviews each program and record against the current OSHA standards. Most reviews complete in 4 to 8 hours of independent work.' },
-        { label: 'Written Gap Report in 48 Hours', desc: 'PDF delivered to your inbox with the document-by-document inventory, gap analysis, and prioritized corrective action list.' },
+        { label: 'Written Findings Report in 48 Hours', desc: 'PDF delivered to your inbox with the document-by-document inventory, readiness analysis, and prioritized corrective action recommendations.' },
         { label: 'Follow-Up Call (Optional)', desc: 'Schedule a 30-minute call to walk through findings, ask questions, and decide on next steps.' },
       ],
     }}
-    closingHeadline="Find the paperwork gaps before OSHA does."
+    closingHeadline="Find the paperwork gaps before OSHA does — with an OSHA Documentation Readiness Review."
   />
 );
 

@@ -57,14 +57,14 @@ const LOCAL_BUSINESS = {
     { '@type': 'City', name: 'Charlotte' },
     { '@type': 'City', name: 'Raleigh' },
   ],
-  priceRange: '$550–$1200',
+  priceRange: '$750–$4500',
   openingHours: 'Mo-Fr 08:00-18:00',
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Safety Services',
     itemListElement: [
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Safety Walkthrough & Top 10 Fixes Report' }, price: '650', priceCurrency: 'USD' },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Documentation Review & Gap Check' }, price: '550', priceCurrency: 'USD' },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'OSHA Documentation Readiness Review' }, price: '750', priceCurrency: 'USD' },
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Incident Review & Corrective Action Support' }, price: '900', priceCurrency: 'USD' },
     ],
   },
@@ -119,7 +119,7 @@ const HOMEPAGE_FAQS = [
 
 // Canonical 18-question FAQ for /faq page
 const FULL_FAQS = [
-  { q: 'How much does an OSHA safety walkthrough cost in North Carolina?', a: "GigLine safety walkthroughs start at $650 for operations within 30 miles of Kernersville (Winston-Salem, Greensboro, High Point, and the Triad core). Locations 30–60 miles out start at $750 to account for travel — this is all-in, no separate travel fee. Most small-operation walkthroughs fall between $650 and $1,200 depending on square footage and scope. You'll receive a fixed price before scheduling — no hourly billing, no retainer." },
+  { q: 'How much does an OSHA safety walkthrough cost in North Carolina?', a: "GigLine safety walkthroughs start at $850 for operations within 30 miles of Kernersville (Winston-Salem, Greensboro, High Point, and the Triad core). Larger or more complex operations may scope higher. Most small-operation walkthroughs fall between $850 and $1,500 depending on square footage and scope. You'll receive a fixed price before scheduling — no hourly billing, no retainer." },
   { q: "What's included in a GigLine safety walkthrough?", a: "A GigLine safety walkthrough includes a 1–3-hour on-site review, photo-documented safety observations, OSHA-related references where applicable, and a written 'Top 10 Fixes' report delivered within 24–48 hours. Findings are color-coded: RED for urgent items, AMBER for near-term corrections, and GREEN for what your team is doing well." },
   { q: 'How long does a safety walkthrough take on-site?', a: 'Most walkthroughs take 1 to 3 hours on-site. A small shop under 10,000 sq ft may take less than an hour. Larger warehouses, production floors, or multi-area operations may take 2 to 3 hours or require a larger scoped visit. You will receive a time estimate before the visit.' },
   { q: "What's the difference between a safety walkthrough and an OSHA inspection?", a: 'An OSHA inspection is performed by a federal or state compliance officer and may result in citations, penalties, and required abatement. A GigLine safety walkthrough is a private, voluntary review performed by an independent consultant. Findings are delivered only to you — nothing is reported to OSHA, your insurance carrier, or any third party.' },
@@ -134,7 +134,7 @@ const FULL_FAQS = [
   { q: 'Does GigLine offer safety training or just inspections?', a: 'GigLine does not deliver formal OSHA training courses. The walkthrough includes on-site coaching while walking the floor, and the report includes corrective actions that often reference training requirements. For formal certification-based training, GigLine can recommend local providers.' },
   { q: 'Is Vince Lawrence OSHA certified?', a: 'Vince Lawrence is OSHA 30-Hour Certified in General Industry and has 25+ years of hands-on experience in manufacturing, fleet, and warehouse safety. He is also a U.S. Navy veteran. GigLine is owner-operated — every walkthrough and report is performed personally by Vince.' },
   { q: 'What happens if OSHA shows up after my walkthrough?', a: 'You have the written record of every hazard identified, every corrective action taken, and every training record reviewed. An OSHA compliance officer who sees an active corrective-action log is usually looking at a cooperative-employer outcome instead of a willful-violation outcome. Documentation is the single biggest factor in how an OSHA visit goes.' },
-  { q: 'Do you offer follow-up walkthroughs for past clients?', a: "Yes. Follow-up walkthroughs for past clients are offered at a reduced rate of $550 (versus $650 for a first-time visit). Most operations benefit from a semi-annual or annual follow-up to catch the drift that happens when safety isn't the primary focus." },
+  { q: 'Do you offer follow-up walkthroughs for past clients?', a: "Yes. Follow-up walkthroughs for past clients are offered at a reduced rate. Most operations benefit from a semi-annual or annual follow-up to catch the drift that happens when safety isn't the primary focus — and ongoing support is available through Quarterly Compliance Maintenance and the Annual Compliance Control Partner program." },
   { q: 'How should I prepare for a safety walkthrough?', a: 'Nothing special. Do not stage, clean up, or hide anything — the walkthrough is most valuable when the floor looks the way it normally does. Have your written safety programs, SDS binder, and training records accessible. A brief floor manager or supervisor introduction at the start helps.' },
   { q: 'How do I book a safety walkthrough with GigLine?', a: "Visit https://www.giglinecompliance.com/request-walkthrough and fill the four-field form, or call (336) 329-8899 directly. You'll hear back within one business day with scheduling options and a confirmed price." },
 ];
@@ -170,8 +170,8 @@ function breadcrumb(items) {
 const routes = [
   {
     path: '/',
-    title: 'Safety Walkthroughs & OSHA Gap Checks for NC Manufacturers, Warehouses & Fleets | GigLine',
-    description: 'Practical safety walkthroughs and OSHA-focused documentation gap checks for manufacturers, warehouses, contractors, and fleet operations in North Carolina. Written report in 48 hours. (336) 329-8899.',
+    title: 'Safety Walkthroughs & OSHA Documentation Readiness Reviews for NC Manufacturers, Warehouses & Fleets | GigLine',
+    description: 'Practical safety walkthroughs and OSHA Documentation Readiness Reviews for manufacturers, warehouses, contractors, and fleet operations in North Carolina. Written report in 48 hours. (336) 329-8899.',
     canonical: '/',
     schemas: [
       LOCAL_BUSINESS,
@@ -180,16 +180,16 @@ const routes = [
       breadcrumb([{ name: 'Home', path: '/' }]),
     ],
     content: `
-      <h1>Practical Safety Walkthroughs &amp; OSHA-Focused Gap Checks for Manufacturers, Warehouses, Contractors &amp; Fleet Operations in North Carolina</h1>
-      <p>On-site walkthroughs, documentation gap checks, and OSHA-focused compliance reviews — clear findings, photo-documented reports in 48 hours, no retainer. Based in Kernersville, NC.</p>
+      <h1>Practical Safety Walkthroughs &amp; OSHA Documentation Readiness Reviews for Manufacturers, Warehouses, Contractors &amp; Fleet Operations in North Carolina</h1>
+      <p>On-site walkthroughs, OSHA Documentation Readiness Reviews, and OSHA-focused compliance visits — clear findings, photo-documented reports in 48 hours, no retainer. Based in Kernersville, NC.</p>
       <p>A single OSHA citation averages $15,625. A GigLine engagement costs a fraction — and gives you a clear picture of where you stand before an inspector shows up.</p>
-      <p><a href="/request-walkthrough">Request a Safety Walkthrough</a> &middot; <a href="/intake">Start Client Intake</a> &middot; Walkthroughs from $650. Documentation Gap Checks from $550.</p>
+      <p><a href="/request-walkthrough">Request a Safety Walkthrough</a> &middot; <a href="/intake">Start Client Intake</a> &middot; Walkthroughs from $850. OSHA Documentation Readiness Reviews from $750.</p>
       <p>OSHA 30-Hour Certified · 25+ Years Experience · U.S. Navy Veteran · Serving the Triad &amp; statewide NC</p>
       <h2>Dedicated Service Pages</h2>
       <ul>
         <li><a href="/safety-walkthrough">Safety Walkthrough</a> — On-site OSHA-focused review of your facility.</li>
-        <li><a href="/documentation-gap-check">Documentation Gap Check</a> — Written programs, training records, and SDS binder review.</li>
-        <li><a href="/osha-compliance-gap-check">OSHA Compliance Gap Check</a> — Full compliance overview before an inspection or audit.</li>
+        <li><a href="/documentation-gap-check">OSHA Documentation Readiness Review</a> — Written programs, training records, and SDS binder review.</li>
+        <li><a href="/osha-compliance-gap-check">Compliance Readiness Visit</a> — Full compliance overview before an inspection or audit.</li>
       </ul>
       <h2>Common OSHA Safety Issues We See on the Floor</h2>
       <p>These are the violations we find most often in small operations — most owners don't know they're there until an inspector shows up. Blocked electrical panels. Expired forklift certifications. Missing lockout-tagout procedures. No written HazCom program.</p>
@@ -233,8 +233,8 @@ const routes = [
   },
   {
     path: '/services',
-    title: 'OSHA Walkthrough & Compliance Services — From $550 | GigLine',
-    description: 'On-site walkthroughs from $650. Documentation reviews from $550. Incident response from $900. Fixed quote before scheduling. No retainer.',
+    title: 'GigLine Safety Services — Walkthroughs, Compliance Visits & OSHA-Ready Systems | From $850',
+    description: 'GigLine walks your floor, reviews your documentation, and builds inspection-ready systems for small manufacturers, warehouses, contractors, and fleet operations in the Piedmont Triad. Fixed pricing. No retainer.',
     canonical: '/services',
     schemas: [
       {
@@ -243,13 +243,13 @@ const routes = [
         name: 'GigLine Safety Consulting Services',
         itemListElement: [
           { '@type': 'ListItem', position: 1, item: { '@type': 'Service', name: 'Safety Walkthrough & Top 10 Fixes Report', description: 'A structured on-site review of common OSHA exposure areas.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '650', priceCurrency: 'USD' } } },
-          { '@type': 'ListItem', position: 2, item: { '@type': 'Service', name: 'Documentation Review & Gap Check', description: 'Review of written safety programs, training records, and inspection forms.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '550', priceCurrency: 'USD' } } },
+          { '@type': 'ListItem', position: 2, item: { '@type': 'Service', name: 'OSHA Documentation Readiness Review', description: 'Review of written safety programs, training records, and inspection forms.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '750', priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 3, item: { '@type': 'Service', name: 'Incident Review & Corrective Action Support', description: 'Post-incident review and corrective direction.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '900', priceCurrency: 'USD' } } },
         ],
       },
       faqSchema([
-        { q: 'How much does a GigLine safety walkthrough cost?', a: "Walkthroughs start at $650. Most small-operation walkthroughs fall in the $650–$1,000 range based on square footage and scope. You'll receive a fixed quote before scheduling." },
-        { q: "What's included in a documentation review and gap check?", a: "A review of your written safety programs, training records, inspection logs, and required documentation — with a gap analysis that lists what's missing, what needs updating, and what's in good order. Starts at $550." },
+        { q: 'How much does a GigLine safety walkthrough cost?', a: "Walkthroughs start at $850. Most small-operation walkthroughs fall in the $850–$1,500 range based on square footage and scope. You'll receive a fixed quote before scheduling." },
+        { q: "What's included in an OSHA Documentation Readiness Review?", a: "A review of your written safety programs, training records, inspection logs, and required documentation — with a readiness analysis that lists what's missing, what needs updating, and what's in good order. Starts at $750." },
         { q: 'When do I need incident review and corrective action support?', a: 'After a recordable injury, near-miss, or OSHA visit — anytime you need to document what happened, identify what broke down, and build corrective action that holds up under review. Starts at $900.' },
         { q: 'Do services require a retainer or long-term contract?', a: 'No. Every GigLine service is a single engagement with a fixed fee. No monthly retainer, no long-term contract. You pay once, you get the report, the engagement is closed.' },
       ]),
@@ -260,9 +260,9 @@ const routes = [
       <p>Each engagement ends with a written report, clear action items, and a defined next step. No ongoing contracts. No retainers.</p>
       <h2>90-Second Safety Check — Free</h2>
       <p>Answer 6 yes-or-no questions about your operation. Get an immediate risk score and a clear next step — no email required to start.</p>
-      <h2>Safety Walkthrough &amp; Top 10 Fixes Report — Starting at $650</h2>
+      <h2>Safety Walkthrough &amp; Top 10 Fixes Report — Starting at $850</h2>
       <p>Best for single-building facilities under 50,000 sq ft. On-site walkthrough with written report identifying the ten issues most likely to create trouble first.</p>
-      <h2>Documentation Review &amp; Gap Check — Starting at $550</h2>
+      <h2>OSHA Documentation Readiness Review — Starting at $750</h2>
       <p>Best for operations preparing for audits or rebuilding safety files. Review of written programs, training records, inspection logs, and required documentation.</p>
       <h2>Incident Review &amp; Corrective Action Support — Starting at $900</h2>
       <p>Best for operations responding to a recordable injury or near-miss. Document what happened, identify what broke down, build corrective action that holds up under review.</p>
@@ -298,7 +298,7 @@ const routes = [
     content: `
       <h1>Service Areas — On-Site Safety Walkthroughs Across North Carolina</h1>
       <p>Based in Kernersville, NC. Routine engagements within 60 miles of Winston-Salem. Scheduled engagements available in Charlotte and Raleigh metros.</p>
-      <h2>Triad Core — Starting at $650 (within 30 miles of Kernersville)</h2>
+      <h2>Triad Core — Starting at $850 (within 30 miles of Kernersville)</h2>
       <ul>
         <li><a href="/safety-walkthrough/kernersville">Kernersville, NC</a> — GigLine HQ</li>
         <li><a href="/safety-walkthrough/winston-salem">Winston-Salem, NC</a> — 10 miles</li>
@@ -426,7 +426,7 @@ const routes = [
     schemas: [LOCAL_BUSINESS],
     content: `
       <h1>Request a Safety Walkthrough</h1>
-      <p>Schedule an on-site safety walkthrough with GigLine Safety &amp; Compliance. One visit. Clear findings. Written report within 24-48 hours. <strong>Starting at $650</strong>.</p>
+      <p>Schedule an on-site safety walkthrough with GigLine Safety &amp; Compliance. One visit. Clear findings. Written report within 24-48 hours. <strong>Starting at $850</strong>.</p>
       <p>Serving small manufacturers, warehouses, contractors, and fleets in the Kernersville/Triad, NC area.</p>
 
       <h2>Three ways to reach Vince</h2>
@@ -565,7 +565,7 @@ const routes = [
   {
     path: '/safety-walkthrough',
     title: 'Safety Walkthrough — On-Site OSHA Review for NC Operations | GigLine',
-    description: 'On-site safety walkthrough for manufacturers, warehouses, contractors, and fleet operations across North Carolina. Photo-documented findings, OSHA references, and a written report in 48 hours. Starting at $650.',
+    description: 'On-site safety walkthrough for manufacturers, warehouses, contractors, and fleet operations across North Carolina. Photo-documented findings, OSHA references, and a written report in 48 hours. Starting at $850.',
     canonical: '/safety-walkthrough',
     schemas: [
       {
@@ -581,13 +581,13 @@ const routes = [
         { q: 'Who is the safety walkthrough built for?', a: 'Small to mid-size manufacturers, warehouses, distribution centers, contractors, and fleet operations in North Carolina — typically 5 to 100 employees with no full-time safety manager on staff.' },
         { q: 'What gets reviewed during a safety walkthrough?', a: 'Walking-working surfaces and egress, electrical panel clearance, machine guarding and energy control, powered industrial trucks, hazard communication, PPE and fall protection, and recordkeeping — the same OSHA standards an inspector would focus on.' },
         { q: 'What do I receive after the walkthrough?', a: 'A PDF report within 24-48 hours with photo-documented findings, OSHA-related references where applicable, prioritized corrective action recommendations, and color-coded priorities (RED, AMBER, GREEN).' },
-        { q: 'How much does a safety walkthrough cost?', a: 'Walkthroughs start at $650. Most engagements fall between $650 and $1,200 depending on size and scope. Fixed quote before scheduling. No retainer.' },
+        { q: 'How much does a safety walkthrough cost?', a: 'Walkthroughs start at $850. Most engagements fall between $850 and $1,500 depending on size and scope. Fixed quote before scheduling. No retainer.' },
       ]),
       breadcrumb([{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }, { name: 'Safety Walkthrough', path: '/safety-walkthrough' }]),
     ],
     content: `
       <h1>On-Site Safety Walkthroughs for Manufacturers, Warehouses, Contractors &amp; Fleets</h1>
-      <p>A trained outside eye on your floor. We walk your operation the way an OSHA Compliance Officer would, flag what would get cited, and hand you a written, prioritized fix list within 48 hours. Starting at $650.</p>
+      <p>A trained outside eye on your floor. We walk your operation the way an OSHA Compliance Officer would, flag what would get cited, and hand you a written, prioritized fix list within 48 hours. Starting at $850.</p>
       <h2>Who It's For</h2>
       <p>Small to mid-size manufacturer, warehouse, distribution center, contractor, or fleet operation in North Carolina with 5 to 100 employees and no full-time safety manager. Especially built for operations with OSHA on the calendar, a recent recordable injury, or a recent expansion.</p>
       <h2>What's Reviewed</h2>
@@ -601,66 +601,66 @@ const routes = [
   },
   {
     path: '/documentation-gap-check',
-    title: 'Documentation Gap Check — OSHA Written Programs, SDS & Training Records | GigLine',
-    description: 'Independent review of your written safety programs, SDS binder, training records, and required OSHA documentation. Written gap report in 48 hours. Starting at $550. Serving NC manufacturers, warehouses, contractors, and fleets.',
+    title: 'OSHA Documentation Readiness Review — Written Programs, SDS & Training Records | GigLine',
+    description: 'Independent OSHA Documentation Readiness Review of your written safety programs, SDS binder, training records, and required OSHA documentation. Written findings report in 48 hours. Starting at $750. Serving NC manufacturers, warehouses, contractors, and fleets.',
     canonical: '/documentation-gap-check',
     schemas: [
       {
         '@context': 'https://schema.org',
         '@type': 'Service',
-        name: 'Documentation Gap Check',
-        description: 'Independent review of written OSHA safety programs, SDS binders, training records, and required documentation. Written gap report delivered within 48 hours.',
+        name: 'OSHA Documentation Readiness Review',
+        description: 'Independent review of written OSHA safety programs, SDS binders, training records, and required documentation. Written findings report delivered within 48 hours.',
         provider: { '@id': `${BASE_URL}/#business` },
         areaServed: { '@type': 'State', name: 'North Carolina' },
-        offers: { '@type': 'Offer', price: '550', priceCurrency: 'USD' },
+        offers: { '@type': 'Offer', price: '750', priceCurrency: 'USD' },
       },
       faqSchema([
-        { q: 'Who is a documentation gap check for?', a: 'Operations that have safety paperwork but aren\'t sure it would hold up under an OSHA inspector\'s review — typically 10 to 100 employees preparing for an OSHA inspection, insurance audit, or customer compliance review.' },
+        { q: 'Who is an OSHA Documentation Readiness Review for?', a: 'Operations that have safety paperwork but aren\'t sure it would hold up under an OSHA inspector\'s review — typically 10 to 100 employees preparing for an OSHA inspection, insurance audit, or customer compliance review.' },
         { q: 'What documents are reviewed?', a: 'Written Hazard Communication program and SDS binder, Lockout/Tagout program, Powered Industrial Truck certifications, PPE hazard assessments, Bloodborne pathogens plan, Emergency Action Plan, OSHA 300 log and 300A summary, and training records.' },
-        { q: 'Is the documentation review remote or on-site?', a: 'Documentation gap checks are remote-friendly. We send a secure upload link and a prep checklist by email — no need to mail physical binders. On-site reviews are also available.' },
-        { q: 'How much does a documentation gap check cost?', a: 'Documentation gap checks start at $550. Fixed quote before scheduling.' },
+        { q: 'Is the documentation review remote or on-site?', a: 'OSHA Documentation Readiness Reviews are remote-friendly. We send a secure upload link and a prep checklist by email — no need to mail physical binders. On-site reviews are also available.' },
+        { q: 'How much does an OSHA Documentation Readiness Review cost?', a: 'OSHA Documentation Readiness Reviews start at $750. Fixed quote before scheduling.' },
       ]),
-      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }, { name: 'Documentation Gap Check', path: '/documentation-gap-check' }]),
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }, { name: 'OSHA Documentation Readiness Review', path: '/documentation-gap-check' }]),
     ],
     content: `
       <h1>Independent Review of Your Safety Documentation — Programs, SDS &amp; Training Records</h1>
-      <p>If OSHA opened your binder tomorrow, what would they find? A documentation gap check walks every written program, training record, and SDS file against the actual standards — and tells you exactly what is missing, expired, or out of date. Starting at $550.</p>
+      <p>If OSHA opened your binder tomorrow, what would they find? An OSHA Documentation Readiness Review walks every written program, training record, and SDS file against the actual standards — and tells you exactly what is missing, expired, or out of date. Starting at $750.</p>
       <h2>Who It's For</h2>
       <p>Operations preparing for an OSHA inspection, insurance audit, or customer compliance review. New safety coordinators inheriting binders. Companies past the size where paperwork can stay informal. Contractors asked for documentation by a GC or insurer.</p>
       <h2>What's Reviewed</h2>
       <p>Written Hazard Communication program and SDS binder index against actual chemical inventory. Lockout/Tagout written program, machine-specific procedures, annual audit records. Powered Industrial Truck operator certifications, refresher dates, daily inspection logs. PPE hazard assessments. Bloodborne pathogens exposure control plan. Emergency Action Plan. OSHA 300 log, 300A annual summary, 5-year retention file. Training records.</p>
       <h2>What You Receive</h2>
-      <p>Document-by-document inventory. Gap analysis — missing programs, missing records, expired certifications. OSHA-related references where applicable for each gap. Prioritized corrective action recommendations. Plain-language templates for the most common missing programs. Optional 30-minute follow-up call.</p>
+      <p>Document-by-document inventory. Readiness analysis — missing programs, missing records, expired certifications. OSHA-related references where applicable for each gap. Prioritized corrective action recommendations. Plain-language templates for the most common missing programs. Optional 30-minute follow-up call.</p>
       <h2>Next Steps</h2>
-      <ol><li>Start a client intake — select Documentation Review &amp; Gap Check.</li><li>Share documents securely via the link we send.</li><li>Independent review against current OSHA standards.</li><li>Written gap report in 48 hours.</li><li>Optional follow-up call to walk through findings.</li></ol>
+      <ol><li>Start a client intake — select OSHA Documentation Readiness Review.</li><li>Share documents securely via the link we send.</li><li>Independent review against current OSHA standards.</li><li>Written findings report in 48 hours.</li><li>Optional follow-up call to walk through findings.</li></ol>
       <p>GigLine Safety &amp; Compliance — (336) 329-8899 — vince@giglinecompliance.com</p>
     `,
   },
   {
     path: '/osha-compliance-gap-check',
-    title: 'OSHA Compliance Gap Check — Pre-Inspection Review for NC Operations | GigLine',
-    description: 'Full OSHA compliance gap check — combined on-site walkthrough and documentation review. Built for operations preparing for an OSHA inspection, audit, or insurance review. Written report in 48 hours. Serving NC manufacturers, warehouses, contractors, and fleets.',
+    title: 'Compliance Readiness Visit — Pre-Inspection Review for NC Operations | GigLine',
+    description: 'Full Compliance Readiness Visit — combined on-site walkthrough and OSHA Documentation Readiness Review. Built for operations preparing for an OSHA inspection, audit, or insurance review. Written report in 48 hours. Serving NC manufacturers, warehouses, contractors, and fleets.',
     canonical: '/osha-compliance-gap-check',
     schemas: [
       {
         '@context': 'https://schema.org',
         '@type': 'Service',
-        name: 'OSHA Compliance Gap Check',
-        description: 'A combined on-site walkthrough and documentation review for operations preparing for an OSHA inspection, audit, or insurance review. The most thorough engagement GigLine offers.',
+        name: 'Compliance Readiness Visit',
+        description: 'A combined on-site walkthrough and OSHA Documentation Readiness Review for operations preparing for an OSHA inspection, audit, or insurance review. The most thorough engagement GigLine offers.',
         provider: { '@id': `${BASE_URL}/#business` },
         areaServed: { '@type': 'State', name: 'North Carolina' },
-        offers: { '@type': 'Offer', price: '1200', priceCurrency: 'USD' },
+        offers: { '@type': 'Offer', price: '1500', priceCurrency: 'USD' },
       },
       faqSchema([
-        { q: 'Who is an OSHA compliance gap check for?', a: 'Operations with OSHA on the calendar, those that had a recordable injury or workers\' comp flag, businesses where an insurance carrier or major customer asked for documented compliance evidence, or operations going through M&A due diligence.' },
-        { q: 'What is included in a compliance gap check?', a: 'A combined on-site walkthrough and documentation review — covering both the floor AND the binder, plus a cross-check between them. Typical engagements run 1 day on-site plus 2 to 3 days of independent review.' },
-        { q: 'How is this different from a safety walkthrough?', a: 'A safety walkthrough covers the floor. A documentation gap check covers the binder. A full OSHA compliance gap check does both, plus a cross-check that confirms the floor reality matches the written programs.' },
-        { q: 'How much does a compliance gap check cost?', a: 'Custom-quoted by operation size and scope. Most engagements fall between $1,200 and $2,400. No retainer.' },
+        { q: 'Who is a Compliance Readiness Visit for?', a: 'Operations with OSHA on the calendar, those that had a recordable injury or workers\' comp flag, businesses where an insurance carrier or major customer asked for documented compliance evidence, or operations going through M&A due diligence.' },
+        { q: 'What is included in a Compliance Readiness Visit?', a: 'A combined on-site walkthrough and OSHA Documentation Readiness Review — covering both the floor AND the binder, plus a cross-check between them. Includes the Supervisor Safety Starter System ($199 value).' },
+        { q: 'How is this different from a safety walkthrough?', a: 'A safety walkthrough covers the floor. An OSHA Documentation Readiness Review covers the binder. A Compliance Readiness Visit does both, plus a cross-check that confirms the floor reality matches the written programs.' },
+        { q: 'How much does a Compliance Readiness Visit cost?', a: 'Compliance Readiness Visits start at $1,500. Custom-quoted by operation size and scope. No retainer.' },
       ]),
-      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }, { name: 'OSHA Compliance Gap Check', path: '/osha-compliance-gap-check' }]),
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }, { name: 'Compliance Readiness Visit', path: '/osha-compliance-gap-check' }]),
     ],
     content: `
-      <h1>A Full OSHA Compliance Gap Check Before an Inspection, Audit, or Insurance Review</h1>
+      <h1>A Compliance Readiness Visit Before an Inspection, Audit, or Insurance Review</h1>
       <p>The most thorough engagement GigLine offers. A combined on-site walkthrough and documentation review — covering the floor AND the binder — so you know exactly where you stand against the OSHA standards that apply to your operation. Most engagements between $1,200 and $2,400.</p>
       <h2>Who It's For</h2>
       <p>OSHA inspection on the calendar. Recent recordable injury, severe near-miss, or workers' comp flag. Insurance carrier or major customer requesting documented compliance evidence. M&amp;A due diligence. New safety responsibility and need a full independent baseline.</p>

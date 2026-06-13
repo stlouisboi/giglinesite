@@ -61,12 +61,12 @@ SERVICE_PACKAGES = {
         "description": "Standard site walkthrough with full report",
     },
     "documentation_remote": {
-        "name": "Safety Documentation Review & Gap Check (Remote)",
+        "name": "OSHA Documentation Readiness Review (Remote)",
         "amount": 550.00,
         "description": "Remote review - send PDFs/scans for analysis",
     },
     "documentation_onsite": {
-        "name": "Safety Documentation Review & Gap Check (On-site)",
+        "name": "OSHA Documentation Readiness Review (On-site)",
         "amount": 750.00,
         "description": "On-site document review with follow-up",
     },

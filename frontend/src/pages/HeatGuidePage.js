@@ -134,7 +134,7 @@ const HeatGuidePage = () => {
           <p className="text-[#102133]/60 text-sm mb-4">Need more than a template?</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link to="/contact" className="inline-flex items-center gap-2 bg-[#102133] hover:bg-[#2A3D3D] text-white font-medium px-6 py-3 rounded transition-colors text-sm">
-              Book a Walkthrough — Starting at $650
+              Book a Walkthrough — Starting at $850
               <ArrowRight size={16} />
             </Link>
             <Link to="/safety-check" className="inline-flex items-center gap-2 border-2 border-[#102133]/20 hover:border-[#102133]/40 text-[#102133] font-medium px-6 py-3 rounded transition-colors text-sm">

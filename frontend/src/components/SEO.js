@@ -11,7 +11,7 @@ const SEO = ({
   schema
 }) => {
   const siteName = 'GigLine Safety & Compliance';
-  const fullTitle = title ? `${title} | ${siteName}` : `${siteName} | Safety Walkthroughs & Gap Checks for Small Operations`;
+  const fullTitle = title ? `${title} | ${siteName}` : `${siteName} | Safety Walkthroughs & Documentation Readiness Reviews for Small Operations`;
   const baseUrl = 'https://www.giglinecompliance.com';
   const canonicalUrl = canonical ? `${baseUrl}${canonical}` : baseUrl;
   const ogImageUrl = ogImage ? `${baseUrl}${ogImage}` : `${baseUrl}/og-image.png`;

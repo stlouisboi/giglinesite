@@ -27,7 +27,7 @@ const ContactForm = ({ compact = false }) => {
     { value: '', label: 'Select a service' },
     { value: 'not-sure', label: 'Not Sure — Need Advice' },
     { value: 'walkthrough', label: 'Safety Walkthrough & Top 10 Fixes Report' },
-    { value: 'documentation', label: 'Documentation Review & Gap Check' },
+    { value: 'documentation', label: 'OSHA Documentation Readiness Review' },
     { value: 'incident', label: 'Incident Review & Corrective Action Support' },
   ];
 

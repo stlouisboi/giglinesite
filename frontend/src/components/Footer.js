@@ -22,7 +22,7 @@ const Footer = () => {
               />
             </div>
             <p className="text-white/60 text-sm mb-4">
-              Safety Walkthroughs and Gap Checks for Small Operations
+              Safety Walkthroughs and Documentation Readiness Reviews for Small Operations
             </p>
             <p className="text-white/50 text-sm mb-4">Kernersville, NC</p>
             <div className="space-y-2">

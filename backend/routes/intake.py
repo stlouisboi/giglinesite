@@ -273,7 +273,7 @@ class IntakeSubmission(BaseModel):
     oshaInspectionYear: str = ""       # if q_osha_inspection_ever = yes
     oshaInspectionCitations: str = ""  # if q_osha_inspection_ever = yes
 
-    # ─── Section 4 — Lane: Doc Review / Gap Check ───
+    # ─── Section 4 — Lane: OSHA Documentation Readiness Review ───
     docReviewConcerns: List[str] = []  # multi-select
     docReviewApproach: str = ""        # review_existing | start_scratch | not_sure
 
@@ -463,7 +463,7 @@ async def submit_intake(data: IntakeSubmission):
     }
     SERVICES = {
         "walkthrough": "Safety Walkthrough & Top 10 Fixes Report",
-        "doc_review": "Documentation & Gap Check",
+        "doc_review": "OSHA Documentation Readiness Review",
         "incident_review": "Incident Review & Corrective Action Support",
         "doc_creation": "Safety Documents / Program Creation",
         "not_sure": "Not sure — needs guidance",
@@ -498,7 +498,7 @@ async def submit_intake(data: IntakeSubmission):
     # Service-lane-specific opening line
     lane_opener = {
         "walkthrough": "Thanks for requesting a Safety Walkthrough. Vince will be in touch within 1 business day to confirm scope and schedule.",
-        "doc_review": "Thanks for requesting a Documentation & Gap Check. The prep checklist is attached. Vince will follow up within 1 business day with a fixed quote.",
+        "doc_review": "Thanks for requesting an OSHA Documentation Readiness Review. The prep checklist is attached. Vince will follow up within 1 business day with a fixed quote.",
         "incident_review": "Thanks for reaching out about an incident review. These move fast — Vince will be in touch shortly, often same day.",
         "doc_creation": "Thanks for the program creation request. Vince will review your selections and follow up within 1 business day with a quote.",
         "not_sure": "Thanks for reaching out. Vince will review what you submitted and follow up within 1 business day to figure out the right fit.",

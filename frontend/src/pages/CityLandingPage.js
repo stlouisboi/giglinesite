@@ -12,7 +12,7 @@ const CITIES = {
     distance: '10 miles from Kernersville',
     industries: 'manufacturing plants, food processing facilities, and distribution centers',
     seoTitle: 'Safety Walkthroughs in Winston-Salem, NC',
-    seoDesc: 'On-site OSHA safety walkthroughs for manufacturers, warehouses, and contractors in Winston-Salem, NC. Written report with findings. Starting at $650.',
+    seoDesc: 'On-site OSHA safety walkthroughs for manufacturers, warehouses, and contractors in Winston-Salem, NC. Written report with findings. Starting at $850.',
   },
   'greensboro': {
     name: 'Greensboro',
@@ -20,7 +20,7 @@ const CITIES = {
     distance: '15 miles from Kernersville',
     industries: 'warehouses, light manufacturing, and logistics operations',
     seoTitle: 'Safety Walkthroughs in Greensboro, NC',
-    seoDesc: 'OSHA safety walkthroughs and compliance support for small operations in Greensboro, NC. One visit. Clear findings. Starting at $650.',
+    seoDesc: 'OSHA safety walkthroughs and compliance support for small operations in Greensboro, NC. One visit. Clear findings. Starting at $850.',
   },
   'charlotte': {
     name: 'Charlotte',
@@ -28,7 +28,7 @@ const CITIES = {
     distance: '75 miles from Kernersville',
     industries: 'manufacturing, construction contractors, and warehouse operations',
     seoTitle: 'Safety Walkthroughs in Charlotte, NC',
-    seoDesc: 'Safety walkthrough services for manufacturers, warehouses, and contractors in the Charlotte, NC metro area. Written report. Starting at $650.',
+    seoDesc: 'Safety walkthrough services for manufacturers, warehouses, and contractors in the Charlotte, NC metro area. Written report. Starting at $850.',
   },
   'raleigh': {
     name: 'Raleigh',
@@ -36,7 +36,7 @@ const CITIES = {
     distance: '75 miles from Kernersville',
     industries: 'growing manufacturing operations, warehouse facilities, and construction sites',
     seoTitle: 'Safety Walkthroughs in Raleigh, NC',
-    seoDesc: 'On-site safety walkthroughs for small operations in Raleigh and the Triangle area. Identify OSHA exposure before it becomes a citation. Starting at $650.',
+    seoDesc: 'On-site safety walkthroughs for small operations in Raleigh and the Triangle area. Identify OSHA exposure before it becomes a citation. Starting at $850.',
   },
   'high-point': {
     name: 'High Point',
@@ -44,7 +44,7 @@ const CITIES = {
     distance: '12 miles from Kernersville',
     industries: 'furniture manufacturing, warehousing, and small fabrication shops',
     seoTitle: 'Safety Walkthroughs in High Point, NC',
-    seoDesc: 'Safety walkthrough services for manufacturers and warehouses in High Point, NC. Written findings report. Starting at $650.',
+    seoDesc: 'Safety walkthrough services for manufacturers and warehouses in High Point, NC. Written findings report. Starting at $850.',
   },
   'burlington': {
     name: 'Burlington',
@@ -52,7 +52,7 @@ const CITIES = {
     distance: '30 miles from Kernersville',
     industries: 'textile operations, small manufacturers, and distribution facilities',
     seoTitle: 'Safety Walkthroughs in Burlington, NC',
-    seoDesc: 'OSHA safety walkthroughs for small manufacturers and warehouses in Burlington, NC. One visit. Written report. Starting at $650.',
+    seoDesc: 'OSHA safety walkthroughs for small manufacturers and warehouses in Burlington, NC. One visit. Written report. Starting at $850.',
   },
   'kernersville': {
     name: 'Kernersville',
@@ -60,7 +60,7 @@ const CITIES = {
     distance: 'GigLine HQ',
     industries: 'manufacturing, light industrial operations, and warehousing',
     seoTitle: 'Safety Walkthroughs in Kernersville, NC',
-    seoDesc: "On-site OSHA safety walkthroughs for Kernersville manufacturers, warehouses, and contractors. GigLine's home base. Written report. Starting at $650.",
+    seoDesc: "On-site OSHA safety walkthroughs for Kernersville manufacturers, warehouses, and contractors. GigLine's home base. Written report. Starting at $850.",
     priceStart: 650,
   },
   'lexington': {
@@ -69,7 +69,7 @@ const CITIES = {
     distance: '20 miles from Kernersville',
     industries: 'furniture manufacturing, food production, and small fabrication shops',
     seoTitle: 'Safety Walkthroughs in Lexington, NC',
-    seoDesc: 'On-site OSHA safety walkthroughs for manufacturers and fabrication shops in Lexington, NC. Written report with findings. Starting at $650.',
+    seoDesc: 'On-site OSHA safety walkthroughs for manufacturers and fabrication shops in Lexington, NC. Written report with findings. Starting at $850.',
     priceStart: 650,
   },
   'thomasville': {
@@ -78,7 +78,7 @@ const CITIES = {
     distance: '15 miles from Kernersville',
     industries: 'furniture manufacturing, cabinetry, and small production operations',
     seoTitle: 'Safety Walkthroughs in Thomasville, NC',
-    seoDesc: 'OSHA safety walkthroughs for furniture manufacturers and small production operations in Thomasville, NC. Written report. Starting at $650.',
+    seoDesc: 'OSHA safety walkthroughs for furniture manufacturers and small production operations in Thomasville, NC. Written report. Starting at $850.',
     priceStart: 650,
   },
   'clemmons': {
@@ -87,7 +87,7 @@ const CITIES = {
     distance: '15 miles from Kernersville',
     industries: 'small manufacturers, trade contractors, and light industrial operations',
     seoTitle: 'Safety Walkthroughs in Clemmons, NC',
-    seoDesc: 'On-site OSHA safety walkthroughs for small manufacturers and contractors in Clemmons, NC. Written report with findings. Starting at $650.',
+    seoDesc: 'On-site OSHA safety walkthroughs for small manufacturers and contractors in Clemmons, NC. Written report with findings. Starting at $850.',
     priceStart: 650,
   },
   'mocksville': {
@@ -96,7 +96,7 @@ const CITIES = {
     distance: '25 miles from Kernersville',
     industries: 'manufacturing, agricultural operations, and small fabrication shops',
     seoTitle: 'Safety Walkthroughs in Mocksville, NC',
-    seoDesc: 'OSHA safety walkthroughs for manufacturers and fabrication shops in Mocksville, NC and Davie County. Written report. Starting at $650.',
+    seoDesc: 'OSHA safety walkthroughs for manufacturers and fabrication shops in Mocksville, NC and Davie County. Written report. Starting at $850.',
     priceStart: 650,
   },
   'salisbury': {

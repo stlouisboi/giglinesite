@@ -73,7 +73,7 @@ const ServiceAreasPage = () => {
             className="uppercase tracking-[3px] text-[#1F6FEB] mb-3"
             style={{ ...mono, fontSize: '11px' }}
           >
-            Triad Core — Starting at $650
+            Triad Core — Starting at $850
           </p>
           <h2
             className="text-2xl md:text-3xl font-bold text-[#102133] mb-8"

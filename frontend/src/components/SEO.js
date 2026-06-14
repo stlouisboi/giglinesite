@@ -11,7 +11,12 @@ const SEO = ({
   schema
 }) => {
   const siteName = 'GigLine Safety & Compliance';
-  const fullTitle = title ? `${title} | ${siteName}` : `${siteName} | Safety Walkthroughs & Documentation Readiness Reviews for Small Operations`;
+  const defaultTitle = `${siteName} | Safety Walkthroughs & Documentation Readiness Reviews for Small Operations`;
+  // Smart suffix: only append site name if title doesn't already end with it (or with "GigLine")
+  const needsSuffix = title && !/\|\s*GigLine\b/i.test(title);
+  const fullTitle = title
+    ? (needsSuffix ? `${title} | ${siteName}` : title)
+    : defaultTitle;
   const baseUrl = 'https://www.giglinecompliance.com';
   const canonicalUrl = canonical ? `${baseUrl}${canonical}` : baseUrl;
   const ogImageUrl = ogImage ? `${baseUrl}${ogImage}` : `${baseUrl}/og-image.png`;

@@ -131,28 +131,28 @@ const HomePage = () => {
           S1 — ASYMMETRIC HERO  (60 image / 40 text)
       ═══════════════════════════════════════════════ */}
       <section
-        className="relative min-h-[60vh] md:min-h-[85vh]"
+        className="relative min-h-[60vh] lg:min-h-[85vh] overflow-hidden"
         style={{ backgroundColor: '#0B1F33' }}
         data-testid="hero-section"
       >
-        <div className="flex flex-col md:flex-row h-full min-h-[60vh] md:min-h-[85vh]">
+        <div className="flex flex-col lg:flex-row h-full min-h-[60vh] lg:min-h-[85vh]">
           {/* Left — Photo */}
-          <div className="relative w-full md:w-3/5 h-[45vh] md:h-auto overflow-hidden">
+          <div className="relative w-full lg:w-3/5 h-[45vh] lg:h-auto overflow-hidden">
             <img
               src="/vince-inspecting.webp"
               alt="Vince Lawrence of GigLine Safety & Compliance inspecting a facility during an on-site OSHA safety walkthrough"
               className="absolute inset-0 w-full h-full object-cover img-zoom"
               loading="eager"
-              fetchpriority="high"
+              fetchPriority="high"
               data-testid="hero-image"
             />
             {/* Gradient bleed into text column */}
-            <div className="hidden md:block absolute inset-y-0 right-0 w-1/3 bg-gradient-to-r from-transparent to-[#0B1F33]" />
-            <div className="md:hidden absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#0B1F33] to-transparent" />
+            <div className="hidden lg:block absolute inset-y-0 right-0 w-1/3 bg-gradient-to-r from-transparent to-[#0B1F33]" />
+            <div className="lg:hidden absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#0B1F33] to-transparent" />
           </div>
 
           {/* Right — Copy */}
-          <div className="w-full md:w-2/5 flex items-center px-6 md:px-14 lg:px-20 py-12 md:py-0 relative z-10">
+          <div className="w-full lg:w-2/5 flex items-center px-6 md:px-10 lg:px-14 xl:px-20 py-12 lg:py-0 relative z-10">
             <Reveal>
               <p
                 className="uppercase tracking-[3px] text-[#CBD5E1] mb-5"

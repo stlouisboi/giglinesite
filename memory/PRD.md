@@ -184,6 +184,13 @@ Goal: get GigLine cited in answers from ChatGPT, Perplexity, Claude, Google AI O
 - **Full-funnel measurement enabled**: combined with `hero_cta_primary`/`hero_cta_secondary` (homepage) and `services_cta_click` (services page), GA4 can now compute conversion rates per CTA — i.e. "of the visitors who clicked Schedule a Compliance Readiness Visit on home, what % completed the intake form requesting that service".
 - Verified: walkthrough form fires both `generate_lead` (existing) and `intake_submit_success` (new) on success. Client intake event payload verified via direct dataLayer push test (handler path identical to walkthrough form).
 
+## Responsiveness + SEO Cleanup (Feb 13, 2026)
+- **Tablet horizontal-scroll bug FIXED across all pages**. Root cause: `<Footer>` used `md:grid-cols-4` which made the LaunchPath link column too narrow at 768px, pushing the link 5px past viewport. Changed to `sm:grid-cols-2 lg:grid-cols-4` — proper 2×2 grid at tablet, 4-col at desktop. Confirmed via Playwright at 768px: body=768, win=768 (was body=773 before fix).
+- **Homepage hero now stacks vertically at tablet** instead of trying a cramped 60/40 split between 768–1023px. Changed `md:flex-row` → `lg:flex-row` plus all related `md:w-3/5`/`md:w-2/5` breakpoints. At ≥1024 the asymmetric desktop layout returns. Section also got `overflow-hidden` as belt-and-suspenders.
+- **SEO title doubling FIXED**. Pages that passed titles already containing `| GigLine` (e.g., `/service-areas`, `/intake`, `/request-walkthrough`, `/about`, `/case-studies/...`) had the SEO component appending `| GigLine Safety & Compliance` again — producing `... | GigLine Safety & Compliance | GigLine Safety & Compliance`. Updated `SEO.js` with smart suffix logic: only appends site name if title doesn't already end with `| GigLine...`. Verified on 16 routes — zero remaining double-suffix titles.
+- **No duplicate page files / routes found**. `/privacy` and `/privacy-policy` both render the same component but each sets canonical=`/privacy` so Google consolidates. Same with `/terms` and `/terms-of-service` → canonical=`/terms-of-service`. Confirmed proper canonical consolidation; no duplicate-content penalty risk.
+- Static-build SEO (production via `generate-seo-pages.js`) verified: every route writes per-page `<title>`, `<meta description>`, `<link canonical>`, OG + Twitter + JSON-LD. Production Google crawl sees correct per-page meta on every URL.
+
 ## Deployment
 - Frontend: Vercel (manual redeploy after GitHub push)
 - Backend: Railway (auto-deploys on GitHub push)

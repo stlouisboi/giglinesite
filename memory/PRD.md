@@ -177,6 +177,13 @@ Goal: get GigLine cited in answers from ChatGPT, Perplexity, Claude, Google AI O
 - **Services CTA tracking wired**: New helper `fireServicesCtaClick()` fires `services_cta_click` GA4 events with `cta_text`, `cta_destination`, `page_path`. Attached to: Compliance Readiness Visit "Schedule a Visit" CTA, OSHA-Ready Control System "Request Buildout" CTA, and all 10 Readiness Path links (5 desktop + 5 mobile, labeled "Readiness Path · {stage}"). Combined with the homepage hero events this gives full-funnel visibility: which homepage CTA drove the click → which services-page CTA the visitor ultimately requested.
 - Self-verified via instrumented Playwright: all 7 CTA categories emit correct payloads on click. Skipped second testing-agent run (changes are small and additive on top of 21/21 PASS in iteration_16).
 
+## Intake Form Conversion Tracking — Full Funnel Visibility (Feb 13, 2026)
+- **`intake_submit_success` GA4 event** wired into both intake forms with params `service_requested`, `source_form`, `page_path`:
+  - `/request-walkthrough` (IntakePage.js): fires on successful POST `/api/walkthrough/request`. `source_form='request-walkthrough'`. Captures the form's `service` field.
+  - `/intake` (ClientIntakePage.js): fires on successful POST `/api/intake/submit` immediately before the navigate-to-thank-you redirect. `source_form='client-intake'`. Captures the form's `serviceSelected` value.
+- **Full-funnel measurement enabled**: combined with `hero_cta_primary`/`hero_cta_secondary` (homepage) and `services_cta_click` (services page), GA4 can now compute conversion rates per CTA — i.e. "of the visitors who clicked Schedule a Compliance Readiness Visit on home, what % completed the intake form requesting that service".
+- Verified: walkthrough form fires both `generate_lead` (existing) and `intake_submit_success` (new) on success. Client intake event payload verified via direct dataLayer push test (handler path identical to walkthrough form).
+
 ## Deployment
 - Frontend: Vercel (manual redeploy after GitHub push)
 - Backend: Railway (auto-deploys on GitHub push)

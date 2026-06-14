@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { ArrowRight, Check, Phone, Shield } from 'lucide-react';
-import { trackWalkthroughRequest } from '../utils/analytics';
+import { trackWalkthroughRequest, trackEvent } from '../utils/analytics';
 import SEO from '../components/SEO';
 
 const API = process.env.REACT_APP_BACKEND_URL;
@@ -65,6 +65,11 @@ const IntakePage = () => {
       });
       if (!res.ok) throw new Error('Submission failed');
       trackWalkthroughRequest(form.service);
+      trackEvent('intake_submit_success', {
+        service_requested: form.service || 'safety-walkthrough',
+        source_form: 'request-walkthrough',
+        page_path: typeof window !== 'undefined' ? window.location.pathname : '/request-walkthrough',
+      });
       setSubmitted(true);
     } catch {
       setError('Something went wrong. Please try again or call (336) 329-8899.');

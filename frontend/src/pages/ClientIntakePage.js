@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Check, ArrowRight } from 'lucide-react';
 import SEO from '../components/SEO';
-import { getAttribution } from '../utils/analytics';
+import { getAttribution, trackEvent } from '../utils/analytics';
 
 const API = process.env.REACT_APP_BACKEND_URL;
 
@@ -298,6 +298,11 @@ const ClientIntakePage = () => {
       });
       if (res.ok) {
         const d = await res.json();
+        trackEvent('intake_submit_success', {
+          service_requested: f.serviceSelected || 'unknown',
+          source_form: 'client-intake',
+          page_path: typeof window !== 'undefined' ? window.location.pathname : '/intake',
+        });
         navigate(`/thank-you-intake?token=${encodeURIComponent(d.clientToken)}`);
       }
     } catch (err) {

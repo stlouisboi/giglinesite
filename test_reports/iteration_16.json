@@ -1,0 +1,49 @@
+{
+  "summary": "GL-WEB-015 Services Page Sales Path Refinement — frontend-only acceptance testing. All 21 acceptance criteria PASS, including the 8 content/structure changes on /services and the 2 new GA4 hero CTA custom events on the homepage. Mobile responsiveness verified at 375x812 (Readiness Path table swaps to mobile-stacked layout, all 13 sections render).",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/test_reports/iteration_16.json"
+  ],
+  "acceptance_criteria_results": {
+    "1_h1_exact_text": "PASS — 'OSHA-Readiness Support for Small Industrial Operations'",
+    "2_hero_subheadline": "PASS",
+    "3_authority_line_exact": "PASS",
+    "4_section_vertical_order_13_sections": "PASS — services-hero(110) → authority-band(642) → safety-check(835) → who-helps(1207) → readiness-visit(1963) → standalone(2861) → control-system(4616) → recurring(5594) → readiness-path(6538) → sample-report(7645) → founder(11302) → faq(11881) → bottom-cta(13526). Ascending order confirmed.",
+    "5_safety_check_kicker_and_followup": "PASS — kicker='Not sure where to start?', follow-up link to /intake?service=compliance-readiness-visit",
+    "6_who_helps_4_cards": "PASS — manufacturers, warehouses-distribution, contractors, fleet-operations",
+    "7_compliance_readiness_visit_badge_price_cta": "PASS — 'RECOMMENDED STARTING POINT' badge, $1,500, CTA to /intake?service=compliance-readiness-visit",
+    "8_standalone_4_services_and_ctas": "PASS — walkthrough, doc-review, incident, doc-dev all present with CTAs",
+    "9_osha_ready_control_system": "PASS — $4,500, CTA to /intake?service=osha-ready-control-system, all 5 buildout items present, dark navy background",
+    "10_recurring_quarterly_annual": "PASS — Quarterly $750, Annual $9,000",
+    "11_readiness_path_table_5_rows_phone": "PASS — all 5 stages, all 5 offer links to correct intake URLs, phone tel:+13363298899 visible in footnote",
+    "12_sample_report_heading": "PASS — 'What a GigLine report actually looks like.'",
+    "13_founder_block_with_about_link": "PASS — photo, headline, bio, /about link present",
+    "14_faq_5_expandable_items": "PASS — all 5 details elements toggle open on click",
+    "15_pricing_reference_7_rows": "PASS — all 7 rows match exact name + 'Starting at $X' format",
+    "16_final_cta_tap_to_call": "PASS — href='tel:+13363298899'",
+    "17_no_gap_check_phrase": "PASS — phrase absent from rendered page content",
+    "18_mobile_responsiveness_375": "PASS — readiness-path-mobile visible, desktop table hidden, all 13 sections render",
+    "19_ga4_hero_cta_primary": "PASS — dataLayer captured ['event','hero_cta_primary',{cta_text:'Request a Safety Walkthrough', cta_destination:'/request-walkthrough', page_path:'/'}]",
+    "20_ga4_hero_cta_secondary": "PASS — dataLayer captured ['event','hero_cta_secondary',{cta_text:'Start Client Intake', cta_destination:'/intake', page_path:'/'}]",
+    "21_hero_pricing_anchor_text": "PASS — 'Safety Walkthrough from $850. Compliance Readiness Visit from $1,500. Start where your operation needs it most.'"
+  },
+  "action_items": [],
+  "critical_code_review_comments": [
+    "ServicesPage.js is ~895 lines — approaching the >700 line threshold. Consider splitting the 14 section blocks into smaller sub-components (e.g., ServicesHero, WhoHelpsGrid, ReadinessPathTable, PricingReferenceBlock) for maintainability. Not blocking.",
+    "Minor (pre-existing, not from this change): console warning 'Invalid DOM property fetchpriority. Did you mean fetchPriority?' on /vince-inspecting.webp <img> on HomePage. React expects camelCase fetchPriority. Cosmetic only — no functional impact.",
+    "analytics.js trackEvent auto-appends first/last-touch attribution params alongside the explicit cta_text/cta_destination/page_path — verified does not interfere with acceptance criteria (extra keys allowed)."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a (skipped per request)", "frontend": "100% (21/21 acceptance criteria)"},
+  "test_credentials": "n/a (public marketing pages, no auth)",
+  "seed_data_creation": "none",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "GL-WEB-015 fully verified. /services has 14 sections (13 with data-testid wrappers + CaseStudyTeaser between sample-report and founder which has no testid wrapper in spec). Section order, content, badges, prices, GA4 events, mobile layout, and the global removal of 'gap check' all confirmed clean on preview URL z-project-9.preview.emergentagent.com. No retest needed unless main agent makes further edits.",
+  "rca_of_the_issue": "n/a — no defects found"
+}

@@ -4,7 +4,7 @@ import { ArrowRight, Check, GraduationCap, MonitorSmartphone, FileText } from 'l
 import SEO from '../components/SEO';
 import CaseStudyTeaser from '../components/CaseStudyTeaser';
 import FieldManualBand from '../components/FieldManualBand';
-import { trackPhoneClick, trackReviewClick } from '../utils/analytics';
+import { trackPhoneClick, trackReviewClick, trackEvent } from '../utils/analytics';
 
 /* ── Scroll-reveal ── */
 const useReveal = () => {
@@ -203,6 +203,11 @@ const HomePage = () => {
                 <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
                   <Link
                     to="/request-walkthrough"
+                    onClick={() => trackEvent('hero_cta_primary', {
+                      cta_text: 'Request a Safety Walkthrough',
+                      cta_destination: '/request-walkthrough',
+                      page_path: typeof window !== 'undefined' ? window.location.pathname : '/',
+                    })}
                     className="bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center justify-center gap-2 shadow-lg shadow-[#1F6FEB]/20"
                     data-testid="hero-cta-primary"
                   >
@@ -211,6 +216,11 @@ const HomePage = () => {
                   </Link>
                   <Link
                     to="/intake"
+                    onClick={() => trackEvent('hero_cta_secondary', {
+                      cta_text: 'Start Client Intake',
+                      cta_destination: '/intake',
+                      page_path: typeof window !== 'undefined' ? window.location.pathname : '/',
+                    })}
                     className="border-2 border-white/25 hover:border-white/55 text-white font-semibold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center justify-center gap-2"
                     data-testid="hero-cta-secondary"
                   >

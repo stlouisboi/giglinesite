@@ -93,8 +93,8 @@ const WalkthroughLandingPage = () => {
             src="/gigline-logo-2026.png"
             alt="GigLine Safety & Compliance"
             className="h-9 md:h-11 w-auto"
-            width="232"
-            height="90"
+            width="200"
+            height="100"
           />
         </a>
         <a
@@ -477,8 +477,8 @@ const WalkthroughLandingPage = () => {
               src="/gigline-logo-2026.png"
               alt="GigLine Safety & Compliance"
               className="h-9 md:h-10 w-auto"
-              width="232"
-              height="90"
+              width="200"
+              height="100"
             />
           </a>
 

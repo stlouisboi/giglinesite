@@ -20,22 +20,22 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 bg-white" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }} data-testid="navbar">
       <nav className="container" aria-label="Main navigation">
-        <div className="flex items-center justify-between h-16 md:h-20 lg:h-24">
+        <div className="flex items-center justify-between h-20 md:h-24 lg:h-28">
           {/* Logo */}
           <Link to="/" className="flex items-center" data-testid="navbar-logo">
             <img
               src="/gigline-logo-2026.png"
               alt="GigLine Safety & Compliance"
-              className="h-14 md:h-16 lg:h-16 xl:h-20 w-auto"
+              className="h-16 md:h-20 lg:h-20 xl:h-24 w-auto"
               loading="eager"
-              fetchpriority="high"
-              width="232"
-              height="90"
+              fetchPriority="high"
+              width="200"
+              height="100"
             />
           </Link>
 
           {/* Desktop Navigation — appears at lg (1024px+); tablet portrait gets the hamburger menu */}
-          <div className="hidden lg:flex items-center space-x-7 xl:space-x-8" data-testid="desktop-nav">
+          <div className="hidden lg:flex items-center space-x-7 xl:space-x-8 pl-8 xl:pl-12" data-testid="desktop-nav">
             {navLinks.map((link) => (
               <Link
                 key={link.path}

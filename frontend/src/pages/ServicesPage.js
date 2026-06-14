@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Phone, Check, Factory, Truck, Warehouse, HardHat, ShieldCheck } from 'lucide-react';
-import { trackServiceBooking, trackPhoneClick } from '../utils/analytics';
+import { trackServiceBooking, trackPhoneClick, trackEvent } from '../utils/analytics';
 import SEO from '../components/SEO';
 import CaseStudyTeaser from '../components/CaseStudyTeaser';
 import SampleReportSection from '../components/SampleReportSection';
@@ -38,6 +38,16 @@ const Reveal = ({ children, className = '', delay = 0 }) => {
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
 
 const intakeLink = (svc) => `/intake?service=${encodeURIComponent(svc)}`;
+
+/* GA4 services CTA click — fired alongside intent so we can see full funnel */
+const fireServicesCtaClick = (ctaText, ctaDestination) => {
+  if (typeof window === 'undefined') return;
+  trackEvent('services_cta_click', {
+    cta_text: ctaText,
+    cta_destination: ctaDestination,
+    page_path: window.location.pathname,
+  });
+};
 
 /* ═══ Who GigLine Helps ═══ */
 const WHO_HELPS = [
@@ -184,25 +194,52 @@ const ServicesPage = () => {
       />
 
       {/* ═══ 1. HERO ═══ */}
-      <section className="relative py-20 md:py-28" style={{ backgroundColor: '#0B1F33' }} data-testid="services-hero">
-        <div className="container max-w-5xl">
-          <Reveal>
-            <p className="uppercase tracking-[3px] text-[#1F6FEB] mb-5 font-bold" style={{ ...mono, fontSize: '11px' }}>
-              Services · GigLine Safety & Compliance
-            </p>
-            <h1
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.15] mb-6 max-w-4xl"
-              data-testid="services-headline"
-            >
-              OSHA-Readiness Support for Small Industrial Operations
-            </h1>
-            <p
-              className="text-base md:text-lg text-[#CBD5E1] leading-relaxed max-w-3xl"
-              data-testid="services-sub"
-            >
-              GigLine helps manufacturers, warehouses, contractors, and fleet operations identify visible safety hazards, documentation gaps, and inspection-readiness issues before they become citations, insurance problems, or customer-audit failures.
-            </p>
-          </Reveal>
+      <section
+        className="relative overflow-hidden"
+        style={{ backgroundColor: '#0B1F33' }}
+        data-testid="services-hero"
+      >
+        <div className="flex flex-col md:flex-row min-h-[480px] md:min-h-[560px]">
+          {/* Image — left 40% on desktop, top on mobile */}
+          <div className="relative w-full md:w-2/5 md:flex-shrink-0">
+            <img
+              src="/services-hero.jpg"
+              alt="On-site safety walkthrough — warehouse and manufacturing operations across the Piedmont Triad"
+              className="w-full h-64 md:h-full object-cover"
+              loading="eager"
+              fetchPriority="high"
+              data-testid="services-hero-image"
+            />
+            {/* Soft navy fade on right edge to blend into copy panel on desktop */}
+            <div
+              className="hidden md:block absolute inset-y-0 right-0 w-24 pointer-events-none"
+              style={{
+                background: 'linear-gradient(to right, rgba(11,31,51,0) 0%, rgba(11,31,51,0.92) 100%)',
+              }}
+              aria-hidden="true"
+            />
+          </div>
+
+          {/* Copy — right 60% on desktop */}
+          <div className="flex-grow flex items-center px-6 md:px-12 lg:px-16 py-12 md:py-16 relative z-10">
+            <Reveal>
+              <p className="uppercase tracking-[3px] text-[#1F6FEB] mb-5 font-bold" style={{ ...mono, fontSize: '11px' }}>
+                Services · GigLine Safety & Compliance
+              </p>
+              <h1
+                className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.15] mb-6 max-w-2xl"
+                data-testid="services-headline"
+              >
+                OSHA-Readiness Support for Small Industrial Operations
+              </h1>
+              <p
+                className="text-base md:text-lg text-[#CBD5E1] leading-relaxed max-w-2xl"
+                data-testid="services-sub"
+              >
+                GigLine helps manufacturers, warehouses, contractors, and fleet operations identify visible safety hazards, documentation gaps, and inspection-readiness issues before they become citations, insurance problems, or customer-audit failures.
+              </p>
+            </Reveal>
+          </div>
         </div>
       </section>
 
@@ -387,7 +424,10 @@ const ServicesPage = () => {
                   </div>
                   <Link
                     to={intakeLink('compliance-readiness-visit')}
-                    onClick={() => trackServiceBooking && trackServiceBooking('Compliance Readiness Visit')}
+                    onClick={() => {
+                      fireServicesCtaClick('Schedule a Visit', intakeLink('compliance-readiness-visit'));
+                      trackServiceBooking && trackServiceBooking('Compliance Readiness Visit');
+                    }}
                     className="w-full inline-flex items-center justify-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-6 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#1F6FEB]/20"
                     data-testid="svc-card-compliance-readiness-cta"
                   >
@@ -515,7 +555,10 @@ const ServicesPage = () => {
 
               <Link
                 to={intakeLink('osha-ready-control-system')}
-                onClick={() => trackServiceBooking && trackServiceBooking('GigLine OSHA-Ready Control System')}
+                onClick={() => {
+                  fireServicesCtaClick('Request Buildout', intakeLink('osha-ready-control-system'));
+                  trackServiceBooking && trackServiceBooking('GigLine OSHA-Ready Control System');
+                }}
                 className="inline-flex items-center gap-2 bg-[#D4A93E] hover:bg-[#B58F2E] text-[#0B1F33] font-bold px-7 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#D4A93E]/25"
                 data-testid="control-system-cta"
               >
@@ -683,6 +726,7 @@ const ServicesPage = () => {
                   <div>
                     <Link
                       to={row.link}
+                      onClick={() => fireServicesCtaClick(`Readiness Path · ${row.stage}`, row.link)}
                       className="inline-flex items-center gap-2 text-[#1F6FEB] hover:text-[#1558C0] font-semibold"
                       data-testid={`readiness-path-link-${i + 1}`}
                     >
@@ -711,7 +755,11 @@ const ServicesPage = () => {
                     Stage {i + 1} · {row.stage}
                   </p>
                   <p className="text-[#102133]/80 italic mb-3">&ldquo;{row.need}&rdquo;</p>
-                  <Link to={row.link} className="inline-flex items-center gap-2 text-[#1F6FEB] font-semibold">
+                  <Link
+                    to={row.link}
+                    onClick={() => fireServicesCtaClick(`Readiness Path · ${row.stage}`, row.link)}
+                    className="inline-flex items-center gap-2 text-[#1F6FEB] font-semibold"
+                  >
                     {row.offer}
                     <ArrowRight size={14} />
                   </Link>

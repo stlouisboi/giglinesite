@@ -202,29 +202,29 @@ const HomePage = () => {
               <div className="flex flex-col items-start gap-3 mb-5" data-testid="hero-ctas">
                 <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
                   <Link
-                    to="/request-walkthrough"
+                    to="/intake?service=compliance-readiness-visit"
                     onClick={() => trackEvent('hero_cta_primary', {
-                      cta_text: 'Request a Safety Walkthrough',
-                      cta_destination: '/request-walkthrough',
+                      cta_text: 'Schedule a Compliance Readiness Visit',
+                      cta_destination: '/intake?service=compliance-readiness-visit',
                       page_path: typeof window !== 'undefined' ? window.location.pathname : '/',
                     })}
                     className="bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center justify-center gap-2 shadow-lg shadow-[#1F6FEB]/20"
                     data-testid="hero-cta-primary"
                   >
-                    Request a Safety Walkthrough
+                    Schedule a Compliance Readiness Visit
                     <ArrowRight size={18} />
                   </Link>
                   <Link
-                    to="/intake"
+                    to="/request-walkthrough"
                     onClick={() => trackEvent('hero_cta_secondary', {
-                      cta_text: 'Start Client Intake',
-                      cta_destination: '/intake',
+                      cta_text: 'Request a Safety Walkthrough',
+                      cta_destination: '/request-walkthrough',
                       page_path: typeof window !== 'undefined' ? window.location.pathname : '/',
                     })}
                     className="border-2 border-white/25 hover:border-white/55 text-white font-semibold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center justify-center gap-2"
                     data-testid="hero-cta-secondary"
                   >
-                    Start Client Intake
+                    Request a Safety Walkthrough
                   </Link>
                 </div>
                 <p className="text-base font-semibold text-white leading-relaxed" data-testid="hero-pricing-anchor">

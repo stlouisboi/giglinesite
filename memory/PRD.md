@@ -171,6 +171,12 @@ Goal: get GigLine cited in answers from ChatGPT, Perplexity, Claude, Google AI O
 - **GA4 hero CTA tracking**: `hero_cta_primary` and `hero_cta_secondary` custom events wired in HomePage.js via `trackEvent()`. Params: `cta_text`, `cta_destination`, `page_path`. Verified live via instrumented Playwright + testing agent — both events fire with correct payloads on click. GA4 property `G-FNX42NP1QT` already connected in index.html.
 - Testing agent (iteration_16): 21/21 acceptance criteria PASS, zero issues found.
 
+## GL-WEB-015 Follow-ups — Services Hero Image, Homepage CTA Swap, Services CTA Tracking (Feb 13, 2026)
+- **Services page hero image restored**: Asymmetric layout (image left ~40%, copy right ~60%) on navy. Uses `/services-hero.jpg` (1600×900, already in public/). Soft navy fade gradient blends the image into the copy panel on desktop. Mobile stacks image-on-top.
+- **Homepage primary CTA swap**: `hero-cta-primary` now reads "Schedule a Compliance Readiness Visit" → `/intake?service=compliance-readiness-visit`. `hero-cta-secondary` is now "Request a Safety Walkthrough" → `/request-walkthrough`. The "Start Client Intake" CTA was dropped. GA4 `hero_cta_primary` and `hero_cta_secondary` events updated to capture the new cta_text + cta_destination. Aligns homepage with the /services sales path so day-one tracking data is meaningful.
+- **Services CTA tracking wired**: New helper `fireServicesCtaClick()` fires `services_cta_click` GA4 events with `cta_text`, `cta_destination`, `page_path`. Attached to: Compliance Readiness Visit "Schedule a Visit" CTA, OSHA-Ready Control System "Request Buildout" CTA, and all 10 Readiness Path links (5 desktop + 5 mobile, labeled "Readiness Path · {stage}"). Combined with the homepage hero events this gives full-funnel visibility: which homepage CTA drove the click → which services-page CTA the visitor ultimately requested.
+- Self-verified via instrumented Playwright: all 7 CTA categories emit correct payloads on click. Skipped second testing-agent run (changes are small and additive on top of 21/21 PASS in iteration_16).
+
 ## Deployment
 - Frontend: Vercel (manual redeploy after GitHub push)
 - Backend: Railway (auto-deploys on GitHub push)

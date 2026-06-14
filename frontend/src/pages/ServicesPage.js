@@ -220,18 +220,36 @@ const ServicesPage = () => {
               <Reveal key={s.testid} delay={s.featured ? 0 : 80}>
                 <div
                   className={`relative h-full flex flex-col rounded-2xl bg-white transition-all duration-300 ${
-                    s.featured ? 'lg:-mt-3 lg:mb-3 lg:scale-[1.02]' : ''
+                    s.featured ? 'lg:-mt-6 lg:mb-3 lg:scale-[1.045] z-10' : ''
                   }`}
                   style={{
-                    border: s.featured ? '2px solid #1F6FEB' : '1px solid rgba(16,33,51,0.10)',
+                    border: s.featured ? '3px solid #1F6FEB' : '1px solid rgba(16,33,51,0.10)',
                     boxShadow: s.featured
-                      ? '0 24px 48px -16px rgba(31,111,235,0.30), 0 0 0 1px rgba(31,111,235,0.10) inset'
+                      ? '0 32px 64px -16px rgba(31,111,235,0.45), 0 0 0 6px rgba(31,111,235,0.08), 0 0 80px -20px rgba(31,111,235,0.35)'
                       : '0 6px 14px rgba(16,33,51,0.05)',
                   }}
                   data-testid={s.testid}
                   data-featured={s.featured ? 'true' : 'false'}
                 >
-                  {/* SERVICE 0X + featured badge row */}
+                  {/* MOST POPULAR top ribbon (featured only) */}
+                  {s.featured && (
+                    <div
+                      className="absolute -top-4 left-1/2 -translate-x-1/2 px-5 py-2 rounded-full shadow-lg"
+                      style={{
+                        background: 'linear-gradient(135deg, #1F6FEB 0%, #1558C0 100%)',
+                        boxShadow: '0 8px 20px -4px rgba(31,111,235,0.55), 0 0 0 4px #FFFFFF',
+                      }}
+                    >
+                      <span
+                        className="uppercase tracking-[2px] font-bold text-white whitespace-nowrap"
+                        style={{ ...mono, fontSize: '10.5px' }}
+                      >
+                        ★ Most Popular
+                      </span>
+                    </div>
+                  )}
+
+                  {/* SERVICE 0X row */}
                   <div className="flex items-center justify-between px-8 pt-7 pb-1">
                     <span
                       className="uppercase tracking-[2.5px] font-bold text-[#1F6FEB]"
@@ -239,14 +257,6 @@ const ServicesPage = () => {
                     >
                       Service {s.serviceNum}
                     </span>
-                    {s.featured && (
-                      <span
-                        className="px-3 py-1 rounded-full bg-[#1F6FEB] text-white uppercase tracking-[1.5px] font-bold"
-                        style={{ ...mono, fontSize: '9.5px' }}
-                      >
-                        {s.badge}
-                      </span>
-                    )}
                   </div>
 
                   {/* Title */}
@@ -302,7 +312,7 @@ const ServicesPage = () => {
                         <span className="uppercase tracking-[2px] text-[#102133]/55 font-bold" style={{ ...mono, fontSize: '10px' }}>
                           Starting At
                         </span>
-                        <span className="text-3xl md:text-[2rem] font-bold text-[#1F6FEB]" style={mono}>
+                        <span className="text-3xl md:text-[2.25rem] font-bold text-[#1F6FEB] leading-none tracking-tight">
                           ${s.price}
                         </span>
                       </div>

@@ -39,37 +39,69 @@ const mono = { fontFamily: "'JetBrains Mono', monospace" };
 /* ── PRIMARY CARDS (Section 1) ── */
 const PRIMARY = [
   {
+    serviceNum: '01',
     badge: 'ENTRY POINT',
     title: 'Safety Walkthrough Report',
-    price: 'From $850',
-    body: 'GigLine walks your floor and tells you specifically what an OSHA inspector would find. Every finding is documented with photos, the applicable CFR citation, the 2026 penalty exposure, and a plain-language corrective action. Written report delivered within 48 hours.',
-    bodyExtra: 'No training to schedule. No software to learn. Just ground truth from the floor.',
-    fine: "Best for operations that want to start with a physical hazard assessment — or facilities that have recently completed a documentation review and need a floor walkthrough.",
+    bestWhen: [
+      'You want to know where you stand before OSHA shows up',
+      "You've had recent growth, new equipment, or facility changes",
+      "You're about to go through an insurance review",
+    ],
+    whatYouGet: [
+      'On-site walkthrough (1–3 hours)',
+      'Photo-documented hazard findings',
+      'CFR citations + 2026 penalty exposure per finding',
+      'Top 10 Fixes report — RED / AMBER / GREEN priority',
+      'Delivered within 24–48 hours',
+    ],
+    price: '850',
     cta: 'Request a Walkthrough',
     intakeService: 'safety-walkthrough-report',
     testid: 'svc-card-walkthrough',
     featured: false,
   },
   {
+    serviceNum: '02',
     badge: 'MOST POPULAR',
     title: 'Compliance Readiness Visit',
-    price: 'From $1,500',
-    body: 'GigLine checks what OSHA sees on the floor and what OSHA asks for in the office — in one visit. Includes a full safety walkthrough, OSHA Documentation Readiness Review, compliance score, photo documentation, CFR citations, and a written report delivered within 48 hours.',
-    bodyExtra: 'The Supervisor Safety Starter System ($199 value) is included with every Compliance Readiness Visit.',
-    fine: 'Best for operations that want complete coverage — physical hazards and documentation gaps — in one engagement.',
-    cta: 'Schedule a Compliance Readiness Visit',
+    bestWhen: [
+      'You want both the floor AND documentation reviewed in one visit',
+      "You're preparing for an OSHA inspection, audit, or insurance review",
+      'You need a single compliance score across hazards and paperwork',
+    ],
+    whatYouGet: [
+      'Full safety walkthrough on-site',
+      'OSHA Documentation Readiness Review',
+      'Compliance percentage score',
+      'Photo documentation + CFR citations',
+      'Written report within 48 hours',
+      'Supervisor Safety Starter System ($199 value) included',
+    ],
+    price: '1,500',
+    cta: 'Schedule a Visit',
     intakeService: 'compliance-readiness-visit',
     testid: 'svc-card-compliance-readiness',
     featured: true,
   },
   {
+    serviceNum: '03',
     badge: 'PREMIUM',
     title: 'GigLine OSHA-Ready Control System',
-    price: 'Starting at $4,500',
-    body: 'GigLine builds your inspection-ready documentation system from the ground up. Four-binder physical command system. Digital folder architecture. Master document index. Training matrix. SDS organization. Corrective action tracker. 90-day maintenance calendar. Supervisor walkthrough included.',
-    bodyExtra: 'When OSHA, a customer, an auditor, or an insurance carrier asks for your safety documentation — your team knows exactly where it is, what is current, and what still needs action.',
-    fine: 'Best for operations with scattered documentation that need order, structure, and defensibility fast.',
-    cta: 'Request a Buildout Consultation',
+    bestWhen: [
+      'Your documentation is scattered across drives, binders, and emails',
+      'A customer, auditor, or insurer is asking for proof',
+      'You need a system your team can maintain after handoff',
+    ],
+    whatYouGet: [
+      'Four-binder physical command system',
+      'Digital folder architecture + master document index',
+      'Training matrix + SDS organization',
+      'Corrective action tracker',
+      '90-day maintenance calendar',
+      'Supervisor walkthrough included',
+    ],
+    price: '4,500',
+    cta: 'Request Buildout',
     intakeService: 'osha-ready-control-system',
     testid: 'svc-card-control-system',
     featured: false,
@@ -174,15 +206,24 @@ const ServicesPage = () => {
       {/* ═══ S1 — PRIMARY CARDS ═══ */}
       <section className="py-20 md:py-28 bg-white" data-testid="services-primary">
         <div className="container max-w-7xl">
+          <Reveal>
+            <p className="uppercase tracking-[3px] text-[#1F6FEB] mb-5 font-bold" style={{ ...mono, fontSize: '11px' }}>
+              Choose Your Engagement
+            </p>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#102133] leading-[1.15] mb-14 max-w-3xl" data-testid="services-section-headline">
+              Each service starts with a fixed price, ends with a written deliverable.
+            </h2>
+          </Reveal>
+
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-7 items-stretch">
             {PRIMARY.map((s) => (
               <Reveal key={s.testid} delay={s.featured ? 0 : 80}>
                 <div
-                  className={`relative h-full flex flex-col rounded-xl bg-white transition-all duration-300 ${
+                  className={`relative h-full flex flex-col rounded-2xl bg-white transition-all duration-300 ${
                     s.featured ? 'lg:-mt-3 lg:mb-3 lg:scale-[1.02]' : ''
                   }`}
                   style={{
-                    border: s.featured ? '2px solid #1F6FEB' : '1px solid rgba(16,33,51,0.12)',
+                    border: s.featured ? '2px solid #1F6FEB' : '1px solid rgba(16,33,51,0.10)',
                     boxShadow: s.featured
                       ? '0 24px 48px -16px rgba(31,111,235,0.30), 0 0 0 1px rgba(31,111,235,0.10) inset'
                       : '0 6px 14px rgba(16,33,51,0.05)',
@@ -190,54 +231,93 @@ const ServicesPage = () => {
                   data-testid={s.testid}
                   data-featured={s.featured ? 'true' : 'false'}
                 >
-                  {/* Badge */}
-                  <div className="px-7 pt-7 pb-2 flex items-center gap-2">
-                    {s.featured && <Star size={14} className="text-[#F2D072]" fill="#F2D072" />}
+                  {/* SERVICE 0X + featured badge row */}
+                  <div className="flex items-center justify-between px-8 pt-7 pb-1">
                     <span
-                      className="uppercase tracking-[2.5px] font-bold"
-                      style={{
-                        ...mono,
-                        fontSize: '10.5px',
-                        color: s.featured ? '#1F6FEB' : '#102133',
-                        opacity: s.featured ? 1 : 0.55,
-                      }}
+                      className="uppercase tracking-[2.5px] font-bold text-[#1F6FEB]"
+                      style={{ ...mono, fontSize: '10.5px' }}
                     >
-                      {s.badge}
+                      Service {s.serviceNum}
                     </span>
+                    {s.featured && (
+                      <span
+                        className="px-3 py-1 rounded-full bg-[#1F6FEB] text-white uppercase tracking-[1.5px] font-bold"
+                        style={{ ...mono, fontSize: '9.5px' }}
+                      >
+                        {s.badge}
+                      </span>
+                    )}
                   </div>
 
-                  {/* Title + Price */}
-                  <div className="px-7 pb-5">
-                    <h2 className="text-xl md:text-2xl font-bold text-[#102133] leading-tight mb-3">
+                  {/* Title */}
+                  <div className="px-8 pt-3 pb-6">
+                    <h3 className="text-2xl md:text-[1.625rem] font-bold text-[#102133] leading-[1.2]">
                       {s.title}
-                    </h2>
-                    <p className="text-2xl md:text-3xl font-bold text-[#1F6FEB]" style={mono}>
-                      {s.price}
-                    </p>
+                    </h3>
                   </div>
 
-                  {/* Divider */}
-                  <div className="mx-7 h-px" style={{ backgroundColor: s.featured ? 'rgba(31,111,235,0.25)' : 'rgba(16,33,51,0.10)' }} />
-
-                  {/* Body */}
-                  <div className="px-7 py-6 flex-grow flex flex-col">
-                    <p className="text-base text-[#102133]/85 leading-relaxed mb-4">{s.body}</p>
-                    <p className="text-base text-[#102133]/85 leading-relaxed mb-6">{s.bodyExtra}</p>
-                    <p className="text-sm text-[#102133]/55 leading-relaxed mt-auto italic" style={mono}>
-                      {s.fine}
+                  {/* BEST WHEN */}
+                  <div className="px-8 pb-6">
+                    <p
+                      className="uppercase tracking-[2px] text-[#102133]/55 font-bold mb-4"
+                      style={{ ...mono, fontSize: '10.5px' }}
+                    >
+                      Best When
                     </p>
+                    <ul className="space-y-3">
+                      {s.bestWhen.map((line, i) => (
+                        <li key={i} className="flex items-start gap-3 text-[#102133]/85 text-base leading-snug">
+                          <span className="flex-shrink-0 mt-2 w-1.5 h-1.5 rounded-full bg-[#1F6FEB]" aria-hidden="true" />
+                          <span>{line}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
 
-                  {/* CTA */}
-                  <div className="px-7 pb-7">
+                  {/* WHAT YOU GET */}
+                  <div className="px-8 pb-7 flex-grow">
+                    <p
+                      className="uppercase tracking-[2px] text-[#102133]/55 font-bold mb-4"
+                      style={{ ...mono, fontSize: '10.5px' }}
+                    >
+                      What You Get
+                    </p>
+                    <ul className="space-y-2.5">
+                      {s.whatYouGet.map((line, i) => (
+                        <li key={i} className="flex items-start gap-3 text-[#102133]/70 text-sm leading-snug">
+                          <span className="flex-shrink-0 mt-1.5 w-1 h-1 rounded-full bg-[#102133]/35" aria-hidden="true" />
+                          <span>{line}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Price block */}
+                  <div className="px-8 pb-5">
+                    <div
+                      className="rounded-lg px-5 py-4 flex items-baseline justify-between gap-3"
+                      style={{ border: '1px solid rgba(16,33,51,0.10)', backgroundColor: '#FBFCFD' }}
+                    >
+                      <div className="flex items-baseline gap-2 flex-wrap">
+                        <span className="uppercase tracking-[2px] text-[#102133]/55 font-bold" style={{ ...mono, fontSize: '10px' }}>
+                          Starting At
+                        </span>
+                        <span className="text-3xl md:text-[2rem] font-bold text-[#1F6FEB]" style={mono}>
+                          ${s.price}
+                        </span>
+                      </div>
+                      <span className="text-[#102133]/45 italic" style={{ ...mono, fontSize: '11px' }}>
+                        fixed quote
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Full-width CTA */}
+                  <div className="px-8 pb-8">
                     <Link
                       to={intakeLink(s.intakeService)}
                       onClick={() => trackServiceBooking && trackServiceBooking(s.title)}
-                      className={`w-full inline-flex items-center justify-center gap-2 font-bold px-6 py-3.5 rounded-lg text-base transition-colors ${
-                        s.featured
-                          ? 'bg-[#1F6FEB] hover:bg-[#1558C0] text-white shadow-lg shadow-[#1F6FEB]/25'
-                          : 'border-2 border-[#102133]/15 hover:border-[#1F6FEB] text-[#102133] hover:text-[#1F6FEB]'
-                      }`}
+                      className="w-full inline-flex items-center justify-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-6 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#1F6FEB]/20"
                       data-testid={`${s.testid}-cta`}
                     >
                       {s.cta}

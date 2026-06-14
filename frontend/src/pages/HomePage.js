@@ -217,8 +217,8 @@ const HomePage = () => {
                     Start Client Intake
                   </Link>
                 </div>
-                <p className="text-base font-semibold text-white" data-testid="hero-pricing-anchor">
-                  Walkthroughs from <span className="text-[#1F6FEB]">$850</span> &middot; Documentation Readiness Reviews from <span className="text-[#1F6FEB]">$750</span>
+                <p className="text-base font-semibold text-white leading-relaxed" data-testid="hero-pricing-anchor">
+                  Safety Walkthrough from <span className="text-[#1F6FEB]">$850</span>. Compliance Readiness Visit from <span className="text-[#1F6FEB]">$1,500</span>. Start where your operation needs it most.
                 </p>
                 <p className="text-sm text-[#CBD5E1] leading-relaxed max-w-md" data-testid="hero-pricing-direction">
                   Fixed quote before scheduling. Written report in 48 hours. No retainer.{' '}

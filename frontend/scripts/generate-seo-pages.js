@@ -183,7 +183,7 @@ const routes = [
       <h1>Practical Safety Walkthroughs &amp; OSHA Documentation Readiness Reviews for Manufacturers, Warehouses, Contractors &amp; Fleet Operations in North Carolina</h1>
       <p>On-site walkthroughs, OSHA Documentation Readiness Reviews, and OSHA-focused compliance visits — clear findings, photo-documented reports in 48 hours, no retainer. Based in Kernersville, NC.</p>
       <p>A single OSHA citation averages $15,625. A GigLine engagement costs a fraction — and gives you a clear picture of where you stand before an inspector shows up.</p>
-      <p><a href="/request-walkthrough">Request a Safety Walkthrough</a> &middot; <a href="/intake">Start Client Intake</a> &middot; Walkthroughs from $850. OSHA Documentation Readiness Reviews from $750.</p>
+      <p><a href="/request-walkthrough">Request a Safety Walkthrough</a> &middot; <a href="/intake">Start Client Intake</a> &middot; Safety Walkthrough from $850. Compliance Readiness Visit from $1,500. Start where your operation needs it most.</p>
       <p>OSHA 30-Hour Certified · 25+ Years Experience · U.S. Navy Veteran · Serving the Triad &amp; statewide NC</p>
       <h2>Dedicated Service Pages</h2>
       <ul>

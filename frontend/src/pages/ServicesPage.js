@@ -4,6 +4,7 @@ import { ArrowRight, Phone, Check, Star } from 'lucide-react';
 import { trackServiceBooking } from '../utils/analytics';
 import SEO from '../components/SEO';
 import CaseStudyTeaser from '../components/CaseStudyTeaser';
+import SampleReportSection from '../components/SampleReportSection';
 
 /* ── Scroll-reveal — mirrors HomePage.js exactly ── */
 const useReveal = () => {
@@ -411,6 +412,9 @@ const ServicesPage = () => {
           </div>
         </div>
       </section>
+
+      {/* ═══ SAMPLE DELIVERABLE — restored per GL-WEB-014 follow-up ═══ */}
+      <SampleReportSection />
 
       {/* ═══ S3 — RECURRING SERVICES ═══ */}
       <section className="py-20 md:py-24 bg-white" data-testid="services-recurring">

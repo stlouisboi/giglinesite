@@ -158,6 +158,10 @@ Goal: get GigLine cited in answers from ChatGPT, Perplexity, Claude, Google AI O
 - Full file-by-file deliverable written to `/app/memory/GL-WEB-014_Deliverable.md` per Part A acceptance criteria.
 - Manual tasks delegated to Vince: MailerLite sequence labels, GBP services section, RingCentral Knowledge Hub, field-app PDF templates (separate codebase).
 
+## GL-WEB-015 — Homepage Hero Pricing Anchor + Sample Deliverable Restoration (Feb 13, 2026)
+- **Hero pricing anchor rewrite (HomePage.js + generate-seo-pages.js)**: Replaced "Walkthroughs from $850 · Documentation Readiness Reviews from $750" with "Safety Walkthrough from $850. Compliance Readiness Visit from $1,500. Start where your operation needs it most." — anchors visitor on the $1,500 mid-tier rather than the entry-level price.
+- **Sample Deliverable section restored to /services**: `SampleReportSection` re-imported and rendered between Additional Services (S2) and Recurring Services (S3). New heading: "What a GigLine report actually looks like." New subheading: "Every engagement delivers a written report your team can act on. Here is a sample from a recent walkthrough — findings, CFR citations, photos, and corrective actions included." Component body (3-finding mock report) restored unchanged per spec.
+
 ## Deployment
 - Frontend: Vercel (manual redeploy after GitHub push)
 - Backend: Railway (auto-deploys on GitHub push)

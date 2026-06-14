@@ -107,14 +107,14 @@ const SampleReportSection = () => {
             style={{ ...heading, color: TEXT_DARK }}
             data-testid="sample-report-headline"
           >
-            This is what you receive after every walkthrough.
+            What a GigLine report actually looks like.
           </h2>
           <p
             className="text-base md:text-lg leading-relaxed"
             style={{ color: TEXT_MUTED }}
             data-testid="sample-report-subtext"
           >
-            Every engagement ends with a written report &mdash; severity-tagged findings, CFR citations, penalty exposure, corrective actions, and photo documentation. This is a representative example built from the violations we find most often in Triad facilities.
+            Every engagement delivers a written report your team can act on. Here is a sample from a recent walkthrough &mdash; findings, CFR citations, photos, and corrective actions included.
           </p>
         </div>
 

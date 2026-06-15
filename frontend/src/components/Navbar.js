@@ -29,7 +29,7 @@ const Navbar = () => {
               className="h-16 md:h-20 lg:h-20 xl:h-24 w-auto"
               loading="eager"
               fetchPriority="high"
-              width="200"
+              width="252"
               height="100"
             />
           </Link>

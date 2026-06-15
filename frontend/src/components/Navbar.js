@@ -24,7 +24,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center" data-testid="navbar-logo">
             <img
-              src="/gigline-logo-2026.png"
+              src="/gigline-logo-2026.png?v=2"
               alt="GigLine Safety & Compliance"
               className="h-24 md:h-28 lg:h-28 xl:h-32 w-auto"
               loading="eager"

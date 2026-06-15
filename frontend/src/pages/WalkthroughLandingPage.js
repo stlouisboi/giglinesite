@@ -90,10 +90,10 @@ const WalkthroughLandingPage = () => {
       >
         <a href="https://www.giglinecompliance.com" className="flex items-center">
           <img
-            src="/gigline-logo-2026.png?v=3"
+            src="/gigline-logo-2026.png?v=4"
             alt="GigLine Safety & Compliance"
             className="h-9 md:h-11 w-auto"
-            width="345"
+            width="252"
             height="100"
           />
         </a>
@@ -474,10 +474,10 @@ const WalkthroughLandingPage = () => {
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <a href="https://www.giglinecompliance.com" className="block">
             <img
-              src="/gigline-logo-2026.png?v=3"
+              src="/gigline-logo-2026.png?v=4"
               alt="GigLine Safety & Compliance"
               className="h-9 md:h-10 w-auto"
-              width="345"
+              width="252"
               height="100"
             />
           </a>

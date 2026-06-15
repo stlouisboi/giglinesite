@@ -20,16 +20,16 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 bg-white" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }} data-testid="navbar">
       <nav className="container" aria-label="Main navigation">
-        <div className="flex items-center justify-between h-28 md:h-32 lg:h-36">
+        <div className="flex items-center justify-between h-20 md:h-24 lg:h-24 xl:h-28">
           {/* Logo */}
           <Link to="/" className="flex items-center" data-testid="navbar-logo">
             <img
-              src="/gigline-logo-2026.png?v=2"
+              src="/gigline-logo-2026.png?v=3"
               alt="GigLine Safety & Compliance"
-              className="h-24 md:h-28 lg:h-28 xl:h-32 w-auto"
+              className="h-16 md:h-20 lg:h-20 xl:h-24 w-auto"
               loading="eager"
               fetchPriority="high"
-              width="252"
+              width="345"
               height="100"
             />
           </Link>

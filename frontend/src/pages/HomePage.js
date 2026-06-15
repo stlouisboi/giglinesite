@@ -177,7 +177,7 @@ const HomePage = () => {
                     <img
                       src="/assets/carolina-built-badge.png"
                       alt="Carolina-Built · Navy Veteran Owned · Kernersville NC"
-                      className="inline-block w-24 sm:w-28 lg:w-32 h-auto select-none align-middle"
+                      className="inline-block w-24 sm:w-32 md:w-40 lg:w-44 xl:w-48 h-auto select-none align-middle"
                       style={{ filter: 'drop-shadow(0 6px 14px rgba(0,0,0,0.35))' }}
                       loading="eager"
                       data-testid="hero-carolina-badge"

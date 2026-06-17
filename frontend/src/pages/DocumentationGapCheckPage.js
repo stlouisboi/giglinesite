@@ -1,15 +1,19 @@
 import React from 'react';
 import ServiceLandingTemplate from '../components/ServiceLandingTemplate';
 
+/* GL-WEB-008 staged content swap — see ServicesPage.js for details. */
+const GL_WEB_008 = process.env.REACT_APP_GL_WEB_008_ENABLED === 'true';
+const PRICE_LABEL = GL_WEB_008 ? '$950' : '$750';
+
 const DocumentationGapCheckPage = () => (
   <ServiceLandingTemplate
     seoTitle="OSHA Documentation Readiness Review — Written Programs, SDS & Training Records"
-    seoDescription="Independent OSHA Documentation Readiness Review of your written safety programs, SDS binder, training records, and required OSHA documentation. Written findings report in 48 hours. Starting at $750. Serving NC manufacturers, warehouses, contractors, and fleets."
+    seoDescription={`Independent OSHA Documentation Readiness Review of your written safety programs, SDS binder, training records, and required OSHA documentation. Written findings report in 48 hours. Starting at ${PRICE_LABEL}. Serving NC manufacturers, warehouses, contractors, and fleets.`}
     canonical="/documentation-gap-check"
     eyebrow="Service · OSHA Documentation Readiness Review"
     headline="Independent Review of Your Safety Documentation — Programs, SDS & Training Records."
     subheadline="If OSHA opened your binder tomorrow, what would they find? An OSHA Documentation Readiness Review walks every written program, training record, and SDS file against the actual standards — and tells you exactly what is missing, expired, or out of date."
-    priceLine="Starting at $750 · Fixed quote before scheduling · Remote-friendly or on-site."
+    priceLine={`Starting at ${PRICE_LABEL} · Fixed quote before scheduling · Remote-friendly or on-site.`}
     whoItsFor={{
       intro: 'This engagement is built for operations that have safety paperwork — but aren\'t sure it would hold up under an inspector\'s review.',
       bullets: [

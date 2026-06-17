@@ -6,6 +6,27 @@ import SEO from '../components/SEO';
 import CaseStudyTeaser from '../components/CaseStudyTeaser';
 import SampleReportSection from '../components/SampleReportSection';
 
+/* ═══ GL-WEB-008 — Staged content update for OSHA Documentation Readiness Review ═══
+   Triggered by GL-SPEC-APP-002 (Document Review Module — 148 element-level checks).
+   When `REACT_APP_GL_WEB_008_ENABLED` is "true", the services page swaps in:
+     • Description: two-layer (53-item + element-by-element) framing
+     • Price: $750 → $950 (4 places — card, Readiness Path link, Pricing Reference row, FAQ)
+     • Meta description: adds "verify documentation compliance element by element"
+   Flag stays false until Vince confirms conditions 1–5 in Section 5 of GL-WEB-008.
+*/
+const GL_WEB_008 = process.env.REACT_APP_GL_WEB_008_ENABLED === 'true';
+const DOC_REVIEW_DESCRIPTION = GL_WEB_008
+  ? 'Two-layer review of your safety documentation. The first layer checks whether required programs exist — 53 items across seven OSHA categories. The second layer checks whether each document contains what it\u2019s legally required to contain — element by element, standard by standard. You get a single compliance report covering both.'
+  : 'Structured review of written programs, training records, OSHA logs, inspection records, and SDS compliance. 53-item checklist across seven OSHA categories. Compliance percentage score. Priority readiness report with corrective action sequence.';
+const DOC_REVIEW_PRICE = GL_WEB_008 ? 'From $950' : 'From $750';
+const DOC_REVIEW_PRICING_REF_PRICE = GL_WEB_008 ? 'Starting at $950' : 'Starting at $750';
+const DOC_REVIEW_PATH_OFFER = GL_WEB_008
+  ? 'OSHA Documentation Readiness Review \u2014 from $950'
+  : 'OSHA Documentation Readiness Review \u2014 from $750';
+const SERVICES_META_DESCRIPTION = GL_WEB_008
+  ? 'OSHA-readiness support for small industrial operations. GigLine helps manufacturers, warehouses, contractors, and fleet operations identify visible hazards, verify documentation compliance element by element, and resolve inspection-readiness issues before they become citations. Fixed pricing. No retainer.'
+  : 'OSHA-readiness support for small industrial operations. GigLine helps manufacturers, warehouses, contractors, and fleet operations identify visible hazards, documentation gaps, and inspection-readiness issues before they become citations. Fixed pricing. No retainer.';
+
 /* ── Scroll-reveal — mirrors HomePage.js exactly ── */
 const useReveal = () => {
   const ref = useRef(null);
@@ -86,8 +107,8 @@ const STANDALONE = [
   },
   {
     title: 'OSHA Documentation Readiness Review',
-    price: 'From $750',
-    body: 'Structured review of written programs, training records, OSHA logs, inspection records, and SDS compliance. 53-item checklist across seven OSHA categories. Compliance percentage score. Priority readiness report with corrective action sequence.',
+    price: DOC_REVIEW_PRICE,
+    body: DOC_REVIEW_DESCRIPTION,
     best: 'Operations preparing for an audit, insurance review, or customer pre-qualification that need to know specifically what documentation gaps exist before scheduling an on-site visit.',
     cta: 'Request a Documentation Review',
     intakeService: 'documentation-readiness-review',
@@ -143,7 +164,7 @@ const RECURRING = [
 /* ═══ Readiness Path table ═══ */
 const READINESS_PATH = [
   { stage: 'Find the issues', need: 'What would OSHA see on our floor?', offer: 'Safety Walkthrough — from $850', link: intakeLink('safety-walkthrough-report') },
-  { stage: 'Check the files', need: 'Are our documents inspection-ready?', offer: 'OSHA Documentation Readiness Review — from $750', link: intakeLink('documentation-readiness-review') },
+  { stage: 'Check the files', need: 'Are our documents inspection-ready?', offer: DOC_REVIEW_PATH_OFFER, link: intakeLink('documentation-readiness-review') },
   { stage: 'Review both', need: 'We need the floor and files checked.', offer: 'Compliance Readiness Visit — from $1,500', link: intakeLink('compliance-readiness-visit') },
   { stage: 'Build the system', need: 'We need this organized and defensible.', offer: 'OSHA-Ready Control System — from $4,500', link: intakeLink('osha-ready-control-system') },
   { stage: 'Keep it current', need: 'We need ongoing accountability.', offer: 'Quarterly Maintenance — from $750/quarter', link: intakeLink('quarterly-compliance-maintenance') },
@@ -152,7 +173,7 @@ const READINESS_PATH = [
 /* ═══ Pricing reference block ═══ */
 const PRICING_REF = [
   ['Safety Walkthrough', 'Starting at $850'],
-  ['OSHA Documentation Readiness Review', 'Starting at $750'],
+  ['OSHA Documentation Readiness Review', DOC_REVIEW_PRICING_REF_PRICE],
   ['Compliance Readiness Visit', 'Starting at $1,500'],
   ['Incident Review & Corrective Action', 'Starting at $1,200'],
   ['OSHA-Ready Control System', 'Starting at $4,500'],
@@ -189,7 +210,7 @@ const ServicesPage = () => {
     <main className="overflow-x-hidden bg-white">
       <SEO
         title="GigLine Safety Services — Walkthroughs, Compliance Visits & OSHA-Ready Systems | From $850"
-        description="OSHA-readiness support for small industrial operations. GigLine helps manufacturers, warehouses, contractors, and fleet operations identify visible hazards, documentation gaps, and inspection-readiness issues before they become citations. Fixed pricing. No retainer."
+        description={SERVICES_META_DESCRIPTION}
         canonical="/services"
       />
 

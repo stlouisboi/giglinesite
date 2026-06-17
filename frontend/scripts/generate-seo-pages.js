@@ -18,6 +18,21 @@ const BUILD_DIR = path.join(__dirname, '..', 'build');
 const BASE_URL = 'https://www.giglinecompliance.com';
 
 // ───────────────────────────────────────────────
+// GL-WEB-008 — Staged content update for OSHA Documentation Readiness Review
+// (Document Review Module / GL-SPEC-APP-002 launch). Flag stays false until
+// Vince confirms conditions 1–5 in GL-WEB-008 Section 5.
+// ───────────────────────────────────────────────
+const GL_WEB_008 = process.env.REACT_APP_GL_WEB_008_ENABLED === 'true';
+const DOC_REVIEW_DESCRIPTION = GL_WEB_008
+  ? 'Two-layer review of your safety documentation. The first layer checks whether required programs exist — 53 items across seven OSHA categories. The second layer checks whether each document contains what it’s legally required to contain — element by element, standard by standard. You get a single compliance report covering both.'
+  : 'Review of written safety programs, training records, OSHA logs, and inspection forms with a 53-item readiness checklist.';
+const DOC_REVIEW_PRICE_NUM = GL_WEB_008 ? '950' : '750';
+const DOC_REVIEW_PRICE_LABEL = GL_WEB_008 ? '$950' : '$750';
+const SERVICES_META_DESCRIPTION = GL_WEB_008
+  ? 'OSHA-readiness support for small industrial operations. GigLine helps manufacturers, warehouses, contractors, and fleet operations identify visible hazards, verify documentation compliance element by element, and resolve inspection-readiness issues before they become citations. Fixed pricing. No retainer.'
+  : 'OSHA-readiness support for small industrial operations. GigLine helps manufacturers, warehouses, contractors, and fleet operations identify visible hazards, documentation gaps, and inspection-readiness issues before they become citations. Fixed pricing. No retainer.';
+
+// ───────────────────────────────────────────────
 // Shared schema fragments
 // ───────────────────────────────────────────────
 const LOCAL_BUSINESS = {
@@ -64,7 +79,7 @@ const LOCAL_BUSINESS = {
     name: 'Safety Services',
     itemListElement: [
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Safety Walkthrough & Top 10 Fixes Report' }, price: '650', priceCurrency: 'USD' },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'OSHA Documentation Readiness Review' }, price: '750', priceCurrency: 'USD' },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'OSHA Documentation Readiness Review' }, price: DOC_REVIEW_PRICE_NUM, priceCurrency: 'USD' },
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Incident Review & Corrective Action Support' }, price: '900', priceCurrency: 'USD' },
     ],
   },
@@ -234,7 +249,7 @@ const routes = [
   {
     path: '/services',
     title: 'GigLine Safety Services — Walkthroughs, Compliance Visits & OSHA-Ready Systems | From $850',
-    description: 'OSHA-readiness support for small industrial operations. GigLine helps manufacturers, warehouses, contractors, and fleet operations identify visible hazards, documentation gaps, and inspection-readiness issues before they become citations. Fixed pricing. No retainer.',
+    description: SERVICES_META_DESCRIPTION,
     canonical: '/services',
     schemas: [
       {
@@ -244,7 +259,7 @@ const routes = [
         itemListElement: [
           { '@type': 'ListItem', position: 1, item: { '@type': 'Service', name: 'Compliance Readiness Visit', description: 'Combined on-site walkthrough and OSHA Documentation Readiness Review delivered as a single readiness report. Recommended starting point.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '1500', priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 2, item: { '@type': 'Service', name: 'Safety Walkthrough & Top 10 Fixes Report', description: 'A structured on-site review of common OSHA exposure areas with a Top 10 priority report.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '850', priceCurrency: 'USD' } } },
-          { '@type': 'ListItem', position: 3, item: { '@type': 'Service', name: 'OSHA Documentation Readiness Review', description: 'Review of written safety programs, training records, OSHA logs, and inspection forms with a 53-item readiness checklist.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '750', priceCurrency: 'USD' } } },
+          { '@type': 'ListItem', position: 3, item: { '@type': 'Service', name: 'OSHA Documentation Readiness Review', description: DOC_REVIEW_DESCRIPTION, provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: DOC_REVIEW_PRICE_NUM, priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 4, item: { '@type': 'Service', name: 'Incident Review & Corrective Action Support', description: 'Post-incident review, OSHA recordability determination, and corrective action documentation.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '1200', priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 5, item: { '@type': 'Service', name: 'GigLine OSHA-Ready Control System', description: 'Complete four-binder physical command system, digital folder architecture, training matrix, SDS organization, and corrective action tracker. Includes supervisor walkthrough at handoff.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '4500', priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 6, item: { '@type': 'Service', name: 'Quarterly Compliance Maintenance', description: 'Ongoing quarterly documentation review, training record audit, and corrective action tracker review.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '750', priceCurrency: 'USD' } } },
@@ -273,7 +288,7 @@ const routes = [
       <h2>Standalone Services</h2>
       <h3>Safety Walkthrough Report — Starting at $850</h3>
       <p>On-site walkthrough (1–3 hours). Photo-documented hazard findings. CFR citations + 2026 penalty exposure per finding. Top 10 Fixes report — RED / AMBER / GREEN priority. Delivered within 24–48 hours.</p>
-      <h3>OSHA Documentation Readiness Review — Starting at $750</h3>
+      <h3>OSHA Documentation Readiness Review — Starting at ${DOC_REVIEW_PRICE_LABEL}</h3>
       <p>Structured review of written programs, training records, OSHA logs, inspection records, and SDS compliance. 53-item checklist across seven OSHA categories.</p>
       <h3>Incident Review & Corrective Action Support — Starting at $1,200</h3>
       <p>Post-injury or post-near-miss response. Root cause analysis. OSHA recordability determination. OSHA 301 completion. Corrective action plan.</p>
@@ -284,7 +299,7 @@ const routes = [
       <h2>The Natural Next Step — Quarterly and Annual Support</h2>
       <p>Quarterly Compliance Maintenance — Starting at $750/quarter. Annual Compliance Control Partner — Starting at $9,000/year.</p>
       <h2>The GigLine Readiness Path</h2>
-      <p>Find the issues — Safety Walkthrough from $850. Check the files — OSHA Documentation Readiness Review from $750. Review both — Compliance Readiness Visit from $1,500. Build the system — OSHA-Ready Control System from $4,500. Keep it current — Quarterly Maintenance from $750/quarter.</p>
+      <p>Find the issues — Safety Walkthrough from $850. Check the files — OSHA Documentation Readiness Review from ${DOC_REVIEW_PRICE_LABEL}. Review both — Compliance Readiness Visit from $1,500. Build the system — OSHA-Ready Control System from $4,500. Keep it current — Quarterly Maintenance from $750/quarter.</p>
       <h2>Recent Outcome &mdash; Case Study</h2>
       <p><a href="/case-studies/mocksville-plastics-osha-inspection">How a 60-Person Plastics Manufacturer in Mocksville Passed OSHA &mdash; With Zero Citations</a>.</p>
       <p>After payment, you'll receive a scheduling confirmation within one business day.</p>
@@ -621,7 +636,7 @@ const routes = [
   {
     path: '/documentation-gap-check',
     title: 'OSHA Documentation Readiness Review — Written Programs, SDS & Training Records | GigLine',
-    description: 'Independent OSHA Documentation Readiness Review of your written safety programs, SDS binder, training records, and required OSHA documentation. Written findings report in 48 hours. Starting at $750. Serving NC manufacturers, warehouses, contractors, and fleets.',
+    description: `Independent OSHA Documentation Readiness Review of your written safety programs, SDS binder, training records, and required OSHA documentation. Written findings report in 48 hours. Starting at ${DOC_REVIEW_PRICE_LABEL}. Serving NC manufacturers, warehouses, contractors, and fleets.`,
     canonical: '/documentation-gap-check',
     schemas: [
       {
@@ -631,19 +646,19 @@ const routes = [
         description: 'Independent review of written OSHA safety programs, SDS binders, training records, and required documentation. Written findings report delivered within 48 hours.',
         provider: { '@id': `${BASE_URL}/#business` },
         areaServed: { '@type': 'State', name: 'North Carolina' },
-        offers: { '@type': 'Offer', price: '750', priceCurrency: 'USD' },
+        offers: { '@type': 'Offer', price: DOC_REVIEW_PRICE_NUM, priceCurrency: 'USD' },
       },
       faqSchema([
         { q: 'Who is an OSHA Documentation Readiness Review for?', a: 'Operations that have safety paperwork but aren\'t sure it would hold up under an OSHA inspector\'s review — typically 10 to 100 employees preparing for an OSHA inspection, insurance audit, or customer compliance review.' },
         { q: 'What documents are reviewed?', a: 'Written Hazard Communication program and SDS binder, Lockout/Tagout program, Powered Industrial Truck certifications, PPE hazard assessments, Bloodborne pathogens plan, Emergency Action Plan, OSHA 300 log and 300A summary, and training records.' },
         { q: 'Is the documentation review remote or on-site?', a: 'OSHA Documentation Readiness Reviews are remote-friendly. We send a secure upload link and a prep checklist by email — no need to mail physical binders. On-site reviews are also available.' },
-        { q: 'How much does an OSHA Documentation Readiness Review cost?', a: 'OSHA Documentation Readiness Reviews start at $750. Fixed quote before scheduling.' },
+        { q: 'How much does an OSHA Documentation Readiness Review cost?', a: `OSHA Documentation Readiness Reviews start at ${DOC_REVIEW_PRICE_LABEL}. Fixed quote before scheduling.` },
       ]),
       breadcrumb([{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }, { name: 'OSHA Documentation Readiness Review', path: '/documentation-gap-check' }]),
     ],
     content: `
       <h1>Independent Review of Your Safety Documentation — Programs, SDS &amp; Training Records</h1>
-      <p>If OSHA opened your binder tomorrow, what would they find? An OSHA Documentation Readiness Review walks every written program, training record, and SDS file against the actual standards — and tells you exactly what is missing, expired, or out of date. Starting at $750.</p>
+      <p>If OSHA opened your binder tomorrow, what would they find? An OSHA Documentation Readiness Review walks every written program, training record, and SDS file against the actual standards — and tells you exactly what is missing, expired, or out of date. Starting at ${DOC_REVIEW_PRICE_LABEL}.</p>
       <h2>Who It's For</h2>
       <p>Operations preparing for an OSHA inspection, insurance audit, or customer compliance review. New safety coordinators inheriting binders. Companies past the size where paperwork can stay informal. Contractors asked for documentation by a GC or insurer.</p>
       <h2>What's Reviewed</h2>

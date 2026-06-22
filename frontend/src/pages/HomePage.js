@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, GraduationCap, Monitor, FileText, Bot } from 'lucide-react';
+import { ArrowRight, Check, BookOpen, Monitor, FileText, Bot, Zap } from 'lucide-react';
 import SEO from '../components/SEO';
 import CaseStudyTeaser from '../components/CaseStudyTeaser';
 import FieldManualBand from '../components/FieldManualBand';
@@ -318,36 +318,50 @@ const HomePage = () => {
             </h2>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
-              { kicker: 'Training', title: 'Training gives theory.', body: 'Generic curricula and recycled slides. They check a box, but no one actually walks your floor to see if the training is being applied.' },
-              { kicker: 'Software', title: 'Software gives dashboards.', body: 'Dashboards full of inputs and metrics. None of them will flag the pallet sitting in front of your electrical panel right now.' },
-              { kicker: 'GigLine', title: 'GigLine gives eyes on the floor.', body: 'Documents without floor context create false confidence. We walk in, find the blind spots, and tell you exactly what is exposed.', highlight: true },
+              { kicker: 'Training', Icon: BookOpen, title: 'Others sell training.', body: 'Generic curricula and recycled slides. They check a box, but no one actually walks your floor to see if the training is being applied.' },
+              { kicker: 'Software', Icon: Monitor, title: 'Others sell software.', body: 'Dashboards full of inputs and metrics. None of them will flag the pallet sitting in front of your electrical panel right now.' },
+              { kicker: 'Reports', Icon: FileText, title: 'Others sell reports.', body: 'Templated checklists and one-size-fits-all PDFs. No real eyes on your floor and no context for what is actually happening today.' },
+              { kicker: 'The Real Problem', Icon: Zap, title: 'Others let AI write their compliance.', body: 'No floor visit. No context. Just a prompt. And when OSHA shows up, they will ask who signed off on it \u2014 and that is still you.', dark: true },
             ].map((c, i) => (
-              <Reveal key={c.kicker} delay={i * 100}>
+              <Reveal key={c.kicker} delay={i * 80}>
                 <div
-                  className="h-full p-7 bg-white"
-                  style={{ border: c.highlight ? '1px solid #1F6FEB' : '1px solid #E5E7EB' }}
+                  className="h-full p-7 flex flex-col"
+                  style={{
+                    background: c.dark ? '#0d1b2a' : '#fff',
+                    border: c.dark ? '1px solid rgba(255,255,255,0.10)' : '1px solid #E5E7EB',
+                    borderRadius: '12px',
+                  }}
                   data-testid={`why-gigline-card-${i + 1}`}
                 >
-                  <p className="uppercase tracking-[0.16em] font-semibold mb-4" style={{ fontSize: '11px', color: c.highlight ? '#1F6FEB' : '#102133' }}>{c.kicker}</p>
-                  <h3 className="text-xl font-bold text-[#102133] leading-snug mb-3">{c.title}</h3>
-                  <p className="text-base text-[#102133]/70 leading-relaxed">{c.body}</p>
+                  {c.dark ? (
+                    <span
+                      className="inline-block self-start uppercase font-bold mb-4"
+                      style={{ fontSize: '10px', letterSpacing: '0.12em', color: '#c8922a', border: '1px solid #c8922a', padding: '3px 10px', borderRadius: '4px' }}
+                    >
+                      {c.kicker}
+                    </span>
+                  ) : (
+                    <p className="uppercase tracking-[0.16em] font-semibold mb-4" style={{ fontSize: '11px', color: '#102133' }}>{c.kicker}</p>
+                  )}
+                  <c.Icon size={22} strokeWidth={1.5} style={{ color: c.dark ? '#c8922a' : '#b0afa8', marginBottom: '12px' }} />
+                  <h3
+                    className="text-lg leading-snug mb-3"
+                    style={{
+                      color: c.dark ? '#c8922a' : '#8a7a6a',
+                      fontStyle: 'italic',
+                      fontFamily: "Georgia, 'Times New Roman', serif",
+                      fontWeight: c.dark ? 600 : 400,
+                    }}
+                  >
+                    {c.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed" style={{ color: c.dark ? '#a09080' : '#102133' }}>{c.body}</p>
                 </div>
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ═══ SIGNAL BANNER ═══ Solid dark navy. No background image (per spec). */}
-      <section className="py-12 md:py-14" style={{ backgroundColor: '#0B1F33' }} data-testid="signal-banner">
-        <div className="container max-w-5xl text-center">
-          <Reveal>
-            <p className="text-xl md:text-2xl lg:text-3xl font-semibold text-white leading-snug">
-              This is not a full audit. It is a signal.
-            </p>
-          </Reveal>
         </div>
       </section>
 
@@ -397,14 +411,14 @@ const HomePage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
             {[
-              { label: 'Operation Size', value: '~60 Employees' },
-              { label: 'GigLine Findings', value: '4 Critical Gaps Identified' },
-              { label: 'OSHA Outcome', value: 'Zero Citations' },
+              { label: 'Operation Size', value: '~60 Employees', highlight: false },
+              { label: 'GigLine Findings', value: '4 Critical Gaps Identified', highlight: false },
+              { label: 'OSHA Outcome', value: 'Zero Citations', highlight: true },
             ].map((s, i) => (
               <Reveal key={s.label} delay={i * 100}>
                 <div className="p-6 bg-white" style={{ border: '1px solid #E5E7EB' }}>
                   <p className="uppercase tracking-[0.14em] text-[#102133]/55 font-semibold mb-2" style={{ fontSize: '10px' }}>{s.label}</p>
-                  <p className="text-lg font-bold text-[#102133]">{s.value}</p>
+                  <p className="text-lg font-bold" style={{ color: s.highlight ? '#15803d' : '#102133' }}>{s.value}</p>
                 </div>
               </Reveal>
             ))}
@@ -544,7 +558,25 @@ const HomePage = () => {
 
           <div className="space-y-5 text-base md:text-lg text-[#102133]/85 leading-relaxed mb-8">
             <Reveal><p>I&apos;m Vince Lawrence. Before GigLine, I spent years as a safety coordinator inside glass and vinyl manufacturing &mdash; running Gemba walks across production floors and a shipping department, writing corrective actions, and building compliance systems that had to hold up under real production pressure.</p></Reveal>
-            <Reveal><p>I didn&apos;t learn this by visiting other people&apos;s facilities. I learned it from inside an operation like yours. That experience is what GigLine is built on.</p></Reveal>
+            <Reveal>
+              <blockquote
+                className="my-2"
+                style={{
+                  borderLeft: '3px solid #c8922a',
+                  paddingLeft: '20px',
+                  paddingTop: '4px',
+                  paddingBottom: '4px',
+                  fontStyle: 'italic',
+                  fontFamily: "Georgia, 'Times New Roman', serif",
+                  color: '#102133',
+                  fontSize: '1.15rem',
+                  lineHeight: 1.5,
+                }}
+                data-testid="about-blockquote"
+              >
+                &ldquo;I didn&rsquo;t learn this by visiting other people&rsquo;s facilities. I learned it from inside an operation like yours.&rdquo;
+              </blockquote>
+            </Reveal>
             <Reveal><p>GigLine is a private engagement. Nothing leaves your facility except the report I hand you. My job is to give you a clear picture of where you stand before an inspector shows up &mdash; so you can protect your operation, your people, and your position.</p></Reveal>
           </div>
 

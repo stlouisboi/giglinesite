@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, GraduationCap, MonitorSmartphone, FileText } from 'lucide-react';
+import { ArrowRight, Check, GraduationCap, Monitor, FileText, Bot } from 'lucide-react';
 import SEO from '../components/SEO';
 import CaseStudyTeaser from '../components/CaseStudyTeaser';
 import FieldManualBand from '../components/FieldManualBand';
@@ -257,139 +257,170 @@ const HomePage = () => {
           the navy hero and the white problem grid that follows.
       ═══════════════════════════════════════════════ */}
       <section
-        className="py-24 md:py-32 relative overflow-hidden"
+        className="relative"
         style={{
-          backgroundColor: '#F7F1E0',
-          backgroundImage: 'radial-gradient(circle at 80% 20%, rgba(31,111,235,0.05) 0%, transparent 55%)',
+          backgroundColor: '#f5f0e8',
+          padding: '40px 36px 36px',
         }}
         data-testid="differentiator-section"
       >
-        {/* Top gold pinstripe — separator from hero */}
-        <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(212,169,62,0.7) 50%, transparent 100%)' }} />
-        {/* Bottom gold pinstripe — separator from problem grid */}
-        <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(212,169,62,0.45) 50%, transparent 100%)' }} />
-
         <div className="container max-w-6xl relative">
+          {/* Section label — "WHY GIGLINE" */}
           <Reveal>
             <p
-              className="uppercase tracking-[3px] text-[#1F6FEB] mb-10 font-bold"
-              style={{ ...mono, fontSize: '11px' }}
+              style={{
+                fontSize: '18px',
+                textTransform: 'uppercase',
+                letterSpacing: '0.12em',
+                color: '#2a6db5',
+                fontWeight: 600,
+                marginBottom: '24px',
+              }}
               data-testid="differentiator-eyebrow"
             >
               Why GigLine
             </p>
           </Reveal>
 
-          {/* The three "Others sell" lines — premium cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 mb-12">
+          {/* Asymmetric 4-card grid — 1fr 1fr 1fr 1.6fr at md+, stacks on mobile */}
+          <div
+            className="grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr_1.6fr]"
+            style={{ gap: '14px' }}
+            data-testid="differentiator-card-grid"
+          >
+            {/* Cards 1–3 — standard light cards */}
             {[
               {
-                icon: GraduationCap,
+                Icon: GraduationCap,
                 title: 'Others sell training.',
-                sub: 'Generic curricula. Recycled slides. No one walks your floor.',
+                body: 'Generic curricula. Recycled slides. No one walks your floor.',
+                testid: 'differentiator-card-1',
               },
               {
-                icon: MonitorSmartphone,
+                Icon: Monitor,
                 title: 'Others sell software.',
-                sub: 'Dashboards full of inputs. None of them flag the pallet in front of your panel.',
+                body: 'Dashboards full of inputs. None of them flag the pallet in front of your panel.',
+                testid: 'differentiator-card-2',
               },
               {
-                icon: FileText,
+                Icon: FileText,
                 title: 'Others sell reports.',
-                sub: 'Templated checklists. Same PDF for every operation. No real eyes on the work.',
+                body: 'Templated checklists. Same PDF for every operation. No real eyes on the work.',
+                testid: 'differentiator-card-3',
               },
-            ].map(({ icon: Icon, title, sub }, i) => (
-              <Reveal key={i} delay={i * 100}>
+            ].map(({ Icon, title, body, testid }, i) => (
+              <Reveal key={testid} delay={i * 80}>
                 <div
-                  className="relative h-full p-5 md:p-5 lg:p-7 rounded-lg bg-white transition-all duration-300 hover:translate-y-[-2px]"
+                  className="h-full flex flex-col"
                   style={{
-                    border: '1px solid rgba(16,33,51,0.10)',
-                    boxShadow: '0 1px 0 rgba(255,255,255,0.5) inset, 0 6px 14px rgba(16,33,51,0.04)',
+                    background: '#fff',
+                    border: '0.5px solid rgba(0,0,0,0.07)',
+                    borderRadius: '12px',
+                    padding: '22px 18px 26px',
+                    gap: '12px',
                   }}
-                  data-testid={`differentiator-others-${i}`}
+                  data-testid={testid}
                 >
-                  {/* Gold top accent stripe */}
-                  <div
-                    className="absolute top-0 left-5 right-5 lg:left-6 lg:right-6 h-[3px] rounded-b"
-                    style={{ background: 'linear-gradient(90deg, transparent 0%, #D4A93E 30%, #D4A93E 70%, transparent 100%)', opacity: 0.55 }}
-                    aria-hidden="true"
-                  />
-                  <Icon size={26} strokeWidth={1.5} className="text-[#102133]/35 mb-4 md:mb-5" />
+                  <Icon size={18} strokeWidth={1.5} style={{ color: '#b0afa8' }} />
                   <p
-                    className="text-lg md:text-xl lg:text-2xl text-[#102133]/55 leading-tight mb-2 md:mb-3"
-                    style={{ fontFamily: "Georgia, 'Times New Roman', serif", fontStyle: 'italic' }}
+                    style={{
+                      fontSize: '16px',
+                      fontStyle: 'italic',
+                      fontFamily: "Georgia, 'Times New Roman', serif",
+                      color: '#8a7a6a',
+                      lineHeight: 1.3,
+                      margin: 0,
+                    }}
                   >
                     {title}
                   </p>
-                  <p className="text-xs md:text-sm text-[#102133]/55 leading-relaxed" style={mono}>
-                    {sub}
+                  <p
+                    style={{
+                      fontSize: '12px',
+                      color: '#8a7a6a',
+                      lineHeight: 1.6,
+                      margin: 0,
+                    }}
+                  >
+                    {body}
                   </p>
                 </div>
               </Reveal>
             ))}
+
+            {/* Card 4 — dark, oversized, "THE REAL PROBLEM" */}
+            <Reveal delay={240}>
+              <div
+                className="h-full flex flex-col"
+                style={{
+                  background: '#1c1c1c',
+                  border: 'none',
+                  borderRadius: '12px',
+                  padding: '28px 24px 32px',
+                  justifyContent: 'space-between',
+                }}
+                data-testid="differentiator-card-4"
+              >
+                <div>
+                  <span
+                    style={{
+                      display: 'inline-block',
+                      fontSize: '10px',
+                      fontWeight: 600,
+                      letterSpacing: '0.1em',
+                      textTransform: 'uppercase',
+                      color: '#c8a84b',
+                      border: '1px solid #c8a84b',
+                      padding: '3px 10px',
+                      borderRadius: '4px',
+                    }}
+                    data-testid="differentiator-card-4-tag"
+                  >
+                    The Real Problem
+                  </span>
+
+                  <Bot size={22} strokeWidth={1.5} style={{ color: '#c8a84b', marginTop: '12px' }} />
+
+                  <p
+                    style={{
+                      fontSize: '22px',
+                      fontStyle: 'italic',
+                      fontFamily: "Georgia, 'Times New Roman', serif",
+                      color: '#c8a84b',
+                      lineHeight: 1.3,
+                      marginTop: '12px',
+                      marginBottom: '12px',
+                    }}
+                    data-testid="differentiator-card-4-headline"
+                  >
+                    Others let AI write their compliance.
+                  </p>
+
+                  <p
+                    style={{
+                      fontSize: '13px',
+                      color: '#a09080',
+                      lineHeight: 1.6,
+                      margin: 0,
+                    }}
+                  >
+                    No floor visit. No context. Just a prompt. And when OSHA shows up, they&rsquo;ll ask who signed off on it &mdash; and that&rsquo;s still you.
+                  </p>
+                </div>
+              </div>
+            </Reveal>
           </div>
 
-          {/* Visual divider — small gold mark */}
-          <Reveal delay={350}>
-            <div className="flex items-center gap-3 mb-8" aria-hidden="true">
-              <div className="h-px w-12" style={{ backgroundColor: '#D4A93E' }} />
-              <div className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: '#D4A93E' }} />
-              <div className="h-px flex-grow" style={{ backgroundColor: '#D4A93E', opacity: 0.35 }} />
-            </div>
-          </Reveal>
-
-          {/* The GigLine punchline — premium callout card */}
-          <Reveal delay={420}>
+          {/* Gold divider — line + dot */}
+          <Reveal delay={380}>
             <div
-              className="relative p-8 md:p-10 lg:p-12 rounded-xl overflow-hidden"
-              style={{
-                background: 'linear-gradient(135deg, #0B1F33 0%, #102A43 50%, #0B1F33 100%)',
-                border: '1px solid rgba(212,169,62,0.35)',
-                boxShadow: '0 20px 40px -12px rgba(11,31,51,0.35), 0 0 0 1px rgba(212,169,62,0.10) inset',
-              }}
-              data-testid="differentiator-punchline-card"
+              className="flex items-center"
+              style={{ gap: '10px', marginTop: '24px' }}
+              aria-hidden="true"
+              data-testid="differentiator-divider"
             >
-              {/* Decorative gold corner */}
-              <div
-                className="absolute top-0 right-0 w-32 h-32 pointer-events-none"
-                style={{
-                  background: 'radial-gradient(circle at top right, rgba(212,169,62,0.18) 0%, transparent 65%)',
-                }}
-                aria-hidden="true"
-              />
-
-              {/* Premium "what we do instead" eyebrow */}
-              <div className="flex items-center gap-3 mb-5">
-                <div className="h-[2px] w-8 flex-shrink-0" style={{ backgroundColor: '#D4A93E' }} />
-                <p
-                  className="uppercase tracking-[3px] text-[#D4A93E] font-bold"
-                  style={{ ...mono, fontSize: '11px' }}
-                >
-                  What GigLine Does Instead
-                </p>
-              </div>
-
-              <p
-                className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-[1.2] max-w-4xl"
-                data-testid="differentiator-punchline"
-              >
-                <span className="text-[#1F6FEB]">GigLine</span> identifies what is actually happening on your floor — so you can decide what needs attention first.
-              </p>
-
-              {/* CTA + supporting line — inside the card. Stack until lg so button never wraps. */}
-              <div className="mt-8 flex flex-col lg:flex-row gap-4 lg:items-start" data-testid="differentiator-cta-row">
-                <Link
-                  to="/request-walkthrough"
-                  className="bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-7 py-3.5 rounded-lg text-base transition-colors inline-flex items-center gap-2 shadow-lg shadow-[#1F6FEB]/30 whitespace-nowrap self-start"
-                  data-testid="differentiator-cta"
-                >
-                  Request a Safety Walkthrough
-                  <ArrowRight size={18} />
-                </Link>
-                <p className="text-sm text-white/65 leading-relaxed pt-1 lg:pt-1.5 max-w-md" style={mono}>
-                  No training to schedule. No software to learn. Just a written report you can act on this week.
-                </p>
-              </div>
+              <div style={{ width: '40px', height: '1px', background: '#c8a84b' }} />
+              <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#c8a84b' }} />
             </div>
           </Reveal>
         </div>

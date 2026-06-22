@@ -274,22 +274,21 @@ const HomePage = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
-              { title: 'Blocked Egress', badge: 'Instant Citation', caption: 'Cluttered aisle / blocked exit door', body: 'Cited in 22% of general industry inspections. It happens when floor space gets tight, but it is an instant citation if found during an OSHA visit.' },
-              { title: 'Electrical Access', badge: 'Automatic Citation', caption: 'Pallet blocking electrical panel', body: 'Usually a forklift, a pallet, or a trash can. Blocked panels delay emergency shutoff and are automatic citations under OSHA 1910.303.' },
-              { title: 'Machine Guarding', badge: 'Top 10 OSHA Violation', caption: 'Exposed belt / press line without guard', body: 'One of OSHA\u2019s top 10 most cited violations. Guards get removed for maintenance and never put back. Missing guards are automatic citations.' },
-              { title: 'Emergency Access', badge: 'Citable on First Observation', caption: 'Blocked fire riser / extinguisher', body: 'Blocked fire equipment delays response time and is citable on first observation. It is an easy fix that gets missed in the daily rush.' },
+              { title: 'Blocked Egress', badge: 'Instant Citation', img: '/hero-blocked-exit.jpg', caption: 'Cluttered aisle / blocked exit door', body: 'Cited in 22% of general industry inspections. It happens when floor space gets tight, but it is an instant citation if found during an OSHA visit.' },
+              { title: 'Electrical Access', badge: 'Automatic Citation', img: '/blocked-electrical-panel.jpg', caption: 'Pallet blocking electrical panel', body: 'Usually a forklift, a pallet, or a trash can. Blocked panels delay emergency shutoff and are automatic citations under OSHA 1910.303.' },
+              { title: 'Machine Guarding', badge: 'Top 10 OSHA Violation', img: '/machine-guarding.jpg', caption: 'Exposed belt / press line without guard', body: 'One of OSHA\u2019s top 10 most cited violations. Guards get removed for maintenance and never put back. Missing guards are automatic citations.' },
+              { title: 'Emergency Access', badge: 'Citable on First Observation', img: '/blocked-fire-riser.jpg', caption: 'Blocked fire riser / extinguisher', body: 'Blocked fire equipment delays response time and is citable on first observation. It is an easy fix that gets missed in the daily rush.' },
             ].map((c, i) => (
               <Reveal key={c.title} delay={i * 80}>
                 <div className="h-full flex flex-col bg-white" style={{ border: '1px solid #E5E7EB' }} data-testid={`floor-card-${i + 1}`}>
-                  {/* Dark-navy photo placeholder — title centered in white. Replace with authentic GigLine walkthrough photo when available. */}
-                  <div
-                    className="relative flex items-center justify-center text-white text-center px-4"
-                    style={{ backgroundColor: '#0B1F33', aspectRatio: '4 / 3' }}
-                    role="img"
-                    aria-label={c.caption}
-                  >
-                    <span className="text-base md:text-lg font-semibold" style={{ letterSpacing: '0.01em' }}>{c.title}</span>
-                  </div>
+                  {/* Authentic GigLine facility photo */}
+                  <img
+                    src={c.img}
+                    alt={c.caption}
+                    loading="lazy"
+                    className="w-full"
+                    style={{ aspectRatio: '4 / 3', objectFit: 'cover', display: 'block' }}
+                  />
                   <div className="p-5 flex-grow flex flex-col">
                     <span
                       className="inline-block self-start uppercase font-bold mb-3"

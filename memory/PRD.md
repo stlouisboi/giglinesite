@@ -191,11 +191,12 @@ Goal: get GigLine cited in answers from ChatGPT, Perplexity, Claude, Google AI O
 - **No duplicate page files / routes found**. `/privacy` and `/privacy-policy` both render the same component but each sets canonical=`/privacy` so Google consolidates. Same with `/terms` and `/terms-of-service` → canonical=`/terms-of-service`. Confirmed proper canonical consolidation; no duplicate-content penalty risk.
 - Static-build SEO (production via `generate-seo-pages.js`) verified: every route writes per-page `<title>`, `<meta description>`, `<link canonical>`, OG + Twitter + JSON-LD. Production Google crawl sees correct per-page meta on every URL.
 
-## Homepage Services + How It Works — Flat Row Refactor (Feb 2026)
-- Converted Homepage `Services` and `How It Works` sections from card grids to flat row lists per user's "should be like this, not cards" directive.
-- **Services**: 3 stacked rows separated by horizontal rules. Each row uses a 12-col grid: index/price (col 2) · title + body (col 7) · CTA link right-aligned (col 3). Featured row (Compliance Readiness Visit) gets a bordered "★ RECOMMENDED STARTING POINT" tag instead of a card border.
-- **How It Works**: 5 stacked rows separated by horizontal rules. Each row: large gold step number (col 1) · title (col 4) · body (col 7). No bordered card boxes.
-- Result: institutional, restrained presentation matching the rest of the rebuilt homepage. data-testids preserved (`home-service-*`, `how-step-*`).
+## Homepage Services + How It Works + About — Premium Aesthetic Rebuild (Feb 2026)
+- **Services**: cream (#f5f4f0) bg, 3 white premium cards w/ soft icon circles (ClipboardList / Shield / CheckCircle2). Featured Compliance Readiness Visit card has 2px blue border + blue tab badge "★ RECOMMENDED STARTING POINT" floating on top edge + subtle blue glow shadow. Outlined "See all service options & pricing" pill button centered below.
+- **How It Works**: cream bg, horizontal connected timeline. 5 dark navy filled circles (numbered 1–5) on a thin connecting line. Centered title + body under each step. Blue filled "Request a Walkthrough" CTA pill centered below.
+- **About GigLine**: full-width dark navy (#0d1b2a) section. 12-col grid: LEFT (col 4) = 4:5 aspect photo placeholder panel w/ subtle border, FileImage icon, uppercase mono caption noting "production floor / facility environment — not a studio portrait". RIGHT (col 8) = gold (#c8922a) "ABOUT GIGLINE" eyebrow, bold white H2, white-tinted body copy, gold-bordered quote box w/ subtle dark fill, gold "Read full bio →" link.
+- **Bottom CTA band** extracted to its own white section below the dark About section so "If you're not sure what's exposed..." sits cleanly on the next light band.
+- All data-testids preserved.
 
 ## Deployment
 - Frontend: Vercel (manual redeploy after GitHub push)

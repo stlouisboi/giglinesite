@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, BookOpen, Monitor, FileText, Bot, Zap, ShieldCheck, Star, Anchor, Factory, MapPin } from 'lucide-react';
+import { ArrowRight, Check, BookOpen, Monitor, FileText, Bot, Zap, ShieldCheck, Star, Anchor, Factory, MapPin, ClipboardList, Shield, CheckCircle2, FileImage } from 'lucide-react';
 import SEO from '../components/SEO';
 import CaseStudyTeaser from '../components/CaseStudyTeaser';
 import FieldManualBand from '../components/FieldManualBand';
@@ -475,221 +475,332 @@ const HomePage = () => {
       </section>
 
       {/* ═══ SECTION 6 — SERVICES ═══ */}
-      <section className="py-20 md:py-24" style={{ backgroundColor: '#F9F8F6' }} data-testid="services-section">
+      <section className="py-20 md:py-28" style={{ backgroundColor: '#f5f4f0' }} data-testid="services-section">
         <div className="container max-w-6xl">
           <Reveal>
-            <p className="uppercase tracking-[0.18em] text-[#1F6FEB] font-semibold mb-3" style={{ fontSize: '11px' }}>
+            <p className="uppercase font-bold mb-4" style={{ fontSize: '12px', letterSpacing: '0.2em', color: '#1F6FEB' }}>
               Services
             </p>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#102133] leading-[1.15] mb-12 max-w-3xl">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#0d1b2a] leading-[1.1] mb-14 max-w-3xl tracking-tight">
               Start where your operation needs it most.
             </h2>
           </Reveal>
 
-          <div className="mb-10" style={{ borderTop: '1px solid #E5E7EB' }} data-testid="home-services-list">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-7 mb-12" data-testid="home-services-grid">
             {[
               {
-                idx: '01',
+                Icon: ClipboardList,
                 title: 'Safety Walkthrough',
-                price: 'from $850',
                 body: 'The first step when you need exposure identified quickly. An on-site walkthrough focused purely on physical hazards. You get a photo-documented report and a prioritized fix list in 48 hours.',
                 cta: { label: 'Request a Walkthrough', to: '/request-walkthrough' },
                 testid: 'home-service-walkthrough',
               },
               {
-                idx: '02',
+                Icon: Shield,
                 title: 'Compliance Readiness Visit',
-                price: 'from $1,500',
                 body: 'A deeper pre-inspection engagement. The floor and the files reviewed in a single visit \u2014 physical walkthrough plus a structured review of your written programs, training records, and OSHA logs.',
                 cta: { label: 'Schedule a Visit', to: '/intake?service=compliance-readiness-visit' },
                 featured: true,
-                badge: 'Recommended Starting Point',
+                badge: '★ Recommended Starting Point',
                 testid: 'home-service-readiness-visit',
               },
               {
-                idx: '03',
+                Icon: CheckCircle2,
                 title: '90-Second Safety Check',
-                price: 'Free self-screen',
                 body: 'Not sure where you stand? Take our free self-screen. Six yes-or-no questions, an immediate risk score, and no email required to start.',
                 cta: { label: 'Take the Safety Check', to: '/safety-check' },
                 testid: 'home-service-safety-check',
               },
             ].map((s, i) => (
-              <Reveal key={s.idx} delay={i * 80}>
+              <Reveal key={s.title} delay={i * 100}>
                 <div
-                  className="grid grid-cols-12 gap-6 md:gap-10 py-8 md:py-10 items-start"
-                  style={{ borderBottom: '1px solid #E5E7EB' }}
+                  className="relative h-full bg-white flex flex-col"
+                  style={{
+                    border: s.featured ? '2px solid #1F6FEB' : '1px solid #E5E7EB',
+                    borderRadius: '4px',
+                    padding: s.featured ? '44px 32px 36px' : '36px 32px',
+                    boxShadow: s.featured ? '0 18px 40px -22px rgba(31,111,235,0.35)' : '0 1px 0 rgba(13,27,42,0.02)',
+                  }}
                   data-testid={s.testid}
                 >
-                  <div className="col-span-12 md:col-span-2">
-                    <p
-                      className="font-bold"
+                  {s.featured && (
+                    <span
+                      className="absolute uppercase font-bold"
                       style={{
-                        ...mono,
-                        fontSize: '13px',
-                        letterSpacing: '0.12em',
-                        color: s.featured ? '#1F6FEB' : '#102133',
+                        top: 0,
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        background: '#1F6FEB',
+                        color: '#fff',
+                        fontSize: '10.5px',
+                        letterSpacing: '0.14em',
+                        padding: '8px 18px',
+                        borderRadius: '2px',
+                        whiteSpace: 'nowrap',
                       }}
                     >
-                      {s.idx}
-                    </p>
-                    <p
-                      className="uppercase font-semibold mt-2"
-                      style={{ fontSize: '10px', letterSpacing: '0.14em', color: '#6b7280' }}
-                    >
-                      {s.price}
-                    </p>
+                      {s.badge}
+                    </span>
+                  )}
+
+                  {/* Soft icon circle */}
+                  <div
+                    className="mb-7 flex items-center justify-center"
+                    style={{
+                      width: '52px',
+                      height: '52px',
+                      borderRadius: '50%',
+                      background: s.featured ? 'rgba(31,111,235,0.10)' : 'rgba(13,27,42,0.05)',
+                    }}
+                  >
+                    <s.Icon size={22} strokeWidth={1.75} style={{ color: s.featured ? '#1F6FEB' : '#102133' }} />
                   </div>
-                  <div className="col-span-12 md:col-span-7">
-                    {s.featured && (
-                      <span
-                        className="inline-block uppercase font-bold mb-3"
-                        style={{
-                          fontSize: '10px',
-                          letterSpacing: '0.14em',
-                          color: '#1F6FEB',
-                          border: '1px solid rgba(31,111,235,0.35)',
-                          padding: '3px 8px',
-                          borderRadius: '2px',
-                        }}
-                      >
-                        ★ {s.badge}
-                      </span>
-                    )}
-                    <h3 className="text-xl md:text-2xl font-bold text-[#102133] mb-3">{s.title}</h3>
-                    <p className="text-base text-[#102133]/70 leading-relaxed">{s.body}</p>
-                  </div>
-                  <div className="col-span-12 md:col-span-3 md:text-right">
-                    <Link
-                      to={s.cta.to}
-                      className="inline-flex items-center gap-2 text-[#1F6FEB] hover:text-[#1558C0] font-semibold underline underline-offset-4"
-                    >
-                      {s.cta.label} <ArrowRight size={14} />
-                    </Link>
-                  </div>
+
+                  <h3 className="text-xl md:text-[22px] font-bold text-[#102133] mb-4 leading-tight">{s.title}</h3>
+                  <p className="text-[15px] text-[#102133]/65 leading-[1.65] mb-8 flex-grow">{s.body}</p>
+
+                  <Link
+                    to={s.cta.to}
+                    className="inline-flex items-center gap-1.5 text-[#1F6FEB] hover:text-[#1558C0] font-semibold self-start transition-colors"
+                    style={{ fontSize: '15px' }}
+                  >
+                    {s.cta.label} <ArrowRight size={15} />
+                  </Link>
                 </div>
               </Reveal>
             ))}
           </div>
 
           <Reveal>
-            <Link to="/services" className="inline-flex items-center gap-2 text-[#102133] hover:text-[#1F6FEB] font-semibold underline underline-offset-4">See all service options &amp; pricing <ArrowRight size={14} /></Link>
+            <div className="flex justify-center">
+              <Link
+                to="/services"
+                className="inline-flex items-center gap-2 font-semibold transition-colors"
+                style={{
+                  color: '#1F6FEB',
+                  border: '1.5px solid #1F6FEB',
+                  padding: '14px 28px',
+                  borderRadius: '4px',
+                  fontSize: '15px',
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = '#1F6FEB'; e.currentTarget.style.color = '#fff'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#1F6FEB'; }}
+              >
+                See all service options &amp; pricing
+              </Link>
+            </div>
           </Reveal>
         </div>
       </section>
 
-      {/* ═══ SECTION 7 — HOW IT WORKS ═══ */}
-      <section className="py-20 md:py-24 bg-white" data-testid="how-it-works-section">
+      {/* ═══ SECTION 7 — HOW IT WORKS (connected horizontal timeline) ═══ */}
+      <section className="py-20 md:py-28" style={{ backgroundColor: '#f5f4f0' }} data-testid="how-it-works-section">
         <div className="container max-w-6xl">
           <Reveal>
-            <p className="uppercase tracking-[0.18em] text-[#1F6FEB] font-semibold mb-3" style={{ fontSize: '11px' }}>
+            <p className="uppercase font-bold mb-4" style={{ fontSize: '12px', letterSpacing: '0.2em', color: '#1F6FEB' }}>
               How It Works
             </p>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#102133] leading-[1.15] mb-12 max-w-3xl">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#0d1b2a] leading-[1.1] mb-16 max-w-3xl tracking-tight">
               Simple. Transparent. No surprises.
             </h2>
           </Reveal>
 
-          <div className="mb-10" data-testid="how-it-works-list">
-            {[
+          {(() => {
+            const steps = [
               { n: '1', title: 'Request', body: 'Submit a brief request online. We confirm your location and operation type.' },
               { n: '2', title: 'Schedule', body: 'We provide a fixed quote and schedule around your production calendar.' },
               { n: '3', title: 'Walkthrough', body: 'We walk your floor, document visible hazards, and review physical compliance gaps.' },
               { n: '4', title: 'Report in 48 Hours', body: 'Plain-language, photo-documented report with CFR citations and penalty exposure.' },
               { n: '5', title: 'Fix What Matters First', body: 'RED / AMBER / GREEN priority list. You decide what to fix and when.' },
-            ].map((s, i, arr) => (
-              <Reveal key={s.n} delay={i * 80}>
+            ];
+            return (
+              <div className="relative mb-14" data-testid="how-it-works-timeline">
+                {/* Connecting line — desktop only, sits behind the circles */}
                 <div
-                  className="grid grid-cols-12 gap-6 md:gap-10 py-6 md:py-7 items-baseline"
+                  className="hidden md:block absolute"
                   style={{
-                    borderTop: i === 0 ? '1px solid #E5E7EB' : 'none',
-                    borderBottom: '1px solid #E5E7EB',
+                    top: '28px',
+                    left: '10%',
+                    right: '10%',
+                    height: '1px',
+                    background: 'rgba(13,27,42,0.18)',
+                    zIndex: 0,
                   }}
-                  data-testid={`how-step-${s.n}`}
-                >
-                  <div className="col-span-2 md:col-span-1">
-                    <p
-                      className="font-bold"
-                      style={{ color: '#D4A93E', fontSize: '36px', lineHeight: 1, fontFamily: "'Manrope', sans-serif" }}
-                    >
-                      {s.n}
-                    </p>
-                  </div>
-                  <div className="col-span-10 md:col-span-4">
-                    <h3 className="text-lg md:text-xl font-bold text-[#102133]">{s.title}</h3>
-                  </div>
-                  <div className="col-span-12 md:col-span-7">
-                    <p className="text-base text-[#102133]/70 leading-relaxed">{s.body}</p>
-                  </div>
+                />
+                <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-6 relative" style={{ zIndex: 1 }}>
+                  {steps.map((s, i) => (
+                    <Reveal key={s.n} delay={i * 100}>
+                      <div className="flex flex-col items-center text-center" data-testid={`how-step-${s.n}`}>
+                        {/* Numbered circle */}
+                        <div
+                          className="flex items-center justify-center mb-6"
+                          style={{
+                            width: '56px',
+                            height: '56px',
+                            borderRadius: '50%',
+                            background: '#0d1b2a',
+                            color: '#fff',
+                            fontSize: '20px',
+                            fontWeight: 700,
+                            fontFamily: "'Manrope', sans-serif",
+                            boxShadow: '0 6px 16px -8px rgba(13,27,42,0.5)',
+                          }}
+                        >
+                          {s.n}
+                        </div>
+                        <h3 className="text-base md:text-lg font-bold text-[#0d1b2a] mb-3">{s.title}</h3>
+                        <p className="text-[14px] text-[#102133]/65 leading-[1.65] max-w-[200px]">{s.body}</p>
+                      </div>
+                    </Reveal>
+                  ))}
                 </div>
-              </Reveal>
-            ))}
-          </div>
+              </div>
+            );
+          })()}
 
           <Reveal>
-            <Link to="/request-walkthrough" className="inline-flex items-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-6 py-3 transition-colors" data-testid="how-it-works-cta">
-              Request a Walkthrough <ArrowRight size={16} />
-            </Link>
+            <div className="flex justify-center">
+              <Link
+                to="/request-walkthrough"
+                className="inline-flex items-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold transition-colors"
+                style={{ padding: '15px 32px', borderRadius: '4px', fontSize: '15px', boxShadow: '0 10px 24px -10px rgba(31,111,235,0.55)' }}
+                data-testid="how-it-works-cta"
+              >
+                Request a Walkthrough <ArrowRight size={16} />
+              </Link>
+            </div>
           </Reveal>
         </div>
       </section>
 
-      {/* ═══ SECTION 8 — ABOUT GIGLINE + BOTTOM CTA ═══ */}
-      <section className="py-20 md:py-24" style={{ backgroundColor: '#F9F8F6' }} data-testid="about-section">
+      {/* ═══ SECTION 8 — ABOUT GIGLINE (dark navy, two-column) ═══ */}
+      <section className="py-20 md:py-28" style={{ backgroundColor: '#0d1b2a' }} data-testid="about-section">
+        <div className="container max-w-6xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+
+            {/* LEFT — Photo panel (placeholder for facility/floor photo) */}
+            <div className="lg:col-span-4">
+              <Reveal>
+                <div
+                  className="relative flex flex-col items-center justify-center"
+                  style={{
+                    aspectRatio: '4 / 5',
+                    background: 'rgba(255,255,255,0.02)',
+                    border: '1px solid rgba(255,255,255,0.10)',
+                    borderRadius: '8px',
+                    padding: '40px 28px',
+                  }}
+                  data-testid="about-photo-panel"
+                >
+                  <FileImage size={48} strokeWidth={1.25} style={{ color: 'rgba(255,255,255,0.18)' }} />
+                  <p
+                    className="uppercase text-center mt-8"
+                    style={{
+                      fontSize: '10.5px',
+                      letterSpacing: '0.16em',
+                      color: 'rgba(255,255,255,0.32)',
+                      fontFamily: "'JetBrains Mono', monospace",
+                      lineHeight: 1.7,
+                    }}
+                  >
+                    Photo: Vince on a production floor or in a facility environment &mdash; not a studio portrait
+                  </p>
+                </div>
+              </Reveal>
+            </div>
+
+            {/* RIGHT — Copy */}
+            <div className="lg:col-span-8">
+              <Reveal>
+                <p
+                  className="uppercase font-bold mb-5"
+                  style={{ fontSize: '12px', letterSpacing: '0.2em', color: '#c8922a' }}
+                  data-testid="about-eyebrow"
+                >
+                  About GigLine
+                </p>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-[1.1] mb-8 tracking-tight">
+                  Built by someone who&apos;s worked the floor.
+                </h2>
+              </Reveal>
+
+              <div className="space-y-6 text-[16px] md:text-[17px] leading-[1.75]" style={{ color: 'rgba(255,255,255,0.82)' }}>
+                <Reveal>
+                  <p>
+                    I&apos;m Vince Lawrence. Before GigLine, I spent years as a safety coordinator inside glass and vinyl manufacturing &mdash; running Gemba walks across production floors and a shipping department, writing corrective actions, and building compliance systems that had to hold up under real production pressure.
+                  </p>
+                </Reveal>
+
+                <Reveal>
+                  <blockquote
+                    className="my-4"
+                    style={{
+                      background: 'rgba(255,255,255,0.04)',
+                      borderLeft: '3px solid #c8922a',
+                      padding: '20px 26px',
+                      borderRadius: '0 4px 4px 0',
+                      fontStyle: 'italic',
+                      fontFamily: "Georgia, 'Times New Roman', serif",
+                      color: '#fff',
+                      fontSize: '17px',
+                      lineHeight: 1.6,
+                    }}
+                    data-testid="about-blockquote"
+                  >
+                    &ldquo;I didn&rsquo;t learn this by visiting other people&rsquo;s facilities. I learned it from inside an operation like yours.&rdquo;
+                  </blockquote>
+                </Reveal>
+
+                <Reveal>
+                  <p>That experience is what GigLine is built on.</p>
+                </Reveal>
+
+                <Reveal>
+                  <p>
+                    GigLine is a private engagement. Nothing leaves your facility except the report I hand you. My job is to give you a clear picture of where you stand before an inspector shows up &mdash; so you can protect your operation, your people, and your position.
+                  </p>
+                </Reveal>
+              </div>
+
+              <Reveal>
+                <Link
+                  to="/about"
+                  className="inline-flex items-center gap-2 font-semibold mt-10 transition-colors hover:opacity-80"
+                  style={{ color: '#c8922a', fontSize: '15px' }}
+                  data-testid="about-link"
+                >
+                  Read full bio <ArrowRight size={14} />
+                </Link>
+              </Reveal>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ SECTION 9 — BOTTOM CTA BAND ═══ */}
+      <section className="py-20 md:py-24 bg-white" data-testid="bottom-cta-section">
         <div className="container max-w-4xl">
           <Reveal>
-            <p className="uppercase tracking-[0.18em] text-[#1F6FEB] font-semibold mb-3" style={{ fontSize: '11px' }}>
-              About GigLine
-            </p>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#102133] leading-[1.15] mb-6">
-              Built by someone who&apos;s worked the floor.
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#0d1b2a] leading-[1.1] mb-10 max-w-3xl tracking-tight">
+              If you&apos;re not sure what&apos;s exposed, start with a walkthrough.
             </h2>
-          </Reveal>
-
-          <div className="space-y-5 text-base md:text-lg text-[#102133]/85 leading-relaxed mb-8">
-            <Reveal><p>I&apos;m Vince Lawrence. Before GigLine, I spent years as a safety coordinator inside glass and vinyl manufacturing &mdash; running Gemba walks across production floors and a shipping department, writing corrective actions, and building compliance systems that had to hold up under real production pressure.</p></Reveal>
-            <Reveal>
-              <blockquote
-                className="my-2"
-                style={{
-                  borderLeft: '3px solid #c8922a',
-                  paddingLeft: '20px',
-                  paddingTop: '4px',
-                  paddingBottom: '4px',
-                  fontStyle: 'italic',
-                  fontFamily: "Georgia, 'Times New Roman', serif",
-                  color: '#102133',
-                  fontSize: '1.15rem',
-                  lineHeight: 1.5,
-                }}
-                data-testid="about-blockquote"
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link
+                to="/request-walkthrough"
+                className="inline-flex items-center justify-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold transition-colors"
+                style={{ padding: '15px 30px', borderRadius: '4px', fontSize: '15px', boxShadow: '0 10px 24px -10px rgba(31,111,235,0.55)' }}
+                data-testid="bottom-cta-primary"
               >
-                &ldquo;I didn&rsquo;t learn this by visiting other people&rsquo;s facilities. I learned it from inside an operation like yours.&rdquo;
-              </blockquote>
-            </Reveal>
-            <Reveal><p>GigLine is a private engagement. Nothing leaves your facility except the report I hand you. My job is to give you a clear picture of where you stand before an inspector shows up &mdash; so you can protect your operation, your people, and your position.</p></Reveal>
-          </div>
-
-          <Reveal>
-            <Link to="/about" className="inline-flex items-center gap-2 text-[#1F6FEB] hover:text-[#1558C0] font-semibold underline underline-offset-4" data-testid="about-link">Read full bio <ArrowRight size={14} /></Link>
-          </Reveal>
-        </div>
-
-        {/* Bottom dual CTA */}
-        <div className="container max-w-4xl mt-20">
-          <Reveal>
-            <div className="pt-12" style={{ borderTop: '1px solid #E5E7EB' }}>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#102133] leading-[1.15] mb-8 max-w-3xl">
-                If you&apos;re not sure what&apos;s exposed, start with a walkthrough.
-              </h2>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/request-walkthrough" className="inline-flex items-center justify-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-7 py-3.5 transition-colors" data-testid="bottom-cta-primary">
-                  Request a Walkthrough <ArrowRight size={16} />
-                </Link>
-                <Link to="/safety-check" className="inline-flex items-center justify-center gap-2 border-2 border-[#102133] hover:bg-[#102133] hover:text-white text-[#102133] font-bold px-7 py-3.5 transition-colors" data-testid="bottom-cta-secondary">
-                  Take the 90-Second Safety Check
-                </Link>
-              </div>
+                Request a Walkthrough <ArrowRight size={16} />
+              </Link>
+              <Link
+                to="/safety-check"
+                className="inline-flex items-center justify-center gap-2 border-2 border-[#0d1b2a] hover:bg-[#0d1b2a] hover:text-white text-[#0d1b2a] font-bold transition-colors"
+                style={{ padding: '13px 30px', borderRadius: '4px', fontSize: '15px' }}
+                data-testid="bottom-cta-secondary"
+              >
+                Take the 90-Second Safety Check
+              </Link>
             </div>
           </Reveal>
         </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, BookOpen, Monitor, FileText, Bot, Zap } from 'lucide-react';
+import { ArrowRight, Check, BookOpen, Monitor, FileText, Bot, Zap, ShieldCheck, Star, Anchor, Factory, MapPin } from 'lucide-react';
 import SEO from '../components/SEO';
 import CaseStudyTeaser from '../components/CaseStudyTeaser';
 import FieldManualBand from '../components/FieldManualBand';
@@ -307,22 +307,22 @@ const HomePage = () => {
       </section>
 
       {/* ═══ SECTION 2 — WHY GIGLINE ═══ */}
-      <section className="py-20 md:py-24" style={{ backgroundColor: '#F9F8F6' }} data-testid="why-gigline-section">
+      <section className="py-20 md:py-24" style={{ backgroundColor: '#f5f4f0' }} data-testid="why-gigline-section">
         <div className="container max-w-6xl">
           <Reveal>
-            <p className="uppercase tracking-[0.18em] text-[#1F6FEB] font-semibold mb-3" style={{ fontSize: '11px' }}>
+            <p className="uppercase font-bold mb-6" style={{ fontSize: '12px', letterSpacing: '0.2em', color: '#1a6fc4' }}>
               Why GigLine
             </p>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#102133] leading-[1.15] mb-12 max-w-3xl">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#0d1b2a] leading-[1.1] mb-12 max-w-4xl tracking-tight">
               The industry sells binders. We walk the floor.
             </h2>
           </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
-              { kicker: 'Training', Icon: BookOpen, title: 'Others sell training.', body: 'Generic curricula and recycled slides. They check a box, but no one actually walks your floor to see if the training is being applied.' },
-              { kicker: 'Software', Icon: Monitor, title: 'Others sell software.', body: 'Dashboards full of inputs and metrics. None of them will flag the pallet sitting in front of your electrical panel right now.' },
-              { kicker: 'Reports', Icon: FileText, title: 'Others sell reports.', body: 'Templated checklists and one-size-fits-all PDFs. No real eyes on your floor and no context for what is actually happening today.' },
+              { kicker: 'Training', Icon: BookOpen, title: 'Training gives theory.', body: 'Generic curricula and recycled slides. They check a box, but no one actually walks your floor to see if the training is being applied.' },
+              { kicker: 'Software', Icon: Monitor, title: 'Software gives dashboards.', body: 'Dashboards full of inputs and metrics. None of them will flag the pallet sitting in front of your electrical panel right now.' },
+              { kicker: 'GigLine', Icon: ShieldCheck, title: 'GigLine gives eyes on the floor.', body: 'Documents without floor context create false confidence. We walk in, find the blind spots, and tell you exactly what is exposed.', featured: true },
               { kicker: 'The Real Problem', Icon: Zap, title: 'Others let AI write their compliance.', body: 'No floor visit. No context. Just a prompt. And when OSHA shows up, they will ask who signed off on it \u2014 and that is still you.', dark: true },
             ].map((c, i) => (
               <Reveal key={c.kicker} delay={i * 80}>
@@ -330,11 +330,16 @@ const HomePage = () => {
                   className="h-full p-7 flex flex-col"
                   style={{
                     background: c.dark ? '#0d1b2a' : '#fff',
-                    border: c.dark ? '1px solid rgba(255,255,255,0.10)' : '1px solid #E5E7EB',
+                    border: c.dark
+                      ? '1px solid rgba(255,255,255,0.10)'
+                      : c.featured
+                        ? '2px solid #1a6fc4'
+                        : '1px solid #E5E7EB',
                     borderRadius: '12px',
                   }}
                   data-testid={`why-gigline-card-${i + 1}`}
                 >
+                  {/* Icon — circular tinted background (not on dark card) */}
                   {c.dark ? (
                     <span
                       className="inline-block self-start uppercase font-bold mb-4"
@@ -343,121 +348,127 @@ const HomePage = () => {
                       {c.kicker}
                     </span>
                   ) : (
-                    <p className="uppercase tracking-[0.16em] font-semibold mb-4" style={{ fontSize: '11px', color: '#102133' }}>{c.kicker}</p>
+                    <div
+                      className="mb-5 flex items-center justify-center"
+                      style={{
+                        width: '44px',
+                        height: '44px',
+                        borderRadius: '50%',
+                        backgroundColor: c.featured ? 'rgba(26,111,196,0.10)' : 'rgba(13,27,42,0.06)',
+                      }}
+                    >
+                      <c.Icon size={20} strokeWidth={1.75} style={{ color: c.featured ? '#1a6fc4' : '#6b7280' }} />
+                    </div>
                   )}
-                  <c.Icon size={22} strokeWidth={1.5} style={{ color: c.dark ? '#c8922a' : '#b0afa8', marginBottom: '12px' }} />
+
+                  {c.dark && (
+                    <c.Icon size={22} strokeWidth={1.5} style={{ color: '#c8922a', marginBottom: '14px' }} />
+                  )}
+
+                  {!c.dark && (
+                    <p
+                      className="uppercase font-semibold mb-3"
+                      style={{ fontSize: '11px', letterSpacing: '0.16em', color: c.featured ? '#1a6fc4' : '#6b7280' }}
+                    >
+                      {c.kicker}
+                    </p>
+                  )}
+
                   <h3
-                    className="text-lg leading-snug mb-3"
-                    style={{
-                      color: c.dark ? '#c8922a' : '#8a7a6a',
-                      fontStyle: 'italic',
-                      fontFamily: "Georgia, 'Times New Roman', serif",
-                      fontWeight: c.dark ? 600 : 400,
-                    }}
+                    className="leading-snug mb-4"
+                    style={
+                      c.dark
+                        ? { color: '#c8922a', fontStyle: 'italic', fontFamily: "Georgia, 'Times New Roman', serif", fontSize: '18px', fontWeight: 600 }
+                        : { color: '#0d1b2a', fontSize: '18px', fontWeight: 700 }
+                    }
                   >
                     {c.title}
                   </h3>
-                  <p className="text-sm leading-relaxed" style={{ color: c.dark ? '#a09080' : '#102133' }}>{c.body}</p>
+
+                  <p className="text-sm leading-relaxed" style={{ color: c.dark ? '#a09080' : '#6b7280' }}>
+                    {c.body}
+                  </p>
                 </div>
               </Reveal>
             ))}
           </div>
+
+          {/* Thin divider + signal caption */}
+          <Reveal delay={400}>
+            <div style={{ borderTop: '1px solid rgba(13,27,42,0.08)', marginTop: '56px', paddingTop: '40px' }}>
+              <p
+                className="text-center uppercase font-bold"
+                style={{
+                  fontSize: '13px',
+                  letterSpacing: '0.18em',
+                  color: '#0d1b2a',
+                  fontFamily: "'JetBrains Mono', monospace",
+                }}
+                data-testid="signal-caption"
+              >
+                This is not a full audit. It is a signal.
+              </p>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* ═══ SECTION 3 — WHAT CLIENTS SAY ═══ */}
-      <section className="py-20 md:py-24 bg-white" data-testid="reviews-section">
-        <div className="container max-w-5xl">
-          <Reveal>
-            <p className="uppercase tracking-[0.18em] text-[#1F6FEB] font-semibold mb-3" style={{ fontSize: '11px' }}>
-              What Clients Say
-            </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#102133] leading-[1.15] mb-12 max-w-3xl">
-              5.0 Google Rating &mdash; Verified Reviews.
-            </h2>
-          </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      {/* ═══ SECTION 3 — TESTIMONIALS + CASE STUDY + TRACK RECORD (combined dark navy) ═══ */}
+      <section className="py-20 md:py-28" style={{ backgroundColor: '#0d1b2a' }} data-testid="trust-section">
+        <div className="container max-w-7xl grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12">
+
+          {/* LEFT — What Clients Say */}
+          <div data-testid="reviews-column">
+            <p className="uppercase font-bold mb-8" style={{ fontSize: '12px', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.55)' }}>What Clients Say</p>
             {[
               { text: 'Most consultants show up with a binder and a checklist. Vince showed up in work boots and asked to see the press line first. Practical guy. Knows the floor. Report came back clear and short \u2014 the way it should.', name: 'David R.', role: 'Plant Manager, Small Manufacturer, Piedmont Triad' },
               { text: 'They don\u2019t just point out issues \u2014 they understand how operations actually run and provide solutions that can be executed on the floor. Where they really stand out is in incident investigations. Their approach is disciplined and focused on true root cause.', name: 'Demar Archie', role: 'Warehouse Receiving Manager' },
             ].map((r, i) => (
-              <Reveal key={r.name} delay={i * 100}>
-                <div className="h-full p-7 bg-white flex flex-col" style={{ border: '1px solid #E5E7EB' }} data-testid={`review-card-${i + 1}`}>
-                  <div className="mb-4" style={{ color: '#D4A93E', fontSize: '14px', letterSpacing: '2px' }}>★★★★★</div>
-                  <p className="text-base text-[#102133]/85 leading-relaxed mb-5 flex-grow">&ldquo;{r.text}&rdquo;</p>
-                  <div className="pt-4" style={{ borderTop: '1px solid #E5E7EB' }}>
-                    <p className="text-sm font-bold text-[#102133]">{r.name}</p>
-                    <p className="text-xs text-[#102133]/60 mt-1">{r.role}</p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ SECTION 4 — CASE STUDY ═══ */}
-      <section className="py-20 md:py-24" style={{ backgroundColor: '#F9F8F6' }} data-testid="case-study-section">
-        <div className="container max-w-5xl">
-          <Reveal>
-            <p className="uppercase tracking-[0.18em] text-[#1F6FEB] font-semibold mb-3" style={{ fontSize: '11px' }}>
-              Case Study
-            </p>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#102133] leading-[1.15] mb-10 max-w-3xl">
-              How a Plastics Manufacturer Passed OSHA With Zero Citations.
-            </h2>
-          </Reveal>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
-            {[
-              { label: 'Operation Size', value: '~60 Employees', highlight: false },
-              { label: 'GigLine Findings', value: '4 Critical Gaps Identified', highlight: false },
-              { label: 'OSHA Outcome', value: 'Zero Citations', highlight: true },
-            ].map((s, i) => (
-              <Reveal key={s.label} delay={i * 100}>
-                <div className="p-6 bg-white" style={{ border: '1px solid #E5E7EB' }}>
-                  <p className="uppercase tracking-[0.14em] text-[#102133]/55 font-semibold mb-2" style={{ fontSize: '10px' }}>{s.label}</p>
-                  <p className="text-lg font-bold" style={{ color: s.highlight ? '#15803d' : '#102133' }}>{s.value}</p>
-                </div>
-              </Reveal>
+              <div key={r.name} className="p-7 mb-5" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.10)', borderRadius: '10px' }} data-testid={`review-card-${i + 1}`}>
+                <p className="mb-6" style={{ fontStyle: 'italic', fontFamily: "Georgia, 'Times New Roman', serif", fontSize: '17px', lineHeight: 1.6, color: 'rgba(255,255,255,0.92)' }}>&ldquo;{r.text}&rdquo;</p>
+                <p className="text-sm font-semibold" style={{ color: 'rgba(255,255,255,0.55)' }}>{r.name} &mdash; <span style={{ fontWeight: 400 }}>{r.role}</span></p>
+              </div>
             ))}
           </div>
 
-          <Reveal>
-            <Link to="/case-studies/mocksville-plastics-osha-inspection" className="inline-flex items-center gap-2 text-[#1F6FEB] hover:text-[#1558C0] font-semibold underline underline-offset-4" data-testid="case-study-link">
-              Read the full case study <ArrowRight size={16} />
-            </Link>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ═══ SECTION 5 — THE TRACK RECORD ═══ */}
-      <section className="py-20 md:py-24 bg-white" data-testid="track-record-section">
-        <div className="container max-w-6xl">
-          <Reveal>
-            <p className="uppercase tracking-[0.18em] text-[#1F6FEB] font-semibold mb-3" style={{ fontSize: '11px' }}>
-              The Track Record
-            </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#102133] leading-[1.15] mb-12 max-w-3xl">
-              Credentials. Discipline. Results.
-            </h2>
-          </Reveal>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {[
-              { stat: '5.0', label: 'Google Review Rating', sub: 'Verified client reviews' },
-              { stat: 'USN', label: 'U.S. Navy Veteran Owned', sub: 'Discipline. Accountability. Precision.' },
-              { stat: '25+', label: 'Years Operations Leadership', sub: 'Glass, vinyl, manufacturing, distribution' },
-              { stat: 'NC', label: 'Based in Kernersville, NC', sub: 'Serving the Piedmont Triad' },
-            ].map((c, i) => (
-              <Reveal key={c.label} delay={i * 80}>
-                <div className="p-6 h-full bg-white text-center" style={{ border: '1px solid #E5E7EB' }} data-testid={`track-card-${i + 1}`}>
-                  <p className="text-3xl md:text-4xl font-bold mb-3" style={{ color: '#D4A93E' }}>{c.stat}</p>
-                  <p className="text-sm font-bold text-[#102133] mb-1">{c.label}</p>
-                  <p className="text-xs text-[#102133]/60 leading-relaxed">{c.sub}</p>
+          {/* MIDDLE — Case Study */}
+          <div data-testid="case-study-column">
+            <p className="uppercase font-bold mb-8" style={{ fontSize: '12px', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.55)' }}>Case Study</p>
+            <div className="p-7" style={{ background: 'rgba(26,111,196,0.06)', border: '1px solid rgba(26,111,196,0.25)', borderRadius: '10px' }}>
+              <h3 className="text-xl md:text-2xl font-bold text-white leading-tight mb-8">How a Plastics Manufacturer Passed OSHA With Zero Citations.</h3>
+              {[
+                { label: 'Operation Size', value: '~60 Employees', highlight: false },
+                { label: 'GigLine Findings', value: '4 Critical Gaps Identified', highlight: false },
+                { label: 'OSHA Outcome', value: 'Zero Citations', highlight: true },
+              ].map((s, i, arr) => (
+                <div key={s.label} className="flex items-center justify-between py-4" style={{ borderTop: i === 0 ? 'none' : '1px solid rgba(255,255,255,0.08)' }}>
+                  <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: '14px' }}>{s.label}</span>
+                  <span className="font-bold text-right" style={{ color: s.highlight ? '#22c55e' : '#fff', fontSize: '15px' }}>{s.value}</span>
                 </div>
-              </Reveal>
+              ))}
+              <Link to="/case-studies/mocksville-plastics-osha-inspection" className="inline-flex items-center gap-2 mt-6 font-semibold" style={{ color: '#1a6fc4' }}>Read the full case study <ArrowRight size={14} /></Link>
+            </div>
+          </div>
+
+          {/* RIGHT — Track Record */}
+          <div data-testid="track-record-column">
+            <p className="uppercase font-bold mb-8" style={{ fontSize: '12px', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.55)' }}>The Track Record</p>
+            {[
+              { Icon: Star, title: '5.0 Google Review Rating', sub: 'Verified client reviews' },
+              { Icon: Anchor, title: 'U.S. Navy Veteran Owned', sub: 'Discipline. Accountability. Precision.' },
+              { Icon: Factory, title: '25+ Years Operations Leadership', sub: 'Glass, vinyl, manufacturing, distribution' },
+              { Icon: MapPin, title: 'Based in Kernersville, NC', sub: 'Serving the Piedmont Triad' },
+            ].map((c, i, arr) => (
+              <div key={c.title} className="flex items-start gap-4 py-5" style={{ borderTop: i === 0 ? 'none' : '1px solid rgba(255,255,255,0.08)' }}>
+                <div className="flex items-center justify-center flex-shrink-0" style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(255,255,255,0.05)' }}>
+                  <c.Icon size={18} strokeWidth={1.5} style={{ color: 'rgba(255,255,255,0.65)' }} />
+                </div>
+                <div>
+                  <p className="font-bold text-white mb-1" style={{ fontSize: '15px' }}>{c.title}</p>
+                  <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: '13px' }}>{c.sub}</p>
+                </div>
+              </div>
             ))}
           </div>
         </div>

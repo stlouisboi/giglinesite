@@ -486,29 +486,90 @@ const HomePage = () => {
             </h2>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
-            <Reveal>
-              <div className="h-full p-7 bg-white flex flex-col" style={{ border: '1px solid #E5E7EB' }} data-testid="home-service-walkthrough">
-                <h3 className="text-xl font-bold text-[#102133] mb-3">Safety Walkthrough</h3>
-                <p className="text-base text-[#102133]/70 leading-relaxed mb-6 flex-grow">The first step when you need exposure identified quickly. An on-site walkthrough focused purely on physical hazards. You get a photo-documented report and a prioritized fix list in 48 hours.</p>
-                <Link to="/request-walkthrough" className="inline-flex items-center gap-2 text-[#1F6FEB] hover:text-[#1558C0] font-semibold underline underline-offset-4 self-start">Request a Walkthrough <ArrowRight size={14} /></Link>
-              </div>
-            </Reveal>
-            <Reveal delay={100}>
-              <div className="h-full p-7 bg-white flex flex-col relative" style={{ border: '2px solid #1F6FEB' }} data-testid="home-service-readiness-visit">
-                <span className="absolute -top-3 left-7 px-3 py-1 text-xs font-bold uppercase tracking-wider" style={{ backgroundColor: '#1F6FEB', color: '#fff' }}>★ Recommended Starting Point</span>
-                <h3 className="text-xl font-bold text-[#102133] mb-3 mt-2">Compliance Readiness Visit</h3>
-                <p className="text-base text-[#102133]/70 leading-relaxed mb-6 flex-grow">A deeper pre-inspection engagement. The floor and the files reviewed in a single visit &mdash; physical walkthrough plus a structured review of your written programs, training records, and OSHA logs.</p>
-                <Link to="/intake?service=compliance-readiness-visit" className="inline-flex items-center gap-2 text-[#1F6FEB] hover:text-[#1558C0] font-semibold underline underline-offset-4 self-start">Schedule a Visit <ArrowRight size={14} /></Link>
-              </div>
-            </Reveal>
-            <Reveal delay={200}>
-              <div className="h-full p-7 bg-white flex flex-col" style={{ border: '1px solid #E5E7EB' }} data-testid="home-service-safety-check">
-                <h3 className="text-xl font-bold text-[#102133] mb-3">90-Second Safety Check</h3>
-                <p className="text-base text-[#102133]/70 leading-relaxed mb-6 flex-grow">Not sure where you stand? Take our free self-screen. Six yes-or-no questions, an immediate risk score, and no email required to start.</p>
-                <Link to="/safety-check" className="inline-flex items-center gap-2 text-[#1F6FEB] hover:text-[#1558C0] font-semibold underline underline-offset-4 self-start">Take the Safety Check <ArrowRight size={14} /></Link>
-              </div>
-            </Reveal>
+          <div className="mb-10" style={{ borderTop: '1px solid #E5E7EB' }} data-testid="home-services-list">
+            {[
+              {
+                idx: '01',
+                title: 'Safety Walkthrough',
+                price: 'from $850',
+                body: 'The first step when you need exposure identified quickly. An on-site walkthrough focused purely on physical hazards. You get a photo-documented report and a prioritized fix list in 48 hours.',
+                cta: { label: 'Request a Walkthrough', to: '/request-walkthrough' },
+                testid: 'home-service-walkthrough',
+              },
+              {
+                idx: '02',
+                title: 'Compliance Readiness Visit',
+                price: 'from $1,500',
+                body: 'A deeper pre-inspection engagement. The floor and the files reviewed in a single visit \u2014 physical walkthrough plus a structured review of your written programs, training records, and OSHA logs.',
+                cta: { label: 'Schedule a Visit', to: '/intake?service=compliance-readiness-visit' },
+                featured: true,
+                badge: 'Recommended Starting Point',
+                testid: 'home-service-readiness-visit',
+              },
+              {
+                idx: '03',
+                title: '90-Second Safety Check',
+                price: 'Free self-screen',
+                body: 'Not sure where you stand? Take our free self-screen. Six yes-or-no questions, an immediate risk score, and no email required to start.',
+                cta: { label: 'Take the Safety Check', to: '/safety-check' },
+                testid: 'home-service-safety-check',
+              },
+            ].map((s, i) => (
+              <Reveal key={s.idx} delay={i * 80}>
+                <div
+                  className="grid grid-cols-12 gap-6 md:gap-10 py-8 md:py-10 items-start"
+                  style={{ borderBottom: '1px solid #E5E7EB' }}
+                  data-testid={s.testid}
+                >
+                  <div className="col-span-12 md:col-span-2">
+                    <p
+                      className="font-bold"
+                      style={{
+                        ...mono,
+                        fontSize: '13px',
+                        letterSpacing: '0.12em',
+                        color: s.featured ? '#1F6FEB' : '#102133',
+                      }}
+                    >
+                      {s.idx}
+                    </p>
+                    <p
+                      className="uppercase font-semibold mt-2"
+                      style={{ fontSize: '10px', letterSpacing: '0.14em', color: '#6b7280' }}
+                    >
+                      {s.price}
+                    </p>
+                  </div>
+                  <div className="col-span-12 md:col-span-7">
+                    {s.featured && (
+                      <span
+                        className="inline-block uppercase font-bold mb-3"
+                        style={{
+                          fontSize: '10px',
+                          letterSpacing: '0.14em',
+                          color: '#1F6FEB',
+                          border: '1px solid rgba(31,111,235,0.35)',
+                          padding: '3px 8px',
+                          borderRadius: '2px',
+                        }}
+                      >
+                        ★ {s.badge}
+                      </span>
+                    )}
+                    <h3 className="text-xl md:text-2xl font-bold text-[#102133] mb-3">{s.title}</h3>
+                    <p className="text-base text-[#102133]/70 leading-relaxed">{s.body}</p>
+                  </div>
+                  <div className="col-span-12 md:col-span-3 md:text-right">
+                    <Link
+                      to={s.cta.to}
+                      className="inline-flex items-center gap-2 text-[#1F6FEB] hover:text-[#1558C0] font-semibold underline underline-offset-4"
+                    >
+                      {s.cta.label} <ArrowRight size={14} />
+                    </Link>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
           </div>
 
           <Reveal>
@@ -529,19 +590,37 @@ const HomePage = () => {
             </h2>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5 mb-10">
+          <div className="mb-10" data-testid="how-it-works-list">
             {[
               { n: '1', title: 'Request', body: 'Submit a brief request online. We confirm your location and operation type.' },
               { n: '2', title: 'Schedule', body: 'We provide a fixed quote and schedule around your production calendar.' },
               { n: '3', title: 'Walkthrough', body: 'We walk your floor, document visible hazards, and review physical compliance gaps.' },
               { n: '4', title: 'Report in 48 Hours', body: 'Plain-language, photo-documented report with CFR citations and penalty exposure.' },
               { n: '5', title: 'Fix What Matters First', body: 'RED / AMBER / GREEN priority list. You decide what to fix and when.' },
-            ].map((s, i) => (
+            ].map((s, i, arr) => (
               <Reveal key={s.n} delay={i * 80}>
-                <div className="p-6 h-full bg-white" style={{ border: '1px solid #E5E7EB' }} data-testid={`how-step-${s.n}`}>
-                  <p className="font-bold mb-3" style={{ color: '#D4A93E', fontSize: '32px', lineHeight: 1 }}>{s.n}</p>
-                  <h3 className="text-base font-bold text-[#102133] mb-2">{s.title}</h3>
-                  <p className="text-sm text-[#102133]/70 leading-relaxed">{s.body}</p>
+                <div
+                  className="grid grid-cols-12 gap-6 md:gap-10 py-6 md:py-7 items-baseline"
+                  style={{
+                    borderTop: i === 0 ? '1px solid #E5E7EB' : 'none',
+                    borderBottom: '1px solid #E5E7EB',
+                  }}
+                  data-testid={`how-step-${s.n}`}
+                >
+                  <div className="col-span-2 md:col-span-1">
+                    <p
+                      className="font-bold"
+                      style={{ color: '#D4A93E', fontSize: '36px', lineHeight: 1, fontFamily: "'Manrope', sans-serif" }}
+                    >
+                      {s.n}
+                    </p>
+                  </div>
+                  <div className="col-span-10 md:col-span-4">
+                    <h3 className="text-lg md:text-xl font-bold text-[#102133]">{s.title}</h3>
+                  </div>
+                  <div className="col-span-12 md:col-span-7">
+                    <p className="text-base text-[#102133]/70 leading-relaxed">{s.body}</p>
+                  </div>
                 </div>
               </Reveal>
             ))}

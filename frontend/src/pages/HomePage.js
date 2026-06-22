@@ -166,37 +166,14 @@ const HomePage = () => {
                 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.15] mb-6"
                 data-testid="hero-headline"
               >
-                Practical{' '}
-                <span className="text-[#1F6FEB]">Safety Walkthroughs</span>
-                {' '}&amp;{' '}
-                <span className="text-[#1F6FEB]">OSHA Documentation Readiness Reviews</span>
-                <span className="block mt-3 text-[#CBD5E1] font-semibold text-2xl sm:text-3xl lg:text-4xl">
-                  for Manufacturers, Warehouses, Contractors &amp; Fleets in{' '}
-                  <span className="inline-flex items-center gap-3 align-middle">
-                    <span>North Carolina.</span>
-                    <img
-                      src="/assets/carolina-built-badge.png"
-                      alt="Carolina-Built · Navy Veteran Owned · Kernersville NC"
-                      className="inline-block w-[125px] sm:w-32 md:w-40 lg:w-44 xl:w-48 h-auto select-none align-middle"
-                      style={{ filter: 'drop-shadow(0 6px 14px rgba(0,0,0,0.35))' }}
-                      loading="eager"
-                      data-testid="hero-carolina-badge"
-                    />
-                  </span>
-                </span>
+                Find the gaps before OSHA does.
               </h1>
 
               <p
-                className="text-base md:text-lg text-[#CBD5E1] leading-relaxed mb-6 max-w-md"
+                className="text-base md:text-lg text-[#CBD5E1] leading-relaxed mb-8 max-w-md"
                 data-testid="hero-sub"
               >
-                On-site walkthroughs, OSHA Documentation Readiness Reviews, and OSHA-focused compliance visits — clear findings, photo-documented reports in 48 hours, no retainer. Based in Kernersville, NC.
-              </p>
-
-              <p
-                className="text-sm text-[#CBD5E1] leading-relaxed mb-8 max-w-md"
-              >
-                A single OSHA citation averages $15,625. A GigLine engagement costs a fraction — and gives you a clear picture of where you stand before an inspector shows up.
+                On-site safety walkthroughs for manufacturers and warehouses across the Piedmont Triad. Fixed quote. Private engagement. Report in 48 hours.
               </p>
 
               <div className="flex flex-col items-start gap-3 mb-5" data-testid="hero-ctas">
@@ -227,9 +204,6 @@ const HomePage = () => {
                     Request a Safety Walkthrough
                   </Link>
                 </div>
-                <p className="text-base font-semibold text-white leading-relaxed" data-testid="hero-pricing-anchor">
-                  Safety Walkthrough from <span className="text-[#1F6FEB]">$850</span>. Compliance Readiness Visit from <span className="text-[#1F6FEB]">$1,500</span>. Start where your operation needs it most.
-                </p>
                 <p className="text-sm text-[#CBD5E1] leading-relaxed max-w-md" data-testid="hero-pricing-direction">
                   Fixed quote before scheduling. Written report in 48 hours. No retainer.{' '}
                   <Link to="/services" className="text-[#1F6FEB] hover:text-white underline decoration-[#1F6FEB]/40 hover:decoration-white transition-colors font-semibold">

@@ -475,13 +475,13 @@ const HomePage = () => {
       </section>
 
       {/* ═══ SECTION 6 — SERVICES ═══ */}
-      <section className="py-20 md:py-28" style={{ backgroundColor: '#f5f4f0' }} data-testid="services-section">
+      <section className="py-16 md:py-24" style={{ backgroundColor: '#f5f4f0' }} data-testid="services-section">
         <div className="container max-w-6xl">
           <Reveal>
-            <p className="uppercase font-bold mb-4" style={{ fontSize: '12px', letterSpacing: '0.2em', color: '#1F6FEB' }}>
+            <p className="uppercase font-bold mb-3" style={{ fontSize: '11px', letterSpacing: '0.2em', color: '#1F6FEB' }}>
               Services
             </p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#0d1b2a] leading-[1.1] mb-14 max-w-3xl tracking-tight">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0d1b2a] leading-[1.15] mb-12 max-w-3xl tracking-tight">
               Start where your operation needs it most.
             </h2>
           </Reveal>
@@ -556,15 +556,15 @@ const HomePage = () => {
                     <s.Icon size={22} strokeWidth={1.75} style={{ color: s.featured ? '#1F6FEB' : '#102133' }} />
                   </div>
 
-                  <h3 className="text-xl md:text-[22px] font-bold text-[#102133] mb-4 leading-tight">{s.title}</h3>
-                  <p className="text-[15px] text-[#102133]/65 leading-[1.65] mb-8 flex-grow">{s.body}</p>
+                  <h3 className="text-lg md:text-xl font-bold text-[#102133] mb-3 leading-tight">{s.title}</h3>
+                  <p className="text-[14px] text-[#102133]/65 leading-[1.65] mb-7 flex-grow">{s.body}</p>
 
                   <Link
                     to={s.cta.to}
                     className="inline-flex items-center gap-1.5 text-[#1F6FEB] hover:text-[#1558C0] font-semibold self-start transition-colors"
-                    style={{ fontSize: '15px' }}
+                    style={{ fontSize: '14px' }}
                   >
-                    {s.cta.label} <ArrowRight size={15} />
+                    {s.cta.label} <ArrowRight size={14} />
                   </Link>
                 </div>
               </Reveal>
@@ -579,9 +579,9 @@ const HomePage = () => {
                 style={{
                   color: '#1F6FEB',
                   border: '1.5px solid #1F6FEB',
-                  padding: '14px 28px',
+                  padding: '12px 24px',
                   borderRadius: '4px',
-                  fontSize: '15px',
+                  fontSize: '14px',
                 }}
                 onMouseEnter={(e) => { e.currentTarget.style.background = '#1F6FEB'; e.currentTarget.style.color = '#fff'; }}
                 onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#1F6FEB'; }}
@@ -594,13 +594,13 @@ const HomePage = () => {
       </section>
 
       {/* ═══ SECTION 7 — HOW IT WORKS (connected horizontal timeline) ═══ */}
-      <section className="py-20 md:py-28" style={{ backgroundColor: '#f5f4f0' }} data-testid="how-it-works-section">
+      <section className="py-16 md:py-24" style={{ backgroundColor: '#f5f4f0' }} data-testid="how-it-works-section">
         <div className="container max-w-6xl">
           <Reveal>
-            <p className="uppercase font-bold mb-4" style={{ fontSize: '12px', letterSpacing: '0.2em', color: '#1F6FEB' }}>
+            <p className="uppercase font-bold mb-3" style={{ fontSize: '11px', letterSpacing: '0.2em', color: '#1F6FEB' }}>
               How It Works
             </p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#0d1b2a] leading-[1.1] mb-16 max-w-3xl tracking-tight">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0d1b2a] leading-[1.15] mb-14 max-w-3xl tracking-tight">
               Simple. Transparent. No surprises.
             </h2>
           </Reveal>
@@ -619,7 +619,7 @@ const HomePage = () => {
                 <div
                   className="hidden md:block absolute"
                   style={{
-                    top: '28px',
+                    top: '24px',
                     left: '10%',
                     right: '10%',
                     height: '1px',
@@ -633,14 +633,14 @@ const HomePage = () => {
                       <div className="flex flex-col items-center text-center" data-testid={`how-step-${s.n}`}>
                         {/* Numbered circle */}
                         <div
-                          className="flex items-center justify-center mb-6"
+                          className="flex items-center justify-center mb-5"
                           style={{
-                            width: '56px',
-                            height: '56px',
+                            width: '48px',
+                            height: '48px',
                             borderRadius: '50%',
                             background: '#0d1b2a',
                             color: '#fff',
-                            fontSize: '20px',
+                            fontSize: '17px',
                             fontWeight: 700,
                             fontFamily: "'Manrope', sans-serif",
                             boxShadow: '0 6px 16px -8px rgba(13,27,42,0.5)',
@@ -648,8 +648,8 @@ const HomePage = () => {
                         >
                           {s.n}
                         </div>
-                        <h3 className="text-base md:text-lg font-bold text-[#0d1b2a] mb-3">{s.title}</h3>
-                        <p className="text-[14px] text-[#102133]/65 leading-[1.65] max-w-[200px]">{s.body}</p>
+                        <h3 className="text-sm md:text-base font-bold text-[#0d1b2a] mb-2">{s.title}</h3>
+                        <p className="text-[13px] text-[#102133]/65 leading-[1.6] max-w-[180px]">{s.body}</p>
                       </div>
                     </Reveal>
                   ))}
@@ -663,10 +663,10 @@ const HomePage = () => {
               <Link
                 to="/request-walkthrough"
                 className="inline-flex items-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold transition-colors"
-                style={{ padding: '15px 32px', borderRadius: '4px', fontSize: '15px', boxShadow: '0 10px 24px -10px rgba(31,111,235,0.55)' }}
+                style={{ padding: '13px 28px', borderRadius: '4px', fontSize: '14px', boxShadow: '0 10px 24px -10px rgba(31,111,235,0.55)' }}
                 data-testid="how-it-works-cta"
               >
-                Request a Walkthrough <ArrowRight size={16} />
+                Request a Walkthrough <ArrowRight size={15} />
               </Link>
             </div>
           </Reveal>
@@ -674,37 +674,29 @@ const HomePage = () => {
       </section>
 
       {/* ═══ SECTION 8 — ABOUT GIGLINE (dark navy, two-column) ═══ */}
-      <section className="py-20 md:py-28" style={{ backgroundColor: '#0d1b2a' }} data-testid="about-section">
+      <section className="py-16 md:py-24" style={{ backgroundColor: '#0d1b2a' }} data-testid="about-section">
         <div className="container max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
 
-            {/* LEFT — Photo panel (placeholder for facility/floor photo) */}
+            {/* LEFT — Vince portrait */}
             <div className="lg:col-span-4">
               <Reveal>
                 <div
-                  className="relative flex flex-col items-center justify-center"
+                  className="overflow-hidden"
                   style={{
-                    aspectRatio: '4 / 5',
-                    background: 'rgba(255,255,255,0.02)',
                     border: '1px solid rgba(255,255,255,0.10)',
                     borderRadius: '8px',
-                    padding: '40px 28px',
+                    background: 'rgba(255,255,255,0.02)',
                   }}
                   data-testid="about-photo-panel"
                 >
-                  <FileImage size={48} strokeWidth={1.25} style={{ color: 'rgba(255,255,255,0.18)' }} />
-                  <p
-                    className="uppercase text-center mt-8"
-                    style={{
-                      fontSize: '10.5px',
-                      letterSpacing: '0.16em',
-                      color: 'rgba(255,255,255,0.32)',
-                      fontFamily: "'JetBrains Mono', monospace",
-                      lineHeight: 1.7,
-                    }}
-                  >
-                    Photo: Vince on a production floor or in a facility environment &mdash; not a studio portrait
-                  </p>
+                  <img
+                    src="/vince-about.png"
+                    alt="Vince Lawrence — Founder, GigLine Safety & Compliance"
+                    className="w-full h-auto block"
+                    style={{ filter: 'brightness(0.95) contrast(1.05)' }}
+                    loading="lazy"
+                  />
                 </div>
               </Reveal>
             </div>
@@ -713,18 +705,18 @@ const HomePage = () => {
             <div className="lg:col-span-8">
               <Reveal>
                 <p
-                  className="uppercase font-bold mb-5"
-                  style={{ fontSize: '12px', letterSpacing: '0.2em', color: '#c8922a' }}
+                  className="uppercase font-bold mb-4"
+                  style={{ fontSize: '11px', letterSpacing: '0.2em', color: '#c8922a' }}
                   data-testid="about-eyebrow"
                 >
                   About GigLine
                 </p>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-[1.1] mb-8 tracking-tight">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-white leading-[1.15] mb-7 tracking-tight">
                   Built by someone who&apos;s worked the floor.
                 </h2>
               </Reveal>
 
-              <div className="space-y-6 text-[16px] md:text-[17px] leading-[1.75]" style={{ color: 'rgba(255,255,255,0.82)' }}>
+              <div className="space-y-5 text-[14.5px] md:text-[15.5px] leading-[1.7]" style={{ color: 'rgba(255,255,255,0.82)' }}>
                 <Reveal>
                   <p>
                     I&apos;m Vince Lawrence. Before GigLine, I spent years as a safety coordinator inside glass and vinyl manufacturing &mdash; running Gemba walks across production floors and a shipping department, writing corrective actions, and building compliance systems that had to hold up under real production pressure.
@@ -733,16 +725,16 @@ const HomePage = () => {
 
                 <Reveal>
                   <blockquote
-                    className="my-4"
+                    className="my-3"
                     style={{
                       background: 'rgba(255,255,255,0.04)',
                       borderLeft: '3px solid #c8922a',
-                      padding: '20px 26px',
+                      padding: '16px 22px',
                       borderRadius: '0 4px 4px 0',
                       fontStyle: 'italic',
                       fontFamily: "Georgia, 'Times New Roman', serif",
                       color: '#fff',
-                      fontSize: '17px',
+                      fontSize: '15.5px',
                       lineHeight: 1.6,
                     }}
                     data-testid="about-blockquote"
@@ -765,8 +757,8 @@ const HomePage = () => {
               <Reveal>
                 <Link
                   to="/about"
-                  className="inline-flex items-center gap-2 font-semibold mt-10 transition-colors hover:opacity-80"
-                  style={{ color: '#c8922a', fontSize: '15px' }}
+                  className="inline-flex items-center gap-2 font-semibold mt-8 transition-colors hover:opacity-80"
+                  style={{ color: '#c8922a', fontSize: '14px' }}
                   data-testid="about-link"
                 >
                   Read full bio <ArrowRight size={14} />
@@ -778,25 +770,25 @@ const HomePage = () => {
       </section>
 
       {/* ═══ SECTION 9 — BOTTOM CTA BAND ═══ */}
-      <section className="py-20 md:py-24 bg-white" data-testid="bottom-cta-section">
+      <section className="py-16 md:py-20 bg-white" data-testid="bottom-cta-section">
         <div className="container max-w-4xl">
           <Reveal>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#0d1b2a] leading-[1.1] mb-10 max-w-3xl tracking-tight">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0d1b2a] leading-[1.15] mb-8 max-w-3xl tracking-tight">
               If you&apos;re not sure what&apos;s exposed, start with a walkthrough.
             </h2>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-3">
               <Link
                 to="/request-walkthrough"
                 className="inline-flex items-center justify-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold transition-colors"
-                style={{ padding: '15px 30px', borderRadius: '4px', fontSize: '15px', boxShadow: '0 10px 24px -10px rgba(31,111,235,0.55)' }}
+                style={{ padding: '13px 26px', borderRadius: '4px', fontSize: '14px', boxShadow: '0 10px 24px -10px rgba(31,111,235,0.55)' }}
                 data-testid="bottom-cta-primary"
               >
-                Request a Walkthrough <ArrowRight size={16} />
+                Request a Walkthrough <ArrowRight size={15} />
               </Link>
               <Link
                 to="/safety-check"
                 className="inline-flex items-center justify-center gap-2 border-2 border-[#0d1b2a] hover:bg-[#0d1b2a] hover:text-white text-[#0d1b2a] font-bold transition-colors"
-                style={{ padding: '13px 30px', borderRadius: '4px', fontSize: '15px' }}
+                style={{ padding: '11px 26px', borderRadius: '4px', fontSize: '14px' }}
                 data-testid="bottom-cta-secondary"
               >
                 Take the 90-Second Safety Check

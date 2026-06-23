@@ -154,10 +154,10 @@ const Footer = () => {
               </Link>
               <span className="text-white/20">&middot;</span>
               <a
-                href="https://www.linkedin.com/company/gigline-safety-compliance"
+                href="https://www.linkedin.com/in/vincenttlawrence/"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="GigLine on LinkedIn"
+                aria-label="Vince Lawrence on LinkedIn"
                 className="text-white/40 hover:text-white transition-colors inline-flex items-center"
                 data-testid="footer-linkedin-link"
               >

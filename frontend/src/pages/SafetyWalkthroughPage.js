@@ -4,12 +4,12 @@ import ServiceLandingTemplate from '../components/ServiceLandingTemplate';
 const SafetyWalkthroughPage = () => (
   <ServiceLandingTemplate
     seoTitle="Safety Walkthrough — On-Site OSHA Review for NC Operations"
-    seoDescription="On-site safety walkthrough for manufacturers, warehouses, contractors, and fleet operations across North Carolina. Photo-documented findings, OSHA references, and a written report in 48 hours. Starting at $850."
+    seoDescription="On-site safety walkthrough for manufacturers, warehouses, contractors, and fleet operations across North Carolina. Photo-documented findings, OSHA references, and a written report in 48 hours. Starting at $950."
     canonical="/safety-walkthrough"
     eyebrow="Service · Safety Walkthrough"
     headline="On-Site Safety Walkthroughs for Manufacturers, Warehouses, Contractors & Fleets."
     subheadline="A trained outside eye on your floor. We walk your operation the way an OSHA Compliance Officer would, flag what would get cited, and hand you a written, prioritized fix list within 48 hours."
-    priceLine="Starting at $850 · Fixed quote before scheduling · No retainer."
+    priceLine="Starting at $950 · Fixed quote before scheduling · No retainer."
     whoItsFor={{
       intro: 'This is the right engagement if any of these describe your operation:',
       bullets: [

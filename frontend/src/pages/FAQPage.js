@@ -10,7 +10,7 @@ const mono = { fontFamily: "'JetBrains Mono', monospace" };
 export const FAQS = [
   {
     q: 'How much does an OSHA safety walkthrough cost in North Carolina?',
-    a: "GigLine safety walkthroughs start at $850. Larger or more complex operations may scope higher. Most small-operation walkthroughs fall between $850 and $1,500 depending on square footage and scope. You'll receive a fixed price before scheduling — no hourly billing, no retainer.",
+    a: "GigLine safety walkthroughs start at $950. Larger or more complex operations may scope higher. Most small-operation walkthroughs fall between $950 and $1,500 depending on square footage and scope. You'll receive a fixed price before scheduling — no hourly billing, no retainer.",
   },
   {
     q: "What's included in a GigLine safety walkthrough?",
@@ -191,7 +191,7 @@ const FAQPage = () => {
             Ready to schedule a walkthrough?
           </h2>
           <p className="text-white/55 mb-8 text-base md:text-lg">
-            One on-site visit. A written report within 48 hours. Starting at $850.
+            One on-site visit. A written report within 48 hours. Starting at $950.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

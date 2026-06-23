@@ -98,7 +98,7 @@ const WHO_HELPS = [
 const STANDALONE = [
   {
     title: 'Safety Walkthrough Report',
-    price: 'From $850',
+    price: 'From $950',
     body: 'On-site walkthrough (1–3 hours). Photo-documented hazard findings. CFR citations + 2026 penalty exposure per finding. Top 10 Fixes report — RED / AMBER / GREEN priority. Delivered within 24–48 hours.',
     best: 'Operations that want to know where they stand on the floor before OSHA, an insurer, or a customer auditor shows up.',
     cta: 'Request a Walkthrough',
@@ -163,7 +163,7 @@ const RECURRING = [
 
 /* ═══ Readiness Path table ═══ */
 const READINESS_PATH = [
-  { stage: 'Find the issues', need: 'What would OSHA see on our floor?', offer: 'Safety Walkthrough — from $850', link: intakeLink('safety-walkthrough-report') },
+  { stage: 'Find the issues', need: 'What would OSHA see on our floor?', offer: 'Safety Walkthrough — from $950', link: intakeLink('safety-walkthrough-report') },
   { stage: 'Check the files', need: 'Are our documents inspection-ready?', offer: DOC_REVIEW_PATH_OFFER, link: intakeLink('documentation-readiness-review') },
   { stage: 'Review both', need: 'We need the floor and files checked.', offer: 'Compliance Readiness Visit — from $1,500', link: intakeLink('compliance-readiness-visit') },
   { stage: 'Build the system', need: 'We need this organized and defensible.', offer: 'OSHA-Ready Control System — from $4,500', link: intakeLink('osha-ready-control-system') },
@@ -172,7 +172,7 @@ const READINESS_PATH = [
 
 /* ═══ Pricing reference block ═══ */
 const PRICING_REF = [
-  ['Safety Walkthrough', 'Starting at $850'],
+  ['Safety Walkthrough', 'Starting at $950'],
   ['OSHA Documentation Readiness Review', DOC_REVIEW_PRICING_REF_PRICE],
   ['Compliance Readiness Visit', 'Starting at $1,500'],
   ['Incident Review & Corrective Action', 'Starting at $1,200'],
@@ -209,7 +209,7 @@ const ServicesPage = () => {
   return (
     <main className="overflow-x-hidden bg-white">
       <SEO
-        title="GigLine Safety Services — Walkthroughs, Compliance Visits & OSHA-Ready Systems | From $850"
+        title="GigLine Safety Services — Walkthroughs, Compliance Visits & OSHA-Ready Systems | From $950"
         description={SERVICES_META_DESCRIPTION}
         canonical="/services"
       />

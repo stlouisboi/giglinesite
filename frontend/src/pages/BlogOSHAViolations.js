@@ -443,7 +443,7 @@ const BlogOSHAViolations = () => {
             >
               <div>
                 <p className="font-medium text-white group-hover:text-[#1F6FEB] transition-colors text-sm">Request a Safety Walkthrough</p>
-                <p className="text-xs text-white/50 mt-1">On-site review starting at $850</p>
+                <p className="text-xs text-white/50 mt-1">On-site review starting at $950</p>
               </div>
               <ArrowRight size={18} className="text-white/30 group-hover:text-[#1F6FEB] transition-colors flex-shrink-0" />
             </Link>

@@ -134,7 +134,7 @@ const HOMEPAGE_FAQS = [
 
 // Canonical 18-question FAQ for /faq page
 const FULL_FAQS = [
-  { q: 'How much does an OSHA safety walkthrough cost in North Carolina?', a: "GigLine safety walkthroughs start at $850 for operations within 30 miles of Kernersville (Winston-Salem, Greensboro, High Point, and the Triad core). Larger or more complex operations may scope higher. Most small-operation walkthroughs fall between $850 and $1,500 depending on square footage and scope. You'll receive a fixed price before scheduling — no hourly billing, no retainer." },
+  { q: 'How much does an OSHA safety walkthrough cost in North Carolina?', a: "GigLine safety walkthroughs start at $950 for operations within 30 miles of Kernersville (Winston-Salem, Greensboro, High Point, and the Triad core). Larger or more complex operations may scope higher. Most small-operation walkthroughs fall between $950 and $1,500 depending on square footage and scope. You'll receive a fixed price before scheduling — no hourly billing, no retainer." },
   { q: "What's included in a GigLine safety walkthrough?", a: "A GigLine safety walkthrough includes a 1–3-hour on-site review, photo-documented safety observations, OSHA-related references where applicable, and a written 'Top 10 Fixes' report delivered within 24–48 hours. Findings are color-coded: RED for urgent items, AMBER for near-term corrections, and GREEN for what your team is doing well." },
   { q: 'How long does a safety walkthrough take on-site?', a: 'Most walkthroughs take 1 to 3 hours on-site. A small shop under 10,000 sq ft may take less than an hour. Larger warehouses, production floors, or multi-area operations may take 2 to 3 hours or require a larger scoped visit. You will receive a time estimate before the visit.' },
   { q: "What's the difference between a safety walkthrough and an OSHA inspection?", a: 'An OSHA inspection is performed by a federal or state compliance officer and may result in citations, penalties, and required abatement. A GigLine safety walkthrough is a private, voluntary review performed by an independent consultant. Findings are delivered only to you — nothing is reported to OSHA, your insurance carrier, or any third party.' },
@@ -247,7 +247,7 @@ const routes = [
   },
   {
     path: '/services',
-    title: 'GigLine Safety Services — Walkthroughs, Compliance Visits & OSHA-Ready Systems | From $850',
+    title: 'GigLine Safety Services — Walkthroughs, Compliance Visits & OSHA-Ready Systems | From $950',
     description: SERVICES_META_DESCRIPTION,
     canonical: '/services',
     schemas: [
@@ -257,7 +257,7 @@ const routes = [
         name: 'GigLine Safety Consulting Services',
         itemListElement: [
           { '@type': 'ListItem', position: 1, item: { '@type': 'Service', name: 'Compliance Readiness Visit', description: 'Combined on-site walkthrough and OSHA Documentation Readiness Review delivered as a single readiness report. Recommended starting point.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '1500', priceCurrency: 'USD' } } },
-          { '@type': 'ListItem', position: 2, item: { '@type': 'Service', name: 'Safety Walkthrough & Top 10 Fixes Report', description: 'A structured on-site review of common OSHA exposure areas with a Top 10 priority report.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '850', priceCurrency: 'USD' } } },
+          { '@type': 'ListItem', position: 2, item: { '@type': 'Service', name: 'Safety Walkthrough & Top 10 Fixes Report', description: 'A structured on-site review of common OSHA exposure areas with a Top 10 priority report.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '950', priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 3, item: { '@type': 'Service', name: 'OSHA Documentation Readiness Review', description: DOC_REVIEW_DESCRIPTION, provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: DOC_REVIEW_PRICE_NUM, priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 4, item: { '@type': 'Service', name: 'Incident Review & Corrective Action Support', description: 'Post-incident review, OSHA recordability determination, and corrective action documentation.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '1200', priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 5, item: { '@type': 'Service', name: 'GigLine OSHA-Ready Control System', description: 'Complete four-binder physical command system, digital folder architecture, training matrix, SDS organization, and corrective action tracker. Includes supervisor walkthrough at handoff.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '4500', priceCurrency: 'USD' } } },
@@ -285,7 +285,7 @@ const routes = [
       <h2>Compliance Readiness Visit — Recommended Starting Point — Starting at $1,500</h2>
       <p>The floor and the files reviewed in a single visit. Full safety walkthrough on-site, OSHA Documentation Readiness Review, single compliance percentage score, photo documentation, CFR citations, written report within 48 hours. Supervisor Safety Starter System ($199 value) included.</p>
       <h2>Standalone Services</h2>
-      <h3>Safety Walkthrough Report — Starting at $850</h3>
+      <h3>Safety Walkthrough Report — Starting at $950</h3>
       <p>On-site walkthrough (1–3 hours). Photo-documented hazard findings. CFR citations + 2026 penalty exposure per finding. Top 10 Fixes report — RED / AMBER / GREEN priority. Delivered within 24–48 hours.</p>
       <h3>OSHA Documentation Readiness Review — Starting at ${DOC_REVIEW_PRICE_LABEL}</h3>
       <p>Structured review of written programs, training records, OSHA logs, inspection records, and SDS compliance. 53-item checklist across seven OSHA categories.</p>
@@ -298,7 +298,7 @@ const routes = [
       <h2>The Natural Next Step — Quarterly and Annual Support</h2>
       <p>Quarterly Compliance Maintenance — Starting at $750/quarter. Annual Compliance Control Partner — Starting at $9,000/year.</p>
       <h2>The GigLine Readiness Path</h2>
-      <p>Find the issues — Safety Walkthrough from $850. Check the files — OSHA Documentation Readiness Review from ${DOC_REVIEW_PRICE_LABEL}. Review both — Compliance Readiness Visit from $1,500. Build the system — OSHA-Ready Control System from $4,500. Keep it current — Quarterly Maintenance from $750/quarter.</p>
+      <p>Find the issues — Safety Walkthrough from $950. Check the files — OSHA Documentation Readiness Review from ${DOC_REVIEW_PRICE_LABEL}. Review both — Compliance Readiness Visit from $1,500. Build the system — OSHA-Ready Control System from $4,500. Keep it current — Quarterly Maintenance from $750/quarter.</p>
       <h2>Recent Outcome &mdash; Case Study</h2>
       <p><a href="/case-studies/mocksville-plastics-osha-inspection">How a 60-Person Plastics Manufacturer in Mocksville Passed OSHA &mdash; With Zero Citations</a>.</p>
       <p>After payment, you'll receive a scheduling confirmation within one business day.</p>
@@ -459,7 +459,7 @@ const routes = [
     schemas: [LOCAL_BUSINESS],
     content: `
       <h1>Request a Safety Walkthrough</h1>
-      <p>Schedule an on-site safety walkthrough with GigLine Safety &amp; Compliance. One visit. Clear findings. Written report within 24-48 hours. <strong>Starting at $850</strong>.</p>
+      <p>Schedule an on-site safety walkthrough with GigLine Safety &amp; Compliance. One visit. Clear findings. Written report within 24-48 hours. <strong>Starting at $950</strong>.</p>
       <p>Serving small manufacturers, warehouses, contractors, and fleets in the Kernersville/Triad, NC area.</p>
 
       <h2>Three ways to reach Vince</h2>
@@ -598,7 +598,7 @@ const routes = [
   {
     path: '/safety-walkthrough',
     title: 'Safety Walkthrough — On-Site OSHA Review for NC Operations | GigLine',
-    description: 'On-site safety walkthrough for manufacturers, warehouses, contractors, and fleet operations across North Carolina. Photo-documented findings, OSHA references, and a written report in 48 hours. Starting at $850.',
+    description: 'On-site safety walkthrough for manufacturers, warehouses, contractors, and fleet operations across North Carolina. Photo-documented findings, OSHA references, and a written report in 48 hours. Starting at $950.',
     canonical: '/safety-walkthrough',
     schemas: [
       {
@@ -614,13 +614,13 @@ const routes = [
         { q: 'Who is the safety walkthrough built for?', a: 'Small to mid-size manufacturers, warehouses, distribution centers, contractors, and fleet operations in North Carolina — typically 5 to 100 employees with no full-time safety manager on staff.' },
         { q: 'What gets reviewed during a safety walkthrough?', a: 'Walking-working surfaces and egress, electrical panel clearance, machine guarding and energy control, powered industrial trucks, hazard communication, PPE and fall protection, and recordkeeping — the same OSHA standards an inspector would focus on.' },
         { q: 'What do I receive after the walkthrough?', a: 'A PDF report within 24-48 hours with photo-documented findings, OSHA-related references where applicable, prioritized corrective action recommendations, and color-coded priorities (RED, AMBER, GREEN).' },
-        { q: 'How much does a safety walkthrough cost?', a: 'Walkthroughs start at $850. Most engagements fall between $850 and $1,500 depending on size and scope. Fixed quote before scheduling. No retainer.' },
+        { q: 'How much does a safety walkthrough cost?', a: 'Walkthroughs start at $950. Most engagements fall between $950 and $1,500 depending on size and scope. Fixed quote before scheduling. No retainer.' },
       ]),
       breadcrumb([{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }, { name: 'Safety Walkthrough', path: '/safety-walkthrough' }]),
     ],
     content: `
       <h1>On-Site Safety Walkthroughs for Manufacturers, Warehouses, Contractors &amp; Fleets</h1>
-      <p>A trained outside eye on your floor. We walk your operation the way an OSHA Compliance Officer would, flag what would get cited, and hand you a written, prioritized fix list within 48 hours. Starting at $850.</p>
+      <p>A trained outside eye on your floor. We walk your operation the way an OSHA Compliance Officer would, flag what would get cited, and hand you a written, prioritized fix list within 48 hours. Starting at $950.</p>
       <h2>Who It's For</h2>
       <p>Small to mid-size manufacturer, warehouse, distribution center, contractor, or fleet operation in North Carolina with 5 to 100 employees and no full-time safety manager. Especially built for operations with OSHA on the calendar, a recent recordable injury, or a recent expansion.</p>
       <h2>What's Reviewed</h2>

@@ -51,6 +51,14 @@ const Footer = () => {
                 <Phone size={16} />
                 336-329-8899
               </a>
+              <Link
+                to="/intake?service=compliance-readiness-visit"
+                className="inline-flex items-center gap-1 text-sm font-semibold transition-opacity hover:opacity-80"
+                style={{ color: '#c8922a' }}
+                data-testid="footer-request-visit"
+              >
+                Request a Visit &rarr;
+              </Link>
             </div>
           </div>
 

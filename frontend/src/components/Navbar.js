@@ -60,14 +60,14 @@ const Navbar = () => {
               (336) 329-8899
             </a>
             <Link
-              to="/request-walkthrough"
+              to="/intake?service=compliance-readiness-visit"
               className="text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors"
               style={{ background: '#1F6FEB', color: '#FFFFFF' }}
               onMouseEnter={e => e.target.style.background = '#1558C0'}
               onMouseLeave={e => e.target.style.background = '#1F6FEB'}
               data-testid="nav-cta-button"
             >
-              Request a Walkthrough
+              Schedule a Visit
             </Link>
           </div>
 
@@ -127,13 +127,13 @@ const Navbar = () => {
                 <Phone size={20} /> (336) 329-8899
               </a>
               <Link
-                to="/request-walkthrough"
+                to="/intake?service=compliance-readiness-visit"
                 className="flex items-center justify-center w-full text-center font-semibold rounded-lg mt-4"
                 style={{ background: '#1F6FEB', color: '#FFFFFF', minHeight: '56px', fontSize: '16px' }}
                 onClick={() => setIsOpen(false)}
                 data-testid="mobile-nav-cta-button"
               >
-                Request a Walkthrough
+                Schedule a Visit
               </Link>
             </div>
           </div>

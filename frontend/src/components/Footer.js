@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, ExternalLink } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <footer className="bg-[#091725] text-white" data-testid="footer">
       <div className="container py-12 md:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
           {/* Company Info */}
           <div>
             <div className="mb-4">
@@ -76,63 +76,47 @@ const Footer = () => {
           <div>
             <h4 className="text-base font-semibold mb-4 text-white/90">Resources</h4>
             <nav aria-label="Footer resources">
-              <ul className="space-y-1.5">
+              <ul className="space-y-4">
                 {[
-                  { name: 'Field Notes', path: '/field-notes' },
-                  { name: 'Safety Check', path: '/safety-check' },
-                  { name: 'Heat Stress Guide', path: '/field-notes/heat-stress' },
-                  { name: 'HazCom Starter Pack', path: '/hazcom' },
-                  { name: 'Top 5 OSHA Violations', path: '/blog/top-5-osha-violations-small-manufacturing' },
-                  { name: 'HazCom Requirements Guide', path: '/blog/hazcom-requirements-small-business' },
+                  {
+                    name: 'Safety Check',
+                    path: '/safety-check',
+                    desc: 'Free 90-second self-screen. No email required.',
+                  },
+                  {
+                    name: 'Heat Stress Guide',
+                    path: '/field-notes/heat-stress',
+                    desc: 'OSHA requirements for outdoor and indoor heat exposure.',
+                  },
+                  {
+                    name: 'HazCom Starter Pack',
+                    path: '/hazcom',
+                    desc: 'Labels, SDS, and written program basics.',
+                  },
+                  {
+                    name: 'Top 5 OSHA Violations',
+                    path: '/blog/top-5-osha-violations-small-manufacturing',
+                    desc: "The citations most small operations don't see coming.",
+                  },
+                  {
+                    name: 'HazCom Requirements Guide',
+                    path: '/blog/hazcom-requirements-small-business',
+                    desc: 'Full breakdown of the HazCom standard.',
+                  },
                 ].map((link) => (
                   <li key={link.path + link.name}>
                     <Link
                       to={link.path}
-                      className="text-sm text-white/60 hover:text-[#1558C0] transition-colors"
+                      className="text-sm text-white/80 hover:text-[#1558C0] transition-colors font-medium block"
                       data-testid={`footer-resource-${link.name.toLowerCase().replace(/\s+/g, '-')}`}
                     >
                       {link.name}
                     </Link>
+                    <p className="text-xs text-white/45 mt-1 leading-snug">{link.desc}</p>
                   </li>
                 ))}
               </ul>
             </nav>
-          </div>
-
-          {/* LaunchPath Reference */}
-          <div>
-            <h4 className="text-base font-semibold mb-4 text-white/90">For Motor Carriers</h4>
-            <p className="text-sm text-white/60 mb-4 leading-relaxed">
-              GigLine handles on-site safety for local operations. If you're a new motor carrier building FMCSA compliance, visit LaunchPath Transportation EDU.
-            </p>
-            <img
-              src="/launchpath-logo-white.png"
-              alt="LaunchPath"
-              className="h-8 mb-3"
-            />
-            <div className="space-y-2">
-              <a
-                href="https://launchpathedu.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-white/60 hover:text-[#1558C0] transition-colors"
-                data-testid="footer-launchpath-site-link"
-              >
-                launchpathedu.com
-                <ExternalLink size={14} />
-              </a>
-              <br />
-              <a
-                href="https://launchpathedu.com/ground-0-briefing"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-[#1558C0] hover:text-[#1558C0]/80 transition-colors"
-                data-testid="footer-launchpath-link"
-              >
-                Start with Ground 0 — Free
-                <ExternalLink size={14} />
-              </a>
-            </div>
           </div>
         </div>
 

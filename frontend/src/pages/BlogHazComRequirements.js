@@ -525,7 +525,7 @@ const BlogHazComRequirements = () => {
             <Link to="/contact" className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#1F6FEB]/40 transition-colors group">
               <div>
                 <p className="font-medium text-white group-hover:text-[#1F6FEB] transition-colors text-sm">Request a Walkthrough</p>
-                <p className="text-xs text-white/50 mt-1">On-site review starting at $950</p>
+                <p className="text-xs text-white/50 mt-1">On-site review starting at $1,200</p>
               </div>
               <ArrowRight size={18} className="text-white/30 group-hover:text-[#1F6FEB] transition-colors flex-shrink-0" />
             </Link>

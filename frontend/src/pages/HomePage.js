@@ -173,35 +173,35 @@ const HomePage = () => {
                 className="text-base md:text-lg text-[#CBD5E1] leading-relaxed mb-8 max-w-md"
                 data-testid="hero-sub"
               >
-                On-site safety walkthroughs for manufacturers and warehouses across the Piedmont Triad. Fixed quote. Private engagement. Report in 48 hours.
+                On-site safety walkthroughs for manufacturers, warehouses, contractors, and fleet operations across the Piedmont Triad. Fixed quote. Private engagement. Report in 48 hours.
               </p>
 
               <div className="flex flex-col items-start gap-3 mb-5" data-testid="hero-ctas">
-                <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-4 w-full sm:w-auto">
                   <Link
-                    to="/intake?service=compliance-readiness-visit"
+                    to="/request-walkthrough"
                     onClick={() => trackEvent('hero_cta_primary', {
-                      cta_text: 'Schedule a Compliance Readiness Visit',
-                      cta_destination: '/intake?service=compliance-readiness-visit',
+                      cta_text: 'Request a Walkthrough',
+                      cta_destination: '/request-walkthrough',
                       page_path: typeof window !== 'undefined' ? window.location.pathname : '/',
                     })}
                     className="bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center justify-center gap-2 shadow-lg shadow-[#1F6FEB]/20"
                     data-testid="hero-cta-primary"
                   >
-                    Schedule a Compliance Readiness Visit
+                    Request a Walkthrough
                     <ArrowRight size={18} />
                   </Link>
                   <Link
-                    to="/request-walkthrough"
+                    to="/safety-check"
                     onClick={() => trackEvent('hero_cta_secondary', {
-                      cta_text: 'Request a Safety Walkthrough',
-                      cta_destination: '/request-walkthrough',
+                      cta_text: 'Take the Safety Check',
+                      cta_destination: '/safety-check',
                       page_path: typeof window !== 'undefined' ? window.location.pathname : '/',
                     })}
-                    className="border-2 border-white/25 hover:border-white/55 text-white font-semibold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center justify-center gap-2"
+                    className="text-white/80 hover:text-white font-semibold text-base underline underline-offset-4 decoration-white/30 hover:decoration-white transition-colors"
                     data-testid="hero-cta-secondary"
                   >
-                    Request a Safety Walkthrough
+                    Take the Safety Check &rarr;
                   </Link>
                 </div>
                 <p className="text-sm text-[#CBD5E1] leading-relaxed max-w-md" data-testid="hero-pricing-direction">
@@ -231,52 +231,50 @@ const HomePage = () => {
           no decorative backgrounds, no Unsplash stock photos.
       ═══════════════════════════════════════════════════════════════ */}
 
-      {/* ═══ SECTION 1 — WHAT WE FIND ON THE FLOOR ═══ */}
+      {/* ═══ SECTION 2 — WHAT WE FIND ON THE FLOOR (GL-WEB-008) ═══ */}
       <section className="py-20 md:py-24 bg-white border-t border-b" style={{ borderColor: '#E5E7EB' }} data-testid="floor-findings-section">
         <div className="container max-w-6xl">
           <Reveal>
             <p className="uppercase tracking-[0.18em] text-[#1F6FEB] font-semibold mb-3" style={{ fontSize: '11px' }} data-testid="floor-findings-eyebrow">
               What We Find on the Floor
             </p>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#102133] leading-[1.15] mb-3 max-w-3xl">
-              The violations most owners don&apos;t see coming.
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#102133] leading-[1.15] mb-4 max-w-3xl">
+              Most violations are hiding in plain sight.
             </h2>
             <p className="text-base text-[#102133]/70 leading-relaxed mb-12 max-w-3xl">
-              These aren&apos;t rare edge cases. These are the violations we find most often in small operations &mdash; the ones most owners don&apos;t know are there until an inspector shows up.
+              OSHA doesn&apos;t find things your team missed. They find things your team stopped seeing. Here&apos;s what shows up on almost every walkthrough.
             </p>
           </Reveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10">
             {[
-              { title: 'Blocked Egress', badge: 'Instant Citation', img: '/hero-blocked-exit.jpg', caption: 'Cluttered aisle / blocked exit door', body: 'Cited in 22% of general industry inspections. It happens when floor space gets tight, but it is an instant citation if found during an OSHA visit.' },
-              { title: 'Electrical Access', badge: 'Automatic Citation', img: '/blocked-electrical-panel.jpg', caption: 'Pallet blocking electrical panel', body: 'Usually a forklift, a pallet, or a trash can. Blocked panels delay emergency shutoff and are automatic citations under OSHA 1910.303.' },
-              { title: 'Machine Guarding', badge: 'Top 10 OSHA Violation', img: '/machine-guarding.jpg', caption: 'Exposed belt / press line without guard', body: 'One of OSHA\u2019s top 10 most cited violations. Guards get removed for maintenance and never put back. Missing guards are automatic citations.' },
-              { title: 'Emergency Access', badge: 'Citable on First Observation', img: '/blocked-fire-riser.jpg', caption: 'Blocked fire riser / extinguisher', body: 'Blocked fire equipment delays response time and is citable on first observation. It is an easy fix that gets missed in the daily rush.' },
+              { num: '01', title: 'Incomplete LOTO Procedures', body: 'Machine-specific written procedures missing or not posted at the point of use. One of the most cited serious violations in manufacturing \u2014 and one of the easiest to correct before an inspection.' },
+              { num: '02', title: 'Forklift & PIT Gaps', body: 'Expired operator certifications, missing pre-shift inspection logs, and unmarked pedestrian zones. These show up on nearly every floor we walk.' },
+              { num: '03', title: 'Hazard Communication Failures', body: 'SDSs not accessible at point of use, unlabeled secondary containers, and training records that don\u2019t match the chemical inventory. OSHA\u2019s most frequently cited standard.' },
+              { num: '04', title: 'Electrical Hazard Exposures', body: 'Open junction boxes, missing knockouts, and energized equipment without proper guarding. Often overlooked because they\u2019ve been that way for years.' },
+              { num: '05', title: 'Blocked or Unmarked Egress', body: 'Exit routes obstructed by inventory, emergency lighting not tested, and exit signs missing or burned out. Simple to fix. Expensive to ignore.' },
+              { num: '06', title: 'Recordkeeping Deficiencies', body: 'OSHA 300 logs not current, 300A summaries not posted during the required February\u2013April window, and incident records that don\u2019t meet the retention standard.' },
             ].map((c, i) => (
-              <Reveal key={c.title} delay={i * 80}>
-                <div className="h-full flex flex-col bg-white" style={{ border: '1px solid #E5E7EB' }} data-testid={`floor-card-${i + 1}`}>
-                  {/* Authentic GigLine facility photo */}
-                  <img
-                    src={c.img}
-                    alt={c.caption}
-                    loading="lazy"
-                    className="w-full"
-                    style={{ aspectRatio: '4 / 3', objectFit: 'cover', display: 'block' }}
-                  />
-                  <div className="p-5 flex-grow flex flex-col">
-                    <span
-                      className="inline-block self-start uppercase font-bold mb-3"
-                      style={{ fontSize: '10px', letterSpacing: '0.1em', color: '#8B2500', border: '1px solid rgba(139,37,0,0.35)', padding: '3px 8px', borderRadius: '2px' }}
-                    >
-                      {c.badge}
-                    </span>
-                    <h3 className="text-lg font-bold text-[#102133] mb-2">{c.title}</h3>
-                    <p className="text-sm text-[#102133]/70 leading-relaxed">{c.body}</p>
-                  </div>
+              <Reveal key={c.num} delay={i * 70}>
+                <div className="flex flex-col" data-testid={`floor-finding-${c.num}`}>
+                  <span
+                    className="font-bold mb-3"
+                    style={{ ...mono, fontSize: '13px', letterSpacing: '0.12em', color: '#1F6FEB' }}
+                  >
+                    {c.num}
+                  </span>
+                  <h3 className="text-lg md:text-xl font-bold text-[#102133] leading-tight mb-3">{c.title}</h3>
+                  <p className="text-[15px] text-[#102133]/70 leading-[1.65]">{c.body}</p>
                 </div>
               </Reveal>
             ))}
           </div>
+
+          <Reveal>
+            <p className="text-sm text-[#102133]/55 italic mt-12 max-w-3xl">
+              These are findings from real walkthroughs &mdash; not a checklist from a textbook. Every facility is different.
+            </p>
+          </Reveal>
         </div>
       </section>
 
@@ -288,99 +286,86 @@ const HomePage = () => {
               Why GigLine
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#0d1b2a] leading-[1.1] mb-12 max-w-4xl tracking-tight">
-              The industry sells binders. We walk the floor.
+              Not a software tool. Not a template audit. A person who walks your floor.
             </h2>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
             {[
-              { kicker: 'Training', Icon: BookOpen, title: 'Training gives theory.', body: 'Generic curricula and recycled slides. They check a box, but no one actually walks your floor to see if the training is being applied.' },
-              { kicker: 'Software', Icon: Monitor, title: 'Software gives dashboards.', body: 'Dashboards full of inputs and metrics. None of them will flag the pallet sitting in front of your electrical panel right now.' },
-              { kicker: 'GigLine', Icon: ShieldCheck, title: 'GigLine gives eyes on the floor.', body: 'Documents without floor context create false confidence. We walk in, find the blind spots, and tell you exactly what is exposed.', featured: true },
-              { kicker: 'The Real Problem', Icon: Zap, title: 'Others let AI write their compliance.', body: 'No floor visit. No context. Just a prompt. And when OSHA shows up, they will ask who signed off on it \u2014 and that is still you.', dark: true },
+              {
+                kicker: 'Fixed Pricing',
+                Icon: ShieldCheck,
+                title: 'Fixed Quote. No Surprises.',
+                body: 'You know the price before we schedule. No hourly billing, no scope creep, no invoice you weren\u2019t expecting. Every engagement is quoted in advance and held.',
+              },
+              {
+                kicker: 'Confidentiality',
+                Icon: Shield,
+                title: 'Private by Default.',
+                body: 'Your findings stay between us. GigLine does not share, publish, or reference client facility data. What we find on your floor is yours \u2014 not a case study, not a portfolio piece.',
+                featured: true,
+              },
+              {
+                kicker: 'Floor Experience',
+                Icon: Factory,
+                title: 'Built on the Floor, Not in a Classroom.',
+                body: 'Vince Lawrence spent years inside manufacturing operations \u2014 glass and vinyl, rubber compounding, and metals fabrication, including time at BF Goodrich and Amero Steel. He learned what OSHA looks for by doing Gemba walks, not by reading about them.',
+              },
             ].map((c, i) => (
-              <Reveal key={c.kicker} delay={i * 80}>
+              <Reveal key={c.kicker} delay={i * 90}>
                 <div
-                  className="h-full p-7 flex flex-col"
+                  className="h-full p-7 flex flex-col bg-white"
                   style={{
-                    background: c.dark ? '#0d1b2a' : '#fff',
-                    border: c.dark
-                      ? '1px solid rgba(255,255,255,0.10)'
-                      : c.featured
-                        ? '2px solid #1a6fc4'
-                        : '1px solid #E5E7EB',
+                    border: c.featured ? '2px solid #1a6fc4' : '1px solid #E5E7EB',
                     borderRadius: '12px',
+                    boxShadow: c.featured ? '0 18px 40px -22px rgba(26,111,196,0.32)' : '0 1px 0 rgba(13,27,42,0.02)',
                   }}
                   data-testid={`why-gigline-card-${i + 1}`}
                 >
-                  {/* Icon — circular tinted background (not on dark card) */}
-                  {c.dark ? (
-                    <span
-                      className="inline-block self-start uppercase font-bold mb-4"
-                      style={{ fontSize: '10px', letterSpacing: '0.12em', color: '#c8922a', border: '1px solid #c8922a', padding: '3px 10px', borderRadius: '4px' }}
-                    >
-                      {c.kicker}
-                    </span>
-                  ) : (
-                    <div
-                      className="mb-5 flex items-center justify-center"
-                      style={{
-                        width: '44px',
-                        height: '44px',
-                        borderRadius: '50%',
-                        backgroundColor: c.featured ? 'rgba(26,111,196,0.10)' : 'rgba(13,27,42,0.06)',
-                      }}
-                    >
-                      <c.Icon size={20} strokeWidth={1.75} style={{ color: c.featured ? '#1a6fc4' : '#6b7280' }} />
-                    </div>
-                  )}
-
-                  {c.dark && (
-                    <c.Icon size={22} strokeWidth={1.5} style={{ color: '#c8922a', marginBottom: '14px' }} />
-                  )}
-
-                  {!c.dark && (
-                    <p
-                      className="uppercase font-semibold mb-3"
-                      style={{ fontSize: '11px', letterSpacing: '0.16em', color: c.featured ? '#1a6fc4' : '#6b7280' }}
-                    >
-                      {c.kicker}
-                    </p>
-                  )}
-
-                  <h3
-                    className="leading-snug mb-4"
-                    style={
-                      c.dark
-                        ? { color: '#c8922a', fontStyle: 'italic', fontFamily: "Georgia, 'Times New Roman', serif", fontSize: '18px', fontWeight: 600 }
-                        : { color: '#0d1b2a', fontSize: '18px', fontWeight: 700 }
-                    }
+                  <div
+                    className="mb-5 flex items-center justify-center"
+                    style={{
+                      width: '48px',
+                      height: '48px',
+                      borderRadius: '50%',
+                      backgroundColor: c.featured ? 'rgba(26,111,196,0.10)' : 'rgba(13,27,42,0.06)',
+                    }}
                   >
-                    {c.title}
-                  </h3>
-
-                  <p className="text-sm leading-relaxed" style={{ color: c.dark ? '#a09080' : '#6b7280' }}>
-                    {c.body}
+                    <c.Icon size={22} strokeWidth={1.75} style={{ color: c.featured ? '#1a6fc4' : '#6b7280' }} />
+                  </div>
+                  <p
+                    className="uppercase font-semibold mb-3"
+                    style={{ fontSize: '11px', letterSpacing: '0.16em', color: c.featured ? '#1a6fc4' : '#6b7280' }}
+                  >
+                    {c.kicker}
                   </p>
+                  <h3 className="text-lg md:text-xl font-bold text-[#0d1b2a] leading-snug mb-3">{c.title}</h3>
+                  <p className="text-[15px] text-[#6b7280] leading-[1.65]">{c.body}</p>
                 </div>
               </Reveal>
             ))}
           </div>
 
-          {/* Thin divider + signal caption */}
-          <Reveal delay={400}>
-            <div style={{ borderTop: '1px solid rgba(13,27,42,0.08)', marginTop: '56px', paddingTop: '40px' }}>
+          {/* AI / Template warning block */}
+          <Reveal delay={350}>
+            <div
+              className="mt-12 md:mt-14 p-7 md:p-8"
+              style={{
+                background: '#0d1b2a',
+                borderLeft: '4px solid #c8922a',
+                borderRadius: '0 8px 8px 0',
+              }}
+              data-testid="ai-warning-block"
+            >
               <p
-                className="text-center uppercase font-bold"
-                style={{
-                  fontSize: '13px',
-                  letterSpacing: '0.18em',
-                  color: '#0d1b2a',
-                  fontFamily: "'JetBrains Mono', monospace",
-                }}
-                data-testid="signal-caption"
+                className="uppercase font-bold mb-3"
+                style={{ fontSize: '11px', letterSpacing: '0.18em', color: '#c8922a' }}
               >
-                This is not a full audit. It is a signal.
+                The Template Trap
+              </p>
+              <p className="text-[15px] md:text-base text-white/85 leading-[1.7] max-w-4xl">
+                We&apos;re seeing more written programs built with AI and templates &mdash; but without floor context, they create false confidence. A written program can come from a template or ChatGPT. Exposure still shows up on the floor.{' '}
+                <span className="text-white font-semibold">This is not a full audit. It is a signal.</span>
               </p>
             </div>
           </Reveal>
@@ -388,76 +373,71 @@ const HomePage = () => {
       </section>
 
 
-      {/* ═══ SECTION 3 — TESTIMONIALS + CASE STUDY + TRACK RECORD (combined dark navy) ═══ */}
-      <section className="py-20 md:py-28" style={{ backgroundColor: '#0d1b2a' }} data-testid="trust-section">
-        <div className="container max-w-7xl grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12">
+      {/* ═══ SECTION 4 — COST OF WAITING (GL-WEB-008) ═══ */}
+      <section className="py-20 md:py-24 bg-white border-t" style={{ borderColor: '#E5E7EB' }} data-testid="cost-of-waiting-section">
+        <div className="container max-w-6xl">
+          <Reveal>
+            <p className="uppercase font-bold mb-3" style={{ fontSize: '11px', letterSpacing: '0.2em', color: '#8B2500' }} data-testid="cost-eyebrow">
+              The Cost of Waiting
+            </p>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0d1b2a] leading-[1.15] mb-4 max-w-4xl tracking-tight">
+              The average OSHA serious violation costs $16,131.
+            </h2>
+            <p className="text-base md:text-lg text-[#102133]/70 leading-relaxed mb-12 max-w-3xl">
+              That&apos;s per citation. A single inspection can produce multiple citations across multiple standards. The Safety Walkthrough starts at $1,200.
+            </p>
+          </Reveal>
 
-          {/* LEFT — What Clients Say */}
-          <div data-testid="reviews-column">
-            <p className="uppercase font-bold mb-8" style={{ fontSize: '12px', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.55)' }}>What Clients Say</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-12">
             {[
-              { text: 'Most consultants show up with a binder and a checklist. Vince showed up in work boots and asked to see the press line first. Practical guy. Knows the floor. Report came back clear and short \u2014 the way it should.', name: 'David R.', role: 'Plant Manager, Small Manufacturer, Piedmont Triad' },
-              { text: 'They don\u2019t just point out issues \u2014 they understand how operations actually run and provide solutions that can be executed on the floor. Where they really stand out is in incident investigations. Their approach is disciplined and focused on true root cause.', name: 'Demar Archie', role: 'Warehouse Receiving Manager' },
-            ].map((r, i) => (
-              <div key={r.name} className="p-7 mb-5" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.10)', borderRadius: '10px' }} data-testid={`review-card-${i + 1}`}>
-                <p className="mb-6" style={{ fontStyle: 'italic', fontFamily: "Georgia, 'Times New Roman', serif", fontSize: '17px', lineHeight: 1.6, color: 'rgba(255,255,255,0.92)' }}>&ldquo;{r.text}&rdquo;</p>
-                <p className="text-sm font-semibold" style={{ color: 'rgba(255,255,255,0.55)' }}>{r.name} &mdash; <span style={{ fontWeight: 400 }}>{r.role}</span></p>
-              </div>
+              { stat: '$16,131', label: 'Avg. OSHA serious violation (2026)' },
+              { stat: '$165,514', label: 'Max penalty per willful or repeat violation' },
+              { stat: '48 hrs', label: 'Time from walkthrough to written report' },
+            ].map((s, i) => (
+              <Reveal key={s.label} delay={i * 100}>
+                <div
+                  className="p-7 md:p-8 h-full"
+                  style={{
+                    background: '#f5f4f0',
+                    borderTop: '3px solid #8B2500',
+                    borderRadius: '4px',
+                  }}
+                  data-testid={`cost-stat-${i + 1}`}
+                >
+                  <p
+                    className="font-extrabold mb-3 text-[#0d1b2a] leading-none tracking-tight"
+                    style={{ fontSize: 'clamp(36px, 5vw, 52px)' }}
+                  >
+                    {s.stat}
+                  </p>
+                  <p className="text-sm md:text-[15px] text-[#102133]/70 leading-snug">{s.label}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
 
-          {/* MIDDLE — Case Study */}
-          <div data-testid="case-study-column">
-            <p className="uppercase font-bold mb-8" style={{ fontSize: '12px', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.55)' }}>Case Study</p>
-            <div className="p-7" style={{ background: 'rgba(26,111,196,0.06)', border: '1px solid rgba(26,111,196,0.25)', borderRadius: '10px' }}>
-              <h3 className="text-xl md:text-2xl font-bold text-white leading-tight mb-8">How a Plastics Manufacturer Passed OSHA With Zero Citations.</h3>
-              {[
-                { label: 'Operation Size', value: '~60 Employees', highlight: false },
-                { label: 'GigLine Findings', value: '4 Critical Gaps Identified', highlight: false },
-                { label: 'OSHA Outcome', value: 'Zero Citations', highlight: true },
-              ].map((s, i, arr) => (
-                <div key={s.label} className="flex items-center justify-between py-4" style={{ borderTop: i === 0 ? 'none' : '1px solid rgba(255,255,255,0.08)' }}>
-                  <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: '14px' }}>{s.label}</span>
-                  <span className="font-bold text-right" style={{ color: s.highlight ? '#22c55e' : '#fff', fontSize: '15px' }}>{s.value}</span>
-                </div>
-              ))}
-              <Link to="/case-studies/mocksville-plastics-osha-inspection" className="inline-flex items-center gap-2 mt-6 font-semibold" style={{ color: '#1a6fc4' }}>Read the full case study <ArrowRight size={14} /></Link>
-            </div>
-          </div>
-
-          {/* RIGHT — Track Record */}
-          <div data-testid="track-record-column">
-            <p className="uppercase font-bold mb-8" style={{ fontSize: '12px', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.55)' }}>The Track Record</p>
-            {[
-              { Icon: Star, title: '5.0 Google Review Rating', sub: 'Verified client reviews' },
-              { Icon: Anchor, title: 'U.S. Navy Veteran Owned', sub: 'Discipline. Accountability. Precision.' },
-              { Icon: Factory, title: '25+ Years Operations Leadership', sub: 'Glass, vinyl, manufacturing, distribution' },
-              { Icon: MapPin, title: 'Based in Kernersville, NC', sub: 'Serving the Piedmont Triad' },
-            ].map((c, i, arr) => (
-              <div key={c.title} className="flex items-start gap-4 py-5" style={{ borderTop: i === 0 ? 'none' : '1px solid rgba(255,255,255,0.08)' }}>
-                <div className="flex items-center justify-center flex-shrink-0" style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(255,255,255,0.05)' }}>
-                  <c.Icon size={18} strokeWidth={1.5} style={{ color: 'rgba(255,255,255,0.65)' }} />
-                </div>
-                <div>
-                  <p className="font-bold text-white mb-1" style={{ fontSize: '15px' }}>{c.title}</p>
-                  <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: '13px' }}>{c.sub}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <Reveal>
+            <p className="text-base md:text-lg text-[#102133]/80 leading-[1.75] max-w-4xl">
+              OSHA doesn&apos;t announce inspections. They arrive after a complaint, a referral, or a fatality &mdash; or as part of a programmed inspection targeting your industry. By the time they&apos;re on your floor, the window to fix things has closed.{' '}
+              <span className="font-semibold text-[#0d1b2a]">The walkthrough is that window.</span>
+            </p>
+          </Reveal>
         </div>
       </section>
 
-      {/* ═══ SECTION 6 — SERVICES ═══ */}
+      {/* ═══ SECTION 5 — SERVICES SNAPSHOT (GL-WEB-008) ═══ */}
       <section className="py-16 md:py-24" style={{ backgroundColor: '#f5f4f0' }} data-testid="services-section">
         <div className="container max-w-6xl">
           <Reveal>
             <p className="uppercase font-bold mb-3" style={{ fontSize: '11px', letterSpacing: '0.2em', color: '#1F6FEB' }}>
               Services
             </p>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0d1b2a] leading-[1.15] mb-12 max-w-3xl tracking-tight">
-              Start where your operation needs it most.
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0d1b2a] leading-[1.15] mb-4 max-w-3xl tracking-tight">
+              Three ways to work with GigLine.
             </h2>
+            <p className="text-base md:text-lg text-[#102133]/70 leading-relaxed mb-12 max-w-3xl">
+              Every engagement starts with a conversation. If we&apos;re not the right fit, we&apos;ll tell you.
+            </p>
           </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-7 mb-12" data-testid="home-services-grid">
@@ -465,23 +445,26 @@ const HomePage = () => {
               {
                 Icon: ClipboardList,
                 title: 'Safety Walkthrough',
-                body: 'The first step when you need exposure identified quickly. An on-site walkthrough focused purely on physical hazards. You get a photo-documented report and a prioritized fix list in 48 hours.',
+                price: 'From $1,200',
+                body: 'A documented on-site walkthrough of your facility. Photo evidence, CFR citations, penalty exposure per finding, and a Top 10 Fixes report \u2014 delivered in writing within 48 hours.',
                 cta: { label: 'Request a Walkthrough', to: '/request-walkthrough' },
                 testid: 'home-service-walkthrough',
               },
               {
                 Icon: Shield,
                 title: 'Compliance Readiness Visit',
-                body: 'A deeper pre-inspection engagement. The floor and the files reviewed in a single visit \u2014 physical walkthrough plus a structured review of your written programs, training records, and OSHA logs.',
+                price: 'From $2,000',
+                body: 'The Safety Walkthrough plus a full Documentation Review in a single visit. We walk the floor and review your written programs, training records, and OSHA logs \u2014 then give you a prioritized corrective action plan. Documentation Review booked separately: from $2,500.',
                 cta: { label: 'Schedule a Visit', to: '/intake?service=compliance-readiness-visit' },
                 featured: true,
-                badge: '★ Recommended Starting Point',
+                badge: '★ Most Requested',
                 testid: 'home-service-readiness-visit',
               },
               {
                 Icon: CheckCircle2,
-                title: '90-Second Safety Check',
-                body: 'Not sure where you stand? Take our free self-screen. Six yes-or-no questions, an immediate risk score, and no email required to start.',
+                title: 'Safety Check',
+                price: 'Free',
+                body: 'Not sure where to start? The Safety Check is a free 90-second self-assessment covering the six most common OSHA violations in general industry. No contact information required.',
                 cta: { label: 'Take the Safety Check', to: '/safety-check' },
                 testid: 'home-service-safety-check',
               },
@@ -517,7 +500,6 @@ const HomePage = () => {
                     </span>
                   )}
 
-                  {/* Soft icon circle */}
                   <div
                     className="mb-7 flex items-center justify-center"
                     style={{
@@ -530,7 +512,13 @@ const HomePage = () => {
                     <s.Icon size={22} strokeWidth={1.75} style={{ color: s.featured ? '#1F6FEB' : '#102133' }} />
                   </div>
 
-                  <h3 className="text-lg md:text-xl font-bold text-[#102133] mb-3 leading-tight">{s.title}</h3>
+                  <h3 className="text-lg md:text-xl font-bold text-[#102133] mb-1 leading-tight">{s.title}</h3>
+                  <p
+                    className="font-semibold mb-4"
+                    style={{ fontSize: '14px', color: s.featured ? '#1F6FEB' : '#102133', letterSpacing: '-0.01em' }}
+                  >
+                    {s.price}
+                  </p>
                   <p className="text-[14px] text-[#102133]/65 leading-[1.65] mb-7 flex-grow">{s.body}</p>
 
                   <Link
@@ -546,6 +534,9 @@ const HomePage = () => {
           </div>
 
           <Reveal>
+            <p className="text-sm text-[#102133]/60 italic mb-8 max-w-3xl text-center mx-auto">
+              Incident review, document development, ongoing compliance partnerships, and OSHA-ready control systems are also available.
+            </p>
             <div className="flex justify-center">
               <Link
                 to="/services"
@@ -560,14 +551,74 @@ const HomePage = () => {
                 onMouseEnter={(e) => { e.currentTarget.style.background = '#1F6FEB'; e.currentTarget.style.color = '#fff'; }}
                 onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#1F6FEB'; }}
               >
-                See all service options &amp; pricing
+                See full services &amp; pricing
               </Link>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* ═══ SECTION 7 — HOW IT WORKS (connected horizontal timeline) ═══ */}
+      {/* ═══ TESTIMONIALS + CASE STUDY + TRACK RECORD (relocated per spec — between Services and How It Works) ═══ */}
+      <section className="py-20 md:py-28" style={{ backgroundColor: '#0d1b2a' }} data-testid="trust-section">
+        <div className="container max-w-7xl grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12">
+
+          {/* LEFT — What Clients Say */}
+          <div data-testid="reviews-column">
+            <p className="uppercase font-bold mb-8" style={{ fontSize: '12px', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.55)' }}>What Clients Say</p>
+            {[
+              { text: 'Most consultants show up with a binder and a checklist. Vince showed up in work boots and asked to see the press line first. Practical guy. Knows the floor. Report came back clear and short \u2014 the way it should.', name: 'David R.', role: 'Plant Manager, Small Manufacturer, Piedmont Triad' },
+              { text: 'They don\u2019t just point out issues \u2014 they understand how operations actually run and provide solutions that can be executed on the floor. Where they really stand out is in incident investigations. Their approach is disciplined and focused on true root cause.', name: 'Demar Archie', role: 'Warehouse Receiving Manager' },
+            ].map((r, i) => (
+              <div key={r.name} className="p-7 mb-5" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.10)', borderRadius: '10px' }} data-testid={`review-card-${i + 1}`}>
+                <p className="mb-6" style={{ fontStyle: 'italic', fontFamily: "Georgia, 'Times New Roman', serif", fontSize: '17px', lineHeight: 1.6, color: 'rgba(255,255,255,0.92)' }}>&ldquo;{r.text}&rdquo;</p>
+                <p className="text-sm font-semibold" style={{ color: 'rgba(255,255,255,0.55)' }}>{r.name} &mdash; <span style={{ fontWeight: 400 }}>{r.role}</span></p>
+              </div>
+            ))}
+          </div>
+
+          {/* MIDDLE — Case Study */}
+          <div data-testid="case-study-column">
+            <p className="uppercase font-bold mb-8" style={{ fontSize: '12px', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.55)' }}>Case Study</p>
+            <div className="p-7" style={{ background: 'rgba(26,111,196,0.06)', border: '1px solid rgba(26,111,196,0.25)', borderRadius: '10px' }}>
+              <h3 className="text-xl md:text-2xl font-bold text-white leading-tight mb-8">How a Plastics Manufacturer Passed OSHA With Zero Citations.</h3>
+              {[
+                { label: 'Operation Size', value: '~60 Employees', highlight: false },
+                { label: 'GigLine Findings', value: '4 Critical Gaps Identified', highlight: false },
+                { label: 'OSHA Outcome', value: 'Zero Citations', highlight: true },
+              ].map((s, i) => (
+                <div key={s.label} className="flex items-center justify-between py-4" style={{ borderTop: i === 0 ? 'none' : '1px solid rgba(255,255,255,0.08)' }}>
+                  <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: '14px' }}>{s.label}</span>
+                  <span className="font-bold text-right" style={{ color: s.highlight ? '#22c55e' : '#fff', fontSize: '15px' }}>{s.value}</span>
+                </div>
+              ))}
+              <Link to="/case-studies/mocksville-plastics-osha-inspection" className="inline-flex items-center gap-2 mt-6 font-semibold" style={{ color: '#1a6fc4' }}>Read the full case study <ArrowRight size={14} /></Link>
+            </div>
+          </div>
+
+          {/* RIGHT — Track Record */}
+          <div data-testid="track-record-column">
+            <p className="uppercase font-bold mb-8" style={{ fontSize: '12px', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.55)' }}>The Track Record</p>
+            {[
+              { Icon: Star, title: '5.0 Google Review Rating', sub: 'Verified client reviews' },
+              { Icon: Anchor, title: 'U.S. Navy Veteran Owned', sub: 'Discipline. Accountability. Precision.' },
+              { Icon: Factory, title: '25+ Years Operations Leadership', sub: 'Glass, vinyl, manufacturing, distribution' },
+              { Icon: MapPin, title: 'Based in Kernersville, NC', sub: 'Serving the Piedmont Triad' },
+            ].map((c, i) => (
+              <div key={c.title} className="flex items-start gap-4 py-5" style={{ borderTop: i === 0 ? 'none' : '1px solid rgba(255,255,255,0.08)' }}>
+                <div className="flex items-center justify-center flex-shrink-0" style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(255,255,255,0.05)' }}>
+                  <c.Icon size={18} strokeWidth={1.5} style={{ color: 'rgba(255,255,255,0.65)' }} />
+                </div>
+                <div>
+                  <p className="font-bold text-white mb-1" style={{ fontSize: '15px' }}>{c.title}</p>
+                  <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: '13px' }}>{c.sub}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ SECTION 6 — HOW IT WORKS (connected horizontal timeline) ═══ */}
       <section className="py-16 md:py-24" style={{ backgroundColor: '#f5f4f0' }} data-testid="how-it-works-section">
         <div className="container max-w-6xl">
           <Reveal>
@@ -575,17 +626,16 @@ const HomePage = () => {
               How It Works
             </p>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0d1b2a] leading-[1.15] mb-14 max-w-3xl tracking-tight">
-              Simple. Transparent. No surprises.
+              Four steps. No surprises.
             </h2>
           </Reveal>
 
           {(() => {
             const steps = [
-              { n: '1', title: 'Request', body: 'Submit a brief request online. We confirm your location and operation type.' },
-              { n: '2', title: 'Schedule', body: 'We provide a fixed quote and schedule around your production calendar.' },
-              { n: '3', title: 'Walkthrough', body: 'We walk your floor, document visible hazards, and review physical compliance gaps.' },
-              { n: '4', title: 'Report in 48 Hours', body: 'Plain-language, photo-documented report with CFR citations and penalty exposure.' },
-              { n: '5', title: 'Fix What Matters First', body: 'RED / AMBER / GREEN priority list. You decide what to fix and when.' },
+              { n: '01', title: 'You reach out.', body: 'Fill out the intake form or call directly. Tell us your facility type, approximate square footage, and what\u2019s on your mind. No commitment required.' },
+              { n: '02', title: 'We give you a fixed quote.', body: 'Based on your facility size, complexity, and the scope of the engagement. You\u2019ll have a number before we schedule anything.' },
+              { n: '03', title: 'We walk your floor.', body: 'Vince comes to your facility. He walks every area, photographs findings, and documents what he sees against the applicable OSHA standards. Typically 1\u20133 hours on-site depending on facility size and complexity.' },
+              { n: '04', title: 'You get a written report in 48 hours.', body: 'Photo documentation, CFR citations, penalty exposure per finding, and a prioritized list of corrective actions. Yours to keep, act on, and share with your team.' },
             ];
             return (
               <div className="relative mb-14" data-testid="how-it-works-timeline">
@@ -601,7 +651,7 @@ const HomePage = () => {
                     zIndex: 0,
                   }}
                 />
-                <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-6 relative" style={{ zIndex: 1 }}>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8 relative" style={{ zIndex: 1 }}>
                   {steps.map((s, i) => (
                     <Reveal key={s.n} delay={i * 100}>
                       <div className="flex flex-col items-center text-center" data-testid={`how-step-${s.n}`}>
@@ -609,21 +659,22 @@ const HomePage = () => {
                         <div
                           className="flex items-center justify-center mb-5"
                           style={{
-                            width: '48px',
-                            height: '48px',
+                            width: '52px',
+                            height: '52px',
                             borderRadius: '50%',
                             background: '#0d1b2a',
                             color: '#fff',
-                            fontSize: '17px',
+                            fontSize: '14px',
                             fontWeight: 700,
-                            fontFamily: "'Manrope', sans-serif",
+                            fontFamily: "'JetBrains Mono', monospace",
+                            letterSpacing: '0.05em',
                             boxShadow: '0 6px 16px -8px rgba(13,27,42,0.5)',
                           }}
                         >
                           {s.n}
                         </div>
-                        <h3 className="text-sm md:text-base font-bold text-[#0d1b2a] mb-2">{s.title}</h3>
-                        <p className="text-[13px] text-[#102133]/65 leading-[1.6] max-w-[180px]">{s.body}</p>
+                        <h3 className="text-base md:text-lg font-bold text-[#0d1b2a] mb-2 leading-snug">{s.title}</h3>
+                        <p className="text-[13.5px] text-[#102133]/65 leading-[1.6] max-w-[230px]">{s.body}</p>
                       </div>
                     </Reveal>
                   ))}
@@ -701,7 +752,7 @@ const HomePage = () => {
               </Reveal>
             </div>
 
-            {/* RIGHT — Copy */}
+            {/* RIGHT — Copy (GL-WEB-008 Section 7 spec) */}
             <div className="lg:col-span-8">
               <Reveal>
                 <p
@@ -709,47 +760,50 @@ const HomePage = () => {
                   style={{ fontSize: '11px', letterSpacing: '0.2em', color: '#c8922a' }}
                   data-testid="about-eyebrow"
                 >
-                  About GigLine
+                  About Vince
                 </p>
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-white leading-[1.15] mb-7 tracking-tight">
-                  Built by someone who&apos;s worked the floor.
+                  &ldquo;I didn&rsquo;t learn this by visiting other people&rsquo;s facilities.&rdquo;
                 </h2>
               </Reveal>
 
-              <div className="space-y-5 text-[14.5px] md:text-[15.5px] leading-[1.7]" style={{ color: 'rgba(255,255,255,0.82)' }}>
+              <div className="space-y-5 text-[14.5px] md:text-[15.5px] leading-[1.75]" style={{ color: 'rgba(255,255,255,0.82)' }}>
                 <Reveal>
                   <p>
-                    I&apos;m Vince Lawrence. Before GigLine, I spent years as a safety coordinator inside glass and vinyl manufacturing &mdash; running Gemba walks across production floors and a shipping department, writing corrective actions, and building compliance systems that had to hold up under real production pressure.
+                    I spent years inside manufacturing operations before I ever called myself a safety professional. Glass and vinyl. Rubber compounding. Metals fabrication. BF Goodrich. Amero Steel. I was on the floor &mdash; doing Gemba walks, writing LOTO procedures, building programs from scratch because nothing existed yet.
                   </p>
                 </Reveal>
 
                 <Reveal>
-                  <blockquote
-                    className="my-3"
-                    style={{
-                      background: 'rgba(255,255,255,0.04)',
-                      borderLeft: '3px solid #c8922a',
-                      padding: '16px 22px',
-                      borderRadius: '0 4px 4px 0',
-                      fontStyle: 'italic',
-                      fontFamily: "Georgia, 'Times New Roman', serif",
-                      color: '#fff',
-                      fontSize: '15.5px',
-                      lineHeight: 1.6,
-                    }}
-                    data-testid="about-blockquote"
-                  >
-                    &ldquo;I didn&rsquo;t learn this by visiting other people&rsquo;s facilities. I learned it from inside an operation like yours.&rdquo;
-                  </blockquote>
-                </Reveal>
-
-                <Reveal>
-                  <p>That experience is what GigLine is built on.</p>
+                  <p>
+                    I know what a facility looks like when safety is managed by whoever had time this week. I know what the OSHA 300 log looks like when nobody&apos;s been tracking near-misses. I know what it feels like to walk a floor and see things that have been that way for so long that nobody sees them anymore.
+                  </p>
                 </Reveal>
 
                 <Reveal>
                   <p>
-                    GigLine is a private engagement. Nothing leaves your facility except the report I hand you. My job is to give you a clear picture of where you stand before an inspector shows up &mdash; so you can protect your operation, your people, and your position.
+                    GigLine exists because most small and mid-size manufacturers can&apos;t afford a full-time safety manager &mdash; but they can afford to know what&apos;s on their floor before OSHA does. That&apos;s what I do.
+                  </p>
+                </Reveal>
+
+                <Reveal>
+                  <p className="font-semibold text-white" data-testid="about-signature">
+                    &mdash; Vince Lawrence, Founder
+                  </p>
+                </Reveal>
+
+                <Reveal>
+                  <p
+                    className="text-[13px] md:text-[13.5px] pt-4"
+                    style={{
+                      color: 'rgba(255,255,255,0.55)',
+                      borderTop: '1px solid rgba(255,255,255,0.10)',
+                      fontFamily: "'JetBrains Mono', monospace",
+                      lineHeight: 1.7,
+                    }}
+                    data-testid="about-service-area"
+                  >
+                    Service area: on-site within 60 miles of Winston-Salem, including Greensboro, High Point, Kernersville, Lexington, Thomasville, Salisbury, Burlington, and surrounding communities.
                   </p>
                 </Reveal>
               </div>
@@ -769,30 +823,31 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* ═══ SECTION 9 — BOTTOM CTA BAND ═══ */}
+      {/* ═══ SECTION 8 — FINAL CTA (GL-WEB-008) ═══ */}
       <section className="py-16 md:py-20 bg-white" data-testid="bottom-cta-section">
         <div className="container max-w-4xl">
           <Reveal>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0d1b2a] leading-[1.15] mb-8 max-w-3xl tracking-tight">
-              If you&apos;re not sure what&apos;s exposed, start with a walkthrough.
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0d1b2a] leading-[1.15] mb-5 max-w-3xl tracking-tight">
+              Know what&apos;s on your floor before OSHA does.
             </h2>
-            <div className="flex flex-col sm:flex-row gap-3">
+            <p className="text-base md:text-lg text-[#102133]/70 leading-relaxed mb-9 max-w-2xl">
+              The walkthrough takes a few hours. The report is in your hands in 48. The cost is a fraction of a single citation.
+            </p>
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4">
               <Link
                 to="/request-walkthrough"
                 className="inline-flex items-center justify-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold transition-colors"
-                style={{ padding: '13px 26px', borderRadius: '4px', fontSize: '14px', boxShadow: '0 10px 24px -10px rgba(31,111,235,0.55)' }}
+                style={{ padding: '15px 30px', borderRadius: '4px', fontSize: '15px', boxShadow: '0 10px 24px -10px rgba(31,111,235,0.55)' }}
                 data-testid="bottom-cta-primary"
               >
-                Request a Walkthrough <ArrowRight size={15} />
+                Request a Walkthrough <ArrowRight size={16} />
               </Link>
-              <Link
-                to="/safety-check"
-                className="inline-flex items-center justify-center gap-2 border-2 border-[#0d1b2a] hover:bg-[#0d1b2a] hover:text-white text-[#0d1b2a] font-bold transition-colors"
-                style={{ padding: '11px 26px', borderRadius: '4px', fontSize: '14px' }}
-                data-testid="bottom-cta-secondary"
-              >
-                Take the 90-Second Safety Check
-              </Link>
+              <p className="text-sm text-[#102133]/70" data-testid="bottom-cta-secondary-line">
+                Questions first? Call or text directly:{' '}
+                <a href="tel:3363298899" className="font-semibold text-[#0d1b2a] hover:text-[#1F6FEB] transition-colors whitespace-nowrap">
+                  (336) 329-8899
+                </a>
+              </p>
             </div>
           </Reveal>
         </div>

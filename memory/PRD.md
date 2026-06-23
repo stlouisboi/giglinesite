@@ -198,6 +198,37 @@ Goal: get GigLine cited in answers from ChatGPT, Perplexity, Claude, Google AI O
 - **Bottom CTA band** extracted to its own white section below the dark About section so "If you're not sure what's exposed..." sits cleanly on the next light band.
 - All data-testids preserved.
 
+## GL-WEB-008 Final — Full Homepage Rebuild + Site-Wide Pricing Cascade #2 (Feb 2026)
+
+### Pricing cascade ($950→$1,200, $1,500→$2,000, $750/$950→$2,500)
+- Safety Walkthrough: $950 → **$1,200** (Triad Core base + outer-tier "$1,200 + travel fee")
+- Compliance Readiness Visit: $1,500 → **$2,000**
+- OSHA Documentation Readiness Review: $750 (flag-gated $950) → **$2,500** flat (flag removed)
+- Quarterly Maintenance, OSHA-Ready Control System unchanged
+- Updated across **17 files**: ServicesPage.js, ServiceAreasPage.js, CityLandingPage.js, FAQPage.js, SafetyWalkthroughPage.js, SafetyCheckPage.js, HeatGuidePage.js, BlogHazComRequirements.js, BlogOSHAViolations.js, HazComThankYouPage.js, FieldNoteDetailPage.js, OshaComplianceGapCheckPage.js, DocumentationGapCheckPage.js, generate-seo-pages.js (incl. JSON-LD Offer schemas), llms.txt, index.html
+
+### Homepage rebuild (8 sections per spec, in order)
+1. **Hero** — new subhead ("contractors, fleet operations" added). Primary CTA: "Request a Walkthrough" → `/request-walkthrough`. Secondary text link: "Take the Safety Check →" → `/safety-check`
+2. **What We Find on the Floor** — replaced 4-card facility-photo strip with 6 text-driven findings (LOTO / Forklift & PIT / HazCom / Electrical / Egress / Recordkeeping). Mono-style "01–06" numbering, blue accent. Footer note "These are findings from real walkthroughs..."
+3. **Why GigLine** — new headline "Not a software tool. Not a template audit. A person who walks your floor." Three premium cards (Fixed Quote / Private by Default / Built on the Floor — BF Goodrich + Amero Steel mention). New **AI/Template warning block** dark navy band with gold left border + "The Template Trap" label + closing "This is not a full audit. It is a signal."
+4. **The Cost of Waiting** (NEW) — copper-red eyebrow, three stat cards: **$16,131** avg serious / **$165,514** max willful/repeat / **48 hrs** report time. Closing copy "OSHA doesn't announce inspections... The walkthrough is that window."
+5. **Services Snapshot** — "Three ways to work with GigLine." Three cards: Walkthrough $1,200 / CRV $2,000 (★ Most Requested) / Safety Check Free. Doc Review separate-booking ($2,500) called out in CRV body. Footer note about incident review / document development / ongoing partnerships
+6. **Testimonials + Case Study + Track Record** (relocated per user) — moved from before Services to between Services and How It Works
+7. **How It Works** — reduced from 5 steps to 4. Mono "01/02/03/04" numbered circles on the horizontal timeline
+8. **About Vince** — new headline ("I didn't learn this by visiting other people's facilities."). New 3-paragraph bio + signature line + monospace service area band ("60 miles of Winston-Salem..."). Carolina-Built badge under portrait retained
+9. **Final CTA** — "Know what's on your floor before OSHA does." + new subhead + "Request a Walkthrough" primary + phone (336) 329-8899 in secondary line
+
+### OSHA Penalty Verification (CRITICAL)
+- Spec stated: **$156,259** max willful/repeat penalty
+- Verified via web search (Feb 2026): actual current adjusted rate is **$165,514** (Jan 2025 adjustment carried forward — 2026 inflation adjustment was cancelled due to federal funding lapse preventing BLS CPI-U publication)
+- **Used $165,514 in the new homepage copy and SEO mirror.** All BlogOSHAViolations.js JSON-LD schemas already had $165,514.
+- $16,131 average serious-violation figure kept (framed as "average," not "maximum" — current max is ~$16,550)
+
+### SEO Mirror
+- `generate-seo-pages.js` homepage `content` block rebuilt to mirror the new 8-section structure (includes the corrected $165,514 figure, all 6 findings, new pricing, new bio)
+- JSON-LD `Offer` prices updated: Safety Walkthrough `'1200'`, CRV `'2000'`, Doc Review `'2500'`
+- `llms.txt` (AI-crawler index) updated with new pricing across walkthrough + doc review + city landing pages
+
 ## Deployment
 - Frontend: Vercel (manual redeploy after GitHub push)
 - Backend: Railway (auto-deploys on GitHub push)

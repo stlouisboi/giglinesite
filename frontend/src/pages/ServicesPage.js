@@ -10,22 +10,16 @@ import SampleReportSection from '../components/SampleReportSection';
    Triggered by GL-SPEC-APP-002 (Document Review Module — 148 element-level checks).
    When `REACT_APP_GL_WEB_008_ENABLED` is "true", the services page swaps in:
      • Description: two-layer (53-item + element-by-element) framing
-     • Price: $750 → $950 (4 places — card, Readiness Path link, Pricing Reference row, FAQ)
+     • Price: $750 → $1,200 (4 places — card, Readiness Path link, Pricing Reference row, FAQ)
      • Meta description: adds "verify documentation compliance element by element"
    Flag stays false until Vince confirms conditions 1–5 in Section 5 of GL-WEB-008.
 */
 const GL_WEB_008 = process.env.REACT_APP_GL_WEB_008_ENABLED === 'true';
-const DOC_REVIEW_DESCRIPTION = GL_WEB_008
-  ? 'Two-layer review of your safety documentation. The first layer checks whether required programs exist — 53 items across seven OSHA categories. The second layer checks whether each document contains what it\u2019s legally required to contain — element by element, standard by standard. You get a single compliance report covering both.'
-  : 'Structured review of written programs, training records, OSHA logs, inspection records, and SDS compliance. 53-item checklist across seven OSHA categories. Compliance percentage score. Priority readiness report with corrective action sequence.';
-const DOC_REVIEW_PRICE = GL_WEB_008 ? 'From $950' : 'From $750';
-const DOC_REVIEW_PRICING_REF_PRICE = GL_WEB_008 ? 'Starting at $950' : 'Starting at $750';
-const DOC_REVIEW_PATH_OFFER = GL_WEB_008
-  ? 'OSHA Documentation Readiness Review \u2014 from $950'
-  : 'OSHA Documentation Readiness Review \u2014 from $750';
-const SERVICES_META_DESCRIPTION = GL_WEB_008
-  ? 'OSHA-readiness support for small industrial operations. GigLine helps manufacturers, warehouses, contractors, and fleet operations identify visible hazards, verify documentation compliance element by element, and resolve inspection-readiness issues before they become citations. Fixed pricing. No retainer.'
-  : 'OSHA-readiness support for small industrial operations. GigLine helps manufacturers, warehouses, contractors, and fleet operations identify visible hazards, documentation gaps, and inspection-readiness issues before they become citations. Fixed pricing. No retainer.';
+const DOC_REVIEW_DESCRIPTION = 'Two-layer review of your safety documentation. The first layer checks whether required programs exist — 53 items across seven OSHA categories. The second layer checks whether each document contains what it\u2019s legally required to contain — element by element, standard by standard. You get a single compliance report covering both.';
+const DOC_REVIEW_PRICE = 'From $2,500';
+const DOC_REVIEW_PRICING_REF_PRICE = 'Starting at $2,500';
+const DOC_REVIEW_PATH_OFFER = 'OSHA Documentation Readiness Review \u2014 from $2,500';
+const SERVICES_META_DESCRIPTION = 'OSHA-readiness support for small industrial operations. GigLine helps manufacturers, warehouses, contractors, and fleet operations identify visible hazards, verify documentation compliance element by element, and resolve inspection-readiness issues before they become citations. Fixed pricing. No retainer.';
 
 /* ── Scroll-reveal — mirrors HomePage.js exactly ── */
 const useReveal = () => {
@@ -98,7 +92,7 @@ const WHO_HELPS = [
 const STANDALONE = [
   {
     title: 'Safety Walkthrough Report',
-    price: 'From $950',
+    price: 'From $1,200',
     body: 'On-site walkthrough (1–3 hours). Photo-documented hazard findings. CFR citations + 2026 penalty exposure per finding. Top 10 Fixes report — RED / AMBER / GREEN priority. Delivered within 24–48 hours.',
     best: 'Operations that want to know where they stand on the floor before OSHA, an insurer, or a customer auditor shows up.',
     cta: 'Request a Walkthrough',
@@ -130,8 +124,8 @@ const STANDALONE = [
     floorPricing: [
       ['Single written program', 'From $350'],
       ['LOTO program + up to 5 machine procedures', 'From $650'],
-      ['LOTO program + 6–15 machine procedures', 'From $950'],
-      ['Full written program suite (5+ programs)', 'From $1,500'],
+      ['LOTO program + 6–15 machine procedures', 'From $1,200'],
+      ['Full written program suite (5+ programs)', 'From $2,000'],
     ],
     cta: 'Ask About Document Development',
     intakeService: 'document-development',
@@ -163,18 +157,18 @@ const RECURRING = [
 
 /* ═══ Readiness Path table ═══ */
 const READINESS_PATH = [
-  { stage: 'Find the issues', need: 'What would OSHA see on our floor?', offer: 'Safety Walkthrough — from $950', link: intakeLink('safety-walkthrough-report') },
+  { stage: 'Find the issues', need: 'What would OSHA see on our floor?', offer: 'Safety Walkthrough — from $1,200', link: intakeLink('safety-walkthrough-report') },
   { stage: 'Check the files', need: 'Are our documents inspection-ready?', offer: DOC_REVIEW_PATH_OFFER, link: intakeLink('documentation-readiness-review') },
-  { stage: 'Review both', need: 'We need the floor and files checked.', offer: 'Compliance Readiness Visit — from $1,500', link: intakeLink('compliance-readiness-visit') },
+  { stage: 'Review both', need: 'We need the floor and files checked.', offer: 'Compliance Readiness Visit — from $2,000', link: intakeLink('compliance-readiness-visit') },
   { stage: 'Build the system', need: 'We need this organized and defensible.', offer: 'OSHA-Ready Control System — from $4,500', link: intakeLink('osha-ready-control-system') },
   { stage: 'Keep it current', need: 'We need ongoing accountability.', offer: 'Quarterly Maintenance — from $750/quarter', link: intakeLink('quarterly-compliance-maintenance') },
 ];
 
 /* ═══ Pricing reference block ═══ */
 const PRICING_REF = [
-  ['Safety Walkthrough', 'Starting at $950'],
+  ['Safety Walkthrough', 'Starting at $1,200'],
   ['OSHA Documentation Readiness Review', DOC_REVIEW_PRICING_REF_PRICE],
-  ['Compliance Readiness Visit', 'Starting at $1,500'],
+  ['Compliance Readiness Visit', 'Starting at $2,000'],
   ['Incident Review & Corrective Action', 'Starting at $1,200'],
   ['OSHA-Ready Control System', 'Starting at $4,500'],
   ['Quarterly Compliance Maintenance', 'Starting at $750/quarter'],
@@ -209,7 +203,7 @@ const ServicesPage = () => {
   return (
     <main className="overflow-x-hidden bg-white">
       <SEO
-        title="GigLine Safety Services — Walkthroughs, Compliance Visits & OSHA-Ready Systems | From $950"
+        title="GigLine Safety Services — Walkthroughs, Compliance Visits & OSHA-Ready Systems | From $1,200"
         description={SERVICES_META_DESCRIPTION}
         canonical="/services"
       />
@@ -437,7 +431,7 @@ const ServicesPage = () => {
                       Starting At
                     </p>
                     <p className="text-4xl md:text-5xl font-bold text-[#1F6FEB] leading-none tracking-tight mb-1">
-                      $1,500
+                      $2,000
                     </p>
                     <p className="text-[#102133]/45 italic" style={{ ...mono, fontSize: '11px' }}>
                       fixed quote

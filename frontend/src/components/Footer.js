@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone } from 'lucide-react';
+import { Mail, Phone, Linkedin } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -135,6 +135,17 @@ const Footer = () => {
               <Link to="/terms-of-service" className="hover:text-white transition-colors" data-testid="footer-terms-link">
                 Terms of Service
               </Link>
+              <span className="text-white/20">&middot;</span>
+              <a
+                href="https://www.linkedin.com/company/gigline-safety-compliance"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GigLine on LinkedIn"
+                className="text-white/40 hover:text-white transition-colors inline-flex items-center"
+                data-testid="footer-linkedin-link"
+              >
+                <Linkedin size={16} />
+              </a>
             </nav>
           </div>
           <p data-testid="footer-tagline" className="text-center md:text-right text-sm text-white/40 mt-4 md:mt-2">

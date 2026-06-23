@@ -20,17 +20,18 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 bg-white" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }} data-testid="navbar">
       <nav className="container" aria-label="Main navigation">
-        <div className="flex items-center justify-between h-20 md:h-24 lg:h-28">
+        <div className="flex items-center justify-between h-20 md:h-28 lg:h-32">
           {/* Logo */}
           <Link to="/" className="flex items-center" data-testid="navbar-logo">
             <img
               src="/gigline-logo-2026-v2.png?v=1"
               alt="GigLine Safety & Compliance"
-              className="h-16 md:h-20 lg:h-20 xl:h-24 w-auto"
+              className="h-14 md:h-24 lg:h-28 xl:h-32 w-auto"
+              style={{ filter: 'drop-shadow(0 2px 8px rgba(13,27,42,0.10))' }}
               loading="eager"
               fetchPriority="high"
-              width="267"
-              height="100"
+              width="347"
+              height="130"
             />
           </Link>
 

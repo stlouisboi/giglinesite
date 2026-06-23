@@ -1,5 +1,5 @@
-import React, { useState, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useMemo, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Check, ArrowRight } from 'lucide-react';
 import SEO from '../components/SEO';
 import { getAttribution, trackEvent } from '../utils/analytics';
@@ -159,6 +159,7 @@ const CheckboxCard = ({ option, checked, onToggle, price = null, compact = false
 ───────────────────────────────────────────────────────── */
 const ClientIntakePage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
 
@@ -196,6 +197,20 @@ const ClientIntakePage = () => {
 
   const set = (k, v) => setF((p) => ({ ...p, [k]: v }));
   const toggleArr = (k, v) => setF((p) => ({ ...p, [k]: p[k].includes(v) ? p[k].filter((x) => x !== v) : [...p[k], v] }));
+
+  /* ─── URL param pre-selection (?service=compliance-readiness-visit) ─── */
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const serviceParam = params.get('service');
+    const map = {
+      'compliance-readiness-visit': 'compliance_readiness_visit',
+    };
+    const mapped = serviceParam && map[serviceParam];
+    if (mapped) {
+      setF((p) => (p.serviceSelected ? p : { ...p, serviceSelected: mapped }));
+    }
+    // Only run on mount / when query string changes
+  }, [location.search]);
 
   /* ─── Hybrid pricing computation for Doc Creation lane ─── */
   const docCreationPricing = useMemo(() => {
@@ -425,9 +440,10 @@ const ClientIntakePage = () => {
           <Field label="Service" required error={errors.serviceSelected}>
             <span {...wrap('serviceSelected')}>
               <RadioList value={f.serviceSelected} onChange={(v) => set('serviceSelected', v)} options={[
-                { value: 'walkthrough', label: 'Safety Walkthrough & Top 10 Fixes Report — On-site visit + written report' },
-                { value: 'doc_review', label: 'OSHA Documentation Readiness Review — Review of written programs, training records, logs' },
-                { value: 'incident_review', label: 'Incident Review & Corrective Action Support — Post-injury / near-miss response' },
+                { value: 'walkthrough', label: 'Safety Walkthrough & Top 10 Fixes Report — On-site visit + written report (from $1,200)' },
+                { value: 'compliance_readiness_visit', label: 'Compliance Readiness Visit — Floor walkthrough + documentation review in one visit (from $2,000)' },
+                { value: 'doc_review', label: 'OSHA Documentation Readiness Review — Review of written programs, training records, logs (from $1,300)' },
+                { value: 'incident_review', label: 'Incident Review & Corrective Action Support — Post-injury / near-miss response (from $1,500)' },
                 { value: 'doc_creation', label: 'Safety Documents / Program Creation — New programs, manuals, training packs' },
                 { value: 'not_sure', label: "I need guidance — let Vince recommend" },
               ]} />

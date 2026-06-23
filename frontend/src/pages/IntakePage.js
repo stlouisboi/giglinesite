@@ -7,15 +7,17 @@ import SEO from '../components/SEO';
 const API = process.env.REACT_APP_BACKEND_URL;
 
 const SERVICES = [
-  { value: 'Safety Walkthrough', label: 'Safety Walkthrough — on-site visit and written report' },
-  { value: 'Documentation Review', label: 'Documentation Review — review of written programs and records' },
-  { value: 'Incident Review', label: 'Incident Review — post-injury or near-miss response' },
+  { value: 'Safety Walkthrough', label: 'Safety Walkthrough — on-site visit and written report (from $1,200)' },
+  { value: 'Compliance Readiness Visit', label: 'Compliance Readiness Visit — floor walkthrough + documentation review (from $2,000)' },
+  { value: 'Documentation Review', label: 'Documentation Review — review of written programs and records (from $1,300)' },
+  { value: 'Incident Review', label: 'Incident Review — post-injury or near-miss response (from $1,500)' },
   { value: 'Not sure', label: "Not sure — I want to talk through my situation first" },
 ];
 
 // Map services page tier keys → human-readable service values
 const TIER_TO_SERVICE = {
   walkthrough_standard: 'Safety Walkthrough',
+  'compliance-readiness-visit': 'Compliance Readiness Visit',
   documentation_remote: 'Documentation Review',
   incident_standard: 'Incident Review',
 };

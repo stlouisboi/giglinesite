@@ -652,7 +652,7 @@ const HomePage = () => {
         <div className="container max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
 
-            {/* LEFT — Vince portrait */}
+            {/* LEFT — Vince portrait + Carolina-Built veteran badge */}
             <div className="lg:col-span-4">
               <Reveal>
                 <div
@@ -671,6 +671,32 @@ const HomePage = () => {
                     style={{ filter: 'brightness(0.95) contrast(1.05)' }}
                     loading="lazy"
                   />
+                </div>
+                <div className="mt-6 flex items-center gap-4" data-testid="about-carolina-badge-block">
+                  <img
+                    src="/assets/carolina-built-badge.png"
+                    alt="Carolina-Built · Navy Veteran Owned · Kernersville NC"
+                    className="select-none flex-shrink-0"
+                    style={{
+                      width: '72px',
+                      height: 'auto',
+                      filter: 'drop-shadow(0 6px 14px rgba(0,0,0,0.45))',
+                    }}
+                    loading="lazy"
+                  />
+                  <p
+                    className="uppercase font-semibold leading-snug"
+                    style={{
+                      fontSize: '10.5px',
+                      letterSpacing: '0.14em',
+                      color: 'rgba(255,255,255,0.55)',
+                      fontFamily: "'JetBrains Mono', monospace",
+                    }}
+                  >
+                    Carolina-Built<br />
+                    Navy Veteran Owned<br />
+                    Kernersville, NC
+                  </p>
                 </div>
               </Reveal>
             </div>

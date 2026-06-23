@@ -20,13 +20,13 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 bg-white" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }} data-testid="navbar">
       <nav className="container" aria-label="Main navigation">
-        <div className="flex items-center justify-between h-20 md:h-28 lg:h-32">
+        <div className="flex items-center justify-between h-20 md:h-24 lg:h-24 xl:h-28 2xl:h-32">
           {/* Logo */}
           <Link to="/" className="flex items-center" data-testid="navbar-logo">
             <img
               src="/gigline-logo-2026-v2.png?v=1"
               alt="GigLine Safety & Compliance"
-              className="h-14 md:h-24 lg:h-28 xl:h-32 w-auto"
+              className="h-14 md:h-20 lg:h-16 xl:h-20 2xl:h-24 w-auto"
               style={{ filter: 'drop-shadow(0 2px 8px rgba(13,27,42,0.10))' }}
               loading="eager"
               fetchPriority="high"
@@ -36,12 +36,12 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation — appears at lg (1024px+); tablet portrait gets the hamburger menu */}
-          <div className="hidden lg:flex items-center space-x-7 xl:space-x-8 pl-8 xl:pl-12" data-testid="desktop-nav">
+          <div className="hidden lg:flex items-center space-x-5 xl:space-x-7 pl-6 xl:pl-10" data-testid="desktop-nav">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className="text-sm font-medium transition-colors"
+                className="text-sm font-medium transition-colors whitespace-nowrap"
                 style={{ color: isActive(link.path) ? '#1F6FEB' : '#102133' }}
                 onMouseEnter={e => { if (!isActive(link.path)) e.target.style.color = '#1F6FEB'; }}
                 onMouseLeave={e => { if (!isActive(link.path)) e.target.style.color = isActive(link.path) ? '#1F6FEB' : '#102133'; }}
@@ -53,7 +53,7 @@ const Navbar = () => {
             <a
               href="tel:3363298899"
               onClick={() => trackPhoneClick('navbar_desktop')}
-              className="flex items-center gap-1.5 text-sm font-medium transition-colors"
+              className="flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap"
               style={{ color: '#102133' }}
               data-testid="nav-phone"
             >
@@ -62,7 +62,7 @@ const Navbar = () => {
             </a>
             <Link
               to="/intake?service=compliance-readiness-visit"
-              className="text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors"
+              className="text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors whitespace-nowrap"
               style={{ background: '#1F6FEB', color: '#FFFFFF' }}
               onMouseEnter={e => e.target.style.background = '#1558C0'}
               onMouseLeave={e => e.target.style.background = '#1F6FEB'}

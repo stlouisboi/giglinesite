@@ -331,7 +331,7 @@ const routes = [
     content: `
       <h1>Service Areas — On-Site Safety Walkthroughs Across North Carolina</h1>
       <p>Based in Kernersville, NC. Routine engagements within 60 miles of Winston-Salem. Scheduled engagements available in Charlotte and Raleigh metros.</p>
-      <h2>Triad Core — Starting at $850 (within 30 miles of Kernersville)</h2>
+      <h2>Triad Core — Starting at $950 (within 30 miles of Kernersville)</h2>
       <ul>
         <li><a href="/safety-walkthrough/kernersville">Kernersville, NC</a> — GigLine HQ</li>
         <li><a href="/safety-walkthrough/winston-salem">Winston-Salem, NC</a> — 10 miles</li>
@@ -343,7 +343,7 @@ const routes = [
         <li><a href="/safety-walkthrough/mocksville">Mocksville, NC</a> — 25 miles</li>
         <li><a href="/safety-walkthrough/burlington">Burlington, NC</a> — 30 miles</li>
       </ul>
-      <h2>Outer Tier — Starting at $750 (travel included)</h2>
+      <h2>Outer Tier — Starting at $950 + travel fee</h2>
       <ul>
         <li><a href="/safety-walkthrough/asheboro">Asheboro, NC</a> — 35 miles</li>
         <li><a href="/safety-walkthrough/salisbury">Salisbury, NC</a> — 50 miles</li>

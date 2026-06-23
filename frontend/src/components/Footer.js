@@ -24,6 +24,15 @@ const Footer = () => {
             <p className="text-white/60 text-sm mb-4">
               Safety Walkthroughs and Documentation Readiness Reviews for Small Operations
             </p>
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm text-white/60 hover:text-white transition-colors mb-4"
+              data-testid="footer-google-reviews"
+            >
+              <span style={{ color: '#D4A93E' }}>★</span> 5.0 on Google Reviews
+            </a>
             <p className="text-white/50 text-sm mb-4">Kernersville, NC</p>
             <div className="space-y-2">
               <a

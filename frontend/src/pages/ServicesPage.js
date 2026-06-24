@@ -97,7 +97,7 @@ const STANDALONE = [
     price: 'From $1,200',
     body: 'An on-site walkthrough focused purely on physical hazards. You get a photo-documented report and a prioritized fix list in 48 hours. No retainer. No follow-up obligation.',
     listLabel: "What's Included",
-    bgColor: '#f5f4f0',
+    bgColor: '#ffffff',
     whatsIncluded: [
       'On-site walkthrough (1\u20133 hours)',
       'Photo-documented hazard findings',

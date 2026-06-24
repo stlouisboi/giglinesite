@@ -52,7 +52,7 @@ const FINDINGS = [
       'Schedule refresher training and evaluation for all operators with certifications older than three years. Implement daily pre-shift inspection log on every powered industrial truck.',
     penalty: '$1,190 – $16,550 per operator',
     fixBy: 'Within 30 days',
-    photoUrl: '/machine-guarding.jpg',
+    photoUrl: '/forklift-inspection.jpg',
   },
   {
     n: '03',

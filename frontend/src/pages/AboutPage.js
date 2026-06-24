@@ -1,10 +1,13 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Phone, Play, Lock, FileText, MapPin, Anchor } from 'lucide-react';
 import SEO from '../components/SEO';
 import FieldManualBand from '../components/FieldManualBand';
 
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
+
+/* TODO: Replace with real founder video YouTube ID when ready */
+const FOUNDER_VIDEO_ID = 'dQw4w9WgXcQ';
 
 /* Intersection-based reveal animation */
 const useReveal = () => {
@@ -64,6 +67,7 @@ const HOW_CARDS = [
 ];
 
 const AboutPage = () => {
+  const [videoOpen, setVideoOpen] = useState(false);
   return (
     <main data-testid="about-page">
       <SEO
@@ -126,31 +130,60 @@ const AboutPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
             {/* LEFT: video placeholder + stats */}
             <Reveal>
-              <div
-                className="rounded-xl p-7 md:p-9 mb-5 flex flex-col items-center text-center"
-                style={{ background: 'rgba(255,255,255,0.035)', border: '1px solid rgba(255,255,255,0.10)' }}
-                data-testid="about-video-card"
-              >
+              {videoOpen ? (
                 <div
-                  className="flex items-center justify-center mb-5"
+                  className="rounded-xl overflow-hidden mb-5"
                   style={{
-                    width: '56px',
-                    height: '56px',
-                    borderRadius: '50%',
-                    background: 'rgba(31,111,235,0.18)',
-                    border: '1px solid rgba(31,111,235,0.40)',
+                    background: '#000',
+                    border: '1px solid rgba(255,255,255,0.10)',
+                    aspectRatio: '16 / 9',
                   }}
+                  data-testid="about-video-iframe-wrap"
                 >
-                  <Play size={22} strokeWidth={2} className="text-[#1a6fc4]" style={{ marginLeft: '3px' }} />
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src={`https://www.youtube.com/embed/${FOUNDER_VIDEO_ID}?autoplay=1&rel=0&modestbranding=1`}
+                    title="GigLine Founder Introduction — Vince Lawrence"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    data-testid="about-video-iframe"
+                  />
                 </div>
-                <p className="font-bold text-white text-lg mb-2">Founder Introduction</p>
-                <p className="text-sm text-white/55 leading-relaxed max-w-xs">
-                  60&ndash;90 second video &mdash; Vince speaking directly to plant managers and operations owners.
-                </p>
-                <p className="text-[11px] text-white/35 mt-4" style={{ ...mono, letterSpacing: '0.12em' }}>
-                  ADD YOUR VIDEO OR LOOM URL HERE
-                </p>
-              </div>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setVideoOpen(true)}
+                  className="w-full rounded-xl p-7 md:p-9 mb-5 flex flex-col items-center text-center transition-all duration-300 hover:bg-white/[0.06] hover:border-white/20 hover:-translate-y-0.5 group cursor-pointer"
+                  style={{
+                    background: 'rgba(255,255,255,0.035)',
+                    border: '1px solid rgba(255,255,255,0.10)',
+                  }}
+                  data-testid="about-video-card"
+                  aria-label="Play founder introduction video"
+                >
+                  <div
+                    className="flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110"
+                    style={{
+                      width: '56px',
+                      height: '56px',
+                      borderRadius: '50%',
+                      background: 'rgba(31,111,235,0.18)',
+                      border: '1px solid rgba(31,111,235,0.40)',
+                    }}
+                  >
+                    <Play size={22} strokeWidth={2} className="text-[#1a6fc4]" style={{ marginLeft: '3px' }} fill="#1a6fc4" />
+                  </div>
+                  <p className="font-bold text-white text-lg mb-2">Founder Introduction</p>
+                  <p className="text-sm text-white/55 leading-relaxed max-w-xs">
+                    60&ndash;90 second video &mdash; Vince speaking directly to plant managers and operations owners.
+                  </p>
+                  <p className="text-[11px] text-[#1a6fc4] mt-4 font-bold uppercase" style={{ ...mono, letterSpacing: '0.12em' }}>
+                    Click to play &rarr;
+                  </p>
+                </button>
+              )}
 
               <div className="grid grid-cols-3 gap-3" data-testid="about-stats-grid">
                 {STATS.map((s, i) => (

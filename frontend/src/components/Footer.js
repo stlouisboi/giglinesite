@@ -37,7 +37,7 @@ const Footer = () => {
             <div className="space-y-2">
               <a
                 href="mailto:vince@giglinecompliance.com"
-                className="flex items-center gap-2 text-sm text-white/60 hover:text-[#1558C0] transition-colors"
+                className="flex items-center gap-2 text-sm text-white/60 hover:text-[#1560ae] transition-colors"
                 data-testid="footer-email"
               >
                 <Mail size={16} />
@@ -45,7 +45,7 @@ const Footer = () => {
               </a>
               <a
                 href="tel:336-329-8899"
-                className="flex items-center gap-2 text-sm text-white/60 hover:text-[#1558C0] transition-colors"
+                className="flex items-center gap-2 text-sm text-white/60 hover:text-[#1560ae] transition-colors"
                 data-testid="footer-phone"
               >
                 <Phone size={16} />
@@ -79,7 +79,7 @@ const Footer = () => {
                   <li key={link.path}>
                     <Link
                       to={link.path}
-                      className="text-sm text-white/60 hover:text-[#1558C0] transition-colors"
+                      className="text-sm text-white/60 hover:text-[#1560ae] transition-colors"
                       data-testid={`footer-link-${link.name.toLowerCase().replace(' ', '-')}`}
                     >
                       {link.name}
@@ -125,7 +125,7 @@ const Footer = () => {
                   <li key={link.path + link.name}>
                     <Link
                       to={link.path}
-                      className="text-sm text-white/80 hover:text-[#1558C0] transition-colors font-medium block"
+                      className="text-sm text-white/80 hover:text-[#1560ae] transition-colors font-medium block"
                       data-testid={`footer-resource-${link.name.toLowerCase().replace(/\s+/g, '-')}`}
                     >
                       {link.name}

@@ -173,13 +173,13 @@ const WalkthroughLeadsCRM = ({ token }) => {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search name, company, email…"
-              className="pl-8 pr-3 py-1.5 text-sm border border-gray-200 rounded focus:outline-none focus:border-[#1F6FEB] w-56"
+              className="pl-8 pr-3 py-1.5 text-sm border border-gray-200 rounded focus:outline-none focus:border-[#1a6fc4] w-56"
               data-testid="lead-search-input"
             />
           </div>
           <button
             onClick={() => setAddOpen(true)}
-            className="inline-flex items-center gap-1 bg-[#1F6FEB] hover:bg-[#1558C0] text-white text-sm font-semibold px-3 py-1.5 rounded transition-colors"
+            className="inline-flex items-center gap-1 bg-[#1a6fc4] hover:bg-[#1560ae] text-white text-sm font-semibold px-3 py-1.5 rounded transition-colors"
             data-testid="add-manual-lead-btn"
           >
             <Plus size={14} /> Add Lead
@@ -237,8 +237,8 @@ const WalkthroughLeadsCRM = ({ token }) => {
                   <td className="px-3 py-3 font-medium text-[#1C2B2B]">{lead.name || '—'}</td>
                   <td className="px-3 py-3 text-gray-600">{lead.company || lead.business || '—'}</td>
                   <td className="px-3 py-3">
-                    {lead.phone && <a href={`tel:${lead.phone}`} onClick={(e) => e.stopPropagation()} className="block text-xs text-gray-600 hover:text-[#1F6FEB]"><Phone size={11} className="inline mr-1" />{lead.phone}</a>}
-                    {lead.email && <a href={`mailto:${lead.email}`} onClick={(e) => e.stopPropagation()} className="block text-xs text-gray-500 hover:text-[#1F6FEB] mt-0.5"><Mail size={11} className="inline mr-1" />{lead.email.toLowerCase()}</a>}
+                    {lead.phone && <a href={`tel:${lead.phone}`} onClick={(e) => e.stopPropagation()} className="block text-xs text-gray-600 hover:text-[#1a6fc4]"><Phone size={11} className="inline mr-1" />{lead.phone}</a>}
+                    {lead.email && <a href={`mailto:${lead.email}`} onClick={(e) => e.stopPropagation()} className="block text-xs text-gray-500 hover:text-[#1a6fc4] mt-0.5"><Mail size={11} className="inline mr-1" />{lead.email.toLowerCase()}</a>}
                   </td>
                   <td className="px-3 py-3" onClick={(e) => e.stopPropagation()}>
                     <StatusPill status={lead.status || 'new'} onChange={(s) => updateStatus(lead.id, s)} />
@@ -251,7 +251,7 @@ const WalkthroughLeadsCRM = ({ token }) => {
                   <td className="px-3 py-3 text-right whitespace-nowrap" onClick={(e) => e.stopPropagation()}>
                     <button
                       onClick={() => { setDrawer(lead); setEditOpen(true); setEditForm({ name: lead.name, company: lead.company || '', phone: lead.phone || '', email: lead.email || '', service: lead.service || '' }); }}
-                      className="text-gray-400 hover:text-[#1F6FEB] p-1.5 inline-block"
+                      className="text-gray-400 hover:text-[#1a6fc4] p-1.5 inline-block"
                       title="Edit lead"
                       data-testid={`edit-lead-${lead.id}`}
                     ><Pencil size={14} /></button>
@@ -287,15 +287,15 @@ const WalkthroughLeadsCRM = ({ token }) => {
               <div className="flex items-center justify-between gap-2">
                 <StatusPill status={drawer.status || 'new'} onChange={(s) => updateStatus(drawer.id, s)} />
                 <div className="flex items-center gap-1">
-                  {drawer.phone && <a href={`tel:${drawer.phone}`} className="text-xs text-[#1F6FEB] hover:underline inline-flex items-center gap-1"><Phone size={12} /> Call</a>}
-                  {drawer.email && <a href={`mailto:${drawer.email}`} className="text-xs text-[#1F6FEB] hover:underline inline-flex items-center gap-1 ml-3"><Mail size={12} /> Email</a>}
+                  {drawer.phone && <a href={`tel:${drawer.phone}`} className="text-xs text-[#1a6fc4] hover:underline inline-flex items-center gap-1"><Phone size={12} /> Call</a>}
+                  {drawer.email && <a href={`mailto:${drawer.email}`} className="text-xs text-[#1a6fc4] hover:underline inline-flex items-center gap-1 ml-3"><Mail size={12} /> Email</a>}
                 </div>
               </div>
 
               {/* Lead fields — view or edit mode */}
               {editOpen ? (
-                <div className="space-y-3 border border-[#1F6FEB]/30 rounded-lg p-4 bg-blue-50/30">
-                  <p className="text-xs uppercase tracking-wide text-[#1F6FEB] font-bold mb-1">Editing</p>
+                <div className="space-y-3 border border-[#1a6fc4]/30 rounded-lg p-4 bg-blue-50/30">
+                  <p className="text-xs uppercase tracking-wide text-[#1a6fc4] font-bold mb-1">Editing</p>
                   {['name', 'company', 'phone', 'email', 'service'].map((f) => (
                     <div key={f}>
                       <label className="text-[10px] uppercase tracking-wide text-gray-500 font-semibold">{f}</label>
@@ -303,13 +303,13 @@ const WalkthroughLeadsCRM = ({ token }) => {
                         type="text"
                         value={editForm[f] ?? ''}
                         onChange={(e) => setEditForm({ ...editForm, [f]: e.target.value })}
-                        className="w-full px-3 py-1.5 text-sm border border-gray-200 rounded focus:outline-none focus:border-[#1F6FEB]"
+                        className="w-full px-3 py-1.5 text-sm border border-gray-200 rounded focus:outline-none focus:border-[#1a6fc4]"
                         data-testid={`edit-field-${f}`}
                       />
                     </div>
                   ))}
                   <div className="flex gap-2 pt-1">
-                    <button onClick={saveEdit} className="bg-[#1F6FEB] hover:bg-[#1558C0] text-white text-sm font-semibold px-3 py-1.5 rounded inline-flex items-center gap-1" data-testid="save-edit-btn">
+                    <button onClick={saveEdit} className="bg-[#1a6fc4] hover:bg-[#1560ae] text-white text-sm font-semibold px-3 py-1.5 rounded inline-flex items-center gap-1" data-testid="save-edit-btn">
                       <Save size={13} /> Save
                     </button>
                     <button onClick={() => setEditOpen(false)} className="text-gray-500 hover:text-gray-700 text-sm px-3 py-1.5">Cancel</button>
@@ -322,7 +322,7 @@ const WalkthroughLeadsCRM = ({ token }) => {
                   <p className="break-all"><span className="text-gray-400 text-xs uppercase tracking-wide mr-2">Email:</span>{drawer.email || '—'}</p>
                   <p><span className="text-gray-400 text-xs uppercase tracking-wide mr-2">Submitted:</span>{fmtDateTime(drawer.timestamp)}</p>
                   {drawer.utm_source && <p><span className="text-gray-400 text-xs uppercase tracking-wide mr-2">Source:</span>{drawer.utm_source}{drawer.utm_medium ? ` / ${drawer.utm_medium}` : ''}</p>}
-                  <button onClick={() => { setEditOpen(true); setEditForm({ name: drawer.name, company: drawer.company || '', phone: drawer.phone || '', email: drawer.email || '', service: drawer.service || '' }); }} className="text-xs text-[#1F6FEB] hover:underline inline-flex items-center gap-1 mt-2"><Pencil size={11} /> Edit fields</button>
+                  <button onClick={() => { setEditOpen(true); setEditForm({ name: drawer.name, company: drawer.company || '', phone: drawer.phone || '', email: drawer.email || '', service: drawer.service || '' }); }} className="text-xs text-[#1a6fc4] hover:underline inline-flex items-center gap-1 mt-2"><Pencil size={11} /> Edit fields</button>
                 </div>
               )}
 
@@ -349,13 +349,13 @@ const WalkthroughLeadsCRM = ({ token }) => {
                     value={noteText}
                     onChange={(e) => setNoteText(e.target.value)}
                     placeholder="Call notes, follow-up actions, anything worth remembering…"
-                    className="flex-1 px-3 py-2 text-sm border border-gray-200 rounded focus:outline-none focus:border-[#1F6FEB] resize-none"
+                    className="flex-1 px-3 py-2 text-sm border border-gray-200 rounded focus:outline-none focus:border-[#1a6fc4] resize-none"
                     data-testid="note-input"
                   />
                   <button
                     onClick={addNote}
                     disabled={savingNote || !noteText.trim()}
-                    className="bg-[#1F6FEB] hover:bg-[#1558C0] disabled:opacity-40 text-white text-xs font-semibold px-3 rounded self-stretch"
+                    className="bg-[#1a6fc4] hover:bg-[#1560ae] disabled:opacity-40 text-white text-xs font-semibold px-3 rounded self-stretch"
                     data-testid="add-note-btn"
                   >
                     Add
@@ -410,7 +410,7 @@ const AddLeadModal = ({ onClose, onCreate }) => {
               required={f === 'name'}
               value={form[f]}
               onChange={(e) => setForm({ ...form, [f]: e.target.value })}
-              className="w-full px-3 py-2 text-sm border border-gray-200 rounded focus:outline-none focus:border-[#1F6FEB]"
+              className="w-full px-3 py-2 text-sm border border-gray-200 rounded focus:outline-none focus:border-[#1a6fc4]"
               data-testid={`add-field-${f}`}
             />
           </div>
@@ -420,7 +420,7 @@ const AddLeadModal = ({ onClose, onCreate }) => {
           <select
             value={form.service}
             onChange={(e) => setForm({ ...form, service: e.target.value })}
-            className="w-full px-3 py-2 text-sm border border-gray-200 rounded focus:outline-none focus:border-[#1F6FEB] bg-white"
+            className="w-full px-3 py-2 text-sm border border-gray-200 rounded focus:outline-none focus:border-[#1a6fc4] bg-white"
             data-testid="add-field-service"
           >
             <option>Safety Walkthrough</option>
@@ -434,7 +434,7 @@ const AddLeadModal = ({ onClose, onCreate }) => {
           <select
             value={form.status}
             onChange={(e) => setForm({ ...form, status: e.target.value })}
-            className="w-full px-3 py-2 text-sm border border-gray-200 rounded focus:outline-none focus:border-[#1F6FEB] bg-white"
+            className="w-full px-3 py-2 text-sm border border-gray-200 rounded focus:outline-none focus:border-[#1a6fc4] bg-white"
             data-testid="add-field-status"
           >
             {STATUSES.map((s) => (<option key={s.id} value={s.id}>{s.label}</option>))}
@@ -443,7 +443,7 @@ const AddLeadModal = ({ onClose, onCreate }) => {
 
         <div className="flex justify-end gap-2 pt-2">
           <button type="button" onClick={onClose} className="text-sm text-gray-500 px-3 py-2 hover:text-gray-700">Cancel</button>
-          <button type="submit" disabled={saving || !form.name.trim()} className="bg-[#1F6FEB] hover:bg-[#1558C0] disabled:opacity-40 text-white text-sm font-semibold px-4 py-2 rounded" data-testid="submit-add-lead">
+          <button type="submit" disabled={saving || !form.name.trim()} className="bg-[#1a6fc4] hover:bg-[#1560ae] disabled:opacity-40 text-white text-sm font-semibold px-4 py-2 rounded" data-testid="submit-add-lead">
             {saving ? 'Saving…' : 'Add Lead'}
           </button>
         </div>

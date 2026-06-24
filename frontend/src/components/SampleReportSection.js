@@ -96,7 +96,7 @@ const SampleReportSection = () => {
         {/* SECTION HEADER */}
         <div className="mb-10 md:mb-12 max-w-3xl">
           <p
-            className="uppercase tracking-[3px] text-[#1F6FEB] mb-4 font-bold"
+            className="uppercase tracking-[3px] text-[#1a6fc4] mb-4 font-bold"
             style={{ ...mono, fontSize: '12px' }}
             data-testid="sample-report-kicker"
           >
@@ -223,7 +223,7 @@ const SampleReportSection = () => {
         <div className="mt-10 md:mt-12 text-center" data-testid="sample-report-cta-wrap">
           <Link
             to="/request-walkthrough"
-            className="inline-flex items-center justify-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold py-4 px-8 rounded-lg transition-colors text-[15px] md:text-base"
+            className="inline-flex items-center justify-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold py-4 px-8 rounded-lg transition-colors text-[15px] md:text-base"
             style={{ ...heading, boxShadow: '0 6px 18px rgba(31,111,235,0.18)' }}
             data-testid="sample-report-cta"
           >
@@ -240,7 +240,7 @@ const SampleReportSection = () => {
             <a
               href="tel:+13363298899"
               className="inline-flex items-center gap-1 font-semibold hover:underline"
-              style={{ color: '#1F6FEB' }}
+              style={{ color: '#1a6fc4' }}
               data-testid="sample-report-cta-phone"
             >
               <Phone size={12} />

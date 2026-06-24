@@ -56,7 +56,7 @@ const FieldNotesNewsletter = ({ source = 'field-notes' }) => {
           {/* LEFT — copy */}
           <div className="p-8 md:p-10 flex flex-col justify-center">
             <p
-              className="uppercase tracking-[3px] text-[#1F6FEB] mb-3 font-bold"
+              className="uppercase tracking-[3px] text-[#1a6fc4] mb-3 font-bold"
               style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }}
             >
               Field Notes Monthly
@@ -78,7 +78,7 @@ const FieldNotesNewsletter = ({ source = 'field-notes' }) => {
               <div className="text-center" data-testid="newsletter-success">
                 <span
                   className="inline-flex items-center justify-center w-11 h-11 rounded-full mb-4"
-                  style={{ backgroundColor: '#1F6FEB' }}
+                  style={{ backgroundColor: '#1a6fc4' }}
                 >
                   <Check size={22} color="#fff" strokeWidth={3} />
                 </span>
@@ -115,14 +115,14 @@ const FieldNotesNewsletter = ({ source = 'field-notes' }) => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="name@company.com"
-                      className="w-full pl-10 pr-4 py-3.5 bg-white/[0.05] border border-white/15 rounded focus:outline-none focus:border-[#1F6FEB] focus:bg-white/[0.08] text-white placeholder-white/30 text-[15px] transition-colors"
+                      className="w-full pl-10 pr-4 py-3.5 bg-white/[0.05] border border-white/15 rounded focus:outline-none focus:border-[#1a6fc4] focus:bg-white/[0.08] text-white placeholder-white/30 text-[15px] transition-colors"
                       data-testid="newsletter-email-input"
                     />
                   </div>
                   <button
                     type="submit"
                     disabled={submitting || !email.trim()}
-                    className="inline-flex items-center justify-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] disabled:opacity-50 text-white font-bold px-5 py-3.5 rounded transition-colors whitespace-nowrap shadow-lg shadow-[#1F6FEB]/20"
+                    className="inline-flex items-center justify-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] disabled:opacity-50 text-white font-bold px-5 py-3.5 rounded transition-colors whitespace-nowrap shadow-lg shadow-[#1a6fc4]/20"
                     data-testid="newsletter-submit"
                   >
                     {submitting ? 'Sending\u2026' : 'Subscribe'}

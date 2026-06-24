@@ -202,7 +202,7 @@ const HomePage = () => {
                       cta_destination: '/request-walkthrough',
                       page_path: typeof window !== 'undefined' ? window.location.pathname : '/',
                     })}
-                    className="bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center justify-center gap-2 shadow-lg shadow-[#1F6FEB]/20"
+                    className="bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center justify-center gap-2 shadow-lg shadow-[#1a6fc4]/20"
                     data-testid="hero-cta-primary"
                   >
                     Request a Walkthrough
@@ -223,7 +223,7 @@ const HomePage = () => {
                 </div>
                 <p className="text-sm text-[#CBD5E1] leading-relaxed max-w-md" data-testid="hero-pricing-direction">
                   Fixed quote before scheduling. Written report in 48 hours. No retainer.{' '}
-                  <Link to="/services" className="text-[#1F6FEB] hover:text-white underline decoration-[#1F6FEB]/40 hover:decoration-white transition-colors font-semibold">
+                  <Link to="/services" className="text-[#1a6fc4] hover:text-white underline decoration-[#1a6fc4]/40 hover:decoration-white transition-colors font-semibold">
                     See service options &rarr;
                   </Link>
                 </p>
@@ -252,7 +252,7 @@ const HomePage = () => {
       <section className="py-20 md:py-24 bg-white border-t border-b" style={{ borderColor: '#E5E7EB' }} data-testid="floor-findings-section">
         <div className="container max-w-6xl">
           <Reveal>
-            <p className="uppercase tracking-[0.18em] text-[#1F6FEB] font-semibold mb-3" style={{ fontSize: '11px' }} data-testid="floor-findings-eyebrow">
+            <p className="uppercase tracking-[0.18em] text-[#1a6fc4] font-semibold mb-3" style={{ fontSize: '11px' }} data-testid="floor-findings-eyebrow">
               What We Find on the Floor
             </p>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#102133] leading-[1.15] mb-4 max-w-3xl">
@@ -276,7 +276,7 @@ const HomePage = () => {
                 <div className="flex flex-col" data-testid={`floor-finding-${c.num}`}>
                   <span
                     className="font-bold mb-3"
-                    style={{ ...mono, fontSize: '13px', letterSpacing: '0.12em', color: '#1F6FEB' }}
+                    style={{ ...mono, fontSize: '13px', letterSpacing: '0.12em', color: '#1a6fc4' }}
                   >
                     {c.num}
                   </span>
@@ -462,7 +462,7 @@ const HomePage = () => {
       <section className="py-16 md:py-24" style={{ backgroundColor: '#f5f4f0' }} data-testid="services-section">
         <div className="container max-w-6xl">
           <Reveal>
-            <p className="uppercase font-bold mb-3" style={{ fontSize: '11px', letterSpacing: '0.2em', color: '#1F6FEB' }}>
+            <p className="uppercase font-bold mb-3" style={{ fontSize: '11px', letterSpacing: '0.2em', color: '#1a6fc4' }}>
               Services
             </p>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0d1b2a] leading-[1.15] mb-4 max-w-3xl tracking-tight">
@@ -506,7 +506,7 @@ const HomePage = () => {
                 <div
                   className="relative h-full bg-white flex flex-col"
                   style={{
-                    border: s.featured ? '2px solid #1F6FEB' : '1px solid #E5E7EB',
+                    border: s.featured ? '2px solid #1a6fc4' : '1px solid #E5E7EB',
                     borderRadius: '4px',
                     padding: s.featured ? '44px 32px 36px' : '36px 32px',
                     boxShadow: s.featured ? '0 18px 40px -22px rgba(31,111,235,0.35)' : '0 1px 0 rgba(13,27,42,0.02)',
@@ -520,7 +520,7 @@ const HomePage = () => {
                         top: 0,
                         left: '50%',
                         transform: 'translate(-50%, -50%)',
-                        background: '#1F6FEB',
+                        background: '#1a6fc4',
                         color: '#fff',
                         fontSize: '10.5px',
                         letterSpacing: '0.14em',
@@ -542,13 +542,13 @@ const HomePage = () => {
                       background: s.featured ? 'rgba(31,111,235,0.10)' : 'rgba(13,27,42,0.05)',
                     }}
                   >
-                    <s.Icon size={22} strokeWidth={1.75} style={{ color: s.featured ? '#1F6FEB' : '#102133' }} />
+                    <s.Icon size={22} strokeWidth={1.75} style={{ color: s.featured ? '#1a6fc4' : '#102133' }} />
                   </div>
 
                   <h3 className="text-lg md:text-xl font-bold text-[#102133] mb-1 leading-tight">{s.title}</h3>
                   <p
                     className="font-semibold mb-4"
-                    style={{ fontSize: '14px', color: s.featured ? '#1F6FEB' : '#102133', letterSpacing: '-0.01em' }}
+                    style={{ fontSize: '14px', color: s.featured ? '#1a6fc4' : '#102133', letterSpacing: '-0.01em' }}
                   >
                     {s.price}
                   </p>
@@ -556,7 +556,7 @@ const HomePage = () => {
 
                   <Link
                     to={s.cta.to}
-                    className="inline-flex items-center gap-1.5 text-[#1F6FEB] hover:text-[#1558C0] font-semibold self-start transition-colors"
+                    className="inline-flex items-center gap-1.5 text-[#1a6fc4] hover:text-[#1560ae] font-semibold self-start transition-colors"
                     style={{ fontSize: '14px' }}
                   >
                     {s.cta.label} <ArrowRight size={14} />
@@ -575,14 +575,14 @@ const HomePage = () => {
                 to="/services"
                 className="inline-flex items-center gap-2 font-semibold transition-colors"
                 style={{
-                  color: '#1F6FEB',
-                  border: '1.5px solid #1F6FEB',
+                  color: '#1a6fc4',
+                  border: '1.5px solid #1a6fc4',
                   padding: '12px 24px',
                   borderRadius: '4px',
                   fontSize: '14px',
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = '#1F6FEB'; e.currentTarget.style.color = '#fff'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#1F6FEB'; }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = '#1a6fc4'; e.currentTarget.style.color = '#fff'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#1a6fc4'; }}
               >
                 See full services &amp; pricing
               </Link>
@@ -655,7 +655,7 @@ const HomePage = () => {
       <section className="py-16 md:py-24" style={{ backgroundColor: '#f5f4f0' }} data-testid="how-it-works-section">
         <div className="container max-w-6xl">
           <Reveal>
-            <p className="uppercase font-bold mb-3" style={{ fontSize: '11px', letterSpacing: '0.2em', color: '#1F6FEB' }}>
+            <p className="uppercase font-bold mb-3" style={{ fontSize: '11px', letterSpacing: '0.2em', color: '#1a6fc4' }}>
               How It Works
             </p>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0d1b2a] leading-[1.15] mb-14 max-w-3xl tracking-tight">
@@ -720,7 +720,7 @@ const HomePage = () => {
             <div className="flex justify-center">
               <Link
                 to="/request-walkthrough"
-                className="inline-flex items-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold transition-colors"
+                className="inline-flex items-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold transition-colors"
                 style={{ padding: '13px 28px', borderRadius: '4px', fontSize: '14px', boxShadow: '0 10px 24px -10px rgba(31,111,235,0.55)' }}
                 data-testid="how-it-works-cta"
               >
@@ -869,7 +869,7 @@ const HomePage = () => {
             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
               <Link
                 to="/request-walkthrough"
-                className="inline-flex items-center justify-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold transition-colors"
                 style={{ padding: '15px 30px', borderRadius: '4px', fontSize: '15px', boxShadow: '0 10px 24px -10px rgba(31,111,235,0.55)' }}
                 data-testid="bottom-cta-primary"
               >
@@ -877,7 +877,7 @@ const HomePage = () => {
               </Link>
               <p className="text-sm text-[#102133]/70" data-testid="bottom-cta-secondary-line">
                 Questions first? Call or text directly:{' '}
-                <a href="tel:3363298899" className="font-semibold text-[#0d1b2a] hover:text-[#1F6FEB] transition-colors whitespace-nowrap">
+                <a href="tel:3363298899" className="font-semibold text-[#0d1b2a] hover:text-[#1a6fc4] transition-colors whitespace-nowrap">
                   (336) 329-8899
                 </a>
               </p>

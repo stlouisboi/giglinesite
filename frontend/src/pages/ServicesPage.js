@@ -120,7 +120,7 @@ const STANDALONE = [
     testid: 'svc-standalone-incident',
     anchor: 'incident',
     badge: 'Time-Sensitive',
-    badgeColor: '#8B2500',
+    badgeColor: '#dc2626',
     showPhone: true,
   },
   {
@@ -268,7 +268,7 @@ const ServicesPage = () => {
           {/* Copy — right 60% on desktop */}
           <div className="flex-grow flex items-center px-6 md:px-12 lg:px-16 py-12 md:py-16 relative z-10">
             <Reveal>
-              <p className="uppercase tracking-[3px] text-[#1F6FEB] mb-5 font-bold" style={{ ...mono, fontSize: '11px' }}>
+              <p className="uppercase tracking-[3px] text-[#1a6fc4] mb-5 font-bold" style={{ ...mono, fontSize: '11px' }}>
                 Services · GigLine Safety & Compliance
               </p>
               <h1
@@ -309,7 +309,7 @@ const ServicesPage = () => {
               <a
                 key={l.href}
                 href={l.href}
-                className="flex-shrink-0 px-3 md:px-4 py-1.5 md:py-2 rounded-full border transition-colors hover:bg-[#1F6FEB] hover:text-white hover:border-[#1F6FEB]"
+                className="flex-shrink-0 px-3 md:px-4 py-1.5 md:py-2 rounded-full border transition-colors hover:bg-[#1a6fc4] hover:text-white hover:border-[#1a6fc4]"
                 style={{ borderColor: 'rgba(16,33,51,0.18)', color: '#102133' }}
                 data-testid={`jump-nav-${l.href.replace('#','')}`}
               >
@@ -366,7 +366,7 @@ const ServicesPage = () => {
               Ready for a professional review?{' '}
               <Link
                 to={intakeLink('compliance-readiness-visit')}
-                className="text-[#1F6FEB] hover:text-[#1558C0] underline font-semibold"
+                className="text-[#1a6fc4] hover:text-[#1560ae] underline font-semibold"
                 data-testid="services-safety-check-followup-link"
               >
                 Schedule a Compliance Readiness Visit &rarr;
@@ -380,7 +380,7 @@ const ServicesPage = () => {
       <section className="py-20 md:py-24 bg-white" data-testid="services-who-helps">
         <div className="container max-w-6xl">
           <Reveal>
-            <p className="uppercase tracking-[3px] text-[#1F6FEB] mb-3 font-bold" style={{ ...mono, fontSize: '11px' }}>
+            <p className="uppercase tracking-[3px] text-[#1a6fc4] mb-3 font-bold" style={{ ...mono, fontSize: '11px' }}>
               Who GigLine Helps
             </p>
             <h2 className="text-2xl md:text-3xl font-bold text-[#102133] leading-tight mb-3 max-w-3xl">
@@ -403,7 +403,7 @@ const ServicesPage = () => {
                     className="w-11 h-11 rounded-lg flex items-center justify-center mb-4"
                     style={{ backgroundColor: 'rgba(31,111,235,0.08)' }}
                   >
-                    <Icon size={22} className="text-[#1F6FEB]" />
+                    <Icon size={22} className="text-[#1a6fc4]" />
                   </div>
                   <h3 className="text-lg font-bold text-[#102133] mb-2">{title}</h3>
                   <p className="text-sm text-[#102133]/75 leading-relaxed">{desc}</p>
@@ -423,7 +423,7 @@ const ServicesPage = () => {
               data-testid="svc-card-compliance-readiness"
               id="crv"
               style={{
-                border: '3px solid #1F6FEB',
+                border: '3px solid #1a6fc4',
                 boxShadow: '0 32px 64px -16px rgba(31,111,235,0.30), 0 0 0 6px rgba(31,111,235,0.08)',
                 scrollMarginTop: '128px',
               }}
@@ -432,7 +432,7 @@ const ServicesPage = () => {
               <div
                 className="absolute -top-4 left-1/2 -translate-x-1/2 px-5 py-2 rounded-full shadow-lg whitespace-nowrap"
                 style={{
-                  background: 'linear-gradient(135deg, #1F6FEB 0%, #1558C0 100%)',
+                  background: 'linear-gradient(135deg, #1a6fc4 0%, #1560ae 100%)',
                   boxShadow: '0 8px 20px -4px rgba(31,111,235,0.55), 0 0 0 4px #FFFFFF',
                 }}
                 data-testid="readiness-visit-badge"
@@ -448,7 +448,7 @@ const ServicesPage = () => {
               <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 items-start mt-4">
                 <div>
                   <p
-                    className="uppercase tracking-[2.5px] text-[#1F6FEB] font-bold mb-3"
+                    className="uppercase tracking-[2.5px] text-[#1a6fc4] font-bold mb-3"
                     style={{ ...mono, fontSize: '10.5px' }}
                   >
                     Flagship Engagement
@@ -479,7 +479,7 @@ const ServicesPage = () => {
                       '30-day check-in call included',
                     ].map((line, i) => (
                       <li key={i} className="flex items-start gap-3 text-[#102133]/85 text-base leading-snug">
-                        <Check size={18} className="flex-shrink-0 mt-0.5 text-[#1F6FEB]" strokeWidth={3} />
+                        <Check size={18} className="flex-shrink-0 mt-0.5 text-[#1a6fc4]" strokeWidth={3} />
                         <span>{line}</span>
                       </li>
                     ))}
@@ -504,7 +504,7 @@ const ServicesPage = () => {
                     >
                       Starting At
                     </p>
-                    <p className="text-4xl md:text-5xl font-bold text-[#1F6FEB] leading-none tracking-tight mb-1">
+                    <p className="text-4xl md:text-5xl font-bold text-[#1a6fc4] leading-none tracking-tight mb-1">
                       $2,000
                     </p>
                     <p className="text-[#102133]/45 italic" style={{ ...mono, fontSize: '11px' }}>
@@ -517,7 +517,7 @@ const ServicesPage = () => {
                       fireServicesCtaClick('Schedule a Visit', intakeLink('compliance-readiness-visit'));
                       trackServiceBooking && trackServiceBooking('Compliance Readiness Visit');
                     }}
-                    className="w-full inline-flex items-center justify-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-6 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#1F6FEB]/20"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-6 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#1a6fc4]/20"
                     data-testid="svc-card-compliance-readiness-cta"
                   >
                     Schedule a Visit
@@ -534,7 +534,7 @@ const ServicesPage = () => {
       <section className="py-20 md:py-24 bg-white" data-testid="services-standalone">
         <div className="container max-w-6xl">
           <Reveal>
-            <p className="uppercase tracking-[3px] text-[#1F6FEB] mb-3 font-bold" style={{ ...mono, fontSize: '11px' }}>
+            <p className="uppercase tracking-[3px] text-[#1a6fc4] mb-3 font-bold" style={{ ...mono, fontSize: '11px' }}>
               Standalone Services
             </p>
             <h2 className="text-2xl md:text-3xl font-bold text-[#102133] mb-3 max-w-3xl">
@@ -550,10 +550,11 @@ const ServicesPage = () => {
               <Reveal key={s.testid}>
                 <div
                   id={s.anchor}
-                  className="bg-white rounded-lg p-6 md:p-7 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-start scroll-mt-32"
+                  className="rounded-lg p-6 md:p-7 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-start scroll-mt-32"
                   style={{
-                    border: s.badgeColor ? `1px solid ${s.badgeColor}33` : '1px solid rgba(16,33,51,0.10)',
-                    boxShadow: '0 2px 6px rgba(16,33,51,0.03)',
+                    background: s.anchor === 'incident' ? '#fff8f0' : '#ffffff',
+                    border: s.anchor === 'incident' ? '1px solid rgba(220,38,38,0.20)' : (s.badgeColor ? `1px solid ${s.badgeColor}33` : '1px solid rgba(16,33,51,0.10)'),
+                    boxShadow: s.anchor === 'incident' ? '0 6px 18px -8px rgba(220,38,38,0.18)' : '0 2px 6px rgba(16,33,51,0.03)',
                   }}
                   data-testid={s.testid}
                 >
@@ -565,8 +566,8 @@ const ServicesPage = () => {
                           ...mono,
                           fontSize: '10px',
                           letterSpacing: '0.14em',
-                          color: s.badgeColor || '#1F6FEB',
-                          border: `1px solid ${s.badgeColor || '#1F6FEB'}55`,
+                          color: s.badgeColor || '#1a6fc4',
+                          border: `1px solid ${s.badgeColor || '#1a6fc4'}55`,
                           padding: '4px 10px',
                           borderRadius: '999px',
                         }}
@@ -577,7 +578,7 @@ const ServicesPage = () => {
                     )}
                     <div className="flex items-baseline gap-4 flex-wrap mb-3">
                       <h3 className="text-lg md:text-xl font-bold text-[#102133]">{s.title}</h3>
-                      <span className="text-base font-bold text-[#1F6FEB]" style={mono}>{s.price}</span>
+                      <span className="text-base font-bold text-[#1a6fc4]" style={mono}>{s.price}</span>
                     </div>
                     <p className="text-base text-[#102133]/80 leading-relaxed mb-3">{s.body}</p>
                     {s.body2 && (
@@ -611,7 +612,7 @@ const ServicesPage = () => {
                     <Link
                       to={intakeLink(s.intakeService)}
                       onClick={() => trackServiceBooking && trackServiceBooking(s.title)}
-                      className="inline-flex items-center justify-center gap-2 border-2 border-[#1F6FEB] hover:bg-[#1F6FEB] hover:text-white text-[#1F6FEB] font-bold px-5 py-3 rounded-lg text-sm transition-colors whitespace-nowrap"
+                      className="inline-flex items-center justify-center gap-2 border-2 border-[#1a6fc4] hover:bg-[#1a6fc4] hover:text-white text-[#1a6fc4] font-bold px-5 py-3 rounded-lg text-sm transition-colors whitespace-nowrap"
                       data-testid={`${s.testid}-cta`}
                     >
                       {s.cta}
@@ -620,7 +621,7 @@ const ServicesPage = () => {
                     {s.showPhone && (
                       <a
                         href="tel:3363298899"
-                        className="inline-flex items-center justify-center gap-2 bg-[#8B2500] hover:bg-[#6F1D00] text-white font-bold px-5 py-3 rounded-lg text-sm transition-colors whitespace-nowrap"
+                        className="inline-flex items-center justify-center gap-2 bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold px-5 py-3 rounded-lg text-sm transition-colors whitespace-nowrap"
                         data-testid={`${s.testid}-phone-cta`}
                       >
                         Call Now &mdash; (336) 329-8899
@@ -660,7 +661,7 @@ const ServicesPage = () => {
 
               <p
                 className="uppercase font-bold mb-5"
-                style={{ ...mono, fontSize: '11px', letterSpacing: '0.18em', color: '#1F6FEB' }}
+                style={{ ...mono, fontSize: '11px', letterSpacing: '0.18em', color: '#1a6fc4' }}
                 data-testid="control-system-kicker"
               >
                 OSHA-Ready Control System
@@ -790,7 +791,7 @@ const ServicesPage = () => {
       <section className="py-20 md:py-24 bg-white" data-testid="services-recurring">
         <div className="container max-w-6xl">
           <Reveal>
-            <p className="uppercase tracking-[3px] text-[#1F6FEB] mb-3 font-bold" style={{ ...mono, fontSize: '11px' }}>
+            <p className="uppercase tracking-[3px] text-[#1a6fc4] mb-3 font-bold" style={{ ...mono, fontSize: '11px' }}>
               The Natural Next Step
             </p>
             <h2 className="text-2xl md:text-3xl font-bold text-[#102133] mb-3 max-w-3xl">
@@ -808,7 +809,7 @@ const ServicesPage = () => {
                   id={s.anchor}
                   className="bg-white h-full rounded-xl p-7 md:p-8 flex flex-col scroll-mt-32"
                   style={{
-                    border: s.includes ? '2px solid #1F6FEB' : '1px solid rgba(16,33,51,0.10)',
+                    border: s.includes ? '2px solid #1a6fc4' : '1px solid rgba(16,33,51,0.10)',
                     boxShadow: s.includes ? '0 14px 32px -18px rgba(31,111,235,0.30)' : '0 6px 14px rgba(16,33,51,0.04)',
                   }}
                   data-testid={s.testid}
@@ -820,7 +821,7 @@ const ServicesPage = () => {
                         ...mono,
                         fontSize: '10px',
                         letterSpacing: '0.14em',
-                        color: '#1F6FEB',
+                        color: '#1a6fc4',
                         background: 'rgba(31,111,235,0.10)',
                         padding: '4px 10px',
                         borderRadius: '999px',
@@ -831,7 +832,7 @@ const ServicesPage = () => {
                     </span>
                   )}
                   <h3 className="text-xl md:text-2xl font-bold text-[#102133] mb-2">{s.title}</h3>
-                  <p className="text-xl font-bold text-[#1F6FEB] mb-1" style={mono}>{s.price}</p>
+                  <p className="text-xl font-bold text-[#1a6fc4] mb-1" style={mono}>{s.price}</p>
                   {s.priceSecondary && (
                     <p className="text-sm text-[#102133]/55 mb-5" style={mono} data-testid={`${s.testid}-price-secondary`}>
                       {s.priceSecondary}
@@ -864,12 +865,12 @@ const ServicesPage = () => {
                       <ul className="space-y-3">
                         {s.includes.map((item, i) => (
                           <li key={i} className="flex items-start gap-3 text-[15px] text-[#102133]/85 leading-snug">
-                            <Check size={18} className="flex-shrink-0 mt-0.5 text-[#1F6FEB]" strokeWidth={3} />
+                            <Check size={18} className="flex-shrink-0 mt-0.5 text-[#1a6fc4]" strokeWidth={3} />
                             <span>
                               <span className="font-semibold text-[#102133]">{item.label}</span>
                               {item.detail && <span className="text-[#102133]/75"> &mdash; {item.detail}</span>}
                               {item.value && (
-                                <span className="text-[#1F6FEB] italic" style={mono}> &nbsp;({item.value})</span>
+                                <span className="text-[#1a6fc4] italic" style={mono}> &nbsp;({item.value})</span>
                               )}
                             </span>
                           </li>
@@ -892,7 +893,7 @@ const ServicesPage = () => {
                         </div>
                         <div className="flex items-baseline justify-between gap-3">
                           <span className="text-[#102133]/65">{s.valueAnchor.partnerLabel}</span>
-                          <span className="font-bold text-[#1F6FEB]" style={mono}>{s.valueAnchor.partner}</span>
+                          <span className="font-bold text-[#1a6fc4]" style={mono}>{s.valueAnchor.partner}</span>
                         </div>
                         <div
                           className="flex items-baseline justify-between gap-3 pt-2 mt-1"
@@ -918,7 +919,7 @@ const ServicesPage = () => {
                   <Link
                     to={intakeLink(s.intakeService)}
                     onClick={() => trackServiceBooking && trackServiceBooking(s.title)}
-                    className="inline-flex items-center justify-center gap-2 border-2 border-[#1F6FEB] hover:bg-[#1F6FEB] hover:text-white text-[#1F6FEB] font-bold px-6 py-3 rounded-lg text-base transition-colors self-start"
+                    className="inline-flex items-center justify-center gap-2 border-2 border-[#1a6fc4] hover:bg-[#1a6fc4] hover:text-white text-[#1a6fc4] font-bold px-6 py-3 rounded-lg text-base transition-colors self-start"
                     data-testid={`${s.testid}-cta`}
                   >
                     {s.cta}
@@ -935,7 +936,7 @@ const ServicesPage = () => {
       <section className="py-20 md:py-24" style={{ backgroundColor: '#F7F9FC' }} data-testid="services-readiness-path">
         <div className="container max-w-5xl">
           <Reveal>
-            <p className="uppercase tracking-[3px] text-[#1F6FEB] mb-3 font-bold" style={{ ...mono, fontSize: '11px' }}>
+            <p className="uppercase tracking-[3px] text-[#1a6fc4] mb-3 font-bold" style={{ ...mono, fontSize: '11px' }}>
               The GigLine Readiness Path
             </p>
             <h2 className="text-2xl md:text-3xl font-bold text-[#102133] mb-3 max-w-3xl">
@@ -974,7 +975,7 @@ const ServicesPage = () => {
                     <Link
                       to={row.link}
                       onClick={() => fireServicesCtaClick(`Readiness Path · ${row.stage}`, row.link)}
-                      className="inline-flex items-center gap-2 text-[#1F6FEB] hover:text-[#1558C0] font-semibold"
+                      className="inline-flex items-center gap-2 text-[#1a6fc4] hover:text-[#1560ae] font-semibold"
                       data-testid={`readiness-path-link-${i + 1}`}
                     >
                       {row.offer}
@@ -996,7 +997,7 @@ const ServicesPage = () => {
                   data-testid={`readiness-path-mobile-row-${i + 1}`}
                 >
                   <p
-                    className="uppercase tracking-[2px] text-[#1F6FEB] font-bold mb-2"
+                    className="uppercase tracking-[2px] text-[#1a6fc4] font-bold mb-2"
                     style={{ ...mono, fontSize: '10px' }}
                   >
                     Stage {i + 1} · {row.stage}
@@ -1005,7 +1006,7 @@ const ServicesPage = () => {
                   <Link
                     to={row.link}
                     onClick={() => fireServicesCtaClick(`Readiness Path · ${row.stage}`, row.link)}
-                    className="inline-flex items-center gap-2 text-[#1F6FEB] font-semibold"
+                    className="inline-flex items-center gap-2 text-[#1a6fc4] font-semibold"
                   >
                     {row.offer}
                     <ArrowRight size={14} />
@@ -1024,7 +1025,7 @@ const ServicesPage = () => {
               <a
                 href="tel:+13363298899"
                 onClick={() => trackPhoneClick && trackPhoneClick('readiness-path-footnote')}
-                className="text-[#1F6FEB] hover:text-[#1558C0] font-bold underline"
+                className="text-[#1a6fc4] hover:text-[#1560ae] font-bold underline"
                 data-testid="readiness-path-phone"
               >
                 (336) 329-8899
@@ -1073,7 +1074,7 @@ const ServicesPage = () => {
                 </p>
                 <Link
                   to="/about"
-                  className="inline-flex items-center gap-2 text-[#1F6FEB] hover:text-white font-bold underline decoration-[#1F6FEB]/40 hover:decoration-white"
+                  className="inline-flex items-center gap-2 text-[#1a6fc4] hover:text-white font-bold underline decoration-[#1a6fc4]/40 hover:decoration-white"
                   data-testid="services-founder-about-link"
                 >
                   Read the full bio &rarr;
@@ -1088,7 +1089,7 @@ const ServicesPage = () => {
       <section className="py-20 md:py-24 bg-white" data-testid="services-faq">
         <div className="container max-w-3xl">
           <Reveal>
-            <p className="uppercase tracking-[3px] text-[#1F6FEB] mb-3 font-bold" style={{ ...mono, fontSize: '11px' }}>
+            <p className="uppercase tracking-[3px] text-[#1a6fc4] mb-3 font-bold" style={{ ...mono, fontSize: '11px' }}>
               Questions Before You Schedule
             </p>
             <h2 className="text-2xl md:text-3xl font-bold text-[#102133] mb-10 max-w-2xl">
@@ -1108,7 +1109,7 @@ const ServicesPage = () => {
                     className="cursor-pointer px-6 py-5 flex items-center justify-between gap-4 list-none"
                   >
                     <span className="text-base md:text-lg font-bold text-[#102133]">{item.q}</span>
-                    <span className="flex-shrink-0 text-[#1F6FEB] text-2xl leading-none group-open:rotate-45 transition-transform">+</span>
+                    <span className="flex-shrink-0 text-[#1a6fc4] text-2xl leading-none group-open:rotate-45 transition-transform">+</span>
                   </summary>
                   <div className="px-6 pb-6 -mt-1 text-base text-[#102133]/80 leading-relaxed">
                     {item.a}
@@ -1121,7 +1122,7 @@ const ServicesPage = () => {
           <Reveal>
             <p className="text-base text-[#102133]/70 leading-relaxed text-center mt-10">
               Want more answers?{' '}
-              <Link to="/faq" className="text-[#1F6FEB] hover:text-[#1558C0] underline font-semibold">
+              <Link to="/faq" className="text-[#1a6fc4] hover:text-[#1560ae] underline font-semibold">
                 Read the full FAQ &rarr;
               </Link>
             </p>
@@ -1130,7 +1131,7 @@ const ServicesPage = () => {
           {/* Pricing reference block */}
           <div className="mt-16" data-testid="services-pricing-reference">
             <Reveal>
-              <p className="uppercase tracking-[3px] text-[#1F6FEB] mb-3 font-bold text-center" style={{ ...mono, fontSize: '11px' }}>
+              <p className="uppercase tracking-[3px] text-[#1a6fc4] mb-3 font-bold text-center" style={{ ...mono, fontSize: '11px' }}>
                 Pricing Reference
               </p>
               <h3 className="text-xl md:text-2xl font-bold text-[#102133] mb-3 text-center max-w-2xl mx-auto">
@@ -1151,7 +1152,7 @@ const ServicesPage = () => {
                     data-testid={`pricing-ref-row-${i + 1}`}
                   >
                     <span className="text-base text-[#102133] font-semibold">{name}</span>
-                    <span className="text-base font-bold text-[#1F6FEB] whitespace-nowrap" style={mono}>{price}</span>
+                    <span className="text-base font-bold text-[#1a6fc4] whitespace-nowrap" style={mono}>{price}</span>
                   </div>
                 ))}
               </div>
@@ -1172,7 +1173,7 @@ const ServicesPage = () => {
           <a
             href="tel:+13363298899"
             onClick={() => trackPhoneClick && trackPhoneClick('services-bottom-cta')}
-            className="inline-flex items-center gap-3 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#1F6FEB]/25"
+            className="inline-flex items-center gap-3 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#1a6fc4]/25"
             data-testid="services-bottom-cta-call"
           >
             <Phone size={20} />

@@ -642,11 +642,11 @@ const FieldNoteDetailPage = () => {
       {/* Header */}
       <section className="bg-[#0B1F33] py-16 md:py-24" data-testid="note-header">
         <div className="container max-w-3xl">
-          <Link to="/field-notes" className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-[#1F6FEB] transition-colors mb-6" data-testid="back-to-notes">
+          <Link to="/field-notes" className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-[#1a6fc4] transition-colors mb-6" data-testid="back-to-notes">
             <ArrowLeft size={14} /> Field Notes
           </Link>
           <p
-            className="uppercase tracking-[3px] text-[#1F6FEB] mb-3"
+            className="uppercase tracking-[3px] text-[#1a6fc4] mb-3"
             style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }}
           >
             Field Note
@@ -691,7 +691,7 @@ const FieldNoteDetailPage = () => {
               <div className="space-y-3">
                 {note.oshaChecks.map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
-                    <span className="text-[#1558C0] mt-1 flex-shrink-0">
+                    <span className="text-[#1560ae] mt-1 flex-shrink-0">
                       <Check size={16} />
                     </span>
                     <p className="text-base text-[#102133]/70">{item}</p>
@@ -707,7 +707,7 @@ const FieldNoteDetailPage = () => {
             <div className="space-y-3">
               {note.sections.whatGetsMissed.map((item, i) => (
                 <div key={i} className="flex items-start gap-3">
-                  <span className="text-[#1F6FEB] mt-0.5" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px' }}>//</span>
+                  <span className="text-[#1a6fc4] mt-0.5" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px' }}>//</span>
                   <p className="text-base text-[#102133]/70">{item}</p>
                 </div>
               ))}
@@ -715,7 +715,7 @@ const FieldNoteDetailPage = () => {
           </div>
 
           {/* What I See */}
-          <div className="mb-12 bg-[#F9F8F6] border-l-2 border-[#1F6FEB] p-6 rounded-r" data-testid="note-what-i-see">
+          <div className="mb-12 bg-[#F9F8F6] border-l-2 border-[#1a6fc4] p-6 rounded-r" data-testid="note-what-i-see">
             <h2 className="text-xl font-bold text-[#102133] mb-4">What GigLine Looks For</h2>
             <p className="text-base text-[#102133]/70 leading-relaxed italic">{note.sections.whatISee}</p>
           </div>
@@ -726,7 +726,7 @@ const FieldNoteDetailPage = () => {
             <div className="space-y-3">
               {note.sections.checklist.map((item, i) => (
                 <label key={i} className="flex items-start gap-3 cursor-pointer group">
-                  <input type="checkbox" className="mt-1 w-4 h-4 rounded border-[#102133]/20 text-[#1F6FEB] focus:ring-[#1F6FEB] accent-[#1F6FEB]" />
+                  <input type="checkbox" className="mt-1 w-4 h-4 rounded border-[#102133]/20 text-[#1a6fc4] focus:ring-[#1a6fc4] accent-[#1a6fc4]" />
                   <span className="text-base text-[#102133]/70 group-hover:text-[#102133] transition-colors">{item}</span>
                 </label>
               ))}
@@ -763,7 +763,7 @@ const FieldNoteDetailPage = () => {
                     <Link
                       key={rSlug}
                       to={`/field-notes/${rSlug}`}
-                      className="text-sm text-[#102133]/60 hover:text-[#1558C0] transition-colors flex items-center gap-1"
+                      className="text-sm text-[#102133]/60 hover:text-[#1560ae] transition-colors flex items-center gap-1"
                       data-testid={`related-note-${rSlug}`}
                     >
                       <ArrowRight size={12} />
@@ -773,7 +773,7 @@ const FieldNoteDetailPage = () => {
                 })}
                 <Link
                   to="/services"
-                  className="text-sm text-[#1F6FEB] hover:text-[#1558C0] transition-colors flex items-center gap-1"
+                  className="text-sm text-[#1a6fc4] hover:text-[#1560ae] transition-colors flex items-center gap-1"
                   data-testid="related-services-link"
                 >
                   <ArrowRight size={12} />
@@ -803,7 +803,7 @@ const FieldNoteDetailPage = () => {
               {/* Download form */}
               <div className="flex-grow">
                 <p
-                  className="uppercase tracking-[3px] text-[#1F6FEB] mb-3"
+                  className="uppercase tracking-[3px] text-[#1a6fc4] mb-3"
                   style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }}
                 >
                   Free Download
@@ -815,7 +815,7 @@ const FieldNoteDetailPage = () => {
 
                 {dlStatus === 'sent' ? (
                   <div className="flex items-center gap-3 text-[#102133]/70" data-testid="download-success">
-                    <Check size={20} className="text-[#1F6FEB]" />
+                    <Check size={20} className="text-[#1a6fc4]" />
                     <p className="text-sm font-medium">Sent to your inbox. Check your email.</p>
                   </div>
                 ) : (
@@ -826,13 +826,13 @@ const FieldNoteDetailPage = () => {
                       value={dlEmail}
                       onChange={(e) => setDlEmail(e.target.value)}
                       placeholder="Your work email"
-                      className="flex-grow px-4 py-3 rounded border border-[#102133]/15 bg-white text-sm text-[#102133] placeholder:text-[#102133]/30 focus:outline-none focus:border-[#1F6FEB] focus:ring-1 focus:ring-[#1F6FEB]/30"
+                      className="flex-grow px-4 py-3 rounded border border-[#102133]/15 bg-white text-sm text-[#102133] placeholder:text-[#102133]/30 focus:outline-none focus:border-[#1a6fc4] focus:ring-1 focus:ring-[#1a6fc4]/30"
                       data-testid="download-email-input"
                     />
                     <button
                       type="submit"
                       disabled={dlStatus === 'sending'}
-                      className="bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-6 py-3 rounded transition-colors inline-flex items-center justify-center gap-2 text-sm disabled:opacity-60"
+                      className="bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-6 py-3 rounded transition-colors inline-flex items-center justify-center gap-2 text-sm disabled:opacity-60"
                       data-testid="download-submit-btn"
                     >
                       <Download size={16} />
@@ -861,7 +861,7 @@ const FieldNoteDetailPage = () => {
           </p>
           <Link
             to="/request-walkthrough"
-            className="bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
+            className="bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
             data-testid="note-walkthrough-cta"
           >
             Request a Walkthrough

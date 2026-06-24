@@ -15,7 +15,7 @@ const API = process.env.REACT_APP_BACKEND_URL;
 /* ── Brand tokens ── */
 const C = {
   bg: '#1A1A1A', surface: '#222222', deep: '#111111', deeper: '#0B0B0B',
-  blue: '#1F6FEB', blueDim: 'rgba(31,111,235,0.08)', blueBorder: 'rgba(31,111,235,0.32)',
+  blue: '#1a6fc4', blueDim: 'rgba(31,111,235,0.08)', blueBorder: 'rgba(31,111,235,0.32)',
   white: '#FFFFFF', sec: 'rgba(255,255,255,0.72)', muted: 'rgba(255,255,255,0.42)',
   subtle: 'rgba(255,255,255,0.26)',
   border: 'rgba(255,255,255,0.08)', red: '#EF4444',

@@ -199,8 +199,8 @@ const CityLandingPage = () => {
       <section className="bg-[#0B1F33] text-white py-16 md:py-24">
         <div className="container max-w-4xl">
           <div className="flex items-center gap-2 mb-6">
-            <MapPin size={16} className="text-[#1F6FEB]" />
-            <p className="uppercase tracking-[3px] text-[#1F6FEB]" style={{ ...mono, fontSize: '11px' }}>
+            <MapPin size={16} className="text-[#1a6fc4]" />
+            <p className="uppercase tracking-[3px] text-[#1a6fc4]" style={{ ...mono, fontSize: '11px' }}>
               {data.name}, NC — {data.region}
             </p>
           </div>
@@ -226,7 +226,7 @@ const CityLandingPage = () => {
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
               to="/request-walkthrough"
-              className="inline-flex items-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#1F6FEB]/20"
+              className="inline-flex items-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#1a6fc4]/20"
               data-testid="city-cta-primary"
             >
               Request a Walkthrough
@@ -246,7 +246,7 @@ const CityLandingPage = () => {
       {/* What You Get */}
       <section className="py-16 md:py-24" style={{ backgroundColor: '#F9F8F6' }}>
         <div className="container max-w-4xl">
-          <p className="uppercase tracking-[3px] text-[#1F6FEB] mb-4" style={{ ...mono, fontSize: '11px' }}>
+          <p className="uppercase tracking-[3px] text-[#1a6fc4] mb-4" style={{ ...mono, fontSize: '11px' }}>
             What You Get
           </p>
           <h2 className="text-2xl md:text-3xl font-bold text-[#102133] mb-8" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
@@ -262,7 +262,7 @@ const CityLandingPage = () => {
               'No retainer — one engagement, one report',
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-3">
-                <Check size={16} className="flex-shrink-0 mt-1 text-[#1F6FEB]" strokeWidth={2.5} />
+                <Check size={16} className="flex-shrink-0 mt-1 text-[#1a6fc4]" strokeWidth={2.5} />
                 <p className="text-sm text-[#102133]/70">{item}</p>
               </div>
             ))}
@@ -273,7 +273,7 @@ const CityLandingPage = () => {
       {/* Local Context */}
       <section className="py-16 md:py-24 bg-white">
         <div className="container max-w-4xl">
-          <p className="uppercase tracking-[3px] text-[#1F6FEB] mb-4" style={{ ...mono, fontSize: '11px' }}>
+          <p className="uppercase tracking-[3px] text-[#1a6fc4] mb-4" style={{ ...mono, fontSize: '11px' }}>
             Local Service
           </p>
           <h2 className="text-2xl md:text-3xl font-bold text-[#102133] mb-6" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
@@ -296,7 +296,7 @@ const CityLandingPage = () => {
       {/* City-specific FAQ */}
       <section className="py-16 md:py-24 bg-white">
         <div className="container max-w-3xl">
-          <p className="uppercase tracking-[3px] text-[#1F6FEB] mb-4" style={{ ...mono, fontSize: '11px' }}>
+          <p className="uppercase tracking-[3px] text-[#1a6fc4] mb-4" style={{ ...mono, fontSize: '11px' }}>
             Common Questions
           </p>
           <h2
@@ -307,7 +307,7 @@ const CityLandingPage = () => {
           </h2>
           <div className="space-y-6" data-testid={`city-faq-${city}`}>
             {cityFaqs.map((f, i) => (
-              <div key={i} className="border-l-2 border-[#1F6FEB]/30 pl-5">
+              <div key={i} className="border-l-2 border-[#1a6fc4]/30 pl-5">
                 <h3
                   className="font-semibold text-[#102133] mb-2 text-base md:text-lg"
                   style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
@@ -321,7 +321,7 @@ const CityLandingPage = () => {
           <div className="mt-8 pt-6 border-t border-[#102133]/10">
             <Link
               to="/faq"
-              className="inline-flex items-center gap-2 text-[#1F6FEB] hover:text-[#1558C0] font-semibold text-sm"
+              className="inline-flex items-center gap-2 text-[#1a6fc4] hover:text-[#1560ae] font-semibold text-sm"
               data-testid={`city-faq-more-${city}`}
             >
               See all 18 frequently asked questions
@@ -352,13 +352,13 @@ const CityLandingPage = () => {
           )}
           <Link
             to="/request-walkthrough"
-            className="inline-flex items-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#1F6FEB]/20"
+            className="inline-flex items-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#1a6fc4]/20"
           >
             Request a Walkthrough
             <ArrowRight size={18} />
           </Link>
           <p className="mt-6 text-white/40 text-sm">
-            Or call directly: <a href="tel:3363298899" className="text-[#1F6FEB] hover:underline font-semibold">(336) 329-8899</a>
+            Or call directly: <a href="tel:3363298899" className="text-[#1a6fc4] hover:underline font-semibold">(336) 329-8899</a>
           </p>
         </div>
       </section>

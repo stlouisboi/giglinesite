@@ -96,7 +96,7 @@ const IntakePage = () => {
           {!submitted ? (
             <>
               {/* Header */}
-              <p className="font-mono text-xs tracking-[3px] uppercase text-[#1F6FEB] mb-4" data-testid="intake-label">
+              <p className="font-mono text-xs tracking-[3px] uppercase text-[#1a6fc4] mb-4" data-testid="intake-label">
                 Get Started
               </p>
               <h1 className="font-serif text-4xl md:text-5xl font-bold text-white leading-tight mb-4" data-testid="intake-headline">
@@ -114,7 +114,7 @@ const IntakePage = () => {
                 {['OSHA 30-Hour Certified', '25+ Years Experience', 'U.S. Navy Veteran'].map((c) => (
                   <span
                     key={c}
-                    className="inline-flex items-center px-3 py-1 rounded text-[#1F6FEB] border border-[#1F6FEB]/30 font-mono text-[11px]"
+                    className="inline-flex items-center px-3 py-1 rounded text-[#1a6fc4] border border-[#1a6fc4]/30 font-mono text-[11px]"
                   >
                     {c}
                   </span>
@@ -130,7 +130,7 @@ const IntakePage = () => {
                   <input
                     id="name" name="name" type="text" required autoComplete="name"
                     value={form.name} onChange={handleChange}
-                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3.5 rounded focus:outline-none focus:border-[#1F6FEB] transition-colors placeholder:text-white/30"
+                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3.5 rounded focus:outline-none focus:border-[#1a6fc4] transition-colors placeholder:text-white/30"
                     placeholder="First and last"
                     data-testid="intake-name"
                   />
@@ -143,7 +143,7 @@ const IntakePage = () => {
                   <input
                     id="company" name="company" type="text" required autoComplete="organization"
                     value={form.company} onChange={handleChange}
-                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3.5 rounded focus:outline-none focus:border-[#1F6FEB] transition-colors placeholder:text-white/30"
+                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3.5 rounded focus:outline-none focus:border-[#1a6fc4] transition-colors placeholder:text-white/30"
                     placeholder="Company or DBA"
                     data-testid="intake-company"
                   />
@@ -156,7 +156,7 @@ const IntakePage = () => {
                   <input
                     id="phone" name="phone" type="tel" required autoComplete="tel"
                     value={form.phone} onChange={handleChange}
-                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3.5 rounded focus:outline-none focus:border-[#1F6FEB] transition-colors placeholder:text-white/30"
+                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3.5 rounded focus:outline-none focus:border-[#1a6fc4] transition-colors placeholder:text-white/30"
                     placeholder="(336) 555-1234"
                     inputMode="tel"
                     data-testid="intake-phone"
@@ -170,7 +170,7 @@ const IntakePage = () => {
                   <input
                     id="email" name="email" type="email" required autoComplete="email"
                     value={form.email} onChange={handleChange}
-                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3.5 rounded focus:outline-none focus:border-[#1F6FEB] transition-colors placeholder:text-white/30"
+                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3.5 rounded focus:outline-none focus:border-[#1a6fc4] transition-colors placeholder:text-white/30"
                     placeholder="you@yourcompany.com"
                     data-testid="intake-email"
                   />
@@ -183,7 +183,7 @@ const IntakePage = () => {
                   <input
                     id="city" name="city" type="text" required autoComplete="address-level2"
                     value={form.city} onChange={handleChange}
-                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3.5 rounded focus:outline-none focus:border-[#1F6FEB] transition-colors placeholder:text-white/30"
+                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3.5 rounded focus:outline-none focus:border-[#1a6fc4] transition-colors placeholder:text-white/30"
                     placeholder="Kernersville, NC"
                     data-testid="intake-city"
                   />
@@ -196,7 +196,7 @@ const IntakePage = () => {
                   <select
                     id="service" name="service" required
                     value={form.service} onChange={handleChange}
-                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3.5 rounded focus:outline-none focus:border-[#1F6FEB] transition-colors appearance-none"
+                    className="w-full bg-white/5 border border-white/10 text-white px-4 py-3.5 rounded focus:outline-none focus:border-[#1a6fc4] transition-colors appearance-none"
                     data-testid="intake-service"
                   >
                     <option value="" disabled className="bg-[#0B1F33]">Select one</option>
@@ -214,7 +214,7 @@ const IntakePage = () => {
                   style={{ background: 'rgba(31,111,235,0.06)', border: '1px solid rgba(31,111,235,0.18)' }}
                   data-testid="intake-trust-line"
                 >
-                  <Shield size={16} className="flex-shrink-0 mt-0.5 text-[#1F6FEB]" />
+                  <Shield size={16} className="flex-shrink-0 mt-0.5 text-[#1a6fc4]" />
                   <p className="text-sm text-white/80 leading-relaxed">
                     This is a private engagement. Nothing you share here is reported to OSHA or any regulatory agency.
                   </p>
@@ -222,7 +222,7 @@ const IntakePage = () => {
 
                 <button
                   type="submit" disabled={submitting}
-                  className="w-full bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold uppercase tracking-wider text-base px-8 py-4 rounded-lg transition-colors inline-flex items-center justify-center gap-2 disabled:opacity-50"
+                  className="w-full bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold uppercase tracking-wider text-base px-8 py-4 rounded-lg transition-colors inline-flex items-center justify-center gap-2 disabled:opacity-50"
                   style={{ minHeight: '56px' }}
                   data-testid="intake-submit"
                 >
@@ -234,7 +234,7 @@ const IntakePage = () => {
               {/* Fallback contact */}
               <p className="text-center text-sm text-white/60 mt-6" data-testid="intake-fallback">
                 Prefer to call? Reach Vince directly at{' '}
-                <a href="tel:3363298899" className="text-[#1F6FEB] hover:text-white font-semibold transition-colors">
+                <a href="tel:3363298899" className="text-[#1a6fc4] hover:text-white font-semibold transition-colors">
                   (336) 329-8899
                 </a>
                 .
@@ -243,8 +243,8 @@ const IntakePage = () => {
           ) : (
             /* ── POST-SUBMIT: Inline confirmation (no redirect) ── */
             <div className="text-center" data-testid="intake-success">
-              <div className="w-16 h-16 rounded-full bg-[#1F6FEB]/20 flex items-center justify-center mx-auto mb-6">
-                <Check size={32} className="text-[#1F6FEB]" />
+              <div className="w-16 h-16 rounded-full bg-[#1a6fc4]/20 flex items-center justify-center mx-auto mb-6">
+                <Check size={32} className="text-[#1a6fc4]" />
               </div>
 
               <h2 className="font-serif text-3xl md:text-4xl font-bold text-white mb-5">
@@ -255,7 +255,7 @@ const IntakePage = () => {
               </p>
               <p className="text-base text-white/60 mb-10 max-w-lg mx-auto">
                 In the meantime, you can reach him directly at{' '}
-                <a href="tel:3363298899" className="text-[#1F6FEB] hover:text-white font-semibold transition-colors">
+                <a href="tel:3363298899" className="text-[#1a6fc4] hover:text-white font-semibold transition-colors">
                   (336) 329-8899
                 </a>
                 .
@@ -263,7 +263,7 @@ const IntakePage = () => {
 
               <a
                 href="tel:3363298899"
-                className="inline-flex items-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded-lg transition-colors"
+                className="inline-flex items-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded-lg transition-colors"
                 style={{ minHeight: '56px' }}
                 data-testid="success-call-cta"
               >

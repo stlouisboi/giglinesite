@@ -11,7 +11,7 @@ import SEO from '../components/SEO';
 
 const NAVY = '#0A1628';
 const GOLD = '#C5A059';
-const BLUE = '#1F6FEB';
+const BLUE = '#1a6fc4';
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
 const heading = { fontFamily: "'Manrope', sans-serif" };
 

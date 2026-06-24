@@ -148,10 +148,10 @@ const TermsOfServicePage = () => {
           <p className="mt-4"><strong>Messaging frequency may vary.</strong></p>
           <p className="mt-2"><strong>Message and data rates may apply.</strong></p>
           <p className="mt-2"><strong>To opt out at any time, reply STOP.</strong> You will receive one confirmation and no further messages.</p>
-          <p className="mt-2"><strong>For assistance, reply HELP or call <a href="tel:3363298899" className="font-bold underline" style={{ color: '#1F6FEB' }}>(336) 329-8899</a>.</strong></p>
+          <p className="mt-2"><strong>For assistance, reply HELP or call <a href="tel:3363298899" className="font-bold underline" style={{ color: '#1a6fc4' }}>(336) 329-8899</a>.</strong></p>
           <p className="mt-4">
             For our full privacy practices, see our{' '}
-            <Link to="/privacy-policy" className="font-bold underline" style={{ color: '#1F6FEB' }}>Privacy Policy</Link>.
+            <Link to="/privacy-policy" className="font-bold underline" style={{ color: '#1a6fc4' }}>Privacy Policy</Link>.
           </p>
         </Section>
 
@@ -187,11 +187,11 @@ const TermsOfServicePage = () => {
             <p className="font-bold mb-3" style={{ color: NAVY }}>Vince Lawrence</p>
             <p style={{ color: 'rgba(11,31,51,0.78)' }}>GigLine Safety &amp; Compliance</p>
             <p className="mt-3 flex items-center gap-2" style={{ color: 'rgba(11,31,51,0.78)' }}>
-              <Phone size={14} style={{ color: '#1F6FEB' }} />
+              <Phone size={14} style={{ color: '#1a6fc4' }} />
               <a href="tel:3363298899" className="hover:underline">(336) 329-8899</a>
             </p>
             <p className="mt-1.5 flex items-center gap-2" style={{ color: 'rgba(11,31,51,0.78)' }}>
-              <Mail size={14} style={{ color: '#1F6FEB' }} />
+              <Mail size={14} style={{ color: '#1a6fc4' }} />
               <a href="mailto:vince@giglinecompliance.com" className="hover:underline">vince@giglinecompliance.com</a>
             </p>
           </div>
@@ -201,7 +201,7 @@ const TermsOfServicePage = () => {
           <Link
             to="/"
             className="inline-flex items-center gap-2 text-sm font-bold hover:underline"
-            style={{ color: '#1F6FEB' }}
+            style={{ color: '#1a6fc4' }}
             data-testid="terms-back-home"
           >
             Back to GigLine

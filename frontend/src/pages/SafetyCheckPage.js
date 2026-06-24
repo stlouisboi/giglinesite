@@ -113,7 +113,7 @@ const SafetyCheckPage = () => {
     }
   };
 
-  const inputCls = "w-full px-4 py-3 border border-[#102133]/15 rounded bg-white text-[#102133] placeholder:text-[#102133]/40 focus:outline-none focus:ring-2 focus:ring-[#1558C0]/50 focus:border-transparent";
+  const inputCls = "w-full px-4 py-3 border border-[#102133]/15 rounded bg-white text-[#102133] placeholder:text-[#102133]/40 focus:outline-none focus:ring-2 focus:ring-[#1560ae]/50 focus:border-transparent";
 
   return (
     <main className="bg-white" data-testid="safety-check-page">
@@ -144,7 +144,7 @@ const SafetyCheckPage = () => {
       {phase === 'questions' && (
         <section className="py-12 md:py-16">
           <div className="container max-w-3xl">
-            <p className="text-lg text-[#102133]/70 mb-10 leading-relaxed italic border-l-2 border-[#1558C0] pl-6" data-testid="safety-check-frame-text">
+            <p className="text-lg text-[#102133]/70 mb-10 leading-relaxed italic border-l-2 border-[#1560ae] pl-6" data-testid="safety-check-frame-text">
               Six questions. Honest answers. You'll know where you stand.
             </p>
 
@@ -160,7 +160,7 @@ const SafetyCheckPage = () => {
 
             <div className="space-y-10">
               {QUESTIONS.map((q) => (
-                <div key={q.id} className="border-l-2 border-[#1558C0]/30 pl-6 py-1" data-testid={`question-${q.id}`}>
+                <div key={q.id} className="border-l-2 border-[#1560ae]/30 pl-6 py-1" data-testid={`question-${q.id}`}>
                   <p className="text-[10px] font-medium tracking-widest text-[#102133]/30 uppercase mb-3">{String(q.id).padStart(2, '0')}</p>
                   <p className="text-base font-medium text-[#102133] mb-2 leading-relaxed">{q.text}</p>
                   <p className="text-xs text-[#102133]/40 mb-5">{q.citation}</p>
@@ -231,7 +231,7 @@ const SafetyCheckPage = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold py-4 rounded transition-colors disabled:opacity-50 text-base"
+                className="w-full bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold py-4 rounded transition-colors disabled:opacity-50 text-base"
                 data-testid="gate-submit"
               >
                 {isSubmitting ? 'Loading your results...' : 'See My Results'}
@@ -253,7 +253,7 @@ const SafetyCheckPage = () => {
             {/* Score Badge */}
             <div className={`inline-block px-4 py-2 rounded text-sm font-semibold mb-8 ${
               scoreLevel === 'low' ? 'bg-[#102133]/10 text-[#102133]' :
-              scoreLevel === 'medium' ? 'bg-[#1558C0]/15 text-[#8B7222]' :
+              scoreLevel === 'medium' ? 'bg-[#1560ae]/15 text-[#8B7222]' :
               'bg-[#8B2500]/10 text-[#8B2500]'
             }`} data-testid="score-badge">
               {noCount} of 6 areas flagged — {scoreLevel === 'low' ? 'Low' : scoreLevel === 'medium' ? 'Moderate' : 'High'} Risk
@@ -280,7 +280,7 @@ const SafetyCheckPage = () => {
             {flaggedTopics.length > 0 && (
               <div className="mb-12 space-y-4" data-testid="results-explanations">
                 {flaggedTopics.map((topic) => (
-                  <div key={topic} className="border-l-2 border-[#1558C0]/30 pl-5 py-2" data-testid={`explanation-${topic.replace(/\s+/g, '-').toLowerCase()}`}>
+                  <div key={topic} className="border-l-2 border-[#1560ae]/30 pl-5 py-2" data-testid={`explanation-${topic.replace(/\s+/g, '-').toLowerCase()}`}>
                     <p className="text-sm font-semibold text-[#102133] mb-1">{topic}</p>
                     <p className="text-sm text-[#102133]/60 leading-relaxed">{EXPLANATIONS[topic]}</p>
                   </div>
@@ -305,7 +305,7 @@ const SafetyCheckPage = () => {
 
               <Link
                 to="/request-walkthrough"
-                className="bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded transition-colors inline-flex items-center gap-2 text-base mb-4"
+                className="bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded transition-colors inline-flex items-center gap-2 text-base mb-4"
                 data-testid="results-cta-walkthrough"
               >
                 Have me walk the floor and confirm this
@@ -322,7 +322,7 @@ const SafetyCheckPage = () => {
 
             {/* ── Section D: Reinforcement ── */}
             <div className="mb-10" data-testid="results-reinforcement">
-              <div className="w-16 h-px bg-[#1558C0]/30 mb-6" />
+              <div className="w-16 h-px bg-[#1560ae]/30 mb-6" />
               <p className="text-base text-[#102133]/50 italic">
                 Most issues aren't new. They've just gone unchecked.
               </p>

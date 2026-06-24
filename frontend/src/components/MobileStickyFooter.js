@@ -28,7 +28,7 @@ const MobileStickyFooter = () => {
           onClick={() => trackPhoneClick('mobile_sticky_bar')}
           className="flex-grow flex items-center justify-center gap-2 rounded-lg font-bold text-white"
           style={{
-            background: '#1F6FEB',
+            background: '#1a6fc4',
             minHeight: '52px',
             fontSize: '16px',
             letterSpacing: '0.2px',

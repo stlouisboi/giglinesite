@@ -37,7 +37,7 @@ body {
   :root {
     --primary: #0B1F33;
     --primary-foreground: #FFFFFF;
-    --accent: #1F6FEB;
+    --accent: #1a6fc4;
     --accent-foreground: #FFFFFF;
     --secondary: #F7F9FC;
     --secondary-foreground: #102133;
@@ -50,8 +50,8 @@ body {
     --warning: #B45309;
     --navy: #0B1F33;
     --navy-light: #102A43;
-    --cta: #1F6FEB;
-    --cta-hover: #1558C0;
+    --cta: #1a6fc4;
+    --cta-hover: #1560ae;
     --text-primary: #102133;
     --text-secondary: #5B6B7A;
     --surface: #F7F9FC;
@@ -66,14 +66,14 @@ body {
 
   .btn-primary {
     @apply inline-flex items-center justify-center px-6 py-3 font-semibold rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2;
-    background-color: #1F6FEB;
+    background-color: #1a6fc4;
     color: #FFFFFF;
   }
   .btn-primary:hover {
-    background-color: #1558C0;
+    background-color: #1560ae;
   }
   .btn-primary:focus {
-    --tw-ring-color: #1F6FEB;
+    --tw-ring-color: #1a6fc4;
   }
 
   .btn-secondary {
@@ -102,10 +102,10 @@ body {
   }
 
   .text-accent {
-    color: #1F6FEB !important;
+    color: #1a6fc4 !important;
   }
 
   .bg-accent {
-    background-color: #1F6FEB !important;
+    background-color: #1a6fc4 !important;
   }
 }

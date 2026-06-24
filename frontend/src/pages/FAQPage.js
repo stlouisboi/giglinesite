@@ -133,7 +133,7 @@ const FAQPage = () => {
       <section className="bg-[#0B1F33] text-white py-16 md:py-24">
         <div className="container max-w-4xl">
           <p
-            className="uppercase tracking-[3px] text-[#1F6FEB] mb-5"
+            className="uppercase tracking-[3px] text-[#1a6fc4] mb-5"
             style={{ ...mono, fontSize: '11px' }}
             data-testid="faq-kicker"
           >
@@ -179,7 +179,7 @@ const FAQPage = () => {
                     </span>
                     <ChevronDown
                       size={20}
-                      className={`flex-shrink-0 mt-1 text-[#1F6FEB] transition-transform ${open ? 'rotate-180' : ''}`}
+                      className={`flex-shrink-0 mt-1 text-[#1a6fc4] transition-transform ${open ? 'rotate-180' : ''}`}
                     />
                   </button>
                   {open && (
@@ -214,7 +214,7 @@ const FAQPage = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/request-walkthrough"
-              className="inline-flex items-center justify-center gap-2 bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#1F6FEB]/20"
+              className="inline-flex items-center justify-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#1a6fc4]/20"
               data-testid="faq-cta-primary"
             >
               Request a Walkthrough

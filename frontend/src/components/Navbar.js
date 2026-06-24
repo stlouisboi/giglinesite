@@ -42,9 +42,9 @@ const Navbar = () => {
                 key={link.path}
                 to={link.path}
                 className="text-sm font-medium transition-colors whitespace-nowrap"
-                style={{ color: isActive(link.path) ? '#1F6FEB' : '#102133' }}
-                onMouseEnter={e => { if (!isActive(link.path)) e.target.style.color = '#1F6FEB'; }}
-                onMouseLeave={e => { if (!isActive(link.path)) e.target.style.color = isActive(link.path) ? '#1F6FEB' : '#102133'; }}
+                style={{ color: isActive(link.path) ? '#1a6fc4' : '#102133' }}
+                onMouseEnter={e => { if (!isActive(link.path)) e.target.style.color = '#1a6fc4'; }}
+                onMouseLeave={e => { if (!isActive(link.path)) e.target.style.color = isActive(link.path) ? '#1a6fc4' : '#102133'; }}
                 data-testid={`nav-link-${link.name.toLowerCase().replace(' ', '-')}`}
               >
                 {link.name}
@@ -63,9 +63,9 @@ const Navbar = () => {
             <Link
               to="/intake?service=compliance-readiness-visit"
               className="text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors whitespace-nowrap"
-              style={{ background: '#1F6FEB', color: '#FFFFFF' }}
-              onMouseEnter={e => e.target.style.background = '#1558C0'}
-              onMouseLeave={e => e.target.style.background = '#1F6FEB'}
+              style={{ background: '#1a6fc4', color: '#FFFFFF' }}
+              onMouseEnter={e => e.target.style.background = '#1560ae'}
+              onMouseLeave={e => e.target.style.background = '#1a6fc4'}
               data-testid="nav-cta-button"
             >
               Schedule a Visit
@@ -78,7 +78,7 @@ const Navbar = () => {
               href="tel:3363298899"
               onClick={() => trackPhoneClick('navbar_mobile_icon')}
               className="flex items-center justify-center w-12 h-12 rounded-full"
-              style={{ background: 'rgba(31,111,235,0.08)', color: '#1F6FEB' }}
+              style={{ background: 'rgba(31,111,235,0.08)', color: '#1a6fc4' }}
               aria-label="Call GigLine"
               data-testid="mobile-phone-btn"
             >
@@ -109,7 +109,7 @@ const Navbar = () => {
                   to={link.path}
                   className="flex items-center text-lg font-medium px-2 rounded-md"
                   style={{
-                    color: isActive(link.path) ? '#1F6FEB' : '#102133',
+                    color: isActive(link.path) ? '#1a6fc4' : '#102133',
                     minHeight: '52px',
                   }}
                   onClick={() => setIsOpen(false)}
@@ -130,7 +130,7 @@ const Navbar = () => {
               <Link
                 to="/intake?service=compliance-readiness-visit"
                 className="flex items-center justify-center w-full text-center font-semibold rounded-lg mt-4"
-                style={{ background: '#1F6FEB', color: '#FFFFFF', minHeight: '56px', fontSize: '16px' }}
+                style={{ background: '#1a6fc4', color: '#FFFFFF', minHeight: '56px', fontSize: '16px' }}
                 onClick={() => setIsOpen(false)}
                 data-testid="mobile-nav-cta-button"
               >

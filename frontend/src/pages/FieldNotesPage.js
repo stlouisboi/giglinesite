@@ -125,7 +125,7 @@ const FieldNotesPage = () => {
       <section className="bg-[#0B1F33] py-16 md:py-24" data-testid="field-notes-header">
         <div className="container max-w-4xl">
           <p
-            className="uppercase tracking-[3px] text-[#1F6FEB] mb-4"
+            className="uppercase tracking-[3px] text-[#1a6fc4] mb-4"
             style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }}
           >
             Field Notes
@@ -170,10 +170,10 @@ const FieldNotesPage = () => {
               >
                 <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                   <div className="flex-grow">
-                    <h2 className="text-xl font-bold text-[#102133] group-hover:text-[#1558C0] transition-colors mb-1">
+                    <h2 className="text-xl font-bold text-[#102133] group-hover:text-[#1560ae] transition-colors mb-1">
                       {note.title}
                     </h2>
-                    <p className="text-sm text-[#1F6FEB] mb-3" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                    <p className="text-sm text-[#1a6fc4] mb-3" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
                       {note.subtitle}
                     </p>
                     <p className="text-base text-[#102133]/60 leading-relaxed mb-3">
@@ -187,7 +187,7 @@ const FieldNotesPage = () => {
                       ))}
                     </div>
                   </div>
-                  <ArrowRight size={20} className="text-[#102133]/20 group-hover:text-[#1558C0] transition-colors flex-shrink-0 mt-2 hidden md:block" />
+                  <ArrowRight size={20} className="text-[#102133]/20 group-hover:text-[#1560ae] transition-colors flex-shrink-0 mt-2 hidden md:block" />
                 </div>
               </Link>
             ))}
@@ -212,7 +212,7 @@ const FieldNotesPage = () => {
           </p>
           <Link
             to="/request-walkthrough"
-            className="bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
+            className="bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
             data-testid="field-notes-walkthrough-cta"
           >
             Request a Walkthrough

@@ -68,7 +68,7 @@ const ServiceLandingTemplate = ({
           <div className="flex flex-col sm:flex-row gap-3 mb-5" data-testid="svc-hero-ctas">
             <Link
               to="/request-walkthrough"
-              className="bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center justify-center gap-2 shadow-lg shadow-[#1F6FEB]/20"
+              className="bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center justify-center gap-2 shadow-lg shadow-[#1a6fc4]/20"
               data-testid="svc-cta-primary"
             >
               Request a Safety Walkthrough
@@ -149,7 +149,7 @@ const ServiceLandingTemplate = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {whatYouReceive.bullets.map((b, i) => (
               <div key={i} className="flex items-start gap-4" data-testid={`svc-deliverable-${i}`}>
-                <Check size={20} className="flex-shrink-0 mt-0.5 text-[#1F6FEB]" strokeWidth={2.5} />
+                <Check size={20} className="flex-shrink-0 mt-0.5 text-[#1a6fc4]" strokeWidth={2.5} />
                 <p className="text-base text-[#CBD5E1] leading-relaxed">{b}</p>
               </div>
             ))}
@@ -164,7 +164,7 @@ const ServiceLandingTemplate = ({
       <section className="py-20 md:py-24 bg-white" data-testid="svc-next-steps">
         <div className="container max-w-5xl">
           <p
-            className="uppercase tracking-[3px] text-[#1F6FEB] mb-4 font-semibold"
+            className="uppercase tracking-[3px] text-[#1a6fc4] mb-4 font-semibold"
             style={{ ...mono, fontSize: '11px' }}
           >
             Next Steps
@@ -185,7 +185,7 @@ const ServiceLandingTemplate = ({
                 data-testid={`svc-next-step-${i}`}
               >
                 <span
-                  className="flex-shrink-0 mt-0.5 text-[#1F6FEB] font-semibold"
+                  className="flex-shrink-0 mt-0.5 text-[#1a6fc4] font-semibold"
                   style={{ ...mono, fontSize: '13px' }}
                 >
                   {String(i + 1).padStart(2, '0')}
@@ -209,7 +209,7 @@ const ServiceLandingTemplate = ({
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
             <Link
               to="/request-walkthrough"
-              className="bg-[#1F6FEB] hover:bg-[#1558C0] text-white font-bold px-8 py-4 rounded transition-colors inline-flex items-center gap-2 shadow-lg shadow-[#1F6FEB]/20"
+              className="bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded transition-colors inline-flex items-center gap-2 shadow-lg shadow-[#1a6fc4]/20"
               data-testid="svc-closing-cta-primary"
             >
               Request a Safety Walkthrough
@@ -236,7 +236,7 @@ const Section = ({ eyebrow, title, intro, bullets, bg, testid, bulletStyle = 'ch
   <section className="py-20 md:py-24" style={{ backgroundColor: bg }} data-testid={testid}>
     <div className="container max-w-5xl">
       <p
-        className="uppercase tracking-[3px] text-[#1F6FEB] mb-4 font-semibold"
+        className="uppercase tracking-[3px] text-[#1a6fc4] mb-4 font-semibold"
         style={{ ...mono, fontSize: '11px' }}
       >
         {eyebrow}
@@ -253,9 +253,9 @@ const Section = ({ eyebrow, title, intro, bullets, bg, testid, bulletStyle = 'ch
         {bullets.map((b, i) => (
           <li key={i} className="flex items-start gap-4" data-testid={`${testid}-bullet-${i}`}>
             {bulletStyle === 'check' ? (
-              <Check size={18} className="flex-shrink-0 mt-1 text-[#1F6FEB]" strokeWidth={2.5} />
+              <Check size={18} className="flex-shrink-0 mt-1 text-[#1a6fc4]" strokeWidth={2.5} />
             ) : (
-              <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#1F6FEB] mt-3" aria-hidden="true" />
+              <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#1a6fc4] mt-3" aria-hidden="true" />
             )}
             <p className="text-base md:text-lg text-[#102133]/90 leading-relaxed">{b}</p>
           </li>

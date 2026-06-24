@@ -198,7 +198,16 @@ Goal: get GigLine cited in answers from ChatGPT, Perplexity, Claude, Google AI O
 - **Bottom CTA band** extracted to its own white section below the dark About section so "If you're not sure what's exposed..." sits cleanly on the next light band.
 - All data-testids preserved.
 
-## GL-WEB-008 Final — Full Homepage Rebuild + Site-Wide Pricing Cascade #2 (Feb 2026)
+## GL-WEB-009 — Consolidated Site Update (Feb 2026)
+- **Pricing cascade fully complete**: Safety Walkthrough $1,200, Doc Review $1,300, CRV $2,000, Incident Review $1,500, Quarterly Maintenance $950/quarter, Annual Compliance Control Partner $12,000/year ($1,000/month). Doc Dev tiers: $350 / $650 (LOTO 5-procedure intentional per spec) / $1,200 / $2,000.
+- **OSHA penalty figures**: $16,550 (avg serious — used on homepage Cost of Waiting + Services); $16,131 (used in FAQ Q1/Q3 per verbatim spec — known discrepancy with homepage); $165,514 (max willful/repeat — verified via OSHA May 2026 memo).
+- **SEO updates**: Homepage title → "OSHA Safety Walkthrough — Piedmont Triad NC | GigLine" + new meta description. About title → "Safety Consultant Kernersville NC — Vince Lawrence | GigLine". Services title → "OSHA Compliance Services — Walkthroughs & Documentation Reviews | GigLine". `public/index.html` static fallback meta + og + twitter all updated.
+- **Hero standout line** (gold italic Manrope, between H1 and subhead): "Safety becomes the thing you will get to. / OSHA does not wait for you to get to it."
+- **Cost of Waiting standout line** (copper-red italic Georgia): same 2 lines, above the $16,550 H2.
+- **About page rebuilt**: Full verbatim Vince bio (BF Goodrich, Amero Steel, glass+vinyl, rubber compounding, metals fabrication), credential line "OSHA 30-Hour Certified safety compliance consultant, Kernersville, NC" under his name in mono muted style, embedded standout line in gold serif italic.
+- **FAQ expansion**: 5 verbatim Q&A added/replaced at the top of FAQs (Q1 pricing, Q2 on-site consultant duties, Q3 inspection prep, Q4 CRV explainer, Q5 Walkthrough vs CRV). Multi-paragraph answers now render as separate `<p>` elements via `f.a.split('\n\n').map(...)`. Total FAQs: 22.
+- **Bug carryovers fixed**: `public/index.html` LocalBusiness JSON-LD `hasOfferCatalog` updated (650/550/900 → 1200/1300/1500 with maxPrice 2000/2000/2500). `generate-seo-pages.js` MAJOR_CITIES SSG block: all 13 cities → `price: 1200`, `priceTop = 2000` flat, travel-note copy rewritten ("a travel fee applies in addition to the base walkthrough price").
+- All `data-testid` attributes preserved + new ones added: `hero-standout-line`, `cost-standout-line`, `about-credential-line`, `about-body`, `about-standout-line`.
 
 ### Pricing cascade ($950→$1,200, $1,500→$2,000, $750/$950→$2,500)
 - Safety Walkthrough: $950 → **$1,200** (Triad Core base + outer-tier "$1,200 + travel fee")

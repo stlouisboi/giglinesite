@@ -61,7 +61,7 @@ const CITIES = {
     industries: 'manufacturing, light industrial operations, and warehousing',
     seoTitle: 'Safety Walkthroughs in Kernersville, NC',
     seoDesc: "On-site OSHA safety walkthroughs for Kernersville manufacturers, warehouses, and contractors. GigLine's home base. Written report. Starting at $1,200.",
-    priceStart: 650,
+    priceStart: 1200,
   },
   'lexington': {
     name: 'Lexington',
@@ -70,7 +70,7 @@ const CITIES = {
     industries: 'furniture manufacturing, food production, and small fabrication shops',
     seoTitle: 'Safety Walkthroughs in Lexington, NC',
     seoDesc: 'On-site OSHA safety walkthroughs for manufacturers and fabrication shops in Lexington, NC. Written report with findings. Starting at $1,200.',
-    priceStart: 650,
+    priceStart: 1200,
   },
   'thomasville': {
     name: 'Thomasville',
@@ -79,7 +79,7 @@ const CITIES = {
     industries: 'furniture manufacturing, cabinetry, and small production operations',
     seoTitle: 'Safety Walkthroughs in Thomasville, NC',
     seoDesc: 'OSHA safety walkthroughs for furniture manufacturers and small production operations in Thomasville, NC. Written report. Starting at $1,200.',
-    priceStart: 650,
+    priceStart: 1200,
   },
   'clemmons': {
     name: 'Clemmons',
@@ -88,7 +88,7 @@ const CITIES = {
     industries: 'small manufacturers, trade contractors, and light industrial operations',
     seoTitle: 'Safety Walkthroughs in Clemmons, NC',
     seoDesc: 'On-site OSHA safety walkthroughs for small manufacturers and contractors in Clemmons, NC. Written report with findings. Starting at $1,200.',
-    priceStart: 650,
+    priceStart: 1200,
   },
   'mocksville': {
     name: 'Mocksville',
@@ -97,7 +97,7 @@ const CITIES = {
     industries: 'manufacturing, agricultural operations, and small fabrication shops',
     seoTitle: 'Safety Walkthroughs in Mocksville, NC',
     seoDesc: 'OSHA safety walkthroughs for manufacturers and fabrication shops in Mocksville, NC and Davie County. Written report. Starting at $1,200.',
-    priceStart: 650,
+    priceStart: 1200,
   },
   'salisbury': {
     name: 'Salisbury',
@@ -106,7 +106,7 @@ const CITIES = {
     industries: 'manufacturing plants, distribution centers, and industrial operations',
     seoTitle: 'Safety Walkthroughs in Salisbury, NC',
     seoDesc: 'On-site OSHA safety walkthroughs for manufacturers and distribution centers in Salisbury, NC. Written report with findings. Starting at $1,200 + travel fee.',
-    priceStart: 750,
+    priceStart: 1200,
     travelNote: true,
   },
   'asheboro': {
@@ -116,7 +116,7 @@ const CITIES = {
     industries: 'manufacturing, metal fabrication, and distribution operations',
     seoTitle: 'Safety Walkthroughs in Asheboro, NC',
     seoDesc: 'OSHA safety walkthroughs for manufacturers and fabrication operations in Asheboro, NC. Written report with findings. Starting at $1,200 + travel fee.',
-    priceStart: 750,
+    priceStart: 1200,
     travelNote: true,
   },
 };
@@ -127,13 +127,15 @@ const CityLandingPage = () => {
 
   if (!data) return <Navigate to="/services" replace />;
 
-  const priceStart = data.priceStart || 650;
-  const priceRangeTop = priceStart === 650 ? 1000 : 1200;
+  const priceStart = data.priceStart || 1200;
+  const priceRangeTop = 2000;
+  const priceStartLabel = data.travelNote ? `$1,200 + travel fee` : `$${priceStart.toLocaleString()}`;
+  const priceRangeLabel = `$${priceStart.toLocaleString()}–$${priceRangeTop.toLocaleString()}`;
 
   const cityFaqs = [
     {
       q: `How much does a safety walkthrough cost in ${data.name}, NC?`,
-      a: `Safety walkthroughs for ${data.name}-area operations start at $${priceStart}. Most small operations fall in the $${priceStart}–$${priceRangeTop} range depending on square footage and scope. You'll receive a fixed quote before scheduling.${data.travelNote ? ` ${data.name} pricing includes travel from Kernersville — no separate travel fee at the time of the walkthrough.` : ''}`,
+      a: `Safety walkthroughs for ${data.name}-area operations start at ${priceStartLabel}. Most small operations fall in the ${priceRangeLabel} range depending on square footage and scope. You'll receive a fixed quote before scheduling.${data.travelNote ? ` ${data.name} is outside the Triad core, so a travel fee applies in addition to the base walkthrough price.` : ''}`,
     },
     {
       q: `How quickly can GigLine get on-site in ${data.name}?`,
@@ -333,14 +335,14 @@ const CityLandingPage = () => {
       <section className="py-16 md:py-20 bg-[#0B1F33] text-white">
         <div className="container max-w-2xl text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
-            Starting at ${priceStart}
+            Starting at {priceStartLabel}
           </h2>
           <p className="text-white/50 mb-8">
-            Most walkthroughs for small operations in {data.name} fall between ${priceStart}&ndash;${priceRangeTop} depending on size. You'll know your price before we schedule.
+            Most walkthroughs for small operations in {data.name} fall between {priceRangeLabel} depending on size. You'll know your price before we schedule.
           </p>
           {data.travelNote && (
             <p className="text-white/50 mb-8 text-sm">
-              {data.name} is {data.distance}. Pricing reflects the additional travel time — no separate travel fee at the time of the walkthrough.
+              {data.name} is {data.distance}. A travel fee applies in addition to the base walkthrough price &mdash; quoted before scheduling.
             </p>
           )}
           {(city === 'charlotte' || city === 'raleigh') && (

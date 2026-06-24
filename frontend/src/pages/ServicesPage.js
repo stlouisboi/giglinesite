@@ -98,6 +98,7 @@ const STANDALONE = [
     cta: 'Request a Walkthrough',
     intakeService: 'safety-walkthrough-report',
     testid: 'svc-standalone-walkthrough',
+    anchor: 'walkthrough',
   },
   {
     title: 'OSHA Documentation Readiness Review',
@@ -107,15 +108,20 @@ const STANDALONE = [
     cta: 'Request a Documentation Review',
     intakeService: 'documentation-readiness-review',
     testid: 'svc-standalone-doc-review',
+    anchor: 'docs-review',
   },
   {
     title: 'Incident Review & Corrective Action Support',
     price: 'From $1,500',
     body: 'Post-injury or post-near-miss response. Root cause analysis. OSHA recordability determination. OSHA 301 completion. Corrective action plan with documented closure. GigLine reviews the incident before you file anything or speak to anyone outside the operation.',
-    body2: 'Call GigLine before you file anything.',
+    body2: 'Call GigLine before you file anything or talk to anyone.',
     cta: 'Request Incident Support',
     intakeService: 'incident-review',
     testid: 'svc-standalone-incident',
+    anchor: 'incident',
+    badge: 'Time-Sensitive',
+    badgeColor: '#8B2500',
+    showPhone: true,
   },
   {
     title: 'Document Development',
@@ -143,6 +149,7 @@ const RECURRING = [
     cta: 'Ask About Quarterly Maintenance',
     intakeService: 'quarterly-compliance-maintenance',
     testid: 'svc-rec-quarterly',
+    anchor: 'quarterly',
   },
   {
     title: 'Annual Compliance Control Partner',
@@ -173,6 +180,8 @@ const RECURRING = [
     cta: 'Ask About Annual Partnership',
     intakeService: 'annual-compliance-partner',
     testid: 'svc-rec-annual',
+    anchor: 'annual',
+    badge: 'Highest-Value Engagement',
   },
 ];
 
@@ -263,21 +272,53 @@ const ServicesPage = () => {
                 Services · GigLine Safety & Compliance
               </p>
               <h1
-                className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.15] mb-6 max-w-2xl"
+                className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.15] mb-5 max-w-2xl"
                 data-testid="services-headline"
               >
-                OSHA-Readiness Support for Small Industrial Operations
+                On-Site Safety Support for NC Manufacturers &amp; Warehouses
               </h1>
               <p
                 className="text-base md:text-lg text-[#CBD5E1] leading-relaxed max-w-2xl"
                 data-testid="services-sub"
               >
-                GigLine helps manufacturers, warehouses, contractors, and fleet operations identify visible safety hazards, documentation gaps, and inspection-readiness issues before they become citations, insurance problems, or customer-audit failures.
+                Every engagement is scoped to your operation, priced before scheduling, and delivered with a written report. No retainer. No ongoing obligation unless you want one.
               </p>
             </Reveal>
           </div>
         </div>
       </section>
+
+      {/* ═══ JUMP NAV (sticky pill strip) ═══ */}
+      <nav
+        className="sticky top-[80px] md:top-[112px] lg:top-[128px] z-20 bg-white/95 backdrop-blur-sm"
+        style={{ borderBottom: '1px solid rgba(16,33,51,0.10)' }}
+        aria-label="Jump to service"
+        data-testid="services-jump-nav"
+      >
+        <div className="container max-w-6xl py-3 md:py-4">
+          <div className="flex items-center gap-2 md:gap-3 overflow-x-auto whitespace-nowrap text-[13px] md:text-sm" style={{ scrollbarWidth: 'thin' }}>
+            <span className="uppercase font-bold flex-shrink-0 pr-2 hidden md:inline" style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.18em', color: '#102133' }}>Jump to:</span>
+            {[
+              { label: 'Safety Walkthrough', href: '#walkthrough' },
+              { label: 'Documentation Review', href: '#docs-review' },
+              { label: 'Compliance Readiness Visit', href: '#crv' },
+              { label: 'Incident Review', href: '#incident' },
+              { label: 'OSHA-Ready Control System', href: '#control-system' },
+              { label: 'Annual Partner', href: '#annual' },
+            ].map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                className="flex-shrink-0 px-3 md:px-4 py-1.5 md:py-2 rounded-full border transition-colors hover:bg-[#1F6FEB] hover:text-white hover:border-[#1F6FEB]"
+                style={{ borderColor: 'rgba(16,33,51,0.18)', color: '#102133' }}
+                data-testid={`jump-nav-${l.href.replace('#','')}`}
+              >
+                {l.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </nav>
 
       {/* ═══ 2. AUTHORITY STATEMENT ═══ */}
       <section className="py-10 md:py-14 bg-white" data-testid="services-authority-band">
@@ -379,11 +420,13 @@ const ServicesPage = () => {
           <Reveal>
             <div
               className="relative rounded-2xl bg-white p-8 md:p-12"
+              data-testid="svc-card-compliance-readiness"
+              id="crv"
               style={{
                 border: '3px solid #1F6FEB',
                 boxShadow: '0 32px 64px -16px rgba(31,111,235,0.30), 0 0 0 6px rgba(31,111,235,0.08)',
+                scrollMarginTop: '128px',
               }}
-              data-testid="svc-card-compliance-readiness"
             >
               {/* Recommended Starting Point badge */}
               <div
@@ -398,7 +441,7 @@ const ServicesPage = () => {
                   className="uppercase tracking-[2px] font-bold text-white"
                   style={{ ...mono, fontSize: '10.5px' }}
                 >
-                  ★ Recommended Starting Point
+                  ★ Most Requested
                 </span>
               </div>
 
@@ -425,13 +468,15 @@ const ServicesPage = () => {
                   </p>
                   <ul className="space-y-2 mb-4">
                     {[
-                      'Full safety walkthrough on-site (1\u20133 hours)',
-                      'OSHA Documentation Readiness Review (53-item, 7 OSHA categories)',
-                      'Single compliance percentage score covering floor and files',
-                      'Photo documentation with CFR citations and 2026 penalty exposure per finding',
-                      'Prioritized corrective action list \u2014 RED / AMBER / GREEN',
-                      'Written report within 48 hours',
-                      'Supervisor Safety Starter System (included)',
+                      'Full physical hazard walkthrough (2\u20134 hours)',
+                      'Photo-documented findings with CFR citations',
+                      'Structured documentation review (53-item checklist)',
+                      'Single compliance percentage score \u2014 floor and files combined',
+                      '18-page CFR-cited field audit report within 48 hours',
+                      'Compliance score with prioritized finding categories',
+                      '90-day remediation tracker \u2014 pre-populated, ready to assign',
+                      "'What to Say If OSHA Calls' guidance sheet",
+                      '30-day check-in call included',
                     ].map((line, i) => (
                       <li key={i} className="flex items-start gap-3 text-[#102133]/85 text-base leading-snug">
                         <Check size={18} className="flex-shrink-0 mt-0.5 text-[#1F6FEB]" strokeWidth={3} />
@@ -444,7 +489,7 @@ const ServicesPage = () => {
                     className="italic text-[#102133]/65 text-sm md:text-[15px] leading-relaxed mb-6 max-w-2xl"
                     data-testid="crv-anchor-line"
                   >
-                    Booked separately, the Safety Walkthrough and Documentation Review start at $2,500. The Compliance Readiness Visit covers both in a single visit &mdash; from $2,000.
+                    Fixed quote &middot; Private engagement &middot; Booked separately, the Safety Walkthrough and Documentation Review start at $2,500. The Compliance Readiness Visit covers both in a single visit &mdash; from $2,000.
                   </p>
                 </div>
 
@@ -504,14 +549,32 @@ const ServicesPage = () => {
             {STANDALONE.map((s) => (
               <Reveal key={s.testid}>
                 <div
-                  className="bg-white rounded-lg p-6 md:p-7 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-start"
+                  id={s.anchor}
+                  className="bg-white rounded-lg p-6 md:p-7 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-start scroll-mt-32"
                   style={{
-                    border: '1px solid rgba(16,33,51,0.10)',
+                    border: s.badgeColor ? `1px solid ${s.badgeColor}33` : '1px solid rgba(16,33,51,0.10)',
                     boxShadow: '0 2px 6px rgba(16,33,51,0.03)',
                   }}
                   data-testid={s.testid}
                 >
                   <div>
+                    {s.badge && (
+                      <span
+                        className="inline-block uppercase font-bold mb-3"
+                        style={{
+                          ...mono,
+                          fontSize: '10px',
+                          letterSpacing: '0.14em',
+                          color: s.badgeColor || '#1F6FEB',
+                          border: `1px solid ${s.badgeColor || '#1F6FEB'}55`,
+                          padding: '4px 10px',
+                          borderRadius: '999px',
+                        }}
+                        data-testid={`${s.testid}-badge`}
+                      >
+                        {s.badge}
+                      </span>
+                    )}
                     <div className="flex items-baseline gap-4 flex-wrap mb-3">
                       <h3 className="text-lg md:text-xl font-bold text-[#102133]">{s.title}</h3>
                       <span className="text-base font-bold text-[#1F6FEB]" style={mono}>{s.price}</span>
@@ -544,15 +607,26 @@ const ServicesPage = () => {
                     )}
                   </div>
 
-                  <Link
-                    to={intakeLink(s.intakeService)}
-                    onClick={() => trackServiceBooking && trackServiceBooking(s.title)}
-                    className="inline-flex items-center justify-center gap-2 border-2 border-[#1F6FEB] hover:bg-[#1F6FEB] hover:text-white text-[#1F6FEB] font-bold px-5 py-3 rounded-lg text-sm transition-colors whitespace-nowrap self-start md:self-center"
-                    data-testid={`${s.testid}-cta`}
-                  >
-                    {s.cta}
-                    <ArrowRight size={16} />
-                  </Link>
+                  <div className="flex flex-col gap-3 self-start md:self-center">
+                    <Link
+                      to={intakeLink(s.intakeService)}
+                      onClick={() => trackServiceBooking && trackServiceBooking(s.title)}
+                      className="inline-flex items-center justify-center gap-2 border-2 border-[#1F6FEB] hover:bg-[#1F6FEB] hover:text-white text-[#1F6FEB] font-bold px-5 py-3 rounded-lg text-sm transition-colors whitespace-nowrap"
+                      data-testid={`${s.testid}-cta`}
+                    >
+                      {s.cta}
+                      <ArrowRight size={16} />
+                    </Link>
+                    {s.showPhone && (
+                      <a
+                        href="tel:3363298899"
+                        className="inline-flex items-center justify-center gap-2 bg-[#8B2500] hover:bg-[#6F1D00] text-white font-bold px-5 py-3 rounded-lg text-sm transition-colors whitespace-nowrap"
+                        data-testid={`${s.testid}-phone-cta`}
+                      >
+                        Call Now &mdash; (336) 329-8899
+                      </a>
+                    )}
+                  </div>
                 </div>
               </Reveal>
             ))}
@@ -561,7 +635,7 @@ const ServicesPage = () => {
       </section>
 
       {/* ═══ 7. OSHA-READY CONTROL SYSTEM — Premium dedicated section ═══ */}
-      <section className="py-20 md:py-28" style={{ backgroundColor: '#0B1F33' }} data-testid="services-control-system">
+      <section className="py-20 md:py-28 scroll-mt-32" id="control-system" style={{ backgroundColor: '#0B1F33' }} data-testid="services-control-system">
         <div className="container max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-10 md:gap-14 items-start">
             <Reveal>
@@ -699,13 +773,31 @@ const ServicesPage = () => {
             {RECURRING.map((s) => (
               <Reveal key={s.testid}>
                 <div
-                  className="bg-white h-full rounded-xl p-7 md:p-8 flex flex-col"
+                  id={s.anchor}
+                  className="bg-white h-full rounded-xl p-7 md:p-8 flex flex-col scroll-mt-32"
                   style={{
                     border: s.includes ? '2px solid #1F6FEB' : '1px solid rgba(16,33,51,0.10)',
                     boxShadow: s.includes ? '0 14px 32px -18px rgba(31,111,235,0.30)' : '0 6px 14px rgba(16,33,51,0.04)',
                   }}
                   data-testid={s.testid}
                 >
+                  {s.badge && (
+                    <span
+                      className="inline-block uppercase font-bold mb-3 self-start"
+                      style={{
+                        ...mono,
+                        fontSize: '10px',
+                        letterSpacing: '0.14em',
+                        color: '#1F6FEB',
+                        background: 'rgba(31,111,235,0.10)',
+                        padding: '4px 10px',
+                        borderRadius: '999px',
+                      }}
+                      data-testid={`${s.testid}-badge`}
+                    >
+                      ★ {s.badge}
+                    </span>
+                  )}
                   <h3 className="text-xl md:text-2xl font-bold text-[#102133] mb-2">{s.title}</h3>
                   <p className="text-xl font-bold text-[#1F6FEB] mb-1" style={mono}>{s.price}</p>
                   {s.priceSecondary && (

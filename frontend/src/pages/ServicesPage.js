@@ -97,6 +97,7 @@ const STANDALONE = [
     price: 'From $1,200',
     body: 'An on-site walkthrough focused purely on physical hazards. You get a photo-documented report and a prioritized fix list in 48 hours. No retainer. No follow-up obligation.',
     listLabel: "What's Included",
+    bgColor: '#f5f4f0',
     whatsIncluded: [
       'On-site walkthrough (1\u20133 hours)',
       'Photo-documented hazard findings',
@@ -119,6 +120,7 @@ const STANDALONE = [
     price: 'From $1,300',
     body: 'A structured review of your written programs, training records, OSHA logs, and SDS compliance. You get a compliance percentage score and a prioritized corrective action sequence \u2014 not a generic checklist.',
     listLabel: "What's Reviewed",
+    bgColor: '#EFEEE8',
     whatsIncluded: [
       'Written safety programs (LOTO, HazCom, PPE, EAP)',
       'Training records by employee and role',
@@ -142,6 +144,7 @@ const STANDALONE = [
     price: 'From $1,500',
     body: 'Post-injury or post-near-miss response. Root cause analysis, OSHA recordability determination, and a corrective action plan with documented closure \u2014 reviewed before paperwork or outside conversations begin.',
     listLabel: "What's Included",
+    bgColor: '#FFF8F0',
     whatsIncluded: [
       'Root cause analysis on-site',
       'OSHA recordability determination',
@@ -167,6 +170,7 @@ const STANDALONE = [
     price: 'Quote after review',
     body: 'GigLine writes the programs you are missing \u2014 LOTO, HazCom, PPE assessments, Emergency Action Plans, machine-specific procedures. Scoped and quoted after the OSHA Documentation Readiness Review identifies specific gaps.',
     listLabel: "What's Built",
+    bgColor: '#f5f4f0',
     whatsIncluded: [
       'LOTO program + machine-specific procedures',
       'HazCom program',
@@ -630,8 +634,8 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      {/* ═══ 6. STANDALONE SERVICES ═══ */}
-      <section className="py-24 md:py-32" style={{ backgroundColor: '#f5f4f0' }} data-testid="services-standalone">
+      {/* ═══ 6. STANDALONE SERVICES — Intro band ═══ */}
+      <section className="pt-24 md:pt-32 pb-12 md:pb-16" style={{ backgroundColor: '#f5f4f0' }} data-testid="services-standalone">
         <div className="container max-w-6xl">
           <Reveal>
             <p
@@ -644,20 +648,29 @@ const ServicesPage = () => {
               Targeted engagements when you need a specific outcome.
             </h2>
             <div className="mb-8" style={{ width: '56px', height: '3px', background: '#D4A93E', borderRadius: '2px' }} />
-            <p className="text-base md:text-lg text-[#0d1b2a]/65 leading-[1.85] mb-14 max-w-3xl">
+            <p className="text-base md:text-lg text-[#0d1b2a]/65 leading-[1.85] max-w-3xl">
               For operations that already know which side they need reviewed &mdash; the floor, the files, or a specific incident. Each engagement is scoped, quoted, and delivered independently.
             </p>
           </Reveal>
+        </div>
+      </section>
 
-          <div className="space-y-16 md:space-y-20">
-            {STANDALONE.map((s, idx) => {
-              const cardOnLeft = idx % 2 === 1;
-              const listLabel = s.listLabel || "What's Included";
-              return (
-              <Reveal key={s.testid}>
+      {/* Per-service bands — each with its own background color for visual separation */}
+      {STANDALONE.map((s, idx) => {
+        const cardOnLeft = idx % 2 === 1;
+        const listLabel = s.listLabel || "What's Included";
+        return (
+          <section
+            key={s.testid}
+            id={s.anchor}
+            className="py-16 md:py-20 scroll-mt-32"
+            style={{ backgroundColor: s.bgColor || '#f5f4f0' }}
+            data-testid={`${s.testid}-section`}
+          >
+            <div className="container max-w-6xl">
+              <Reveal>
                 <div
-                  id={s.anchor}
-                  className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center scroll-mt-32"
+                  className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center"
                   data-testid={s.testid}
                 >
                   {/* COPY column */}
@@ -780,11 +793,10 @@ const ServicesPage = () => {
                   </div>
                 </div>
               </Reveal>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+            </div>
+          </section>
+        );
+      })}
 
       {/* ═══ 7. OSHA-READY CONTROL SYSTEM — Premium dedicated section ═══ */}
       <section className="py-20 md:py-28 scroll-mt-32" id="control-system" style={{ backgroundColor: '#0d1b2a' }} data-testid="services-control-system">

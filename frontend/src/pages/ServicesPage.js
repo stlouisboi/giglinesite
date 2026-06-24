@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Phone, Check, Factory, Truck, Warehouse, HardHat, ShieldCheck, Zap } from 'lucide-react';
+import { ArrowRight, Phone, Check, Factory, Truck, Warehouse, HardHat, ShieldCheck, Zap, FileText, Users, Wrench, BookOpen } from 'lucide-react';
 import { trackServiceBooking, trackPhoneClick, trackEvent } from '../utils/analytics';
 import SEO from '../components/SEO';
 import CaseStudyTeaser from '../components/CaseStudyTeaser';
@@ -336,7 +336,7 @@ const ServicesPage = () => {
 
       {/* ═══ 3. 90-SECOND SAFETY CHECK — intake door, reduced visual weight ═══ */}
       <section
-        className="py-14 md:py-16 border-t border-b"
+        className="py-7 md:py-8 border-t border-b"
         style={{ backgroundColor: '#F7F1E0', borderColor: 'rgba(212,169,62,0.35)' }}
         data-testid="services-safety-check-band"
       >
@@ -517,12 +517,39 @@ const ServicesPage = () => {
                       fireServicesCtaClick('Schedule a Visit', intakeLink('compliance-readiness-visit'));
                       trackServiceBooking && trackServiceBooking('Compliance Readiness Visit');
                     }}
-                    className="w-full inline-flex items-center justify-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-6 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#1a6fc4]/20"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-6 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#1a6fc4]/20 mb-4"
                     data-testid="svc-card-compliance-readiness-cta"
                   >
                     Schedule a Visit
                     <ArrowRight size={18} />
                   </Link>
+
+                  {/* Ops Manager Trust Block */}
+                  <div
+                    className="rounded-xl p-5"
+                    style={{ background: '#0d1b2a', border: '1px solid rgba(212,169,62,0.25)' }}
+                    data-testid="crv-ops-trust-block"
+                  >
+                    <p
+                      className="uppercase font-bold mb-3"
+                      style={{ ...mono, fontSize: '9.5px', letterSpacing: '0.18em', color: '#D4A93E' }}
+                    >
+                      Built for Ops Leaders
+                    </p>
+                    <ul className="space-y-2.5">
+                      {[
+                        'Fixed quote · No retainer',
+                        'Navy Veteran owned',
+                        'Kernersville, NC based',
+                        '24–48 hr written report',
+                      ].map((line) => (
+                        <li key={line} className="flex items-start gap-2 text-[12.5px] text-white/80 leading-snug">
+                          <Check size={13} className="flex-shrink-0 mt-0.5 text-[#D4A93E]" strokeWidth={3} />
+                          <span>{line}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
@@ -578,7 +605,13 @@ const ServicesPage = () => {
                     )}
                     <div className="flex items-baseline gap-4 flex-wrap mb-3">
                       <h3 className="text-lg md:text-xl font-bold text-[#0d1b2a]">{s.title}</h3>
-                      <span className="text-base font-bold text-[#1a6fc4]" style={mono}>{s.price}</span>
+                      <span
+                        className="font-extrabold leading-none"
+                        style={{ ...mono, fontSize: '24px', color: '#c8922a' }}
+                        data-testid={`${s.testid}-price`}
+                      >
+                        {s.price}
+                      </span>
                     </div>
                     <p className="text-base text-[#0d1b2a]/80 leading-relaxed mb-3">{s.body}</p>
                     {s.body2 && (
@@ -718,71 +751,76 @@ const ServicesPage = () => {
               </Link>
             </Reveal>
 
-            <Reveal delay={120}>
-              <div
-                className="rounded-xl p-7 md:p-8"
-                style={{ backgroundColor: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.10)' }}
-              >
+            <div className="space-y-4">
+              <Reveal>
                 <p
-                  className="uppercase tracking-[2px] text-[#D4A93E] font-bold mb-5"
-                  style={{ ...mono, fontSize: '10.5px' }}
+                  className="uppercase font-bold mb-2"
+                  style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.20em', color: '#D4A93E' }}
+                  data-testid="buildout-eyebrow"
                 >
                   What the Buildout Includes
                 </p>
-
-                <div className="space-y-5">
-                  <div>
-                    <p className="text-[#CBD5E1] font-bold mb-1.5 flex items-center gap-2">
-                      <ShieldCheck size={16} className="text-[#D4A93E]" />
-                      Four-Binder Physical Command System
-                    </p>
-                    <p className="text-sm text-[#CBD5E1]/75 leading-relaxed">
-                      Hazard programs · Training records · Inspection & maintenance logs · Incident & corrective action.
-                    </p>
+              </Reveal>
+              {[
+                {
+                  Icon: ShieldCheck,
+                  title: 'Four-Binder Physical Command System',
+                  body: 'Hazard programs · Training records · Inspection & maintenance logs · Incident & corrective action.',
+                },
+                {
+                  Icon: FileText,
+                  title: 'Digital Folder Architecture',
+                  body: 'Master document index mirrored to your cloud drive. Naming conventions, version control, and supervisor access permissions configured.',
+                },
+                {
+                  Icon: Users,
+                  title: 'Training Matrix + SDS Organization',
+                  body: 'Employee training matrix by role. SDS inventory current and indexed. Annual refresher calendar built in.',
+                },
+                {
+                  Icon: Wrench,
+                  title: 'Corrective Action Tracker',
+                  body: 'Live status of every open finding — assigned, dated, and closeable by supervisors. Mirrors what an OSHA CO expects to see during a follow-up.',
+                },
+                {
+                  Icon: BookOpen,
+                  title: '90-Day Maintenance Calendar + Supervisor Walkthrough',
+                  body: 'GigLine walks the supervisor team through the system at handoff. Calendar-based reminders for the first 90 days so nothing decays.',
+                },
+              ].map((item, i) => (
+                <Reveal key={item.title} delay={140 + i * 90}>
+                  <div
+                    className="rounded-xl p-6 flex items-start gap-5 transition-all duration-300 hover:bg-white/[0.06] hover:border-[#D4A93E]/40 hover:-translate-y-0.5"
+                    style={{
+                      backgroundColor: 'rgba(255,255,255,0.035)',
+                      border: '1px solid rgba(255,255,255,0.08)',
+                    }}
+                    data-testid={`buildout-include-${i + 1}`}
+                  >
+                    <div
+                      className="flex-shrink-0 flex items-center justify-center"
+                      style={{
+                        width: '44px',
+                        height: '44px',
+                        borderRadius: '50%',
+                        background: 'rgba(212,169,62,0.14)',
+                        border: '1px solid rgba(212,169,62,0.30)',
+                      }}
+                    >
+                      <item.Icon size={20} strokeWidth={1.9} className="text-[#D4A93E]" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-white font-bold leading-tight mb-2 text-[15.5px] md:text-base">
+                        {item.title}
+                      </h3>
+                      <p className="text-sm text-[#CBD5E1]/75 leading-relaxed">
+                        {item.body}
+                      </p>
+                    </div>
                   </div>
-
-                  <div>
-                    <p className="text-[#CBD5E1] font-bold mb-1.5 flex items-center gap-2">
-                      <ShieldCheck size={16} className="text-[#D4A93E]" />
-                      Digital Folder Architecture
-                    </p>
-                    <p className="text-sm text-[#CBD5E1]/75 leading-relaxed">
-                      Master document index mirrored to your cloud drive. Naming conventions, version control, and supervisor access permissions configured.
-                    </p>
-                  </div>
-
-                  <div>
-                    <p className="text-[#CBD5E1] font-bold mb-1.5 flex items-center gap-2">
-                      <ShieldCheck size={16} className="text-[#D4A93E]" />
-                      Training Matrix + SDS Organization
-                    </p>
-                    <p className="text-sm text-[#CBD5E1]/75 leading-relaxed">
-                      Employee training matrix by role. SDS inventory current and indexed. Annual refresher calendar built in.
-                    </p>
-                  </div>
-
-                  <div>
-                    <p className="text-[#CBD5E1] font-bold mb-1.5 flex items-center gap-2">
-                      <ShieldCheck size={16} className="text-[#D4A93E]" />
-                      Corrective Action Tracker
-                    </p>
-                    <p className="text-sm text-[#CBD5E1]/75 leading-relaxed">
-                      Live status of every open finding — assigned, dated, and closeable by supervisors. Mirrors what an OSHA CO expects to see during a follow-up.
-                    </p>
-                  </div>
-
-                  <div>
-                    <p className="text-[#CBD5E1] font-bold mb-1.5 flex items-center gap-2">
-                      <ShieldCheck size={16} className="text-[#D4A93E]" />
-                      90-Day Maintenance Calendar + Supervisor Walkthrough
-                    </p>
-                    <p className="text-sm text-[#CBD5E1]/75 leading-relaxed">
-                      GigLine walks the supervisor team through the system at handoff. Calendar-based reminders for the first 90 days so nothing decays.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -803,14 +841,17 @@ const ServicesPage = () => {
           </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {RECURRING.map((s) => (
+            {RECURRING.map((s) => {
+              const isAnnual = !!s.includes;
+              return (
               <Reveal key={s.testid}>
                 <div
                   id={s.anchor}
-                  className="bg-white h-full rounded-xl p-7 md:p-8 flex flex-col scroll-mt-32"
+                  className="h-full rounded-xl p-7 md:p-8 flex flex-col scroll-mt-32"
                   style={{
-                    border: s.includes ? '2px solid #1a6fc4' : '1px solid #dde3ea',
-                    boxShadow: s.includes ? '0 4px 12px -4px rgba(31,111,235,0.15)' : '0 1px 0 rgba(13,27,42,0.02)',
+                    background: isAnnual ? '#0d1b2a' : '#ffffff',
+                    border: isAnnual ? '1px solid rgba(212,169,62,0.35)' : '1px solid #dde3ea',
+                    boxShadow: isAnnual ? '0 8px 24px -8px rgba(13,27,42,0.25)' : '0 1px 0 rgba(13,27,42,0.02)',
                   }}
                   data-testid={s.testid}
                 >
@@ -821,8 +862,9 @@ const ServicesPage = () => {
                         ...mono,
                         fontSize: '10px',
                         letterSpacing: '0.14em',
-                        color: '#1a6fc4',
-                        background: 'rgba(31,111,235,0.10)',
+                        color: isAnnual ? '#D4A93E' : '#1a6fc4',
+                        background: isAnnual ? 'rgba(212,169,62,0.12)' : 'rgba(31,111,235,0.10)',
+                        border: isAnnual ? '1px solid rgba(212,169,62,0.30)' : 'none',
                         padding: '4px 10px',
                         borderRadius: '999px',
                       }}
@@ -831,10 +873,20 @@ const ServicesPage = () => {
                       ★ {s.badge}
                     </span>
                   )}
-                  <h3 className="text-xl md:text-2xl font-bold text-[#0d1b2a] mb-2">{s.title}</h3>
-                  <p className="text-xl font-bold text-[#1a6fc4] mb-1" style={mono}>{s.price}</p>
+                  <h3 className={`text-xl md:text-2xl font-bold mb-2 ${isAnnual ? 'text-white' : 'text-[#0d1b2a]'}`}>{s.title}</h3>
+                  <p
+                    className="font-extrabold leading-none mb-1"
+                    style={{ ...mono, fontSize: isAnnual ? 'clamp(34px, 4vw, 42px)' : '20px', color: isAnnual ? '#D4A93E' : '#1a6fc4' }}
+                    data-testid={`${s.testid}-price`}
+                  >
+                    {s.price}
+                  </p>
                   {s.priceSecondary && (
-                    <p className="text-sm text-[#0d1b2a]/55 mb-5" style={mono} data-testid={`${s.testid}-price-secondary`}>
+                    <p
+                      className={`text-sm mb-5 mt-1 ${isAnnual ? 'text-white/55' : 'text-[#0d1b2a]/55'}`}
+                      style={mono}
+                      data-testid={`${s.testid}-price-secondary`}
+                    >
                       {s.priceSecondary}
                     </p>
                   )}
@@ -842,10 +894,10 @@ const ServicesPage = () => {
 
                   {/* Body — either single paragraph (Quarterly) or multi-paragraph (Annual) */}
                   {s.bodyTagline || s.bodyExtended ? (
-                    <div className="space-y-4 mb-6 text-base text-[#0d1b2a]/85 leading-relaxed">
+                    <div className={`space-y-4 mb-6 text-base leading-relaxed ${isAnnual ? 'text-white/80' : 'text-[#0d1b2a]/85'}`}>
                       <p>{s.body}</p>
                       {s.bodyTagline && (
-                        <p className="font-bold text-[#0d1b2a]">{s.bodyTagline}</p>
+                        <p className={`font-bold ${isAnnual ? 'text-white' : 'text-[#0d1b2a]'}`}>{s.bodyTagline}</p>
                       )}
                       {s.bodyExtended && <p>{s.bodyExtended}</p>}
                     </div>
@@ -857,20 +909,20 @@ const ServicesPage = () => {
                   {s.includes && (
                     <div className="mb-6" data-testid={`${s.testid}-includes`}>
                       <p
-                        className="uppercase tracking-[2px] text-[#0d1b2a]/55 font-bold mb-3"
-                        style={{ ...mono, fontSize: '10.5px' }}
+                        className="uppercase font-bold mb-3"
+                        style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.20em', color: '#D4A93E' }}
                       >
                         What&apos;s Included
                       </p>
                       <ul className="space-y-3">
                         {s.includes.map((item, i) => (
-                          <li key={i} className="flex items-start gap-3 text-[15px] text-[#0d1b2a]/85 leading-snug">
-                            <Check size={18} className="flex-shrink-0 mt-0.5 text-[#1a6fc4]" strokeWidth={3} />
+                          <li key={i} className="flex items-start gap-3 text-[15px] text-white/85 leading-snug">
+                            <Check size={18} className="flex-shrink-0 mt-0.5 text-[#D4A93E]" strokeWidth={3} />
                             <span>
-                              <span className="font-semibold text-[#0d1b2a]">{item.label}</span>
-                              {item.detail && <span className="text-[#0d1b2a]/75"> &mdash; {item.detail}</span>}
+                              <span className="font-semibold text-white">{item.label}</span>
+                              {item.detail && <span className="text-white/70"> &mdash; {item.detail}</span>}
                               {item.value && (
-                                <span className="text-[#1a6fc4] italic" style={mono}> &nbsp;({item.value})</span>
+                                <span className="text-[#D4A93E]/85 italic" style={mono}> &nbsp;({item.value})</span>
                               )}
                             </span>
                           </li>
@@ -883,24 +935,24 @@ const ServicesPage = () => {
                   {s.valueAnchor && (
                     <div
                       className="rounded-lg p-5 mb-5"
-                      style={{ backgroundColor: '#F7F9FC', border: '1px solid rgba(31,111,235,0.18)' }}
+                      style={{ backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid rgba(212,169,62,0.18)' }}
                       data-testid={`${s.testid}-value-anchor`}
                     >
                       <div className="flex flex-col gap-2 text-[15px]">
                         <div className="flex items-baseline justify-between gap-3">
-                          <span className="text-[#0d1b2a]/65">{s.valueAnchor.standaloneLabel}</span>
-                          <span className="font-bold text-[#0d1b2a]" style={mono}>{s.valueAnchor.standalone}</span>
+                          <span className="text-white/65">{s.valueAnchor.standaloneLabel}</span>
+                          <span className="font-bold text-white" style={mono}>{s.valueAnchor.standalone}</span>
                         </div>
                         <div className="flex items-baseline justify-between gap-3">
-                          <span className="text-[#0d1b2a]/65">{s.valueAnchor.partnerLabel}</span>
-                          <span className="font-bold text-[#1a6fc4]" style={mono}>{s.valueAnchor.partner}</span>
+                          <span className="text-white/65">{s.valueAnchor.partnerLabel}</span>
+                          <span className="font-bold text-[#D4A93E]" style={mono}>{s.valueAnchor.partner}</span>
                         </div>
                         <div
                           className="flex items-baseline justify-between gap-3 pt-2 mt-1"
-                          style={{ borderTop: '1px dashed rgba(31,111,235,0.30)' }}
+                          style={{ borderTop: '1px dashed rgba(212,169,62,0.30)' }}
                         >
-                          <span className="text-[#0d1b2a]/65 italic">{s.valueAnchor.monthlyLabel}</span>
-                          <span className="font-bold text-[#0d1b2a]" style={mono}>{s.valueAnchor.monthly}</span>
+                          <span className="text-white/65 italic">{s.valueAnchor.monthlyLabel}</span>
+                          <span className="font-bold text-white" style={mono}>{s.valueAnchor.monthly}</span>
                         </div>
                       </div>
                     </div>
@@ -908,18 +960,25 @@ const ServicesPage = () => {
 
                   {/* Closing line (Annual Partner only) */}
                   {s.closingLine && (
-                    <p className="text-[15px] text-[#0d1b2a]/80 leading-relaxed mb-6" data-testid={`${s.testid}-closing`}>
+                    <p className="text-[15px] text-white/75 leading-relaxed mb-6" data-testid={`${s.testid}-closing`}>
                       {s.closingLine}
                     </p>
                   )}
 
-                  <p className="text-sm text-[#0d1b2a]/60 leading-relaxed mb-6 italic flex-grow" style={mono}>
+                  <p
+                    className={`text-sm leading-relaxed mb-6 italic flex-grow ${isAnnual ? 'text-white/55' : 'text-[#0d1b2a]/60'}`}
+                    style={mono}
+                  >
                     Best for: {s.best}
                   </p>
                   <Link
                     to={intakeLink(s.intakeService)}
                     onClick={() => trackServiceBooking && trackServiceBooking(s.title)}
-                    className="inline-flex items-center justify-center gap-2 border-2 border-[#1a6fc4] hover:bg-[#1a6fc4] hover:text-white text-[#1a6fc4] font-bold px-6 py-3 rounded-lg text-base transition-colors self-start"
+                    className={`inline-flex items-center justify-center gap-2 font-bold px-6 py-3 rounded-lg text-base transition-colors self-start border-2 ${
+                      isAnnual
+                        ? 'border-[#D4A93E] text-[#D4A93E] hover:bg-[#D4A93E] hover:text-[#0d1b2a]'
+                        : 'border-[#1a6fc4] text-[#1a6fc4] hover:bg-[#1a6fc4] hover:text-white'
+                    }`}
                     data-testid={`${s.testid}-cta`}
                   >
                     {s.cta}
@@ -927,7 +986,8 @@ const ServicesPage = () => {
                   </Link>
                 </div>
               </Reveal>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

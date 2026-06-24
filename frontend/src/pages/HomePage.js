@@ -252,7 +252,7 @@ const HomePage = () => {
       <section className="py-20 md:py-24 bg-white border-t border-b" style={{ borderColor: '#E5E7EB' }} data-testid="floor-findings-section">
         <div className="container max-w-6xl">
           <Reveal>
-            <p className="uppercase tracking-[0.18em] text-[#1a6fc4] font-semibold mb-3" style={{ fontSize: '11px' }} data-testid="floor-findings-eyebrow">
+            <p className="uppercase tracking-[0.18em] text-[#1a6fc4] font-semibold mb-3" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }} data-testid="floor-findings-eyebrow">
               What We Find on the Floor
             </p>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#0d1b2a] leading-[1.15] mb-4 max-w-3xl">
@@ -299,7 +299,7 @@ const HomePage = () => {
       <section className="py-20 md:py-24" style={{ backgroundColor: '#f5f4f0' }} data-testid="why-gigline-section">
         <div className="container max-w-6xl">
           <Reveal>
-            <p className="uppercase font-bold mb-6" style={{ fontSize: '12px', letterSpacing: '0.2em', color: '#1a6fc4' }}>
+            <p className="uppercase font-bold mb-6" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', letterSpacing: '0.2em', color: '#1a6fc4' }}>
               Why GigLine
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#0d1b2a] leading-[1.1] mb-12 max-w-4xl tracking-tight">
@@ -352,7 +352,7 @@ const HomePage = () => {
                   </div>
                   <p
                     className="uppercase font-semibold mb-3"
-                    style={{ fontSize: '11px', letterSpacing: '0.16em', color: c.featured ? '#1a6fc4' : '#6b7280' }}
+                    style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', letterSpacing: '0.16em', color: c.featured ? '#1a6fc4' : '#6b7280' }}
                   >
                     {c.kicker}
                   </p>
@@ -376,7 +376,7 @@ const HomePage = () => {
             >
               <p
                 className="uppercase font-bold mb-3"
-                style={{ fontSize: '11px', letterSpacing: '0.18em', color: '#c8922a' }}
+                style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', letterSpacing: '0.18em', color: '#c8922a' }}
               >
                 The Template Trap
               </p>
@@ -394,7 +394,7 @@ const HomePage = () => {
       <section className="py-20 md:py-24 bg-white border-t" style={{ borderColor: '#E5E7EB' }} data-testid="cost-of-waiting-section">
         <div className="container max-w-6xl">
           <Reveal>
-            <p className="uppercase font-bold mb-3" style={{ fontSize: '11px', letterSpacing: '0.2em', color: '#8B2500' }} data-testid="cost-eyebrow">
+            <p className="uppercase font-bold mb-3" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', letterSpacing: '0.2em', color: '#8B2500' }} data-testid="cost-eyebrow">
               The Cost of Waiting
             </p>
 
@@ -439,7 +439,8 @@ const HomePage = () => {
                 >
                   <p
                     className="font-extrabold mb-3 text-[#0d1b2a] leading-none tracking-tight"
-                    style={{ fontSize: 'clamp(36px, 5vw, 52px)' }}
+                    style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 'clamp(36px, 5vw, 52px)' }}
+                    data-testid={`cost-stat-${i + 1}-value`}
                   >
                     {s.stat}
                   </p>
@@ -462,7 +463,7 @@ const HomePage = () => {
       <section className="py-16 md:py-24" style={{ backgroundColor: '#f5f4f0' }} data-testid="services-section">
         <div className="container max-w-6xl">
           <Reveal>
-            <p className="uppercase font-bold mb-3" style={{ fontSize: '11px', letterSpacing: '0.2em', color: '#1a6fc4' }}>
+            <p className="uppercase font-bold mb-3" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', letterSpacing: '0.2em', color: '#1a6fc4' }}>
               Services
             </p>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0d1b2a] leading-[1.15] mb-4 max-w-3xl tracking-tight">
@@ -527,6 +528,7 @@ const HomePage = () => {
                         padding: '8px 18px',
                         borderRadius: '2px',
                         whiteSpace: 'nowrap',
+                        fontFamily: "'JetBrains Mono', monospace",
                       }}
                     >
                       {s.badge}
@@ -547,8 +549,9 @@ const HomePage = () => {
 
                   <h3 className="text-lg md:text-xl font-bold text-[#0d1b2a] mb-1 leading-tight">{s.title}</h3>
                   <p
-                    className="font-semibold mb-4"
-                    style={{ fontSize: '14px', color: s.featured ? '#1a6fc4' : '#0d1b2a', letterSpacing: '-0.01em' }}
+                    className="font-bold mb-4"
+                    style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '15px', color: s.featured ? '#1a6fc4' : '#0d1b2a', letterSpacing: '-0.01em' }}
+                    data-testid={`${s.testid}-price`}
                   >
                     {s.price}
                   </p>
@@ -597,7 +600,7 @@ const HomePage = () => {
 
           {/* LEFT — What Clients Say */}
           <div data-testid="reviews-column">
-            <p className="uppercase font-bold mb-8" style={{ fontSize: '12px', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.55)' }}>What Clients Say</p>
+            <p className="uppercase font-bold mb-8" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.55)' }}>What Clients Say</p>
             {[
               { text: 'They don\u2019t just point out issues \u2014 they understand how operations actually run and provide solutions that can be executed on the floor. Where they really stand out is in incident investigations. Their approach is disciplined and focused on true root cause.', name: 'Demar Archie', role: 'Warehouse Receiving Manager' },
               { text: 'Most consultants show up with a binder and a checklist. Vince showed up in work boots and asked to see the press line first. Practical guy. Knows the floor. Report came back clear and short \u2014 the way it should.', name: 'David R.', role: 'Plant Manager, Small Manufacturer, Piedmont Triad' },
@@ -611,7 +614,7 @@ const HomePage = () => {
 
           {/* MIDDLE — Case Study */}
           <div data-testid="case-study-column">
-            <p className="uppercase font-bold mb-8" style={{ fontSize: '12px', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.55)' }}>Case Study</p>
+            <p className="uppercase font-bold mb-8" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.55)' }}>Case Study</p>
             <div className="p-7" style={{ background: 'rgba(26,111,196,0.06)', border: '1px solid rgba(26,111,196,0.25)', borderRadius: '10px' }}>
               <h3 className="text-xl md:text-2xl font-bold text-white leading-tight mb-8">How a Plastics Manufacturer Passed OSHA With Zero Citations.</h3>
               {[
@@ -630,7 +633,7 @@ const HomePage = () => {
 
           {/* RIGHT — Track Record */}
           <div data-testid="track-record-column">
-            <p className="uppercase font-bold mb-8" style={{ fontSize: '12px', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.55)' }}>The Track Record</p>
+            <p className="uppercase font-bold mb-8" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.55)' }}>The Track Record</p>
             {[
               { Icon: Star, title: '5.0 Google Review Rating', sub: 'Verified client reviews' },
               { Icon: Anchor, title: 'U.S. Navy Veteran Owned', sub: 'Discipline. Accountability. Precision.' },
@@ -655,7 +658,7 @@ const HomePage = () => {
       <section className="py-16 md:py-24" style={{ backgroundColor: '#f5f4f0' }} data-testid="how-it-works-section">
         <div className="container max-w-6xl">
           <Reveal>
-            <p className="uppercase font-bold mb-3" style={{ fontSize: '11px', letterSpacing: '0.2em', color: '#1a6fc4' }}>
+            <p className="uppercase font-bold mb-3" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', letterSpacing: '0.2em', color: '#1a6fc4' }}>
               How It Works
             </p>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0d1b2a] leading-[1.15] mb-14 max-w-3xl tracking-tight">
@@ -790,7 +793,7 @@ const HomePage = () => {
               <Reveal>
                 <p
                   className="uppercase font-bold mb-4"
-                  style={{ fontSize: '11px', letterSpacing: '0.2em', color: '#c8922a' }}
+                  style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', letterSpacing: '0.2em', color: '#c8922a' }}
                   data-testid="about-eyebrow"
                 >
                   About Vince

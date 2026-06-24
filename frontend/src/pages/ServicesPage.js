@@ -504,7 +504,7 @@ const ServicesPage = () => {
                     >
                       Starting At
                     </p>
-                    <p className="text-4xl md:text-5xl font-bold text-[#1a6fc4] leading-none tracking-tight mb-1">
+                    <p className="text-4xl md:text-5xl font-bold text-[#1a6fc4] leading-none tracking-tight mb-1" style={mono} data-testid="crv-price-large">
                       $2,000
                     </p>
                     <p className="text-[#0d1b2a]/45 italic" style={{ ...mono, fontSize: '11px' }}>
@@ -696,7 +696,7 @@ const ServicesPage = () => {
                 >
                   Starting At
                 </p>
-                <p className="font-extrabold text-white leading-none tracking-tight mb-3" style={{ fontSize: 'clamp(56px, 7vw, 88px)' }}>
+                <p className="font-extrabold text-white leading-none tracking-tight mb-3" style={{ ...mono, fontSize: 'clamp(56px, 7vw, 88px)' }} data-testid="control-system-price-large">
                   $4,500
                 </p>
                 <p style={{ ...mono, fontSize: '12px', color: 'rgba(255,255,255,0.55)' }}>

@@ -38,6 +38,7 @@ const FINDINGS = [
       'Post the OSHA 300A Annual Summary immediately. Obtain executive signature. Establish a calendar reminder for February 1 posting requirement each year.',
     penalty: '$1,190 – $16,550',
     fixBy: 'Immediate — prior to next business day',
+    photoUrl: '/blocked-fire-riser.jpg',
   },
   {
     n: '02',
@@ -51,6 +52,7 @@ const FINDINGS = [
       'Schedule refresher training and evaluation for all operators with certifications older than three years. Implement daily pre-shift inspection log on every powered industrial truck.',
     penalty: '$1,190 – $16,550 per operator',
     fixBy: 'Within 30 days',
+    photoUrl: '/machine-guarding.jpg',
   },
   {
     n: '03',
@@ -64,6 +66,7 @@ const FINDINGS = [
       'Clear all scrap and obstructions from pedestrian zones immediately. Draft a written housekeeping program. Implement end-of-shift sweep routine with supervisor sign-off.',
     penalty: '$0 – $16,550',
     fixBy: 'Within 30 days',
+    photoUrl: '/cluttered-aisles.jpg',
   },
   {
     n: '04',
@@ -77,6 +80,7 @@ const FINDINGS = [
       'Clear all obstructions from emergency exit paths immediately. Mark a no-storage zone on the floor. Add monthly egress audit to the standing safety checklist.',
     penalty: '$1,190 – $16,550',
     fixBy: 'Immediate — prior to next shift',
+    photoUrl: '/hero-blocked-exit.jpg',
   },
 ];
 
@@ -361,9 +365,9 @@ const FindingBlock = ({ f, isLast }) => (
         </div>
       </div>
 
-      {/* Right: Photo only */}
+      {/* Right: Photo */}
       <div className="md:col-span-4 space-y-3">
-        <PhotoPlaceholder area={f.location.split('/')[0].trim()} />
+        <PhotoPlaceholder area={f.location.split('/')[0].trim()} photoUrl={f.photoUrl} />
       </div>
     </div>
   </div>
@@ -383,28 +387,83 @@ const Field = ({ label, value }) => (
   </div>
 );
 
-const PhotoPlaceholder = ({ area }) => (
-  <div
-    className="flex flex-col items-center justify-center text-center px-4 py-10"
-    style={{
-      backgroundColor: '#F1F3F7',
-      border: `1px dashed ${DOC_BORDER}`,
-      minHeight: '280px',
-      aspectRatio: '4 / 3',
-    }}
-    data-testid="photo-placeholder"
-  >
-    <Camera size={36} style={{ color: TEXT_SUBTLE }} className="mb-3" strokeWidth={1.6} />
-    <p
-      className="uppercase tracking-[3px] text-[11px] font-bold mb-1"
-      style={{ ...mono, color: TEXT_SUBTLE }}
+const PhotoPlaceholder = ({ area, photoUrl }) => {
+  if (photoUrl) {
+    return (
+      <div
+        className="relative overflow-hidden"
+        style={{
+          border: `1px solid ${DOC_BORDER}`,
+          aspectRatio: '4 / 3',
+        }}
+        data-testid="photo-placeholder"
+      >
+        <img
+          src={photoUrl}
+          alt={`Field photo — ${area}`}
+          className="w-full h-full object-cover"
+          loading="lazy"
+        />
+        {/* SAMPLE — ANONYMIZED badge */}
+        <span
+          className="absolute uppercase font-bold"
+          style={{
+            ...mono,
+            fontSize: '9.5px',
+            letterSpacing: '0.16em',
+            color: '#fff',
+            background: 'rgba(13,27,42,0.78)',
+            padding: '4px 10px',
+            top: '10px',
+            left: '10px',
+            borderRadius: '2px',
+          }}
+        >
+          Sample &middot; Anonymized
+        </span>
+        {/* Area caption */}
+        <span
+          className="absolute uppercase font-bold"
+          style={{
+            ...mono,
+            fontSize: '10px',
+            letterSpacing: '0.14em',
+            color: '#fff',
+            background: 'rgba(13,27,42,0.78)',
+            padding: '5px 10px',
+            bottom: '10px',
+            left: '10px',
+            borderRadius: '2px',
+          }}
+        >
+          {area}
+        </span>
+      </div>
+    );
+  }
+  return (
+    <div
+      className="flex flex-col items-center justify-center text-center px-4 py-10"
+      style={{
+        backgroundColor: '#F1F3F7',
+        border: `1px dashed ${DOC_BORDER}`,
+        minHeight: '280px',
+        aspectRatio: '4 / 3',
+      }}
+      data-testid="photo-placeholder"
     >
-      Field Photo
-    </p>
-    <p className="text-[13px] leading-snug" style={{ color: TEXT_SUBTLE }}>
-      {area}
-    </p>
-  </div>
-);
+      <Camera size={36} style={{ color: TEXT_SUBTLE }} className="mb-3" strokeWidth={1.6} />
+      <p
+        className="uppercase tracking-[3px] text-[11px] font-bold mb-1"
+        style={{ ...mono, color: TEXT_SUBTLE }}
+      >
+        Field Photo
+      </p>
+      <p className="text-[13px] leading-snug" style={{ color: TEXT_SUBTLE }}>
+        {area}
+      </p>
+    </div>
+  );
+};
 
 export default SampleReportSection;

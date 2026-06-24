@@ -66,7 +66,7 @@ const FINDINGS = [
       'Clear all scrap and obstructions from pedestrian zones immediately. Draft a written housekeeping program. Implement end-of-shift sweep routine with supervisor sign-off.',
     penalty: '$0 – $16,550',
     fixBy: 'Within 30 days',
-    photoUrl: '/cluttered-aisles.jpg',
+    photoUrl: '/walking-surfaces-housekeeping.jpg',
   },
   {
     n: '04',

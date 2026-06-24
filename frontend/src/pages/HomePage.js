@@ -381,7 +381,7 @@ const HomePage = () => {
               The Cost of Waiting
             </p>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0d1b2a] leading-[1.15] mb-4 max-w-4xl tracking-tight">
-              The average OSHA serious violation costs $16,131.
+              The average OSHA serious violation costs $16,550.
             </h2>
             <p className="text-base md:text-lg text-[#102133]/70 leading-relaxed mb-12 max-w-3xl">
               That&apos;s per citation. A single inspection can produce multiple citations across multiple standards. The Safety Walkthrough starts at $1,200.
@@ -390,7 +390,7 @@ const HomePage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-12">
             {[
-              { stat: '$16,131', label: 'Avg. OSHA serious violation (2026)' },
+              { stat: '$16,550', label: 'Avg. OSHA serious violation (2026)' },
               { stat: '$165,514', label: 'Max penalty per willful or repeat violation' },
               { stat: '48 hrs', label: 'Time from walkthrough to written report' },
             ].map((s, i) => (
@@ -454,7 +454,7 @@ const HomePage = () => {
                 Icon: Shield,
                 title: 'Compliance Readiness Visit',
                 price: 'From $2,000',
-                body: 'The Safety Walkthrough plus a full Documentation Review in a single visit. We walk the floor and review your written programs, training records, and OSHA logs \u2014 then give you a prioritized corrective action plan. Documentation Review booked separately: from $2,500.',
+                body: 'The Safety Walkthrough plus a full Documentation Review in a single visit. We walk the floor and review your written programs, training records, and OSHA logs \u2014 then give you a prioritized corrective action plan. Documentation Review booked separately: from $1,300.',
                 cta: { label: 'Schedule a Visit', to: '/intake?service=compliance-readiness-visit' },
                 featured: true,
                 badge: '★ Most Requested',

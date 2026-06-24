@@ -3,7 +3,7 @@ import ServiceLandingTemplate from '../components/ServiceLandingTemplate';
 
 /* GL-WEB-008 staged content swap — see ServicesPage.js for details. */
 const GL_WEB_008 = process.env.REACT_APP_GL_WEB_008_ENABLED === 'true';
-const PRICE_LABEL = '$2,500';
+const PRICE_LABEL = '$1,300';
 
 const DocumentationGapCheckPage = () => (
   <ServiceLandingTemplate

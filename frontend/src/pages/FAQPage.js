@@ -10,7 +10,7 @@ const mono = { fontFamily: "'JetBrains Mono', monospace" };
 export const FAQS = [
   {
     q: 'How much does an OSHA safety walkthrough cost in North Carolina?',
-    a: "GigLine safety walkthroughs start at $1,200. Larger or more complex operations may scope higher. Most small-operation walkthroughs fall between $1,200 and $2,000 depending on square footage and scope. You'll receive a fixed price before scheduling — no hourly billing, no retainer.",
+    a: "GigLine services are fixed-quote engagements. The Safety Walkthrough starts at $1,200. The OSHA Documentation Readiness Review starts at $1,300. The Compliance Readiness Visit \u2014 which covers both \u2014 starts at $2,000. Scope is confirmed before any work begins. There are no hourly rates and no surprise invoices.",
   },
   {
     q: "What's included in a GigLine safety walkthrough?",

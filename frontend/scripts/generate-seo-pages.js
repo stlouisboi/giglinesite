@@ -25,7 +25,7 @@ const BASE_URL = 'https://www.giglinecompliance.com';
 const GL_WEB_008 = process.env.REACT_APP_GL_WEB_008_ENABLED === 'true';
 const DOC_REVIEW_DESCRIPTION = 'Two-layer review of your safety documentation. The first layer checks whether required programs exist — 53 items across seven OSHA categories. The second layer checks whether each document contains what it’s legally required to contain — element by element, standard by standard. You get a single compliance report covering both.';
 const DOC_REVIEW_PRICE_NUM = '2500';
-const DOC_REVIEW_PRICE_LABEL = '$2,500';
+const DOC_REVIEW_PRICE_LABEL = '$1,300';
 const SERVICES_META_DESCRIPTION = 'OSHA-readiness support for small industrial operations. GigLine helps manufacturers, warehouses, contractors, and fleet operations identify visible hazards, verify documentation compliance element by element, and resolve inspection-readiness issues before they become citations. Fixed pricing. No retainer.';
 
 // ───────────────────────────────────────────────
@@ -209,14 +209,14 @@ const routes = [
       <p><strong>Fixed Quote. No Surprises.</strong> Every engagement is quoted in advance and held — no hourly billing, no scope creep.</p>
       <p><strong>Private by Default.</strong> GigLine does not share, publish, or reference client facility data. Your findings stay between us.</p>
       <p><strong>Built on the Floor, Not in a Classroom.</strong> Vince Lawrence spent years inside manufacturing operations — glass and vinyl, rubber compounding, metals fabrication, including time at BF Goodrich and Amero Steel.</p>
-      <h2>The Cost of Waiting — The average OSHA serious violation costs $16,131.</h2>
+      <h2>The Cost of Waiting — The average OSHA serious violation costs $16,550.</h2>
       <p>That's per citation. A single inspection can produce multiple citations across multiple standards. The Safety Walkthrough starts at $1,200. Max penalty per willful or repeat violation: $165,514. Time from walkthrough to written report: 48 hours.</p>
       <p>OSHA doesn't announce inspections. They arrive after a complaint, a referral, or a fatality — or as part of a programmed inspection targeting your industry. By the time they're on your floor, the window to fix things has closed. The walkthrough is that window.</p>
       <h2>Services — Three ways to work with GigLine.</h2>
       <ul>
         <li><a href="/safety-walkthrough">Safety Walkthrough</a> — From $1,200. Documented on-site walkthrough with photo evidence, CFR citations, penalty exposure per finding, and a Top 10 Fixes report within 48 hours.</li>
         <li><a href="/osha-compliance-gap-check">Compliance Readiness Visit</a> — From $2,000. Walkthrough plus a full Documentation Review in a single visit. Most Requested.</li>
-        <li><a href="/documentation-gap-check">OSHA Documentation Readiness Review (standalone)</a> — From $2,500.</li>
+        <li><a href="/documentation-gap-check">OSHA Documentation Readiness Review (standalone)</a> — From $1,300.</li>
         <li><a href="/safety-check">Safety Check</a> — Free 90-second self-assessment of the six most common OSHA violations in general industry. No contact info required.</li>
       </ul>
       <h2>How It Works — Four steps. No surprises.</h2>
@@ -316,9 +316,9 @@ const routes = [
       <h2>GigLine OSHA-Ready Control System — Starting at $4,500</h2>
       <p>Premium engagement. Four-binder physical command system, digital folder architecture, training matrix + SDS organization, corrective action tracker, 90-day maintenance calendar, supervisor walkthrough at handoff.</p>
       <h2>The Natural Next Step — Quarterly and Annual Support</h2>
-      <p>Quarterly Compliance Maintenance — Starting at $750/quarter. Annual Compliance Control Partner — Starting at $9,000/year.</p>
+      <p>Quarterly Compliance Maintenance — Starting at $950/quarter. Annual Compliance Control Partner — Starting at $9,000/year.</p>
       <h2>The GigLine Readiness Path</h2>
-      <p>Find the issues — Safety Walkthrough from $1,200. Check the files — OSHA Documentation Readiness Review from ${DOC_REVIEW_PRICE_LABEL}. Review both — Compliance Readiness Visit from $2,000. Build the system — OSHA-Ready Control System from $4,500. Keep it current — Quarterly Maintenance from $750/quarter.</p>
+      <p>Find the issues — Safety Walkthrough from $1,200. Check the files — OSHA Documentation Readiness Review from ${DOC_REVIEW_PRICE_LABEL}. Review both — Compliance Readiness Visit from $2,000. Build the system — OSHA-Ready Control System from $4,500. Keep it current — Quarterly Maintenance from $950/quarter.</p>
       <h2>Recent Outcome &mdash; Case Study</h2>
       <p><a href="/case-studies/mocksville-plastics-osha-inspection">How a 60-Person Plastics Manufacturer in Mocksville Passed OSHA &mdash; With Zero Citations</a>.</p>
       <p>After payment, you'll receive a scheduling confirmation within one business day.</p>
@@ -550,10 +550,10 @@ const routes = [
       <p>Vince walked the facility for three hours. The Top 10 Fixes report landed in the plant manager's inbox 36 hours later. Four findings would have been almost-certain citations on inspection day:</p>
 
       <h3>01 &mdash; Recordkeeping (29 CFR 1904.32)</h3>
-      <p>OSHA 300 Log not posted; no 300A Annual Summary signed by a company executive. Penalty range: $1,190 to $16,131 per violation. Recordkeeping citations stack &mdash; each missing record can be cited separately.</p>
+      <p>OSHA 300 Log not posted; no 300A Annual Summary signed by a company executive. Penalty range: $1,190 to $16,550 per violation. Recordkeeping citations stack &mdash; each missing record can be cited separately.</p>
 
       <h3>02 &mdash; Powered Industrial Trucks (29 CFR 1910.178(l))</h3>
-      <p>Three forklift operators with certifications older than three years. No daily pre-shift inspection log. Refresher training is required every three years. Penalty range: $1,190 to $16,131 per operator, per violation.</p>
+      <p>Three forklift operators with certifications older than three years. No daily pre-shift inspection log. Refresher training is required every three years. Penalty range: $1,190 to $16,550 per operator, per violation.</p>
 
       <h3>03 &mdash; Walking and Working Surfaces (29 CFR 1910.22(a)(1))</h3>
       <p>Scrap accumulated under press lines. Pallets in pedestrian zones. Material handlers stepping around obstructions. Housekeeping isn't an aesthetic complaint &mdash; it's a written OSHA standard.</p>

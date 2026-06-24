@@ -150,28 +150,28 @@ const CaseStudyMocksvillePage = () => {
               title="Recordkeeping — OSHA 300 Log not posted, no 300A Summary signed by a company executive"
               cfr="29 CFR 1904.32"
               body="The 300 Log existed. The 300A Annual Summary did not. The prior year's 300A must be posted from February 1 through April 30, signed by a company executive certifying its accuracy. The plant was outside the posting window with no signed copy in the file. Recordkeeping citations stack &mdash; each missing record can be cited separately."
-              penalty="$1,190 to $16,131 per violation"
+              penalty="$1,190 to $16,550 per violation"
             />
             <Finding
               n="02"
               title="Powered Industrial Trucks — Three forklift operators with expired certifications, no daily inspection log"
               cfr="29 CFR 1910.178(l)"
               body="Three forklift operators had certifications older than three years. Refresher training is required at least every three years &mdash; or sooner if there's an observed unsafe operation. No documented refreshers were on file. Worse, there was no daily pre-shift inspection log. The forklifts were running eight-plus hours per shift with no documented walkaround."
-              penalty="$1,190 to $16,131 per operator, per violation"
+              penalty="$1,190 to $16,550 per operator, per violation"
             />
             <Finding
               n="03"
               title="Walking and Working Surfaces — Housekeeping deficiencies"
               cfr="29 CFR 1910.22(a)(1)"
               body="The production floor was working hard. Scrap accumulated under press lines. Pallets of finished product were partially stacked in pedestrian zones. Material handlers were stepping around obstructions instead of having clean aisles to move through. Housekeeping isn't an aesthetic complaint &mdash; it's a written OSHA standard."
-              penalty="$1,190 to $16,131 per citation"
+              penalty="$1,190 to $16,550 per citation"
             />
             <Finding
               n="04"
               title="Emergency Egress — Inadequate path to exits"
               cfr="29 CFR 1910.37(a)(3)"
               body="Two of the four emergency exits had partial obstructions in the path of egress. One had a rolling cart parked within four feet. The other had pallets of raw material stacked in the path. The exit doors themselves were functional. But the path to them was compromised &mdash; a citable condition the moment an inspector points to it."
-              penalty="$1,190 to $16,131 per citation"
+              penalty="$1,190 to $16,550 per citation"
             />
           </div>
 

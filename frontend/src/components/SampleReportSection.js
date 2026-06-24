@@ -36,7 +36,7 @@ const FINDINGS = [
       'OSHA 300 Log not posted during the February 1 – April 30 posting period. No 300A Annual Summary signed by a company executive. Required posting is an OSHA mandate, not a recommendation.',
     correctiveAction:
       'Post the OSHA 300A Annual Summary immediately. Obtain executive signature. Establish a calendar reminder for February 1 posting requirement each year.',
-    penalty: '$1,190 – $16,131',
+    penalty: '$1,190 – $16,550',
     fixBy: 'Immediate — prior to next business day',
   },
   {
@@ -49,7 +49,7 @@ const FINDINGS = [
       'Two forklift operators with certifications older than three years and no documented refresher training. No daily pre-shift inspection log maintained on either vehicle. OSHA requires refresher training every three years and evaluation documentation.',
     correctiveAction:
       'Schedule refresher training and evaluation for all operators with certifications older than three years. Implement daily pre-shift inspection log on every powered industrial truck.',
-    penalty: '$1,190 – $16,131 per operator',
+    penalty: '$1,190 – $16,550 per operator',
     fixBy: 'Within 30 days',
   },
   {
@@ -62,7 +62,7 @@ const FINDINGS = [
       'Scrap material accumulated under press lines. Pallets and loose material in marked pedestrian zones. Workers observed stepping around obstructions. Housekeeping is a written OSHA standard, not an aesthetic preference.',
     correctiveAction:
       'Clear all scrap and obstructions from pedestrian zones immediately. Draft a written housekeeping program. Implement end-of-shift sweep routine with supervisor sign-off.',
-    penalty: '$0 – $16,131',
+    penalty: '$0 – $16,550',
     fixBy: 'Within 30 days',
   },
   {
@@ -75,7 +75,7 @@ const FINDINGS = [
       'Emergency exit path partially obstructed by stacked boxes and a hand truck parked against the exit door. Exit route must remain unobstructed at all times. Door opened to approximately 60% capacity during walkthrough.',
     correctiveAction:
       'Clear all obstructions from emergency exit paths immediately. Mark a no-storage zone on the floor. Add monthly egress audit to the standing safety checklist.',
-    penalty: '$1,190 – $16,131',
+    penalty: '$1,190 – $16,550',
     fixBy: 'Immediate — prior to next shift',
   },
 ];

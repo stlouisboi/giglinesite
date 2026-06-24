@@ -15,10 +15,10 @@ import SampleReportSection from '../components/SampleReportSection';
    Flag stays false until Vince confirms conditions 1–5 in Section 5 of GL-WEB-008.
 */
 const GL_WEB_008 = process.env.REACT_APP_GL_WEB_008_ENABLED === 'true';
-const DOC_REVIEW_DESCRIPTION = 'Two-layer review of your safety documentation. The first layer checks whether required programs exist — 53 items across seven OSHA categories. The second layer checks whether each document contains what it\u2019s legally required to contain — element by element, standard by standard. You get a single compliance report covering both.';
-const DOC_REVIEW_PRICE = 'From $2,500';
-const DOC_REVIEW_PRICING_REF_PRICE = 'Starting at $2,500';
-const DOC_REVIEW_PATH_OFFER = 'OSHA Documentation Readiness Review \u2014 from $2,500';
+const DOC_REVIEW_DESCRIPTION = 'A structured review of your safety documentation across 53 required items in seven OSHA categories. Layer one checks whether required programs exist. Layer two checks whether each document contains what it is legally required to contain \u2014 element by element, standard by standard. You receive a single compliance percentage score and a prioritized gap list. Fixed quote. Private engagement.';
+const DOC_REVIEW_PRICE = 'From $1,300';
+const DOC_REVIEW_PRICING_REF_PRICE = 'Starting at $1,300';
+const DOC_REVIEW_PATH_OFFER = 'OSHA Documentation Readiness Review \u2014 from $1,300';
 const SERVICES_META_DESCRIPTION = 'OSHA-readiness support for small industrial operations. GigLine helps manufacturers, warehouses, contractors, and fleet operations identify visible hazards, verify documentation compliance element by element, and resolve inspection-readiness issues before they become citations. Fixed pricing. No retainer.';
 
 /* ── Scroll-reveal — mirrors HomePage.js exactly ── */
@@ -74,7 +74,7 @@ const WHO_HELPS = [
   {
     Icon: Warehouse,
     title: 'Warehouses & Distribution',
-    desc: 'Powered industrial trucks, racking systems, dock operations — facilities where one untrained operator becomes a $16,131 finding.',
+    desc: 'Powered industrial trucks, racking systems, dock operations — facilities where one untrained operator becomes a $16,550 finding.',
   },
   {
     Icon: HardHat,
@@ -93,7 +93,7 @@ const STANDALONE = [
   {
     title: 'Safety Walkthrough Report',
     price: 'From $1,200',
-    body: 'On-site walkthrough (1–3 hours). Photo-documented hazard findings. CFR citations + 2026 penalty exposure per finding. Top 10 Fixes report — RED / AMBER / GREEN priority. Delivered within 24–48 hours.',
+    body: 'On-site walkthrough (1\u20133 hours). Photo-documented hazard findings. CFR citations with 2026 penalty exposure calculated per finding. Top 10 Fixes report \u2014 RED / AMBER / GREEN priority triage. Written report delivered within 24\u201348 hours. Fixed quote. Private engagement.',
     best: 'Operations that want to know where they stand on the floor before OSHA, an insurer, or a customer auditor shows up.',
     cta: 'Request a Walkthrough',
     intakeService: 'safety-walkthrough-report',
@@ -103,16 +103,16 @@ const STANDALONE = [
     title: 'OSHA Documentation Readiness Review',
     price: DOC_REVIEW_PRICE,
     body: DOC_REVIEW_DESCRIPTION,
-    best: 'Operations preparing for an audit, insurance review, or customer pre-qualification that need to know specifically what documentation gaps exist before scheduling an on-site visit.',
+    best: 'Operations preparing for an audit, insurance review, or customer pre-qualification that need to know exactly which documentation gaps exist before an on-site visit.',
     cta: 'Request a Documentation Review',
     intakeService: 'documentation-readiness-review',
     testid: 'svc-standalone-doc-review',
   },
   {
     title: 'Incident Review & Corrective Action Support',
-    price: 'From $1,200',
-    body: 'Post-injury or post-near-miss response. Root cause analysis. OSHA recordability determination. OSHA 301 completion. Corrective action plan. Documentation of closure.',
-    body2: 'Call GigLine before you file anything or talk to anyone.',
+    price: 'From $1,500',
+    body: 'Post-injury or post-near-miss response. Root cause analysis. OSHA recordability determination. OSHA 301 completion. Corrective action plan with documented closure. GigLine reviews the incident before you file anything or speak to anyone outside the operation.',
+    body2: 'Call GigLine before you file anything.',
     cta: 'Request Incident Support',
     intakeService: 'incident-review',
     testid: 'svc-standalone-incident',
@@ -137,7 +137,7 @@ const STANDALONE = [
 const RECURRING = [
   {
     title: 'Quarterly Compliance Maintenance',
-    price: 'From $750/quarter',
+    price: 'From $950/quarter',
     body: 'GigLine keeps the system current between annual walkthroughs. Documentation review, training record audit, SDS inventory check, corrective action tracker review, and a brief site visit if needed.',
     best: 'Operations that want the system kept alive after the Control System is built.',
     cta: 'Ask About Quarterly Maintenance',
@@ -161,7 +161,7 @@ const READINESS_PATH = [
   { stage: 'Check the files', need: 'Are our documents inspection-ready?', offer: DOC_REVIEW_PATH_OFFER, link: intakeLink('documentation-readiness-review') },
   { stage: 'Review both', need: 'We need the floor and files checked.', offer: 'Compliance Readiness Visit — from $2,000', link: intakeLink('compliance-readiness-visit') },
   { stage: 'Build the system', need: 'We need this organized and defensible.', offer: 'OSHA-Ready Control System — from $4,500', link: intakeLink('osha-ready-control-system') },
-  { stage: 'Keep it current', need: 'We need ongoing accountability.', offer: 'Quarterly Maintenance — from $750/quarter', link: intakeLink('quarterly-compliance-maintenance') },
+  { stage: 'Keep it current', need: 'We need ongoing accountability.', offer: 'Quarterly Maintenance — from $950/quarter', link: intakeLink('quarterly-compliance-maintenance') },
 ];
 
 /* ═══ Pricing reference block ═══ */
@@ -169,9 +169,9 @@ const PRICING_REF = [
   ['Safety Walkthrough', 'Starting at $1,200'],
   ['OSHA Documentation Readiness Review', DOC_REVIEW_PRICING_REF_PRICE],
   ['Compliance Readiness Visit', 'Starting at $2,000'],
-  ['Incident Review & Corrective Action', 'Starting at $1,200'],
+  ['Incident Review & Corrective Action', 'Starting at $1,500'],
   ['OSHA-Ready Control System', 'Starting at $4,500'],
-  ['Quarterly Compliance Maintenance', 'Starting at $750/quarter'],
+  ['Quarterly Compliance Maintenance', 'Starting at $950/quarter'],
   ['Annual Compliance Control Partner', 'Starting at $9,000/year'],
 ];
 
@@ -402,14 +402,15 @@ const ServicesPage = () => {
                   >
                     What You Get
                   </p>
-                  <ul className="space-y-2 mb-6">
+                  <ul className="space-y-2 mb-4">
                     {[
-                      'Full safety walkthrough on-site',
-                      'OSHA Documentation Readiness Review',
-                      'Single compliance percentage score',
-                      'Photo documentation + CFR citations',
+                      'Full safety walkthrough on-site (1\u20133 hours)',
+                      'OSHA Documentation Readiness Review (53-item, 7 OSHA categories)',
+                      'Single compliance percentage score covering floor and files',
+                      'Photo documentation with CFR citations and 2026 penalty exposure per finding',
+                      'Prioritized corrective action list \u2014 RED / AMBER / GREEN',
                       'Written report within 48 hours',
-                      'Supervisor Safety Starter System ($199 value) included',
+                      'Supervisor Safety Starter System (included)',
                     ].map((line, i) => (
                       <li key={i} className="flex items-start gap-3 text-[#102133]/85 text-base leading-snug">
                         <Check size={18} className="flex-shrink-0 mt-0.5 text-[#1F6FEB]" strokeWidth={3} />
@@ -417,6 +418,13 @@ const ServicesPage = () => {
                       </li>
                     ))}
                   </ul>
+
+                  <p
+                    className="italic text-[#102133]/65 text-sm md:text-[15px] leading-relaxed mb-6 max-w-2xl"
+                    data-testid="crv-anchor-line"
+                  >
+                    Booked separately, the Safety Walkthrough and Documentation Review start at $2,500. The Compliance Readiness Visit covers both in a single visit &mdash; from $2,000.
+                  </p>
                 </div>
 
                 <div className="md:w-64 flex-shrink-0">

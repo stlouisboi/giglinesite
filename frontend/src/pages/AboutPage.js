@@ -201,7 +201,7 @@ const AboutPage = () => {
             <p className="text-center text-[#0d1b2a]/50 mb-8">
               It's a small detail. But it explains everything.
             </p>
-            <div className="bg-white rounded p-8 border border-[#0d1b2a]/10">
+            <div className="bg-white rounded-xl p-8 border border-[#dde3ea]">
               <div className="text-[#0d1b2a]/70 space-y-4 leading-relaxed">
                 <p>
                   In the military, your <strong className="text-[#0d1b2a]">gig line</strong> is the straight line formed by your shirt, your belt buckle, and your trouser fly.
@@ -258,7 +258,7 @@ const AboutPage = () => {
             ].map((cred, index) => (
               <div 
                 key={index} 
-                className="text-center border border-[#0d1b2a]/10 rounded p-5"
+                className="text-center border border-[#dde3ea] rounded-xl p-6"
                 data-testid={`credential-${index}`}
               >
                 <p className="text-2xl font-bold text-[#1560ae]">{cred.label}</p>

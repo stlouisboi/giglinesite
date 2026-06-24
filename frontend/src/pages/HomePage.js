@@ -249,7 +249,7 @@ const HomePage = () => {
       ═══════════════════════════════════════════════════════════════ */}
 
       {/* ═══ SECTION 2 — WHAT WE FIND ON THE FLOOR (GL-WEB-008) ═══ */}
-      <section className="py-20 md:py-24 bg-white border-t border-b" style={{ borderColor: '#E5E7EB' }} data-testid="floor-findings-section">
+      <section className="py-20 md:py-24 bg-white border-t border-b" style={{ borderColor: '#dde3ea' }} data-testid="floor-findings-section">
         <div className="container max-w-6xl">
           <Reveal>
             <p className="uppercase tracking-[0.18em] text-[#1a6fc4] font-semibold mb-3" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }} data-testid="floor-findings-eyebrow">
@@ -331,11 +331,11 @@ const HomePage = () => {
             ].map((c, i) => (
               <Reveal key={c.kicker} delay={i * 90}>
                 <div
-                  className="h-full p-7 flex flex-col bg-white"
+                  className="h-full p-8 flex flex-col bg-white"
                   style={{
-                    border: c.featured ? '2px solid #1a6fc4' : '1px solid #E5E7EB',
-                    borderRadius: '12px',
-                    boxShadow: c.featured ? '0 18px 40px -22px rgba(26,111,196,0.32)' : '0 1px 0 rgba(13,27,42,0.02)',
+                    border: c.featured ? '2px solid #1a6fc4' : '1px solid #dde3ea',
+                    borderRadius: '16px',
+                    boxShadow: c.featured ? '0 4px 12px -4px rgba(26,111,196,0.15)' : '0 1px 0 rgba(13,27,42,0.02)',
                   }}
                   data-testid={`why-gigline-card-${i + 1}`}
                 >
@@ -391,7 +391,7 @@ const HomePage = () => {
 
 
       {/* ═══ SECTION 4 — COST OF WAITING (GL-WEB-008) ═══ */}
-      <section className="py-20 md:py-24 bg-white border-t" style={{ borderColor: '#E5E7EB' }} data-testid="cost-of-waiting-section">
+      <section className="py-20 md:py-24 bg-white border-t" style={{ borderColor: '#dde3ea' }} data-testid="cost-of-waiting-section">
         <div className="container max-w-6xl">
           <Reveal>
             <p className="uppercase font-bold mb-3" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', letterSpacing: '0.2em', color: '#8B2500' }} data-testid="cost-eyebrow">
@@ -433,7 +433,7 @@ const HomePage = () => {
                   style={{
                     background: '#f5f4f0',
                     borderTop: '3px solid #8B2500',
-                    borderRadius: '4px',
+                    borderRadius: '16px',
                   }}
                   data-testid={`cost-stat-${i + 1}`}
                 >
@@ -507,10 +507,10 @@ const HomePage = () => {
                 <div
                   className="relative h-full bg-white flex flex-col"
                   style={{
-                    border: s.featured ? '2px solid #1a6fc4' : '1px solid #E5E7EB',
-                    borderRadius: '4px',
+                    border: s.featured ? '2px solid #1a6fc4' : '1px solid #dde3ea',
+                    borderRadius: '16px',
                     padding: s.featured ? '44px 32px 36px' : '36px 32px',
-                    boxShadow: s.featured ? '0 18px 40px -22px rgba(31,111,235,0.35)' : '0 1px 0 rgba(13,27,42,0.02)',
+                    boxShadow: s.featured ? '0 4px 12px -4px rgba(31,111,235,0.18)' : '0 1px 0 rgba(13,27,42,0.02)',
                   }}
                   data-testid={s.testid}
                 >
@@ -526,7 +526,7 @@ const HomePage = () => {
                         fontSize: '10.5px',
                         letterSpacing: '0.14em',
                         padding: '8px 18px',
-                        borderRadius: '2px',
+                        borderRadius: '999px',
                         whiteSpace: 'nowrap',
                         fontFamily: "'JetBrains Mono', monospace",
                       }}
@@ -605,7 +605,7 @@ const HomePage = () => {
               { text: 'They don\u2019t just point out issues \u2014 they understand how operations actually run and provide solutions that can be executed on the floor. Where they really stand out is in incident investigations. Their approach is disciplined and focused on true root cause.', name: 'Demar Archie', role: 'Warehouse Receiving Manager' },
               { text: 'Most consultants show up with a binder and a checklist. Vince showed up in work boots and asked to see the press line first. Practical guy. Knows the floor. Report came back clear and short \u2014 the way it should.', name: 'David R.', role: 'Plant Manager, Small Manufacturer, Piedmont Triad' },
             ].map((r, i) => (
-              <div key={r.name} className="p-7 mb-5" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.10)', borderRadius: '10px' }} data-testid={`review-card-${i + 1}`}>
+              <div key={r.name} className="p-7 mb-5" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.10)', borderRadius: '16px' }} data-testid={`review-card-${i + 1}`}>
                 <p className="mb-6" style={{ fontStyle: 'italic', fontFamily: "Georgia, 'Times New Roman', serif", fontSize: '17px', lineHeight: 1.6, color: 'rgba(255,255,255,0.92)' }}>&ldquo;{r.text}&rdquo;</p>
                 <p className="text-sm font-semibold" style={{ color: 'rgba(255,255,255,0.55)' }}>{r.name} &mdash; <span style={{ fontWeight: 400 }}>{r.role}</span></p>
               </div>
@@ -615,7 +615,7 @@ const HomePage = () => {
           {/* MIDDLE — Case Study */}
           <div data-testid="case-study-column">
             <p className="uppercase font-bold mb-8" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.55)' }}>Case Study</p>
-            <div className="p-7" style={{ background: 'rgba(26,111,196,0.06)', border: '1px solid rgba(26,111,196,0.25)', borderRadius: '10px' }}>
+            <div className="p-8" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.10)', borderRadius: '16px' }}>
               <h3 className="text-xl md:text-2xl font-bold text-white leading-tight mb-8">How a Plastics Manufacturer Passed OSHA With Zero Citations.</h3>
               {[
                 { label: 'Operation Size', value: '~60 Employees', highlight: false },
@@ -746,8 +746,8 @@ const HomePage = () => {
                   className="overflow-hidden"
                   style={{
                     border: '1px solid rgba(255,255,255,0.10)',
-                    borderRadius: '8px',
-                    background: 'rgba(255,255,255,0.02)',
+                    borderRadius: '16px',
+                    background: 'rgba(255,255,255,0.04)',
                   }}
                   data-testid="about-photo-panel"
                 >

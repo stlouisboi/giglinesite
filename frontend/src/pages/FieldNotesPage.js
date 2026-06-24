@@ -160,12 +160,12 @@ const FieldNotesPage = () => {
       {/* Notes Grid */}
       <section className="py-16 md:py-24 bg-white" data-testid="field-notes-grid">
         <div className="container max-w-4xl">
-          <div className="space-y-0 border-t border-[#0d1b2a]/10">
+          <div className="space-y-0 border-t border-[#dde3ea]">
             {FIELD_NOTES.map((note) => (
               <Link
                 key={note.slug}
                 to={`/field-notes/${note.slug}`}
-                className="block py-8 border-b border-[#0d1b2a]/10 group"
+                className="block py-8 border-b border-[#dde3ea] group"
                 data-testid={`field-note-${note.slug}`}
               >
                 <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">

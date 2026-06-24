@@ -161,7 +161,7 @@ const FAQPage = () => {
               return (
                 <div
                   key={i}
-                  className="border border-[#0d1b2a]/10 rounded-lg bg-white overflow-hidden"
+                  className="border border-[#dde3ea] rounded-xl bg-white overflow-hidden"
                   data-testid={`faq-item-${i}`}
                 >
                   <button

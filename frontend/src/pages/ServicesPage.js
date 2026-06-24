@@ -291,7 +291,7 @@ const ServicesPage = () => {
       {/* ═══ JUMP NAV (sticky pill strip) ═══ */}
       <nav
         className="sticky top-[80px] md:top-[112px] lg:top-[128px] z-20 bg-white/95 backdrop-blur-sm"
-        style={{ borderBottom: '1px solid rgba(16,33,51,0.10)' }}
+        style={{ borderBottom: '1px solid #dde3ea' }}
         aria-label="Jump to service"
         data-testid="services-jump-nav"
       >
@@ -396,7 +396,7 @@ const ServicesPage = () => {
               <Reveal key={title}>
                 <div
                   className="h-full bg-white rounded-xl p-6 flex flex-col"
-                  style={{ border: '1px solid rgba(16,33,51,0.10)', boxShadow: '0 4px 12px rgba(16,33,51,0.04)' }}
+                  style={{ border: '1px solid #dde3ea', boxShadow: '0 1px 0 rgba(13,27,42,0.02)' }}
                   data-testid={`who-helps-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
                 >
                   <div
@@ -423,8 +423,8 @@ const ServicesPage = () => {
               data-testid="svc-card-compliance-readiness"
               id="crv"
               style={{
-                border: '3px solid #1a6fc4',
-                boxShadow: '0 32px 64px -16px rgba(31,111,235,0.30), 0 0 0 6px rgba(31,111,235,0.08)',
+                border: '2px solid #1a6fc4',
+                boxShadow: '0 8px 24px -8px rgba(31,111,235,0.15)',
                 scrollMarginTop: '128px',
               }}
             >
@@ -495,8 +495,8 @@ const ServicesPage = () => {
 
                 <div className="md:w-64 flex-shrink-0">
                   <div
-                    className="rounded-lg px-5 py-5 mb-4 text-center"
-                    style={{ border: '1px solid rgba(31,111,235,0.25)', backgroundColor: '#FBFCFD' }}
+                    className="rounded-xl px-5 py-6 mb-4 text-center"
+                    style={{ border: '1px solid #dde3ea', backgroundColor: '#FBFCFD' }}
                   >
                     <p
                       className="uppercase tracking-[2px] text-[#0d1b2a]/55 font-bold mb-1"
@@ -550,11 +550,11 @@ const ServicesPage = () => {
               <Reveal key={s.testid}>
                 <div
                   id={s.anchor}
-                  className="rounded-lg p-6 md:p-7 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-start scroll-mt-32"
+                  className="rounded-xl p-7 md:p-8 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-start scroll-mt-32"
                   style={{
                     background: s.anchor === 'incident' ? '#fff8f0' : '#ffffff',
-                    border: s.anchor === 'incident' ? '1px solid rgba(220,38,38,0.20)' : (s.badgeColor ? `1px solid ${s.badgeColor}33` : '1px solid rgba(16,33,51,0.10)'),
-                    boxShadow: s.anchor === 'incident' ? '0 6px 18px -8px rgba(220,38,38,0.18)' : '0 2px 6px rgba(16,33,51,0.03)',
+                    border: s.anchor === 'incident' ? '1px solid rgba(220,38,38,0.20)' : (s.badgeColor ? `1px solid ${s.badgeColor}33` : '1px solid #dde3ea'),
+                    boxShadow: s.anchor === 'incident' ? '0 1px 0 rgba(220,38,38,0.06)' : '0 1px 0 rgba(13,27,42,0.02)',
                   }}
                   data-testid={s.testid}
                 >
@@ -586,7 +586,7 @@ const ServicesPage = () => {
                     )}
 
                     {s.floorPricing && (
-                      <div className="mt-4 mb-3 p-4 rounded bg-[#F7F1E0]" style={{ border: '1px solid rgba(212,169,62,0.35)' }}>
+                      <div className="mt-4 mb-3 p-4 rounded-lg bg-[#F7F1E0]" style={{ border: '1px solid rgba(212,169,62,0.35)' }}>
                         <p className="text-xs uppercase tracking-wider text-[#0d1b2a]/65 mb-2 font-bold" style={mono}>
                           Floor Pricing Reference
                         </p>
@@ -809,8 +809,8 @@ const ServicesPage = () => {
                   id={s.anchor}
                   className="bg-white h-full rounded-xl p-7 md:p-8 flex flex-col scroll-mt-32"
                   style={{
-                    border: s.includes ? '2px solid #1a6fc4' : '1px solid rgba(16,33,51,0.10)',
-                    boxShadow: s.includes ? '0 14px 32px -18px rgba(31,111,235,0.30)' : '0 6px 14px rgba(16,33,51,0.04)',
+                    border: s.includes ? '2px solid #1a6fc4' : '1px solid #dde3ea',
+                    boxShadow: s.includes ? '0 4px 12px -4px rgba(31,111,235,0.15)' : '0 1px 0 rgba(13,27,42,0.02)',
                   }}
                   data-testid={s.testid}
                 >
@@ -951,12 +951,12 @@ const ServicesPage = () => {
           <Reveal>
             <div
               className="hidden md:block rounded-xl overflow-hidden bg-white"
-              style={{ border: '1px solid rgba(16,33,51,0.10)', boxShadow: '0 6px 14px rgba(16,33,51,0.04)' }}
+              style={{ border: '1px solid #dde3ea', boxShadow: '0 1px 0 rgba(13,27,42,0.02)' }}
               data-testid="readiness-path-table"
             >
               <div
                 className="grid grid-cols-[1fr_1.4fr_1.4fr] px-6 py-4 uppercase tracking-[2px] font-bold text-[#0d1b2a]/65"
-                style={{ ...mono, fontSize: '11px', backgroundColor: '#F7F9FC', borderBottom: '1px solid rgba(16,33,51,0.10)' }}
+                style={{ ...mono, fontSize: '11px', backgroundColor: '#F7F9FC', borderBottom: '1px solid #dde3ea' }}
               >
                 <div>Stage</div>
                 <div>What You Need</div>
@@ -966,7 +966,7 @@ const ServicesPage = () => {
                 <div
                   key={row.stage}
                   className="grid grid-cols-[1fr_1.4fr_1.4fr] px-6 py-5 items-center"
-                  style={{ borderBottom: i < READINESS_PATH.length - 1 ? '1px solid rgba(16,33,51,0.08)' : 'none' }}
+                  style={{ borderBottom: i < READINESS_PATH.length - 1 ? '1px solid rgba(16,33,51,0.06)' : 'none' }}
                   data-testid={`readiness-path-row-${i + 1}`}
                 >
                   <div className="font-bold text-[#0d1b2a]">{row.stage}</div>
@@ -993,7 +993,7 @@ const ServicesPage = () => {
               <Reveal key={row.stage}>
                 <div
                   className="bg-white rounded-lg p-5"
-                  style={{ border: '1px solid rgba(16,33,51,0.10)' }}
+                  style={{ border: '1px solid #dde3ea' }}
                   data-testid={`readiness-path-mobile-row-${i + 1}`}
                 >
                   <p
@@ -1101,8 +1101,8 @@ const ServicesPage = () => {
             {SERVICES_FAQ.map((item, i) => (
               <Reveal key={i}>
                 <details
-                  className="group bg-white rounded-lg overflow-hidden"
-                  style={{ border: '1px solid rgba(16,33,51,0.10)' }}
+                  className="group bg-white rounded-xl overflow-hidden"
+                  style={{ border: '1px solid #dde3ea' }}
                   data-testid={`services-faq-${i + 1}`}
                 >
                   <summary
@@ -1142,13 +1142,13 @@ const ServicesPage = () => {
               </p>
               <div
                 className="rounded-xl bg-white overflow-hidden"
-                style={{ border: '1px solid rgba(16,33,51,0.10)', boxShadow: '0 6px 14px rgba(16,33,51,0.04)' }}
+                style={{ border: '1px solid #dde3ea', boxShadow: '0 1px 0 rgba(13,27,42,0.02)' }}
               >
                 {PRICING_REF.map(([name, price], i) => (
                   <div
                     key={name}
                     className="grid grid-cols-[1fr_auto] gap-4 px-6 py-4 items-center"
-                    style={{ borderBottom: i < PRICING_REF.length - 1 ? '1px solid rgba(16,33,51,0.08)' : 'none' }}
+                    style={{ borderBottom: i < PRICING_REF.length - 1 ? '1px solid rgba(16,33,51,0.06)' : 'none' }}
                     data-testid={`pricing-ref-row-${i + 1}`}
                   >
                     <span className="text-base text-[#0d1b2a] font-semibold">{name}</span>

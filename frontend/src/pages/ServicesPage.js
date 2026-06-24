@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Phone, Check, Factory, Truck, Warehouse, HardHat, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Phone, Check, Factory, Truck, Warehouse, HardHat, ShieldCheck, Zap } from 'lucide-react';
 import { trackServiceBooking, trackPhoneClick, trackEvent } from '../utils/analytics';
 import SEO from '../components/SEO';
 import CaseStudyTeaser from '../components/CaseStudyTeaser';
@@ -639,35 +639,67 @@ const ServicesPage = () => {
         <div className="container max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-10 md:gap-14 items-start">
             <Reveal>
+              {/* PREMIUM ENGAGEMENT badge */}
+              <span
+                className="inline-flex items-center gap-2 uppercase font-bold mb-6"
+                style={{
+                  ...mono,
+                  fontSize: '11px',
+                  letterSpacing: '0.16em',
+                  color: '#D4A93E',
+                  background: 'rgba(212,169,62,0.10)',
+                  border: '1px solid rgba(212,169,62,0.35)',
+                  padding: '8px 14px',
+                  borderRadius: '4px',
+                }}
+                data-testid="control-system-premium-badge"
+              >
+                <Zap size={13} strokeWidth={2.5} />
+                Premium Engagement
+              </span>
+
               <p
-                className="uppercase tracking-[3px] text-[#D4A93E] mb-4 font-bold"
-                style={{ ...mono, fontSize: '11px' }}
+                className="uppercase font-bold mb-5"
+                style={{ ...mono, fontSize: '11px', letterSpacing: '0.18em', color: '#1F6FEB' }}
                 data-testid="control-system-kicker"
               >
-                Premium Engagement · Long-Term System
-              </p>
-              <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight mb-5" data-testid="control-system-headline">
-                GigLine OSHA-Ready Control System
-              </h2>
-              <p className="text-base md:text-lg text-[#CBD5E1] leading-relaxed mb-6">
-                The buildout. GigLine constructs the complete physical and digital safety infrastructure your operation needs to pass any OSHA inspection, customer audit, or insurance review — and hands it back to your team with a system they can actually maintain.
-              </p>
-              <p className="text-base text-[#CBD5E1]/85 leading-relaxed mb-6">
-                Not a binder of templates. A working command system organized the way an inspector reads it, with corrective action tracking your supervisors can update on a tablet from the floor.
+                OSHA-Ready Control System
               </p>
 
-              <div className="rounded-lg p-5 mb-6" style={{ backgroundColor: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
+              <h2
+                className="text-4xl md:text-5xl font-extrabold text-white leading-[1.05] mb-5 tracking-tight"
+                data-testid="control-system-headline"
+              >
+                The buildout. Complete physical and digital safety infrastructure.
+              </h2>
+
+              {/* Gold accent line */}
+              <div className="mb-7" style={{ width: '64px', height: '3px', background: '#D4A93E', borderRadius: '2px' }} />
+
+              <p className="text-base md:text-lg text-[#CBD5E1] leading-relaxed mb-6">
+                GigLine constructs the complete safety infrastructure your operation needs to pass any OSHA inspection, customer audit, or insurance review &mdash; and hands it back to your team with a system they can actually maintain.
+              </p>
+              <p
+                className="text-lg md:text-xl font-semibold text-white leading-snug mb-10"
+                style={{ fontFamily: "Georgia, 'Times New Roman', serif", fontStyle: 'italic' }}
+                data-testid="control-system-tagline"
+              >
+                This is not a report. This is the system.
+              </p>
+
+              {/* Prominent price block */}
+              <div className="mb-8" data-testid="control-system-price-block">
                 <p
-                  className="uppercase tracking-[2px] text-[#D4A93E] font-bold mb-2"
-                  style={{ ...mono, fontSize: '10px' }}
+                  className="uppercase font-bold mb-2"
+                  style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.18em', color: 'rgba(255,255,255,0.55)' }}
                 >
                   Starting At
                 </p>
-                <p className="text-4xl md:text-5xl font-bold text-white leading-none tracking-tight mb-2">
+                <p className="font-extrabold text-white leading-none tracking-tight mb-3" style={{ fontSize: 'clamp(56px, 7vw, 88px)' }}>
                   $4,500
                 </p>
-                <p className="text-[#CBD5E1]/65 italic" style={{ ...mono, fontSize: '11px' }}>
-                  fixed quote · scoped after site assessment
+                <p style={{ ...mono, fontSize: '12px', color: 'rgba(255,255,255,0.55)' }}>
+                  fixed quote &middot; scoped after site assessment
                 </p>
               </div>
 

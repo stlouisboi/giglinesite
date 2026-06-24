@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Phone, Check, Factory, Truck, Warehouse, HardHat, ShieldCheck, Zap, FileText, Users, Wrench, BookOpen } from 'lucide-react';
+import { ArrowRight, Phone, Check, Factory, Truck, Warehouse, HardHat, ShieldCheck, Zap, FileText, Users, Wrench, BookOpen, CheckCircle2 } from 'lucide-react';
 import { trackServiceBooking, trackPhoneClick, trackEvent } from '../utils/analytics';
 import SEO from '../components/SEO';
 import CaseStudyTeaser from '../components/CaseStudyTeaser';
@@ -91,32 +91,69 @@ const WHO_HELPS = [
 /* ═══ Standalone Services (Section 6 — excludes Compliance Visit + Control System which get their own sections) ═══ */
 const STANDALONE = [
   {
+    eyebrow: 'Safety Walkthrough Report',
     title: 'Safety Walkthrough Report',
+    headline: 'The first step when you need exposure identified quickly.',
     price: 'From $1,200',
-    body: 'On-site walkthrough (1\u20133 hours). Photo-documented hazard findings. CFR citations with 2026 penalty exposure calculated per finding. Top 10 Fixes report \u2014 RED / AMBER / GREEN priority triage. Written report delivered within 24\u201348 hours. Fixed quote. Private engagement.',
+    body: 'An on-site walkthrough focused purely on physical hazards. You get a photo-documented report and a prioritized fix list in 48 hours. No retainer. No follow-up obligation.',
+    listLabel: "What's Included",
+    whatsIncluded: [
+      'On-site walkthrough (1\u20133 hours)',
+      'Photo-documented hazard findings',
+      'CFR citations + 2026 penalty exposure per finding',
+      'Top 10 priority findings \u2014 RED / AMBER / GREEN, CFR citation + corrective action for each',
+      'Delivered within 24\u201348 hours',
+      'Fixed quote before scheduling',
+    ],
     best: 'Operations that want to know where they stand on the floor before OSHA, an insurer, or a customer auditor shows up.',
     cta: 'Request a Walkthrough',
     intakeService: 'safety-walkthrough-report',
+    detailsHref: '/services/safety-walkthrough-report',
     testid: 'svc-standalone-walkthrough',
     anchor: 'walkthrough',
   },
   {
+    eyebrow: 'OSHA Documentation Readiness Review',
     title: 'OSHA Documentation Readiness Review',
-    price: DOC_REVIEW_PRICE,
-    body: DOC_REVIEW_DESCRIPTION,
-    best: 'Operations preparing for an audit, insurance review, or customer pre-qualification that need to know exactly which documentation gaps exist before an on-site visit.',
+    headline: 'Know exactly what your files say before an inspector does.',
+    price: 'From $1,300',
+    body: 'A structured review of your written programs, training records, OSHA logs, and SDS compliance. You get a compliance percentage score and a prioritized corrective action sequence \u2014 not a generic checklist.',
+    listLabel: "What's Reviewed",
+    whatsIncluded: [
+      'Written safety programs (LOTO, HazCom, PPE, EAP)',
+      'Training records by employee and role',
+      'OSHA 300/300A/301 logs',
+      'Inspection and maintenance records',
+      'SDS inventory and compliance',
+      '53-item checklist across 7 OSHA categories',
+      'Compliance percentage score + priority corrective action sequence',
+    ],
+    best: 'Operations preparing for an audit, insurance review, or customer pre-qualification who need to know specifically what documentation gaps exist.',
     cta: 'Request a Documentation Review',
     intakeService: 'documentation-readiness-review',
+    detailsHref: '/services/documentation-readiness-review',
     testid: 'svc-standalone-doc-review',
     anchor: 'docs-review',
   },
   {
+    eyebrow: 'Incident Review & Corrective Action Support',
     title: 'Incident Review & Corrective Action Support',
+    headline: 'Call before you file anything or speak to anyone outside the operation.',
     price: 'From $1,500',
-    body: 'Post-injury or post-near-miss response. Root cause analysis. OSHA recordability determination. OSHA 301 completion. Corrective action plan with documented closure. GigLine reviews the incident before you file anything or speak to anyone outside the operation.',
-    body2: 'Call GigLine before you file anything or talk to anyone.',
+    body: 'Post-injury or post-near-miss response. Root cause analysis, OSHA recordability determination, and a corrective action plan with documented closure \u2014 reviewed before paperwork or outside conversations begin.',
+    listLabel: "What's Included",
+    whatsIncluded: [
+      'Root cause analysis on-site',
+      'OSHA recordability determination',
+      'OSHA 301 completion',
+      'Corrective action plan with documented closure',
+      'Same-week response',
+      'Private engagement',
+    ],
+    best: 'Operations responding to a recordable injury, near-miss, or OSHA inquiry that need expert review before paperwork is filed or recorded statements are given.',
     cta: 'Request Incident Support',
     intakeService: 'incident-review',
+    detailsHref: '/services/incident-review',
     testid: 'svc-standalone-incident',
     anchor: 'incident',
     badge: 'Time-Sensitive',
@@ -124,17 +161,30 @@ const STANDALONE = [
     showPhone: true,
   },
   {
+    eyebrow: 'Document Development',
     title: 'Document Development',
-    price: 'Quote after documentation review',
-    body: 'GigLine writes the programs you are missing. LOTO program and machine-specific procedures. HazCom program. PPE hazard assessment. Emergency Action Plan. Scoped and quoted after the OSHA Documentation Readiness Review identifies specific gaps.',
+    headline: 'When the program is missing, GigLine writes it.',
+    price: 'Quote after review',
+    body: 'GigLine writes the programs you are missing \u2014 LOTO, HazCom, PPE assessments, Emergency Action Plans, machine-specific procedures. Scoped and quoted after the OSHA Documentation Readiness Review identifies specific gaps.',
+    listLabel: "What's Built",
+    whatsIncluded: [
+      'LOTO program + machine-specific procedures',
+      'HazCom program',
+      'PPE hazard assessment',
+      'Emergency Action Plan',
+      'Single program or full suite \u2014 scoped to your gap list',
+      'Quoted after Documentation Readiness Review',
+    ],
     floorPricing: [
       ['Single written program', 'From $350'],
       ['LOTO program + up to 5 machine procedures', 'From $650'],
-      ['LOTO program + 6–15 machine procedures', 'From $1,200'],
+      ['LOTO program + 6\u201315 machine procedures', 'From $1,200'],
       ['Full written program suite (5+ programs)', 'From $2,000'],
     ],
+    best: 'Operations whose Documentation Readiness Review surfaced missing or insufficient written programs and need them built to OSHA standard.',
     cta: 'Ask About Document Development',
     intakeService: 'document-development',
+    detailsHref: '/services/document-development',
     testid: 'svc-standalone-doc-dev',
   },
 ];
@@ -471,36 +521,43 @@ const ServicesPage = () => {
                     The floor and the files reviewed in a single visit. Most operations don&apos;t need a separate walkthrough and documentation review — they need both, scored together, with a single readiness report. This is that engagement.
                   </p>
 
-                  <p
-                    className="uppercase tracking-[2px] text-[#0d1b2a]/55 font-bold mb-3"
-                    style={{ ...mono, fontSize: '10.5px' }}
+                  <div
+                    className="rounded-2xl p-7 md:p-9 mb-6"
+                    style={{ backgroundColor: '#f5f4f0' }}
+                    data-testid="crv-whats-included"
                   >
-                    What You Get
-                  </p>
-                  <ul className="space-y-2 mb-4">
-                    {[
-                      'Full physical hazard walkthrough (2\u20134 hours)',
-                      'Photo-documented findings with CFR citations',
-                      'Structured documentation review (53-item checklist)',
-                      'Single compliance percentage score \u2014 floor and files combined',
-                      '18-page CFR-cited field audit report within 48 hours',
-                      'Compliance score with prioritized finding categories',
-                      '90-day remediation tracker \u2014 pre-populated, ready to assign',
-                      "'What to Say If OSHA Calls' guidance sheet",
-                      '30-day check-in call included',
-                    ].map((line, i) => (
-                      <li key={i} className="flex items-start gap-3 text-[#0d1b2a]/85 text-base leading-snug">
-                        <Check size={18} className="flex-shrink-0 mt-0.5 text-[#1a6fc4]" strokeWidth={3} />
-                        <span>{line}</span>
-                      </li>
-                    ))}
-                  </ul>
+                    <p
+                      className="uppercase font-bold mb-6"
+                      style={{ ...mono, fontSize: '10.4px', letterSpacing: '0.20em', color: '#5B6B7A' }}
+                    >
+                      What&apos;s Included
+                    </p>
+                    <ul className="space-y-4">
+                      {[
+                        'Full physical hazard walkthrough (2\u20134 hours)',
+                        'Photo-documented findings with CFR citations',
+                        'Structured documentation review (53-item checklist)',
+                        'Single compliance percentage score \u2014 floor and files combined',
+                        '18-page CFR-cited field audit report within 48 hours',
+                        'Compliance score with prioritized finding categories',
+                        '90-day remediation tracker \u2014 pre-populated, ready to assign',
+                        "'What to Say If OSHA Calls' guidance sheet",
+                        '30-day check-in call included',
+                        'Fixed quote \u00b7 Private engagement',
+                      ].map((line, i) => (
+                        <li key={i} className="flex items-start gap-3.5 text-[#0d1b2a]/85 text-[15.5px] leading-[1.55]">
+                          <CheckCircle2 size={18} className="flex-shrink-0 mt-0.5 text-[#1a6fc4]" strokeWidth={2} />
+                          <span>{line}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
                   <p
                     className="italic text-[#0d1b2a]/65 text-sm md:text-[15px] leading-relaxed mb-6 max-w-2xl"
                     data-testid="crv-anchor-line"
                   >
-                    Fixed quote &middot; Private engagement &middot; Booked separately, the Safety Walkthrough and Documentation Review start at $2,500. The Compliance Readiness Visit covers both in a single visit &mdash; from $2,000.
+                    Booked separately, the Safety Walkthrough and Documentation Review start at $2,500. The Compliance Readiness Visit covers both in a single visit &mdash; from $2,000.
                   </p>
                 </div>
 
@@ -569,37 +626,40 @@ const ServicesPage = () => {
       </section>
 
       {/* ═══ 6. STANDALONE SERVICES ═══ */}
-      <section className="py-20 md:py-24 bg-white" data-testid="services-standalone">
+      <section className="py-24 md:py-32" style={{ backgroundColor: '#f5f4f0' }} data-testid="services-standalone">
         <div className="container max-w-6xl">
           <Reveal>
-            <p className="uppercase tracking-[3px] text-[#1a6fc4] mb-3 font-bold" style={{ ...mono, fontSize: '11px' }}>
+            <p
+              className="uppercase font-bold mb-4"
+              style={{ ...mono, fontSize: '10.4px', fontWeight: 700, letterSpacing: '2.08px', color: '#1a6fc4' }}
+            >
               Standalone Services
             </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#0d1b2a] mb-3 max-w-3xl">
+            <h2 className="text-3xl md:text-4xl lg:text-[44px] font-extrabold text-[#0d1b2a] leading-[1.1] mb-4 max-w-4xl tracking-tight">
               Targeted engagements when you need a specific outcome.
             </h2>
-            <p className="text-base md:text-lg text-[#0d1b2a]/70 leading-relaxed mb-12 max-w-3xl">
-              For operations that already know which side they need reviewed — the floor, the files, or a specific incident.
+            <div className="mb-8" style={{ width: '56px', height: '3px', background: '#D4A93E', borderRadius: '2px' }} />
+            <p className="text-base md:text-lg text-[#0d1b2a]/65 leading-[1.85] mb-14 max-w-3xl">
+              For operations that already know which side they need reviewed &mdash; the floor, the files, or a specific incident. Each engagement is scoped, quoted, and delivered independently.
             </p>
           </Reveal>
 
-          <div className="space-y-6">
-            {STANDALONE.map((s) => (
+          <div className="space-y-16 md:space-y-20">
+            {STANDALONE.map((s, idx) => {
+              const cardOnLeft = idx % 2 === 1;
+              const listLabel = s.listLabel || "What's Included";
+              return (
               <Reveal key={s.testid}>
                 <div
                   id={s.anchor}
-                  className="rounded-xl p-7 md:p-8 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-start scroll-mt-32"
-                  style={{
-                    background: s.anchor === 'incident' ? '#fff8f0' : '#ffffff',
-                    border: s.anchor === 'incident' ? '1px solid rgba(220,38,38,0.20)' : (s.badgeColor ? `1px solid ${s.badgeColor}33` : '1px solid #dde3ea'),
-                    boxShadow: s.anchor === 'incident' ? '0 1px 0 rgba(220,38,38,0.06)' : '0 1px 0 rgba(13,27,42,0.02)',
-                  }}
+                  className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center scroll-mt-32"
                   data-testid={s.testid}
                 >
-                  <div>
+                  {/* COPY column */}
+                  <div className={cardOnLeft ? 'lg:order-2' : 'lg:order-1'}>
                     {s.badge && (
                       <span
-                        className="inline-block uppercase font-bold mb-3"
+                        className="inline-block uppercase font-bold mb-4"
                         style={{
                           ...mono,
                           fontSize: '10px',
@@ -614,29 +674,29 @@ const ServicesPage = () => {
                         {s.badge}
                       </span>
                     )}
-                    <div className="flex items-baseline gap-4 flex-wrap mb-3">
-                      <h3 className="text-lg md:text-xl font-bold text-[#0d1b2a]">{s.title}</h3>
-                      <span
-                        className="font-extrabold leading-none"
-                        style={{ ...mono, fontSize: '24px', color: '#c8922a' }}
-                        data-testid={`${s.testid}-price`}
-                      >
-                        {s.price}
-                      </span>
-                    </div>
-                    <p className="text-base text-[#0d1b2a]/80 leading-relaxed mb-3">{s.body}</p>
-                    {s.body2 && (
-                      <p className="text-base text-[#0d1b2a]/80 leading-relaxed mb-3 font-semibold">{s.body2}</p>
-                    )}
+                    <p
+                      className="uppercase font-bold mb-4"
+                      style={{ ...mono, fontSize: '10.4px', fontWeight: 700, letterSpacing: '2.08px', color: '#1a6fc4' }}
+                      data-testid={`${s.testid}-eyebrow`}
+                    >
+                      {s.eyebrow}
+                    </p>
+                    <h3 className="text-3xl md:text-4xl lg:text-[40px] font-extrabold text-[#0d1b2a] leading-[1.1] mb-5 tracking-tight">
+                      {s.headline}
+                    </h3>
+                    <div className="mb-8" style={{ width: '56px', height: '3px', background: '#D4A93E', borderRadius: '2px' }} />
+                    <p className="text-base md:text-lg text-[#0d1b2a]/70 leading-[1.85] mb-8">
+                      {s.body}
+                    </p>
 
                     {s.floorPricing && (
-                      <div className="mt-4 mb-3 p-4 rounded-lg bg-[#F7F1E0]" style={{ border: '1px solid rgba(212,169,62,0.35)' }}>
-                        <p className="text-xs uppercase tracking-wider text-[#0d1b2a]/65 mb-2 font-bold" style={mono}>
+                      <div className="mb-8 p-5 rounded-xl bg-white" style={{ border: '1px solid rgba(212,169,62,0.35)' }}>
+                        <p className="text-xs uppercase tracking-wider text-[#0d1b2a]/65 mb-2.5 font-bold" style={{ ...mono, letterSpacing: '0.2em' }}>
                           Floor Pricing Reference
                         </p>
-                        <ul className="space-y-1.5">
+                        <ul className="space-y-2">
                           {s.floorPricing.map(([item, price], i) => (
-                            <li key={i} className="flex justify-between gap-4 text-sm text-[#0d1b2a]/85">
+                            <li key={i} className="flex justify-between gap-4 text-[14px] text-[#0d1b2a]/85">
                               <span>{item}</span>
                               <span className="font-bold text-[#0d1b2a] whitespace-nowrap" style={mono}>{price}</span>
                             </li>
@@ -646,35 +706,74 @@ const ServicesPage = () => {
                     )}
 
                     {s.best && (
-                      <p className="text-sm text-[#0d1b2a]/60 leading-relaxed mt-3 italic" style={mono}>
-                        Best for: {s.best}
-                      </p>
+                      <div className="mb-8" data-testid={`${s.testid}-best`}>
+                        <p className="font-bold text-[#0d1b2a] mb-2 text-[15.5px]">Best for:</p>
+                        <p className="text-[15px] text-[#0d1b2a]/70 leading-[1.75]">{s.best}</p>
+                      </div>
                     )}
-                  </div>
 
-                  <div className="flex flex-col gap-3 self-start md:self-center">
-                    <Link
-                      to={intakeLink(s.intakeService)}
-                      onClick={() => trackServiceBooking && trackServiceBooking(s.title)}
-                      className="inline-flex items-center justify-center gap-2 border-2 border-[#1a6fc4] hover:bg-[#1a6fc4] hover:text-white text-[#1a6fc4] font-bold px-5 py-3 rounded-lg text-sm transition-colors whitespace-nowrap"
-                      data-testid={`${s.testid}-cta`}
-                    >
-                      {s.cta}
-                      <ArrowRight size={16} />
-                    </Link>
+                    <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+                      <Link
+                        to={intakeLink(s.intakeService)}
+                        onClick={() => trackServiceBooking && trackServiceBooking(s.title)}
+                        className="inline-flex items-center justify-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-6 py-3.5 rounded-lg text-[15px] transition-colors shadow-md shadow-[#1a6fc4]/15"
+                        data-testid={`${s.testid}-cta`}
+                      >
+                        {s.cta}
+                      </Link>
+                      <span className="font-bold text-[#0d1b2a] text-[15.5px]" style={mono} data-testid={`${s.testid}-price`}>
+                        {s.price}
+                      </span>
+                      {s.detailsHref && (
+                        <Link
+                          to={s.detailsHref}
+                          className="inline-flex items-center gap-1 text-[#1a6fc4] hover:text-[#1560ae] font-bold text-[14.5px] transition-colors"
+                          data-testid={`${s.testid}-details`}
+                        >
+                          See Full Details
+                          <ArrowRight size={15} />
+                        </Link>
+                      )}
+                    </div>
                     {s.showPhone && (
                       <a
                         href="tel:3363298899"
-                        className="inline-flex items-center justify-center gap-2 bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold px-5 py-3 rounded-lg text-sm transition-colors whitespace-nowrap"
+                        className="inline-flex items-center gap-2 mt-4 bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold px-5 py-3 rounded-lg text-sm transition-colors"
                         data-testid={`${s.testid}-phone-cta`}
                       >
+                        <Phone size={15} />
                         Call Now &mdash; (336) 329-8899
                       </a>
                     )}
                   </div>
+
+                  {/* WHAT'S INCLUDED CARD column */}
+                  <div className={cardOnLeft ? 'lg:order-1' : 'lg:order-2'}>
+                    <div
+                      className="rounded-2xl bg-white p-8 md:p-10"
+                      style={{ border: '1px solid #dde3ea', boxShadow: '0 1px 0 rgba(13,27,42,0.02)' }}
+                      data-testid={`${s.testid}-includes-card`}
+                    >
+                      <p
+                        className="uppercase font-bold mb-7"
+                        style={{ ...mono, fontSize: '10.4px', letterSpacing: '0.20em', color: '#5B6B7A' }}
+                      >
+                        {listLabel}
+                      </p>
+                      <ul className="space-y-5">
+                        {s.whatsIncluded.map((line, i) => (
+                          <li key={i} className="flex items-start gap-3.5 text-[#0d1b2a]/85 text-[15px] leading-[1.55]">
+                            <CheckCircle2 size={19} className="flex-shrink-0 mt-0.5 text-[#1a6fc4]" strokeWidth={2} />
+                            <span>{line}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </Reveal>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

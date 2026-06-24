@@ -640,7 +640,7 @@ const FieldNoteDetailPage = () => {
           runtime to avoid Google "Duplicate field" warnings. */}
 
       {/* Header */}
-      <section className="bg-[#0B1F33] py-16 md:py-24" data-testid="note-header">
+      <section className="bg-[#0d1b2a] py-16 md:py-24" data-testid="note-header">
         <div className="container max-w-3xl">
           <Link to="/field-notes" className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-[#1a6fc4] transition-colors mb-6" data-testid="back-to-notes">
             <ArrowLeft size={14} /> Field Notes
@@ -676,8 +676,8 @@ const FieldNoteDetailPage = () => {
 
           {/* What It Is — supports multi-paragraph via blank line splits */}
           <div className="mb-12" data-testid="note-what-it-is">
-            <h2 className="text-xl font-bold text-[#102133] mb-4">What It Is</h2>
-            <div className="text-base text-[#102133]/70 leading-relaxed space-y-4 whitespace-pre-line">
+            <h2 className="text-xl font-bold text-[#0d1b2a] mb-4">What It Is</h2>
+            <div className="text-base text-[#0d1b2a]/70 leading-relaxed space-y-4 whitespace-pre-line">
               {note.sections.whatItIs.split('\n\n').map((para, i) => (
                 <p key={i}>{para}</p>
               ))}
@@ -687,14 +687,14 @@ const FieldNoteDetailPage = () => {
           {/* What OSHA Checks (if available) */}
           {note.oshaChecks && (
             <div className="mb-12" data-testid="note-osha-checks">
-              <h2 className="text-xl font-bold text-[#102133] mb-4">What OSHA Checks</h2>
+              <h2 className="text-xl font-bold text-[#0d1b2a] mb-4">What OSHA Checks</h2>
               <div className="space-y-3">
                 {note.oshaChecks.map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <span className="text-[#1560ae] mt-1 flex-shrink-0">
                       <Check size={16} />
                     </span>
-                    <p className="text-base text-[#102133]/70">{item}</p>
+                    <p className="text-base text-[#0d1b2a]/70">{item}</p>
                   </div>
                 ))}
               </div>
@@ -703,12 +703,12 @@ const FieldNoteDetailPage = () => {
 
           {/* What Gets Missed */}
           <div className="mb-12" data-testid="note-what-gets-missed">
-            <h2 className="text-xl font-bold text-[#102133] mb-4">What Most Operations Get Wrong</h2>
+            <h2 className="text-xl font-bold text-[#0d1b2a] mb-4">What Most Operations Get Wrong</h2>
             <div className="space-y-3">
               {note.sections.whatGetsMissed.map((item, i) => (
                 <div key={i} className="flex items-start gap-3">
                   <span className="text-[#1a6fc4] mt-0.5" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px' }}>//</span>
-                  <p className="text-base text-[#102133]/70">{item}</p>
+                  <p className="text-base text-[#0d1b2a]/70">{item}</p>
                 </div>
               ))}
             </div>
@@ -716,33 +716,33 @@ const FieldNoteDetailPage = () => {
 
           {/* What I See */}
           <div className="mb-12 bg-[#F9F8F6] border-l-2 border-[#1a6fc4] p-6 rounded-r" data-testid="note-what-i-see">
-            <h2 className="text-xl font-bold text-[#102133] mb-4">What GigLine Looks For</h2>
-            <p className="text-base text-[#102133]/70 leading-relaxed italic">{note.sections.whatISee}</p>
+            <h2 className="text-xl font-bold text-[#0d1b2a] mb-4">What GigLine Looks For</h2>
+            <p className="text-base text-[#0d1b2a]/70 leading-relaxed italic">{note.sections.whatISee}</p>
           </div>
 
           {/* Checklist */}
           <div className="mb-12" data-testid="note-checklist">
-            <h2 className="text-xl font-bold text-[#102133] mb-4">Quick Checklist</h2>
+            <h2 className="text-xl font-bold text-[#0d1b2a] mb-4">Quick Checklist</h2>
             <div className="space-y-3">
               {note.sections.checklist.map((item, i) => (
                 <label key={i} className="flex items-start gap-3 cursor-pointer group">
-                  <input type="checkbox" className="mt-1 w-4 h-4 rounded border-[#102133]/20 text-[#1a6fc4] focus:ring-[#1a6fc4] accent-[#1a6fc4]" />
-                  <span className="text-base text-[#102133]/70 group-hover:text-[#102133] transition-colors">{item}</span>
+                  <input type="checkbox" className="mt-1 w-4 h-4 rounded border-[#0d1b2a]/20 text-[#1a6fc4] focus:ring-[#1a6fc4] accent-[#1a6fc4]" />
+                  <span className="text-base text-[#0d1b2a]/70 group-hover:text-[#0d1b2a] transition-colors">{item}</span>
                 </label>
               ))}
             </div>
-            <p className="mt-6 text-xs text-[#102133]/40">
+            <p className="mt-6 text-xs text-[#0d1b2a]/40">
               Print this page or use the browser print function (Ctrl+P / Cmd+P) to save a copy.
             </p>
           </div>
 
           {/* CFR Citation */}
           {note.cfrCitation && (
-            <div className="mb-12 py-4 border-t border-[#102133]/10" data-testid="note-cfr-citation">
-              <p className="text-xs text-[#102133]/40 uppercase tracking-wider" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+            <div className="mb-12 py-4 border-t border-[#0d1b2a]/10" data-testid="note-cfr-citation">
+              <p className="text-xs text-[#0d1b2a]/40 uppercase tracking-wider" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
                 Regulation Reference
               </p>
-              <p className="text-sm text-[#102133]/60 font-medium mt-1">{note.cfrCitation}</p>
+              <p className="text-sm text-[#0d1b2a]/60 font-medium mt-1">{note.cfrCitation}</p>
             </div>
           )}
 
@@ -752,7 +752,7 @@ const FieldNoteDetailPage = () => {
           {/* Related Field Notes */}
           {note.relatedNotes && (
             <div className="mb-8" data-testid="note-related">
-              <p className="text-xs text-[#102133]/40 uppercase tracking-wider mb-3" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+              <p className="text-xs text-[#0d1b2a]/40 uppercase tracking-wider mb-3" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
                 Related Field Notes
               </p>
               <div className="flex flex-wrap gap-3">
@@ -763,7 +763,7 @@ const FieldNoteDetailPage = () => {
                     <Link
                       key={rSlug}
                       to={`/field-notes/${rSlug}`}
-                      className="text-sm text-[#102133]/60 hover:text-[#1560ae] transition-colors flex items-center gap-1"
+                      className="text-sm text-[#0d1b2a]/60 hover:text-[#1560ae] transition-colors flex items-center gap-1"
                       data-testid={`related-note-${rSlug}`}
                     >
                       <ArrowRight size={12} />
@@ -808,13 +808,13 @@ const FieldNoteDetailPage = () => {
                 >
                   Free Download
                 </p>
-                <h3 className="text-xl md:text-2xl font-bold text-[#102133] mb-2" data-testid="download-title">
+                <h3 className="text-xl md:text-2xl font-bold text-[#0d1b2a] mb-2" data-testid="download-title">
                   {note.download.title}
                 </h3>
-                <p className="text-sm text-[#102133]/55 mb-6">{note.download.description}</p>
+                <p className="text-sm text-[#0d1b2a]/55 mb-6">{note.download.description}</p>
 
                 {dlStatus === 'sent' ? (
-                  <div className="flex items-center gap-3 text-[#102133]/70" data-testid="download-success">
+                  <div className="flex items-center gap-3 text-[#0d1b2a]/70" data-testid="download-success">
                     <Check size={20} className="text-[#1a6fc4]" />
                     <p className="text-sm font-medium">Sent to your inbox. Check your email.</p>
                   </div>
@@ -826,7 +826,7 @@ const FieldNoteDetailPage = () => {
                       value={dlEmail}
                       onChange={(e) => setDlEmail(e.target.value)}
                       placeholder="Your work email"
-                      className="flex-grow px-4 py-3 rounded border border-[#102133]/15 bg-white text-sm text-[#102133] placeholder:text-[#102133]/30 focus:outline-none focus:border-[#1a6fc4] focus:ring-1 focus:ring-[#1a6fc4]/30"
+                      className="flex-grow px-4 py-3 rounded border border-[#0d1b2a]/15 bg-white text-sm text-[#0d1b2a] placeholder:text-[#0d1b2a]/30 focus:outline-none focus:border-[#1a6fc4] focus:ring-1 focus:ring-[#1a6fc4]/30"
                       data-testid="download-email-input"
                     />
                     <button
@@ -843,7 +843,7 @@ const FieldNoteDetailPage = () => {
                 {dlStatus === 'error' && (
                   <p className="text-sm text-red-500 mt-2">Something went wrong. Try again.</p>
                 )}
-                <p className="text-xs text-[#102133]/30 mt-3">No spam. Just the PDF.</p>
+                <p className="text-xs text-[#0d1b2a]/30 mt-3">No spam. Just the PDF.</p>
               </div>
             </div>
           </div>
@@ -851,7 +851,7 @@ const FieldNoteDetailPage = () => {
       )}
 
       {/* CTA */}
-      <section className="py-16 md:py-24 bg-[#0B1F33]" data-testid="note-cta">
+      <section className="py-16 md:py-24 bg-[#0d1b2a]" data-testid="note-cta">
         <div className="container max-w-3xl text-center">
           <p className="text-lg text-white/60 mb-2">
             If you're not sure how this looks in your operation —

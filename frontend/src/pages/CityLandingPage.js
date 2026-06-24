@@ -196,7 +196,7 @@ const CityLandingPage = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#0B1F33] text-white py-16 md:py-24">
+      <section className="bg-[#0d1b2a] text-white py-16 md:py-24">
         <div className="container max-w-4xl">
           <div className="flex items-center gap-2 mb-6">
             <MapPin size={16} className="text-[#1a6fc4]" />
@@ -249,7 +249,7 @@ const CityLandingPage = () => {
           <p className="uppercase tracking-[3px] text-[#1a6fc4] mb-4" style={{ ...mono, fontSize: '11px' }}>
             What You Get
           </p>
-          <h2 className="text-2xl md:text-3xl font-bold text-[#102133] mb-8" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#0d1b2a] mb-8" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             Every Walkthrough Produces a Written Report
           </h2>
           <div className="grid sm:grid-cols-2 gap-4">
@@ -263,7 +263,7 @@ const CityLandingPage = () => {
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-3">
                 <Check size={16} className="flex-shrink-0 mt-1 text-[#1a6fc4]" strokeWidth={2.5} />
-                <p className="text-sm text-[#102133]/70">{item}</p>
+                <p className="text-sm text-[#0d1b2a]/70">{item}</p>
               </div>
             ))}
           </div>
@@ -276,17 +276,17 @@ const CityLandingPage = () => {
           <p className="uppercase tracking-[3px] text-[#1a6fc4] mb-4" style={{ ...mono, fontSize: '11px' }}>
             Local Service
           </p>
-          <h2 className="text-2xl md:text-3xl font-bold text-[#102133] mb-6" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#0d1b2a] mb-6" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             Serving {data.name} from Kernersville
           </h2>
-          <div className="text-[#102133]/65 space-y-4 leading-relaxed">
+          <div className="text-[#0d1b2a]/65 space-y-4 leading-relaxed">
             <p>
               GigLine Safety & Compliance is based in Kernersville, NC — {data.distance}. I serve {data.industries} across {data.region} and the surrounding Piedmont Triad area.
             </p>
             <p>
               Most {data.name} operations I walk into have the same issues: blocked electrical panels, missing training records, fire equipment that hasn't been inspected, and programs that exist on paper but aren't being followed on the floor.
             </p>
-            <p className="font-medium text-[#102133]">
+            <p className="font-medium text-[#0d1b2a]">
               A walkthrough finds what's actually exposed — before an inspector does.
             </p>
           </div>
@@ -300,7 +300,7 @@ const CityLandingPage = () => {
             Common Questions
           </p>
           <h2
-            className="text-2xl md:text-3xl font-bold text-[#102133] mb-8"
+            className="text-2xl md:text-3xl font-bold text-[#0d1b2a] mb-8"
             style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
             {data.name} Safety Walkthrough FAQ
@@ -309,16 +309,16 @@ const CityLandingPage = () => {
             {cityFaqs.map((f, i) => (
               <div key={i} className="border-l-2 border-[#1a6fc4]/30 pl-5">
                 <h3
-                  className="font-semibold text-[#102133] mb-2 text-base md:text-lg"
+                  className="font-semibold text-[#0d1b2a] mb-2 text-base md:text-lg"
                   style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
                 >
                   {f.q}
                 </h3>
-                <p className="text-sm md:text-base text-[#102133]/70 leading-relaxed">{f.a}</p>
+                <p className="text-sm md:text-base text-[#0d1b2a]/70 leading-relaxed">{f.a}</p>
               </div>
             ))}
           </div>
-          <div className="mt-8 pt-6 border-t border-[#102133]/10">
+          <div className="mt-8 pt-6 border-t border-[#0d1b2a]/10">
             <Link
               to="/faq"
               className="inline-flex items-center gap-2 text-[#1a6fc4] hover:text-[#1560ae] font-semibold text-sm"
@@ -332,7 +332,7 @@ const CityLandingPage = () => {
       </section>
 
       {/* Pricing */}
-      <section className="py-16 md:py-20 bg-[#0B1F33] text-white">
+      <section className="py-16 md:py-20 bg-[#0d1b2a] text-white">
         <div className="container max-w-2xl text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             Starting at {priceStartLabel}

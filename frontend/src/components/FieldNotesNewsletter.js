@@ -48,7 +48,7 @@ const FieldNotesNewsletter = ({ source = 'field-notes' }) => {
       <div
         className="rounded-xl overflow-hidden"
         style={{
-          backgroundColor: '#0B1F33',
+          backgroundColor: '#0d1b2a',
           border: '1px solid rgba(31,111,235,0.25)',
         }}
       >

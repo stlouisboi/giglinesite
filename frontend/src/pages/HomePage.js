@@ -132,7 +132,7 @@ const HomePage = () => {
       ═══════════════════════════════════════════════ */}
       <section
         className="relative min-h-[60vh] xl:min-h-[85vh] overflow-hidden"
-        style={{ backgroundColor: '#0B1F33' }}
+        style={{ backgroundColor: '#0d1b2a' }}
         data-testid="hero-section"
       >
         <div className="flex flex-col xl:flex-row h-full min-h-[60vh] xl:min-h-[85vh]">
@@ -147,8 +147,8 @@ const HomePage = () => {
               data-testid="hero-image"
             />
             {/* Gradient bleed into text column */}
-            <div className="hidden xl:block absolute inset-y-0 right-0 w-1/3 bg-gradient-to-r from-transparent to-[#0B1F33]" />
-            <div className="xl:hidden absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#0B1F33] to-transparent" />
+            <div className="hidden xl:block absolute inset-y-0 right-0 w-1/3 bg-gradient-to-r from-transparent to-[#0d1b2a]" />
+            <div className="xl:hidden absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#0d1b2a] to-transparent" />
           </div>
 
           {/* Right — Copy */}
@@ -255,10 +255,10 @@ const HomePage = () => {
             <p className="uppercase tracking-[0.18em] text-[#1a6fc4] font-semibold mb-3" style={{ fontSize: '11px' }} data-testid="floor-findings-eyebrow">
               What We Find on the Floor
             </p>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#102133] leading-[1.15] mb-4 max-w-3xl">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#0d1b2a] leading-[1.15] mb-4 max-w-3xl">
               Most violations are hiding in plain sight.
             </h2>
-            <p className="text-base text-[#102133]/70 leading-relaxed mb-12 max-w-3xl">
+            <p className="text-base text-[#0d1b2a]/70 leading-relaxed mb-12 max-w-3xl">
               OSHA doesn&apos;t find things your team missed. They find things your team stopped seeing. Here&apos;s what shows up on almost every walkthrough.
             </p>
           </Reveal>
@@ -280,15 +280,15 @@ const HomePage = () => {
                   >
                     {c.num}
                   </span>
-                  <h3 className="text-lg md:text-xl font-bold text-[#102133] leading-tight mb-3">{c.title}</h3>
-                  <p className="text-[15px] text-[#102133]/70 leading-[1.65]">{c.body}</p>
+                  <h3 className="text-lg md:text-xl font-bold text-[#0d1b2a] leading-tight mb-3">{c.title}</h3>
+                  <p className="text-[15px] text-[#0d1b2a]/70 leading-[1.65]">{c.body}</p>
                 </div>
               </Reveal>
             ))}
           </div>
 
           <Reveal>
-            <p className="text-sm text-[#102133]/55 italic mt-12 max-w-3xl">
+            <p className="text-sm text-[#0d1b2a]/55 italic mt-12 max-w-3xl">
               These are findings from real walkthroughs &mdash; not a checklist from a textbook. Every facility is different.
             </p>
           </Reveal>
@@ -416,7 +416,7 @@ const HomePage = () => {
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0d1b2a] leading-[1.15] mb-4 max-w-4xl tracking-tight">
               The average OSHA serious violation costs $16,550.
             </h2>
-            <p className="text-base md:text-lg text-[#102133]/70 leading-relaxed mb-12 max-w-3xl">
+            <p className="text-base md:text-lg text-[#0d1b2a]/70 leading-relaxed mb-12 max-w-3xl">
               That&apos;s per citation. A single inspection can produce multiple citations across multiple standards. The Safety Walkthrough starts at $1,200.
             </p>
           </Reveal>
@@ -443,14 +443,14 @@ const HomePage = () => {
                   >
                     {s.stat}
                   </p>
-                  <p className="text-sm md:text-[15px] text-[#102133]/70 leading-snug">{s.label}</p>
+                  <p className="text-sm md:text-[15px] text-[#0d1b2a]/70 leading-snug">{s.label}</p>
                 </div>
               </Reveal>
             ))}
           </div>
 
           <Reveal>
-            <p className="text-base md:text-lg text-[#102133]/80 leading-[1.75] max-w-4xl">
+            <p className="text-base md:text-lg text-[#0d1b2a]/80 leading-[1.75] max-w-4xl">
               OSHA doesn&apos;t announce inspections. They arrive after a complaint, a referral, or a fatality &mdash; or as part of a programmed inspection targeting your industry. By the time they&apos;re on your floor, the window to fix things has closed.{' '}
               <span className="font-semibold text-[#0d1b2a]">The walkthrough is that window.</span>
             </p>
@@ -468,7 +468,7 @@ const HomePage = () => {
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0d1b2a] leading-[1.15] mb-4 max-w-3xl tracking-tight">
               Three ways to work with GigLine.
             </h2>
-            <p className="text-base md:text-lg text-[#102133]/70 leading-relaxed mb-12 max-w-3xl">
+            <p className="text-base md:text-lg text-[#0d1b2a]/70 leading-relaxed mb-12 max-w-3xl">
               Every engagement starts with a conversation. If we&apos;re not the right fit, we&apos;ll tell you.
             </p>
           </Reveal>
@@ -542,17 +542,17 @@ const HomePage = () => {
                       background: s.featured ? 'rgba(31,111,235,0.10)' : 'rgba(13,27,42,0.05)',
                     }}
                   >
-                    <s.Icon size={22} strokeWidth={1.75} style={{ color: s.featured ? '#1a6fc4' : '#102133' }} />
+                    <s.Icon size={22} strokeWidth={1.75} style={{ color: s.featured ? '#1a6fc4' : '#0d1b2a' }} />
                   </div>
 
-                  <h3 className="text-lg md:text-xl font-bold text-[#102133] mb-1 leading-tight">{s.title}</h3>
+                  <h3 className="text-lg md:text-xl font-bold text-[#0d1b2a] mb-1 leading-tight">{s.title}</h3>
                   <p
                     className="font-semibold mb-4"
-                    style={{ fontSize: '14px', color: s.featured ? '#1a6fc4' : '#102133', letterSpacing: '-0.01em' }}
+                    style={{ fontSize: '14px', color: s.featured ? '#1a6fc4' : '#0d1b2a', letterSpacing: '-0.01em' }}
                   >
                     {s.price}
                   </p>
-                  <p className="text-[14px] text-[#102133]/65 leading-[1.65] mb-7 flex-grow">{s.body}</p>
+                  <p className="text-[14px] text-[#0d1b2a]/65 leading-[1.65] mb-7 flex-grow">{s.body}</p>
 
                   <Link
                     to={s.cta.to}
@@ -567,7 +567,7 @@ const HomePage = () => {
           </div>
 
           <Reveal>
-            <p className="text-sm text-[#102133]/60 italic mb-8 max-w-3xl text-center mx-auto">
+            <p className="text-sm text-[#0d1b2a]/60 italic mb-8 max-w-3xl text-center mx-auto">
               Incident review, document development, ongoing compliance partnerships, and OSHA-ready control systems are also available.
             </p>
             <div className="flex justify-center">
@@ -707,7 +707,7 @@ const HomePage = () => {
                           {s.n}
                         </div>
                         <h3 className="text-base md:text-lg font-bold text-[#0d1b2a] mb-2 leading-snug">{s.title}</h3>
-                        <p className="text-[13.5px] text-[#102133]/65 leading-[1.6] max-w-[230px]">{s.body}</p>
+                        <p className="text-[13.5px] text-[#0d1b2a]/65 leading-[1.6] max-w-[230px]">{s.body}</p>
                       </div>
                     </Reveal>
                   ))}
@@ -863,7 +863,7 @@ const HomePage = () => {
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0d1b2a] leading-[1.15] mb-5 max-w-3xl tracking-tight">
               Know what&apos;s on your floor before OSHA does.
             </h2>
-            <p className="text-base md:text-lg text-[#102133]/70 leading-relaxed mb-9 max-w-2xl">
+            <p className="text-base md:text-lg text-[#0d1b2a]/70 leading-relaxed mb-9 max-w-2xl">
               The walkthrough takes a few hours. The report is in your hands in 48. The cost is a fraction of a single citation.
             </p>
             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
@@ -875,7 +875,7 @@ const HomePage = () => {
               >
                 Request a Walkthrough <ArrowRight size={16} />
               </Link>
-              <p className="text-sm text-[#102133]/70" data-testid="bottom-cta-secondary-line">
+              <p className="text-sm text-[#0d1b2a]/70" data-testid="bottom-cta-secondary-line">
                 Questions first? Call or text directly:{' '}
                 <a href="tel:3363298899" className="font-semibold text-[#0d1b2a] hover:text-[#1a6fc4] transition-colors whitespace-nowrap">
                   (336) 329-8899

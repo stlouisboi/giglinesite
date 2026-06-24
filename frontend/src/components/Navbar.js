@@ -42,9 +42,9 @@ const Navbar = () => {
                 key={link.path}
                 to={link.path}
                 className="text-sm font-medium transition-colors whitespace-nowrap"
-                style={{ color: isActive(link.path) ? '#1a6fc4' : '#102133' }}
+                style={{ color: isActive(link.path) ? '#1a6fc4' : '#0d1b2a' }}
                 onMouseEnter={e => { if (!isActive(link.path)) e.target.style.color = '#1a6fc4'; }}
-                onMouseLeave={e => { if (!isActive(link.path)) e.target.style.color = isActive(link.path) ? '#1a6fc4' : '#102133'; }}
+                onMouseLeave={e => { if (!isActive(link.path)) e.target.style.color = isActive(link.path) ? '#1a6fc4' : '#0d1b2a'; }}
                 data-testid={`nav-link-${link.name.toLowerCase().replace(' ', '-')}`}
               >
                 {link.name}
@@ -54,7 +54,7 @@ const Navbar = () => {
               href="tel:3363298899"
               onClick={() => trackPhoneClick('navbar_desktop')}
               className="flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap"
-              style={{ color: '#102133' }}
+              style={{ color: '#0d1b2a' }}
               data-testid="nav-phone"
             >
               <Phone size={14} />
@@ -87,7 +87,7 @@ const Navbar = () => {
             <button
               type="button"
               className="flex items-center justify-center w-12 h-12 rounded-md"
-              style={{ color: '#102133' }}
+              style={{ color: '#0d1b2a' }}
               onClick={() => setIsOpen(!isOpen)}
               aria-expanded={isOpen}
               aria-controls="mobile-menu"
@@ -109,7 +109,7 @@ const Navbar = () => {
                   to={link.path}
                   className="flex items-center text-lg font-medium px-2 rounded-md"
                   style={{
-                    color: isActive(link.path) ? '#1a6fc4' : '#102133',
+                    color: isActive(link.path) ? '#1a6fc4' : '#0d1b2a',
                     minHeight: '52px',
                   }}
                   onClick={() => setIsOpen(false)}
@@ -122,7 +122,7 @@ const Navbar = () => {
                 href="tel:3363298899"
                 onClick={() => trackPhoneClick('navbar_mobile_drawer')}
                 className="flex items-center gap-2 text-lg font-medium px-2 rounded-md"
-                style={{ color: '#102133', minHeight: '52px' }}
+                style={{ color: '#0d1b2a', minHeight: '52px' }}
                 data-testid="mobile-nav-phone"
               >
                 <Phone size={20} /> (336) 329-8899

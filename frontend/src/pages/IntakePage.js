@@ -90,7 +90,7 @@ const IntakePage = () => {
         canonical="/request-walkthrough"
       />
 
-      <section className="py-20 md:py-28" style={{ backgroundColor: '#0B1F33' }} data-testid="intake-page">
+      <section className="py-20 md:py-28" style={{ backgroundColor: '#0d1b2a' }} data-testid="intake-page">
         <div className="max-w-2xl mx-auto px-6">
 
           {!submitted ? (
@@ -199,9 +199,9 @@ const IntakePage = () => {
                     className="w-full bg-white/5 border border-white/10 text-white px-4 py-3.5 rounded focus:outline-none focus:border-[#1a6fc4] transition-colors appearance-none"
                     data-testid="intake-service"
                   >
-                    <option value="" disabled className="bg-[#0B1F33]">Select one</option>
+                    <option value="" disabled className="bg-[#0d1b2a]">Select one</option>
                     {SERVICES.map((s) => (
-                      <option key={s.value} value={s.value} className="bg-[#0B1F33]">{s.label}</option>
+                      <option key={s.value} value={s.value} className="bg-[#0d1b2a]">{s.label}</option>
                     ))}
                   </select>
                 </div>

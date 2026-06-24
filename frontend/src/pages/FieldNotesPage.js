@@ -122,7 +122,7 @@ const FieldNotesPage = () => {
       />
 
       {/* Header */}
-      <section className="bg-[#0B1F33] py-16 md:py-24" data-testid="field-notes-header">
+      <section className="bg-[#0d1b2a] py-16 md:py-24" data-testid="field-notes-header">
         <div className="container max-w-4xl">
           <p
             className="uppercase tracking-[3px] text-[#1a6fc4] mb-4"
@@ -160,40 +160,40 @@ const FieldNotesPage = () => {
       {/* Notes Grid */}
       <section className="py-16 md:py-24 bg-white" data-testid="field-notes-grid">
         <div className="container max-w-4xl">
-          <div className="space-y-0 border-t border-[#102133]/10">
+          <div className="space-y-0 border-t border-[#0d1b2a]/10">
             {FIELD_NOTES.map((note) => (
               <Link
                 key={note.slug}
                 to={`/field-notes/${note.slug}`}
-                className="block py-8 border-b border-[#102133]/10 group"
+                className="block py-8 border-b border-[#0d1b2a]/10 group"
                 data-testid={`field-note-${note.slug}`}
               >
                 <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                   <div className="flex-grow">
-                    <h2 className="text-xl font-bold text-[#102133] group-hover:text-[#1560ae] transition-colors mb-1">
+                    <h2 className="text-xl font-bold text-[#0d1b2a] group-hover:text-[#1560ae] transition-colors mb-1">
                       {note.title}
                     </h2>
                     <p className="text-sm text-[#1a6fc4] mb-3" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
                       {note.subtitle}
                     </p>
-                    <p className="text-base text-[#102133]/60 leading-relaxed mb-3">
+                    <p className="text-base text-[#0d1b2a]/60 leading-relaxed mb-3">
                       {note.description}
                     </p>
                     <div className="flex flex-wrap gap-2">
                       {note.topics.map((topic) => (
-                        <span key={topic} className="text-xs px-2 py-1 rounded bg-[#102133]/5 text-[#102133]/50">
+                        <span key={topic} className="text-xs px-2 py-1 rounded bg-[#0d1b2a]/5 text-[#0d1b2a]/50">
                           {topic}
                         </span>
                       ))}
                     </div>
                   </div>
-                  <ArrowRight size={20} className="text-[#102133]/20 group-hover:text-[#1560ae] transition-colors flex-shrink-0 mt-2 hidden md:block" />
+                  <ArrowRight size={20} className="text-[#0d1b2a]/20 group-hover:text-[#1560ae] transition-colors flex-shrink-0 mt-2 hidden md:block" />
                 </div>
               </Link>
             ))}
           </div>
 
-          <p className="mt-12 text-sm text-[#102133]/40 text-center">
+          <p className="mt-12 text-sm text-[#0d1b2a]/40 text-center">
             New topics added monthly based on what we're seeing in the field.
           </p>
 
@@ -205,7 +205,7 @@ const FieldNotesPage = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-24 bg-[#0B1F33]" data-testid="field-notes-cta">
+      <section className="py-16 md:py-24 bg-[#0d1b2a]" data-testid="field-notes-cta">
         <div className="container max-w-3xl text-center">
           <p className="text-lg text-white/60 mb-6">
             Reading about it is useful. Having someone walk your floor is better.

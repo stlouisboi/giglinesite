@@ -241,7 +241,7 @@ const ServicesPage = () => {
       {/* ═══ 1. HERO ═══ */}
       <section
         className="relative overflow-hidden"
-        style={{ backgroundColor: '#0B1F33' }}
+        style={{ backgroundColor: '#0d1b2a' }}
         data-testid="services-hero"
       >
         <div className="flex flex-col md:flex-row min-h-[480px] md:min-h-[560px]">
@@ -297,7 +297,7 @@ const ServicesPage = () => {
       >
         <div className="container max-w-6xl py-3 md:py-4">
           <div className="flex items-center gap-2 md:gap-3 overflow-x-auto whitespace-nowrap text-[13px] md:text-sm" style={{ scrollbarWidth: 'thin' }}>
-            <span className="uppercase font-bold flex-shrink-0 pr-2 hidden md:inline" style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.18em', color: '#102133' }}>Jump to:</span>
+            <span className="uppercase font-bold flex-shrink-0 pr-2 hidden md:inline" style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.18em', color: '#0d1b2a' }}>Jump to:</span>
             {[
               { label: 'Safety Walkthrough', href: '#walkthrough' },
               { label: 'Documentation Review', href: '#docs-review' },
@@ -310,7 +310,7 @@ const ServicesPage = () => {
                 key={l.href}
                 href={l.href}
                 className="flex-shrink-0 px-3 md:px-4 py-1.5 md:py-2 rounded-full border transition-colors hover:bg-[#1a6fc4] hover:text-white hover:border-[#1a6fc4]"
-                style={{ borderColor: 'rgba(16,33,51,0.18)', color: '#102133' }}
+                style={{ borderColor: 'rgba(16,33,51,0.18)', color: '#0d1b2a' }}
                 data-testid={`jump-nav-${l.href.replace('#','')}`}
               >
                 {l.label}
@@ -325,7 +325,7 @@ const ServicesPage = () => {
         <div className="container max-w-4xl text-center">
           <Reveal>
             <p
-              className="text-lg md:text-xl text-[#102133] leading-relaxed italic font-medium"
+              className="text-lg md:text-xl text-[#0d1b2a] leading-relaxed italic font-medium"
               data-testid="services-authority-line"
             >
               Built for small operations that need practical safety support without hiring a full-time safety manager.
@@ -343,26 +343,26 @@ const ServicesPage = () => {
         <div className="container max-w-3xl text-center">
           <Reveal>
             <p
-              className="uppercase tracking-[3px] text-[#102133]/55 mb-3 font-bold"
+              className="uppercase tracking-[3px] text-[#0d1b2a]/55 mb-3 font-bold"
               style={{ ...mono, fontSize: '11px' }}
               data-testid="services-safety-check-kicker"
             >
               Not sure where to start?
             </p>
-            <p className="text-base md:text-lg text-[#102133] leading-relaxed mb-6 max-w-2xl mx-auto" data-testid="services-safety-check-intro">
+            <p className="text-base md:text-lg text-[#0d1b2a] leading-relaxed mb-6 max-w-2xl mx-auto" data-testid="services-safety-check-intro">
               Not sure where you stand? Take the free 90-Second Safety Check — six yes-or-no questions, immediate risk score, no email required to start.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
               <Link
                 to="/safety-check"
-                className="inline-flex items-center justify-center gap-2 border-2 border-[#102133] hover:bg-[#102133] hover:text-white text-[#102133] font-bold px-6 py-3 rounded-lg text-sm transition-colors"
+                className="inline-flex items-center justify-center gap-2 border-2 border-[#0d1b2a] hover:bg-[#0d1b2a] hover:text-white text-[#0d1b2a] font-bold px-6 py-3 rounded-lg text-sm transition-colors"
                 data-testid="services-safety-check-link"
               >
                 Take the Safety Check
                 <ArrowRight size={16} />
               </Link>
             </div>
-            <p className="text-sm text-[#102133]/70 mt-5 italic" data-testid="services-safety-check-followup">
+            <p className="text-sm text-[#0d1b2a]/70 mt-5 italic" data-testid="services-safety-check-followup">
               Ready for a professional review?{' '}
               <Link
                 to={intakeLink('compliance-readiness-visit')}
@@ -383,10 +383,10 @@ const ServicesPage = () => {
             <p className="uppercase tracking-[3px] text-[#1a6fc4] mb-3 font-bold" style={{ ...mono, fontSize: '11px' }}>
               Who GigLine Helps
             </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#102133] leading-tight mb-3 max-w-3xl">
+            <h2 className="text-2xl md:text-3xl font-bold text-[#0d1b2a] leading-tight mb-3 max-w-3xl">
               Built for the operations OSHA inspects the most.
             </h2>
-            <p className="text-base md:text-lg text-[#102133]/70 leading-relaxed mb-12 max-w-3xl">
+            <p className="text-base md:text-lg text-[#0d1b2a]/70 leading-relaxed mb-12 max-w-3xl">
               GigLine focuses on the four operation types most likely to receive an OSHA inspection, an insurance review, or a customer-audit request in the Piedmont Triad.
             </p>
           </Reveal>
@@ -405,8 +405,8 @@ const ServicesPage = () => {
                   >
                     <Icon size={22} className="text-[#1a6fc4]" />
                   </div>
-                  <h3 className="text-lg font-bold text-[#102133] mb-2">{title}</h3>
-                  <p className="text-sm text-[#102133]/75 leading-relaxed">{desc}</p>
+                  <h3 className="text-lg font-bold text-[#0d1b2a] mb-2">{title}</h3>
+                  <p className="text-sm text-[#0d1b2a]/75 leading-relaxed">{desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -453,15 +453,15 @@ const ServicesPage = () => {
                   >
                     Flagship Engagement
                   </p>
-                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#102133] leading-tight mb-4">
+                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#0d1b2a] leading-tight mb-4">
                     Compliance Readiness Visit
                   </h2>
-                  <p className="text-base md:text-lg text-[#102133]/80 leading-relaxed mb-6 max-w-2xl">
+                  <p className="text-base md:text-lg text-[#0d1b2a]/80 leading-relaxed mb-6 max-w-2xl">
                     The floor and the files reviewed in a single visit. Most operations don&apos;t need a separate walkthrough and documentation review — they need both, scored together, with a single readiness report. This is that engagement.
                   </p>
 
                   <p
-                    className="uppercase tracking-[2px] text-[#102133]/55 font-bold mb-3"
+                    className="uppercase tracking-[2px] text-[#0d1b2a]/55 font-bold mb-3"
                     style={{ ...mono, fontSize: '10.5px' }}
                   >
                     What You Get
@@ -478,7 +478,7 @@ const ServicesPage = () => {
                       "'What to Say If OSHA Calls' guidance sheet",
                       '30-day check-in call included',
                     ].map((line, i) => (
-                      <li key={i} className="flex items-start gap-3 text-[#102133]/85 text-base leading-snug">
+                      <li key={i} className="flex items-start gap-3 text-[#0d1b2a]/85 text-base leading-snug">
                         <Check size={18} className="flex-shrink-0 mt-0.5 text-[#1a6fc4]" strokeWidth={3} />
                         <span>{line}</span>
                       </li>
@@ -486,7 +486,7 @@ const ServicesPage = () => {
                   </ul>
 
                   <p
-                    className="italic text-[#102133]/65 text-sm md:text-[15px] leading-relaxed mb-6 max-w-2xl"
+                    className="italic text-[#0d1b2a]/65 text-sm md:text-[15px] leading-relaxed mb-6 max-w-2xl"
                     data-testid="crv-anchor-line"
                   >
                     Fixed quote &middot; Private engagement &middot; Booked separately, the Safety Walkthrough and Documentation Review start at $2,500. The Compliance Readiness Visit covers both in a single visit &mdash; from $2,000.
@@ -499,7 +499,7 @@ const ServicesPage = () => {
                     style={{ border: '1px solid rgba(31,111,235,0.25)', backgroundColor: '#FBFCFD' }}
                   >
                     <p
-                      className="uppercase tracking-[2px] text-[#102133]/55 font-bold mb-1"
+                      className="uppercase tracking-[2px] text-[#0d1b2a]/55 font-bold mb-1"
                       style={{ ...mono, fontSize: '10px' }}
                     >
                       Starting At
@@ -507,7 +507,7 @@ const ServicesPage = () => {
                     <p className="text-4xl md:text-5xl font-bold text-[#1a6fc4] leading-none tracking-tight mb-1">
                       $2,000
                     </p>
-                    <p className="text-[#102133]/45 italic" style={{ ...mono, fontSize: '11px' }}>
+                    <p className="text-[#0d1b2a]/45 italic" style={{ ...mono, fontSize: '11px' }}>
                       fixed quote
                     </p>
                   </div>
@@ -537,10 +537,10 @@ const ServicesPage = () => {
             <p className="uppercase tracking-[3px] text-[#1a6fc4] mb-3 font-bold" style={{ ...mono, fontSize: '11px' }}>
               Standalone Services
             </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#102133] mb-3 max-w-3xl">
+            <h2 className="text-2xl md:text-3xl font-bold text-[#0d1b2a] mb-3 max-w-3xl">
               Targeted engagements when you need a specific outcome.
             </h2>
-            <p className="text-base md:text-lg text-[#102133]/70 leading-relaxed mb-12 max-w-3xl">
+            <p className="text-base md:text-lg text-[#0d1b2a]/70 leading-relaxed mb-12 max-w-3xl">
               For operations that already know which side they need reviewed — the floor, the files, or a specific incident.
             </p>
           </Reveal>
@@ -577,24 +577,24 @@ const ServicesPage = () => {
                       </span>
                     )}
                     <div className="flex items-baseline gap-4 flex-wrap mb-3">
-                      <h3 className="text-lg md:text-xl font-bold text-[#102133]">{s.title}</h3>
+                      <h3 className="text-lg md:text-xl font-bold text-[#0d1b2a]">{s.title}</h3>
                       <span className="text-base font-bold text-[#1a6fc4]" style={mono}>{s.price}</span>
                     </div>
-                    <p className="text-base text-[#102133]/80 leading-relaxed mb-3">{s.body}</p>
+                    <p className="text-base text-[#0d1b2a]/80 leading-relaxed mb-3">{s.body}</p>
                     {s.body2 && (
-                      <p className="text-base text-[#102133]/80 leading-relaxed mb-3 font-semibold">{s.body2}</p>
+                      <p className="text-base text-[#0d1b2a]/80 leading-relaxed mb-3 font-semibold">{s.body2}</p>
                     )}
 
                     {s.floorPricing && (
                       <div className="mt-4 mb-3 p-4 rounded bg-[#F7F1E0]" style={{ border: '1px solid rgba(212,169,62,0.35)' }}>
-                        <p className="text-xs uppercase tracking-wider text-[#102133]/65 mb-2 font-bold" style={mono}>
+                        <p className="text-xs uppercase tracking-wider text-[#0d1b2a]/65 mb-2 font-bold" style={mono}>
                           Floor Pricing Reference
                         </p>
                         <ul className="space-y-1.5">
                           {s.floorPricing.map(([item, price], i) => (
-                            <li key={i} className="flex justify-between gap-4 text-sm text-[#102133]/85">
+                            <li key={i} className="flex justify-between gap-4 text-sm text-[#0d1b2a]/85">
                               <span>{item}</span>
-                              <span className="font-bold text-[#102133] whitespace-nowrap" style={mono}>{price}</span>
+                              <span className="font-bold text-[#0d1b2a] whitespace-nowrap" style={mono}>{price}</span>
                             </li>
                           ))}
                         </ul>
@@ -602,7 +602,7 @@ const ServicesPage = () => {
                     )}
 
                     {s.best && (
-                      <p className="text-sm text-[#102133]/60 leading-relaxed mt-3 italic" style={mono}>
+                      <p className="text-sm text-[#0d1b2a]/60 leading-relaxed mt-3 italic" style={mono}>
                         Best for: {s.best}
                       </p>
                     )}
@@ -636,7 +636,7 @@ const ServicesPage = () => {
       </section>
 
       {/* ═══ 7. OSHA-READY CONTROL SYSTEM — Premium dedicated section ═══ */}
-      <section className="py-20 md:py-28 scroll-mt-32" id="control-system" style={{ backgroundColor: '#0B1F33' }} data-testid="services-control-system">
+      <section className="py-20 md:py-28 scroll-mt-32" id="control-system" style={{ backgroundColor: '#0d1b2a' }} data-testid="services-control-system">
         <div className="container max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-10 md:gap-14 items-start">
             <Reveal>
@@ -710,7 +710,7 @@ const ServicesPage = () => {
                   fireServicesCtaClick('Request Buildout', intakeLink('osha-ready-control-system'));
                   trackServiceBooking && trackServiceBooking('GigLine OSHA-Ready Control System');
                 }}
-                className="inline-flex items-center gap-2 bg-[#D4A93E] hover:bg-[#B58F2E] text-[#0B1F33] font-bold px-7 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#D4A93E]/25"
+                className="inline-flex items-center gap-2 bg-[#D4A93E] hover:bg-[#B58F2E] text-[#0d1b2a] font-bold px-7 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#D4A93E]/25"
                 data-testid="control-system-cta"
               >
                 Request Buildout
@@ -794,10 +794,10 @@ const ServicesPage = () => {
             <p className="uppercase tracking-[3px] text-[#1a6fc4] mb-3 font-bold" style={{ ...mono, fontSize: '11px' }}>
               The Natural Next Step
             </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#102133] mb-3 max-w-3xl">
+            <h2 className="text-2xl md:text-3xl font-bold text-[#0d1b2a] mb-3 max-w-3xl">
               Once the system is built, keep it current.
             </h2>
-            <p className="text-base md:text-lg text-[#102133]/70 leading-relaxed mb-12 max-w-3xl">
+            <p className="text-base md:text-lg text-[#0d1b2a]/70 leading-relaxed mb-12 max-w-3xl">
               The Control System is the foundation. Quarterly and Annual support are how operations keep that foundation alive — without hiring a full-time safety manager.
             </p>
           </Reveal>
@@ -831,10 +831,10 @@ const ServicesPage = () => {
                       ★ {s.badge}
                     </span>
                   )}
-                  <h3 className="text-xl md:text-2xl font-bold text-[#102133] mb-2">{s.title}</h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-[#0d1b2a] mb-2">{s.title}</h3>
                   <p className="text-xl font-bold text-[#1a6fc4] mb-1" style={mono}>{s.price}</p>
                   {s.priceSecondary && (
-                    <p className="text-sm text-[#102133]/55 mb-5" style={mono} data-testid={`${s.testid}-price-secondary`}>
+                    <p className="text-sm text-[#0d1b2a]/55 mb-5" style={mono} data-testid={`${s.testid}-price-secondary`}>
                       {s.priceSecondary}
                     </p>
                   )}
@@ -842,33 +842,33 @@ const ServicesPage = () => {
 
                   {/* Body — either single paragraph (Quarterly) or multi-paragraph (Annual) */}
                   {s.bodyTagline || s.bodyExtended ? (
-                    <div className="space-y-4 mb-6 text-base text-[#102133]/85 leading-relaxed">
+                    <div className="space-y-4 mb-6 text-base text-[#0d1b2a]/85 leading-relaxed">
                       <p>{s.body}</p>
                       {s.bodyTagline && (
-                        <p className="font-bold text-[#102133]">{s.bodyTagline}</p>
+                        <p className="font-bold text-[#0d1b2a]">{s.bodyTagline}</p>
                       )}
                       {s.bodyExtended && <p>{s.bodyExtended}</p>}
                     </div>
                   ) : (
-                    <p className="text-base text-[#102133]/85 leading-relaxed mb-6">{s.body}</p>
+                    <p className="text-base text-[#0d1b2a]/85 leading-relaxed mb-6">{s.body}</p>
                   )}
 
                   {/* What's Included list (Annual Partner only) */}
                   {s.includes && (
                     <div className="mb-6" data-testid={`${s.testid}-includes`}>
                       <p
-                        className="uppercase tracking-[2px] text-[#102133]/55 font-bold mb-3"
+                        className="uppercase tracking-[2px] text-[#0d1b2a]/55 font-bold mb-3"
                         style={{ ...mono, fontSize: '10.5px' }}
                       >
                         What&apos;s Included
                       </p>
                       <ul className="space-y-3">
                         {s.includes.map((item, i) => (
-                          <li key={i} className="flex items-start gap-3 text-[15px] text-[#102133]/85 leading-snug">
+                          <li key={i} className="flex items-start gap-3 text-[15px] text-[#0d1b2a]/85 leading-snug">
                             <Check size={18} className="flex-shrink-0 mt-0.5 text-[#1a6fc4]" strokeWidth={3} />
                             <span>
-                              <span className="font-semibold text-[#102133]">{item.label}</span>
-                              {item.detail && <span className="text-[#102133]/75"> &mdash; {item.detail}</span>}
+                              <span className="font-semibold text-[#0d1b2a]">{item.label}</span>
+                              {item.detail && <span className="text-[#0d1b2a]/75"> &mdash; {item.detail}</span>}
                               {item.value && (
                                 <span className="text-[#1a6fc4] italic" style={mono}> &nbsp;({item.value})</span>
                               )}
@@ -888,19 +888,19 @@ const ServicesPage = () => {
                     >
                       <div className="flex flex-col gap-2 text-[15px]">
                         <div className="flex items-baseline justify-between gap-3">
-                          <span className="text-[#102133]/65">{s.valueAnchor.standaloneLabel}</span>
-                          <span className="font-bold text-[#102133]" style={mono}>{s.valueAnchor.standalone}</span>
+                          <span className="text-[#0d1b2a]/65">{s.valueAnchor.standaloneLabel}</span>
+                          <span className="font-bold text-[#0d1b2a]" style={mono}>{s.valueAnchor.standalone}</span>
                         </div>
                         <div className="flex items-baseline justify-between gap-3">
-                          <span className="text-[#102133]/65">{s.valueAnchor.partnerLabel}</span>
+                          <span className="text-[#0d1b2a]/65">{s.valueAnchor.partnerLabel}</span>
                           <span className="font-bold text-[#1a6fc4]" style={mono}>{s.valueAnchor.partner}</span>
                         </div>
                         <div
                           className="flex items-baseline justify-between gap-3 pt-2 mt-1"
                           style={{ borderTop: '1px dashed rgba(31,111,235,0.30)' }}
                         >
-                          <span className="text-[#102133]/65 italic">{s.valueAnchor.monthlyLabel}</span>
-                          <span className="font-bold text-[#102133]" style={mono}>{s.valueAnchor.monthly}</span>
+                          <span className="text-[#0d1b2a]/65 italic">{s.valueAnchor.monthlyLabel}</span>
+                          <span className="font-bold text-[#0d1b2a]" style={mono}>{s.valueAnchor.monthly}</span>
                         </div>
                       </div>
                     </div>
@@ -908,12 +908,12 @@ const ServicesPage = () => {
 
                   {/* Closing line (Annual Partner only) */}
                   {s.closingLine && (
-                    <p className="text-[15px] text-[#102133]/80 leading-relaxed mb-6" data-testid={`${s.testid}-closing`}>
+                    <p className="text-[15px] text-[#0d1b2a]/80 leading-relaxed mb-6" data-testid={`${s.testid}-closing`}>
                       {s.closingLine}
                     </p>
                   )}
 
-                  <p className="text-sm text-[#102133]/60 leading-relaxed mb-6 italic flex-grow" style={mono}>
+                  <p className="text-sm text-[#0d1b2a]/60 leading-relaxed mb-6 italic flex-grow" style={mono}>
                     Best for: {s.best}
                   </p>
                   <Link
@@ -939,10 +939,10 @@ const ServicesPage = () => {
             <p className="uppercase tracking-[3px] text-[#1a6fc4] mb-3 font-bold" style={{ ...mono, fontSize: '11px' }}>
               The GigLine Readiness Path
             </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#102133] mb-3 max-w-3xl">
+            <h2 className="text-2xl md:text-3xl font-bold text-[#0d1b2a] mb-3 max-w-3xl">
               A clear sequence from first call to ongoing accountability.
             </h2>
-            <p className="text-base md:text-lg text-[#102133]/70 leading-relaxed mb-10 max-w-3xl">
+            <p className="text-base md:text-lg text-[#0d1b2a]/70 leading-relaxed mb-10 max-w-3xl">
               Most clients enter at one of five stages. GigLine will tell you exactly where you should start before you schedule anything.
             </p>
           </Reveal>
@@ -955,7 +955,7 @@ const ServicesPage = () => {
               data-testid="readiness-path-table"
             >
               <div
-                className="grid grid-cols-[1fr_1.4fr_1.4fr] px-6 py-4 uppercase tracking-[2px] font-bold text-[#102133]/65"
+                className="grid grid-cols-[1fr_1.4fr_1.4fr] px-6 py-4 uppercase tracking-[2px] font-bold text-[#0d1b2a]/65"
                 style={{ ...mono, fontSize: '11px', backgroundColor: '#F7F9FC', borderBottom: '1px solid rgba(16,33,51,0.10)' }}
               >
                 <div>Stage</div>
@@ -969,8 +969,8 @@ const ServicesPage = () => {
                   style={{ borderBottom: i < READINESS_PATH.length - 1 ? '1px solid rgba(16,33,51,0.08)' : 'none' }}
                   data-testid={`readiness-path-row-${i + 1}`}
                 >
-                  <div className="font-bold text-[#102133]">{row.stage}</div>
-                  <div className="text-[#102133]/80 italic">&ldquo;{row.need}&rdquo;</div>
+                  <div className="font-bold text-[#0d1b2a]">{row.stage}</div>
+                  <div className="text-[#0d1b2a]/80 italic">&ldquo;{row.need}&rdquo;</div>
                   <div>
                     <Link
                       to={row.link}
@@ -1002,7 +1002,7 @@ const ServicesPage = () => {
                   >
                     Stage {i + 1} · {row.stage}
                   </p>
-                  <p className="text-[#102133]/80 italic mb-3">&ldquo;{row.need}&rdquo;</p>
+                  <p className="text-[#0d1b2a]/80 italic mb-3">&ldquo;{row.need}&rdquo;</p>
                   <Link
                     to={row.link}
                     onClick={() => fireServicesCtaClick(`Readiness Path · ${row.stage}`, row.link)}
@@ -1018,7 +1018,7 @@ const ServicesPage = () => {
 
           <Reveal>
             <p
-              className="text-base md:text-lg text-[#102133]/85 leading-relaxed text-center mt-10 max-w-3xl mx-auto"
+              className="text-base md:text-lg text-[#0d1b2a]/85 leading-relaxed text-center mt-10 max-w-3xl mx-auto"
               data-testid="readiness-path-footnote"
             >
               Most clients start with the <strong>Compliance Readiness Visit</strong>. GigLine will tell you exactly where to start before you schedule anything &mdash; call or text{' '}
@@ -1042,7 +1042,7 @@ const ServicesPage = () => {
       <CaseStudyTeaser source="services" />
 
       {/* ═══ 12. FOUNDER (compact, links to /about) ═══ */}
-      <section className="py-20 md:py-24" style={{ backgroundColor: '#0B1F33' }} data-testid="services-founder">
+      <section className="py-20 md:py-24" style={{ backgroundColor: '#0d1b2a' }} data-testid="services-founder">
         <div className="container max-w-5xl">
           <div className="flex flex-col md:flex-row gap-10 md:gap-14 items-center md:items-start">
             <div className="w-44 md:w-52 flex-shrink-0">
@@ -1092,7 +1092,7 @@ const ServicesPage = () => {
             <p className="uppercase tracking-[3px] text-[#1a6fc4] mb-3 font-bold" style={{ ...mono, fontSize: '11px' }}>
               Questions Before You Schedule
             </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#102133] mb-10 max-w-2xl">
+            <h2 className="text-2xl md:text-3xl font-bold text-[#0d1b2a] mb-10 max-w-2xl">
               Straight answers about how the services work.
             </h2>
           </Reveal>
@@ -1108,10 +1108,10 @@ const ServicesPage = () => {
                   <summary
                     className="cursor-pointer px-6 py-5 flex items-center justify-between gap-4 list-none"
                   >
-                    <span className="text-base md:text-lg font-bold text-[#102133]">{item.q}</span>
+                    <span className="text-base md:text-lg font-bold text-[#0d1b2a]">{item.q}</span>
                     <span className="flex-shrink-0 text-[#1a6fc4] text-2xl leading-none group-open:rotate-45 transition-transform">+</span>
                   </summary>
-                  <div className="px-6 pb-6 -mt-1 text-base text-[#102133]/80 leading-relaxed">
+                  <div className="px-6 pb-6 -mt-1 text-base text-[#0d1b2a]/80 leading-relaxed">
                     {item.a}
                   </div>
                 </details>
@@ -1120,7 +1120,7 @@ const ServicesPage = () => {
           </div>
 
           <Reveal>
-            <p className="text-base text-[#102133]/70 leading-relaxed text-center mt-10">
+            <p className="text-base text-[#0d1b2a]/70 leading-relaxed text-center mt-10">
               Want more answers?{' '}
               <Link to="/faq" className="text-[#1a6fc4] hover:text-[#1560ae] underline font-semibold">
                 Read the full FAQ &rarr;
@@ -1134,10 +1134,10 @@ const ServicesPage = () => {
               <p className="uppercase tracking-[3px] text-[#1a6fc4] mb-3 font-bold text-center" style={{ ...mono, fontSize: '11px' }}>
                 Pricing Reference
               </p>
-              <h3 className="text-xl md:text-2xl font-bold text-[#102133] mb-3 text-center max-w-2xl mx-auto">
+              <h3 className="text-xl md:text-2xl font-bold text-[#0d1b2a] mb-3 text-center max-w-2xl mx-auto">
                 Current starting prices, plainly.
               </h3>
-              <p className="text-sm text-[#102133]/65 italic text-center mb-8 max-w-xl mx-auto">
+              <p className="text-sm text-[#0d1b2a]/65 italic text-center mb-8 max-w-xl mx-auto">
                 Every engagement receives a fixed written quote before scheduling. These are starting prices for typical scope.
               </p>
               <div
@@ -1151,7 +1151,7 @@ const ServicesPage = () => {
                     style={{ borderBottom: i < PRICING_REF.length - 1 ? '1px solid rgba(16,33,51,0.08)' : 'none' }}
                     data-testid={`pricing-ref-row-${i + 1}`}
                   >
-                    <span className="text-base text-[#102133] font-semibold">{name}</span>
+                    <span className="text-base text-[#0d1b2a] font-semibold">{name}</span>
                     <span className="text-base font-bold text-[#1a6fc4] whitespace-nowrap" style={mono}>{price}</span>
                   </div>
                 ))}

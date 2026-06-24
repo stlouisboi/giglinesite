@@ -62,7 +62,7 @@ const AboutPage = () => {
       />
 
       {/* Hero Section */}
-      <section className="bg-[#102133] text-white py-16 md:py-20">
+      <section className="bg-[#0d1b2a] text-white py-16 md:py-20">
         <div className="container">
           <div className="max-w-3xl">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6" style={{fontFamily: "Georgia, 'Times New Roman', serif"}} data-testid="about-headline">
@@ -96,18 +96,18 @@ const AboutPage = () => {
 
             {/* Bio */}
             <div className="lg:col-span-2">
-              <h2 className="text-2xl md:text-3xl font-bold text-[#102133] mb-2" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
+              <h2 className="text-2xl md:text-3xl font-bold text-[#0d1b2a] mb-2" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
                 Vince Lawrence
               </h2>
               <p
-                className="text-[#102133]/55 mb-8"
+                className="text-[#0d1b2a]/55 mb-8"
                 style={{ fontSize: '14px', fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.01em' }}
                 data-testid="about-credential-line"
               >
                 Vince Lawrence &mdash; OSHA 30-Hour Certified safety compliance consultant, Kernersville, NC
               </p>
               <div
-                className="text-[#102133]/80 leading-relaxed space-y-5"
+                className="text-[#0d1b2a]/80 leading-relaxed space-y-5"
                 style={{ fontSize: '17px', lineHeight: 1.7 }}
                 data-testid="about-body"
               >
@@ -153,7 +153,7 @@ const AboutPage = () => {
                   OSHA does not wait for you to get to it.
                 </p>
 
-                <p className="font-medium text-[#102133]">That is why GigLine exists.</p>
+                <p className="font-medium text-[#0d1b2a]">That is why GigLine exists.</p>
 
                 <p>I come to your facility, walk the areas that matter, photograph what I find, document the gaps against the applicable safety standards, and put it in writing within 48 hours.</p>
 
@@ -169,7 +169,7 @@ const AboutPage = () => {
 
                 <p>And everything I find stays between us.</p>
 
-                <p className="font-medium text-[#102133] pt-2">
+                <p className="font-medium text-[#0d1b2a] pt-2">
                   I&apos;m Vince Lawrence.<br />
                   This is GigLine Safety &amp; Compliance.
                 </p>
@@ -180,7 +180,7 @@ const AboutPage = () => {
       </section>
 
       {/* Statement Anchor */}
-      <section className="py-16 md:py-24 bg-[#0B1F33]" data-testid="about-statement-anchor">
+      <section className="py-16 md:py-24 bg-[#0d1b2a]" data-testid="about-statement-anchor">
         <div className="container text-center max-w-2xl mx-auto">
           <p className="text-xl sm:text-2xl md:text-3xl font-bold text-white/90 leading-snug">
             Most issues aren't new.
@@ -195,16 +195,16 @@ const AboutPage = () => {
       <section className="py-16 md:py-20 bg-[#F5F5F3]" data-testid="origin-section">
         <div className="container">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-[#102133] mb-4 text-center" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#0d1b2a] mb-4 text-center" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
               Why "GigLine"?
             </h2>
-            <p className="text-center text-[#102133]/50 mb-8">
+            <p className="text-center text-[#0d1b2a]/50 mb-8">
               It's a small detail. But it explains everything.
             </p>
-            <div className="bg-white rounded p-8 border border-[#102133]/10">
-              <div className="text-[#102133]/70 space-y-4 leading-relaxed">
+            <div className="bg-white rounded p-8 border border-[#0d1b2a]/10">
+              <div className="text-[#0d1b2a]/70 space-y-4 leading-relaxed">
                 <p>
-                  In the military, your <strong className="text-[#102133]">gig line</strong> is the straight line formed by your shirt, your belt buckle, and your trouser fly.
+                  In the military, your <strong className="text-[#0d1b2a]">gig line</strong> is the straight line formed by your shirt, your belt buckle, and your trouser fly.
                 </p>
                 <p>
                   If it is off — even slightly — you are out of standard.
@@ -217,7 +217,7 @@ const AboutPage = () => {
                   <p>Discipline in execution.</p>
                   <p>And the understanding that inspectors notice what others ignore.</p>
                 </div>
-                <p className="font-medium text-[#102133]">
+                <p className="font-medium text-[#0d1b2a]">
                   That is where the name comes from.
                 </p>
                 <p>
@@ -226,13 +226,13 @@ const AboutPage = () => {
                 <div className="py-1">
                   <p>Not broad advice.</p>
                   <p>Not general guidance.</p>
-                  <p className="font-medium text-[#102133]">Alignment.</p>
+                  <p className="font-medium text-[#0d1b2a]">Alignment.</p>
                 </div>
                 <p>
                   Because in most operations, the problem isn't effort.<br />
                   It's misalignment.
                 </p>
-                <p className="font-medium text-[#102133]">
+                <p className="font-medium text-[#0d1b2a]">
                   And misalignment is what gets found.
                 </p>
               </div>
@@ -244,7 +244,7 @@ const AboutPage = () => {
       {/* Credentials & Background */}
       <section className="py-16 md:py-24" data-testid="credentials-section">
         <div className="container">
-          <h2 className="text-2xl md:text-3xl font-bold text-[#102133] mb-10 text-center" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#0d1b2a] mb-10 text-center" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
             Credentials & Background
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -258,19 +258,19 @@ const AboutPage = () => {
             ].map((cred, index) => (
               <div 
                 key={index} 
-                className="text-center border border-[#102133]/10 rounded p-5"
+                className="text-center border border-[#0d1b2a]/10 rounded p-5"
                 data-testid={`credential-${index}`}
               >
                 <p className="text-2xl font-bold text-[#1560ae]">{cred.label}</p>
-                {cred.sub && <p className="text-xs text-[#102133]/50 uppercase tracking-wide">{cred.sub}</p>}
-                <p className="text-sm text-[#102133]/60 mt-1">{cred.desc}</p>
+                {cred.sub && <p className="text-xs text-[#0d1b2a]/50 uppercase tracking-wide">{cred.sub}</p>}
+                <p className="text-sm text-[#0d1b2a]/60 mt-1">{cred.desc}</p>
               </div>
             ))}
           </div>
           <div className="text-center mt-10">
             <Link 
               to="/contact" 
-              className="inline-flex items-center gap-2 bg-[#102133] hover:bg-[#2A3D3D] text-white font-semibold px-8 py-4 rounded transition-colors"
+              className="inline-flex items-center gap-2 bg-[#0d1b2a] hover:bg-[#2A3D3D] text-white font-semibold px-8 py-4 rounded transition-colors"
               data-testid="credentials-request-walkthrough"
             >
               Request a Walkthrough
@@ -284,7 +284,7 @@ const AboutPage = () => {
       <FieldManualBand source="about" />
 
       {/* LaunchPath Section */}
-      <section className="py-16 md:py-20 bg-[#102133] text-white" data-testid="launchpath-section">
+      <section className="py-16 md:py-20 bg-[#0d1b2a] text-white" data-testid="launchpath-section">
         <div className="container">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
@@ -338,10 +338,10 @@ const AboutPage = () => {
       {/* Final CTA */}
       <section className="py-16 md:py-20" data-testid="about-contact-cta">
         <div className="container text-center max-w-2xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-[#102133] mb-4" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#0d1b2a] mb-4" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
             If You're Not Sure What's Exposed — Start Here.
           </h2>
-          <p className="text-[#102133]/70 mb-8 leading-relaxed">
+          <p className="text-[#0d1b2a]/70 mb-8 leading-relaxed">
             Six questions. 90 seconds. A clear picture of where you stand.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
@@ -355,17 +355,17 @@ const AboutPage = () => {
             </Link>
             <Link 
               to="/safety-check" 
-              className="inline-flex items-center gap-2 border-2 border-[#102133]/20 hover:border-[#102133]/40 text-[#102133] font-semibold px-8 py-4 rounded transition-colors"
+              className="inline-flex items-center gap-2 border-2 border-[#0d1b2a]/20 hover:border-[#0d1b2a]/40 text-[#0d1b2a] font-semibold px-8 py-4 rounded transition-colors"
               data-testid="about-cta-safety-check"
             >
               Take the Free Safety Check
             </Link>
           </div>
-          <p className="text-[#102133]/60 text-base">
+          <p className="text-[#0d1b2a]/60 text-base">
             Or reach out directly —{' '}
             <a href="tel:3363298899" className="text-[#1560ae] hover:underline font-semibold">(336) 329-8899</a>
           </p>
-          <p className="text-[#102133]/50 text-sm mt-4">
+          <p className="text-[#0d1b2a]/50 text-sm mt-4">
             Want to see the full scope first?{' '}
             <Link to="/services" className="text-[#1560ae] hover:underline font-medium">View all services and pricing</Link>
           </p>

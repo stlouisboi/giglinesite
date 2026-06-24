@@ -35,7 +35,7 @@ const HeatGuidePage = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#0B1F33] text-white py-16 md:py-24">
+      <section className="bg-[#0d1b2a] text-white py-16 md:py-24">
         <div className="container max-w-3xl">
           <p className="text-xs font-semibold tracking-widest text-[#1a6fc4] uppercase mb-4" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
             FREE DOWNLOAD
@@ -55,15 +55,15 @@ const HeatGuidePage = () => {
       {/* Email Gate — placeholder for GL-WEB-008 MailerLite integration */}
       <section className="py-14 md:py-20" data-testid="heat-guide-gate">
         <div className="container max-w-xl text-center">
-          <div className="bg-[#F9F8F6] border border-[#102133]/10 rounded-lg p-8">
+          <div className="bg-[#F9F8F6] border border-[#0d1b2a]/10 rounded-lg p-8">
             <Download size={32} className="text-[#1a6fc4] mx-auto mb-4" />
             {status === 'sent' ? (
               <div data-testid="heat-guide-success">
-                <h2 className="text-xl font-bold text-[#102133] mb-3" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+                <h2 className="text-xl font-bold text-[#0d1b2a] mb-3" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
                   Check Your Inbox
                 </h2>
-                <p className="text-sm text-[#102133]/60 mb-4">
-                  The 2026 Heat Stress Action Template has been sent to <strong className="text-[#102133]">{email}</strong>. Print it and post it.
+                <p className="text-sm text-[#0d1b2a]/60 mb-4">
+                  The 2026 Heat Stress Action Template has been sent to <strong className="text-[#0d1b2a]">{email}</strong>. Print it and post it.
                 </p>
                 <Link to="/safety-check" className="inline-flex items-center gap-2 text-sm text-[#1560ae] font-medium hover:underline">
                   Run the Free Safety Check while you're here <ArrowRight size={14} />
@@ -71,10 +71,10 @@ const HeatGuidePage = () => {
               </div>
             ) : (
               <>
-                <h2 className="text-xl font-bold text-[#102133] mb-3" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+                <h2 className="text-xl font-bold text-[#0d1b2a] mb-3" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
                   Get the Template
                 </h2>
-                <p className="text-sm text-[#102133]/60 mb-6">
+                <p className="text-sm text-[#0d1b2a]/60 mb-6">
                   Enter your email and we'll send the 2026 Heat Stress Action Template directly to your inbox. Free. No spam. One email.
                 </p>
                 <form className="space-y-3" onSubmit={handleSubmit}>
@@ -84,7 +84,7 @@ const HeatGuidePage = () => {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-4 py-3 border border-[#102133]/20 rounded text-sm focus:outline-none focus:border-[#1a6fc4]"
+                    className="w-full px-4 py-3 border border-[#0d1b2a]/20 rounded text-sm focus:outline-none focus:border-[#1a6fc4]"
                     data-testid="heat-guide-email-input"
                   />
                   <button
@@ -97,7 +97,7 @@ const HeatGuidePage = () => {
                     {status !== 'sending' && <ArrowRight size={16} />}
                   </button>
                 </form>
-                <p className="text-xs text-[#102133]/40 mt-4">
+                <p className="text-xs text-[#0d1b2a]/40 mt-4">
                   Free. No spam. One email.
                 </p>
               </>
@@ -107,9 +107,9 @@ const HeatGuidePage = () => {
       </section>
 
       {/* What's in the template */}
-      <section className="py-12 md:py-16 border-t border-[#102133]/10">
+      <section className="py-12 md:py-16 border-t border-[#0d1b2a]/10">
         <div className="container max-w-3xl">
-          <h2 className="text-lg font-bold text-[#102133] mb-6" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+          <h2 className="text-lg font-bold text-[#0d1b2a] mb-6" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             What's in the Template
           </h2>
           <ul className="space-y-3">
@@ -119,7 +119,7 @@ const HeatGuidePage = () => {
               'Written Plan Checklist — HIIPP, training, logs, emergency, acclimatization records',
               'Enforcement Reference — NC DOL General Duty Clause, penalty amounts, inspector expectations',
             ].map((item, i) => (
-              <li key={i} className="flex items-start gap-3 text-sm text-[#102133]/70">
+              <li key={i} className="flex items-start gap-3 text-sm text-[#0d1b2a]/70">
                 <span className="text-[#1a6fc4] font-bold">•</span>
                 {item}
               </li>
@@ -131,13 +131,13 @@ const HeatGuidePage = () => {
       {/* CTA */}
       <section className="py-12 md:py-16 bg-[#F9F8F6]">
         <div className="container max-w-2xl text-center">
-          <p className="text-[#102133]/60 text-sm mb-4">Need more than a template?</p>
+          <p className="text-[#0d1b2a]/60 text-sm mb-4">Need more than a template?</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Link to="/contact" className="inline-flex items-center gap-2 bg-[#102133] hover:bg-[#2A3D3D] text-white font-medium px-6 py-3 rounded transition-colors text-sm">
+            <Link to="/contact" className="inline-flex items-center gap-2 bg-[#0d1b2a] hover:bg-[#2A3D3D] text-white font-medium px-6 py-3 rounded transition-colors text-sm">
               Book a Walkthrough — Starting at $1,200
               <ArrowRight size={16} />
             </Link>
-            <Link to="/safety-check" className="inline-flex items-center gap-2 border-2 border-[#102133]/20 hover:border-[#102133]/40 text-[#102133] font-medium px-6 py-3 rounded transition-colors text-sm">
+            <Link to="/safety-check" className="inline-flex items-center gap-2 border-2 border-[#0d1b2a]/20 hover:border-[#0d1b2a]/40 text-[#0d1b2a] font-medium px-6 py-3 rounded transition-colors text-sm">
               Run the Safety Check — Free
             </Link>
           </div>

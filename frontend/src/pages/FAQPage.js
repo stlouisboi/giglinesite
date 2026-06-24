@@ -130,7 +130,7 @@ const FAQPage = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#0B1F33] text-white py-16 md:py-24">
+      <section className="bg-[#0d1b2a] text-white py-16 md:py-24">
         <div className="container max-w-4xl">
           <p
             className="uppercase tracking-[3px] text-[#1a6fc4] mb-5"
@@ -161,7 +161,7 @@ const FAQPage = () => {
               return (
                 <div
                   key={i}
-                  className="border border-[#102133]/10 rounded-lg bg-white overflow-hidden"
+                  className="border border-[#0d1b2a]/10 rounded-lg bg-white overflow-hidden"
                   data-testid={`faq-item-${i}`}
                 >
                   <button
@@ -172,7 +172,7 @@ const FAQPage = () => {
                     aria-expanded={open}
                   >
                     <span
-                      className="font-semibold text-[#102133] text-base md:text-lg leading-snug"
+                      className="font-semibold text-[#0d1b2a] text-base md:text-lg leading-snug"
                       style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
                     >
                       {f.q}
@@ -184,7 +184,7 @@ const FAQPage = () => {
                   </button>
                   {open && (
                     <div
-                      className="px-5 pb-5 md:px-6 md:pb-6 text-[#102133]/75 leading-relaxed text-sm md:text-base space-y-3"
+                      className="px-5 pb-5 md:px-6 md:pb-6 text-[#0d1b2a]/75 leading-relaxed text-sm md:text-base space-y-3"
                       data-testid={`faq-answer-${i}`}
                     >
                       {f.a.split('\n\n').map((para, j) => (
@@ -200,7 +200,7 @@ const FAQPage = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-20 bg-[#0B1F33] text-white">
+      <section className="py-16 md:py-20 bg-[#0d1b2a] text-white">
         <div className="container max-w-2xl text-center">
           <h2
             className="text-2xl md:text-3xl font-bold mb-4"

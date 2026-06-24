@@ -12,7 +12,7 @@ import { ArrowRight, Camera, QrCode, Phone } from 'lucide-react';
 
 const DOC_HEADER_BG = '#1C2B2B';
 const DOC_BORDER = 'rgba(11,31,51,0.10)';
-const TEXT_DARK = '#0B1F33';
+const TEXT_DARK = '#0d1b2a';
 const TEXT_MUTED = 'rgba(11,31,51,0.72)';
 const TEXT_SUBTLE = 'rgba(11,31,51,0.55)';
 

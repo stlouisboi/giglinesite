@@ -128,7 +128,7 @@ const BlogHazComRequirements = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#102133] text-white py-16 md:py-24">
+      <section className="bg-[#0d1b2a] text-white py-16 md:py-24">
         <div className="container max-w-3xl">
           <p className="text-xs font-semibold tracking-widest text-[#1a6fc4] uppercase mb-4" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
             COMPLIANCE GUIDE
@@ -150,9 +150,9 @@ const BlogHazComRequirements = () => {
       </section>
 
       {/* Table of Contents */}
-      <section className="py-8 border-b border-[#102133]/10" data-testid="hazcom-toc">
+      <section className="py-8 border-b border-[#0d1b2a]/10" data-testid="hazcom-toc">
         <div className="container max-w-3xl">
-          <p className="text-xs font-semibold tracking-widest text-[#102133]/40 uppercase mb-4" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+          <p className="text-xs font-semibold tracking-widest text-[#0d1b2a]/40 uppercase mb-4" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
             IN THIS GUIDE
           </p>
           <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-2">
@@ -170,7 +170,7 @@ const BlogHazComRequirements = () => {
               { id: "getting-started", label: "Getting started" },
             ].map((item) => (
               <li key={item.id}>
-                <a href={`#${item.id}`} className="text-sm text-[#102133]/60 hover:text-[#1560ae] transition-colors">
+                <a href={`#${item.id}`} className="text-sm text-[#0d1b2a]/60 hover:text-[#1560ae] transition-colors">
                   {item.label}
                 </a>
               </li>
@@ -180,50 +180,50 @@ const BlogHazComRequirements = () => {
       </section>
 
       {/* Do small businesses need HazCom? */}
-      <section className="py-12 md:py-16 border-b border-[#102133]/10" id="do-i-need">
+      <section className="py-12 md:py-16 border-b border-[#0d1b2a]/10" id="do-i-need">
         <div className="container max-w-3xl">
-          <h2 className="text-xl md:text-2xl font-bold text-[#102133] mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+          <h2 className="text-xl md:text-2xl font-bold text-[#0d1b2a] mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             Do small businesses need a HazCom program?
           </h2>
-          <p className="text-[#102133]/70 leading-relaxed mb-4">
-            <strong className="text-[#102133]">Yes.</strong> Any business that uses, stores, or handles hazardous chemicals must comply with OSHA's Hazard Communication Standard (29 CFR 1910.1200). There is no small business exemption.
+          <p className="text-[#0d1b2a]/70 leading-relaxed mb-4">
+            <strong className="text-[#0d1b2a]">Yes.</strong> Any business that uses, stores, or handles hazardous chemicals must comply with OSHA's Hazard Communication Standard (29 CFR 1910.1200). There is no small business exemption.
           </p>
-          <p className="text-[#102133]/70 leading-relaxed mb-6">
+          <p className="text-[#0d1b2a]/70 leading-relaxed mb-6">
             If your employees are exposed to chemicals at work — even common products like cleaning supplies, paints, adhesives, or lubricants — you are required to have:
           </p>
           <ol className="space-y-2 mb-6">
             {["A written Hazard Communication program", "Safety Data Sheets (SDS) for every hazardous chemical", "Proper labels on all chemical containers", "Documented employee training"].map((item, i) => (
-              <li key={i} className="flex items-start gap-3 text-sm text-[#102133]/70">
+              <li key={i} className="flex items-start gap-3 text-sm text-[#0d1b2a]/70">
                 <span className="font-bold text-[#1a6fc4] flex-shrink-0">{i + 1}.</span>
                 {item}
               </li>
             ))}
           </ol>
-          <p className="text-[#102133]/60 text-sm">
+          <p className="text-[#0d1b2a]/60 text-sm">
             This applies to manufacturers, auto shops, fabrication shops, warehouses, contractors, and any general industry employer with chemical exposure.
           </p>
         </div>
       </section>
 
-      <section className="py-12 md:py-16 border-b border-[#102133]/10" id="what-is-hcs">
+      <section className="py-12 md:py-16 border-b border-[#0d1b2a]/10" id="what-is-hcs">
         <div className="container max-w-3xl">
-          <h2 className="text-xl md:text-2xl font-bold text-[#102133] mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+          <h2 className="text-xl md:text-2xl font-bold text-[#0d1b2a] mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             What is the OSHA Hazard Communication Standard?
           </h2>
-          <p className="text-[#102133]/70 leading-relaxed mb-4">
-            The <strong className="text-[#102133]">Hazard Communication Standard (HCS)</strong>, codified at <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '13px' }}>29 CFR 1910.1200</span>, requires employers to inform employees about chemical hazards in the workplace. It is also called "HazCom" or the "Right to Know" law.
+          <p className="text-[#0d1b2a]/70 leading-relaxed mb-4">
+            The <strong className="text-[#0d1b2a]">Hazard Communication Standard (HCS)</strong>, codified at <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '13px' }}>29 CFR 1910.1200</span>, requires employers to inform employees about chemical hazards in the workplace. It is also called "HazCom" or the "Right to Know" law.
           </p>
-          <p className="text-[#102133]/70 leading-relaxed mb-6">
+          <p className="text-[#0d1b2a]/70 leading-relaxed mb-6">
             The standard was updated in 2012 to align with the Globally Harmonized System (GHS) of classification and labeling, which standardized:
           </p>
           <ul className="space-y-2 mb-6">
             {["Hazard classification criteria", "Label elements (pictograms, signal words, hazard statements)", "Safety Data Sheet format (16 sections)"].map((item, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-[#102133]/70">
+              <li key={i} className="flex items-start gap-2 text-sm text-[#0d1b2a]/70">
                 <span className="text-[#1a6fc4] font-bold">•</span>{item}
               </li>
             ))}
           </ul>
-          <p className="text-xs text-[#102133]/50">
+          <p className="text-xs text-[#0d1b2a]/50">
             OSHA enforces HazCom under General Industry (1910.1200), Construction (1926.59), and Maritime (1915.1200, 1917.28, 1918.90) standards.
           </p>
         </div>
@@ -232,28 +232,28 @@ const BlogHazComRequirements = () => {
       {/* Four Requirements */}
       <section className="py-12 md:py-16 bg-[#F9F8F6]" data-testid="four-requirements">
         <div className="container max-w-3xl">
-          <h2 className="text-xl md:text-2xl font-bold text-[#102133] mb-10" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+          <h2 className="text-xl md:text-2xl font-bold text-[#0d1b2a] mb-10" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             What are the four requirements of a HazCom program?
           </h2>
-          <p className="text-[#102133]/60 text-sm mb-10">
+          <p className="text-[#0d1b2a]/60 text-sm mb-10">
             OSHA 29 CFR 1910.1200 requires employers to implement four components:
           </p>
           <div className="space-y-8">
             {fourRequirements.map((req) => (
-              <div key={req.num} className="bg-white border border-[#102133]/10 rounded p-6" style={{ borderTop: '3px solid #1a6fc4' }}>
+              <div key={req.num} className="bg-white border border-[#0d1b2a]/10 rounded p-6" style={{ borderTop: '3px solid #1a6fc4' }}>
                 <div className="flex items-start gap-3 mb-4">
                   <req.icon size={22} className="text-[#1a6fc4] flex-shrink-0 mt-0.5" />
                   <div>
-                    <p className="text-xs text-[#102133]/40 font-semibold tracking-widest uppercase" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                    <p className="text-xs text-[#0d1b2a]/40 font-semibold tracking-widest uppercase" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
                       {req.cfr}
                     </p>
-                    <h3 className="text-base font-bold text-[#102133]">{req.num}. {req.title}</h3>
+                    <h3 className="text-base font-bold text-[#0d1b2a]">{req.num}. {req.title}</h3>
                   </div>
                 </div>
-                <p className="text-sm text-[#102133]/70 mb-4">{req.content}</p>
+                <p className="text-sm text-[#0d1b2a]/70 mb-4">{req.content}</p>
                 <ul className="space-y-2">
                   {req.items.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-[#102133]/60">
+                    <li key={i} className="flex items-start gap-2 text-sm text-[#0d1b2a]/60">
                       <span className="text-[#1a6fc4] mt-0.5 flex-shrink-0 text-xs">&#x2713;</span>
                       {item}
                     </li>
@@ -261,8 +261,8 @@ const BlogHazComRequirements = () => {
                 </ul>
                 {req.exception && (
                   <div className="mt-5 bg-[#F9F8F6] border-l-2 border-[#1a6fc4] p-4 rounded-r">
-                    <h4 className="text-sm font-bold text-[#102133] mb-2">{req.exception.title}</h4>
-                    <p className="text-xs text-[#102133]/60 leading-relaxed">{req.exception.text}</p>
+                    <h4 className="text-sm font-bold text-[#0d1b2a] mb-2">{req.exception.title}</h4>
+                    <p className="text-xs text-[#0d1b2a]/60 leading-relaxed">{req.exception.text}</p>
                   </div>
                 )}
               </div>
@@ -271,47 +271,47 @@ const BlogHazComRequirements = () => {
         </div>
       </section>
 
-      <section className="py-12 md:py-16 border-b border-[#102133]/10" id="chemicals-sds">
+      <section className="py-12 md:py-16 border-b border-[#0d1b2a]/10" id="chemicals-sds">
         <div className="container max-w-3xl">
-          <h2 className="text-xl md:text-2xl font-bold text-[#102133] mb-6" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+          <h2 className="text-xl md:text-2xl font-bold text-[#0d1b2a] mb-6" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             What chemicals require an SDS?
           </h2>
-          <p className="text-[#102133]/70 mb-6 text-sm">Any chemical classified as a health hazard or physical hazard requires an SDS. This includes:</p>
+          <p className="text-[#0d1b2a]/70 mb-6 text-sm">Any chemical classified as a health hazard or physical hazard requires an SDS. This includes:</p>
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-sm font-semibold text-[#102133] mb-3 uppercase tracking-wider">Common Chemicals Requiring SDS</h3>
+              <h3 className="text-sm font-semibold text-[#0d1b2a] mb-3 uppercase tracking-wider">Common Chemicals Requiring SDS</h3>
               <ul className="space-y-2">
                 {["Cleaning products (degreasers, solvents, disinfectants)", "Paints, coatings, and thinners", "Lubricants and cutting fluids", "Welding gases and filler materials", "Adhesives and sealants", "Fuels (gasoline, diesel, propane)", "Battery acid", "Pesticides and herbicides"].map((item, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-[#102133]/70">
+                  <li key={i} className="flex items-start gap-2 text-sm text-[#0d1b2a]/70">
                     <span className="text-red-500 mt-0.5 flex-shrink-0 text-xs">&#x2717;</span>{item}
                   </li>
                 ))}
               </ul>
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-[#102133] mb-3 uppercase tracking-wider">Exemptions (SDS Not Required)</h3>
+              <h3 className="text-sm font-semibold text-[#0d1b2a] mb-3 uppercase tracking-wider">Exemptions (SDS Not Required)</h3>
               <ul className="space-y-2">
                 {["Consumer products used in the same manner and duration as normal consumer use", "Food, drugs, and cosmetics for employee consumption", "Tobacco products", "Wood and wood products (unless treated)", "Articles that do not release hazardous chemicals under normal use"].map((item, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-[#102133]/60">
+                  <li key={i} className="flex items-start gap-2 text-sm text-[#0d1b2a]/60">
                     <span className="text-green-600 mt-0.5 flex-shrink-0 text-xs">&#x2713;</span>{item}
                   </li>
                 ))}
               </ul>
             </div>
           </div>
-          <p className="text-xs text-[#102133]/50 mt-6">
+          <p className="text-xs text-[#0d1b2a]/50 mt-6">
             If you're unsure whether a product requires an SDS, request one from the supplier. Most chemical manufacturers provide SDS on their websites.
           </p>
         </div>
       </section>
 
       {/* How to create a written program */}
-      <section className="py-12 md:py-16 border-b border-[#102133]/10" id="written-program">
+      <section className="py-12 md:py-16 border-b border-[#0d1b2a]/10" id="written-program">
         <div className="container max-w-3xl">
-          <h2 className="text-xl md:text-2xl font-bold text-[#102133] mb-6" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+          <h2 className="text-xl md:text-2xl font-bold text-[#0d1b2a] mb-6" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             How do I create a written HazCom program?
           </h2>
-          <p className="text-[#102133]/70 mb-6 text-sm">A written HazCom program must address:</p>
+          <p className="text-[#0d1b2a]/70 mb-6 text-sm">A written HazCom program must address:</p>
           <ol className="space-y-3 mb-6">
             {[
               { title: "Chemical inventory", desc: "List all hazardous chemicals present" },
@@ -322,15 +322,15 @@ const BlogHazComRequirements = () => {
               { title: "Contractor communication", desc: "How chemical hazards are shared with outside employers" },
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-3">
-                <span className="bg-[#102133] text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">{i + 1}</span>
+                <span className="bg-[#0d1b2a] text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">{i + 1}</span>
                 <div>
-                  <span className="font-semibold text-[#102133] text-sm">{item.title}</span>
-                  <span className="text-[#102133]/60 text-sm"> — {item.desc}</span>
+                  <span className="font-semibold text-[#0d1b2a] text-sm">{item.title}</span>
+                  <span className="text-[#0d1b2a]/60 text-sm"> — {item.desc}</span>
                 </div>
               </li>
             ))}
           </ol>
-          <p className="text-sm text-[#102133]/60 mb-4">
+          <p className="text-sm text-[#0d1b2a]/60 mb-4">
             The written program must be available to employees upon request and must be reviewed and updated when chemicals or processes change.
           </p>
           <Link to="/hazcom" className="inline-flex items-center gap-2 text-sm text-[#1560ae] font-medium hover:underline">
@@ -339,77 +339,77 @@ const BlogHazComRequirements = () => {
         </div>
       </section>
 
-      <section className="py-12 md:py-16 border-b border-[#102133]/10" id="sds-location">
+      <section className="py-12 md:py-16 border-b border-[#0d1b2a]/10" id="sds-location">
         <div className="container max-w-3xl">
-          <h2 className="text-xl md:text-2xl font-bold text-[#102133] mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+          <h2 className="text-xl md:text-2xl font-bold text-[#0d1b2a] mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             Where should the SDS binder be located?
           </h2>
-          <p className="text-[#102133]/70 mb-4 text-sm">OSHA requires that SDS be <strong className="text-[#102133]">readily accessible</strong> to employees during their work shift. This means:</p>
+          <p className="text-[#0d1b2a]/70 mb-4 text-sm">OSHA requires that SDS be <strong className="text-[#0d1b2a]">readily accessible</strong> to employees during their work shift. This means:</p>
           <ul className="space-y-2 mb-6">
             {["Employees can access SDS without asking permission", "SDS are available in the work area or can be immediately obtained", "Electronic access is acceptable if employees can retrieve SDS without delay"].map((item, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-[#102133]/70">
+              <li key={i} className="flex items-start gap-2 text-sm text-[#0d1b2a]/70">
                 <span className="text-[#1a6fc4] font-bold">•</span>{item}
               </li>
             ))}
           </ul>
-          <p className="text-sm text-[#102133]/70 mb-3">Common locations:</p>
+          <p className="text-sm text-[#0d1b2a]/70 mb-3">Common locations:</p>
           <ul className="space-y-2 mb-4">
             {["Front office or reception area", "Shop floor near chemical storage", "Break room or common area", "Digital access via computer or tablet"].map((item, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-[#102133]/60">
-                <span className="text-[#102133]/30">—</span>{item}
+              <li key={i} className="flex items-start gap-2 text-sm text-[#0d1b2a]/60">
+                <span className="text-[#0d1b2a]/30">—</span>{item}
               </li>
             ))}
           </ul>
-          <p className="text-xs text-[#102133]/50">The location must be communicated to all employees during training.</p>
+          <p className="text-xs text-[#0d1b2a]/50">The location must be communicated to all employees during training.</p>
         </div>
       </section>
 
-      <section className="py-12 md:py-16 border-b border-[#102133]/10" id="penalties" data-testid="hazcom-penalties">
+      <section className="py-12 md:py-16 border-b border-[#0d1b2a]/10" id="penalties" data-testid="hazcom-penalties">
         <div className="container max-w-3xl">
-          <h2 className="text-xl md:text-2xl font-bold text-[#102133] mb-2" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+          <h2 className="text-xl md:text-2xl font-bold text-[#0d1b2a] mb-2" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             What are the penalties for HazCom violations?
           </h2>
-          <p className="text-sm text-[#102133]/60 mb-6">
-            Hazard Communication is the <strong className="text-[#102133]">#1 most-cited OSHA standard</strong> in general industry. Penalties as of January 2025:
+          <p className="text-sm text-[#0d1b2a]/60 mb-6">
+            Hazard Communication is the <strong className="text-[#0d1b2a]">#1 most-cited OSHA standard</strong> in general industry. Penalties as of January 2025:
           </p>
           <table className="w-full text-sm mb-6" data-testid="hazcom-penalty-table">
             <thead>
-              <tr className="border-b-2 border-[#102133]/10">
-                <th className="text-left py-3 pr-4 font-semibold text-[#102133]">Violation Type</th>
-                <th className="text-right py-3 font-semibold text-[#102133]">Maximum Penalty</th>
+              <tr className="border-b-2 border-[#0d1b2a]/10">
+                <th className="text-left py-3 pr-4 font-semibold text-[#0d1b2a]">Violation Type</th>
+                <th className="text-right py-3 font-semibold text-[#0d1b2a]">Maximum Penalty</th>
               </tr>
             </thead>
             <tbody>
               {penaltyData.map((row) => (
-                <tr key={row.type} className="border-b border-[#102133]/5">
-                  <td className="py-3 pr-4 text-[#102133]/70">{row.type}</td>
-                  <td className="py-3 text-right font-semibold text-[#102133]" style={{ fontFamily: "'JetBrains Mono', monospace" }}>{row.amount}</td>
+                <tr key={row.type} className="border-b border-[#0d1b2a]/5">
+                  <td className="py-3 pr-4 text-[#0d1b2a]/70">{row.type}</td>
+                  <td className="py-3 text-right font-semibold text-[#0d1b2a]" style={{ fontFamily: "'JetBrains Mono', monospace" }}>{row.amount}</td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <p className="text-sm text-[#102133]/60 mb-3">Common citations include:</p>
+          <p className="text-sm text-[#0d1b2a]/60 mb-3">Common citations include:</p>
           <ul className="space-y-2">
             {commonCitations.map((item, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-[#102133]/70">
+              <li key={i} className="flex items-start gap-2 text-sm text-[#0d1b2a]/70">
                 <AlertTriangle size={14} className="text-red-500 mt-0.5 flex-shrink-0" />{item}
               </li>
             ))}
           </ul>
-          <p className="text-xs text-[#102133]/50 mt-4">A single HazCom inspection can result in multiple violations totaling tens of thousands of dollars.</p>
+          <p className="text-xs text-[#0d1b2a]/50 mt-4">A single HazCom inspection can result in multiple violations totaling tens of thousands of dollars.</p>
         </div>
       </section>
 
-      <section className="py-12 md:py-16 border-b border-[#102133]/10" id="training-frequency">
+      <section className="py-12 md:py-16 border-b border-[#0d1b2a]/10" id="training-frequency">
         <div className="container max-w-3xl">
-          <h2 className="text-xl md:text-2xl font-bold text-[#102133] mb-6" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+          <h2 className="text-xl md:text-2xl font-bold text-[#0d1b2a] mb-6" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             How often is HazCom training required?
           </h2>
           <table className="w-full text-sm mb-4">
             <thead>
-              <tr className="border-b-2 border-[#102133]/10">
-                <th className="text-left py-3 pr-4 font-semibold text-[#102133]">Timing</th>
-                <th className="text-left py-3 font-semibold text-[#102133]">Requirement</th>
+              <tr className="border-b-2 border-[#0d1b2a]/10">
+                <th className="text-left py-3 pr-4 font-semibold text-[#0d1b2a]">Timing</th>
+                <th className="text-left py-3 font-semibold text-[#0d1b2a]">Requirement</th>
               </tr>
             </thead>
             <tbody>
@@ -418,44 +418,44 @@ const BlogHazComRequirements = () => {
                 { timing: "New chemical", req: "When a new hazard is introduced to the work area" },
                 { timing: "New employee", req: "Before initial assignment to area with chemical exposure" },
               ].map((row) => (
-                <tr key={row.timing} className="border-b border-[#102133]/5">
-                  <td className="py-3 pr-4 text-[#102133] font-medium text-sm">{row.timing}</td>
-                  <td className="py-3 text-[#102133]/70 text-sm">{row.req}</td>
+                <tr key={row.timing} className="border-b border-[#0d1b2a]/5">
+                  <td className="py-3 pr-4 text-[#0d1b2a] font-medium text-sm">{row.timing}</td>
+                  <td className="py-3 text-[#0d1b2a]/70 text-sm">{row.req}</td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <p className="text-xs text-[#102133]/50">OSHA does not mandate annual refresher training, but many employers conduct it to maintain awareness. Training must be documented with employee signatures.</p>
+          <p className="text-xs text-[#0d1b2a]/50">OSHA does not mandate annual refresher training, but many employers conduct it to maintain awareness. Training must be documented with employee signatures.</p>
         </div>
       </section>
 
-      <section className="py-12 md:py-16 border-b border-[#102133]/10" id="consumer-exemption">
+      <section className="py-12 md:py-16 border-b border-[#0d1b2a]/10" id="consumer-exemption">
         <div className="container max-w-3xl">
-          <h2 className="text-xl md:text-2xl font-bold text-[#102133] mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+          <h2 className="text-xl md:text-2xl font-bold text-[#0d1b2a] mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             Do I need HazCom if I only use household cleaning products?
           </h2>
-          <p className="text-[#102133]/70 mb-4 text-sm">
-            It depends on how the products are used. OSHA provides a <strong className="text-[#102133]">consumer product exemption</strong> for products used in the same manner and duration as normal consumer use.
+          <p className="text-[#0d1b2a]/70 mb-4 text-sm">
+            It depends on how the products are used. OSHA provides a <strong className="text-[#0d1b2a]">consumer product exemption</strong> for products used in the same manner and duration as normal consumer use.
           </p>
-          <p className="text-[#102133]/70 mb-4 text-sm">
+          <p className="text-[#0d1b2a]/70 mb-4 text-sm">
             If employees use cleaning products more frequently or in greater quantities than a typical consumer — which is common in commercial settings — the exemption does not apply and an SDS is required.
           </p>
-          <p className="text-[#102133]/80 font-medium text-sm">
+          <p className="text-[#0d1b2a]/80 font-medium text-sm">
             When in doubt, obtain the SDS and include the product in your program.
           </p>
         </div>
       </section>
 
-      <section className="py-12 md:py-16 border-b border-[#102133]/10" id="msds-vs-sds">
+      <section className="py-12 md:py-16 border-b border-[#0d1b2a]/10" id="msds-vs-sds">
         <div className="container max-w-3xl">
-          <h2 className="text-xl md:text-2xl font-bold text-[#102133] mb-6" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+          <h2 className="text-xl md:text-2xl font-bold text-[#0d1b2a] mb-6" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             What is the difference between MSDS and SDS?
           </h2>
           <table className="w-full text-sm mb-4">
             <thead>
-              <tr className="border-b-2 border-[#102133]/10">
-                <th className="text-left py-3 pr-4 font-semibold text-[#102133]">MSDS (Pre-2012)</th>
-                <th className="text-left py-3 font-semibold text-[#102133]">SDS (Current)</th>
+              <tr className="border-b-2 border-[#0d1b2a]/10">
+                <th className="text-left py-3 pr-4 font-semibold text-[#0d1b2a]">MSDS (Pre-2012)</th>
+                <th className="text-left py-3 font-semibold text-[#0d1b2a]">SDS (Current)</th>
               </tr>
             </thead>
             <tbody>
@@ -464,20 +464,20 @@ const BlogHazComRequirements = () => {
                 { old: "Inconsistent hazard classification", current: "GHS-aligned classification" },
                 { old: "No required pictograms", current: "GHS pictograms required" },
               ].map((row, i) => (
-                <tr key={i} className="border-b border-[#102133]/5">
-                  <td className="py-3 pr-4 text-[#102133]/50 text-sm">{row.old}</td>
-                  <td className="py-3 text-[#102133]/70 text-sm">{row.current}</td>
+                <tr key={i} className="border-b border-[#0d1b2a]/5">
+                  <td className="py-3 pr-4 text-[#0d1b2a]/50 text-sm">{row.old}</td>
+                  <td className="py-3 text-[#0d1b2a]/70 text-sm">{row.current}</td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <p className="text-xs text-[#102133]/50">All employers should have transitioned to SDS format. If you still have MSDS documents, they should be replaced with current SDS from the chemical supplier.</p>
+          <p className="text-xs text-[#0d1b2a]/50">All employers should have transitioned to SDS format. If you still have MSDS documents, they should be replaced with current SDS from the chemical supplier.</p>
         </div>
       </section>
 
       <section className="py-12 md:py-16 bg-[#F9F8F6]" id="getting-started" data-testid="getting-started">
         <div className="container max-w-3xl">
-          <h2 className="text-xl md:text-2xl font-bold text-[#102133] mb-8" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+          <h2 className="text-xl md:text-2xl font-bold text-[#0d1b2a] mb-8" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             How do I get started with HazCom compliance?
           </h2>
           <ol className="space-y-5">
@@ -492,8 +492,8 @@ const BlogHazComRequirements = () => {
               <li key={i} className="flex items-start gap-4">
                 <span className="bg-[#1a6fc4] text-white text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">{i + 1}</span>
                 <div>
-                  <p className="font-semibold text-[#102133] text-sm">{step.title}</p>
-                  <p className="text-sm text-[#102133]/60">{step.desc}</p>
+                  <p className="font-semibold text-[#0d1b2a] text-sm">{step.title}</p>
+                  <p className="text-sm text-[#0d1b2a]/60">{step.desc}</p>
                 </div>
               </li>
             ))}
@@ -502,7 +502,7 @@ const BlogHazComRequirements = () => {
       </section>
 
       {/* Related Resources / CTA */}
-      <section className="py-14 md:py-20 bg-[#102133] text-white" data-testid="hazcom-blog-cta">
+      <section className="py-14 md:py-20 bg-[#0d1b2a] text-white" data-testid="hazcom-blog-cta">
         <div className="container max-w-3xl">
           <h2 className="text-xl md:text-2xl font-bold mb-8" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             Related Resources
@@ -537,8 +537,8 @@ const BlogHazComRequirements = () => {
       <section className="py-12 bg-[#F9F8F6]">
         <div className="container max-w-3xl">
           <div className="border border-[#1a6fc4]/20 bg-white rounded-lg p-6 md:p-8 text-center" data-testid="blog-walkthrough-callout">
-            <p className="text-lg font-bold text-[#102133] mb-2">Not sure if these violations exist in your shop?</p>
-            <p className="text-sm text-[#102133]/60 mb-5">A GigLine Safety Walkthrough will flag them with photos and a prioritized fix list — usually within 48 hours.</p>
+            <p className="text-lg font-bold text-[#0d1b2a] mb-2">Not sure if these violations exist in your shop?</p>
+            <p className="text-sm text-[#0d1b2a]/60 mb-5">A GigLine Safety Walkthrough will flag them with photos and a prioritized fix list — usually within 48 hours.</p>
             <Link to="/request-walkthrough" className="inline-flex items-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-6 py-3 rounded transition-colors">
               Request a Safety Walkthrough <ArrowRight size={16} />
             </Link>
@@ -547,23 +547,23 @@ const BlogHazComRequirements = () => {
       </section>
 
       {/* Author Box */}
-      <section className="py-10 border-t border-[#102133]/10">
+      <section className="py-10 border-t border-[#0d1b2a]/10">
         <div className="container max-w-3xl">
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-full bg-[#102133] flex items-center justify-center flex-shrink-0">
+            <div className="w-12 h-12 rounded-full bg-[#0d1b2a] flex items-center justify-center flex-shrink-0">
               <span className="text-white font-bold text-sm">VL</span>
             </div>
             <div>
-              <p className="font-semibold text-[#102133] text-sm">Vince Lawrence</p>
-              <p className="text-xs text-[#102133]/50 mb-2">Safety Consultant, OSHA 30-Hour Certified, U.S. Navy Veteran</p>
-              <p className="text-xs text-[#102133]/50">
+              <p className="font-semibold text-[#0d1b2a] text-sm">Vince Lawrence</p>
+              <p className="text-xs text-[#0d1b2a]/50 mb-2">Safety Consultant, OSHA 30-Hour Certified, U.S. Navy Veteran</p>
+              <p className="text-xs text-[#0d1b2a]/50">
                 GigLine Safety & Compliance — Kernersville, NC{' '}
-                <span className="text-[#102133]/30 mx-1">|</span>
+                <span className="text-[#0d1b2a]/30 mx-1">|</span>
                 <a href="tel:3363298899" className="text-[#1560ae] hover:underline">(336) 329-8899</a>
-                <span className="text-[#102133]/30 mx-1">|</span>
+                <span className="text-[#0d1b2a]/30 mx-1">|</span>
                 <a href="mailto:vince@giglinecompliance.com" className="text-[#1560ae] hover:underline">vince@giglinecompliance.com</a>
               </p>
-              <p className="text-xs text-[#102133]/40 mt-2 italic">Penalty amounts reflect January 2025 OSHA adjustments.</p>
+              <p className="text-xs text-[#0d1b2a]/40 mt-2 italic">Penalty amounts reflect January 2025 OSHA adjustments.</p>
             </div>
           </div>
         </div>

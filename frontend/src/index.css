@@ -29,30 +29,30 @@ body {
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #102133;
+  color: #0d1b2a;
   background-color: #F7F9FC;
 }
 
 @layer base {
   :root {
-    --primary: #0B1F33;
+    --primary: #0d1b2a;
     --primary-foreground: #FFFFFF;
     --accent: #1a6fc4;
     --accent-foreground: #FFFFFF;
     --secondary: #F7F9FC;
-    --secondary-foreground: #102133;
+    --secondary-foreground: #0d1b2a;
     --background: #F7F9FC;
-    --foreground: #102133;
+    --foreground: #0d1b2a;
     --muted: #F7F9FC;
     --muted-foreground: #5B6B7A;
     --border: #D9E2EC;
     --teal: #2A9D8F;
     --warning: #B45309;
-    --navy: #0B1F33;
+    --navy: #0d1b2a;
     --navy-light: #102A43;
     --cta: #1a6fc4;
     --cta-hover: #1560ae;
-    --text-primary: #102133;
+    --text-primary: #0d1b2a;
     --text-secondary: #5B6B7A;
     --surface: #F7F9FC;
     --card: #FFFFFF;
@@ -79,7 +79,7 @@ body {
   .btn-secondary {
     @apply inline-flex items-center justify-center px-6 py-3 font-medium rounded-lg transition-colors focus:outline-none;
     background-color: #FFFFFF;
-    color: #102133;
+    color: #0d1b2a;
     border: 1px solid #D9E2EC;
   }
   .btn-secondary:hover {
@@ -89,7 +89,7 @@ body {
   .section-heading {
     @apply text-3xl md:text-4xl font-bold mb-4;
     font-family: 'Manrope', sans-serif;
-    color: #102133;
+    color: #0d1b2a;
   }
 
   .card {
@@ -98,7 +98,7 @@ body {
   }
 
   .bg-primary {
-    background-color: #0B1F33 !important;
+    background-color: #0d1b2a !important;
   }
 
   .text-accent {

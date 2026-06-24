@@ -41,7 +41,7 @@ const ServiceLandingTemplate = ({
       {/* ── Hero ── */}
       <section
         className="relative py-20 md:py-28"
-        style={{ backgroundColor: '#0B1F33' }}
+        style={{ backgroundColor: '#0d1b2a' }}
         data-testid="svc-hero"
       >
         <div className="container max-w-5xl">
@@ -169,19 +169,19 @@ const ServiceLandingTemplate = ({
           >
             Next Steps
           </p>
-          <h2 className="text-2xl md:text-3xl font-bold text-[#102133] leading-tight mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#0d1b2a] leading-tight mb-6">
             How to get started.
           </h2>
           {nextSteps.intro && (
-            <p className="text-base md:text-lg text-[#102133]/80 leading-relaxed mb-10 max-w-3xl">
+            <p className="text-base md:text-lg text-[#0d1b2a]/80 leading-relaxed mb-10 max-w-3xl">
               {nextSteps.intro}
             </p>
           )}
-          <div className="space-y-0 border-t border-[#102133]/10">
+          <div className="space-y-0 border-t border-[#0d1b2a]/10">
             {nextSteps.steps.map((step, i) => (
               <div
                 key={i}
-                className="flex items-start gap-5 py-5 border-b border-[#102133]/10"
+                className="flex items-start gap-5 py-5 border-b border-[#0d1b2a]/10"
                 data-testid={`svc-next-step-${i}`}
               >
                 <span
@@ -191,8 +191,8 @@ const ServiceLandingTemplate = ({
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <div>
-                  <p className="text-base md:text-lg font-bold text-[#102133] mb-1">{step.label}</p>
-                  <p className="text-base text-[#102133]/80 leading-relaxed">{step.desc}</p>
+                  <p className="text-base md:text-lg font-bold text-[#0d1b2a] mb-1">{step.label}</p>
+                  <p className="text-base text-[#0d1b2a]/80 leading-relaxed">{step.desc}</p>
                 </div>
               </div>
             ))}
@@ -241,11 +241,11 @@ const Section = ({ eyebrow, title, intro, bullets, bg, testid, bulletStyle = 'ch
       >
         {eyebrow}
       </p>
-      <h2 className="text-2xl md:text-3xl font-bold text-[#102133] leading-tight mb-6">
+      <h2 className="text-2xl md:text-3xl font-bold text-[#0d1b2a] leading-tight mb-6">
         {title}
       </h2>
       {intro && (
-        <p className="text-base md:text-lg text-[#102133]/80 leading-relaxed mb-8 max-w-3xl">
+        <p className="text-base md:text-lg text-[#0d1b2a]/80 leading-relaxed mb-8 max-w-3xl">
           {intro}
         </p>
       )}
@@ -257,7 +257,7 @@ const Section = ({ eyebrow, title, intro, bullets, bg, testid, bulletStyle = 'ch
             ) : (
               <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#1a6fc4] mt-3" aria-hidden="true" />
             )}
-            <p className="text-base md:text-lg text-[#102133]/90 leading-relaxed">{b}</p>
+            <p className="text-base md:text-lg text-[#0d1b2a]/90 leading-relaxed">{b}</p>
           </li>
         ))}
       </ul>

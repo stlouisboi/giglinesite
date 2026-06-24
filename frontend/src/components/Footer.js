@@ -13,12 +13,12 @@ const Footer = () => {
           <div>
             <div className="mb-4">
               <img
-                src="/gigline-logo-2026-white.png"
+                src="/gigline-logo-dark-bg.png"
                 alt="GigLine Safety & Compliance"
-                className="h-14 w-auto"
+                className="h-16 w-auto"
                 loading="lazy"
-                width="232"
-                height="90"
+                width="240"
+                height="240"
               />
             </div>
             <p className="text-white/60 text-sm mb-4">

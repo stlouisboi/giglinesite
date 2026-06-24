@@ -318,7 +318,7 @@ const CityLandingPage = () => {
               </div>
             ))}
           </div>
-          <div className="mt-8 pt-6 border-t border-[#0d1b2a]/10">
+          <div className="mt-8 pt-6 border-t border-[#dde3ea]">
             <Link
               to="/faq"
               className="inline-flex items-center gap-2 text-[#1a6fc4] hover:text-[#1560ae] font-semibold text-sm"

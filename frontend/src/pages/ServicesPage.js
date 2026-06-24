@@ -756,7 +756,10 @@ const ServicesPage = () => {
                   <div className={cardOnLeft ? 'lg:order-1' : 'lg:order-2'}>
                     <div
                       className="rounded-2xl bg-white p-8 md:p-10"
-                      style={{ border: '1px solid #dde3ea', boxShadow: '0 1px 0 rgba(13,27,42,0.02)' }}
+                      style={{
+                        border: '1px solid #d0d7e0',
+                        boxShadow: '0 12px 32px -16px rgba(13,27,42,0.18), 0 2px 6px rgba(13,27,42,0.04)',
+                      }}
                       data-testid={`${s.testid}-includes-card`}
                     >
                       <p

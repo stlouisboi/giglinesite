@@ -193,21 +193,25 @@ const STANDALONE = [
 const RECURRING = [
   {
     title: 'Quarterly Compliance Maintenance',
-    price: 'From $950/quarter',
-    body: 'GigLine keeps the system current between annual walkthroughs. Documentation review, training record audit, SDS inventory check, corrective action tracker review, and a brief site visit if needed.',
+    eyebrow: 'Quarterly Compliance Maintenance',
+    headline: 'Keep the system alive between annual walkthroughs.',
+    price: '$950/quarter',
+    priceFull: 'From $950/quarter',
+    body: 'Documentation review, training record audit, SDS inventory check, corrective action tracker review, and a brief site visit if needed.',
     best: 'Operations that want the system kept alive after the Control System is built.',
     cta: 'Ask About Quarterly Maintenance',
     intakeService: 'quarterly-compliance-maintenance',
+    detailsHref: '/services/quarterly-compliance-maintenance',
     testid: 'svc-rec-quarterly',
     anchor: 'quarterly',
   },
   {
     title: 'Annual Compliance Control Partner',
+    eyebrow: 'Annual Compliance Control Partner',
+    headline: 'When OSHA shows up, when someone gets hurt, when your customer asks for your safety program \u2014 you need someone who already knows your operation.',
     price: '$12,000/year',
     priceSecondary: '$1,000/month equivalent',
-    body: 'Most small manufacturers don\u2019t need a full-time safety manager. They need someone who knows their floor, stays current on their documentation, and picks up the phone when something happens.',
-    bodyTagline: 'That\u2019s what the Annual Compliance Control Partner is.',
-    bodyExtended: 'Over the course of the year, you get two full on-site walkthroughs, four documentation reviews, and a quarterly check-in call to review what\u2019s been corrected, what\u2019s outstanding, and what\u2019s coming up on the compliance calendar. Between visits, you have direct access \u2014 not a help desk, not a ticketing system, not a callback queue. If your floor supervisor calls in an injury at 7am, you have someone to call.',
+    body: 'Two full walkthroughs per year. Quarterly documentation reviews. Training record maintenance. OSHA 300A posting reminders. Pre-inspection readiness review. Management safety review. GigLine becomes your ongoing compliance resource \u2014 available when something happens and proactive between visits.',
     includes: [
       { label: 'Two Safety Walkthroughs per year', detail: 'on-site, photographed, reported within 48 hours', value: 'standalone value: $2,400' },
       { label: 'Four Documentation Reviews per year', detail: 'written programs, training records, OSHA 300 logs, HazCom binder', value: 'standalone value: $5,200' },
@@ -226,9 +230,10 @@ const RECURRING = [
       monthly: '$1,000',
     },
     closingLine: 'This is not a retainer that sits in a drawer. It is an active compliance relationship \u2014 scheduled, documented, and available when you need it.',
-    best: 'Operations that want a compliance partner they can call, not just a one-time report \u2014 and who want to know their floor and files are current before OSHA, an insurer, or a customer auditor shows up.',
+    best: 'Operations that want a consultant they can call, not just a one-time report.',
     cta: 'Ask About Annual Partnership',
     intakeService: 'annual-compliance-partner',
+    detailsHref: '/services/annual-compliance-partner',
     testid: 'svc-rec-annual',
     anchor: 'annual',
     badge: 'Highest-Value Engagement',
@@ -237,11 +242,11 @@ const RECURRING = [
 
 /* ═══ Readiness Path table ═══ */
 const READINESS_PATH = [
-  { stage: 'Find the issues', need: 'What would OSHA see on our floor?', offer: 'Safety Walkthrough — from $1,200', link: intakeLink('safety-walkthrough-report') },
-  { stage: 'Check the files', need: 'Are our documents inspection-ready?', offer: DOC_REVIEW_PATH_OFFER, link: intakeLink('documentation-readiness-review') },
-  { stage: 'Review both', need: 'We need the floor and files checked.', offer: 'Compliance Readiness Visit — from $2,000', link: intakeLink('compliance-readiness-visit') },
-  { stage: 'Build the system', need: 'We need this organized and defensible.', offer: 'OSHA-Ready Control System — from $4,500', link: intakeLink('osha-ready-control-system') },
-  { stage: 'Keep it current', need: 'We need ongoing accountability.', offer: 'Annual Compliance Control Partner — $12,000/year', link: intakeLink('annual-compliance-partner') },
+  { stage: 'Find the issues', need: 'What would OSHA see on our floor?', offer: 'Safety Walkthrough', priceFrom: '$1,200', link: intakeLink('safety-walkthrough-report') },
+  { stage: 'Check the files', need: 'Are our documents inspection-ready?', offer: 'OSHA Documentation Readiness Review', priceFrom: '$1,300', link: intakeLink('documentation-readiness-review') },
+  { stage: 'Review both', need: 'We need the floor and files checked.', offer: 'Compliance Readiness Visit', priceFrom: '$2,000', link: intakeLink('compliance-readiness-visit') },
+  { stage: 'Build the system', need: 'We need this organized and defensible.', offer: 'OSHA-Ready Control System', priceFrom: '$4,500', link: intakeLink('osha-ready-control-system') },
+  { stage: 'Keep it current', need: 'We need ongoing accountability.', offer: 'Quarterly / Annual Partner', priceFrom: '$950/qtr', link: intakeLink('annual-compliance-partner') },
 ];
 
 /* ═══ Pricing reference block ═══ */
@@ -1103,56 +1108,69 @@ const ServicesPage = () => {
       </section>
 
       {/* ═══ 9. THE GIGLINE READINESS PATH ═══ */}
-      <section className="py-20 md:py-24" style={{ backgroundColor: '#F7F9FC' }} data-testid="services-readiness-path">
+      <section className="py-24 md:py-32" style={{ backgroundColor: '#f5f4f0' }} data-testid="services-readiness-path">
         <div className="container max-w-5xl">
           <Reveal>
-            <p className="uppercase tracking-[3px] text-[#1a6fc4] mb-3 font-bold" style={{ ...mono, fontSize: '11px' }}>
+            <p
+              className="uppercase font-bold mb-4"
+              style={{ ...mono, fontSize: '10.4px', fontWeight: 700, letterSpacing: '2.08px', color: '#1a6fc4' }}
+            >
               The GigLine Readiness Path
             </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#0d1b2a] mb-3 max-w-3xl">
+            <h2 className="text-3xl md:text-4xl lg:text-[44px] font-extrabold text-[#0d1b2a] leading-[1.1] mb-4 max-w-4xl tracking-tight">
               A clear sequence from first call to ongoing accountability.
             </h2>
-            <p className="text-base md:text-lg text-[#0d1b2a]/70 leading-relaxed mb-10 max-w-3xl">
+            <div className="mb-8" style={{ width: '56px', height: '3px', background: '#D4A93E', borderRadius: '2px' }} />
+            <p className="text-base md:text-lg text-[#0d1b2a]/65 leading-[1.85] mb-12 max-w-3xl">
               Most clients enter at one of five stages. GigLine will tell you exactly where you should start before you schedule anything.
             </p>
           </Reveal>
 
-          {/* Desktop table */}
+          {/* Desktop table — Manus style */}
           <Reveal>
             <div
-              className="hidden md:block rounded-xl overflow-hidden bg-white"
+              className="hidden md:block rounded-2xl overflow-hidden"
               style={{ border: '1px solid #dde3ea', boxShadow: '0 1px 0 rgba(13,27,42,0.02)' }}
               data-testid="readiness-path-table"
             >
+              {/* Dark navy header */}
               <div
-                className="grid grid-cols-[1fr_1.4fr_1.4fr] px-6 py-4 uppercase tracking-[2px] font-bold text-[#0d1b2a]/65"
-                style={{ ...mono, fontSize: '11px', backgroundColor: '#F7F9FC', borderBottom: '1px solid #dde3ea' }}
+                className="grid grid-cols-[140px_1.4fr_1.5fr_140px] px-8 py-6 uppercase font-bold text-white"
+                style={{ ...mono, fontSize: '11px', letterSpacing: '0.18em', backgroundColor: '#0d1b2a' }}
               >
                 <div>Stage</div>
                 <div>What You Need</div>
                 <div>GigLine Offer</div>
+                <div className="text-right">Starting At</div>
               </div>
               {READINESS_PATH.map((row, i) => (
-                <div
+                <Link
                   key={row.stage}
-                  className="grid grid-cols-[1fr_1.4fr_1.4fr] px-6 py-5 items-center"
-                  style={{ borderBottom: i < READINESS_PATH.length - 1 ? '1px solid rgba(16,33,51,0.06)' : 'none' }}
+                  to={row.link}
+                  onClick={() => fireServicesCtaClick(`Readiness Path · ${row.stage}`, row.link)}
+                  className="grid grid-cols-[140px_1.4fr_1.5fr_140px] px-8 py-7 items-center transition-colors hover:bg-[#FBFCFD]"
+                  style={{ backgroundColor: i % 2 === 0 ? '#ffffff' : '#F7F6F2' }}
                   data-testid={`readiness-path-row-${i + 1}`}
                 >
-                  <div className="font-bold text-[#0d1b2a]">{row.stage}</div>
-                  <div className="text-[#0d1b2a]/80 italic">&ldquo;{row.need}&rdquo;</div>
-                  <div>
-                    <Link
-                      to={row.link}
-                      onClick={() => fireServicesCtaClick(`Readiness Path · ${row.stage}`, row.link)}
-                      className="inline-flex items-center gap-2 text-[#1a6fc4] hover:text-[#1560ae] font-semibold"
-                      data-testid={`readiness-path-link-${i + 1}`}
-                    >
-                      {row.offer}
-                      <ArrowRight size={14} />
-                    </Link>
+                  <div
+                    className="uppercase font-bold text-[#1a6fc4]"
+                    style={{ ...mono, fontSize: '12.5px', letterSpacing: '0.12em' }}
+                  >
+                    Stage {i + 1}
                   </div>
-                </div>
+                  <div className="text-[#0d1b2a]/80 italic text-[15px] leading-snug">
+                    &ldquo;{row.need}&rdquo;
+                  </div>
+                  <div className="font-bold text-[#0d1b2a] text-[15.5px] leading-snug">
+                    {row.offer}
+                  </div>
+                  <div className="text-right">
+                    <span className="text-[#0d1b2a]/55 text-[13px] block">from</span>
+                    <span className="font-extrabold text-[#0d1b2a] text-[16px]" style={mono}>
+                      {row.priceFrom}
+                    </span>
+                  </div>
+                </Link>
               ))}
             </div>
           </Reveal>
@@ -1161,46 +1179,81 @@ const ServicesPage = () => {
           <div className="md:hidden space-y-3" data-testid="readiness-path-mobile">
             {READINESS_PATH.map((row, i) => (
               <Reveal key={row.stage}>
-                <div
-                  className="bg-white rounded-lg p-5"
+                <Link
+                  to={row.link}
+                  onClick={() => fireServicesCtaClick(`Readiness Path · ${row.stage}`, row.link)}
+                  className="block bg-white rounded-xl p-5 transition-colors hover:bg-[#FBFCFD]"
                   style={{ border: '1px solid #dde3ea' }}
                   data-testid={`readiness-path-mobile-row-${i + 1}`}
                 >
-                  <p
-                    className="uppercase tracking-[2px] text-[#1a6fc4] font-bold mb-2"
-                    style={{ ...mono, fontSize: '10px' }}
-                  >
-                    Stage {i + 1} · {row.stage}
-                  </p>
-                  <p className="text-[#0d1b2a]/80 italic mb-3">&ldquo;{row.need}&rdquo;</p>
-                  <Link
-                    to={row.link}
-                    onClick={() => fireServicesCtaClick(`Readiness Path · ${row.stage}`, row.link)}
-                    className="inline-flex items-center gap-2 text-[#1a6fc4] font-semibold"
-                  >
-                    {row.offer}
-                    <ArrowRight size={14} />
-                  </Link>
-                </div>
+                  <div className="flex items-center justify-between mb-3">
+                    <p
+                      className="uppercase font-bold text-[#1a6fc4]"
+                      style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.14em' }}
+                    >
+                      Stage {i + 1}
+                    </p>
+                    <div className="text-right">
+                      <span className="text-[#0d1b2a]/55 text-[11px] mr-1">from</span>
+                      <span className="font-extrabold text-[#0d1b2a] text-[14px]" style={mono}>{row.priceFrom}</span>
+                    </div>
+                  </div>
+                  <p className="text-[#0d1b2a]/80 italic text-sm mb-2">&ldquo;{row.need}&rdquo;</p>
+                  <p className="font-bold text-[#0d1b2a] text-[15px]">{row.offer}</p>
+                </Link>
               </Reveal>
             ))}
           </div>
 
+          {/* Footnote + Intake CTA */}
           <Reveal>
             <p
-              className="text-base md:text-lg text-[#0d1b2a]/85 leading-relaxed text-center mt-10 max-w-3xl mx-auto"
+              className="text-base md:text-lg text-[#0d1b2a]/75 leading-relaxed text-center mt-10 max-w-3xl mx-auto"
               data-testid="readiness-path-footnote"
             >
-              Most clients start with the <strong>Compliance Readiness Visit</strong>. GigLine will tell you exactly where to start before you schedule anything &mdash; call or text{' '}
+              Most clients start with the <strong className="text-[#0d1b2a]">Compliance Readiness Visit</strong>. GigLine will tell you exactly where to start before you schedule anything &mdash;{' '}
               <a
                 href="tel:+13363298899"
                 onClick={() => trackPhoneClick && trackPhoneClick('readiness-path-footnote')}
-                className="text-[#1a6fc4] hover:text-[#1560ae] font-bold underline"
+                className="text-[#1a6fc4] hover:text-[#1560ae] font-bold"
                 data-testid="readiness-path-phone"
               >
-                (336) 329-8899
+                call or text (336) 329-8899
               </a>.
             </p>
+          </Reveal>
+
+          {/* Intake CTA card */}
+          <Reveal delay={120}>
+            <div
+              className="mt-12 rounded-2xl bg-white p-7 md:p-9 flex flex-col md:flex-row md:items-center md:justify-between gap-6"
+              style={{ border: '1px solid #dde3ea', boxShadow: '0 1px 0 rgba(13,27,42,0.02)' }}
+              data-testid="readiness-path-intake-cta"
+            >
+              <div className="flex-1">
+                <p
+                  className="uppercase font-bold mb-2"
+                  style={{ ...mono, fontSize: '10.4px', letterSpacing: '0.20em', color: '#1a6fc4' }}
+                >
+                  GL-INTAKE-002 &middot; 7 Sections &middot; ~5&ndash;7 min
+                </p>
+                <h3 className="text-xl md:text-2xl font-extrabold text-[#0d1b2a] leading-tight mb-2 tracking-tight">
+                  Not sure which stage you&apos;re at? Start with the intake form.
+                </h3>
+                <p className="text-[15px] text-[#0d1b2a]/65 leading-relaxed max-w-2xl">
+                  Tell GigLine about your operation, what triggered the search, and what your current documentation looks like. We&apos;ll reply with the right starting point and a fixed quote within one business day.
+                </p>
+              </div>
+              <Link
+                to={intakeLink()}
+                onClick={() => fireServicesCtaClick('Readiness Path · Intake Form', intakeLink())}
+                className="inline-flex items-center justify-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-7 py-4 rounded-lg text-[15px] transition-colors shadow-md shadow-[#1a6fc4]/15 whitespace-nowrap self-start md:self-auto"
+                data-testid="readiness-path-intake-cta-button"
+              >
+                Start the Intake Form
+                <ArrowRight size={18} />
+              </Link>
+            </div>
           </Reveal>
         </div>
       </section>

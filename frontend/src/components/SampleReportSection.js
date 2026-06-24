@@ -38,7 +38,7 @@ const FINDINGS = [
       'Post the OSHA 300A Annual Summary immediately. Obtain executive signature. Establish a calendar reminder for February 1 posting requirement each year.',
     penalty: '$1,190 – $16,550',
     fixBy: 'Immediate — prior to next business day',
-    photoUrl: '/blocked-fire-riser.jpg',
+    photoUrl: '/recordkeeping-osha300.jpg',
   },
   {
     n: '02',

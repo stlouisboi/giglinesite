@@ -377,36 +377,47 @@ const ServicesPage = () => {
       </section>
 
       {/* ═══ 4. WHO GIGLINE HELPS ═══ */}
-      <section className="py-20 md:py-24 bg-white" data-testid="services-who-helps">
+      <section className="py-24 md:py-32" style={{ backgroundColor: '#f5f4f0' }} data-testid="services-who-helps">
         <div className="container max-w-6xl">
           <Reveal>
-            <p className="uppercase tracking-[3px] text-[#1a6fc4] mb-3 font-bold" style={{ ...mono, fontSize: '11px' }}>
+            <p
+              className="uppercase font-bold mb-4"
+              style={{ ...mono, fontSize: '10.4px', fontWeight: 700, letterSpacing: '2.08px', color: '#1a6fc4' }}
+            >
               Who GigLine Helps
             </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#0d1b2a] leading-tight mb-3 max-w-3xl">
+            <h2 className="text-3xl md:text-4xl lg:text-[44px] font-extrabold text-[#0d1b2a] leading-[1.1] mb-4 max-w-4xl tracking-tight">
               Built for the operations OSHA inspects the most.
             </h2>
-            <p className="text-base md:text-lg text-[#0d1b2a]/70 leading-relaxed mb-12 max-w-3xl">
-              GigLine focuses on the four operation types most likely to receive an OSHA inspection, an insurance review, or a customer-audit request in the Piedmont Triad.
+            <div className="mb-8" style={{ width: '56px', height: '3px', background: '#D4A93E', borderRadius: '2px' }} />
+            <p className="text-base md:text-lg text-[#0d1b2a]/65 leading-[1.85] mb-16 max-w-3xl">
+              GigLine focuses on the four operation types most likely to receive an OSHA inspection,
+              <br className="hidden md:block" />
+              an insurance review, or a customer-audit request in the Piedmont Triad.
             </p>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {WHO_HELPS.map(({ Icon, title, desc }) => (
-              <Reveal key={title}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {WHO_HELPS.map(({ Icon, title, desc }, i) => (
+              <Reveal key={title} delay={i * 90}>
                 <div
-                  className="h-full bg-white rounded-xl p-6 flex flex-col"
-                  style={{ border: '1px solid #dde3ea', boxShadow: '0 1px 0 rgba(13,27,42,0.02)' }}
+                  className="h-full bg-white rounded-2xl p-8 md:p-9 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_-12px_rgba(13,27,42,0.12)]"
+                  style={{ border: '1px solid #dde3ea', boxShadow: '0 1px 0 rgba(13,27,42,0.02)', minHeight: '460px' }}
                   data-testid={`who-helps-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
                 >
                   <div
-                    className="w-11 h-11 rounded-lg flex items-center justify-center mb-4"
-                    style={{ backgroundColor: 'rgba(31,111,235,0.08)' }}
+                    className="flex items-center justify-center mb-8"
+                    style={{
+                      width: '56px',
+                      height: '56px',
+                      borderRadius: '50%',
+                      backgroundColor: 'rgba(26,111,196,0.12)',
+                    }}
                   >
-                    <Icon size={22} className="text-[#1a6fc4]" />
+                    <Icon size={24} strokeWidth={1.9} className="text-[#1a6fc4]" />
                   </div>
-                  <h3 className="text-lg font-bold text-[#0d1b2a] mb-2">{title}</h3>
-                  <p className="text-sm text-[#0d1b2a]/75 leading-relaxed">{desc}</p>
+                  <h3 className="text-[17px] font-bold text-[#0d1b2a] mb-5 leading-tight">{title}</h3>
+                  <p className="text-[14.5px] text-[#0d1b2a]/65 leading-[1.85]">{desc}</p>
                 </div>
               </Reveal>
             ))}

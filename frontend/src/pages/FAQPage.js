@@ -10,7 +10,7 @@ const mono = { fontFamily: "'JetBrains Mono', monospace" };
 export const FAQS = [
   {
     q: 'How much does an OSHA safety walkthrough cost in North Carolina?',
-    a: "GigLine safety walkthroughs start at $1,200. Price is scoped based on square footage, machine count, employee count, and hazard complexity \u2014 a small shop with limited equipment is quoted differently than a production floor with forklift traffic, chemical storage, and active machinery. You receive a fixed quote before anything is scheduled. No hourly billing, no retainer, no surprise invoice.\n\nFor context: a single OSHA serious violation averages $16,131 in penalties (2026 adjusted rate). The walkthrough identifies what's exposed before an inspector does.",
+    a: "GigLine safety walkthroughs start at $1,200. Price is scoped based on square footage, machine count, employee count, and hazard complexity \u2014 a small shop with limited equipment is quoted differently than a production floor with forklift traffic, chemical storage, and active machinery. You receive a fixed quote before anything is scheduled. No hourly billing, no retainer, no surprise invoice.\n\nFor context: a single OSHA serious violation averages $16,550 in penalties (2026 adjusted rate). The walkthrough identifies what's exposed before an inspector does.",
   },
   {
     q: 'What does an OSHA safety consultant do on-site?',
@@ -18,7 +18,7 @@ export const FAQS = [
   },
   {
     q: 'How do I prepare for an OSHA inspection in a small manufacturing plant?',
-    a: "The most effective preparation is a third-party walkthrough before OSHA arrives. OSHA inspections are triggered by employee complaints, referrals, fatalities, or programmed inspections targeting your industry \u2014 they do not announce in advance. By the time an inspector is on your floor, the window to correct findings has closed.\n\nA GigLine Safety Walkthrough gives you a written report of what an inspector is likely to find, documented against the same standards OSHA uses. You then have the corrective action list, the timeline, and the documentation to show good-faith effort if an inspection does occur. The walkthrough starts at $1,200. A single serious citation averages $16,131.",
+    a: "The most effective preparation is a third-party walkthrough before OSHA arrives. OSHA inspections are triggered by employee complaints, referrals, fatalities, or programmed inspections targeting your industry \u2014 they do not announce in advance. By the time an inspector is on your floor, the window to correct findings has closed.\n\nA GigLine Safety Walkthrough gives you a written report of what an inspector is likely to find, documented against the same standards OSHA uses. You then have the corrective action list, the timeline, and the documentation to show good-faith effort if an inspection does occur. The walkthrough starts at $1,200. A single serious citation averages $16,550.",
   },
   {
     q: 'What is a Compliance Readiness Visit?',

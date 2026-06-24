@@ -101,7 +101,7 @@ const HomePage = () => {
             { "@type": "City", "name": "Salisbury" },
             { "@type": "City", "name": "Burlington" }
           ],
-          "priceRange": "$750–$4500",
+          "priceRange": "$950–$12000",
           "openingHours": "Mo-Fr 08:00-18:00",
           "sameAs": [],
           "hasOfferCatalog": {

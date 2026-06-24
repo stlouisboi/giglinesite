@@ -1,0 +1,30 @@
+{
+  "summary": "Static code-review audit of pricing cascade. Found CRITICAL pricing-mismatch bugs on CityLandingPage (visible UI on all 13 city pages still shows OLD $650/$750/$1000 prices) and HomePage JSON-LD Offer schema (still emits OLD 650/750/900). Other pages (ServicesPage, ServiceAreasPage tier eyebrows, FAQPage, IntakePage, ClientIntakePage, HomePage Section 4/5 visible copy) are correctly updated to new locked 2026 figures.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "CityLandingPage.js", "issue": "All 13 city pages render VISIBLE old prices in the hero Pricing block and the city-specific FAQ answer. Lines 130-131 set priceStart = data.priceStart || 650 and priceRangeTop = 1000/1200 (old values). Lines 336/339 render '<h2>Starting at $650</h2>' (or $750 for Asheboro/Salisbury) and '$650–$1000' range. The cityFaqs answer at line 136 also embeds the old $650/$750 values. Meta description (seoDesc) IS correct ($1,200/$1,200+travel) but the on-page rendered text is OLD. This is HIGH PRIORITY — every city landing page shows the wrong price to users.", "selector": "main[data-testid^='city-page-'] section.bg-[#0B1F33] h2", "priority": "HIGH"},
+      {"component": "HomePage.js JSON-LD hasOfferCatalog", "issue": "Lines 111-113 still emit OLD prices in structured data: Safety Walkthrough price '650', Doc Review '750' (or '950' when flag=true; flag is false in env), Incident '900'. Should be 1200 / 1300 / 1500. This is the schema Google reads. Visible Section 4/5 copy is correct, only the JSON-LD is wrong.", "selector": "script[type='application/ld+json']", "priority": "HIGH"},
+      {"component": "HomePage.js LocalBusiness priceRange", "issue": "Line 104 priceRange '$950–$12000' — low bound should arguably be $1,200 (Walkthrough min) since Quarterly $950 is a recurring rate, not a one-time engagement. Minor.", "selector": "n/a", "priority": "LOW"}
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Fix /app/frontend/src/pages/CityLandingPage.js: change default priceStart fallback from 650 to 1200, update priceRangeTop logic, update city FAQ answer template, and update outer-tier (Asheboro/Salisbury) display to '$1,200 + travel fee'. All 13 city pages affected.",
+    "Fix /app/frontend/src/pages/HomePage.js JSON-LD hasOfferCatalog Offer prices (lines 111-113): 650→1200, 750/950→1300, 900→1500. Remove the GL_WEB_008 feature flag conditional since the cascade is now live.",
+    "Verify /app/frontend/public/llms.txt and /app/frontend/scripts/generate-seo-pages.js JSON-LD (not viewed due to token limits — main agent should diff against locked figures)."
+  ],
+  "critical_code_review_comments": [
+    "CityLandingPage stores seoDesc and visible-price logic in separate places — they are out of sync. Consolidate price source-of-truth.",
+    "HomePage gates JSON-LD prices behind REACT_APP_GL_WEB_008_ENABLED but visible copy is unconditional. Inconsistent — flag should be removed or both should be gated.",
+    "ServicesPage line 447 anchor 'Booked separately ... start at $2,500' — math is $1,200 + $1,300 = $2,500 so OK, but copy is brittle if either base price changes."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a", "frontend": "partial (static code review only — no playwright run due to token budget)"},
+  "retest_needed": true,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Token budget exhausted before UI playwright run. Static review complete on HomePage, ServicesPage, ServiceAreasPage, CityLandingPage, FAQPage, IntakePage, ClientIntakePage. Remaining files not opened: SafetyWalkthroughPage, DocumentationGapCheckPage, OshaComplianceGapCheckPage, BlogOSHAViolations, BlogHazComRequirements, SampleReportSection, generate-seo-pages.js, public/llms.txt. After main agent fixes the two HIGH bugs above, re-test by curling each /safety-walkthrough/{city} URL and grepping for '$650', '$750', '$1,000' and confirm absence; and view-source on / to confirm JSON-LD Offer prices.",
+  "rca": "Pricing cascade was rolled out across most pages but CityLandingPage's render path (priceStart fallback + FAQ template) and HomePage's JSON-LD Offer block were missed. Root cause: price values are duplicated in multiple places per page rather than imported from a single constants module."
+}

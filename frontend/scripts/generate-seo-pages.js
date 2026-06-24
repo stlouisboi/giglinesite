@@ -68,15 +68,15 @@ const LOCAL_BUSINESS = {
     { '@type': 'City', name: 'Charlotte' },
     { '@type': 'City', name: 'Raleigh' },
   ],
-  priceRange: '$750–$4500',
+  priceRange: '$950–$12000',
   openingHours: 'Mo-Fr 08:00-18:00',
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Safety Services',
     itemListElement: [
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Safety Walkthrough & Top 10 Fixes Report' }, price: '650', priceCurrency: 'USD' },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Safety Walkthrough & Top 10 Fixes Report' }, price: '1200', priceCurrency: 'USD' },
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'OSHA Documentation Readiness Review' }, price: DOC_REVIEW_PRICE_NUM, priceCurrency: 'USD' },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Incident Review & Corrective Action Support' }, price: '900', priceCurrency: 'USD' },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Incident Review & Corrective Action Support' }, price: '1500', priceCurrency: 'USD' },
     ],
   },
 };
@@ -279,9 +279,9 @@ const routes = [
           { '@type': 'ListItem', position: 1, item: { '@type': 'Service', name: 'Compliance Readiness Visit', description: 'Combined on-site walkthrough and OSHA Documentation Readiness Review delivered as a single readiness report. Recommended starting point.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '2000', priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 2, item: { '@type': 'Service', name: 'Safety Walkthrough & Top 10 Fixes Report', description: 'A structured on-site review of common OSHA exposure areas with a Top 10 priority report.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '1200', priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 3, item: { '@type': 'Service', name: 'OSHA Documentation Readiness Review', description: DOC_REVIEW_DESCRIPTION, provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: DOC_REVIEW_PRICE_NUM, priceCurrency: 'USD' } } },
-          { '@type': 'ListItem', position: 4, item: { '@type': 'Service', name: 'Incident Review & Corrective Action Support', description: 'Post-incident review, OSHA recordability determination, and corrective action documentation.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '1200', priceCurrency: 'USD' } } },
+          { '@type': 'ListItem', position: 4, item: { '@type': 'Service', name: 'Incident Review & Corrective Action Support', description: 'Post-incident review, OSHA recordability determination, and corrective action documentation.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '1500', priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 5, item: { '@type': 'Service', name: 'GigLine OSHA-Ready Control System', description: 'Complete four-binder physical command system, digital folder architecture, training matrix, SDS organization, and corrective action tracker. Includes supervisor walkthrough at handoff.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '4500', priceCurrency: 'USD' } } },
-          { '@type': 'ListItem', position: 6, item: { '@type': 'Service', name: 'Quarterly Compliance Maintenance', description: 'Ongoing quarterly documentation review, training record audit, and corrective action tracker review.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '750', priceCurrency: 'USD' } } },
+          { '@type': 'ListItem', position: 6, item: { '@type': 'Service', name: 'Quarterly Compliance Maintenance', description: 'Ongoing quarterly documentation review, training record audit, and corrective action tracker review.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '950', priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 7, item: { '@type': 'Service', name: 'Annual Compliance Control Partner', description: 'Two annual walkthroughs, four documentation reviews per year, quarterly review calls, OSHA 300A posting reminders, pre-inspection readiness review, and direct on-call access between visits. $1,000/month equivalent.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '12000', priceCurrency: 'USD' } } },
         ],
       },
@@ -303,13 +303,13 @@ const routes = [
       <h2>Who GigLine Helps</h2>
       <p>Manufacturers, warehouses & distribution, contractors, and fleet operations — the four operation types most likely to receive an OSHA inspection, an insurance review, or a customer-audit request in the Piedmont Triad.</p>
       <h2>Compliance Readiness Visit — Recommended Starting Point — Starting at $2,000</h2>
-      <p>The floor and the files reviewed in a single visit. Full safety walkthrough on-site, OSHA Documentation Readiness Review, single compliance percentage score, photo documentation, CFR citations, written report within 48 hours. Supervisor Safety Starter System ($199 value) included.</p>
+      <p>The floor and the files reviewed in a single visit. Full safety walkthrough on-site, OSHA Documentation Readiness Review, single compliance percentage score, photo documentation, CFR citations, written report within 48 hours. Supervisor Safety Starter System included.</p>
       <h2>Standalone Services</h2>
       <h3>Safety Walkthrough Report — Starting at $1,200</h3>
       <p>On-site walkthrough (1–3 hours). Photo-documented hazard findings. CFR citations + 2026 penalty exposure per finding. Top 10 Fixes report — RED / AMBER / GREEN priority. Delivered within 24–48 hours.</p>
       <h3>OSHA Documentation Readiness Review — Starting at ${DOC_REVIEW_PRICE_LABEL}</h3>
       <p>Structured review of written programs, training records, OSHA logs, inspection records, and SDS compliance. 53-item checklist across seven OSHA categories.</p>
-      <h3>Incident Review & Corrective Action Support — Starting at $1,200</h3>
+      <h3>Incident Review & Corrective Action Support — Starting at $1,500</h3>
       <p>Post-injury or post-near-miss response. Root cause analysis. OSHA recordability determination. OSHA 301 completion. Corrective action plan.</p>
       <h3>Document Development — Quote after documentation review</h3>
       <p>GigLine writes the programs you are missing. LOTO, HazCom, PPE hazard assessment, Emergency Action Plan, machine-specific procedures.</p>
@@ -628,7 +628,7 @@ const routes = [
         description: 'On-site OSHA-focused safety walkthrough for manufacturers, warehouses, contractors, and fleet operations across North Carolina. Written report delivered within 24-48 hours.',
         provider: { '@id': `${BASE_URL}/#business` },
         areaServed: { '@type': 'State', name: 'North Carolina' },
-        offers: { '@type': 'Offer', price: '650', priceCurrency: 'USD' },
+        offers: { '@type': 'Offer', price: '1200', priceCurrency: 'USD' },
       },
       faqSchema([
         { q: 'Who is the safety walkthrough built for?', a: 'Small to mid-size manufacturers, warehouses, distribution centers, contractors, and fleet operations in North Carolina — typically 5 to 100 employees with no full-time safety manager on staff.' },
@@ -706,7 +706,7 @@ const routes = [
       },
       faqSchema([
         { q: 'Who is a Compliance Readiness Visit for?', a: 'Operations with OSHA on the calendar, those that had a recordable injury or workers\' comp flag, businesses where an insurance carrier or major customer asked for documented compliance evidence, or operations going through M&A due diligence.' },
-        { q: 'What is included in a Compliance Readiness Visit?', a: 'A combined on-site walkthrough and OSHA Documentation Readiness Review — covering both the floor AND the binder, plus a cross-check between them. Includes the Supervisor Safety Starter System ($199 value).' },
+        { q: 'What is included in a Compliance Readiness Visit?', a: 'A combined on-site walkthrough and OSHA Documentation Readiness Review — covering both the floor AND the binder, plus a cross-check between them. Includes the Supervisor Safety Starter System.' },
         { q: 'How is this different from a safety walkthrough?', a: 'A safety walkthrough covers the floor. An OSHA Documentation Readiness Review covers the binder. A Compliance Readiness Visit does both, plus a cross-check that confirms the floor reality matches the written programs.' },
         { q: 'How much does a Compliance Readiness Visit cost?', a: 'Compliance Readiness Visits start at $2,000. Custom-quoted by operation size and scope. No retainer.' },
       ]),

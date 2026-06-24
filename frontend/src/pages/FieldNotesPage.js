@@ -130,11 +130,29 @@ const FieldNotesPage = () => {
           >
             Field Notes
           </p>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6" data-testid="field-notes-headline">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-7" data-testid="field-notes-headline">
             What We See. What Gets Missed.
           </h1>
+
+          <blockquote
+            className="mb-8 max-w-2xl"
+            style={{
+              borderLeft: '3px solid #c8922a',
+              padding: '4px 0 4px 22px',
+              fontFamily: "Georgia, 'Times New Roman', serif",
+              fontStyle: 'italic',
+              fontSize: 'clamp(20px, 2.4vw, 26px)',
+              lineHeight: 1.4,
+              color: '#c8922a',
+            }}
+            data-testid="field-notes-standout"
+          >
+            <p>Safety becomes the thing you will get to.</p>
+            <p>OSHA does not wait for you to get to it.</p>
+          </blockquote>
+
           <p className="text-lg text-white/70 max-w-2xl leading-relaxed">
-            Practical breakdowns of the safety topics that come up most in small operations. Not theory — what we actually find on the floor.
+            Practical breakdowns of the safety topics that come up most in small operations. Not theory &mdash; what we actually find on the floor.
           </p>
         </div>
       </section>

@@ -70,7 +70,7 @@ export const FAQS = [
   },
   {
     q: 'Do you offer follow-up walkthroughs for past clients?',
-    a: "Yes. Follow-up walkthroughs for past clients are offered at a reduced rate. Ongoing support is also available through Quarterly Compliance Maintenance ($750–$1,750 per quarter) and the Annual Compliance Control Partner program ($9,000–$18,000 per year).",
+    a: "Yes. Follow-up walkthroughs for past clients are offered at a reduced rate. Ongoing support is also available through Quarterly Compliance Maintenance ($950/quarter) and the Annual Compliance Control Partner program ($12,000/year, which is $1,000/month equivalent, and includes two walkthroughs, four documentation reviews, quarterly review calls, and direct on-call access between visits).",
   },
   {
     q: 'How should I prepare for a safety walkthrough?',

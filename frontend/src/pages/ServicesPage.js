@@ -146,9 +146,30 @@ const RECURRING = [
   },
   {
     title: 'Annual Compliance Control Partner',
-    price: 'From $9,000/year',
-    body: 'Two full walkthroughs per year. Quarterly documentation reviews. Training record maintenance. OSHA 300A posting reminders. Pre-inspection readiness review. Management safety review. GigLine becomes your ongoing compliance resource — available when something happens and proactive between visits.',
-    best: 'Operations that want a consultant they can call, not just a one-time report.',
+    price: '$12,000/year',
+    priceSecondary: '$1,000/month equivalent',
+    body: 'Most small manufacturers don\u2019t need a full-time safety manager. They need someone who knows their floor, stays current on their documentation, and picks up the phone when something happens.',
+    bodyTagline: 'That\u2019s what the Annual Compliance Control Partner is.',
+    bodyExtended: 'Over the course of the year, you get two full on-site walkthroughs, four documentation reviews, and a quarterly check-in call to review what\u2019s been corrected, what\u2019s outstanding, and what\u2019s coming up on the compliance calendar. Between visits, you have direct access \u2014 not a help desk, not a ticketing system, not a callback queue. If your floor supervisor calls in an injury at 7am, you have someone to call.',
+    includes: [
+      { label: 'Two Safety Walkthroughs per year', detail: 'on-site, photographed, reported within 48 hours', value: 'standalone value: $2,400' },
+      { label: 'Four Documentation Reviews per year', detail: 'written programs, training records, OSHA 300 logs, HazCom binder', value: 'standalone value: $5,200' },
+      { label: 'Four Quarterly Review Calls', detail: '30 minutes each, reviewing findings, corrections, and upcoming compliance calendar items' },
+      { label: 'OSHA 300A posting reminders', detail: 'flagged in advance of the February 1 posting requirement' },
+      { label: 'Pre-inspection readiness review', detail: "if OSHA shows up or a complaint is filed, you\u2019re not starting from zero" },
+      { label: 'On-call access between visits', detail: "direct line to Vince for questions, incidents, and situations that can\u2019t wait for a scheduled visit" },
+      { label: 'Annual management safety review', detail: "a written summary of the year\u2019s findings, corrections completed, and open items for the coming year" },
+    ],
+    valueAnchor: {
+      standaloneLabel: 'Standalone value of scheduled services',
+      standalone: '$7,600+',
+      partnerLabel: 'Annual Partner rate',
+      partner: '$12,000',
+      monthlyLabel: 'Monthly equivalent',
+      monthly: '$1,000',
+    },
+    closingLine: 'This is not a retainer that sits in a drawer. It is an active compliance relationship \u2014 scheduled, documented, and available when you need it.',
+    best: 'Operations that want a compliance partner they can call, not just a one-time report \u2014 and who want to know their floor and files are current before OSHA, an insurer, or a customer auditor shows up.',
     cta: 'Ask About Annual Partnership',
     intakeService: 'annual-compliance-partner',
     testid: 'svc-rec-annual',
@@ -161,7 +182,7 @@ const READINESS_PATH = [
   { stage: 'Check the files', need: 'Are our documents inspection-ready?', offer: DOC_REVIEW_PATH_OFFER, link: intakeLink('documentation-readiness-review') },
   { stage: 'Review both', need: 'We need the floor and files checked.', offer: 'Compliance Readiness Visit — from $2,000', link: intakeLink('compliance-readiness-visit') },
   { stage: 'Build the system', need: 'We need this organized and defensible.', offer: 'OSHA-Ready Control System — from $4,500', link: intakeLink('osha-ready-control-system') },
-  { stage: 'Keep it current', need: 'We need ongoing accountability.', offer: 'Quarterly Maintenance — from $950/quarter', link: intakeLink('quarterly-compliance-maintenance') },
+  { stage: 'Keep it current', need: 'We need ongoing accountability.', offer: 'Annual Compliance Control Partner — $12,000/year', link: intakeLink('annual-compliance-partner') },
 ];
 
 /* ═══ Pricing reference block ═══ */
@@ -172,7 +193,7 @@ const PRICING_REF = [
   ['Incident Review & Corrective Action', 'Starting at $1,500'],
   ['OSHA-Ready Control System', 'Starting at $4,500'],
   ['Quarterly Compliance Maintenance', 'Starting at $950/quarter'],
-  ['Annual Compliance Control Partner', 'Starting at $9,000/year'],
+  ['Annual Compliance Control Partner', '$12,000/year'],
 ];
 
 /* ═══ Services FAQ ═══ */
@@ -680,14 +701,93 @@ const ServicesPage = () => {
                 <div
                   className="bg-white h-full rounded-xl p-7 md:p-8 flex flex-col"
                   style={{
-                    border: '1px solid rgba(16,33,51,0.10)',
-                    boxShadow: '0 6px 14px rgba(16,33,51,0.04)',
+                    border: s.includes ? '2px solid #1F6FEB' : '1px solid rgba(16,33,51,0.10)',
+                    boxShadow: s.includes ? '0 14px 32px -18px rgba(31,111,235,0.30)' : '0 6px 14px rgba(16,33,51,0.04)',
                   }}
                   data-testid={s.testid}
                 >
-                  <h3 className="text-xl md:text-2xl font-bold text-[#102133] mb-3">{s.title}</h3>
-                  <p className="text-xl font-bold text-[#1F6FEB] mb-5" style={mono}>{s.price}</p>
-                  <p className="text-base text-[#102133]/85 leading-relaxed mb-4">{s.body}</p>
+                  <h3 className="text-xl md:text-2xl font-bold text-[#102133] mb-2">{s.title}</h3>
+                  <p className="text-xl font-bold text-[#1F6FEB] mb-1" style={mono}>{s.price}</p>
+                  {s.priceSecondary && (
+                    <p className="text-sm text-[#102133]/55 mb-5" style={mono} data-testid={`${s.testid}-price-secondary`}>
+                      {s.priceSecondary}
+                    </p>
+                  )}
+                  {!s.priceSecondary && <div className="mb-4" />}
+
+                  {/* Body — either single paragraph (Quarterly) or multi-paragraph (Annual) */}
+                  {s.bodyTagline || s.bodyExtended ? (
+                    <div className="space-y-4 mb-6 text-base text-[#102133]/85 leading-relaxed">
+                      <p>{s.body}</p>
+                      {s.bodyTagline && (
+                        <p className="font-bold text-[#102133]">{s.bodyTagline}</p>
+                      )}
+                      {s.bodyExtended && <p>{s.bodyExtended}</p>}
+                    </div>
+                  ) : (
+                    <p className="text-base text-[#102133]/85 leading-relaxed mb-6">{s.body}</p>
+                  )}
+
+                  {/* What's Included list (Annual Partner only) */}
+                  {s.includes && (
+                    <div className="mb-6" data-testid={`${s.testid}-includes`}>
+                      <p
+                        className="uppercase tracking-[2px] text-[#102133]/55 font-bold mb-3"
+                        style={{ ...mono, fontSize: '10.5px' }}
+                      >
+                        What&apos;s Included
+                      </p>
+                      <ul className="space-y-3">
+                        {s.includes.map((item, i) => (
+                          <li key={i} className="flex items-start gap-3 text-[15px] text-[#102133]/85 leading-snug">
+                            <Check size={18} className="flex-shrink-0 mt-0.5 text-[#1F6FEB]" strokeWidth={3} />
+                            <span>
+                              <span className="font-semibold text-[#102133]">{item.label}</span>
+                              {item.detail && <span className="text-[#102133]/75"> &mdash; {item.detail}</span>}
+                              {item.value && (
+                                <span className="text-[#1F6FEB] italic" style={mono}> &nbsp;({item.value})</span>
+                              )}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Value anchor block (Annual Partner only) */}
+                  {s.valueAnchor && (
+                    <div
+                      className="rounded-lg p-5 mb-5"
+                      style={{ backgroundColor: '#F7F9FC', border: '1px solid rgba(31,111,235,0.18)' }}
+                      data-testid={`${s.testid}-value-anchor`}
+                    >
+                      <div className="flex flex-col gap-2 text-[15px]">
+                        <div className="flex items-baseline justify-between gap-3">
+                          <span className="text-[#102133]/65">{s.valueAnchor.standaloneLabel}</span>
+                          <span className="font-bold text-[#102133]" style={mono}>{s.valueAnchor.standalone}</span>
+                        </div>
+                        <div className="flex items-baseline justify-between gap-3">
+                          <span className="text-[#102133]/65">{s.valueAnchor.partnerLabel}</span>
+                          <span className="font-bold text-[#1F6FEB]" style={mono}>{s.valueAnchor.partner}</span>
+                        </div>
+                        <div
+                          className="flex items-baseline justify-between gap-3 pt-2 mt-1"
+                          style={{ borderTop: '1px dashed rgba(31,111,235,0.30)' }}
+                        >
+                          <span className="text-[#102133]/65 italic">{s.valueAnchor.monthlyLabel}</span>
+                          <span className="font-bold text-[#102133]" style={mono}>{s.valueAnchor.monthly}</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Closing line (Annual Partner only) */}
+                  {s.closingLine && (
+                    <p className="text-[15px] text-[#102133]/80 leading-relaxed mb-6" data-testid={`${s.testid}-closing`}>
+                      {s.closingLine}
+                    </p>
+                  )}
+
                   <p className="text-sm text-[#102133]/60 leading-relaxed mb-6 italic flex-grow" style={mono}>
                     Best for: {s.best}
                   </p>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Camera, QrCode, Phone } from 'lucide-react';
+import { ArrowRight, Camera, Phone } from 'lucide-react';
 
 /*
   SampleReportSection
@@ -361,10 +361,9 @@ const FindingBlock = ({ f, isLast }) => (
         </div>
       </div>
 
-      {/* Right: Photo + Video QR placeholders */}
+      {/* Right: Photo only */}
       <div className="md:col-span-4 space-y-3">
         <PhotoPlaceholder area={f.location.split('/')[0].trim()} />
-        <QRPlaceholder />
       </div>
     </div>
   </div>
@@ -386,55 +385,25 @@ const Field = ({ label, value }) => (
 
 const PhotoPlaceholder = ({ area }) => (
   <div
-    className="flex flex-col items-center justify-center text-center px-3 py-6"
+    className="flex flex-col items-center justify-center text-center px-4 py-10"
     style={{
       backgroundColor: '#F1F3F7',
       border: `1px dashed ${DOC_BORDER}`,
-      minHeight: '120px',
+      minHeight: '280px',
+      aspectRatio: '4 / 3',
     }}
     data-testid="photo-placeholder"
   >
-    <Camera size={20} style={{ color: TEXT_SUBTLE }} className="mb-2" />
+    <Camera size={36} style={{ color: TEXT_SUBTLE }} className="mb-3" strokeWidth={1.6} />
     <p
-      className="uppercase tracking-[3px] text-[10px] font-bold mb-0.5"
+      className="uppercase tracking-[3px] text-[11px] font-bold mb-1"
       style={{ ...mono, color: TEXT_SUBTLE }}
     >
       Field Photo
     </p>
-    <p className="text-[11px]" style={{ color: TEXT_SUBTLE }}>
+    <p className="text-[13px] leading-snug" style={{ color: TEXT_SUBTLE }}>
       {area}
     </p>
-  </div>
-);
-
-const QRPlaceholder = () => (
-  <div
-    className="flex items-center gap-3 p-3"
-    style={{
-      backgroundColor: '#F1F3F7',
-      border: `1px dashed ${DOC_BORDER}`,
-    }}
-    data-testid="qr-placeholder"
-  >
-    <img
-      src="/sample-report-qr.svg"
-      alt="Sample QR code linking to giglinecompliance.com"
-      width="56"
-      height="56"
-      style={{ display: 'block', flexShrink: 0 }}
-    />
-    <div className="flex-1 min-w-0">
-      <p
-        className="uppercase tracking-[3px] text-[10px] font-bold mb-0.5 flex items-center gap-1.5"
-        style={{ ...mono, color: TEXT_SUBTLE }}
-      >
-        <QrCode size={11} />
-        Video Reference
-      </p>
-      <p className="text-[11px] leading-snug" style={{ color: TEXT_SUBTLE }}>
-        Scan to view on-site capture.
-      </p>
-    </div>
   </div>
 );
 

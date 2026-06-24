@@ -8,7 +8,7 @@ const AboutPage = () => {
   return (
     <main data-testid="about-page">
       <SEO 
-        title="Vince Lawrence — Safety Consultant | Kernersville NC | GigLine"
+        title="Safety Consultant Kernersville NC — Vince Lawrence | GigLine"
         description="25+ years on the floor. OSHA 30-Hour certified. Navy veteran. The same eyes an inspector uses — before they show up. (336) 329-8899."
         canonical="/about"
         schema={[
@@ -96,38 +96,82 @@ const AboutPage = () => {
 
             {/* Bio */}
             <div className="lg:col-span-2">
-              <h2 className="text-2xl md:text-3xl font-bold text-[#102133] mb-6" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
+              <h2 className="text-2xl md:text-3xl font-bold text-[#102133] mb-2" style={{fontFamily: "Georgia, 'Times New Roman', serif"}}>
                 Vince Lawrence
               </h2>
-              <div className="text-[#102133]/70 space-y-4 leading-relaxed">
+              <p
+                className="text-[#102133]/55 mb-8"
+                style={{ fontSize: '14px', fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.01em' }}
+                data-testid="about-credential-line"
+              >
+                Vince Lawrence &mdash; OSHA 30-Hour Certified safety compliance consultant, Kernersville, NC
+              </p>
+              <div
+                className="text-[#102133]/80 leading-relaxed space-y-5"
+                style={{ fontSize: '17px', lineHeight: 1.7 }}
+                data-testid="about-body"
+              >
+                <p>Before I started GigLine, I spent years inside manufacturing.</p>
+
                 <p>
-                  I've spent over 25 years in environments where safety isn't optional — manufacturing floors, warehouses, and transportation operations.
+                  Not visiting facilities.<br />
+                  Working in them.
                 </p>
+
+                <p>Glass and vinyl. Rubber compounding. Metals fabrication.</p>
+
                 <p>
-                  I've worked the floor, in leadership, and across systems. I've seen what happens when expectations are not met — and how quickly small issues become real problems.
+                  I was on the floor &mdash; supervising crews, coordinating safety, doing Gemba walks, creating safety orientation for new hires, training people on the standards they were expected to follow, and seeing firsthand where safety systems broke down under production pressure.
                 </p>
-                <p className="font-medium text-[#102133]">
-                  GigLine was built for a specific gap.
-                </p>
+
+                <p>I know what a facility looks like when safety is managed by whoever had time that week.</p>
+
+                <p>I know what happens when near-misses are not tracked. Small warnings get missed, hazards stay in place, and eventually the OSHA 300 log starts telling the story.</p>
+
+                <p>I know what it feels like to walk a floor and see things that have been there so long the team stops seeing them.</p>
+
                 <p>
-                  Most small operations don't have a full-time safety department.
+                  Sometimes a facility does not need a lecture.<br />
+                  It needs fresh eyes.
                 </p>
+
                 <p>
-                  But they do need someone who can step in, walk the operation, and call out what actually matters.
+                  That is not a criticism.<br />
+                  That is how it works in a small operation.
                 </p>
-                <p className="font-medium text-[#102133]">
-                  That's the role. That's what I do when I show up.
+
+                <p>You are running production. Solving problems. Covering call-outs. Meeting deadlines. Chasing quality issues. Keeping customers satisfied.</p>
+
+                <p>And when the pressure stacks up, safety can quietly become the thing people work around instead of the thing they work through.</p>
+
+                <p
+                  className="font-bold italic"
+                  style={{ color: '#c8922a', fontFamily: "Georgia, 'Times New Roman', serif", fontSize: '20px', lineHeight: 1.4 }}
+                  data-testid="about-standout-line"
+                >
+                  Safety becomes the thing you will get to.<br />
+                  OSHA does not wait for you to get to it.
                 </p>
-                <div className="py-2">
-                  <p>I walk the floor.</p>
-                  <p>I review what exists.</p>
-                  <p>I identify what's missing.</p>
-                  <p>I document what matters.</p>
-                </div>
+
+                <p className="font-medium text-[#102133]">That is why GigLine exists.</p>
+
+                <p>I come to your facility, walk the areas that matter, photograph what I find, document the gaps against the applicable safety standards, and put it in writing within 48 hours.</p>
+
+                <p>
+                  No retainer.<br />
+                  No long-term contract.<br />
+                  No pressure to buy a program you do not need.
+                </p>
+
+                <p>One engagement. One written report. Clear findings. Practical next steps.</p>
+
+                <p>You decide what to do with it.</p>
+
+                <p>And everything I find stays between us.</p>
+
                 <p className="font-medium text-[#102133] pt-2">
-                  One visit.<br />
-                  Clear findings.<br />
-                  No contracts.
+                  I&apos;m Vince Lawrence.<br />
+                  This is GigLine Safety &amp; Compliance.
                 </p>
               </div>
             </div>

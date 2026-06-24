@@ -224,7 +224,7 @@ const ServicesPage = () => {
   return (
     <main className="overflow-x-hidden bg-white">
       <SEO
-        title="GigLine Safety Services — Walkthroughs, Compliance Visits & OSHA-Ready Systems | From $1,200"
+        title="OSHA Compliance Services — Walkthroughs & Documentation Reviews | GigLine"
         description={SERVICES_META_DESCRIPTION}
         canonical="/services"
       />

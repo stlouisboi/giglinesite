@@ -1,0 +1,53 @@
+{
+  "summary": "Retested GL-WEB-009 spec (8 changes) + 2 pricing-cascade carryovers. 8 of 10 items PASS. 2 critical issues found: (a) /services page renders 'From $650' (sub-price for Document Development LOTO bundle) in violation of the 'no $650/$750/$550/$900 anywhere' regression rule; (b) duplicate <meta name=\"description\"> on / and /services — the stale description from public/index.html is still served alongside the Helmet-injected one, so crawlers reading raw HTML still see the OLD copy.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "ServicesPage 'Document Development' floorPricing",
+        "issue": "Line 126 renders 'From $650' for LOTO bundle. Regression spec explicitly forbids $650 anywhere in rendered HTML. Either re-quote this row (e.g. From $700 / From $750→already banned / a quote-on-request label) or update the GL-WEB-009 cascade rule to exempt program-authoring sub-pricing.",
+        "selector": "/services → 'Document Development' card → floorPricing list row 2",
+        "priority": "HIGH"
+      },
+      {
+        "component": "public/index.html static <meta name='description'>",
+        "issue": "Static meta description still reads the OLD copy ('Safety walkthroughs, documentation reviews, and incident response... One engagement. A written report. A clear path forward.'). Helmet correctly injects the new GL-WEB-009 description as a SECOND <meta name=description> tag, so both exist on the page. CHANGE 1 requires the new copy to be the canonical meta description. Crawlers and many SERP previews pick the first occurrence — currently the stale one. Update line 21 of /app/frontend/public/index.html to the new copy, and also update lines 30 (og:description) and 39 (twitter:description) for consistency.",
+        "selector": "meta[name='description'] (first match)",
+        "priority": "HIGH"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "code_review_findings": [
+    "ServiceAreasPage.js lines 12-22 still carry legacy price keys (650/750/null) used only as grouping selectors via .filter(c => c.price === 650). These keys do NOT render as visible $ amounts, but they are stale logic referencing a removed price tier and should be refactored to a semantic tier field (e.g. tier: 'core' | 'extended' | 'metro') to avoid confusion with the cascade rule.",
+    "ServicesPage.js line 13 (top-of-file comment) still contains the pricing-cascade memo string '$750 → $1,200 (4 places...)' — purely a code comment, not rendered. OK to leave but worth cleaning up once the cascade is finalised."
+  ],
+  "verified_passing": [
+    "CARRYOVER #1: public/index.html LocalBusiness hasOfferCatalog priceSpecifications now 1200/2000, 1300/2000, 1500/2500. No legacy 650/550/900/750.",
+    "CARRYOVER #2: generate-seo-pages.js MAJOR_CITIES all price:1200, priceTop=2000 flat, travel-note copy reads 'a travel fee applies in addition to the base walkthrough price'.",
+    "CHANGE 1: Homepage <title> exactly 'OSHA Safety Walkthrough — Piedmont Triad NC | GigLine'. Helmet-injected meta description matches spec (but see duplicate-tag bug above).",
+    "CHANGE 2: /about <title> exactly 'Safety Consultant Kernersville NC — Vince Lawrence | GigLine'.",
+    "CHANGE 3: /services <title> exactly 'OSHA Compliance Services — Walkthroughs & Documentation Reviews | GigLine'. Helmet description includes both 'contractors' and 'fleet operations'.",
+    "CHANGE 4: [data-testid='cost-standout-line'] renders 2 <p> elements, copper-red (rgb 139,37,0 = #8B2500), italic, Georgia serif, 32px, positioned above the H2 '$16,550' line. Eyebrow 'THE COST OF WAITING' still present.",
+    "CHANGE 5: Hero order verified H1 (1563px) → [data-testid='hero-standout-line'] (1696px) → [data-testid='hero-sub'] (1799px). Standout = 2 <p>, gold (rgb 200,146,42 = #c8922a), italic, font-weight 300, 26px.",
+    "CHANGE 6: All 15 spec phrases present in About bio including 'I'm Vince Lawrence' and 'This is GigLine Safety & Compliance.'. [data-testid='about-standout-line'] renders gold italic Georgia serif, bold (700), color #c8922a.",
+    "CHANGE 7: [data-testid='about-credential-line'] renders exact spec text, JetBrains Mono, 14px, muted, directly under Vince Lawrence h2.",
+    "CHANGE 8: First 5 FAQ accordion items in correct order. Q1 opens by default (useState(0)), renders 2 <p> children inside [data-testid='faq-answer-0'], contains both 'GigLine safety walkthroughs start at $1,200.' and 'a single OSHA serious violation averages $16,131'. Q4 [data-testid='faq-answer-3'] renders 2 <p>, contains 'starts at $2,000' and 'starts at $2,500'.",
+    "REGRESSION city pages: /safety-walkthrough/kernersville shows 'Starting at $1,200'. /safety-walkthrough/asheboro and /safety-walkthrough/salisbury both show 'Starting at $1,200 + travel fee'. No $650/$750/$550/$900 in rendered text on any of the three.",
+    "REGRESSION /services pricing tiles render $2,000 (CRV), $1,200 (Walkthrough), $1,300 (Doc Review), $1,500 (Incident), $950/quarter, $12,000/year, $1,000/month equivalent."
+  ],
+  "test_report_links": [],
+  "action_items": [
+    "Fix ServicesPage.js line 126 — replace 'From $650' for LOTO bundle (the only banned-price still rendered).",
+    "Update /app/frontend/public/index.html lines 21/30/39 — replace the stale description / og:description / twitter:description with the new GL-WEB-009 copy ('Safety becomes the thing you'll get to. OSHA doesn't wait. On-site safety walkthroughs for NC manufacturers and warehouses — fixed quote, written report in 48 hours. (336) 329-8899.'). This avoids duplicate meta tags and ensures crawlers see the approved copy.",
+    "(Cleanup, non-blocking) Refactor ServiceAreasPage.js price-key grouping to a semantic tier field so the legacy 650/750 ints no longer appear in source."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a", "frontend": "80%"},
+  "seed_data_creation": "none",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "After main agent fixes (1) ServicesPage.js line 126 $650 reference and (2) public/index.html stale description/og:description/twitter:description, re-verify by: (a) grepping rendered HTML on /services for '$650' (expect 0 hits), (b) `curl -s <PREVIEW_URL>/ | grep -c 'name=\"description\"'` (expect 1, not 2), and (c) re-running the FAQ Q1 default-open check (Q1 is open on load via useState(0); do NOT click Q1 — clicking closes it).",
+  "rca": "Issue 1 (Services $650): Document Development service was given a granular floorPricing breakdown earlier; the LOTO 5-procedure tier was set at $650 historically and the GL-WEB-009 cascade rewrite didn't update sub-product breakdowns, only the top-line service tiles. Issue 2 (duplicate meta description): SEO component uses react-helmet-async which APPENDS a new <meta name=description> instead of replacing the static one in public/index.html. Updating the static HTML to match the Helmet output prevents the duplicate-tag warning and avoids crawler ambiguity."
+}

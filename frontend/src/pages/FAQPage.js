@@ -5,12 +5,28 @@ import SEO from '../components/SEO';
 
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
 
-// 18 FAQs authored for answer-engine extraction.
-// Each answer is 1-4 sentences, factual, concrete, and written the way a human asks a search engine.
+// 22 FAQs authored for answer-engine extraction.
+// Each answer is verbatim from approved GL-WEB-009 copy (Feb 2026) and from prior 18-FAQ spec.
 export const FAQS = [
   {
     q: 'How much does an OSHA safety walkthrough cost in North Carolina?',
-    a: "GigLine services are fixed-quote engagements. The Safety Walkthrough starts at $1,200. The OSHA Documentation Readiness Review starts at $1,300. The Compliance Readiness Visit \u2014 which covers both \u2014 starts at $2,000. Scope is confirmed before any work begins. There are no hourly rates and no surprise invoices.",
+    a: "GigLine safety walkthroughs start at $1,200. Price is scoped based on square footage, machine count, employee count, and hazard complexity \u2014 a small shop with limited equipment is quoted differently than a production floor with forklift traffic, chemical storage, and active machinery. You receive a fixed quote before anything is scheduled. No hourly billing, no retainer, no surprise invoice.\n\nFor context: a single OSHA serious violation averages $16,131 in penalties (2026 adjusted rate). The walkthrough identifies what's exposed before an inspector does.",
+  },
+  {
+    q: 'What does an OSHA safety consultant do on-site?',
+    a: "During a GigLine Safety Walkthrough, Vince Lawrence \u2014 OSHA 30-Hour Certified safety compliance consultant based in Kernersville, NC \u2014 walks every area of your facility: production floor, storage, chemical areas, electrical rooms, egress routes, and any other areas with potential exposure. He photographs findings, documents each one against the applicable CFR standard, and estimates the penalty exposure per finding. Within 48 hours you receive a written report with photo documentation, CFR citations, and a prioritized list of corrective actions. The engagement is private \u2014 findings are not shared, published, or referenced without written permission.",
+  },
+  {
+    q: 'How do I prepare for an OSHA inspection in a small manufacturing plant?',
+    a: "The most effective preparation is a third-party walkthrough before OSHA arrives. OSHA inspections are triggered by employee complaints, referrals, fatalities, or programmed inspections targeting your industry \u2014 they do not announce in advance. By the time an inspector is on your floor, the window to correct findings has closed.\n\nA GigLine Safety Walkthrough gives you a written report of what an inspector is likely to find, documented against the same standards OSHA uses. You then have the corrective action list, the timeline, and the documentation to show good-faith effort if an inspection does occur. The walkthrough starts at $1,200. A single serious citation averages $16,131.",
+  },
+  {
+    q: 'What is a Compliance Readiness Visit?',
+    a: "The Compliance Readiness Visit is GigLine's most complete single engagement. It combines the Safety Walkthrough and the OSHA Documentation Review in one on-site visit \u2014 Vince walks the floor and reviews your written programs, training records, and OSHA 300 log in the same engagement. You receive one consolidated written report covering both physical findings and documentation gaps, with a prioritized corrective action plan.\n\nThe Compliance Readiness Visit starts at $2,000. Booking the Safety Walkthrough and Documentation Review as separate engagements starts at $2,500. The combined visit covers both for less.",
+  },
+  {
+    q: 'What is the difference between a Safety Walkthrough and a Compliance Readiness Visit?',
+    a: "The Safety Walkthrough covers the physical floor \u2014 what OSHA would find if an inspector walked your facility today. Vince photographs findings, cites the applicable CFR standard, estimates penalty exposure per finding, and delivers a written report within 48 hours. It starts at $1,200.\n\nThe Compliance Readiness Visit adds a full documentation review to the same on-site visit. In addition to the floor walkthrough, Vince reviews your written safety programs, training records, HazCom binder, and OSHA 300 log. Many operations have floor exposure and documentation gaps \u2014 the CRV surfaces both in one engagement. It starts at $2,000.\n\nIf you are not sure which is right for your operation, the walkthrough is the lower-barrier starting point. Most operations that begin with a walkthrough have a clear picture of next steps within 48 hours of receiving the report.",
   },
   {
     q: "What's included in a GigLine safety walkthrough?",
@@ -168,10 +184,12 @@ const FAQPage = () => {
                   </button>
                   {open && (
                     <div
-                      className="px-5 pb-5 md:px-6 md:pb-6 text-[#102133]/75 leading-relaxed text-sm md:text-base"
+                      className="px-5 pb-5 md:px-6 md:pb-6 text-[#102133]/75 leading-relaxed text-sm md:text-base space-y-3"
                       data-testid={`faq-answer-${i}`}
                     >
-                      {f.a}
+                      {f.a.split('\n\n').map((para, j) => (
+                        <p key={j}>{para}</p>
+                      ))}
                     </div>
                   )}
                 </div>

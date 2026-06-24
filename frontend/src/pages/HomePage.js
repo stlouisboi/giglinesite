@@ -58,8 +58,8 @@ const HomePage = () => {
   return (
     <main className="overflow-x-hidden">
       <SEO
-        title="Safety Walkthroughs & OSHA Documentation Readiness Reviews for NC Manufacturers, Warehouses & Fleets | GigLine"
-        description="Practical safety walkthroughs and OSHA Documentation Readiness Reviews for manufacturers, warehouses, contractors, and fleet operations in North Carolina. Written report in 48 hours. (336) 329-8899."
+        title="OSHA Safety Walkthrough — Piedmont Triad NC | GigLine"
+        description="Safety becomes the thing you'll get to. OSHA doesn't wait. On-site safety walkthroughs for NC manufacturers and warehouses — fixed quote, written report in 48 hours. (336) 329-8899."
         canonical="/"
         schema={{
           "@context": "https://schema.org",
@@ -163,11 +163,28 @@ const HomePage = () => {
               </p>
 
               <h1
-                className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.15] mb-6"
+                className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.15] mb-5"
                 data-testid="hero-headline"
               >
                 Find the gaps before OSHA does.
               </h1>
+
+              <div
+                className="mb-7 max-w-md"
+                style={{
+                  fontFamily: "'Manrope', sans-serif",
+                  fontWeight: 300,
+                  fontStyle: 'italic',
+                  fontSize: 'clamp(20px, 2.4vw, 26px)',
+                  lineHeight: 1.35,
+                  letterSpacing: '-0.005em',
+                  color: '#c8922a',
+                }}
+                data-testid="hero-standout-line"
+              >
+                <p>Safety becomes the thing you will get to.</p>
+                <p>OSHA does not wait for you to get to it.</p>
+              </div>
 
               <p
                 className="text-base md:text-lg text-[#CBD5E1] leading-relaxed mb-8 max-w-md"
@@ -380,6 +397,22 @@ const HomePage = () => {
             <p className="uppercase font-bold mb-3" style={{ fontSize: '11px', letterSpacing: '0.2em', color: '#8B2500' }} data-testid="cost-eyebrow">
               The Cost of Waiting
             </p>
+
+            <div
+              className="mb-8 max-w-3xl"
+              style={{
+                fontFamily: "Georgia, 'Times New Roman', serif",
+                fontStyle: 'italic',
+                fontSize: 'clamp(22px, 2.8vw, 32px)',
+                lineHeight: 1.35,
+                color: '#8B2500',
+              }}
+              data-testid="cost-standout-line"
+            >
+              <p>Safety becomes the thing you will get to.</p>
+              <p>OSHA does not wait for you to get to it.</p>
+            </div>
+
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0d1b2a] leading-[1.15] mb-4 max-w-4xl tracking-tight">
               The average OSHA serious violation costs $16,550.
             </h2>

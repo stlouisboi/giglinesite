@@ -235,7 +235,7 @@ const CityLandingPage = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
-              to="/request-walkthrough"
+              to="/intake"
               className="inline-flex items-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#1a6fc4]/20"
               data-testid="city-cta-primary"
             >
@@ -383,7 +383,7 @@ const CityLandingPage = () => {
             </p>
           )}
           <Link
-            to="/request-walkthrough"
+            to="/intake"
             className="inline-flex items-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#1a6fc4]/20"
           >
             Request a Walkthrough

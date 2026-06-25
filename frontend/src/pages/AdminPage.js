@@ -77,6 +77,73 @@ const AdminPage = () => {
   const [newStatus, setNewStatus] = useState('');
   const [uploading, setUploading] = useState(false);
 
+  // Admin tools state
+  const [revenueModal, setRevenueModal] = useState(false);
+  const [revenueForm, setRevenueForm] = useState({ amount: '', service: '', paymentMethod: 'check', clientToken: '', notes: '' });
+  const [revenueSubmitting, setRevenueSubmitting] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [deleteForm, setDeleteForm] = useState({ kind: 'intake', docId: '', hard: false });
+  const [deleteSubmitting, setDeleteSubmitting] = useState(false);
+  const [toolbarMessage, setToolbarMessage] = useState('');
+
+  const submitRevenue = async () => {
+    if (!revenueForm.amount || Number(revenueForm.amount) <= 0) {
+      setToolbarMessage('Amount must be greater than zero');
+      return;
+    }
+    setRevenueSubmitting(true);
+    try {
+      const res = await fetch(`${API}/api/admin/revenue/manual?token=${token}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          amount: Number(revenueForm.amount),
+          service: revenueForm.service,
+          paymentMethod: revenueForm.paymentMethod,
+          clientToken: revenueForm.clientToken || null,
+          notes: revenueForm.notes,
+        }),
+      });
+      if (res.ok) {
+        setToolbarMessage(`Revenue $${Number(revenueForm.amount).toLocaleString()} added ✓`);
+        setRevenueModal(false);
+        setRevenueForm({ amount: '', service: '', paymentMethod: 'check', clientToken: '', notes: '' });
+        fetchAll(token);
+      } else {
+        const err = await res.json().catch(() => ({}));
+        setToolbarMessage(`Error: ${err.detail || res.status}`);
+      }
+    } catch (e) {
+      setToolbarMessage(`Error: ${e.message}`);
+    }
+    setRevenueSubmitting(false);
+  };
+
+  const submitDelete = async () => {
+    if (!deleteForm.docId) { setToolbarMessage('Paste a clientToken or ID first'); return; }
+    if (!window.confirm(`${deleteForm.hard ? 'PERMANENTLY DELETE' : 'Archive'} ${deleteForm.kind} '${deleteForm.docId}'?`)) return;
+    setDeleteSubmitting(true);
+    try {
+      const res = await fetch(
+        `${API}/api/admin/lead/${deleteForm.kind}/${encodeURIComponent(deleteForm.docId)}?token=${token}${deleteForm.hard ? '&hard=true' : ''}`,
+        { method: 'DELETE' }
+      );
+      if (res.ok) {
+        const d = await res.json();
+        setToolbarMessage(`Deleted ${deleteForm.kind} (${d.archived ? 'archived' : 'permanent'}) ✓`);
+        setDeleteModal(false);
+        setDeleteForm({ kind: 'intake', docId: '', hard: false });
+        fetchAll(token);
+      } else {
+        const err = await res.json().catch(() => ({}));
+        setToolbarMessage(`Error: ${err.detail || res.status}`);
+      }
+    } catch (e) {
+      setToolbarMessage(`Error: ${e.message}`);
+    }
+    setDeleteSubmitting(false);
+  };
+
   const logout = () => { localStorage.removeItem('gl_admin'); setToken(''); setLoggedIn(false); };
 
   const handleLogin = async (e) => {
@@ -227,6 +294,153 @@ const AdminPage = () => {
                   <p className={`text-xl font-bold ${s.gold ? 'text-[#B8972C]' : 'text-[#1C2B2B]'}`} data-testid={`stat-${i}`}>{s.value}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Admin Toolbar — Export CSV / Add Revenue / Delete Lead */}
+      <div className="border-b bg-white" style={{ borderColor: '#e5e5e5' }}>
+        <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 flex items-center gap-3 flex-wrap" data-testid="admin-toolbar">
+          <span className="text-[10px] uppercase font-bold text-gray-400 tracking-widest mr-2">Tools</span>
+          {/* Export CSV downloads */}
+          <a
+            href={`${API}/api/admin/export/intake.csv?token=${token}`}
+            download
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-semibold transition-colors"
+            style={{ background: '#f3f4f6', color: '#1C2B2B', border: '1px solid #e5e7eb' }}
+            data-testid="export-intake-csv"
+          >
+            <FileText size={13} /> Export Intakes (CSV)
+          </a>
+          <a
+            href={`${API}/api/admin/export/walkthrough.csv?token=${token}`}
+            download
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-semibold transition-colors"
+            style={{ background: '#f3f4f6', color: '#1C2B2B', border: '1px solid #e5e7eb' }}
+            data-testid="export-walkthrough-csv"
+          >
+            <FileText size={13} /> Walkthroughs (CSV)
+          </a>
+          <a
+            href={`${API}/api/admin/export/revenue.csv?token=${token}`}
+            download
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-semibold transition-colors"
+            style={{ background: '#fef9e7', color: '#1C2B2B', border: '1px solid #f5e6a8' }}
+            data-testid="export-revenue-csv"
+          >
+            <DollarSign size={13} /> Revenue (CSV)
+          </a>
+          <div className="border-l border-gray-200 h-5 mx-1" />
+          {/* Add Manual Revenue */}
+          <button
+            onClick={() => setRevenueModal(true)}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-semibold transition-colors text-white"
+            style={{ background: '#16a34a' }}
+            data-testid="add-revenue-btn"
+          >
+            <DollarSign size={13} /> Add Revenue
+          </button>
+          {/* Delete Lead */}
+          <button
+            onClick={() => setDeleteModal(true)}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-semibold transition-colors text-white"
+            style={{ background: '#dc2626' }}
+            data-testid="delete-lead-btn"
+          >
+            <X size={13} /> Delete Lead
+          </button>
+          {toolbarMessage && (
+            <span
+              className="text-xs ml-auto"
+              style={{ color: toolbarMessage.startsWith('Error') ? '#dc2626' : '#16a34a' }}
+              data-testid="toolbar-message"
+            >
+              {toolbarMessage}
+            </span>
+          )}
+        </div>
+      </div>
+
+      {/* ── Add Manual Revenue Modal ── */}
+      {revenueModal && (
+        <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4" data-testid="revenue-modal">
+          <div className="bg-white rounded-lg max-w-md w-full p-6 shadow-2xl">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-bold text-[#1C2B2B]">Add Manual Revenue</h3>
+              <button onClick={() => setRevenueModal(false)} className="text-gray-400 hover:text-gray-700"><X size={18} /></button>
+            </div>
+            <div className="space-y-3">
+              <div>
+                <label className="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wider">Amount (USD) *</label>
+                <input type="number" min="0" step="0.01" value={revenueForm.amount} onChange={(e) => setRevenueForm({ ...revenueForm, amount: e.target.value })} placeholder="1500" className="w-full px-3 py-2 border border-gray-300 rounded text-sm" data-testid="revenue-amount" />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wider">Service</label>
+                <input type="text" value={revenueForm.service} onChange={(e) => setRevenueForm({ ...revenueForm, service: e.target.value })} placeholder="e.g. Safety Walkthrough" className="w-full px-3 py-2 border border-gray-300 rounded text-sm" data-testid="revenue-service" />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wider">Payment Method</label>
+                <select value={revenueForm.paymentMethod} onChange={(e) => setRevenueForm({ ...revenueForm, paymentMethod: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded text-sm" data-testid="revenue-payment-method">
+                  <option value="check">Check</option>
+                  <option value="ACH">ACH / Wire</option>
+                  <option value="cash">Cash</option>
+                  <option value="stripe_offline">Stripe (offline)</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wider">Linked Client Token (optional)</label>
+                <input type="text" value={revenueForm.clientToken} onChange={(e) => setRevenueForm({ ...revenueForm, clientToken: e.target.value })} placeholder="cln_abc123" className="w-full px-3 py-2 border border-gray-300 rounded text-sm" data-testid="revenue-client-token" />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wider">Notes</label>
+                <textarea value={revenueForm.notes} onChange={(e) => setRevenueForm({ ...revenueForm, notes: e.target.value })} rows="2" placeholder="Optional context" className="w-full px-3 py-2 border border-gray-300 rounded text-sm" data-testid="revenue-notes" />
+              </div>
+            </div>
+            <div className="flex items-center gap-2 mt-5">
+              <button onClick={submitRevenue} disabled={revenueSubmitting} className="flex-1 px-4 py-2 bg-[#16a34a] text-white font-semibold rounded text-sm disabled:opacity-50" data-testid="revenue-submit">
+                {revenueSubmitting ? 'Saving…' : 'Save Revenue'}
+              </button>
+              <button onClick={() => setRevenueModal(false)} className="px-4 py-2 bg-gray-100 text-gray-700 font-semibold rounded text-sm">Cancel</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── Delete Lead Modal ── */}
+      {deleteModal && (
+        <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4" data-testid="delete-modal">
+          <div className="bg-white rounded-lg max-w-md w-full p-6 shadow-2xl">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-bold text-[#1C2B2B]">Delete Lead</h3>
+              <button onClick={() => setDeleteModal(false)} className="text-gray-400 hover:text-gray-700"><X size={18} /></button>
+            </div>
+            <p className="text-xs text-gray-500 mb-4">Soft-delete copies the record to <code className="bg-gray-100 px-1 rounded">&lt;collection&gt;_archive</code> first (recoverable). Hard-delete removes it permanently.</p>
+            <div className="space-y-3">
+              <div>
+                <label className="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wider">Collection</label>
+                <select value={deleteForm.kind} onChange={(e) => setDeleteForm({ ...deleteForm, kind: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded text-sm" data-testid="delete-kind">
+                  <option value="intake">Intake (gl_intake_submissions)</option>
+                  <option value="walkthrough">Walkthrough requests</option>
+                  <option value="safety_check">Safety check (90-second)</option>
+                  <option value="heat_guide">Heat guide leads</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-gray-500 mb-1 uppercase tracking-wider">Client Token or Record ID *</label>
+                <input type="text" value={deleteForm.docId} onChange={(e) => setDeleteForm({ ...deleteForm, docId: e.target.value })} placeholder="paste clientToken or id" className="w-full px-3 py-2 border border-gray-300 rounded text-sm font-mono" data-testid="delete-doc-id" />
+              </div>
+              <label className="flex items-center gap-2 text-xs text-red-600 font-semibold cursor-pointer">
+                <input type="checkbox" checked={deleteForm.hard} onChange={(e) => setDeleteForm({ ...deleteForm, hard: e.target.checked })} data-testid="delete-hard" />
+                Permanent delete (skip archive — irreversible)
+              </label>
+            </div>
+            <div className="flex items-center gap-2 mt-5">
+              <button onClick={submitDelete} disabled={deleteSubmitting} className="flex-1 px-4 py-2 bg-[#dc2626] text-white font-semibold rounded text-sm disabled:opacity-50" data-testid="delete-submit">
+                {deleteSubmitting ? 'Deleting…' : (deleteForm.hard ? 'Permanently Delete' : 'Archive & Delete')}
+              </button>
+              <button onClick={() => setDeleteModal(false)} className="px-4 py-2 bg-gray-100 text-gray-700 font-semibold rounded text-sm">Cancel</button>
             </div>
           </div>
         </div>

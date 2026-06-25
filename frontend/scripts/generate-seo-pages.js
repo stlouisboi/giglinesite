@@ -147,7 +147,7 @@ const FULL_FAQS = [
   { q: 'What happens if OSHA shows up after my walkthrough?', a: 'You have the written record of every hazard identified, every corrective action taken, and every training record reviewed. An OSHA compliance officer who sees an active corrective-action log is usually looking at a cooperative-employer outcome instead of a willful-violation outcome. Documentation is the single biggest factor in how an OSHA visit goes.' },
   { q: 'Do you offer follow-up walkthroughs for past clients?', a: "Yes. Follow-up walkthroughs for past clients are offered at a reduced rate. Most operations benefit from a semi-annual or annual follow-up to catch the drift that happens when safety isn't the primary focus — and ongoing support is available through Quarterly Compliance Maintenance and the Annual Compliance Control Partner program." },
   { q: 'How should I prepare for a safety walkthrough?', a: 'Nothing special. Do not stage, clean up, or hide anything — the walkthrough is most valuable when the floor looks the way it normally does. Have your written safety programs, SDS binder, and training records accessible. A brief floor manager or supervisor introduction at the start helps.' },
-  { q: 'How do I book a safety walkthrough with GigLine?', a: "Visit https://www.giglinecompliance.com/request-walkthrough and fill the four-field form, or call (336) 329-8899 directly. You'll hear back within one business day with scheduling options and a confirmed price." },
+  { q: 'How do I book a safety walkthrough with GigLine?', a: "Visit https://www.giglinecompliance.com/intake and fill the four-field form, or call (336) 329-8899 directly. You'll hear back within one business day with scheduling options and a confirmed price." },
 ];
 
 function faqSchema(faqs) {
@@ -193,7 +193,7 @@ const routes = [
     content: `
       <h1>Find the gaps before OSHA does.</h1>
       <p>On-site safety walkthroughs for manufacturers, warehouses, contractors, and fleet operations across the Piedmont Triad. Fixed quote. Private engagement. Report in 48 hours.</p>
-      <p><a href="/request-walkthrough">Request a Walkthrough</a> &middot; <a href="/safety-check">Take the Safety Check</a></p>
+      <p><a href="/intake">Request a Walkthrough</a> &middot; <a href="/safety-check">Take the Safety Check</a></p>
       <p>OSHA 30-Hour Certified · 25+ Years Experience · U.S. Navy Veteran · Serving the Triad</p>
       <h2>What We Find on the Floor — Most violations are hiding in plain sight.</h2>
       <p>OSHA doesn't find things your team missed. They find things your team stopped seeing. Here's what shows up on almost every walkthrough.</p>
@@ -338,7 +338,7 @@ const routes = [
       <h1>Frequently Asked Questions</h1>
       <p>Straight answers about safety walkthroughs and OSHA compliance. If your question isn't here, call (336) 329-8899 or email vince@giglinecompliance.com.</p>
       ${FULL_FAQS.map((f) => `<h2>${f.q}</h2><p>${f.a}</p>`).join('')}
-      <p><a href="/request-walkthrough">Request a Safety Walkthrough →</a></p>
+      <p><a href="/intake">Request a Safety Walkthrough →</a></p>
       <p>GigLine Safety &amp; Compliance — (336) 329-8899 — Kernersville, NC</p>
     `,
   },
@@ -472,10 +472,10 @@ const routes = [
     `,
   },
   {
-    path: '/request-walkthrough',
+    path: '/intake',
     title: 'Request a Safety Walkthrough | GigLine Safety & Compliance',
     description: 'Request an on-site safety walkthrough for your operation. One visit. Clear findings. Written report within 24-48 hours. Kernersville, NC.',
-    canonical: '/request-walkthrough',
+    canonical: '/intake',
     schemas: [LOCAL_BUSINESS],
     content: `
       <h1>Request a Safety Walkthrough</h1>
@@ -728,6 +728,105 @@ const routes = [
   },
 ];
 
+// Service detail pages (pixel-perfect dedicated pages) — must be pre-rendered so
+// production deployments don't serve the homepage HTML shell as a fallback for
+// these slugs.
+const SERVICE_DETAIL_ROUTES = [
+  {
+    slug: 'safety-walkthrough-report',
+    title: 'Safety Walkthrough Report — From $1,200 | GigLine',
+    description: 'On-site OSHA walkthrough with photo-documented findings, CFR citations, and a 48-hour written report. Fixed quote. Private engagement. Serving the Piedmont Triad.',
+    h1: 'Find what\'s exposed. Before OSHA does.',
+    summary: 'An on-site walkthrough focused purely on physical hazards. Photo-documented findings, CFR citations, and a prioritized fix list delivered within 48 hours. From $1,200.',
+    price: '1200',
+    breadcrumbName: 'Safety Walkthrough Report',
+  },
+  {
+    slug: 'documentation-readiness-review',
+    title: 'OSHA Documentation Readiness Review — From $1,300 | GigLine',
+    description: 'A structured 53-item review of written programs, training records, OSHA logs, and SDS compliance. Compliance percentage score + prioritized corrective action sequence.',
+    h1: 'Know exactly what your files say before an inspector does.',
+    summary: 'A structured review of written programs, training records, OSHA logs, and SDS compliance. 53 items across 7 OSHA categories. Compliance score + prioritized corrective actions. From $1,300.',
+    price: '1300',
+    breadcrumbName: 'OSHA Documentation Readiness Review',
+  },
+  {
+    slug: 'compliance-readiness-visit',
+    title: 'Compliance Readiness Visit — From $2,000 | GigLine',
+    description: "GigLine's most requested engagement. On-site walkthrough + documentation review in a single visit. 18-page CFR-cited report. 90-day remediation tracker. From $2,000.",
+    h1: 'Floor and files reviewed in a single engagement.',
+    summary: 'The most requested GigLine engagement. A Safety Walkthrough and OSHA Documentation Readiness Review combined into a single on-site visit. 18-page CFR-cited report delivered in 48 hours. From $2,000.',
+    price: '2000',
+    breadcrumbName: 'Compliance Readiness Visit',
+  },
+  {
+    slug: 'annual-compliance-partner',
+    title: 'Annual Compliance Control Partner — $12,000/year | GigLine',
+    description: 'A year-long compliance partnership for small manufacturers. Two walkthroughs + four documentation reviews + quarterly review calls + on-call access. From $12,000/year.',
+    h1: 'When OSHA shows up, you need someone who already knows your operation.',
+    summary: 'Two full walkthroughs per year. Quarterly documentation reviews. Training record maintenance. Pre-inspection readiness review. On-call access between visits. $12,000/year ($1,000/month equivalent).',
+    price: '12000',
+    breadcrumbName: 'Annual Compliance Control Partner',
+  },
+  {
+    slug: 'document-development',
+    title: 'Safety Document Development — Written OSHA Programs | GigLine',
+    description: 'Custom-written OSHA safety programs for small NC operations — LOTO, HazCom, PPE, EAP, and more. Built to your facility, your equipment, your employees. Not a template.',
+    h1: 'Written safety programs that match your operation.',
+    summary: 'Custom-written OSHA safety programs — LOTO, HazCom, PPE, EAP, and more. Built specifically for your facility, equipment, and employees. Not a template. Five program tiers available.',
+    price: '1500',
+    breadcrumbName: 'Safety Document Development',
+  },
+  {
+    slug: 'incident-review',
+    title: 'Incident Review — Root-Cause Analysis for NC Operations | GigLine',
+    description: 'Independent third-party incident review after a recordable injury, near-miss, or workers\' comp claim. Root-cause analysis with corrective actions and documentation guidance.',
+    h1: 'A clear-eyed review after something went wrong.',
+    summary: 'Independent third-party review after a recordable injury, near-miss, or workers\' comp claim. Root-cause analysis with corrective actions, documentation guidance, and an OSHA-defensible written report.',
+    price: '1500',
+    breadcrumbName: 'Incident Review',
+  },
+  {
+    slug: 'osha-ready-control-system',
+    title: 'OSHA-Ready Control System — Premium Engagement | GigLine',
+    description: 'A complete OSHA control system for small manufacturers — written programs, training, recordkeeping, and audit-ready documentation, built and maintained by GigLine.',
+    h1: 'A complete OSHA control system built around your operation.',
+    summary: 'A premium engagement for small manufacturers ready to operate at full OSHA-ready status. Written programs, training, recordkeeping, and audit-ready documentation built and maintained by GigLine.',
+    price: '18000',
+    breadcrumbName: 'OSHA-Ready Control System',
+  },
+];
+
+SERVICE_DETAIL_ROUTES.forEach((svc) => {
+  routes.push({
+    path: `/services/${svc.slug}`,
+    title: svc.title,
+    description: svc.description,
+    canonical: `/services/${svc.slug}`,
+    schemas: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        name: svc.breadcrumbName,
+        description: svc.description,
+        provider: { '@id': `${BASE_URL}/#business` },
+        areaServed: { '@type': 'State', name: 'North Carolina' },
+        offers: { '@type': 'Offer', price: svc.price, priceCurrency: 'USD' },
+      },
+      breadcrumb([
+        { name: 'Home', path: '/' },
+        { name: 'Services', path: '/services' },
+        { name: svc.breadcrumbName, path: `/services/${svc.slug}` },
+      ]),
+    ],
+    content: `
+      <h1>${svc.h1}</h1>
+      <p>${svc.summary}</p>
+      <p><a href="/intake?service=${svc.slug}">Request this engagement</a> · Call or text (336) 329-8899 · GigLine Safety &amp; Compliance — Kernersville, NC</p>
+    `,
+  });
+});
+
 // City landing pages
 const CITY_META = {
   'winston-salem':  { name: 'Winston-Salem',  distance: '10 miles from Kernersville', industries: 'manufacturing plants, food processing facilities, and distribution centers', price: 1200 },
@@ -834,7 +933,7 @@ const fieldNotes = [
       <p>OSHA Compliance Officers review paperwork, ask employees questions, observe equipment and work practices, and compare written procedures against the floor reality. They pay close attention to whether supervisors can describe procedures from memory, whether SDS binders match current chemical use, and whether training records can be traced back to specific employees and tasks.</p>
       <h3>Why do AI-generated safety programs fail OSHA inspections?</h3>
       <p>Generic AI-generated programs describe what a compliant operation should look like — they do not prove what your operation actually looks like. They miss site-specific hazards. When OSHA sees a polished written program that does not match floor reality, the gap itself becomes evidence.</p>
-      <p>Request a Safety Walkthrough: <a href="${BASE_URL}/request-walkthrough">${BASE_URL}/request-walkthrough</a> · Call or text (336) 329-8899 · GigLine Safety &amp; Compliance — Kernersville, NC</p>
+      <p>Request a Safety Walkthrough: <a href="${BASE_URL}/intake">${BASE_URL}/intake</a> · Call or text (336) 329-8899 · GigLine Safety &amp; Compliance — Kernersville, NC</p>
     `,
     customFaqs: [
       { q: 'Can I use ChatGPT to write my OSHA safety program?', a: 'You can use it as a starting point, but an AI-generated safety program does not reflect your actual operation. It does not know your equipment, your chemicals, your training history, or your facility layout. OSHA does not just review your binder — they walk your floor, interview your supervisors, and compare what is written against what is happening. When the two do not match, that gap can become a citation.' },

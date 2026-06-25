@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { trackPageView, initAttribution } from './utils/analytics';
 import ScrollToTop from './components/ScrollToTop';
@@ -97,7 +97,7 @@ function App() {
                   <Route path="/blog/top-5-osha-violations-small-manufacturing" element={<BlogOSHAViolations />} />
                   <Route path="/blog/hazcom-requirements-small-business" element={<BlogHazComRequirements />} />
                   <Route path="/heat-guide" element={<HeatGuidePage />} />
-                  <Route path="/request-walkthrough" element={<IntakePage />} />
+                  <Route path="/request-walkthrough" element={<Navigate to="/intake" replace />} />
                   <Route path="/admin" element={<AdminPage />} />
                   <Route path="/field-notes" element={<FieldNotesPage />} />
                   <Route path="/field-notes/:slug" element={<FieldNoteDetailPage />} />

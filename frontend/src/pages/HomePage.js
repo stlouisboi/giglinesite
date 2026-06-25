@@ -196,10 +196,10 @@ const HomePage = () => {
               <div className="flex flex-col items-start gap-3 mb-5" data-testid="hero-ctas">
                 <div className="flex flex-col sm:flex-row sm:items-center gap-4 w-full sm:w-auto">
                   <Link
-                    to="/request-walkthrough"
+                    to="/intake?service=safety-walkthrough-report"
                     onClick={() => trackEvent('hero_cta_primary', {
                       cta_text: 'Request a Walkthrough',
-                      cta_destination: '/request-walkthrough',
+                      cta_destination: '/intake?service=safety-walkthrough-report',
                       page_path: typeof window !== 'undefined' ? window.location.pathname : '/',
                     })}
                     className="bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center justify-center gap-2 shadow-lg shadow-[#1a6fc4]/20"
@@ -746,7 +746,7 @@ const HomePage = () => {
           <Reveal>
             <div className="flex justify-center">
               <Link
-                to="/request-walkthrough"
+                to="/intake"
                 className="inline-flex items-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold transition-colors"
                 style={{ padding: '13px 28px', borderRadius: '4px', fontSize: '14px', boxShadow: '0 10px 24px -10px rgba(31,111,235,0.55)' }}
                 data-testid="how-it-works-cta"
@@ -895,7 +895,7 @@ const HomePage = () => {
             </p>
             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
               <Link
-                to="/request-walkthrough"
+                to="/intake"
                 className="inline-flex items-center justify-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold transition-colors"
                 style={{ padding: '15px 30px', borderRadius: '4px', fontSize: '15px', boxShadow: '0 10px 24px -10px rgba(31,111,235,0.55)' }}
                 data-testid="bottom-cta-primary"

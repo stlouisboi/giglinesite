@@ -860,7 +860,7 @@ const FieldNoteDetailPage = () => {
             start with a walkthrough.
           </p>
           <Link
-            to="/request-walkthrough"
+            to="/intake"
             className="bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
             data-testid="note-walkthrough-cta"
           >

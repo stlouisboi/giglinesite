@@ -211,7 +211,7 @@ const FieldNotesPage = () => {
             Reading about it is useful. Having someone walk your floor is better.
           </p>
           <Link
-            to="/request-walkthrough"
+            to="/intake"
             className="bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
             data-testid="field-notes-walkthrough-cta"
           >

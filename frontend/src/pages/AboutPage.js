@@ -435,7 +435,7 @@ const AboutPage = () => {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
-                to="/request-walkthrough"
+                to="/intake"
                 className="inline-flex items-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#1a6fc4]/15"
                 data-testid="about-cta-walkthrough"
               >

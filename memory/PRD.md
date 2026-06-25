@@ -1,298 +1,62 @@
-# GigLine Safety & Compliance — PRD
+# GigLine Safety & Compliance — Product Requirements Document
 
-## Problem Statement
-Build and expand a professional service business website for GigLine Safety & Compliance. A direct-response funnel targeting small operators (manufacturing, warehouse, contractor) to request paid safety walkthroughs. Handles real Stripe deposits, Safety Check form submissions with email gating, Resend-powered email drip campaigns, Admin dashboard lead tracking, and Field Notes resource library.
+## Original Problem Statement
+B2B lead generation funnel for an OSHA compliance consultancy (Vince Lawrence / GigLine) targeting the Piedmont Triad NC market. React + FastAPI + MongoDB stack. The application captures qualified walkthrough requests, drives them through a structured intake flow, and tracks revenue and engagement in an internal admin dashboard.
 
 ## Architecture
-- **Frontend:** React + Tailwind CSS (Vercel)
-- **Backend:** FastAPI + MongoDB Atlas (Railway: giglinesite-production.up.railway.app)
-- **Payments:** Stripe (live key)
-- **Email:** Resend (drip campaigns + notifications)
-- **Analytics:** Google Analytics 4 (G-FNX42NP1QT)
-- **Database:** MongoDB Atlas (cluster0.nb1dqdq.mongodb.net/gigline)
+- **Frontend**: React 18, Tailwind CSS, react-router-dom, react-helmet-async
+  - SEO pre-rendering via `frontend/scripts/generate-seo-pages.js` (runs post `craco build`)
+  - Strict typography lock: **Inter** for text, **JetBrains Mono** for prices/stats
+- **Backend**: FastAPI (`/app/backend`)
+- **Database**: MongoDB (`gl_intake_submissions`, `gl_bookings`, etc.)
 
-## Backend Architecture (Refactored Apr 2026)
-```
-/app/backend/
-├── server.py          # Thin entry point — mounts routes, CORS, schedulers
-├── config.py          # Shared config: DB, Stripe, Resend, constants, SERVICE_PACKAGES
-├── models.py          # All Pydantic models
-├── stripe_native.py   # Native Stripe SDK wrapper (for Railway)
-├── email_sequences.py # Drip email templates + rendering
-├── pdf_generator.py   # Safety Check PDF report generation
-├── routes/
-│   ├── health.py      # GET /health, GET /, status CRUD
-│   ├── walkthrough.py # POST /walkthrough/request
-│   ├── payments.py    # POST /payments/checkout, GET /payments/status, webhook
-│   ├── hazcom.py      # POST /hazcom/checkout, GET /hazcom/verify, download
-│   ├── heat_guide.py  # POST /heat-guide/submit
-│   ├── safety_check.py# POST /safety-check/submit, submissions, report, drip processing
-│   └── admin.py       # Login, stats, leads, downloads, weekly summary
-```
+## Routing Source of Truth (Feb 2026)
+- `/intake` → `ClientIntakePage` (primary lead capture; reads `?service=<slug>` for attribution)
+- `/request-walkthrough` → **legacy redirect to `/intake`** (preserves bookmarks + old SEO)
+- Service detail pages live at `/services/<slug>`:
+  - `/services/safety-walkthrough` and `/services/safety-walkthrough-report` → `SafetyWalkthroughPage`
+  - `/services/document-development` → `DocumentDevelopmentPage`
+  - `/services/annual-compliance-partner` → `AnnualCompliancePartnerPage`
+  - `/services/compliance-readiness-visit` → `ComplianceReadinessVisitPage`
+  - `/services/incident-review` → `IncidentReviewPage`
+  - `/services/osha-ready-control-system` → `OshaReadyControlSystemPage`
+  - `/services/documentation-readiness-review` and any other slug → `ServiceDetailPage` (data-driven)
+- Every service detail page is now pre-rendered by `generate-seo-pages.js` so production deployments no longer fall back to the homepage HTML shell.
 
-## Completed Specs
-- **GL-WEB-001–010**: Safety Check, SEO, Contact, Homepage iterations, HazCom, Blog, Heat Guide, OG Image, City Pages, Service Area
-- **GL-WEB-013–026**: Homepage Funnel, UTM, Safety Check Funnel, Admin Dashboard, Layout Fixes, Asymmetric Redesign, Page Overhauls, Production Deploy, GA4, Pricing, Image Optimization, Heat Guide
-- **GL-WEB-027**: Backend Refactoring — server.py split into modular /routes (Apr 2026)
-- **GL-WEB-028**: Homepage parsing error fix (Apr 2026)
-- **GL-WEB-029**: Production E2E Testing — all forms, Stripe, admin verified (Apr 2026)
-- **GL-WEB-011**: Field Notes Expansion + Client Testimonials (Apr 2026)
-  - 4 new/enhanced Field Notes: Electrical Safety/Arc Flash, Forklift Safety, Confined Space Entry, Scaffolding Safety
-  - Each with oshaChecks, cfrCitation, FAQPage schema, Article JSON-LD, internal links
-  - 3-card Testimonials section on Homepage (Demar Archie real review + 2 placeholders)
-  - Sitemap updated to 30 URLs
+## Recently Completed (Feb 2026)
+- Sitewide `/request-walkthrough` → `/intake` cleanup (hero CTA points to `/intake?service=safety-walkthrough-report`).
+- App.js redirects legacy `/request-walkthrough` route to `/intake`.
+- sitemap.xml, llms.txt, and SEO generator updated to reference `/intake`.
+- Added pre-rendered SEO routes for all 7 service detail pages in `generate-seo-pages.js`.
+- Admin dashboard: manual revenue entry, intake deletion, CSV exports (revenue + intake).
+- 6 pixel-perfect Manus-prototype service pages.
+- Deep SEO refresh for 10 Triad city landing pages.
+- Real-world floor-finding photography on homepage.
+- Source-attribution tracking on intake form (`sourceServiceSlug`).
+- Theme-aware favicons.
 
-## Field Notes (12 total)
-1. Heat Stress
-2. Forklift Safety & Daily Inspections (enhanced — oshaChecks, CFR, FAQ schema)
-3. Electrical Safety & Arc Flash (enhanced — oshaChecks, CFR, FAQ schema)
-4. HazCom & SDS
-5. Machine Guarding
-6. Walking Surfaces
-7. Lockout/Tagout
-8. Emergency Action Plans
-9. PPE Assessment & Use
-10. Fall Protection
-11. Confined Space Entry (NEW — oshaChecks, CFR, FAQ schema)
-12. Scaffolding Safety (NEW — oshaChecks, CFR, FAQ schema)
+## Pending / Backlog
+**P1**
+- Supervisor Training Kit shell (GL-WEB-013): plumb backend PDF storage + Resend transactional email. Needs user to upload 9 PDFs and provide Resend API key.
 
-## Key Endpoints
-- POST /api/walkthrough/request
-- POST /api/safety-check/submit
-- POST /api/payments/checkout
-- GET /api/payments/status/{session_id}
-- POST /api/hazcom/checkout
-- POST /api/heat-guide/submit
-- POST /api/admin/login
-- GET /api/admin/stats
-- POST /api/intake/submit
-- POST /api/intake/upload
-- GET /api/onboarding/tiers
-- POST /api/onboarding/checkout
-- GET /api/onboarding/confirm
-- GET /api/health
+**P2**
+- Replace "David R." testimonial placeholder with real Google Review text (user to supply).
+- Leave-behind v9 rebuild (door-knock QR flyer — updated services/pricing).
+- Google Review short link added to delivered report PDFs.
+- 4-touch Past Client Retention sequence in MailerLite (needs MailerLite key).
+- Founder intro video swap on `/about` (user to film + upload).
+- Add "What happens on the day of your walkthrough" section.
+- Field Notes content section — 4–6 short articles on common OSHA violations.
 
-## Pricing (Backend SERVICE_PACKAGES)
-- Walkthrough Small: $650 | Standard: $750
-- Doc Review Remote: $550 | On-site: $750
-- Incident Standard: $900 | Urgent: $1,200
-- Deposits: $200 / $150 / $300
-- HazCom Starter Pack: $29
+## Known Maintenance Risk
+- `frontend/scripts/generate-seo-pages.js` is a parallel maintenance burden: any pricing, copy, or routing change must be mirrored there. Worth a one-time consolidation to a shared content source in a future refactor.
 
-## Upcoming Tasks
-- Video embeds (P1) — waiting on YouTube/Vimeo links
-- Facebook Pixel / Google Ads conversion tracking (P1)
-- Monthly Field Notes content expansion (P2) — 14 articles live, next round TBD
-- Swap placeholder testimonials with real client quotes when available (P2) — 2 placeholder slots ready on Homepage
-- GL-WEB-030: Homepage + Service Page Conversion Fixes (Feb 2026) — DONE
-  - Hero CTA changed to "Request a Safety Walkthrough" → /services with pricing direction line below
-  - Pricing direction line repeated above footer
-  - CTA buttons added after Process and FAQ sections
-  - OSHA Issues section: added lead-in sentence + consequence line ("single citation averages $15,625")
-  - Testimonials redesigned: 3-card grid (light #F7F9FC bg) — Demar quote in card 1, 2 "Coming soon" placeholder cards
-  - About/Founder copy replaced with new Vince Lawrence bio (plastics/building materials/trucking background)
-  - "From the Field" Recent Articles section added above final CTA with 4 Field Notes links (heat, forklift, electrical, hazcom)
-  - Service Page tier qualifiers updated on all 3 cards (Walkthrough, Documentation, Incident)
-  - Post-submit confirmation copy: "After you submit, you'll receive your custom pricing and a scheduling confirmation within one business day."
-  - Meta description tightened to 147 chars (under 160) — OSHA 30-Hour Certified emphasized
-  - Homepage H1 confirmed in static HTML shell
-  - Phone (336) 329-8899 confirmed sitewide (desktop nav + mobile)
-- GL-PORT-001 Addendum: Automated pricing logic in Vince notification email (DONE)
-- GL-PORT-001 Section B: Client Status Page, Secure Report Delivery, Admin Enhancements, E-Signature (Apr 2026)
-  - /status/{token}: 6-stage client status timeline, token-based access, no login
-  - /report/{token}: Secure report delivery with PDF viewer, token-based access logged
-  - /onboarding: Now 6 steps (added Agreement signing step), payment locked until signed
-  - Server-side agreement PDF via reportlab, stored per clientToken
-  - Admin: intake-submissions list, bookings list, status updates, report upload, portal-stats summary
-  - Enhanced Admin Dashboard UI: summary strip (5 metrics), 5 tabs (Portal/Intakes/Bookings/Leads/Downloads), status badges, urgency badges, flags (W/M/C), view drawer, status update modal, report upload modal
-  - Single clientToken per engagement ties together intake, status, agreement, booking, and report
+## Credentials
+- Admin Dashboard password: `gigline2026`
 
-## Generative Engine Optimization (GEO) — May 2026
-Goal: get GigLine cited in answers from ChatGPT, Perplexity, Claude, Google AI Overviews, Gemini.
-- Full schema package on homepage, services, about, and every city page — LocalBusiness, Service, Person (Vince w/ credentials), FAQPage, BreadcrumbList, Article (blog). All JSON-LD blocks now injected into the pre-rendered static HTML via generate-seo-pages.js (no JS required to read them).
-- SEO component upgraded to accept either a single schema object or an array of schemas.
-- New /faq page (`/app/frontend/src/pages/FAQPage.js`) with 18 answer-engine-optimized Q&As covering cost, scope, duration, differences vs OSHA inspection, NC service area, report content, credentials, booking. Includes FAQPage + BreadcrumbList schema.
-- Each city landing page (/safety-walkthrough/{city}) now has 4 city-specific FAQs + FAQPage schema.
-- /faq linked from Footer → Quick Links and from each city FAQ section.
-- /faq added to sitemap.xml (priority 0.9).
-- llms.txt created at /app/frontend/public/llms.txt — canonical content map for AI crawlers.
-- robots.txt expanded with explicit Allow for GPTBot, ChatGPT-User, OAI-SearchBot, ClaudeBot, Claude-Web, anthropic-ai, PerplexityBot, Perplexity-User, Google-Extended, Applebot-Extended, Bytespider, CCBot, cohere-ai, Meta-ExternalAgent, Meta-ExternalFetcher.
-- generate-seo-pages.js rewritten to strip the template LocalBusiness block and inject a route-specific JSON-LD set per page (Person for /about, Article for blog posts, Service+FAQPage for city pages, full FAQPage for /faq, LocalBusiness+Person+FAQPage on home).
-
-## Case Study — Mocksville Plastics OSHA Inspection (Jun 2026)
-- New page `/case-studies/mocksville-plastics-osha-inspection` (`/app/frontend/src/pages/CaseStudyMocksvillePage.js`)
-- Structured as Hero (kicker + headline + 4-up stats bar) → The Situation → The Walkthrough → 4 Findings (cards with CFR codes + penalty ranges: 1904.32 recordkeeping, 1910.178(l) forklifts, 1910.22(a)(1) housekeeping, 1910.37(a)(3) egress) → The Six Weeks Between (4 FixBlocks) → Inspection Day → What This Buys → What's Repeatable → Navy/gold CTA band routing to /walkthrough
-- Article + BreadcrumbList JSON-LD wired into generate-seo-pages.js
-- Sitemap entry added (priority 0.9)
-- Internal discoverability: shared `/app/frontend/src/components/CaseStudyTeaser.js` (navy + gold band, 3 outcome stat chips, gold CTA) embedded on Homepage (between Google review badge and Process section) and Services page (between Service Cards and Coverage section). Static HTML pre-renderer also includes a "Recent Outcome — Case Study" anchor link on both / and /services for crawler discoverability.
-
-## Findability Framework — Inbound SEO Push (Jun 11, 2026)
-- **Global typography bump** — `html { font-size: 18.4px }` (~15% larger) in `index.css`; mobile dialed to 17.2px. Scales all rem-based Tailwind sizes and spacing uniformly. Noticeably more readable across hero, body, buttons, and forms.
-- **Homepage hero rewrite** — Replaced "If OSHA Walked In Tomorrow, Would You Pass?" with buyer-intent headline: "Practical Safety Walkthroughs & OSHA-Focused Gap Checks for Manufacturers, Warehouses, Contractors & Fleets in North Carolina." New 2-line subhead, dual CTAs (Primary → /request-walkthrough, Secondary → /intake), updated pricing line ("Walkthroughs from $650 · Doc Gap Checks from $550").
-- **3 new buyer-intent service landing pages** (all built via shared `ServiceLandingTemplate.js`):
-  - `/safety-walkthrough` — On-site OSHA review for NC operations (from $650)
-  - `/documentation-gap-check` — Written programs, SDS, training records review (from $550)
-  - `/osha-compliance-gap-check` — Combined walkthrough + documentation review (custom-quoted, typically $1,200–$2,400)
-- Each new page includes: Who It's For · The Problem · What's Reviewed · What You Receive (deliverables grid) · Field Manual lead magnet · Next Steps (numbered) · Final CTA band with 3 actions (Walkthrough / Intake / Call).
-- **SEO mirror** — `generate-seo-pages.js` updated with: new homepage copy + headline/meta, plus full static pre-rendered HTML for the 3 new service pages (each with Service JSON-LD, FAQPage JSON-LD, BreadcrumbList JSON-LD, and crawler-visible H1/H2 content).
-- Updated homepage testimonials Card 2 with real Google review from **Michael Humphrey** (Jun 11, 2026): "Vince knows OSHA compliance cold..." Badge updated from "1 Google Review" → "3 Google Reviews."
-
-## Pending — User-Side / Backlog
-- **GBP optimization** (manual at business.google.com): Set Primary Chat = Text message, add Place page attributes (Onsite services, Online appointments), add Burlington + Asheboro to service areas, tighten Description copy, confirm booking URL → /request-walkthrough, seed 5–6 Q&A entries, post weekly Google Posts.
-- **Backlog (P1)**: 5 local Triad SEO pages (Greensboro, Winston-Salem, High Point, Kernersville, Statesville) — note `/safety-walkthrough/:city` city pages already exist for Triad cities; consider whether new dedicated pages are needed or just refresh existing.
-- **Backlog (P2)**: Problem-Based Field Notes articles from Findability Framework list · Google Review short link in delivered PDF reports · Stripe Invoice creation inside `/admin` panel · 4-touch Past Client Retention MailerLite sequence · Supervisor Training Kit shell (GL-WEB-013, blocked on user PDFs).
-
-## Brand Mark + Form Polish (Jun 12, 2026)
-- **Carolina-Built emblem badge** — User-supplied AI-generated circular badge ("CAROLINA-BUILT" rim text, NC silhouette w/ Kernersville star, foul anchor, "NAVY VETERAN OWNED" sub-medallion). Downloaded to `/app/frontend/public/assets/carolina-built-badge.png`, flood-fill processed to remove flattened light-gray background (~52% pixels keyed to alpha 0).
-- **Badge placement** — Inline after "North Carolina." in homepage hero H1 subhead at `w-24 sm:w-28 lg:w-32` (96/112/128 px) with `drop-shadow(0 6px 14px rgba(0,0,0,0.35))`. Added to all 13 city landing pages (`CityLandingPage.js`) below the H1 at `w-20 sm:w-24 lg:w-28` — uses inline-flex with flex-wrap so badge cleanly drops below long city names.
-- **SMS consent copy rewritten** on `/contact` form (`ContactForm.js`) per user's verbatim spec — now references `launchpathedu.com/privacy-policy` and `launchpathedu.com/terms-of-service` (sister-business unified privacy per RingCentral 10DLC). STOP/HELP/rate/frequency language preserved.
-- **SMS checkbox `required` removed** — confirmed already absent in current code; live site is running stale build. Tested via headless Playwright: form submits successfully with SMS unchecked. Awaiting deploy.
-- **Contact page email overflow fixed** — `vince@giglinecompliance.com` was breaking out of its column after the typography bump. Added `text-sm sm:text-base break-all` + `min-w-0` parent.
-- Removed dead `CarolinaBuiltBadge.js` + `NCStateMark.js` SVG experiments (replaced by user's PNG badge).
-
-## GL-WEB-014 — Services Page Rebuild + Global Rename (Jun 13, 2026)
-- **Services page complete rebuild** at `/services` per GL-WEB-014 spec: hero, 3 primary cards (Walkthrough $850 / Compliance Readiness Visit $1,500 / OSHA-Ready Control System $4,500), Card 2 visually elevated with blue border + Star icon + MOST POPULAR badge. 4 additional services (OSHA Documentation Readiness Review, Incident Review, Document Development with floor-pricing block, Readiness Review Entry $950). 2 recurring services (Quarterly Maintenance, Annual Compliance Partner). Preserved CaseStudyTeaser + 90-Second Safety Check band. Bottom CTA tap-to-call.
-- **Global rename "Gap Check" → "Documentation Readiness Review"** applied across React frontend, FastAPI backend, public assets, SEO generator, llms.txt, OG image SVG, index.html schema, build scripts. URLs `/documentation-gap-check` and `/osha-compliance-gap-check` **preserved** per Option A (SEO continuity). H1/meta/body all renamed.
-- **Sitewide pricing update**: walkthrough $650→$850, doc review $550→$750, compliance visit $1,200→$1,500. All 13 city pages, FAQ, HazCom/OSHA blog CTAs, SafetyCheck, ServiceAreas, HeatGuide, llms.txt, Stripe product names, intake form, schemas. Amero Steel pre-existing $675 quote grandfathered.
-- Compliance Readiness Visit page (formerly OSHA Compliance Gap Check) repositioned with $1,500 entry, Supervisor Safety Starter System ($199) included.
-- Full file-by-file deliverable written to `/app/memory/GL-WEB-014_Deliverable.md` per Part A acceptance criteria.
-- Manual tasks delegated to Vince: MailerLite sequence labels, GBP services section, RingCentral Knowledge Hub, field-app PDF templates (separate codebase).
-
-## GL-WEB-015 — Homepage Hero Pricing Anchor + Sample Deliverable Restoration (Feb 13, 2026)
-- **Hero pricing anchor rewrite (HomePage.js + generate-seo-pages.js)**: Replaced "Walkthroughs from $850 · Documentation Readiness Reviews from $750" with "Safety Walkthrough from $850. Compliance Readiness Visit from $1,500. Start where your operation needs it most." — anchors visitor on the $1,500 mid-tier rather than the entry-level price.
-- **Sample Deliverable section restored to /services**: `SampleReportSection` re-imported and rendered between Additional Services (S2) and Recurring Services (S3). New heading: "What a GigLine report actually looks like." New subheading: "Every engagement delivers a written report your team can act on. Here is a sample from a recent walkthrough — findings, CFR citations, photos, and corrective actions included." Component body (3-finding mock report) restored unchanged per spec.
-
-## GL-WEB-015 — Services Page Sales Path Refinement + GA4 Hero Tracking (Feb 13, 2026)
-- **Hero rewrite**: H1 → "OSHA-Readiness Support for Small Industrial Operations". Subheadline rewritten to cover the 4 verticals + 3 problem types. Service-name lists removed from hero.
-- **Authority statement** added between hero and Safety Check: "Built for small operations that need practical safety support without hiring a full-time safety manager."
-- **Full section reorder (14 sections)**: Hero → Authority → Safety Check (intake door, framed "Not sure where to start?") → Who GigLine Helps (NEW — 4 vertical cards: Manufacturers/Warehouses/Contractors/Fleet) → Compliance Readiness Visit (featured, standalone, "RECOMMENDED STARTING POINT" badge) → Standalone Services (Walkthrough/Doc Review/Incident/Doc Dev) → OSHA-Ready Control System (NEW dedicated full-width navy section with 5 buildout items, $4,500) → Quarterly + Annual (reframed as natural next step) → GigLine Readiness Path (NEW table — 5 stages, desktop table + mobile stack) → Sample Report → Case Study → Founder (compact, links to /about) → FAQ (5 services-specific Qs + embedded Pricing Reference block, 7 rows) → Final tap-to-call CTA.
-- **Pricing reference block**: 7 rows displayed plainly (Walkthrough $850, Doc Review $750, Compliance Readiness Visit $1,500, Incident $1,200, Control System $4,500, Quarterly $750/qtr, Annual $9,000/yr). Entry-Level $950 Doc Review dropped (redundant with $750 standalone given new "Recommended Starting Point" guidance).
-- **SEO mirror**: `/services` schema rewritten in `generate-seo-pages.js` — 7-item ItemList with full current pricing, 5-question FAQ schema matching on-page accordion, prerender content reflects new structure.
-- **GA4 hero CTA tracking**: `hero_cta_primary` and `hero_cta_secondary` custom events wired in HomePage.js via `trackEvent()`. Params: `cta_text`, `cta_destination`, `page_path`. Verified live via instrumented Playwright + testing agent — both events fire with correct payloads on click. GA4 property `G-FNX42NP1QT` already connected in index.html.
-- Testing agent (iteration_16): 21/21 acceptance criteria PASS, zero issues found.
-
-## GL-WEB-015 Follow-ups — Services Hero Image, Homepage CTA Swap, Services CTA Tracking (Feb 13, 2026)
-- **Services page hero image restored**: Asymmetric layout (image left ~40%, copy right ~60%) on navy. Uses `/services-hero.jpg` (1600×900, already in public/). Soft navy fade gradient blends the image into the copy panel on desktop. Mobile stacks image-on-top.
-- **Homepage primary CTA swap**: `hero-cta-primary` now reads "Schedule a Compliance Readiness Visit" → `/intake?service=compliance-readiness-visit`. `hero-cta-secondary` is now "Request a Safety Walkthrough" → `/request-walkthrough`. The "Start Client Intake" CTA was dropped. GA4 `hero_cta_primary` and `hero_cta_secondary` events updated to capture the new cta_text + cta_destination. Aligns homepage with the /services sales path so day-one tracking data is meaningful.
-- **Services CTA tracking wired**: New helper `fireServicesCtaClick()` fires `services_cta_click` GA4 events with `cta_text`, `cta_destination`, `page_path`. Attached to: Compliance Readiness Visit "Schedule a Visit" CTA, OSHA-Ready Control System "Request Buildout" CTA, and all 10 Readiness Path links (5 desktop + 5 mobile, labeled "Readiness Path · {stage}"). Combined with the homepage hero events this gives full-funnel visibility: which homepage CTA drove the click → which services-page CTA the visitor ultimately requested.
-- Self-verified via instrumented Playwright: all 7 CTA categories emit correct payloads on click. Skipped second testing-agent run (changes are small and additive on top of 21/21 PASS in iteration_16).
-
-## Intake Form Conversion Tracking — Full Funnel Visibility (Feb 13, 2026)
-- **`intake_submit_success` GA4 event** wired into both intake forms with params `service_requested`, `source_form`, `page_path`:
-  - `/request-walkthrough` (IntakePage.js): fires on successful POST `/api/walkthrough/request`. `source_form='request-walkthrough'`. Captures the form's `service` field.
-  - `/intake` (ClientIntakePage.js): fires on successful POST `/api/intake/submit` immediately before the navigate-to-thank-you redirect. `source_form='client-intake'`. Captures the form's `serviceSelected` value.
-- **Full-funnel measurement enabled**: combined with `hero_cta_primary`/`hero_cta_secondary` (homepage) and `services_cta_click` (services page), GA4 can now compute conversion rates per CTA — i.e. "of the visitors who clicked Schedule a Compliance Readiness Visit on home, what % completed the intake form requesting that service".
-- Verified: walkthrough form fires both `generate_lead` (existing) and `intake_submit_success` (new) on success. Client intake event payload verified via direct dataLayer push test (handler path identical to walkthrough form).
-
-## Responsiveness + SEO Cleanup (Feb 13, 2026)
-- **Tablet horizontal-scroll bug FIXED across all pages**. Root cause: `<Footer>` used `md:grid-cols-4` which made the LaunchPath link column too narrow at 768px, pushing the link 5px past viewport. Changed to `sm:grid-cols-2 lg:grid-cols-4` — proper 2×2 grid at tablet, 4-col at desktop. Confirmed via Playwright at 768px: body=768, win=768 (was body=773 before fix).
-- **Homepage hero now stacks vertically at tablet** instead of trying a cramped 60/40 split between 768–1023px. Changed `md:flex-row` → `lg:flex-row` plus all related `md:w-3/5`/`md:w-2/5` breakpoints. At ≥1024 the asymmetric desktop layout returns. Section also got `overflow-hidden` as belt-and-suspenders.
-- **SEO title doubling FIXED**. Pages that passed titles already containing `| GigLine` (e.g., `/service-areas`, `/intake`, `/request-walkthrough`, `/about`, `/case-studies/...`) had the SEO component appending `| GigLine Safety & Compliance` again — producing `... | GigLine Safety & Compliance | GigLine Safety & Compliance`. Updated `SEO.js` with smart suffix logic: only appends site name if title doesn't already end with `| GigLine...`. Verified on 16 routes — zero remaining double-suffix titles.
-- **No duplicate page files / routes found**. `/privacy` and `/privacy-policy` both render the same component but each sets canonical=`/privacy` so Google consolidates. Same with `/terms` and `/terms-of-service` → canonical=`/terms-of-service`. Confirmed proper canonical consolidation; no duplicate-content penalty risk.
-- Static-build SEO (production via `generate-seo-pages.js`) verified: every route writes per-page `<title>`, `<meta description>`, `<link canonical>`, OG + Twitter + JSON-LD. Production Google crawl sees correct per-page meta on every URL.
-
-## Homepage Services + How It Works + About — Premium Aesthetic Rebuild (Feb 2026)
-- **Services**: cream (#f5f4f0) bg, 3 white premium cards w/ soft icon circles (ClipboardList / Shield / CheckCircle2). Featured Compliance Readiness Visit card has 2px blue border + blue tab badge "★ RECOMMENDED STARTING POINT" floating on top edge + subtle blue glow shadow. Outlined "See all service options & pricing" pill button centered below.
-- **How It Works**: cream bg, horizontal connected timeline. 5 dark navy filled circles (numbered 1–5) on a thin connecting line. Centered title + body under each step. Blue filled "Request a Walkthrough" CTA pill centered below.
-- **About GigLine**: full-width dark navy (#0d1b2a) section. 12-col grid: LEFT (col 4) = 4:5 aspect photo placeholder panel w/ subtle border, FileImage icon, uppercase mono caption noting "production floor / facility environment — not a studio portrait". RIGHT (col 8) = gold (#c8922a) "ABOUT GIGLINE" eyebrow, bold white H2, white-tinted body copy, gold-bordered quote box w/ subtle dark fill, gold "Read full bio →" link.
-- **Bottom CTA band** extracted to its own white section below the dark About section so "If you're not sure what's exposed..." sits cleanly on the next light band.
-- All data-testids preserved.
-
-## GL-WEB-009 — Consolidated Site Update (Feb 2026)
-- **Pricing cascade fully complete**: Safety Walkthrough $1,200, Doc Review $1,300, CRV $2,000, Incident Review $1,500, Quarterly Maintenance $950/quarter, Annual Compliance Control Partner $12,000/year ($1,000/month). Doc Dev tiers: $350 / $650 (LOTO 5-procedure intentional per spec) / $1,200 / $2,000.
-- **OSHA penalty figures**: $16,550 (avg serious — used on homepage Cost of Waiting + Services); $16,131 (used in FAQ Q1/Q3 per verbatim spec — known discrepancy with homepage); $165,514 (max willful/repeat — verified via OSHA May 2026 memo).
-- **SEO updates**: Homepage title → "OSHA Safety Walkthrough — Piedmont Triad NC | GigLine" + new meta description. About title → "Safety Consultant Kernersville NC — Vince Lawrence | GigLine". Services title → "OSHA Compliance Services — Walkthroughs & Documentation Reviews | GigLine". `public/index.html` static fallback meta + og + twitter all updated.
-- **Hero standout line** (gold italic Manrope, between H1 and subhead): "Safety becomes the thing you will get to. / OSHA does not wait for you to get to it."
-- **Cost of Waiting standout line** (copper-red italic Georgia): same 2 lines, above the $16,550 H2.
-- **About page rebuilt**: Full verbatim Vince bio (BF Goodrich, Amero Steel, glass+vinyl, rubber compounding, metals fabrication), credential line "OSHA 30-Hour Certified safety compliance consultant, Kernersville, NC" under his name in mono muted style, embedded standout line in gold serif italic.
-- **FAQ expansion**: 5 verbatim Q&A added/replaced at the top of FAQs (Q1 pricing, Q2 on-site consultant duties, Q3 inspection prep, Q4 CRV explainer, Q5 Walkthrough vs CRV). Multi-paragraph answers now render as separate `<p>` elements via `f.a.split('\n\n').map(...)`. Total FAQs: 22.
-- **Bug carryovers fixed**: `public/index.html` LocalBusiness JSON-LD `hasOfferCatalog` updated (650/550/900 → 1200/1300/1500 with maxPrice 2000/2000/2500). `generate-seo-pages.js` MAJOR_CITIES SSG block: all 13 cities → `price: 1200`, `priceTop = 2000` flat, travel-note copy rewritten ("a travel fee applies in addition to the base walkthrough price").
-- All `data-testid` attributes preserved + new ones added: `hero-standout-line`, `cost-standout-line`, `about-credential-line`, `about-body`, `about-standout-line`.
-
-### Pricing cascade ($950→$1,200, $1,500→$2,000, $750/$950→$2,500)
-- Safety Walkthrough: $950 → **$1,200** (Triad Core base + outer-tier "$1,200 + travel fee")
-- Compliance Readiness Visit: $1,500 → **$2,000**
-- OSHA Documentation Readiness Review: $750 (flag-gated $950) → **$2,500** flat (flag removed)
-- Quarterly Maintenance, OSHA-Ready Control System unchanged
-- Updated across **17 files**: ServicesPage.js, ServiceAreasPage.js, CityLandingPage.js, FAQPage.js, SafetyWalkthroughPage.js, SafetyCheckPage.js, HeatGuidePage.js, BlogHazComRequirements.js, BlogOSHAViolations.js, HazComThankYouPage.js, FieldNoteDetailPage.js, OshaComplianceGapCheckPage.js, DocumentationGapCheckPage.js, generate-seo-pages.js (incl. JSON-LD Offer schemas), llms.txt, index.html
-
-### Homepage rebuild (8 sections per spec, in order)
-1. **Hero** — new subhead ("contractors, fleet operations" added). Primary CTA: "Request a Walkthrough" → `/request-walkthrough`. Secondary text link: "Take the Safety Check →" → `/safety-check`
-2. **What We Find on the Floor** — replaced 4-card facility-photo strip with 6 text-driven findings (LOTO / Forklift & PIT / HazCom / Electrical / Egress / Recordkeeping). Mono-style "01–06" numbering, blue accent. Footer note "These are findings from real walkthroughs..."
-3. **Why GigLine** — new headline "Not a software tool. Not a template audit. A person who walks your floor." Three premium cards (Fixed Quote / Private by Default / Built on the Floor — BF Goodrich + Amero Steel mention). New **AI/Template warning block** dark navy band with gold left border + "The Template Trap" label + closing "This is not a full audit. It is a signal."
-4. **The Cost of Waiting** (NEW) — copper-red eyebrow, three stat cards: **$16,131** avg serious / **$165,514** max willful/repeat / **48 hrs** report time. Closing copy "OSHA doesn't announce inspections... The walkthrough is that window."
-5. **Services Snapshot** — "Three ways to work with GigLine." Three cards: Walkthrough $1,200 / CRV $2,000 (★ Most Requested) / Safety Check Free. Doc Review separate-booking ($2,500) called out in CRV body. Footer note about incident review / document development / ongoing partnerships
-6. **Testimonials + Case Study + Track Record** (relocated per user) — moved from before Services to between Services and How It Works
-7. **How It Works** — reduced from 5 steps to 4. Mono "01/02/03/04" numbered circles on the horizontal timeline
-8. **About Vince** — new headline ("I didn't learn this by visiting other people's facilities."). New 3-paragraph bio + signature line + monospace service area band ("60 miles of Winston-Salem..."). Carolina-Built badge under portrait retained
-9. **Final CTA** — "Know what's on your floor before OSHA does." + new subhead + "Request a Walkthrough" primary + phone (336) 329-8899 in secondary line
-
-### OSHA Penalty Verification (CRITICAL)
-- Spec stated: **$156,259** max willful/repeat penalty
-- Verified via web search (Feb 2026): actual current adjusted rate is **$165,514** (Jan 2025 adjustment carried forward — 2026 inflation adjustment was cancelled due to federal funding lapse preventing BLS CPI-U publication)
-- **Used $165,514 in the new homepage copy and SEO mirror.** All BlogOSHAViolations.js JSON-LD schemas already had $165,514.
-- $16,131 average serious-violation figure kept (framed as "average," not "maximum" — current max is ~$16,550)
-
-### SEO Mirror
-- `generate-seo-pages.js` homepage `content` block rebuilt to mirror the new 8-section structure (includes the corrected $165,514 figure, all 6 findings, new pricing, new bio)
-- JSON-LD `Offer` prices updated: Safety Walkthrough `'1200'`, CRV `'2000'`, Doc Review `'2500'`
-- `llms.txt` (AI-crawler index) updated with new pricing across walkthrough + doc review + city landing pages
-
-## Deployment
-- Frontend: Vercel (manual redeploy after GitHub push)
-- Backend: Railway (auto-deploys on GitHub push)
-- Database: MongoDB Atlas (gigline cluster)
-- REACT_APP_BACKEND_URL in Vercel must point to Railway URL
-deploys on GitHub push)
-- Database: MongoDB Atlas (gigline cluster)
-- REACT_APP_BACKEND_URL in Vercel must point to Railway URL
-
-
-## Brand Assets — Logo Inventory (Feb 2026)
-
-| Asset Path | Use Case | Background |
-|------------|----------|------------|
-| `/gigline-logo-3d.png` | **Light-bg primary logo** — 3D dimensional GigLine wordmark in dark navy + gold belt buckle, "SAFETY & COMPLIANCE" subtitle, "INSPECT · IDENTIFY · REPORT · SUPPORT" tagline. Transparent PNG. | White, cream `#f5f4f0`, off-white `#FAF7F1` |
-| `/gigline-logo-dark-bg.png` | **Dark-bg logo** — white wordmark + gold buckle for dark navy footer and ClientIntakePage nav. | `#0d1b2a`, `#091725`, `#0B0B0B` |
-| `/gigline-logo-2026-v2.png` | Legacy 2D logo (deprecated for light bg as of Feb 2026 — kept only in JSON-LD `logo` field for SEO until structured-data update) | n/a (SEO only) |
-
-### Logo Placements
-- **Navbar.js** (sticky white nav, sitewide) → `/gigline-logo-3d.png`
-- **Footer.js** (dark navy footer, sitewide) → `/gigline-logo-dark-bg.png`
-- **ClientIntakePage.js** (`#0B0B0B` dark nav) → `/gigline-logo-dark-bg.png`
-- **WalkthroughLandingPage.js** (cream `#FAF7F1`, 2 instances — sticky nav + hero) → `/gigline-logo-3d.png`
-- **BlogOSHAViolations.js** schema.org `logo` field → still references legacy `gigline-logo-2026-v2.png` (TODO: update to 3D variant URL when deployed)
-
-### Other Brand Assets
-- Primary blue: `#1a6fc4` (hover `#1560ae`)
-- Dark navy: `#0d1b2a` (unified sitewide)
-- Gold (3D logo buckle / accent): `#D4A93E` / `#c8922a`
-- Cream/light bg variants: `#f5f4f0`, `#EFEEE8`, `#FAFAF7`
-- Peach (incident urgency bg): `#FFF8F0`
-
-## Recent Changes (Feb 2026)
-- **2026-02 OSHA-Ready Control System dedicated page (`/services/osha-ready-control-system`)** — built `OshaReadyControlSystemPage.js` matching the Manus prototype. **All 6 service detail pages now have dedicated, prototype-faithful builds**. 7 sections: dark-navy Hero with gold split headline ("The buildout. / Complete safety infrastructure.") + orange italic "This is not a report. This is the system." tagline + gold "Request Buildout" CTA + 3-col investment block (Starting at $4,500 / assessment-included body / gold-bordered PREMIUM ENGAGEMENT callout) · 6-component white grid (Four-Binder System · Digital Folder Architecture · Training Matrix+SDS · Written Programs · Log Templates · Supervisor Handoff — each with CFR citation on dashed divider) · 4-col cream "How It Works" with gold "01-04" steps · Side-by-side "When to Book This" 4-card list + "What This Replaces" 6-warning amber list · Dark-navy "What Comes After" with inline CTA bar + 2 side-by-side cross-sell cards (Quarterly $950 / Annual Partner $12,000) · Cream closing CTA with gold "Request Buildout" + outline "See All Services" button pair.
-- **2026-02 Intake form source attribution** — extended `ClientIntakePage.js` URL param map to handle all 8 service slugs (safety-walkthrough, compliance-readiness-visit, doc-readiness-review, document-development, annual-compliance-partner, incident-review, osha-ready-control-system, safety-walkthrough-report). Added visible "INQUIRY FOR · <Service>" banner above section 02 when user arrives from a dedicated service page (with OSHA/CRV/PPE acronym capitalization fix). Form payload now includes `source_service_slug` so backend can A/B test which service page converts best. `data-testid="intake-source-banner"`, `data-source-service-slug` attribute on section 02.
-- **2026-02 Safety Walkthrough dedicated page (`/services/safety-walkthrough`)**: Built `SafetyWalkthroughPage.js` matching the Manus prototype. 5 sections: dark-navy Hero with gold split headline ("Find what's exposed. / Before OSHA does.") + blue CTA + 2-col Fixed Price block (From $1,200 + CRV upgrade cross-sell saving $500) · "Three deliverables. One visit." 3-card grid on white · 8 numbered CFR-cited common violations on cream · 4-card "When to Book This" on dark navy · Cream closing CTA with walkthrough/upgrade button pair. Route handles both `/services/safety-walkthrough` (new) and `/services/safety-walkthrough-report` (legacy) for backwards compat.
-- **2026-02 Incident Review dedicated page (`/services/incident-review`)**: Built `IncidentReviewPage.js` matching the time-sensitive Manus prototype. 4 sections: dark-navy Hero with **red TIME-SENSITIVE badge** + gold split headline ("Call GigLine before you / file anything or talk to anyone.") + **red `Call or Text Now` CTA** (tel: link) + same-day/private engagement tags · 4-card "What the Review Covers" on white (Root Cause / Regulatory Obligation / Documentation Guidance / Corrective Action Plan) · narrative "What Most Operators Get Wrong" section on cream with red eyebrow · Navy closing CTA with red Call-Vince button. No pricing block in hero (fixed quote provided on the call). Phone CTAs use `tel:3363298899`.
-- **2026-02 Floor Findings Photos COMPLETE (all 6 cards)**: Added real industrial photos to all 6 homepage "What We Find on the Floor" cards — 01 LOTO (red padlock + DANGER tag), 02 Forklift+PIT (expired cert + empty inspection rack), 03 HazCom (worker at unlabeled chemical bench), 04 Electrical (open junction box w/ exposed wires), 05 Blocked Egress (pallets stacked in front of exit door), 06 Recordkeeping (OSHA 300 log review + Safety Postings board). All images optimized to ≤210KB JPEG @ 1200px, lazy-loaded, descriptive alt text for SEO + accessibility. Stored in `/app/frontend/public/floor-findings/`. `data-testid="floor-finding-image-{num}"`.
-- **2026-02 Triad SEO Deep Refresh**: Added industry-specific 200–280 word lead paragraphs to the 5 priority Triad cities (Greensboro, Winston-Salem, High Point, Kernersville, Lexington) + extended to 5 more cities (Charlotte 184w, Raleigh 178w, Burlington 173w, Thomasville new, Clemmons new) at 150–200 words. All 10 cities now have geographic/industry-led leads with named anchor employers and industry-specific OSHA exposures. Each city's `industries` field + `seoDesc` also refreshed per the corrected mapping.
-- **2026-02 Compliance Readiness Visit page (`/services/compliance-readiness-visit`)** wired up — 6-section dedicated layout matching Manus prototype.
-- **2026-02 Annual Compliance Partner Service Page (`/services/annual-compliance-partner`)**: Built dedicated `AnnualCompliancePartnerPage.js` matching the Manus prototype across 5 sections: Hero (gold eyebrow + gold italic 2nd line + GOLD CTA button + Lock/Clock tags) + embedded 3-col Annual Investment block ($12,000/year + market comparison + gold-bordered limited-availability callout) · "What's Included" (6 cream cards in 2-col on white) · Inline dark-navy CTA bar (logo + WHO THIS IS FOR eyebrow + All Services + gold button) · "Who This Is For" (3-col dark-on-dark cards with gold chevron-circle icons) · "How to Start" (cream bg with navy + outline button pair). Route added BEFORE `/services/:slug`.
-- **Naming note**: New page uses "Annual Compliance Partner" (Manus prototype name). Legacy references in FAQ answers and SEO schema still say "Annual Compliance Control Partner" — kept as-is for now since rename was out of scope; flagging for future cleanup.
-- **2026-02 Document Development Service Page (`/services/document-development`)**: Built dedicated `DocumentDevelopmentPage.js` matching the Manus prototype pixel-faithfully across 10 sections: Hero with gold italic second line + embedded 2-col pricing callout (dark navy) · Why This Matters (3 cream cards on white) · 5 Programs (full-width horizontal cards on cream, icon left / title+CFR+body left / pricing on right with vertical divider) · Floor Pricing Reference + When to Book This (side-by-side 2-col on white, table + chevron cards) · How It Works (3-col horizontal with large faded "01/02/03" numbers) · Inline dark CTA bar (logo + tagline + "All Services" + CTA) · What's Included (3-col cream pill grid) · Closing dual-CTA. Route added BEFORE `/services/:slug`. SEO `/services` listing in `generate-seo-pages.js` updated. **Pricing locked: single program from $350 · LOTO + 5 machines from $650 · LOTO + 6–15 machines from $1,200 · full suite (5+ programs) from $2,000.** Fixed long-standing broken link.
-- **2026-02 Navbar Credentials Badge**: Added permanent "VETERAN-OWNED / CAROLINA-BUILT / Greensboro, NC" credentials block adjacent to the navbar logo (visible at xl+ breakpoints, 1280px+) with a subtle `#dde3ea` divider. Trust signal stays visible during scroll. Hidden at lg and mobile to preserve layout density. `data-testid="navbar-credentials"`.
-- **2026-02 Dark-BG Logo Verified**: Confirmed `/gigline-logo-dark-bg.png?v=4` renders with correct contrast on Footer and ClientIntakePage dark navy backgrounds.
-
-## Active Backlog (P1/P2)
-- **P1** Deep refresh of 5 priority Triad SEO pages (Greensboro, Winston-Salem, High Point, Kernersville, Lexington) with industry-specific lead paragraphs
-- **P2** Replace "David R." placeholder testimonial with actual Google Review text (BLOCKED on user)
-- **P2** Supervisor Training Kit / GL-WEB-013 — wire up Resend + PDF delivery (BLOCKED on user uploading 9 PDFs)
-- **P2** Leave-behind v9 rebuild (door-knock QR flyer)
-- **P2** Google Review short link on delivered Safety Check PDFs
-- **P2** Stripe Invoice creation in `/admin` panel
-- **P2** 4-touch Past Client Retention sequence in MailerLite
-- **P2** Founder intro video — swap `dQw4w9WgXcQ` placeholder in AboutPage
-- **P2** "What happens on the day of your walkthrough" homepage section
-- **P2** "Field Notes" content section (4–6 short OSHA violation articles)
-
+## Key API Endpoints
+- `POST /api/admin/revenue/manual`
+- `GET  /api/admin/revenue/list`
+- `GET  /api/admin/export/revenue.csv`
+- `GET  /api/admin/export/intake.csv`
+- `DELETE /api/admin/lead/intake/{clientToken}`

@@ -1,9 +1,12 @@
 """Admin dashboard routes (login, stats, leads, downloads, summary)."""
 
 from fastapi import APIRouter, HTTPException
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, StreamingResponse
 from datetime import datetime, timezone, timedelta
 import os
+import io
+import csv
+import uuid
 import logging
 
 import resend
@@ -200,3 +203,138 @@ async def seo_health_check_endpoint(token: str = "", email: bool = False):
         "email_sent": bool(email and total_issues > 0),
     }
 
+
+# ═══ Collection name registry — single source of truth for which collections support which actions ═══
+LEAD_COLLECTIONS = {
+    "intake": ("gl_intake_submissions", "clientToken"),
+    "walkthrough": ("walkthrough_requests", "id"),
+    "safety_check": ("safety_check_submissions", "id"),
+    "heat_guide": ("heat_guide_leads", "id"),
+}
+
+
+@router.delete("/admin/lead/{kind}/{doc_id}")
+async def delete_lead(kind: str, doc_id: str, token: str = "", hard: bool = False):
+    """Soft-delete a lead by copying it to an archive collection then removing the original.
+
+    `kind` selects which collection (intake / walkthrough / safety_check / heat_guide).
+    `hard=true` skips the archive copy (permanent delete).
+    Recoverable: archived rows live in `<collection>_archive` and can be restored manually if needed.
+    """
+    if token != ADMIN_PASSWORD:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    if kind not in LEAD_COLLECTIONS:
+        raise HTTPException(status_code=400, detail=f"Unknown lead kind '{kind}'. Valid: {list(LEAD_COLLECTIONS)}")
+    coll_name, id_field = LEAD_COLLECTIONS[kind]
+    coll = db[coll_name]
+    doc = await coll.find_one({id_field: doc_id})
+    if not doc:
+        raise HTTPException(status_code=404, detail=f"{kind} '{doc_id}' not found")
+    if not hard:
+        archive = db[f"{coll_name}_archive"]
+        doc["archived_at"] = datetime.now(timezone.utc).isoformat()
+        doc["archived_by"] = "admin"
+        await archive.insert_one(doc)
+    result = await coll.delete_one({id_field: doc_id})
+    logger.info(f"Admin deleted {kind}/{doc_id} (hard={hard})")
+    return {"status": "ok", "deleted": result.deleted_count, "archived": not hard}
+
+
+@router.post("/admin/revenue/manual")
+async def add_manual_revenue(body: dict, token: str = ""):
+    """Record manually-captured revenue (check/ACH/cash deals) as a synthetic gl_bookings record.
+
+    Body: {
+      amount: number (USD, required),
+      service: str (optional — e.g. "Safety Walkthrough"),
+      clientToken: str (optional — link to existing intake),
+      paymentMethod: str (optional — "check"/"ACH"/"cash"/"other"),
+      notes: str (optional),
+      date: ISO date string (optional — defaults to now)
+    }
+    """
+    if token != ADMIN_PASSWORD:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    try:
+        amount = float(body.get("amount") or 0)
+    except (TypeError, ValueError):
+        raise HTTPException(status_code=400, detail="amount must be a number")
+    if amount <= 0:
+        raise HTTPException(status_code=400, detail="amount must be greater than zero")
+
+    paid_at_raw = body.get("date") or datetime.now(timezone.utc).isoformat()
+    record = {
+        "bookingId": f"manual-{uuid.uuid4().hex[:10]}",
+        "totalCharged": amount,
+        "paid": True,
+        "manualEntry": True,
+        "paymentMethod": body.get("paymentMethod") or "manual",
+        "service": body.get("service") or "Manual revenue entry",
+        "clientToken": body.get("clientToken") or None,
+        "sourceServiceSlug": body.get("source_service_slug") or body.get("sourceServiceSlug") or "manual",
+        "notes": body.get("notes") or "",
+        "paidAt": paid_at_raw,
+        "createdAt": datetime.now(timezone.utc).isoformat(),
+        "createdBy": "admin",
+    }
+    await db.gl_bookings.insert_one(record)
+    logger.info(f"Admin added manual revenue: ${amount:.2f} method={record['paymentMethod']} token={record['clientToken']}")
+    record.pop("_id", None)
+    return {"status": "ok", "booking": record}
+
+
+@router.get("/admin/revenue/list")
+async def list_revenue(token: str = "", limit: int = 200):
+    """List recent gl_bookings (both Stripe + manual) for admin display."""
+    if token != ADMIN_PASSWORD:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    rows = await db.gl_bookings.find({"paid": True}, {"_id": 0}).sort("paidAt", -1).to_list(limit)
+    total = sum((r.get("totalCharged") or 0) for r in rows)
+    return {"bookings": rows, "total_revenue": total, "count": len(rows)}
+
+
+def _rows_to_csv(rows: list[dict], filename: str) -> StreamingResponse:
+    """Stream a list of dicts as a CSV download. Handles varying keys across rows."""
+    if not rows:
+        rows = [{"info": "no records"}]
+    # Collect union of all keys across rows (preserving order of first appearance)
+    seen = []
+    for r in rows:
+        for k in r.keys():
+            if k not in seen:
+                seen.append(k)
+    buf = io.StringIO()
+    writer = csv.DictWriter(buf, fieldnames=seen, extrasaction="ignore")
+    writer.writeheader()
+    for r in rows:
+        # Flatten any nested values to JSON-ish strings so Excel doesn't choke
+        safe = {k: ("" if v is None else (v if isinstance(v, (str, int, float, bool)) else str(v))) for k, v in r.items()}
+        writer.writerow(safe)
+    buf.seek(0)
+    return StreamingResponse(
+        iter([buf.getvalue()]),
+        media_type="text/csv",
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+    )
+
+
+@router.get("/admin/export/{kind}.csv")
+async def export_csv(kind: str, token: str = ""):
+    """Export a collection as CSV (Excel-compatible).
+
+    `kind` options: intake, walkthrough, safety_check, heat_guide, revenue.
+    """
+    if token != ADMIN_PASSWORD:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    if kind == "revenue":
+        rows = await db.gl_bookings.find({"paid": True}, {"_id": 0}).sort("paidAt", -1).to_list(5000)
+        return _rows_to_csv(rows, f"gigline-revenue-{today}.csv")
+    if kind not in LEAD_COLLECTIONS:
+        raise HTTPException(status_code=400, detail=f"Unknown export kind '{kind}'. Valid: intake, walkthrough, safety_check, heat_guide, revenue")
+    coll_name, _ = LEAD_COLLECTIONS[kind]
+    rows = await db[coll_name].find({}, {"_id": 0}).sort("timestamp", -1).to_list(5000)
+    # Many collections use `created_at` instead of `timestamp` — fall back if no rows from sort
+    if not rows:
+        rows = await db[coll_name].find({}, {"_id": 0}).to_list(5000)
+    return _rows_to_csv(rows, f"gigline-{kind}-{today}.csv")

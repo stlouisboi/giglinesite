@@ -67,7 +67,7 @@ const ServiceLandingTemplate = ({
 
           <div className="flex flex-col sm:flex-row gap-3 mb-5" data-testid="svc-hero-ctas">
             <Link
-              to="/request-walkthrough"
+              to="/intake"
               className="bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center justify-center gap-2 shadow-lg shadow-[#1a6fc4]/20"
               data-testid="svc-cta-primary"
             >
@@ -208,7 +208,7 @@ const ServiceLandingTemplate = ({
           </h2>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
             <Link
-              to="/request-walkthrough"
+              to="/intake"
               className="bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded transition-colors inline-flex items-center gap-2 shadow-lg shadow-[#1a6fc4]/20"
               data-testid="svc-closing-cta-primary"
             >

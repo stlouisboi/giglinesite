@@ -226,7 +226,7 @@ const SampleReportSection = () => {
         {/* ── CTA BELOW THE REPORT ── */}
         <div className="mt-10 md:mt-12 text-center" data-testid="sample-report-cta-wrap">
           <Link
-            to="/request-walkthrough"
+            to="/intake"
             className="inline-flex items-center justify-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold py-4 px-8 rounded-lg transition-colors text-[15px] md:text-base"
             style={{ ...heading, boxShadow: '0 6px 18px rgba(31,111,235,0.18)' }}
             data-testid="sample-report-cta"

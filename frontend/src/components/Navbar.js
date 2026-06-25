@@ -54,7 +54,7 @@ const Navbar = () => {
                 height="100"
               />
             </Link>
-            {/* Carolina-Built credentials — large-desktop only (xl+), sits adjacent to the logo for always-on trust signal during scroll */}
+            {/* Carolina-Built credentials — Full 3-line stack at xl+ (1280px+) only. Below xl there's no room without crowding the nav. */}
             <div
               className="hidden xl:flex flex-col leading-tight pl-4"
               style={{ borderLeft: '1px solid #dde3ea' }}

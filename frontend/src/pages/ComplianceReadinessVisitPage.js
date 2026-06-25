@@ -130,7 +130,7 @@ const PROCESS_STEPS = [
   {
     title: 'Schedule the Visit',
     body:
-      'Visit scheduled within 1–2 weeks. Most operations book the floor walkthrough and documentation review on the same day to keep disruption to a minimum.',
+      'We pick a date. I show up on time, in work boots, ready to walk the floor.',
   },
   {
     title: 'Floor Walkthrough',

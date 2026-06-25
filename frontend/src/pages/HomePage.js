@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, BookOpen, Monitor, FileText, Bot, Zap, ShieldCheck, Star, Anchor, Factory, MapPin, ClipboardList, Shield, CheckCircle2, FileImage } from 'lucide-react';
+import { ArrowRight, Check, BookOpen, Monitor, FileText, Bot, Zap, ShieldCheck, Star, Anchor, Factory, MapPin, ClipboardList, Shield, CheckCircle2, FileImage, Repeat } from 'lucide-react';
 import SEO from '../components/SEO';
 import CaseStudyTeaser from '../components/CaseStudyTeaser';
 import FieldManualBand from '../components/FieldManualBand';
@@ -467,38 +467,46 @@ const HomePage = () => {
               Services
             </p>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0d1b2a] leading-[1.15] mb-4 max-w-3xl tracking-tight">
-              Three ways to work with GigLine.
+              Four ways to work with GigLine.
             </h2>
             <p className="text-base md:text-lg text-[#0d1b2a]/70 leading-relaxed mb-12 max-w-3xl">
               Every engagement starts with a conversation. If we&apos;re not the right fit, we&apos;ll tell you.
             </p>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-7 mb-12" data-testid="home-services-grid">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-7 mb-12" data-testid="home-services-grid">
             {[
               {
                 Icon: ClipboardList,
                 title: 'Safety Walkthrough',
                 price: 'From $1,200',
                 body: 'A documented on-site walkthrough of your facility. Photo evidence, CFR citations, penalty exposure per finding, and a Top 10 Fixes report \u2014 delivered in writing within 48 hours.',
-                cta: { label: 'Request a Walkthrough', to: '/request-walkthrough' },
+                cta: { label: 'Request a Walkthrough', to: '/intake?service=safety-walkthrough-report' },
                 testid: 'home-service-walkthrough',
               },
               {
                 Icon: Shield,
                 title: 'Compliance Readiness Visit',
                 price: 'From $2,000',
-                body: 'The Safety Walkthrough plus a full Documentation Review in a single visit. We walk the floor and review your written programs, training records, and OSHA logs \u2014 then give you a prioritized corrective action plan. Documentation Review booked separately: from $1,300.',
+                body: 'The Safety Walkthrough plus a full Documentation Review in a single visit. We walk the floor and review your written programs, training records, and OSHA logs \u2014 then give you a prioritized corrective action plan.',
                 cta: { label: 'Schedule a Visit', to: '/intake?service=compliance-readiness-visit' },
                 featured: true,
-                badge: '★ Most Requested',
+                badge: '★ Recommended Starting Point',
                 testid: 'home-service-readiness-visit',
+              },
+              {
+                Icon: Repeat,
+                title: 'Quarterly Maintenance',
+                price: 'From $950/quarter',
+                body: 'Keep the system alive between annual walkthroughs. Quarterly documentation review, training record audit, SDS inventory check, corrective action tracker review, and a brief site visit if needed.',
+                cta: { label: 'Ask About Quarterly', to: '/intake?service=quarterly-compliance-maintenance' },
+                testid: 'home-service-quarterly',
               },
               {
                 Icon: CheckCircle2,
                 title: 'Safety Check',
                 price: 'Free',
-                body: 'Not sure where to start? The Safety Check is a free 90-second self-assessment covering the six most common OSHA violations in general industry. No contact information required.',
+                body: 'Not sure where to start? A free 90-second self-assessment covering the six most common OSHA violations in general industry. No contact information required.',
                 cta: { label: 'Take the Safety Check', to: '/safety-check' },
                 testid: 'home-service-safety-check',
               },

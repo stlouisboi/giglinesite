@@ -5,8 +5,9 @@ import SEO from '../components/SEO';
 
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
 
-// 22 FAQs authored for answer-engine extraction.
+// 27 FAQs authored for answer-engine extraction.
 // Each answer is verbatim from approved GL-WEB-009 copy (Feb 2026) and from prior 18-FAQ spec.
+// +5 added Feb 2026 covering CRV / Annual Partner / Document Development / Quarterly per audit recommendation.
 export const FAQS = [
   {
     q: 'How much does an OSHA safety walkthrough cost in North Carolina?',
@@ -96,6 +97,22 @@ export const FAQS = [
     q: 'How do I book a safety walkthrough with GigLine?',
     a: "Visit https://www.giglinecompliance.com/intake and fill the four-field form, or call (336) 329-8899 directly. You'll hear back within one business day with scheduling options and a confirmed price.",
   },
+  {
+    q: "What's actually delivered in a Compliance Readiness Visit?",
+    a: "The Compliance Readiness Visit (from $2,000) is GigLine's most-requested engagement. You receive: (1) a full on-site walkthrough of the production floor, storage, chemical areas, and egress routes \u2014 2 to 4 hours depending on facility size; (2) a structured review of your written safety programs, training records, OSHA 300/300A/301 logs, inspection records, and SDS inventory using a 53-item checklist across 7 OSHA categories; (3) an 18-page CFR-cited audit report delivered within 48 hours; (4) a single compliance percentage score for floor and files combined; (5) a 90-day remediation tracker, pre-populated and ready to assign to supervisors; (6) a 'What to Say If OSHA Calls' guidance sheet; and (7) a 30-day check-in call. Fixed quote. Private engagement. No retainer.",
+  },
+  {
+    q: "Who is the Annual Compliance Control Partner program designed for?",
+    a: "The Annual Compliance Control Partner ($12,000/year, or $1,000/month equivalent) is designed for operations that want a compliance partner they can call \u2014 not just a one-time report. Best fit: facilities with 25+ employees, multiple shifts, or recurring customer-audit requirements where OSHA exposure is ongoing. The annual partnership includes two full Safety Walkthroughs per year, four Documentation Reviews per year, four Quarterly Review Calls (30 minutes each), OSHA 300A posting reminders, a pre-inspection readiness review (so you're not starting from zero if OSHA shows up), on-call access to Vince between visits, and an annual written management safety review. Standalone value of the scheduled services alone exceeds $7,600 \u2014 the partnership rate is $12,000 because it also includes the on-call relationship.",
+  },
+  {
+    q: 'Can GigLine write the safety programs we are missing?',
+    a: "Yes. The Document Development service writes the written programs your operation is missing or that the OSHA Documentation Readiness Review flagged as insufficient. Most-requested programs: Lockout/Tagout (LOTO) with machine-specific procedures, Hazard Communication (HazCom), PPE Hazard Assessment, and Emergency Action Plan (EAP). Pricing is quoted after a Documentation Readiness Review identifies which specific gaps exist \u2014 a single program starts at $350, LOTO with up to five machine-specific procedures starts at $650, and a full written program suite (5+ programs) starts at $2,000. The pricing model is fixed-quote, not hourly. Document Development is scoped to your actual gap list \u2014 GigLine does not sell a template suite that may or may not apply.",
+  },
+  {
+    q: 'How does Quarterly Compliance Maintenance work?',
+    a: "Quarterly Compliance Maintenance ($950/quarter) keeps the safety system current between annual walkthroughs. Each quarter GigLine performs a documentation review (training records, OSHA 300 log, written program review, SDS inventory check), a corrective action tracker review, and a brief site visit if any changes warrant one. The quarterly cadence keeps small documentation gaps from becoming citation-level exposures and ensures the system you paid to build does not decay between Annual Partner visits. It is the natural next step after the OSHA-Ready Control System buildout for operations that want ongoing accountability without the full Annual Partner commitment.",
+  },
 ];
 
 const FAQPage = () => {
@@ -147,7 +164,7 @@ const FAQPage = () => {
             Straight answers about safety walkthroughs and OSHA compliance.
           </h1>
           <p className="text-base md:text-lg text-white/60 max-w-2xl leading-relaxed">
-            Cost, scope, timeline, and what actually happens when you book a GigLine walkthrough. If you don't see your question here, call (336) 329-8899 or email vince@giglinecompliance.com.
+            Cost, scope, timeline, and what actually happens when you book a GigLine walkthrough. If you don&apos;t see your question here, call (336) 329-8899 or email vince@giglinecompliance.com.
           </p>
         </div>
       </section>

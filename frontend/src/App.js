@@ -40,6 +40,7 @@ import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsOfServicePage from './pages/TermsOfServicePage';
 import SafetyWalkthroughPage from './pages/SafetyWalkthroughPage';
 import IncidentReviewPage from './pages/IncidentReviewPage';
+import OshaReadyControlSystemPage from './pages/OshaReadyControlSystemPage';
 import DocumentationGapCheckPage from './pages/DocumentationGapCheckPage';
 import OshaComplianceGapCheckPage from './pages/OshaComplianceGapCheckPage';
 import './App.css';
@@ -85,6 +86,7 @@ function App() {
                   <Route path="/services/safety-walkthrough" element={<SafetyWalkthroughPage />} />
                   <Route path="/services/safety-walkthrough-report" element={<SafetyWalkthroughPage />} />
                   <Route path="/services/incident-review" element={<IncidentReviewPage />} />
+                  <Route path="/services/osha-ready-control-system" element={<OshaReadyControlSystemPage />} />
                   <Route path="/services/:slug" element={<ServiceDetailPage />} />
                   <Route path="/about" element={<AboutPage />} />
                   <Route path="/contact" element={<ContactPage />} />

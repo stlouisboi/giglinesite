@@ -198,12 +198,25 @@ const ClientIntakePage = () => {
   const set = (k, v) => setF((p) => ({ ...p, [k]: v }));
   const toggleArr = (k, v) => setF((p) => ({ ...p, [k]: p[k].includes(v) ? p[k].filter((x) => x !== v) : [...p[k], v] }));
 
-  /* ─── URL param pre-selection (?service=compliance-readiness-visit) ─── */
+  /* ─── Source attribution (which dedicated service page sent this lead) ─── */
+  const [sourceServiceSlug, setSourceServiceSlug] = useState('');
+
+  /* ─── URL param pre-selection (?service=<slug>) — full slug map across all dedicated service pages ─── */
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    const serviceParam = params.get('service');
+    const serviceParam = params.get('service') || '';
+    if (serviceParam) setSourceServiceSlug(serviceParam);
     const map = {
+      // New dedicated service pages (Feb 2026)
+      'safety-walkthrough': 'walkthrough',
+      'safety-walkthrough-report': 'walkthrough',
       'compliance-readiness-visit': 'compliance_readiness_visit',
+      'documentation-readiness-review': 'doc_review',
+      'document-development': 'doc_creation',
+      'incident-review': 'incident_review',
+      // Premium engagements with no exact radio match — route to "I need guidance" so Vince can scope on call
+      'annual-compliance-partner': 'not_sure',
+      'osha-ready-control-system': 'not_sure',
     };
     const mapped = serviceParam && map[serviceParam];
     if (mapped) {
@@ -305,6 +318,8 @@ const ClientIntakePage = () => {
         ...f,
         docCreationPricingDisplayed: docCreationPricing.mode,
         attribution: getAttribution(),
+        // Source-page attribution — which dedicated service page sent this lead
+        source_service_slug: sourceServiceSlug || 'direct',
       };
       const res = await fetch(`${API}/api/intake/submit`, {
         method: 'POST',
@@ -315,6 +330,7 @@ const ClientIntakePage = () => {
         const d = await res.json();
         trackEvent('intake_submit_success', {
           service_requested: f.serviceSelected || 'unknown',
+          source_service_slug: sourceServiceSlug || 'direct',
           source_form: 'client-intake',
           page_path: typeof window !== 'undefined' ? window.location.pathname : '/intake',
         });
@@ -435,8 +451,37 @@ const ClientIntakePage = () => {
         </section>
 
         {/* ═══ S2 — Service Selection ═══ */}
-        <section data-testid="intake-section-02">
+        <section data-testid="intake-section-02" data-source-service-slug={sourceServiceSlug || 'direct'}>
           <SectionHeader number="02" title="What service are you requesting?" subtitle="Pick the closest match. We'll talk through any nuances on the call." />
+          {/* Source attribution banner — visible only when user arrived from a dedicated service page */}
+          {sourceServiceSlug && (
+            <div
+              className="rounded-md px-4 py-3 mb-5 flex items-center gap-3 flex-wrap"
+              style={{
+                background: 'rgba(26,111,196,0.08)',
+                border: '1px solid rgba(26,111,196,0.30)',
+              }}
+              data-testid="intake-source-banner"
+            >
+              <span
+                className="uppercase font-bold"
+                style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9.5px', letterSpacing: '0.16em', color: '#1a6fc4' }}
+              >
+                Inquiry For
+              </span>
+              <span className="text-white text-sm font-semibold" data-testid="intake-source-banner-slug">
+                {sourceServiceSlug
+                  .replace(/-/g, ' ')
+                  .replace(/\b\w/g, (c) => c.toUpperCase())
+                  .replace(/\bOsha\b/g, 'OSHA')
+                  .replace(/\bCrv\b/g, 'CRV')
+                  .replace(/\bPpe\b/g, 'PPE')}
+              </span>
+              <span className="text-white/50 text-xs" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                · Pre-selected below — change if needed
+              </span>
+            </div>
+          )}
           <Field label="Service" required error={errors.serviceSelected}>
             <span {...wrap('serviceSelected')}>
               <RadioList value={f.serviceSelected} onChange={(v) => set('serviceSelected', v)} options={[

@@ -14,17 +14,27 @@ const SERVICES = [
   { value: 'Not sure', label: "Not sure — I want to talk through my situation first" },
 ];
 
-// Map services page tier keys → human-readable service values
+// Map services page tier keys + new dedicated-page slugs → human-readable service values
 const TIER_TO_SERVICE = {
+  // Legacy ServicesPage tier keys
   walkthrough_standard: 'Safety Walkthrough',
-  'compliance-readiness-visit': 'Compliance Readiness Visit',
   documentation_remote: 'Documentation Review',
   incident_standard: 'Incident Review',
+  // New dedicated service-page slugs (Feb 2026 prototype-faithful pages)
+  'safety-walkthrough': 'Safety Walkthrough',
+  'safety-walkthrough-report': 'Safety Walkthrough',
+  'compliance-readiness-visit': 'Compliance Readiness Visit',
+  'documentation-readiness-review': 'Documentation Review',
+  'document-development': 'Document Development',
+  'annual-compliance-partner': 'Annual Compliance Partner',
+  'incident-review': 'Incident Review',
+  'osha-ready-control-system': 'OSHA-Ready Control System',
 };
 
 const IntakePage = () => {
   const [searchParams] = useSearchParams();
-  const preselectedService = TIER_TO_SERVICE[searchParams.get('service')] || '';
+  const sourceServiceSlug = searchParams.get('service') || '';
+  const preselectedService = TIER_TO_SERVICE[sourceServiceSlug] || '';
 
   const [form, setForm] = useState({
     name: '',
@@ -63,12 +73,19 @@ const IntakePage = () => {
       const res = await fetch(`${API}/api/walkthrough/request`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, ...utmParams }),
+        body: JSON.stringify({
+          ...form,
+          ...utmParams,
+          // Attribution: which dedicated service page sent this lead
+          source_service_slug: sourceServiceSlug,
+          source_page_path: document.referrer || '',
+        }),
       });
       if (!res.ok) throw new Error('Submission failed');
       trackWalkthroughRequest(form.service);
       trackEvent('intake_submit_success', {
         service_requested: form.service || 'safety-walkthrough',
+        source_service_slug: sourceServiceSlug || 'direct',
         source_form: 'request-walkthrough',
         page_path: typeof window !== 'undefined' ? window.location.pathname : '/request-walkthrough',
       });
@@ -122,7 +139,42 @@ const IntakePage = () => {
               </div>
 
               {/* Form */}
-              <form onSubmit={handleSubmit} className="space-y-5" data-testid="intake-form">
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-5"
+                data-testid="intake-form"
+                data-source-service={sourceServiceSlug || 'direct'}
+                data-source-service-readable={preselectedService || 'Direct visit (no service preselected)'}
+              >
+                {/* Hidden attribution input — also sent in form payload via state, but rendered here so HTML form-data also carries it for any classic submission tooling */}
+                <input
+                  type="hidden"
+                  name="source_service_slug"
+                  value={sourceServiceSlug || ''}
+                  data-testid="intake-source-service-slug"
+                  readOnly
+                />
+                {/* Visible attribution badge — only renders when user arrived from a dedicated service page */}
+                {preselectedService && (
+                  <div
+                    className="rounded-md px-3.5 py-2.5 mb-2 flex items-center gap-2"
+                    style={{
+                      background: 'rgba(26,111,196,0.08)',
+                      border: '1px solid rgba(26,111,196,0.30)',
+                    }}
+                    data-testid="intake-source-banner"
+                  >
+                    <span
+                      className="uppercase font-bold"
+                      style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9.5px', letterSpacing: '0.16em', color: '#1a6fc4' }}
+                    >
+                      Inquiry For
+                    </span>
+                    <span className="text-white text-sm font-semibold" data-testid="intake-source-banner-service">
+                      {preselectedService}
+                    </span>
+                  </div>
+                )}
                 <div>
                   <label className="block text-sm text-white/70 mb-1.5 font-mono tracking-wide uppercase" htmlFor="name">
                     Your name *

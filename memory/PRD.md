@@ -270,3 +270,19 @@ deploys on GitHub push)
 - Cream/light bg variants: `#f5f4f0`, `#EFEEE8`, `#FAFAF7`
 - Peach (incident urgency bg): `#FFF8F0`
 
+## Recent Changes (Feb 2026)
+- **2026-02 Navbar Credentials Badge**: Added permanent "VETERAN-OWNED / CAROLINA-BUILT / Greensboro, NC" credentials block adjacent to the navbar logo (visible at xl+ breakpoints, 1280px+) with a subtle `#dde3ea` divider. Trust signal stays visible during scroll. Hidden at lg and mobile to preserve layout density. `data-testid="navbar-credentials"`.
+- **2026-02 Dark-BG Logo Verified**: Confirmed `/gigline-logo-dark-bg.png?v=4` renders with correct contrast on Footer and ClientIntakePage dark navy backgrounds.
+
+## Active Backlog (P1/P2)
+- **P1** Deep refresh of 5 priority Triad SEO pages (Greensboro, Winston-Salem, High Point, Kernersville, Lexington) with industry-specific lead paragraphs
+- **P2** Replace "David R." placeholder testimonial with actual Google Review text (BLOCKED on user)
+- **P2** Supervisor Training Kit / GL-WEB-013 — wire up Resend + PDF delivery (BLOCKED on user uploading 9 PDFs)
+- **P2** Leave-behind v9 rebuild (door-knock QR flyer)
+- **P2** Google Review short link on delivered Safety Check PDFs
+- **P2** Stripe Invoice creation in `/admin` panel
+- **P2** 4-touch Past Client Retention sequence in MailerLite
+- **P2** Founder intro video — swap `dQw4w9WgXcQ` placeholder in AboutPage
+- **P2** "What happens on the day of your walkthrough" homepage section
+- **P2** "Field Notes" content section (4–6 short OSHA violation articles)
+

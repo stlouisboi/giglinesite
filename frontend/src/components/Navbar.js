@@ -36,23 +36,50 @@ const Navbar = () => {
             </a>
           </div>
 
-          {/* CENTER cell (mobile/tablet): logo centered. Desktop: logo lives at left of flex via lg:justify-start */}
-          <Link
-            to="/"
-            className="flex items-center justify-center lg:justify-start"
-            data-testid="navbar-logo"
-          >
-            <img
-              src="/gigline-logo-3d.png?v=3"
-              alt="GigLine Safety & Compliance"
-              className="h-14 md:h-20 lg:h-20 xl:h-24 2xl:h-28 w-auto"
-              style={{ filter: 'drop-shadow(0 2px 8px rgba(13,27,42,0.10))' }}
-              loading="eager"
-              fetchPriority="high"
-              width="209"
-              height="100"
-            />
-          </Link>
+          {/* CENTER cell (mobile/tablet): logo centered. Desktop: logo + Carolina-Built credentials block, left-aligned */}
+          <div className="flex items-center justify-center lg:justify-start gap-4 xl:gap-5">
+            <Link
+              to="/"
+              className="flex items-center"
+              data-testid="navbar-logo"
+            >
+              <img
+                src="/gigline-logo-3d.png?v=3"
+                alt="GigLine Safety & Compliance"
+                className="h-14 md:h-20 lg:h-20 xl:h-24 2xl:h-28 w-auto"
+                style={{ filter: 'drop-shadow(0 2px 8px rgba(13,27,42,0.10))' }}
+                loading="eager"
+                fetchPriority="high"
+                width="209"
+                height="100"
+              />
+            </Link>
+            {/* Carolina-Built credentials — large-desktop only (xl+), sits adjacent to the logo for always-on trust signal during scroll */}
+            <div
+              className="hidden xl:flex flex-col leading-tight pl-4"
+              style={{ borderLeft: '1px solid #dde3ea' }}
+              data-testid="navbar-credentials"
+            >
+              <span
+                className="uppercase whitespace-nowrap"
+                style={{ fontSize: '10px', fontWeight: 600, color: '#1a6fc4', letterSpacing: '0.14em' }}
+              >
+                Veteran-Owned
+              </span>
+              <span
+                className="uppercase whitespace-nowrap mt-0.5"
+                style={{ fontSize: '10px', fontWeight: 600, color: '#0d1b2a', letterSpacing: '0.14em' }}
+              >
+                Carolina-Built
+              </span>
+              <span
+                className="whitespace-nowrap mt-1"
+                style={{ fontSize: '11px', color: '#5a6878', fontWeight: 400 }}
+              >
+                Greensboro, NC
+              </span>
+            </div>
+          </div>
 
           {/* Desktop Navigation — appears at lg (1024px+); tablet portrait gets the hamburger menu */}
           <div className="hidden lg:flex items-center space-x-5 xl:space-x-7 pl-6 xl:pl-10" data-testid="desktop-nav">

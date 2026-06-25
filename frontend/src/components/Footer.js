@@ -13,7 +13,7 @@ const Footer = () => {
           <div>
             <div className="mb-4">
               <img
-                src="/gigline-logo-dark-bg.png?v=2"
+                src="/gigline-logo-dark-bg.png?v=3"
                 alt="GigLine Safety & Compliance"
                 className="h-16 w-auto"
                 loading="lazy"

@@ -246,3 +246,27 @@ Goal: get GigLine cited in answers from ChatGPT, Perplexity, Claude, Google AI O
 deploys on GitHub push)
 - Database: MongoDB Atlas (gigline cluster)
 - REACT_APP_BACKEND_URL in Vercel must point to Railway URL
+
+
+## Brand Assets — Logo Inventory (Feb 2026)
+
+| Asset Path | Use Case | Background |
+|------------|----------|------------|
+| `/gigline-logo-3d.png` | **Light-bg primary logo** — 3D dimensional GigLine wordmark in dark navy + gold belt buckle, "SAFETY & COMPLIANCE" subtitle, "INSPECT · IDENTIFY · REPORT · SUPPORT" tagline. Transparent PNG. | White, cream `#f5f4f0`, off-white `#FAF7F1` |
+| `/gigline-logo-dark-bg.png` | **Dark-bg logo** — white wordmark + gold buckle for dark navy footer and ClientIntakePage nav. | `#0d1b2a`, `#091725`, `#0B0B0B` |
+| `/gigline-logo-2026-v2.png` | Legacy 2D logo (deprecated for light bg as of Feb 2026 — kept only in JSON-LD `logo` field for SEO until structured-data update) | n/a (SEO only) |
+
+### Logo Placements
+- **Navbar.js** (sticky white nav, sitewide) → `/gigline-logo-3d.png`
+- **Footer.js** (dark navy footer, sitewide) → `/gigline-logo-dark-bg.png`
+- **ClientIntakePage.js** (`#0B0B0B` dark nav) → `/gigline-logo-dark-bg.png`
+- **WalkthroughLandingPage.js** (cream `#FAF7F1`, 2 instances — sticky nav + hero) → `/gigline-logo-3d.png`
+- **BlogOSHAViolations.js** schema.org `logo` field → still references legacy `gigline-logo-2026-v2.png` (TODO: update to 3D variant URL when deployed)
+
+### Other Brand Assets
+- Primary blue: `#1a6fc4` (hover `#1560ae`)
+- Dark navy: `#0d1b2a` (unified sitewide)
+- Gold (3D logo buckle / accent): `#D4A93E` / `#c8922a`
+- Cream/light bg variants: `#f5f4f0`, `#EFEEE8`, `#FAFAF7`
+- Peach (incident urgency bg): `#FFF8F0`
+

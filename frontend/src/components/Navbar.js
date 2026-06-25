@@ -24,7 +24,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center" data-testid="navbar-logo">
             <img
-              src="/gigline-logo-2026-v2.png?v=2"
+              src="/gigline-logo-3d.png?v=3"
               alt="GigLine Safety & Compliance"
               className="h-16 md:h-24 lg:h-20 xl:h-24 2xl:h-28 w-auto"
               style={{ filter: 'drop-shadow(0 2px 8px rgba(13,27,42,0.10))' }}

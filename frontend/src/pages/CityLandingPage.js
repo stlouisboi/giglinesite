@@ -10,17 +10,19 @@ const CITIES = {
     name: 'Winston-Salem',
     region: 'Forsyth County',
     distance: '10 miles from our base in Kernersville',
-    industries: 'manufacturing plants, food processing facilities, and distribution centers',
+    industries: 'biotech and pharmaceutical operations, medical device manufacturers, and food processing facilities',
     seoTitle: 'Safety Walkthroughs in Winston-Salem, NC',
-    seoDesc: 'On-site OSHA safety walkthroughs for manufacturers, warehouses, and contractors in Winston-Salem, NC. Written report with findings. Starting at $1,200.',
+    seoDesc: 'On-site OSHA safety walkthroughs for biotech, pharmaceutical, medical device, and food processing operations in Winston-Salem, NC. Written report with findings. Starting at $1,200.',
+    leadParagraph: "Winston-Salem's industrial base centers on biotech, pharmaceutical, and medical device manufacturing — a cluster that grew from the city's legacy tobacco infrastructure and now includes operations from contract pharmaceutical packagers to specialty medical-device producers concentrated around the Innovation Quarter and the Hanes Mill Road corridor. RJ Reynolds, Hanesbrands, and Krispy Kreme anchor the legacy industrial footprint, while a newer generation of life sciences operations — many in renovated mid-century plants — operate under a parallel set of OSHA requirements covering chemical handling, cleanroom hazards, lockout/tagout on packaging lines, and respiratory protection for compounded materials.\n\nGigLine works with Winston-Salem operations that need outside compliance support without a retained safety consultant on payroll. A typical engagement starts with an on-site walkthrough — Vince walks your floor for one to three hours, photographs every finding, and annotates each with the relevant CFR citation and 2026 penalty exposure. The written report lands in your inbox within 24 to 48 hours with a prioritized RED / AMBER / GREEN fix list. Operations preparing for FDA-adjacent customer audits or insurance reviews typically choose the Compliance Readiness Visit, which combines the floor walkthrough with a 53-item documentation review and produces a single compliance score for both. Winston-Salem engagements — ten miles from GigLine's Kernersville base — are typically scheduled within 5 to 10 business days. Fixed quote before scheduling. Private engagement. No retainer.",
   },
   'greensboro': {
     name: 'Greensboro',
     region: 'Guilford County',
     distance: '15 miles from our base in Kernersville',
-    industries: 'warehouses, light manufacturing, and logistics operations',
+    industries: 'aviation component manufacturers, food and beverage producers, light industrial operations, and logistics centers',
     seoTitle: 'Safety Walkthroughs in Greensboro, NC',
-    seoDesc: 'OSHA safety walkthroughs and compliance support for small operations in Greensboro, NC. One visit. Clear findings. Starting at $1,200.',
+    seoDesc: 'OSHA safety walkthroughs for Greensboro manufacturers, aviation suppliers, food and beverage producers, and distribution operations. Written report with findings. Starting at $1,200.',
+    leadParagraph: "Greensboro's manufacturing corridor along I-40 and Battleground Avenue includes operations in aviation components, food and beverage production, and industrial distribution. Honda Aircraft's home base sits south of the city, Volvo Trucks anchors the heavy equipment corridor, and the food and beverage cluster — from beverage bottlers to specialty food producers — continues to expand around the Piedmont Triad International Airport. Underneath those flagship operations sits a wider ecosystem of light manufacturers, contract fabricators, and tier-2 suppliers — the operations most likely to face an OSHA inspection without a full-time safety manager on staff.\n\nGigLine works with Greensboro operations that fit that profile: 5 to 100 employees, single facility, no dedicated safety department. A typical engagement starts with an on-site walkthrough — Vince walks your floor for one to three hours, photographs every finding, and annotates each with the relevant CFR citation and 2026 penalty exposure. Within 24 to 48 hours you receive a written report with a prioritized fix list — RED, AMBER, or GREEN — that supervisors can actually work from. Operations that need both the floor and the files reviewed in one visit choose the Compliance Readiness Visit, which combines the walkthrough with a documentation review and produces a single compliance percentage score for both. Greensboro engagements are scheduled within 5 to 10 business days. Fixed quote before scheduling. Private engagement. No retainer.",
   },
   'charlotte': {
     name: 'Charlotte',
@@ -42,9 +44,10 @@ const CITIES = {
     name: 'High Point',
     region: 'Guilford County',
     distance: '12 miles from our base in Kernersville',
-    industries: 'furniture manufacturing, warehousing, and small fabrication shops',
+    industries: 'furniture manufacturers, woodworking shops, upholstery operations, and warehousing',
     seoTitle: 'Safety Walkthroughs in High Point, NC',
-    seoDesc: 'Safety walkthrough services for manufacturers and warehouses in High Point, NC. Written findings report. Starting at $1,200.',
+    seoDesc: 'OSHA safety walkthroughs for High Point furniture manufacturers, woodworking shops, and upholstery operations. Written findings report. Starting at $1,200.',
+    leadParagraph: "High Point is the furniture capital of North Carolina, and the industrial corridor along Main Street, South Main, and the routes leading into the showroom district remains anchored by furniture manufacturers, woodworking shops, upholstery operations, and the warehousing and logistics infrastructure that supports the twice-yearly High Point Market. Wood dust, finishing-line solvents, table saws and edge banders, pneumatic staplers, forklift traffic, and lift truck propane handling are present in nearly every furniture operation — and every one of those hazards is governed by a specific OSHA standard that the average operation has either underdocumented or never written down.\n\nGigLine works with High Point furniture manufacturers, cabinetry shops, and contract upholstery operations that fit the small-operator profile: 5 to 100 employees, single facility, no full-time safety person. A typical engagement starts with an on-site walkthrough — Vince walks your shop floor for one to three hours, photographs every finding, and annotates each with the relevant CFR citation and 2026 penalty exposure. The written report lands within 24 to 48 hours with a prioritized RED / AMBER / GREEN fix list. Operations preparing for a customer audit before Market or recovering from a wood-dust or finishing-line incident typically choose the Compliance Readiness Visit, which combines the walkthrough with a documentation review. High Point is twelve miles from GigLine's Kernersville base, and most engagements are scheduled within 5 to 10 business days. Fixed quote before scheduling. Private engagement. No retainer.",
   },
   'burlington': {
     name: 'Burlington',
@@ -58,19 +61,21 @@ const CITIES = {
     name: 'Kernersville',
     region: 'Forsyth County',
     distance: 'this is our home base',
-    industries: 'manufacturing, light industrial operations, and warehousing',
+    industries: 'light manufacturing, plastics and packaging operations, distribution centers, and fleet operations',
     seoTitle: 'Safety Walkthroughs in Kernersville, NC',
-    seoDesc: "On-site OSHA safety walkthroughs for Kernersville manufacturers, warehouses, and contractors. GigLine's home base. Written report. Starting at $1,200.",
+    seoDesc: "On-site OSHA safety walkthroughs for Kernersville plastics, packaging, light manufacturers, and distribution operations. GigLine's home base. Written report. Starting at $1,200.",
     priceStart: 1200,
+    leadParagraph: "Kernersville sits at the intersection of I-40 and Highway 66, and the industrial corridors along Linville Road, Macy Grove Road, and the Kernersville Business Park host a concentrated mix of light manufacturers, plastics and packaging operations, building-materials producers, and the distribution and fleet operations that feed the broader Triad logistics network. FedEx Ground's regional hub, multiple UPS distribution facilities, and a growing cluster of contract plastics injection-molding and food-grade packaging operations sit alongside small fabrication shops and family-owned production businesses — the operations that most often face an OSHA exposure without a safety manager on staff.\n\nGigLine is based in Kernersville, which means most local engagements are scheduled inside a week — no travel fee, no scheduling friction. A typical engagement starts with an on-site walkthrough — Vince walks your floor for one to three hours, photographs every finding, and annotates each with the relevant CFR citation and 2026 penalty exposure. The written report lands within 24 to 48 hours with a prioritized RED / AMBER / GREEN fix list. Operations that need both floor and file reviewed in one visit choose the Compliance Readiness Visit, which combines the walkthrough with a 53-item documentation review and produces a single compliance percentage score for both. Kernersville operations also account for GigLine's largest concentration of Quarterly Maintenance and Annual Compliance Partner engagements — the cadence work that catches drift between scheduled visits. Fixed quote before scheduling. Private engagement. No retainer.",
   },
   'lexington': {
     name: 'Lexington',
     region: 'Davidson County',
     distance: '20 miles from our base in Kernersville',
-    industries: 'furniture manufacturing, food production, and small fabrication shops',
+    industries: 'food processing facilities, meat packing operations, and small fabrication shops',
     seoTitle: 'Safety Walkthroughs in Lexington, NC',
-    seoDesc: 'On-site OSHA safety walkthroughs for manufacturers and fabrication shops in Lexington, NC. Written report with findings. Starting at $1,200.',
+    seoDesc: 'On-site OSHA safety walkthroughs for Lexington food processors, meat packing operations, and fabrication shops. Written report with findings. Starting at $1,200.',
     priceStart: 1200,
+    leadParagraph: "Lexington's industrial base is anchored by food processing and meat packing operations — a corridor that runs from the Tyson Foods complex south of town through smaller protein and specialty food producers concentrated along Old Highway 64 and the I-85 frontage. The city's furniture legacy still operates around Salisbury Street and the Lexington Business Center, and the Childress Vineyards area continues to draw food and beverage production. Across all of those operations, the OSHA exposures are some of the highest-stakes in the Triad: machine guarding on processing lines, ammonia refrigeration system safety (PSM-covered for many sites), confined space entry, slip-and-fall on wet floors, lockout/tagout on packaging equipment, and forklift safety throughout the warehouse footprint.\n\nGigLine works with Lexington-area food processors, fabrication shops, and small manufacturers that fit the small-operator profile: 5 to 100 employees, single facility, no dedicated safety manager. A typical engagement starts with an on-site walkthrough — Vince walks your floor for one to three hours, photographs every finding, and annotates each with the relevant CFR citation and 2026 penalty exposure. The written report lands within 24 to 48 hours with a prioritized RED / AMBER / GREEN fix list. Operations preparing for a customer audit, an insurance review, or recovering from an incident typically choose the Compliance Readiness Visit, which combines the walkthrough with a 53-item documentation review. Lexington is twenty miles from GigLine's Kernersville base, and most engagements are scheduled within 5 to 10 business days. Fixed quote before scheduling. Private engagement. No retainer.",
   },
   'thomasville': {
     name: 'Thomasville',
@@ -242,6 +247,28 @@ const CityLandingPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Local Context — industry-specific lead paragraph (deep SEO for priority Triad cities) */}
+      {data.leadParagraph && (
+        <section className="py-16 md:py-20 bg-white" data-testid={`city-lead-${city}`}>
+          <div className="container max-w-3xl">
+            <p className="uppercase tracking-[3px] text-[#1a6fc4] mb-4" style={{ ...mono, fontSize: '11px' }}>
+              {data.name} Industrial Profile
+            </p>
+            <h2
+              className="text-2xl md:text-[32px] font-bold text-[#0d1b2a] mb-8 leading-[1.2]"
+              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+            >
+              OSHA exposure across {data.name}&rsquo;s industrial corridor.
+            </h2>
+            <div className="space-y-5 text-[15.5px] md:text-base text-[#0d1b2a]/80 leading-[1.85]">
+              {data.leadParagraph.split('\n\n').map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* What You Get */}
       <section className="py-16 md:py-24" style={{ backgroundColor: '#F9F8F6' }}>

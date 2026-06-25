@@ -867,18 +867,28 @@ const ServicesPage = () => {
                 </p>
               </div>
 
-              <Link
-                to={intakeLink('osha-ready-control-system')}
-                onClick={() => {
-                  fireServicesCtaClick('Request Buildout', intakeLink('osha-ready-control-system'));
-                  trackServiceBooking && trackServiceBooking('GigLine OSHA-Ready Control System');
-                }}
-                className="inline-flex items-center gap-2 bg-[#D4A93E] hover:bg-[#B58F2E] text-[#0d1b2a] font-bold px-7 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#D4A93E]/25"
-                data-testid="control-system-cta"
-              >
-                Request Buildout
-                <ArrowRight size={18} />
-              </Link>
+              <div className="flex flex-wrap items-center gap-3.5">
+                <Link
+                  to={intakeLink('osha-ready-control-system')}
+                  onClick={() => {
+                    fireServicesCtaClick('Request Buildout', intakeLink('osha-ready-control-system'));
+                    trackServiceBooking && trackServiceBooking('GigLine OSHA-Ready Control System');
+                  }}
+                  className="inline-flex items-center gap-2 bg-[#D4A93E] hover:bg-[#B58F2E] text-[#0d1b2a] font-bold px-7 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#D4A93E]/25"
+                  data-testid="control-system-cta"
+                >
+                  Request Buildout
+                  <ArrowRight size={18} />
+                </Link>
+                <Link
+                  to="/services/osha-ready-control-system"
+                  className="inline-flex items-center gap-2 text-white/70 hover:text-white font-bold px-5 py-4 rounded-lg text-[14px] transition-colors border border-white/20 hover:border-white/40"
+                  data-testid="control-system-learn-more"
+                >
+                  See Full Page
+                  <ArrowRight size={15} />
+                </Link>
+              </div>
             </Reveal>
 
             <div className="space-y-4">

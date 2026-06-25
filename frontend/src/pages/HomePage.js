@@ -265,15 +265,31 @@ const HomePage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10">
             {[
-              { num: '01', title: 'Incomplete LOTO Procedures', body: 'Machine-specific written procedures missing or not posted at the point of use. One of the most cited serious violations in manufacturing \u2014 and one of the easiest to correct before an inspection.' },
-              { num: '02', title: 'Forklift & PIT Gaps', body: 'Expired operator certifications, missing pre-shift inspection logs, and unmarked pedestrian zones. These show up on nearly every floor we walk.' },
-              { num: '03', title: 'Hazard Communication Failures', body: 'SDSs not accessible at point of use, unlabeled secondary containers, and training records that don\u2019t match the chemical inventory. OSHA\u2019s most frequently cited standard.' },
-              { num: '04', title: 'Electrical Hazard Exposures', body: 'Open junction boxes, missing knockouts, and energized equipment without proper guarding. Often overlooked because they\u2019ve been that way for years.' },
+              { num: '01', title: 'Incomplete LOTO Procedures', body: 'Machine-specific written procedures missing or not posted at the point of use. One of the most cited serious violations in manufacturing \u2014 and one of the easiest to correct before an inspection.', image: '/floor-findings/loto-tag.jpg', alt: 'A red lockout/tagout padlock and DANGER DO NOT OPERATE tag signed and dated by a maintenance worker on industrial equipment' },
+              { num: '02', title: 'Forklift & PIT Gaps', body: 'Expired operator certifications, missing pre-shift inspection logs, and unmarked pedestrian zones. These show up on nearly every floor we walk.', image: '/floor-findings/forklift-pit.jpg', alt: 'A warehouse aisle with a forklift showing an expired operator certification sticker and a pre-shift inspection station with no forms available' },
+              { num: '03', title: 'Hazard Communication Failures', body: 'SDSs not accessible at point of use, unlabeled secondary containers, and training records that don\u2019t match the chemical inventory. OSHA\u2019s most frequently cited standard.', image: '/floor-findings/hazcom-sds.jpg', alt: 'A worker stands puzzled in front of a wall-mounted HazCom training log, chemical inventory list, and empty Safety Data Sheets binder beside a bench of unlabeled spray bottles and chemical containers' },
+              { num: '04', title: 'Electrical Hazard Exposures', body: 'Open junction boxes, missing knockouts, and energized equipment without proper guarding. Often overlooked because they\u2019ve been that way for years.', image: '/floor-findings/electrical-junction.jpg', alt: 'An open electrical junction box with exposed wires and missing knockouts, partially blocked by stacked cardboard inventory boxes against a wooden wall' },
               { num: '05', title: 'Blocked or Unmarked Egress', body: 'Exit routes obstructed by inventory, emergency lighting not tested, and exit signs missing or burned out. Simple to fix. Expensive to ignore.' },
               { num: '06', title: 'Recordkeeping Deficiencies', body: 'OSHA 300 logs not current, 300A summaries not posted during the required February\u2013April window, and incident records that don\u2019t meet the retention standard.' },
             ].map((c, i) => (
               <Reveal key={c.num} delay={i * 70}>
                 <div className="flex flex-col" data-testid={`floor-finding-${c.num}`}>
+                  {c.image && (
+                    <div
+                      className="mb-5 overflow-hidden rounded-lg"
+                      style={{ aspectRatio: '16 / 10', border: '1px solid #dde3ea' }}
+                      data-testid={`floor-finding-image-${c.num}`}
+                    >
+                      <img
+                        src={c.image}
+                        alt={c.alt}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                        width="800"
+                        height="500"
+                      />
+                    </div>
+                  )}
                   <span
                     className="font-bold mb-3"
                     style={{ ...mono, fontSize: '13px', letterSpacing: '0.12em', color: '#1a6fc4' }}

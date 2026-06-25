@@ -31,6 +31,7 @@ import FAQPage from './pages/FAQPage';
 import ServiceDetailPage from './pages/ServiceDetailPage';
 import DocumentDevelopmentPage from './pages/DocumentDevelopmentPage';
 import AnnualCompliancePartnerPage from './pages/AnnualCompliancePartnerPage';
+import ComplianceReadinessVisitPage from './pages/ComplianceReadinessVisitPage';
 import ServiceAreasPage from './pages/ServiceAreasPage';
 import WalkthroughLandingPage from './pages/WalkthroughLandingPage';
 import CaseStudyMocksvillePage from './pages/CaseStudyMocksvillePage';
@@ -79,6 +80,7 @@ function App() {
                   <Route path="/services" element={<ServicesPage />} />
                   <Route path="/services/document-development" element={<DocumentDevelopmentPage />} />
                   <Route path="/services/annual-compliance-partner" element={<AnnualCompliancePartnerPage />} />
+                  <Route path="/services/compliance-readiness-visit" element={<ComplianceReadinessVisitPage />} />
                   <Route path="/services/:slug" element={<ServiceDetailPage />} />
                   <Route path="/about" element={<AboutPage />} />
                   <Route path="/contact" element={<ContactPage />} />

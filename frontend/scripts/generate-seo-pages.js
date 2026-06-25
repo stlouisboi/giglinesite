@@ -311,8 +311,8 @@ const routes = [
       <p>Structured review of written programs, training records, OSHA logs, inspection records, and SDS compliance. 53-item checklist across seven OSHA categories.</p>
       <h3>Incident Review & Corrective Action Support — Starting at $1,500</h3>
       <p>Post-injury or post-near-miss response. Root cause analysis. OSHA recordability determination. OSHA 301 completion. Corrective action plan.</p>
-      <h3>Document Development — Quote after documentation review</h3>
-      <p>GigLine writes the programs you are missing. LOTO, HazCom, PPE hazard assessment, Emergency Action Plan, machine-specific procedures.</p>
+      <h3>Document Development — From $350</h3>
+      <p>GigLine writes the programs you are missing. LOTO, HazCom, PPE hazard assessment, Emergency Action Plan, machine-specific procedures. Floor pricing: single program from $350, LOTO + 5 machines from $650, LOTO + 6–15 machines from $1,200, full suite (5+ programs) from $2,000. Scoped and quoted after a Documentation Readiness Review.</p>
       <h2>GigLine OSHA-Ready Control System — Starting at $4,500</h2>
       <p>Premium engagement. Four-binder physical command system, digital folder architecture, training matrix + SDS organization, corrective action tracker, 90-day maintenance calendar, supervisor walkthrough at handoff.</p>
       <h2>The Natural Next Step — Quarterly and Annual Support</h2>

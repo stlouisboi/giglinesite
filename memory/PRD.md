@@ -271,6 +271,7 @@ deploys on GitHub push)
 - Peach (incident urgency bg): `#FFF8F0`
 
 ## Recent Changes (Feb 2026)
+- **2026-02 Document Development Service Page (`/services/document-development`)**: Built dedicated `DocumentDevelopmentPage.js` matching the Manus prototype. 9 sections: Hero · Pricing Callout · Why This Matters (3 cards) · 5 Programs Grid (LOTO/HazCom/PPE/EAP/Full Suite with CFR citations + individual pricing) · Floor Pricing Reference Table (dark-navy header + 4 scope rows) · When to Book This (4-card grid) · How It Works (3 steps) · What's Included (6 bullets) · Closing Dual-CTA. Route added to App.js BEFORE the generic `/services/:slug` route. SEO `/services` listing in `generate-seo-pages.js` updated to reflect new pricing. **Pricing locked: single program from $350 · LOTO + 5 machines from $650 · LOTO + 6–15 machines from $1,200 · full suite (5+ programs) from $2,000.** This fixed a long-standing broken link from the Services page.
 - **2026-02 Navbar Credentials Badge**: Added permanent "VETERAN-OWNED / CAROLINA-BUILT / Greensboro, NC" credentials block adjacent to the navbar logo (visible at xl+ breakpoints, 1280px+) with a subtle `#dde3ea` divider. Trust signal stays visible during scroll. Hidden at lg and mobile to preserve layout density. `data-testid="navbar-credentials"`.
 - **2026-02 Dark-BG Logo Verified**: Confirmed `/gigline-logo-dark-bg.png?v=4` renders with correct contrast on Footer and ClientIntakePage dark navy backgrounds.
 

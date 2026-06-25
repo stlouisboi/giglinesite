@@ -28,6 +28,7 @@ import FieldNotesPage from './pages/FieldNotesPage';
 import FieldNoteDetailPage from './pages/FieldNoteDetailPage';
 import CityLandingPage from './pages/CityLandingPage';
 import FAQPage from './pages/FAQPage';
+import ServiceDetailPage from './pages/ServiceDetailPage';
 import ServiceAreasPage from './pages/ServiceAreasPage';
 import WalkthroughLandingPage from './pages/WalkthroughLandingPage';
 import CaseStudyMocksvillePage from './pages/CaseStudyMocksvillePage';
@@ -74,6 +75,7 @@ function App() {
                 <Routes>
                   <Route path="/" element={<HomePage />} />
                   <Route path="/services" element={<ServicesPage />} />
+                  <Route path="/services/:slug" element={<ServiceDetailPage />} />
                   <Route path="/about" element={<AboutPage />} />
                   <Route path="/contact" element={<ContactPage />} />
                   <Route path="/payment-success" element={<PaymentSuccessPage />} />

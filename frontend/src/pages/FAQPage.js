@@ -94,7 +94,7 @@ export const FAQS = [
   },
   {
     q: 'How do I book a safety walkthrough with GigLine?',
-    a: "Visit https://www.giglinecompliance.com/request-walkthrough and fill the four-field form, or call (336) 329-8899 directly. You'll hear back within one business day with scheduling options and a confirmed price.",
+    a: "Visit https://www.giglinecompliance.com/intake and fill the four-field form, or call (336) 329-8899 directly. You'll hear back within one business day with scheduling options and a confirmed price.",
   },
 ];
 
@@ -213,7 +213,7 @@ const FAQPage = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              to="/request-walkthrough"
+              to="/intake"
               className="inline-flex items-center justify-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#1a6fc4]/20"
               data-testid="faq-cta-primary"
             >

@@ -20,13 +20,32 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 bg-white" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }} data-testid="navbar">
       <nav className="container" aria-label="Main navigation">
-        <div className="flex items-center justify-between h-20 md:h-24 lg:h-24 xl:h-28 2xl:h-32">
-          {/* Logo */}
-          <Link to="/" className="flex items-center" data-testid="navbar-logo">
+        {/* Mobile + Tablet: 3-column grid (icons | logo | icons) so logo stays centered. Desktop: flex justify-between. */}
+        <div className="grid grid-cols-3 items-center h-20 md:h-24 lg:flex lg:justify-between lg:h-24 xl:h-28 2xl:h-32">
+          {/* LEFT cell (mobile/tablet): phone icon. Desktop: nothing here, logo lives in LEFT of flex */}
+          <div className="flex items-center justify-start lg:hidden" data-testid="mobile-left-cell">
+            <a
+              href="tel:3363298899"
+              onClick={() => trackPhoneClick('navbar_mobile_icon')}
+              className="flex items-center justify-center w-11 h-11 rounded-full"
+              style={{ background: 'rgba(31,111,235,0.08)', color: '#1a6fc4' }}
+              aria-label="Call GigLine"
+              data-testid="mobile-phone-btn"
+            >
+              <Phone size={20} />
+            </a>
+          </div>
+
+          {/* CENTER cell (mobile/tablet): logo centered. Desktop: logo lives at left of flex via lg:justify-start */}
+          <Link
+            to="/"
+            className="flex items-center justify-center lg:justify-start"
+            data-testid="navbar-logo"
+          >
             <img
               src="/gigline-logo-3d.png?v=3"
               alt="GigLine Safety & Compliance"
-              className="h-16 md:h-24 lg:h-20 xl:h-24 2xl:h-28 w-auto"
+              className="h-14 md:h-20 lg:h-20 xl:h-24 2xl:h-28 w-auto"
               style={{ filter: 'drop-shadow(0 2px 8px rgba(13,27,42,0.10))' }}
               loading="eager"
               fetchPriority="high"
@@ -72,21 +91,11 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Mobile + Tablet: Phone + Menu */}
-          <div className="flex items-center gap-3 lg:hidden">
-            <a
-              href="tel:3363298899"
-              onClick={() => trackPhoneClick('navbar_mobile_icon')}
-              className="flex items-center justify-center w-12 h-12 rounded-full"
-              style={{ background: 'rgba(31,111,235,0.08)', color: '#1a6fc4' }}
-              aria-label="Call GigLine"
-              data-testid="mobile-phone-btn"
-            >
-              <Phone size={20} />
-            </a>
+          {/* RIGHT cell (mobile/tablet): hamburger menu button */}
+          <div className="flex items-center justify-end lg:hidden" data-testid="mobile-right-cell">
             <button
               type="button"
-              className="flex items-center justify-center w-12 h-12 rounded-md"
+              className="flex items-center justify-center w-11 h-11 rounded-md"
               style={{ color: '#0d1b2a' }}
               onClick={() => setIsOpen(!isOpen)}
               aria-expanded={isOpen}

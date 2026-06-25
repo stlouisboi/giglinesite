@@ -9,7 +9,7 @@ const CITIES = {
   'winston-salem': {
     name: 'Winston-Salem',
     region: 'Forsyth County',
-    distance: '10 miles from Kernersville',
+    distance: '10 miles from our base in Kernersville',
     industries: 'manufacturing plants, food processing facilities, and distribution centers',
     seoTitle: 'Safety Walkthroughs in Winston-Salem, NC',
     seoDesc: 'On-site OSHA safety walkthroughs for manufacturers, warehouses, and contractors in Winston-Salem, NC. Written report with findings. Starting at $1,200.',
@@ -17,7 +17,7 @@ const CITIES = {
   'greensboro': {
     name: 'Greensboro',
     region: 'Guilford County',
-    distance: '15 miles from Kernersville',
+    distance: '15 miles from our base in Kernersville',
     industries: 'warehouses, light manufacturing, and logistics operations',
     seoTitle: 'Safety Walkthroughs in Greensboro, NC',
     seoDesc: 'OSHA safety walkthroughs and compliance support for small operations in Greensboro, NC. One visit. Clear findings. Starting at $1,200.',
@@ -25,7 +25,7 @@ const CITIES = {
   'charlotte': {
     name: 'Charlotte',
     region: 'Mecklenburg County',
-    distance: '75 miles from Kernersville',
+    distance: '75 miles from our base in Kernersville',
     industries: 'manufacturing, construction contractors, and warehouse operations',
     seoTitle: 'Safety Walkthroughs in Charlotte, NC',
     seoDesc: 'Safety walkthrough services for manufacturers, warehouses, and contractors in the Charlotte, NC metro area. Written report. Starting at $1,200.',
@@ -33,7 +33,7 @@ const CITIES = {
   'raleigh': {
     name: 'Raleigh',
     region: 'Wake County',
-    distance: '75 miles from Kernersville',
+    distance: '75 miles from our base in Kernersville',
     industries: 'growing manufacturing operations, warehouse facilities, and construction sites',
     seoTitle: 'Safety Walkthroughs in Raleigh, NC',
     seoDesc: 'On-site safety walkthroughs for small operations in Raleigh and the Triangle area. Identify OSHA exposure before it becomes a citation. Starting at $1,200.',
@@ -41,7 +41,7 @@ const CITIES = {
   'high-point': {
     name: 'High Point',
     region: 'Guilford County',
-    distance: '12 miles from Kernersville',
+    distance: '12 miles from our base in Kernersville',
     industries: 'furniture manufacturing, warehousing, and small fabrication shops',
     seoTitle: 'Safety Walkthroughs in High Point, NC',
     seoDesc: 'Safety walkthrough services for manufacturers and warehouses in High Point, NC. Written findings report. Starting at $1,200.',
@@ -49,7 +49,7 @@ const CITIES = {
   'burlington': {
     name: 'Burlington',
     region: 'Alamance County',
-    distance: '30 miles from Kernersville',
+    distance: '30 miles from our base in Kernersville',
     industries: 'textile operations, small manufacturers, and distribution facilities',
     seoTitle: 'Safety Walkthroughs in Burlington, NC',
     seoDesc: 'OSHA safety walkthroughs for small manufacturers and warehouses in Burlington, NC. One visit. Written report. Starting at $1,200.',
@@ -57,7 +57,7 @@ const CITIES = {
   'kernersville': {
     name: 'Kernersville',
     region: 'Forsyth County',
-    distance: 'GigLine HQ',
+    distance: 'this is our home base',
     industries: 'manufacturing, light industrial operations, and warehousing',
     seoTitle: 'Safety Walkthroughs in Kernersville, NC',
     seoDesc: "On-site OSHA safety walkthroughs for Kernersville manufacturers, warehouses, and contractors. GigLine's home base. Written report. Starting at $1,200.",
@@ -66,7 +66,7 @@ const CITIES = {
   'lexington': {
     name: 'Lexington',
     region: 'Davidson County',
-    distance: '20 miles from Kernersville',
+    distance: '20 miles from our base in Kernersville',
     industries: 'furniture manufacturing, food production, and small fabrication shops',
     seoTitle: 'Safety Walkthroughs in Lexington, NC',
     seoDesc: 'On-site OSHA safety walkthroughs for manufacturers and fabrication shops in Lexington, NC. Written report with findings. Starting at $1,200.',
@@ -75,7 +75,7 @@ const CITIES = {
   'thomasville': {
     name: 'Thomasville',
     region: 'Davidson County',
-    distance: '15 miles from Kernersville',
+    distance: '15 miles from our base in Kernersville',
     industries: 'furniture manufacturing, cabinetry, and small production operations',
     seoTitle: 'Safety Walkthroughs in Thomasville, NC',
     seoDesc: 'OSHA safety walkthroughs for furniture manufacturers and small production operations in Thomasville, NC. Written report. Starting at $1,200.',
@@ -84,7 +84,7 @@ const CITIES = {
   'clemmons': {
     name: 'Clemmons',
     region: 'Forsyth County',
-    distance: '15 miles from Kernersville',
+    distance: '15 miles from our base in Kernersville',
     industries: 'small manufacturers, trade contractors, and light industrial operations',
     seoTitle: 'Safety Walkthroughs in Clemmons, NC',
     seoDesc: 'On-site OSHA safety walkthroughs for small manufacturers and contractors in Clemmons, NC. Written report with findings. Starting at $1,200.',
@@ -93,7 +93,7 @@ const CITIES = {
   'mocksville': {
     name: 'Mocksville',
     region: 'Davie County',
-    distance: '25 miles from Kernersville',
+    distance: '25 miles from our base in Kernersville',
     industries: 'manufacturing, agricultural operations, and small fabrication shops',
     seoTitle: 'Safety Walkthroughs in Mocksville, NC',
     seoDesc: 'OSHA safety walkthroughs for manufacturers and fabrication shops in Mocksville, NC and Davie County. Written report. Starting at $1,200.',
@@ -102,7 +102,7 @@ const CITIES = {
   'salisbury': {
     name: 'Salisbury',
     region: 'Rowan County',
-    distance: '50 miles from Kernersville',
+    distance: '50 miles from our base in Kernersville',
     industries: 'manufacturing plants, distribution centers, and industrial operations',
     seoTitle: 'Safety Walkthroughs in Salisbury, NC',
     seoDesc: 'On-site OSHA safety walkthroughs for manufacturers and distribution centers in Salisbury, NC. Written report with findings. Starting at $1,200 + travel fee.',
@@ -112,7 +112,7 @@ const CITIES = {
   'asheboro': {
     name: 'Asheboro',
     region: 'Randolph County',
-    distance: '35 miles from Kernersville',
+    distance: '35 miles from our base in Kernersville',
     industries: 'manufacturing, metal fabrication, and distribution operations',
     seoTitle: 'Safety Walkthroughs in Asheboro, NC',
     seoDesc: 'OSHA safety walkthroughs for manufacturers and fabrication operations in Asheboro, NC. Written report with findings. Starting at $1,200 + travel fee.',

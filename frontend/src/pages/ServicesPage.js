@@ -109,7 +109,7 @@ const STANDALONE = [
     best: 'Operations that want to know where they stand on the floor before OSHA, an insurer, or a customer auditor shows up.',
     cta: 'Request a Walkthrough',
     intakeService: 'safety-walkthrough-report',
-    detailsHref: '/services/safety-walkthrough-report',
+    detailsHref: '/services/safety-walkthrough',
     testid: 'svc-standalone-walkthrough',
     anchor: 'walkthrough',
   },
@@ -594,11 +594,19 @@ const ServicesPage = () => {
                       fireServicesCtaClick('Schedule a Visit', intakeLink('compliance-readiness-visit'));
                       trackServiceBooking && trackServiceBooking('Compliance Readiness Visit');
                     }}
-                    className="w-full inline-flex items-center justify-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-6 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#1a6fc4]/20 mb-4"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-6 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#1a6fc4]/20 mb-2"
                     data-testid="svc-card-compliance-readiness-cta"
                   >
                     Schedule a Visit
                     <ArrowRight size={18} />
+                  </Link>
+                  <Link
+                    to="/services/compliance-readiness-visit"
+                    className="w-full inline-flex items-center justify-center gap-2 text-[#1a6fc4] hover:text-[#1560ae] font-bold text-[14px] py-2 mb-4 transition-colors"
+                    data-testid="svc-card-compliance-readiness-learn-more"
+                  >
+                    See Full Page
+                    <ArrowRight size={15} />
                   </Link>
 
                   {/* Ops Manager Trust Block */}

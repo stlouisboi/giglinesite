@@ -39,6 +39,7 @@ import ThankYouIntakePage from './pages/ThankYouIntakePage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsOfServicePage from './pages/TermsOfServicePage';
 import SafetyWalkthroughPage from './pages/SafetyWalkthroughPage';
+import IncidentReviewPage from './pages/IncidentReviewPage';
 import DocumentationGapCheckPage from './pages/DocumentationGapCheckPage';
 import OshaComplianceGapCheckPage from './pages/OshaComplianceGapCheckPage';
 import './App.css';
@@ -81,6 +82,9 @@ function App() {
                   <Route path="/services/document-development" element={<DocumentDevelopmentPage />} />
                   <Route path="/services/annual-compliance-partner" element={<AnnualCompliancePartnerPage />} />
                   <Route path="/services/compliance-readiness-visit" element={<ComplianceReadinessVisitPage />} />
+                  <Route path="/services/safety-walkthrough" element={<SafetyWalkthroughPage />} />
+                  <Route path="/services/safety-walkthrough-report" element={<SafetyWalkthroughPage />} />
+                  <Route path="/services/incident-review" element={<IncidentReviewPage />} />
                   <Route path="/services/:slug" element={<ServiceDetailPage />} />
                   <Route path="/about" element={<AboutPage />} />
                   <Route path="/contact" element={<ContactPage />} />

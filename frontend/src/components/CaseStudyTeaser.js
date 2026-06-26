@@ -30,34 +30,33 @@ const CaseStudyTeaser = ({ source = 'homepage' }) => {
               style={{ color: GOLD, ...mono, fontSize: '11px' }}
               data-testid="case-teaser-kicker"
             >
-              Recent Outcome &middot; Case Study
+              Recent Engagement &middot; Case Study
             </p>
             <h2
               className="font-bold leading-[1.15] text-[26px] md:text-[34px] tracking-tight mb-5"
               style={{ fontFamily: "'Manrope', sans-serif" }}
               data-testid="case-teaser-headline"
             >
-              How a 60-Person Plastics Manufacturer in Mocksville Passed OSHA &mdash;{' '}
-              <span style={{ color: GOLD }}>With Zero Citations.</span>
+              What a Safety Walkthrough{' '}
+              <span style={{ color: GOLD }}>Actually Finds.</span>
             </h2>
             <p
               className="text-base md:text-lg leading-relaxed text-white/70 max-w-xl"
               data-testid="case-teaser-summary"
             >
-              Scheduled inspection. Four high-risk findings flagged in the walkthrough.
-              Six weeks of corrective action. Clean record on inspection day.
+              A metals fabrication facility in Statesville, NC. Combined walkthrough and documentation review. Thirteen findings against applicable CFR standards. Written report delivered in four days.
             </p>
           </div>
 
           {/* Right — stat chips + CTA */}
           <div className="md:col-span-5">
             <div className="grid grid-cols-3 gap-3 md:gap-4 mb-7" data-testid="case-teaser-stats">
-              <Stat icon={<Users size={14} />} label="Headcount" value="~60" />
-              <Stat icon={<AlertTriangle size={14} />} label="Flagged" value="4 findings" />
-              <Stat icon={<ShieldCheck size={14} />} label="Outcome" value="Zero citations" />
+              <Stat icon={<Users size={14} />} label="Headcount" value="9 employees" />
+              <Stat icon={<AlertTriangle size={14} />} label="Findings" value="13 total" />
+              <Stat icon={<ShieldCheck size={14} />} label="Compliance" value="80.3 / 100" />
             </div>
             <Link
-              to="/case-studies/mocksville-plastics-osha-inspection"
+              to="/case-study/metals-fabrication-statesville"
               className="group inline-flex items-center justify-center gap-2 font-bold py-4 px-7 transition-all text-[15px] md:text-base w-full md:w-auto"
               style={{
                 backgroundColor: GOLD,

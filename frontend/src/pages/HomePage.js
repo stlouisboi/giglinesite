@@ -640,18 +640,18 @@ const HomePage = () => {
           <div data-testid="case-study-column">
             <p className="uppercase font-bold mb-8" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.55)' }}>Case Study</p>
             <div className="p-8" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.10)', borderRadius: '16px' }}>
-              <h3 className="text-xl md:text-2xl font-bold text-white leading-tight mb-8">How a Plastics Manufacturer Passed OSHA With Zero Citations.</h3>
+              <h3 className="text-xl md:text-2xl font-bold text-white leading-tight mb-8">What a Safety Walkthrough Actually Finds.</h3>
               {[
-                { label: 'Operation Size', value: '~60 Employees', highlight: false },
-                { label: 'GigLine Findings', value: '4 Critical Gaps Identified', highlight: false },
-                { label: 'OSHA Outcome', value: 'Zero Citations', highlight: true },
+                { label: 'Operation Size', value: '9 employees', highlight: false },
+                { label: 'GigLine Findings', value: '13 (7 serious · 6 docs)', highlight: false },
+                { label: 'Compliance Score', value: '80.3 / 100', highlight: true },
               ].map((s, i) => (
                 <div key={s.label} className="flex items-center justify-between py-4" style={{ borderTop: i === 0 ? 'none' : '1px solid rgba(255,255,255,0.08)' }}>
                   <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: '14px' }}>{s.label}</span>
                   <span className="font-bold text-right" style={{ color: s.highlight ? '#22c55e' : '#fff', fontSize: '15px' }}>{s.value}</span>
                 </div>
               ))}
-              <Link to="/case-studies/mocksville-plastics-osha-inspection" className="inline-flex items-center gap-2 mt-6 font-semibold" style={{ color: '#1a6fc4' }}>Read the full case study <ArrowRight size={14} /></Link>
+              <Link to="/case-study/metals-fabrication-statesville" className="inline-flex items-center gap-2 mt-6 font-semibold" style={{ color: '#1a6fc4' }}>Read the full case study <ArrowRight size={14} /></Link>
             </div>
           </div>
 

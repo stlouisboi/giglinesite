@@ -114,13 +114,16 @@ const AboutPage = () => {
         <div className="container max-w-6xl pt-20 md:pt-28 pb-14 md:pb-20 text-center">
           <Reveal>
             <h1
-              className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.1] tracking-tight mb-6"
+              className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.1] tracking-tight mb-3"
               data-testid="about-headline"
             >
-              Built by someone who&rsquo;s worked the floor.
+              Vince Lawrence
             </h1>
-            <p className="text-base md:text-lg text-white/65 leading-relaxed max-w-3xl mx-auto">
-              Not a consultant who learned compliance from a textbook. Someone who spent years inside manufacturing operations &mdash; running Gemba walks, writing corrective actions, and building safety systems that had to hold up under real production pressure.
+            <p
+              className="text-base md:text-lg text-white/55 leading-relaxed max-w-3xl mx-auto"
+              data-testid="about-credential-line"
+            >
+              OSHA 30-Hour Certified safety compliance consultant &mdash; Kernersville, NC
             </p>
           </Reveal>
         </div>
@@ -128,62 +131,21 @@ const AboutPage = () => {
         {/* Founder split */}
         <div className="container max-w-6xl pb-20 md:pb-28">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
-            {/* LEFT: video placeholder + stats */}
+            {/* LEFT: founder photo + stats */}
             <Reveal>
-              {videoOpen ? (
-                <div
-                  className="rounded-xl overflow-hidden mb-5"
-                  style={{
-                    background: '#000',
-                    border: '1px solid rgba(255,255,255,0.10)',
-                    aspectRatio: '16 / 9',
-                  }}
-                  data-testid="about-video-iframe-wrap"
-                >
-                  <iframe
-                    width="100%"
-                    height="100%"
-                    src={`https://www.youtube.com/embed/${FOUNDER_VIDEO_ID}?autoplay=1&rel=0&modestbranding=1`}
-                    title="GigLine Founder Introduction — Vince Lawrence"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                    data-testid="about-video-iframe"
-                  />
-                </div>
-              ) : (
-                <button
-                  type="button"
-                  onClick={() => setVideoOpen(true)}
-                  className="w-full rounded-xl p-7 md:p-9 mb-5 flex flex-col items-center text-center transition-all duration-300 hover:bg-white/[0.06] hover:border-white/20 hover:-translate-y-0.5 group cursor-pointer"
-                  style={{
-                    background: 'rgba(255,255,255,0.035)',
-                    border: '1px solid rgba(255,255,255,0.10)',
-                  }}
-                  data-testid="about-video-card"
-                  aria-label="Play founder introduction video"
-                >
-                  <div
-                    className="flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110"
-                    style={{
-                      width: '56px',
-                      height: '56px',
-                      borderRadius: '50%',
-                      background: 'rgba(31,111,235,0.18)',
-                      border: '1px solid rgba(31,111,235,0.40)',
-                    }}
-                  >
-                    <Play size={22} strokeWidth={2} className="text-[#1a6fc4]" style={{ marginLeft: '3px' }} fill="#1a6fc4" />
-                  </div>
-                  <p className="font-bold text-white text-lg mb-2">Founder Introduction</p>
-                  <p className="text-sm text-white/55 leading-relaxed max-w-xs">
-                    60&ndash;90 second video &mdash; Vince speaking directly to plant managers and operations owners.
-                  </p>
-                  <p className="text-[11px] text-[#1a6fc4] mt-4 font-bold uppercase" style={{ ...mono, letterSpacing: '0.12em' }}>
-                    Click to play &rarr;
-                  </p>
-                </button>
-              )}
+              <div
+                className="rounded-xl overflow-hidden mb-5"
+                style={{ border: '1px solid rgba(255,255,255,0.10)', background: 'rgba(255,255,255,0.03)' }}
+                data-testid="about-founder-photo-wrap"
+              >
+                <img
+                  src="/vince-founder.png"
+                  alt="Vince Lawrence — Founder, GigLine Safety & Compliance"
+                  className="w-full h-auto block"
+                  loading="eager"
+                  data-testid="about-founder-photo"
+                />
+              </div>
 
               <div className="grid grid-cols-3 gap-3" data-testid="about-stats-grid">
                 {STATS.map((s, i) => (
@@ -211,39 +173,69 @@ const AboutPage = () => {
 
             {/* RIGHT: I'm Vince Lawrence */}
             <Reveal delay={120}>
-              <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-5 tracking-tight">
-                I&rsquo;m Vince Lawrence.
-              </h2>
-              <div className="space-y-5 text-[15.5px] md:text-base text-white/80 leading-[1.75]">
-                <p>
-                  Before GigLine, I spent years as a safety coordinator inside glass and vinyl manufacturing &mdash; running Gemba walks across production floors and a shipping department, writing corrective actions, and building compliance systems that had to hold up under real production pressure.
-                </p>
+              <div
+                className="text-[15.5px] md:text-base text-white/80 leading-[1.75]"
+                style={{ whiteSpace: 'pre-line' }}
+                data-testid="about-body-copy"
+              >
+{`Before I started GigLine, I spent years inside manufacturing.
 
-                <blockquote
-                  className="pl-5 my-7"
-                  style={{ borderLeft: '3px solid #D4A93E' }}
-                  data-testid="about-quote"
-                >
-                  <p
-                    className="text-white font-semibold text-[17px] md:text-[18px] leading-snug"
-                    style={{ fontFamily: "Georgia, 'Times New Roman', serif", fontStyle: 'italic' }}
-                  >
-                    &ldquo;I didn&rsquo;t learn this by visiting other people&rsquo;s facilities. I learned it from inside an operation like yours.&rdquo;
-                  </p>
-                </blockquote>
+Not visiting facilities.
+Working in them.
 
-                <p>
-                  That experience is what GigLine is built on. I know what inspectors look for because I&rsquo;ve spent years on the same floors they inspect &mdash; not as an outside observer, but as someone responsible for keeping those floors running safely.
-                </p>
+Glass and vinyl. Rubber compounding. Metals fabrication.
 
-                <p>
-                  I started GigLine because small and mid-size manufacturers in the Piedmont Triad don&rsquo;t have the budget for a full-time safety director, but they carry the same OSHA exposure as operations ten times their size. A single serious citation can cost more than $16,550. A missed lockout/tagout program or an unguarded shear point doesn&rsquo;t care how many employees you have.
-                </p>
+I was on the floor — supervising crews, coordinating safety, doing Gemba walks, creating safety orientation for new hires, training people on the standards they were expected to follow, and seeing firsthand where safety systems broke down under production pressure.
 
-                <p>
-                  GigLine fills that gap. I walk your floor, review your documents, and hand you a prioritized report &mdash; within 48 hours &mdash; that tells you exactly where you stand and what to fix first.
-                </p>
+I know what a facility looks like when safety is managed by whoever had time that week.
+
+I know what happens when near-misses are not tracked. Small warnings get missed, hazards stay in place, and eventually the OSHA 300 log starts telling the story.
+
+I know what it feels like to walk a floor and see things that have been there so long the team stops seeing them.
+
+Sometimes a facility does not need a lecture.
+It needs fresh eyes.
+
+That is not a criticism.
+That is how it works in a small operation.
+
+You are running production. Solving problems. Covering call-outs. Meeting deadlines. Chasing quality issues. Keeping customers satisfied.
+
+And when the pressure stacks up, safety can quietly become the thing people work around instead of the thing they work through.
+
+Safety becomes the thing you will get to.
+OSHA does not wait for you to get to it.
+
+That is why GigLine exists.
+
+I come to your facility, walk the areas that matter, photograph what I find, document the gaps against the applicable safety standards, and put it in writing within 48 hours.
+
+No retainer.
+No long-term contract.
+No pressure to buy a program you do not need.
+
+One engagement. One written report. Clear findings. Practical next steps.
+
+You decide what to do with it.
+
+And everything I find stays between us.
+
+I'm Vince Lawrence.
+This is GigLine Safety & Compliance.`}
               </div>
+
+              <p
+                className="mt-8 pt-5 text-[13px] md:text-[13.5px]"
+                style={{
+                  color: 'rgba(255,255,255,0.55)',
+                  borderTop: '1px solid rgba(255,255,255,0.10)',
+                  fontFamily: "'JetBrains Mono', monospace",
+                  lineHeight: 1.7,
+                }}
+                data-testid="about-service-area"
+              >
+                Service area: on-site within 60 miles of Winston-Salem, including Greensboro, High Point, Kernersville, Lexington, Thomasville, Salisbury, Burlington, and surrounding communities.
+              </p>
             </Reveal>
           </div>
         </div>

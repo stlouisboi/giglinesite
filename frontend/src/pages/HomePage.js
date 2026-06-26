@@ -430,7 +430,7 @@ const HomePage = () => {
             </div>
 
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0d1b2a] leading-[1.15] mb-4 max-w-4xl tracking-tight">
-              The average OSHA serious violation costs $16,550.
+              A serious OSHA violation can cost up to $16,550 per citation.
             </h2>
             <p className="text-base md:text-lg text-[#0d1b2a]/70 leading-relaxed mb-12 max-w-3xl">
               That&apos;s per citation. A single inspection can produce multiple citations across multiple standards. The Safety Walkthrough starts at $1,200.
@@ -439,7 +439,7 @@ const HomePage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-12">
             {[
-              { stat: '$16,550', label: 'Avg. OSHA serious violation (2026)' },
+              { stat: '$16,550', label: 'Max. OSHA serious violation (2026)' },
               { stat: '$165,514', label: 'Max penalty per willful or repeat violation' },
               { stat: '48 hrs', label: 'Time from walkthrough to written report' },
             ].map((s, i) => (
@@ -829,27 +829,55 @@ const HomePage = () => {
 
               <div className="space-y-5 text-[14.5px] md:text-[15.5px] leading-[1.75]" style={{ color: 'rgba(255,255,255,0.82)' }}>
                 <Reveal>
-                  <p>
-                    I spent years inside manufacturing operations before I ever called myself a safety professional. Glass and vinyl. Rubber compounding. Metals fabrication. BF Goodrich. Amero Steel. I was on the floor &mdash; doing Gemba walks, writing LOTO procedures, building programs from scratch because nothing existed yet.
-                  </p>
-                </Reveal>
+                  <div
+                    style={{ whiteSpace: 'pre-line' }}
+                    data-testid="about-body-copy"
+                  >
+{`Before I started GigLine, I spent years inside manufacturing.
 
-                <Reveal>
-                  <p>
-                    I know what a facility looks like when safety is managed by whoever had time this week. I know what the OSHA 300 log looks like when nobody&apos;s been tracking near-misses. I know what it feels like to walk a floor and see things that have been that way for so long that nobody sees them anymore.
-                  </p>
-                </Reveal>
+Not visiting facilities.
+Working in them.
 
-                <Reveal>
-                  <p>
-                    GigLine exists because most small and mid-size manufacturers can&apos;t afford a full-time safety manager &mdash; but they can afford to know what&apos;s on their floor before OSHA does. That&apos;s what I do.
-                  </p>
-                </Reveal>
+Glass and vinyl. Rubber compounding. Metals fabrication.
 
-                <Reveal>
-                  <p className="font-semibold text-white" data-testid="about-signature">
-                    &mdash; Vince Lawrence, Founder
-                  </p>
+I was on the floor — supervising crews, coordinating safety, doing Gemba walks, creating safety orientation for new hires, training people on the standards they were expected to follow, and seeing firsthand where safety systems broke down under production pressure.
+
+I know what a facility looks like when safety is managed by whoever had time that week.
+
+I know what happens when near-misses are not tracked. Small warnings get missed, hazards stay in place, and eventually the OSHA 300 log starts telling the story.
+
+I know what it feels like to walk a floor and see things that have been there so long the team stops seeing them.
+
+Sometimes a facility does not need a lecture.
+It needs fresh eyes.
+
+That is not a criticism.
+That is how it works in a small operation.
+
+You are running production. Solving problems. Covering call-outs. Meeting deadlines. Chasing quality issues. Keeping customers satisfied.
+
+And when the pressure stacks up, safety can quietly become the thing people work around instead of the thing they work through.
+
+Safety becomes the thing you will get to.
+OSHA does not wait for you to get to it.
+
+That is why GigLine exists.
+
+I come to your facility, walk the areas that matter, photograph what I find, document the gaps against the applicable safety standards, and put it in writing within 48 hours.
+
+No retainer.
+No long-term contract.
+No pressure to buy a program you do not need.
+
+One engagement. One written report. Clear findings. Practical next steps.
+
+You decide what to do with it.
+
+And everything I find stays between us.
+
+I'm Vince Lawrence.
+This is GigLine Safety & Compliance.`}
+                  </div>
                 </Reveal>
 
                 <Reveal>

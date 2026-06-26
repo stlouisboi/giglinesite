@@ -35,6 +35,7 @@ import ServiceAreasPage from './pages/ServiceAreasPage';
 import WalkthroughLandingPage from './pages/WalkthroughLandingPage';
 import CaseStudyMetalsFabricationPage from './pages/CaseStudyMetalsFabricationPage';
 import SupervisorKitPage from './pages/SupervisorKitPage';
+import SupervisorKitThankYouPage from './pages/SupervisorKitThankYouPage';
 import ThankYouIntakePage from './pages/ThankYouIntakePage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsOfServicePage from './pages/TermsOfServicePage';
@@ -112,6 +113,7 @@ function App() {
                   <Route path="/case-study/metals-fabrication-statesville" element={<CaseStudyMetalsFabricationPage />} />
                   <Route path="/case-studies/mocksville-plastics-osha-inspection" element={<Navigate to="/case-study/metals-fabrication-statesville" replace />} />
                   <Route path="/supervisor-kit" element={<SupervisorKitPage />} />
+                  <Route path="/supervisor-kit/thank-you" element={<SupervisorKitThankYouPage />} />
                   <Route path="/privacy" element={<PrivacyPolicyPage />} />
                   <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
                   <Route path="/terms" element={<TermsOfServicePage />} />

@@ -156,22 +156,19 @@ const SupervisorKitPage = () => {
       const res = await fetch(`${API}/api/checkout/supervisor-kit-${variant}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ attribution: getAttribution() }),
+        body: JSON.stringify({
+          origin_url: window.location.origin,
+          attribution: getAttribution(),
+        }),
       });
       const data = await res.json();
-      if (res.ok && data.ok) {
-        trackEvent('supervisor_kit_buy_click', {
-          variant,
-          order_token: data.order_token,
-        });
-        setStatus({
-          ok: true,
-          message: data.message,
-          orderToken: data.order_token,
-        });
-      } else {
-        setStatus({ ok: false, message: 'Something went wrong. Please call (336) 329-8899.' });
+      if (res.ok && data.url) {
+        trackEvent('supervisor_kit_buy_click', { variant, session_id: data.session_id });
+        // Hand off to Stripe Checkout
+        window.location.href = data.url;
+        return;
       }
+      setStatus({ ok: false, message: 'Could not start checkout. Please call (336) 329-8899.' });
     } catch (err) {
       setStatus({ ok: false, message: 'Network error. Please call (336) 329-8899.' });
     }

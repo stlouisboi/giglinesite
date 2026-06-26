@@ -24,6 +24,11 @@ _GROUP_CACHE: Dict[str, str] = {}
 LIST_LEAD_NURTURE = "Lead Nurture"
 LIST_PAST_CLIENT = "Past Client"
 LIST_PAUSED = "Paused — Active Engagement"
+# GL-WEB-RET-001 — Past-client 4-touch retention (Day 30/60/90/180)
+LIST_RETENTION_4_TOUCH = "Retention - 4 Touch"
+# GL-WEB-015 — Supervisor Safety Starter System purchases
+LIST_KIT_DIGITAL = "supervisor-kit-digital"
+LIST_KIT_PHYSICAL = "supervisor-kit-physical"
 
 # GL-WEB-013 — service-specific groups (one single-email confirmation automation per service)
 SERVICE_GROUP_NAMES = {
@@ -203,7 +208,15 @@ async def move_to_past_client(email: str) -> bool:
                         headers=_headers(),
                     )
 
-            logger.info(f"MailerLite: {email} moved to Past Client")
+            # GL-WEB-RET-001 — also enroll in 4-touch Retention sequence
+            retention_gid = await _ensure_group(LIST_RETENTION_4_TOUCH)
+            if retention_gid:
+                await client.post(
+                    f"{ML_BASE}/subscribers/{email}/groups/{retention_gid}",
+                    headers=_headers(),
+                )
+
+            logger.info(f"MailerLite: {email} moved to Past Client + Retention - 4 Touch")
             return True
     except Exception as e:
         logger.error(f"MailerLite move-to-past-client error: {e}")
@@ -395,4 +408,51 @@ async def add_to_intake_lane(
             logger.warning(f"MailerLite intake-lane add failed {r.status_code}: {r.text[:200]}")
     except Exception as e:
         logger.error(f"MailerLite intake-lane error: {e}")
+    return False
+
+
+
+async def add_to_kit_buyer(
+    email: str,
+    variant: str,
+    name: str = "",
+    company: str = "",
+) -> bool:
+    """
+    GL-WEB-015 — Tag Supervisor Safety Starter System buyer in MailerLite.
+
+    `variant` must be 'digital' or 'physical'. Adds the contact to the
+    matching kit group (a no-op if the group does not exist).
+    """
+    if not ML_TOKEN or not email or variant not in ("digital", "physical"):
+        return False
+
+    group_name = LIST_KIT_DIGITAL if variant == "digital" else LIST_KIT_PHYSICAL
+    gid = await _ensure_group(group_name)
+    if not gid:
+        return False
+
+    first_name = (name.split(" ")[0] if name else "").strip()
+    payload = {
+        "email": email,
+        "fields": {
+            "name": first_name,
+            "company": company or "",
+            "source_form": f"supervisor-kit-{variant}",
+        },
+        "groups": [gid],
+        "status": "active",
+    }
+
+    try:
+        async with httpx.AsyncClient(timeout=10) as client:
+            r = await client.post(
+                f"{ML_BASE}/subscribers", headers=_headers(), json=payload
+            )
+            if r.status_code in (200, 201):
+                logger.info(f"MailerLite: kit buyer {email} → {group_name}")
+                return True
+            logger.warning(f"MailerLite kit-buyer add failed {r.status_code}: {r.text[:200]}")
+    except Exception as e:
+        logger.error(f"MailerLite kit-buyer error: {e}")
     return False

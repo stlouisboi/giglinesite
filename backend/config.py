@@ -116,3 +116,27 @@ HAZCOM_FILES = {
 }
 
 HEAT_STRESS_PDF = ROOT_DIR / "heat_files" / "GL_Heat_Stress_Print_2026.pdf"
+
+# ── Supervisor Safety Starter System (GL-WEB-015) ──
+SUPERVISOR_KIT_PRODUCTS = {
+    "digital": {
+        "name": "Supervisor Safety Starter System — Digital Kit",
+        "amount_cents": 60000,  # $600
+        "sku": "supervisor-kit-digital",
+        "needs_shipping": False,
+    },
+    "physical": {
+        "name": "Supervisor Safety Starter System — Physical Kit",
+        "amount_cents": 67500,  # $675
+        "sku": "supervisor-kit-physical",
+        "needs_shipping": True,
+    },
+}
+
+# ── Google Business Profile review URL ──
+# Vince can swap to a short link (g.page/r/...) via env var without code change.
+# Fallback is a Google search for GigLine in Kernersville, NC.
+GIGLINE_GOOGLE_REVIEW_URL = os.environ.get(
+    'GIGLINE_GOOGLE_REVIEW_URL',
+    'https://www.google.com/search?q=GigLine+Safety+%26+Compliance+Kernersville+NC',
+)

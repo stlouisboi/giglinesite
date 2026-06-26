@@ -5,6 +5,7 @@ import { trackServiceBooking, trackPhoneClick, trackEvent } from '../utils/analy
 import SEO from '../components/SEO';
 import CaseStudyTeaser from '../components/CaseStudyTeaser';
 import SampleReportSection from '../components/SampleReportSection';
+import WalkthroughDaySection from '../components/WalkthroughDaySection';
 
 /* ═══ GL-WEB-008 — Staged content update for OSHA Documentation Readiness Review ═══
    Triggered by GL-SPEC-APP-002 (Document Review Module — 148 element-level checks).
@@ -641,6 +642,9 @@ const ServicesPage = () => {
           </Reveal>
         </div>
       </section>
+
+      {/* ═══ 5b. WHAT HAPPENS ON THE DAY OF YOUR WALKTHROUGH (under CRV detail block) ═══ */}
+      <WalkthroughDaySection variant="crv" surface="panel" />
 
       {/* ═══ 6. STANDALONE SERVICES — Intro band ═══ */}
       <section className="pt-24 md:pt-32 pb-12 md:pb-16" style={{ backgroundColor: '#f5f4f0' }} data-testid="services-standalone">

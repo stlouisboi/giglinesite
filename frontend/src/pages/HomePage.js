@@ -4,6 +4,7 @@ import { ArrowRight, Check, BookOpen, Monitor, FileText, Bot, Zap, ShieldCheck, 
 import SEO from '../components/SEO';
 import CaseStudyTeaser from '../components/CaseStudyTeaser';
 import FieldManualBand from '../components/FieldManualBand';
+import WalkthroughDaySection from '../components/WalkthroughDaySection';
 import { trackPhoneClick, trackReviewClick, trackEvent } from '../utils/analytics';
 
 /* ── Scroll-reveal ── */
@@ -617,6 +618,9 @@ const HomePage = () => {
           </Reveal>
         </div>
       </section>
+
+      {/* ═══ WHAT HAPPENS ON THE DAY OF YOUR WALKTHROUGH ═══ */}
+      <WalkthroughDaySection variant="crv" surface="light" />
 
       {/* ═══ TESTIMONIALS + CASE STUDY + TRACK RECORD (relocated per spec — between Services and How It Works) ═══ */}
       <section className="py-20 md:py-28" style={{ backgroundColor: '#0d1b2a' }} data-testid="trust-section">

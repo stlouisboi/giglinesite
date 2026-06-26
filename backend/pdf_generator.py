@@ -17,6 +17,11 @@ from reportlab.platypus import (
 )
 from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT
 
+try:
+    from config import GIGLINE_GOOGLE_REVIEW_URL
+except Exception:
+    GIGLINE_GOOGLE_REVIEW_URL = 'https://www.google.com/search?q=GigLine+Safety+%26+Compliance+Kernersville+NC'
+
 # Brand colors
 CHARCOAL = colors.HexColor("#1C2B2B")
 GOLD = colors.HexColor("#B8972C")
@@ -391,7 +396,19 @@ def generate_safety_check_pdf(submission_data):
         ('ROUNDEDCORNERS', [4, 4, 4, 4]),
     ]))
     story.append(cta_table)
-    story.append(Spacer(1, 20))
+    story.append(Spacer(1, 14))
+
+    # ── Google Review Ask ──
+    review_para = Paragraph(
+        f'<font color="#666666">Found this helpful? A short Google review keeps the lights on for small operations.</font>'
+        f' &nbsp;<a href="{GIGLINE_GOOGLE_REVIEW_URL}"><font color="#B8972C"><b>Leave a Google review &rarr;</b></font></a>',
+        ParagraphStyle(
+            "review", fontName="Helvetica", fontSize=9, leading=12,
+            textColor=MID_GRAY, alignment=TA_CENTER
+        )
+    )
+    story.append(review_para)
+    story.append(Spacer(1, 18))
 
     # ── FOOTER ──
     story.append(HRFlowable(width="100%", thickness=0.5, color=BORDER_GRAY, spaceAfter=8))

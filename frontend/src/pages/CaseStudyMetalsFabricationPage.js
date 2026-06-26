@@ -13,10 +13,10 @@ const TEXT_SUBTLE = 'rgba(10,22,40,0.55)';
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
 const serif = { fontFamily: "Georgia, 'Times New Roman', serif" };
 
-const CaseStudyStatesvillePage = () => {
+const CaseStudyMetalsFabricationPage = () => {
   return (
     <main
-      data-testid="case-study-statesville"
+      data-testid="case-study-metals-fabrication"
       style={{ backgroundColor: BG_WARM, color: NAVY }}
     >
       <SEO
@@ -398,4 +398,4 @@ const Finding = ({ priority, n, cfr, penalty, title, body, corrective }) => (
   </div>
 );
 
-export default CaseStudyStatesvillePage;
+export default CaseStudyMetalsFabricationPage;

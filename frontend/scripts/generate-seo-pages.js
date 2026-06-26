@@ -232,8 +232,8 @@ const routes = [
       <p><em>Service area: on-site within 60 miles of Winston-Salem, including Greensboro, High Point, Kernersville, Lexington, Thomasville, Salisbury, Burlington, and surrounding communities.</em></p>
       <h2>What Clients Say</h2>
       <p>"If you're looking for a partner that can bridge the gap between compliance and real-world execution, GigLine delivers results." — Demar Archie, Warehouse Receiving Manager</p>
-      <h2>Recent Outcome &mdash; Case Study</h2>
-      <p><a href="/case-studies/mocksville-plastics-osha-inspection">How a 60-Person Plastics Manufacturer in Mocksville Passed OSHA &mdash; With Zero Citations</a>. Scheduled inspection, four high-risk findings flagged in the walkthrough, six weeks of corrective action, clean record on inspection day.</p>
+      <h2>Recent Engagement &mdash; Case Study</h2>
+      <p><a href="/case-study/metals-fabrication-statesville">What a Safety Walkthrough Actually Finds</a>. A 9-person metals fabrication facility in Statesville, NC. Combined walkthrough and documentation review. 13 findings across machine guarding, compressed gas storage, and documentation gaps. Written report delivered in four days.</p>
       <h2>Final CTA — Know what's on your floor before OSHA does.</h2>
       <p>The walkthrough takes a few hours. The report is in your hands in 48. The cost is a fraction of a single citation. Questions first? Call or text directly: (336) 329-8899.</p>
       <h2>Frequently Asked Questions</h2>
@@ -319,8 +319,8 @@ const routes = [
       <p>Quarterly Compliance Maintenance — Starting at $950/quarter. Annual Compliance Control Partner — $12,000/year ($1,000/month equivalent).</p>
       <h2>The GigLine Readiness Path</h2>
       <p>Find the issues — Safety Walkthrough from $1,200. Check the files — OSHA Documentation Readiness Review from ${DOC_REVIEW_PRICE_LABEL}. Review both — Compliance Readiness Visit from $2,000. Build the system — OSHA-Ready Control System from $4,500. Keep it current — Quarterly Maintenance from $950/quarter.</p>
-      <h2>Recent Outcome &mdash; Case Study</h2>
-      <p><a href="/case-studies/mocksville-plastics-osha-inspection">How a 60-Person Plastics Manufacturer in Mocksville Passed OSHA &mdash; With Zero Citations</a>.</p>
+      <h2>Recent Engagement &mdash; Case Study</h2>
+      <p><a href="/case-study/metals-fabrication-statesville">What a Safety Walkthrough Actually Finds</a>.</p>
       <p>After payment, you'll receive a scheduling confirmation within one business day.</p>
       <p>GigLine Safety &amp; Compliance — Kernersville, NC — (336) 329-8899</p>
     `,
@@ -514,72 +514,60 @@ const routes = [
     `,
   },
   {
-    path: '/case-studies/mocksville-plastics-osha-inspection',
-    title: 'OSHA Inspection Case Study: Mocksville Plastics Manufacturer Cleared with Zero Citations | GigLine',
-    description: 'A 60-person plastics manufacturer in Mocksville, NC had a scheduled OSHA inspection six weeks away. After a GigLine walkthrough flagged 4 high-risk findings, all were fixed before inspection day. Outcome: zero citations.',
-    canonical: '/case-studies/mocksville-plastics-osha-inspection',
+    path: '/case-study/metals-fabrication-statesville',
+    title: 'What a Safety Walkthrough Actually Finds | GigLine Case Study',
+    description: "A metals fabrication facility in Statesville, NC brought GigLine in for a combined walkthrough and documentation review. 13 findings. 80.3 compliance score. Here's what the engagement delivered.",
+    canonical: '/case-study/metals-fabrication-statesville',
     schemas: [
       {
         '@context': 'https://schema.org',
         '@type': 'Article',
-        headline: 'How a 60-Person Plastics Manufacturer in Mocksville Passed OSHA — With Zero Citations',
-        description: 'A 60-person plastics manufacturer in Mocksville, NC had a scheduled OSHA inspection six weeks away. After a GigLine walkthrough flagged 4 high-risk findings, all were fixed before inspection day. Outcome: zero citations.',
+        headline: 'What a Safety Walkthrough Actually Finds — Statesville Metals Fabrication Case Study',
+        description: 'A 9-person metals fabrication facility in Statesville, NC. Combined walkthrough and documentation review. 13 findings. 80.3 compliance score. Written report delivered in four days.',
         author: { '@id': `${BASE_URL}/#vince` },
         publisher: { '@id': `${BASE_URL}/#business` },
-        mainEntityOfPage: `${BASE_URL}/case-studies/mocksville-plastics-osha-inspection`,
-        datePublished: '2026-06-04',
+        mainEntityOfPage: `${BASE_URL}/case-study/metals-fabrication-statesville`,
+        datePublished: '2026-06-22',
         articleSection: 'Case Study',
       },
       breadcrumb([
         { name: 'Home', path: '/' },
         { name: 'Case Studies', path: '/case-studies' },
-        { name: 'Mocksville Plastics Manufacturer', path: '/case-studies/mocksville-plastics-osha-inspection' },
+        { name: 'Statesville Metals Fabrication', path: '/case-study/metals-fabrication-statesville' },
       ]),
     ],
     content: `
-      <h1>How a 60-Person Plastics Manufacturer in Mocksville Passed OSHA &mdash; With Zero Citations</h1>
-      <p><em>What changed in the six weeks between the walkthrough and inspection day.</em></p>
+      <h1>What a Safety Walkthrough Actually Finds</h1>
+      <p><em>A metals fabrication facility in Statesville, NC brought GigLine in for a combined Safety Walkthrough and Documentation Review. Thirteen findings. One written report. No inspection ever happened &mdash; and that is the point.</em></p>
+      <p><em>Client name withheld at the client&rsquo;s request. All findings, citations, and outcomes are accurate to the engagement. Report ID: 62FC03EB. Visit date: June 18, 2026.</em></p>
 
-      <p><strong>Location:</strong> Mocksville, NC &middot; <strong>Headcount:</strong> ~60 employees &middot; <strong>Engagement:</strong> Spring 2026 &middot; <strong>Time to Inspection:</strong> 6 weeks &middot; <strong>Outcome:</strong> Zero Citations</p>
+      <p><strong>Location:</strong> Statesville, NC &middot; <strong>Headcount:</strong> 9 employees &middot; <strong>Scope:</strong> Walkthrough + Documentation Review &middot; <strong>Visit:</strong> June 18, 2026 &middot; <strong>Compliance Score:</strong> 80.3 / 100</p>
 
       <h2>The Situation</h2>
-      <p>A plastics manufacturer in Mocksville, NC &mdash; roughly 60 employees, two-shift operation &mdash; had OSHA on the calendar. Not a complaint. Not a referral. A scheduled inspection.</p>
-      <p>The plant manager called Vince in Spring 2026, about six weeks out from the inspection date. He hired GigLine for one purpose: walk the floor like an OSHA Compliance Officer would, find what they'd find, and tell him what to fix and in what order.</p>
+      <p>A 9-person metals fabrication operation in Statesville, NC. Two roll formers, two forklifts, an active flammables cabinet, a growing crew. The plant manager held an OSHA 30-Hour General Industry certification and had built out most of his safety documentation &mdash; some of it using AI-generated templates. He brought GigLine in to confirm his programs were ready before production scaled.</p>
 
-      <h2>The Walkthrough &mdash; Four High-Risk Findings</h2>
-      <p>Vince walked the facility for three hours. The Top 10 Fixes report landed in the plant manager's inbox 36 hours later. Four findings would have been almost-certain citations on inspection day:</p>
+      <h2>What the Walkthrough Found</h2>
+      <p>13 findings. 7 serious citation risk (P2). 6 documentation gaps (P3). 0 critical. Compliance score: 80.3 out of 100.</p>
 
-      <h3>01 &mdash; Recordkeeping (29 CFR 1904.32)</h3>
-      <p>OSHA 300 Log not posted; no 300A Annual Summary signed by a company executive. Penalty range: $1,190 to $16,550 per violation. Recordkeeping citations stack &mdash; each missing record can be cited separately.</p>
+      <h3>Finding 10 &mdash; Unsecured propane cylinder (29 CFR 1910.110(b)(6)(i))</h3>
+      <p>One propane cylinder stored upright with no chain, bracket, or restraint &mdash; positioned immediately adjacent to the flammable liquids storage cabinet with no separation distance. Penalty exposure: $7,000 to $14,502 (Serious).</p>
 
-      <h3>02 &mdash; Powered Industrial Trucks (29 CFR 1910.178(l))</h3>
-      <p>Three forklift operators with certifications older than three years. No daily pre-shift inspection log. Refresher training is required every three years. Penalty range: $1,190 to $16,550 per operator, per violation.</p>
+      <h3>Finding 12 &mdash; Unguarded shear point of operation (29 CFR 1910.212(a)(1))</h3>
+      <p>The shear blade on the roll former cut-off mechanism was accessible during operation. The perimeter rail did not address the point of operation. Penalty exposure: $7,000 to $14,502 (Serious).</p>
 
-      <h3>03 &mdash; Walking and Working Surfaces (29 CFR 1910.22(a)(1))</h3>
-      <p>Scrap accumulated under press lines. Pallets in pedestrian zones. Material handlers stepping around obstructions. Housekeeping isn't an aesthetic complaint &mdash; it's a written OSHA standard.</p>
+      <h3>Documentation gaps</h3>
+      <p>The IIPP existed but was built from an AI-generated template &mdash; wrong facility address, missing required elements, not reviewed against actual operations. The SDS library was missing a sheet for Star Fire AW46 Hydraulic Oil &mdash; a product actively in use. Penalty exposure under 29 CFR 1910.1200(g)(1): $7,000 to $15,621. Three required documents were missing entirely: Heat Stress Prevention Plan, Bloodborne Pathogen Exposure Control Plan, and a Corrective Action Log.</p>
 
-      <h3>04 &mdash; Emergency Egress (29 CFR 1910.37(a)(3))</h3>
-      <p>Two of four emergency exits had partial obstructions in the path of egress. Exit routes must be unobstructed at all times.</p>
+      <h2>What the Engagement Delivered</h2>
+      <p>A written report documenting all 13 findings against applicable CFR standards, with photo documentation of the two highest-priority physical hazards and a corrective action summary pre-populated with every finding, priority rating, assigned due date, and recommended corrective action.</p>
 
-      <h2>The Six Weeks Between</h2>
-      <p>The plant manager assigned each finding to someone with a fix-by date within 48 hours. By inspection day, all four high-risk items were closed and documented:</p>
-      <ul>
-        <li><strong>Recordkeeping:</strong> 300A Summary signed by the president and posted. 5-year retention file reorganized.</li>
-        <li><strong>Forklift program:</strong> All three operators completed refresher training with documented evaluation. Daily pre-shift inspection log on every truck.</li>
-        <li><strong>Housekeeping:</strong> Written program drafted. Daily end-of-shift sweep routines. Pedestrian aisles repainted.</li>
-        <li><strong>Egress:</strong> All four exit paths cleared. "No storage zone" marked. Monthly egress audits added to the standing checklist.</li>
-      </ul>
+      <h2>What This Engagement Is Not</h2>
+      <p>No OSHA inspection followed this walkthrough. There is no citation outcome to report. The value is the written record itself &mdash; a documented baseline of what existed, what was missing, and what needed to change, in the plant manager&rsquo;s hands, before anyone outside the facility looked. <strong>A written record of good-faith corrective action is defensible. A belief that things are in order is not.</strong></p>
 
-      <h2>Inspection Day</h2>
-      <p>The OSHA Compliance Officer arrived on the scheduled date. The walkthrough took about four hours. The plant manager and supervisors had documentation ready for every question. At the closing conference, the Compliance Officer noted observations but did not issue a single citation. <strong>No formal findings. No fines. Clean record.</strong></p>
+      <h2>The Pattern</h2>
+      <p>AI-generated documents that don&rsquo;t match actual operations, missing machine-specific procedures, chemical hazards without complete SDS coverage, and physical hazards the team has stopped seeing &mdash; these are among the most frequently cited violations in general industry OSHA enforcement. They are also fixable.</p>
 
-      <h2>What This Buys</h2>
-      <p>Four findings at the higher end of the penalty range &mdash; plus the multiplier for willful or repeated classifications &mdash; could have run past $75,000. A safety walkthrough plus six weeks of disciplined corrective action got them to zero.</p>
-
-      <h2>What's Repeatable</h2>
-      <p>Most manufacturers Vince walks into have at least three of the same four issues. Recordkeeping gaps, expired forklift certifications, housekeeping drift, egress obstructions. Not lazy problems &mdash; the kind of problems that come from running a 60-person operation without a full-time safety manager.</p>
-
-      <p>If you have OSHA on the calendar, or worried they're coming, <a href="https://www.giglinecompliance.com/walkthrough">request a walkthrough</a>. One visit. A written report within 48 hours. A list of things to fix in priority order. No retainer.</p>
+      <p>A Safety Walkthrough starts at $1,200. Written report within 48 hours. <a href="https://www.giglinecompliance.com/intake?service=safety-walkthrough-report">Request a Walkthrough</a>.</p>
 
       <p>GigLine Safety &amp; Compliance &mdash; Vince Lawrence &mdash; (336) 329-8899 &mdash; <a href="https://www.giglinecompliance.com">giglinecompliance.com</a></p>
     `,

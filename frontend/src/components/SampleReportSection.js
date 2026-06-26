@@ -29,58 +29,47 @@ const FINDINGS = [
   {
     n: '01',
     severity: 'Serious',
-    cfr: '29 CFR 1904.32',
-    standard: 'Recordkeeping — Annual Summary',
-    location: 'Main office / posting area',
+    cfr: '29 CFR 1910.110(b)(6)(i)',
+    standard: 'Storage and handling of liquefied petroleum gases (LPG)',
+    label: 'Unsecured compressed gas cylinder stored adjacent to flammable storage cabinet',
+    location: 'Production floor / flammable storage area',
     observation:
-      'OSHA 300 Log not posted during the February 1 – April 30 posting period. No 300A Annual Summary signed by a company executive. Required posting is an OSHA mandate, not a recommendation.',
+      'One propane cylinder observed stored upright without chain, bracket, or restraint system to prevent tipping. Cylinder positioned immediately adjacent to the flammable liquids storage cabinet with no separation distance between the two.',
     correctiveAction:
-      'Post the OSHA 300A Annual Summary immediately. Obtain executive signature. Establish a calendar reminder for February 1 posting requirement each year.',
-    penalty: '$1,190 – $16,550',
-    fixBy: 'Immediate — prior to next business day',
-    photoUrl: '/recordkeeping-osha300.jpg',
+      'Secure propane cylinder immediately with a chain bracket or cylinder stand rated for compressed gas storage. Relocate cylinder a minimum of 20 feet from the flammable storage cabinet or install a fire-resistant barrier of at least 30-minute rating between them. When not in active use, store propane cylinder outside or in a designated outdoor compressed gas storage area.',
+    penalty: '$7,000 – $14,502 (Serious)',
+    fixBy: 'Immediate',
+    photoUrl: null,
   },
   {
     n: '02',
     severity: 'Serious',
-    cfr: '29 CFR 1910.178(l)',
-    standard: 'Powered Industrial Trucks — Operator Training',
-    location: 'Warehouse floor / shipping dock',
+    cfr: '29 CFR 1910.212(a)(1)',
+    standard: 'Machine Guarding — General Requirements for All Machines',
+    label: 'Unguarded shear point of operation on roll former cut-off mechanism',
+    location: 'Production floor / roll former cut-off station',
     observation:
-      'Two forklift operators with certifications older than three years and no documented refresher training. No daily pre-shift inspection log maintained on either vehicle. OSHA requires refresher training every three years and evaluation documentation.',
+      'Shear blade point of operation on roll former cut-off mechanism observed without point-of-operation guarding. Blade accessible during operation. Perimeter safety rail present on outfeed side does not address the point of operation at the shear head.',
     correctiveAction:
-      'Schedule refresher training and evaluation for all operators with certifications older than three years. Implement daily pre-shift inspection log on every powered industrial truck.',
-    penalty: '$1,190 – $16,550 per operator',
-    fixBy: 'Within 30 days',
-    photoUrl: '/forklift-inspection.jpg',
+      'Install point-of-operation guarding on the shear blade to prevent operator contact with the cutting hazard. Acceptable methods include barrier guards, two-hand controls, or presence-sensing devices. Post machine-specific LOTO procedure at the shear station before any maintenance or jam-clearing is performed. Complete guarding installation before production employees are assigned to operate this equipment.',
+    penalty: '$7,000 – $14,502 (Serious)',
+    fixBy: 'Before production employees operate equipment',
+    photoUrl: '/floor-findings/machine-guarding.jpg',
   },
   {
     n: '03',
-    severity: 'Other-than-Serious',
-    cfr: '29 CFR 1910.22(a)(1)',
-    standard: 'Walking-Working Surfaces — Housekeeping',
-    location: 'Production floor — press lines',
+    severity: 'Documentation Gap',
+    cfr: '29 CFR 1910.1200(g)(1)',
+    standard: 'Hazard Communication — Safety Data Sheets',
+    label: 'SDS not on file for chemical in active use',
+    location: 'Production floor / hydraulic power unit',
     observation:
-      'Scrap material accumulated under press lines. Pallets and loose material in marked pedestrian zones. Workers observed stepping around obstructions. Housekeeping is a written OSHA standard, not an aesthetic preference.',
+      'No SDS present in digital SDS library or physical binder for a hydraulic oil product actively in use on the production floor. Four 5-gallon pails observed stored adjacent to the hydraulic power unit. Product in active use in the machine.',
     correctiveAction:
-      'Clear all scrap and obstructions from pedestrian zones immediately. Draft a written housekeeping program. Implement end-of-shift sweep routine with supervisor sign-off.',
-    penalty: '$0 – $16,550',
-    fixBy: 'Within 30 days',
-    photoUrl: '/walking-surfaces-housekeeping.jpg',
-  },
-  {
-    n: '04',
-    severity: 'Serious',
-    cfr: '29 CFR 1910.37(a)(3)',
-    standard: 'Emergency Egress — Exit Route Obstruction',
-    location: 'Rear exit — shipping dock',
-    observation:
-      'Emergency exit path partially obstructed by stacked boxes and a hand truck parked against the exit door. Exit route must remain unobstructed at all times. Door opened to approximately 60% capacity during walkthrough.',
-    correctiveAction:
-      'Clear all obstructions from emergency exit paths immediately. Mark a no-storage zone on the floor. Add monthly egress audit to the standing safety checklist.',
-    penalty: '$1,190 – $16,550',
-    fixBy: 'Immediate — prior to next shift',
-    photoUrl: '/hero-blocked-exit.jpg',
+      'Obtain and maintain Safety Data Sheets for all hazardous chemicals present in the workplace. Ensure SDSs are readily accessible to employees during their work shifts in the area where hazardous chemicals are used or stored.',
+    penalty: '$7,000 – $15,621 (Serious)',
+    fixBy: 'Before fluid is used in production',
+    photoUrl: '/floor-findings/hazcom-sds.jpg',
   },
 ];
 
@@ -111,14 +100,14 @@ const SampleReportSection = () => {
             style={{ ...heading, color: TEXT_DARK }}
             data-testid="sample-report-headline"
           >
-            What a GigLine report actually looks like.
+            What a GigLine Combined Safety &amp; Documentation Report looks like.
           </h2>
           <p
             className="text-base md:text-lg leading-relaxed"
             style={{ color: TEXT_MUTED }}
             data-testid="sample-report-subtext"
           >
-            Every engagement delivers a written report your team can act on. Here is a sample from a recent walkthrough &mdash; findings, CFR citations, photos, and corrective actions included.
+            Three findings from a real engagement &mdash; sanitized. Same format, same CFR citations, same penalty ranges your inspector would reference.
           </p>
         </div>
 
@@ -139,25 +128,25 @@ const SampleReportSection = () => {
               className="uppercase tracking-[3px] mb-3"
               style={{ ...mono, fontSize: '10px', color: 'rgba(255,255,255,0.6)' }}
             >
-              Safety Walkthrough Report
+              Combined Safety &amp; Documentation Report
             </p>
             <h3
               className="text-xl md:text-2xl font-bold leading-tight mb-5"
               style={heading}
             >
-              GigLine Safety Walkthrough Report
+              GigLine Combined Safety &amp; Documentation Report
             </h3>
             <p
               className="text-[13px] md:text-sm leading-relaxed mb-5"
               style={{ color: 'rgba(255,255,255,0.78)' }}
               data-testid="sample-report-client-line"
             >
-              Representative Example &middot; Piedmont Triad, NC &middot; {todayFormatted()}
+              Real engagement &middot; Sanitized for publication &middot; Statesville, NC &middot; June 18, 2026
             </p>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-y-3 gap-x-6 pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.12)' }}>
               <MetaField label="Inspector" value="Vince Lawrence" />
-              <MetaField label="Operation Type" value="Manufacturing" />
-              <MetaField label="Employees" value="~40" />
+              <MetaField label="Operation" value="Metals Fabrication" />
+              <MetaField label="Headcount" value="9 employees" />
             </div>
           </header>
 
@@ -178,20 +167,18 @@ const SampleReportSection = () => {
               style={{ color: TEXT_DARK, ...heading }}
               data-testid="sample-report-counts"
             >
-              <span><strong>3</strong> Serious</span>
+              <span><strong>2</strong> Serious</span>
               <span style={{ color: TEXT_SUBTLE }}>&middot;</span>
-              <span><strong>1</strong> Other-than-Serious</span>
+              <span><strong>1</strong> Documentation Gap</span>
               <span style={{ color: TEXT_SUBTLE }}>&middot;</span>
-              <span><strong>0</strong> Documentation Gap</span>
-              <span style={{ color: TEXT_SUBTLE }}>&middot;</span>
-              <span><strong>4</strong> total findings</span>
+              <span><strong>3</strong> findings shown</span>
             </div>
             <p
               className="text-[14px] md:text-[15px] leading-relaxed"
               style={{ color: TEXT_MUTED }}
               data-testid="sample-report-exec-summary"
             >
-              Three Serious citations and one Other-than-Serious finding were identified during this walkthrough. Recordkeeping and egress require immediate attention prior to the next business day. Forklift certification and housekeeping issues should be corrected within 30 days.
+              Three sanitized findings from a real engagement. The two Serious citations &mdash; an unsecured propane cylinder adjacent to flammable storage and an unguarded shear point of operation &mdash; required immediate corrective action before the next production shift. The Documentation Gap covers a missing Safety Data Sheet for a hydraulic oil in active use at the production line.
             </p>
           </section>
 
@@ -215,10 +202,17 @@ const SampleReportSection = () => {
               GigLine Safety &amp; Compliance &middot; Vince Lawrence &middot; (336) 329-8899 &middot; giglinecompliance.com &middot; Kernersville, NC
             </p>
             <p
+              className="text-[11px] md:text-[12px] leading-relaxed italic mb-2"
+              style={{ color: TEXT_SUBTLE }}
+              data-testid="sample-report-footer-attribution"
+            >
+              Report ID: 62FC03EB &middot; Visit date: June 18, 2026 &middot; Client name withheld at client&rsquo;s request. Findings and penalty ranges are accurate to the engagement.
+            </p>
+            <p
               className="text-[11px] md:text-[12px] leading-relaxed italic"
               style={{ color: TEXT_SUBTLE }}
             >
-              Penalty ranges reflect 2024 OSHA maximum penalty amounts and are provided for planning purposes only. GigLine Safety &amp; Compliance does not determine OSHA enforcement outcomes.
+              Penalty ranges reflect 2026 OSHA maximum penalty amounts and are provided for planning purposes only. GigLine Safety &amp; Compliance does not determine OSHA enforcement outcomes.
             </p>
           </footer>
         </article>

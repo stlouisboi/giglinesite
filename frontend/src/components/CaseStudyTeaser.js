@@ -9,10 +9,10 @@ const mono = { fontFamily: "'JetBrains Mono', monospace" };
 /*
   CaseStudyTeaser
   ──────────────────────────────────────────────────────
-  Reusable outcome anchor used on Homepage and Services page
-  to surface the Mocksville case study. Mirrors the navy + gold
-  aesthetic of the case study page's own CTA band so visitors get
-  visual continuity when they click through.
+  Reusable engagement anchor used on Homepage and Services page
+  to surface the Statesville metals fabrication case study. Mirrors
+  the navy + gold aesthetic of the case study page's own CTA band so
+  visitors get visual continuity when they click through.
 */
 const CaseStudyTeaser = ({ source = 'homepage' }) => {
   return (

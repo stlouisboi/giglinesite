@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Calendar, MapPin, Users, ClipboardCheck } from 'lucide-react';
+import { ArrowRight, Calendar, MapPin, Users, ClipboardCheck, Plus, Minus } from 'lucide-react';
 import SEO from '../components/SEO';
 
 const NAVY = '#0A1628';
@@ -12,6 +12,29 @@ const TEXT_SUBTLE = 'rgba(10,22,40,0.55)';
 
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
 const serif = { fontFamily: "Georgia, 'Times New Roman', serif" };
+
+const CASE_FAQS = [
+  {
+    q: 'What if my walkthrough turns up more than 13 findings?',
+    a: "That depends on the facility. A newer operation with a plant manager actively building programs — like the one in this engagement — is going to look different from a 20-year-old facility that hasn't had a third-party review in a decade. More findings isn't a failure. It's information. The report prioritizes every finding by citation risk so you know what to fix first and what can wait. You leave with a ranked corrective action plan, not a list of problems with no direction attached.",
+  },
+  {
+    q: 'Does an 80.3 compliance score mean the facility was OSHA-ready?',
+    a: "Not exactly. The compliance score measures written-program coverage — how complete your documentation is relative to what OSHA expects to see. An 80.3 means solid coverage on paper with targeted gaps underneath. The physical findings (the propane cylinder, the unguarded shear blade) are captured separately in the priority ratings. A facility can score well on documentation and still have serious physical hazards. That's exactly why the walkthrough covers both.",
+  },
+  {
+    q: 'What does the written report actually contain?',
+    a: "Every finding documented against the applicable CFR standard, with the specific regulation cited. Photo documentation of physical hazards. A penalty exposure estimate per finding based on current OSHA rates. A corrective action for each finding with a recommended timeline. A compliance score and document coverage summary. A corrective action log pre-populated with every finding, ready to assign owners and track close-out. The report in this engagement ran 18 pages and was delivered four days after the walkthrough.",
+  },
+  {
+    q: "What if I can't fix everything before an OSHA inspection arrives?",
+    a: "Fix the P2 findings first — those are the serious citation risks with dollar exposure attached. A documented corrective action plan with assigned owners and target dates is evidence of good-faith effort. OSHA distinguishes between a facility that knew about a hazard and ignored it and one that identified it, documented it, and was actively working through remediation. The written report gives you that documentation. It doesn't guarantee anything, but it puts you in a materially better position than having no record at all.",
+  },
+  {
+    q: 'Will GigLine share my findings with anyone?',
+    a: "No. Findings are not shared, published, or referenced without written permission. Not with OSHA, not with your insurer, not with anyone. The report belongs to you. The engagement in this case study is referenced publicly only because the client permitted it — and the client name is withheld at their request. Every engagement operates the same way by default.",
+  },
+];
 
 const CaseStudyMetalsFabricationPage = () => {
   return (
@@ -45,6 +68,37 @@ const CaseStudyMetalsFabricationPage = () => {
               { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.giglinecompliance.com/' },
               { '@type': 'ListItem', position: 2, name: 'Case Studies', item: 'https://www.giglinecompliance.com/case-studies' },
               { '@type': 'ListItem', position: 3, name: 'Statesville Metals Fabrication', item: 'https://www.giglinecompliance.com/case-study/metals-fabrication-statesville' },
+            ],
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: 'What if my walkthrough turns up more than 13 findings?',
+                acceptedAnswer: { '@type': 'Answer', text: "That depends on the facility. A newer operation with a plant manager actively building programs — like the one in this engagement — is going to look different from a 20-year-old facility that hasn't had a third-party review in a decade. More findings isn't a failure. It's information. The report prioritizes every finding by citation risk so you know what to fix first and what can wait. You leave with a ranked corrective action plan, not a list of problems with no direction attached." },
+              },
+              {
+                '@type': 'Question',
+                name: 'Does an 80.3 compliance score mean the facility was OSHA-ready?',
+                acceptedAnswer: { '@type': 'Answer', text: "Not exactly. The compliance score measures written-program coverage — how complete your documentation is relative to what OSHA expects to see. An 80.3 means solid coverage on paper with targeted gaps underneath. The physical findings (the propane cylinder, the unguarded shear blade) are captured separately in the priority ratings. A facility can score well on documentation and still have serious physical hazards. That's exactly why the walkthrough covers both." },
+              },
+              {
+                '@type': 'Question',
+                name: 'What does the written report actually contain?',
+                acceptedAnswer: { '@type': 'Answer', text: "Every finding documented against the applicable CFR standard, with the specific regulation cited. Photo documentation of physical hazards. A penalty exposure estimate per finding based on current OSHA rates. A corrective action for each finding with a recommended timeline. A compliance score and document coverage summary. A corrective action log pre-populated with every finding, ready to assign owners and track close-out. The report in this engagement ran 18 pages and was delivered four days after the walkthrough." },
+              },
+              {
+                '@type': 'Question',
+                name: "What if I can't fix everything before an OSHA inspection arrives?",
+                acceptedAnswer: { '@type': 'Answer', text: "Fix the P2 findings first — those are the serious citation risks with dollar exposure attached. A documented corrective action plan with assigned owners and target dates is evidence of good-faith effort. OSHA distinguishes between a facility that knew about a hazard and ignored it and one that identified it, documented it, and was actively working through remediation. The written report gives you that documentation. It doesn't guarantee anything, but it puts you in a materially better position than having no record at all." },
+              },
+              {
+                '@type': 'Question',
+                name: 'Will GigLine share my findings with anyone?',
+                acceptedAnswer: { '@type': 'Answer', text: "No. Findings are not shared, published, or referenced without written permission. Not with OSHA, not with your insurer, not with anyone. The report belongs to you. The engagement in this case study is referenced publicly only because the client permitted it — and the client name is withheld at their request. Every engagement operates the same way by default." },
+              },
             ],
           },
         ]}
@@ -204,6 +258,34 @@ const CaseStudyMetalsFabricationPage = () => {
         </div>
       </article>
 
+      {/* ─────────── FAQ BLOCK (case-study-anchored) ─────────── */}
+      <section
+        className="px-5 md:px-8 pb-16 md:pb-20"
+        data-testid="case-faq-section"
+        style={{ borderTop: `1px solid ${BORDER}` }}
+      >
+        <div className="max-w-3xl mx-auto pt-14 md:pt-16">
+          <p
+            className="uppercase font-bold tracking-[0.28em] mb-4"
+            style={{ color: GOLD, ...mono, fontSize: '11px' }}
+          >
+            After You Read This
+          </p>
+          <h2
+            className="font-bold leading-tight mb-10 text-[26px] md:text-[32px]"
+            style={{ fontFamily: "'Manrope', sans-serif", color: NAVY }}
+          >
+            What people ask after reading this engagement.
+          </h2>
+
+          <div className="space-y-3" data-testid="case-faq-list">
+            {CASE_FAQS.map((item, i) => (
+              <FAQItem key={i} idx={i + 1} q={item.q} a={item.a} />
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ─────────── CTA BAND ─────────── */}
       <section
         className="px-5 md:px-8 py-16 md:py-20"
@@ -317,6 +399,62 @@ const P = ({ children, className = '' }) => (
   </p>
 );
 
+export default CaseStudyMetalsFabricationPage;
+
+const FAQItem = ({ idx, q, a }) => {
+  const [open, setOpen] = useState(false);
+  return (
+    <div
+      className="overflow-hidden transition-colors"
+      style={{
+        backgroundColor: 'white',
+        border: `1px solid ${open ? GOLD : BORDER}`,
+        boxShadow: '0 1px 2px rgba(10,22,40,0.03)',
+      }}
+      data-testid={`case-faq-item-${idx}`}
+    >
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        className="w-full flex items-start justify-between gap-4 text-left px-5 md:px-6 py-5 md:py-6 hover:bg-[#FAF7F1] transition-colors"
+        aria-expanded={open}
+        data-testid={`case-faq-trigger-${idx}`}
+      >
+        <span
+          className="font-bold text-[16px] md:text-[18px] leading-snug pr-2"
+          style={{ fontFamily: "'Manrope', sans-serif", color: NAVY }}
+        >
+          {q}
+        </span>
+        <span
+          className="flex-shrink-0 mt-1"
+          style={{ color: GOLD }}
+          aria-hidden="true"
+        >
+          {open ? <Minus size={18} /> : <Plus size={18} />}
+        </span>
+      </button>
+      {open && (
+        <div
+          className="px-5 md:px-6 pb-6 pt-1"
+          data-testid={`case-faq-answer-${idx}`}
+        >
+          <div
+            className="w-10 h-px mb-4"
+            style={{ background: GOLD }}
+          />
+          <p
+            className="text-[15px] md:text-[16px] leading-[1.7]"
+            style={{ color: TEXT_MUTED, ...serif }}
+          >
+            {a}
+          </p>
+        </div>
+      )}
+    </div>
+  );
+};
+
 const Finding = ({ priority, n, cfr, penalty, title, body, corrective }) => (
   <div
     className="p-6 md:p-7"
@@ -397,5 +535,3 @@ const Finding = ({ priority, n, cfr, penalty, title, body, corrective }) => (
     </div>
   </div>
 );
-
-export default CaseStudyMetalsFabricationPage;

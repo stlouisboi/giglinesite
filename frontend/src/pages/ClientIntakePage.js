@@ -382,6 +382,59 @@ const ClientIntakePage = () => {
 
       <div className="h-px max-w-3xl mx-auto" style={{ background: C.border }} />
 
+      {/* ── "What happens next" 4-step block ── */}
+      <section className="max-w-3xl mx-auto px-5 md:px-8 pt-12 md:pt-16" data-testid="intake-what-happens-next">
+        <p className="font-bold tracking-[3px] mb-3" style={{ color: C.blue, ...mono, fontSize: '11px' }}>
+          WHAT HAPPENS NEXT
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+          {[
+            {
+              n: '1',
+              title: 'We review your submission',
+              body: "You'll get a confirmation email within a few minutes. Vince reviews every intake personally — usually same day.",
+            },
+            {
+              n: '2',
+              title: 'You get a fixed quote',
+              body: "Based on your facility size, employee count, and what you're asking for. No hourly billing. No estimate ranges. One number before anything is scheduled.",
+            },
+            {
+              n: '3',
+              title: 'We schedule the visit',
+              body: 'Once you approve the quote, we pick a date that works for your operation. Most visits are scheduled within 5–10 business days.',
+            },
+            {
+              n: '4',
+              title: 'You get the report in writing',
+              body: 'Within 48 hours of the walkthrough. Photo documentation, CFR citations, penalty exposure per finding, and a prioritized corrective action plan. Yours to keep.',
+            },
+          ].map((step) => (
+            <div
+              key={step.n}
+              className="rounded-lg p-5"
+              style={{ background: C.deep, border: `1px solid ${C.border}` }}
+              data-testid={`intake-step-${step.n}`}
+            >
+              <div className="flex items-start gap-3">
+                <span
+                  className="flex items-center justify-center flex-shrink-0 w-7 h-7 rounded-md font-bold"
+                  style={{ background: C.blueDim, color: C.blue, border: `1px solid ${C.blueBorder}`, ...mono, fontSize: '12px' }}
+                >
+                  {step.n}
+                </span>
+                <div className="flex-1">
+                  <h3 className="text-[15px] md:text-base font-bold text-white leading-snug mb-1.5" style={{ fontFamily: "'Manrope', sans-serif" }}>
+                    {step.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed" style={{ color: C.sec }}>{step.body}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <main className="max-w-3xl mx-auto px-5 md:px-8 py-12 md:py-16 space-y-16 md:space-y-20">
 
         {/* ═══ S1 — Company & Contact ═══ */}
@@ -820,6 +873,131 @@ const ClientIntakePage = () => {
           </p>
         </section>
       </main>
+
+      {/* ── About Vince block (mirrors /about) ── */}
+      <section
+        className="border-t"
+        style={{ borderColor: C.border, background: '#0d1b2a' }}
+        data-testid="intake-about-vince"
+      >
+        <div className="max-w-6xl mx-auto px-5 md:px-8 py-16 md:py-24">
+          <div className="text-center mb-10 md:mb-14">
+            <h2
+              className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.1] tracking-tight mb-3 text-white"
+              style={{ fontFamily: "'Manrope', sans-serif" }}
+              data-testid="intake-about-headline"
+            >
+              Vince Lawrence
+            </h2>
+            <p className="text-base md:text-lg leading-relaxed max-w-3xl mx-auto" style={{ color: 'rgba(255,255,255,0.55)' }}>
+              OSHA 30-Hour Certified safety compliance consultant &mdash; Kernersville, NC
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
+            {/* LEFT: photo + stats */}
+            <div>
+              <div
+                className="rounded-xl overflow-hidden mb-5"
+                style={{ border: '1px solid rgba(255,255,255,0.10)', background: 'rgba(255,255,255,0.03)' }}
+              >
+                <img
+                  src="/vince-founder.png"
+                  alt="Vince Lawrence — Founder, GigLine Safety & Compliance"
+                  className="w-full h-auto block"
+                  loading="lazy"
+                  data-testid="intake-about-photo"
+                />
+              </div>
+              <div className="grid grid-cols-3 gap-3">
+                {[
+                  { value: '25+', label: 'Years', sub: 'Safety Leadership' },
+                  { value: 'OSHA', label: '30-Hour', sub: 'Certified' },
+                  { value: 'USN', label: 'Veteran', sub: 'U.S. Navy' },
+                  { value: 'MFG', label: 'Manufacturing', sub: 'Experience' },
+                  { value: 'WHSE', label: 'Warehousing', sub: 'Operations' },
+                  { value: 'TRANS', label: 'Transportation', sub: 'Safety' },
+                ].map((s, i) => (
+                  <div
+                    key={s.value}
+                    className="rounded-xl py-4 px-3 text-center h-full flex flex-col items-center justify-center"
+                    style={{ background: 'rgba(255,255,255,0.035)', border: '1px solid rgba(255,255,255,0.08)' }}
+                    data-testid={`intake-about-stat-${i + 1}`}
+                  >
+                    <p
+                      className="font-extrabold leading-none tracking-tight"
+                      style={{ color: '#D4A93E', ...mono, fontSize: 'clamp(20px, 2vw, 24px)' }}
+                    >
+                      {s.value}
+                    </p>
+                    <p className="text-[11px] font-bold text-white mt-1.5 uppercase" style={{ letterSpacing: '0.06em' }}>
+                      {s.label}
+                    </p>
+                    <p className="text-[10.5px] mt-0.5 leading-tight" style={{ color: 'rgba(255,255,255,0.55)' }}>{s.sub}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* RIGHT: body copy (mirror of /about) */}
+            <div
+              className="text-[15.5px] md:text-base leading-[1.75]"
+              style={{ whiteSpace: 'pre-line', color: 'rgba(255,255,255,0.80)' }}
+              data-testid="intake-about-body"
+            >
+{`Before I started GigLine, I spent years inside manufacturing.
+
+Not visiting facilities.
+Working in them.
+
+Glass and vinyl. Rubber compounding. Metals fabrication.
+
+I was on the floor — supervising crews, coordinating safety, doing Gemba walks, creating safety orientation for new hires, training people on the standards they were expected to follow, and seeing firsthand where safety systems broke down under production pressure.
+
+I know what a facility looks like when safety is managed by whoever had time that week.
+
+I know what happens when near-misses are not tracked. Small warnings get missed, hazards stay in place, and eventually the OSHA 300 log starts telling the story.
+
+I know what it feels like to walk a floor and see things that have been there so long the team stops seeing them.
+
+Sometimes a facility does not need a lecture.
+It needs fresh eyes.
+
+That is not a criticism.
+That is how it works in a small operation.
+
+You are running production. Solving problems. Covering call-outs. Meeting deadlines. Chasing quality issues. Keeping customers satisfied.
+
+And when the pressure stacks up, safety can quietly become the thing people work around instead of the thing they work through.
+
+Safety becomes the thing you will get to.
+OSHA does not wait for you to get to it.
+
+That is why GigLine exists.
+
+I come to your facility, walk the areas that matter, photograph what I find, document the gaps against the applicable safety standards, and put it in writing within 48 hours.
+
+No retainer.
+No long-term contract.
+No pressure to buy a program you do not need.
+
+One engagement. One written report. Clear findings. Practical next steps.
+
+You decide what to do with it.
+
+And everything I find stays between us.
+
+I'm Vince Lawrence.
+This is GigLine Safety & Compliance.`}
+              <p className="mt-6 text-[13.5px]" style={{ color: 'rgba(255,255,255,0.55)' }}>
+                <a href="tel:+13363298899" className="hover:text-white transition-colors" data-testid="intake-about-phone">(336) 329-8899</a>
+                {' · '}
+                <a href="mailto:vince@giglinecompliance.com" className="hover:text-white transition-colors" data-testid="intake-about-email">vince@giglinecompliance.com</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <footer className="border-t" style={{ borderColor: C.border }}>
         <div className="max-w-3xl mx-auto px-5 md:px-8 py-8 text-center">

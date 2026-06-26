@@ -24,6 +24,7 @@ B2B lead generation funnel for an OSHA compliance consultancy (Vince Lawrence / 
 - Every service detail page is now pre-rendered by `generate-seo-pages.js` so production deployments no longer fall back to the homepage HTML shell.
 
 ## Recently Completed (Feb 2026)
+- **Intake Page (GL-WEB-009 changes 6–9, Feb 26 2026)**: Added "What happens next" 4-step block above the form (review → fixed quote → schedule → written report in 48h). Added "About Vince" mirror block at the bottom — navy section with `/vince-founder.png`, 6 stats, and the full About-page body copy. Meta/OG tags skipped per user (no stale `$650` / `$15,625` strings existed on the page).
 - Sitewide `/request-walkthrough` → `/intake` cleanup (hero CTA points to `/intake?service=safety-walkthrough-report`).
 - App.js redirects legacy `/request-walkthrough` route to `/intake`.
 - sitemap.xml, llms.txt, and SEO generator updated to reference `/intake`.

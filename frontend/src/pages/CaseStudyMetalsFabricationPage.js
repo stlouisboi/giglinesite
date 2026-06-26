@@ -244,6 +244,11 @@ const CaseStudyMetalsFabricationPage = () => {
           <P>A written report documenting all 13 findings against applicable CFR standards, with photo documentation of the two highest-priority physical hazards and a corrective action summary pre-populated with every finding, priority rating, assigned due date where applicable, and recommended corrective action.</P>
           <P>The plant manager came into the engagement believing his programs were close to ready. The report showed him specifically where they weren&rsquo;t &mdash; before an OSHA inspector, a customer audit, or an incident did.</P>
 
+          {/* AFTER THE REPORT */}
+          <H2>After the Report</H2>
+          <P>Twelve of 13 findings were closed within seven days of delivery. The one remaining item &mdash; the unguarded shear blade on the roll former &mdash; has a documented remediation plan: light curtains and a permanent safety fence, to be installed after the machine is set in its final position at the new facility location. The corrective action log entry reads: &ldquo;No current way to guard shear, will add light curtains and safety fence after moving machine to new location and setting in final place.&rdquo;</P>
+          <P>That&rsquo;s how a corrective action log is supposed to work. Findings documented. Owners assigned. Plans recorded. Progress trackable.</P>
+
           {/* WHAT THIS ENGAGEMENT IS NOT */}
           <H2>What This Engagement Is Not</H2>
           <P>No OSHA inspection followed this walkthrough. There is no citation outcome to report.</P>

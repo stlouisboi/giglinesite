@@ -39,6 +39,7 @@ B2B lead generation funnel for an OSHA compliance consultancy (Vince Lawrence / 
 ## Pending / Backlog
 **P1**
 - Supervisor Training Kit shell (GL-WEB-013): plumb backend PDF storage + Resend transactional email. Needs user to upload 9 PDFs and provide Resend API key.
+  - Pricing (per GL-WEB-014, June 13 spec): **Digital $199 · Physical $249**.
 
 **P2**
 - Replace "David R." testimonial placeholder with real Google Review text (user to supply).

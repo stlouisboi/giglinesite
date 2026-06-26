@@ -18,7 +18,6 @@ import HazComThankYouPage from './pages/HazComThankYouPage';
 import BlogOSHAViolations from './pages/BlogOSHAViolations';
 import BlogHazComRequirements from './pages/BlogHazComRequirements';
 import HeatGuidePage from './pages/HeatGuidePage';
-import IntakePage from './pages/IntakePage';
 import ClientIntakePage from './pages/ClientIntakePage';
 import OnboardingPage from './pages/OnboardingPage';
 import StatusPage from './pages/StatusPage';

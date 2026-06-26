@@ -518,6 +518,75 @@ const routes = [
     `,
   },
   {
+    path: '/supervisor-kit',
+    title: 'Supervisor Safety Starter System | GigLine Safety & Compliance',
+    description: '11 documents. CFR citations. Built for the person responsible for safety when no one else is watching. $600 digital. $675 physical with binder, field manual, and direct access to Vince.',
+    canonical: '/supervisor-kit',
+    schemas: [
+      LOCAL_BUSINESS,
+      breadcrumb([
+        { name: 'Home', path: '/' },
+        { name: 'Supervisor Safety Starter System', path: '/supervisor-kit' },
+      ]),
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: 'Supervisor Safety Starter System',
+        description: '11-document supervisor-ready safety system built for small manufacturing, warehouse, and contractor operations. CFR-cited. Inspection protocols. HazCom program, SDS index, training records, monthly inspection checklist, "If OSHA Shows Up" protocol, and more.',
+        brand: { '@type': 'Brand', name: 'GigLine Safety & Compliance' },
+        category: 'Workplace Safety / OSHA Compliance Documentation',
+        offers: [
+          {
+            '@type': 'Offer',
+            name: 'Digital Kit',
+            description: 'Instant download — all 11 documents as print-ready PDFs',
+            price: '600',
+            priceCurrency: 'USD',
+            availability: 'https://schema.org/InStock',
+            url: `${BASE_URL}/supervisor-kit`,
+          },
+          {
+            '@type': 'Offer',
+            name: 'Physical Kit',
+            description: 'Printed, bound, and shipped USPS Priority. Includes GigLine 2026 Triad OSHA Field Manual and direct contact card.',
+            price: '675',
+            priceCurrency: 'USD',
+            availability: 'https://schema.org/InStock',
+            url: `${BASE_URL}/supervisor-kit`,
+          },
+        ],
+      },
+    ],
+    content: `
+      <h1>Supervisor Safety Starter System</h1>
+      <p><strong>Built for the person responsible for safety when no one else is watching.</strong></p>
+      <p>11 documents. CFR citations. Inspection protocols. Every form maps directly to an OSHA standard. Use it consistently and you will be prepared for any inspection, incident, or audit.</p>
+
+      <h2>What&rsquo;s inside</h2>
+      <ol>
+        <li>Quick Reference Summary Card &mdash; post at your supervisor station</li>
+        <li>Welcome &amp; Usage Guide &mdash; read first, sets up the system</li>
+        <li>Chemical Inventory Log &mdash; list every chemical on site</li>
+        <li>SDS Index &amp; Binder Log &mdash; track SDS location per chemical</li>
+        <li>Written HazCom Program &mdash; your required written safety program</li>
+        <li>30-Day Supervisor Action Checklist &mdash; week-by-week implementation roadmap</li>
+        <li>One Phone Call Card &mdash; six scenarios, post at your supervisor station</li>
+        <li>If OSHA Shows Up &mdash; seven-step protocol, post near your front entrance</li>
+        <li>When to Call for Help &mdash; Red Flag List with CFR citations</li>
+        <li>Monthly Safety Inspection Checklist &mdash; 40+ items, signature block, retention instruction</li>
+        <li>Employee Training Record Log &mdash; document every safety training session</li>
+      </ol>
+
+      <h2>Pricing</h2>
+      <p><strong>Digital Kit &mdash; $600.</strong> Instant download. All 11 documents as print-ready PDFs.</p>
+      <p><strong>Physical Kit &mdash; $675.</strong> Printed and bound in a 3-ring binder. Includes the GigLine 2026 Triad OSHA Field Manual and a personal contact card for direct access to Vince. Ships USPS Priority within 3 business days.</p>
+      <p><em>Included at no additional cost with every Compliance Readiness Visit ($2,000).</em></p>
+
+      <h2>Questions?</h2>
+      <p>Call or text <a href="tel:+13363298899">(336) 329-8899</a>. Vince picks up.</p>
+    `,
+  },
+  {
     path: '/case-study/metals-fabrication-statesville',
     title: 'What a Safety Walkthrough Actually Finds | GigLine Case Study',
     description: "A metals fabrication facility in Statesville, NC brought GigLine in for a combined walkthrough and documentation review. 13 findings. 80.3 compliance score. Here's what the engagement delivered.",

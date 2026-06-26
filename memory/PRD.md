@@ -24,6 +24,8 @@ B2B lead generation funnel for an OSHA compliance consultancy (Vince Lawrence / 
 - Every service detail page is now pre-rendered by `generate-seo-pages.js` so production deployments no longer fall back to the homepage HTML shell.
 
 ## Recently Completed (Feb 2026)
+- **Case Study Addendum (GL-WEB-016, June 26 2026)**: Inserted new "After the Report" section between "What the Engagement Delivered" and "What This Engagement Is Not" on `CaseStudyMetalsFabricationPage.js`. 12 of 13 findings closed in 7 days; remaining shear-blade finding has documented remediation plan. Quote rendered without named attribution (client name "Kevin Stutts" stays withheld).
+- **Supervisor Safety Starter System (GL-WEB-015, June 26 2026)**: Built `/supervisor-kit` landing page (`SupervisorKitPage.js`) with hero, 11-document "What's Inside" grid, value framing, dual pricing cards ($600 digital / $675 physical with featured navy+gold treatment), "Who This Is For" 3-card row, "Included with CRV" band, and footer phone/email CTA. Backend stub routes `POST /api/checkout/supervisor-kit-digital` and `POST /api/checkout/supervisor-kit-physical` persist orders to `gl_supervisor_kit_orders` collection. SEO route added to `generate-seo-pages.js` with Product + Offer JSON-LD schema. Stripe wiring deferred to second pass per spec.
 - **Intake Page (GL-WEB-009 changes 6–9, Feb 26 2026)**: Added "What happens next" 4-step block above the form (review → fixed quote → schedule → written report in 48h). Added "About Vince" mirror block at the bottom — navy section with `/vince-founder.png`, 6 stats, and the full About-page body copy. Meta/OG tags skipped per user (no stale `$650` / `$15,625` strings existed on the page).
 - Sitewide `/request-walkthrough` → `/intake` cleanup (hero CTA points to `/intake?service=safety-walkthrough-report`).
 - App.js redirects legacy `/request-walkthrough` route to `/intake`.
@@ -38,8 +40,8 @@ B2B lead generation funnel for an OSHA compliance consultancy (Vince Lawrence / 
 
 ## Pending / Backlog
 **P1**
-- Supervisor Training Kit shell (GL-WEB-013): plumb backend PDF storage + Resend transactional email. Needs user to upload 9 PDFs and provide Resend API key.
-  - Pricing (per GL-WEB-014, June 13 spec): **Digital $199 · Physical $249**.
+- **Stripe wiring (GL-WEB-015 pass 2)**: Wire real Stripe Checkout to the two stub routes `/api/checkout/supervisor-kit-digital` ($600) and `/api/checkout/supervisor-kit-physical` ($675, with shipping-address capture). Trigger digital PDF delivery via Resend and Vince fulfillment notification for physical. Tag buyers in MailerLite (`supervisor-kit-digital` / `supervisor-kit-physical`). Stripe test key already in pod env.
+- Supervisor Training Kit content (GL-WEB-013): user to upload the 9 (now 11) PDFs so digital delivery is real, not stub. Currently no fulfillment payload — buyers get a phone callback from Vince.
 
 **P2**
 - Replace "David R." testimonial placeholder with real Google Review text (user to supply).

@@ -21,6 +21,7 @@ from routes.newsletter import router as newsletter_router
 from routes.intake import router as intake_router
 from routes.onboarding import router as onboarding_router
 from routes.portal import router as portal_router
+from routes.supervisor_kit import router as supervisor_kit_router
 
 app = FastAPI()
 
@@ -39,6 +40,7 @@ api_router.include_router(newsletter_router)
 api_router.include_router(intake_router)
 api_router.include_router(onboarding_router)
 api_router.include_router(portal_router)
+api_router.include_router(supervisor_kit_router)
 
 app.include_router(api_router)
 

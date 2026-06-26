@@ -55,6 +55,60 @@ const ContactPage = () => {
         </div>
       </section>
 
+      {/* What happens after you send this — 3-step process */}
+      <section className="py-12 md:py-16 bg-secondary" data-testid="contact-process-block">
+        <div className="container max-w-5xl">
+          <p
+            className="text-xs font-semibold tracking-widest uppercase text-primary/60 text-center mb-3"
+            style={{ fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.14em' }}
+          >
+            What happens after you send this
+          </p>
+          <h2 className="text-2xl md:text-3xl font-bold text-primary text-center mb-10">
+            A short, honest process.
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                n: '01',
+                label: 'Vince reads it personally',
+                copy: 'Every message goes directly to Vince. No intake team, no auto-routing.',
+              },
+              {
+                n: '02',
+                label: 'You get a plain answer',
+                copy: "Within one business day: what makes sense for your operation, what it costs, and whether a walkthrough is the right move.",
+              },
+              {
+                n: '03',
+                label: "No commitment until you're ready",
+                copy: 'Nothing gets scheduled until you say so. The first conversation is just a conversation.',
+              },
+            ].map((s) => (
+              <div
+                key={s.n}
+                className="bg-white rounded-lg p-7 shadow-sm border border-primary/5 hover:border-accent/40 transition-colors"
+                data-testid={`contact-process-step-${s.n}`}
+              >
+                <p
+                  className="text-3xl md:text-4xl font-extrabold mb-4"
+                  style={{ color: '#D4A93E', fontFamily: "'JetBrains Mono', monospace" }}
+                >
+                  {s.n}
+                </p>
+                <h3 className="font-bold text-primary text-base mb-2 leading-snug">
+                  {s.label}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {s.copy}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Contact Form Section */}
       <section className="py-16 md:py-24">
         <div className="container">

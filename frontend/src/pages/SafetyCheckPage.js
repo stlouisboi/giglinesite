@@ -55,10 +55,25 @@ const SafetyCheckPage = () => {
   const handleAnswer = (questionId, answer) => {
     const updated = { ...answers, [questionId]: answer };
     setAnswers(updated);
-    // All 6 answered → show email gate
+    // All 6 answered → reveal results directly (no email gate)
     if (Object.keys(updated).length === 6) {
-      setTimeout(() => setPhase('gate'), 300);
+      setTimeout(() => {
+        setPhase('results');
+        // Smooth scroll to results once they mount
+        setTimeout(() => {
+          const el = document.querySelector('[data-testid="results-section"]');
+          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 80);
+      }, 250);
     }
+  };
+
+  const handleStartOver = () => {
+    setAnswers({});
+    setPhase('questions');
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 50);
   };
 
   const handleGateChange = (e) => setGateData({ ...gateData, [e.target.name]: e.target.value });
@@ -245,109 +260,174 @@ const SafetyCheckPage = () => {
         </section>
       )}
 
-      {/* ━━━ PHASE 3: RESULTS ━━━ */}
-      {phase === 'results' && (
-        <section className="py-12 md:py-16" data-testid="results-section">
-          <div className="container max-w-3xl">
+      {/* ━━━ PHASE 3: RESULTS (tier-based) ━━━ */}
+      {phase === 'results' && (() => {
+        const confirmed = 6 - noCount; // Number of "Yes — Confirmed"
+        const tier = confirmed >= 5 ? 'low' : confirmed >= 3 ? 'medium' : 'high';
 
-            {/* Score Badge */}
-            <div className={`inline-block px-4 py-2 rounded text-sm font-semibold mb-8 ${
-              scoreLevel === 'low' ? 'bg-[#0d1b2a]/10 text-[#0d1b2a]' :
-              scoreLevel === 'medium' ? 'bg-[#1560ae]/15 text-[#8B7222]' :
-              'bg-[#8B2500]/10 text-[#8B2500]'
-            }`} data-testid="score-badge">
-              {noCount} of 6 areas flagged — {scoreLevel === 'low' ? 'Low' : scoreLevel === 'medium' ? 'Moderate' : 'High'} Risk
-            </div>
+        const TIER = {
+          low: {
+            label: 'LOW EXPOSURE',
+            labelClass: 'bg-emerald-500/15 text-emerald-300 border-emerald-400/30',
+            scoreClass: 'text-white',
+            headline: 'Your documented controls are in place.',
+            body: "These are the six areas OSHA cites most often. You've confirmed them. That's a good baseline — but a walkthrough can still surface what documentation misses on the floor.",
+          },
+          medium: {
+            label: 'GAPS IDENTIFIED',
+            labelClass: 'bg-amber-400/15 text-amber-300 border-amber-300/30',
+            scoreClass: 'text-amber-200',
+            headline: 'You have documented gaps in at least two cited areas.',
+            body: 'Each "No" here is a potential citation. OSHA doesn\'t need to find all six — one serious violation can run up to $16,550. A walkthrough puts eyes on the floor before an inspector does.',
+          },
+          high: {
+            label: 'HIGH EXPOSURE',
+            labelClass: 'bg-red-500/15 text-red-300 border-red-400/30',
+            scoreClass: 'text-red-300',
+            headline: 'Multiple high-citation-risk areas are unconfirmed.',
+            body: "This is the profile OSHA finds on a programmed inspection. Don't wait for a complaint or a referral. Call Vince directly — this is exactly what a walkthrough is built for.",
+          },
+        }[tier];
 
-            {/* ── Section A: Summary ── */}
-            <div className="mb-10" data-testid="results-summary">
-              <p className="text-base text-[#0d1b2a]/70 mb-4 leading-relaxed">
-                Based on your responses, your operation {noCount === 0 ? 'appears controlled in the areas we checked.' : 'may have exposure in:'}
-              </p>
-              {flaggedTopics.length > 0 && (
-                <ul className="space-y-2 mb-4">
-                  {flaggedTopics.map((topic) => (
-                    <li key={topic} className="flex items-start gap-3" data-testid={`flagged-${topic.replace(/\s+/g, '-').toLowerCase()}`}>
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#8B2500] mt-2 flex-shrink-0" />
-                      <span className="text-base text-[#0d1b2a] font-medium">{topic}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
+        return (
+          <>
+            <hr className="border-[#0d1b2a]/10" />
+            <section className="bg-[#0d1b2a] text-white py-16 md:py-20" data-testid="results-section">
+              <div className="container max-w-3xl">
 
-            {/* ── Section B: Short Explanations ── */}
-            {flaggedTopics.length > 0 && (
-              <div className="mb-12 space-y-4" data-testid="results-explanations">
-                {flaggedTopics.map((topic) => (
-                  <div key={topic} className="border-l-2 border-[#1560ae]/30 pl-5 py-2" data-testid={`explanation-${topic.replace(/\s+/g, '-').toLowerCase()}`}>
-                    <p className="text-sm font-semibold text-[#0d1b2a] mb-1">{topic}</p>
-                    <p className="text-sm text-[#0d1b2a]/60 leading-relaxed">{EXPLANATIONS[topic]}</p>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {/* ── Section C: Conversion CTA ── */}
-            <div className="bg-[#0d1b2a] rounded p-8 md:p-10 mb-10" data-testid="results-cta-block">
-              <h3 className="text-xl md:text-2xl font-bold text-white mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
-                {scoreLevel === 'high' ? 'This needs eyes on the floor.' :
-                 scoreLevel === 'medium' ? 'The gaps are specific. A walkthrough will find them.' :
-                 'Solid start. Worth confirming.'}
-              </h3>
-              <p className="text-base text-white/60 leading-relaxed mb-6">
-                {scoreLevel === 'high'
-                  ? "With this level of exposure, a walkthrough is the right next step. Someone needs to see what is actually happening on-site."
-                  : scoreLevel === 'medium'
-                  ? "Your operation has some controls in place — but the flagged areas likely have gaps that only show up during a real walkthrough."
-                  : "Your answers suggest basic controls are in place. A quick walkthrough confirms what holds and catches what a self-assessment can't."}
-              </p>
-
-              <Link
-                to="/intake"
-                className="bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded transition-colors inline-flex items-center gap-2 text-base mb-4"
-                data-testid="results-cta-walkthrough"
-              >
-                Have me walk the floor and confirm this
-                <ArrowRight size={18} />
-              </Link>
-
-              <p className="text-sm text-white/40 mt-2">
-                One visit. Clear findings. No retainer.
-              </p>
-              <p className="text-sm text-white/40 mt-1">
-                Most walkthroughs start at $1,200 depending on size. You'll know your price before we schedule.
-              </p>
-            </div>
-
-            {/* ── Section D: Reinforcement ── */}
-            <div className="mb-10" data-testid="results-reinforcement">
-              <div className="w-16 h-px bg-[#1560ae]/30 mb-6" />
-              <p className="text-base text-[#0d1b2a]/50 italic">
-                Most issues aren't new. They've just gone unchecked.
-              </p>
-            </div>
-
-            {/* ── Download PDF ── */}
-            {submissionId && (
-              <div className="border-t border-[#0d1b2a]/10 pt-8" data-testid="results-download">
-                <p className="text-sm text-[#0d1b2a]/60 mb-3">
-                  A summary has been sent to your email. You can also download it here:
-                </p>
-                <a
-                  href={`${API}/api/safety-check/report/${submissionId}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 border border-[#0d1b2a]/20 hover:border-[#0d1b2a]/40 text-[#0d1b2a] font-medium px-5 py-2.5 rounded transition-colors text-sm"
-                  data-testid="download-report"
+                {/* Score numerals */}
+                <p
+                  className={`text-7xl md:text-8xl font-extrabold tracking-tight mb-4 ${TIER.scoreClass}`}
+                  style={{ fontFamily: "'JetBrains Mono', monospace" }}
+                  data-testid="results-score"
                 >
-                  Download Safety Check Report (PDF)
-                </a>
+                  {confirmed} / 6
+                </p>
+
+                {/* Risk label badge */}
+                <span
+                  className={`inline-block text-xs font-bold tracking-widest uppercase px-3 py-1.5 rounded border mb-8 ${TIER.labelClass}`}
+                  style={{ fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.14em' }}
+                  data-testid="results-risk-label"
+                >
+                  {TIER.label}
+                </span>
+
+                {/* Headline */}
+                <h2
+                  className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-5 leading-[1.2] tracking-tight"
+                  style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+                  data-testid="results-headline"
+                >
+                  {TIER.headline}
+                </h2>
+
+                {/* Body copy */}
+                <p
+                  className="text-base md:text-lg text-white/70 leading-relaxed mb-8 max-w-2xl"
+                  data-testid="results-body"
+                >
+                  {TIER.body}
+                </p>
+
+                {/* Flagged topics (only if medium/high — gives substance to the result) */}
+                {flaggedTopics.length > 0 && (
+                  <div className="mb-8 pb-8 border-b border-white/10" data-testid="results-flagged-list">
+                    <p className="text-xs font-semibold tracking-widest uppercase text-white/40 mb-4" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                      Areas flagged for review
+                    </p>
+                    <ul className="space-y-3">
+                      {flaggedTopics.map((topic) => (
+                        <li key={topic} className="flex items-start gap-3" data-testid={`flagged-${topic.replace(/\s+/g, '-').toLowerCase()}`}>
+                          <span className={`w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 ${tier === 'high' ? 'bg-red-400' : 'bg-amber-300'}`} />
+                          <div>
+                            <p className="text-sm font-semibold text-white">{topic}</p>
+                            <p className="text-sm text-white/55 leading-relaxed">{EXPLANATIONS[topic]}</p>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Tier-specific CTAs */}
+                {tier === 'low' && (
+                  <div className="mt-4" data-testid="results-cta-block">
+                    <Link
+                      to="/intake?service=safety-walkthrough-report"
+                      className="inline-flex items-center gap-2 border border-white/30 hover:border-white/60 hover:bg-white/5 text-white font-semibold px-7 py-3.5 rounded transition-colors text-base"
+                      data-testid="results-cta-primary"
+                    >
+                      Schedule an Annual Walkthrough
+                      <ArrowRight size={18} />
+                    </Link>
+                  </div>
+                )}
+
+                {tier === 'medium' && (
+                  <div className="mt-4 flex flex-col sm:flex-row gap-3 items-start" data-testid="results-cta-block">
+                    <Link
+                      to="/intake?service=safety-walkthrough-report"
+                      className="inline-flex items-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-7 py-3.5 rounded transition-colors text-base"
+                      data-testid="results-cta-primary"
+                    >
+                      Request a Safety Walkthrough
+                      <ArrowRight size={18} />
+                    </Link>
+                    <Link
+                      to="/safety-walkthrough"
+                      className="inline-flex items-center gap-2 text-white/70 hover:text-white underline underline-offset-4 px-2 py-3.5 text-sm"
+                      data-testid="results-cta-secondary"
+                    >
+                      See what a walkthrough covers →
+                    </Link>
+                  </div>
+                )}
+
+                {tier === 'high' && (
+                  <div className="mt-4 flex flex-col sm:flex-row gap-3 items-start" data-testid="results-cta-block">
+                    <a
+                      href="tel:3363298899"
+                      className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold px-7 py-3.5 rounded transition-colors text-base"
+                      data-testid="results-cta-primary"
+                    >
+                      Call or Text Vince Now — (336) 329-8899
+                    </a>
+                    <Link
+                      to="/intake?service=safety-walkthrough-report"
+                      className="inline-flex items-center gap-2 text-white/70 hover:text-white underline underline-offset-4 px-2 py-3.5 text-sm"
+                      data-testid="results-cta-secondary"
+                    >
+                      Or request a walkthrough online →
+                    </Link>
+                  </div>
+                )}
+
+                {/* Disclaimer */}
+                <p
+                  className="mt-8 text-xs text-white/35 leading-relaxed max-w-xl"
+                  style={{ fontFamily: "'JetBrains Mono', monospace" }}
+                  data-testid="results-disclaimer"
+                >
+                  This self-screen does not constitute a compliance audit. Results reflect self-reported conditions only.
+                </p>
+
+                {/* Start Over */}
+                <div className="mt-10 pt-6 border-t border-white/10">
+                  <button
+                    type="button"
+                    onClick={handleStartOver}
+                    className="text-sm text-white/50 hover:text-white underline underline-offset-4 transition-colors"
+                    data-testid="results-start-over"
+                  >
+                    ← Start over
+                  </button>
+                </div>
               </div>
-            )}
-          </div>
-        </section>
-      )}
+            </section>
+          </>
+        );
+      })()}
     </main>
   );
 };

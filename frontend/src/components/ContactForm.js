@@ -243,25 +243,23 @@ const ContactForm = ({ compact = false }) => {
             data-testid="contact-form-sms-consent"
           />
           <span className="text-xs leading-relaxed text-[#1C2B2B]/80">
-            By checking this box, I consent to receive SMS from GigLine Safety &amp; Compliance. Reply <strong>STOP</strong> to opt-out; Reply <strong>HELP</strong> for support; Message &amp; data rates may apply; Messaging frequency may vary. Visit{' '}
+            By checking this box, I consent to receive SMS from GigLine Safety &amp; Compliance. Reply <strong>STOP</strong> to opt-out; Reply <strong>HELP</strong> for support. Message &amp; data rates may apply. Messaging frequency may vary. View our{' '}
             <a
-              href="https://launchpathedu.com/privacy-policy"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/privacy-policy"
               className="font-bold underline"
+              data-testid="contact-form-sms-privacy-link"
             >
-              https://launchpathedu.com/privacy-policy
+              Privacy Policy
             </a>
-            {' '}to see our privacy policy and{' '}
+            {' '}and{' '}
             <a
-              href="https://launchpathedu.com/terms-of-service"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/terms-of-service"
               className="font-bold underline"
+              data-testid="contact-form-sms-terms-link"
             >
-              https://launchpathedu.com/terms-of-service
+              Terms of Service
             </a>
-            {' '}for our Terms of Service.
+            .
           </span>
         </label>
       </div>

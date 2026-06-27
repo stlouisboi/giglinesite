@@ -1,9 +1,11 @@
 """GL-WEB-011 — Walkthrough QR Landing Page submission endpoint."""
 
 from fastapi import APIRouter, HTTPException
+from fastapi.responses import FileResponse
 from pydantic import BaseModel, EmailStr, Field
 from typing import Optional
 from datetime import datetime, timezone
+from pathlib import Path
 import uuid
 import logging
 
@@ -12,6 +14,25 @@ from config import db, SENDER_EMAIL, VINCE_EMAIL
 
 router = APIRouter()
 logger = logging.getLogger("gigline")
+
+LEAVE_BEHIND_V9_PDF = Path("/app/backend/internal_docs/GigLine_LeaveBehind_v9.pdf")
+
+
+@router.get("/leave-behind/v9")
+async def download_leave_behind_v9():
+    """Serve the GL-WEB-LB-009 door-knock flyer PDF (single letter page).
+
+    Public URL on the preview environment:
+      {REACT_APP_BACKEND_URL}/api/leave-behind/v9
+    """
+    if not LEAVE_BEHIND_V9_PDF.exists():
+        raise HTTPException(status_code=404, detail="Leave-behind PDF not generated yet. Run scripts/generate_leave_behind_v9.py")
+    return FileResponse(
+        path=str(LEAVE_BEHIND_V9_PDF),
+        media_type="application/pdf",
+        filename="GigLine_LeaveBehind_v9.pdf",
+        headers={"Content-Disposition": 'inline; filename="GigLine_LeaveBehind_v9.pdf"'},
+    )
 
 
 class WalkthroughLandingSubmission(BaseModel):

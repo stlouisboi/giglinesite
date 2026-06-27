@@ -19,19 +19,27 @@ const mono = { fontFamily: "'JetBrains Mono', monospace" };
 const sans = { fontFamily: "'Manrope', sans-serif" };
 const serif = { fontFamily: "Georgia, 'Times New Roman', serif" };
 
-/* ── The 11 documents (GL-WEB-015 spec) ── */
+/* ── The 11 documents — SS-XX prefix + 1-line description (mirrors Manus reference) ── */
 const KIT_CONTENTS = [
-  'Quick Reference Summary Card — post at your supervisor station',
-  'Welcome & Usage Guide — read first, sets up the system',
-  'Chemical Inventory Log — list every chemical on site',
-  'SDS Index & Binder Log — track SDS location per chemical',
-  'Written HazCom Program — your required written safety program',
-  '30-Day Supervisor Action Checklist — week-by-week implementation roadmap',
-  'One Phone Call Card — six scenarios, post at your supervisor station',
-  'If OSHA Shows Up — seven-step protocol, post near your front entrance',
-  'When to Call for Help — Red Flag List with CFR citations',
-  'Monthly Safety Inspection Checklist — 40+ items, signature block, retention instruction',
-  'Employee Training Record Log — document every safety training session',
+  { num: '00', title: 'Quick Reference Summary Card', desc: 'Post at your supervisor station. Emergency contacts, when to call, monthly schedule at a glance.' },
+  { num: '01', title: 'Welcome & Usage Guide', desc: 'Read first. Sets up the system and tells you exactly how to use each piece.' },
+  { num: '02', title: 'Chemical Inventory Log', desc: 'List every chemical on site. Required under 29 CFR 1910.1200(e)(1)(i).' },
+  { num: '03', title: 'SDS Index & Binder Log', desc: 'Track SDS location per chemical. Cross-reference with SS-02.' },
+  { num: '04', title: 'Written HazCom Program', desc: "Your facility's required written hazard communication program. Fill in, sign, retain." },
+  { num: '05', title: '30-Day Supervisor Action Checklist', desc: 'Week-by-week implementation roadmap. Work through it in sequence.' },
+  { num: '06', title: 'One Phone Call Card', desc: 'Six scenarios that require you to call GigLine before anything else. Post at supervisor station.' },
+  { num: '07', title: 'If OSHA Shows Up', desc: 'Seven-step protocol for the first ten minutes of an inspection. Post near your front entrance.' },
+  { num: '08', title: 'When to Call for Help', desc: 'Red Flag List — 20+ conditions requiring immediate action, with CFR citations.' },
+  { num: '09', title: 'Monthly Safety Inspection Checklist', desc: '40+ items, signature block, retention instruction. Complete one per month.' },
+  { num: '10', title: 'Employee Training Record Log', desc: 'Document every safety training session. Retention: indefinitely.' },
+];
+
+/* ── Hero stats ── */
+const HERO_STATS = [
+  { value: '11', label: 'Documents' },
+  { value: '40+', label: 'Inspection Items' },
+  { value: '6', label: 'CFR Standards Covered' },
+  { value: '$16,550', label: 'Max Penalty Per Violation' },
 ];
 
 /* ── Pricing cards data ── */
@@ -87,7 +95,7 @@ const H2 = ({ children, center = false }) => (
 /* ── Pricing card ── */
 const PricingCard = ({ label, price, subline, bullets, ctaLabel, ctaTestId, onBuy, loading, featured }) => (
   <div
-    className="rounded-lg p-7 md:p-8 flex flex-col h-full"
+    className="rounded-lg p-7 md:p-8 flex flex-col h-full relative"
     style={{
       background: featured ? NAVY : 'white',
       border: `1px solid ${featured ? GOLD : BORDER}`,
@@ -96,9 +104,24 @@ const PricingCard = ({ label, price, subline, bullets, ctaLabel, ctaTestId, onBu
     }}
     data-testid={`kit-card-${featured ? 'physical' : 'digital'}`}
   >
+    {featured && (
+      <span
+        className="absolute -top-3 right-6 uppercase font-bold tracking-[0.18em] px-3 py-1 rounded-sm"
+        style={{
+          background: GOLD,
+          color: NAVY,
+          ...mono,
+          fontSize: '10.5px',
+          boxShadow: '0 4px 10px rgba(0,0,0,0.12)',
+        }}
+        data-testid="kit-card-recommended-badge"
+      >
+        Recommended
+      </span>
+    )}
     <p
       className="uppercase font-bold tracking-[0.22em] mb-3"
-      style={{ color: featured ? GOLD : GOLD, ...mono, fontSize: '11px' }}
+      style={{ color: GOLD, ...mono, fontSize: '11px' }}
     >
       {label}
     </p>
@@ -117,12 +140,13 @@ const PricingCard = ({ label, price, subline, bullets, ctaLabel, ctaTestId, onBu
     <ul className="space-y-3 mb-8 flex-1">
       {bullets.map((b, i) => (
         <li key={i} className="flex items-start gap-2.5 text-sm leading-relaxed">
-          <Check
-            size={16}
-            strokeWidth={3}
-            className="flex-shrink-0 mt-0.5"
-            style={{ color: GOLD }}
-          />
+          <span
+            className="flex-shrink-0 font-bold leading-none"
+            style={{ color: GOLD, ...mono, fontSize: '17px', lineHeight: '1.2' }}
+            aria-hidden
+          >
+            &mdash;
+          </span>
           <span style={{ color: featured ? 'rgba(255,255,255,0.88)' : TEXT_MUTED }}>{b}</span>
         </li>
       ))}
@@ -187,7 +211,7 @@ const SupervisorKitPage = () => {
       />
 
       {/* ─────────── HERO ─────────── */}
-      <section className="px-5 md:px-8 pt-20 md:pt-28 pb-16 md:pb-20" data-testid="kit-hero">
+      <section className="px-5 md:px-8 pt-20 md:pt-28 pb-14 md:pb-16" data-testid="kit-hero">
         <div className="max-w-4xl mx-auto text-center">
           <SectionLabel>Supervisor Safety Starter System</SectionLabel>
           <h1
@@ -198,43 +222,109 @@ const SupervisorKitPage = () => {
             Built for the person responsible for safety when no one else is watching.
           </h1>
           <p
-            className="text-[17px] md:text-[19px] leading-[1.65] max-w-3xl mx-auto"
+            className="text-[17px] md:text-[19px] leading-[1.65] max-w-3xl mx-auto mb-12 md:mb-14"
             style={{ color: TEXT_MUTED, ...serif }}
             data-testid="kit-hero-subhead"
           >
             11 documents. CFR citations. Inspection protocols. Every form maps directly to an OSHA standard. Use it consistently and you will be prepared for any inspection, incident, or audit.
           </p>
+
+          {/* Hero stats bar (mirrors Manus reference) */}
+          <div
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-4xl mx-auto"
+            data-testid="kit-hero-stats"
+          >
+            {HERO_STATS.map((stat, i) => (
+              <div
+                key={stat.label}
+                className="text-center py-5 px-3 rounded-md"
+                style={{ background: 'white', border: `1px solid ${BORDER}` }}
+                data-testid={`kit-hero-stat-${i + 1}`}
+              >
+                <p
+                  className="font-extrabold leading-none tracking-tight mb-2"
+                  style={{ color: GOLD, ...mono, fontSize: 'clamp(22px, 2.4vw, 30px)' }}
+                >
+                  {stat.value}
+                </p>
+                <p
+                  className="text-[11.5px] md:text-[12px] uppercase font-bold tracking-[0.08em] leading-tight"
+                  style={{ color: TEXT_MUTED, ...sans }}
+                >
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       <div className="max-w-4xl mx-auto" style={{ height: '1px', background: BORDER }} />
 
-      {/* ─────────── WHAT'S INSIDE ─────────── */}
+      {/* ─────────── WHAT'S INSIDE — SS-XX cards (mirrors Manus reference) ─────────── */}
       <section className="px-5 md:px-8 py-20 md:py-24" data-testid="kit-contents">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <SectionLabel>What&rsquo;s Inside</SectionLabel>
-          <H2>Every document in the kit maps to a specific OSHA standard. Nothing generic. Nothing filler.</H2>
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4 mt-10" data-testid="kit-contents-list">
-            {KIT_CONTENTS.map((item, i) => (
+          <H2>Nothing generic. Nothing filler.</H2>
+          <p
+            className="text-[16px] md:text-[17px] leading-[1.7] max-w-3xl mb-6"
+            style={{ color: TEXT_MUTED, ...serif }}
+          >
+            Every document maps to a specific OSHA standard. Each one includes the CFR citation, a retention instruction, and a note on what it proves in an inspection.
+          </p>
+          <div
+            className="rounded-md p-4 md:p-5 mb-12 md:mb-14"
+            style={{ background: PANEL, border: `1px solid ${BORDER}` }}
+            data-testid="kit-value-callout"
+          >
+            <p className="text-[14.5px] md:text-[15px] leading-[1.6]" style={{ color: NAVY, ...serif }}>
+              <strong>Estimated compliance value:</strong> $600&ndash;$800 to have a consultant build these documents from scratch. This kit delivers the same structure, CFR-cited and ready to adapt.
+            </p>
+          </div>
+
+          <ul
+            className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5"
+            data-testid="kit-contents-list"
+          >
+            {KIT_CONTENTS.map((item) => (
               <li
-                key={i}
-                className="flex items-start gap-3"
-                data-testid={`kit-doc-${i + 1}`}
+                key={item.num}
+                className="flex items-start gap-4"
+                data-testid={`kit-doc-${item.num}`}
               >
                 <span
-                  className="flex-shrink-0 mt-1 font-bold"
-                  style={{ ...mono, color: GOLD, fontSize: '13px', minWidth: '22px' }}
+                  className="flex-shrink-0 inline-flex items-center justify-center font-bold rounded-md mt-0.5"
+                  style={{
+                    background: NAVY,
+                    color: GOLD,
+                    ...mono,
+                    fontSize: '11.5px',
+                    width: '46px',
+                    height: '24px',
+                    letterSpacing: '0.04em',
+                  }}
                 >
-                  {String(i + 1).padStart(2, '0')}
+                  SS-{item.num}
                 </span>
-                <span className="text-[15.5px] md:text-base leading-[1.65]" style={{ color: TEXT_MUTED, ...serif }}>
-                  {item}
-                </span>
+                <div className="flex-1">
+                  <h3
+                    className="font-bold text-[15.5px] md:text-[16.5px] leading-snug mb-1"
+                    style={{ ...sans, color: NAVY }}
+                  >
+                    {item.title}
+                  </h3>
+                  <p
+                    className="text-[14.5px] md:text-[15px] leading-[1.6]"
+                    style={{ color: TEXT_MUTED, ...serif }}
+                  >
+                    {item.desc}
+                  </p>
+                </div>
               </li>
             ))}
           </ul>
           <p
-            className="text-sm leading-relaxed mt-10 italic"
+            className="text-sm leading-relaxed mt-12 italic"
             style={{ color: TEXT_SUBTLE, ...serif }}
           >
             Digital kit includes all 11 documents as print-ready PDFs. Physical kit includes everything printed and bound in a 3-ring binder, plus the GigLine 2026 Triad OSHA Field Manual and a personal contact card for direct access to Vince.
@@ -242,21 +332,32 @@ const SupervisorKitPage = () => {
         </div>
       </section>
 
-      {/* ─────────── VALUE FRAMING ─────────── */}
+      {/* ─────────── VALUE FRAMING — pulled quote w/ attribution (mirrors Manus reference) ─────────── */}
       <section className="px-5 md:px-8 py-16 md:py-20" data-testid="kit-value-framing">
-        <div className="max-w-2xl mx-auto">
-          <p
-            className="text-[17px] md:text-[18px] leading-[1.75] mb-5"
-            style={{ color: TEXT_MUTED, ...serif }}
+        <div className="max-w-3xl mx-auto">
+          <blockquote
+            className="border-l-4 pl-6 md:pl-7"
+            style={{ borderColor: GOLD }}
           >
-            Most small operations pay $600&ndash;$800 or more to have a consultant build a written HazCom program, chemical and SDS indexes, training records, and inspection checklists from scratch. This kit gives you that structure &mdash; CFR-cited, GigLine-built &mdash; ready to adapt to your operation.
-          </p>
-          <p
-            className="text-[17px] md:text-[18px] leading-[1.75]"
-            style={{ color: TEXT_MUTED, ...serif }}
-          >
-            It is not a substitute for a site-specific walkthrough. It is the foundation you need before one happens &mdash; or the documentation layer you put in place after.
-          </p>
+            <p
+              className="text-[17px] md:text-[19px] leading-[1.7] mb-5 italic"
+              style={{ color: NAVY, ...serif }}
+            >
+              &ldquo;Most small operations pay $600&ndash;$800 or more to have a consultant build a written HazCom program, chemical and SDS indexes, training records, and inspection checklists from scratch. This kit gives you that structure &mdash; CFR-cited, GigLine-built &mdash; ready to adapt to your operation.
+            </p>
+            <p
+              className="text-[17px] md:text-[19px] leading-[1.7] mb-6 italic"
+              style={{ color: NAVY, ...serif }}
+            >
+              It is not a substitute for a site-specific walkthrough. It is the foundation you need before one happens &mdash; or the documentation layer you put in place after.&rdquo;
+            </p>
+            <footer
+              className="text-[14px] md:text-[15px] font-bold"
+              style={{ color: TEXT_MUTED, ...sans }}
+            >
+              &mdash; Vince Lawrence, GigLine Safety &amp; Compliance
+            </footer>
+          </blockquote>
         </div>
       </section>
 

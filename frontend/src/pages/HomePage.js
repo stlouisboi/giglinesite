@@ -622,6 +622,66 @@ const HomePage = () => {
       {/* ═══ WHAT HAPPENS ON THE DAY OF YOUR WALKTHROUGH ═══ */}
       <WalkthroughDaySection variant="crv" surface="light" />
 
+      {/* ═══ SUPERVISOR KIT BAND — single-CTA cross-sell ═══ */}
+      <section
+        className="py-16 md:py-20"
+        style={{
+          background: '#0A1628',
+          borderTop: '1px solid rgba(197,160,89,0.30)',
+          borderBottom: '1px solid rgba(197,160,89,0.30)',
+        }}
+        data-testid="home-kit-band"
+      >
+        <div className="container max-w-5xl">
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 md:gap-12 items-center">
+            <div>
+              <p
+                className="uppercase font-bold tracking-[0.28em] mb-3"
+                style={{
+                  color: '#C5A059',
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: '11px',
+                }}
+                data-testid="home-kit-band-eyebrow"
+              >
+                Supervisor Safety Starter System
+              </p>
+              <h2
+                className="font-bold leading-tight tracking-tight mb-3 text-[24px] md:text-[30px] lg:text-[34px] text-white"
+                style={{ fontFamily: "'Manrope', sans-serif" }}
+                data-testid="home-kit-band-headline"
+              >
+                Need the documentation layer?
+              </h2>
+              <p
+                className="text-[15.5px] md:text-[17px] leading-[1.65] max-w-2xl"
+                style={{
+                  color: 'rgba(255,255,255,0.72)',
+                  fontFamily: "Georgia, 'Times New Roman', serif",
+                }}
+                data-testid="home-kit-band-body"
+              >
+                11 CFR-cited documents &mdash; written HazCom program, SDS index, training log, monthly inspection checklist, &ldquo;If OSHA Shows Up&rdquo; protocol. Use it before a walkthrough, or as the foundation after. <strong style={{ color: '#C5A059' }}>$600 digital &middot; $675 physical</strong>. Included free with every Compliance Readiness Visit.
+              </p>
+            </div>
+            <div className="flex-shrink-0 md:text-right">
+              <Link
+                to="/supervisor-kit"
+                className="inline-flex items-center justify-center gap-2 font-bold py-3.5 px-7 transition-all text-[15px] whitespace-nowrap"
+                style={{
+                  background: '#C5A059',
+                  color: '#0A1628',
+                  fontFamily: "'Manrope', sans-serif",
+                }}
+                data-testid="home-kit-band-cta"
+              >
+                See the Kit &rarr;
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ═══ TESTIMONIALS + CASE STUDY + TRACK RECORD (relocated per spec — between Services and How It Works) ═══ */}
       <section className="py-20 md:py-28" style={{ backgroundColor: '#0d1b2a' }} data-testid="trust-section">
         <div className="container max-w-7xl grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12">

@@ -97,6 +97,11 @@ const Footer = () => {
               <ul className="space-y-4">
                 {[
                   {
+                    name: 'Supervisor Safety Starter System',
+                    path: '/supervisor-kit',
+                    desc: '11 documents. CFR-cited. $600 digital · $675 physical. Included free with every Compliance Readiness Visit.',
+                  },
+                  {
                     name: 'Safety Check',
                     path: '/safety-check',
                     desc: 'Free 90-second self-screen. No email required.',

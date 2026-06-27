@@ -192,6 +192,34 @@ const STANDALONE = [
     detailsHref: '/services/document-development',
     testid: 'svc-standalone-doc-dev',
   },
+  {
+    // Product card — not a service engagement
+    eyebrow: 'Supervisor Safety Starter System',
+    title: 'Supervisor Safety Starter System',
+    headline: "Can't schedule a walkthrough yet? Start here.",
+    price: '$600 digital · $675 physical',
+    body: 'A standalone product, not a service engagement. 11 print-ready documents — CFR-cited, GigLine-built — covering the written HazCom program, chemical and SDS indexes, training records, monthly inspection checklist, an "If OSHA Shows Up" protocol, and the supervisor station cards that keep the system alive on the floor. Use it to build the foundation before a walkthrough, or as the documentation layer afterward.',
+    listLabel: "What's Inside",
+    bgColor: '#FAF7F1',
+    whatsIncluded: [
+      'Written HazCom Program — the document most often cited for missing',
+      'Chemical Inventory Log + SDS Index & Binder Log',
+      'Monthly Safety Inspection Checklist (40+ items, signature block)',
+      'Employee Training Record Log',
+      'If OSHA Shows Up — seven-step front-desk protocol',
+      '30-Day Supervisor Action Checklist — week-by-week implementation roadmap',
+      'Quick Reference Summary Card + One Phone Call Card + When to Call for Help',
+      'Physical kit adds GigLine 2026 Triad OSHA Field Manual + direct contact card',
+    ],
+    best: 'Operations that need the documentation layer in place fast — before a walkthrough is scheduled, after one is completed, or as a standalone foundation when budget for a full Compliance Readiness Visit is not yet available.',
+    cta: 'See the Full Kit',
+    directLink: '/supervisor-kit',
+    detailsHref: '/supervisor-kit',
+    testid: 'svc-standalone-supervisor-kit',
+    anchor: 'supervisor-kit',
+    badge: 'Included Free With CRV',
+    badgeColor: '#D4A93E',
+  },
 ];
 
 /* ═══ Recurring (Quarterly + Annual) ═══ */
@@ -744,7 +772,7 @@ const ServicesPage = () => {
 
                     <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
                       <Link
-                        to={intakeLink(s.intakeService)}
+                        to={s.directLink || intakeLink(s.intakeService)}
                         onClick={() => trackServiceBooking && trackServiceBooking(s.title)}
                         className="inline-flex items-center justify-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-6 py-3.5 rounded-lg text-[15px] transition-colors shadow-md shadow-[#1a6fc4]/15"
                         data-testid={`${s.testid}-cta`}
@@ -754,7 +782,7 @@ const ServicesPage = () => {
                       <span className="font-bold text-[#0d1b2a] text-[15.5px]" style={mono} data-testid={`${s.testid}-price`}>
                         {s.price}
                       </span>
-                      {s.detailsHref && (
+                      {s.detailsHref && !s.directLink && (
                         <Link
                           to={s.detailsHref}
                           className="inline-flex items-center gap-1 text-[#1a6fc4] hover:text-[#1560ae] font-bold text-[14.5px] transition-colors"

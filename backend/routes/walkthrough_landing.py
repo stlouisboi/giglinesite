@@ -16,6 +16,7 @@ router = APIRouter()
 logger = logging.getLogger("gigline")
 
 LEAVE_BEHIND_V9_PDF = Path("/app/backend/internal_docs/GigLine_LeaveBehind_v9.pdf")
+LEAVE_BEHIND_V11_PDF = Path("/app/backend/internal_docs/GigLine_LeaveBehind_v11.pdf")
 
 
 @router.get("/leave-behind/v9")
@@ -32,6 +33,25 @@ async def download_leave_behind_v9():
         media_type="application/pdf",
         filename="GigLine_LeaveBehind_v9.pdf",
         headers={"Content-Disposition": 'inline; filename="GigLine_LeaveBehind_v9.pdf"'},
+    )
+
+
+@router.get("/leave-behind/v11")
+@router.get("/leave-behind")  # Default — always serves the latest version
+async def download_leave_behind_v11():
+    """Serve the GL-WEB-LB-011 premium-visual leave-behind PDF (current production).
+
+    Public URL:
+      {REACT_APP_BACKEND_URL}/api/leave-behind/v11   (versioned)
+      {REACT_APP_BACKEND_URL}/api/leave-behind       (always latest)
+    """
+    if not LEAVE_BEHIND_V11_PDF.exists():
+        raise HTTPException(status_code=404, detail="Leave-behind v11 PDF not generated yet. Run scripts/generate_leave_behind_v11.py")
+    return FileResponse(
+        path=str(LEAVE_BEHIND_V11_PDF),
+        media_type="application/pdf",
+        filename="GigLine_LeaveBehind_v11.pdf",
+        headers={"Content-Disposition": 'inline; filename="GigLine_LeaveBehind_v11.pdf"'},
     )
 
 

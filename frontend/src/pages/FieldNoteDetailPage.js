@@ -271,25 +271,54 @@ Corrective action: buy a label-maker and a set of GHS pictogram stickers ($60 to
   'lockout-tagout': {
     title: 'Lockout/Tagout (LOTO)',
     subtitle: 'The Step That Gets Skipped',
-    seo: 'Lockout/Tagout compliance for small operations. Energy isolation during maintenance — what gets missed and what OSHA requires.',
+    seo: 'OSHA Lockout/Tagout compliance for small manufacturers and warehouses in the Piedmont Triad NC. Written procedures, training, annual inspections, and the steps that get skipped on the floor.',
+    cfrCitation: '29 CFR 1910.147',
+    oshaChecks: [
+      'Written, machine-specific lockout procedures for every piece of equipment with hazardous energy',
+      'Authorized employees trained on energy isolation and documented annually',
+      'Personal locks, tags, and hasps assigned by name and available at point of use',
+      'Annual periodic inspection of each lockout procedure by an authorized employee',
+      'Group lockout procedures for crews servicing the same equipment',
+      'Contractor LOTO coordination — outside service providers informed and aligned',
+    ],
+    faqSchema: [
+      { question: 'Does OSHA require a written lockout/tagout procedure for every machine?', answer: 'Yes. 29 CFR 1910.147(c)(4)(i) requires a documented procedure for the control of hazardous energy for each piece of equipment. A single generic procedure used across multiple machines is one of the most common citations under this standard.' },
+      { question: 'How often does OSHA require LOTO procedure inspections?', answer: '29 CFR 1910.147(c)(6) requires a periodic inspection of each energy control procedure at least annually. The inspection must be performed by an authorized employee (other than the one performing the work), and it must be documented with the date, the equipment, and the names of the employees included.' },
+      { question: 'What is the difference between authorized, affected, and other employees under LOTO?', answer: 'Authorized employees actually lock out and service equipment — they receive full LOTO training. Affected employees operate or work in the area but do not service equipment — they receive awareness training. Other employees work in the facility but are not exposed — they receive an explanation of the program. All three categories must be trained, and the training must be documented.' },
+    ],
+    relatedNotes: ['machine-guarding', 'electrical-safety'],
     sections: {
-      whatItIs: 'Lockout/Tagout is the process of isolating energy sources before maintenance or servicing equipment. Electrical, hydraulic, pneumatic, mechanical — if it can move, it needs to be locked out. OSHA 1910.147 requires written procedures, training, and annual inspections. Most small operations skip at least one of those.',
+      whatItIs: `Lockout/Tagout — 29 CFR 1910.147 — is the OSHA standard that governs the control of hazardous energy during equipment servicing and maintenance. It is consistently in OSHA's top 5 most-cited general industry standards, and it shows up in fatality reports more often than any other maintenance-related standard. The rule is straightforward: before anyone services equipment that could start up unexpectedly or release stored energy, every energy source must be isolated, locked out, and verified. The execution is where it falls apart.
+
+The single most-cited subsection is 1910.147(c)(4) — failure to develop, document, and use machine-specific lockout procedures. OSHA does not accept one generic procedure used for every press, conveyor, and mixer in the building. Each piece of equipment with hazardous energy needs its own written procedure that lists every energy source (electrical, pneumatic, hydraulic, mechanical, thermal, chemical), the specific steps to isolate each one, and the verification method. In small shops I walk into, the most common state is no written procedures at all — the maintenance lead just "knows how to do it." That is a citable condition the moment OSHA asks for the procedure.
+
+The second most-cited subsection is 1910.147(c)(7) — training and retraining. OSHA requires training for three categories of employees: authorized employees who perform LOTO, affected employees who operate the equipment or work in the area, and other employees in the facility. All three categories must be trained, the training must be documented with dates and names, and retraining is required whenever there is a change in job assignments, machines, processes, or procedures — or when a periodic inspection reveals deviations. Most small operations train the maintenance team once at hire and never again. Affected employees (the operators who actually run the machine) often receive no formal training at all.
+
+The third gap is the annual periodic inspection — 1910.147(c)(6)(i). At least once per year, an authorized employee (other than the one who performs the work on a given machine) must observe a LOTO performance and verify that the written procedure is being followed correctly. The inspection has to be documented: date, machine, procedure inspected, names of the authorized employee and the inspector, and any deviations identified. Almost no small operation does this. When OSHA asks for the annual inspection records, the response is usually silence.
+
+What an OSHA Compliance Officer checks during a LOTO-focused visit: they ask to see written procedures for the specific machines they observe being serviced — pick one at random and the response had better be a printed, signed procedure within 60 seconds. They observe an actual lockout if maintenance is in progress and compare what they see against the written procedure. They review training records and confirm each authorized employee has been trained on the specific procedures they perform. They ask for the most recent annual inspection record. They review the program's annual review documentation under 1910.147(c)(4)(ii) to confirm procedures have been reviewed and updated as needed.
+
+Corrective action: photograph every piece of equipment with hazardous energy in your facility. For each one, draft a written procedure that lists every energy source and isolation point — most facilities can produce 8–15 procedures covering everything that needs one. Print the procedures, post them at the equipment, and file copies in a LOTO binder. Assign personal locks (with each authorized employee's name engraved or labeled) and store them at point of use. Schedule and document annual periodic inspections — put it on the calendar like any other required check. Train all three employee categories, document with sign-in sheets, and re-train whenever anything changes. Total fix time for a small operation: 12–20 hours of focused work spread over a month. Total cost: under $500 for locks, hasps, tags, and binders. The cost of getting it wrong: citations starting at $16,550 per violation, multiplied across every machine without a procedure.`,
       whatGetsMissed: [
-        'No written LOTO procedures for each machine',
-        'Locks and tags not available or not used',
-        'Employees trained once and never re-evaluated',
-        'Annual periodic inspections not conducted',
-        'Contractors not included in LOTO program',
+        'No machine-specific written LOTO procedure — one generic procedure used for everything',
+        'Personal locks not assigned by name or stored away from point of use',
+        'Authorized employees trained at hire and never retrained or re-evaluated',
+        'Annual periodic inspection never performed or never documented',
+        'Affected employees (operators) receive no LOTO awareness training',
+        'Contractors brought in for service work without LOTO coordination',
+        'Group lockout used informally with no documented procedure',
       ],
-      whatISee: 'I find machines with no written lockout procedure posted. Maintenance gets done with the breaker off but no lock on it. The locks are in a drawer somewhere. Training happened three years ago and nobody can describe the steps. When I ask about the annual inspection, the answer is usually a blank stare. This is the one that turns a maintenance task into a fatality.',
+      whatISee: 'I walk into facilities where the maintenance lead can describe lockout from memory — but there is no written procedure. The breakers are tagged with masking tape and a Sharpie. Personal locks are kept in a drawer in the maintenance office, not at point of use. The annual periodic inspection has never been performed. Operators have never been told what LOTO is, even though they are the ones who walk past locked-out equipment every day. When contractors come in to service a press, nobody coordinates LOTO at all — the contractor does whatever they were trained to do at their last job. This is the standard that turns a routine maintenance task into a fatality, and it is the standard that gets skipped because "we have always done it this way."',
       checklist: [
-        'Written LOTO procedures for each machine or energy source',
-        'Locks, tags, and hasps available and assigned',
-        'All affected and authorized employees trained',
-        'Training documented with dates and names',
-        'Annual periodic inspection completed and documented',
-        'Contractors informed of LOTO requirements',
-        'Group lockout procedures in place where needed',
+        'Written LOTO procedure on file for every machine with hazardous energy',
+        'Machine-specific procedures posted at point of use or filed in a binder available on the floor',
+        'Personal locks assigned to each authorized employee (name on lock)',
+        'Locks, tags, and hasps stored at point of use, not in a central drawer',
+        'Authorized, affected, and other employees trained — training documented by date and name',
+        'Annual periodic inspection completed for each procedure and documented',
+        'Group lockout procedure written for crew-based service work',
+        'Contractor LOTO coordination procedure in place and used on every outside service visit',
+        'Annual program review (1910.147(c)(4)(ii)) completed and documented',
       ],
     },
   },
@@ -535,6 +564,65 @@ Corrective action: buy a label-maker and a set of GHS pictogram stickers ($60 to
       ],
     },
   },
+  'recordkeeping-300-log': {
+    title: 'OSHA Recordkeeping & the 300 Log',
+    subtitle: 'The Form Nobody Fills Out Until It Is Too Late',
+    seo: 'OSHA 300 log and recordkeeping compliance for small employers in NC. Recordable injuries, 300A summary posting, severe injury reporting, and the citations that follow when the log is missing.',
+    cfrCitation: '29 CFR Part 1904',
+    oshaChecks: [
+      'OSHA 300 log maintained for the current calendar year and the past 5 years',
+      'Each recordable injury logged within 7 calendar days of notice',
+      '300A annual summary posted from February 1 through April 30 in a visible workplace location',
+      'Severe injuries reported to OSHA within required timeframes — fatality (8 hours), inpatient hospitalization / amputation / loss of an eye (24 hours)',
+      'Privacy concern cases handled correctly — no employee name on the publicly posted form',
+      'Electronic submission of 300A summary completed by March 2 for covered establishments',
+    ],
+    faqSchema: [
+      { question: 'Does every employer have to keep an OSHA 300 log?', answer: 'No. Employers with 10 or fewer employees at all times during the previous calendar year are partially exempt from routine OSHA recordkeeping under 29 CFR 1904.1. Certain low-hazard industries (NAICS codes listed in 1904 Subpart B Appendix A) are also exempt regardless of size. All employers — regardless of size or industry — must still report fatalities, in-patient hospitalizations, amputations, and losses of an eye to OSHA per 1904.39.' },
+      { question: 'What counts as an OSHA recordable injury?', answer: 'Under 29 CFR 1904.7, an injury or illness is recordable if it is work-related and results in death, days away from work, restricted work or transfer to another job, medical treatment beyond first aid, loss of consciousness, or a significant injury or illness diagnosed by a licensed health-care professional. First-aid-only cases are not recordable. The definition of first aid is narrow — for example, butterfly bandages count as first aid; sutures do not.' },
+      { question: 'When does the 300A summary have to be posted?', answer: 'The 300A annual summary must be posted in a conspicuous location at each establishment from February 1 through April 30 of the year following the year covered. It must be certified by a company executive before posting. Failure to post is one of the most common recordkeeping citations during scheduled inspections.' },
+    ],
+    relatedNotes: ['hazcom', 'emergency-action-plans'],
+    sections: {
+      whatItIs: `OSHA recordkeeping is governed by 29 CFR Part 1904 — the standard that requires employers to record work-related injuries and illnesses on three connected forms: the OSHA 300 (the running log of every recordable case), the OSHA 301 (the incident report for each case, with details OSHA can audit), and the OSHA 300A (the annual summary posted on the workplace bulletin board). The standard sounds simple — write down the injuries, post a summary, keep the records — but it is one of the most under-maintained programs in small operations, and one of the easiest for OSHA to cite because the gap is on paper.
+
+The partial exemption is the first thing to check. Under 1904.1, employers with 10 or fewer employees at any point during the prior calendar year are exempt from routine recordkeeping (they still have to report severe events to OSHA). Certain low-hazard industries are also exempt — see Subpart B Appendix A. Most small manufacturers, warehouses, and contractor operations in the Triad do NOT qualify for the partial exemption. They have 11+ employees and their NAICS code is not on the exempt list. The first question I ask is "what was your peak headcount last year?" — and the answer almost always pulls them into the recordkeeping requirement they did not realize applied to them.
+
+The most-cited recordkeeping subsection is 1904.32 — failure to post or properly complete the 300A annual summary. Every covered employer must post the 300A from February 1 through April 30 each year, in a conspicuous place where employees can see it. The form must be signed and certified by a company executive (CEO, owner, designated official, or supervising official). In small operations, what I most often find is no 300A at all — because there is no 300 log, so there is nothing to summarize. The second most common state is a 300A taped to the breakroom wall from 2019, never updated and never re-posted.
+
+The second most-cited subsection is 1904.29 — failure to record an injury within 7 calendar days. Recordable cases must be entered on the 300 log within 7 days of the employer learning about them. The OSHA 301 incident report (or an equivalent form) must be completed for each case as well. In facilities I walk through, the question "where is your OSHA 300 log?" is often met with a confused look. If the log exists, it is in the HR office, and the last entry is from a previous calendar year — even though Workers' Comp records show three injuries since.
+
+The third area is severe injury reporting under 1904.39. Regardless of recordkeeping exemption status, every employer in the US must report to OSHA: fatalities within 8 hours, and inpatient hospitalizations, amputations, or losses of an eye within 24 hours. These reports go to the OSHA Area Office or the federal 1-800-321-OSHA hotline. A delayed or missed severe injury report is its own citation, and it is one OSHA pursues aggressively because the case usually leads to a follow-up inspection of the underlying hazard.
+
+What an OSHA Compliance Officer checks during a recordkeeping audit: they ask for the OSHA 300 log for the current year and the past five years (the retention requirement under 1904.33). They cross-check the 300 log against Workers' Comp first reports, insurance claims, and any incident reports the employer keeps. They look at the 300A — is it posted? Is it certified? Is the certification date current? They ask whether any case from the past three years involved an inpatient hospitalization, amputation, or eye injury — and they verify whether that report went to OSHA in time. If electronic submission is required (establishments with 250+ employees, or 20+ in certain high-hazard industries), they verify the 300A was submitted to ITA by March 2.
+
+Corrective action: download the current OSHA 300 log, 301 incident form, and 300A summary from osha.gov (free, fillable PDFs). Reconstruct the past five years using whatever incident records you have — Workers' Comp filings, internal incident reports, employee handbook copies of injury notes. Designate one person as the recordkeeping owner. Build a calendar reminder for February 1 every year to certify and post the 300A. Build a calendar reminder for each severe injury reporting requirement so it is not missed if something happens. Train supervisors on what counts as recordable — the line between first aid and medical treatment is narrow and frequently misclassified. Total fix time for a small operation: 4–8 hours of focused work. Total cost: zero, beyond a printer and a clipboard. The cost of getting it wrong: each missing year of records is a separate citation, and the penalty range for recordkeeping violations under 1903.15 reaches $16,550 per item.`,
+      whatGetsMissed: [
+        'No OSHA 300 log maintained at all — operator assumes the partial exemption applies when it does not',
+        'Recordable injuries logged on Workers\' Comp records but never entered on the 300 log',
+        '300A annual summary never posted — or posted from a prior year and never updated',
+        '300A not certified by a company executive before posting (an executive signature is required, not a clerk\'s)',
+        'First aid vs. medical treatment misclassified — sutures, prescription medication, and work restriction often missed',
+        'Severe injury reports (fatality, hospitalization, amputation, eye loss) missed or delayed past required timeframes',
+        'Records destroyed before the 5-year retention requirement under 1904.33',
+        'Privacy concern cases listed by name on the publicly posted 300A',
+      ],
+      whatISee: 'I ask for the OSHA 300 log on almost every walkthrough. Most of the time it does not exist. The HR lead has never been asked about it, and the office manager assumes "we are too small for that." Headcount is usually well over 10 employees, which means the partial exemption does not apply. I check the breakroom wall — no 300A. I cross-reference the past three years against Workers\' Comp records and find multiple recordable cases the company never logged. When something serious happened — a fingertip amputation in 2023 — nobody called OSHA within 24 hours because nobody knew that requirement existed. None of this is the result of bad faith. It is the result of nobody being assigned the responsibility, and nobody knowing what counts.',
+      checklist: [
+        'Confirm whether the partial exemption applies (10 or fewer employees AND low-hazard NAICS) — document the determination',
+        'OSHA 300 log started for the current calendar year and maintained going forward',
+        'Each recordable case entered within 7 calendar days of notice',
+        'OSHA 301 incident report (or equivalent) completed for every recordable case',
+        '300A annual summary completed, certified by a company executive, and posted Feb 1 through Apr 30',
+        'Records retained for the current year plus the previous 5 years',
+        'Severe injury reporting procedure in place: 8 hours for fatality, 24 hours for hospitalization / amputation / eye loss',
+        'Electronic submission to OSHA ITA completed by March 2 for covered establishments',
+        'Supervisor training on the difference between first aid and medical treatment, documented annually',
+        'Privacy concern cases handled correctly — no employee name on the publicly posted 300A',
+      ],
+    },
+  },
+  // Alias slug for SEO / inbound linking — same content as 'confined-space'
   'ai-generated-safety-programs': {
     title: "An AI-Generated Safety Program Is Not a Working Safety Program",
     subtitle: "What ChatGPT can't see on your floor — and why OSHA can.",
@@ -598,7 +686,12 @@ If you used AI to generate safety documentation — or you are not sure whether 
 
 const FieldNoteDetailPage = () => {
   const { slug } = useParams();
-  const note = NOTES[slug];
+  // Alias map — additional slugs that resolve to existing notes (kept narrow on purpose).
+  const SLUG_ALIASES = {
+    'confined-space-entry-permits': 'confined-space',
+  };
+  const resolvedSlug = SLUG_ALIASES[slug] || slug;
+  const note = NOTES[resolvedSlug];
   const [dlEmail, setDlEmail] = useState('');
   const [dlStatus, setDlStatus] = useState('idle'); // idle | sending | sent | error
 
@@ -630,7 +723,7 @@ const FieldNoteDetailPage = () => {
       <SEO
         title={note.seoTitle || `${note.title} — Field Notes | GigLine Safety & Compliance`}
         description={note.seo}
-        canonical={`/field-notes/${slug}`}
+        canonical={`/field-notes/${resolvedSlug}`}
         ogType="article"
         ogImage={note.heroImage}
       />

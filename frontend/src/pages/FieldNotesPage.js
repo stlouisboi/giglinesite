@@ -110,6 +110,13 @@ const FIELD_NOTES = [
     description: 'Any operation where employees could be exposed to blood or body fluids needs a written exposure control plan. First aid responders count.',
     topics: ['exposure control plan', 'first aid', 'sharps disposal'],
   },
+  {
+    slug: 'recordkeeping-300-log',
+    title: 'OSHA Recordkeeping & the 300 Log',
+    subtitle: 'The Form Nobody Fills Out Until It Is Too Late',
+    description: '29 CFR Part 1904. Recordable injuries, the 300A summary that has to be posted every Feb 1, and the severe injury reports OSHA expects within 8 or 24 hours of an event.',
+    topics: ['300 log', '300A summary', 'severe injury reporting'],
+  },
 ];
 
 const FieldNotesPage = () => {

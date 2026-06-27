@@ -1048,6 +1048,7 @@ const fieldNotes = [
   { slug: 'scaffolding-safety', title: 'Scaffolding Safety', desc: 'OSHA scaffolding requirements. Competent person, guardrails, load capacity, daily inspections.' },
   { slug: 'hearing-conservation', title: 'Hearing Conservation', desc: 'Hearing conservation program requirements. Noise monitoring, audiometric testing, hearing protection.' },
   { slug: 'bloodborne-pathogens', title: 'Bloodborne Pathogens', desc: 'Bloodborne pathogens exposure control plan. First aid responders, Hepatitis B, sharps disposal.' },
+  { slug: 'recordkeeping-300-log', title: 'OSHA Recordkeeping & the 300 Log', desc: '29 CFR Part 1904. Recordable injuries, the 300A summary posting requirement, and the severe injury reports OSHA expects within 8 or 24 hours of an event.' },
 ];
 fieldNotes.forEach((note) => {
   const schemas = [

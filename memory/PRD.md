@@ -53,7 +53,7 @@ B2B lead generation funnel for an OSHA compliance consultancy (Vince Lawrence / 
 - Optional: set `GIGLINE_GOOGLE_REVIEW_URL` env var to a `g.page/r/...` short link once Vince claims one.
 
 **P2**
-- Replace "David R." testimonial placeholder with real Google Review text (user to supply).
+- ~~Replace "David R." testimonial placeholder with real Google Review text~~ — **Confirmed real client testimonial, leave as-is. Do not modify. (Vince, June 27 2026)**
 - Leave-behind v9 rebuild (door-knock QR flyer — updated services/pricing).
 - Google Review short link added to delivered report PDFs.
 - 4-touch Past Client Retention sequence in MailerLite (needs MailerLite key).

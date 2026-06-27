@@ -17,10 +17,11 @@ from datetime import datetime, timezone
 import asyncio
 import logging
 
+import base64
 import resend
 from config import (
     db, USE_NATIVE_STRIPE, stripe_api_key,
-    SUPERVISOR_KIT_PRODUCTS, SENDER_EMAIL, VINCE_EMAIL,
+    SUPERVISOR_KIT_PRODUCTS, SUPERVISOR_KIT_FILES, SENDER_EMAIL, VINCE_EMAIL,
 )
 from integrations.mailerlite import add_to_kit_buyer
 
@@ -182,37 +183,88 @@ async def verify_kit_session(session_id: str, http_request: Request):
 
 
 async def _send_kit_buyer_email(variant: str, email: str, customer_name: str) -> None:
-    """Send the buyer confirmation email via Resend."""
+    """Send the buyer confirmation email via Resend.
+
+    Digital variant attaches all 11 supervisor kit PDFs directly to the email.
+    Physical variant gets a confirmation message; PDFs ship in the binder.
+    """
     if variant == "digital":
+        # Attach all 11 PDFs
+        attachments = []
+        for fname, fpath in SUPERVISOR_KIT_FILES.items():
+            if fpath.exists():
+                with open(fpath, "rb") as f:
+                    content = base64.b64encode(f.read()).decode("utf-8")
+                attachments.append({"filename": fname, "content": content, "type": "application/pdf"})
+            else:
+                logger.warning(f"Supervisor kit PDF missing on disk: {fname}")
+
         subject = "Your GigLine Supervisor Safety Starter System"
         body_html = """
             <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; color: #1C2B2B; line-height: 1.6;">
                 <h1 style="font-size: 22px; margin-bottom: 12px; color: #0A1628;">Your order is confirmed.</h1>
-                <p>Vince will email your kit PDFs within 1 business day at this address.</p>
-                <p>If you don&rsquo;t hear from him by then, call or text <strong>(336) 329-8899</strong>.</p>
+                <p>All 11 documents of the Supervisor Safety Starter System are attached to this email as print-ready PDFs.</p>
+                <h3 style="margin-top: 22px; margin-bottom: 8px; font-size: 14px; letter-spacing: 0.05em;">WHAT'S INSIDE</h3>
+                <ol style="color: #444; padding-left: 20px;">
+                    <li>Quick Reference Summary Card &mdash; post at your supervisor station</li>
+                    <li>Welcome &amp; Usage Guide &mdash; read first</li>
+                    <li>Chemical Inventory Log</li>
+                    <li>SDS Index &amp; Binder Log</li>
+                    <li>Written HazCom Program</li>
+                    <li>30-Day Supervisor Action Checklist</li>
+                    <li>One Phone Call Card</li>
+                    <li>If OSHA Shows Up &mdash; seven-step protocol</li>
+                    <li>When to Call for Help &mdash; Red Flag List</li>
+                    <li>Monthly Safety Inspection Checklist</li>
+                    <li>Employee Training Record Log</li>
+                </ol>
+                <h3 style="margin-top: 22px; margin-bottom: 8px; font-size: 14px; letter-spacing: 0.05em;">FIRST STEPS</h3>
+                <ol style="color: #444; padding-left: 20px;">
+                    <li>Open <strong>SS-01_Welcome.pdf</strong> first &mdash; it explains how the system fits together.</li>
+                    <li>Open each PDF, fill in your company name, and print.</li>
+                    <li>Post the Quick Reference Card at the supervisor station.</li>
+                    <li>Post "If OSHA Shows Up" near the front entrance.</li>
+                </ol>
+                <p style="margin-top: 22px;">Questions about implementation, reply to this email or call (336) 329-8899.</p>
                 <hr style="margin: 24px 0; border: none; border-top: 1px solid #ddd;" />
                 <p style="color: #888; font-size: 14px;">
-                    &mdash; GigLine Safety &amp; Compliance<br/>
+                    &mdash; Vince Lawrence<br/>
+                    GigLine Safety &amp; Compliance<br/>
                     (336) 329-8899 &middot; vince@giglinecompliance.com
                 </p>
             </div>
         """
-    else:
-        subject = "Your GigLine Supervisor Safety Starter System — Physical Kit"
-        body_html = """
-            <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; color: #1C2B2B; line-height: 1.6;">
-                <h1 style="font-size: 22px; margin-bottom: 12px; color: #0A1628;">Your order is confirmed.</h1>
-                <p>Your kit will ship USPS Priority within 3 business days to the address you provided.</p>
-                <p>You&rsquo;ll also receive a separate email from Vince with a few notes on getting started.</p>
-                <p>Questions: <strong>(336) 329-8899</strong>.</p>
-                <hr style="margin: 24px 0; border: none; border-top: 1px solid #ddd;" />
-                <p style="color: #888; font-size: 14px;">
-                    &mdash; GigLine Safety &amp; Compliance<br/>
-                    (336) 329-8899 &middot; vince@giglinecompliance.com
-                </p>
-            </div>
-        """
+        try:
+            payload = {
+                "from": SENDER_EMAIL,
+                "to": [email],
+                "subject": subject,
+                "html": body_html,
+                "reply_to": VINCE_EMAIL,
+            }
+            if attachments:
+                payload["attachments"] = attachments
+            resend.Emails.send(payload)
+            logger.info(f"Supervisor kit DIGITAL confirmation email sent to {email} with {len(attachments)} PDFs")
+        except Exception as e:
+            logger.error(f"Supervisor kit confirmation email error: {e}")
+        return
 
+    # Physical variant
+    subject = "Your GigLine Supervisor Safety Starter System — Physical Kit"
+    body_html = """
+        <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; color: #1C2B2B; line-height: 1.6;">
+            <h1 style="font-size: 22px; margin-bottom: 12px; color: #0A1628;">Your order is confirmed.</h1>
+            <p>Your kit will ship USPS Priority within 3 business days to the address you provided.</p>
+            <p>You&rsquo;ll also receive a separate email from Vince with a few notes on getting started.</p>
+            <p>Questions: <strong>(336) 329-8899</strong>.</p>
+            <hr style="margin: 24px 0; border: none; border-top: 1px solid #ddd;" />
+            <p style="color: #888; font-size: 14px;">
+                &mdash; GigLine Safety &amp; Compliance<br/>
+                (336) 329-8899 &middot; vince@giglinecompliance.com
+            </p>
+        </div>
+    """
     try:
         resend.Emails.send({
             "from": SENDER_EMAIL,
@@ -221,7 +273,7 @@ async def _send_kit_buyer_email(variant: str, email: str, customer_name: str) ->
             "html": body_html,
             "reply_to": VINCE_EMAIL,
         })
-        logger.info(f"Supervisor kit confirmation email sent to {email} ({variant})")
+        logger.info(f"Supervisor kit PHYSICAL confirmation email sent to {email}")
     except Exception as e:
         logger.error(f"Supervisor kit confirmation email error: {e}")
 

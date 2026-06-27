@@ -124,8 +124,9 @@ const SupervisorKitThankYouPage = () => {
                   style={{ color: TEXT_MUTED, ...serif }}
                   data-testid="kit-thankyou-body-digital"
                 >
-                  Vince will email your kit PDFs within 1 business day. If you don&rsquo;t hear from
-                  him by then, call or text <strong>(336) 329-8899</strong>.
+                  All 11 documents are attached to the receipt email we just sent you.
+                  Start with <strong>SS-01_Welcome.pdf</strong> &mdash; it explains how the system fits together.
+                  If you don&rsquo;t see the email within a few minutes, check spam or call <strong>(336) 329-8899</strong>.
                 </p>
               )}
               <p

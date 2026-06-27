@@ -133,6 +133,21 @@ SUPERVISOR_KIT_PRODUCTS = {
     },
 }
 
+# The 11 PDFs that make up the kit. Names match the labels shown on /supervisor-kit.
+SUPERVISOR_KIT_FILES = {
+    "SS-00_Quick_Reference_Card.pdf": ROOT_DIR / "kit_files" / "SS-00_Quick_Reference_Card.pdf",
+    "SS-01_Welcome.pdf": ROOT_DIR / "kit_files" / "SS-01_Welcome.pdf",
+    "SS-02_Chemical_Inventory_Log.pdf": ROOT_DIR / "kit_files" / "SS-02_Chemical_Inventory_Log.pdf",
+    "SS-03_SDS_Index.pdf": ROOT_DIR / "kit_files" / "SS-03_SDS_Index.pdf",
+    "SS-04_Written_HazCom_Program.pdf": ROOT_DIR / "kit_files" / "SS-04_Written_HazCom_Program.pdf",
+    "SS-05_30Day_Action_Checklist.pdf": ROOT_DIR / "kit_files" / "SS-05_30Day_Action_Checklist.pdf",
+    "SS-06_One_Phone_Call_Card.pdf": ROOT_DIR / "kit_files" / "SS-06_One_Phone_Call_Card.pdf",
+    "SS-07_If_OSHA_Shows_Up.pdf": ROOT_DIR / "kit_files" / "SS-07_If_OSHA_Shows_Up.pdf",
+    "SS-08_When_To_Call_For_Help.pdf": ROOT_DIR / "kit_files" / "SS-08_When_To_Call_For_Help.pdf",
+    "SS-09_Monthly_Safety_Inspection.pdf": ROOT_DIR / "kit_files" / "SS-09_Monthly_Safety_Inspection.pdf",
+    "SS-10_Training_Record_Log.pdf": ROOT_DIR / "kit_files" / "SS-10_Training_Record_Log.pdf",
+}
+
 # ── Google Business Profile review URL ──
 # Vince can swap to a short link (g.page/r/...) via env var without code change.
 # Fallback is a Google search for GigLine in Kernersville, NC.

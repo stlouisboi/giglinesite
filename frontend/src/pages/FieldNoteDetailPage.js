@@ -221,50 +221,110 @@ Corrective action: buy a label-maker and a set of GHS pictogram stickers ($60 to
   'machine-guarding': {
     title: 'Machine Guarding',
     subtitle: 'When the Guard Gets Removed',
-    seo: 'Machine guarding compliance for small manufacturers. What OSHA requires, what gets removed, and how to fix it.',
+    seo: 'OSHA machine guarding compliance for small manufacturers in the Piedmont Triad NC. Point of operation guards, nip points, interlocks, and the citations that follow when guards come off and stay off.',
+    cfrCitation: '29 CFR 1910.212 / 1910.219',
+    oshaChecks: [
+      'Guards at every point of operation, nip point, ingoing nip, and rotating shaft or pulley',
+      'Guards permanently affixed and not easily removable without tools',
+      'Interlocks tested and functional — equipment stops when guard is opened',
+      'Written machine guarding hazard assessment on file',
+      'Operators trained on guard purpose, function, and removal/replacement procedures',
+      'Post-maintenance guard verification step in every LOTO or service procedure',
+    ],
+    faqSchema: [
+      { question: 'What does OSHA require for machine guards?', answer: 'Under 29 CFR 1910.212, machine guards must be affixed to the machine and unable to be easily removed; they must prevent the operator from having any part of their body in the danger zone during the operating cycle; and they must protect against point of operation, ingoing nip points, rotating parts, and flying chips or sparks. The guard itself must not create a hazard.' },
+      { question: 'Is a written machine guarding assessment required by OSHA?', answer: 'OSHA does not explicitly mandate a written assessment for general machine guarding under 1910.212, but it is required under several related standards (LOTO, PPE, mechanical power transmission) and is the de facto expectation during any focused inspection. Written assessments are the fastest way to demonstrate compliance and identify gaps before an inspector does.' },
+      { question: 'What is the penalty range for machine guarding citations?', answer: 'Serious machine guarding violations under 1910.212 typically cite at $16,550 per violation as a Serious classification. Willful or repeat citations can reach $165,514 per violation. Amputation-related citations frequently trigger an OSHA enforcement focus called the National Emphasis Program on Amputations.' },
+    ],
+    relatedNotes: ['lockout-tagout', 'electrical-safety'],
     sections: {
-      whatItIs: 'Machine guarding protects workers from rotating parts, flying chips, and sparks. OSHA requires guards at every point of operation, nip point, and rotating shaft. Guards get removed for maintenance, cleaning, or access — and often don\'t go back on.',
+      whatItIs: `Machine guarding is governed primarily by 29 CFR 1910.212 (general requirements for all machines) and 29 CFR 1910.219 (mechanical power transmission apparatus). The standard's intent is straightforward: any machine part, function, or process that could injure a worker must be guarded. In practice, the citation rate sits in OSHA's top 10 every year, and machine guarding is the standard most frequently associated with amputations under OSHA's National Emphasis Program on Amputations in Manufacturing Industries.
+
+The most-cited subsection is 1910.212(a)(1) — failure to provide guards at the point of operation, ingoing nip points, rotating parts, flying chips, and sparks. The "point of operation" is wherever work is actually performed — the press die, the saw blade, the shear edge. OSHA expects a guard that prevents any part of the operator's body from entering the danger zone during the operating cycle. Acceptable guards include fixed barriers, interlocked enclosures, light curtains, two-hand controls, and presence-sensing devices. Unacceptable substitutes include training, awareness, "experienced operators," or "we've never had an injury here."
+
+The second most-cited subsection is 1910.212(a)(2) — guards being easily removable or readily defeated. OSHA wants guards affixed to the machine, requiring tools to remove, and constructed so they cannot be bypassed without disabling the machine. The most common floor reality is the opposite: guards held in place with one bolt that was last tightened during installation, interlocks taped down or jumpered, light curtains misaligned and ignored. Once an interlock has been bypassed, that bypass becomes "how we run this machine" — and the citation when OSHA finds it can be classified Willful.
+
+The third area is 1910.219 — mechanical power transmission. Belt drives, gears, pulleys, sprockets, chains, and rotating shafts must be enclosed if they are within 7 feet of the floor or working level. In small shops, belt drives are routinely uncovered because "the cover was in the way" or "we took it off to change the belt and never put it back." OSHA writes this citation almost every time they walk through a job shop or fabrication facility.
+
+What an OSHA Compliance Officer checks during a machine guarding inspection: they walk the floor and look at every machine in operation. Pull a guard off and ask why it is off. Press a test button on every interlock and watch whether the machine actually stops. Ask the operator to describe the guard's purpose and what to do if it is missing. Review LOTO procedures and check whether the guard-replacement step is documented as part of returning equipment to service.
+
+Corrective action: photograph every machine in your facility today. For each one, document the point of operation, the nip points, the rotating components, and the existing guards. Where guards are missing, source proper guards from the equipment manufacturer or a guarding fabricator (most operations can spec and install guards for under $300 per machine). Where interlocks are defeated, restore them and add a tamper-evident seal. Build a guard-replacement step into every LOTO procedure. Add machine guarding to your supervisor's daily walkaround. Total fix time for a 15-machine shop: about 30 hours of focused work spread over 60 days. Total cost: usually under $4,000. The cost of one amputation: $1.5 million in average direct and indirect costs, plus the OSHA citation that follows.`,
       whatGetsMissed: [
-        'Guards removed and not replaced after maintenance',
-        'Makeshift guards that don\'t meet OSHA requirements',
-        'Interlocks bypassed or disabled',
-        'No written machine guarding assessment',
-        'New equipment installed without proper guards',
+        'Guards removed during maintenance and never replaced',
+        'Interlocks bypassed with tape, jumpers, or zip ties',
+        'Makeshift guards (cardboard, plywood) that do not meet the standard',
+        'No written machine guarding assessment on file',
+        'New or used equipment installed without verifying guard adequacy',
+        'Belt drives, gears, and pulleys exposed within 7 feet of floor level',
+        'Operators trained on production but not on guard function or guard-loss reporting',
       ],
-      whatISee: 'I find guards zip-tied in the "open" position, interlocks bypassed with tape, and belt drives exposed because "the guard was in the way." Operators know it\'s wrong — they\'ve just worked around it long enough that it feels normal. The real risk isn\'t just the citation. It\'s the amputation, the lost finger, or the recordable that changes someone\'s life.',
+      whatISee: 'I find guards zip-tied in the "open" position so operators can clear jams faster. Interlocks defeated with electrical tape over the switch plunger. Belt drives exposed because "the cover was in the way" during a belt change six months ago and nobody put it back. Operators know it is wrong — they have just worked around it long enough that it feels normal. The real risk is not just the citation. It is the amputation, the lost finger, or the recordable that changes someone\'s life. I see this on almost every walkthrough in a metals shop or job shop.',
       checklist: [
-        'All points of operation guarded',
-        'Belt drives, gears, and shafts enclosed',
-        'Interlocks functional and tested',
-        'Guards secure and not modified',
-        'Written machine guarding assessment on file',
-        'Employees trained on guard requirements',
-        'Post-maintenance guard verification process',
+        'Point of operation guard on every machine, properly affixed',
+        'Ingoing nip points and rotating parts guarded',
+        'Belt drives, gears, sprockets, and shafts enclosed if within 7 feet of floor',
+        'Interlocks tested and functional — equipment stops when guard is opened',
+        'No bypassed, defeated, or modified guards',
+        'Written machine guarding hazard assessment on file',
+        'Operator training on guard purpose, function, and guard-loss reporting documented',
+        'Guard-replacement verification step built into every LOTO procedure',
+        'Daily supervisor walkaround includes guard check',
       ],
     },
   },
   'walking-surfaces': {
     title: 'Walking Surfaces',
     subtitle: 'Trip Hazards You Walk Past Every Day',
-    seo: 'Walking surface safety for warehouses and manufacturing. Trip hazards, housekeeping, and aisle management.',
+    seo: 'OSHA walking-working surface compliance for warehouses and manufacturers in NC. Aisle clearance, housekeeping, floor conditions, and the slip-trip-fall hazards that produce most recordable injuries.',
+    cfrCitation: '29 CFR 1910 Subpart D (1910.22 / 1910.25 / 1910.28)',
+    oshaChecks: [
+      'Aisles and passageways kept clear and unobstructed',
+      'Walking-working surfaces maintained in clean, dry, and orderly condition',
+      'Spill cleanup procedure in place and equipment accessible',
+      'Floor markings (aisle stripes, hazard areas, dock edges) clear and current',
+      'Adequate lighting in all walking and working areas',
+      'Ladders inspected before each use and rated for the load and task',
+    ],
+    faqSchema: [
+      { question: 'What is the OSHA standard for walking-working surfaces?', answer: '29 CFR 1910 Subpart D covers walking-working surfaces in general industry. The general housekeeping rule is 1910.22(a) — all places of employment must be kept clean and orderly and in a sanitary condition. Specific provisions address floors, aisles, stairways, ladders, dockboards, and fall protection.' },
+      { question: 'How wide does an OSHA aisle have to be?', answer: 'OSHA does not specify an exact aisle width. The standard (1910.22(b)) requires that aisles be appropriate to the use, equipment, and traffic moving through them. Where forklifts operate, aisles are typically marked 8–12 feet wide. The key requirement is that aisles be kept clear and properly marked.' },
+      { question: 'Why are walking-surface citations so common?', answer: 'Walking-working surface hazards (slips, trips, falls, blocked aisles, poor housekeeping) are visible from the moment an OSHA inspector walks through the door. They are also the leading source of recordable injuries in general industry — about 25% of all reported workplace injuries involve slips, trips, or falls. The combination of high visibility and high injury rate produces consistent citation rates.' },
+    ],
+    relatedNotes: ['fall-protection', 'forklift-safety'],
     sections: {
-      whatItIs: 'Walking and working surfaces are the most common source of recordable injuries in general industry. Slips, trips, and falls — from cords on the floor, hoses across walkways, uneven surfaces, spills, and blocked aisles. Simple to see. Consistently ignored.',
+      whatItIs: `Walking and working surfaces are governed by 29 CFR 1910 Subpart D, which covers floors, aisles, stairways, fixed and portable ladders, dockboards, and fall protection. The core housekeeping rule — 1910.22(a) — requires every workplace to be kept clean, orderly, and in a sanitary condition. The rule sounds soft until you walk a small operation in the middle of a production run: cords across walkways, hoses snaking through aisles, pallets parked in the middle of pedestrian zones, and "temporary" spills that have been there for three days.
+
+The Bureau of Labor Statistics consistently reports that slips, trips, and falls account for roughly 25% of all reportable workplace injuries — making walking surfaces the single largest source of recordable cases in general industry. That is more than chemical exposures, more than struck-by incidents, more than caught-in-or-between cases. And almost every one is preventable with housekeeping and aisle discipline.
+
+The most-cited subsection in this Subpart is 1910.22(b) — failure to keep aisles and passageways clear and clearly marked. OSHA expects to see painted aisle lines, no permanent obstructions, and width appropriate for the equipment using them. In small shops I walk through, painted aisle lines have faded to invisible, pallets are stacked in the walkway because the rack was full, and the only path from the dock to the assembly line is a zigzag around production tooling.
+
+The second most-cited area is 1910.22(d)(1) — failure to inspect walking-working surfaces regularly and correct hazardous conditions. OSHA does not specify a frequency, but the de facto expectation is daily, with documented periodic inspections. Most small operations have no documented inspection process at all. Spills get reported when someone notices; cords get rerouted when they trip someone; aisle lines get repainted when the customer audit catches them.
+
+The third area is portable and fixed ladders under 1910.23 — daily inspection before use, no makeshift use, no damaged rungs or rails, and the right ladder for the job. In small shops, I find ladders leaned against walls with no inspection tag, rolling stair platforms missing handrails, and step-stools used as ladders to reach high shelves.
+
+What an OSHA Compliance Officer checks during a walking-surface inspection: they observe the route they walked from the front door to the breakroom. They look at aisle marking visibility. They check whether pallets, hoses, or cords are in pedestrian zones. They open the spill-kit cabinet and verify it is stocked. They inspect ladders for damage and tags. They review any documented daily-walk or housekeeping inspection records, and they correlate visible conditions against the OSHA 300 log to look for unreported recordable cases.
+
+Corrective action: buy a 5-gallon bucket of safety yellow paint and re-mark every aisle this week. Designate a housekeeping owner and build a daily 15-minute walkaround into the shift schedule. Stock a spill kit at each high-risk area (dock, hydraulic equipment, chemical storage). Tag every portable ladder with an inspection sticker and a Sharpie date. Build a 5-minute housekeeping toolbox talk into your weekly supervisor meeting. Total fix time: about 8 hours of focused effort plus the daily walkaround going forward. Total cost: under $300 for paint, spill supplies, and ladder tags. The cost of getting it wrong: each recordable case averages $42,000 in direct and indirect costs, plus the OSHA citation rate that climbs the longer the condition persists.`,
       whatGetsMissed: [
-        'Cords and hoses across walkways',
-        'Aisle markings faded or missing',
-        'Spills not cleaned up promptly',
-        'Floor damage or uneven surfaces',
-        'Aisles partially blocked by pallets or product',
+        'Extension cords and hoses running across walkways',
+        'Aisle markings faded or never installed',
+        'Spills left for hours or days before cleanup',
+        'Floor damage or uneven surfaces near doorways and dock edges',
+        'Pallets and product stored in walking aisles',
+        'Lighting inadequate in storage zones, mezzanines, or back corners',
+        'Portable ladders used without inspection or rated incorrectly for the task',
       ],
-      whatISee: 'Extension cords running across the main aisle. A puddle near the dock that\'s been there for three days. Pallets stacked in the walkway because the rack was full. Aisle lines that were painted two years ago and are barely visible. Everyone walks around the hazard. Nobody fixes it because it\'s "temporary."',
+      whatISee: 'Extension cords running across the main aisle to power a tool by the loading dock. A puddle near the dock that has been there for three days — somebody put a paper towel on it. Pallets stacked in the walkway because the rack was full. Aisle lines painted two years ago and barely visible. A step-stool being used to reach a top shelf at 8 feet. Everyone walks around the hazard. Nobody fixes it because it is "temporary." That is exactly how the OSHA 300 log fills up faster than the maintenance schedule.',
       checklist: [
-        'Aisles clear and properly marked',
-        'No cords or hoses across walkways',
-        'Spill kits accessible and used promptly',
-        'Floor surfaces level and in good condition',
-        'Pallets and product stored in designated areas only',
-        'Lighting adequate in all walking areas',
-        'Housekeeping schedule in place and followed',
+        'Aisles clearly marked with paint or tape and kept free of obstructions',
+        'No extension cords, hoses, or cables running across walkways',
+        'Spill response procedure in place; spill kits stocked at high-risk areas',
+        'Floor surfaces level and in good condition — no chips, cracks, or warped sections',
+        'Pallets and product stored in designated areas only, not aisles',
+        'Lighting adequate in all walking and working areas, including back corners',
+        'Daily housekeeping walkaround assigned to a named owner and documented',
+        'All portable ladders inspected before each use and tagged with an inspection sticker',
+        'Mezzanines, dock edges, and elevated surfaces have proper edge protection',
       ],
     },
   },
@@ -325,75 +385,170 @@ Corrective action: photograph every piece of equipment with hazardous energy in 
   'emergency-action-plans': {
     title: 'Emergency Action Plans',
     subtitle: 'What Happens When the Alarm Goes Off',
-    seo: 'Emergency action plan requirements for small businesses. Exit routes, fire extinguishers, evacuation procedures, and what OSHA expects.',
+    seo: 'OSHA Emergency Action Plan and Fire Prevention Plan compliance for small manufacturers in the Piedmont Triad NC. Evacuation routes, alarm systems, fire extinguishers, and the documentation OSHA expects to see.',
+    cfrCitation: '29 CFR 1910.38 / 1910.39 / 1910.157',
+    oshaChecks: [
+      'Written Emergency Action Plan for facilities with 11+ employees, available for employee review',
+      'Documented evacuation procedures, escape routes, and assembly point',
+      'Alarm system that can be perceived above ambient noise in all work areas',
+      'Fire extinguishers inspected monthly (tagged) and serviced annually',
+      'Exit routes unobstructed, properly marked, and properly lit',
+      'Drills conducted and documented at least annually',
+    ],
+    faqSchema: [
+      { question: 'Does my small shop need a written Emergency Action Plan?', answer: 'Yes if you have 11 or more employees at any one location. Under 29 CFR 1910.38(b), facilities with 11+ employees must have a written EAP available for review by employees and OSHA. Operations with 10 or fewer employees may communicate the plan orally, but every required element still has to be in place.' },
+      { question: 'What has to be included in an OSHA Emergency Action Plan?', answer: '29 CFR 1910.38(c) requires the EAP to address procedures for emergency reporting, evacuation procedures and escape route assignments, procedures for employees who remain to operate critical operations before evacuation, procedures to account for all employees after evacuation, rescue and medical duties, and the name of the EAP coordinator. The Fire Prevention Plan (1910.39) is a separate but related document.' },
+      { question: 'How often does OSHA require fire extinguisher inspections?', answer: 'Under 29 CFR 1910.157(e), portable fire extinguishers must be visually inspected monthly and given an annual maintenance check by a qualified person, with the date and inspector recorded on the extinguisher tag. Hydrostatic testing is required every 5 or 12 years depending on the extinguisher type.' },
+    ],
+    relatedNotes: ['hazcom', 'walking-surfaces'],
     sections: {
-      whatItIs: 'Every operation with more than 10 employees needs a written Emergency Action Plan. It covers exit routes, alarm systems, evacuation procedures, and who does what when something goes wrong. Most small operations have a fire extinguisher on the wall and call that a plan.',
+      whatItIs: `Emergency Action Plans are governed by 29 CFR 1910.38, with the related Fire Prevention Plan requirements at 1910.39 and the portable fire extinguisher requirements at 1910.157. The standards are easy to overlook in a small operation because most days nothing happens — and most operators do not think about emergency planning until something goes wrong or until OSHA shows up and asks for the documentation.
+
+The headcount threshold is the first thing to check. Under 1910.38(b), any facility with 11 or more employees at any one location must have a written EAP available for employee review. Operations with 10 or fewer employees may communicate the plan orally, but every required element still has to be in place — reporting procedures, evacuation procedures, escape routes, accountability after evacuation, rescue and medical duties, and the name of a coordinator. Most small manufacturers in the Triad cross the 11-employee threshold and do not realize the written-plan requirement applies to them.
+
+The most-cited subsection in this category is 1910.157(e) — failure to properly inspect, maintain, and tag portable fire extinguishers. OSHA expects monthly visual inspections (documented on the extinguisher tag) and annual maintenance by a qualified person. In small shops, what I most often find is extinguishers mounted in the right places but with tags blank for the past 18 months. The vendor came once at install, charged $80, and was never seen again. That is a citation under 1910.157(e)(2) and (e)(3), and each extinguisher is its own citable item.
+
+The second most-cited issue is 1910.37(a) — exit route obstruction. Exit routes must be unobstructed, marked with exit signs, properly lit, and not blocked by storage, equipment, or product. In small operations, the second exit door is almost always partially blocked by inventory or used as a working surface. The exit sign above it is sometimes burned out, and the path to it is partially obstructed by a forklift parked there overnight.
+
+The third issue is the EAP itself — 1910.38(c). The plan must address every required element, be available to employees for review, and be supplemented with training when the plan is developed and when responsibilities change. In small operations, the EAP either does not exist or is a one-page template downloaded years ago with another company's name in the header. Employees have never seen it. The "assembly point after evacuation" — required under 1910.38(c)(4) — has never been communicated to anyone, so workers congregate in different locations after a fire alarm.
+
+What an OSHA Compliance Officer checks during an EAP inspection: they ask for the written plan and confirm it covers every required element. They ask three random employees where the nearest exit is and where the assembly point is. They walk every exit route to verify it is unobstructed and properly marked. They look at fire extinguisher tags. They review training records for the EAP and ask whether annual drills have been conducted and documented. They check the Fire Prevention Plan if hazardous materials are present.
+
+Corrective action: download the OSHA EAP template (free at osha.gov) and customize it to your facility — name your coordinator, list your assembly point, document your accountability procedure. Walk every exit route and clear obstructions. Replace burned-out exit signs and verify backup illumination works. Schedule a fire extinguisher inspection vendor for annual maintenance and add monthly visual inspections to your housekeeping checklist. Conduct one evacuation drill, document it, and put it on the calendar to repeat annually. Train every employee on the plan and document with a sign-in sheet. Total fix time for a small operation: about 6–10 hours of focused work. Total cost: $200–$500 for fire extinguisher service, exit signs, and printed plan documentation. The cost of getting it wrong: each missing extinguisher tag is its own citation; an obstructed exit is its own citation; a missing written plan is its own citation. They stack fast.`,
       whatGetsMissed: [
-        'No written Emergency Action Plan',
-        'Exit routes not posted or not clearly marked',
-        'Fire extinguisher inspections overdue',
-        'Employees never trained on evacuation procedures',
-        'No designated assembly point after evacuation',
+        'No written Emergency Action Plan for facilities with 11+ employees',
+        'Exit routes blocked by inventory, equipment, or forklifts',
+        'Exit signs burned out or missing backup illumination',
+        'Fire extinguisher tags blank for 6+ months',
+        'No designated assembly point or three different assembly points depending on who you ask',
+        'Annual evacuation drill never conducted or never documented',
+        'EAP coordinator not identified — no single person responsible',
       ],
-      whatISee: 'I ask where the assembly point is and get three different answers. Exit signs are blocked by racking. Fire extinguishers haven\'t been inspected in over a year — the tag is either missing or the last entry was 2023. Nobody knows where the plan is because it doesn\'t exist. When I ask what happens if there\'s a fire, the answer is "we leave." That\'s not a plan.',
+      whatISee: 'I ask where the assembly point is and get three different answers. Exit signs are blocked by racking. Fire extinguishers have not been inspected in over a year — the tag is either missing or the last entry was 2023. Nobody knows where the plan is because it does not exist. When I ask what happens if there is a fire, the answer is usually "we leave." That is not a plan. That is a hope. OSHA wants the written plan, the trained employees, the documented drill, and the maintained equipment — together, not in fragments.',
       checklist: [
-        'Written Emergency Action Plan on file',
-        'Exit routes clearly marked and unobstructed',
-        'Fire extinguishers inspected monthly (tag documented)',
-        'Annual fire extinguisher maintenance by certified vendor',
-        'Evacuation drills conducted and documented',
-        'Assembly point designated and known by all employees',
-        'Emergency contact list current and posted',
+        'Written Emergency Action Plan on file, customized to facility (or oral plan for 10-or-fewer operations)',
+        'EAP coordinator named and trained',
+        'Evacuation procedures and escape route assignments documented',
+        'Designated assembly point posted and known by all employees',
+        'Procedure to account for all employees after evacuation',
+        'Exit routes unobstructed, marked with exit signs, properly lit',
+        'Fire extinguishers inspected monthly (tag documented) and serviced annually',
+        'Alarm system audible above ambient noise throughout all work areas',
+        'Annual evacuation drill conducted and documented',
+        'EAP training documented for every employee, including new hires',
       ],
     },
   },
   'ppe-assessment': {
     title: 'PPE Assessment & Use',
     subtitle: 'More Than Just Handing Out Glasses',
-    seo: 'PPE hazard assessment and compliance for small operations. What OSHA requires beyond just providing equipment.',
+    seo: 'OSHA PPE hazard assessment compliance for small manufacturers in NC. Written certification, hazard-based selection, employee training, and the citations that follow when PPE is bought but never documented.',
+    cfrCitation: '29 CFR 1910.132 / 1910.133 / 1910.138',
+    oshaChecks: [
+      'Written PPE hazard assessment for each work area, signed and dated',
+      'PPE selected based on the actual hazards identified, not on availability',
+      'Documented employee training on proper use, care, and limitations of each PPE item',
+      'PPE provided at no cost to employees (with limited exceptions under 1910.132(h))',
+      'Inspection and replacement program for damaged or expired PPE',
+      'Enforcement of PPE rules — violations addressed consistently and documented',
+    ],
+    faqSchema: [
+      { question: 'What does OSHA require for PPE under 1910.132?', answer: 'Under 29 CFR 1910.132(d), every employer must perform a workplace hazard assessment to determine whether PPE is necessary. The assessment must be in writing, identify the workplace evaluated, the person certifying the assessment, and the date. PPE must then be selected to protect against the identified hazards, employees must be trained on its use, and the employer must verify the training in writing.' },
+      { question: 'Does OSHA require the employer to pay for PPE?', answer: 'Yes, with limited exceptions. Under 29 CFR 1910.132(h), the employer must provide all required PPE at no cost to the employee. Exceptions include non-specialty safety-toe footwear and non-specialty prescription safety eyewear that the employee may take off-site, plus everyday clothing like long pants or weather gear.' },
+      { question: 'What is the most common PPE citation?', answer: 'The most common PPE citation is failure to perform and document the written hazard assessment under 1910.132(d). Operations frequently provide the PPE but cannot produce the written assessment showing why specific PPE was selected for specific hazards. Eye and face protection (1910.133) is the most-cited specific PPE category.' },
+    ],
+    relatedNotes: ['hazcom', 'machine-guarding'],
     sections: {
-      whatItIs: 'OSHA doesn\'t just require PPE — it requires a written hazard assessment that determines what PPE is needed, where, and why. Then it requires documented training on proper use, maintenance, and limitations. Most small operations hand out safety glasses and gloves and assume that\'s enough.',
+      whatItIs: `Personal Protective Equipment is governed by 29 CFR 1910 Subpart I — primarily 1910.132 (general requirements), 1910.133 (eye and face protection), 1910.135 (head protection), 1910.136 (foot protection), and 1910.138 (hand protection). The standards' core requirement is straightforward: identify the hazards in your workplace, select PPE that protects against those hazards, train employees on proper use, and document everything. The execution is where small operations get cited.
+
+The most-cited subsection across all PPE standards is 1910.132(d) — failure to perform and document a workplace hazard assessment. This is the requirement that OSHA inspectors look for first because it is the foundation of every other PPE decision. The written assessment must identify the workplace evaluated, the person who performed it, the date it was performed, and the hazards identified. Without it, there is no defensible reason for any of the PPE selections an employer has made. In small shops, the written assessment either does not exist or is a generic template downloaded years ago that does not reflect the actual equipment, chemicals, or processes in the facility.
+
+The second most-cited subsection is 1910.132(f) — training. Employees must be trained on when PPE is necessary, what PPE is necessary, how to properly wear and adjust it, the limitations of the PPE, and the proper care, maintenance, useful life, and disposal of the PPE. Training must be verified in writing — date, names, topics covered. "We told them at the morning meeting" is not training. OSHA wants a sign-in sheet and a topic outline, signed by the trainer and the employee.
+
+Eye and face protection — 1910.133 — is consistently in OSHA's top 10 most-cited general industry standards. The citation usually involves employees performing eye-hazard work without proper protection, or employees wearing the wrong type of eye protection for the hazard (regular safety glasses where a face shield is required, no side shields where impact protection is required, no chemical splash protection where chemicals are handled). The fix is rarely the PPE — most operations have it on the shelf — it is the assessment and training that connect the hazard to the right PPE.
+
+Hand protection — 1910.138 — is the next most common gap. Employees wearing the wrong glove for the chemical they are handling (latex where nitrile is required, cotton where cut-resistant is required). The hazard assessment is the document that should determine the correct selection; without it, the wrong selection is the default. Burned, torn, or chemically degraded gloves continue to be worn because nobody owns the replacement schedule.
+
+What an OSHA Compliance Officer checks during a PPE-focused inspection: they ask for the written hazard assessment under 1910.132(d). They observe whether the PPE in actual use matches the hazards visible on the floor. They review training records and confirm each employee has been trained on the specific PPE they wear. They check whether PPE is provided at no cost — they will ask employees directly. They examine the PPE in use for damage, expiration, or inappropriate substitution.
+
+Corrective action: walk every work area in your facility with a printed PPE hazard assessment template. For each work area, list the hazards (impact, chemical, electrical, thermal, sharp edges, noise, particles), identify the PPE selected for each hazard, certify the assessment with date and signer name. Build a PPE training session, document it with a sign-in sheet, and file it. Audit your PPE inventory — replace expired or damaged items, ensure proper sizes are stocked. Add PPE compliance to your supervisor's daily walkaround. Total fix time: about 8 hours of focused work for a small operation. Total cost: usually under $300 in replacement PPE and zero in new documentation. The cost of getting it wrong: 1910.132(d) failure is its own citation; 1910.132(f) failure is its own citation; each specific PPE subsection (1910.133, 1910.138, etc.) is its own citation. They stack.`,
       whatGetsMissed: [
-        'No written PPE hazard assessment',
-        'PPE selection not based on actual hazards',
-        'Training not documented',
-        'Employees wearing damaged or wrong PPE',
-        'No enforcement when PPE rules are ignored',
+        'No written PPE hazard assessment — or a generic template never customized',
+        'PPE selection based on what was in the cabinet, not on the hazards present',
+        'Training delivered verbally and never documented',
+        'Damaged or expired PPE still in active use',
+        'Wrong PPE for the task (latex gloves for solvents, regular safety glasses where face shields are required)',
+        'No enforcement when PPE rules are ignored — supervisors looking past the violation',
+        'Employees required to provide their own PPE without an explicit exception',
       ],
-      whatISee: 'I see employees grinding without face shields, using the wrong gloves for the chemicals they\'re handling, and safety glasses so scratched they can barely see through them. When I ask about the hazard assessment, it\'s either a generic template or it doesn\'t exist. The employer bought the PPE — but never documented why those specific items were selected or trained anyone on when to use them.',
+      whatISee: 'I see employees grinding without face shields, using the wrong gloves for the chemicals they are handling, and safety glasses so scratched they can barely see through them. When I ask about the hazard assessment, it is either a generic template downloaded years ago or it does not exist. The employer bought the PPE — but never documented why those specific items were selected, never trained anyone on when to use them, and never enforced it consistently. By the time I walk in, the PPE has become optional in practice, even though it is required on paper.',
       checklist: [
-        'Written PPE hazard assessment completed and certified',
-        'PPE selected based on specific workplace hazards',
-        'Employees trained on proper use, care, and limitations',
-        'Training documented with dates and signatures',
-        'PPE inspected regularly and replaced when damaged',
-        'Enforcement consistent — violations addressed',
-        'Assessment updated when processes or hazards change',
+        'Written PPE hazard assessment completed for each work area, signed and dated',
+        'PPE selection documented against specific hazards identified',
+        'Employees trained on proper use, care, limitations, and useful life of each PPE item',
+        'Training documented with dates, topics, attendee names, and trainer signature',
+        'PPE provided at no cost to employees (limited exceptions documented)',
+        'PPE inspected regularly and replaced when damaged or expired',
+        'Enforcement consistent — violations addressed and documented',
+        'Hazard assessment updated when processes, chemicals, or equipment change',
+        'Eye/face protection appropriate for the task (impact, chemical splash, optical radiation)',
+        'Hand protection matched to specific chemical or mechanical hazard',
       ],
     },
   },
   'fall-protection': {
     title: 'Fall Protection',
-    subtitle: 'It\'s Not Just a Roofing Problem',
-    seo: 'Fall protection for warehouses and small operations. Mezzanines, loading docks, elevated platforms, and what OSHA requires.',
+    subtitle: "It's Not Just a Roofing Problem",
+    seo: 'OSHA fall protection compliance for general industry warehouses and small manufacturers in NC. The 4-foot rule, mezzanines, loading docks, fixed ladders, and the citations that follow when edge protection is missing.',
+    cfrCitation: '29 CFR 1910.28 / 1910.29 / 1910.30',
+    oshaChecks: [
+      'Guardrails on all open sides of walking-working surfaces 4 feet or higher (42-inch top rail, 21-inch midrail, 4-inch toeboard)',
+      'Self-closing mezzanine gates at load/unload openings — chains do not meet the standard',
+      'Loading dock edges marked, protected, or fitted with portable edge protection',
+      'Portable ladders inspected before each use and rated for the task and load',
+      'Fixed ladders meeting cage, well, or personal fall arrest requirements above 24 feet',
+      'Documented fall protection training for every employee with height exposure',
+    ],
+    faqSchema: [
+      { question: 'What is the OSHA fall protection trigger height in general industry?', answer: 'Under 29 CFR 1910.28(b)(1)(i), fall protection is required for general industry walking-working surfaces that are 4 feet or higher above a lower level. This is significantly lower than the construction standard (6 feet) and applies to mezzanines, loading docks, elevated platforms, and any open-sided floor.' },
+      { question: 'Does a chain across a mezzanine opening meet OSHA?', answer: 'No. Under 29 CFR 1910.29(b), a guardrail system must have a top rail at 42 inches (±3 inches), a midrail midway between the top rail and walking surface, and be able to withstand a 200-pound force in any outward or downward direction. A chain does not meet the strength, height, or completeness requirements. Self-closing or self-locking gates are the standard solution for mezzanine load openings.' },
+      { question: 'Is fall protection training required by OSHA?', answer: 'Yes. Under 29 CFR 1910.30, every employee exposed to a fall hazard must be trained on the nature of the hazards, the procedures for protecting them, and the proper use, inspection, and maintenance of any fall protection equipment used. Training must be documented in writing, and retraining is required when an employee shows inadequate knowledge or when conditions change.' },
+    ],
+    relatedNotes: ['walking-surfaces', 'scaffolding-safety'],
     sections: {
-      whatItIs: 'Fall protection isn\'t limited to construction sites. In general industry, any walking-working surface 4 feet or higher requires protection — guardrails, safety nets, or personal fall arrest. Warehouse mezzanines, loading docks, elevated platforms, and even open-sided floors count. OSHA 1910.28 applies to every small operation with height exposure.',
+      whatItIs: `Fall protection in general industry is governed by 29 CFR 1910 Subpart D — primarily 1910.28 (duty to have fall protection), 1910.29 (fall protection systems and criteria), and 1910.30 (training). The standards were significantly updated in 2017 and now mirror many of the construction-industry rules under Subpart M of 29 CFR 1926. The 2017 update closed loopholes that had allowed older general-industry operations to use less-protective measures than construction sites — and it made the 4-foot trigger height explicit across nearly every walking-working surface.
+
+The 4-foot rule is the single most important number in the standard. Under 1910.28(b)(1)(i), any walking-working surface 4 feet or higher above a lower level requires fall protection — guardrails, safety net systems, or personal fall arrest. This applies to mezzanines, loading docks, elevated work platforms, scaffolds, open-sided floors, and anywhere a worker could walk off an edge. Most small operations in the Triad have at least one mezzanine, one dock, or one elevated platform where employees work — and most have at least one location where the 4-foot rule is violated.
+
+The most-cited subsection is 1910.28(b)(1) — failure to provide fall protection on walking-working surfaces. The most common form of this citation in warehouses is the mezzanine load opening with a chain instead of a self-closing gate. The chain is removable, does not meet the 42-inch height requirement, does not provide a midrail, and provides no protection during the moment of load transfer when a pallet is being placed on the mezzanine. OSHA writes this citation almost every time they walk into a warehouse with a mezzanine.
+
+The second most-cited subsection is 1910.29(b) — guardrail system criteria. Even where guardrails exist, they frequently fail to meet the standard: top rails below 39 inches, no midrails, gaps wider than 19 inches, no toeboards where required to prevent objects from falling on workers below. Operations install "guardrails" that look like guardrails but do not meet the specifications. OSHA's measurement is exact: 42 inches ±3, midrail at the midpoint, 4-inch toeboard, 200-pound load capacity.
+
+The third issue is 1910.30 — training. Every employee with height exposure must be trained on hazards, protective procedures, and any equipment they use. Training must be documented. In small operations, fall protection training either never happens or is delivered as part of a generic safety orientation with no specific content on the actual fall hazards in the facility. Operators on a mezzanine, dock workers, anyone using a ladder — all need documented fall protection training matched to their specific exposures.
+
+What an OSHA Compliance Officer checks during a fall protection inspection: they walk every elevated surface in the facility. They measure top rail heights, check for midrails and toeboards, verify gates are self-closing, and look at the floor for unprotected holes or openings. They inspect portable ladders for damage and the required inspection. They review training records and ask employees to describe the fall protection measures in their work area. They check whether personal fall arrest equipment (if used) has been inspected, fits the wearer, and is properly anchored.
+
+Corrective action: walk every elevated surface in your facility with a tape measure. Replace any chain at a mezzanine opening with a self-closing gate (cost: $400–$800 per gate). Install or rebuild guardrails to meet the 42-inch/midrail/toeboard standard. Mark loading dock edges with visible paint and add portable dock-edge guards or barriers. Inspect every portable ladder, tag the ones that pass, and remove damaged ones from service. Build a fall protection training session, document it, and file it. Total fix time: 8–20 hours of focused work depending on facility size. Total cost: typically $1,000–$4,000 for self-closing gates and guardrail upgrades on a small operation. The cost of getting it wrong: each unprotected edge is its own citation, and falls from less than 10 feet cause the majority of warehouse fatalities every year.`,
       whatGetsMissed: [
-        'Mezzanine guardrails missing or incomplete',
-        'Loading dock edges unprotected',
-        'No fall protection training documented',
-        'Portable ladder use without inspection protocol',
-        'Elevated storage platforms without edge protection',
+        'Mezzanines with a chain across the opening instead of a self-closing gate',
+        'Loading docks with no edge marking and no barrier',
+        'Guardrails below 42 inches or missing midrails and toeboards',
+        'Workers on top of storage containers or pallets without fall protection',
+        'Portable ladders leaned against walls with no inspection tags',
+        'Fixed ladders over 24 feet without a cage, well, or personal fall arrest',
+        'Holes or openings in walking surfaces uncovered and unmarked',
       ],
-      whatISee: 'I find mezzanines with a chain across the opening instead of a proper gate. Loading docks with no edge marking and no barrier. Workers on top of storage containers reaching overhead without any fall protection discussion. Ladders leaned against walls with no inspection tags. The 4-foot rule gets ignored because it doesn\'t feel that high — until someone falls and it\'s a recordable.',
+      whatISee: 'I find mezzanines with a chain across the opening instead of a proper gate. Loading docks with no edge marking and no barrier. Workers climbing on top of storage containers to reach overhead inventory without any fall protection discussion. Ladders leaned against walls with no inspection tags. The 4-foot rule gets ignored because it does not feel that high — until someone falls and it is a recordable. The post-2017 update closed most of the loopholes general industry used to rely on, but most small operations have not adjusted their setups since the rule changed.',
       checklist: [
-        'Guardrails on all open sides of platforms and mezzanines (42" top rail)',
-        'Self-closing mezzanine gates at load/unload points',
-        'Loading dock edges marked or protected',
-        'Fall protection training documented for all exposed employees',
-        'Portable ladders inspected before each use',
-        'Fixed ladders meeting cage or personal fall arrest requirements',
-        'Holes in walking surfaces covered and secured',
+        'Guardrails on all open sides of walking-working surfaces 4 feet or higher',
+        'Guardrail top rails at 42 inches (±3), midrails at the midpoint, 4-inch toeboards where required',
+        'Self-closing or self-locking mezzanine gates at load/unload openings',
+        'Loading dock edges marked, painted, or protected with portable edge guards',
+        'Fall protection training documented for every employee with height exposure',
+        'Portable ladders inspected before each use; damaged ladders removed from service',
+        'Fixed ladders 24+ feet have cage, well, or personal fall arrest system',
+        'Holes and openings in walking surfaces covered, secured, and marked',
+        'Personal fall arrest equipment (if used) inspected, fitted, and properly anchored',
       ],
     },
   },
@@ -569,6 +724,7 @@ Corrective action: photograph every piece of equipment with hazardous energy in 
     subtitle: 'The Form Nobody Fills Out Until It Is Too Late',
     seo: 'OSHA 300 log and recordkeeping compliance for small employers in NC. Recordable injuries, 300A summary posting, severe injury reporting, and the citations that follow when the log is missing.',
     cfrCitation: '29 CFR Part 1904',
+    kitCrossSell: true,
     oshaChecks: [
       'OSHA 300 log maintained for the current calendar year and the past 5 years',
       'Each recordable injury logged within 7 calendar days of notice',
@@ -938,6 +1094,98 @@ const FieldNoteDetailPage = () => {
                 )}
                 <p className="text-xs text-[#0d1b2a]/30 mt-3">No spam. Just the PDF.</p>
               </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Related Documents CTA — for articles flagged with kitCrossSell */}
+      {note.kitCrossSell && (
+        <section
+          className="py-16 md:py-20"
+          style={{ background: '#FAF7F1', borderTop: '1px solid #E5DDCD' }}
+          data-testid="kit-cross-sell"
+        >
+          <div className="container max-w-5xl">
+            <p
+              className="uppercase font-bold tracking-[0.28em] mb-4"
+              style={{ color: '#C5A059', fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }}
+            >
+              Related Documents
+            </p>
+            <h2
+              className="font-bold leading-tight mb-3 text-[24px] md:text-[30px]"
+              style={{ fontFamily: "'Manrope', sans-serif", color: '#0A1628' }}
+            >
+              The forms that handle this on the floor.
+            </h2>
+            <p
+              className="text-[15.5px] md:text-base leading-[1.7] mb-10 max-w-2xl"
+              style={{ color: 'rgba(10,22,40,0.72)', fontFamily: "Georgia, 'Times New Roman', serif" }}
+            >
+              Three documents from the GigLine Supervisor Safety Starter System map directly to the recordkeeping requirements in this article. CFR-cited. Print-ready. $600 for the digital kit, included free with every Compliance Readiness Visit.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 mb-8">
+              {[
+                {
+                  label: 'Monthly Safety Inspection Checklist',
+                  body: '40+ items. Signature block. Retention instruction. The corrective action proof you need on file when OSHA asks.',
+                  num: '09',
+                },
+                {
+                  label: 'Employee Training Record Log',
+                  body: 'Documents every safety training session — dates, topics, attendees, signatures. The training-record trail OSHA cross-checks against the 300 log.',
+                  num: '10',
+                },
+                {
+                  label: 'If OSHA Shows Up',
+                  body: 'Seven-step protocol. Post near the front entrance. What the recordkeeping audit looks like in real time when an inspector walks in.',
+                  num: '07',
+                },
+              ].map((card) => (
+                <div
+                  key={card.num}
+                  className="rounded-md p-6"
+                  style={{ background: 'white', border: '1px solid #E5DDCD' }}
+                  data-testid={`kit-cross-sell-card-${card.num}`}
+                >
+                  <p
+                    className="font-bold mb-3"
+                    style={{ color: '#C5A059', fontFamily: "'JetBrains Mono', monospace", fontSize: '12px' }}
+                  >
+                    SS-{card.num}
+                  </p>
+                  <h3
+                    className="font-bold text-[15.5px] leading-snug mb-2"
+                    style={{ fontFamily: "'Manrope', sans-serif", color: '#0A1628' }}
+                  >
+                    {card.label}
+                  </h3>
+                  <p
+                    className="text-[14px] leading-[1.65]"
+                    style={{ color: 'rgba(10,22,40,0.65)', fontFamily: "Georgia, 'Times New Roman', serif" }}
+                  >
+                    {card.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
+              <Link
+                to="/supervisor-kit"
+                className="inline-flex items-center justify-center gap-2 font-bold py-3.5 px-7 transition-all text-[15px]"
+                style={{ background: '#0A1628', color: 'white', fontFamily: "'Manrope', sans-serif" }}
+                data-testid="kit-cross-sell-cta"
+              >
+                See the Full Kit ($600 digital)
+                <ArrowRight size={16} />
+              </Link>
+              <p
+                className="text-[13.5px] italic"
+                style={{ color: 'rgba(10,22,40,0.55)', fontFamily: "Georgia, 'Times New Roman', serif" }}
+              >
+                Or call <a href="tel:+13363298899" className="font-bold hover:underline" style={{ color: '#0A1628' }}>(336) 329-8899</a> to scope a Compliance Readiness Visit &mdash; the kit ships included.
+              </p>
             </div>
           </div>
         </section>

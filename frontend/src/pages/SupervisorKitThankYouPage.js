@@ -95,8 +95,7 @@ const SupervisorKitThankYouPage = () => {
                 strokeWidth={2}
                 style={{ color: GOLD, margin: '0 auto 18px' }}
                 data-testid="kit-thankyou-check"
-              />
-              <p
+              />              <p
                 className="uppercase font-bold tracking-[0.28em] mb-4"
                 style={{ color: GOLD, ...mono, fontSize: '11px' }}
               >
@@ -130,11 +129,32 @@ const SupervisorKitThankYouPage = () => {
                 </p>
               )}
               <p
-                className="text-[15px] mt-3 mb-9"
+                className="text-[15px] mt-3 mb-7"
                 style={{ color: TEXT_MUTED, ...serif }}
               >
                 A confirmation receipt is on its way to your email.
               </p>
+
+              {/* Soft Google review prompt at the highest-intent moment */}
+              <div
+                className="mt-2 mb-9 mx-auto py-4 px-5 rounded-md inline-block"
+                style={{ background: '#F3ECDB', border: `1px solid ${BORDER}`, maxWidth: '480px' }}
+                data-testid="kit-thankyou-review-prompt"
+              >
+                <p className="text-[14.5px] leading-[1.55]" style={{ color: TEXT_MUTED, ...serif }}>
+                  While you&rsquo;re here &mdash; if this saved you time, a short Google review keeps GigLine going for the next small operation.{' '}
+                  <a
+                    href="https://share.google/Uw7Uc7YHr7EiiTuAM"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-bold hover:underline whitespace-nowrap"
+                    style={{ color: GOLD }}
+                    data-testid="kit-thankyou-review-link"
+                  >
+                    Leave a review &rarr;
+                  </a>
+                </p>
+              </div>
             </>
           )}
 

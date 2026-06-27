@@ -168,6 +168,15 @@ Corrective action: photograph every panel in your facility today. Mark the floor
     subtitle: 'The #1 OSHA Citation',
     seo: 'Hazard Communication compliance for small businesses. Written programs, SDS management, labeling, and training requirements.',
     cfrCitation: '29 CFR 1910.1200 (Hazard Communication Standard) · OSHA Top-Cited Violation, General Industry',
+    kitCrossSell: {
+      headline: 'The HazCom program — already written.',
+      intro: 'The three HazCom-anchor documents from the GigLine Supervisor Safety Starter System are the exact forms OSHA expects when they ask for your written program. CFR-cited. Customizable. Print-ready. $600 for the digital kit, included free with every Compliance Readiness Visit.',
+      cards: [
+        { num: '04', label: 'Written HazCom Program', body: 'Your 1910.1200(e) required written program. Customize the company name, sign it, file it. The single document most operations get cited for missing.' },
+        { num: '02', label: 'Chemical Inventory Log', body: 'Every chemical on site, line by line. The basis for your SDS index and the document an inspector asks for first.' },
+        { num: '03', label: 'SDS Index & Binder Log', body: 'Track which SDS lives where. No more "the binder is in here somewhere" when OSHA asks where the safety data sheet for the solvent on the loading dock is.' },
+      ],
+    },
     oshaChecks: [
       'Written Hazard Communication program customized to your facility — not a generic template',
       'Safety Data Sheet (SDS) for every hazardous chemical on site',
@@ -333,6 +342,15 @@ Corrective action: buy a 5-gallon bucket of safety yellow paint and re-mark ever
     subtitle: 'The Step That Gets Skipped',
     seo: 'OSHA Lockout/Tagout compliance for small manufacturers and warehouses in the Piedmont Triad NC. Written procedures, training, annual inspections, and the steps that get skipped on the floor.',
     cfrCitation: '29 CFR 1910.147',
+    kitCrossSell: {
+      headline: 'The LOTO documentation layer.',
+      intro: 'Three documents from the GigLine Supervisor Safety Starter System cover the documentation gaps that get LOTO citations. The kit does not replace machine-specific procedures (you still need those for each piece of equipment) — but it builds the training, inspection, and OSHA-response layer around them. $600 for the digital kit, included free with every Compliance Readiness Visit.',
+      cards: [
+        { num: '10', label: 'Employee Training Record Log', body: 'Documents every LOTO training session for authorized, affected, and other employees. The training trail OSHA asks for under 1910.147(c)(7).' },
+        { num: '09', label: 'Monthly Safety Inspection Checklist', body: 'Includes LOTO equipment checks — locks at point of use, interlocks functional, energy isolation devices labeled. Proves the periodic inspection happened.' },
+        { num: '07', label: 'If OSHA Shows Up', body: 'Seven-step protocol. LOTO is in OSHA\'s top 5 most-cited general industry standards — if an inspector walks in, this is the document that runs the first 10 minutes.' },
+      ],
+    },
     oshaChecks: [
       'Written, machine-specific lockout procedures for every piece of equipment with hazardous energy',
       'Authorized employees trained on energy isolation and documented annually',
@@ -724,7 +742,15 @@ Corrective action: walk every elevated surface in your facility with a tape meas
     subtitle: 'The Form Nobody Fills Out Until It Is Too Late',
     seo: 'OSHA 300 log and recordkeeping compliance for small employers in NC. Recordable injuries, 300A summary posting, severe injury reporting, and the citations that follow when the log is missing.',
     cfrCitation: '29 CFR Part 1904',
-    kitCrossSell: true,
+    kitCrossSell: {
+      headline: 'The forms that handle this on the floor.',
+      intro: 'Three documents from the GigLine Supervisor Safety Starter System map directly to the recordkeeping requirements in this article. CFR-cited. Print-ready. $600 for the digital kit, included free with every Compliance Readiness Visit.',
+      cards: [
+        { num: '09', label: 'Monthly Safety Inspection Checklist', body: '40+ items. Signature block. Retention instruction. The corrective action proof you need on file when OSHA asks.' },
+        { num: '10', label: 'Employee Training Record Log', body: 'Documents every safety training session — dates, topics, attendees, signatures. The training-record trail OSHA cross-checks against the 300 log.' },
+        { num: '07', label: 'If OSHA Shows Up', body: 'Seven-step protocol. Post near the front entrance. What the recordkeeping audit looks like in real time when an inspector walks in.' },
+      ],
+    },
     oshaChecks: [
       'OSHA 300 log maintained for the current calendar year and the past 5 years',
       'Each recordable injury logged within 7 calendar days of notice',
@@ -1099,8 +1125,8 @@ const FieldNoteDetailPage = () => {
         </section>
       )}
 
-      {/* Related Documents CTA — for articles flagged with kitCrossSell */}
-      {note.kitCrossSell && (
+      {/* Related Documents CTA — for articles that specify a kitCrossSell card set */}
+      {note.kitCrossSell && Array.isArray(note.kitCrossSell.cards) && (
         <section
           className="py-16 md:py-20"
           style={{ background: '#FAF7F1', borderTop: '1px solid #E5DDCD' }}
@@ -1117,32 +1143,16 @@ const FieldNoteDetailPage = () => {
               className="font-bold leading-tight mb-3 text-[24px] md:text-[30px]"
               style={{ fontFamily: "'Manrope', sans-serif", color: '#0A1628' }}
             >
-              The forms that handle this on the floor.
+              {note.kitCrossSell.headline || 'The forms that handle this on the floor.'}
             </h2>
             <p
               className="text-[15.5px] md:text-base leading-[1.7] mb-10 max-w-2xl"
               style={{ color: 'rgba(10,22,40,0.72)', fontFamily: "Georgia, 'Times New Roman', serif" }}
             >
-              Three documents from the GigLine Supervisor Safety Starter System map directly to the recordkeeping requirements in this article. CFR-cited. Print-ready. $600 for the digital kit, included free with every Compliance Readiness Visit.
+              {note.kitCrossSell.intro || `Documents from the GigLine Supervisor Safety Starter System map directly to the requirements in this article. CFR-cited. Print-ready. $600 for the digital kit, included free with every Compliance Readiness Visit.`}
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 mb-8">
-              {[
-                {
-                  label: 'Monthly Safety Inspection Checklist',
-                  body: '40+ items. Signature block. Retention instruction. The corrective action proof you need on file when OSHA asks.',
-                  num: '09',
-                },
-                {
-                  label: 'Employee Training Record Log',
-                  body: 'Documents every safety training session — dates, topics, attendees, signatures. The training-record trail OSHA cross-checks against the 300 log.',
-                  num: '10',
-                },
-                {
-                  label: 'If OSHA Shows Up',
-                  body: 'Seven-step protocol. Post near the front entrance. What the recordkeeping audit looks like in real time when an inspector walks in.',
-                  num: '07',
-                },
-              ].map((card) => (
+              {note.kitCrossSell.cards.map((card) => (
                 <div
                   key={card.num}
                   className="rounded-md p-6"

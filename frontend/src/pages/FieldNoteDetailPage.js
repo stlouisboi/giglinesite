@@ -864,6 +864,533 @@ If you used AI to generate safety documentation — or you are not sure whether 
       ],
     },
   },
+  'respiratory-protection': {
+    title: 'Respiratory Protection',
+    subtitle: 'The Fit Test Nobody Did',
+    seo: 'OSHA respiratory protection program requirements for small manufacturers in NC. Written program, medical evaluation, fit testing, and training — the five-piece program most small operations are missing.',
+    cfrCitation: '29 CFR 1910.134',
+    oshaChecks: [
+      'Written respiratory protection program tailored to the facility',
+      'Hazard assessment identifying every task requiring respiratory protection',
+      'Medical evaluation completed before fit testing — current within program requirements',
+      'Annual fit testing for tight-fitting respirators, documented per employee and respirator model',
+      'Training on proper use, limitations, cleaning, maintenance, and disposal',
+      'Cartridge change-out schedule for chemical cartridges based on use conditions',
+    ],
+    faqSchema: [
+      { question: 'When does OSHA require a respiratory protection program?', answer: 'OSHA requires a written respiratory protection program any time employees are required to wear respirators — including filtering facepiece respirators (N95s) used to protect against airborne hazards. Voluntary use of dust masks for nuisance dust still triggers Appendix D notification requirements under 29 CFR 1910.134.' },
+      { question: 'Do employees need a medical evaluation before wearing a respirator?', answer: 'Yes. 29 CFR 1910.134(e) requires a medical evaluation by a Physician or Other Licensed Health Care Professional (PLHCP) before an employee is fit tested or required to wear a respirator. The OSHA medical evaluation questionnaire in Appendix C can be used at no cost — but the PLHCP review is required.' },
+      { question: 'How often is fit testing required?', answer: 'Fit testing is required before initial use, whenever a different respirator model is used, and at least annually thereafter. It must be repeated when the wearer reports changes in physical condition that could affect fit — weight change, dental work, facial scarring, or cosmetic surgery.' },
+    ],
+    relatedNotes: ['ppe-assessment', 'hazcom'],
+    sections: {
+      whatItIs: `OSHA 29 CFR 1910.134 is the respiratory protection standard, and it carries one of the most extensive program requirements of any general industry standard. If your operation requires employees to wear any tight-fitting respirator — including the N95 filtering facepiece — you owe a five-piece program: a written respiratory protection plan, a hazard assessment, medical evaluation for every wearer before fit testing, annual fit testing, and documented training. Miss any one of those five pieces and the citation writes itself.
+
+The hazard assessment is the foundation. Before requiring a respirator, the employer has to determine that the airborne contaminant exposure exceeds a permissible exposure limit (PEL) or that a respirator is otherwise needed to protect employee health. That assessment should reference air sampling data when available, manufacturer SDS guidance for chemical exposures, and a written rationale for the type of respirator selected. In small fabrication and woodworking shops in the Triad, I almost never see a written hazard assessment — the dust mask is bought, distributed, and worn, and the file is empty.
+
+The medical evaluation is the most frequently skipped piece. Before any employee wears a tight-fitting respirator, a Physician or Other Licensed Health Care Professional (PLHCP) must review a medical questionnaire (OSHA provides the form in Appendix C). The PLHCP issues a written opinion clearing the employee for respirator use. This is non-negotiable — respirator use places a measurable cardiopulmonary load on the wearer, and OSHA does not allow employers to substitute their own judgment for a medical professional's. The questionnaire and review can be handled remotely through occupational health services for under $50 per employee. Most small operations skip the step entirely.
+
+Fit testing comes after the medical clearance. Tight-fitting respirators — including all N95 filtering facepiece respirators — must be fit tested using either a qualitative protocol (saccharin, Bitrex, or irritant smoke) or a quantitative protocol (PortaCount instrument). Fit tests must be performed before initial use, whenever a different respirator make or model is used, and at least annually thereafter. The fit test record must include the employee name, the test date, the respirator make/model/size, the protocol used, and the result. In the operations I walk through, fit tests are either undocumented or performed once on hire and never repeated.
+
+Training rounds out the program. Annual training is required on respirator capabilities and limitations, proper donning and doffing, seal checks, cleaning and maintenance, cartridge change-out schedules for chemical cartridges, and signs of respirator failure. Training must be documented with employee names, dates, topics, and trainer credentials. A 15-minute toolbox talk every year — properly documented — satisfies the requirement.
+
+Corrective action for a small operation: draft a one-page written program using the OSHA template (a quick search for "OSHA respiratory protection program template" returns usable starting points), conduct a written hazard assessment, send the OSHA Appendix C questionnaire to every respirator user, get the PLHCP review done, schedule annual fit tests with a local occupational health vendor or train a designated employee to administer qualitative fit tests in-house, and run annual training. Total cost for a 20-employee operation: under $2,000 the first year. Cost of a willful citation under 1910.134: up to $165,514 per item.`,
+      whatGetsMissed: [
+        'No written respiratory protection program — the binder is empty',
+        'Hazard assessment never performed or never documented',
+        'Medical evaluation skipped — employees go straight to fit testing or straight to use',
+        'Fit testing performed once on hire and never repeated annually',
+        'Voluntary N95 users not given the Appendix D notification (a citable gap even when the respirator is "voluntary")',
+        'Beard or facial hair growth in the seal area — automatic seal failure',
+        'Cartridges left in service past change-out schedule — no documented schedule at all',
+      ],
+      whatISee: 'I walk into a fab shop and find a box of N95s on a shelf with no program in place. The supervisor tells me they "give them out as needed." I ask if anyone has been medically cleared to wear one — no. I ask when fit tests were last done — never. I check the SDS for the welding rod in use — it specifies a half-face respirator with P100 cartridges for the operation being performed. Nobody is wearing one. The full program would have caught all of this. The empty binder caught none of it.',
+      checklist: [
+        'Written respiratory protection program on file, signed and dated by the program administrator',
+        'Hazard assessment completed for every task that may require respiratory protection',
+        'Medical evaluation (PLHCP review of Appendix C questionnaire) completed before fit testing for every respirator user',
+        'Initial fit test performed for every employee on the specific respirator model issued',
+        'Annual fit test performed and documented for every tight-fitting respirator user',
+        'Annual training documented with names, dates, and topics',
+        'Cartridge change-out schedule established and documented for chemical cartridges',
+        'Voluntary respirator users provided Appendix D notification',
+        'Respirators inspected before each use; damaged respirators removed from service',
+        'Beard policy in place for tight-fitting respirator users',
+      ],
+    },
+  },
+  'silica-respirable-crystalline': {
+    title: 'Respirable Crystalline Silica',
+    subtitle: 'The 50 µg/m³ Limit Nobody Measured',
+    seo: 'OSHA respirable crystalline silica standard (1910.1053) for small operations in NC. Exposure assessment, engineering controls, medical surveillance, and the written exposure control plan most stone and concrete shops are missing.',
+    cfrCitation: '29 CFR 1910.1053 (general industry) · 29 CFR 1926.1153 (construction)',
+    oshaChecks: [
+      'Exposure assessment — air sampling or objective data establishing exposure levels',
+      'Written exposure control plan identifying tasks, controls, and protective measures',
+      'Engineering controls (water suppression, LEV) per Table 1 or alternative exposure assessment',
+      'Respiratory protection program when controls cannot reduce exposure below PEL',
+      'Medical surveillance for employees exposed at or above the action level for 30+ days/year',
+      'Annual training on silica hazards, controls, and medical surveillance',
+    ],
+    faqSchema: [
+      { question: 'What is the OSHA silica exposure limit?', answer: 'The OSHA permissible exposure limit (PEL) for respirable crystalline silica is 50 micrograms per cubic meter of air (50 µg/m³) averaged over an 8-hour shift. The action level — which triggers exposure assessment and medical surveillance requirements — is 25 µg/m³.' },
+      { question: 'Which operations are covered by the silica standard?', answer: 'Any operation where employees may be exposed to respirable crystalline silica. Common examples include concrete cutting and grinding, stone fabrication (countertops, monuments), sandblasting, foundry operations, brick and block work, and any task that disturbs materials containing crystalline silica.' },
+      { question: 'What is the Table 1 approach in the construction standard?', answer: 'Construction operations covered by 29 CFR 1926.1153 can comply by following Table 1 — specified exposure control methods (water suppression, dust collection) and respiratory protection for listed tasks. Following Table 1 fully eliminates the need for exposure assessment for those tasks. General industry operations under 1910.1053 do not have a Table 1 option — they must perform exposure assessments.' },
+    ],
+    relatedNotes: ['respiratory-protection', 'hazcom'],
+    sections: {
+      whatItIs: `Respirable crystalline silica is the fine fraction of silica dust that can reach deep into the lungs and cause silicosis, lung cancer, COPD, and kidney disease. OSHA tightened the silica standard in 2016, dropping the general industry permissible exposure limit (PEL) from roughly 100 µg/m³ down to 50 µg/m³ — a 50% reduction — and adding action-level requirements (exposure assessment, medical surveillance) at 25 µg/m³. The standard applies in two parallel versions: 29 CFR 1910.1053 covers general industry and maritime, and 29 CFR 1926.1153 covers construction. Stone fabrication shops (countertops, monuments), foundries, concrete cutting and grinding operations, brick and block masonry, abrasive blasting with silica-containing media, and any operation that mills, drills, saws, or grinds material containing crystalline silica is potentially in scope.
+
+The exposure assessment is the first compliance step. Under 1910.1053(d), the employer must assess employee exposure to respirable crystalline silica for every employee who may be exposed at or above the action level. Two paths exist: a performance option (any combination of air monitoring data and objective data sufficient to characterize exposure) or a scheduled monitoring option (initial monitoring, then periodic monitoring at frequencies that depend on the result). Most small Triad-area stone fab shops have never performed any monitoring. They do not know whether they are below the action level, between action level and PEL, or above the PEL — which means they cannot comply with any of the downstream requirements either.
+
+The written exposure control plan is required under 1910.1053(f)(2) for any employer with workers exposed at or above the action level. The plan must identify the tasks involving silica exposure, the engineering controls and work practices used for each task, the housekeeping measures, and the procedures for restricting access to high-exposure areas. It is not boilerplate — it has to describe the actual operation. Most plans I have reviewed in stone fab shops are downloaded templates with the original company's name still in the header.
+
+Engineering controls drive the compliance strategy. Water suppression (wet cutting, wet grinding) and local exhaust ventilation (LEV) with HEPA-filtered vacuums are the two primary control methods. Dry cutting of natural or engineered stone without water suppression and without a HEPA-filtered shroud-and-vacuum system will exceed the PEL almost universally. In the operations I walk through, dry cutting is still happening — operators wearing a paper dust mask, no LEV, no water — and the exposure is unmeasured but almost certainly above the PEL by a factor of five or more.
+
+Medical surveillance under 1910.1053(i) is required for any employee exposed at or above the action level for 30 or more days per year. It includes a baseline medical examination (medical history, physical exam, chest X-ray, pulmonary function test, tuberculosis test, and other tests deemed necessary by the PLHCP) and subsequent exams at least every three years. The employer must offer the exam at no cost and during regular working hours. Most small operations have no surveillance program — and most have employees who would test positive on a baseline X-ray for early silicosis if they were screened today.
+
+Corrective action: schedule a qualified industrial hygienist to perform initial air monitoring (about $300 to $800 per sample, several samples needed to characterize a small operation). Use the results to drive the rest of the program — written plan, engineering controls, respiratory protection where controls cannot eliminate exposure, medical surveillance for exposed workers, annual training. The capital investment in water-fed saws or LEV-equipped shrouds is real ($1,500 to $8,000 depending on operation size) but is far less than the cost of a willful silica citation (up to $165,514 per item) or a silicosis claim filed by a former employee.`,
+      whatGetsMissed: [
+        'No exposure assessment ever performed — employer cannot demonstrate compliance with the PEL',
+        'No written exposure control plan, or a generic template with no facility specifics',
+        'Dry cutting of stone, concrete, or masonry with no water suppression and no LEV',
+        'HEPA-filtered vacuums replaced with shop vacuums (which do not capture respirable silica)',
+        'Respiratory protection used as a primary control instead of engineering controls',
+        'Medical surveillance not offered — or offered but not documented as offered',
+        'Housekeeping by dry sweeping or compressed air (both prohibited under the standard)',
+        'Construction operations relying on Table 1 without actually meeting Table 1 conditions',
+      ],
+      whatISee: 'I walk into a small countertop fab shop and find one operator dry cutting a quartz slab. He is wearing a single-strap paper dust mask. There is no LEV at the saw, no water bath, no exhaust. There is dust on every horizontal surface and on the operator\'s clothes. The shop has no written exposure control plan, no air monitoring records, and no medical surveillance — and the owner does not know the standard applies to engineered stone (it does, and the exposure on engineered stone is often higher than on natural stone). This is the single highest-risk silica exposure I see in the Triad.',
+      checklist: [
+        'Exposure assessment completed for every task that may generate respirable crystalline silica',
+        'Written exposure control plan customized to the facility, reviewed annually',
+        'Engineering controls (water suppression, LEV with HEPA) in place for primary silica-generating tasks',
+        'Wet methods or HEPA-filtered vacuums used for housekeeping — no dry sweeping or compressed air',
+        'Respiratory protection program in place where controls cannot reduce exposure below the PEL',
+        'Medical surveillance offered to every employee exposed at or above the action level for 30+ days/year, documented',
+        'Annual training on silica hazards, controls, and medical surveillance',
+        'Restricted-access signs posted at high-exposure areas',
+        'Recordkeeping: air monitoring data, exposure assessments, and medical surveillance records retained per standard',
+      ],
+    },
+  },
+  'hot-work-welding': {
+    title: 'Hot Work, Welding & Cutting',
+    subtitle: 'The Fire Watch That Walked Off',
+    seo: 'OSHA welding, cutting, and brazing requirements (29 CFR 1910 Subpart Q) for small fabrication shops in NC. Hot work permits, fire watch, compressed gas cylinders, ventilation, and PPE — the five-point program that almost every fab shop is missing pieces of.',
+    cfrCitation: '29 CFR 1910 Subpart Q (1910.251–1910.255) · NFPA 51B (Hot Work Permits)',
+    oshaChecks: [
+      'Hot work permit system for any cutting, welding, or grinding outside of a designated hot work area',
+      'Fire watch posted during and 30+ minutes after hot work in non-designated areas',
+      '35-foot combustible-clearance zone or fire-resistant guards around hot work',
+      'Compressed gas cylinders secured upright, capped when not in regulator-connected',
+      'Eye, face, and skin protection appropriate to the process (Z87.1 welding helmets, leather)',
+      'Local exhaust ventilation when welding stainless, galvanized, or other higher-toxicity metals',
+    ],
+    faqSchema: [
+      { question: 'Does OSHA require a hot work permit?', answer: 'OSHA 29 CFR 1910.252(a)(2)(iv) does not use the phrase "hot work permit" by name, but it requires the employer to control fire hazards during welding and cutting. The widely accepted compliance method is a written hot work permit program based on NFPA 51B. Hot work permits are essentially universal in any operation with insurance coverage — most carriers require them.' },
+      { question: 'How long does a fire watch need to stay after welding?', answer: 'NFPA 51B and OSHA guidance require a fire watch during hot work in non-designated areas and for at least 30 minutes after hot work is completed. Some authorities and insurers require 60 minutes. The fire watch must have access to extinguishing equipment and must be trained to use it.' },
+      { question: 'How should compressed gas cylinders be stored?', answer: 'Compressed gas cylinders must be stored upright, secured (chain or strap) against tipping, with valve protection caps in place when not in service. Oxygen cylinders must be stored at least 20 feet from fuel-gas cylinders or separated by a fire-resistant barrier at least 5 feet high with a 30-minute fire rating, per 29 CFR 1910.253(b)(4).' },
+    ],
+    relatedNotes: ['ppe-assessment', 'eye-face-protection'],
+    sections: {
+      whatItIs: `Welding, cutting, brazing, and grinding fall under OSHA Subpart Q (29 CFR 1910.251 through 1910.255). The standard covers fire prevention, ventilation, compressed gas cylinders, electrical safety for arc welding, eye and face protection, and protective clothing. Every Triad-area fab shop, machine shop, and any operation that runs even an occasional torch or grinder is subject to some portion of this subpart — and every one of them I have walked into has a gap somewhere in the five-point program.
+
+Fire prevention is the highest-stakes piece. OSHA 1910.252(a) requires the employer to establish areas where hot work can be performed safely (a "designated hot work area" with non-combustible floors and surfaces, no combustible storage within 35 feet, and adequate ventilation). For hot work performed outside a designated area, the employer must: remove combustibles within 35 feet, cover what cannot be moved with fire-resistant guards, post a fire watch during the work, and maintain the fire watch for at least 30 minutes after work is completed. NFPA 51B — the recognized industry standard — formalizes this into a written hot work permit program. Insurance carriers and many customer audits require it explicitly. In small fab shops I walk through, hot work is happening anywhere there is room for the operator to stand. There is no designated area, no permit, no fire watch — just an operator, a torch, and a stack of wooden pallets eight feet away.
+
+Compressed gas cylinder safety under 1910.253 is the second most-cited area. Cylinders must be stored upright, secured against tipping (chain or strap, not just leaning), with valve protection caps in place when the cylinder is not connected to a regulator. Oxygen and fuel-gas cylinders must be separated in storage — at least 20 feet apart, or by a 5-foot-tall fire-resistant barrier. Cylinders cannot be stored near combustible materials, in unventilated rooms, or in temperatures above 125°F. In nearly every fab shop I walk through, at least one cylinder is unsecured, valve caps are off and missing entirely, and oxygen and fuel cylinders are mixed in the same rack.
+
+Ventilation under 1910.252(c) is the silent failure. Welding fumes — especially from galvanized steel (zinc fume fever), stainless steel (hexavalent chromium), and any coated or painted material — require local exhaust ventilation or respiratory protection. Welding hexavalent chromium under 1910.1026 requires written exposure control and exposure assessment in addition to the welding standard. The PEL for hexavalent chromium is 5 µg/m³ averaged over an 8-hour shift, with an action level of 2.5 µg/m³. Stainless welding without LEV will exceed both. Most small shops have a single overhead fan, no LEV at the welding station, and no respirator program.
+
+Eye, face, and skin protection requirements are listed in 1910.252(b)(2). Welding helmets must meet ANSI Z87.1, with shade numbers appropriate to the process and amperage (shade 10 minimum for stick welding at moderate amperage, higher shades for higher amperage and TIG). Bystanders within range of the arc require welding curtains or screens. Leather sleeves, gloves, and aprons are required for any process generating spatter. Grinding requires Z87.1-rated goggles plus a face shield. In the shops I walk through, helmets are present but mismatched to the process, and grinding is routinely done in safety glasses alone — no face shield.
+
+Corrective action: implement a written hot work permit program based on NFPA 51B, designate a hot work area, establish a permit-issuing authority (usually the supervisor on shift), train a fire watch on every shift, audit cylinder storage daily and fix violations on the spot, install LEV at the welding station for any work on coated or stainless material, perform a hazard assessment for the welding processes in use, and update PPE accordingly. Total fix time for a small fab shop: 1 to 2 weeks of focused work. Total cost: under $5,000 in equipment for a typical 5-station shop. Cost of a fire that destroys a building: total loss.`,
+      whatGetsMissed: [
+        'No hot work permit program — torches and grinders running anywhere in the shop without authorization',
+        'Fire watch not posted, or posted but leaves immediately when the welder stops',
+        'Combustibles within 35 feet of hot work — wooden pallets, cardboard, plastic, fuel containers',
+        'Compressed gas cylinders unsecured, valve caps missing, oxygen mixed with fuel gas',
+        'Welding stainless or galvanized without LEV — hexavalent chromium and zinc fume exposures undocumented',
+        'Welding curtains missing — bystanders exposed to arc flash and UV',
+        'Grinding in safety glasses with no face shield — eye and face injuries every year',
+        'Welding leads with damaged insulation in service — shock and arc hazard',
+      ],
+      whatISee: 'I walk into a fab shop and find a welder running stainless TIG at 180 amps with no LEV — the fume cloud rises straight to the ceiling and hangs there. Twenty feet away, another operator is grinding without a face shield. In the corner, three oxygen cylinders and two acetylene cylinders are leaned against the wall, unsecured, with no valve caps. A wooden workbench sits ten feet from a third welding station. There is no hot work permit, no fire watch, and no written program for any of it.',
+      checklist: [
+        'Written hot work permit program (NFPA 51B-based) in place',
+        'Designated hot work area established with non-combustible floor and adequate ventilation',
+        'Fire watch trained, posted during hot work in non-designated areas, and stays 30+ minutes after',
+        '35-foot combustible-clearance zone or fire-resistant guards in place during hot work',
+        'Compressed gas cylinders stored upright, secured, valve caps in place when not in service',
+        'Oxygen and fuel-gas cylinders separated by 20 feet or by a 5-foot fire-resistant barrier',
+        'Local exhaust ventilation at welding stations handling galvanized, stainless, or coated materials',
+        'Welding helmets Z87.1-rated and matched to process amperage; bystander curtains in place',
+        'Hexavalent chromium and other process-specific exposure assessments completed where applicable',
+        'Annual training documented for all welders, cutters, and fire watch personnel',
+      ],
+    },
+  },
+  'abrasive-wheels': {
+    title: 'Abrasive Wheels & Bench Grinders',
+    subtitle: 'The Tongue Guard at 1/8 of an Inch',
+    seo: 'OSHA abrasive wheel safety requirements (29 CFR 1910.215) for bench grinders in small NC shops. Tongue guards, work rests, ring testing, and RPM limits — one of the most specific and most violated OSHA standards.',
+    cfrCitation: '29 CFR 1910.215',
+    oshaChecks: [
+      'Tongue guard adjustable to within 1/4 inch of the wheel',
+      'Work rest adjusted to within 1/8 inch of the wheel',
+      'Side guards covering at least 75% of the wheel diameter',
+      'Wheel RPM rating matching or exceeding the grinder spindle RPM',
+      'Ring test performed before mounting any new wheel',
+      'Wheel run for at least one minute before use after mounting',
+    ],
+    faqSchema: [
+      { question: 'How close should the tongue guard be on a bench grinder?', answer: 'OSHA 29 CFR 1910.215(b)(9) requires the tongue guard (the upper movable guard that follows the wheel as it wears) to be kept adjustable to within 1/4 inch of the wheel surface. The work rest below the wheel must be adjusted to within 1/8 inch of the wheel.' },
+      { question: 'What is a ring test on a grinding wheel?', answer: 'A ring test is performed before mounting any new abrasive wheel. The wheel is suspended on a finger or a thin rod and tapped lightly with a non-metallic object — a wood handle works. A sound wheel rings clearly. A cracked wheel produces a dull thud. The standard requires this test under 29 CFR 1910.215(d)(1) — it takes 10 seconds and is almost never done.' },
+      { question: 'Why does the wheel RPM matter?', answer: 'Every abrasive wheel is rated for a maximum RPM stamped on the wheel or the blotter. If the spindle RPM of the grinder exceeds the wheel RPM, the wheel can disintegrate during operation — the centrifugal force exceeds the bond strength of the wheel. Always verify the wheel rating is equal to or greater than the spindle RPM before mounting.' },
+    ],
+    relatedNotes: ['machine-guarding', 'eye-face-protection'],
+    sections: {
+      whatItIs: `29 CFR 1910.215 is one of the most specific OSHA standards in general industry. The standard governs abrasive wheels — bench grinders, pedestal grinders, swing-frame grinders, and any wheel-type abrasive tool — and it lists exact dimensional tolerances that an inspector can measure on the spot. The most-cited subsections are 1910.215(a)(4) — work rest adjustment — and 1910.215(b)(9) — tongue guard adjustment. Both can be checked with a feeler gauge in under a minute, and both fail in the majority of small shops I walk through.
+
+The work rest must be adjusted to within 1/8 inch of the wheel. If the gap is wider, the workpiece can wedge between the rest and the wheel and pull the operator's hand into the wheel. As the wheel wears down through use, the gap grows. Operators do not stop and re-adjust because it slows them down. Within a week of use, almost every bench grinder I see has a gap of 1/2 inch or more. That is a citation, and it is a hand-injury hazard.
+
+The tongue guard is the upper adjustable guard that follows the wheel as it wears. It must be kept adjustable to within 1/4 inch of the wheel surface. Most tongue guards are factory-set, never adjusted again, and as the wheel wears down the gap opens to 1 to 2 inches. That gap exposes the operator to wheel fragments if the wheel breaks during use.
+
+Side guards (the fixed peripheral and side enclosures) must cover at least 75% of the wheel diameter. Many older grinders have side guards missing entirely or modified by previous owners. A bench grinder without a side guard cannot be brought into compliance with a feeler gauge — it needs the part installed.
+
+Ring testing is required before any wheel is mounted. Most shop hands have never heard of it. The procedure: suspend the wheel on a finger or a thin rod (not against your hand or any padded surface), tap lightly with a non-metallic object, and listen. A sound wheel rings — like a small bell. A cracked wheel produces a dull thud. A cracked wheel mounted to a grinder spinning at 3,450 RPM is a fragmentation event waiting to happen, and those fragments leave the wheel at the speed of a slow-moving handgun bullet.
+
+RPM matching is the last critical check. Every wheel has a maximum operating speed stamped on the blotter or the wheel itself. Every grinder has a spindle speed listed on the motor plate. If the wheel rating is less than the spindle speed, the wheel will fail in service. Always check both and confirm the wheel rating is equal to or higher than the spindle speed. Mismatched wheels are a recurring finding in shops that buy wheels by diameter and arbor size without checking ratings.
+
+Corrective action: adjust every grinder in the shop right now — work rest to 1/8 inch, tongue guard to 1/4 inch. Replace missing side guards. Train every operator on the ring test, the RPM check, and the requirement to run a new wheel for at least one minute before use. Re-train when grinders are added. Document the training. Add a daily pre-shift check of each grinder to the supervisor's routine. Total cost: a feeler gauge, a few replacement guards, and 30 minutes of training time. Total time: one shift. Penalty for ignoring this standard during an OSHA visit: up to $16,550 per grinder, per missing tolerance.`,
+      whatGetsMissed: [
+        'Work rest gap larger than 1/8 inch — the most common citation under this standard',
+        'Tongue guard gap larger than 1/4 inch — runner-up citation',
+        'Side guards missing or modified — operator exposed to wheel fragmentation',
+        'Ring test never performed before mounting new wheels',
+        'Wheel RPM rating not verified against spindle RPM',
+        'New wheels not run for the required one minute before initial use',
+        'Operators using bench grinders with no eye or face protection',
+        'Damaged or chipped wheels left in service',
+      ],
+      whatISee: 'I bring a feeler gauge to every walkthrough that involves a fab shop or machine shop. Every bench grinder I find has at least one tolerance out of spec. The work rest is usually 1/2 to 3/4 inch from the wheel. The tongue guard is rarely adjusted at all. Ring testing is universally unknown — when I ask about it, the response is "we just put the wheel on and use it." Wheels are stored on a shelf, sometimes stacked on top of each other, sometimes leaning against a wall. Cracked wheels go unnoticed. This standard is the easiest fix in OSHA — and the most ignored.',
+      checklist: [
+        'Work rest adjusted to within 1/8 inch of the wheel on every grinder',
+        'Tongue guard adjusted to within 1/4 inch of the wheel on every grinder',
+        'Side guards in place and covering at least 75% of the wheel diameter',
+        'Wheel RPM rating verified against spindle RPM before mounting any wheel',
+        'Ring test performed on every new wheel before mounting',
+        'New wheel run for at least one minute under guard before operator approaches',
+        'Eye protection (Z87.1) and face shield available and used at every grinder',
+        'Wheel storage area protected from impact, moisture, and heat',
+        'Damaged or chipped wheels removed from service immediately',
+        'Daily pre-shift visual check of every grinder by the supervisor on shift',
+      ],
+    },
+  },
+  'ladder-safety': {
+    title: 'Portable Ladder Safety',
+    subtitle: 'The 4-to-1 Rule Nobody Remembers',
+    seo: 'OSHA portable ladder safety requirements (29 CFR 1910.23) for small operations in NC. Inspection, the 4-to-1 angle rule, three-point contact, and what disqualifies a ladder from service — top citations in general industry.',
+    cfrCitation: '29 CFR 1910.23 (general industry) · 29 CFR 1926.1053 (construction)',
+    oshaChecks: [
+      'Ladders inspected before each use; damaged ladders tagged out of service',
+      'Extension ladders set at the 4-to-1 ratio (1 foot out for every 4 feet up)',
+      'Extension ladders extending at least 3 feet above the upper landing surface',
+      'Three-point contact maintained while climbing (two hands and one foot, or two feet and one hand)',
+      'Ladder rated for the user weight plus tools and materials',
+      'Ladders not used on slippery or unstable surfaces, or in high-wind conditions outdoors',
+    ],
+    faqSchema: [
+      { question: 'What is the 4-to-1 rule for extension ladders?', answer: 'The 4-to-1 rule means the base of an extension ladder should be set out from the upper support by 1 foot for every 4 feet of working ladder length. A ladder reaching a 16-foot support should be set with its base 4 feet from the wall. This produces approximately a 75-degree angle — the safest climbing angle. Required under 29 CFR 1926.1053(b)(5)(i) and recommended in 1910.23.' },
+      { question: 'When does an extension ladder need to extend above the landing?', answer: 'When an extension ladder is used for access to an upper landing surface, the side rails must extend at least 3 feet above the upper landing. This gives the user something to hold onto when stepping off the ladder. Required by 29 CFR 1926.1053(b)(1) and a frequent citation when missing.' },
+      { question: 'When does a ladder have to be removed from service?', answer: 'A ladder must be removed from service when it has any of the following: cracked or broken side rails, missing or broken rungs, broken or damaged feet, bent or cracked support brackets, or any defect that would impair safe use. The ladder must be tagged "Do Not Use" and removed from the work area until repaired or destroyed.' },
+    ],
+    relatedNotes: ['fall-protection', 'walking-surfaces'],
+    sections: {
+      whatItIs: `Portable ladder safety is governed under 29 CFR 1910.23 in general industry and 29 CFR 1926.1053 in construction. The two standards share most requirements: inspection before use, proper angle of setup, extension above the landing surface, three-point contact climbing, and load rating compliance. Ladders are present in nearly every operation — warehouse, manufacturing, contractor — and ladder violations are consistently in OSHA's top 10 most cited standards every year.
+
+The most-cited subsection is "improper use." The 4-to-1 rule for extension ladders means the base sits 1 foot out from the upper support for every 4 feet of working ladder length. That produces approximately a 75-degree angle. Steeper than that, the ladder tips backward when the climber leans away. Shallower than that, the base slides out when weight is applied. Most operators set the ladder at whatever angle "looks about right" — usually closer to 60 degrees in my experience, because it feels more stable to the person on the ground. From the climber's perspective at the top, that shallow angle becomes obvious — and dangerous — only when the base slips.
+
+Extension above the upper landing is the second most-cited issue. When an extension ladder provides access to a roof, mezzanine, or elevated surface, the side rails must extend at least 3 feet above the landing. This gives the climber a handhold while transitioning on or off the ladder. A ladder cut too short — or extended too short — forces the climber to step from the top rung onto the landing with no handhold, and that step accounts for a large fraction of ladder fall injuries.
+
+Inspection before use is the third area. Ladders develop defects through use: cracked side rails, bent rungs, damaged feet, broken support brackets on step ladders, loose or missing rivets. A ladder with any of these defects must be tagged "Do Not Use" and removed from the work area. In the operations I walk through, damaged ladders are leaning against a wall in regular use — nobody has tagged them, nobody has removed them.
+
+Three-point contact is the climbing rule that prevents most fall incidents. Either two hands and one foot, or two feet and one hand, must be in contact with the ladder at all times during ascent and descent. That means tools and materials must be carried by hoist, by tool belt with attachment lanyard, or by a second person — not held in the climber's free hand. Climbing with a tool or a five-gallon bucket in one hand is one of the most consistent unsafe practices in small shops.
+
+Load rating matters because operators choose ladders by length, rarely by load capacity. Type IAA (375 lb), Type IA (300 lb), Type I (250 lb), Type II (225 lb), and Type III (200 lb) ratings are stamped on every ladder. The capacity includes the climber plus tools and materials carried up. A 250-lb-rated ladder with a 230-lb climber carrying a 30-lb pail of paint is overloaded. Older fiberglass ladders often weather and lose strength — even those ratings degrade over time.
+
+Corrective action for a small operation: inventory every ladder in the shop. Inspect each one. Tag and remove damaged ladders. Train operators on the 4-to-1 setup, extension above landing, three-point contact, and load-rating awareness. Add daily pre-use inspection to the toolbox talk. Replace any ladder that has weathered or developed defects. Total cost: under $1,000 for a typical small operation. Total time: a single half-day audit.`,
+      whatGetsMissed: [
+        'Extension ladders set at the wrong angle — too steep or too shallow',
+        'Extension ladders not extending 3 feet above the upper landing',
+        'Damaged ladders left in service — cracked rails, broken rungs, missing feet',
+        'Three-point contact broken — climbers carrying tools or materials in one hand',
+        'Step ladders used as straight ladders (rails leaned against a wall) — a defeating-the-design violation',
+        'Ladders used on uneven, slippery, or unstable surfaces with no base stabilization',
+        'Aluminum ladders used near energized electrical work — conductive hazard',
+        'Top step or top cap of a step ladder used as a standing platform',
+      ],
+      whatISee: 'I walk through a warehouse and find a 20-foot extension ladder leaning at maybe 55 degrees against a mezzanine — too shallow. The top of the ladder is at the level of the landing, with nothing extending above it. The rubber feet on the bottom are worn smooth. A worker climbs it carrying a small toolbox in one hand. Half the step ladders in the shop are missing their spreader-bar locks. Two are cracked along the rails. None of them have been tagged out. The standard is straightforward; the practice is not.',
+      checklist: [
+        'Every ladder inspected for damage before each use',
+        'Damaged ladders tagged "Do Not Use" and removed from the work area',
+        'Extension ladders set at the 4-to-1 ratio',
+        'Extension ladders extend at least 3 feet above the upper landing',
+        'Three-point contact maintained on all ascents and descents',
+        'Tools and materials carried by hoist, tool belt, or second person — not in a free hand',
+        'Step ladders used only in the fully open position with spreader bar locked',
+        'Top step and top cap of step ladders never used as standing surfaces',
+        'Ladder load rating matched to the climber plus tools and materials',
+        'Aluminum ladders kept clear of energized electrical work',
+      ],
+    },
+  },
+  'eye-face-protection': {
+    title: 'Eye & Face Protection',
+    subtitle: 'Safety Glasses Are Not a PPE Program',
+    seo: 'OSHA eye and face protection requirements (29 CFR 1910.133) for small NC operations. Z87.1 markings, side shields, face shields for grinding and chemical handling, and the hazard assessment that must come first.',
+    cfrCitation: '29 CFR 1910.133 (general industry) · 29 CFR 1910.132 (PPE hazard assessment)',
+    oshaChecks: [
+      'Written PPE hazard assessment identifying eye and face hazards by task',
+      'Eye protection meeting ANSI Z87.1, with side shields for impact hazards',
+      'Face shields used for grinding, chipping, chemical splash, and high-impact tasks',
+      'Tinted lenses or welding helmets matched to the welding process',
+      'Eye protection fitted properly — prescription users provided Z87-rated prescription eyewear',
+      'Training documented on PPE selection, fit, use, care, and limitations',
+    ],
+    faqSchema: [
+      { question: 'What does Z87.1 mean on safety glasses?', answer: 'ANSI Z87.1 is the American National Standard for occupational eye and face protection. The Z87 or Z87+ marking on the frame or lens indicates the eyewear has been tested to that standard. Z87+ indicates high-velocity impact rating. OSHA 29 CFR 1910.133 requires eye protection to meet the ANSI Z87.1 standard.' },
+      { question: 'Are safety glasses with side shields required?', answer: 'When the hazard assessment identifies impact, dust, or particles flying laterally — which covers most general industry operations — eye protection must have side shields. Side shields can be integral to the frame or attached. Wraparound safety glasses meet the requirement; standard glasses with no lateral coverage do not.' },
+      { question: 'When does OSHA require a face shield in addition to safety glasses?', answer: 'A face shield is required as secondary protection (worn over safety glasses or goggles) when there is a risk of significant facial impact, chemical splash, or molten material splatter. Grinding, chipping, and chemical handling typically require both. Safety glasses alone are insufficient for face-level hazards.' },
+    ],
+    relatedNotes: ['ppe-assessment', 'hot-work-welding'],
+    sections: {
+      whatItIs: `OSHA 29 CFR 1910.133 is the eye and face protection standard. It requires employers to ensure that affected employees use appropriate eye or face protection when exposed to hazards from flying particles, molten metal, liquid chemicals, acids or caustics, chemical gases or vapors, or potentially injurious light radiation. The standard works in tandem with 1910.132 — the general PPE standard — which requires a written hazard assessment before PPE selection.
+
+The hazard assessment is the first compliance step, and the most commonly missing one. Under 1910.132(d), the employer must assess the workplace to determine if hazards are present that necessitate PPE, select appropriate PPE based on the assessment, communicate selection decisions to affected employees, and verify by written certification that the assessment has been performed. The certification must identify the workplace, the person performing the assessment, the date of the assessment, and a statement identifying the document as a certification. Most small operations have safety glasses on the shelf and no written assessment anywhere. That is two citations — one under 1910.132 for the missing assessment, and one under 1910.133 for the unverified eye protection.
+
+ANSI Z87.1 is the consensus standard OSHA references. Eye protection that meets the standard is marked Z87 (basic impact) or Z87+ (high-velocity impact) on the frame or lens. Without the marking, the eyewear is not OSHA-compliant. Reading glasses, prescription glasses without the Z87 marking, and "fashion" safety glasses bought off the rack at a hardware store often do not carry the marking — they look like safety glasses but do not meet the standard.
+
+Side shields are required when the hazard assessment identifies impact, dust, or lateral particle hazards — which is most general industry operations. Wraparound safety glasses with frame designs that wrap toward the temples meet the requirement. Conventional flat-front glasses without side coverage do not. Snap-on side shields are an acceptable retrofit but tend to disappear within a week of use.
+
+Face shields are secondary protection. Worn over safety glasses or goggles, they protect against face-level impact, chemical splash, and molten material. Grinding, chipping, and chemical handling routinely require both safety glasses and a face shield. The most common gap I see is a grinder with safety glasses but no face shield — grinding fragments routinely hit the cheek, neck, and lower forehead, all unprotected.
+
+Welding lenses and helmets are governed by 1910.252(b)(2) under Subpart Q (welding). Shade numbers must match the process and amperage — shade 10 minimum for stick welding at moderate amperage, higher for higher amperage and TIG. Auto-darkening helmets are acceptable if they meet the standard and are set appropriately for the process. A welding helmet with the wrong shade is not compliant.
+
+Prescription users present a recurring problem. Employees who wear prescription glasses cannot achieve compliance by putting safety glasses over their prescription eyewear unless those safety glasses are specifically designed for the over-glass fit and are Z87-rated. The compliant option is prescription safety eyewear with the Z87 marking — available through occupational health providers for around $80 to $200 per pair, often covered by the employer under 1910.132(h) (the OSHA-employer-pays rule for required PPE).
+
+Corrective action: perform a written hazard assessment for every workstation. Document it with date and certifier. Replace any non-Z87 eyewear in service. Add side shields or replace with wraparound designs. Add face shields at grinding stations and chemical handling stations. Provide Z87-rated prescription eyewear for prescription users. Train annually on PPE selection, fit, and use — document it. Total cost: under $500 for a typical small operation, plus prescription eyewear for any wearer. Total time: one shift.`,
+      whatGetsMissed: [
+        'No written PPE hazard assessment — the first citation under 1910.132',
+        'Safety glasses in use without Z87 markings — non-compliant eyewear',
+        'No side shields on safety glasses where lateral hazards exist',
+        'Grinding performed in safety glasses with no face shield — most common face-injury cause',
+        'Prescription users wearing personal glasses without Z87 rating',
+        'Welding helmets with wrong shade for the process and amperage',
+        'Visitors and bystanders not provided eye protection in active work areas',
+        'Eye protection not cleaned or stored properly — scratched and pitted lenses in continued use',
+      ],
+      whatISee: 'Almost every shop I walk into has safety glasses available. Very few have a written hazard assessment. About half the glasses in use are non-compliant — no Z87 marking, no side shields, or scratched to the point of impaired vision. Grinders are run in safety glasses without face shields. Welders use whatever helmet is on the shelf, regardless of shade or process. Prescription users wear their personal eyewear. The PPE is mostly there. The program around it is mostly not.',
+      checklist: [
+        'Written PPE hazard assessment completed for every workstation, certified by date and signer',
+        'All eye protection in service marked Z87 or Z87+',
+        'Side shields present on all eye protection used in environments with lateral particle hazards',
+        'Face shields available and used at grinding stations, chipping stations, and chemical handling',
+        'Welding lenses and helmets matched to process and amperage per Z87.1 / 1910.252(b)(2)',
+        'Prescription-rated safety eyewear provided to prescription users',
+        'Visitor and bystander PPE available at entry points to active work areas',
+        'Annual training documented on PPE selection, fit, use, and care',
+        'Damaged or scratched eyewear removed from service and replaced',
+        'PPE inventory tracked and maintained',
+      ],
+    },
+  },
+  'trenching-excavation': {
+    title: 'Trenching & Excavation',
+    subtitle: 'The 5-Foot Rule That Buries People',
+    seo: 'OSHA trenching and excavation requirements (29 CFR 1926.651) for NC contractors. Protective systems, competent person inspections, soil classification, and access ladders — the standard with the highest fatality rate per inspection.',
+    cfrCitation: '29 CFR 1926.651–.652 (Subpart P)',
+    oshaChecks: [
+      'Protective system in place for any trench 5 feet or deeper (sloping, benching, shoring, or trench box)',
+      'Competent person on site for every excavation — daily inspection documented',
+      'Soil classified per Appendix A (Type A, B, or C) before selecting protective system',
+      'Ladder or other safe means of egress within 25 feet of any worker in a trench 4+ feet deep',
+      'Spoil piles, equipment, and materials kept at least 2 feet from the trench edge',
+      'Underground utility locates completed before excavation begins (NC 811)',
+    ],
+    faqSchema: [
+      { question: 'When does OSHA require a protective system in a trench?', answer: 'OSHA 29 CFR 1926.652(a)(1) requires a protective system in any excavation 5 feet or deeper, regardless of soil type — unless the excavation is made entirely in stable rock or the soil has been classified as Type A and the depth is less than 5 feet. Excavations less than 5 feet may also require protection if the competent person identifies hazards.' },
+      { question: 'What is a competent person under the OSHA excavation standard?', answer: 'A competent person is someone capable of identifying existing and predictable hazards in the surroundings or working conditions, and who has authorization to take prompt corrective measures to eliminate them. Under 1926.651(k), the competent person must inspect excavations, adjacent areas, and protective systems for evidence of cave-ins, failures, or hazardous atmospheres before each shift, after every rainstorm, and after any event that increases the hazard.' },
+      { question: 'How far away can workers be from a ladder in a trench?', answer: 'Under 1926.651(c)(2), trenches 4 feet deep or deeper must have a stairway, ladder, ramp, or other safe means of egress located so as to require no more than 25 feet of lateral travel for any employee. The egress must extend at least 3 feet above the upper edge of the trench.' },
+    ],
+    relatedNotes: ['fall-protection', 'confined-space'],
+    sections: {
+      whatItIs: `Trenching and excavation work is governed under OSHA Subpart P (29 CFR 1926.650 through 1926.652). It is one of the deadliest specialty areas in OSHA enforcement — trench collapses kill an average of 22 to 30 workers per year in the United States, with a fatality rate per inspection that far exceeds general construction. North Carolina has been a recurring focus area, with multiple Triad-area collapses in the past five years. The standard applies to every excavation deeper than 5 feet (and many that are shallower), and to every contractor doing utility, foundation, or site work.
+
+The protective system is the single most-cited and most-critical requirement. Under 1926.652(a)(1), every trench 5 feet or deeper must have one of four protective systems in place: sloping (cutting the walls back at an angle determined by soil type), benching (cutting horizontal steps into the walls), shoring (installing hydraulic or timber supports), or shielding (using a trench box). Type A soil at less than 5 feet may not require protection; everything else does. Most small contractors I have seen running utility work in the Triad operate with no protective system — they accept the risk because the trench will be backfilled before the end of the shift. That risk is the highest cause of trench fatalities.
+
+Soil classification under Appendix A of Subpart P determines the slope angle and the type of system required. Type A soils (cohesive, no fissures, no visual indication of failure planes) are most stable. Type B soils are intermediate. Type C soils (cohesionless, granular, or with visible signs of instability) are least stable. The competent person on site must classify the soil before selecting the protective system. Sloping a Type C soil at the Type A angle is a fatal mistake — and one that gets made regularly because the classification step is skipped.
+
+The competent person requirement under 1926.651(k) is universally underemphasized. Every excavation must have a competent person responsible for daily inspections — before each shift, after every rainstorm, and after any event that could increase the hazard. The competent person must be on site whenever workers are in or near the excavation. In small contractor crews, the competent person is often nominal — the foreman is "designated" but has had no formal training. OSHA enforcement asks for documentation of training and on-the-job experience that supports the designation. Most contractors cannot produce it.
+
+Access and egress under 1926.651(c)(2) requires a stairway, ladder, ramp, or other safe means of egress within 25 feet of any worker in a trench 4 feet or deeper. The egress must extend at least 3 feet above the upper edge. In Triad-area utility crews, the access is often a 6-foot step ladder leaning against the trench wall — too short to extend above the upper edge, and not secured. In a collapse event, the egress is the only path out. A poorly placed ladder costs lives.
+
+Spoil pile placement under 1926.651(j)(2) requires excavated material to be placed at least 2 feet back from the trench edge. The reason is mechanical: spoil placed at the edge surcharges the trench wall and increases the chance of collapse. In every utility job I have observed in passing, the spoil is mounded directly at the edge. The crew is working below it.
+
+Underground utility locates under 1926.651(b) are required before excavation begins. North Carolina's 811 system provides locates within 3 business days of a request. Cutting an unmarked gas line, water main, or electrical conduit is a separate citation under the same standard, and a separate set of secondary hazards. The locate request takes five minutes online or by phone. It is the cheapest single step in the entire compliance picture.
+
+Corrective action for a small contracting operation: train at least one competent person per crew formally — OSHA 10 or 30 Construction is a starting point; a dedicated competent-person trench safety course is better. Acquire or rent a trench box for every job involving trenches 5 feet or deeper. Build a daily inspection log into the crew's shift-start routine. Build the 811 locate request into the job-startup checklist. Brief every employee on egress location at the start of each shift. Total program cost for a small contractor: $3,000 to $8,000 the first year (training plus equipment rental plus documentation). Total cost of a trench collapse fatality and the resulting willful citation: career-ending. Subpart P violations regularly produce penalties at the upper end of the OSHA range.`,
+      whatGetsMissed: [
+        'No protective system in place for trenches 5 feet or deeper — the most common citation under Subpart P',
+        'Competent person designated on paper only, no documented training or experience',
+        'Soil never classified — protective system selected by guess',
+        'No documented daily inspection by the competent person',
+        'Access ladder more than 25 feet from a worker in a trench 4+ feet deep',
+        'Egress ladder not extending 3 feet above the upper edge of the trench',
+        'Spoil pile placed at the trench edge — surcharging the wall',
+        'Underground utility locates not requested before excavation',
+        'Workers near a trench edge without fall protection',
+        'No emergency response plan for collapse rescue',
+      ],
+      whatISee: 'I drive past a utility job and stop. The crew has cut a trench to about 6 feet deep, no protective system in place, soil that looks like Type C, no trench box, no shoring, no sloping. Spoil is mounded right at the edge. The foreman is in the trench running pipe, and the only access is a stepladder that does not reach the upper edge. The crew has no idea I have an OSHA background; they are working fast, expecting to backfill before the end of the day. This is the standard I worry about most as I drive around the Triad — because the risk is invisible until the wall comes down.',
+      checklist: [
+        '811 locate request completed at least 3 business days before excavation',
+        'Protective system selected based on soil classification per Appendix A',
+        'Protective system in place before any worker enters a trench 5 feet or deeper',
+        'Competent person designated with documented training and experience',
+        'Daily inspection by competent person before each shift, after rainstorms, after any change',
+        'Access ladder, stairway, or ramp within 25 feet of any worker in a 4+ foot trench',
+        'Egress extends at least 3 feet above the upper edge of the trench',
+        'Spoil piles, equipment, and materials kept 2+ feet back from the trench edge',
+        'Workers within 6 feet of the excavation edge have fall protection or barriers',
+        'Hazardous atmosphere testing where confined-space conditions could exist',
+        'Emergency response plan for trench collapse rescue',
+      ],
+    },
+  },
+  'cranes-rigging': {
+    title: 'Overhead Cranes & Rigging',
+    subtitle: 'The Sling That Should Have Been Retired',
+    seo: 'OSHA overhead crane and rigging requirements (29 CFR 1910.179, 1910.184) for small NC fab and metals shops. Daily inspections, annual inspections, sling condition, rated capacity, and operator training.',
+    cfrCitation: '29 CFR 1910.179 (Overhead and gantry cranes) · 29 CFR 1910.184 (Slings) · 29 CFR 1926 Subpart CC (Construction cranes)',
+    oshaChecks: [
+      'Daily pre-shift inspection of each crane in service',
+      'Annual periodic inspection by a qualified person — documented',
+      'Sling inspection before each shift and removal of damaged slings',
+      'Rated capacity marked on each crane and each sling — capacity not exceeded',
+      'Operator training and authorization documented',
+      'Load testing on new and repaired cranes per 1910.179(k)(2)',
+    ],
+    faqSchema: [
+      { question: 'How often do overhead cranes need inspection?', answer: 'OSHA 29 CFR 1910.179(j) requires two levels: frequent inspections (daily to monthly, depending on use intensity) and periodic inspections (1 to 12 months, depending on use intensity). Periodic inspections must be documented and signed by the qualified inspector. Daily pre-shift checks should be documented on a checklist.' },
+      { question: 'When does a sling have to be removed from service?', answer: 'OSHA 29 CFR 1910.184 requires removal of any sling with broken or worn wires (number depends on sling type), kinks, severe corrosion, missing or illegible tags, distorted hooks, end attachments damaged or showing visible cracks, or any condition that visibly reduces strength. Synthetic slings are inspected before each shift and removed if cut, abraded, melted, chemically damaged, or showing exposed core yarns.' },
+      { question: 'Does the crane operator need certification?', answer: 'General industry overhead cranes under 1910.179 require operator training and demonstrated competence — no formal certification card is required by federal OSHA. Construction cranes under 1926 Subpart CC require formal operator certification through an accredited testing organization. Most insurance carriers and customer audits expect documented operator training for general industry crane operators regardless of standard.' },
+    ],
+    relatedNotes: ['machine-guarding', 'lockout-tagout'],
+    sections: {
+      whatItIs: `Overhead cranes, gantry cranes, jib cranes, and the slings and rigging used with them are governed by OSHA 29 CFR 1910.179 and 1910.184 in general industry. The standards require inspection programs at two levels (frequent and periodic), operator training, capacity marking, and a maintenance program. In Triad-area fab shops, metals operations, and any facility moving heavy material with a hoist, at least one piece of the program is almost always missing.
+
+The most-cited subsection is 1910.179(j) — inspection. Frequent inspections check operating mechanisms (excessive wear, deterioration, leakage), air or hydraulic systems for deficiencies, hooks for deformation or cracks, hoist chains and end connections, and rope reeving. Periodic inspections (annual or more frequent depending on intensity of use) are comprehensive — they cover deformed/cracked/corroded members, loose bolts and rivets, cracks in welds, worn pins or pin holes, end-attachment deterioration, brake system performance, load indicators, hoist limit switches, and structural members. The periodic inspection must be documented and the documentation retained. In small shops, the crane was installed years ago and never inspected formally. I ask for the inspection log and it does not exist.
+
+Sling condition under 1910.184 is the second most common failure. Slings — wire rope, chain, synthetic (nylon, polyester), and metal mesh — are required to be inspected before each shift. The inspection criteria depend on sling type: wire rope slings are removed when ten randomly distributed broken wires appear in one rope lay (or five in one strand); chain slings are removed when cracks, twists, or wear of 10% of the original material thickness appear at any link. Synthetic slings are removed for cuts, abrasion, melting, chemical damage, or any condition that exposes the core yarns. In every fab shop I walk through, at least one sling on the rack should be retired today. Most are still in service.
+
+Rated capacity marking under 1910.179(b)(5) requires the rated load to be plainly marked on each side of the crane. Slings under 1910.184(d) must have an identification tag listing the rated load for the various sling configurations. Tags fade. Markings get painted over. Operators end up guessing or relying on memory. When a sling fails because the load exceeded its rating, the cause was usually a missing or illegible tag and an operator who never checked.
+
+Operator training under 1910.179 is not as prescriptive as the forklift standard, but the employer is still responsible for ensuring that operators are trained and authorized. Most small operations have an operator who "has been running the crane for years" with no documented training. Insurance carriers and customer audits frequently ask for the training records — and the answer is usually "we'll get back to you."
+
+Load testing under 1910.179(k)(2) applies after any alteration, repair, or installation. The crane must be tested with a load 125% of the rated capacity (or per manufacturer recommendations) before being returned to service. This is the area where shops most often improvise — a weld repair to a hook or a beam gets made, the crane goes back into service the same day, and no load test is performed. If the repair fails under a future load, the missing test becomes a major liability issue independent of the OSHA citation.
+
+Construction cranes under 1926 Subpart CC follow a separate and more prescriptive standard, including formal operator certification through accredited testing organizations. Mobile cranes, tower cranes, and articulating cranes on construction sites must have certified operators.
+
+Corrective action for a small fab shop: schedule a qualified inspector for an annual periodic inspection (a local crane service company will perform this for $400 to $1,200 depending on the unit). Establish daily pre-shift checklists and supervisor-verified completion. Audit every sling on the rack, retire what should be retired, and add tags where tags are missing. Document operator training — even retroactive on-the-job training observations, signed and dated, satisfy the standard. Build the program around a single binder kept near the crane.`,
+      whatGetsMissed: [
+        'Annual periodic inspection never performed or not documented',
+        'Daily pre-shift inspection skipped or unlogged',
+        'Slings in service that should have been retired — broken wires, cuts, chemical damage',
+        'Rated capacity not marked on crane or missing/illegible sling tags',
+        'Operator training not documented',
+        'Load tests not performed after alterations, repairs, or new installation',
+        'Hoist limit switches not tested or non-functional',
+        'Pendant controls or remote controls in poor repair',
+        'Improper hitching — slings choked or basketed without manufacturer guidance',
+        'Personnel under suspended loads',
+      ],
+      whatISee: 'I walk into a metals fab shop and look up. The overhead crane has a manufacturer plate I can read; the periodic inspection sticker dates from four years ago. I ask for the inspection log. It does not exist. I look at the sling rack: a chain sling with a kink in the middle, two synthetic slings with visible core yarn exposure, and one wire rope sling with at least 15 broken wires in one strand. None are tagged out. The operator has been running the crane for eight years and has no documented training. The maintenance log shows a hook repair done two summers ago — no load test record. This is one citation for every item I just listed.',
+      checklist: [
+        'Daily pre-shift inspection documented for each crane in service',
+        'Annual periodic inspection by qualified person — documented and signed',
+        'Sling inspection before each shift — damaged slings tagged and removed from service',
+        'Rated capacity legibly marked on each crane and each sling',
+        'Operator training documented with names, dates, and topics',
+        'Load test performed and documented after installation, alteration, or major repair',
+        'Hoist limit switches tested per inspection schedule',
+        'Pendant or remote controls in good repair',
+        'Hitching practices match manufacturer or qualified rigger guidance',
+        'No personnel under suspended loads — enforced as a hard rule',
+      ],
+    },
+  },
+  'nc-osha-vs-federal': {
+    title: 'NC State Plan vs. Federal OSHA',
+    subtitle: 'What North Carolina Does Differently',
+    seo: 'How North Carolina OSHA differs from federal OSHA. The NC State Plan, NCDOL inspections, consultation services, and the standards that apply differently to operations in Kernersville, Winston-Salem, Greensboro, and the broader Piedmont Triad.',
+    cfrCitation: 'NC General Statutes Chapter 95, Article 16 (OSHANC) · 29 CFR 1953 (State Plan approval)',
+    oshaChecks: [
+      'Operating under NC OSHA (NCDOL Occupational Safety and Health Division) — not federal OSHA',
+      'NC-specific standards adopted in addition to federal standards (e.g., logging, communication tower erection)',
+      'Penalty schedule and policies set by the NC Industrial Commission and Labor Commissioner',
+      'Free on-site consultation available through NCDOL Bureau of Education, Training, and Standards',
+      'Whistleblower protections under N.C. Gen. Stat. § 95-241',
+      'Apparent imminent-danger reports handled by NCDOL Division of Occupational Safety and Health (DOSH)',
+    ],
+    faqSchema: [
+      { question: 'Does federal OSHA inspect operations in North Carolina?', answer: 'No, with limited exceptions. North Carolina operates an OSHA-approved State Plan under 29 CFR 1953. The NC Department of Labor (NCDOL) Occupational Safety and Health Division (NCOSH) handles inspections, enforcement, and standards adoption in all private and state/local government workplaces. Federal OSHA retains jurisdiction over federal employees and a small number of specific operations such as maritime work on navigable waters.' },
+      { question: 'Are NC OSHA standards the same as federal OSHA standards?', answer: 'NC OSHA standards must be at least as effective as federal OSHA standards. Most are identical adoptions. NC has adopted some additional state-specific standards (logging, communication tower erection, etc.) and has authority to enact more protective standards. In practice, the standards are the same as federal OSHA in nearly all general industry contexts — the difference is who enforces them and how.' },
+      { question: 'How is NC OSHA consultation different from a compliance inspection?', answer: 'NCDOL offers free on-site consultation services through the Bureau of Education, Training, and Standards (BETS) — separate from the compliance inspection program. A consultation visit is voluntary, confidential, and protected from citations as long as serious hazards identified are corrected within an agreed timeframe. A compliance inspection is unannounced or programmed by referral, and citations are issued for any violations found. The two programs do not share inspection data.' },
+    ],
+    relatedNotes: ['recordkeeping-300-log', 'hazcom'],
+    sections: {
+      whatItIs: `North Carolina operates an OSHA-approved State Plan under federal authority granted in 29 CFR 1953. This means that workplace safety and health enforcement in NC — for private sector, state government, and local government employers — is handled by the North Carolina Department of Labor (NCDOL), specifically the Occupational Safety and Health Division (NCOSH), not by federal OSHA. The distinction matters operationally even though most of the underlying standards are identical to federal OSHA.
+
+The standards themselves: NC adopts federal OSHA standards by reference, and NC OSHA standards must be at least as effective as federal standards under the State Plan agreement. NC has adopted some additional state-specific standards — notably for logging operations and for communication tower erection — and retains authority to enact more protective standards if needed. For general industry operations in the Triad — manufacturing, warehousing, fabrication, construction — the OSHA standards an inspector will cite are functionally identical to what federal OSHA would cite. Same CFR sections. Same general approach. Operationally, no change.
+
+What does change is who knocks on the door. NCDOL Compliance Officers (called Safety and Health Compliance Officers, or SHCOs) come from the NC Department of Labor in Raleigh. The NCDOL has Asheville, Charlotte, Greensboro, Raleigh, and Wilmington area offices. The Greensboro office covers most of the Piedmont Triad — Guilford, Forsyth, Alamance, Davidson, Davie, Randolph, Rockingham, and Stokes counties. The Compliance Officer carries NCDOL credentials, identifies as a state employee, and operates under NC General Statutes Chapter 95, Article 16 — the NC OSHA Act.
+
+The penalty schedule is set by the NC Commissioner of Labor and the NC Industrial Commission. The maximum penalties under NC OSHA mirror federal OSHA penalty caps and are adjusted annually for inflation. In 2026, the federal maxima — $16,550 for serious/other-than-serious, $165,514 for willful/repeated — apply in NC as well. NC has historically been somewhat less aggressive with penalty escalation than some federal regions, but the penalty range and citation methodology are the same.
+
+Consultation services are a significant point of leverage in NC. The NCDOL Bureau of Education, Training, and Standards (BETS) provides free on-site consultation visits to employers who request them. The consultation is voluntary, confidential, and explicitly separated from the compliance enforcement program. If a consultation visit identifies serious hazards, the employer agrees to correct them within a specified timeframe, and the visit is protected from citation (with limited exceptions for imminent danger or willful failure to correct). This program is heavily underused by Triad-area small employers — the request form is on the NCDOL website, the visit costs nothing, and it does not generate a citation file. For a small operation that wants to improve compliance without exposure, BETS is the most efficient first move.
+
+What changes for a small operation operating under NC OSHA vs. federal OSHA, day to day, is mostly nothing — the same standards apply, the same posting and recordkeeping obligations are in place, the same incident reporting requirements (8 hours for fatality, 24 hours for hospitalization/amputation/eye loss) apply. Reports go to NCDOL at 1-800-NC-LABOR or the dedicated reporting line. The familiar federal OSHA hotline (1-800-321-OSHA) will redirect NC reports to NCDOL.
+
+Whistleblower protection under N.C. Gen. Stat. § 95-241 mirrors Section 11(c) of the federal OSH Act — employees who report safety concerns are protected from retaliation. Complaints to NCDOL are confidential at the complainant's request.
+
+One area where NC differs operationally: the consultation program is administered separately from compliance, and the two programs are firewalled. This is the same structure used in federal OSHA's On-site Consultation Program but is worth noting for NC employers because the NCDOL website lays out both programs side by side, and small operators sometimes assume requesting consultation will trigger a compliance inspection. It does not.
+
+What this means for a Triad-area operation: the standards you have to meet are the same standards as anywhere else in the US. The agency you deal with is NCDOL, not federal OSHA. The reporting numbers and addresses are NC-specific. The consultation program is free, confidential, and far more accessible than federal OSHA's. And the inspection rate by NCDOL is consistent with federal OSHA's — a small operation should not assume that "we're in NC, not under federal OSHA" means less enforcement attention. The same triggers (worker complaints, severe-injury reports, programmed inspections in targeted industries) apply.
+
+Corrective action for any NC operation: bookmark the NCDOL website (labor.nc.gov), specifically the Occupational Safety and Health Division pages. Save the reporting number (1-800-NC-LABOR / 1-800-625-2267). Consider a BETS consultation visit if your operation has never had a compliance review — it is free and confidential. Make sure your OSHA 300A is posted in the workplace from February 1 to April 30 (the requirement is the same as federal). Make sure your workplace poster is the NC "It's the Law" poster from NCDOL, not the federal OSHA poster — this is one of the easiest visible citations and one of the easiest fixes.`,
+      whatGetsMissed: [
+        'Federal OSHA poster posted instead of the NC "It\'s the Law" poster from NCDOL',
+        'Severe injury reports made to federal OSHA hotline only — not always forwarded to NCDOL',
+        'Consultation program through BETS never used — assumption that requesting consultation triggers enforcement',
+        'NC-specific standards (logging, comm towers) overlooked for operations in those sectors',
+        'Whistleblower complaint procedure under N.C. Gen. Stat. § 95-241 unfamiliar to managers',
+        'NCDOL contact information not posted alongside the workplace poster',
+      ],
+      whatISee: 'I walk into operations across the Triad and find the federal OSHA workplace poster taped to the breakroom wall. The NC "It\'s the Law" poster from NCDOL — the actually-required one in this state — is missing. The owner does not know there is a difference. When I mention the BETS consultation program, the response is usually surprise: "I thought asking for OSHA help meant getting inspected." The consultation program is one of the most useful tools in NC compliance and one of the most under-known. Standards-wise, NC operations have the same obligations as anywhere else. The difference is the agency relationship — and that relationship can work in the operator\'s favor if they know how to use it.',
+      checklist: [
+        'NC "It\'s the Law" workplace poster (NCDOL) posted in a conspicuous location',
+        'NCDOL severe injury reporting number (1-800-625-2267) saved and known by supervisors',
+        'OSHA 300A annual summary posted Feb 1 through Apr 30 (same as federal)',
+        'NC-specific standards reviewed for applicability (logging, comm towers, others as relevant)',
+        'BETS consultation visit considered if operation has not had an outside compliance review',
+        'Whistleblower complaint procedure documented in employee handbook per N.C. Gen. Stat. § 95-241',
+        'Compliance Officer credentials policy in place (identify NCDOL SHCO if visit occurs)',
+        'Familiarity with NC Industrial Commission penalty schedule for the current year',
+      ],
+    },
+  },
 };
 
 const FieldNoteDetailPage = () => {

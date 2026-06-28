@@ -1049,6 +1049,15 @@ const fieldNotes = [
   { slug: 'hearing-conservation', title: 'Hearing Conservation', desc: 'Hearing conservation program requirements. Noise monitoring, audiometric testing, hearing protection.' },
   { slug: 'bloodborne-pathogens', title: 'Bloodborne Pathogens', desc: 'Bloodborne pathogens exposure control plan. First aid responders, Hepatitis B, sharps disposal.' },
   { slug: 'recordkeeping-300-log', title: 'OSHA Recordkeeping & the 300 Log', customSeoTitle: 'OSHA 300 Log & Recordkeeping — GigLine Field Notes', desc: '29 CFR Part 1904. Recordable injuries, the 300A summary posting requirement, and the severe injury reports OSHA expects within 8 or 24 hours of an event.' },
+  { slug: 'respiratory-protection', title: 'Respiratory Protection', desc: 'OSHA respiratory protection program — written program, medical evaluation, fit testing, training, and cartridge change-out schedules under 29 CFR 1910.134.' },
+  { slug: 'silica-respirable-crystalline', title: 'Respirable Crystalline Silica', desc: 'OSHA silica standard for stone fab, concrete, foundries. Exposure assessment, engineering controls, medical surveillance under 29 CFR 1910.1053.' },
+  { slug: 'hot-work-welding', title: 'Hot Work, Welding & Cutting', desc: 'OSHA Subpart Q. Hot work permits, fire watch, compressed gas cylinder safety, ventilation, and welding PPE for small NC fab shops.' },
+  { slug: 'abrasive-wheels', title: 'Abrasive Wheels & Bench Grinders', desc: 'Tongue guards within 1/4 inch, work rests within 1/8 inch, ring testing, RPM matching — 29 CFR 1910.215 in plain language.' },
+  { slug: 'ladder-safety', title: 'Portable Ladder Safety', desc: 'OSHA portable ladder requirements. Inspection, 4-to-1 angle, 3-foot extension above landing, three-point contact, load rating — 29 CFR 1910.23.' },
+  { slug: 'eye-face-protection', title: 'Eye & Face Protection', desc: 'OSHA Z87.1 eye and face protection requirements, side shields, face shields for grinding and chemical handling, and the PPE hazard assessment — 29 CFR 1910.133.' },
+  { slug: 'trenching-excavation', title: 'Trenching & Excavation', desc: 'OSHA trenching standard (29 CFR 1926.651). Protective systems, competent person, soil classification, egress, and the rules that prevent collapses.' },
+  { slug: 'cranes-rigging', title: 'Overhead Cranes & Rigging', desc: 'Daily inspections, annual inspections, sling condition, rated capacity, operator training — OSHA 29 CFR 1910.179 and 1910.184 for fab and metals shops.' },
+  { slug: 'nc-osha-vs-federal', title: 'NC State Plan vs. Federal OSHA', desc: 'How North Carolina OSHA differs from federal OSHA. NCDOL inspections, free consultation through BETS, and what changes for Triad operations.' },
 ];
 fieldNotes.forEach((note) => {
   const schemas = [

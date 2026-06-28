@@ -343,7 +343,7 @@ const HomePage = () => {
                 kicker: 'Floor Experience',
                 Icon: Factory,
                 title: 'Built on the Floor, Not in a Classroom.',
-                body: 'Vince Lawrence spent years inside manufacturing operations \u2014 glass and vinyl, rubber compounding, and metals fabrication, including time at BF Goodrich and Amero Steel. He learned what OSHA looks for by doing Gemba walks, not by reading about them.',
+                body: 'Vince Lawrence spent years inside manufacturing operations \u2014 glass and vinyl, rubber compounding, metals fabrication. He learned what OSHA looks for by doing Gemba walks, not by reading about them.',
               },
             ].map((c, i) => (
               <Reveal key={c.kicker} delay={i * 90}>

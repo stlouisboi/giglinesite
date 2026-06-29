@@ -44,7 +44,7 @@ const CaseStudyTeaser = ({ source = 'homepage' }) => {
               className="text-base md:text-lg leading-relaxed text-white/70 max-w-xl"
               data-testid="case-teaser-summary"
             >
-              A metals fabrication facility in Statesville, NC. Combined walkthrough and documentation review. Thirteen findings against applicable CFR standards. Written report delivered in four days.
+              A metals fabrication facility in Statesville, NC. Combined walkthrough and documentation review. Thirteen findings against applicable CFR standards. 12 of 13 findings closed within four days.
             </p>
           </div>
 

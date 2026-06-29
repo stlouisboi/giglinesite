@@ -237,7 +237,7 @@ const routes = [
       <h2>What Clients Say</h2>
       <p>"If you're looking for a partner that can bridge the gap between compliance and real-world execution, GigLine delivers results." — Demar Archie, Warehouse Receiving Manager</p>
       <h2>Recent Engagement &mdash; Case Study</h2>
-      <p><a href="/case-study/metals-fabrication-statesville">What a Safety Walkthrough Actually Finds</a>. A 9-person metals fabrication facility in Statesville, NC. Combined walkthrough and documentation review. 13 findings across machine guarding, compressed gas storage, and documentation gaps. Written report delivered in four days.</p>
+      <p><a href="/case-study/metals-fabrication-statesville">What a Safety Walkthrough Actually Finds</a>. A 9-person metals fabrication facility in Statesville, NC. Combined walkthrough and documentation review. 13 findings across machine guarding, compressed gas storage, and documentation gaps. 12 of 13 findings closed within four days.</p>
       <h2>Final CTA — Know what's on your floor before OSHA does.</h2>
       <p>The walkthrough takes a few hours. The report is in your hands in 48. The cost is a fraction of a single citation. Questions first? Call or text directly: (336) 329-8899.</p>
       <h2>Frequently Asked Questions</h2>
@@ -606,7 +606,7 @@ const routes = [
         '@context': 'https://schema.org',
         '@type': 'Article',
         headline: 'What a Safety Walkthrough Actually Finds — Statesville Metals Fabrication Case Study',
-        description: 'A 9-person metals fabrication facility in Statesville, NC. Combined walkthrough and documentation review. 13 findings. 80.3 compliance score. Written report delivered in four days.',
+        description: 'A 9-person metals fabrication facility in Statesville, NC. Combined walkthrough and documentation review. 13 findings. 80.3 compliance score. 12 of 13 findings closed within four days.',
         image: `${BASE_URL}/og-image.png`,
         author: { '@id': `${BASE_URL}/#vince` },
         publisher: { '@id': `${BASE_URL}/#business` },

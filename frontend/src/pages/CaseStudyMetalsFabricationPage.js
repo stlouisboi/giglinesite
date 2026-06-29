@@ -70,7 +70,7 @@ const CaseStudyMetalsFabricationPage = () => {
             '@type': 'Article',
             headline: 'What a Safety Walkthrough Actually Finds — Statesville Metals Fabrication Case Study',
             description:
-              "A 9-person metals fabrication facility in Statesville, NC brought GigLine in for a combined Safety Walkthrough and Documentation Review on June 18, 2026. 13 findings. 80.3 compliance score. Written report delivered in four days.",
+              "A 9-person metals fabrication facility in Statesville, NC brought GigLine in for a combined Safety Walkthrough and Documentation Review on June 18, 2026. 13 findings. 80.3 compliance score. 12 of 13 findings closed within four days.",
             author: { '@type': 'Person', name: 'Vince Lawrence', url: 'https://www.giglinecompliance.com/about' },
             publisher: { '@type': 'Organization', name: 'GigLine Safety & Compliance', url: 'https://www.giglinecompliance.com' },
             datePublished: '2026-06-22',

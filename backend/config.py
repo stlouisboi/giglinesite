@@ -121,6 +121,10 @@ HEAT_STRESS_PDF = ROOT_DIR / "heat_files" / "GL_Heat_Stress_Print_2026.pdf"
 # Placeholder PDF in place. Swap the file at this path to update the deliverable.
 SAMPLE_REPORT_PDF = ROOT_DIR / "sample_report_files" / "GL_Sample_Compliance_Report.pdf"
 
+# ── OSHA Inspection Guide (GL-WEB-019) ──
+# Backend-side Resend fallback delivery. Primary delivery still runs via MailerLite automation.
+OSHA_GUIDE_PDF = ROOT_DIR / "osha_guide_files" / "GigLine_OSHA_Inspection_Guide.pdf"
+
 # ── Supervisor Safety Starter System (GL-WEB-015) ──
 SUPERVISOR_KIT_PRODUCTS = {
     "digital": {

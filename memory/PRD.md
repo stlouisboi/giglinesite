@@ -47,6 +47,7 @@ React 18 (CRA), Tailwind, FastAPI, MongoDB (motor), Stripe LIVE, Resend LIVE, Ma
 - `data-testid` on every interactive element and critical UI element.
 
 ## Recent Changelog
+- 2026-02 — Strengthened `/about` with "For Editors & Publications" press-bio block: 5 credential pills + 3 copy-paste-ready blocks (one-liner, 90-word bio, direct contact) with working copy-to-clipboard buttons. Added `sameAs` array to Person JSON-LD (giglinecompliance.com / /about / /osha-compliance-guide) so Google connects citations across the site.
 - 2026-02 — **GL-WEB-021 shipped**: Compliance Readiness priceLine fixed to "From $2,000 · range $2,000–$2,400"; `/contact` Quick-Action CTA block added (Call / Email / Request Walkthrough buttons + intro copy); Safety Check tier copy updated per spec — low tier now routes to `/osha-inspection-guide`, all tiers include "Want Vince to review your score?" mailto footer; sitewide noscript fallback rewritten as GigLine pitch line.
 - 2026-02 — **GL-WEB-020 shipped**: Homepage "Recent Engagement" compact proof block added between "What We Find" and "Why GigLine" (navy + gold accent linking to case study); Case Study page metrics bar relabeled ("To Close 12 of 13"); 13-row Corrective Actions table + Outcome block + pull quote live; all "findings closed" copy updated to "corrective actions closed within four days of the walkthrough" across homepage, schema, and SSR mirrors.
 - 2026-02 — Fixed Navbar tagline from "Greensboro, NC" → "Kernersville, NC" (was the last stale location reference sitewide).

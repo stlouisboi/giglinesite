@@ -6,6 +6,57 @@ import FieldManualBand from '../components/FieldManualBand';
 
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
 
+/* Editor-friendly copy-paste block for press/credentials section */
+const PressCopyBlock = ({ label, text, testid }) => {
+  const [copied, setCopied] = useState(false);
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (e) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    }
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1800);
+  };
+  return (
+    <div className="mb-7" data-testid={testid}>
+      <div className="flex items-center justify-between mb-2.5">
+        <p
+          className="uppercase font-bold"
+          style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.20em', color: '#0d1b2a' }}
+        >
+          {label}
+        </p>
+        <button
+          type="button"
+          onClick={handleCopy}
+          className="inline-flex items-center gap-1.5 text-xs font-semibold transition-colors hover:text-[#1a6fc4]"
+          style={{ color: copied ? '#1f6b48' : '#0d1b2a', ...mono }}
+          data-testid={`${testid}-copy-btn`}
+        >
+          {copied ? '✓ Copied' : 'Copy'}
+        </button>
+      </div>
+      <div
+        className="p-5 rounded text-[15px] leading-[1.7]"
+        style={{
+          background: '#F9F8F6',
+          border: '1px solid rgba(13,27,42,0.08)',
+          color: '#0d1b2a',
+          fontFamily: "Georgia, 'Times New Roman', serif",
+        }}
+      >
+        {text}
+      </div>
+    </div>
+  );
+};
+
 /* TODO: Replace with real founder video YouTube ID when ready */
 const FOUNDER_VIDEO_ID = 'dQw4w9WgXcQ';
 
@@ -92,6 +143,11 @@ const AboutPage = () => {
             "url": "https://www.giglinecompliance.com/about",
             "image": "https://www.giglinecompliance.com/vince-portrait.jpg",
             "description": "Vince Lawrence is a safety consultant with 25+ years of experience in manufacturing, fleet, and warehouse operations. OSHA 30-Hour Certified in General Industry. U.S. Navy veteran. Founder of GigLine Safety & Compliance in Kernersville, NC.",
+            "sameAs": [
+              "https://www.giglinecompliance.com",
+              "https://www.giglinecompliance.com/about",
+              "https://www.giglinecompliance.com/osha-compliance-guide"
+            ],
             "hasCredential": [
               { "@type": "EducationalOccupationalCredential", "credentialCategory": "certification", "name": "OSHA 30-Hour General Industry Certification" },
               { "@type": "EducationalOccupationalCredential", "credentialCategory": "military service", "name": "U.S. Navy Veteran" }
@@ -405,6 +461,78 @@ This is GigLine Safety & Compliance.`}
                 </p>
               </div>
             </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ═══ EDITORIAL / PRESS BIO — copy-paste-ready credentials for editors ═══ */}
+      <section className="py-16 md:py-20 bg-white" style={{ borderTop: '1px solid rgba(13,27,42,0.08)' }} data-testid="about-press-bio-section">
+        <div className="container max-w-3xl">
+          <Reveal>
+            <p
+              className="uppercase font-bold mb-3"
+              style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.22em', color: '#D4A93E' }}
+            >
+              For Editors &amp; Publications
+            </p>
+            <h2
+              className="text-2xl md:text-3xl font-bold mb-5 leading-tight tracking-tight"
+              style={{ color: '#0d1b2a', fontFamily: "Georgia, 'Times New Roman', serif" }}
+            >
+              Credentials &amp; bio — ready to publish.
+            </h2>
+            <p className="text-base text-[#0d1b2a]/65 mb-9 leading-[1.7]">
+              For guest articles, op-eds, podcast bookings, and quoted commentary on OSHA compliance and manufacturing safety. Copy any block below — all text is pre-approved and factually verified.
+            </p>
+
+            {/* Credential pills */}
+            <div className="flex flex-wrap gap-2 mb-10" data-testid="about-credential-pills">
+              {[
+                'OSHA 30-Hour Certified',
+                'U.S. Navy Veteran',
+                '25+ years manufacturing operations',
+                'Founder, GigLine Safety & Compliance',
+                'Kernersville, NC',
+              ].map((c) => (
+                <span
+                  key={c}
+                  className="inline-block px-3 py-1.5 rounded uppercase tracking-[0.14em]"
+                  style={{
+                    ...mono,
+                    fontSize: '10.5px',
+                    background: 'rgba(13,27,42,0.04)',
+                    color: '#0d1b2a',
+                    border: '1px solid rgba(13,27,42,0.10)',
+                  }}
+                >
+                  {c}
+                </span>
+              ))}
+            </div>
+
+            <PressCopyBlock
+              label="One-Liner (for contributor footnotes)"
+              text="Vince Lawrence — Founder, GigLine Safety & Compliance · 25+ years manufacturing operations · OSHA 30-Hour Certified · U.S. Navy Veteran · Kernersville, NC."
+              testid="copy-one-liner"
+            />
+            <PressCopyBlock
+              label="Short Bio (~90 words)"
+              text="Vince Lawrence is the founder of GigLine Safety & Compliance, an OSHA compliance consultancy based in Kernersville, NC, serving small manufacturers, warehouses, contractors, and fleet operations across the Piedmont Triad. With 25+ years of manufacturing operations experience and OSHA 30-Hour General Industry certification, he walks the floor before the inspector does — finding what most safety programs miss and what most software cannot see. He is a U.S. Navy veteran and the author of 25+ OSHA compliance field notes published at giglinecompliance.com."
+              testid="copy-short-bio"
+            />
+            <PressCopyBlock
+              label="Direct Contact (for editor contact lines)"
+              text="Vince Lawrence — Founder, GigLine Safety & Compliance — (336) 329-8899 — vince@giglinecompliance.com — Kernersville, NC."
+              testid="copy-direct-contact"
+            />
+
+            <p className="text-sm text-[#0d1b2a]/55 mt-3 leading-[1.65]">
+              For other formats (250-word bio, headshot, expanded credentials, topic pitches), email{' '}
+              <a href="mailto:vince@giglinecompliance.com?subject=Press%20Inquiry%20-%20GigLine" className="font-semibold text-[#1a6fc4] hover:text-[#0d1b2a] underline underline-offset-4">
+                vince@giglinecompliance.com
+              </a>{' '}
+              — replies within one business day.
+            </p>
           </Reveal>
         </div>
       </section>

@@ -52,7 +52,7 @@ const FieldNotesNewsletter = ({ source = 'field-notes' }) => {
           border: '1px solid rgba(31,111,235,0.25)',
         }}
       >
-        <div className="grid md:grid-cols-[1.2fr_1fr] gap-0">
+        <div className="grid md:grid-cols-2 gap-0">
           {/* LEFT — copy */}
           <div className="p-8 md:p-10 flex flex-col justify-center">
             <p
@@ -92,7 +92,7 @@ const FieldNotesNewsletter = ({ source = 'field-notes' }) => {
                 </p>
               </div>
             ) : (
-              <form onSubmit={submit} noValidate data-testid="newsletter-form">
+              <form onSubmit={submit} noValidate data-testid="newsletter-form" className="w-full">
                 <label
                   className="block uppercase tracking-[0.18em] font-bold text-white/55 mb-2"
                   style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px' }}
@@ -100,35 +100,33 @@ const FieldNotesNewsletter = ({ source = 'field-notes' }) => {
                 >
                   Your work email
                 </label>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <div className="relative flex-1">
-                    <Mail
-                      size={16}
-                      className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/35"
-                    />
-                    <input
-                      id="newsletter-email"
-                      type="email"
-                      required
-                      autoComplete="email"
-                      inputMode="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="name@company.com"
-                      className="w-full pl-10 pr-4 py-3.5 bg-white/[0.05] border border-white/15 rounded focus:outline-none focus:border-[#2A52A0] focus:bg-white/[0.08] text-white placeholder-white/30 text-[15px] transition-colors"
-                      data-testid="newsletter-email-input"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    disabled={submitting || !email.trim()}
-                    className="inline-flex items-center justify-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] disabled:opacity-50 text-white font-bold px-5 py-3.5 rounded transition-colors whitespace-nowrap shadow-lg shadow-[#2A52A0]/20"
-                    data-testid="newsletter-submit"
-                  >
-                    {submitting ? 'Sending\u2026' : 'Subscribe'}
-                    {!submitting && <ArrowRight size={16} />}
-                  </button>
+                <div className="relative mb-3">
+                  <Mail
+                    size={16}
+                    className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/35 pointer-events-none"
+                  />
+                  <input
+                    id="newsletter-email"
+                    type="email"
+                    required
+                    autoComplete="email"
+                    inputMode="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="name@company.com"
+                    className="w-full pl-10 pr-4 py-3.5 bg-white/[0.05] border border-white/15 rounded focus:outline-none focus:border-[#2A52A0] focus:bg-white/[0.08] text-white placeholder-white/30 text-[15px] transition-colors"
+                    data-testid="newsletter-email-input"
+                  />
                 </div>
+                <button
+                  type="submit"
+                  disabled={submitting || !email.trim()}
+                  className="w-full inline-flex items-center justify-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] disabled:opacity-50 text-white font-bold px-5 py-3.5 rounded transition-colors whitespace-nowrap shadow-lg shadow-[#2A52A0]/20"
+                  data-testid="newsletter-submit"
+                >
+                  {submitting ? 'Sending\u2026' : 'Subscribe'}
+                  {!submitting && <ArrowRight size={16} />}
+                </button>
 
                 {/* Honeypot — off-screen */}
                 <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', width: '1px', height: '1px', overflow: 'hidden' }}>

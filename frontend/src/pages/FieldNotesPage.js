@@ -267,7 +267,17 @@ const FieldNotesPage = () => {
       />
 
       {/* Header */}
-      <section className="bg-[#0d1b2a] py-16 md:py-24" data-testid="field-notes-header">
+      <section
+        className="py-16 md:py-24 relative overflow-hidden"
+        style={{
+          backgroundColor: '#0d1b2a',
+          backgroundImage: 'linear-gradient(rgba(13,27,42,0.78), rgba(13,27,42,0.88)), url(/assets/field-notes-header.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+        data-testid="field-notes-header"
+      >
         <div className="container max-w-4xl">
           <p
             className="uppercase tracking-[3px] text-[#1a6fc4] mb-4"

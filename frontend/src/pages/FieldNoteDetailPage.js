@@ -176,6 +176,8 @@ The fix isn't expensive. A written Heat Illness Prevention Plan, customized to y
       { question: 'What is the most common forklift violation cited by OSHA?', answer: 'The most common forklift violations involve incomplete or missing operator training documentation, lack of daily pre-shift inspection records, and failure to maintain pedestrian separation in high-traffic areas.' },
     ],
     relatedNotes: ['walking-surfaces', 'lockout-tagout', 'ppe-assessment'],
+    heroImage: '/assets/field-notes/forklift-safety-inspection.png',
+    heroImageAlt: 'Forklift daily pre-shift inspection — GigLine walkthrough field photo',
     sections: {
       whatItIs: `Forklift safety is more than a certification card. OSHA's standard for Powered Industrial Trucks — 29 CFR 1910.178 — covers operator training and evaluation, daily pre-shift inspections, pedestrian separation, load capacity, and refueling/charging procedures. Most operations have the laminated training card from when the operator started years ago. The daily practices that go with it have usually slipped.
 
@@ -223,6 +225,8 @@ Corrective action is straightforward. Re-evaluate every operator on the floor ri
       { question: 'What happens if an electrical panel is blocked during an OSHA inspection?', answer: 'Blocked electrical panels are one of the most frequently cited OSHA violations. Citations under 29 CFR 1910.303 can result in penalties starting at $16,550 per violation.' },
     ],
     relatedNotes: ['lockout-tagout', 'machine-guarding', 'ppe-assessment'],
+    heroImage: '/assets/field-notes/electrical-safety-exposed-wires.jpg',
+    heroImageAlt: 'Exposed electrical wiring observed during a GigLine walkthrough — 29 CFR 1910.303 violation',
     sections: {
       whatItIs: `Electrical panels in your facility are governed by two overlapping requirements: OSHA's general industry electrical standards under 29 CFR 1910 Subpart S (specifically 1910.303 for general requirements and 1910.305 for wiring methods), and NFPA 70E — the National Electrical Code's safety standard for the workplace. OSHA enforces NFPA 70E by reference under the General Duty Clause. In practical terms: both apply, and OSHA will cite under whichever fits the violation best.
 
@@ -284,6 +288,8 @@ Corrective action: photograph every panel in your facility today. Mark the floor
       { question: 'What is a secondary container and why does it matter?', answer: 'A secondary container is any container you fill from the original — a spray bottle, a small jug poured from a 55-gallon drum, even a bucket of mixed cleaner. Every secondary container must be labeled with the product name and hazard information unless it is used by one employee in one shift. Missing secondary container labels are one of the most common HazCom citations.' },
     ],
     relatedNotes: ['ppe-assessment', 'machine-guarding', 'respiratory-protection'],
+    heroImage: '/assets/field-notes/hazcom-sds-binder.png',
+    heroImageAlt: 'SDS binder and chemical container labeling — Hazard Communication 29 CFR 1910.1200',
     sections: {
       whatItIs: `Hazard Communication is OSHA's most-cited general industry standard. Year after year. 29 CFR 1910.1200 — also called HazCom or the "Employee Right-to-Know" standard — is also one of the most achievable to fix, which makes the citation rate even more frustrating. Almost every HazCom citation in a small operation is preventable with a few hours of organized paperwork.
 
@@ -339,6 +345,8 @@ Corrective action: buy a label-maker and a set of GHS pictogram stickers ($60 to
       { question: 'What is the penalty range for machine guarding citations?', answer: 'Serious machine guarding violations under 1910.212 typically cite at $16,550 per violation as a Serious classification. Willful or repeat citations can reach $165,514 per violation. Amputation-related citations frequently trigger an OSHA enforcement focus called the National Emphasis Program on Amputations.' },
     ],
     relatedNotes: ['lockout-tagout', 'electrical-safety', 'ppe-assessment'],
+    heroImage: '/assets/field-notes/machine-guarding-shear.jpg',
+    heroImageAlt: 'Unguarded shear point of operation on roll former cut-off — 29 CFR 1910.212',
     sections: {
       whatItIs: `Machine guarding is governed primarily by 29 CFR 1910.212 (general requirements for all machines) and 29 CFR 1910.219 (mechanical power transmission apparatus). The standard's intent is straightforward: any machine part, function, or process that could injure a worker must be guarded. In practice, the citation rate sits in OSHA's top 10 every year, and machine guarding is the standard most frequently associated with amputations under OSHA's National Emphasis Program on Amputations in Manufacturing Industries.
 
@@ -393,6 +401,8 @@ Corrective action: photograph every machine in your facility today. For each one
       { question: 'Why are walking-surface citations so common?', answer: 'Walking-working surface hazards (slips, trips, falls, blocked aisles, poor housekeeping) are visible from the moment an OSHA inspector walks through the door. They are also the leading source of recordable injuries in general industry — about 25% of all reported workplace injuries involve slips, trips, or falls. The combination of high visibility and high injury rate produces consistent citation rates.' },
     ],
     relatedNotes: ['fall-protection', 'forklift-safety', 'ladder-safety'],
+    heroImage: '/assets/field-notes/walking-surfaces-housekeeping.png',
+    heroImageAlt: 'Cluttered aisle and poor housekeeping observed during a GigLine walkthrough',
     sections: {
       whatItIs: `Walking and working surfaces are governed by 29 CFR 1910 Subpart D, which covers floors, aisles, stairways, fixed and portable ladders, dockboards, and fall protection. The core housekeeping rule — 1910.22(a) — requires every workplace to be kept clean, orderly, and in a sanitary condition. The rule sounds soft until you walk a small operation in the middle of a production run: cords across walkways, hoses snaking through aisles, pallets parked in the middle of pedestrian zones, and "temporary" spills that have been there for three days.
 
@@ -458,6 +468,8 @@ Corrective action: buy a 5-gallon bucket of safety yellow paint and re-mark ever
       { question: 'What is the difference between authorized, affected, and other employees under LOTO?', answer: 'Authorized employees actually lock out and service equipment — they receive full LOTO training. Affected employees operate or work in the area but do not service equipment — they receive awareness training. Other employees work in the facility but are not exposed — they receive an explanation of the program. All three categories must be trained, and the training must be documented.' },
     ],
     relatedNotes: ['machine-guarding', 'electrical-safety', 'confined-space'],
+    heroImage: '/assets/field-notes/lockout-tagout-lock.jpeg',
+    heroImageAlt: 'Energy-isolation padlock applied during lockout/tagout — GigLine field photo',
     sections: {
       whatItIs: `Lockout/Tagout — 29 CFR 1910.147 — is the OSHA standard that governs the control of hazardous energy during equipment servicing and maintenance. It is consistently in OSHA's top 5 most-cited general industry standards, and it shows up in fatality reports more often than any other maintenance-related standard. The rule is straightforward: before anyone services equipment that could start up unexpectedly or release stored energy, every energy source must be isolated, locked out, and verified. The execution is where it falls apart.
 
@@ -512,6 +524,8 @@ Corrective action: photograph every piece of equipment with hazardous energy in 
       { question: 'How often does OSHA require fire extinguisher inspections?', answer: 'Under 29 CFR 1910.157(e), portable fire extinguishers must be visually inspected monthly and given an annual maintenance check by a qualified person, with the date and inspector recorded on the extinguisher tag. Hydrostatic testing is required every 5 or 12 years depending on the extinguisher type.' },
     ],
     relatedNotes: ['hazcom', 'walking-surfaces', 'bloodborne-pathogens'],
+    heroImage: '/assets/field-notes/emergency-action-plans-blocked-egress.png',
+    heroImageAlt: 'Blocked egress / emergency exit route obstruction — 29 CFR 1910.37',
     sections: {
       whatItIs: `Emergency Action Plans are governed by 29 CFR 1910.38, with the related Fire Prevention Plan requirements at 1910.39 and the portable fire extinguisher requirements at 1910.157. The standards are easy to overlook in a small operation because most days nothing happens — and most operators do not think about emergency planning until something goes wrong or until OSHA shows up and asks for the documentation.
 
@@ -858,6 +872,8 @@ Corrective action: walk every elevated surface in your facility with a tape meas
       { question: 'When does the 300A summary have to be posted?', answer: 'The 300A annual summary must be posted in a conspicuous location at each establishment from February 1 through April 30 of the year following the year covered. It must be certified by a company executive before posting. Failure to post is one of the most common recordkeeping citations during scheduled inspections.' },
     ],
     relatedNotes: ['hazcom', 'emergency-action-plans', 'bloodborne-pathogens'],
+    heroImage: '/assets/field-notes/recordkeeping-300-log.png',
+    heroImageAlt: 'OSHA 300 log and recordkeeping documentation — 29 CFR Part 1904',
     sections: {
       whatItIs: `OSHA recordkeeping is governed by 29 CFR Part 1904 — the standard that requires employers to record work-related injuries and illnesses on three connected forms: the OSHA 300 (the running log of every recordable case), the OSHA 301 (the incident report for each case, with details OSHA can audit), and the OSHA 300A (the annual summary posted on the workplace bulletin board). The standard sounds simple — write down the injuries, post a summary, keep the records — but it is one of the most under-maintained programs in small operations, and one of the easiest for OSHA to cite because the gap is on paper.
 

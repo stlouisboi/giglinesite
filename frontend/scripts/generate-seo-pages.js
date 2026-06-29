@@ -1158,6 +1158,18 @@ Object.keys(CITY_META).forEach((city) => {
 });
 
 // Field note detail pages
+const NOTE_HERO_IMAGES = {
+  'electrical-safety': '/assets/field-notes/electrical-safety-exposed-wires.jpg',
+  'forklift-safety': '/assets/field-notes/forklift-safety-inspection.png',
+  'lockout-tagout': '/assets/field-notes/lockout-tagout-lock.jpeg',
+  'hazcom': '/assets/field-notes/hazcom-sds-binder.png',
+  'walking-surfaces': '/assets/field-notes/walking-surfaces-housekeeping.png',
+  'emergency-action-plans': '/assets/field-notes/emergency-action-plans-blocked-egress.png',
+  'recordkeeping-300-log': '/assets/field-notes/recordkeeping-300-log.png',
+  'machine-guarding': '/assets/field-notes/machine-guarding-shear.jpg',
+  'ai-generated-safety-programs': '/assets/field-notes/ai-safety-programs-hero.png',
+};
+
 const RELATED_NOTES = {
   'heat-stress': ['walking-surfaces', 'ppe-assessment', 'recordkeeping-300-log'],
   'forklift-safety': ['walking-surfaces', 'lockout-tagout', 'ppe-assessment'],
@@ -1276,7 +1288,7 @@ fieldNotes.forEach((note, idx) => {
   const dateModified = note.modifiedAt || '2026-02-15';
   const imageAbs = note.ogImage
     ? (note.ogImage.startsWith('http') ? note.ogImage : `${BASE_URL}${note.ogImage}`)
-    : `${BASE_URL}/og-image.png`;
+    : (NOTE_HERO_IMAGES[note.slug] ? `${BASE_URL}${NOTE_HERO_IMAGES[note.slug]}` : `${BASE_URL}/og-image.png`);
 
   const schemas = [
     {
@@ -1316,7 +1328,7 @@ fieldNotes.forEach((note, idx) => {
     title: note.customSeoTitle || `${note.title} — Field Notes | GigLine Safety & Compliance`,
     description: note.desc,
     canonical: `/field-notes/${note.slug}`,
-    ogImage: note.ogImage,
+    ogImage: note.ogImage || NOTE_HERO_IMAGES[note.slug],
     schemas,
     content: baseContent + relatedHtml,
   });

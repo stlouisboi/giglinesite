@@ -47,6 +47,8 @@ React 18 (CRA), Tailwind, FastAPI, MongoDB (motor), Stripe LIVE, Resend LIVE, Ma
 - `data-testid` on every interactive element and critical UI element.
 
 ## Recent Changelog
+- 2026-02 — Wired **8 real walkthrough photos** as hero images on Field Note detail pages: HazCom, Electrical Safety, Lockout/Tagout, Forklift Safety, Walking Surfaces, Emergency Action Plans, Recordkeeping & 300 Log, Machine Guarding. Each photo also flows into the page's `og:image` meta + Article schema `image` (rich social previews + Google rich results per topic). Total: 9 of 25 Field Notes now have hero photos.
+- 2026-02 — Fixed broken machine-guarding photo in Sample Report Section on `/services` — saved real photo to `/floor-findings/machine-guarding.jpg`.
 - 2026-02 — Built **OSHA Compliance Guide pillar page** at `/osha-compliance-guide`. Topical index of all 25 Field Notes organized into 6 hazard clusters (Chemical & Health, Mechanical & Energy, Fall & Height, PPE, Process & Recordkeeping, Operations). CollectionPage + WebPage + BreadcrumbList schema. Added to /resources hub, sitemap.xml, and SSR pre-render with full content + 25 internal links. Removed retired `/onboarding` URL from sitemap.
 - 2026-02 — Expanded "Related Field Notes" cross-linking from 2 → 3 per note across all 25 Field Notes (React side). Mirrored into `generate-seo-pages.js` SSR pre-render so crawlers see the internal links without JS — topic-cluster signal for Google.
 - 2026-02 — Upgraded Article JSON-LD schema on all 25 Field Notes + 2 inline blog articles + 1 case study (added `image`, `datePublished`, `dateModified`, `articleSection`, `inLanguage` — Google rich-result eligible). Corrected 3 inline schemas that had future `datePublished` dates.

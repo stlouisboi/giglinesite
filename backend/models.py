@@ -75,3 +75,9 @@ class HazComCheckoutRequest(BaseModel):
 
 class HeatGuideRequest(BaseModel):
     email: str
+
+
+class SampleReportRequest(BaseModel):
+    first_name: str
+    email: EmailStr
+    company: Optional[str] = ""

@@ -1,8 +1,38 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Search, X } from 'lucide-react';
 import SEO from '../components/SEO';
 import FieldNotesNewsletter from '../components/FieldNotesNewsletter';
+
+// CFR subpart label for each field note. Lives alongside FIELD_NOTES so the
+// filter dropdown can derive options from a single source of truth.
+const CFR_BY_SLUG = {
+  'ai-generated-safety-programs': '29 CFR 1910 — General Industry',
+  'heat-stress': 'OSHA General Duty Clause',
+  'forklift-safety': '29 CFR 1910.178 — Forklifts',
+  'electrical-safety': '29 CFR 1910 Subpart S — Electrical',
+  'hazcom': '29 CFR 1910.1200 — HazCom',
+  'machine-guarding': '29 CFR 1910.212 — Machine Guarding',
+  'walking-surfaces': '29 CFR 1910 Subpart D — Walking-Working Surfaces',
+  'lockout-tagout': '29 CFR 1910.147 — LOTO',
+  'emergency-action-plans': '29 CFR 1910.38 — Emergency Action Plans',
+  'ppe-assessment': '29 CFR 1910 Subpart I — PPE',
+  'fall-protection': '29 CFR 1910 Subpart D — Fall Protection',
+  'confined-space': '29 CFR 1910.146 — Confined Space',
+  'scaffolding-safety': '29 CFR 1926.451 — Scaffolding',
+  'hearing-conservation': '29 CFR 1910.95 — Hearing Conservation',
+  'bloodborne-pathogens': '29 CFR 1910.1030 — Bloodborne Pathogens',
+  'recordkeeping-300-log': '29 CFR Part 1904 — Recordkeeping',
+  'respiratory-protection': '29 CFR 1910.134 — Respiratory Protection',
+  'silica-respirable-crystalline': '29 CFR 1910.1053 — Silica',
+  'hot-work-welding': '29 CFR 1910 Subpart Q — Welding',
+  'abrasive-wheels': '29 CFR 1910.215 — Abrasive Wheels',
+  'ladder-safety': '29 CFR 1910.23 — Ladders',
+  'eye-face-protection': '29 CFR 1910.133 — Eye & Face PPE',
+  'trenching-excavation': '29 CFR 1926.651 — Trenching',
+  'cranes-rigging': '29 CFR 1910.179 — Cranes',
+  'nc-osha-vs-federal': 'NC State Plan',
+};
 
 const FIELD_NOTES = [
   {
@@ -183,6 +213,51 @@ const FIELD_NOTES = [
 ];
 
 const FieldNotesPage = () => {
+  const [keyword, setKeyword] = useState('');
+  const [cfrFilter, setCfrFilter] = useState('');
+
+  // Unique CFR subpart options, sorted alphabetically. Derived from the
+  // CFR_BY_SLUG map — no hardcoded option lists.
+  const cfrOptions = useMemo(
+    () =>
+      Array.from(new Set(Object.values(CFR_BY_SLUG))).sort((a, b) =>
+        a.localeCompare(b),
+      ),
+    [],
+  );
+
+  // Filtered notes: keyword search across title/subtitle/description/topics,
+  // AND CFR-subpart match when a filter is selected.
+  const filteredNotes = useMemo(() => {
+    const kw = keyword.trim().toLowerCase();
+    return FIELD_NOTES.filter((note) => {
+      // CFR filter: when active, exclude notes without a subpart entry.
+      if (cfrFilter) {
+        const subpart = CFR_BY_SLUG[note.slug];
+        if (!subpart || subpart !== cfrFilter) return false;
+      }
+      // Keyword filter
+      if (kw) {
+        const haystack = [
+          note.title,
+          note.subtitle,
+          note.description,
+          ...(note.topics || []),
+        ]
+          .join(' ')
+          .toLowerCase();
+        if (!haystack.includes(kw)) return false;
+      }
+      return true;
+    });
+  }, [keyword, cfrFilter]);
+
+  const hasActiveFilter = keyword.trim() !== '' || cfrFilter !== '';
+  const clearFilters = () => {
+    setKeyword('');
+    setCfrFilter('');
+  };
+
   return (
     <main>
       <SEO
@@ -230,38 +305,125 @@ const FieldNotesPage = () => {
       {/* Notes Grid */}
       <section className="py-16 md:py-24 bg-white" data-testid="field-notes-grid">
         <div className="container max-w-4xl">
-          <div className="space-y-0 border-t border-[#dde3ea]">
-            {FIELD_NOTES.map((note) => (
-              <Link
-                key={note.slug}
-                to={`/field-notes/${note.slug}`}
-                className="block py-8 border-b border-[#dde3ea] group"
-                data-testid={`field-note-${note.slug}`}
-              >
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-                  <div className="flex-grow">
-                    <h2 className="text-xl font-bold text-[#0d1b2a] group-hover:text-[#1560ae] transition-colors mb-1">
-                      {note.title}
-                    </h2>
-                    <p className="text-sm text-[#1a6fc4] mb-3" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-                      {note.subtitle}
-                    </p>
-                    <p className="text-base text-[#0d1b2a]/60 leading-relaxed mb-3">
-                      {note.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {note.topics.map((topic) => (
-                        <span key={topic} className="text-xs px-2 py-1 rounded bg-[#0d1b2a]/5 text-[#0d1b2a]/50">
-                          {topic}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <ArrowRight size={20} className="text-[#0d1b2a]/20 group-hover:text-[#1560ae] transition-colors flex-shrink-0 mt-2 hidden md:block" />
-                </div>
-              </Link>
-            ))}
+
+          {/* Search + Filter Bar */}
+          <div
+            className="flex flex-col md:flex-row gap-3 mb-8 pb-6 border-b border-[#dde3ea]"
+            data-testid="field-notes-filter-bar"
+          >
+            <div className="relative flex-grow">
+              <Search
+                size={16}
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-[#0d1b2a]/40"
+              />
+              <input
+                type="text"
+                value={keyword}
+                onChange={(e) => setKeyword(e.target.value)}
+                placeholder="Search field notes…"
+                className="w-full pl-10 pr-10 py-3 rounded border border-[#0d1b2a]/15 bg-white text-sm text-[#0d1b2a] placeholder:text-[#0d1b2a]/40 focus:outline-none focus:border-[#1a6fc4] focus:ring-1 focus:ring-[#1a6fc4]/30"
+                data-testid="field-notes-search-input"
+              />
+              {keyword && (
+                <button
+                  type="button"
+                  onClick={() => setKeyword('')}
+                  aria-label="Clear search"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#0d1b2a]/40 hover:text-[#0d1b2a]"
+                  data-testid="field-notes-search-clear"
+                >
+                  <X size={14} />
+                </button>
+              )}
+            </div>
+            <select
+              value={cfrFilter}
+              onChange={(e) => setCfrFilter(e.target.value)}
+              className="md:w-72 py-3 px-3 rounded border border-[#0d1b2a]/15 bg-white text-sm text-[#0d1b2a] focus:outline-none focus:border-[#1a6fc4] focus:ring-1 focus:ring-[#1a6fc4]/30"
+              data-testid="field-notes-cfr-filter"
+              aria-label="Filter by CFR subpart"
+            >
+              <option value="">All CFR subparts</option>
+              {cfrOptions.map((opt) => (
+                <option key={opt} value={opt}>
+                  {opt}
+                </option>
+              ))}
+            </select>
           </div>
+
+          {filteredNotes.length === 0 ? (
+            <div
+              className="py-16 text-center"
+              data-testid="field-notes-empty-state"
+            >
+              <p className="text-base text-[#0d1b2a]/60 mb-4">
+                No Field Notes match your search. Try a different keyword or clear the filter.
+              </p>
+              <button
+                type="button"
+                onClick={clearFilters}
+                className="text-sm font-semibold text-[#1a6fc4] hover:text-[#1560ae] inline-flex items-center gap-1"
+                data-testid="field-notes-empty-clear"
+              >
+                Clear filters
+              </button>
+            </div>
+          ) : (
+            <>
+              {hasActiveFilter && (
+                <div
+                  className="flex items-center justify-between mb-4 text-xs"
+                  style={{ fontFamily: "'JetBrains Mono', monospace" }}
+                  data-testid="field-notes-result-count"
+                >
+                  <span className="text-[#0d1b2a]/55">
+                    Showing {filteredNotes.length} of {FIELD_NOTES.length}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={clearFilters}
+                    className="text-[#1a6fc4] hover:text-[#1560ae] font-semibold"
+                    data-testid="field-notes-clear-link"
+                  >
+                    Clear filters
+                  </button>
+                </div>
+              )}
+              <div className="space-y-0 border-t border-[#dde3ea]">
+                {filteredNotes.map((note) => (
+                  <Link
+                    key={note.slug}
+                    to={`/field-notes/${note.slug}`}
+                    className="block py-8 border-b border-[#dde3ea] group"
+                    data-testid={`field-note-${note.slug}`}
+                  >
+                    <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                      <div className="flex-grow">
+                        <h2 className="text-xl font-bold text-[#0d1b2a] group-hover:text-[#1560ae] transition-colors mb-1">
+                          {note.title}
+                        </h2>
+                        <p className="text-sm text-[#1a6fc4] mb-3" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                          {note.subtitle}
+                        </p>
+                        <p className="text-base text-[#0d1b2a]/60 leading-relaxed mb-3">
+                          {note.description}
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {note.topics.map((topic) => (
+                            <span key={topic} className="text-xs px-2 py-1 rounded bg-[#0d1b2a]/5 text-[#0d1b2a]/50">
+                              {topic}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <ArrowRight size={20} className="text-[#0d1b2a]/20 group-hover:text-[#1560ae] transition-colors flex-shrink-0 mt-2 hidden md:block" />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </>
+          )}
 
           <p className="mt-12 text-sm text-[#0d1b2a]/40 text-center">
             New topics added monthly based on what we're seeing in the field.

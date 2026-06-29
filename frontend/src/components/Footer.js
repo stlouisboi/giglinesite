@@ -25,7 +25,7 @@ const Footer = () => {
               Safety Walkthroughs and Documentation Readiness Reviews for Small Operations
             </p>
             <a
-              href="https://maps.app.goo.gl/hp6QcmRpfjVzNru38"
+              href="https://maps.app.goo.gl/4D3TVUAeyfzbm7WbA?utm_source=footer&utm_medium=website&utm_campaign=review-request"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-sm text-white/60 hover:text-white transition-colors mb-4"
@@ -97,9 +97,19 @@ const Footer = () => {
               <ul className="space-y-4">
                 {[
                   {
+                    name: 'All Resources',
+                    path: '/resources',
+                    desc: 'Every downloadable guide, checklist, and tool in one place.',
+                  },
+                  {
                     name: 'Supervisor Safety Starter System',
                     path: '/supervisor-kit',
                     desc: '11 documents. CFR-cited. $600 digital · $675 physical. Included free with every Compliance Readiness Visit.',
+                  },
+                  {
+                    name: 'Sample Compliance Report',
+                    path: '/sample-report',
+                    desc: 'A redacted real report. See exactly what you get within 48 hours of the walkthrough.',
                   },
                   {
                     name: 'Safety Check',

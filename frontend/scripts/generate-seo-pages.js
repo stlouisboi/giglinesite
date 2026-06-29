@@ -706,6 +706,59 @@ const routes = [
       <p>GigLine Safety &amp; Compliance — (336) 329-8899</p>
     `,
   },
+  {
+    path: '/sample-report',
+    title: 'Sample Compliance Report | GigLine Safety & Compliance',
+    description: 'See exactly what you get. A real GigLine compliance report — facility name redacted. Findings, CFR citations, penalty exposure, and the prioritized fix list. Download free.',
+    canonical: '/sample-report',
+    schemas: [
+      LOCAL_BUSINESS,
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Resources', path: '/resources' }, { name: 'Sample Report', path: '/sample-report' }]),
+    ],
+    content: `
+      <h1>Sample Compliance Report</h1>
+      <p>A real GigLine compliance report — facility name redacted. This is what your team receives within 48 hours of the walkthrough.</p>
+      <h2>What the report includes</h2>
+      <ul>
+        <li>Photo-documented findings — every observation captured on the floor.</li>
+        <li>CFR citation per finding — specific regulation, not generic language.</li>
+        <li>2026 penalty exposure per finding — $16,550 serious / $165,514 willful.</li>
+        <li>RED / AMBER / GREEN priority sorting so supervisors know what to fix first.</li>
+        <li>30 / 60 / 90-day corrective action plan with owners and target dates.</li>
+      </ul>
+      <p>Enter your first name and email and we send the redacted PDF to your inbox. Free. No spam.</p>
+      <p>GigLine Safety &amp; Compliance — (336) 329-8899 — Kernersville, NC</p>
+    `,
+  },
+  {
+    path: '/resources',
+    title: 'Safety Resources | GigLine Safety & Compliance',
+    description: 'Free and gated safety resources for manufacturing and warehouse supervisors — guides, checklists, and compliance tools from GigLine.',
+    canonical: '/resources',
+    schemas: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        name: 'Safety Resources | GigLine Safety & Compliance',
+        description: 'Free and gated safety resources for manufacturing and warehouse supervisors — guides, checklists, and compliance tools from GigLine.',
+        url: `${BASE_URL}/resources`,
+      },
+      LOCAL_BUSINESS,
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Resources', path: '/resources' }]),
+    ],
+    content: `
+      <h1>Resources</h1>
+      <p>Guides, checklists, and tools built for the person responsible for safety.</p>
+      <ul>
+        <li><a href="/safety-check">Safety Check</a> — 90-second self-screen. Ungated.</li>
+        <li><a href="/heat-guide">Heat Stress Field Guide</a> — 2026 Heat Stress Action Template. Email capture.</li>
+        <li><a href="/blog/hazcom-requirements-small-business">HazCom Compliance Guide</a> — Full breakdown of the OSHA HazCom standard.</li>
+        <li><a href="/sample-report">Sample Compliance Report</a> — A redacted real report. Email capture.</li>
+        <li><a href="${BASE_URL}/api/field-checklist">Field Inspection Checklist</a> — The printable on-floor checklist GigLine uses during walkthroughs. Ungated PDF.</li>
+      </ul>
+      <p>GigLine Safety &amp; Compliance — Vince Lawrence — (336) 329-8899 — Kernersville, NC</p>
+    `,
+  },
   // ── Findability Framework: buyer-intent service landing pages ──
   {
     path: '/safety-walkthrough',

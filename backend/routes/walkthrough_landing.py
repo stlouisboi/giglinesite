@@ -17,6 +17,20 @@ logger = logging.getLogger("gigline")
 
 LEAVE_BEHIND_V9_PDF = Path("/app/backend/internal_docs/GigLine_LeaveBehind_v9.pdf")
 LEAVE_BEHIND_V11_PDF = Path("/app/backend/internal_docs/GigLine_LeaveBehind_v11.pdf")
+FIELD_CHECKLIST_PDF = Path("/app/backend/internal_docs/GigLine_Field_Checklist.pdf")
+
+
+@router.get("/field-checklist")
+async def download_field_checklist():
+    """Ungated download for the GigLine Field Inspection Checklist (GL-WEB-017 Item 4)."""
+    if not FIELD_CHECKLIST_PDF.exists():
+        raise HTTPException(status_code=404, detail="Field checklist PDF not generated yet.")
+    return FileResponse(
+        path=str(FIELD_CHECKLIST_PDF),
+        media_type="application/pdf",
+        filename="GigLine_Field_Checklist.pdf",
+        headers={"Content-Disposition": 'inline; filename="GigLine_Field_Checklist.pdf"'},
+    )
 
 
 @router.get("/leave-behind/v9")

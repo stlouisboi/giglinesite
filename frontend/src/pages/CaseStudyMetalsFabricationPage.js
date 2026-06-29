@@ -249,6 +249,37 @@ const CaseStudyMetalsFabricationPage = () => {
           <P>Twelve of 13 findings were closed within seven days of delivery. The one remaining item &mdash; the unguarded shear blade on the roll former &mdash; has a documented remediation plan: light curtains and a permanent safety fence, to be installed after the machine is set in its final position at the new facility location. The corrective action log entry reads: &ldquo;No current way to guard shear, will add light curtains and safety fence after moving machine to new location and setting in final place.&rdquo;</P>
           <P>That&rsquo;s how a corrective action log is supposed to work. Findings documented. Owners assigned. Plans recorded. Progress trackable.</P>
 
+          {/* SAMPLE REPORT CALLOUT */}
+          <div
+            className="not-italic my-12 p-7 md:p-8 rounded-md"
+            style={{ background: 'white', border: `1px solid ${BORDER}`, fontFamily: "'Manrope', sans-serif" }}
+            data-testid="case-sample-report-callout"
+          >
+            <p
+              className="uppercase font-bold tracking-[0.28em] mb-3"
+              style={{ color: GOLD, ...mono, fontSize: '11px' }}
+            >
+              See the Report Itself
+            </p>
+            <h3
+              className="font-bold leading-tight mb-3 text-[20px] md:text-[24px]"
+              style={{ color: NAVY }}
+            >
+              Want to see what an actual GigLine report looks like?
+            </h3>
+            <p className="text-[15px] md:text-base leading-[1.65] mb-5" style={{ color: TEXT_MUTED, ...serif }}>
+              A redacted version of a real compliance report &mdash; facility name removed, every finding, CFR citation, penalty exposure, and corrective action intact. The format you&rsquo;d receive within 48 hours of your own walkthrough.
+            </p>
+            <Link
+              to="/sample-report"
+              className="inline-flex items-center gap-2 font-bold py-3 px-6 transition-all text-[14px] md:text-[15px]"
+              style={{ background: NAVY, color: 'white' }}
+              data-testid="case-sample-report-cta"
+            >
+              Download a Sample Report &rarr;
+            </Link>
+          </div>
+
           {/* WHAT THIS ENGAGEMENT IS NOT */}
           <H2>What This Engagement Is Not</H2>
           <P>No OSHA inspection followed this walkthrough. There is no citation outcome to report.</P>

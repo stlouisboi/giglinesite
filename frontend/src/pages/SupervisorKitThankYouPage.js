@@ -144,7 +144,7 @@ const SupervisorKitThankYouPage = () => {
                 <p className="text-[14.5px] leading-[1.55]" style={{ color: TEXT_MUTED, ...serif }}>
                   While you&rsquo;re here &mdash; if this saved you time, a short Google review keeps GigLine going for the next small operation.{' '}
                   <a
-                    href="https://maps.app.goo.gl/hp6QcmRpfjVzNru38"
+                    href="https://maps.app.goo.gl/4D3TVUAeyfzbm7WbA?utm_source=kit-thank-you&utm_medium=app&utm_campaign=review-request"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-bold hover:underline whitespace-nowrap"

@@ -117,6 +117,10 @@ HAZCOM_FILES = {
 
 HEAT_STRESS_PDF = ROOT_DIR / "heat_files" / "GL_Heat_Stress_Print_2026.pdf"
 
+# ── Sample Compliance Report (GL-WEB-017 Item 2) ──
+# Placeholder PDF in place. Swap the file at this path to update the deliverable.
+SAMPLE_REPORT_PDF = ROOT_DIR / "sample_report_files" / "GL_Sample_Compliance_Report.pdf"
+
 # ── Supervisor Safety Starter System (GL-WEB-015) ──
 SUPERVISOR_KIT_PRODUCTS = {
     "digital": {

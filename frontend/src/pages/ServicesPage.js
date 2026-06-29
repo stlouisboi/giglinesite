@@ -674,6 +674,42 @@ const ServicesPage = () => {
       {/* ═══ 5b. WHAT HAPPENS ON THE DAY OF YOUR WALKTHROUGH (under CRV detail block) ═══ */}
       <WalkthroughDaySection variant="crv" surface="panel" />
 
+      {/* ═══ 5c. SAMPLE REPORT CTA (under CRV / WalkthroughDay) ═══ */}
+      <section
+        className="py-12 md:py-16"
+        style={{ backgroundColor: '#FAF7F1', borderTop: '1px solid rgba(13,27,42,0.06)', borderBottom: '1px solid rgba(13,27,42,0.06)' }}
+        data-testid="services-sample-report-band"
+      >
+        <div className="container max-w-4xl">
+          <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-start md:items-center justify-between">
+            <div>
+              <p
+                className="uppercase font-bold tracking-[0.22em] mb-2"
+                style={{ color: '#1a6fc4', ...mono, fontSize: '11px' }}
+              >
+                See What You Get
+              </p>
+              <h2
+                className="font-bold leading-tight text-[#0d1b2a] mb-2 text-[22px] md:text-[26px]"
+                style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+              >
+                Want a preview before you schedule?
+              </h2>
+              <p className="text-[15px] md:text-base text-[#0d1b2a]/65 leading-relaxed max-w-2xl">
+                Download a redacted compliance report &mdash; facility name removed, every other detail intact. Findings, CFR citations, penalty exposure, RED/AMBER/GREEN fix list, and the corrective action plan.
+              </p>
+            </div>
+            <Link
+              to="/sample-report"
+              className="inline-flex items-center justify-center gap-2 bg-[#0d1b2a] hover:bg-[#1c2e44] text-white font-semibold px-6 py-3.5 rounded transition-colors whitespace-nowrap text-sm md:text-base"
+              data-testid="services-sample-report-cta"
+            >
+              Download a Sample Report &rarr;
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ═══ 6. STANDALONE SERVICES — Intro band ═══ */}
       <section className="pt-24 md:pt-32 pb-12 md:pb-16" style={{ backgroundColor: '#f5f4f0' }} data-testid="services-standalone">
         <div className="container max-w-6xl">

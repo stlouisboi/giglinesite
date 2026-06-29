@@ -1,0 +1,83 @@
+{
+  "summary": "GL-WEB-017 (4-item queue) end-to-end testing complete. All 4 items pass: UTM-tracked review CTAs, Sample Report page+API, Field Notes search/filter, Resources hub. Backend: 7/7 pytest passes. Frontend: all data-testids resolve, form submits end-to-end, filters work as AND-logic, Resources grid renders all 5 cards, footer link present. Regression on 7 existing pages all return 200 with correct h1.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_gl_web_017.py",
+    "/app/test_reports/pytest/gl_web_017.xml"
+  ],
+  "verifications": {
+    "item1_utm_review_urls": {
+      "footer": "utm_source=footer — VERIFIED (live page + source)",
+      "kit_thank_you": "utm_source=kit-thank-you — VERIFIED in source",
+      "report_pdf": "utm_source=report-pdf — VERIFIED in source",
+      "walkthrough_landing": "utm_source=walkthrough-landing — VERIFIED in source",
+      "status_page": "utm_source=status-page — VERIFIED in source (live URL requires clientToken path /status/:clientToken)",
+      "backend_env": "GIGLINE_GOOGLE_REVIEW_URL has utm_source=safety-check-pdf&utm_medium=pdf&utm_campaign=review-request — VERIFIED"
+    },
+    "item2_sample_report": {
+      "page_loads": true,
+      "headline": "'See exactly what you get.' — VERIFIED",
+      "form_inputs_present": ["sample-report-firstname-input", "sample-report-email-input", "sample-report-company-input"],
+      "submit_button_testid": "sample-report-submit — VERIFIED",
+      "api_POST_/api/sample-report/submit": "200 success:true on full payload + on payload without company; 422 on missing email (Pydantic validation)",
+      "success_state_text": "'Check your inbox — it's on its way.' — VERIFIED",
+      "ctas_to_sample_report": {
+        "home-sample-report-cta": "/sample-report",
+        "services-sample-report-cta": "/sample-report",
+        "case-sample-report-cta": "/sample-report"
+      }
+    },
+    "item3_field_notes": {
+      "search_input_visible": true,
+      "cfr_filter_visible": true,
+      "search_lockout_narrowed_to_2": "result_count = 'Showing 2 of 25' — VERIFIED (matches ~2 articles spec)",
+      "empty_state_on_garbage_query": "field-notes-empty-state visible, empty-clear button visible — VERIFIED",
+      "cfr_filter_options_count": 6,
+      "cfr_filter_narrows_results": "Selecting '29 CFR 1910 — General Industry' → 2 visible — VERIFIED",
+      "and_logic": "Working (combining text + dropdown narrows further than either alone)"
+    },
+    "item4_resources": {
+      "page_loads": true,
+      "seo_title": "'Safety Resources | GigLine Safety & Compliance' — VERIFIED",
+      "cards": {
+        "safety-check": "/safety-check",
+        "heat-stress-guide": "/heat-guide",
+        "hazcom-guide": "/blog/hazcom-requirements-small-business",
+        "sample-report": "/sample-report",
+        "field-checklist": "{API}/api/field-checklist (external link with target=_blank)"
+      },
+      "footer_all_resources_link": "'All Resources' → /resources — VERIFIED",
+      "field_checklist_pdf_endpoint": "GET /api/field-checklist → 200, content-type: application/pdf, valid %PDF header"
+    },
+    "regression": {
+      "/": "200 — h1 OK",
+      "/services": "200 — h1 OK",
+      "/supervisor-kit": "200 — h1 OK",
+      "/field-notes": "200 — h1 OK",
+      "/intake": "200 — h1 OK",
+      "/case-study/metals-fabrication-statesville": "200 — h1 OK",
+      "/heat-guide": "200 — h1 OK"
+    }
+  },
+  "action_items": [],
+  "critical_code_review_comments": [
+    "sample_report.py route swallows exceptions and still returns success:true on email failure (line 99-100). This is intentional graceful degradation (lead is captured in DB regardless), but consider returning success:true with a different message field so monitoring can distinguish silent email failures. Low priority.",
+    "ResourcesPage.js builds field-checklist href from REACT_APP_BACKEND_URL at module import time. Works correctly because env is static at build, but if env is ever missing it would render 'undefined/api/field-checklist'. Consider runtime fallback. Low priority."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_gl_web_017.py (new test file)"
+  ],
+  "success_rate": {"backend": "100% (7/7)", "frontend": "100% (all assertions passed)"},
+  "seed_data_creation": "Sample report submission created lead rows in db.sample_report_leads and db.download_events for emails e1-qa@example.com and e1-qa-2@example.com. Safe to leave (test data) or main agent can clean up by email prefix.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "GL-WEB-017 is fully shipped and verified — all 4 items working. Test file at /app/backend/tests/test_gl_web_017.py can be reused as regression. Key endpoints: POST /api/sample-report/submit, GET /api/field-checklist. Key new pages: /sample-report, /resources. Field Notes search uses CFR_BY_SLUG map in FieldNotesPage.js — currently 'lockout' yields 2 results (matches spec)."
+}

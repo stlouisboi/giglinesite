@@ -619,6 +619,42 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* ═══ SAMPLE REPORT CTA BAND — secondary download cross-sell ═══ */}
+      <section
+        className="py-12 md:py-16"
+        style={{ backgroundColor: '#F9F8F6', borderTop: '1px solid rgba(13,27,42,0.08)' }}
+        data-testid="home-sample-report-band"
+      >
+        <div className="container max-w-4xl">
+          <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-start md:items-center justify-between">
+            <div>
+              <p
+                className="uppercase font-bold tracking-[0.22em] mb-2"
+                style={{ color: '#1a6fc4', fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }}
+              >
+                Free Sample
+              </p>
+              <h2
+                className="font-bold leading-tight text-[#0d1b2a] mb-2 text-[22px] md:text-[26px]"
+                style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+              >
+                Want to see what a report looks like before you schedule?
+              </h2>
+              <p className="text-[15px] md:text-base text-[#0d1b2a]/65 leading-relaxed max-w-2xl">
+                Download a redacted compliance report &mdash; findings, CFR citations, penalty exposure, and the prioritized fix list. Real engagement, facility name removed.
+              </p>
+            </div>
+            <Link
+              to="/sample-report"
+              className="inline-flex items-center justify-center gap-2 bg-[#0d1b2a] hover:bg-[#1c2e44] text-white font-semibold px-6 py-3.5 rounded transition-colors whitespace-nowrap text-sm md:text-base"
+              data-testid="home-sample-report-cta"
+            >
+              Download a Sample Report &rarr;
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ═══ WHAT HAPPENS ON THE DAY OF YOUR WALKTHROUGH ═══ */}
       <WalkthroughDaySection variant="crv" surface="light" />
 

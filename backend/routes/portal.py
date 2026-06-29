@@ -357,65 +357,6 @@ async def get_leads_by_source(token: str = ""):
 
     return {"sources": sorted_buckets, "totals": totals}
 
-
-# ── Agreement signing ──
-
-from pydantic import BaseModel as PydanticBaseModel
-
-class SignAgreementRequest(PydanticBaseModel):
-    clientToken: str
-    typedName: str
-    company: str
-    tier: str
-    addRetainer: bool = False
-
-
-@router.post("/onboarding/sign-agreement")
-async def sign_agreement(req: SignAgreementRequest):
-    """Generate signed agreement PDF server-side and store it."""
-    from pdf_generator_agreement import generate_agreement_pdf
-
-    now = datetime.now(timezone.utc)
-
-    pdf_bytes = generate_agreement_pdf(
-        typed_name=req.typedName,
-        company=req.company,
-        tier=req.tier,
-        add_retainer=req.addRetainer,
-        timestamp=now,
-    )
-
-    # Store PDF
-    filepath = os.path.join(AGREEMENT_DIR, f"{req.clientToken}.pdf")
-    with open(filepath, "wb") as f:
-        f.write(pdf_bytes)
-
-    agreement_url = f"/api/agreement/{req.clientToken}/download"
-
-    # Update the booking record (may not exist yet if signing before payment)
-    # Also update the intake submission record if it exists
-    await db.gl_intake_submissions.update_one(
-        {"clientToken": req.clientToken},
-        {"$set": {
-            "agreementSigned": True,
-            "agreementSignedAt": now.isoformat(),
-            "agreementUrl": agreement_url,
-            "status": "agreement_signed",
-            "statusUpdatedAt": now.isoformat(),
-        }},
-    )
-
-    return {
-        "signed": True,
-        "agreementUrl": agreement_url,
-        "signedAt": now.isoformat(),
-    }
-
-
-@router.get("/agreement/{client_token}/download")
-async def download_agreement(client_token: str):
-    """Download signed agreement PDF."""
-    filepath = os.path.join(AGREEMENT_DIR, f"{client_token}.pdf")
-    if not os.path.exists(filepath):
-        raise HTTPException(status_code=404, detail="Agreement not found")
-    return FileResponse(filepath, media_type="application/pdf", filename="GigLine-Service-Agreement.pdf")
+# ── Legacy /onboarding/sign-agreement + /agreement/* endpoints removed (GL-WEB-019). ──
+# The /onboarding portal was retired because it carried stale walkthrough pricing
+# ($650/$750/$900). All bookings now flow through /intake → fixed quote.

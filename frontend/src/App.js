@@ -21,7 +21,6 @@ import HeatGuidePage from './pages/HeatGuidePage';
 import SampleReportPage from './pages/SampleReportPage';
 import ResourcesPage from './pages/ResourcesPage';
 import ClientIntakePage from './pages/ClientIntakePage';
-import OnboardingPage from './pages/OnboardingPage';
 import StatusPage from './pages/StatusPage';
 import ReportPage from './pages/ReportPage';
 import AdminPage from './pages/AdminPage';
@@ -69,8 +68,9 @@ function App() {
           {/* Standalone portal pages — own nav, no global Navbar/Footer */}
           <Route path="/walkthrough" element={<WalkthroughLandingPage />} />
           <Route path="/intake" element={<ClientIntakePage />} />
-          <Route path="/onboarding" element={<OnboardingPage />} />
-          <Route path="/onboarding/confirmed" element={<OnboardingPage />} />
+          {/* /onboarding portal retired (legacy pricing). Forward old links to /intake. */}
+          <Route path="/onboarding" element={<Navigate to="/intake" replace />} />
+          <Route path="/onboarding/confirmed" element={<Navigate to="/intake" replace />} />
           <Route path="/status/:clientToken" element={<StatusPage />} />
           <Route path="/report/:clientToken" element={<ReportPage />} />
           <Route path="/thank-you-intake" element={<ThankYouIntakePage />} />

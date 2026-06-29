@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Download, FileText, ClipboardCheck, Shield, BookOpen, FileSearch, Mail } from 'lucide-react';
+import { ArrowRight, Download, FileText, ClipboardCheck, Shield, BookOpen, FileSearch, Mail, Package } from 'lucide-react';
 import SEO from '../components/SEO';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL;
@@ -65,6 +65,18 @@ const RESOURCES = [
       'What OSHA looks for when they walk in. Built for HR managers and safety coordinators — what to have ready before, what happens during, and what to do in the 15-day window after. CFR-cited.',
     cta: 'Get Access',
     href: '/osha-inspection-guide',
+    internal: true,
+  },
+  {
+    id: 'supervisor-kit',
+    title: 'Supervisor Safety Starter System',
+    type: 'Paid Kit',
+    gate: 'From $600',
+    icon: Package,
+    description:
+      'The full digital kit of CFR-cited, print-ready safety documents GigLine uses on every walkthrough — written programs, training rosters, inspection logs, and OSHA-response templates. Built for the supervisor responsible for safety on the floor. Included free with every Compliance Readiness Visit.',
+    cta: 'See the Kit',
+    href: '/supervisor-kit',
     internal: true,
   },
   {

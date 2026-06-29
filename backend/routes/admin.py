@@ -156,6 +156,13 @@ async def admin_stats(token: str = ""):
             "converted": sr_converted,
             "conversion_rate": sr_conversion_rate,
         },
+        "hr_osha_guide": {
+            "total": total_oig,
+            "last_7d": oig_7d,
+            "last_30d": oig_30d,
+            "converted": oig_converted,
+            "conversion_rate": oig_conversion_rate,
+        },
     }
 
 

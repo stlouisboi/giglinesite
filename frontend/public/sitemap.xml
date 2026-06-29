@@ -31,6 +31,12 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://www.giglinecompliance.com/osha-compliance-guide</loc>
+    <lastmod>2026-02-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://www.giglinecompliance.com/safety-check</loc>
     <lastmod>2026-04-10</lastmod>
     <changefreq>monthly</changefreq>
@@ -356,12 +362,6 @@
   </url>
   <url>
     <loc>https://www.giglinecompliance.com/intake</loc>
-    <lastmod>2026-04-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.giglinecompliance.com/onboarding</loc>
     <lastmod>2026-04-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

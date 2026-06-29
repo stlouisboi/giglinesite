@@ -763,6 +763,7 @@ const routes = [
       <h1>Resources</h1>
       <p>Guides, checklists, and tools built for the person responsible for safety.</p>
       <ul>
+        <li><a href="/osha-compliance-guide">The OSHA Compliance Guide</a> — Full topical index. All 25 Field Notes organized into six hazard clusters. Ungated.</li>
         <li><a href="/safety-check">Safety Check</a> — 90-second self-screen. Ungated.</li>
         <li><a href="/heat-guide">Heat Stress Field Guide</a> — 2026 Heat Stress Action Template. Email capture.</li>
         <li><a href="/blog/hazcom-requirements-small-business">HazCom Compliance Guide</a> — Full breakdown of the OSHA HazCom standard.</li>
@@ -798,7 +799,94 @@ const routes = [
       <p>GigLine Safety &amp; Compliance — Vince Lawrence — (336) 329-8899 — Kernersville, NC</p>
     `,
   },
-  // ── Findability Framework: buyer-intent service landing pages ──
+  // ── OSHA Compliance Guide — Pillar page (topical index of all 25 Field Notes) ──
+  {
+    path: '/osha-compliance-guide',
+    title: 'The OSHA Compliance Guide — All 25 Topics, Organized by Hazard | GigLine',
+    description: 'The complete OSHA compliance reference for NC small manufacturing and warehouse operations. 25 CFR-cited field notes organized into six hazard clusters — written by Vince Lawrence, GigLine Safety & Compliance.',
+    canonical: '/osha-compliance-guide',
+    schemas: [
+      LOCAL_BUSINESS,
+      {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: 'OSHA Compliance Field Notes — Topical Index',
+        url: `${BASE_URL}/osha-compliance-guide`,
+        description: 'A topical index of 25 CFR-cited OSHA compliance articles by Vince Lawrence, organized into six hazard clusters for NC small manufacturing and warehouse operations.',
+        inLanguage: 'en-US',
+        isPartOf: { '@id': `${BASE_URL}/#business` },
+      },
+      breadcrumb([
+        { name: 'Home', path: '/' },
+        { name: 'Resources', path: '/resources' },
+        { name: 'OSHA Compliance Guide', path: '/osha-compliance-guide' },
+      ]),
+    ],
+    content: `
+      <h1>The OSHA Compliance Guide for Small Manufacturing &amp; Warehouse Operations</h1>
+      <p>25 CFR-cited field notes — organized into six hazard clusters. Hazard Communication. Machine guarding and energy control. Fall and height work. PPE. Recordkeeping and enforcement. Operations and environment. Each note is written from the floor, not the binder.</p>
+      <p><em>By Vince Lawrence — GigLine Safety &amp; Compliance — OSHA 30-Hour Certified — U.S. Navy Veteran — Kernersville, NC</em></p>
+
+      <h2>Cluster 01 — Chemical &amp; Health Exposure</h2>
+      <p>Hazard Communication is the #1 most-cited OSHA standard in general industry. The exposure programs below are where the documentation almost always lags behind the floor.</p>
+      <ul>
+        <li><a href="/field-notes/hazcom">HazCom &amp; SDS</a> — #1 OSHA citation, 29 CFR 1910.1200</li>
+        <li><a href="/field-notes/respiratory-protection">Respiratory Protection</a> — Written program, medical eval, fit test (1910.134)</li>
+        <li><a href="/field-notes/silica-respirable-crystalline">Respirable Crystalline Silica</a> — Stone fab, concrete, foundries (1910.1053)</li>
+        <li><a href="/field-notes/hearing-conservation">Hearing Conservation</a> — Noise monitoring + audiometric testing (1910.95)</li>
+        <li><a href="/field-notes/bloodborne-pathogens">Bloodborne Pathogens</a> — Exposure control plan + Hep B (1910.1030)</li>
+      </ul>
+
+      <h2>Cluster 02 — Mechanical &amp; Energy Control</h2>
+      <p>Machinery, electrical, and hot work. The standards in this cluster cause more of OSHA's serious citations and fatality reports than any other group in general industry.</p>
+      <ul>
+        <li><a href="/field-notes/machine-guarding">Machine Guarding</a> — Point-of-operation guards (1910.212)</li>
+        <li><a href="/field-notes/lockout-tagout">Lockout/Tagout (LOTO)</a> — Control of hazardous energy (1910.147)</li>
+        <li><a href="/field-notes/electrical-safety">Electrical Access</a> — Panel clearance, arc flash (1910.303)</li>
+        <li><a href="/field-notes/abrasive-wheels">Abrasive Wheels &amp; Bench Grinders</a> — Tongue guards, ring test (1910.215)</li>
+        <li><a href="/field-notes/cranes-rigging">Overhead Cranes &amp; Rigging</a> — Inspections, sling capacity (1910.179 / 1910.184)</li>
+        <li><a href="/field-notes/hot-work-welding">Hot Work, Welding &amp; Cutting</a> — Permits, fire watch (Subpart Q)</li>
+      </ul>
+
+      <h2>Cluster 03 — Fall &amp; Height Work</h2>
+      <p>The 4-foot rule, ladder geometry, scaffold competence. Falls remain among the most-cited OSHA standards every year — and the most preventable.</p>
+      <ul>
+        <li><a href="/field-notes/fall-protection">Fall Protection</a> — Mezzanines, docks, the 4-foot rule (1910.28)</li>
+        <li><a href="/field-notes/ladder-safety">Portable Ladder Safety</a> — 4-to-1 angle, three-point contact (1910.23)</li>
+        <li><a href="/field-notes/scaffolding-safety">Scaffolding Safety</a> — Competent person, guardrails (1910.27)</li>
+        <li><a href="/field-notes/walking-surfaces">Walking Surfaces</a> — Aisles, edges, housekeeping (1910.22)</li>
+      </ul>
+
+      <h2>Cluster 04 — PPE &amp; Personal Protection</h2>
+      <p>PPE without a written hazard assessment is a citation waiting to happen. These two notes anchor the standard for every other exposure type on this page.</p>
+      <ul>
+        <li><a href="/field-notes/ppe-assessment">PPE Assessment &amp; Use</a> — Written hazard assessment + selection (1910.132)</li>
+        <li><a href="/field-notes/eye-face-protection">Eye &amp; Face Protection</a> — Z87.1, side shields, face shields (1910.133)</li>
+      </ul>
+
+      <h2>Cluster 05 — Process, Recordkeeping &amp; Enforcement</h2>
+      <p>The paperwork OSHA asks for first. If the 300 log is missing or the EAP cannot be produced, the inspection narrative is already written before the floor walk begins.</p>
+      <ul>
+        <li><a href="/field-notes/recordkeeping-300-log">OSHA Recordkeeping &amp; the 300 Log</a> — Recordables, 300A, severe injury reports (Part 1904)</li>
+        <li><a href="/field-notes/emergency-action-plans">Emergency Action Plans</a> — Evacuation, alarm, training (1910.38)</li>
+        <li><a href="/field-notes/nc-osha-vs-federal">NC State Plan vs. Federal OSHA</a> — NCDOL inspections, BETS consultation</li>
+        <li><a href="/field-notes/ai-generated-safety-programs">AI-Generated Safety Programs</a> — What ChatGPT cannot see on your floor</li>
+      </ul>
+
+      <h2>Cluster 06 — Operations, Movement &amp; Environment</h2>
+      <p>Vehicles, confined spaces, trenches, heat. Hazards that change with the day, the season, and the task — and that an inspector asks the floor supervisor to describe from memory.</p>
+      <ul>
+        <li><a href="/field-notes/forklift-safety">Forklift Safety</a> — Daily inspections, certification (1910.178)</li>
+        <li><a href="/field-notes/confined-space">Confined Space Entry</a> — Permits, testing, rescue (1910.146)</li>
+        <li><a href="/field-notes/trenching-excavation">Trenching &amp; Excavation</a> — Protective systems, competent person (1926.651)</li>
+        <li><a href="/field-notes/heat-stress">Heat Stress</a> — General Duty Clause + NEP CPL 03-00-024</li>
+      </ul>
+
+      <h2>Reading is the easy part.</h2>
+      <p>See what these standards look like on your floor. <a href="/intake?service=safety-walkthrough-report&utm_source=osha-guide-pillar&utm_medium=website&utm_campaign=pillar-cta">Request a Safety Walkthrough</a>. From $1,200. Findings in 48 hours. NC Piedmont Triad.</p>
+      <p>GigLine Safety &amp; Compliance — Vince Lawrence — (336) 329-8899 — Kernersville, NC</p>
+    `,
+  },
   {
     path: '/safety-walkthrough',
     title: 'Safety Walkthrough — On-Site OSHA Review for NC Operations | GigLine',

@@ -1,12 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Download, FileText, ClipboardCheck, Shield, BookOpen, FileSearch, Mail, Package } from 'lucide-react';
+import { ArrowRight, Download, FileText, ClipboardCheck, Shield, BookOpen, FileSearch, Mail, Package, Compass } from 'lucide-react';
 import SEO from '../components/SEO';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL;
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
 
 const RESOURCES = [
+  {
+    id: 'osha-compliance-guide',
+    title: 'The OSHA Compliance Guide',
+    type: 'Pillar Reference',
+    gate: 'Ungated',
+    icon: Compass,
+    description:
+      'The full topical index. All 25 GigLine Field Notes, organized into six hazard clusters — Chemical & Health, Mechanical & Energy, Fall & Height, PPE, Recordkeeping & Enforcement, and Operations. Built for the person responsible for safety who needs the whole landscape on one page.',
+    cta: 'Open the Guide',
+    href: '/osha-compliance-guide',
+    internal: true,
+  },
   {
     id: 'safety-check',
     title: 'Safety Check',

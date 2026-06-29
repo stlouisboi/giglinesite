@@ -15,7 +15,7 @@ React 18 (CRA), Tailwind, FastAPI, MongoDB (motor), Stripe LIVE, Resend LIVE, Ma
 - Mature funnel: home, services, intake, walkthrough, Safety Check (tiered results), Field Notes (25), Case Study, About, Contact.
 - Supervisor Safety Starter System paid checkout (LIVE Stripe + Resend auto-PDF delivery + thank-you page polling).
 - Gated lead magnets w/ auto-open PDF + email delivery: Heat Guide, Sample Report (real redacted 18-page PDF), OSHA Inspection Guide (HR-targeted).
-- `/resources` hub w/ 7 tiles (Safety Check, Heat Guide, HazCom, Sample Report, OSHA Inspection Guide, **Supervisor Safety Starter System** [Feb 2026], Field Checklist).
+- `/resources` hub w/ 8 tiles (OSHA Compliance Guide [pillar], Safety Check, Heat Guide, HazCom, Sample Report, OSHA Inspection Guide, Supervisor Safety Starter System, Field Checklist).
 - Admin Dashboard `/api/admin/stats` tiles: safety checks, risk breakdown, walkthroughs, downloads, heat guide leads, quick contacts, sample reports, **hr_osha_guide** [Feb 2026].
 - Quick-Contact micro-form on intake with attribution tracking.
 - Theme-aware favicons, auto-OG image generation, JSON-LD schema sync in `generate-seo-pages.js`.
@@ -47,6 +47,7 @@ React 18 (CRA), Tailwind, FastAPI, MongoDB (motor), Stripe LIVE, Resend LIVE, Ma
 - `data-testid` on every interactive element and critical UI element.
 
 ## Recent Changelog
+- 2026-02 — Built **OSHA Compliance Guide pillar page** at `/osha-compliance-guide`. Topical index of all 25 Field Notes organized into 6 hazard clusters (Chemical & Health, Mechanical & Energy, Fall & Height, PPE, Process & Recordkeeping, Operations). CollectionPage + WebPage + BreadcrumbList schema. Added to /resources hub, sitemap.xml, and SSR pre-render with full content + 25 internal links. Removed retired `/onboarding` URL from sitemap.
 - 2026-02 — Expanded "Related Field Notes" cross-linking from 2 → 3 per note across all 25 Field Notes (React side). Mirrored into `generate-seo-pages.js` SSR pre-render so crawlers see the internal links without JS — topic-cluster signal for Google.
 - 2026-02 — Upgraded Article JSON-LD schema on all 25 Field Notes + 2 inline blog articles + 1 case study (added `image`, `datePublished`, `dateModified`, `articleSection`, `inLanguage` — Google rich-result eligible). Corrected 3 inline schemas that had future `datePublished` dates.
 - 2026-02 — Fixed Admin Dashboard HR tile (`hr_osha_guide` dict added to `/api/admin/stats` response).

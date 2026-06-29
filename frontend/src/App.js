@@ -21,6 +21,7 @@ import HeatGuidePage from './pages/HeatGuidePage';
 import SampleReportPage from './pages/SampleReportPage';
 import ResourcesPage from './pages/ResourcesPage';
 import OshaInspectionGuidePage from './pages/OshaInspectionGuidePage';
+import OshaComplianceGuidePage from './pages/OshaComplianceGuidePage';
 import ClientIntakePage from './pages/ClientIntakePage';
 import StatusPage from './pages/StatusPage';
 import ReportPage from './pages/ReportPage';
@@ -104,6 +105,7 @@ function App() {
                   <Route path="/sample-report" element={<SampleReportPage />} />
                   <Route path="/resources" element={<ResourcesPage />} />
                   <Route path="/osha-inspection-guide" element={<OshaInspectionGuidePage />} />
+                  <Route path="/osha-compliance-guide" element={<OshaComplianceGuidePage />} />
                   <Route path="/request-walkthrough" element={<Navigate to="/intake" replace />} />
                   <Route path="/admin" element={<AdminPage />} />
                   <Route path="/field-notes" element={<FieldNotesPage />} />

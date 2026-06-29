@@ -97,6 +97,7 @@ const STANDALONE = [
     headline: 'The first step when you need exposure identified quickly.',
     price: 'From $1,200',
     body: 'An on-site walkthrough focused purely on physical hazards. You get a photo-documented report and a prioritized fix list in 48 hours. No retainer. No follow-up obligation.',
+    priceAnchor: 'Most operations fall between $1,200 and $2,000.',
     listLabel: "What's Included",
     bgColor: '#ffffff',
     whatsIncluded: [
@@ -782,6 +783,15 @@ const ServicesPage = () => {
                     <p className="text-base md:text-lg text-[#0d1b2a]/70 leading-[1.85] mb-8">
                       {s.body}
                     </p>
+
+                    {s.priceAnchor && (
+                      <p
+                        className="text-sm text-[#0d1b2a]/50 -mt-4 mb-8 italic"
+                        data-testid={`${s.testid}-price-anchor`}
+                      >
+                        {s.priceAnchor}
+                      </p>
+                    )}
 
                     {s.floorPricing && (
                       <div className="mb-8 p-5 rounded-xl bg-white" style={{ border: '1px solid rgba(212,169,62,0.35)' }}>

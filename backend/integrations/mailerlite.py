@@ -30,6 +30,54 @@ LIST_RETENTION_4_TOUCH = "Retention - 4 Touch"
 LIST_KIT_DIGITAL = "supervisor-kit-digital"
 LIST_KIT_PHYSICAL = "supervisor-kit-physical"
 
+# GL-WEB-019 — HR-facing OSHA Inspection Guide download
+LIST_HR_OSHA_GUIDE = "hr-osha-guide-download"
+
+
+async def add_to_hr_osha_guide(
+    email: str,
+    first_name: str = "",
+    company: str = "",
+) -> bool:
+    """
+    GL-WEB-019 — Enroll email capture for the OSHA Inspection Guide download
+    into the MailerLite `hr-osha-guide-download` group.
+
+    The MailerLite automation attached to this group handles PDF delivery —
+    the backend only enrolls the subscriber.
+    """
+    if not ML_TOKEN or not email:
+        return False
+
+    gid = await _ensure_group(LIST_HR_OSHA_GUIDE)
+    if not gid:
+        logger.error("MailerLite: hr-osha-guide-download group could not be resolved")
+        return False
+
+    payload = {
+        "email": email,
+        "fields": {
+            "name": (first_name or "").strip(),
+            "company": (company or "").strip(),
+            "source_form": "osha-inspection-guide",
+        },
+        "groups": [gid],
+        "status": "active",
+    }
+
+    try:
+        async with httpx.AsyncClient(timeout=10) as client:
+            r = await client.post(
+                f"{ML_BASE}/subscribers", headers=_headers(), json=payload
+            )
+            if r.status_code in (200, 201):
+                logger.info(f"MailerLite: HR OSHA Guide enrollment {email} → {LIST_HR_OSHA_GUIDE}")
+                return True
+            logger.warning(f"MailerLite HR-guide add failed {r.status_code}: {r.text[:200]}")
+    except Exception as e:
+        logger.error(f"MailerLite HR-guide error: {e}")
+    return False
+
 # GL-WEB-013 — service-specific groups (one single-email confirmation automation per service)
 SERVICE_GROUP_NAMES = {
     "Safety Walkthrough": "Service - Safety Walkthrough",

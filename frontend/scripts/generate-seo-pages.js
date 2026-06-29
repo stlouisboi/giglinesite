@@ -759,6 +759,30 @@ const routes = [
       <p>GigLine Safety &amp; Compliance — Vince Lawrence — (336) 329-8899 — Kernersville, NC</p>
     `,
   },
+  {
+    path: '/osha-inspection-guide',
+    title: 'OSHA Inspection Guide for HR & Safety Leaders | GigLine Safety & Compliance',
+    description: 'What OSHA looks for when they walk in — and what your documentation needs to show. Free guide for HR managers and safety coordinators in the NC Piedmont Triad.',
+    canonical: '/osha-inspection-guide',
+    schemas: [
+      LOCAL_BUSINESS,
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Resources', path: '/resources' }, { name: 'OSHA Inspection Guide', path: '/osha-inspection-guide' }]),
+    ],
+    content: `
+      <h1>What OSHA Looks For When They Walk In.</h1>
+      <p>A practical guide for HR managers, safety coordinators, and plant managers — what to have ready before the inspection, what happens during it, and what to do in the 15-day window after.</p>
+      <p><strong>Vince Lawrence · GigLine Safety &amp; Compliance · OSHA 30-Hour Certified · 25+ Years in Manufacturing</strong></p>
+      <h2>What's Inside</h2>
+      <ul>
+        <li><strong>Before the Inspection</strong> — Written programs, OSHA logs, training records, and physical readiness with CFR citations for each.</li>
+        <li><strong>During the Inspection</strong> — The five phases: opening conference, walkaround, employee interviews, closing conference, citation issuance.</li>
+        <li><strong>After the Inspection</strong> — The 24-hour action window and the 15-day citation response period — step by step.</li>
+        <li><strong>Most Common HR-Facing Citations</strong> — OSHA 300 Log, training records, written programs, HazCom — the documentation gaps inspectors find most often, with penalty exposure per violation.</li>
+      </ul>
+      <p>Enter your email and we send the guide directly. No spam. One delivery.</p>
+      <p>GigLine Safety &amp; Compliance — Vince Lawrence — (336) 329-8899 — Kernersville, NC</p>
+    `,
+  },
   // ── Findability Framework: buyer-intent service landing pages ──
   {
     path: '/safety-walkthrough',

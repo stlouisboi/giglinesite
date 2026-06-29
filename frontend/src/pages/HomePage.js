@@ -846,7 +846,7 @@ const HomePage = () => {
             const steps = [
               { n: '01', title: 'You reach out.', body: 'Fill out the intake form or call directly. Tell us your facility type, approximate square footage, and what\u2019s on your mind. No commitment required.' },
               { n: '02', title: 'We give you a fixed quote.', body: 'Based on your facility size, complexity, and the scope of the engagement. You\u2019ll have a number before we schedule anything.' },
-              { n: '03', title: 'We walk your floor.', body: 'Vince comes to your facility. He walks every area, photographs findings, and documents what he sees against the applicable OSHA standards. Typically 1\u20133 hours on-site depending on facility size and complexity.' },
+              { n: '03', title: 'We walk your floor.', body: 'Vince comes to your facility. He walks every area, photographs findings, and documents what he sees against the applicable OSHA standards. Typically 1\u20133 hours on-site depending on facility size and complexity.', boldTail: 'Minimal disruption to production.' },
               { n: '04', title: 'You get a written report in 48 hours.', body: 'Photo documentation, CFR citations, penalty exposure per finding, and a prioritized list of corrective actions. Yours to keep, act on, and share with your team.' },
             ];
             return (
@@ -886,7 +886,15 @@ const HomePage = () => {
                           {s.n}
                         </div>
                         <h3 className="text-base md:text-lg font-bold text-[#0d1b2a] mb-2 leading-snug">{s.title}</h3>
-                        <p className="text-[13.5px] text-[#0d1b2a]/65 leading-[1.6] max-w-[230px]">{s.body}</p>
+                        <p className="text-[13.5px] text-[#0d1b2a]/65 leading-[1.6] max-w-[230px]">
+                          {s.body}
+                          {s.boldTail && (
+                            <>
+                              {' '}
+                              <strong className="text-[#0d1b2a] font-semibold">{s.boldTail}</strong>
+                            </>
+                          )}
+                        </p>
                       </div>
                     </Reveal>
                   ))}
@@ -1029,6 +1037,33 @@ And everything I find stays between us.
 
 I'm Vince Lawrence.
 This is GigLine Safety & Compliance.`}
+                  </div>
+                </Reveal>
+
+                <Reveal>
+                  <div
+                    className="mt-2 p-5 md:p-6"
+                    style={{
+                      background: 'rgba(200,146,42,0.08)',
+                      borderLeft: '3px solid #c8922a',
+                      borderRadius: '4px',
+                    }}
+                    data-testid="about-hr-callout"
+                  >
+                    <p
+                      className="uppercase font-bold mb-2"
+                      style={{
+                        fontFamily: "'JetBrains Mono', monospace",
+                        fontSize: '10.5px',
+                        letterSpacing: '0.22em',
+                        color: '#c8922a',
+                      }}
+                    >
+                      For HR &amp; Safety Coordinators
+                    </p>
+                    <p className="text-[14.5px] md:text-[15.5px] leading-[1.7]" style={{ color: 'rgba(255,255,255,0.85)' }}>
+                      HR managers and safety coordinators are often the first to hear from OSHA &mdash; and the first to be asked for documentation. GigLine helps you know what&rsquo;s in your files before that call comes.
+                    </p>
                   </div>
                 </Reveal>
 

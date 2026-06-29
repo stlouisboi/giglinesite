@@ -102,6 +102,11 @@ const Footer = () => {
                     desc: 'Every downloadable guide, checklist, and tool in one place.',
                   },
                   {
+                    name: 'OSHA Inspection Guide — HR & Safety Leaders',
+                    path: '/osha-inspection-guide',
+                    desc: 'What OSHA looks for when they walk in. Free guide for HR managers and safety coordinators.',
+                  },
+                  {
                     name: 'Supervisor Safety Starter System',
                     path: '/supervisor-kit',
                     desc: '11 documents. CFR-cited. $600 digital · $675 physical. Included free with every Compliance Readiness Visit.',

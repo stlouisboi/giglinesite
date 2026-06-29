@@ -87,3 +87,9 @@ class QuickContactRequest(BaseModel):
     name: str
     contact: str  # email or phone — whichever the prospect prefers
     message: Optional[str] = ""
+
+
+class OshaInspectionGuideRequest(BaseModel):
+    email: EmailStr
+    first_name: Optional[str] = ""
+    company: Optional[str] = ""

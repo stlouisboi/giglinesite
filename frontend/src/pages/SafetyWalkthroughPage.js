@@ -160,6 +160,70 @@ const SafetyWalkthroughPage = () => {
         </div>
       </section>
 
+      {/* What GigLine Does / Doesn't Do — positioning clarity (Feb 2026 audit) */}
+      <section className="py-20 md:py-24 bg-white" data-testid="sw-scope">
+        <div className="container max-w-5xl">
+          <Eyebrow>The Scope</Eyebrow>
+          <h2 className="text-3xl md:text-4xl font-extrabold leading-[1.15] mb-4 tracking-tight" style={{ color: NAVY }}>
+            What a GigLine walkthrough is &mdash; and what it isn&rsquo;t.
+          </h2>
+          <p className="text-base md:text-lg text-[#1C2B2B]/70 leading-[1.85] mb-10 max-w-3xl">
+            A clear scope protects both sides. Here&rsquo;s exactly what you can expect to walk away with &mdash; and the lines GigLine does not cross.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+            <div
+              className="p-6 md:p-7 rounded"
+              style={{ background: 'rgba(31,107,72,0.06)', border: '1px solid rgba(31,107,72,0.25)' }}
+              data-testid="sw-scope-does"
+            >
+              <p className="uppercase font-bold mb-4" style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.22em', color: '#1f6b48' }}>
+                GigLine Does
+              </p>
+              <ul className="space-y-2.5">
+                {[
+                  'Walk your facility floor and document visible OSHA-related gaps',
+                  'Photograph and CFR-cite every finding in a written report',
+                  'Review your written programs, training records, OSHA 300 logs, and SDS inventory',
+                  'Provide a prioritized corrective action plan you can hand to supervisors',
+                  'Help your team prepare for a real OSHA inspection, customer audit, or insurance review',
+                ].map((d, i) => (
+                  <li key={i} className="flex items-start gap-2 text-[15px] leading-[1.6]" style={{ color: NAVY }}>
+                    <span className="font-bold" style={{ color: '#1f6b48', marginTop: '1px' }}>✓</span>
+                    <span>{d}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div
+              className="p-6 md:p-7 rounded"
+              style={{ background: 'rgba(138,40,40,0.05)', border: '1px solid rgba(138,40,40,0.20)' }}
+              data-testid="sw-scope-doesnt"
+            >
+              <p className="uppercase font-bold mb-4" style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.22em', color: '#8a2828' }}>
+                GigLine Does Not
+              </p>
+              <ul className="space-y-2.5">
+                {[
+                  'Act as OSHA or issue citations',
+                  'Report findings to OSHA, NCDOL, or any regulator',
+                  'Replace your legal counsel on enforcement matters',
+                  'Guarantee a citation-free inspection',
+                  'Sell generic templates as a substitute for site-specific safety programs',
+                ].map((d, i) => (
+                  <li key={i} className="flex items-start gap-2 text-[15px] leading-[1.6]" style={{ color: NAVY }}>
+                    <span className="font-bold" style={{ color: '#8a2828', marginTop: '1px' }}>—</span>
+                    <span>{d}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <p className="text-xs text-[#1C2B2B]/50 mt-7 leading-[1.7] max-w-3xl" data-testid="sw-scope-disclaimer">
+            GigLine provides private safety walkthroughs and documentation readiness reviews. This is not an OSHA inspection, legal opinion, or guarantee against citations. The goal is to identify visible gaps, document exposure, and give leadership a practical corrective action path.
+          </p>
+        </div>
+      </section>
+
       {/* Closing CTA */}
       <section className="py-20 md:py-24" style={{ background: CREAM }} data-testid="sw-closing">
         <div className="container max-w-3xl text-center">

@@ -304,3 +304,36 @@ The links you build this way compound. They're slow to build, hard to lose, and 
 
 Cadence: every 3–5 days. Consistency > volume.
 
+
+
+---
+
+# 2026-02 — MailerLite Automation: HR OSHA Guide 4-Touch Retention (drafted)
+
+**MailerLite Group:** `hr-osha-guide-download`
+**Trigger:** Subscriber joins group (handled automatically by backend on /osha-inspection-guide submission)
+**Backend constant:** `/app/backend/integrations/mailerlite.py` → `LIST_HR_OSHA_GUIDE = "hr-osha-guide-download"`
+
+## Email 1 — Immediately
+**Subject:** Your OSHA Inspection Guide — and what HR usually does next
+**Key links:** Case study at `/case-study/metals-fabrication-statesville`
+
+## Email 2 — Wait 3 Days
+**Subject:** The 5 things OSHA asks for first
+**Key links:** Pillar page at `/osha-compliance-guide`
+
+## Email 3 — Wait 7 Days (Day 10)
+**Subject:** What a walkthrough actually finds
+**Key links:** Case study at `/case-study/metals-fabrication-statesville`
+
+## Email 4 — Wait 7 Days (Day 17)
+**Subject:** Want me to walk your floor?
+**Key links:** Intake at `/intake`, mailto vince@giglinecompliance.com, tel:(336)329-8899
+
+## Voice anchors used in this sequence
+- "Safety becomes the thing you will get to. OSHA does not wait for you to get to it." (signature line — used in Email 1 + Email 3)
+- "Documentation should tell the same story as your floor." (Email 2)
+- "Seeing what has become normal." (Email 3)
+- "The goal is to give you control." (Email 4)
+
+## Full email copy archived in: this file + original message in chat history

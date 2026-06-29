@@ -34,7 +34,7 @@ const faqSchema = {
   "mainEntity": [
     { "@type": "Question", "name": "Do small businesses need a HazCom program?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Any business that uses, stores, or handles hazardous chemicals must comply with OSHA's Hazard Communication Standard (29 CFR 1910.1200). There is no small business exemption. This includes manufacturers, auto shops, fabrication shops, warehouses, and contractors." } },
     { "@type": "Question", "name": "What are the four requirements of a HazCom program?", "acceptedAnswer": { "@type": "Answer", "text": "OSHA 29 CFR 1910.1200 requires four components: (1) a written Hazard Communication program, (2) Safety Data Sheets for every hazardous chemical, (3) proper container labels with GHS elements, and (4) documented employee training." } },
-    { "@type": "Question", "name": "What are the penalties for HazCom violations?", "acceptedAnswer": { "@type": "Answer", "text": "As of January 2025, OSHA penalties for serious HazCom violations are up to $16,550 per violation. Willful or repeat violations can reach $165,514. Common citations include missing written programs, incomplete SDS binders, unlabeled containers, and undocumented training." } },
+    { "@type": "Question", "name": "What are the penalties for HazCom violations?", "acceptedAnswer": { "@type": "Answer", "text": "Per OSHA's 2026 maximum penalty schedule, serious HazCom violations can run up to $16,550 per violation. Willful or repeat violations can reach $165,514. Common citations include missing written programs, incomplete SDS binders, unlabeled containers, and undocumented training." } },
     { "@type": "Question", "name": "How often is HazCom training required?", "acceptedAnswer": { "@type": "Answer", "text": "OSHA requires HazCom training before initial exposure to hazardous chemicals and whenever new chemical hazards are introduced. Annual refresher training is not mandated but is recommended. All training must be documented with employee signatures." } },
     { "@type": "Question", "name": "What is the difference between MSDS and SDS?", "acceptedAnswer": { "@type": "Answer", "text": "MSDS (Material Safety Data Sheet) was the pre-2012 format with variable structure. SDS (Safety Data Sheet) is the current GHS-aligned format with a standardized 16-section layout and required pictograms. All employers should have transitioned to SDS format." } },
     { "@type": "Question", "name": "Where should the SDS binder be located?", "acceptedAnswer": { "@type": "Answer", "text": "OSHA requires SDS to be readily accessible to employees during their work shift without requiring supervisor permission. Common locations include front office, shop floor near chemical storage, break room, or digital access via computer. The location must be communicated during training." } },
@@ -370,7 +370,7 @@ const BlogHazComRequirements = () => {
             What are the penalties for HazCom violations?
           </h2>
           <p className="text-sm text-[#1C2B2B]/60 mb-6">
-            Hazard Communication is the <strong className="text-[#1C2B2B]">#1 most-cited OSHA standard</strong> in general industry. Penalties as of January 2025:
+            Hazard Communication is the <strong className="text-[#1C2B2B]">#1 most-cited OSHA standard</strong> in general industry. Penalties under the 2026 OSHA maximum penalty schedule (effective after January 15, 2026):
           </p>
           <table className="w-full text-sm mb-6" data-testid="hazcom-penalty-table">
             <thead>
@@ -563,7 +563,7 @@ const BlogHazComRequirements = () => {
                 <span className="text-[#1C2B2B]/30 mx-1">|</span>
                 <a href="mailto:vince@giglinecompliance.com" className="text-[#1F3F80] hover:underline">vince@giglinecompliance.com</a>
               </p>
-              <p className="text-xs text-[#1C2B2B]/40 mt-2 italic">Penalty amounts reflect January 2025 OSHA adjustments.</p>
+              <p className="text-xs text-[#1C2B2B]/40 mt-2 italic">Penalty amounts reflect OSHA&rsquo;s 2026 maximum penalty adjustments effective after January 15, 2026. Actual penalties depend on classification, employer size, gravity, history, and good-faith factors.</p>
             </div>
           </div>
         </div>

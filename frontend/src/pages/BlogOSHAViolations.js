@@ -49,7 +49,7 @@ const faqSchema = {
     {
       "@type": "Question",
       "name": "What is the penalty for OSHA violations in 2025?",
-      "acceptedAnswer": { "@type": "Answer", "text": "As of January 2025, OSHA penalties are up to $16,550 per serious violation and up to $165,514 per willful or repeat violation. Penalties are adjusted annually for inflation." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Per OSHA's 2026 maximum penalty schedule (effective after January 15, 2026), serious violations can carry penalties up to $16,550 each and willful or repeat violations up to $165,514. Penalties are adjusted annually for inflation." }
     },
     {
       "@type": "Question",
@@ -247,7 +247,7 @@ const BlogOSHAViolations = () => {
           >
             What is the penalty for OSHA violations in 2025?
           </h2>
-          <p className="text-sm text-[#1C2B2B]/50 mb-6">As of January 2025. Adjusted annually for inflation.</p>
+          <p className="text-sm text-[#1C2B2B]/50 mb-6">2026 OSHA maximum penalty schedule, effective after January 15, 2026. Adjusted annually for inflation.</p>
           <div className="overflow-x-auto">
             <table className="w-full text-sm" data-testid="penalty-table">
               <thead>
@@ -493,7 +493,7 @@ const BlogOSHAViolations = () => {
                 <a href="mailto:vince@giglinecompliance.com" className="text-[#1F3F80] hover:underline">vince@giglinecompliance.com</a>
               </p>
               <p className="text-xs text-[#1C2B2B]/40 mt-2 italic">
-                Penalty amounts reflect January 2025 OSHA adjustments and are subject to annual increases.
+                Penalty amounts reflect OSHA&rsquo;s 2026 maximum penalty adjustments effective after January 15, 2026. Actual penalties depend on classification, employer size, gravity, history, and good-faith factors.
               </p>
             </div>
           </div>

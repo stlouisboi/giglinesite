@@ -191,7 +191,7 @@ const HomePage = () => {
                 className="text-base md:text-lg text-[#CBD5E1] leading-relaxed mb-8 max-w-md"
                 data-testid="hero-sub"
               >
-                On-site safety walkthroughs for manufacturers, warehouses, contractors, and fleet operations across the Piedmont Triad. Fixed quote. Private engagement. Report in 48 hours.
+                On-site safety walkthroughs for manufacturers, warehouses, contractors, and fleet operations across the Piedmont Triad. Fixed quote. Private findings. Written report within 48 hours.
               </p>
 
               <div className="flex flex-col items-start gap-3 mb-5" data-testid="hero-ctas">
@@ -533,7 +533,7 @@ const HomePage = () => {
                 What That Looks Like
               </p>
               <p className="text-[15.5px] md:text-[17px] leading-[1.7] text-white/85" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
-                A 9-person metals fabrication facility in Statesville. One combined walkthrough and documentation review. <strong className="text-white">13 findings.</strong> Seven carried serious-citation risk in the <strong className="text-white">$7,000 to $15,621 per-finding range</strong> &mdash; one inspection visit could have stacked those into <strong className="text-white">six figures of penalty exposure</strong>. The corrective action plan closed twelve of thirteen findings inside seven days.
+                A 9-person metals fabrication facility in Statesville. One combined walkthrough and documentation review. <strong className="text-white">13 findings.</strong> Seven carried serious-citation risk &mdash; up to <strong className="text-white">$16,550 per finding</strong> under the 2026 OSHA maximum penalty schedule. One inspection visit could have stacked those into <strong className="text-white">six figures of penalty exposure</strong>. The corrective action plan closed <strong className="text-white">twelve of thirteen findings inside four days</strong>.
               </p>
               <Link
                 to="/case-study/metals-fabrication-statesville"

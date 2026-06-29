@@ -231,7 +231,7 @@ const CaseStudyMetalsFabricationPage = () => {
               priority="P2 — Serious"
               n="Finding 10"
               cfr="29 CFR 1910.110(b)(6)(i)"
-              penalty="$7,000 – $14,502 (Serious)"
+              penalty="Up to $16,550 per violation (2026 Serious max)"
               title="Unsecured propane cylinder adjacent to flammable storage cabinet"
               body="One propane cylinder stored upright with no chain, bracket, or restraint — positioned immediately adjacent to the flammable liquids storage cabinet with no separation distance. In a fire event, that arrangement is accelerant against fuel."
               corrective="Secure immediately. Relocate minimum 20 feet from the cabinet or install a 30-minute fire-rated barrier. Due date assigned: June 20, 2026 — two days out."
@@ -240,7 +240,7 @@ const CaseStudyMetalsFabricationPage = () => {
               priority="P2 — Serious"
               n="Finding 12"
               cfr="29 CFR 1910.212(a)(1)"
-              penalty="$7,000 – $14,502 (Serious)"
+              penalty="Up to $16,550 per violation (2026 Serious max)"
               title="Unguarded shear point of operation on roll former cut-off mechanism"
               body="The shear blade on the roll former cut-off mechanism was accessible during operation. A yellow perimeter rail was present on the outfeed side — it did not address the point of operation at the shear head."
               corrective="Install point-of-operation guarding before production employees operate the equipment. Due date: before next production run."
@@ -251,7 +251,7 @@ const CaseStudyMetalsFabricationPage = () => {
 
           <P>The IIPP existed but was built from an AI-generated template. It listed the wrong facility address. It lacked required elements for management leadership, hazard identification, and program evaluation. It had not been reviewed against actual operations.</P>
 
-          <P>The SDS library had one confirmed gap: Star Fire AW46 Hydraulic Oil &mdash; a product actively in use at the D-coiler hydraulic power unit, four five-gallon pails on the floor, no SDS on file. That gap alone carries a penalty exposure of <strong>$7,000 &ndash; $15,621</strong> under 29 CFR 1910.1200(g)(1).</P>
+          <P>The SDS library had one confirmed gap: Star Fire AW46 Hydraulic Oil &mdash; a product actively in use at the D-coiler hydraulic power unit, four five-gallon pails on the floor, no SDS on file. That gap alone carries potential serious-citation exposure of <strong>up to $16,550 per violation</strong> under 29 CFR 1910.1200(g)(1), per the 2026 OSHA maximum penalty schedule.</P>
 
           <P>Three required documents were missing entirely: Heat Stress Prevention Plan, Bloodborne Pathogen Exposure Control Plan, and a Corrective Action Log.</P>
 

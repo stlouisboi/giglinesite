@@ -121,9 +121,29 @@ const SampleReportPage = () => {
                 >
                   Get the Sample Report
                 </h2>
-                <p className="text-sm text-[#1C2B2B]/65 mb-6 leading-relaxed">
+                <p className="text-sm text-[#1C2B2B]/65 mb-4 leading-relaxed">
                   Enter your name and email and we&rsquo;ll send the redacted compliance report directly to your inbox. Free. No spam. One email.
                 </p>
+
+                {/* Ungated direct-view option per audit (Feb 2026) */}
+                <div
+                  className="mb-6 p-3 rounded text-sm"
+                  style={{ background: 'rgba(42,82,160,0.06)', border: '1px solid rgba(42,82,160,0.15)' }}
+                  data-testid="sample-report-ungated-option"
+                >
+                  Just want to see it?{' '}
+                  <a
+                    href={`${API_URL}/api/sample-report/pdf`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-[#2A52A0] hover:text-[#1F3F80] underline underline-offset-4"
+                    data-testid="sample-report-ungated-link"
+                  >
+                    Open the PDF directly →
+                  </a>
+                  <span className="block text-xs text-[#1C2B2B]/50 mt-1">No email required. The form below is for those who want it sent to their inbox.</span>
+                </div>
+
                 <form className="space-y-3" onSubmit={handleSubmit}>
                   <input
                     type="text"

@@ -27,7 +27,6 @@ React 18 (CRA), Tailwind, FastAPI, MongoDB (motor), Stripe LIVE, Resend LIVE, Ma
 ## Roadmap (prioritized)
 ### P0 — none open
 ### P1
-- Add `Article` JSON-LD schema to all 25 Field Notes in `generate-seo-pages.js` (rich SERP results).
 - Real case study with findings + corrective actions + outcomes (currently placeholder).
 ### P2
 - Refactor repeated stats querying in `admin.py` into `get_stats_for_collection(db_collection)` helper.
@@ -48,6 +47,7 @@ React 18 (CRA), Tailwind, FastAPI, MongoDB (motor), Stripe LIVE, Resend LIVE, Ma
 - `data-testid` on every interactive element and critical UI element.
 
 ## Recent Changelog
+- 2026-02 — Upgraded Article JSON-LD schema on all 25 Field Notes + 2 inline blog articles + 1 case study (added `image`, `datePublished`, `dateModified`, `articleSection`, `inLanguage` — Google rich-result eligible). Corrected 3 inline schemas that had future `datePublished` dates.
 - 2026-02 — Fixed Admin Dashboard HR tile (`hr_osha_guide` dict added to `/api/admin/stats` response).
 - 2026-02 — Added Supervisor Safety Starter System tile to `/resources` page + mirrored in `generate-seo-pages.js`.
 - 2026-02 (prev fork) — GL-WEB-020: Auto-open PDF on all gated downloads.

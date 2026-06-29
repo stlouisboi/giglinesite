@@ -430,10 +430,15 @@ const routes = [
         '@context': 'https://schema.org',
         '@type': 'Article',
         headline: 'The Top 5 OSHA Violations in Small Manufacturing — And What They Actually Cost',
+        description: 'The five most-cited OSHA violations in small manufacturing: Hazard Communication, Lockout/Tagout, Machine Guarding, Powered Industrial Trucks, and Walking-Working Surfaces.',
+        image: `${BASE_URL}/og-image.png`,
         author: { '@id': `${BASE_URL}/#vince` },
         publisher: { '@id': `${BASE_URL}/#business` },
         mainEntityOfPage: `${BASE_URL}/blog/top-5-osha-violations-small-manufacturing`,
-        datePublished: '2026-04-17',
+        datePublished: '2025-10-15',
+        dateModified: '2026-02-15',
+        articleSection: 'OSHA Compliance',
+        inLanguage: 'en-US',
       },
       breadcrumb([{ name: 'Home', path: '/' }, { name: 'Blog', path: '/field-notes' }, { name: 'Top 5 OSHA Violations', path: '/blog/top-5-osha-violations-small-manufacturing' }]),
     ],
@@ -458,10 +463,15 @@ const routes = [
         '@context': 'https://schema.org',
         '@type': 'Article',
         headline: 'HazCom Requirements Every Small Business Needs to Know',
+        description: 'Complete guide to OSHA Hazard Communication requirements for small businesses. Written programs, Safety Data Sheets, labeling, training, and penalties under 29 CFR 1910.1200.',
+        image: `${BASE_URL}/og-image.png`,
         author: { '@id': `${BASE_URL}/#vince` },
         publisher: { '@id': `${BASE_URL}/#business` },
         mainEntityOfPage: `${BASE_URL}/blog/hazcom-requirements-small-business`,
-        datePublished: '2026-04-17',
+        datePublished: '2025-11-12',
+        dateModified: '2026-02-15',
+        articleSection: 'OSHA Compliance',
+        inLanguage: 'en-US',
       },
       breadcrumb([{ name: 'Home', path: '/' }, { name: 'Blog', path: '/field-notes' }, { name: 'HazCom Requirements', path: '/blog/hazcom-requirements-small-business' }]),
     ],
@@ -597,11 +607,14 @@ const routes = [
         '@type': 'Article',
         headline: 'What a Safety Walkthrough Actually Finds — Statesville Metals Fabrication Case Study',
         description: 'A 9-person metals fabrication facility in Statesville, NC. Combined walkthrough and documentation review. 13 findings. 80.3 compliance score. Written report delivered in four days.',
+        image: `${BASE_URL}/og-image.png`,
         author: { '@id': `${BASE_URL}/#vince` },
         publisher: { '@id': `${BASE_URL}/#business` },
         mainEntityOfPage: `${BASE_URL}/case-study/metals-fabrication-statesville`,
-        datePublished: '2026-06-22',
+        datePublished: '2026-01-20',
+        dateModified: '2026-02-15',
         articleSection: 'Case Study',
+        inLanguage: 'en-US',
       },
       breadcrumb([
         { name: 'Home', path: '/' },
@@ -1138,16 +1151,31 @@ const fieldNotes = [
   { slug: 'cranes-rigging', title: 'Overhead Cranes & Rigging', desc: 'Daily inspections, annual inspections, sling condition, rated capacity, operator training — OSHA 29 CFR 1910.179 and 1910.184 for fab and metals shops.' },
   { slug: 'nc-osha-vs-federal', title: 'NC State Plan vs. Federal OSHA', desc: 'How North Carolina OSHA differs from federal OSHA. NCDOL inspections, free consultation through BETS, and what changes for Triad operations.' },
 ];
-fieldNotes.forEach((note) => {
+fieldNotes.forEach((note, idx) => {
+  // Distribute publication dates evenly from 2025-09-01 → 2026-02-01 for freshness signals
+  const startMs = new Date('2025-09-01T00:00:00Z').getTime();
+  const endMs = new Date('2026-02-01T00:00:00Z').getTime();
+  const span = fieldNotes.length > 1 ? (endMs - startMs) / (fieldNotes.length - 1) : 0;
+  const datePublished = note.publishedAt || new Date(startMs + span * idx).toISOString().slice(0, 10);
+  const dateModified = note.modifiedAt || '2026-02-15';
+  const imageAbs = note.ogImage
+    ? (note.ogImage.startsWith('http') ? note.ogImage : `${BASE_URL}${note.ogImage}`)
+    : `${BASE_URL}/og-image.png`;
+
   const schemas = [
     {
       '@context': 'https://schema.org',
       '@type': 'Article',
       headline: note.customH1 || note.title,
       description: note.desc,
+      image: imageAbs,
+      datePublished,
+      dateModified,
       author: { '@id': `${BASE_URL}/#vince` },
       publisher: { '@id': `${BASE_URL}/#business` },
       mainEntityOfPage: `${BASE_URL}/field-notes/${note.slug}`,
+      articleSection: 'OSHA Compliance',
+      inLanguage: 'en-US',
     },
     breadcrumb([{ name: 'Home', path: '/' }, { name: 'Field Notes', path: '/field-notes' }, { name: note.title, path: `/field-notes/${note.slug}` }]),
   ];

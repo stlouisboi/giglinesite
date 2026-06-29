@@ -483,6 +483,49 @@ const AdminPage = () => {
                   </div>
                 ))}
               </div>
+
+              {/* ── Quick Contact micro-form tile (GL-WEB-018) ── */}
+              {stats.quick_contacts && (
+                <div
+                  className="mb-8 border border-[#B8972C]/30 rounded-lg p-5 bg-gradient-to-br from-[#fdfbf5] to-white"
+                  data-testid="quick-contact-tile"
+                >
+                  <div className="flex items-baseline justify-between mb-3">
+                    <h2 className="text-base font-bold text-[#1C2B2B]">Quick-Contact Micro-Form</h2>
+                    <span className="text-[10px] uppercase tracking-wider text-gray-400 font-mono">
+                      Low-friction path
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+                    <div className="border border-gray-100 rounded-md p-3 bg-white" data-testid="qc-total">
+                      <p className="text-[10px] text-gray-400 uppercase tracking-wide mb-1">Total</p>
+                      <p className="text-2xl font-bold text-[#1C2B2B]">{stats.quick_contacts.total}</p>
+                    </div>
+                    <div className="border border-gray-100 rounded-md p-3 bg-white" data-testid="qc-7d">
+                      <p className="text-[10px] text-gray-400 uppercase tracking-wide mb-1">Last 7d</p>
+                      <p className="text-2xl font-bold text-[#1C2B2B]">{stats.quick_contacts.last_7d}</p>
+                    </div>
+                    <div className="border border-gray-100 rounded-md p-3 bg-white" data-testid="qc-30d">
+                      <p className="text-[10px] text-gray-400 uppercase tracking-wide mb-1">Last 30d</p>
+                      <p className="text-2xl font-bold text-[#1C2B2B]">{stats.quick_contacts.last_30d}</p>
+                    </div>
+                    <div className="border-l-4 border-green-500 rounded-md p-3 bg-green-50" data-testid="qc-converted">
+                      <p className="text-[10px] text-gray-500 uppercase tracking-wide mb-1">Converted</p>
+                      <p className="text-2xl font-bold text-green-700">{stats.quick_contacts.converted}</p>
+                      <p className="text-[10px] text-gray-400 mt-0.5">to intake / walkthrough</p>
+                    </div>
+                    <div className="border-l-4 border-[#B8972C] rounded-md p-3 bg-[#fdf8e7]" data-testid="qc-conversion-rate">
+                      <p className="text-[10px] text-gray-500 uppercase tracking-wide mb-1">Conv. Rate</p>
+                      <p className="text-2xl font-bold text-[#7a5d0a]">{stats.quick_contacts.conversion_rate}%</p>
+                      <p className="text-[10px] text-gray-400 mt-0.5">QC → full lead</p>
+                    </div>
+                  </div>
+                  <p className="text-[11px] text-gray-400 mt-3 leading-snug">
+                    Conversion = quick-contact email/phone later matched in a full intake or walkthrough request. Tracks whether the micro-form converts cold prospects or just shifts entry points.
+                  </p>
+                </div>
+              )}
+
               <h2 className="text-lg font-bold text-[#1C2B2B] mb-3">Risk Breakdown</h2>
               <div className="grid grid-cols-3 gap-3">
                 {[

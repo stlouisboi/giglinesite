@@ -68,6 +68,36 @@ async def admin_stats(token: str = ""):
 
     heat_leads = await db.heat_guide_leads.count_documents({})
 
+    # ── Quick-Contact micro-form metrics (GL-WEB-018) ──
+    total_quick = await db.quick_contact_leads.count_documents({})
+    quick_7d = await db.quick_contact_leads.count_documents({"created_at": {"$gte": seven_days_ago}})
+    quick_30d = await db.quick_contact_leads.count_documents({"created_at": {"$gte": thirty_days_ago}})
+
+    # Conversion: quick-contact lead whose contact value later appears as an email or phone
+    # in either a full intake submission or a walkthrough request.
+    qc_contacts = await db.quick_contact_leads.find({}, {"_id": 0, "contact": 1}).to_list(None)
+    contact_values = [
+        (q.get("contact") or "").strip().lower() for q in qc_contacts if q.get("contact")
+    ]
+    converted_count = 0
+    if contact_values:
+        intake_match = await db.gl_intake_submissions.count_documents({
+            "$or": [
+                {"email": {"$in": contact_values}},
+                {"phone": {"$in": contact_values}},
+            ]
+        })
+        walkthrough_match = await db.walkthrough_requests.count_documents({
+            "$or": [
+                {"email": {"$in": contact_values}},
+                {"phone": {"$in": contact_values}},
+            ]
+        })
+        converted_count = intake_match + walkthrough_match
+    conversion_rate = (
+        round((converted_count / total_quick) * 100, 1) if total_quick > 0 else 0.0
+    )
+
     return {
         "safety_checks": {"total": total_checks, "last_7d": checks_7d, "last_30d": checks_30d},
         "risk_breakdown": {"high": high_risk, "medium": medium_risk, "low": low_risk},
@@ -80,6 +110,13 @@ async def admin_stats(token: str = ""):
             "heat_guide": heat_downloads,
         },
         "heat_guide_leads": heat_leads,
+        "quick_contacts": {
+            "total": total_quick,
+            "last_7d": quick_7d,
+            "last_30d": quick_30d,
+            "converted": converted_count,
+            "conversion_rate": conversion_rate,
+        },
     }
 
 
@@ -92,8 +129,14 @@ async def admin_leads(token: str = "", limit: int = 50):
     checks = await db.safety_check_submissions.find({}, {"_id": 0}).sort("timestamp", -1).to_list(limit)
     walkthroughs = await db.walkthrough_requests.find({}, {"_id": 0}).sort("timestamp", -1).to_list(limit)
     heat_leads = await db.heat_guide_leads.find({}, {"_id": 0}).sort("created_at", -1).to_list(limit)
+    quick_contacts = await db.quick_contact_leads.find({}, {"_id": 0}).sort("created_at", -1).to_list(limit)
 
-    return {"safety_checks": checks, "walkthrough_requests": walkthroughs, "heat_guide_leads": heat_leads}
+    return {
+        "safety_checks": checks,
+        "walkthrough_requests": walkthroughs,
+        "heat_guide_leads": heat_leads,
+        "quick_contacts": quick_contacts,
+    }
 
 
 @router.get("/admin/downloads")

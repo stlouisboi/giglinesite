@@ -54,7 +54,7 @@ const FINDINGS = [
       'Install point-of-operation guarding on the shear blade to prevent operator contact with the cutting hazard. Acceptable methods include barrier guards, two-hand controls, or presence-sensing devices. Post machine-specific LOTO procedure at the shear station before any maintenance or jam-clearing is performed. Complete guarding installation before production employees are assigned to operate this equipment.',
     penalty: '$7,000 – $14,502 (Serious)',
     fixBy: 'Before production employees operate equipment',
-    photoUrl: '/floor-findings/machine-guarding.jpg',
+    photoUrl: null,
   },
   {
     n: '03',

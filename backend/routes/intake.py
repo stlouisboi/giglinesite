@@ -695,12 +695,13 @@ SCHEDULING & LOGISTICS
 {pad('Blockers:')}{data.blockers or '—'}
 
 ───────────────────────────────────────────────────────
-PRICING REFERENCE  (GL-INTAKE-002 hybrid pricing)
+PRICING REFERENCE  (current public floor pricing)
 ───────────────────────────────────────────────────────
-Walkthrough        : $650 base (≤25 emp) → $800+ (75+ emp), on-site +$100–150
-Doc Review         : $550 remote → $750 on-site, complexity adjust
-Incident Review    : $900–$1,500 depending on scope
-Doc Creation       : $129–$199 each | $399 bundle (3+) | custom = quote
+Safety Walkthrough : From $1,200 (small ops typically $1,200–$2,000) + travel fee outside primary area
+Compliance Readiness Visit : From $2,000 (Walkthrough + Doc Review in a single visit; saves up to $500 vs separate)
+Incident Review    : From $1,500 (root cause, OSHA recordability, corrective action plan)
+Doc Development    : single program from $350 | LOTO + up to 5 machines from $650 | LOTO + 6–15 machines from $1,200 | full suite (5+ programs) from $2,000
+Supervisor Kit     : $600 digital / $675 physical (included free with every CRV)
 
 ───────────────────────────────────────────────────────
 STATUS PAGE: {status_url}

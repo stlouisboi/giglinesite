@@ -95,7 +95,7 @@ const ReportPage = () => {
             Small operations trust other operators more than marketing. A few sentences on Google helps other Triad businesses find GigLine.
           </p>
           <a
-            href="https://maps.app.goo.gl/4D3TVUAeyfzbm7WbA"
+            href="https://maps.app.goo.gl/WChsxpQBLJninrYq9"
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackReviewClick('report_page')}

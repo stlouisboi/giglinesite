@@ -126,7 +126,7 @@ const NOTES = {
       { question: 'When does OSHA expect a heat illness prevention plan?', answer: 'Any time workers are exposed to indoor or outdoor heat conditions that could lead to heat illness — generally above 80°F heat index for sustained work. Small manufacturers and warehouses without HVAC almost always meet this threshold during NC summer months.' },
       { question: 'What\'s an acclimatization plan and is it required?', answer: 'Acclimatization is gradually exposing new or returning workers (after vacation/leave of 7+ days) to high-heat conditions over 5 working days. OSHA expects this under the General Duty Clause. Most documented heat fatalities involve workers in their first three days on the job.' },
     ],
-    relatedNotes: ['walking-surfaces', 'ppe-assessment'],
+    relatedNotes: ['walking-surfaces', 'ppe-assessment', 'recordkeeping-300-log'],
     sections: {
       whatItIs: `Heat stress happens when the body can't cool itself fast enough. In warehouses, manufacturing floors, and outdoor operations across North Carolina, it shows up faster than most operators expect — especially during May through September in enclosed spaces with limited ventilation, near presses, ovens, or any hot process.
 
@@ -175,7 +175,7 @@ The fix isn't expensive. A written Heat Illness Prevention Plan, customized to y
       { question: 'Are daily forklift inspections required by OSHA?', answer: 'Yes. 29 CFR 1910.178(q)(7) requires that industrial trucks be examined before being placed in service. Daily pre-shift inspections must be documented with a written checklist.' },
       { question: 'What is the most common forklift violation cited by OSHA?', answer: 'The most common forklift violations involve incomplete or missing operator training documentation, lack of daily pre-shift inspection records, and failure to maintain pedestrian separation in high-traffic areas.' },
     ],
-    relatedNotes: ['walking-surfaces', 'lockout-tagout'],
+    relatedNotes: ['walking-surfaces', 'lockout-tagout', 'ppe-assessment'],
     sections: {
       whatItIs: `Forklift safety is more than a certification card. OSHA's standard for Powered Industrial Trucks — 29 CFR 1910.178 — covers operator training and evaluation, daily pre-shift inspections, pedestrian separation, load capacity, and refueling/charging procedures. Most operations have the laminated training card from when the operator started years ago. The daily practices that go with it have usually slipped.
 
@@ -222,7 +222,7 @@ Corrective action is straightforward. Re-evaluate every operator on the floor ri
       { question: 'Do small manufacturers need arc flash labels?', answer: 'Yes. NFPA 70E requires arc flash hazard labels on all electrical equipment likely to require examination, adjustment, servicing, or maintenance while energized. This applies to operations of all sizes.' },
       { question: 'What happens if an electrical panel is blocked during an OSHA inspection?', answer: 'Blocked electrical panels are one of the most frequently cited OSHA violations. Citations under 29 CFR 1910.303 can result in penalties starting at $16,550 per violation.' },
     ],
-    relatedNotes: ['lockout-tagout', 'machine-guarding'],
+    relatedNotes: ['lockout-tagout', 'machine-guarding', 'ppe-assessment'],
     sections: {
       whatItIs: `Electrical panels in your facility are governed by two overlapping requirements: OSHA's general industry electrical standards under 29 CFR 1910 Subpart S (specifically 1910.303 for general requirements and 1910.305 for wiring methods), and NFPA 70E — the National Electrical Code's safety standard for the workplace. OSHA enforces NFPA 70E by reference under the General Duty Clause. In practical terms: both apply, and OSHA will cite under whichever fits the violation best.
 
@@ -283,7 +283,7 @@ Corrective action: photograph every panel in your facility today. Mark the floor
       { question: 'Do I need a written HazCom program for a 5-person shop?', answer: 'Yes. The standard applies to any employer with hazardous chemicals in the workplace, regardless of headcount. The only exemption is for sealed consumer-packaged products used in the same way a household consumer would use them.' },
       { question: 'What is a secondary container and why does it matter?', answer: 'A secondary container is any container you fill from the original — a spray bottle, a small jug poured from a 55-gallon drum, even a bucket of mixed cleaner. Every secondary container must be labeled with the product name and hazard information unless it is used by one employee in one shift. Missing secondary container labels are one of the most common HazCom citations.' },
     ],
-    relatedNotes: ['ppe-assessment', 'machine-guarding'],
+    relatedNotes: ['ppe-assessment', 'machine-guarding', 'respiratory-protection'],
     sections: {
       whatItIs: `Hazard Communication is OSHA's most-cited general industry standard. Year after year. 29 CFR 1910.1200 — also called HazCom or the "Employee Right-to-Know" standard — is also one of the most achievable to fix, which makes the citation rate even more frustrating. Almost every HazCom citation in a small operation is preventable with a few hours of organized paperwork.
 
@@ -338,7 +338,7 @@ Corrective action: buy a label-maker and a set of GHS pictogram stickers ($60 to
       { question: 'Is a written machine guarding assessment required by OSHA?', answer: 'OSHA does not explicitly mandate a written assessment for general machine guarding under 1910.212, but it is required under several related standards (LOTO, PPE, mechanical power transmission) and is the de facto expectation during any focused inspection. Written assessments are the fastest way to demonstrate compliance and identify gaps before an inspector does.' },
       { question: 'What is the penalty range for machine guarding citations?', answer: 'Serious machine guarding violations under 1910.212 typically cite at $16,550 per violation as a Serious classification. Willful or repeat citations can reach $165,514 per violation. Amputation-related citations frequently trigger an OSHA enforcement focus called the National Emphasis Program on Amputations.' },
     ],
-    relatedNotes: ['lockout-tagout', 'electrical-safety'],
+    relatedNotes: ['lockout-tagout', 'electrical-safety', 'ppe-assessment'],
     sections: {
       whatItIs: `Machine guarding is governed primarily by 29 CFR 1910.212 (general requirements for all machines) and 29 CFR 1910.219 (mechanical power transmission apparatus). The standard's intent is straightforward: any machine part, function, or process that could injure a worker must be guarded. In practice, the citation rate sits in OSHA's top 10 every year, and machine guarding is the standard most frequently associated with amputations under OSHA's National Emphasis Program on Amputations in Manufacturing Industries.
 
@@ -392,7 +392,7 @@ Corrective action: photograph every machine in your facility today. For each one
       { question: 'How wide does an OSHA aisle have to be?', answer: 'OSHA does not specify an exact aisle width. The standard (1910.22(b)) requires that aisles be appropriate to the use, equipment, and traffic moving through them. Where forklifts operate, aisles are typically marked 8–12 feet wide. The key requirement is that aisles be kept clear and properly marked.' },
       { question: 'Why are walking-surface citations so common?', answer: 'Walking-working surface hazards (slips, trips, falls, blocked aisles, poor housekeeping) are visible from the moment an OSHA inspector walks through the door. They are also the leading source of recordable injuries in general industry — about 25% of all reported workplace injuries involve slips, trips, or falls. The combination of high visibility and high injury rate produces consistent citation rates.' },
     ],
-    relatedNotes: ['fall-protection', 'forklift-safety'],
+    relatedNotes: ['fall-protection', 'forklift-safety', 'ladder-safety'],
     sections: {
       whatItIs: `Walking and working surfaces are governed by 29 CFR 1910 Subpart D, which covers floors, aisles, stairways, fixed and portable ladders, dockboards, and fall protection. The core housekeeping rule — 1910.22(a) — requires every workplace to be kept clean, orderly, and in a sanitary condition. The rule sounds soft until you walk a small operation in the middle of a production run: cords across walkways, hoses snaking through aisles, pallets parked in the middle of pedestrian zones, and "temporary" spills that have been there for three days.
 
@@ -457,7 +457,7 @@ Corrective action: buy a 5-gallon bucket of safety yellow paint and re-mark ever
       { question: 'How often does OSHA require LOTO procedure inspections?', answer: '29 CFR 1910.147(c)(6) requires a periodic inspection of each energy control procedure at least annually. The inspection must be performed by an authorized employee (other than the one performing the work), and it must be documented with the date, the equipment, and the names of the employees included.' },
       { question: 'What is the difference between authorized, affected, and other employees under LOTO?', answer: 'Authorized employees actually lock out and service equipment — they receive full LOTO training. Affected employees operate or work in the area but do not service equipment — they receive awareness training. Other employees work in the facility but are not exposed — they receive an explanation of the program. All three categories must be trained, and the training must be documented.' },
     ],
-    relatedNotes: ['machine-guarding', 'electrical-safety'],
+    relatedNotes: ['machine-guarding', 'electrical-safety', 'confined-space'],
     sections: {
       whatItIs: `Lockout/Tagout — 29 CFR 1910.147 — is the OSHA standard that governs the control of hazardous energy during equipment servicing and maintenance. It is consistently in OSHA's top 5 most-cited general industry standards, and it shows up in fatality reports more often than any other maintenance-related standard. The rule is straightforward: before anyone services equipment that could start up unexpectedly or release stored energy, every energy source must be isolated, locked out, and verified. The execution is where it falls apart.
 
@@ -511,7 +511,7 @@ Corrective action: photograph every piece of equipment with hazardous energy in 
       { question: 'What has to be included in an OSHA Emergency Action Plan?', answer: '29 CFR 1910.38(c) requires the EAP to address procedures for emergency reporting, evacuation procedures and escape route assignments, procedures for employees who remain to operate critical operations before evacuation, procedures to account for all employees after evacuation, rescue and medical duties, and the name of the EAP coordinator. The Fire Prevention Plan (1910.39) is a separate but related document.' },
       { question: 'How often does OSHA require fire extinguisher inspections?', answer: 'Under 29 CFR 1910.157(e), portable fire extinguishers must be visually inspected monthly and given an annual maintenance check by a qualified person, with the date and inspector recorded on the extinguisher tag. Hydrostatic testing is required every 5 or 12 years depending on the extinguisher type.' },
     ],
-    relatedNotes: ['hazcom', 'walking-surfaces'],
+    relatedNotes: ['hazcom', 'walking-surfaces', 'bloodborne-pathogens'],
     sections: {
       whatItIs: `Emergency Action Plans are governed by 29 CFR 1910.38, with the related Fire Prevention Plan requirements at 1910.39 and the portable fire extinguisher requirements at 1910.157. The standards are easy to overlook in a small operation because most days nothing happens — and most operators do not think about emergency planning until something goes wrong or until OSHA shows up and asks for the documentation.
 
@@ -568,7 +568,7 @@ Corrective action: download the OSHA EAP template (free at osha.gov) and customi
       { question: 'Does OSHA require the employer to pay for PPE?', answer: 'Yes, with limited exceptions. Under 29 CFR 1910.132(h), the employer must provide all required PPE at no cost to the employee. Exceptions include non-specialty safety-toe footwear and non-specialty prescription safety eyewear that the employee may take off-site, plus everyday clothing like long pants or weather gear.' },
       { question: 'What is the most common PPE citation?', answer: 'The most common PPE citation is failure to perform and document the written hazard assessment under 1910.132(d). Operations frequently provide the PPE but cannot produce the written assessment showing why specific PPE was selected for specific hazards. Eye and face protection (1910.133) is the most-cited specific PPE category.' },
     ],
-    relatedNotes: ['hazcom', 'machine-guarding'],
+    relatedNotes: ['hazcom', 'machine-guarding', 'eye-face-protection'],
     sections: {
       whatItIs: `Personal Protective Equipment is governed by 29 CFR 1910 Subpart I — primarily 1910.132 (general requirements), 1910.133 (eye and face protection), 1910.135 (head protection), 1910.136 (foot protection), and 1910.138 (hand protection). The standards' core requirement is straightforward: identify the hazards in your workplace, select PPE that protects against those hazards, train employees on proper use, and document everything. The execution is where small operations get cited.
 
@@ -625,7 +625,7 @@ Corrective action: walk every work area in your facility with a printed PPE haza
       { question: 'Does a chain across a mezzanine opening meet OSHA?', answer: 'No. Under 29 CFR 1910.29(b), a guardrail system must have a top rail at 42 inches (±3 inches), a midrail midway between the top rail and walking surface, and be able to withstand a 200-pound force in any outward or downward direction. A chain does not meet the strength, height, or completeness requirements. Self-closing or self-locking gates are the standard solution for mezzanine load openings.' },
       { question: 'Is fall protection training required by OSHA?', answer: 'Yes. Under 29 CFR 1910.30, every employee exposed to a fall hazard must be trained on the nature of the hazards, the procedures for protecting them, and the proper use, inspection, and maintenance of any fall protection equipment used. Training must be documented in writing, and retraining is required when an employee shows inadequate knowledge or when conditions change.' },
     ],
-    relatedNotes: ['walking-surfaces', 'scaffolding-safety'],
+    relatedNotes: ['walking-surfaces', 'scaffolding-safety', 'ladder-safety'],
     sections: {
       whatItIs: `Fall protection in general industry is governed by 29 CFR 1910 Subpart D — primarily 1910.28 (duty to have fall protection), 1910.29 (fall protection systems and criteria), and 1910.30 (training). The standards were significantly updated in 2017 and now mirror many of the construction-industry rules under Subpart M of 29 CFR 1926. The 2017 update closed loopholes that had allowed older general-industry operations to use less-protective measures than construction sites — and it made the 4-foot trigger height explicit across nearly every walking-working surface.
 
@@ -681,7 +681,7 @@ Corrective action: walk every elevated surface in your facility with a tape meas
       { question: 'Do small manufacturers need a confined space program?', answer: 'Yes. If your facility has any space that meets the OSHA definition of a permit-required confined space — even if employees rarely enter it — you must have a written program under 29 CFR 1910.146. This includes identifying all such spaces, posting danger signs, and establishing entry procedures.' },
       { question: 'What is the most common confined space violation?', answer: 'The most common citation is failure to have a written permit-required confined space program. Many small operations have spaces that qualify but have never been formally identified or assessed.' },
     ],
-    relatedNotes: ['lockout-tagout', 'ppe-assessment'],
+    relatedNotes: ['lockout-tagout', 'ppe-assessment', 'emergency-action-plans'],
     sections: {
       whatItIs: 'A permit-required confined space has limited entry, is large enough for a worker to enter, is not designed for continuous occupancy, and contains a recognized hazard. Tanks, vats, pits, silos, storage bins, and some mechanical enclosures all qualify. OSHA 29 CFR 1910.146 requires a written program, atmospheric testing, entry permits, trained attendants, and rescue procedures. Most small operations either don\'t know they have confined spaces or haven\'t built the program.',
       whatGetsMissed: [
@@ -723,7 +723,7 @@ Corrective action: walk every elevated surface in your facility with a tape meas
       { question: 'What are the guardrail requirements for scaffolding?', answer: 'Scaffolds more than 10 feet above a lower level must have guardrails on all open sides and ends. The top rail must be between 38 and 45 inches high, with a midrail and toeboard. Cross bracing can serve as a top rail only if the crossing point is between 38 and 48 inches.' },
       { question: 'How often must scaffolding be inspected?', answer: 'A competent person must inspect scaffolding before each work shift and after any event that could affect structural integrity — such as high winds, heavy rain, or impact damage. Inspections must be documented.' },
     ],
-    relatedNotes: ['fall-protection', 'ppe-assessment'],
+    relatedNotes: ['fall-protection', 'ppe-assessment', 'ladder-safety'],
     sections: {
       whatItIs: 'Scaffolding violations are consistently in OSHA\'s top 10 most cited standards. 29 CFR 1926.451 requires scaffolds to be erected under the direction of a competent person, inspected before each shift, and equipped with guardrails when the platform is more than 10 feet above a lower level. Most small operations either rent scaffolding and set it up without training, or use makeshift platforms that don\'t meet any standard.',
       whatGetsMissed: [
@@ -764,7 +764,7 @@ Corrective action: walk every elevated surface in your facility with a tape meas
       { question: 'Do small manufacturers need audiometric testing?', answer: 'Yes. If any employee is exposed to noise at or above the 85 dBA Action Level, the employer must provide baseline and annual audiometric testing at no cost. Results must be compared year over year to detect standard threshold shifts.' },
       { question: 'What counts as an OSHA noise violation in a small shop?', answer: 'The most common citations include failure to conduct noise monitoring, no audiometric testing program, hearing protection not provided or not enforced, and missing training records. OSHA can cite any of these independently.' },
     ],
-    relatedNotes: ['ppe-assessment', 'machine-guarding'],
+    relatedNotes: ['ppe-assessment', 'machine-guarding', 'respiratory-protection'],
     sections: {
       whatItIs: 'Noise-induced hearing loss is permanent and cumulative. OSHA\'s hearing conservation standard (29 CFR 1910.95) requires a full program when employees are exposed to noise at or above 85 dBA over an 8-hour shift. That includes noise monitoring, audiometric testing, hearing protection, training, and recordkeeping. Most small manufacturing and warehouse operations exceed 85 dBA in at least one area — presses, grinders, saws, pneumatic tools, packaging lines — but have no program in place.',
       whatGetsMissed: [
@@ -805,7 +805,7 @@ Corrective action: walk every elevated surface in your facility with a tape meas
       { question: 'What is an Exposure Control Plan under OSHA?', answer: 'An Exposure Control Plan is a written document that identifies employees with occupational exposure to bloodborne pathogens, describes the methods the employer uses to reduce exposure (engineering controls, work practices, PPE), and outlines post-exposure procedures. It must be reviewed and updated annually.' },
       { question: 'Does OSHA require Hepatitis B vaccines for first aid responders?', answer: 'Yes. Employers must offer the Hepatitis B vaccination series at no cost to all employees who have occupational exposure to blood or body fluids. Employees may decline, but the declination must be documented in writing.' },
     ],
-    relatedNotes: ['ppe-assessment', 'emergency-action-plans'],
+    relatedNotes: ['ppe-assessment', 'emergency-action-plans', 'recordkeeping-300-log'],
     sections: {
       whatItIs: 'Bloodborne pathogens aren\'t limited to hospitals. OSHA\'s standard (29 CFR 1910.1030) applies to any workplace where employees have reasonably anticipated occupational exposure to blood or other potentially infectious materials. In manufacturing and warehouse operations, that means designated first aid responders, maintenance staff who clean up after injuries, and anyone who handles contaminated sharps or materials. The standard requires a written Exposure Control Plan, Hepatitis B vaccination, training, and proper cleanup and disposal procedures.',
       whatGetsMissed: [
@@ -857,7 +857,7 @@ Corrective action: walk every elevated surface in your facility with a tape meas
       { question: 'What counts as an OSHA recordable injury?', answer: 'Under 29 CFR 1904.7, an injury or illness is recordable if it is work-related and results in death, days away from work, restricted work or transfer to another job, medical treatment beyond first aid, loss of consciousness, or a significant injury or illness diagnosed by a licensed health-care professional. First-aid-only cases are not recordable. The definition of first aid is narrow — for example, butterfly bandages count as first aid; sutures do not.' },
       { question: 'When does the 300A summary have to be posted?', answer: 'The 300A annual summary must be posted in a conspicuous location at each establishment from February 1 through April 30 of the year following the year covered. It must be certified by a company executive before posting. Failure to post is one of the most common recordkeeping citations during scheduled inspections.' },
     ],
-    relatedNotes: ['hazcom', 'emergency-action-plans'],
+    relatedNotes: ['hazcom', 'emergency-action-plans', 'bloodborne-pathogens'],
     sections: {
       whatItIs: `OSHA recordkeeping is governed by 29 CFR Part 1904 — the standard that requires employers to record work-related injuries and illnesses on three connected forms: the OSHA 300 (the running log of every recordable case), the OSHA 301 (the incident report for each case, with details OSHA can audit), and the OSHA 300A (the annual summary posted on the workplace bulletin board). The standard sounds simple — write down the injuries, post a summary, keep the records — but it is one of the most under-maintained programs in small operations, and one of the easiest for OSHA to cite because the gap is on paper.
 
@@ -920,7 +920,7 @@ Corrective action: download the current OSHA 300 log, 301 incident form, and 300
       { question: 'Why do AI-generated safety programs fail OSHA inspections?', answer: 'Generic AI-generated programs describe what a compliant operation should look like — they do not prove what your operation actually looks like. They miss site-specific hazards (the unguarded press in the back, the chemical added last month, the lockout step nobody is following). When OSHA sees a polished written program that does not match floor reality, the gap itself becomes evidence.' },
       { question: 'What is the difference between a document and a working safety program?', answer: 'A document describes procedures. A working safety program is what your people do every day. OSHA cites the gap between the two. The fastest way to find that gap is an outside walkthrough — someone who looks at your floor with fresh eyes and compares what they see against what is written.' },
     ],
-    relatedNotes: ['hazcom', 'lockout-tagout'],
+    relatedNotes: ['hazcom', 'lockout-tagout', 'recordkeeping-300-log'],
     sections: {
       whatItIs: `A lot of operators are using ChatGPT and similar tools to generate safety programs right now. The output may look legitimate. It may cite real OSHA standards. The formatting may be clean. You can print it, put it in a binder, and feel like the box is checked.
 
@@ -975,7 +975,7 @@ If you used AI to generate safety documentation — or you are not sure whether 
       { question: 'Do employees need a medical evaluation before wearing a respirator?', answer: 'Yes. 29 CFR 1910.134(e) requires a medical evaluation by a Physician or Other Licensed Health Care Professional (PLHCP) before an employee is fit tested or required to wear a respirator. The OSHA medical evaluation questionnaire in Appendix C can be used at no cost — but the PLHCP review is required.' },
       { question: 'How often is fit testing required?', answer: 'Fit testing is required before initial use, whenever a different respirator model is used, and at least annually thereafter. It must be repeated when the wearer reports changes in physical condition that could affect fit — weight change, dental work, facial scarring, or cosmetic surgery.' },
     ],
-    relatedNotes: ['ppe-assessment', 'hazcom'],
+    relatedNotes: ['ppe-assessment', 'hazcom', 'silica-respirable-crystalline'],
     sections: {
       whatItIs: `OSHA 29 CFR 1910.134 is the respiratory protection standard, and it carries one of the most extensive program requirements of any general industry standard. If your operation requires employees to wear any tight-fitting respirator — including the N95 filtering facepiece — you owe a five-piece program: a written respiratory protection plan, a hazard assessment, medical evaluation for every wearer before fit testing, annual fit testing, and documented training. Miss any one of those five pieces and the citation writes itself.
 
@@ -1030,7 +1030,7 @@ Corrective action for a small operation: draft a one-page written program using 
       { question: 'Which operations are covered by the silica standard?', answer: 'Any operation where employees may be exposed to respirable crystalline silica. Common examples include concrete cutting and grinding, stone fabrication (countertops, monuments), sandblasting, foundry operations, brick and block work, and any task that disturbs materials containing crystalline silica.' },
       { question: 'What is the Table 1 approach in the construction standard?', answer: 'Construction operations covered by 29 CFR 1926.1153 can comply by following Table 1 — specified exposure control methods (water suppression, dust collection) and respiratory protection for listed tasks. Following Table 1 fully eliminates the need for exposure assessment for those tasks. General industry operations under 1910.1053 do not have a Table 1 option — they must perform exposure assessments.' },
     ],
-    relatedNotes: ['respiratory-protection', 'hazcom'],
+    relatedNotes: ['respiratory-protection', 'hazcom', 'ppe-assessment'],
     sections: {
       whatItIs: `Respirable crystalline silica is the fine fraction of silica dust that can reach deep into the lungs and cause silicosis, lung cancer, COPD, and kidney disease. OSHA tightened the silica standard in 2016, dropping the general industry permissible exposure limit (PEL) from roughly 100 µg/m³ down to 50 µg/m³ — a 50% reduction — and adding action-level requirements (exposure assessment, medical surveillance) at 25 µg/m³. The standard applies in two parallel versions: 29 CFR 1910.1053 covers general industry and maritime, and 29 CFR 1926.1153 covers construction. Stone fabrication shops (countertops, monuments), foundries, concrete cutting and grinding operations, brick and block masonry, abrasive blasting with silica-containing media, and any operation that mills, drills, saws, or grinds material containing crystalline silica is potentially in scope.
 
@@ -1085,7 +1085,7 @@ Corrective action: schedule a qualified industrial hygienist to perform initial 
       { question: 'How long does a fire watch need to stay after welding?', answer: 'NFPA 51B and OSHA guidance require a fire watch during hot work in non-designated areas and for at least 30 minutes after hot work is completed. Some authorities and insurers require 60 minutes. The fire watch must have access to extinguishing equipment and must be trained to use it.' },
       { question: 'How should compressed gas cylinders be stored?', answer: 'Compressed gas cylinders must be stored upright, secured (chain or strap) against tipping, with valve protection caps in place when not in service. Oxygen cylinders must be stored at least 20 feet from fuel-gas cylinders or separated by a fire-resistant barrier at least 5 feet high with a 30-minute fire rating, per 29 CFR 1910.253(b)(4).' },
     ],
-    relatedNotes: ['ppe-assessment', 'eye-face-protection'],
+    relatedNotes: ['ppe-assessment', 'eye-face-protection', 'machine-guarding'],
     sections: {
       whatItIs: `Welding, cutting, brazing, and grinding fall under OSHA Subpart Q (29 CFR 1910.251 through 1910.255). The standard covers fire prevention, ventilation, compressed gas cylinders, electrical safety for arc welding, eye and face protection, and protective clothing. Every Triad-area fab shop, machine shop, and any operation that runs even an occasional torch or grinder is subject to some portion of this subpart — and every one of them I have walked into has a gap somewhere in the five-point program.
 
@@ -1141,7 +1141,7 @@ Corrective action: implement a written hot work permit program based on NFPA 51B
       { question: 'What is a ring test on a grinding wheel?', answer: 'A ring test is performed before mounting any new abrasive wheel. The wheel is suspended on a finger or a thin rod and tapped lightly with a non-metallic object — a wood handle works. A sound wheel rings clearly. A cracked wheel produces a dull thud. The standard requires this test under 29 CFR 1910.215(d)(1) — it takes 10 seconds and is almost never done.' },
       { question: 'Why does the wheel RPM matter?', answer: 'Every abrasive wheel is rated for a maximum RPM stamped on the wheel or the blotter. If the spindle RPM of the grinder exceeds the wheel RPM, the wheel can disintegrate during operation — the centrifugal force exceeds the bond strength of the wheel. Always verify the wheel rating is equal to or greater than the spindle RPM before mounting.' },
     ],
-    relatedNotes: ['machine-guarding', 'eye-face-protection'],
+    relatedNotes: ['machine-guarding', 'eye-face-protection', 'ppe-assessment'],
     sections: {
       whatItIs: `29 CFR 1910.215 is one of the most specific OSHA standards in general industry. The standard governs abrasive wheels — bench grinders, pedestal grinders, swing-frame grinders, and any wheel-type abrasive tool — and it lists exact dimensional tolerances that an inspector can measure on the spot. The most-cited subsections are 1910.215(a)(4) — work rest adjustment — and 1910.215(b)(9) — tongue guard adjustment. Both can be checked with a feeler gauge in under a minute, and both fail in the majority of small shops I walk through.
 
@@ -1199,7 +1199,7 @@ Corrective action: adjust every grinder in the shop right now — work rest to 1
       { question: 'When does an extension ladder need to extend above the landing?', answer: 'When an extension ladder is used for access to an upper landing surface, the side rails must extend at least 3 feet above the upper landing. This gives the user something to hold onto when stepping off the ladder. Required by 29 CFR 1926.1053(b)(1) and a frequent citation when missing.' },
       { question: 'When does a ladder have to be removed from service?', answer: 'A ladder must be removed from service when it has any of the following: cracked or broken side rails, missing or broken rungs, broken or damaged feet, bent or cracked support brackets, or any defect that would impair safe use. The ladder must be tagged "Do Not Use" and removed from the work area until repaired or destroyed.' },
     ],
-    relatedNotes: ['fall-protection', 'walking-surfaces'],
+    relatedNotes: ['fall-protection', 'walking-surfaces', 'scaffolding-safety'],
     sections: {
       whatItIs: `Portable ladder safety is governed under 29 CFR 1910.23 in general industry and 29 CFR 1926.1053 in construction. The two standards share most requirements: inspection before use, proper angle of setup, extension above the landing surface, three-point contact climbing, and load rating compliance. Ladders are present in nearly every operation — warehouse, manufacturing, contractor — and ladder violations are consistently in OSHA's top 10 most cited standards every year.
 
@@ -1257,7 +1257,7 @@ Corrective action for a small operation: inventory every ladder in the shop. Ins
       { question: 'Are safety glasses with side shields required?', answer: 'When the hazard assessment identifies impact, dust, or particles flying laterally — which covers most general industry operations — eye protection must have side shields. Side shields can be integral to the frame or attached. Wraparound safety glasses meet the requirement; standard glasses with no lateral coverage do not.' },
       { question: 'When does OSHA require a face shield in addition to safety glasses?', answer: 'A face shield is required as secondary protection (worn over safety glasses or goggles) when there is a risk of significant facial impact, chemical splash, or molten material splatter. Grinding, chipping, and chemical handling typically require both. Safety glasses alone are insufficient for face-level hazards.' },
     ],
-    relatedNotes: ['ppe-assessment', 'hot-work-welding'],
+    relatedNotes: ['ppe-assessment', 'hot-work-welding', 'abrasive-wheels'],
     sections: {
       whatItIs: `OSHA 29 CFR 1910.133 is the eye and face protection standard. It requires employers to ensure that affected employees use appropriate eye or face protection when exposed to hazards from flying particles, molten metal, liquid chemicals, acids or caustics, chemical gases or vapors, or potentially injurious light radiation. The standard works in tandem with 1910.132 — the general PPE standard — which requires a written hazard assessment before PPE selection.
 
@@ -1317,7 +1317,7 @@ Corrective action: perform a written hazard assessment for every workstation. Do
       { question: 'What is a competent person under the OSHA excavation standard?', answer: 'A competent person is someone capable of identifying existing and predictable hazards in the surroundings or working conditions, and who has authorization to take prompt corrective measures to eliminate them. Under 1926.651(k), the competent person must inspect excavations, adjacent areas, and protective systems for evidence of cave-ins, failures, or hazardous atmospheres before each shift, after every rainstorm, and after any event that increases the hazard.' },
       { question: 'How far away can workers be from a ladder in a trench?', answer: 'Under 1926.651(c)(2), trenches 4 feet deep or deeper must have a stairway, ladder, ramp, or other safe means of egress located so as to require no more than 25 feet of lateral travel for any employee. The egress must extend at least 3 feet above the upper edge of the trench.' },
     ],
-    relatedNotes: ['fall-protection', 'confined-space'],
+    relatedNotes: ['fall-protection', 'confined-space', 'ppe-assessment'],
     sections: {
       whatItIs: `Trenching and excavation work is governed under OSHA Subpart P (29 CFR 1926.650 through 1926.652). It is one of the deadliest specialty areas in OSHA enforcement — trench collapses kill an average of 22 to 30 workers per year in the United States, with a fatality rate per inspection that far exceeds general construction. North Carolina has been a recurring focus area, with multiple Triad-area collapses in the past five years. The standard applies to every excavation deeper than 5 feet (and many that are shallower), and to every contractor doing utility, foundation, or site work.
 
@@ -1380,7 +1380,7 @@ Corrective action for a small contracting operation: train at least one competen
       { question: 'When does a sling have to be removed from service?', answer: 'OSHA 29 CFR 1910.184 requires removal of any sling with broken or worn wires (number depends on sling type), kinks, severe corrosion, missing or illegible tags, distorted hooks, end attachments damaged or showing visible cracks, or any condition that visibly reduces strength. Synthetic slings are inspected before each shift and removed if cut, abraded, melted, chemically damaged, or showing exposed core yarns.' },
       { question: 'Does the crane operator need certification?', answer: 'General industry overhead cranes under 1910.179 require operator training and demonstrated competence — no formal certification card is required by federal OSHA. Construction cranes under 1926 Subpart CC require formal operator certification through an accredited testing organization. Most insurance carriers and customer audits expect documented operator training for general industry crane operators regardless of standard.' },
     ],
-    relatedNotes: ['machine-guarding', 'lockout-tagout'],
+    relatedNotes: ['machine-guarding', 'lockout-tagout', 'walking-surfaces'],
     sections: {
       whatItIs: `Overhead cranes, gantry cranes, jib cranes, and the slings and rigging used with them are governed by OSHA 29 CFR 1910.179 and 1910.184 in general industry. The standards require inspection programs at two levels (frequent and periodic), operator training, capacity marking, and a maintenance program. In Triad-area fab shops, metals operations, and any facility moving heavy material with a hoist, at least one piece of the program is almost always missing.
 
@@ -1442,7 +1442,7 @@ Corrective action for a small fab shop: schedule a qualified inspector for an an
       { question: 'Are NC OSHA standards the same as federal OSHA standards?', answer: 'NC OSHA standards must be at least as effective as federal OSHA standards. Most are identical adoptions. NC has adopted some additional state-specific standards (logging, communication tower erection, etc.) and has authority to enact more protective standards. In practice, the standards are the same as federal OSHA in nearly all general industry contexts — the difference is who enforces them and how.' },
       { question: 'How is NC OSHA consultation different from a compliance inspection?', answer: 'NCDOL offers free on-site consultation services through the Bureau of Education, Training, and Standards (BETS) — separate from the compliance inspection program. A consultation visit is voluntary, confidential, and protected from citations as long as serious hazards identified are corrected within an agreed timeframe. A compliance inspection is unannounced or programmed by referral, and citations are issued for any violations found. The two programs do not share inspection data.' },
     ],
-    relatedNotes: ['recordkeeping-300-log', 'hazcom'],
+    relatedNotes: ['recordkeeping-300-log', 'hazcom', 'emergency-action-plans'],
     sections: {
       whatItIs: `North Carolina operates an OSHA-approved State Plan under federal authority granted in 29 CFR 1953. This means that workplace safety and health enforcement in NC — for private sector, state government, and local government employers — is handled by the North Carolina Department of Labor (NCDOL), specifically the Occupational Safety and Health Division (NCOSH), not by federal OSHA. The distinction matters operationally even though most of the underlying standards are identical to federal OSHA.
 

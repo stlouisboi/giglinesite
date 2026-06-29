@@ -1070,6 +1070,34 @@ Object.keys(CITY_META).forEach((city) => {
 });
 
 // Field note detail pages
+const RELATED_NOTES = {
+  'heat-stress': ['walking-surfaces', 'ppe-assessment', 'recordkeeping-300-log'],
+  'forklift-safety': ['walking-surfaces', 'lockout-tagout', 'ppe-assessment'],
+  'electrical-safety': ['lockout-tagout', 'machine-guarding', 'ppe-assessment'],
+  'hazcom': ['ppe-assessment', 'machine-guarding', 'respiratory-protection'],
+  'machine-guarding': ['lockout-tagout', 'electrical-safety', 'ppe-assessment'],
+  'walking-surfaces': ['fall-protection', 'forklift-safety', 'ladder-safety'],
+  'lockout-tagout': ['machine-guarding', 'electrical-safety', 'confined-space'],
+  'emergency-action-plans': ['hazcom', 'walking-surfaces', 'bloodborne-pathogens'],
+  'ppe-assessment': ['hazcom', 'machine-guarding', 'eye-face-protection'],
+  'fall-protection': ['walking-surfaces', 'scaffolding-safety', 'ladder-safety'],
+  'confined-space': ['lockout-tagout', 'ppe-assessment', 'emergency-action-plans'],
+  'scaffolding-safety': ['fall-protection', 'ppe-assessment', 'ladder-safety'],
+  'hearing-conservation': ['ppe-assessment', 'machine-guarding', 'respiratory-protection'],
+  'bloodborne-pathogens': ['ppe-assessment', 'emergency-action-plans', 'recordkeeping-300-log'],
+  'recordkeeping-300-log': ['hazcom', 'emergency-action-plans', 'bloodborne-pathogens'],
+  'ai-generated-safety-programs': ['hazcom', 'lockout-tagout', 'recordkeeping-300-log'],
+  'respiratory-protection': ['ppe-assessment', 'hazcom', 'silica-respirable-crystalline'],
+  'silica-respirable-crystalline': ['respiratory-protection', 'hazcom', 'ppe-assessment'],
+  'hot-work-welding': ['ppe-assessment', 'eye-face-protection', 'machine-guarding'],
+  'abrasive-wheels': ['machine-guarding', 'eye-face-protection', 'ppe-assessment'],
+  'ladder-safety': ['fall-protection', 'walking-surfaces', 'scaffolding-safety'],
+  'eye-face-protection': ['ppe-assessment', 'hot-work-welding', 'abrasive-wheels'],
+  'trenching-excavation': ['fall-protection', 'confined-space', 'ppe-assessment'],
+  'cranes-rigging': ['machine-guarding', 'lockout-tagout', 'walking-surfaces'],
+  'nc-osha-vs-federal': ['recordkeeping-300-log', 'hazcom', 'emergency-action-plans'],
+};
+
 const fieldNotes = [
   {
     slug: 'ai-generated-safety-programs',
@@ -1182,6 +1210,19 @@ fieldNotes.forEach((note, idx) => {
   if (note.customFaqs && note.customFaqs.length) {
     schemas.push(faqSchema(note.customFaqs));
   }
+
+  // Build a title lookup so the related-notes block can use proper titles
+  // (computed once below the loop would be cleaner; doing it inline keeps the diff small)
+  const noteTitleBySlug = Object.fromEntries(fieldNotes.map((n) => [n.slug, n.title]));
+  const relatedSlugs = (RELATED_NOTES[note.slug] || []).filter((s) => noteTitleBySlug[s]);
+  const relatedHtml = relatedSlugs.length
+    ? `<h2>Related Field Notes</h2><ul>${relatedSlugs
+        .map((s) => `<li><a href="/field-notes/${s}">${noteTitleBySlug[s]}</a></li>`)
+        .join('')}<li><a href="/services">Safety Walkthrough Services →</a></li></ul>`
+    : '';
+
+  const baseContent = note.customContent || `<h1>${note.title}</h1><p>${note.desc}</p><p>Field Note by Vince Lawrence — GigLine Safety &amp; Compliance — (336) 329-8899</p>`;
+
   routes.push({
     path: `/field-notes/${note.slug}`,
     title: note.customSeoTitle || `${note.title} — Field Notes | GigLine Safety & Compliance`,
@@ -1189,7 +1230,7 @@ fieldNotes.forEach((note, idx) => {
     canonical: `/field-notes/${note.slug}`,
     ogImage: note.ogImage,
     schemas,
-    content: note.customContent || `<h1>${note.title}</h1><p>${note.desc}</p><p>Field Note by Vince Lawrence — GigLine Safety &amp; Compliance — (336) 329-8899</p>`,
+    content: baseContent + relatedHtml,
   });
 });
 

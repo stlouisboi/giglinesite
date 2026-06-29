@@ -98,6 +98,22 @@ async def admin_stats(token: str = ""):
         round((converted_count / total_quick) * 100, 1) if total_quick > 0 else 0.0
     )
 
+    # ── Sample Report download metrics (GL-WEB-020) ──
+    total_sr = await db.sample_report_leads.count_documents({})
+    sr_7d = await db.sample_report_leads.count_documents({"created_at": {"$gte": seven_days_ago}})
+    sr_30d = await db.sample_report_leads.count_documents({"created_at": {"$gte": thirty_days_ago}})
+
+    sr_docs = await db.sample_report_leads.find({}, {"_id": 0, "email": 1}).to_list(None)
+    sr_emails = [(s.get("email") or "").strip().lower() for s in sr_docs if s.get("email")]
+    sr_converted = 0
+    if sr_emails:
+        sr_intake_match = await db.gl_intake_submissions.count_documents({"email": {"$in": sr_emails}})
+        sr_walkthrough_match = await db.walkthrough_requests.count_documents({"email": {"$in": sr_emails}})
+        sr_converted = sr_intake_match + sr_walkthrough_match
+    sr_conversion_rate = (
+        round((sr_converted / total_sr) * 100, 1) if total_sr > 0 else 0.0
+    )
+
     return {
         "safety_checks": {"total": total_checks, "last_7d": checks_7d, "last_30d": checks_30d},
         "risk_breakdown": {"high": high_risk, "medium": medium_risk, "low": low_risk},
@@ -116,6 +132,13 @@ async def admin_stats(token: str = ""):
             "last_30d": quick_30d,
             "converted": converted_count,
             "conversion_rate": conversion_rate,
+        },
+        "sample_reports": {
+            "total": total_sr,
+            "last_7d": sr_7d,
+            "last_30d": sr_30d,
+            "converted": sr_converted,
+            "conversion_rate": sr_conversion_rate,
         },
     }
 

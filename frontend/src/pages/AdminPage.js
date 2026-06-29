@@ -526,6 +526,48 @@ const AdminPage = () => {
                 </div>
               )}
 
+              {/* ── Sample Report download tile (GL-WEB-020) ── */}
+              {stats.sample_reports && (
+                <div
+                  className="mb-8 border border-[#1a6fc4]/30 rounded-lg p-5 bg-gradient-to-br from-[#f4f8fc] to-white"
+                  data-testid="sample-report-tile"
+                >
+                  <div className="flex items-baseline justify-between mb-3">
+                    <h2 className="text-base font-bold text-[#1C2B2B]">Sample Compliance Report</h2>
+                    <span className="text-[10px] uppercase tracking-wider text-gray-400 font-mono">
+                      Email-gated lead magnet
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+                    <div className="border border-gray-100 rounded-md p-3 bg-white" data-testid="sr-total">
+                      <p className="text-[10px] text-gray-400 uppercase tracking-wide mb-1">Total</p>
+                      <p className="text-2xl font-bold text-[#1C2B2B]">{stats.sample_reports.total}</p>
+                    </div>
+                    <div className="border border-gray-100 rounded-md p-3 bg-white" data-testid="sr-7d">
+                      <p className="text-[10px] text-gray-400 uppercase tracking-wide mb-1">Last 7d</p>
+                      <p className="text-2xl font-bold text-[#1C2B2B]">{stats.sample_reports.last_7d}</p>
+                    </div>
+                    <div className="border border-gray-100 rounded-md p-3 bg-white" data-testid="sr-30d">
+                      <p className="text-[10px] text-gray-400 uppercase tracking-wide mb-1">Last 30d</p>
+                      <p className="text-2xl font-bold text-[#1C2B2B]">{stats.sample_reports.last_30d}</p>
+                    </div>
+                    <div className="border-l-4 border-green-500 rounded-md p-3 bg-green-50" data-testid="sr-converted">
+                      <p className="text-[10px] text-gray-500 uppercase tracking-wide mb-1">Converted</p>
+                      <p className="text-2xl font-bold text-green-700">{stats.sample_reports.converted}</p>
+                      <p className="text-[10px] text-gray-400 mt-0.5">to intake / walkthrough</p>
+                    </div>
+                    <div className="border-l-4 border-[#1a6fc4] rounded-md p-3 bg-[#f4f8fc]" data-testid="sr-conversion-rate">
+                      <p className="text-[10px] text-gray-500 uppercase tracking-wide mb-1">Conv. Rate</p>
+                      <p className="text-2xl font-bold text-[#1560ae]">{stats.sample_reports.conversion_rate}%</p>
+                      <p className="text-[10px] text-gray-400 mt-0.5">SR → full lead</p>
+                    </div>
+                  </div>
+                  <p className="text-[11px] text-gray-400 mt-3 leading-snug">
+                    Conversion = sample report download email later matched in a full intake or walkthrough request. High-intent leads — expect a higher conversion rate here than other email magnets.
+                  </p>
+                </div>
+              )}
+
               <h2 className="text-lg font-bold text-[#1C2B2B] mb-3">Risk Breakdown</h2>
               <div className="grid grid-cols-3 gap-3">
                 {[

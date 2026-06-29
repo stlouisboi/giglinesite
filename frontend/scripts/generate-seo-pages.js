@@ -754,6 +754,7 @@ const routes = [
         <li><a href="/heat-guide">Heat Stress Field Guide</a> — 2026 Heat Stress Action Template. Email capture.</li>
         <li><a href="/blog/hazcom-requirements-small-business">HazCom Compliance Guide</a> — Full breakdown of the OSHA HazCom standard.</li>
         <li><a href="/sample-report">Sample Compliance Report</a> — A redacted real report. Email capture.</li>
+        <li><a href="/osha-inspection-guide">OSHA Inspection Guide — HR & Safety Leaders</a> — What OSHA looks for when they walk in. Email capture.</li>
         <li><a href="${BASE_URL}/api/field-checklist">Field Inspection Checklist</a> — The printable on-floor checklist GigLine uses during walkthroughs. Ungated PDF.</li>
       </ul>
       <p>GigLine Safety &amp; Compliance — Vince Lawrence — (336) 329-8899 — Kernersville, NC</p>

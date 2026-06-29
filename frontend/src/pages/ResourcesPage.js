@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Download, FileText, ClipboardCheck, Shield, BookOpen, FileSearch } from 'lucide-react';
+import { ArrowRight, Download, FileText, ClipboardCheck, Shield, BookOpen, FileSearch, Mail } from 'lucide-react';
 import SEO from '../components/SEO';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL;
@@ -53,6 +53,18 @@ const RESOURCES = [
       'A redacted real compliance report — facility name removed, every finding intact. CFR citations, penalty exposure, RED/AMBER/GREEN fix list, and the 30/60/90-day corrective action plan.',
     cta: 'Get Access',
     href: '/sample-report',
+    internal: true,
+  },
+  {
+    id: 'osha-inspection-guide',
+    title: 'OSHA Inspection Guide — HR & Safety Leaders',
+    type: 'Guide',
+    gate: 'Email capture',
+    icon: Mail,
+    description:
+      'What OSHA looks for when they walk in. Built for HR managers and safety coordinators — what to have ready before, what happens during, and what to do in the 15-day window after. CFR-cited.',
+    cta: 'Get Access',
+    href: '/osha-inspection-guide',
     internal: true,
   },
   {

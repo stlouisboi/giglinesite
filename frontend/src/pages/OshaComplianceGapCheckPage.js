@@ -9,7 +9,7 @@ const OshaComplianceGapCheckPage = () => (
     eyebrow="Service · Compliance Readiness Visit"
     headline="A Compliance Readiness Visit Before an Inspection, Audit, or Insurance Review."
     subheadline="The most thorough engagement GigLine offers. A combined on-site walkthrough and documentation review — covering the floor AND the binder — so you know exactly where you stand against the OSHA standards that apply to your operation."
-    priceLine="Custom-quoted by operation size and scope · Most Compliance Readiness Visits start at $2,000 · No retainer."
+    priceLine="From $2,000 · Most engagements range from $2,000–$2,400 depending on facility size, machine count, documentation volume, and hazard complexity · No retainer."
     whoItsFor={{
       intro: 'This is the right engagement if any of these describe where you are right now:',
       bullets: [

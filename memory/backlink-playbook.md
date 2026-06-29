@@ -255,3 +255,52 @@ www.giglinecompliance.com
 - Don't use cookie-cutter templates without personalization
 
 The links you build this way compound. They're slow to build, hard to lose, and the only kind Google's algorithm respects.
+
+
+---
+
+# 2026-02 — NC Trade Outlet Outreach Plan (added by user)
+
+## Target outlets (ranked by fit)
+
+| Outlet | Domain | Best angle |
+|---|---|---|
+| Triad Business Journal | triadbizjournal.com | Local business owner with local safety angle (guest col / op-ed) |
+| Business North Carolina | businessnc.com | Statewide manufacturing expert (op-ed / guest col) |
+| NC State MEP Blog | ncmep.org | Practical guide for small manufacturers (state-trusted resource) |
+| NC Chamber of Commerce | ncchamber.com | Safety/manufacturing content for member base |
+| NCMA Newsletter | (NC Manufacturers Association) | Working manufacturer voice |
+
+## Three pitch-ready guest articles
+
+### Article 1 — "Small Manufacturer" angle
+- Title: "What Small Manufacturers in North Carolina Are Getting Wrong About OSHA"
+- Length: 800–1,200 words
+- Sections: Six most common violations / Cost of waiting / 30-day action plan
+- Backlink target: `/osha-compliance-guide`
+- Best outlets: NCMA, NC MEP, Triad Business Journal, NC Chamber
+
+### Article 2 — "HR" angle
+- Title: "The Hidden OSHA Risk Most HR Directors Miss (And It's Not What You Think)"
+- Length: 600–800 words
+- Sections: Five documentation gaps / 15-min self-audit / What to do with gaps
+- Backlink target: `/osha-compliance-guide` (or `/osha-inspection-guide` for HR-specific gating)
+- Best outlets: Business NC, NC Chamber, NCMA
+
+### Article 3 — "Template Trap" angle
+- Title: "Why Your AI-Generated Safety Program Won't Protect You in an OSHA Inspection"
+- Length: 800–1,200 words
+- Sections: Template Trap / What OSHA actually looks for / 3 owner-questions
+- Backlink target: `/osha-compliance-guide` (or `/field-notes/ai-generated-safety-programs`)
+- Best outlets: Business NC, NC MEP, local manufacturing associations
+
+## LinkedIn post sequence (build credibility before pitching)
+
+1. Post 5: Small-owner voice (sets the broad tone)
+2. Post 1: Plant-manager, floor-first (LOTO/PIT)
+3. Post 6: "Safety becomes the thing you'll get to. OSHA does not wait for you to get to it." (signature line, standalone)
+4. Post 4: Safety Check hook
+5. Post 4 (case study): Statesville (after Kevin Stutts quote verification)
+
+Cadence: every 3–5 days. Consistency > volume.
+

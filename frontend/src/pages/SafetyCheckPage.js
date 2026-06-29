@@ -271,21 +271,21 @@ const SafetyCheckPage = () => {
             labelClass: 'bg-emerald-500/15 text-emerald-300 border-emerald-400/30',
             scoreClass: 'text-white',
             headline: 'Your documented controls are in place.',
-            body: "These are the six areas OSHA cites most often. You've confirmed them. That's a good baseline — but a walkthrough can still surface what documentation misses on the floor.",
+            body: "You're ahead of most operations this size. Save this result and recheck quarterly — gaps open faster than most managers expect.",
           },
           medium: {
             label: 'GAPS IDENTIFIED',
             labelClass: 'bg-amber-400/15 text-amber-300 border-amber-300/30',
             scoreClass: 'text-amber-200',
             headline: 'You have documented gaps in at least two cited areas.',
-            body: 'Each "No" here is a potential citation. OSHA doesn\'t need to find all six — one serious violation can run up to $16,550. A walkthrough puts eyes on the floor before an inspector does.',
+            body: "These gaps are fixable — but they're also exactly what an OSHA inspector looks for. A walkthrough puts a written record in your hands before anyone else sees the floor.",
           },
           high: {
             label: 'HIGH EXPOSURE',
             labelClass: 'bg-red-500/15 text-red-300 border-red-400/30',
             scoreClass: 'text-red-300',
             headline: 'Multiple high-citation-risk areas are unconfirmed.',
-            body: "This is the profile OSHA finds on a programmed inspection. Don't wait for a complaint or a referral. Call Vince directly — this is exactly what a walkthrough is built for.",
+            body: "One of these gaps is enough to draw a serious citation. Don't wait for a complaint or a referral to find out which one.",
           },
         }[tier];
 
@@ -354,11 +354,11 @@ const SafetyCheckPage = () => {
                 {tier === 'low' && (
                   <div className="mt-4" data-testid="results-cta-block">
                     <Link
-                      to="/intake?service=safety-walkthrough-report"
+                      to="/osha-inspection-guide"
                       className="inline-flex items-center gap-2 border border-white/30 hover:border-white/60 hover:bg-white/5 text-white font-semibold px-7 py-3.5 rounded transition-colors text-base"
                       data-testid="results-cta-primary"
                     >
-                      Schedule an Annual Walkthrough
+                      Download the OSHA Inspection Guide
                       <ArrowRight size={18} />
                     </Link>
                   </div>
@@ -402,6 +402,20 @@ const SafetyCheckPage = () => {
                     </Link>
                   </div>
                 )}
+
+                {/* GL-WEB-021: Optional "Have Vince review your score" offer (all tiers) */}
+                <p
+                  className="mt-7 text-sm text-white/60 leading-relaxed"
+                  data-testid="results-vince-review-offer"
+                >
+                  Want Vince to review your score? Reply directly —{' '}
+                  <a
+                    href="mailto:vince@giglinecompliance.com?subject=Safety%20Check%20Review"
+                    className="text-[#D4A93E] hover:text-white underline underline-offset-4 transition-colors"
+                  >
+                    vince@giglinecompliance.com
+                  </a>
+                </p>
 
                 {/* Disclaimer */}
                 <p

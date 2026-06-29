@@ -312,6 +312,46 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* ═══ RECENT ENGAGEMENT — compact proof block (GL-WEB-020) ═══ */}
+      <section className="py-12 md:py-16" style={{ backgroundColor: '#f5f4f0' }} data-testid="recent-engagement-section">
+        <div className="container max-w-5xl">
+          <Reveal>
+            <div
+              className="p-7 md:p-9 rounded-md"
+              style={{
+                background: '#0d1b2a',
+                borderLeft: '4px solid #D4A93E',
+                color: 'white',
+              }}
+              data-testid="recent-engagement-card"
+            >
+              <p
+                className="uppercase font-bold mb-4"
+                style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: '10.5px',
+                  letterSpacing: '0.20em',
+                  color: '#D4A93E',
+                }}
+              >
+                Recent Engagement
+              </p>
+              <p className="text-base md:text-lg leading-[1.7] text-white/90 mb-5 max-w-3xl">
+                9-person fabrication shop. Statesville, NC. 13 findings across machine guarding, compressed gas storage, and documentation gaps. 12 of 13 corrective actions closed within 4 days of the walkthrough.
+              </p>
+              <Link
+                to="/case-study/metals-fabrication-statesville"
+                className="inline-flex items-center gap-2 font-semibold text-[#D4A93E] hover:text-white transition-colors"
+                style={{ fontSize: '15px' }}
+                data-testid="recent-engagement-cta"
+              >
+                See what a walkthrough actually finds →
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ═══ SECTION 2 — WHY GIGLINE ═══ */}
       <section className="py-20 md:py-24" style={{ backgroundColor: '#f5f4f0' }} data-testid="why-gigline-section">
         <div className="container max-w-6xl">

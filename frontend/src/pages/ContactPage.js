@@ -1,5 +1,6 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Clock } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Mail, Phone, MapPin, Clock, ArrowRight } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 import SEO from '../components/SEO';
 
@@ -51,6 +52,53 @@ const ContactPage = () => {
             <p className="text-lg text-white/90">
               One line is all it takes to start the conversation. Describe what you're running, and I'll tell you what makes sense.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Quick-Action CTA Block (GL-WEB-021) */}
+      <section className="py-12 md:py-14" style={{ backgroundColor: '#FBFBF9', borderBottom: '1px solid rgba(13,27,42,0.08)' }} data-testid="contact-quick-actions">
+        <div className="container max-w-5xl">
+          <p
+            className="text-base md:text-lg leading-[1.7] text-[#0d1b2a]/85 mb-3 max-w-3xl"
+            style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+          >
+            <strong className="text-[#0d1b2a]">Request a walkthrough or ask a question first.</strong>
+          </p>
+          <p className="text-sm md:text-base leading-[1.7] text-[#0d1b2a]/65 mb-7 max-w-3xl">
+            GigLine serves small manufacturers, warehouses, contractors, and fleet operations within roughly 60 miles of Winston-Salem. Most walkthroughs are scheduled during normal business hours. Reports delivered within 24&ndash;48 hours.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
+            <a
+              href="tel:3363298899"
+              className="inline-flex items-center justify-center gap-2 px-5 py-4 rounded transition-colors font-semibold text-white text-[15px]"
+              style={{ background: '#0d1b2a', border: '1px solid #D4A93E' }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = '#152538')}
+              onMouseLeave={(e) => (e.currentTarget.style.background = '#0d1b2a')}
+              data-testid="contact-cta-call"
+            >
+              <Phone size={17} /> Call Vince
+            </a>
+            <a
+              href="mailto:vince@giglinecompliance.com"
+              className="inline-flex items-center justify-center gap-2 px-5 py-4 rounded transition-colors font-semibold text-white text-[15px]"
+              style={{ background: '#0d1b2a', border: '1px solid #D4A93E' }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = '#152538')}
+              onMouseLeave={(e) => (e.currentTarget.style.background = '#0d1b2a')}
+              data-testid="contact-cta-email"
+            >
+              <Mail size={17} /> Email Vince
+            </a>
+            <Link
+              to="/intake"
+              className="inline-flex items-center justify-center gap-2 px-5 py-4 rounded transition-colors font-bold text-[#0d1b2a] text-[15px]"
+              style={{ background: '#D4A93E', border: '1px solid #D4A93E' }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = '#bf962f')}
+              onMouseLeave={(e) => (e.currentTarget.style.background = '#D4A93E')}
+              data-testid="contact-cta-walkthrough"
+            >
+              Request Walkthrough <ArrowRight size={17} />
+            </Link>
           </div>
         </div>
       </section>

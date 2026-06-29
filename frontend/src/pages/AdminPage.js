@@ -568,6 +568,48 @@ const AdminPage = () => {
                 </div>
               )}
 
+              {/* ── HR OSHA Inspection Guide tile (GL-WEB-021) ── */}
+              {stats.hr_osha_guide && (
+                <div
+                  className="mb-8 border border-emerald-300/40 rounded-lg p-5 bg-gradient-to-br from-emerald-50 to-white"
+                  data-testid="hr-osha-guide-tile"
+                >
+                  <div className="flex items-baseline justify-between mb-3">
+                    <h2 className="text-base font-bold text-[#1C2B2B]">OSHA Inspection Guide — HR &amp; Safety Leaders</h2>
+                    <span className="text-[10px] uppercase tracking-wider text-gray-400 font-mono">
+                      HR-targeted lead magnet
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+                    <div className="border border-gray-100 rounded-md p-3 bg-white" data-testid="hr-total">
+                      <p className="text-[10px] text-gray-400 uppercase tracking-wide mb-1">Total</p>
+                      <p className="text-2xl font-bold text-[#1C2B2B]">{stats.hr_osha_guide.total}</p>
+                    </div>
+                    <div className="border border-gray-100 rounded-md p-3 bg-white" data-testid="hr-7d">
+                      <p className="text-[10px] text-gray-400 uppercase tracking-wide mb-1">Last 7d</p>
+                      <p className="text-2xl font-bold text-[#1C2B2B]">{stats.hr_osha_guide.last_7d}</p>
+                    </div>
+                    <div className="border border-gray-100 rounded-md p-3 bg-white" data-testid="hr-30d">
+                      <p className="text-[10px] text-gray-400 uppercase tracking-wide mb-1">Last 30d</p>
+                      <p className="text-2xl font-bold text-[#1C2B2B]">{stats.hr_osha_guide.last_30d}</p>
+                    </div>
+                    <div className="border-l-4 border-green-500 rounded-md p-3 bg-green-50" data-testid="hr-converted">
+                      <p className="text-[10px] text-gray-500 uppercase tracking-wide mb-1">Converted</p>
+                      <p className="text-2xl font-bold text-green-700">{stats.hr_osha_guide.converted}</p>
+                      <p className="text-[10px] text-gray-400 mt-0.5">to intake / walkthrough</p>
+                    </div>
+                    <div className="border-l-4 border-emerald-600 rounded-md p-3 bg-emerald-50" data-testid="hr-conversion-rate">
+                      <p className="text-[10px] text-gray-500 uppercase tracking-wide mb-1">Conv. Rate</p>
+                      <p className="text-2xl font-bold text-emerald-700">{stats.hr_osha_guide.conversion_rate}%</p>
+                      <p className="text-[10px] text-gray-400 mt-0.5">HR Guide → full lead</p>
+                    </div>
+                  </div>
+                  <p className="text-[11px] text-gray-400 mt-3 leading-snug">
+                    Conversion = HR Inspection Guide download email later matched in a full intake or walkthrough request. The HR / safety-coordinator audience tends to be the early-warning channel into a buying org — watch for converters here moving up the decision chain.
+                  </p>
+                </div>
+              )}
+
               <h2 className="text-lg font-bold text-[#1C2B2B] mb-3">Risk Breakdown</h2>
               <div className="grid grid-cols-3 gap-3">
                 {[

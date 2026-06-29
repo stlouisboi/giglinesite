@@ -114,6 +114,22 @@ async def admin_stats(token: str = ""):
         round((sr_converted / total_sr) * 100, 1) if total_sr > 0 else 0.0
     )
 
+    # ── OSHA Inspection Guide (HR-targeted) metrics (GL-WEB-021) ──
+    total_oig = await db.osha_inspection_guide_leads.count_documents({})
+    oig_7d = await db.osha_inspection_guide_leads.count_documents({"created_at": {"$gte": seven_days_ago}})
+    oig_30d = await db.osha_inspection_guide_leads.count_documents({"created_at": {"$gte": thirty_days_ago}})
+
+    oig_docs = await db.osha_inspection_guide_leads.find({}, {"_id": 0, "email": 1}).to_list(None)
+    oig_emails = [(o.get("email") or "").strip().lower() for o in oig_docs if o.get("email")]
+    oig_converted = 0
+    if oig_emails:
+        oig_intake_match = await db.gl_intake_submissions.count_documents({"email": {"$in": oig_emails}})
+        oig_walkthrough_match = await db.walkthrough_requests.count_documents({"email": {"$in": oig_emails}})
+        oig_converted = oig_intake_match + oig_walkthrough_match
+    oig_conversion_rate = (
+        round((oig_converted / total_oig) * 100, 1) if total_oig > 0 else 0.0
+    )
+
     return {
         "safety_checks": {"total": total_checks, "last_7d": checks_7d, "last_30d": checks_30d},
         "risk_breakdown": {"high": high_risk, "medium": medium_risk, "low": low_risk},

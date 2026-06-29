@@ -76,7 +76,7 @@ const Navbar = () => {
                 className="whitespace-nowrap mt-1"
                 style={{ fontSize: '11px', color: '#5a6878', fontWeight: 400 }}
               >
-                Greensboro, NC
+                Kernersville, NC
               </span>
             </div>
           </div>

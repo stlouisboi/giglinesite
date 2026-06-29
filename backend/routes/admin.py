@@ -68,67 +68,46 @@ async def admin_stats(token: str = ""):
 
     heat_leads = await db.heat_guide_leads.count_documents({})
 
-    # ── Quick-Contact micro-form metrics (GL-WEB-018) ──
-    total_quick = await db.quick_contact_leads.count_documents({})
-    quick_7d = await db.quick_contact_leads.count_documents({"created_at": {"$gte": seven_days_ago}})
-    quick_30d = await db.quick_contact_leads.count_documents({"created_at": {"$gte": thirty_days_ago}})
+    # ── Generic helper: counts + downstream-conversion stats for any lead-magnet collection
+    # Each lead-magnet collection stores a "created_at" ISO timestamp and a "contact-like" field
+    # (email for sample reports/OSHA guide, or "contact" for quick-contact micro-form).
+    async def lead_magnet_stats(collection, contact_field: str = "email", phone_too: bool = False):
+        total = await collection.count_documents({})
+        last_7d = await collection.count_documents({"created_at": {"$gte": seven_days_ago}})
+        last_30d = await collection.count_documents({"created_at": {"$gte": thirty_days_ago}})
 
-    # Conversion: quick-contact lead whose contact value later appears as an email or phone
-    # in either a full intake submission or a walkthrough request.
-    qc_contacts = await db.quick_contact_leads.find({}, {"_id": 0, "contact": 1}).to_list(None)
-    contact_values = [
-        (q.get("contact") or "").strip().lower() for q in qc_contacts if q.get("contact")
-    ]
-    converted_count = 0
-    if contact_values:
-        intake_match = await db.gl_intake_submissions.count_documents({
-            "$or": [
-                {"email": {"$in": contact_values}},
-                {"phone": {"$in": contact_values}},
-            ]
-        })
-        walkthrough_match = await db.walkthrough_requests.count_documents({
-            "$or": [
-                {"email": {"$in": contact_values}},
-                {"phone": {"$in": contact_values}},
-            ]
-        })
-        converted_count = intake_match + walkthrough_match
-    conversion_rate = (
-        round((converted_count / total_quick) * 100, 1) if total_quick > 0 else 0.0
-    )
+        docs = await collection.find({}, {"_id": 0, contact_field: 1}).to_list(None)
+        values = [(d.get(contact_field) or "").strip().lower() for d in docs if d.get(contact_field)]
 
-    # ── Sample Report download metrics (GL-WEB-020) ──
-    total_sr = await db.sample_report_leads.count_documents({})
-    sr_7d = await db.sample_report_leads.count_documents({"created_at": {"$gte": seven_days_ago}})
-    sr_30d = await db.sample_report_leads.count_documents({"created_at": {"$gte": thirty_days_ago}})
+        converted = 0
+        if values:
+            email_clause = {"email": {"$in": values}}
+            if phone_too:
+                or_clause = {"$or": [email_clause, {"phone": {"$in": values}}]}
+                intake_match = await db.gl_intake_submissions.count_documents(or_clause)
+                wt_match = await db.walkthrough_requests.count_documents(or_clause)
+            else:
+                intake_match = await db.gl_intake_submissions.count_documents(email_clause)
+                wt_match = await db.walkthrough_requests.count_documents(email_clause)
+            converted = intake_match + wt_match
 
-    sr_docs = await db.sample_report_leads.find({}, {"_id": 0, "email": 1}).to_list(None)
-    sr_emails = [(s.get("email") or "").strip().lower() for s in sr_docs if s.get("email")]
-    sr_converted = 0
-    if sr_emails:
-        sr_intake_match = await db.gl_intake_submissions.count_documents({"email": {"$in": sr_emails}})
-        sr_walkthrough_match = await db.walkthrough_requests.count_documents({"email": {"$in": sr_emails}})
-        sr_converted = sr_intake_match + sr_walkthrough_match
-    sr_conversion_rate = (
-        round((sr_converted / total_sr) * 100, 1) if total_sr > 0 else 0.0
-    )
+        rate = round((converted / total) * 100, 1) if total > 0 else 0.0
+        return {
+            "total": total,
+            "last_7d": last_7d,
+            "last_30d": last_30d,
+            "converted": converted,
+            "conversion_rate": rate,
+        }
 
-    # ── OSHA Inspection Guide (HR-targeted) metrics (GL-WEB-021) ──
-    total_oig = await db.osha_inspection_guide_leads.count_documents({})
-    oig_7d = await db.osha_inspection_guide_leads.count_documents({"created_at": {"$gte": seven_days_ago}})
-    oig_30d = await db.osha_inspection_guide_leads.count_documents({"created_at": {"$gte": thirty_days_ago}})
+    # Quick-Contact micro-form (GL-WEB-018) — "contact" field can be either email or phone
+    quick_contacts_stats = await lead_magnet_stats(db.quick_contact_leads, contact_field="contact", phone_too=True)
 
-    oig_docs = await db.osha_inspection_guide_leads.find({}, {"_id": 0, "email": 1}).to_list(None)
-    oig_emails = [(o.get("email") or "").strip().lower() for o in oig_docs if o.get("email")]
-    oig_converted = 0
-    if oig_emails:
-        oig_intake_match = await db.gl_intake_submissions.count_documents({"email": {"$in": oig_emails}})
-        oig_walkthrough_match = await db.walkthrough_requests.count_documents({"email": {"$in": oig_emails}})
-        oig_converted = oig_intake_match + oig_walkthrough_match
-    oig_conversion_rate = (
-        round((oig_converted / total_oig) * 100, 1) if total_oig > 0 else 0.0
-    )
+    # Sample Report download metrics (GL-WEB-020)
+    sample_reports_stats = await lead_magnet_stats(db.sample_report_leads)
+
+    # OSHA Inspection Guide (HR-targeted) metrics (GL-WEB-021)
+    hr_osha_guide_stats = await lead_magnet_stats(db.osha_inspection_guide_leads)
 
     return {
         "safety_checks": {"total": total_checks, "last_7d": checks_7d, "last_30d": checks_30d},
@@ -142,27 +121,9 @@ async def admin_stats(token: str = ""):
             "heat_guide": heat_downloads,
         },
         "heat_guide_leads": heat_leads,
-        "quick_contacts": {
-            "total": total_quick,
-            "last_7d": quick_7d,
-            "last_30d": quick_30d,
-            "converted": converted_count,
-            "conversion_rate": conversion_rate,
-        },
-        "sample_reports": {
-            "total": total_sr,
-            "last_7d": sr_7d,
-            "last_30d": sr_30d,
-            "converted": sr_converted,
-            "conversion_rate": sr_conversion_rate,
-        },
-        "hr_osha_guide": {
-            "total": total_oig,
-            "last_7d": oig_7d,
-            "last_30d": oig_30d,
-            "converted": oig_converted,
-            "conversion_rate": oig_conversion_rate,
-        },
+        "quick_contacts": quick_contacts_stats,
+        "sample_reports": sample_reports_stats,
+        "hr_osha_guide": hr_osha_guide_stats,
     }
 
 

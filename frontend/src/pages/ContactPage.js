@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Clock, ArrowRight } from 'lucide-react';
-import ContactForm from '../components/ContactForm';
 import SEO from '../components/SEO';
+import QuickContactCard from '../components/QuickContactCard';
 
 const ContactPage = () => {
   return (
@@ -237,12 +237,18 @@ const ContactPage = () => {
               </div>
             </div>
 
-            {/* Contact Form */}
+            {/* Quick Contact micro-form (GL-WEB-021 A/B) — replaces the heavier ContactForm */}
             <div className="lg:col-span-2">
-              <div className="card">
-                <h2 className="text-xl font-bold text-primary mb-6">Send a Message</h2>
-                <ContactForm />
-              </div>
+              <QuickContactCard variant="light" />
+              <p className="text-sm text-[#0d1b2a]/60 mt-4 leading-relaxed" data-testid="contact-full-intake-fallback">
+                Need to share more detail (operation type, headcount, machine count, deadlines)?{' '}
+                <Link
+                  to="/intake"
+                  className="font-semibold text-[#1a6fc4] hover:text-[#0d1b2a] underline underline-offset-4 transition-colors"
+                >
+                  Use the full intake form →
+                </Link>
+              </p>
             </div>
           </div>
         </div>

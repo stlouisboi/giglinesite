@@ -264,30 +264,68 @@ const OshaComplianceGuidePage = () => {
 
       {/* Closing CTA */}
       <section className="py-14 md:py-20 border-t border-[#0d1b2a]/10" style={{ background: CREAM }} data-testid="osha-guide-cta">
-        <div className="container max-w-2xl text-center">
-          <p className="text-base md:text-lg text-[#0d1b2a]/65 mb-2">
-            Reading is the easy part.
-          </p>
-          <p
-            className="text-xl md:text-2xl text-[#0d1b2a] font-semibold mb-7"
-            style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+        <div className="container max-w-3xl">
+          {/* Trust strip — anchors the closing CTA in real numbers (GL-WEB-022) */}
+          <div
+            className="grid grid-cols-1 sm:grid-cols-3 gap-0 rounded mb-10 overflow-hidden"
+            style={{ background: NAVY }}
+            data-testid="pillar-trust-strip"
           >
-            See what these standards look like on your floor.
-          </p>
-          <Link
-            to="/intake?service=safety-walkthrough-report&utm_source=osha-guide-pillar&utm_medium=website&utm_campaign=pillar-cta"
-            className="inline-flex items-center gap-2 font-bold px-7 py-4 rounded transition-colors text-white"
-            style={{ background: BLUE }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = '#1560ae')}
-            onMouseLeave={(e) => (e.currentTarget.style.background = BLUE)}
-            data-testid="osha-guide-bottom-cta"
-          >
-            Request a Safety Walkthrough
-            <ArrowRight size={18} />
-          </Link>
-          <p className="text-xs text-[#0d1b2a]/45 mt-5" style={mono}>
-            From $1,200 · Findings in 48 hours · NC Piedmont Triad
-          </p>
+            {[
+              { stat: '25+ Years', label: 'Manufacturing Operations Experience' },
+              { stat: '12 of 13', label: 'Findings Closed in 4 Days · Statesville Case Study' },
+              { stat: 'NC-Based', label: 'Kernersville · Piedmont Triad · OSHA 30 Certified' },
+            ].map((s, i) => (
+              <div
+                key={i}
+                className="px-5 py-6 text-center"
+                style={{
+                  borderRight: i < 2 ? '1px solid rgba(255,255,255,0.10)' : 'none',
+                  borderBottom: i < 2 ? '1px solid rgba(255,255,255,0.10)' : 'none',
+                }}
+                data-testid={`pillar-trust-${i}`}
+              >
+                <p
+                  className="font-bold leading-none mb-2"
+                  style={{ color: GOLD, fontSize: 'clamp(20px, 2.4vw, 26px)', fontFamily: "'Manrope', sans-serif" }}
+                >
+                  {s.stat}
+                </p>
+                <p
+                  className="uppercase tracking-[0.16em] font-bold"
+                  style={{ color: 'rgba(255,255,255,0.72)', ...mono, fontSize: '9.5px' }}
+                >
+                  {s.label}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-[#0d1b2a]/65 mb-2">
+              Reading is the easy part.
+            </p>
+            <p
+              className="text-xl md:text-2xl text-[#0d1b2a] font-semibold mb-7"
+              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+            >
+              See what these standards look like on your floor.
+            </p>
+            <Link
+              to="/intake?service=safety-walkthrough-report&utm_source=osha-guide-pillar&utm_medium=website&utm_campaign=pillar-cta"
+              className="inline-flex items-center gap-2 font-bold px-7 py-4 rounded transition-colors text-white"
+              style={{ background: BLUE }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = '#1560ae')}
+              onMouseLeave={(e) => (e.currentTarget.style.background = BLUE)}
+              data-testid="osha-guide-bottom-cta"
+            >
+              Request a Safety Walkthrough
+              <ArrowRight size={18} />
+            </Link>
+            <p className="text-xs text-[#0d1b2a]/45 mt-5" style={mono}>
+              From $1,200 · Findings in 48 hours · NC Piedmont Triad
+            </p>
+          </div>
         </div>
       </section>
     </main>

@@ -39,7 +39,7 @@ const FINDINGS = [
       'Secure propane cylinder immediately with a chain bracket or cylinder stand rated for compressed gas storage. Relocate cylinder a minimum of 20 feet from the flammable storage cabinet or install a fire-resistant barrier of at least 30-minute rating between them. When not in active use, store propane cylinder outside or in a designated outdoor compressed gas storage area.',
     penalty: '$7,000 – $14,502 (Serious)',
     fixBy: 'Immediate',
-    photoUrl: '/floor-findings/loto-tag.jpg',
+    photoUrl: null,
   },
   {
     n: '02',

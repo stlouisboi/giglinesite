@@ -13,6 +13,24 @@ const TEXT_SUBTLE = 'rgba(10,22,40,0.55)';
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
 const serif = { fontFamily: "Georgia, 'Times New Roman', serif" };
 
+// GL-WEB-020 — 13 corrective actions from the June 18, 2026 walkthrough.
+// 12 of 13 closed June 22, 2026 (4 days). 1 open (shear guard, scheduled post-relocation).
+const CORRECTIVE_ACTIONS = [
+  { id: 'CA-001', issue: 'Written Safety & Health Program required address update to new facility location', action: 'Updated all safety and training forms and policies to reflect future address at 170/174 Innovation Drive.', status: 'Closed Jun 22', open: false },
+  { id: 'CA-002', issue: 'SDS Library gap — Star Fire AW46 Hydraulic Oil and Simple Green not in digital library or physical binder', action: 'Added SDS for both products to physical binder, digital folder, and internal plant information website.', status: 'Closed Jun 22', open: false },
+  { id: 'CA-003', issue: 'Simple Green spray bottles observed unlabeled — GHS labeling required (product name, signal word, hazard pictograms)', action: 'Labeled both spray bottles with appropriate GHS-compliant labels.', status: 'Closed Jun 22', open: false },
+  { id: 'CA-004', issue: 'Machine Guarding Documentation present but compliance gaps identified', action: 'Added machine guarding policy to new hire orientation.', status: 'Closed Jun 22', open: false },
+  { id: 'CA-005', issue: 'Fire Prevention Plan controls in place informally but not captured in a formal document', action: 'Wrote formal Fire Prevention Plan with job-specific tasks and cross-reference to Emergency Action Plan.', status: 'Closed Jun 22', open: false },
+  { id: 'CA-006', issue: 'Heat Stress Prevention Plan not present — required under 29 CFR 1910 General Duty Clause and NC OSHA guidance', action: 'Wrote Heat Stress Prevention Plan and added to new hire orientation.', status: 'Closed Jun 22', open: false },
+  { id: 'CA-007', issue: 'No Corrective Action Log present at facility', action: 'Created Corrective Action Log; employee training protocol established.', status: 'Closed Jun 22', open: false },
+  { id: 'CA-008', issue: 'Near-Miss / Close-Call Report Log not present — OSHA best practice for identifying and correcting hazardous conditions before injury', action: 'Created Near-Miss Log and reporting document; training scheduled.', status: 'Closed Jun 22', open: false },
+  { id: 'CA-009', issue: 'Four 5-gallon pails of AW46 Hydraulic Oil stored on production floor adjacent to D-coiler with no SDS present', action: 'SDS added to binder, digital folder, and internal plant website.', status: 'Closed Jun 22', open: false },
+  { id: 'CA-010', issue: 'Propane cylinder stored upright without chain, bracket, or restraint — positioned adjacent to flammables cabinet with no separation distance', action: 'Cylinder relocated to forklift storage area away from flammables cabinet; permanent rack planned for new facility.', status: 'Closed Jun 22', open: false },
+  { id: 'CA-011', issue: 'Bloodborne Pathogen Exposure Control Plan not present — required under 29 CFR 1910.1030', action: 'Wrote Bloodborne Pathogen Exposure Control Plan and added to new hire training.', status: 'Closed Jun 22', open: false },
+  { id: 'CA-012', issue: 'Shear blade point-of-operation on roll former cut-off mechanism unguarded and accessible during operation', action: 'Light curtains and safety fence planned post-relocation; machine will be set in final position at new facility before guarding is installed.', status: 'Open — Due Sept 1', open: true },
+  { id: 'CA-013', issue: 'Employee Safety Handbook required material revision to meet General Duty Clause requirements', action: 'Updated all safety documents for compliance; REV numbering system implemented for version tracking.', status: 'Closed Jun 22', open: false },
+];
+
 const CASE_FAQS = [
   {
     q: 'What if my walkthrough turns up more than 13 findings?',
@@ -246,8 +264,159 @@ const CaseStudyMetalsFabricationPage = () => {
 
           {/* AFTER THE REPORT */}
           <H2>After the Report</H2>
-          <P>Twelve of 13 findings were closed within seven days of delivery. The one remaining item &mdash; the unguarded shear blade on the roll former &mdash; has a documented remediation plan: light curtains and a permanent safety fence, to be installed after the machine is set in its final position at the new facility location. The corrective action log entry reads: &ldquo;No current way to guard shear, will add light curtains and safety fence after moving machine to new location and setting in final place.&rdquo;</P>
+          <P>Twelve of 13 findings were closed within four days of the walkthrough &mdash; before the formal due date and without pausing production. The one remaining item &mdash; the unguarded shear blade on the roll former &mdash; has a documented remediation plan: light curtains and a permanent safety fence, to be installed after the machine is set in its final position at the new facility location. The corrective action log entry reads: &ldquo;No current way to guard shear, will add light curtains and safety fence after moving machine to new location and setting in final place.&rdquo;</P>
           <P>That&rsquo;s how a corrective action log is supposed to work. Findings documented. Owners assigned. Plans recorded. Progress trackable.</P>
+
+          {/* ─── GL-WEB-020: 4-stat outcomes bar (navy / gold accents) ─── */}
+          <div
+            className="not-italic my-12 grid grid-cols-2 md:grid-cols-4 gap-0 rounded-md overflow-hidden"
+            style={{ background: NAVY, fontFamily: "'Manrope', sans-serif" }}
+            data-testid="case-outcomes-bar"
+          >
+            {[
+              { stat: '13', label: 'Findings Identified' },
+              { stat: '12 of 13', label: 'Closed Within 4 Days' },
+              { stat: '4 Days', label: 'Avg. Closure Time' },
+              { stat: '92.3%', label: 'Closure Rate' },
+            ].map((s, i) => (
+              <div
+                key={i}
+                className="px-6 py-7 md:py-8 text-center"
+                style={{
+                  borderRight: i < 3 ? '1px solid rgba(255,255,255,0.10)' : 'none',
+                  borderBottom: i < 2 ? '1px solid rgba(255,255,255,0.10)' : 'none',
+                }}
+                data-testid={`outcome-stat-${i}`}
+              >
+                <p
+                  className="font-bold leading-none mb-2"
+                  style={{ color: GOLD, fontSize: 'clamp(28px, 3.4vw, 38px)' }}
+                >
+                  {s.stat}
+                </p>
+                <p
+                  className="uppercase tracking-[0.18em] font-bold"
+                  style={{ color: 'rgba(255,255,255,0.72)', ...mono, fontSize: '10px' }}
+                >
+                  {s.label}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* ─── GL-WEB-020: Findings + Corrective Actions Table ─── */}
+          <div className="not-italic mt-14" data-testid="case-corrective-actions">
+            <p
+              className="uppercase font-bold tracking-[0.28em] mb-3"
+              style={{ color: GOLD, ...mono, fontSize: '11px' }}
+            >
+              Findings &amp; Corrective Actions
+            </p>
+            <h2
+              className="font-bold leading-tight mb-5 text-[26px] md:text-[32px]"
+              style={{ fontFamily: "'Manrope', sans-serif", color: NAVY }}
+            >
+              What We Found. What They Did.
+            </h2>
+            <p className="text-[15px] md:text-base leading-[1.7] mb-8 max-w-3xl" style={{ color: TEXT_MUTED, ...serif }}>
+              Every finding below was identified during the June 18, 2026 walkthrough. Corrective actions were assigned to Kevin Stutts, Plant Manager. 12 of 13 findings were closed within four days of the inspection date. One finding remains open pending the facility&rsquo;s planned move to 170/174 Innovation Drive.
+            </p>
+
+            <div className="overflow-x-auto" style={{ border: `1px solid ${BORDER}`, borderRadius: '4px' }}>
+              <table
+                className="w-full text-left"
+                style={{ fontFamily: "'Manrope', sans-serif", borderCollapse: 'collapse', minWidth: '720px' }}
+                data-testid="corrective-actions-table"
+              >
+                <thead>
+                  <tr style={{ background: NAVY, color: 'white' }}>
+                    <th className="px-4 py-3 uppercase tracking-[0.16em]" style={{ ...mono, fontSize: '10.5px', width: '76px' }}>#</th>
+                    <th className="px-4 py-3 uppercase tracking-[0.16em]" style={{ ...mono, fontSize: '10.5px' }}>Issue</th>
+                    <th className="px-4 py-3 uppercase tracking-[0.16em]" style={{ ...mono, fontSize: '10.5px' }}>Action Taken</th>
+                    <th className="px-4 py-3 uppercase tracking-[0.16em]" style={{ ...mono, fontSize: '10.5px', width: '152px' }}>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {CORRECTIVE_ACTIONS.map((row, i) => (
+                    <tr
+                      key={row.id}
+                      style={{
+                        background: i % 2 === 0 ? 'white' : '#FBFBF9',
+                        borderTop: `1px solid ${BORDER}`,
+                      }}
+                      data-testid={`ca-row-${row.id}`}
+                    >
+                      <td className="px-4 py-4 align-top font-bold" style={{ color: NAVY, ...mono, fontSize: '12px' }}>{row.id}</td>
+                      <td className="px-4 py-4 align-top text-[14px] leading-[1.55]" style={{ color: NAVY }}>{row.issue}</td>
+                      <td className="px-4 py-4 align-top text-[14px] leading-[1.55]" style={{ color: TEXT_MUTED }}>{row.action}</td>
+                      <td className="px-4 py-4 align-top">
+                        <span
+                          className="inline-block px-2.5 py-1 font-bold uppercase tracking-[0.12em]"
+                          style={{
+                            ...mono,
+                            fontSize: '10px',
+                            background: row.open ? 'rgba(197,160,89,0.18)' : 'rgba(34,128,84,0.12)',
+                            color: row.open ? '#8a6a18' : '#1f6b48',
+                            border: row.open ? `1px solid ${GOLD}` : '1px solid rgba(34,128,84,0.30)',
+                            borderRadius: '2px',
+                          }}
+                        >
+                          {row.status}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* ─── GL-WEB-020: Outcome Block ─── */}
+          <div className="not-italic mt-14" data-testid="case-outcome-block">
+            <p
+              className="uppercase font-bold tracking-[0.28em] mb-3"
+              style={{ color: GOLD, ...mono, fontSize: '11px' }}
+            >
+              Outcome
+            </p>
+            <h2
+              className="font-bold leading-tight mb-5 text-[26px] md:text-[32px]"
+              style={{ fontFamily: "'Manrope', sans-serif", color: NAVY }}
+            >
+              From Inspection to Corrective Action in 4 Days.
+            </h2>
+            <div className="space-y-5 max-w-3xl" style={{ ...serif }}>
+              <p className="text-[16px] md:text-[17px] leading-[1.72]" style={{ color: TEXT_MUTED }}>
+                Amero Steel Supply completed 12 of 13 corrective actions within four days of the GigLine walkthrough &mdash; before the formal due date and without pausing production. The one open item, a shear blade point-of-operation guard, is scheduled for installation after the facility relocates to 170/174 Innovation Drive in August 2026.
+              </p>
+              <p className="text-[16px] md:text-[17px] leading-[1.72]" style={{ color: TEXT_MUTED }}>
+                The engagement moved Amero from a compliance score of 80.3 to a post-action rate of 92.3% &mdash; with the remaining gap tied to a planned capital improvement, not a documentation failure.
+              </p>
+            </div>
+          </div>
+
+          {/* ─── GL-WEB-020: Pull Quote (TODO: verify verbatim text with Kevin Stutts before publishing) ─── */}
+          <blockquote
+            className="not-italic my-14 p-7 md:p-9"
+            style={{
+              background: NAVY,
+              color: 'white',
+              borderLeft: `4px solid ${GOLD}`,
+              fontFamily: "Georgia, 'Times New Roman', serif",
+            }}
+            data-testid="case-pull-quote"
+          >
+            <p className="text-[20px] md:text-[24px] leading-[1.45] italic mb-5">
+              &ldquo;We knew some of these gaps existed. What we didn&rsquo;t know was how fast we could close them.&rdquo;
+            </p>
+            <footer
+              className="uppercase tracking-[0.22em] font-bold"
+              style={{ color: GOLD, ...mono, fontSize: '10.5px' }}
+            >
+              — Kevin Stutts, Plant Manager, Amero Steel Supply
+            </footer>
+          </blockquote>
+
 
           {/* SAMPLE REPORT CALLOUT */}
           <div

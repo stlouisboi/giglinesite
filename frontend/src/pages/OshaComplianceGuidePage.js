@@ -12,9 +12,9 @@ import {
 import SEO from '../components/SEO';
 
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
-const NAVY = '#0d1b2a';
-const GOLD = '#D4A93E';
-const BLUE = '#1a6fc4';
+const NAVY = '#1C2B2B';
+const GOLD = '#C9A84C';
+const BLUE = '#2A52A0';
 const CREAM = '#F9F8F6';
 
 // 25 Field Notes organized into 6 OSHA-aligned topical clusters.
@@ -174,17 +174,17 @@ const OshaComplianceGuidePage = () => {
       </section>
 
       {/* Cluster jump-nav */}
-      <section className="py-6 border-b" style={{ background: 'white', borderColor: 'rgba(13,27,42,0.10)' }} data-testid="osha-guide-jumpnav">
+      <section className="py-6 border-b" style={{ background: 'white', borderColor: 'rgba(28,43,43,0.10)' }} data-testid="osha-guide-jumpnav">
         <div className="container max-w-5xl">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
-            <span className="uppercase tracking-[0.18em] text-[#0d1b2a]/40" style={{ ...mono, fontSize: '10px' }}>
+            <span className="uppercase tracking-[0.18em] text-[#1C2B2B]/40" style={{ ...mono, fontSize: '10px' }}>
               Jump to →
             </span>
             {CLUSTERS.map((c) => (
               <a
                 key={c.id}
                 href={`#${c.id}`}
-                className="text-[#0d1b2a]/70 hover:text-[#1a6fc4] transition-colors"
+                className="text-[#1C2B2B]/70 hover:text-[#2A52A0] transition-colors"
                 data-testid={`jumpnav-${c.id}`}
               >
                 {c.title}
@@ -203,15 +203,15 @@ const OshaComplianceGuidePage = () => {
               <section
                 key={cluster.id}
                 id={cluster.id}
-                className={`scroll-mt-24 ${idx > 0 ? 'mt-16 md:mt-20 pt-12 md:pt-14 border-t border-[#0d1b2a]/10' : ''}`}
+                className={`scroll-mt-24 ${idx > 0 ? 'mt-16 md:mt-20 pt-12 md:pt-14 border-t border-[#1C2B2B]/10' : ''}`}
                 data-testid={`cluster-${cluster.id}`}
               >
                 <div className="flex items-start gap-4 mb-5">
                   <div
                     className="flex items-center justify-center rounded"
-                    style={{ background: 'rgba(26,111,196,0.08)', width: 44, height: 44, flexShrink: 0 }}
+                    style={{ background: 'rgba(42,82,160,0.08)', width: 44, height: 44, flexShrink: 0 }}
                   >
-                    <Icon size={22} className="text-[#1a6fc4]" />
+                    <Icon size={22} className="text-[#2A52A0]" />
                   </div>
                   <div className="flex-grow">
                     <p
@@ -221,14 +221,14 @@ const OshaComplianceGuidePage = () => {
                       {cluster.eyebrow}
                     </p>
                     <h2
-                      className="text-2xl md:text-3xl font-bold text-[#0d1b2a] leading-tight"
+                      className="text-2xl md:text-3xl font-bold text-[#1C2B2B] leading-tight"
                       style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
                     >
                       {cluster.title}
                     </h2>
                   </div>
                 </div>
-                <p className="text-base text-[#0d1b2a]/70 leading-[1.7] mb-8 max-w-3xl">
+                <p className="text-base text-[#1C2B2B]/70 leading-[1.7] mb-8 max-w-3xl">
                   {cluster.blurb}
                 </p>
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
@@ -237,17 +237,17 @@ const OshaComplianceGuidePage = () => {
                       <Link
                         to={`/field-notes/${n.slug}`}
                         className="block p-5 rounded transition-all hover:translate-x-0.5 group"
-                        style={{ background: CREAM, border: '1px solid rgba(13,27,42,0.08)' }}
+                        style={{ background: CREAM, border: '1px solid rgba(28,43,43,0.08)' }}
                         data-testid={`cluster-note-${n.slug}`}
                       >
                         <div className="flex items-center gap-2 mb-1.5">
-                          <h3 className="text-base font-bold text-[#0d1b2a] group-hover:text-[#1a6fc4] transition-colors">
+                          <h3 className="text-base font-bold text-[#1C2B2B] group-hover:text-[#2A52A0] transition-colors">
                             {n.title}
                           </h3>
-                          <ArrowRight size={14} className="text-[#1a6fc4] opacity-0 group-hover:opacity-100 transition-opacity" />
+                          <ArrowRight size={14} className="text-[#2A52A0] opacity-0 group-hover:opacity-100 transition-opacity" />
                         </div>
                         <p
-                          className="text-[#0d1b2a]/55 leading-snug"
+                          className="text-[#1C2B2B]/55 leading-snug"
                           style={{ ...mono, fontSize: '11.5px' }}
                         >
                           {n.note}
@@ -263,7 +263,7 @@ const OshaComplianceGuidePage = () => {
       </section>
 
       {/* Closing CTA */}
-      <section className="py-14 md:py-20 border-t border-[#0d1b2a]/10" style={{ background: CREAM }} data-testid="osha-guide-cta">
+      <section className="py-14 md:py-20 border-t border-[#1C2B2B]/10" style={{ background: CREAM }} data-testid="osha-guide-cta">
         <div className="container max-w-3xl">
           {/* Trust strip — anchors the closing CTA in real numbers (GL-WEB-022) */}
           <div
@@ -302,11 +302,11 @@ const OshaComplianceGuidePage = () => {
           </div>
 
           <div className="text-center max-w-2xl mx-auto">
-            <p className="text-base md:text-lg text-[#0d1b2a]/65 mb-2">
+            <p className="text-base md:text-lg text-[#1C2B2B]/65 mb-2">
               Reading is the easy part.
             </p>
             <p
-              className="text-xl md:text-2xl text-[#0d1b2a] font-semibold mb-7"
+              className="text-xl md:text-2xl text-[#1C2B2B] font-semibold mb-7"
               style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
             >
               See what these standards look like on your floor.
@@ -315,14 +315,14 @@ const OshaComplianceGuidePage = () => {
               to="/intake?service=safety-walkthrough-report&utm_source=osha-guide-pillar&utm_medium=website&utm_campaign=pillar-cta"
               className="inline-flex items-center gap-2 font-bold px-7 py-4 rounded transition-colors text-white"
               style={{ background: BLUE }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = '#1560ae')}
+              onMouseEnter={(e) => (e.currentTarget.style.background = '#1F3F80')}
               onMouseLeave={(e) => (e.currentTarget.style.background = BLUE)}
               data-testid="osha-guide-bottom-cta"
             >
               Request a Safety Walkthrough
               <ArrowRight size={18} />
             </Link>
-            <p className="text-xs text-[#0d1b2a]/45 mt-5" style={mono}>
+            <p className="text-xs text-[#1C2B2B]/45 mt-5" style={mono}>
               From $1,200 · Findings in 48 hours · NC Piedmont Triad
             </p>
           </div>

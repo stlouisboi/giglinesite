@@ -239,7 +239,7 @@ const ContactForm = ({ compact = false }) => {
             name="smsConsent"
             checked={formData.smsConsent}
             onChange={handleChange}
-            className="mt-1 w-4 h-4 flex-shrink-0 cursor-pointer accent-[#1a6fc4]"
+            className="mt-1 w-4 h-4 flex-shrink-0 cursor-pointer accent-[#2A52A0]"
             data-testid="contact-form-sms-consent"
           />
           <span className="text-xs leading-relaxed text-[#1C2B2B]/80">

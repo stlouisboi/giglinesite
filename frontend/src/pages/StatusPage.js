@@ -5,7 +5,7 @@ import SEO from '../components/SEO';
 import { trackReviewClick } from '../utils/analytics';
 
 const API = process.env.REACT_APP_BACKEND_URL;
-const C = { bg: '#1A1A1A', surface: '#222222', deep: '#111111', gold: '#1a6fc4', white: '#FFFFFF', sec: 'rgba(255,255,255,0.65)', muted: 'rgba(255,255,255,0.38)', border: 'rgba(255,255,255,0.08)' };
+const C = { bg: '#1A1A1A', surface: '#222222', deep: '#111111', gold: '#2A52A0', white: '#FFFFFF', sec: 'rgba(255,255,255,0.65)', muted: 'rgba(255,255,255,0.38)', border: 'rgba(255,255,255,0.08)' };
 
 const StatusPage = () => {
   const { clientToken } = useParams();

@@ -28,15 +28,15 @@ const PressCopyBlock = ({ label, text, testid }) => {
       <div className="flex items-center justify-between mb-2.5">
         <p
           className="uppercase font-bold"
-          style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.20em', color: '#0d1b2a' }}
+          style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.20em', color: '#1C2B2B' }}
         >
           {label}
         </p>
         <button
           type="button"
           onClick={handleCopy}
-          className="inline-flex items-center gap-1.5 text-xs font-semibold transition-colors hover:text-[#1a6fc4]"
-          style={{ color: copied ? '#1f6b48' : '#0d1b2a', ...mono }}
+          className="inline-flex items-center gap-1.5 text-xs font-semibold transition-colors hover:text-[#2A52A0]"
+          style={{ color: copied ? '#1f6b48' : '#1C2B2B', ...mono }}
           data-testid={`${testid}-copy-btn`}
         >
           {copied ? '✓ Copied' : 'Copy'}
@@ -46,8 +46,8 @@ const PressCopyBlock = ({ label, text, testid }) => {
         className="p-5 rounded text-[15px] leading-[1.7]"
         style={{
           background: '#F9F8F6',
-          border: '1px solid rgba(13,27,42,0.08)',
-          color: '#0d1b2a',
+          border: '1px solid rgba(28,43,43,0.08)',
+          color: '#1C2B2B',
           fontFamily: "Georgia, 'Times New Roman', serif",
         }}
       >
@@ -166,7 +166,7 @@ const AboutPage = () => {
       />
 
       {/* ═══ HERO + FOUNDER (one continuous dark navy section) ═══ */}
-      <section className="bg-[#0d1b2a] text-white" data-testid="about-hero-founder">
+      <section className="bg-[#1C2B2B] text-white" data-testid="about-hero-founder">
         <div className="container max-w-6xl pt-20 md:pt-28 pb-14 md:pb-20 text-center">
           <Reveal>
             <h1
@@ -212,7 +212,7 @@ const AboutPage = () => {
                       data-testid={`about-stat-${i + 1}`}
                     >
                       <p
-                        className="font-extrabold text-[#D4A93E] leading-none tracking-tight"
+                        className="font-extrabold text-[#C9A84C] leading-none tracking-tight"
                         style={{ ...mono, fontSize: 'clamp(20px, 2vw, 24px)' }}
                       >
                         {s.value}
@@ -303,26 +303,26 @@ This is GigLine Safety & Compliance.`}
           <Reveal>
             <p
               className="uppercase font-bold mb-3"
-              style={{ ...mono, fontSize: '10.4px', fontWeight: 700, letterSpacing: '2.08px', color: '#1a6fc4' }}
+              style={{ ...mono, fontSize: '10.4px', fontWeight: 700, letterSpacing: '2.08px', color: '#2A52A0' }}
             >
               The Name
             </p>
-            <h2 className="text-3xl md:text-[36px] font-extrabold text-[#0d1b2a] leading-[1.15] mb-3 tracking-tight">
+            <h2 className="text-3xl md:text-[36px] font-extrabold text-[#1C2B2B] leading-[1.15] mb-3 tracking-tight">
               Why &ldquo;GigLine&rdquo;?
             </h2>
-            <p className="text-[15px] text-[#0d1b2a]/65 mb-2" style={{ borderBottom: '2px solid #D4A93E', display: 'inline-block', paddingBottom: '8px' }}>
+            <p className="text-[15px] text-[#1C2B2B]/65 mb-2" style={{ borderBottom: '2px solid #C9A84C', display: 'inline-block', paddingBottom: '8px' }}>
               It&rsquo;s a small detail. But it explains everything.
             </p>
           </Reveal>
 
           <Reveal delay={120}>
             <div
-              className="rounded-xl bg-white p-7 md:p-9 mt-8 space-y-3 text-[15px] text-[#0d1b2a]/80 leading-[1.75]"
+              className="rounded-xl bg-white p-7 md:p-9 mt-8 space-y-3 text-[15px] text-[#1C2B2B]/80 leading-[1.75]"
               style={{ border: '1px solid #dde3ea' }}
               data-testid="about-gigline-def"
             >
               <p>
-                In the military, your <strong className="text-[#0d1b2a]">gig line</strong> is the straight line formed by your shirt, your belt buckle, and your trouser fly.
+                In the military, your <strong className="text-[#1C2B2B]">gig line</strong> is the straight line formed by your shirt, your belt buckle, and your trouser fly.
               </p>
               <p>If it is off &mdash; even slightly &mdash; you are out of standard.</p>
               <p>
@@ -334,17 +334,17 @@ This is GigLine Safety & Compliance.`}
           <Reveal delay={200}>
             <blockquote
               className="pl-5 mt-10"
-              style={{ borderLeft: '3px solid #D4A93E' }}
+              style={{ borderLeft: '3px solid #C9A84C' }}
               data-testid="about-name-quote"
             >
               <p
-                className="text-[#0d1b2a] font-semibold text-[17px] md:text-[18px] leading-snug"
+                className="text-[#1C2B2B] font-semibold text-[17px] md:text-[18px] leading-snug"
                 style={{ fontFamily: "Georgia, 'Times New Roman', serif", fontStyle: 'italic' }}
               >
                 &ldquo;GigLine applies that same standard to safety and compliance. Not broad advice. Not general guidance. Alignment.&rdquo;
               </p>
             </blockquote>
-            <p className="text-[15px] text-[#0d1b2a]/70 mt-5 leading-relaxed">
+            <p className="text-[15px] text-[#1C2B2B]/70 mt-5 leading-relaxed">
               Because in most operations, the problem isn&rsquo;t effort. It&rsquo;s misalignment. And misalignment is what gets found.
             </p>
           </Reveal>
@@ -360,13 +360,13 @@ This is GigLine Safety & Compliance.`}
           <Reveal>
             <p
               className="uppercase font-bold mb-3"
-              style={{ ...mono, fontSize: '10.4px', fontWeight: 700, letterSpacing: '2.08px', color: '#1a6fc4' }}
+              style={{ ...mono, fontSize: '10.4px', fontWeight: 700, letterSpacing: '2.08px', color: '#2A52A0' }}
             >
               How GigLine Works
             </p>
-            <h2 className="text-3xl md:text-[36px] font-extrabold text-[#0d1b2a] leading-[1.15] mb-10 tracking-tight">
+            <h2 className="text-3xl md:text-[36px] font-extrabold text-[#1C2B2B] leading-[1.15] mb-10 tracking-tight">
               Private. Scoped. Delivered.
-              <span className="block w-12 h-[3px] bg-[#D4A93E] mt-3" />
+              <span className="block w-12 h-[3px] bg-[#C9A84C] mt-3" />
             </h2>
           </Reveal>
 
@@ -375,7 +375,7 @@ This is GigLine Safety & Compliance.`}
               <Reveal key={title} delay={120 + i * 80}>
                 <div
                   className="bg-white rounded-xl p-7 h-full transition-all duration-300 hover:-translate-y-0.5"
-                  style={{ border: '1px solid #dde3ea', boxShadow: '0 1px 0 rgba(13,27,42,0.02)' }}
+                  style={{ border: '1px solid #dde3ea', boxShadow: '0 1px 0 rgba(28,43,43,0.02)' }}
                   data-testid={`about-how-card-${i + 1}`}
                 >
                   <div
@@ -384,13 +384,13 @@ This is GigLine Safety & Compliance.`}
                       width: '44px',
                       height: '44px',
                       borderRadius: '10px',
-                      background: 'rgba(26,111,196,0.10)',
+                      background: 'rgba(42,82,160,0.10)',
                     }}
                   >
-                    <Icon size={20} strokeWidth={1.9} className="text-[#1a6fc4]" />
+                    <Icon size={20} strokeWidth={1.9} className="text-[#2A52A0]" />
                   </div>
-                  <h3 className="text-[15.5px] font-bold text-[#0d1b2a] mb-3">{title}</h3>
-                  <p className="text-[14px] text-[#0d1b2a]/70 leading-[1.65]">{body}</p>
+                  <h3 className="text-[15.5px] font-bold text-[#1C2B2B] mb-3">{title}</h3>
+                  <p className="text-[14px] text-[#1C2B2B]/70 leading-[1.65]">{body}</p>
                 </div>
               </Reveal>
             ))}
@@ -404,17 +404,17 @@ This is GigLine Safety & Compliance.`}
           <Reveal>
             <p
               className="uppercase font-bold mb-3"
-              style={{ ...mono, fontSize: '10.4px', fontWeight: 700, letterSpacing: '2.08px', color: '#1a6fc4' }}
+              style={{ ...mono, fontSize: '10.4px', fontWeight: 700, letterSpacing: '2.08px', color: '#2A52A0' }}
             >
               Why GigLine Exists
             </p>
-            <h2 className="text-3xl md:text-[36px] font-extrabold text-[#0d1b2a] leading-[1.15] mb-8 max-w-3xl tracking-tight">
+            <h2 className="text-3xl md:text-[36px] font-extrabold text-[#1C2B2B] leading-[1.15] mb-8 max-w-3xl tracking-tight">
               Most small operations don&rsquo;t have a safety director. They have you.
             </h2>
           </Reveal>
 
           <Reveal delay={120}>
-            <div className="space-y-5 text-[15.5px] md:text-base text-[#0d1b2a]/75 leading-[1.75]">
+            <div className="space-y-5 text-[15.5px] md:text-base text-[#1C2B2B]/75 leading-[1.75]">
               <p>
                 A plant manager at a 30-person fabrication shop is responsible for production, quality, HR, and safety &mdash; simultaneously. There&rsquo;s no budget for a full-time safety coordinator. There&rsquo;s no time to read 29 CFR 1910 cover to cover. And there&rsquo;s no one to call when an inspector shows up.
               </p>
@@ -424,7 +424,7 @@ This is GigLine Safety & Compliance.`}
               <p>
                 GigLine exists to give small and mid-size operations the same floor-level safety intelligence that larger companies pay a full-time coordinator to provide &mdash; without the retainer, without the overhead, and without the generic checklist.
               </p>
-              <p className="font-semibold text-[#0d1b2a]">
+              <p className="font-semibold text-[#1C2B2B]">
                 One visit. One report. A clear picture of where you stand and what to fix first.
               </p>
             </div>
@@ -433,7 +433,7 @@ This is GigLine Safety & Compliance.`}
       </section>
 
       {/* ═══ U.S. NAVY VETERAN BAND ═══ */}
-      <section className="py-14 md:py-16 bg-[#0d1b2a]" data-testid="about-navy-band">
+      <section className="py-14 md:py-16 bg-[#1C2B2B]" data-testid="about-navy-band">
         <div className="container max-w-4xl">
           <Reveal>
             <div className="flex items-start gap-5 md:gap-6">
@@ -443,16 +443,16 @@ This is GigLine Safety & Compliance.`}
                   width: '48px',
                   height: '48px',
                   borderRadius: '50%',
-                  background: 'rgba(26,111,196,0.20)',
-                  border: '1px solid rgba(26,111,196,0.40)',
+                  background: 'rgba(42,82,160,0.20)',
+                  border: '1px solid rgba(42,82,160,0.40)',
                 }}
               >
-                <Anchor size={22} strokeWidth={1.9} className="text-[#1a6fc4]" />
+                <Anchor size={22} strokeWidth={1.9} className="text-[#2A52A0]" />
               </div>
               <div className="flex-1">
                 <p
                   className="uppercase font-bold mb-3"
-                  style={{ ...mono, fontSize: '10.4px', letterSpacing: '2.08px', color: '#1a6fc4' }}
+                  style={{ ...mono, fontSize: '10.4px', letterSpacing: '2.08px', color: '#2A52A0' }}
                 >
                   U.S. Navy Veteran
                 </p>
@@ -466,22 +466,22 @@ This is GigLine Safety & Compliance.`}
       </section>
 
       {/* ═══ EDITORIAL / PRESS BIO — copy-paste-ready credentials for editors ═══ */}
-      <section className="py-16 md:py-20 bg-white" style={{ borderTop: '1px solid rgba(13,27,42,0.08)' }} data-testid="about-press-bio-section">
+      <section className="py-16 md:py-20 bg-white" style={{ borderTop: '1px solid rgba(28,43,43,0.08)' }} data-testid="about-press-bio-section">
         <div className="container max-w-3xl">
           <Reveal>
             <p
               className="uppercase font-bold mb-3"
-              style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.22em', color: '#D4A93E' }}
+              style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.22em', color: '#C9A84C' }}
             >
               For Editors &amp; Publications
             </p>
             <h2
               className="text-2xl md:text-3xl font-bold mb-5 leading-tight tracking-tight"
-              style={{ color: '#0d1b2a', fontFamily: "Georgia, 'Times New Roman', serif" }}
+              style={{ color: '#1C2B2B', fontFamily: "Georgia, 'Times New Roman', serif" }}
             >
               Credentials &amp; bio — ready to publish.
             </h2>
-            <p className="text-base text-[#0d1b2a]/65 mb-9 leading-[1.7]">
+            <p className="text-base text-[#1C2B2B]/65 mb-9 leading-[1.7]">
               For guest articles, op-eds, podcast bookings, and quoted commentary on OSHA compliance and manufacturing safety. Copy any block below — all text is pre-approved and factually verified.
             </p>
 
@@ -500,9 +500,9 @@ This is GigLine Safety & Compliance.`}
                   style={{
                     ...mono,
                     fontSize: '10.5px',
-                    background: 'rgba(13,27,42,0.04)',
-                    color: '#0d1b2a',
-                    border: '1px solid rgba(13,27,42,0.10)',
+                    background: 'rgba(28,43,43,0.04)',
+                    color: '#1C2B2B',
+                    border: '1px solid rgba(28,43,43,0.10)',
                   }}
                 >
                   {c}
@@ -526,9 +526,9 @@ This is GigLine Safety & Compliance.`}
               testid="copy-direct-contact"
             />
 
-            <p className="text-sm text-[#0d1b2a]/55 mt-3 leading-[1.65]">
+            <p className="text-sm text-[#1C2B2B]/55 mt-3 leading-[1.65]">
               For other formats (250-word bio, headshot, expanded credentials, topic pitches), email{' '}
-              <a href="mailto:vince@giglinecompliance.com?subject=Press%20Inquiry%20-%20GigLine" className="font-semibold text-[#1a6fc4] hover:text-[#0d1b2a] underline underline-offset-4">
+              <a href="mailto:vince@giglinecompliance.com?subject=Press%20Inquiry%20-%20GigLine" className="font-semibold text-[#2A52A0] hover:text-[#1C2B2B] underline underline-offset-4">
                 vince@giglinecompliance.com
               </a>{' '}
               — replies within one business day.
@@ -543,20 +543,20 @@ This is GigLine Safety & Compliance.`}
           <Reveal>
             <p
               className="uppercase font-bold mb-3"
-              style={{ ...mono, fontSize: '10.4px', fontWeight: 700, letterSpacing: '2.08px', color: '#1a6fc4' }}
+              style={{ ...mono, fontSize: '10.4px', fontWeight: 700, letterSpacing: '2.08px', color: '#2A52A0' }}
             >
               Ready to get started?
             </p>
-            <h2 className="text-3xl md:text-[36px] font-extrabold text-[#0d1b2a] leading-[1.15] mb-5 tracking-tight">
+            <h2 className="text-3xl md:text-[36px] font-extrabold text-[#1C2B2B] leading-[1.15] mb-5 tracking-tight">
               If you&rsquo;re not sure what&rsquo;s exposed, start with a walkthrough.
             </h2>
-            <p className="text-base md:text-lg text-[#0d1b2a]/70 leading-relaxed mb-10 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-[#1C2B2B]/70 leading-relaxed mb-10 max-w-2xl mx-auto">
               Every engagement is scoped to your operation, priced before scheduling, and delivered with a written report. No retainer. No ongoing obligation unless you want one.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 to="/intake"
-                className="inline-flex items-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#1a6fc4]/15"
+                className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#2A52A0]/15"
                 data-testid="about-cta-walkthrough"
               >
                 Request a Walkthrough
@@ -564,7 +564,7 @@ This is GigLine Safety & Compliance.`}
               </Link>
               <a
                 href="tel:3363298899"
-                className="inline-flex items-center gap-2 bg-white border-2 border-[#0d1b2a] hover:bg-[#0d1b2a] hover:text-white text-[#0d1b2a] font-bold px-8 py-4 rounded-lg text-base transition-colors"
+                className="inline-flex items-center gap-2 bg-white border-2 border-[#1C2B2B] hover:bg-[#1C2B2B] hover:text-white text-[#1C2B2B] font-bold px-8 py-4 rounded-lg text-base transition-colors"
                 data-testid="about-cta-phone"
               >
                 <Phone size={16} />

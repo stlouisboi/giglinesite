@@ -22,9 +22,9 @@ const SLUG = 'compliance-readiness-visit';
 const INTAKE_HREF = `/intake?service=${SLUG}`;
 const WALKTHROUGH_HREF = '/services/safety-walkthrough-report';
 
-const GOLD = '#D4A93E';
-const NAVY = '#0d1b2a';
-const BLUE = '#1a6fc4';
+const GOLD = '#C9A84C';
+const NAVY = '#1C2B2B';
+const BLUE = '#2A52A0';
 const CREAM = '#f5f4f0';
 
 const DELIVERABLES = [
@@ -192,7 +192,7 @@ const CTABar = () => (
             to={INTAKE_HREF}
             className="inline-flex items-center gap-2 font-bold px-5 py-2.5 rounded-lg text-[13.5px] transition-colors"
             style={{ background: BLUE, color: '#ffffff' }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = '#1560ae')}
+            onMouseEnter={(e) => (e.currentTarget.style.background = '#1F3F80')}
             onMouseLeave={(e) => (e.currentTarget.style.background = BLUE)}
             data-testid="crv-bar-cta"
           >
@@ -321,11 +321,11 @@ const ComplianceReadinessVisitPage = () => {
             <div
               className="rounded-lg p-5"
               style={{
-                background: 'rgba(212,169,62,0.06)',
-                border: '1px solid rgba(212,169,62,0.30)',
+                background: 'rgba(201,168,76,0.06)',
+                border: '1px solid rgba(201,168,76,0.30)',
               }}
             >
-              <p className="text-[13px] leading-[1.65]" style={{ color: 'rgba(212,169,62,0.95)' }}>
+              <p className="text-[13px] leading-[1.65]" style={{ color: 'rgba(201,168,76,0.95)' }}>
                 A single OSHA serious violation averages{' '}
                 <span className="font-bold" style={mono}>$16,550</span>. One finding prevents the cost of this
                 engagement many times over.
@@ -342,7 +342,7 @@ const ComplianceReadinessVisitPage = () => {
           <h2 className="text-3xl md:text-4xl font-extrabold leading-[1.15] mb-4 tracking-tight max-w-3xl" style={{ color: NAVY }}>
             Seven deliverables. One engagement.
           </h2>
-          <p className="text-base text-[#0d1b2a]/65 leading-[1.75] mb-12 max-w-3xl">
+          <p className="text-base text-[#1C2B2B]/65 leading-[1.75] mb-12 max-w-3xl">
             Most operations only need this once to understand exactly where they stand. Everything below is included at
             the fixed price — no add-ons, no upsells.
           </p>
@@ -366,7 +366,7 @@ const ComplianceReadinessVisitPage = () => {
                       width: 36,
                       height: 36,
                       borderRadius: 8,
-                      background: d.highlight ? 'rgba(26,111,196,0.18)' : 'rgba(26,111,196,0.10)',
+                      background: d.highlight ? 'rgba(42,82,160,0.18)' : 'rgba(42,82,160,0.10)',
                       color: BLUE,
                     }}
                   >
@@ -376,7 +376,7 @@ const ComplianceReadinessVisitPage = () => {
                     <h3 className="text-[16.5px] font-bold mb-2 leading-snug" style={{ color: NAVY }}>
                       {d.title}
                     </h3>
-                    <p className="text-[14px] text-[#0d1b2a]/70 leading-[1.7]">{d.body}</p>
+                    <p className="text-[14px] text-[#1C2B2B]/70 leading-[1.7]">{d.body}</p>
                   </div>
                 </div>
               );
@@ -395,7 +395,7 @@ const ComplianceReadinessVisitPage = () => {
               <h2 className="text-2xl md:text-3xl font-extrabold leading-[1.2] mb-4 tracking-tight" style={{ color: NAVY }}>
                 Five categories.<br />Every engagement.
               </h2>
-              <p className="text-[15px] text-[#0d1b2a]/75 leading-[1.75] mb-7">
+              <p className="text-[15px] text-[#1C2B2B]/75 leading-[1.75] mb-7">
                 The Compliance Readiness Visit covers both the physical floor and the paper trail. Most operations have
                 gaps in both. The report tells you exactly where — and in what order to fix them.
               </p>
@@ -424,7 +424,7 @@ const ComplianceReadinessVisitPage = () => {
                       <h3 className="text-[15.5px] font-bold mb-1 leading-snug" style={{ color: NAVY }}>
                         {cat.title}
                       </h3>
-                      <p className="text-[13.5px] text-[#0d1b2a]/65 leading-[1.7]">{cat.body}</p>
+                      <p className="text-[13.5px] text-[#1C2B2B]/65 leading-[1.7]">{cat.body}</p>
                     </div>
                   </li>
                 ))}
@@ -437,7 +437,7 @@ const ComplianceReadinessVisitPage = () => {
               <h2 className="text-2xl md:text-3xl font-extrabold leading-[1.2] mb-4 tracking-tight" style={{ color: NAVY }}>
                 What you actually receive.
               </h2>
-              <p className="text-[15px] text-[#0d1b2a]/75 leading-[1.75] mb-7">
+              <p className="text-[15px] text-[#1C2B2B]/75 leading-[1.75] mb-7">
                 An 18-page CFR-cited field audit report with a compliance score, at-a-glance dashboard, executive
                 summary, and prioritized remediation sequence. Not a checklist. Not a template. A document specific to
                 your operation.
@@ -464,7 +464,7 @@ const ComplianceReadinessVisitPage = () => {
                       Anchor Metal Supply<br />
                       Client name redacted
                     </p>
-                    <div className="mt-3 h-px" style={{ background: 'rgba(212,169,62,0.4)' }} />
+                    <div className="mt-3 h-px" style={{ background: 'rgba(201,168,76,0.4)' }} />
                     <div className="mt-3 grid grid-cols-2 gap-1 text-[7px] text-white/40 leading-tight">
                       <span>Facility Details</span>
                       <span className="text-right">DAVIE COUNTY</span>
@@ -500,7 +500,7 @@ const ComplianceReadinessVisitPage = () => {
                       <div key={idx} className="h-1.5 rounded-sm" style={{ background: c }} />
                     ))}
                   </div>
-                  <p className="text-[6px] text-[#0d1b2a]/60 leading-[1.5] mb-2">
+                  <p className="text-[6px] text-[#1C2B2B]/60 leading-[1.5] mb-2">
                     Inspection conducted across five OSHA categories on a 53-point checklist. Physical walkthrough +
                     documentation review.
                   </p>
@@ -513,7 +513,7 @@ const ComplianceReadinessVisitPage = () => {
                     ].map((row) => (
                       <div key={row.label} className="flex items-center gap-1.5 text-[6px]">
                         <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: row.c }} />
-                        <span className="flex-1 text-[#0d1b2a]/70">{row.label}</span>
+                        <span className="flex-1 text-[#1C2B2B]/70">{row.label}</span>
                         <span className="font-bold" style={{ color: NAVY, ...mono }}>
                           {row.n}
                         </span>
@@ -522,7 +522,7 @@ const ComplianceReadinessVisitPage = () => {
                   </div>
                 </div>
               </div>
-              <p className="text-[12px] text-[#0d1b2a]/55 italic mt-4">
+              <p className="text-[12px] text-[#1C2B2B]/55 italic mt-4">
                 Sample from an actual engagement. Client details redacted.
               </p>
             </div>
@@ -559,7 +559,7 @@ const ComplianceReadinessVisitPage = () => {
                     width: 32,
                     height: 32,
                     borderRadius: '50%',
-                    background: 'rgba(212,169,62,0.15)',
+                    background: 'rgba(201,168,76,0.15)',
                     color: GOLD,
                   }}
                 >
@@ -599,7 +599,7 @@ const ComplianceReadinessVisitPage = () => {
                       <h3 className="text-[17px] font-bold mb-2 leading-snug" style={{ color: NAVY }}>
                         {step.title}
                       </h3>
-                      <p className="text-[14.5px] text-[#0d1b2a]/70 leading-[1.7]">{step.body}</p>
+                      <p className="text-[14.5px] text-[#1C2B2B]/70 leading-[1.7]">{step.body}</p>
                     </div>
                   </div>
                 </React.Fragment>
@@ -618,7 +618,7 @@ const ComplianceReadinessVisitPage = () => {
           <h2 className="text-3xl md:text-4xl font-extrabold leading-[1.15] mb-5 tracking-tight" style={{ color: NAVY }}>
             Schedule a Compliance Readiness Visit.
           </h2>
-          <p className="text-base md:text-lg text-[#0d1b2a]/75 leading-[1.85] mb-10 max-w-3xl mx-auto">
+          <p className="text-base md:text-lg text-[#1C2B2B]/75 leading-[1.85] mb-10 max-w-3xl mx-auto">
             Fixed price. Private engagement. Report in 48 hours. If you&rsquo;re not sure this is the right starting
             point, start with a Safety Walkthrough instead.
           </p>
@@ -653,7 +653,7 @@ const ComplianceReadinessVisitPage = () => {
           </div>
           <a
             href="tel:3363298899"
-            className="inline-flex items-center gap-2 text-[#0d1b2a]/60 hover:text-[#0d1b2a] text-sm mt-8 transition-colors"
+            className="inline-flex items-center gap-2 text-[#1C2B2B]/60 hover:text-[#1C2B2B] text-sm mt-8 transition-colors"
             data-testid="crv-cta-phone"
           >
             <Phone size={14} />

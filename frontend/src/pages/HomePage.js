@@ -133,7 +133,7 @@ const HomePage = () => {
       ═══════════════════════════════════════════════ */}
       <section
         className="relative min-h-[60vh] xl:min-h-[85vh] overflow-hidden"
-        style={{ backgroundColor: '#0d1b2a' }}
+        style={{ backgroundColor: '#1C2B2B' }}
         data-testid="hero-section"
       >
         <div className="flex flex-col xl:flex-row h-full min-h-[60vh] xl:min-h-[85vh]">
@@ -148,8 +148,8 @@ const HomePage = () => {
               data-testid="hero-image"
             />
             {/* Gradient bleed into text column */}
-            <div className="hidden xl:block absolute inset-y-0 right-0 w-1/3 bg-gradient-to-r from-transparent to-[#0d1b2a]" />
-            <div className="xl:hidden absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#0d1b2a] to-transparent" />
+            <div className="hidden xl:block absolute inset-y-0 right-0 w-1/3 bg-gradient-to-r from-transparent to-[#1C2B2B]" />
+            <div className="xl:hidden absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#1C2B2B] to-transparent" />
           </div>
 
           {/* Right — Copy */}
@@ -203,7 +203,7 @@ const HomePage = () => {
                       cta_destination: '/intake?service=safety-walkthrough-report',
                       page_path: typeof window !== 'undefined' ? window.location.pathname : '/',
                     })}
-                    className="bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center justify-center gap-2 shadow-lg shadow-[#1a6fc4]/20"
+                    className="bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center justify-center gap-2 shadow-lg shadow-[#2A52A0]/20"
                     data-testid="hero-cta-primary"
                   >
                     Request a Walkthrough
@@ -224,7 +224,7 @@ const HomePage = () => {
                 </div>
                 <p className="text-sm text-[#CBD5E1] leading-relaxed max-w-md" data-testid="hero-pricing-direction">
                   Fixed quote before scheduling. Written report in 48 hours. No retainer.{' '}
-                  <Link to="/services" className="text-[#1a6fc4] hover:text-white underline decoration-[#1a6fc4]/40 hover:decoration-white transition-colors font-semibold">
+                  <Link to="/services" className="text-[#2A52A0] hover:text-white underline decoration-[#2A52A0]/40 hover:decoration-white transition-colors font-semibold">
                     See service options &rarr;
                   </Link>
                 </p>
@@ -253,13 +253,13 @@ const HomePage = () => {
       <section className="py-20 md:py-24 bg-white border-t border-b" style={{ borderColor: '#dde3ea' }} data-testid="floor-findings-section">
         <div className="container max-w-6xl">
           <Reveal>
-            <p className="uppercase tracking-[0.18em] text-[#1a6fc4] font-semibold mb-3" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }} data-testid="floor-findings-eyebrow">
+            <p className="uppercase tracking-[0.18em] text-[#2A52A0] font-semibold mb-3" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }} data-testid="floor-findings-eyebrow">
               What We Find on the Floor
             </p>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#0d1b2a] leading-[1.15] mb-4 max-w-3xl">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#1C2B2B] leading-[1.15] mb-4 max-w-3xl">
               Most violations are hiding in plain sight.
             </h2>
-            <p className="text-base text-[#0d1b2a]/70 leading-relaxed mb-12 max-w-3xl">
+            <p className="text-base text-[#1C2B2B]/70 leading-relaxed mb-12 max-w-3xl">
               OSHA doesn&apos;t find things your team missed. They find things your team stopped seeing. Here&apos;s what shows up on almost every walkthrough.
             </p>
           </Reveal>
@@ -293,19 +293,19 @@ const HomePage = () => {
                   )}
                   <span
                     className="font-bold mb-3"
-                    style={{ ...mono, fontSize: '13px', letterSpacing: '0.12em', color: '#1a6fc4' }}
+                    style={{ ...mono, fontSize: '13px', letterSpacing: '0.12em', color: '#2A52A0' }}
                   >
                     {c.num}
                   </span>
-                  <h3 className="text-lg md:text-xl font-bold text-[#0d1b2a] leading-tight mb-3">{c.title}</h3>
-                  <p className="text-[15px] text-[#0d1b2a]/70 leading-[1.65]">{c.body}</p>
+                  <h3 className="text-lg md:text-xl font-bold text-[#1C2B2B] leading-tight mb-3">{c.title}</h3>
+                  <p className="text-[15px] text-[#1C2B2B]/70 leading-[1.65]">{c.body}</p>
                 </div>
               </Reveal>
             ))}
           </div>
 
           <Reveal>
-            <p className="text-sm text-[#0d1b2a]/55 italic mt-12 max-w-3xl">
+            <p className="text-sm text-[#1C2B2B]/55 italic mt-12 max-w-3xl">
               These are findings from real walkthroughs &mdash; not a checklist from a textbook. Every facility is different.
             </p>
           </Reveal>
@@ -319,8 +319,8 @@ const HomePage = () => {
             <div
               className="p-7 md:p-9 rounded-md"
               style={{
-                background: '#0d1b2a',
-                borderLeft: '4px solid #D4A93E',
+                background: '#1C2B2B',
+                borderLeft: '4px solid #C9A84C',
                 color: 'white',
               }}
               data-testid="recent-engagement-card"
@@ -331,7 +331,7 @@ const HomePage = () => {
                   fontFamily: "'JetBrains Mono', monospace",
                   fontSize: '10.5px',
                   letterSpacing: '0.20em',
-                  color: '#D4A93E',
+                  color: '#C9A84C',
                 }}
               >
                 Recent Engagement
@@ -341,7 +341,7 @@ const HomePage = () => {
               </p>
               <Link
                 to="/case-study/metals-fabrication-statesville"
-                className="inline-flex items-center gap-2 font-semibold text-[#D4A93E] hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 font-semibold text-[#C9A84C] hover:text-white transition-colors"
                 style={{ fontSize: '15px' }}
                 data-testid="recent-engagement-cta"
               >
@@ -356,10 +356,10 @@ const HomePage = () => {
       <section className="py-20 md:py-24" style={{ backgroundColor: '#f5f4f0' }} data-testid="why-gigline-section">
         <div className="container max-w-6xl">
           <Reveal>
-            <p className="uppercase font-bold mb-6" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', letterSpacing: '0.2em', color: '#1a6fc4' }}>
+            <p className="uppercase font-bold mb-6" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', letterSpacing: '0.2em', color: '#2A52A0' }}>
               Why GigLine
             </p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#0d1b2a] leading-[1.1] mb-12 max-w-4xl tracking-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#1C2B2B] leading-[1.1] mb-12 max-w-4xl tracking-tight">
               Not a software tool. Not a template audit. A person who walks your floor.
             </h2>
           </Reveal>
@@ -390,9 +390,9 @@ const HomePage = () => {
                 <div
                   className="h-full p-8 flex flex-col bg-white"
                   style={{
-                    border: c.featured ? '2px solid #1a6fc4' : '1px solid #dde3ea',
+                    border: c.featured ? '2px solid #2A52A0' : '1px solid #dde3ea',
                     borderRadius: '16px',
-                    boxShadow: c.featured ? '0 4px 12px -4px rgba(26,111,196,0.15)' : '0 1px 0 rgba(13,27,42,0.02)',
+                    boxShadow: c.featured ? '0 4px 12px -4px rgba(42,82,160,0.15)' : '0 1px 0 rgba(28,43,43,0.02)',
                   }}
                   data-testid={`why-gigline-card-${i + 1}`}
                 >
@@ -402,18 +402,18 @@ const HomePage = () => {
                       width: '48px',
                       height: '48px',
                       borderRadius: '50%',
-                      backgroundColor: c.featured ? 'rgba(26,111,196,0.10)' : 'rgba(13,27,42,0.06)',
+                      backgroundColor: c.featured ? 'rgba(42,82,160,0.10)' : 'rgba(28,43,43,0.06)',
                     }}
                   >
-                    <c.Icon size={22} strokeWidth={1.75} style={{ color: c.featured ? '#1a6fc4' : '#6b7280' }} />
+                    <c.Icon size={22} strokeWidth={1.75} style={{ color: c.featured ? '#2A52A0' : '#6b7280' }} />
                   </div>
                   <p
                     className="uppercase font-semibold mb-3"
-                    style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', letterSpacing: '0.16em', color: c.featured ? '#1a6fc4' : '#6b7280' }}
+                    style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', letterSpacing: '0.16em', color: c.featured ? '#2A52A0' : '#6b7280' }}
                   >
                     {c.kicker}
                   </p>
-                  <h3 className="text-lg md:text-xl font-bold text-[#0d1b2a] leading-snug mb-3">{c.title}</h3>
+                  <h3 className="text-lg md:text-xl font-bold text-[#1C2B2B] leading-snug mb-3">{c.title}</h3>
                   <p className="text-[15px] text-[#6b7280] leading-[1.65]">{c.body}</p>
                 </div>
               </Reveal>
@@ -425,7 +425,7 @@ const HomePage = () => {
             <div
               className="mt-12 md:mt-14 p-7 md:p-8"
               style={{
-                background: '#0d1b2a',
+                background: '#1C2B2B',
                 borderLeft: '4px solid #c8922a',
                 borderRadius: '0 8px 8px 0',
               }}
@@ -470,10 +470,10 @@ const HomePage = () => {
               <p>OSHA does not wait for you to get to it.</p>
             </div>
 
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0d1b2a] leading-[1.15] mb-4 max-w-4xl tracking-tight">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#1C2B2B] leading-[1.15] mb-4 max-w-4xl tracking-tight">
               A serious OSHA violation can cost up to $16,550 per citation.
             </h2>
-            <p className="text-base md:text-lg text-[#0d1b2a]/70 leading-relaxed mb-12 max-w-3xl">
+            <p className="text-base md:text-lg text-[#1C2B2B]/70 leading-relaxed mb-12 max-w-3xl">
               That&apos;s per citation. A single inspection can produce multiple citations across multiple standards. The Safety Walkthrough starts at $1,200.
             </p>
           </Reveal>
@@ -495,22 +495,22 @@ const HomePage = () => {
                   data-testid={`cost-stat-${i + 1}`}
                 >
                   <p
-                    className="font-extrabold mb-3 text-[#0d1b2a] leading-none tracking-tight"
+                    className="font-extrabold mb-3 text-[#1C2B2B] leading-none tracking-tight"
                     style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 'clamp(36px, 5vw, 52px)' }}
                     data-testid={`cost-stat-${i + 1}-value`}
                   >
                     {s.stat}
                   </p>
-                  <p className="text-sm md:text-[15px] text-[#0d1b2a]/70 leading-snug">{s.label}</p>
+                  <p className="text-sm md:text-[15px] text-[#1C2B2B]/70 leading-snug">{s.label}</p>
                 </div>
               </Reveal>
             ))}
           </div>
 
           <Reveal>
-            <p className="text-base md:text-lg text-[#0d1b2a]/80 leading-[1.75] max-w-4xl">
+            <p className="text-base md:text-lg text-[#1C2B2B]/80 leading-[1.75] max-w-4xl">
               OSHA doesn&apos;t announce inspections. They arrive after a complaint, a referral, or a fatality &mdash; or as part of a programmed inspection targeting your industry. By the time they&apos;re on your floor, the window to fix things has closed.{' '}
-              <span className="font-semibold text-[#0d1b2a]">The walkthrough is that window.</span>
+              <span className="font-semibold text-[#1C2B2B]">The walkthrough is that window.</span>
             </p>
           </Reveal>
 
@@ -519,7 +519,7 @@ const HomePage = () => {
             <div
               className="mt-10 p-7 md:p-8 max-w-4xl"
               style={{
-                background: '#0d1b2a',
+                background: '#1C2B2B',
                 borderLeft: '4px solid #c8922a',
                 borderRadius: '12px',
                 color: 'white',
@@ -552,13 +552,13 @@ const HomePage = () => {
       <section className="py-16 md:py-24" style={{ backgroundColor: '#f5f4f0' }} data-testid="services-section">
         <div className="container max-w-6xl">
           <Reveal>
-            <p className="uppercase font-bold mb-3" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', letterSpacing: '0.2em', color: '#1a6fc4' }}>
+            <p className="uppercase font-bold mb-3" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', letterSpacing: '0.2em', color: '#2A52A0' }}>
               Services
             </p>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0d1b2a] leading-[1.15] mb-4 max-w-3xl tracking-tight">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#1C2B2B] leading-[1.15] mb-4 max-w-3xl tracking-tight">
               Four ways to work with GigLine.
             </h2>
-            <p className="text-base md:text-lg text-[#0d1b2a]/70 leading-relaxed mb-12 max-w-3xl">
+            <p className="text-base md:text-lg text-[#1C2B2B]/70 leading-relaxed mb-12 max-w-3xl">
               Every engagement starts with a conversation. If we&apos;re not the right fit, we&apos;ll tell you.
             </p>
           </Reveal>
@@ -608,10 +608,10 @@ const HomePage = () => {
                 <div
                   className="relative h-full bg-white flex flex-col"
                   style={{
-                    border: s.featured ? '2px solid #1a6fc4' : '1px solid #dde3ea',
+                    border: s.featured ? '2px solid #2A52A0' : '1px solid #dde3ea',
                     borderRadius: '16px',
                     padding: s.featured ? '44px 32px 36px' : '36px 32px',
-                    boxShadow: s.featured ? '0 4px 12px -4px rgba(31,111,235,0.18)' : '0 1px 0 rgba(13,27,42,0.02)',
+                    boxShadow: s.featured ? '0 4px 12px -4px rgba(31,111,235,0.18)' : '0 1px 0 rgba(28,43,43,0.02)',
                   }}
                   data-testid={s.testid}
                 >
@@ -622,7 +622,7 @@ const HomePage = () => {
                         top: 0,
                         left: '50%',
                         transform: 'translate(-50%, -50%)',
-                        background: '#1a6fc4',
+                        background: '#2A52A0',
                         color: '#fff',
                         fontSize: '10.5px',
                         letterSpacing: '0.14em',
@@ -642,29 +642,29 @@ const HomePage = () => {
                       width: '52px',
                       height: '52px',
                       borderRadius: '50%',
-                      background: s.featured ? 'rgba(31,111,235,0.10)' : 'rgba(13,27,42,0.05)',
+                      background: s.featured ? 'rgba(31,111,235,0.10)' : 'rgba(28,43,43,0.05)',
                     }}
                   >
-                    <s.Icon size={22} strokeWidth={1.75} style={{ color: s.featured ? '#1a6fc4' : '#0d1b2a' }} />
+                    <s.Icon size={22} strokeWidth={1.75} style={{ color: s.featured ? '#2A52A0' : '#1C2B2B' }} />
                   </div>
 
-                  <h3 className="text-lg md:text-xl font-bold text-[#0d1b2a] mb-1 leading-tight">{s.title}</h3>
+                  <h3 className="text-lg md:text-xl font-bold text-[#1C2B2B] mb-1 leading-tight">{s.title}</h3>
                   <p
                     className="font-bold mb-4"
-                    style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '15px', color: s.featured ? '#1a6fc4' : '#0d1b2a', letterSpacing: '-0.01em' }}
+                    style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '15px', color: s.featured ? '#2A52A0' : '#1C2B2B', letterSpacing: '-0.01em' }}
                     data-testid={`${s.testid}-price`}
                   >
                     {s.price}
                   </p>
-                  <p className="text-[14px] text-[#0d1b2a]/65 leading-[1.65] mb-4 flex-grow">{s.body}</p>
+                  <p className="text-[14px] text-[#1C2B2B]/65 leading-[1.65] mb-4 flex-grow">{s.body}</p>
 
                   {s.outcome && (
                     <p
                       className="mb-6 px-3 py-2.5 text-[13px] leading-[1.5] rounded"
                       style={{
-                        background: s.featured ? 'rgba(31,111,235,0.06)' : 'rgba(13,27,42,0.035)',
-                        borderLeft: `2px solid ${s.featured ? '#1a6fc4' : '#c8922a'}`,
-                        color: '#0d1b2a',
+                        background: s.featured ? 'rgba(31,111,235,0.06)' : 'rgba(28,43,43,0.035)',
+                        borderLeft: `2px solid ${s.featured ? '#2A52A0' : '#c8922a'}`,
+                        color: '#1C2B2B',
                         fontFamily: "Georgia, 'Times New Roman', serif",
                         fontStyle: 'italic',
                       }}
@@ -676,7 +676,7 @@ const HomePage = () => {
 
                   <Link
                     to={s.cta.to}
-                    className="inline-flex items-center gap-1.5 text-[#1a6fc4] hover:text-[#1560ae] font-semibold self-start transition-colors"
+                    className="inline-flex items-center gap-1.5 text-[#2A52A0] hover:text-[#1F3F80] font-semibold self-start transition-colors"
                     style={{ fontSize: '14px' }}
                   >
                     {s.cta.label} <ArrowRight size={14} />
@@ -687,7 +687,7 @@ const HomePage = () => {
           </div>
 
           <Reveal>
-            <p className="text-sm text-[#0d1b2a]/60 italic mb-8 max-w-3xl text-center mx-auto">
+            <p className="text-sm text-[#1C2B2B]/60 italic mb-8 max-w-3xl text-center mx-auto">
               Incident review, document development, ongoing compliance partnerships, and OSHA-ready control systems are also available.
             </p>
             <div className="flex justify-center">
@@ -695,14 +695,14 @@ const HomePage = () => {
                 to="/services"
                 className="inline-flex items-center gap-2 font-semibold transition-colors"
                 style={{
-                  color: '#1a6fc4',
-                  border: '1.5px solid #1a6fc4',
+                  color: '#2A52A0',
+                  border: '1.5px solid #2A52A0',
                   padding: '12px 24px',
                   borderRadius: '4px',
                   fontSize: '14px',
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = '#1a6fc4'; e.currentTarget.style.color = '#fff'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#1a6fc4'; }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = '#2A52A0'; e.currentTarget.style.color = '#fff'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#2A52A0'; }}
               >
                 See full services &amp; pricing
               </Link>
@@ -714,7 +714,7 @@ const HomePage = () => {
       {/* ═══ SAMPLE REPORT CTA BAND — secondary download cross-sell ═══ */}
       <section
         className="py-12 md:py-16"
-        style={{ backgroundColor: '#F9F8F6', borderTop: '1px solid rgba(13,27,42,0.08)' }}
+        style={{ backgroundColor: '#F9F8F6', borderTop: '1px solid rgba(28,43,43,0.08)' }}
         data-testid="home-sample-report-band"
       >
         <div className="container max-w-4xl">
@@ -722,23 +722,23 @@ const HomePage = () => {
             <div>
               <p
                 className="uppercase font-bold tracking-[0.22em] mb-2"
-                style={{ color: '#1a6fc4', fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }}
+                style={{ color: '#2A52A0', fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }}
               >
                 Free Sample
               </p>
               <h2
-                className="font-bold leading-tight text-[#0d1b2a] mb-2 text-[22px] md:text-[26px]"
+                className="font-bold leading-tight text-[#1C2B2B] mb-2 text-[22px] md:text-[26px]"
                 style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
               >
                 Want to see what a report looks like before you schedule?
               </h2>
-              <p className="text-[15px] md:text-base text-[#0d1b2a]/65 leading-relaxed max-w-2xl">
+              <p className="text-[15px] md:text-base text-[#1C2B2B]/65 leading-relaxed max-w-2xl">
                 Download a redacted compliance report &mdash; findings, CFR citations, penalty exposure, and the prioritized fix list. Real engagement, facility name removed.
               </p>
             </div>
             <Link
               to="/sample-report"
-              className="inline-flex items-center justify-center gap-2 bg-[#0d1b2a] hover:bg-[#1c2e44] text-white font-semibold px-6 py-3.5 rounded transition-colors whitespace-nowrap text-sm md:text-base"
+              className="inline-flex items-center justify-center gap-2 bg-[#1C2B2B] hover:bg-[#1c2e44] text-white font-semibold px-6 py-3.5 rounded transition-colors whitespace-nowrap text-sm md:text-base"
               data-testid="home-sample-report-cta"
             >
               Download a Sample Report &rarr;
@@ -811,7 +811,7 @@ const HomePage = () => {
       </section>
 
       {/* ═══ TESTIMONIALS + CASE STUDY + TRACK RECORD (relocated per spec — between Services and How It Works) ═══ */}
-      <section className="py-20 md:py-28" style={{ backgroundColor: '#0d1b2a' }} data-testid="trust-section">
+      <section className="py-20 md:py-28" style={{ backgroundColor: '#1C2B2B' }} data-testid="trust-section">
         <div className="container max-w-7xl grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12">
 
           {/* LEFT — What Clients Say */}
@@ -843,7 +843,7 @@ const HomePage = () => {
                   <span className="font-bold text-right" style={{ color: s.highlight ? '#22c55e' : '#fff', fontSize: '15px' }}>{s.value}</span>
                 </div>
               ))}
-              <Link to="/case-study/metals-fabrication-statesville" className="inline-flex items-center gap-2 mt-6 font-semibold" style={{ color: '#1a6fc4' }}>Read the full case study <ArrowRight size={14} /></Link>
+              <Link to="/case-study/metals-fabrication-statesville" className="inline-flex items-center gap-2 mt-6 font-semibold" style={{ color: '#2A52A0' }}>Read the full case study <ArrowRight size={14} /></Link>
             </div>
           </div>
 
@@ -874,10 +874,10 @@ const HomePage = () => {
       <section className="py-16 md:py-24" style={{ backgroundColor: '#f5f4f0' }} data-testid="how-it-works-section">
         <div className="container max-w-6xl">
           <Reveal>
-            <p className="uppercase font-bold mb-3" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', letterSpacing: '0.2em', color: '#1a6fc4' }}>
+            <p className="uppercase font-bold mb-3" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', letterSpacing: '0.2em', color: '#2A52A0' }}>
               How It Works
             </p>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0d1b2a] leading-[1.15] mb-14 max-w-3xl tracking-tight">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#1C2B2B] leading-[1.15] mb-14 max-w-3xl tracking-tight">
               Four steps. No surprises.
             </h2>
           </Reveal>
@@ -899,7 +899,7 @@ const HomePage = () => {
                     left: '10%',
                     right: '10%',
                     height: '1px',
-                    background: 'rgba(13,27,42,0.18)',
+                    background: 'rgba(28,43,43,0.18)',
                     zIndex: 0,
                   }}
                 />
@@ -914,24 +914,24 @@ const HomePage = () => {
                             width: '52px',
                             height: '52px',
                             borderRadius: '50%',
-                            background: '#0d1b2a',
+                            background: '#1C2B2B',
                             color: '#fff',
                             fontSize: '14px',
                             fontWeight: 700,
                             fontFamily: "'JetBrains Mono', monospace",
                             letterSpacing: '0.05em',
-                            boxShadow: '0 6px 16px -8px rgba(13,27,42,0.5)',
+                            boxShadow: '0 6px 16px -8px rgba(28,43,43,0.5)',
                           }}
                         >
                           {s.n}
                         </div>
-                        <h3 className="text-base md:text-lg font-bold text-[#0d1b2a] mb-2 leading-snug">{s.title}</h3>
-                        <p className="text-[13.5px] text-[#0d1b2a]/65 leading-[1.6] max-w-[230px]">
+                        <h3 className="text-base md:text-lg font-bold text-[#1C2B2B] mb-2 leading-snug">{s.title}</h3>
+                        <p className="text-[13.5px] text-[#1C2B2B]/65 leading-[1.6] max-w-[230px]">
                           {s.body}
                           {s.boldTail && (
                             <>
                               {' '}
-                              <strong className="text-[#0d1b2a] font-semibold">{s.boldTail}</strong>
+                              <strong className="text-[#1C2B2B] font-semibold">{s.boldTail}</strong>
                             </>
                           )}
                         </p>
@@ -947,7 +947,7 @@ const HomePage = () => {
             <div className="flex justify-center">
               <Link
                 to="/intake"
-                className="inline-flex items-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold transition-colors"
+                className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold transition-colors"
                 style={{ padding: '13px 28px', borderRadius: '4px', fontSize: '14px', boxShadow: '0 10px 24px -10px rgba(31,111,235,0.55)' }}
                 data-testid="how-it-works-cta"
               >
@@ -959,7 +959,7 @@ const HomePage = () => {
       </section>
 
       {/* ═══ SECTION 8 — ABOUT GIGLINE (dark navy, two-column) ═══ */}
-      <section className="py-16 md:py-24" style={{ backgroundColor: '#0d1b2a' }} data-testid="about-section">
+      <section className="py-16 md:py-24" style={{ backgroundColor: '#1C2B2B' }} data-testid="about-section">
         <div className="container max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
 
@@ -1142,24 +1142,24 @@ This is GigLine Safety & Compliance.`}
       <section className="py-16 md:py-20 bg-white" data-testid="bottom-cta-section">
         <div className="container max-w-4xl">
           <Reveal>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0d1b2a] leading-[1.15] mb-5 max-w-3xl tracking-tight">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#1C2B2B] leading-[1.15] mb-5 max-w-3xl tracking-tight">
               Know what&apos;s on your floor before OSHA does.
             </h2>
-            <p className="text-base md:text-lg text-[#0d1b2a]/70 leading-relaxed mb-9 max-w-2xl">
+            <p className="text-base md:text-lg text-[#1C2B2B]/70 leading-relaxed mb-9 max-w-2xl">
               The walkthrough takes a few hours. The report is in your hands in 48. The cost is a fraction of a single citation.
             </p>
             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
               <Link
                 to="/intake"
-                className="inline-flex items-center justify-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold transition-colors"
                 style={{ padding: '15px 30px', borderRadius: '4px', fontSize: '15px', boxShadow: '0 10px 24px -10px rgba(31,111,235,0.55)' }}
                 data-testid="bottom-cta-primary"
               >
                 Request a Walkthrough <ArrowRight size={16} />
               </Link>
-              <p className="text-sm text-[#0d1b2a]/70" data-testid="bottom-cta-secondary-line">
+              <p className="text-sm text-[#1C2B2B]/70" data-testid="bottom-cta-secondary-line">
                 Questions first? Call or text directly:{' '}
-                <a href="tel:3363298899" className="font-semibold text-[#0d1b2a] hover:text-[#1a6fc4] transition-colors whitespace-nowrap">
+                <a href="tel:3363298899" className="font-semibold text-[#1C2B2B] hover:text-[#2A52A0] transition-colors whitespace-nowrap">
                   (336) 329-8899
                 </a>
               </p>

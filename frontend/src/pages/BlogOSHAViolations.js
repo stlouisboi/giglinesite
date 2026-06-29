@@ -193,10 +193,10 @@ const BlogOSHAViolations = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#0d1b2a] text-white py-16 md:py-24">
+      <section className="bg-[#1C2B2B] text-white py-16 md:py-24">
         <div className="container max-w-3xl">
           <p
-            className="text-xs font-semibold tracking-widest text-[#1a6fc4] uppercase mb-4"
+            className="text-xs font-semibold tracking-widest text-[#2A52A0] uppercase mb-4"
             style={{ fontFamily: "'JetBrains Mono', monospace" }}
           >
             COMPLIANCE GUIDE
@@ -222,15 +222,15 @@ const BlogOSHAViolations = () => {
       </section>
 
       {/* Quick Summary */}
-      <section className="py-10 border-b border-[#0d1b2a]/10">
+      <section className="py-10 border-b border-[#1C2B2B]/10">
         <div className="container max-w-3xl">
-          <div className="bg-[#F9F8F6] border-l-3 border-[#1a6fc4] p-6 rounded" style={{ borderLeft: '3px solid #1a6fc4' }}>
-            <h2 className="text-base font-bold text-[#0d1b2a] mb-3">The Five Standards</h2>
+          <div className="bg-[#F9F8F6] border-l-3 border-[#2A52A0] p-6 rounded" style={{ borderLeft: '3px solid #2A52A0' }}>
+            <h2 className="text-base font-bold text-[#1C2B2B] mb-3">The Five Standards</h2>
             <ol className="space-y-2">
               {violations.map((v) => (
-                <li key={v.num} className="flex items-start gap-3 text-sm text-[#0d1b2a]/70">
-                  <span className="font-bold text-[#1a6fc4] flex-shrink-0">{v.num}.</span>
-                  <span><strong className="text-[#0d1b2a]">{v.title}</strong> — <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px' }}>{v.cfr}</span></span>
+                <li key={v.num} className="flex items-start gap-3 text-sm text-[#1C2B2B]/70">
+                  <span className="font-bold text-[#2A52A0] flex-shrink-0">{v.num}.</span>
+                  <span><strong className="text-[#1C2B2B]">{v.title}</strong> — <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px' }}>{v.cfr}</span></span>
                 </li>
               ))}
             </ol>
@@ -239,34 +239,34 @@ const BlogOSHAViolations = () => {
       </section>
 
       {/* Penalty Table */}
-      <section className="py-12 md:py-16 border-b border-[#0d1b2a]/10" id="penalties">
+      <section className="py-12 md:py-16 border-b border-[#1C2B2B]/10" id="penalties">
         <div className="container max-w-3xl">
           <h2
-            className="text-xl md:text-2xl font-bold text-[#0d1b2a] mb-2"
+            className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-2"
             style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
             What is the penalty for OSHA violations in 2025?
           </h2>
-          <p className="text-sm text-[#0d1b2a]/50 mb-6">As of January 2025. Adjusted annually for inflation.</p>
+          <p className="text-sm text-[#1C2B2B]/50 mb-6">As of January 2025. Adjusted annually for inflation.</p>
           <div className="overflow-x-auto">
             <table className="w-full text-sm" data-testid="penalty-table">
               <thead>
-                <tr className="border-b-2 border-[#0d1b2a]/10">
-                  <th className="text-left py-3 pr-4 font-semibold text-[#0d1b2a]">Violation Type</th>
-                  <th className="text-right py-3 font-semibold text-[#0d1b2a]">Maximum Penalty</th>
+                <tr className="border-b-2 border-[#1C2B2B]/10">
+                  <th className="text-left py-3 pr-4 font-semibold text-[#1C2B2B]">Violation Type</th>
+                  <th className="text-right py-3 font-semibold text-[#1C2B2B]">Maximum Penalty</th>
                 </tr>
               </thead>
               <tbody>
                 {penaltyData.map((row) => (
-                  <tr key={row.type} className="border-b border-[#0d1b2a]/5">
-                    <td className="py-3 pr-4 text-[#0d1b2a]/70">{row.type}</td>
-                    <td className="py-3 text-right font-semibold text-[#0d1b2a]" style={{ fontFamily: "'JetBrains Mono', monospace" }}>{row.amount}</td>
+                  <tr key={row.type} className="border-b border-[#1C2B2B]/5">
+                    <td className="py-3 pr-4 text-[#1C2B2B]/70">{row.type}</td>
+                    <td className="py-3 text-right font-semibold text-[#1C2B2B]" style={{ fontFamily: "'JetBrains Mono', monospace" }}>{row.amount}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-          <p className="text-xs text-[#0d1b2a]/50 mt-4">
+          <p className="text-xs text-[#1C2B2B]/50 mt-4">
             Multiple violations can be cited separately — a single inspection can result in tens of thousands of dollars in fines.
           </p>
         </div>
@@ -276,24 +276,24 @@ const BlogOSHAViolations = () => {
       {violations.map((v) => (
         <section
           key={v.num}
-          className="py-12 md:py-16 border-b border-[#0d1b2a]/10"
+          className="py-12 md:py-16 border-b border-[#1C2B2B]/10"
           id={`violation-${v.num}`}
           data-testid={`violation-section-${v.num}`}
         >
           <div className="container max-w-3xl">
             <div className="flex items-start gap-4 mb-6">
-              <div className="bg-[#0d1b2a] text-white w-10 h-10 rounded flex items-center justify-center flex-shrink-0">
+              <div className="bg-[#1C2B2B] text-white w-10 h-10 rounded flex items-center justify-center flex-shrink-0">
                 <v.icon size={20} />
               </div>
               <div>
                 <p
-                  className="text-xs text-[#0d1b2a]/40 font-semibold tracking-widest uppercase mb-1"
+                  className="text-xs text-[#1C2B2B]/40 font-semibold tracking-widest uppercase mb-1"
                   style={{ fontFamily: "'JetBrains Mono', monospace" }}
                 >
                   {v.cfr}
                 </p>
                 <h2
-                  className="text-xl md:text-2xl font-bold text-[#0d1b2a]"
+                  className="text-xl md:text-2xl font-bold text-[#1C2B2B]"
                   style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
                 >
                   {v.num}. {v.title}
@@ -301,12 +301,12 @@ const BlogOSHAViolations = () => {
               </div>
             </div>
 
-            <p className="text-[#0d1b2a]/60 italic mb-8 text-sm">{v.tagline}</p>
+            <p className="text-[#1C2B2B]/60 italic mb-8 text-sm">{v.tagline}</p>
 
             {v.cta && (
               <Link
                 to={v.cta.to}
-                className="inline-flex items-center gap-2 text-sm text-[#1560ae] font-medium hover:underline mb-4"
+                className="inline-flex items-center gap-2 text-sm text-[#1F3F80] font-medium hover:underline mb-4"
               >
                 {v.cta.text} <ArrowRight size={14} />
               </Link>
@@ -316,7 +316,7 @@ const BlogOSHAViolations = () => {
               <div className="mb-8">
                 <Link
                   to={v.deepLink.to}
-                  className="inline-flex items-center gap-2 text-xs text-[#0d1b2a]/50 hover:text-[#1560ae] transition-colors"
+                  className="inline-flex items-center gap-2 text-xs text-[#1C2B2B]/50 hover:text-[#1F3F80] transition-colors"
                 >
                   {v.deepLink.text}
                 </Link>
@@ -327,10 +327,10 @@ const BlogOSHAViolations = () => {
 
             <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <h3 className="text-sm font-semibold text-[#0d1b2a] mb-3 uppercase tracking-wider">Why It's Cited</h3>
+                <h3 className="text-sm font-semibold text-[#1C2B2B] mb-3 uppercase tracking-wider">Why It's Cited</h3>
                 <ul className="space-y-2">
                   {v.why.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-[#0d1b2a]/70">
+                    <li key={i} className="flex items-start gap-2 text-sm text-[#1C2B2B]/70">
                       <span className="text-red-500 mt-0.5 flex-shrink-0 text-xs">&#x2717;</span>
                       {item}
                     </li>
@@ -338,11 +338,11 @@ const BlogOSHAViolations = () => {
                 </ul>
               </div>
               <div>
-                <h3 className="text-sm font-semibold text-[#0d1b2a] mb-3 uppercase tracking-wider">What OSHA Requires</h3>
+                <h3 className="text-sm font-semibold text-[#1C2B2B] mb-3 uppercase tracking-wider">What OSHA Requires</h3>
                 <ul className="space-y-2">
                   {v.requires.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-[#0d1b2a]/70">
-                      <span className="text-[#1a6fc4] mt-0.5 flex-shrink-0 text-xs">&#x2713;</span>
+                    <li key={i} className="flex items-start gap-2 text-sm text-[#1C2B2B]/70">
+                      <span className="text-[#2A52A0] mt-0.5 flex-shrink-0 text-xs">&#x2713;</span>
                       {item}
                     </li>
                   ))}
@@ -357,7 +357,7 @@ const BlogOSHAViolations = () => {
       <section className="py-12 md:py-16 bg-[#F9F8F6]" data-testid="how-to-avoid">
         <div className="container max-w-3xl">
           <h2
-            className="text-xl md:text-2xl font-bold text-[#0d1b2a] mb-6"
+            className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-6"
             style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
             How can small manufacturers avoid OSHA violations?
@@ -371,12 +371,12 @@ const BlogOSHAViolations = () => {
               { title: "Perform regular inspections", desc: "Daily forklift checks, annual LOTO procedure reviews, quarterly chemical inventory updates" },
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-4">
-                <span className="bg-[#0d1b2a] text-white text-sm font-bold w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <span className="bg-[#1C2B2B] text-white text-sm font-bold w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                   {i + 1}
                 </span>
                 <div>
-                  <p className="font-semibold text-[#0d1b2a] text-sm">{item.title}</p>
-                  <p className="text-sm text-[#0d1b2a]/60">{item.desc}</p>
+                  <p className="font-semibold text-[#1C2B2B] text-sm">{item.title}</p>
+                  <p className="text-sm text-[#1C2B2B]/60">{item.desc}</p>
                 </div>
               </li>
             ))}
@@ -385,15 +385,15 @@ const BlogOSHAViolations = () => {
       </section>
 
       {/* Signs Section */}
-      <section className="py-12 md:py-16 border-b border-[#0d1b2a]/10">
+      <section className="py-12 md:py-16 border-b border-[#1C2B2B]/10">
         <div className="container max-w-3xl">
           <h2
-            className="text-xl md:text-2xl font-bold text-[#0d1b2a] mb-6"
+            className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-6"
             style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
             How do I know if my shop has OSHA violations?
           </h2>
-          <p className="text-[#0d1b2a]/60 mb-6 text-sm">Signs your operation may have compliance gaps:</p>
+          <p className="text-[#1C2B2B]/60 mb-6 text-sm">Signs your operation may have compliance gaps:</p>
           <ul className="space-y-3 mb-8">
             {[
               "No written Hazard Communication program on file",
@@ -403,20 +403,20 @@ const BlogOSHAViolations = () => {
               "Machine guards are missing or have been removed",
               "Lockout/Tagout procedures exist only verbally",
             ].map((item, i) => (
-              <li key={i} className="flex items-start gap-3 text-sm text-[#0d1b2a]/70">
-                <span className="text-[#1a6fc4] font-bold">•</span>
+              <li key={i} className="flex items-start gap-3 text-sm text-[#1C2B2B]/70">
+                <span className="text-[#2A52A0] font-bold">•</span>
                 {item}
               </li>
             ))}
           </ul>
-          <p className="text-[#0d1b2a]/80 font-medium text-sm">
+          <p className="text-[#1C2B2B]/80 font-medium text-sm">
             A focused safety walkthrough can identify these gaps before an inspector does.
           </p>
         </div>
       </section>
 
       {/* Related Resources / CTA */}
-      <section className="py-14 md:py-20 bg-[#0d1b2a] text-white" data-testid="blog-cta-section">
+      <section className="py-14 md:py-20 bg-[#1C2B2B] text-white" data-testid="blog-cta-section">
         <div className="container max-w-3xl">
           <h2
             className="text-xl md:text-2xl font-bold mb-8"
@@ -427,36 +427,36 @@ const BlogOSHAViolations = () => {
           <div className="space-y-4 mb-10">
             <Link
               to="/safety-check"
-              className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#1a6fc4]/40 transition-colors group"
+              className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#2A52A0]/40 transition-colors group"
               data-testid="blog-cta-safety-check"
             >
               <div>
-                <p className="font-medium text-white group-hover:text-[#1a6fc4] transition-colors text-sm">Run the GigLine Safety Check</p>
+                <p className="font-medium text-white group-hover:text-[#2A52A0] transition-colors text-sm">Run the GigLine Safety Check</p>
                 <p className="text-xs text-white/50 mt-1">Free 90-second self-assessment</p>
               </div>
-              <ArrowRight size={18} className="text-white/30 group-hover:text-[#1a6fc4] transition-colors flex-shrink-0" />
+              <ArrowRight size={18} className="text-white/30 group-hover:text-[#2A52A0] transition-colors flex-shrink-0" />
             </Link>
             <Link
               to="/contact"
-              className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#1a6fc4]/40 transition-colors group"
+              className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#2A52A0]/40 transition-colors group"
               data-testid="blog-cta-contact"
             >
               <div>
-                <p className="font-medium text-white group-hover:text-[#1a6fc4] transition-colors text-sm">Request a Safety Walkthrough</p>
+                <p className="font-medium text-white group-hover:text-[#2A52A0] transition-colors text-sm">Request a Safety Walkthrough</p>
                 <p className="text-xs text-white/50 mt-1">On-site review starting at $1,200</p>
               </div>
-              <ArrowRight size={18} className="text-white/30 group-hover:text-[#1a6fc4] transition-colors flex-shrink-0" />
+              <ArrowRight size={18} className="text-white/30 group-hover:text-[#2A52A0] transition-colors flex-shrink-0" />
             </Link>
             <Link
               to="/hazcom"
-              className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#1a6fc4]/40 transition-colors group"
+              className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#2A52A0]/40 transition-colors group"
               data-testid="blog-cta-hazcom"
             >
               <div>
-                <p className="font-medium text-white group-hover:text-[#1a6fc4] transition-colors text-sm">HazCom Starter Pack</p>
+                <p className="font-medium text-white group-hover:text-[#2A52A0] transition-colors text-sm">HazCom Starter Pack</p>
                 <p className="text-xs text-white/50 mt-1">Written program, SDS checklist, training log — $29</p>
               </div>
-              <ArrowRight size={18} className="text-white/30 group-hover:text-[#1a6fc4] transition-colors flex-shrink-0" />
+              <ArrowRight size={18} className="text-white/30 group-hover:text-[#2A52A0] transition-colors flex-shrink-0" />
             </Link>
           </div>
         </div>
@@ -465,10 +465,10 @@ const BlogOSHAViolations = () => {
       {/* Walkthrough Callout */}
       <section className="py-12 bg-[#F9F8F6]">
         <div className="container max-w-3xl">
-          <div className="border border-[#1a6fc4]/20 bg-white rounded-lg p-6 md:p-8 text-center" data-testid="blog-walkthrough-callout">
-            <p className="text-lg font-bold text-[#0d1b2a] mb-2">Not sure if these violations exist in your shop?</p>
-            <p className="text-sm text-[#0d1b2a]/60 mb-5">A GigLine Safety Walkthrough will flag them with photos and a prioritized fix list — usually within 48 hours.</p>
-            <Link to="/intake" className="inline-flex items-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-6 py-3 rounded transition-colors">
+          <div className="border border-[#2A52A0]/20 bg-white rounded-lg p-6 md:p-8 text-center" data-testid="blog-walkthrough-callout">
+            <p className="text-lg font-bold text-[#1C2B2B] mb-2">Not sure if these violations exist in your shop?</p>
+            <p className="text-sm text-[#1C2B2B]/60 mb-5">A GigLine Safety Walkthrough will flag them with photos and a prioritized fix list — usually within 48 hours.</p>
+            <Link to="/intake" className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-6 py-3 rounded transition-colors">
               Request a Safety Walkthrough <ArrowRight size={16} />
             </Link>
           </div>
@@ -476,23 +476,23 @@ const BlogOSHAViolations = () => {
       </section>
 
       {/* Author Box */}
-      <section className="py-10 border-t border-[#0d1b2a]/10">
+      <section className="py-10 border-t border-[#1C2B2B]/10">
         <div className="container max-w-3xl">
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-full bg-[#0d1b2a] flex items-center justify-center flex-shrink-0">
+            <div className="w-12 h-12 rounded-full bg-[#1C2B2B] flex items-center justify-center flex-shrink-0">
               <span className="text-white font-bold text-sm">VL</span>
             </div>
             <div>
-              <p className="font-semibold text-[#0d1b2a] text-sm">Vince Lawrence</p>
-              <p className="text-xs text-[#0d1b2a]/50 mb-2">Safety Consultant, OSHA 30-Hour Certified, U.S. Navy Veteran</p>
-              <p className="text-xs text-[#0d1b2a]/50">
+              <p className="font-semibold text-[#1C2B2B] text-sm">Vince Lawrence</p>
+              <p className="text-xs text-[#1C2B2B]/50 mb-2">Safety Consultant, OSHA 30-Hour Certified, U.S. Navy Veteran</p>
+              <p className="text-xs text-[#1C2B2B]/50">
                 GigLine Safety & Compliance — Kernersville, NC{' '}
-                <span className="text-[#0d1b2a]/30 mx-1">|</span>
-                <a href="tel:3363298899" className="text-[#1560ae] hover:underline">(336) 329-8899</a>
-                <span className="text-[#0d1b2a]/30 mx-1">|</span>
-                <a href="mailto:vince@giglinecompliance.com" className="text-[#1560ae] hover:underline">vince@giglinecompliance.com</a>
+                <span className="text-[#1C2B2B]/30 mx-1">|</span>
+                <a href="tel:3363298899" className="text-[#1F3F80] hover:underline">(336) 329-8899</a>
+                <span className="text-[#1C2B2B]/30 mx-1">|</span>
+                <a href="mailto:vince@giglinecompliance.com" className="text-[#1F3F80] hover:underline">vince@giglinecompliance.com</a>
               </p>
-              <p className="text-xs text-[#0d1b2a]/40 mt-2 italic">
+              <p className="text-xs text-[#1C2B2B]/40 mt-2 italic">
                 Penalty amounts reflect January 2025 OSHA adjustments and are subject to annual increases.
               </p>
             </div>

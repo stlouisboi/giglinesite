@@ -145,7 +145,7 @@ const INCLUDED = [
   'Delivered in editable format for future updates',
 ];
 
-const Eyebrow = ({ children, color = '#1a6fc4' }) => (
+const Eyebrow = ({ children, color = '#2A52A0' }) => (
   <p
     className="uppercase font-bold mb-3"
     style={{ ...mono, fontSize: '10.4px', letterSpacing: '0.20em', color }}
@@ -201,12 +201,12 @@ const DocumentDevelopmentPage = () => {
       />
 
       {/* ═══ Hero + Pricing Callout (single dark-navy section) ═══ */}
-      <section className="bg-[#0d1b2a] text-white pt-20 md:pt-24 pb-16 md:pb-20" data-testid="dd-hero">
+      <section className="bg-[#1C2B2B] text-white pt-20 md:pt-24 pb-16 md:pb-20" data-testid="dd-hero">
         <div className="container max-w-6xl">
           <Eyebrow>Document Development</Eyebrow>
           <h1 className="text-3xl md:text-4xl lg:text-[52px] font-extrabold leading-[1.08] mb-7 tracking-tight max-w-4xl">
             <span className="block">The programs you&apos;re missing —</span>
-            <span className="block italic" style={{ color: '#D4A93E', fontStyle: 'italic' }}>
+            <span className="block italic" style={{ color: '#C9A84C', fontStyle: 'italic' }}>
               written for your floor.
             </span>
           </h1>
@@ -220,7 +220,7 @@ const DocumentDevelopmentPage = () => {
           <div className="flex flex-wrap items-center gap-x-7 gap-y-3 mb-12">
             <Link
               to={INTAKE_HREF}
-              className="inline-flex items-center justify-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-6 py-3.5 rounded-lg text-[15px] transition-colors"
+              className="inline-flex items-center justify-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-6 py-3.5 rounded-lg text-[15px] transition-colors"
               data-testid="dd-cta-hero"
             >
               Ask About Document Development
@@ -246,7 +246,7 @@ const DocumentDevelopmentPage = () => {
             data-testid="dd-pricing-callout"
           >
             <div>
-              <Eyebrow color="#1a6fc4">Pricing</Eyebrow>
+              <Eyebrow color="#2A52A0">Pricing</Eyebrow>
               <h2 className="text-2xl md:text-[26px] font-extrabold text-white mb-2 leading-tight">
                 Quote After Review
               </h2>
@@ -260,7 +260,7 @@ const DocumentDevelopmentPage = () => {
                 <Link
                   to={CRV_HREF}
                   className="font-bold underline"
-                  style={{ color: '#1a6fc4' }}
+                  style={{ color: '#2A52A0' }}
                 >
                   OSHA Documentation Readiness Review
                 </Link>{' '}
@@ -280,7 +280,7 @@ const DocumentDevelopmentPage = () => {
       <section className="py-20 md:py-24 bg-white" data-testid="dd-why">
         <div className="container max-w-6xl">
           <Eyebrow>Why This Matters</Eyebrow>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-[#0d1b2a] leading-[1.15] mb-12 tracking-tight max-w-3xl">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-[#1C2B2B] leading-[1.15] mb-12 tracking-tight max-w-3xl">
             If the document doesn&apos;t exist, the program doesn&apos;t exist.
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -302,16 +302,16 @@ const DocumentDevelopmentPage = () => {
                       width: 36,
                       height: 36,
                       borderRadius: 8,
-                      background: 'rgba(26,111,196,0.10)',
-                      color: '#1a6fc4',
+                      background: 'rgba(42,82,160,0.10)',
+                      color: '#2A52A0',
                     }}
                   >
                     <Icon size={18} strokeWidth={2} />
                   </div>
-                  <h3 className="text-[17px] font-bold text-[#0d1b2a] mb-2.5 leading-snug">
+                  <h3 className="text-[17px] font-bold text-[#1C2B2B] mb-2.5 leading-snug">
                     {card.title}
                   </h3>
-                  <p className="text-[14.5px] text-[#0d1b2a]/70 leading-[1.7]">{card.body}</p>
+                  <p className="text-[14.5px] text-[#1C2B2B]/70 leading-[1.7]">{card.body}</p>
                 </div>
               );
             })}
@@ -323,7 +323,7 @@ const DocumentDevelopmentPage = () => {
       <section className="py-20 md:py-24" style={{ background: '#f5f4f0' }} data-testid="dd-programs">
         <div className="container max-w-6xl">
           <Eyebrow>Programs GigLine Writes</Eyebrow>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-[#0d1b2a] leading-[1.15] mb-12 tracking-tight max-w-4xl">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-[#1C2B2B] leading-[1.15] mb-12 tracking-tight max-w-4xl">
             Five core programs. All scoped to your operation.
           </h2>
           <div className="space-y-4">
@@ -347,14 +347,14 @@ const DocumentDevelopmentPage = () => {
                         width: 40,
                         height: 40,
                         borderRadius: 8,
-                        background: 'rgba(26,111,196,0.10)',
-                        color: '#1a6fc4',
+                        background: 'rgba(42,82,160,0.10)',
+                        color: '#2A52A0',
                       }}
                     >
                       <Icon size={20} strokeWidth={2} />
                     </div>
                     <div className="min-w-0">
-                      <h3 className="text-lg md:text-xl font-bold text-[#0d1b2a] mb-1 leading-snug">
+                      <h3 className="text-lg md:text-xl font-bold text-[#1C2B2B] mb-1 leading-snug">
                         {p.name}
                       </h3>
                       <p
@@ -363,18 +363,18 @@ const DocumentDevelopmentPage = () => {
                       >
                         {p.cfr}
                       </p>
-                      <p className="text-[14.5px] text-[#0d1b2a]/75 leading-[1.7] max-w-2xl">{p.body}</p>
+                      <p className="text-[14.5px] text-[#1C2B2B]/75 leading-[1.7] max-w-2xl">{p.body}</p>
                     </div>
                   </div>
                   {/* RIGHT: Pricing block */}
                   <div className="md:text-right md:min-w-[200px] md:pl-6 md:border-l md:border-[#e8e5dd]">
                     <p
                       className="uppercase font-bold mb-1.5"
-                      style={{ ...mono, fontSize: '9.5px', letterSpacing: '0.16em', color: '#1a6fc4' }}
+                      style={{ ...mono, fontSize: '9.5px', letterSpacing: '0.16em', color: '#2A52A0' }}
                     >
                       Pricing
                     </p>
-                    <p className="text-[14px] font-bold text-[#0d1b2a] leading-snug" style={mono}>
+                    <p className="text-[14px] font-bold text-[#1C2B2B] leading-snug" style={mono}>
                       {p.price}
                     </p>
                   </div>
@@ -392,10 +392,10 @@ const DocumentDevelopmentPage = () => {
             {/* LEFT: Floor Pricing Reference */}
             <div data-testid="dd-pricing-table">
               <Eyebrow>Floor Pricing Reference</Eyebrow>
-              <h2 className="text-2xl md:text-3xl font-extrabold text-[#0d1b2a] leading-[1.2] mb-5 tracking-tight">
+              <h2 className="text-2xl md:text-3xl font-extrabold text-[#1C2B2B] leading-[1.2] mb-5 tracking-tight">
                 Fixed price before any writing begins.
               </h2>
-              <p className="text-[15px] text-[#0d1b2a]/75 leading-[1.75] mb-7">
+              <p className="text-[15px] text-[#1C2B2B]/75 leading-[1.75] mb-7">
                 These are reference prices for common scopes. Every engagement is quoted individually after the
                 documentation review identifies your specific gaps. You&apos;ll have a fixed price before any writing
                 starts — no open-ended billing.
@@ -406,17 +406,17 @@ const DocumentDevelopmentPage = () => {
               >
                 <div
                   className="grid grid-cols-[1fr_auto] gap-x-5 px-5 py-3.5"
-                  style={{ background: '#0d1b2a', color: '#ffffff' }}
+                  style={{ background: '#1C2B2B', color: '#ffffff' }}
                 >
                   <span
                     className="uppercase font-bold"
-                    style={{ ...mono, fontSize: '10px', letterSpacing: '0.18em', color: '#D4A93E' }}
+                    style={{ ...mono, fontSize: '10px', letterSpacing: '0.18em', color: '#C9A84C' }}
                   >
                     Scope
                   </span>
                   <span
                     className="uppercase font-bold text-right"
-                    style={{ ...mono, fontSize: '10px', letterSpacing: '0.18em', color: '#D4A93E' }}
+                    style={{ ...mono, fontSize: '10px', letterSpacing: '0.18em', color: '#C9A84C' }}
                   >
                     Starting At
                   </span>
@@ -431,14 +431,14 @@ const DocumentDevelopmentPage = () => {
                     }}
                     data-testid={`dd-price-row-${i + 1}`}
                   >
-                    <span className="text-[14.5px] text-[#0d1b2a]/85 leading-snug">{scope}</span>
-                    <span className="text-[14.5px] font-bold text-[#0d1b2a] text-right" style={mono}>
+                    <span className="text-[14.5px] text-[#1C2B2B]/85 leading-snug">{scope}</span>
+                    <span className="text-[14.5px] font-bold text-[#1C2B2B] text-right" style={mono}>
                       {price}
                     </span>
                   </div>
                 ))}
               </div>
-              <p className="text-[12.5px] text-[#0d1b2a]/55 italic mt-4 leading-[1.7]">
+              <p className="text-[12.5px] text-[#1C2B2B]/55 italic mt-4 leading-[1.7]">
                 Final price depends on facility size, number of machines, and complexity of existing documentation.
                 Quoted after the OSHA Documentation Readiness Review.
               </p>
@@ -447,7 +447,7 @@ const DocumentDevelopmentPage = () => {
             {/* RIGHT: When to Book This */}
             <div data-testid="dd-when">
               <Eyebrow>When to Book This</Eyebrow>
-              <h2 className="text-2xl md:text-3xl font-extrabold text-[#0d1b2a] leading-[1.2] mb-7 tracking-tight">
+              <h2 className="text-2xl md:text-3xl font-extrabold text-[#1C2B2B] leading-[1.2] mb-7 tracking-tight">
                 Four situations where Document Development is the right call.
               </h2>
               <div className="space-y-3.5">
@@ -462,13 +462,13 @@ const DocumentDevelopmentPage = () => {
                       size={18}
                       strokeWidth={2.5}
                       className="flex-shrink-0 mt-0.5"
-                      style={{ color: '#1a6fc4' }}
+                      style={{ color: '#2A52A0' }}
                     />
                     <div className="min-w-0">
-                      <h3 className="text-[15.5px] font-bold text-[#0d1b2a] mb-1.5 leading-snug">
+                      <h3 className="text-[15.5px] font-bold text-[#1C2B2B] mb-1.5 leading-snug">
                         {card.title}
                       </h3>
-                      <p className="text-[13.5px] text-[#0d1b2a]/70 leading-[1.7]">{card.body}</p>
+                      <p className="text-[13.5px] text-[#1C2B2B]/70 leading-[1.7]">{card.body}</p>
                     </div>
                   </div>
                 ))}
@@ -482,7 +482,7 @@ const DocumentDevelopmentPage = () => {
       <section className="py-20 md:py-24" style={{ background: '#f5f4f0' }} data-testid="dd-process">
         <div className="container max-w-6xl">
           <Eyebrow>How It Works</Eyebrow>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-[#0d1b2a] leading-[1.15] mb-12 tracking-tight max-w-3xl">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-[#1C2B2B] leading-[1.15] mb-12 tracking-tight max-w-3xl">
             Three steps from gap to compliant document.
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -499,10 +499,10 @@ const DocumentDevelopmentPage = () => {
                 >
                   {String(i + 1).padStart(2, '0')}
                 </p>
-                <h3 className="text-[17px] font-bold text-[#0d1b2a] mb-2.5 leading-snug">
+                <h3 className="text-[17px] font-bold text-[#1C2B2B] mb-2.5 leading-snug">
                   {step.title}
                 </h3>
-                <p className="text-[14px] text-[#0d1b2a]/70 leading-[1.7]">{step.body}</p>
+                <p className="text-[14px] text-[#1C2B2B]/70 leading-[1.7]">{step.body}</p>
               </div>
             ))}
           </div>
@@ -512,7 +512,7 @@ const DocumentDevelopmentPage = () => {
       {/* ═══ Inline CTA Bar ═══ */}
       <section
         className="py-5"
-        style={{ background: '#0d1b2a', borderTop: '1px solid rgba(255,255,255,0.06)' }}
+        style={{ background: '#1C2B2B', borderTop: '1px solid rgba(255,255,255,0.06)' }}
         data-testid="dd-cta-bar"
       >
         <div className="container max-w-6xl">
@@ -537,7 +537,7 @@ const DocumentDevelopmentPage = () => {
               </Link>
               <Link
                 to={INTAKE_HREF}
-                className="inline-flex items-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-5 py-2.5 rounded-lg text-[13.5px] transition-colors"
+                className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-5 py-2.5 rounded-lg text-[13.5px] transition-colors"
                 data-testid="dd-bar-cta"
               >
                 Ask About Document Development
@@ -552,7 +552,7 @@ const DocumentDevelopmentPage = () => {
       <section className="py-20 md:py-24 bg-white" data-testid="dd-included">
         <div className="container max-w-6xl">
           <Eyebrow>What&apos;s Included in Every Document</Eyebrow>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-[#0d1b2a] leading-[1.15] mb-12 tracking-tight max-w-3xl">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-[#1C2B2B] leading-[1.15] mb-12 tracking-tight max-w-3xl">
             Not templates. Working documents.
           </h2>
           <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -567,9 +567,9 @@ const DocumentDevelopmentPage = () => {
                   size={18}
                   className="flex-shrink-0 mt-0.5"
                   strokeWidth={2}
-                  style={{ color: '#1a6fc4' }}
+                  style={{ color: '#2A52A0' }}
                 />
-                <span className="text-[14px] text-[#0d1b2a]/85 leading-[1.55]">{line}</span>
+                <span className="text-[14px] text-[#1C2B2B]/85 leading-[1.55]">{line}</span>
               </li>
             ))}
           </ul>
@@ -577,9 +577,9 @@ const DocumentDevelopmentPage = () => {
       </section>
 
       {/* ═══ Closing CTA ═══ */}
-      <section className="py-20 md:py-24" style={{ background: '#0d1b2a' }} data-testid="dd-closing">
+      <section className="py-20 md:py-24" style={{ background: '#1C2B2B' }} data-testid="dd-closing">
         <div className="container max-w-3xl text-center">
-          <Eyebrow color="#D4A93E">Ready to Start?</Eyebrow>
+          <Eyebrow color="#C9A84C">Ready to Start?</Eyebrow>
           <h2 className="text-3xl md:text-4xl font-extrabold text-white leading-[1.15] mb-5 tracking-tight">
             Start with the documentation review.
           </h2>
@@ -590,7 +590,7 @@ const DocumentDevelopmentPage = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to={CRV_HREF}
-              className="inline-flex items-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-7 py-4 rounded-lg text-base transition-colors"
+              className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-7 py-4 rounded-lg text-base transition-colors"
               data-testid="dd-cta-crv"
             >
               Start with a Documentation Review

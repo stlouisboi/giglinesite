@@ -29,30 +29,30 @@ body {
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #0d1b2a;
+  color: #1C2B2B;
   background-color: #F7F9FC;
 }
 
 @layer base {
   :root {
-    --primary: #0d1b2a;
+    --primary: #1C2B2B;
     --primary-foreground: #FFFFFF;
-    --accent: #1a6fc4;
+    --accent: #2A52A0;
     --accent-foreground: #FFFFFF;
     --secondary: #F7F9FC;
-    --secondary-foreground: #0d1b2a;
+    --secondary-foreground: #1C2B2B;
     --background: #F7F9FC;
-    --foreground: #0d1b2a;
+    --foreground: #1C2B2B;
     --muted: #F7F9FC;
     --muted-foreground: #5B6B7A;
     --border: #D9E2EC;
     --teal: #2A9D8F;
     --warning: #B45309;
-    --navy: #0d1b2a;
+    --navy: #1C2B2B;
     --navy-light: #102A43;
-    --cta: #1a6fc4;
-    --cta-hover: #1560ae;
-    --text-primary: #0d1b2a;
+    --cta: #2A52A0;
+    --cta-hover: #1F3F80;
+    --text-primary: #1C2B2B;
     --text-secondary: #5B6B7A;
     --surface: #F7F9FC;
     --card: #FFFFFF;
@@ -66,20 +66,20 @@ body {
 
   .btn-primary {
     @apply inline-flex items-center justify-center px-6 py-3 font-semibold rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2;
-    background-color: #1a6fc4;
+    background-color: #2A52A0;
     color: #FFFFFF;
   }
   .btn-primary:hover {
-    background-color: #1560ae;
+    background-color: #1F3F80;
   }
   .btn-primary:focus {
-    --tw-ring-color: #1a6fc4;
+    --tw-ring-color: #2A52A0;
   }
 
   .btn-secondary {
     @apply inline-flex items-center justify-center px-6 py-3 font-medium rounded-lg transition-colors focus:outline-none;
     background-color: #FFFFFF;
-    color: #0d1b2a;
+    color: #1C2B2B;
     border: 1px solid #D9E2EC;
   }
   .btn-secondary:hover {
@@ -89,7 +89,7 @@ body {
   .section-heading {
     @apply text-3xl md:text-4xl font-bold mb-4;
     font-family: 'Manrope', sans-serif;
-    color: #0d1b2a;
+    color: #1C2B2B;
   }
 
   .card {
@@ -98,15 +98,15 @@ body {
   }
 
   .bg-primary {
-    background-color: #0d1b2a !important;
+    background-color: #1C2B2B !important;
   }
 
   .text-accent {
-    color: #1a6fc4 !important;
+    color: #2A52A0 !important;
   }
 
   .bg-accent {
-    background-color: #1a6fc4 !important;
+    background-color: #2A52A0 !important;
   }
 }
 

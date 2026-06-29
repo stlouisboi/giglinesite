@@ -7,9 +7,9 @@ const mono = { fontFamily: "'JetBrains Mono', monospace" };
 const SLUG = 'incident-review';
 const INTAKE_HREF = `/intake?service=${SLUG}`;
 const PHONE_HREF = 'tel:3363298899';
-const BLUE = '#1a6fc4';
-const NAVY = '#0d1b2a';
-const GOLD = '#D4A93E';
+const BLUE = '#2A52A0';
+const NAVY = '#1C2B2B';
+const GOLD = '#C9A84C';
 const CREAM = '#f5f4f0';
 const RED = '#dc2626';
 
@@ -86,11 +86,11 @@ const IncidentReviewPage = () => {
               const Icon = c.icon;
               return (
                 <div key={i} className="rounded-xl p-7" style={{ background: CREAM, border: '1px solid #e8e5dd' }} data-testid={`ir-coverage-${i + 1}`}>
-                  <div className="flex items-center justify-center mb-5" style={{ width: 36, height: 36, borderRadius: 8, background: 'rgba(26,111,196,0.10)', color: BLUE }}>
+                  <div className="flex items-center justify-center mb-5" style={{ width: 36, height: 36, borderRadius: 8, background: 'rgba(42,82,160,0.10)', color: BLUE }}>
                     <Icon size={18} strokeWidth={2} />
                   </div>
                   <h3 className="text-[16.5px] font-bold mb-2.5 leading-snug" style={{ color: NAVY }}>{c.title}</h3>
-                  <p className="text-[14px] text-[#0d1b2a]/70 leading-[1.7]">{c.body}</p>
+                  <p className="text-[14px] text-[#1C2B2B]/70 leading-[1.7]">{c.body}</p>
                 </div>
               );
             })}
@@ -105,7 +105,7 @@ const IncidentReviewPage = () => {
           <p className="text-2xl md:text-[28px] font-bold leading-[1.3] mb-7 tracking-tight" style={{ color: NAVY }}>
             The incident report you file in the first 24 hours becomes the foundation of any OSHA investigation that follows.
           </p>
-          <p className="text-base md:text-lg text-[#0d1b2a]/75 leading-[1.85]">
+          <p className="text-base md:text-lg text-[#1C2B2B]/75 leading-[1.85]">
             Statements made to coworkers, supervisors, or insurance adjusters before you understand your regulatory obligations can be used against you. The instinct to act quickly is right. The instinct to act <span className="italic font-semibold" style={{ color: NAVY }}>without guidance</span> is where most operations create additional exposure.
           </p>
         </div>

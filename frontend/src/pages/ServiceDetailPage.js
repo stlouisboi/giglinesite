@@ -197,7 +197,7 @@ const ServiceDetailPage = () => {
       />
 
       {/* ═══ Hero ═══ */}
-      <section className="bg-[#0d1b2a] text-white py-20 md:py-28">
+      <section className="bg-[#1C2B2B] text-white py-20 md:py-28">
         <div className="container max-w-4xl">
           {svc.badge && (
             <span
@@ -206,8 +206,8 @@ const ServiceDetailPage = () => {
                 ...mono,
                 fontSize: '10px',
                 letterSpacing: '0.14em',
-                color: '#D4A93E',
-                border: '1px solid rgba(212,169,62,0.4)',
+                color: '#C9A84C',
+                border: '1px solid rgba(201,168,76,0.4)',
                 padding: '4px 10px',
                 borderRadius: '999px',
               }}
@@ -216,26 +216,26 @@ const ServiceDetailPage = () => {
               {svc.badge}
             </span>
           )}
-          <p className="uppercase font-bold mb-4" style={{ ...mono, fontSize: '10.4px', letterSpacing: '0.20em', color: '#1a6fc4' }}>
+          <p className="uppercase font-bold mb-4" style={{ ...mono, fontSize: '10.4px', letterSpacing: '0.20em', color: '#2A52A0' }}>
             {svc.eyebrow}
           </p>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.1] mb-5 tracking-tight">
             {svc.headline}
           </h1>
-          <div className="mb-7" style={{ width: '56px', height: '3px', background: '#D4A93E', borderRadius: '2px' }} />
+          <div className="mb-7" style={{ width: '56px', height: '3px', background: '#C9A84C', borderRadius: '2px' }} />
           <p className="text-base md:text-lg text-white/75 leading-[1.85] mb-8 max-w-3xl">
             {svc.body}
           </p>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
             <Link
               to={intakeLink(svc.intakeService)}
-              className="inline-flex items-center justify-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-6 py-3.5 rounded-lg text-[15px] transition-colors"
+              className="inline-flex items-center justify-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-6 py-3.5 rounded-lg text-[15px] transition-colors"
               data-testid={`${slug}-cta-hero`}
             >
               {svc.cta}
               <ArrowRight size={17} />
             </Link>
-            <span className="font-extrabold text-[#D4A93E] text-2xl" style={mono} data-testid={`${slug}-price`}>
+            <span className="font-extrabold text-[#C9A84C] text-2xl" style={mono} data-testid={`${slug}-price`}>
               {svc.price}
             </span>
             {svc.priceSecondary && (
@@ -248,17 +248,17 @@ const ServiceDetailPage = () => {
       {/* ═══ What's Included ═══ */}
       <section className="py-20 md:py-24 bg-white">
         <div className="container max-w-4xl">
-          <p className="uppercase font-bold mb-4" style={{ ...mono, fontSize: '10.4px', letterSpacing: '0.20em', color: '#1a6fc4' }}>
+          <p className="uppercase font-bold mb-4" style={{ ...mono, fontSize: '10.4px', letterSpacing: '0.20em', color: '#2A52A0' }}>
             What&apos;s Included
           </p>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-[#0d1b2a] leading-[1.15] mb-3 tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-[#1C2B2B] leading-[1.15] mb-3 tracking-tight">
             Everything in the engagement.
           </h2>
-          <div className="mb-10" style={{ width: '56px', height: '3px', background: '#D4A93E', borderRadius: '2px' }} />
+          <div className="mb-10" style={{ width: '56px', height: '3px', background: '#C9A84C', borderRadius: '2px' }} />
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {svc.whatsIncluded.map((line, i) => (
-              <li key={i} className="flex items-start gap-3.5 text-[#0d1b2a]/85 text-[15.5px] leading-[1.6]" data-testid={`${slug}-include-${i + 1}`}>
-                <CheckCircle2 size={20} className="flex-shrink-0 mt-0.5 text-[#1a6fc4]" strokeWidth={2} />
+              <li key={i} className="flex items-start gap-3.5 text-[#1C2B2B]/85 text-[15.5px] leading-[1.6]" data-testid={`${slug}-include-${i + 1}`}>
+                <CheckCircle2 size={20} className="flex-shrink-0 mt-0.5 text-[#2A52A0]" strokeWidth={2} />
                 <span>{line}</span>
               </li>
             ))}
@@ -270,30 +270,30 @@ const ServiceDetailPage = () => {
       {svc.process && (
         <section className="py-20 md:py-24" style={{ backgroundColor: '#f5f4f0' }}>
           <div className="container max-w-4xl">
-            <p className="uppercase font-bold mb-4" style={{ ...mono, fontSize: '10.4px', letterSpacing: '0.20em', color: '#1a6fc4' }}>
+            <p className="uppercase font-bold mb-4" style={{ ...mono, fontSize: '10.4px', letterSpacing: '0.20em', color: '#2A52A0' }}>
               How It Works
             </p>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#0d1b2a] leading-[1.15] mb-3 tracking-tight">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#1C2B2B] leading-[1.15] mb-3 tracking-tight">
               What happens when you engage GigLine.
             </h2>
-            <div className="mb-10" style={{ width: '56px', height: '3px', background: '#D4A93E', borderRadius: '2px' }} />
+            <div className="mb-10" style={{ width: '56px', height: '3px', background: '#C9A84C', borderRadius: '2px' }} />
             <div className="space-y-5">
               {svc.process.map(([step, detail], i) => (
                 <div
                   key={i}
                   className="bg-white rounded-xl p-7 md:p-8 flex gap-5"
-                  style={{ border: '1px solid #dde3ea', boxShadow: '0 1px 0 rgba(13,27,42,0.02)' }}
+                  style={{ border: '1px solid #dde3ea', boxShadow: '0 1px 0 rgba(28,43,43,0.02)' }}
                   data-testid={`${slug}-step-${i + 1}`}
                 >
                   <div
                     className="flex-shrink-0 flex items-center justify-center font-extrabold text-white"
-                    style={{ width: 40, height: 40, borderRadius: '50%', background: '#1a6fc4', ...mono, fontSize: '15px' }}
+                    style={{ width: 40, height: 40, borderRadius: '50%', background: '#2A52A0', ...mono, fontSize: '15px' }}
                   >
                     {i + 1}
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-[#0d1b2a] mb-2">{step}</h3>
-                    <p className="text-[15px] text-[#0d1b2a]/70 leading-[1.75]">{detail}</p>
+                    <h3 className="text-lg font-bold text-[#1C2B2B] mb-2">{step}</h3>
+                    <p className="text-[15px] text-[#1C2B2B]/70 leading-[1.75]">{detail}</p>
                   </div>
                 </div>
               ))}
@@ -306,8 +306,8 @@ const ServiceDetailPage = () => {
       {svc.valueAnchor && (
         <section className="py-16 bg-white">
           <div className="container max-w-3xl">
-            <div className="rounded-2xl p-8 md:p-10" style={{ background: '#0d1b2a' }}>
-              <p className="uppercase font-bold mb-5" style={{ ...mono, fontSize: '10.4px', letterSpacing: '0.20em', color: '#D4A93E' }}>
+            <div className="rounded-2xl p-8 md:p-10" style={{ background: '#1C2B2B' }}>
+              <p className="uppercase font-bold mb-5" style={{ ...mono, fontSize: '10.4px', letterSpacing: '0.20em', color: '#C9A84C' }}>
                 Value Anchor
               </p>
               <div className="space-y-3 text-base">
@@ -317,9 +317,9 @@ const ServiceDetailPage = () => {
                 </div>
                 <div className="flex items-baseline justify-between gap-3">
                   <span className="text-white/65">{svc.valueAnchor.partnerLabel}</span>
-                  <span className="font-bold text-[#D4A93E]" style={mono}>{svc.valueAnchor.partner}</span>
+                  <span className="font-bold text-[#C9A84C]" style={mono}>{svc.valueAnchor.partner}</span>
                 </div>
-                <div className="flex items-baseline justify-between gap-3 pt-3 mt-1" style={{ borderTop: '1px dashed rgba(212,169,62,0.30)' }}>
+                <div className="flex items-baseline justify-between gap-3 pt-3 mt-1" style={{ borderTop: '1px dashed rgba(201,168,76,0.30)' }}>
                   <span className="text-white/65 italic">{svc.valueAnchor.monthlyLabel}</span>
                   <span className="font-bold text-white" style={mono}>{svc.valueAnchor.monthly}</span>
                 </div>
@@ -332,16 +332,16 @@ const ServiceDetailPage = () => {
       {/* ═══ Best For + CTA ═══ */}
       <section className="py-20 md:py-24 bg-white">
         <div className="container max-w-4xl text-center">
-          <p className="uppercase font-bold mb-4" style={{ ...mono, fontSize: '10.4px', letterSpacing: '0.20em', color: '#1a6fc4' }}>
+          <p className="uppercase font-bold mb-4" style={{ ...mono, fontSize: '10.4px', letterSpacing: '0.20em', color: '#2A52A0' }}>
             Best For
           </p>
-          <p className="text-xl md:text-2xl text-[#0d1b2a] leading-snug mb-12 max-w-3xl mx-auto font-bold">
+          <p className="text-xl md:text-2xl text-[#1C2B2B] leading-snug mb-12 max-w-3xl mx-auto font-bold">
             {svc.best}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to={intakeLink(svc.intakeService)}
-              className="inline-flex items-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-7 py-4 rounded-lg text-base transition-colors"
+              className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-7 py-4 rounded-lg text-base transition-colors"
               data-testid={`${slug}-cta-bottom`}
             >
               {svc.cta}
@@ -349,7 +349,7 @@ const ServiceDetailPage = () => {
             </Link>
             <a
               href="tel:3363298899"
-              className="inline-flex items-center gap-2 bg-white border-2 border-[#0d1b2a] hover:bg-[#0d1b2a] hover:text-white text-[#0d1b2a] font-bold px-7 py-4 rounded-lg text-base transition-colors"
+              className="inline-flex items-center gap-2 bg-white border-2 border-[#1C2B2B] hover:bg-[#1C2B2B] hover:text-white text-[#1C2B2B] font-bold px-7 py-4 rounded-lg text-base transition-colors"
               data-testid={`${slug}-cta-phone`}
             >
               <Phone size={16} />
@@ -358,7 +358,7 @@ const ServiceDetailPage = () => {
           </div>
           <Link
             to="/services"
-            className="inline-flex items-center gap-1 text-[#1a6fc4] hover:text-[#1560ae] font-bold text-sm mt-8"
+            className="inline-flex items-center gap-1 text-[#2A52A0] hover:text-[#1F3F80] font-bold text-sm mt-8"
             data-testid={`${slug}-back-services`}
           >
             &larr; Back to all services

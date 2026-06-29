@@ -71,7 +71,7 @@ const OshaInspectionGuidePage = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#0d1b2a] text-white py-16 md:py-24" data-testid="oig-hero">
+      <section className="bg-[#1C2B2B] text-white py-16 md:py-24" data-testid="oig-hero">
         <div className="container max-w-3xl">
           <p
             className="uppercase font-bold mb-4"
@@ -105,38 +105,38 @@ const OshaInspectionGuidePage = () => {
         <div className="container max-w-xl">
           <div
             className="rounded-lg p-8 md:p-10"
-            style={{ background: '#F9F8F6', border: '1px solid rgba(13,27,42,0.10)' }}
+            style={{ background: '#F9F8F6', border: '1px solid rgba(28,43,43,0.10)' }}
           >
-            <Mail size={32} className="text-[#1a6fc4] mb-4" />
+            <Mail size={32} className="text-[#2A52A0] mb-4" />
 
             {status === 'sent' ? (
               <div data-testid="oig-success">
                 <h2
-                  className="text-xl md:text-2xl font-bold text-[#0d1b2a] mb-3"
+                  className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-3"
                   style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
                 >
                   Your guide just opened in a new tab.
                 </h2>
-                <p className="text-sm text-[#0d1b2a]/65 mb-4">
-                  We also sent a copy to <strong className="text-[#0d1b2a]">{email}</strong> for safekeeping. If the new tab didn&rsquo;t open (popup blocker), use the button below to open it directly.
+                <p className="text-sm text-[#1C2B2B]/65 mb-4">
+                  We also sent a copy to <strong className="text-[#1C2B2B]">{email}</strong> for safekeeping. If the new tab didn&rsquo;t open (popup blocker), use the button below to open it directly.
                 </p>
                 <a
                   href={`${API_URL}/api/osha-inspection-guide/pdf`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-[#0d1b2a] hover:bg-[#1c2e44] text-white font-semibold px-5 py-3 rounded transition-colors text-sm mb-6"
+                  className="inline-flex items-center gap-2 bg-[#1C2B2B] hover:bg-[#1c2e44] text-white font-semibold px-5 py-3 rounded transition-colors text-sm mb-6"
                   data-testid="oig-fallback-download"
                 >
                   <BookOpen size={14} />
                   Open the OSHA Inspection Guide
                 </a>
-                <div className="pt-6 border-t border-[#0d1b2a]/10">
-                  <p className="text-sm text-[#0d1b2a]/60 mb-3">
+                <div className="pt-6 border-t border-[#1C2B2B]/10">
+                  <p className="text-sm text-[#1C2B2B]/60 mb-3">
                     Want to know exactly where your own operation stands? Take the 90-second self-screen.
                   </p>
                   <Link
                     to="/safety-check"
-                    className="inline-flex items-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-semibold px-5 py-3 rounded transition-colors text-sm"
+                    className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-semibold px-5 py-3 rounded transition-colors text-sm"
                     data-testid="oig-safety-check-cta"
                   >
                     Take the Safety Check
@@ -147,12 +147,12 @@ const OshaInspectionGuidePage = () => {
             ) : (
               <>
                 <h2
-                  className="text-xl md:text-2xl font-bold text-[#0d1b2a] mb-3"
+                  className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-3"
                   style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
                 >
                   Get the Guide
                 </h2>
-                <p className="text-sm text-[#0d1b2a]/65 mb-6 leading-relaxed">
+                <p className="text-sm text-[#1C2B2B]/65 mb-6 leading-relaxed">
                   Built for HR and safety leaders in NC manufacturing and warehousing. CFR-cited. Free. One email with your download link.
                 </p>
                 <form className="space-y-3" onSubmit={handleSubmit}>
@@ -162,7 +162,7 @@ const OshaInspectionGuidePage = () => {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-4 py-3 border border-[#0d1b2a]/20 rounded text-sm focus:outline-none focus:border-[#1a6fc4] focus:ring-1 focus:ring-[#1a6fc4]/30"
+                    className="w-full px-4 py-3 border border-[#1C2B2B]/20 rounded text-sm focus:outline-none focus:border-[#2A52A0] focus:ring-1 focus:ring-[#2A52A0]/30"
                     data-testid="oig-email-input"
                     autoComplete="email"
                   />
@@ -171,7 +171,7 @@ const OshaInspectionGuidePage = () => {
                     placeholder="First name (optional)"
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
-                    className="w-full px-4 py-3 border border-[#0d1b2a]/20 rounded text-sm focus:outline-none focus:border-[#1a6fc4] focus:ring-1 focus:ring-[#1a6fc4]/30"
+                    className="w-full px-4 py-3 border border-[#1C2B2B]/20 rounded text-sm focus:outline-none focus:border-[#2A52A0] focus:ring-1 focus:ring-[#2A52A0]/30"
                     data-testid="oig-firstname-input"
                     autoComplete="given-name"
                   />
@@ -180,14 +180,14 @@ const OshaInspectionGuidePage = () => {
                     placeholder="Company (optional)"
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
-                    className="w-full px-4 py-3 border border-[#0d1b2a]/20 rounded text-sm focus:outline-none focus:border-[#1a6fc4] focus:ring-1 focus:ring-[#1a6fc4]/30"
+                    className="w-full px-4 py-3 border border-[#1C2B2B]/20 rounded text-sm focus:outline-none focus:border-[#2A52A0] focus:ring-1 focus:ring-[#2A52A0]/30"
                     data-testid="oig-company-input"
                     autoComplete="organization"
                   />
                   <button
                     type="submit"
                     disabled={status === 'sending'}
-                    className="w-full bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-semibold py-3 rounded transition-colors inline-flex items-center justify-center gap-2 disabled:opacity-50"
+                    className="w-full bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-semibold py-3 rounded transition-colors inline-flex items-center justify-center gap-2 disabled:opacity-50"
                     data-testid="oig-submit"
                   >
                     {status === 'sending' ? (
@@ -209,7 +209,7 @@ const OshaInspectionGuidePage = () => {
                     directly.
                   </p>
                 )}
-                <p className="text-xs text-[#0d1b2a]/45 mt-4 flex items-center gap-1.5">
+                <p className="text-xs text-[#1C2B2B]/45 mt-4 flex items-center gap-1.5">
                   <Shield size={12} />
                   No spam. One email with your download link.
                 </p>
@@ -221,18 +221,18 @@ const OshaInspectionGuidePage = () => {
 
       {/* What's Inside */}
       <section
-        className="py-14 md:py-20 border-t border-[#0d1b2a]/10"
+        className="py-14 md:py-20 border-t border-[#1C2B2B]/10"
         data-testid="oig-whats-inside"
       >
         <div className="container max-w-4xl">
           <p
-            className="uppercase font-bold mb-3 text-[#1a6fc4]"
+            className="uppercase font-bold mb-3 text-[#2A52A0]"
             style={{ ...mono, fontSize: '11px', letterSpacing: '0.22em' }}
           >
             What&rsquo;s Inside
           </p>
           <h2
-            className="text-2xl md:text-3xl font-bold text-[#0d1b2a] mb-10 leading-tight"
+            className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-10 leading-tight"
             style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
             Built for the moment OSHA walks through the door.
@@ -242,16 +242,16 @@ const OshaInspectionGuidePage = () => {
               <li
                 key={card.title}
                 className="rounded-lg p-6 md:p-7"
-                style={{ background: '#F9F8F6', border: '1px solid rgba(13,27,42,0.10)' }}
+                style={{ background: '#F9F8F6', border: '1px solid rgba(28,43,43,0.10)' }}
                 data-testid={`oig-card-${card.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
               >
                 <div className="flex items-start gap-3 mb-2">
-                  <CheckCircle2 size={20} className="text-[#1a6fc4] flex-shrink-0 mt-0.5" />
-                  <h3 className="text-lg font-bold text-[#0d1b2a] leading-tight">
+                  <CheckCircle2 size={20} className="text-[#2A52A0] flex-shrink-0 mt-0.5" />
+                  <h3 className="text-lg font-bold text-[#1C2B2B] leading-tight">
                     {card.title}
                   </h3>
                 </div>
-                <p className="text-[14.5px] text-[#0d1b2a]/65 leading-[1.65] pl-8">
+                <p className="text-[14.5px] text-[#1C2B2B]/65 leading-[1.65] pl-8">
                   {card.body}
                 </p>
               </li>

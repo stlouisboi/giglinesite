@@ -12,7 +12,7 @@ import { ArrowRight, Camera, Phone } from 'lucide-react';
 
 const DOC_HEADER_BG = '#1C2B2B';
 const DOC_BORDER = 'rgba(11,31,51,0.10)';
-const TEXT_DARK = '#0d1b2a';
+const TEXT_DARK = '#1C2B2B';
 const TEXT_MUTED = 'rgba(11,31,51,0.72)';
 const TEXT_SUBTLE = 'rgba(11,31,51,0.55)';
 
@@ -89,7 +89,7 @@ const SampleReportSection = () => {
         {/* SECTION HEADER */}
         <div className="mb-10 md:mb-12 max-w-3xl">
           <p
-            className="uppercase tracking-[3px] text-[#1a6fc4] mb-4 font-bold"
+            className="uppercase tracking-[3px] text-[#2A52A0] mb-4 font-bold"
             style={{ ...mono, fontSize: '12px' }}
             data-testid="sample-report-kicker"
           >
@@ -221,7 +221,7 @@ const SampleReportSection = () => {
         <div className="mt-10 md:mt-12 text-center" data-testid="sample-report-cta-wrap">
           <Link
             to="/intake"
-            className="inline-flex items-center justify-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold py-4 px-8 rounded-lg transition-colors text-[15px] md:text-base"
+            className="inline-flex items-center justify-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold py-4 px-8 rounded-lg transition-colors text-[15px] md:text-base"
             style={{ ...heading, boxShadow: '0 6px 18px rgba(31,111,235,0.18)' }}
             data-testid="sample-report-cta"
           >
@@ -238,7 +238,7 @@ const SampleReportSection = () => {
             <a
               href="tel:+13363298899"
               className="inline-flex items-center gap-1 font-semibold hover:underline"
-              style={{ color: '#1a6fc4' }}
+              style={{ color: '#2A52A0' }}
               data-testid="sample-report-cta-phone"
             >
               <Phone size={12} />
@@ -406,7 +406,7 @@ const PhotoPlaceholder = ({ area, photoUrl }) => {
             fontSize: '9.5px',
             letterSpacing: '0.16em',
             color: '#fff',
-            background: 'rgba(13,27,42,0.78)',
+            background: 'rgba(28,43,43,0.78)',
             padding: '4px 10px',
             top: '10px',
             left: '10px',
@@ -423,7 +423,7 @@ const PhotoPlaceholder = ({ area, photoUrl }) => {
             fontSize: '10px',
             letterSpacing: '0.14em',
             color: '#fff',
-            background: 'rgba(13,27,42,0.78)',
+            background: 'rgba(28,43,43,0.78)',
             padding: '5px 10px',
             bottom: '10px',
             left: '10px',

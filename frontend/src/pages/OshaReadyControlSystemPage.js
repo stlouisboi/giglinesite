@@ -21,9 +21,9 @@ const SLUG = 'osha-ready-control-system';
 const INTAKE_HREF = `/intake?service=${SLUG}`;
 const QUARTERLY_HREF = '/services/quarterly-compliance-maintenance';
 const ACP_HREF = '/services/annual-compliance-partner';
-const BLUE = '#1a6fc4';
-const NAVY = '#0d1b2a';
-const GOLD = '#D4A93E';
+const BLUE = '#2A52A0';
+const NAVY = '#1C2B2B';
+const GOLD = '#C9A84C';
 const CREAM = '#f5f4f0';
 const ORANGE = '#e07a3d';
 
@@ -110,9 +110,9 @@ const OshaReadyControlSystemPage = () => {
                 The Control System is scoped after a site assessment — every operation is different. The assessment is included in the engagement. You&apos;ll have a fixed quote before any buildout work begins.
               </p>
             </div>
-            <div className="rounded-lg p-5" style={{ background: 'rgba(212,169,62,0.06)', border: '1px solid rgba(212,169,62,0.30)' }}>
+            <div className="rounded-lg p-5" style={{ background: 'rgba(201,168,76,0.06)', border: '1px solid rgba(201,168,76,0.30)' }}>
               <p className="uppercase font-bold mb-2" style={{ ...mono, fontSize: '10px', letterSpacing: '0.18em', color: GOLD }}>Premium Engagement</p>
-              <p className="text-[13px] leading-[1.65]" style={{ color: 'rgba(212,169,62,0.95)' }}>
+              <p className="text-[13px] leading-[1.65]" style={{ color: 'rgba(201,168,76,0.95)' }}>
                 The highest-scope GigLine engagement. Built for operations that need the complete foundation, not just a report.
               </p>
             </div>
@@ -125,7 +125,7 @@ const OshaReadyControlSystemPage = () => {
         <div className="container max-w-6xl">
           <Eyebrow>What&apos;s Included</Eyebrow>
           <h2 className="text-3xl md:text-4xl font-extrabold leading-[1.15] mb-4 tracking-tight max-w-3xl" style={{ color: NAVY }}>Six components. One complete system.</h2>
-          <p className="text-base text-[#0d1b2a]/65 leading-[1.75] mb-12 max-w-3xl">
+          <p className="text-base text-[#1C2B2B]/65 leading-[1.75] mb-12 max-w-3xl">
             Every component is built to your operation — not downloaded from a template library. The result is a system your team can maintain without outside help.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -133,11 +133,11 @@ const OshaReadyControlSystemPage = () => {
               const Icon = c.icon;
               return (
                 <div key={i} className="rounded-xl p-6 md:p-7 flex flex-col" style={{ background: CREAM, border: '1px solid #e8e5dd' }} data-testid={`ocs-component-${i + 1}`}>
-                  <div className="flex items-center justify-center mb-5" style={{ width: 36, height: 36, borderRadius: 8, background: 'rgba(26,111,196,0.10)', color: BLUE }}>
+                  <div className="flex items-center justify-center mb-5" style={{ width: 36, height: 36, borderRadius: 8, background: 'rgba(42,82,160,0.10)', color: BLUE }}>
                     <Icon size={18} strokeWidth={2} />
                   </div>
                   <h3 className="text-[16.5px] font-bold mb-2.5 leading-snug" style={{ color: NAVY }}>{c.title}</h3>
-                  <p className="text-[14px] text-[#0d1b2a]/70 leading-[1.7] mb-4 flex-1">{c.body}</p>
+                  <p className="text-[14px] text-[#1C2B2B]/70 leading-[1.7] mb-4 flex-1">{c.body}</p>
                   <p className="uppercase font-bold pt-3" style={{ ...mono, fontSize: '10px', letterSpacing: '0.14em', color: '#5a6878', borderTop: '1px dashed #d8d4c8' }}>{c.cfr}</p>
                 </div>
               );
@@ -156,7 +156,7 @@ const OshaReadyControlSystemPage = () => {
               <div key={i} className="rounded-xl p-6 bg-white" style={{ border: '1px solid #e8e5dd' }} data-testid={`ocs-step-${i + 1}`}>
                 <p className="font-extrabold mb-4 leading-none" style={{ ...mono, fontSize: '34px', color: GOLD }}>{String(i + 1).padStart(2, '0')}</p>
                 <h3 className="text-[16px] font-bold mb-2.5 leading-snug" style={{ color: NAVY }}>{s.title}</h3>
-                <p className="text-[13.5px] text-[#0d1b2a]/70 leading-[1.7]">{s.body}</p>
+                <p className="text-[13.5px] text-[#1C2B2B]/70 leading-[1.7]">{s.body}</p>
               </div>
             ))}
           </div>
@@ -173,7 +173,7 @@ const OshaReadyControlSystemPage = () => {
               <h2 className="text-2xl md:text-3xl font-extrabold leading-[1.2] mb-4 tracking-tight" style={{ color: NAVY }}>
                 This is the right engagement when the foundation doesn&apos;t exist yet.
               </h2>
-              <p className="text-[15px] text-[#0d1b2a]/70 leading-[1.75] mb-7">
+              <p className="text-[15px] text-[#1C2B2B]/70 leading-[1.75] mb-7">
                 Most small operations have some safety activity — a binder somewhere, some training that happened, some programs that were downloaded. The Control System replaces that patchwork with a complete, defensible infrastructure.
               </p>
               <div className="space-y-3.5">
@@ -182,7 +182,7 @@ const OshaReadyControlSystemPage = () => {
                     <ChevronRight size={18} strokeWidth={2.5} className="flex-shrink-0 mt-0.5" style={{ color: BLUE }} />
                     <div className="min-w-0">
                       <h3 className="text-[15.5px] font-bold mb-1.5 leading-snug" style={{ color: NAVY }}>{card.title}</h3>
-                      <p className="text-[13.5px] text-[#0d1b2a]/70 leading-[1.7]">{card.body}</p>
+                      <p className="text-[13.5px] text-[#1C2B2B]/70 leading-[1.7]">{card.body}</p>
                     </div>
                   </div>
                 ))}
@@ -194,7 +194,7 @@ const OshaReadyControlSystemPage = () => {
               <h2 className="text-2xl md:text-3xl font-extrabold leading-[1.2] mb-4 tracking-tight" style={{ color: NAVY }}>
                 The patchwork most operations are running on.
               </h2>
-              <p className="text-[15px] text-[#0d1b2a]/70 leading-[1.75] mb-7">
+              <p className="text-[15px] text-[#1C2B2B]/70 leading-[1.75] mb-7">
                 The Control System is designed to replace these specific failure modes — not augment them, replace them.
               </p>
               <ul className="space-y-4">
@@ -203,7 +203,7 @@ const OshaReadyControlSystemPage = () => {
                     <AlertTriangle size={18} strokeWidth={2} className="flex-shrink-0 mt-0.5" style={{ color: '#d97706' }} />
                     <div className="min-w-0">
                       <p className="text-[15px] font-semibold leading-snug mb-1" style={{ color: NAVY }}>{r.title}</p>
-                      <p className="text-[13.5px] text-[#0d1b2a]/60 leading-[1.65]">{r.sub}</p>
+                      <p className="text-[13.5px] text-[#1C2B2B]/60 leading-[1.65]">{r.sub}</p>
                     </div>
                   </li>
                 ))}
@@ -253,7 +253,7 @@ const OshaReadyControlSystemPage = () => {
                 </div>
               </div>
               {/* Annual */}
-              <div className="rounded-xl p-7" style={{ background: 'rgba(212,169,62,0.06)', border: '1px solid rgba(212,169,62,0.30)' }} data-testid="ocs-after-annual">
+              <div className="rounded-xl p-7" style={{ background: 'rgba(201,168,76,0.06)', border: '1px solid rgba(201,168,76,0.30)' }} data-testid="ocs-after-annual">
                 <p className="uppercase font-bold mb-3" style={{ ...mono, fontSize: '10px', letterSpacing: '0.16em', color: GOLD }}>Annual Compliance Control Partner</p>
                 <h3 className="text-xl font-bold mb-3 leading-snug text-white">Year-round support. No full-time hire.</h3>
                 <p className="text-[14px] text-white/70 leading-[1.7] mb-6">
@@ -278,7 +278,7 @@ const OshaReadyControlSystemPage = () => {
           <h2 className="text-3xl md:text-4xl font-extrabold leading-[1.15] mb-5 tracking-tight" style={{ color: NAVY }}>
             Request the OSHA-Ready Control System.
           </h2>
-          <p className="text-base md:text-lg text-[#0d1b2a]/75 leading-[1.85] mb-10 max-w-3xl mx-auto">
+          <p className="text-base md:text-lg text-[#1C2B2B]/75 leading-[1.85] mb-10 max-w-3xl mx-auto">
             The engagement starts with a site assessment. You&apos;ll have a fixed quote before any buildout work begins. Private engagement — nothing leaves your facility except the system GigLine hands you.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -289,7 +289,7 @@ const OshaReadyControlSystemPage = () => {
               See All Services
             </Link>
           </div>
-          <a href="tel:3363298899" className="inline-flex items-center gap-2 text-[#0d1b2a]/60 hover:text-[#0d1b2a] text-sm mt-8 transition-colors" data-testid="ocs-cta-phone">
+          <a href="tel:3363298899" className="inline-flex items-center gap-2 text-[#1C2B2B]/60 hover:text-[#1C2B2B] text-sm mt-8 transition-colors" data-testid="ocs-cta-phone">
             <Phone size={14} />Questions? Call or text Vince directly — (336) 329-8899
           </a>
         </div>

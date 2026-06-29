@@ -44,10 +44,10 @@ const ServiceAreasPage = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#0d1b2a] text-white py-16 md:py-24">
+      <section className="bg-[#1C2B2B] text-white py-16 md:py-24">
         <div className="container max-w-4xl">
           <p
-            className="uppercase tracking-[3px] text-[#1a6fc4] mb-5"
+            className="uppercase tracking-[3px] text-[#2A52A0] mb-5"
             style={{ ...mono, fontSize: '11px' }}
             data-testid="service-areas-kicker"
           >
@@ -70,13 +70,13 @@ const ServiceAreasPage = () => {
       <section className="py-16 md:py-20" style={{ backgroundColor: '#F9F8F6' }}>
         <div className="container max-w-5xl">
           <p
-            className="uppercase tracking-[3px] text-[#1a6fc4] mb-3"
+            className="uppercase tracking-[3px] text-[#2A52A0] mb-3"
             style={{ ...mono, fontSize: '11px' }}
           >
             Triad Core — Starting at $1,200
           </p>
           <h2
-            className="text-2xl md:text-3xl font-bold text-[#0d1b2a] mb-8"
+            className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-8"
             style={serif}
           >
             Within 30 miles of Kernersville
@@ -86,23 +86,23 @@ const ServiceAreasPage = () => {
               <Link
                 key={city.slug}
                 to={`/safety-walkthrough/${city.slug}`}
-                className="group block bg-white rounded-lg border border-[#0d1b2a]/10 hover:border-[#1a6fc4] p-5 transition-colors"
+                className="group block bg-white rounded-lg border border-[#1C2B2B]/10 hover:border-[#2A52A0] p-5 transition-colors"
                 data-testid={`area-link-${city.slug}`}
               >
                 <div className="flex items-start justify-between gap-3 mb-2">
                   <div>
                     <h3
-                      className="font-semibold text-[#0d1b2a] text-lg leading-snug"
+                      className="font-semibold text-[#1C2B2B] text-lg leading-snug"
                       style={serif}
                     >
                       {city.name}
                     </h3>
-                    <p className="text-xs text-[#0d1b2a]/50 mt-1">{city.region}</p>
+                    <p className="text-xs text-[#1C2B2B]/50 mt-1">{city.region}</p>
                   </div>
-                  <MapPin size={16} className="text-[#1a6fc4] flex-shrink-0 mt-1" />
+                  <MapPin size={16} className="text-[#2A52A0] flex-shrink-0 mt-1" />
                 </div>
-                <p className="text-xs text-[#0d1b2a]/65 mt-3">{city.distance}</p>
-                <p className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#1a6fc4] group-hover:gap-2 transition-all">
+                <p className="text-xs text-[#1C2B2B]/65 mt-3">{city.distance}</p>
+                <p className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#2A52A0] group-hover:gap-2 transition-all">
                   View details
                   <ArrowRight size={14} />
                 </p>
@@ -116,13 +116,13 @@ const ServiceAreasPage = () => {
       <section className="py-16 md:py-20 bg-white">
         <div className="container max-w-5xl">
           <p
-            className="uppercase tracking-[3px] text-[#1a6fc4] mb-3"
+            className="uppercase tracking-[3px] text-[#2A52A0] mb-3"
             style={{ ...mono, fontSize: '11px' }}
           >
             Outer Tier — Starting at $1,200 + travel fee
           </p>
           <h2
-            className="text-2xl md:text-3xl font-bold text-[#0d1b2a] mb-8"
+            className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-8"
             style={serif}
           >
             30–60 miles from Kernersville (travel included)
@@ -132,23 +132,23 @@ const ServiceAreasPage = () => {
               <Link
                 key={city.slug}
                 to={`/safety-walkthrough/${city.slug}`}
-                className="group block bg-[#F9F8F6] rounded-lg border border-[#0d1b2a]/10 hover:border-[#1a6fc4] p-5 transition-colors"
+                className="group block bg-[#F9F8F6] rounded-lg border border-[#1C2B2B]/10 hover:border-[#2A52A0] p-5 transition-colors"
                 data-testid={`area-link-${city.slug}`}
               >
                 <div className="flex items-start justify-between gap-3 mb-2">
                   <div>
                     <h3
-                      className="font-semibold text-[#0d1b2a] text-lg leading-snug"
+                      className="font-semibold text-[#1C2B2B] text-lg leading-snug"
                       style={serif}
                     >
                       {city.name}
                     </h3>
-                    <p className="text-xs text-[#0d1b2a]/50 mt-1">{city.region}</p>
+                    <p className="text-xs text-[#1C2B2B]/50 mt-1">{city.region}</p>
                   </div>
-                  <MapPin size={16} className="text-[#1a6fc4] flex-shrink-0 mt-1" />
+                  <MapPin size={16} className="text-[#2A52A0] flex-shrink-0 mt-1" />
                 </div>
-                <p className="text-xs text-[#0d1b2a]/65 mt-3">{city.distance}</p>
-                <p className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#1a6fc4] group-hover:gap-2 transition-all">
+                <p className="text-xs text-[#1C2B2B]/65 mt-3">{city.distance}</p>
+                <p className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#2A52A0] group-hover:gap-2 transition-all">
                   View details
                   <ArrowRight size={14} />
                 </p>
@@ -162,18 +162,18 @@ const ServiceAreasPage = () => {
       <section className="py-16 md:py-20" style={{ backgroundColor: '#F9F8F6' }}>
         <div className="container max-w-5xl">
           <p
-            className="uppercase tracking-[3px] text-[#1a6fc4] mb-3"
+            className="uppercase tracking-[3px] text-[#2A52A0] mb-3"
             style={{ ...mono, fontSize: '11px' }}
           >
             Scheduled Engagements
           </p>
           <h2
-            className="text-2xl md:text-3xl font-bold text-[#0d1b2a] mb-3"
+            className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-3"
             style={serif}
           >
             Charlotte and Raleigh metros
           </h2>
-          <p className="text-[#0d1b2a]/65 mb-8 max-w-2xl text-sm md:text-base leading-relaxed">
+          <p className="text-[#1C2B2B]/65 mb-8 max-w-2xl text-sm md:text-base leading-relaxed">
             Charlotte and Raleigh area walkthroughs are available on a scheduled basis. Contact directly to confirm availability and pricing — travel considerations apply.
           </p>
           <div className="grid sm:grid-cols-2 gap-4 max-w-2xl">
@@ -181,23 +181,23 @@ const ServiceAreasPage = () => {
               <Link
                 key={city.slug}
                 to={`/safety-walkthrough/${city.slug}`}
-                className="group block bg-white rounded-lg border border-[#0d1b2a]/10 hover:border-[#1a6fc4] p-5 transition-colors"
+                className="group block bg-white rounded-lg border border-[#1C2B2B]/10 hover:border-[#2A52A0] p-5 transition-colors"
                 data-testid={`area-link-${city.slug}`}
               >
                 <div className="flex items-start justify-between gap-3 mb-2">
                   <div>
                     <h3
-                      className="font-semibold text-[#0d1b2a] text-lg leading-snug"
+                      className="font-semibold text-[#1C2B2B] text-lg leading-snug"
                       style={serif}
                     >
                       {city.name}
                     </h3>
-                    <p className="text-xs text-[#0d1b2a]/50 mt-1">{city.region}</p>
+                    <p className="text-xs text-[#1C2B2B]/50 mt-1">{city.region}</p>
                   </div>
-                  <MapPin size={16} className="text-[#1a6fc4] flex-shrink-0 mt-1" />
+                  <MapPin size={16} className="text-[#2A52A0] flex-shrink-0 mt-1" />
                 </div>
-                <p className="text-xs text-[#0d1b2a]/65 mt-3">{city.distance}</p>
-                <p className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#1a6fc4] group-hover:gap-2 transition-all">
+                <p className="text-xs text-[#1C2B2B]/65 mt-3">{city.distance}</p>
+                <p className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#2A52A0] group-hover:gap-2 transition-all">
                   View details
                   <ArrowRight size={14} />
                 </p>
@@ -208,7 +208,7 @@ const ServiceAreasPage = () => {
       </section>
 
       {/* Outside service area note + CTA */}
-      <section className="py-16 md:py-20 bg-[#0d1b2a] text-white">
+      <section className="py-16 md:py-20 bg-[#1C2B2B] text-white">
         <div className="container max-w-2xl text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-4" style={serif}>
             Operation outside these cities?
@@ -219,7 +219,7 @@ const ServiceAreasPage = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/intake"
-              className="inline-flex items-center justify-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#1a6fc4]/20"
+              className="inline-flex items-center justify-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#2A52A0]/20"
               data-testid="service-areas-cta-primary"
             >
               Request a Walkthrough

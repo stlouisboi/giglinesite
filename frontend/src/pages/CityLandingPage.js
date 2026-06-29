@@ -206,11 +206,11 @@ const CityLandingPage = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#0d1b2a] text-white py-16 md:py-24">
+      <section className="bg-[#1C2B2B] text-white py-16 md:py-24">
         <div className="container max-w-4xl">
           <div className="flex items-center gap-2 mb-6">
-            <MapPin size={16} className="text-[#1a6fc4]" />
-            <p className="uppercase tracking-[3px] text-[#1a6fc4]" style={{ ...mono, fontSize: '11px' }}>
+            <MapPin size={16} className="text-[#2A52A0]" />
+            <p className="uppercase tracking-[3px] text-[#2A52A0]" style={{ ...mono, fontSize: '11px' }}>
               {data.name}, NC — {data.region}
             </p>
           </div>
@@ -236,7 +236,7 @@ const CityLandingPage = () => {
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
               to="/intake"
-              className="inline-flex items-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#1a6fc4]/20"
+              className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#2A52A0]/20"
               data-testid="city-cta-primary"
             >
               Request a Walkthrough
@@ -257,16 +257,16 @@ const CityLandingPage = () => {
       {data.leadParagraph && (
         <section className="py-16 md:py-20 bg-white" data-testid={`city-lead-${city}`}>
           <div className="container max-w-3xl">
-            <p className="uppercase tracking-[3px] text-[#1a6fc4] mb-4" style={{ ...mono, fontSize: '11px' }}>
+            <p className="uppercase tracking-[3px] text-[#2A52A0] mb-4" style={{ ...mono, fontSize: '11px' }}>
               {data.name} Industrial Profile
             </p>
             <h2
-              className="text-2xl md:text-[32px] font-bold text-[#0d1b2a] mb-8 leading-[1.2]"
+              className="text-2xl md:text-[32px] font-bold text-[#1C2B2B] mb-8 leading-[1.2]"
               style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
             >
               OSHA exposure across {data.name}&rsquo;s industrial corridor.
             </h2>
-            <div className="space-y-5 text-[15.5px] md:text-base text-[#0d1b2a]/80 leading-[1.85]">
+            <div className="space-y-5 text-[15.5px] md:text-base text-[#1C2B2B]/80 leading-[1.85]">
               {data.leadParagraph.split('\n\n').map((para, i) => (
                 <p key={i}>{para}</p>
               ))}
@@ -278,10 +278,10 @@ const CityLandingPage = () => {
       {/* What You Get */}
       <section className="py-16 md:py-24" style={{ backgroundColor: '#F9F8F6' }}>
         <div className="container max-w-4xl">
-          <p className="uppercase tracking-[3px] text-[#1a6fc4] mb-4" style={{ ...mono, fontSize: '11px' }}>
+          <p className="uppercase tracking-[3px] text-[#2A52A0] mb-4" style={{ ...mono, fontSize: '11px' }}>
             What You Get
           </p>
-          <h2 className="text-2xl md:text-3xl font-bold text-[#0d1b2a] mb-8" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-8" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             Every Walkthrough Produces a Written Report
           </h2>
           <div className="grid sm:grid-cols-2 gap-4">
@@ -294,8 +294,8 @@ const CityLandingPage = () => {
               'No retainer — one engagement, one report',
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-3">
-                <Check size={16} className="flex-shrink-0 mt-1 text-[#1a6fc4]" strokeWidth={2.5} />
-                <p className="text-sm text-[#0d1b2a]/70">{item}</p>
+                <Check size={16} className="flex-shrink-0 mt-1 text-[#2A52A0]" strokeWidth={2.5} />
+                <p className="text-sm text-[#1C2B2B]/70">{item}</p>
               </div>
             ))}
           </div>
@@ -305,20 +305,20 @@ const CityLandingPage = () => {
       {/* Local Context */}
       <section className="py-16 md:py-24 bg-white">
         <div className="container max-w-4xl">
-          <p className="uppercase tracking-[3px] text-[#1a6fc4] mb-4" style={{ ...mono, fontSize: '11px' }}>
+          <p className="uppercase tracking-[3px] text-[#2A52A0] mb-4" style={{ ...mono, fontSize: '11px' }}>
             Local Service
           </p>
-          <h2 className="text-2xl md:text-3xl font-bold text-[#0d1b2a] mb-6" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-6" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             Serving {data.name} from Kernersville
           </h2>
-          <div className="text-[#0d1b2a]/65 space-y-4 leading-relaxed">
+          <div className="text-[#1C2B2B]/65 space-y-4 leading-relaxed">
             <p>
               GigLine Safety & Compliance is based in Kernersville, NC — {data.distance}. I serve {data.industries} across {data.region} and the surrounding Piedmont Triad area.
             </p>
             <p>
               Most {data.name} operations I walk into have the same issues: blocked electrical panels, missing training records, fire equipment that hasn't been inspected, and programs that exist on paper but aren't being followed on the floor.
             </p>
-            <p className="font-medium text-[#0d1b2a]">
+            <p className="font-medium text-[#1C2B2B]">
               A walkthrough finds what's actually exposed — before an inspector does.
             </p>
           </div>
@@ -328,32 +328,32 @@ const CityLandingPage = () => {
       {/* City-specific FAQ */}
       <section className="py-16 md:py-24 bg-white">
         <div className="container max-w-3xl">
-          <p className="uppercase tracking-[3px] text-[#1a6fc4] mb-4" style={{ ...mono, fontSize: '11px' }}>
+          <p className="uppercase tracking-[3px] text-[#2A52A0] mb-4" style={{ ...mono, fontSize: '11px' }}>
             Common Questions
           </p>
           <h2
-            className="text-2xl md:text-3xl font-bold text-[#0d1b2a] mb-8"
+            className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-8"
             style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
             {data.name} Safety Walkthrough FAQ
           </h2>
           <div className="space-y-6" data-testid={`city-faq-${city}`}>
             {cityFaqs.map((f, i) => (
-              <div key={i} className="border-l-2 border-[#1a6fc4]/30 pl-5">
+              <div key={i} className="border-l-2 border-[#2A52A0]/30 pl-5">
                 <h3
-                  className="font-semibold text-[#0d1b2a] mb-2 text-base md:text-lg"
+                  className="font-semibold text-[#1C2B2B] mb-2 text-base md:text-lg"
                   style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
                 >
                   {f.q}
                 </h3>
-                <p className="text-sm md:text-base text-[#0d1b2a]/70 leading-relaxed">{f.a}</p>
+                <p className="text-sm md:text-base text-[#1C2B2B]/70 leading-relaxed">{f.a}</p>
               </div>
             ))}
           </div>
           <div className="mt-8 pt-6 border-t border-[#dde3ea]">
             <Link
               to="/faq"
-              className="inline-flex items-center gap-2 text-[#1a6fc4] hover:text-[#1560ae] font-semibold text-sm"
+              className="inline-flex items-center gap-2 text-[#2A52A0] hover:text-[#1F3F80] font-semibold text-sm"
               data-testid={`city-faq-more-${city}`}
             >
               See all 18 frequently asked questions
@@ -364,7 +364,7 @@ const CityLandingPage = () => {
       </section>
 
       {/* Pricing */}
-      <section className="py-16 md:py-20 bg-[#0d1b2a] text-white">
+      <section className="py-16 md:py-20 bg-[#1C2B2B] text-white">
         <div className="container max-w-2xl text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             Starting at {priceStartLabel}
@@ -384,13 +384,13 @@ const CityLandingPage = () => {
           )}
           <Link
             to="/intake"
-            className="inline-flex items-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#1a6fc4]/20"
+            className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#2A52A0]/20"
           >
             Request a Walkthrough
             <ArrowRight size={18} />
           </Link>
           <p className="mt-6 text-white/40 text-sm">
-            Or call directly: <a href="tel:3363298899" className="text-[#1a6fc4] hover:underline font-semibold">(336) 329-8899</a>
+            Or call directly: <a href="tel:3363298899" className="text-[#2A52A0] hover:underline font-semibold">(336) 329-8899</a>
           </p>
         </div>
       </section>

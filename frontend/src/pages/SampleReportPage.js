@@ -50,7 +50,7 @@ const SampleReportPage = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#0d1b2a] text-white py-16 md:py-24" data-testid="sample-report-hero">
+      <section className="bg-[#1C2B2B] text-white py-16 md:py-24" data-testid="sample-report-hero">
         <div className="container max-w-3xl">
           <p
             className="uppercase font-bold mb-4"
@@ -76,36 +76,36 @@ const SampleReportPage = () => {
         <div className="container max-w-xl">
           <div
             className="rounded-lg p-8 md:p-10"
-            style={{ background: '#F9F8F6', border: '1px solid rgba(13,27,42,0.10)' }}
+            style={{ background: '#F9F8F6', border: '1px solid rgba(28,43,43,0.10)' }}
           >
-            <FileText size={32} className="text-[#1a6fc4] mb-4" />
+            <FileText size={32} className="text-[#2A52A0] mb-4" />
 
             {status === 'sent' ? (
               <div data-testid="sample-report-success">
                 <h2
-                  className="text-xl font-bold text-[#0d1b2a] mb-3"
+                  className="text-xl font-bold text-[#1C2B2B] mb-3"
                   style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
                 >
                   Your guide just opened in a new tab.
                 </h2>
-                <p className="text-sm text-[#0d1b2a]/70 mb-4">
-                  We also sent a copy to <strong className="text-[#0d1b2a]">{email}</strong> for safekeeping. If the new tab didn&rsquo;t open (popup blocker), use the button below to download it directly.
+                <p className="text-sm text-[#1C2B2B]/70 mb-4">
+                  We also sent a copy to <strong className="text-[#1C2B2B]">{email}</strong> for safekeeping. If the new tab didn&rsquo;t open (popup blocker), use the button below to download it directly.
                 </p>
                 <a
                   href={`${API_URL}/api/sample-report/pdf`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-[#0d1b2a] hover:bg-[#1c2e44] text-white font-semibold px-5 py-3 rounded transition-colors text-sm mb-6"
+                  className="inline-flex items-center gap-2 bg-[#1C2B2B] hover:bg-[#1c2e44] text-white font-semibold px-5 py-3 rounded transition-colors text-sm mb-6"
                   data-testid="sample-report-fallback-download"
                 >
                   <Download size={14} />
                   Open the Sample Report
                 </a>
-                <div className="mt-6 pt-6 border-t border-[#0d1b2a]/10">
-                  <p className="text-sm text-[#0d1b2a]/60 mb-3">Ready to schedule a walkthrough that produces a report like this for your operation?</p>
+                <div className="mt-6 pt-6 border-t border-[#1C2B2B]/10">
+                  <p className="text-sm text-[#1C2B2B]/60 mb-3">Ready to schedule a walkthrough that produces a report like this for your operation?</p>
                   <Link
                     to="/intake?service=safety-walkthrough-report&utm_source=sample-report&utm_medium=website&utm_campaign=sample-report-followup"
-                    className="inline-flex items-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-semibold px-5 py-3 rounded transition-colors text-sm"
+                    className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-semibold px-5 py-3 rounded transition-colors text-sm"
                     data-testid="sample-report-intake-cta"
                   >
                     Request a Walkthrough
@@ -116,12 +116,12 @@ const SampleReportPage = () => {
             ) : (
               <>
                 <h2
-                  className="text-xl font-bold text-[#0d1b2a] mb-3"
+                  className="text-xl font-bold text-[#1C2B2B] mb-3"
                   style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
                 >
                   Get the Sample Report
                 </h2>
-                <p className="text-sm text-[#0d1b2a]/65 mb-6 leading-relaxed">
+                <p className="text-sm text-[#1C2B2B]/65 mb-6 leading-relaxed">
                   Enter your name and email and we&rsquo;ll send the redacted compliance report directly to your inbox. Free. No spam. One email.
                 </p>
                 <form className="space-y-3" onSubmit={handleSubmit}>
@@ -131,7 +131,7 @@ const SampleReportPage = () => {
                     required
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
-                    className="w-full px-4 py-3 border border-[#0d1b2a]/20 rounded text-sm focus:outline-none focus:border-[#1a6fc4] focus:ring-1 focus:ring-[#1a6fc4]/30"
+                    className="w-full px-4 py-3 border border-[#1C2B2B]/20 rounded text-sm focus:outline-none focus:border-[#2A52A0] focus:ring-1 focus:ring-[#2A52A0]/30"
                     data-testid="sample-report-firstname-input"
                     autoComplete="given-name"
                   />
@@ -141,7 +141,7 @@ const SampleReportPage = () => {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-4 py-3 border border-[#0d1b2a]/20 rounded text-sm focus:outline-none focus:border-[#1a6fc4] focus:ring-1 focus:ring-[#1a6fc4]/30"
+                    className="w-full px-4 py-3 border border-[#1C2B2B]/20 rounded text-sm focus:outline-none focus:border-[#2A52A0] focus:ring-1 focus:ring-[#2A52A0]/30"
                     data-testid="sample-report-email-input"
                     autoComplete="email"
                   />
@@ -150,14 +150,14 @@ const SampleReportPage = () => {
                     placeholder="Company (optional)"
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
-                    className="w-full px-4 py-3 border border-[#0d1b2a]/20 rounded text-sm focus:outline-none focus:border-[#1a6fc4] focus:ring-1 focus:ring-[#1a6fc4]/30"
+                    className="w-full px-4 py-3 border border-[#1C2B2B]/20 rounded text-sm focus:outline-none focus:border-[#2A52A0] focus:ring-1 focus:ring-[#2A52A0]/30"
                     data-testid="sample-report-company-input"
                     autoComplete="organization"
                   />
                   <button
                     type="submit"
                     disabled={status === 'sending'}
-                    className="w-full bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-semibold py-3 rounded transition-colors inline-flex items-center justify-center gap-2 disabled:opacity-50"
+                    className="w-full bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-semibold py-3 rounded transition-colors inline-flex items-center justify-center gap-2 disabled:opacity-50"
                     data-testid="sample-report-submit"
                   >
                     {status === 'sending' ? (
@@ -175,7 +175,7 @@ const SampleReportPage = () => {
                     Something went wrong. Try again, or email <a href="mailto:vince@giglinecompliance.com" className="underline">vince@giglinecompliance.com</a> directly.
                   </p>
                 )}
-                <p className="text-xs text-[#0d1b2a]/45 mt-4 flex items-center gap-1.5">
+                <p className="text-xs text-[#1C2B2B]/45 mt-4 flex items-center gap-1.5">
                   <Shield size={12} />
                   Private. We never share your email. One delivery, no follow-up spam.
                 </p>
@@ -187,18 +187,18 @@ const SampleReportPage = () => {
 
       {/* What the report contains */}
       <section
-        className="py-12 md:py-20 border-t border-[#0d1b2a]/10"
+        className="py-12 md:py-20 border-t border-[#1C2B2B]/10"
         data-testid="sample-report-contents"
       >
         <div className="container max-w-3xl">
           <p
-            className="uppercase font-bold mb-3 text-[#1a6fc4]"
+            className="uppercase font-bold mb-3 text-[#2A52A0]"
             style={{ ...mono, fontSize: '11px', letterSpacing: '0.2em' }}
           >
             What&rsquo;s in the Report
           </p>
           <h2
-            className="text-2xl md:text-3xl font-bold text-[#0d1b2a] mb-8 leading-tight"
+            className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-8 leading-tight"
             style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
             Every finding, photographed and cited.
@@ -227,10 +227,10 @@ const SampleReportPage = () => {
               },
             ].map((item) => (
               <li key={item.t} className="flex items-start gap-3">
-                <CheckCircle2 size={20} className="text-[#1a6fc4] flex-shrink-0 mt-0.5" />
+                <CheckCircle2 size={20} className="text-[#2A52A0] flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-semibold text-[#0d1b2a] text-base mb-1">{item.t}</p>
-                  <p className="text-sm text-[#0d1b2a]/65 leading-relaxed">{item.d}</p>
+                  <p className="font-semibold text-[#1C2B2B] text-base mb-1">{item.t}</p>
+                  <p className="text-sm text-[#1C2B2B]/65 leading-relaxed">{item.d}</p>
                 </div>
               </li>
             ))}
@@ -239,7 +239,7 @@ const SampleReportPage = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-14 md:py-20 bg-[#0d1b2a] text-white" data-testid="sample-report-cta">
+      <section className="py-14 md:py-20 bg-[#1C2B2B] text-white" data-testid="sample-report-cta">
         <div className="container max-w-2xl text-center">
           <p className="text-base md:text-lg text-white/65 mb-2">Reading a sample is useful.</p>
           <p className="text-lg md:text-xl text-white font-medium mb-7">
@@ -247,7 +247,7 @@ const SampleReportPage = () => {
           </p>
           <Link
             to="/intake?service=safety-walkthrough-report&utm_source=sample-report&utm_medium=website&utm_campaign=sample-report-cta"
-            className="inline-flex items-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded transition-colors"
+            className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded transition-colors"
             data-testid="sample-report-bottom-cta"
           >
             Request a Walkthrough

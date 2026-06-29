@@ -219,7 +219,7 @@ const STANDALONE = [
     testid: 'svc-standalone-supervisor-kit',
     anchor: 'supervisor-kit',
     badge: 'Included Free With CRV',
-    badgeColor: '#D4A93E',
+    badgeColor: '#C9A84C',
   },
 ];
 
@@ -330,7 +330,7 @@ const ServicesPage = () => {
       {/* ═══ 1. HERO ═══ */}
       <section
         className="relative overflow-hidden"
-        style={{ backgroundColor: '#0d1b2a' }}
+        style={{ backgroundColor: '#1C2B2B' }}
         data-testid="services-hero"
       >
         <div className="flex flex-col md:flex-row min-h-[480px] md:min-h-[560px]">
@@ -357,7 +357,7 @@ const ServicesPage = () => {
           {/* Copy — right 60% on desktop */}
           <div className="flex-grow flex items-center px-6 md:px-12 lg:px-16 py-12 md:py-16 relative z-10">
             <Reveal>
-              <p className="uppercase tracking-[3px] text-[#1a6fc4] mb-5 font-bold" style={{ ...mono, fontSize: '11px' }}>
+              <p className="uppercase tracking-[3px] text-[#2A52A0] mb-5 font-bold" style={{ ...mono, fontSize: '11px' }}>
                 Services · GigLine Safety & Compliance
               </p>
               <h1
@@ -386,7 +386,7 @@ const ServicesPage = () => {
       >
         <div className="container max-w-6xl py-3 md:py-4">
           <div className="flex items-center gap-2 md:gap-3 overflow-x-auto whitespace-nowrap text-[13px] md:text-sm" style={{ scrollbarWidth: 'thin' }}>
-            <span className="uppercase font-bold flex-shrink-0 pr-2 hidden md:inline" style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.18em', color: '#0d1b2a' }}>Jump to:</span>
+            <span className="uppercase font-bold flex-shrink-0 pr-2 hidden md:inline" style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.18em', color: '#1C2B2B' }}>Jump to:</span>
             {[
               { label: 'Safety Walkthrough', href: '#walkthrough' },
               { label: 'Documentation Review', href: '#docs-review' },
@@ -398,8 +398,8 @@ const ServicesPage = () => {
               <a
                 key={l.href}
                 href={l.href}
-                className="flex-shrink-0 px-3 md:px-4 py-1.5 md:py-2 rounded-full border transition-colors hover:bg-[#1a6fc4] hover:text-white hover:border-[#1a6fc4]"
-                style={{ borderColor: 'rgba(16,33,51,0.18)', color: '#0d1b2a' }}
+                className="flex-shrink-0 px-3 md:px-4 py-1.5 md:py-2 rounded-full border transition-colors hover:bg-[#2A52A0] hover:text-white hover:border-[#2A52A0]"
+                style={{ borderColor: 'rgba(16,33,51,0.18)', color: '#1C2B2B' }}
                 data-testid={`jump-nav-${l.href.replace('#','')}`}
               >
                 {l.label}
@@ -414,7 +414,7 @@ const ServicesPage = () => {
         <div className="container max-w-4xl text-center">
           <Reveal>
             <p
-              className="text-lg md:text-xl text-[#0d1b2a] leading-relaxed italic font-medium"
+              className="text-lg md:text-xl text-[#1C2B2B] leading-relaxed italic font-medium"
               data-testid="services-authority-line"
             >
               Built for small operations that need practical safety support without hiring a full-time safety manager.
@@ -426,36 +426,36 @@ const ServicesPage = () => {
       {/* ═══ 3. 90-SECOND SAFETY CHECK — intake door, reduced visual weight ═══ */}
       <section
         className="py-7 md:py-8 border-t border-b"
-        style={{ backgroundColor: '#F7F1E0', borderColor: 'rgba(212,169,62,0.35)' }}
+        style={{ backgroundColor: '#F7F1E0', borderColor: 'rgba(201,168,76,0.35)' }}
         data-testid="services-safety-check-band"
       >
         <div className="container max-w-3xl text-center">
           <Reveal>
             <p
-              className="uppercase tracking-[3px] text-[#0d1b2a]/55 mb-3 font-bold"
+              className="uppercase tracking-[3px] text-[#1C2B2B]/55 mb-3 font-bold"
               style={{ ...mono, fontSize: '11px' }}
               data-testid="services-safety-check-kicker"
             >
               Not sure where to start?
             </p>
-            <p className="text-base md:text-lg text-[#0d1b2a] leading-relaxed mb-6 max-w-2xl mx-auto" data-testid="services-safety-check-intro">
+            <p className="text-base md:text-lg text-[#1C2B2B] leading-relaxed mb-6 max-w-2xl mx-auto" data-testid="services-safety-check-intro">
               Not sure where you stand? Take the free 90-Second Safety Check — six yes-or-no questions, immediate risk score, no email required to start.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
               <Link
                 to="/safety-check"
-                className="inline-flex items-center justify-center gap-2 border-2 border-[#0d1b2a] hover:bg-[#0d1b2a] hover:text-white text-[#0d1b2a] font-bold px-6 py-3 rounded-lg text-sm transition-colors"
+                className="inline-flex items-center justify-center gap-2 border-2 border-[#1C2B2B] hover:bg-[#1C2B2B] hover:text-white text-[#1C2B2B] font-bold px-6 py-3 rounded-lg text-sm transition-colors"
                 data-testid="services-safety-check-link"
               >
                 Take the Safety Check
                 <ArrowRight size={16} />
               </Link>
             </div>
-            <p className="text-sm text-[#0d1b2a]/70 mt-5 italic" data-testid="services-safety-check-followup">
+            <p className="text-sm text-[#1C2B2B]/70 mt-5 italic" data-testid="services-safety-check-followup">
               Ready for a professional review?{' '}
               <Link
                 to={intakeLink('compliance-readiness-visit')}
-                className="text-[#1a6fc4] hover:text-[#1560ae] underline font-semibold"
+                className="text-[#2A52A0] hover:text-[#1F3F80] underline font-semibold"
                 data-testid="services-safety-check-followup-link"
               >
                 Schedule a Compliance Readiness Visit &rarr;
@@ -471,15 +471,15 @@ const ServicesPage = () => {
           <Reveal>
             <p
               className="uppercase font-bold mb-4"
-              style={{ ...mono, fontSize: '10.4px', fontWeight: 700, letterSpacing: '2.08px', color: '#1a6fc4' }}
+              style={{ ...mono, fontSize: '10.4px', fontWeight: 700, letterSpacing: '2.08px', color: '#2A52A0' }}
             >
               Who GigLine Helps
             </p>
-            <h2 className="text-3xl md:text-4xl lg:text-[44px] font-extrabold text-[#0d1b2a] leading-[1.1] mb-4 max-w-4xl tracking-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-[44px] font-extrabold text-[#1C2B2B] leading-[1.1] mb-4 max-w-4xl tracking-tight">
               Built for the operations OSHA inspects the most.
             </h2>
-            <div className="mb-8" style={{ width: '56px', height: '3px', background: '#D4A93E', borderRadius: '2px' }} />
-            <p className="text-base md:text-lg text-[#0d1b2a]/65 leading-[1.85] mb-16 max-w-3xl">
+            <div className="mb-8" style={{ width: '56px', height: '3px', background: '#C9A84C', borderRadius: '2px' }} />
+            <p className="text-base md:text-lg text-[#1C2B2B]/65 leading-[1.85] mb-16 max-w-3xl">
               GigLine focuses on the four operation types most likely to receive an OSHA inspection,
               <br className="hidden md:block" />
               an insurance review, or a customer-audit request in the Piedmont Triad.
@@ -490,8 +490,8 @@ const ServicesPage = () => {
             {WHO_HELPS.map(({ Icon, title, desc }, i) => (
               <Reveal key={title} delay={i * 90}>
                 <div
-                  className="h-full bg-white rounded-2xl p-8 md:p-9 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_-12px_rgba(13,27,42,0.12)]"
-                  style={{ border: '1px solid #dde3ea', boxShadow: '0 1px 0 rgba(13,27,42,0.02)', minHeight: '460px' }}
+                  className="h-full bg-white rounded-2xl p-8 md:p-9 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_-12px_rgba(28,43,43,0.12)]"
+                  style={{ border: '1px solid #dde3ea', boxShadow: '0 1px 0 rgba(28,43,43,0.02)', minHeight: '460px' }}
                   data-testid={`who-helps-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
                 >
                   <div
@@ -500,13 +500,13 @@ const ServicesPage = () => {
                       width: '56px',
                       height: '56px',
                       borderRadius: '50%',
-                      backgroundColor: 'rgba(26,111,196,0.12)',
+                      backgroundColor: 'rgba(42,82,160,0.12)',
                     }}
                   >
-                    <Icon size={24} strokeWidth={1.9} className="text-[#1a6fc4]" />
+                    <Icon size={24} strokeWidth={1.9} className="text-[#2A52A0]" />
                   </div>
-                  <h3 className="text-[17px] font-bold text-[#0d1b2a] mb-5 leading-tight">{title}</h3>
-                  <p className="text-[14.5px] text-[#0d1b2a]/65 leading-[1.85]">{desc}</p>
+                  <h3 className="text-[17px] font-bold text-[#1C2B2B] mb-5 leading-tight">{title}</h3>
+                  <p className="text-[14.5px] text-[#1C2B2B]/65 leading-[1.85]">{desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -523,7 +523,7 @@ const ServicesPage = () => {
               data-testid="svc-card-compliance-readiness"
               id="crv"
               style={{
-                border: '2px solid #1a6fc4',
+                border: '2px solid #2A52A0',
                 boxShadow: '0 8px 24px -8px rgba(31,111,235,0.15)',
                 scrollMarginTop: '128px',
               }}
@@ -532,7 +532,7 @@ const ServicesPage = () => {
               <div
                 className="absolute -top-4 left-1/2 -translate-x-1/2 px-5 py-2 rounded-full shadow-lg whitespace-nowrap"
                 style={{
-                  background: 'linear-gradient(135deg, #1a6fc4 0%, #1560ae 100%)',
+                  background: 'linear-gradient(135deg, #2A52A0 0%, #1F3F80 100%)',
                   boxShadow: '0 8px 20px -4px rgba(31,111,235,0.55), 0 0 0 4px #FFFFFF',
                 }}
                 data-testid="readiness-visit-badge"
@@ -548,15 +548,15 @@ const ServicesPage = () => {
               <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 items-start mt-4">
                 <div>
                   <p
-                    className="uppercase tracking-[2.5px] text-[#1a6fc4] font-bold mb-3"
+                    className="uppercase tracking-[2.5px] text-[#2A52A0] font-bold mb-3"
                     style={{ ...mono, fontSize: '10.5px' }}
                   >
                     Flagship Engagement
                   </p>
-                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#0d1b2a] leading-tight mb-4">
+                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#1C2B2B] leading-tight mb-4">
                     Compliance Readiness Visit
                   </h2>
-                  <p className="text-base md:text-lg text-[#0d1b2a]/80 leading-relaxed mb-6 max-w-2xl">
+                  <p className="text-base md:text-lg text-[#1C2B2B]/80 leading-relaxed mb-6 max-w-2xl">
                     The floor and the files reviewed in a single visit. Most operations don&apos;t need a separate walkthrough and documentation review — they need both, scored together, with a single readiness report. This is that engagement.
                   </p>
 
@@ -584,8 +584,8 @@ const ServicesPage = () => {
                         '30-day check-in call included',
                         'Fixed quote \u00b7 Private engagement',
                       ].map((line, i) => (
-                        <li key={i} className="flex items-start gap-3.5 text-[#0d1b2a]/85 text-[15.5px] leading-[1.55]">
-                          <CheckCircle2 size={18} className="flex-shrink-0 mt-0.5 text-[#1a6fc4]" strokeWidth={2} />
+                        <li key={i} className="flex items-start gap-3.5 text-[#1C2B2B]/85 text-[15.5px] leading-[1.55]">
+                          <CheckCircle2 size={18} className="flex-shrink-0 mt-0.5 text-[#2A52A0]" strokeWidth={2} />
                           <span>{line}</span>
                         </li>
                       ))}
@@ -593,7 +593,7 @@ const ServicesPage = () => {
                   </div>
 
                   <p
-                    className="italic text-[#0d1b2a]/65 text-sm md:text-[15px] leading-relaxed mb-6 max-w-2xl"
+                    className="italic text-[#1C2B2B]/65 text-sm md:text-[15px] leading-relaxed mb-6 max-w-2xl"
                     data-testid="crv-anchor-line"
                   >
                     Booked separately, the Safety Walkthrough and Documentation Review start at $2,500. The Compliance Readiness Visit covers both in a single visit &mdash; from $2,000.
@@ -606,15 +606,15 @@ const ServicesPage = () => {
                     style={{ border: '1px solid #dde3ea', backgroundColor: '#FBFCFD' }}
                   >
                     <p
-                      className="uppercase tracking-[2px] text-[#0d1b2a]/55 font-bold mb-1"
+                      className="uppercase tracking-[2px] text-[#1C2B2B]/55 font-bold mb-1"
                       style={{ ...mono, fontSize: '10px' }}
                     >
                       Starting At
                     </p>
-                    <p className="text-4xl md:text-5xl font-bold text-[#1a6fc4] leading-none tracking-tight mb-1" style={mono} data-testid="crv-price-large">
+                    <p className="text-4xl md:text-5xl font-bold text-[#2A52A0] leading-none tracking-tight mb-1" style={mono} data-testid="crv-price-large">
                       $2,000
                     </p>
-                    <p className="text-[#0d1b2a]/45 italic" style={{ ...mono, fontSize: '11px' }}>
+                    <p className="text-[#1C2B2B]/45 italic" style={{ ...mono, fontSize: '11px' }}>
                       fixed quote
                     </p>
                   </div>
@@ -624,7 +624,7 @@ const ServicesPage = () => {
                       fireServicesCtaClick('Schedule a Visit', intakeLink('compliance-readiness-visit'));
                       trackServiceBooking && trackServiceBooking('Compliance Readiness Visit');
                     }}
-                    className="w-full inline-flex items-center justify-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-6 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#1a6fc4]/20 mb-2"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-6 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#2A52A0]/20 mb-2"
                     data-testid="svc-card-compliance-readiness-cta"
                   >
                     Schedule a Visit
@@ -632,7 +632,7 @@ const ServicesPage = () => {
                   </Link>
                   <Link
                     to="/services/compliance-readiness-visit"
-                    className="w-full inline-flex items-center justify-center gap-2 text-[#1a6fc4] hover:text-[#1560ae] font-bold text-[14px] py-2 mb-4 transition-colors"
+                    className="w-full inline-flex items-center justify-center gap-2 text-[#2A52A0] hover:text-[#1F3F80] font-bold text-[14px] py-2 mb-4 transition-colors"
                     data-testid="svc-card-compliance-readiness-learn-more"
                   >
                     See Full Page
@@ -642,12 +642,12 @@ const ServicesPage = () => {
                   {/* Ops Manager Trust Block */}
                   <div
                     className="rounded-xl p-5"
-                    style={{ background: '#0d1b2a', border: '1px solid rgba(212,169,62,0.25)' }}
+                    style={{ background: '#1C2B2B', border: '1px solid rgba(201,168,76,0.25)' }}
                     data-testid="crv-ops-trust-block"
                   >
                     <p
                       className="uppercase font-bold mb-3"
-                      style={{ ...mono, fontSize: '9.5px', letterSpacing: '0.18em', color: '#D4A93E' }}
+                      style={{ ...mono, fontSize: '9.5px', letterSpacing: '0.18em', color: '#C9A84C' }}
                     >
                       Built for Ops Leaders
                     </p>
@@ -659,7 +659,7 @@ const ServicesPage = () => {
                         '24–48 hr written report',
                       ].map((line) => (
                         <li key={line} className="flex items-start gap-2 text-[12.5px] text-white/80 leading-snug">
-                          <Check size={13} className="flex-shrink-0 mt-0.5 text-[#D4A93E]" strokeWidth={3} />
+                          <Check size={13} className="flex-shrink-0 mt-0.5 text-[#C9A84C]" strokeWidth={3} />
                           <span>{line}</span>
                         </li>
                       ))}
@@ -678,7 +678,7 @@ const ServicesPage = () => {
       {/* ═══ 5c. SAMPLE REPORT CTA (under CRV / WalkthroughDay) ═══ */}
       <section
         className="py-12 md:py-16"
-        style={{ backgroundColor: '#FAF7F1', borderTop: '1px solid rgba(13,27,42,0.06)', borderBottom: '1px solid rgba(13,27,42,0.06)' }}
+        style={{ backgroundColor: '#FAF7F1', borderTop: '1px solid rgba(28,43,43,0.06)', borderBottom: '1px solid rgba(28,43,43,0.06)' }}
         data-testid="services-sample-report-band"
       >
         <div className="container max-w-4xl">
@@ -686,23 +686,23 @@ const ServicesPage = () => {
             <div>
               <p
                 className="uppercase font-bold tracking-[0.22em] mb-2"
-                style={{ color: '#1a6fc4', ...mono, fontSize: '11px' }}
+                style={{ color: '#2A52A0', ...mono, fontSize: '11px' }}
               >
                 See What You Get
               </p>
               <h2
-                className="font-bold leading-tight text-[#0d1b2a] mb-2 text-[22px] md:text-[26px]"
+                className="font-bold leading-tight text-[#1C2B2B] mb-2 text-[22px] md:text-[26px]"
                 style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
               >
                 Want a preview before you schedule?
               </h2>
-              <p className="text-[15px] md:text-base text-[#0d1b2a]/65 leading-relaxed max-w-2xl">
+              <p className="text-[15px] md:text-base text-[#1C2B2B]/65 leading-relaxed max-w-2xl">
                 Download a redacted compliance report &mdash; facility name removed, every other detail intact. Findings, CFR citations, penalty exposure, RED/AMBER/GREEN fix list, and the corrective action plan.
               </p>
             </div>
             <Link
               to="/sample-report"
-              className="inline-flex items-center justify-center gap-2 bg-[#0d1b2a] hover:bg-[#1c2e44] text-white font-semibold px-6 py-3.5 rounded transition-colors whitespace-nowrap text-sm md:text-base"
+              className="inline-flex items-center justify-center gap-2 bg-[#1C2B2B] hover:bg-[#1c2e44] text-white font-semibold px-6 py-3.5 rounded transition-colors whitespace-nowrap text-sm md:text-base"
               data-testid="services-sample-report-cta"
             >
               Download a Sample Report &rarr;
@@ -717,15 +717,15 @@ const ServicesPage = () => {
           <Reveal>
             <p
               className="uppercase font-bold mb-4"
-              style={{ ...mono, fontSize: '10.4px', fontWeight: 700, letterSpacing: '2.08px', color: '#1a6fc4' }}
+              style={{ ...mono, fontSize: '10.4px', fontWeight: 700, letterSpacing: '2.08px', color: '#2A52A0' }}
             >
               Standalone Services
             </p>
-            <h2 className="text-3xl md:text-4xl lg:text-[44px] font-extrabold text-[#0d1b2a] leading-[1.1] mb-4 max-w-4xl tracking-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-[44px] font-extrabold text-[#1C2B2B] leading-[1.1] mb-4 max-w-4xl tracking-tight">
               Targeted engagements when you need a specific outcome.
             </h2>
-            <div className="mb-8" style={{ width: '56px', height: '3px', background: '#D4A93E', borderRadius: '2px' }} />
-            <p className="text-base md:text-lg text-[#0d1b2a]/65 leading-[1.85] max-w-3xl">
+            <div className="mb-8" style={{ width: '56px', height: '3px', background: '#C9A84C', borderRadius: '2px' }} />
+            <p className="text-base md:text-lg text-[#1C2B2B]/65 leading-[1.85] max-w-3xl">
               For operations that already know which side they need reviewed &mdash; the floor, the files, or a specific incident. Each engagement is scoped, quoted, and delivered independently.
             </p>
           </Reveal>
@@ -759,8 +759,8 @@ const ServicesPage = () => {
                           ...mono,
                           fontSize: '10px',
                           letterSpacing: '0.14em',
-                          color: s.badgeColor || '#1a6fc4',
-                          border: `1px solid ${s.badgeColor || '#1a6fc4'}55`,
+                          color: s.badgeColor || '#2A52A0',
+                          border: `1px solid ${s.badgeColor || '#2A52A0'}55`,
                           padding: '4px 10px',
                           borderRadius: '999px',
                         }}
@@ -771,22 +771,22 @@ const ServicesPage = () => {
                     )}
                     <p
                       className="uppercase font-bold mb-4"
-                      style={{ ...mono, fontSize: '10.4px', fontWeight: 700, letterSpacing: '2.08px', color: '#1a6fc4' }}
+                      style={{ ...mono, fontSize: '10.4px', fontWeight: 700, letterSpacing: '2.08px', color: '#2A52A0' }}
                       data-testid={`${s.testid}-eyebrow`}
                     >
                       {s.eyebrow}
                     </p>
-                    <h3 className="text-3xl md:text-4xl lg:text-[40px] font-extrabold text-[#0d1b2a] leading-[1.1] mb-5 tracking-tight">
+                    <h3 className="text-3xl md:text-4xl lg:text-[40px] font-extrabold text-[#1C2B2B] leading-[1.1] mb-5 tracking-tight">
                       {s.headline}
                     </h3>
-                    <div className="mb-8" style={{ width: '56px', height: '3px', background: '#D4A93E', borderRadius: '2px' }} />
-                    <p className="text-base md:text-lg text-[#0d1b2a]/70 leading-[1.85] mb-8">
+                    <div className="mb-8" style={{ width: '56px', height: '3px', background: '#C9A84C', borderRadius: '2px' }} />
+                    <p className="text-base md:text-lg text-[#1C2B2B]/70 leading-[1.85] mb-8">
                       {s.body}
                     </p>
 
                     {s.priceAnchor && (
                       <p
-                        className="text-sm text-[#0d1b2a]/50 -mt-4 mb-8 italic"
+                        className="text-sm text-[#1C2B2B]/50 -mt-4 mb-8 italic"
                         data-testid={`${s.testid}-price-anchor`}
                       >
                         {s.priceAnchor}
@@ -794,15 +794,15 @@ const ServicesPage = () => {
                     )}
 
                     {s.floorPricing && (
-                      <div className="mb-8 p-5 rounded-xl bg-white" style={{ border: '1px solid rgba(212,169,62,0.35)' }}>
-                        <p className="text-xs uppercase tracking-wider text-[#0d1b2a]/65 mb-2.5 font-bold" style={{ ...mono, letterSpacing: '0.2em' }}>
+                      <div className="mb-8 p-5 rounded-xl bg-white" style={{ border: '1px solid rgba(201,168,76,0.35)' }}>
+                        <p className="text-xs uppercase tracking-wider text-[#1C2B2B]/65 mb-2.5 font-bold" style={{ ...mono, letterSpacing: '0.2em' }}>
                           Floor Pricing Reference
                         </p>
                         <ul className="space-y-2">
                           {s.floorPricing.map(([item, price], i) => (
-                            <li key={i} className="flex justify-between gap-4 text-[14px] text-[#0d1b2a]/85">
+                            <li key={i} className="flex justify-between gap-4 text-[14px] text-[#1C2B2B]/85">
                               <span>{item}</span>
-                              <span className="font-bold text-[#0d1b2a] whitespace-nowrap" style={mono}>{price}</span>
+                              <span className="font-bold text-[#1C2B2B] whitespace-nowrap" style={mono}>{price}</span>
                             </li>
                           ))}
                         </ul>
@@ -811,8 +811,8 @@ const ServicesPage = () => {
 
                     {s.best && (
                       <div className="mb-8" data-testid={`${s.testid}-best`}>
-                        <p className="font-bold text-[#0d1b2a] mb-2 text-[15.5px]">Best for:</p>
-                        <p className="text-[15px] text-[#0d1b2a]/70 leading-[1.75]">{s.best}</p>
+                        <p className="font-bold text-[#1C2B2B] mb-2 text-[15.5px]">Best for:</p>
+                        <p className="text-[15px] text-[#1C2B2B]/70 leading-[1.75]">{s.best}</p>
                       </div>
                     )}
 
@@ -820,18 +820,18 @@ const ServicesPage = () => {
                       <Link
                         to={s.directLink || intakeLink(s.intakeService)}
                         onClick={() => trackServiceBooking && trackServiceBooking(s.title)}
-                        className="inline-flex items-center justify-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-6 py-3.5 rounded-lg text-[15px] transition-colors shadow-md shadow-[#1a6fc4]/15"
+                        className="inline-flex items-center justify-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-6 py-3.5 rounded-lg text-[15px] transition-colors shadow-md shadow-[#2A52A0]/15"
                         data-testid={`${s.testid}-cta`}
                       >
                         {s.cta}
                       </Link>
-                      <span className="font-bold text-[#0d1b2a] text-[15.5px]" style={mono} data-testid={`${s.testid}-price`}>
+                      <span className="font-bold text-[#1C2B2B] text-[15.5px]" style={mono} data-testid={`${s.testid}-price`}>
                         {s.price}
                       </span>
                       {s.detailsHref && !s.directLink && (
                         <Link
                           to={s.detailsHref}
-                          className="inline-flex items-center gap-1 text-[#1a6fc4] hover:text-[#1560ae] font-bold text-[14.5px] transition-colors"
+                          className="inline-flex items-center gap-1 text-[#2A52A0] hover:text-[#1F3F80] font-bold text-[14.5px] transition-colors"
                           data-testid={`${s.testid}-details`}
                         >
                           See Full Details
@@ -857,7 +857,7 @@ const ServicesPage = () => {
                       className="rounded-2xl bg-white p-8 md:p-10"
                       style={{
                         border: '1px solid #d0d7e0',
-                        boxShadow: '0 12px 32px -16px rgba(13,27,42,0.18), 0 2px 6px rgba(13,27,42,0.04)',
+                        boxShadow: '0 12px 32px -16px rgba(28,43,43,0.18), 0 2px 6px rgba(28,43,43,0.04)',
                       }}
                       data-testid={`${s.testid}-includes-card`}
                     >
@@ -869,8 +869,8 @@ const ServicesPage = () => {
                       </p>
                       <ul className="space-y-5">
                         {s.whatsIncluded.map((line, i) => (
-                          <li key={i} className="flex items-start gap-3.5 text-[#0d1b2a]/85 text-[15px] leading-[1.55]">
-                            <CheckCircle2 size={19} className="flex-shrink-0 mt-0.5 text-[#1a6fc4]" strokeWidth={2} />
+                          <li key={i} className="flex items-start gap-3.5 text-[#1C2B2B]/85 text-[15px] leading-[1.55]">
+                            <CheckCircle2 size={19} className="flex-shrink-0 mt-0.5 text-[#2A52A0]" strokeWidth={2} />
                             <span>{line}</span>
                           </li>
                         ))}
@@ -885,7 +885,7 @@ const ServicesPage = () => {
       })}
 
       {/* ═══ 7. OSHA-READY CONTROL SYSTEM — Premium dedicated section ═══ */}
-      <section className="py-20 md:py-28 scroll-mt-32" id="control-system" style={{ backgroundColor: '#0d1b2a' }} data-testid="services-control-system">
+      <section className="py-20 md:py-28 scroll-mt-32" id="control-system" style={{ backgroundColor: '#1C2B2B' }} data-testid="services-control-system">
         <div className="container max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-10 md:gap-14 items-start">
             <Reveal>
@@ -896,9 +896,9 @@ const ServicesPage = () => {
                   ...mono,
                   fontSize: '11px',
                   letterSpacing: '0.16em',
-                  color: '#D4A93E',
-                  background: 'rgba(212,169,62,0.10)',
-                  border: '1px solid rgba(212,169,62,0.35)',
+                  color: '#C9A84C',
+                  background: 'rgba(201,168,76,0.10)',
+                  border: '1px solid rgba(201,168,76,0.35)',
                   padding: '8px 14px',
                   borderRadius: '4px',
                 }}
@@ -910,7 +910,7 @@ const ServicesPage = () => {
 
               <p
                 className="uppercase font-bold mb-5"
-                style={{ ...mono, fontSize: '11px', letterSpacing: '0.18em', color: '#1a6fc4' }}
+                style={{ ...mono, fontSize: '11px', letterSpacing: '0.18em', color: '#2A52A0' }}
                 data-testid="control-system-kicker"
               >
                 OSHA-Ready Control System
@@ -924,7 +924,7 @@ const ServicesPage = () => {
               </h2>
 
               {/* Gold accent line */}
-              <div className="mb-7" style={{ width: '64px', height: '3px', background: '#D4A93E', borderRadius: '2px' }} />
+              <div className="mb-7" style={{ width: '64px', height: '3px', background: '#C9A84C', borderRadius: '2px' }} />
 
               <p className="text-base md:text-lg text-[#CBD5E1] leading-relaxed mb-6">
                 GigLine constructs the complete safety infrastructure your operation needs to pass any OSHA inspection, customer audit, or insurance review &mdash; and hands it back to your team with a system they can actually maintain.
@@ -960,7 +960,7 @@ const ServicesPage = () => {
                     fireServicesCtaClick('Request Buildout', intakeLink('osha-ready-control-system'));
                     trackServiceBooking && trackServiceBooking('GigLine OSHA-Ready Control System');
                   }}
-                  className="inline-flex items-center gap-2 bg-[#D4A93E] hover:bg-[#B58F2E] text-[#0d1b2a] font-bold px-7 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#D4A93E]/25"
+                  className="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#B58F2E] text-[#1C2B2B] font-bold px-7 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#C9A84C]/25"
                   data-testid="control-system-cta"
                 >
                   Request Buildout
@@ -981,7 +981,7 @@ const ServicesPage = () => {
               <Reveal>
                 <p
                   className="uppercase font-bold mb-2"
-                  style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.20em', color: '#D4A93E' }}
+                  style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.20em', color: '#C9A84C' }}
                   data-testid="buildout-eyebrow"
                 >
                   What the Buildout Includes
@@ -1016,7 +1016,7 @@ const ServicesPage = () => {
               ].map((item, i) => (
                 <Reveal key={item.title} delay={140 + i * 90}>
                   <div
-                    className="rounded-xl p-6 flex items-start gap-5 transition-all duration-300 hover:bg-white/[0.06] hover:border-[#D4A93E]/40 hover:-translate-y-0.5"
+                    className="rounded-xl p-6 flex items-start gap-5 transition-all duration-300 hover:bg-white/[0.06] hover:border-[#C9A84C]/40 hover:-translate-y-0.5"
                     style={{
                       backgroundColor: 'rgba(255,255,255,0.035)',
                       border: '1px solid rgba(255,255,255,0.08)',
@@ -1029,11 +1029,11 @@ const ServicesPage = () => {
                         width: '44px',
                         height: '44px',
                         borderRadius: '50%',
-                        background: 'rgba(212,169,62,0.14)',
-                        border: '1px solid rgba(212,169,62,0.30)',
+                        background: 'rgba(201,168,76,0.14)',
+                        border: '1px solid rgba(201,168,76,0.30)',
                       }}
                     >
-                      <item.Icon size={20} strokeWidth={1.9} className="text-[#D4A93E]" />
+                      <item.Icon size={20} strokeWidth={1.9} className="text-[#C9A84C]" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <h3 className="text-white font-bold leading-tight mb-2 text-[15.5px] md:text-base">
@@ -1055,13 +1055,13 @@ const ServicesPage = () => {
       <section className="py-20 md:py-24 bg-white" data-testid="services-recurring">
         <div className="container max-w-6xl">
           <Reveal>
-            <p className="uppercase tracking-[3px] text-[#1a6fc4] mb-3 font-bold" style={{ ...mono, fontSize: '11px' }}>
+            <p className="uppercase tracking-[3px] text-[#2A52A0] mb-3 font-bold" style={{ ...mono, fontSize: '11px' }}>
               The Natural Next Step
             </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#0d1b2a] mb-3 max-w-3xl">
+            <h2 className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-3 max-w-3xl">
               Once the system is built, keep it current.
             </h2>
-            <p className="text-base md:text-lg text-[#0d1b2a]/70 leading-relaxed mb-12 max-w-3xl">
+            <p className="text-base md:text-lg text-[#1C2B2B]/70 leading-relaxed mb-12 max-w-3xl">
               The Control System is the foundation. Quarterly and Annual support are how operations keep that foundation alive — without hiring a full-time safety manager.
             </p>
           </Reveal>
@@ -1075,9 +1075,9 @@ const ServicesPage = () => {
                   id={s.anchor}
                   className="h-full rounded-xl p-7 md:p-8 flex flex-col scroll-mt-32"
                   style={{
-                    background: isAnnual ? '#0d1b2a' : '#ffffff',
-                    border: isAnnual ? '1px solid rgba(212,169,62,0.35)' : '1px solid #dde3ea',
-                    boxShadow: isAnnual ? '0 8px 24px -8px rgba(13,27,42,0.25)' : '0 1px 0 rgba(13,27,42,0.02)',
+                    background: isAnnual ? '#1C2B2B' : '#ffffff',
+                    border: isAnnual ? '1px solid rgba(201,168,76,0.35)' : '1px solid #dde3ea',
+                    boxShadow: isAnnual ? '0 8px 24px -8px rgba(28,43,43,0.25)' : '0 1px 0 rgba(28,43,43,0.02)',
                   }}
                   data-testid={s.testid}
                 >
@@ -1088,9 +1088,9 @@ const ServicesPage = () => {
                         ...mono,
                         fontSize: '10px',
                         letterSpacing: '0.14em',
-                        color: isAnnual ? '#D4A93E' : '#1a6fc4',
-                        background: isAnnual ? 'rgba(212,169,62,0.12)' : 'rgba(31,111,235,0.10)',
-                        border: isAnnual ? '1px solid rgba(212,169,62,0.30)' : 'none',
+                        color: isAnnual ? '#C9A84C' : '#2A52A0',
+                        background: isAnnual ? 'rgba(201,168,76,0.12)' : 'rgba(31,111,235,0.10)',
+                        border: isAnnual ? '1px solid rgba(201,168,76,0.30)' : 'none',
                         padding: '4px 10px',
                         borderRadius: '999px',
                       }}
@@ -1099,17 +1099,17 @@ const ServicesPage = () => {
                       ★ {s.badge}
                     </span>
                   )}
-                  <h3 className={`text-xl md:text-2xl font-bold mb-2 ${isAnnual ? 'text-white' : 'text-[#0d1b2a]'}`}>{s.title}</h3>
+                  <h3 className={`text-xl md:text-2xl font-bold mb-2 ${isAnnual ? 'text-white' : 'text-[#1C2B2B]'}`}>{s.title}</h3>
                   <p
                     className="font-extrabold leading-none mb-1"
-                    style={{ ...mono, fontSize: isAnnual ? 'clamp(34px, 4vw, 42px)' : '20px', color: isAnnual ? '#D4A93E' : '#1a6fc4' }}
+                    style={{ ...mono, fontSize: isAnnual ? 'clamp(34px, 4vw, 42px)' : '20px', color: isAnnual ? '#C9A84C' : '#2A52A0' }}
                     data-testid={`${s.testid}-price`}
                   >
                     {s.price}
                   </p>
                   {s.priceSecondary && (
                     <p
-                      className={`text-sm mb-5 mt-1 ${isAnnual ? 'text-white/55' : 'text-[#0d1b2a]/55'}`}
+                      className={`text-sm mb-5 mt-1 ${isAnnual ? 'text-white/55' : 'text-[#1C2B2B]/55'}`}
                       style={mono}
                       data-testid={`${s.testid}-price-secondary`}
                     >
@@ -1120,15 +1120,15 @@ const ServicesPage = () => {
 
                   {/* Body — either single paragraph (Quarterly) or multi-paragraph (Annual) */}
                   {s.bodyTagline || s.bodyExtended ? (
-                    <div className={`space-y-4 mb-6 text-base leading-relaxed ${isAnnual ? 'text-white/80' : 'text-[#0d1b2a]/85'}`}>
+                    <div className={`space-y-4 mb-6 text-base leading-relaxed ${isAnnual ? 'text-white/80' : 'text-[#1C2B2B]/85'}`}>
                       <p>{s.body}</p>
                       {s.bodyTagline && (
-                        <p className={`font-bold ${isAnnual ? 'text-white' : 'text-[#0d1b2a]'}`}>{s.bodyTagline}</p>
+                        <p className={`font-bold ${isAnnual ? 'text-white' : 'text-[#1C2B2B]'}`}>{s.bodyTagline}</p>
                       )}
                       {s.bodyExtended && <p>{s.bodyExtended}</p>}
                     </div>
                   ) : (
-                    <p className="text-base text-[#0d1b2a]/85 leading-relaxed mb-6">{s.body}</p>
+                    <p className="text-base text-[#1C2B2B]/85 leading-relaxed mb-6">{s.body}</p>
                   )}
 
                   {/* What's Included list (Annual Partner only) */}
@@ -1136,19 +1136,19 @@ const ServicesPage = () => {
                     <div className="mb-6" data-testid={`${s.testid}-includes`}>
                       <p
                         className="uppercase font-bold mb-3"
-                        style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.20em', color: '#D4A93E' }}
+                        style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.20em', color: '#C9A84C' }}
                       >
                         What&apos;s Included
                       </p>
                       <ul className="space-y-3">
                         {s.includes.map((item, i) => (
                           <li key={i} className="flex items-start gap-3 text-[15px] text-white/85 leading-snug">
-                            <Check size={18} className="flex-shrink-0 mt-0.5 text-[#D4A93E]" strokeWidth={3} />
+                            <Check size={18} className="flex-shrink-0 mt-0.5 text-[#C9A84C]" strokeWidth={3} />
                             <span>
                               <span className="font-semibold text-white">{item.label}</span>
                               {item.detail && <span className="text-white/70"> &mdash; {item.detail}</span>}
                               {item.value && (
-                                <span className="text-[#D4A93E]/85 italic" style={mono}> &nbsp;({item.value})</span>
+                                <span className="text-[#C9A84C]/85 italic" style={mono}> &nbsp;({item.value})</span>
                               )}
                             </span>
                           </li>
@@ -1161,7 +1161,7 @@ const ServicesPage = () => {
                   {s.valueAnchor && (
                     <div
                       className="rounded-lg p-5 mb-5"
-                      style={{ backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid rgba(212,169,62,0.18)' }}
+                      style={{ backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid rgba(201,168,76,0.18)' }}
                       data-testid={`${s.testid}-value-anchor`}
                     >
                       <div className="flex flex-col gap-2 text-[15px]">
@@ -1171,11 +1171,11 @@ const ServicesPage = () => {
                         </div>
                         <div className="flex items-baseline justify-between gap-3">
                           <span className="text-white/65">{s.valueAnchor.partnerLabel}</span>
-                          <span className="font-bold text-[#D4A93E]" style={mono}>{s.valueAnchor.partner}</span>
+                          <span className="font-bold text-[#C9A84C]" style={mono}>{s.valueAnchor.partner}</span>
                         </div>
                         <div
                           className="flex items-baseline justify-between gap-3 pt-2 mt-1"
-                          style={{ borderTop: '1px dashed rgba(212,169,62,0.30)' }}
+                          style={{ borderTop: '1px dashed rgba(201,168,76,0.30)' }}
                         >
                           <span className="text-white/65 italic">{s.valueAnchor.monthlyLabel}</span>
                           <span className="font-bold text-white" style={mono}>{s.valueAnchor.monthly}</span>
@@ -1192,7 +1192,7 @@ const ServicesPage = () => {
                   )}
 
                   <p
-                    className={`text-sm leading-relaxed mb-6 italic flex-grow ${isAnnual ? 'text-white/55' : 'text-[#0d1b2a]/60'}`}
+                    className={`text-sm leading-relaxed mb-6 italic flex-grow ${isAnnual ? 'text-white/55' : 'text-[#1C2B2B]/60'}`}
                     style={mono}
                   >
                     Best for: {s.best}
@@ -1202,8 +1202,8 @@ const ServicesPage = () => {
                     onClick={() => trackServiceBooking && trackServiceBooking(s.title)}
                     className={`inline-flex items-center justify-center gap-2 font-bold px-6 py-3 rounded-lg text-base transition-colors self-start border-2 ${
                       isAnnual
-                        ? 'border-[#D4A93E] text-[#D4A93E] hover:bg-[#D4A93E] hover:text-[#0d1b2a]'
-                        : 'border-[#1a6fc4] text-[#1a6fc4] hover:bg-[#1a6fc4] hover:text-white'
+                        ? 'border-[#C9A84C] text-[#C9A84C] hover:bg-[#C9A84C] hover:text-[#1C2B2B]'
+                        : 'border-[#2A52A0] text-[#2A52A0] hover:bg-[#2A52A0] hover:text-white'
                     }`}
                     data-testid={`${s.testid}-cta`}
                   >
@@ -1224,15 +1224,15 @@ const ServicesPage = () => {
           <Reveal>
             <p
               className="uppercase font-bold mb-4"
-              style={{ ...mono, fontSize: '10.4px', fontWeight: 700, letterSpacing: '2.08px', color: '#1a6fc4' }}
+              style={{ ...mono, fontSize: '10.4px', fontWeight: 700, letterSpacing: '2.08px', color: '#2A52A0' }}
             >
               The GigLine Readiness Path
             </p>
-            <h2 className="text-3xl md:text-4xl lg:text-[44px] font-extrabold text-[#0d1b2a] leading-[1.1] mb-4 max-w-4xl tracking-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-[44px] font-extrabold text-[#1C2B2B] leading-[1.1] mb-4 max-w-4xl tracking-tight">
               A clear sequence from first call to ongoing accountability.
             </h2>
-            <div className="mb-8" style={{ width: '56px', height: '3px', background: '#D4A93E', borderRadius: '2px' }} />
-            <p className="text-base md:text-lg text-[#0d1b2a]/65 leading-[1.85] mb-12 max-w-3xl">
+            <div className="mb-8" style={{ width: '56px', height: '3px', background: '#C9A84C', borderRadius: '2px' }} />
+            <p className="text-base md:text-lg text-[#1C2B2B]/65 leading-[1.85] mb-12 max-w-3xl">
               Most clients enter at one of five stages. GigLine will tell you exactly where you should start before you schedule anything.
             </p>
           </Reveal>
@@ -1241,13 +1241,13 @@ const ServicesPage = () => {
           <Reveal>
             <div
               className="hidden md:block rounded-2xl overflow-hidden"
-              style={{ border: '1px solid #dde3ea', boxShadow: '0 1px 0 rgba(13,27,42,0.02)' }}
+              style={{ border: '1px solid #dde3ea', boxShadow: '0 1px 0 rgba(28,43,43,0.02)' }}
               data-testid="readiness-path-table"
             >
               {/* Dark navy header */}
               <div
                 className="grid grid-cols-[140px_1.4fr_1.5fr_140px] px-8 py-6 uppercase font-bold text-white"
-                style={{ ...mono, fontSize: '11px', letterSpacing: '0.18em', backgroundColor: '#0d1b2a' }}
+                style={{ ...mono, fontSize: '11px', letterSpacing: '0.18em', backgroundColor: '#1C2B2B' }}
               >
                 <div>Stage</div>
                 <div>What You Need</div>
@@ -1264,20 +1264,20 @@ const ServicesPage = () => {
                   data-testid={`readiness-path-row-${i + 1}`}
                 >
                   <div
-                    className="uppercase font-bold text-[#1a6fc4]"
+                    className="uppercase font-bold text-[#2A52A0]"
                     style={{ ...mono, fontSize: '12.5px', letterSpacing: '0.12em' }}
                   >
                     Stage {i + 1}
                   </div>
-                  <div className="text-[#0d1b2a]/80 italic text-[15px] leading-snug">
+                  <div className="text-[#1C2B2B]/80 italic text-[15px] leading-snug">
                     &ldquo;{row.need}&rdquo;
                   </div>
-                  <div className="font-bold text-[#0d1b2a] text-[15.5px] leading-snug">
+                  <div className="font-bold text-[#1C2B2B] text-[15.5px] leading-snug">
                     {row.offer}
                   </div>
                   <div className="text-right">
-                    <span className="text-[#0d1b2a]/55 text-[13px] block">from</span>
-                    <span className="font-extrabold text-[#0d1b2a] text-[16px]" style={mono}>
+                    <span className="text-[#1C2B2B]/55 text-[13px] block">from</span>
+                    <span className="font-extrabold text-[#1C2B2B] text-[16px]" style={mono}>
                       {row.priceFrom}
                     </span>
                   </div>
@@ -1299,18 +1299,18 @@ const ServicesPage = () => {
                 >
                   <div className="flex items-center justify-between mb-3">
                     <p
-                      className="uppercase font-bold text-[#1a6fc4]"
+                      className="uppercase font-bold text-[#2A52A0]"
                       style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.14em' }}
                     >
                       Stage {i + 1}
                     </p>
                     <div className="text-right">
-                      <span className="text-[#0d1b2a]/55 text-[11px] mr-1">from</span>
-                      <span className="font-extrabold text-[#0d1b2a] text-[14px]" style={mono}>{row.priceFrom}</span>
+                      <span className="text-[#1C2B2B]/55 text-[11px] mr-1">from</span>
+                      <span className="font-extrabold text-[#1C2B2B] text-[14px]" style={mono}>{row.priceFrom}</span>
                     </div>
                   </div>
-                  <p className="text-[#0d1b2a]/80 italic text-sm mb-2">&ldquo;{row.need}&rdquo;</p>
-                  <p className="font-bold text-[#0d1b2a] text-[15px]">{row.offer}</p>
+                  <p className="text-[#1C2B2B]/80 italic text-sm mb-2">&ldquo;{row.need}&rdquo;</p>
+                  <p className="font-bold text-[#1C2B2B] text-[15px]">{row.offer}</p>
                 </Link>
               </Reveal>
             ))}
@@ -1319,14 +1319,14 @@ const ServicesPage = () => {
           {/* Footnote + Intake CTA */}
           <Reveal>
             <p
-              className="text-base md:text-lg text-[#0d1b2a]/75 leading-relaxed text-center mt-10 max-w-3xl mx-auto"
+              className="text-base md:text-lg text-[#1C2B2B]/75 leading-relaxed text-center mt-10 max-w-3xl mx-auto"
               data-testid="readiness-path-footnote"
             >
-              Most clients start with the <strong className="text-[#0d1b2a]">Compliance Readiness Visit</strong>. GigLine will tell you exactly where to start before you schedule anything &mdash;{' '}
+              Most clients start with the <strong className="text-[#1C2B2B]">Compliance Readiness Visit</strong>. GigLine will tell you exactly where to start before you schedule anything &mdash;{' '}
               <a
                 href="tel:+13363298899"
                 onClick={() => trackPhoneClick && trackPhoneClick('readiness-path-footnote')}
-                className="text-[#1a6fc4] hover:text-[#1560ae] font-bold"
+                className="text-[#2A52A0] hover:text-[#1F3F80] font-bold"
                 data-testid="readiness-path-phone"
               >
                 call or text (336) 329-8899
@@ -1338,27 +1338,27 @@ const ServicesPage = () => {
           <Reveal delay={120}>
             <div
               className="mt-12 rounded-2xl bg-white p-7 md:p-9 flex flex-col md:flex-row md:items-center md:justify-between gap-6"
-              style={{ border: '1px solid #dde3ea', boxShadow: '0 1px 0 rgba(13,27,42,0.02)' }}
+              style={{ border: '1px solid #dde3ea', boxShadow: '0 1px 0 rgba(28,43,43,0.02)' }}
               data-testid="readiness-path-intake-cta"
             >
               <div className="flex-1">
                 <p
                   className="uppercase font-bold mb-2"
-                  style={{ ...mono, fontSize: '10.4px', letterSpacing: '0.20em', color: '#1a6fc4' }}
+                  style={{ ...mono, fontSize: '10.4px', letterSpacing: '0.20em', color: '#2A52A0' }}
                 >
                   GL-INTAKE-002 &middot; 7 Sections &middot; ~5&ndash;7 min
                 </p>
-                <h3 className="text-xl md:text-2xl font-extrabold text-[#0d1b2a] leading-tight mb-2 tracking-tight">
+                <h3 className="text-xl md:text-2xl font-extrabold text-[#1C2B2B] leading-tight mb-2 tracking-tight">
                   Not sure which stage you&apos;re at? Start with the intake form.
                 </h3>
-                <p className="text-[15px] text-[#0d1b2a]/65 leading-relaxed max-w-2xl">
+                <p className="text-[15px] text-[#1C2B2B]/65 leading-relaxed max-w-2xl">
                   Tell GigLine about your operation, what triggered the search, and what your current documentation looks like. We&apos;ll reply with the right starting point and a fixed quote within one business day.
                 </p>
               </div>
               <Link
                 to={intakeLink()}
                 onClick={() => fireServicesCtaClick('Readiness Path · Intake Form', intakeLink())}
-                className="inline-flex items-center justify-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-7 py-4 rounded-lg text-[15px] transition-colors shadow-md shadow-[#1a6fc4]/15 whitespace-nowrap self-start md:self-auto"
+                className="inline-flex items-center justify-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-7 py-4 rounded-lg text-[15px] transition-colors shadow-md shadow-[#2A52A0]/15 whitespace-nowrap self-start md:self-auto"
                 data-testid="readiness-path-intake-cta-button"
               >
                 Start the Intake Form
@@ -1376,7 +1376,7 @@ const ServicesPage = () => {
       <CaseStudyTeaser source="services" />
 
       {/* ═══ 12. FOUNDER (compact, links to /about) ═══ */}
-      <section className="py-20 md:py-24" style={{ backgroundColor: '#0d1b2a' }} data-testid="services-founder">
+      <section className="py-20 md:py-24" style={{ backgroundColor: '#1C2B2B' }} data-testid="services-founder">
         <div className="container max-w-5xl">
           <div className="flex flex-col md:flex-row gap-10 md:gap-14 items-center md:items-start">
             <div className="w-44 md:w-52 flex-shrink-0">
@@ -1408,7 +1408,7 @@ const ServicesPage = () => {
                 </p>
                 <Link
                   to="/about"
-                  className="inline-flex items-center gap-2 text-[#1a6fc4] hover:text-white font-bold underline decoration-[#1a6fc4]/40 hover:decoration-white"
+                  className="inline-flex items-center gap-2 text-[#2A52A0] hover:text-white font-bold underline decoration-[#2A52A0]/40 hover:decoration-white"
                   data-testid="services-founder-about-link"
                 >
                   Read the full bio &rarr;
@@ -1423,10 +1423,10 @@ const ServicesPage = () => {
       <section className="py-20 md:py-24 bg-white" data-testid="services-faq">
         <div className="container max-w-3xl">
           <Reveal>
-            <p className="uppercase tracking-[3px] text-[#1a6fc4] mb-3 font-bold" style={{ ...mono, fontSize: '11px' }}>
+            <p className="uppercase tracking-[3px] text-[#2A52A0] mb-3 font-bold" style={{ ...mono, fontSize: '11px' }}>
               Questions Before You Schedule
             </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#0d1b2a] mb-10 max-w-2xl">
+            <h2 className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-10 max-w-2xl">
               Straight answers about how the services work.
             </h2>
           </Reveal>
@@ -1442,10 +1442,10 @@ const ServicesPage = () => {
                   <summary
                     className="cursor-pointer px-6 py-5 flex items-center justify-between gap-4 list-none"
                   >
-                    <span className="text-base md:text-lg font-bold text-[#0d1b2a]">{item.q}</span>
-                    <span className="flex-shrink-0 text-[#1a6fc4] text-2xl leading-none group-open:rotate-45 transition-transform">+</span>
+                    <span className="text-base md:text-lg font-bold text-[#1C2B2B]">{item.q}</span>
+                    <span className="flex-shrink-0 text-[#2A52A0] text-2xl leading-none group-open:rotate-45 transition-transform">+</span>
                   </summary>
-                  <div className="px-6 pb-6 -mt-1 text-base text-[#0d1b2a]/80 leading-relaxed">
+                  <div className="px-6 pb-6 -mt-1 text-base text-[#1C2B2B]/80 leading-relaxed">
                     {item.a}
                   </div>
                 </details>
@@ -1454,9 +1454,9 @@ const ServicesPage = () => {
           </div>
 
           <Reveal>
-            <p className="text-base text-[#0d1b2a]/70 leading-relaxed text-center mt-10">
+            <p className="text-base text-[#1C2B2B]/70 leading-relaxed text-center mt-10">
               Want more answers?{' '}
-              <Link to="/faq" className="text-[#1a6fc4] hover:text-[#1560ae] underline font-semibold">
+              <Link to="/faq" className="text-[#2A52A0] hover:text-[#1F3F80] underline font-semibold">
                 Read the full FAQ &rarr;
               </Link>
             </p>
@@ -1465,18 +1465,18 @@ const ServicesPage = () => {
           {/* Pricing reference block */}
           <div className="mt-16" data-testid="services-pricing-reference">
             <Reveal>
-              <p className="uppercase tracking-[3px] text-[#1a6fc4] mb-3 font-bold text-center" style={{ ...mono, fontSize: '11px' }}>
+              <p className="uppercase tracking-[3px] text-[#2A52A0] mb-3 font-bold text-center" style={{ ...mono, fontSize: '11px' }}>
                 Pricing Reference
               </p>
-              <h3 className="text-xl md:text-2xl font-bold text-[#0d1b2a] mb-3 text-center max-w-2xl mx-auto">
+              <h3 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-3 text-center max-w-2xl mx-auto">
                 Current starting prices, plainly.
               </h3>
-              <p className="text-sm text-[#0d1b2a]/65 italic text-center mb-8 max-w-xl mx-auto">
+              <p className="text-sm text-[#1C2B2B]/65 italic text-center mb-8 max-w-xl mx-auto">
                 Every engagement receives a fixed written quote before scheduling. These are starting prices for typical scope.
               </p>
               <div
                 className="rounded-xl bg-white overflow-hidden"
-                style={{ border: '1px solid #dde3ea', boxShadow: '0 1px 0 rgba(13,27,42,0.02)' }}
+                style={{ border: '1px solid #dde3ea', boxShadow: '0 1px 0 rgba(28,43,43,0.02)' }}
               >
                 {PRICING_REF.map(([name, price], i) => (
                   <div
@@ -1485,8 +1485,8 @@ const ServicesPage = () => {
                     style={{ borderBottom: i < PRICING_REF.length - 1 ? '1px solid rgba(16,33,51,0.06)' : 'none' }}
                     data-testid={`pricing-ref-row-${i + 1}`}
                   >
-                    <span className="text-base text-[#0d1b2a] font-semibold">{name}</span>
-                    <span className="text-base font-bold text-[#1a6fc4] whitespace-nowrap" style={mono}>{price}</span>
+                    <span className="text-base text-[#1C2B2B] font-semibold">{name}</span>
+                    <span className="text-base font-bold text-[#2A52A0] whitespace-nowrap" style={mono}>{price}</span>
                   </div>
                 ))}
               </div>
@@ -1507,7 +1507,7 @@ const ServicesPage = () => {
           <a
             href="tel:+13363298899"
             onClick={() => trackPhoneClick && trackPhoneClick('services-bottom-cta')}
-            className="inline-flex items-center gap-3 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#1a6fc4]/25"
+            className="inline-flex items-center gap-3 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#2A52A0]/25"
             data-testid="services-bottom-cta-call"
           >
             <Phone size={20} />

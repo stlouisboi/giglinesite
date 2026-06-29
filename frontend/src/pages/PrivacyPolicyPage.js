@@ -80,7 +80,7 @@ const PrivacyPolicyPage = () => {
             <li><strong>MailerLite</strong> &mdash; email marketing and automation</li>
             <li><strong>MailerSend</strong> &mdash; transactional email delivery</li>
             <li><strong>RingCentral</strong> &mdash; SMS and voice communications. Your phone number may be used to send SMS messages per your opt-in consent. Governed by{' '}
-              <a href="https://www.ringcentral.com/legal/privacy-notice.html" target="_blank" rel="noopener noreferrer" className="font-bold underline" style={{ color: '#1a6fc4' }}>
+              <a href="https://www.ringcentral.com/legal/privacy-notice.html" target="_blank" rel="noopener noreferrer" className="font-bold underline" style={{ color: '#2A52A0' }}>
                 RingCentral&rsquo;s Privacy Policy
               </a>.
             </li>
@@ -118,7 +118,7 @@ const PrivacyPolicyPage = () => {
             <li><strong>Opt-in:</strong> By providing your mobile phone number through any form on our websites, you consent to receive SMS messages from us.</li>
             <li><strong>SMS consent is not shared with third parties or affiliates for any purpose.</strong></li>
             <li><strong>Opt-out:</strong> Reply <strong>STOP</strong> at any time to unsubscribe. You will receive one confirmation message and no further SMS messages will be sent.</li>
-            <li><strong>Help:</strong> Reply <strong>HELP</strong> or call <a href="tel:3363298899" className="font-bold underline" style={{ color: '#1a6fc4' }}>(336) 329-8899</a>.</li>
+            <li><strong>Help:</strong> Reply <strong>HELP</strong> or call <a href="tel:3363298899" className="font-bold underline" style={{ color: '#2A52A0' }}>(336) 329-8899</a>.</li>
             <li><strong>Message and data rates may apply.</strong> Messaging frequency varies.</li>
           </ul>
         </Section>
@@ -140,7 +140,7 @@ const PrivacyPolicyPage = () => {
           </ul>
           <p className="mt-3">
             To exercise any of these rights, email Vince directly at{' '}
-            <a href="mailto:vince@giglinecompliance.com" className="font-bold underline" style={{ color: '#1a6fc4' }}>
+            <a href="mailto:vince@giglinecompliance.com" className="font-bold underline" style={{ color: '#2A52A0' }}>
               vince@giglinecompliance.com
             </a>{' '}
             with the subject line &ldquo;Privacy Request.&rdquo; Responses within 5 business days.
@@ -161,11 +161,11 @@ const PrivacyPolicyPage = () => {
             <p className="font-bold mb-3" style={{ color: NAVY }}>Vince Lawrence</p>
             <p style={{ color: 'rgba(11,31,51,0.78)' }}>GigLine Safety &amp; Compliance</p>
             <p className="mt-3 flex items-center gap-2" style={{ color: 'rgba(11,31,51,0.78)' }}>
-              <Phone size={14} style={{ color: '#1a6fc4' }} />
+              <Phone size={14} style={{ color: '#2A52A0' }} />
               <a href="tel:3363298899" className="hover:underline">(336) 329-8899</a>
             </p>
             <p className="mt-1.5 flex items-center gap-2" style={{ color: 'rgba(11,31,51,0.78)' }}>
-              <Mail size={14} style={{ color: '#1a6fc4' }} />
+              <Mail size={14} style={{ color: '#2A52A0' }} />
               <a href="mailto:vince@giglinecompliance.com" className="hover:underline">vince@giglinecompliance.com</a>
             </p>
           </div>
@@ -175,7 +175,7 @@ const PrivacyPolicyPage = () => {
           <Link
             to="/"
             className="inline-flex items-center gap-2 text-sm font-bold hover:underline"
-            style={{ color: '#1a6fc4' }}
+            style={{ color: '#2A52A0' }}
             data-testid="privacy-back-home"
           >
             Back to GigLine

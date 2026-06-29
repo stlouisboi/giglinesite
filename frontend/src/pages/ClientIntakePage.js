@@ -16,7 +16,7 @@ const API = process.env.REACT_APP_BACKEND_URL;
 /* ── Brand tokens ── */
 const C = {
   bg: '#1A1A1A', surface: '#222222', deep: '#111111', deeper: '#0B0B0B',
-  blue: '#1a6fc4', blueDim: 'rgba(31,111,235,0.08)', blueBorder: 'rgba(31,111,235,0.32)',
+  blue: '#2A52A0', blueDim: 'rgba(31,111,235,0.08)', blueBorder: 'rgba(31,111,235,0.32)',
   white: '#FFFFFF', sec: 'rgba(255,255,255,0.72)', muted: 'rgba(255,255,255,0.42)',
   subtle: 'rgba(255,255,255,0.26)',
   border: 'rgba(255,255,255,0.08)', red: '#EF4444',
@@ -520,14 +520,14 @@ const ClientIntakePage = () => {
             <div
               className="rounded-md px-4 py-3 mb-5 flex items-center gap-3 flex-wrap"
               style={{
-                background: 'rgba(26,111,196,0.08)',
-                border: '1px solid rgba(26,111,196,0.30)',
+                background: 'rgba(42,82,160,0.08)',
+                border: '1px solid rgba(42,82,160,0.30)',
               }}
               data-testid="intake-source-banner"
             >
               <span
                 className="uppercase font-bold"
-                style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9.5px', letterSpacing: '0.16em', color: '#1a6fc4' }}
+                style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9.5px', letterSpacing: '0.16em', color: '#2A52A0' }}
               >
                 Inquiry For
               </span>
@@ -886,7 +886,7 @@ const ClientIntakePage = () => {
       {/* ── About Vince block (mirrors /about) ── */}
       <section
         className="border-t"
-        style={{ borderColor: C.border, background: '#0d1b2a' }}
+        style={{ borderColor: C.border, background: '#1C2B2B' }}
         data-testid="intake-about-vince"
       >
         <div className="max-w-6xl mx-auto px-5 md:px-8 py-16 md:py-24">
@@ -935,7 +935,7 @@ const ClientIntakePage = () => {
                   >
                     <p
                       className="font-extrabold leading-none tracking-tight"
-                      style={{ color: '#D4A93E', ...mono, fontSize: 'clamp(20px, 2vw, 24px)' }}
+                      style={{ color: '#C9A84C', ...mono, fontSize: 'clamp(20px, 2vw, 24px)' }}
                     >
                       {s.value}
                     </p>

@@ -15,10 +15,10 @@ const QuickContactCard = ({ variant = 'light' }) => {
 
   const isDark = variant === 'dark';
   const bg = isDark ? 'rgba(255,255,255,0.04)' : '#F9F8F6';
-  const border = isDark ? 'rgba(255,255,255,0.10)' : 'rgba(13,27,42,0.10)';
-  const textPrimary = isDark ? 'white' : '#0d1b2a';
-  const textMuted = isDark ? 'rgba(255,255,255,0.65)' : 'rgba(13,27,42,0.65)';
-  const inputBorder = isDark ? 'rgba(255,255,255,0.20)' : 'rgba(13,27,42,0.20)';
+  const border = isDark ? 'rgba(255,255,255,0.10)' : 'rgba(28,43,43,0.10)';
+  const textPrimary = isDark ? 'white' : '#1C2B2B';
+  const textMuted = isDark ? 'rgba(255,255,255,0.65)' : 'rgba(28,43,43,0.65)';
+  const inputBorder = isDark ? 'rgba(255,255,255,0.20)' : 'rgba(28,43,43,0.20)';
   const inputBg = isDark ? 'rgba(255,255,255,0.06)' : 'white';
 
   const handleSubmit = async (e) => {
@@ -46,7 +46,7 @@ const QuickContactCard = ({ variant = 'light' }) => {
       data-testid="quick-contact-card"
     >
       <div className="flex items-start gap-3 mb-3">
-        <MessageCircle size={20} className="flex-shrink-0 mt-0.5" style={{ color: '#1a6fc4' }} />
+        <MessageCircle size={20} className="flex-shrink-0 mt-0.5" style={{ color: '#2A52A0' }} />
         <div>
           <h3 className="text-lg font-bold leading-tight" style={{ color: textPrimary, fontFamily: "Georgia, 'Times New Roman', serif" }}>
             Just want to talk first?
@@ -69,7 +69,7 @@ const QuickContactCard = ({ variant = 'light' }) => {
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full px-3 py-2.5 rounded text-sm focus:outline-none focus:ring-1 focus:ring-[#1a6fc4]"
+            className="w-full px-3 py-2.5 rounded text-sm focus:outline-none focus:ring-1 focus:ring-[#2A52A0]"
             style={{ background: inputBg, color: textPrimary, border: `1px solid ${inputBorder}` }}
             data-testid="quick-contact-name"
             autoComplete="name"
@@ -80,7 +80,7 @@ const QuickContactCard = ({ variant = 'light' }) => {
             required
             value={contact}
             onChange={(e) => setContact(e.target.value)}
-            className="w-full px-3 py-2.5 rounded text-sm focus:outline-none focus:ring-1 focus:ring-[#1a6fc4]"
+            className="w-full px-3 py-2.5 rounded text-sm focus:outline-none focus:ring-1 focus:ring-[#2A52A0]"
             style={{ background: inputBg, color: textPrimary, border: `1px solid ${inputBorder}` }}
             data-testid="quick-contact-contact"
             autoComplete="email"
@@ -90,14 +90,14 @@ const QuickContactCard = ({ variant = 'light' }) => {
             placeholder="One line about what you're dealing with (optional)"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className="w-full px-3 py-2.5 rounded text-sm focus:outline-none focus:ring-1 focus:ring-[#1a6fc4]"
+            className="w-full px-3 py-2.5 rounded text-sm focus:outline-none focus:ring-1 focus:ring-[#2A52A0]"
             style={{ background: inputBg, color: textPrimary, border: `1px solid ${inputBorder}` }}
             data-testid="quick-contact-message"
           />
           <button
             type="submit"
             disabled={status === 'sending'}
-            className="inline-flex items-center justify-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-semibold px-5 py-2.5 rounded transition-colors text-sm disabled:opacity-50"
+            className="inline-flex items-center justify-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-semibold px-5 py-2.5 rounded transition-colors text-sm disabled:opacity-50"
             data-testid="quick-contact-submit"
           >
             {status === 'sending' ? 'Sending…' : (<>Send <ArrowRight size={14} /></>)}

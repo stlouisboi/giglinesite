@@ -59,7 +59,7 @@ const FieldManualBand = ({ source = 'homepage' }) => {
           <div className="md:col-span-8">
             <p
               className="uppercase font-bold tracking-[0.28em] mb-4"
-              style={{ color: '#1a6fc4', ...mono, fontSize: '11px' }}
+              style={{ color: '#2A52A0', ...mono, fontSize: '11px' }}
               data-testid="field-manual-kicker"
             >
               Free &middot; 12-Page Reference

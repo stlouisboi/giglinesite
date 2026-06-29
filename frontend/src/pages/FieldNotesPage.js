@@ -270,8 +270,8 @@ const FieldNotesPage = () => {
       <section
         className="py-16 md:py-24 relative overflow-hidden"
         style={{
-          backgroundColor: '#0d1b2a',
-          backgroundImage: 'linear-gradient(rgba(13,27,42,0.55), rgba(13,27,42,0.72)), url(/assets/field-notes-header.png)',
+          backgroundColor: '#1C2B2B',
+          backgroundImage: 'linear-gradient(rgba(28,43,43,0.55), rgba(28,43,43,0.72)), url(/assets/field-notes-header.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -280,7 +280,7 @@ const FieldNotesPage = () => {
       >
         <div className="container max-w-4xl">
           <p
-            className="uppercase tracking-[3px] text-[#1a6fc4] mb-4"
+            className="uppercase tracking-[3px] text-[#2A52A0] mb-4"
             style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }}
           >
             Field Notes
@@ -324,14 +324,14 @@ const FieldNotesPage = () => {
             <div className="relative flex-grow">
               <Search
                 size={16}
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-[#0d1b2a]/40"
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-[#1C2B2B]/40"
               />
               <input
                 type="text"
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
                 placeholder="Search field notes…"
-                className="w-full pl-10 pr-10 py-3 rounded border border-[#0d1b2a]/15 bg-white text-sm text-[#0d1b2a] placeholder:text-[#0d1b2a]/40 focus:outline-none focus:border-[#1a6fc4] focus:ring-1 focus:ring-[#1a6fc4]/30"
+                className="w-full pl-10 pr-10 py-3 rounded border border-[#1C2B2B]/15 bg-white text-sm text-[#1C2B2B] placeholder:text-[#1C2B2B]/40 focus:outline-none focus:border-[#2A52A0] focus:ring-1 focus:ring-[#2A52A0]/30"
                 data-testid="field-notes-search-input"
               />
               {keyword && (
@@ -339,7 +339,7 @@ const FieldNotesPage = () => {
                   type="button"
                   onClick={() => setKeyword('')}
                   aria-label="Clear search"
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#0d1b2a]/40 hover:text-[#0d1b2a]"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#1C2B2B]/40 hover:text-[#1C2B2B]"
                   data-testid="field-notes-search-clear"
                 >
                   <X size={14} />
@@ -349,7 +349,7 @@ const FieldNotesPage = () => {
             <select
               value={cfrFilter}
               onChange={(e) => setCfrFilter(e.target.value)}
-              className="md:w-72 py-3 px-3 rounded border border-[#0d1b2a]/15 bg-white text-sm text-[#0d1b2a] focus:outline-none focus:border-[#1a6fc4] focus:ring-1 focus:ring-[#1a6fc4]/30"
+              className="md:w-72 py-3 px-3 rounded border border-[#1C2B2B]/15 bg-white text-sm text-[#1C2B2B] focus:outline-none focus:border-[#2A52A0] focus:ring-1 focus:ring-[#2A52A0]/30"
               data-testid="field-notes-cfr-filter"
               aria-label="Filter by CFR subpart"
             >
@@ -367,13 +367,13 @@ const FieldNotesPage = () => {
               className="py-16 text-center"
               data-testid="field-notes-empty-state"
             >
-              <p className="text-base text-[#0d1b2a]/60 mb-4">
+              <p className="text-base text-[#1C2B2B]/60 mb-4">
                 No Field Notes match your search. Try a different keyword or clear the filter.
               </p>
               <button
                 type="button"
                 onClick={clearFilters}
-                className="text-sm font-semibold text-[#1a6fc4] hover:text-[#1560ae] inline-flex items-center gap-1"
+                className="text-sm font-semibold text-[#2A52A0] hover:text-[#1F3F80] inline-flex items-center gap-1"
                 data-testid="field-notes-empty-clear"
               >
                 Clear filters
@@ -387,13 +387,13 @@ const FieldNotesPage = () => {
                   style={{ fontFamily: "'JetBrains Mono', monospace" }}
                   data-testid="field-notes-result-count"
                 >
-                  <span className="text-[#0d1b2a]/55">
+                  <span className="text-[#1C2B2B]/55">
                     Showing {filteredNotes.length} of {FIELD_NOTES.length}
                   </span>
                   <button
                     type="button"
                     onClick={clearFilters}
-                    className="text-[#1a6fc4] hover:text-[#1560ae] font-semibold"
+                    className="text-[#2A52A0] hover:text-[#1F3F80] font-semibold"
                     data-testid="field-notes-clear-link"
                   >
                     Clear filters
@@ -410,24 +410,24 @@ const FieldNotesPage = () => {
                   >
                     <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                       <div className="flex-grow">
-                        <h2 className="text-xl font-bold text-[#0d1b2a] group-hover:text-[#1560ae] transition-colors mb-1">
+                        <h2 className="text-xl font-bold text-[#1C2B2B] group-hover:text-[#1F3F80] transition-colors mb-1">
                           {note.title}
                         </h2>
-                        <p className="text-sm text-[#1a6fc4] mb-3" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                        <p className="text-sm text-[#2A52A0] mb-3" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
                           {note.subtitle}
                         </p>
-                        <p className="text-base text-[#0d1b2a]/60 leading-relaxed mb-3">
+                        <p className="text-base text-[#1C2B2B]/60 leading-relaxed mb-3">
                           {note.description}
                         </p>
                         <div className="flex flex-wrap gap-2">
                           {note.topics.map((topic) => (
-                            <span key={topic} className="text-xs px-2 py-1 rounded bg-[#0d1b2a]/5 text-[#0d1b2a]/50">
+                            <span key={topic} className="text-xs px-2 py-1 rounded bg-[#1C2B2B]/5 text-[#1C2B2B]/50">
                               {topic}
                             </span>
                           ))}
                         </div>
                       </div>
-                      <ArrowRight size={20} className="text-[#0d1b2a]/20 group-hover:text-[#1560ae] transition-colors flex-shrink-0 mt-2 hidden md:block" />
+                      <ArrowRight size={20} className="text-[#1C2B2B]/20 group-hover:text-[#1F3F80] transition-colors flex-shrink-0 mt-2 hidden md:block" />
                     </div>
                   </Link>
                 ))}
@@ -435,7 +435,7 @@ const FieldNotesPage = () => {
             </>
           )}
 
-          <p className="mt-12 text-sm text-[#0d1b2a]/40 text-center">
+          <p className="mt-12 text-sm text-[#1C2B2B]/40 text-center">
             New topics added monthly based on what we're seeing in the field.
           </p>
 
@@ -447,14 +447,14 @@ const FieldNotesPage = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-24 bg-[#0d1b2a]" data-testid="field-notes-cta">
+      <section className="py-16 md:py-24 bg-[#1C2B2B]" data-testid="field-notes-cta">
         <div className="container max-w-3xl text-center">
           <p className="text-lg text-white/60 mb-6">
             Reading about it is useful. Having someone walk your floor is better.
           </p>
           <Link
             to="/intake"
-            className="bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
+            className="bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
             data-testid="field-notes-walkthrough-cta"
           >
             Request a Walkthrough

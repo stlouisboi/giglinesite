@@ -41,7 +41,7 @@ const ServiceLandingTemplate = ({
       {/* ── Hero ── */}
       <section
         className="relative py-20 md:py-28"
-        style={{ backgroundColor: '#0d1b2a' }}
+        style={{ backgroundColor: '#1C2B2B' }}
         data-testid="svc-hero"
       >
         <div className="container max-w-5xl">
@@ -68,7 +68,7 @@ const ServiceLandingTemplate = ({
           <div className="flex flex-col sm:flex-row gap-3 mb-5" data-testid="svc-hero-ctas">
             <Link
               to="/intake"
-              className="bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center justify-center gap-2 shadow-lg shadow-[#1a6fc4]/20"
+              className="bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center justify-center gap-2 shadow-lg shadow-[#2A52A0]/20"
               data-testid="svc-cta-primary"
             >
               Request a Safety Walkthrough
@@ -149,7 +149,7 @@ const ServiceLandingTemplate = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {whatYouReceive.bullets.map((b, i) => (
               <div key={i} className="flex items-start gap-4" data-testid={`svc-deliverable-${i}`}>
-                <Check size={20} className="flex-shrink-0 mt-0.5 text-[#1a6fc4]" strokeWidth={2.5} />
+                <Check size={20} className="flex-shrink-0 mt-0.5 text-[#2A52A0]" strokeWidth={2.5} />
                 <p className="text-base text-[#CBD5E1] leading-relaxed">{b}</p>
               </div>
             ))}
@@ -164,35 +164,35 @@ const ServiceLandingTemplate = ({
       <section className="py-20 md:py-24 bg-white" data-testid="svc-next-steps">
         <div className="container max-w-5xl">
           <p
-            className="uppercase tracking-[3px] text-[#1a6fc4] mb-4 font-semibold"
+            className="uppercase tracking-[3px] text-[#2A52A0] mb-4 font-semibold"
             style={{ ...mono, fontSize: '11px' }}
           >
             Next Steps
           </p>
-          <h2 className="text-2xl md:text-3xl font-bold text-[#0d1b2a] leading-tight mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#1C2B2B] leading-tight mb-6">
             How to get started.
           </h2>
           {nextSteps.intro && (
-            <p className="text-base md:text-lg text-[#0d1b2a]/80 leading-relaxed mb-10 max-w-3xl">
+            <p className="text-base md:text-lg text-[#1C2B2B]/80 leading-relaxed mb-10 max-w-3xl">
               {nextSteps.intro}
             </p>
           )}
-          <div className="space-y-0 border-t border-[#0d1b2a]/10">
+          <div className="space-y-0 border-t border-[#1C2B2B]/10">
             {nextSteps.steps.map((step, i) => (
               <div
                 key={i}
-                className="flex items-start gap-5 py-5 border-b border-[#0d1b2a]/10"
+                className="flex items-start gap-5 py-5 border-b border-[#1C2B2B]/10"
                 data-testid={`svc-next-step-${i}`}
               >
                 <span
-                  className="flex-shrink-0 mt-0.5 text-[#1a6fc4] font-semibold"
+                  className="flex-shrink-0 mt-0.5 text-[#2A52A0] font-semibold"
                   style={{ ...mono, fontSize: '13px' }}
                 >
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <div>
-                  <p className="text-base md:text-lg font-bold text-[#0d1b2a] mb-1">{step.label}</p>
-                  <p className="text-base text-[#0d1b2a]/80 leading-relaxed">{step.desc}</p>
+                  <p className="text-base md:text-lg font-bold text-[#1C2B2B] mb-1">{step.label}</p>
+                  <p className="text-base text-[#1C2B2B]/80 leading-relaxed">{step.desc}</p>
                 </div>
               </div>
             ))}
@@ -209,7 +209,7 @@ const ServiceLandingTemplate = ({
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
             <Link
               to="/intake"
-              className="bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded transition-colors inline-flex items-center gap-2 shadow-lg shadow-[#1a6fc4]/20"
+              className="bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded transition-colors inline-flex items-center gap-2 shadow-lg shadow-[#2A52A0]/20"
               data-testid="svc-closing-cta-primary"
             >
               Request a Safety Walkthrough
@@ -236,16 +236,16 @@ const Section = ({ eyebrow, title, intro, bullets, bg, testid, bulletStyle = 'ch
   <section className="py-20 md:py-24" style={{ backgroundColor: bg }} data-testid={testid}>
     <div className="container max-w-5xl">
       <p
-        className="uppercase tracking-[3px] text-[#1a6fc4] mb-4 font-semibold"
+        className="uppercase tracking-[3px] text-[#2A52A0] mb-4 font-semibold"
         style={{ ...mono, fontSize: '11px' }}
       >
         {eyebrow}
       </p>
-      <h2 className="text-2xl md:text-3xl font-bold text-[#0d1b2a] leading-tight mb-6">
+      <h2 className="text-2xl md:text-3xl font-bold text-[#1C2B2B] leading-tight mb-6">
         {title}
       </h2>
       {intro && (
-        <p className="text-base md:text-lg text-[#0d1b2a]/80 leading-relaxed mb-8 max-w-3xl">
+        <p className="text-base md:text-lg text-[#1C2B2B]/80 leading-relaxed mb-8 max-w-3xl">
           {intro}
         </p>
       )}
@@ -253,11 +253,11 @@ const Section = ({ eyebrow, title, intro, bullets, bg, testid, bulletStyle = 'ch
         {bullets.map((b, i) => (
           <li key={i} className="flex items-start gap-4" data-testid={`${testid}-bullet-${i}`}>
             {bulletStyle === 'check' ? (
-              <Check size={18} className="flex-shrink-0 mt-1 text-[#1a6fc4]" strokeWidth={2.5} />
+              <Check size={18} className="flex-shrink-0 mt-1 text-[#2A52A0]" strokeWidth={2.5} />
             ) : (
-              <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#1a6fc4] mt-3" aria-hidden="true" />
+              <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#2A52A0] mt-3" aria-hidden="true" />
             )}
-            <p className="text-base md:text-lg text-[#0d1b2a]/90 leading-relaxed">{b}</p>
+            <p className="text-base md:text-lg text-[#1C2B2B]/90 leading-relaxed">{b}</p>
           </li>
         ))}
       </ul>

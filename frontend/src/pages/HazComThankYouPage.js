@@ -42,8 +42,8 @@ const HazComThankYouPage = () => {
     return (
       <main className="min-h-[60vh] flex items-center justify-center" data-testid="hazcom-thankyou-loading">
         <div className="text-center">
-          <Loader size={32} className="animate-spin text-[#1a6fc4] mx-auto mb-4" />
-          <p className="text-[#0d1b2a]/60">Verifying your purchase...</p>
+          <Loader size={32} className="animate-spin text-[#2A52A0] mx-auto mb-4" />
+          <p className="text-[#1C2B2B]/60">Verifying your purchase...</p>
         </div>
       </main>
     );
@@ -53,13 +53,13 @@ const HazComThankYouPage = () => {
     return (
       <main className="min-h-[60vh] flex items-center justify-center" data-testid="hazcom-thankyou-invalid">
         <div className="text-center max-w-md mx-auto px-4">
-          <h1 className="text-2xl font-bold text-[#0d1b2a] mb-4">Session Not Found</h1>
-          <p className="text-[#0d1b2a]/60 mb-6">
+          <h1 className="text-2xl font-bold text-[#1C2B2B] mb-4">Session Not Found</h1>
+          <p className="text-[#1C2B2B]/60 mb-6">
             This download link is invalid or has expired. If you've already purchased, check your email for the download links.
           </p>
           <Link
             to="/hazcom"
-            className="inline-flex items-center gap-2 bg-[#0d1b2a] hover:bg-[#2A3D3D] text-white font-semibold px-6 py-3 rounded transition-colors"
+            className="inline-flex items-center gap-2 bg-[#1C2B2B] hover:bg-[#2A3D3D] text-white font-semibold px-6 py-3 rounded transition-colors"
           >
             Back to HazCom Starter Pack
             <ArrowRight size={16} />
@@ -85,11 +85,11 @@ const HazComThankYouPage = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#0d1b2a] text-white py-12 md:py-16">
+      <section className="bg-[#1C2B2B] text-white py-12 md:py-16">
         <div className="container max-w-3xl">
           <div className="flex items-center gap-3 mb-4">
-            <CheckCircle size={28} className="text-[#1a6fc4]" />
-            <p className="text-xs font-semibold tracking-widest text-[#1a6fc4] uppercase" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+            <CheckCircle size={28} className="text-[#2A52A0]" />
+            <p className="text-xs font-semibold tracking-widest text-[#2A52A0] uppercase" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
               PURCHASE COMPLETE
             </p>
           </div>
@@ -116,28 +116,28 @@ const HazComThankYouPage = () => {
                 href={downloadUrl(file.filename)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between p-5 bg-[#F9F8F6] border border-[#0d1b2a]/10 rounded hover:border-[#1a6fc4]/40 transition-colors group"
+                className="flex items-center justify-between p-5 bg-[#F9F8F6] border border-[#1C2B2B]/10 rounded hover:border-[#2A52A0]/40 transition-colors group"
                 data-testid={`download-${file.filename.split('.')[0]}`}
               >
                 <div>
-                  <p className="font-medium text-[#0d1b2a] text-sm group-hover:text-[#1a6fc4] transition-colors">
+                  <p className="font-medium text-[#1C2B2B] text-sm group-hover:text-[#2A52A0] transition-colors">
                     {file.label}
                   </p>
-                  <p className="text-xs text-[#0d1b2a]/50 mt-1">{file.desc} — PDF</p>
+                  <p className="text-xs text-[#1C2B2B]/50 mt-1">{file.desc} — PDF</p>
                 </div>
-                <Download size={20} className="text-[#0d1b2a]/40 group-hover:text-[#1a6fc4] transition-colors flex-shrink-0" />
+                <Download size={20} className="text-[#1C2B2B]/40 group-hover:text-[#2A52A0] transition-colors flex-shrink-0" />
               </a>
             ))}
           </div>
 
-          <p className="text-sm text-[#0d1b2a]/50 mb-12">
+          <p className="text-sm text-[#1C2B2B]/50 mb-12">
             A copy has also been sent to your email.
           </p>
 
           {/* Next Steps */}
-          <div className="border-t border-[#0d1b2a]/10 pt-10 mb-12">
+          <div className="border-t border-[#1C2B2B]/10 pt-10 mb-12">
             <h2
-              className="text-lg font-bold text-[#0d1b2a] mb-6"
+              className="text-lg font-bold text-[#1C2B2B] mb-6"
               style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
             >
               Next Steps
@@ -149,8 +149,8 @@ const HazComThankYouPage = () => {
                 'Train employees and document on the training log',
                 'Review annually or when chemicals change',
               ].map((step, i) => (
-                <li key={i} className="flex items-start gap-3 text-[#0d1b2a]/70 text-sm">
-                  <span className="bg-[#1a6fc4] text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <li key={i} className="flex items-start gap-3 text-[#1C2B2B]/70 text-sm">
+                  <span className="bg-[#2A52A0] text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                     {i + 1}
                   </span>
                   {step}
@@ -160,20 +160,20 @@ const HazComThankYouPage = () => {
           </div>
 
           {/* Need More Help */}
-          <div className="bg-[#F9F8F6] border border-[#0d1b2a]/10 rounded p-8">
+          <div className="bg-[#F9F8F6] border border-[#1C2B2B]/10 rounded p-8">
             <h2
-              className="text-lg font-bold text-[#0d1b2a] mb-4"
+              className="text-lg font-bold text-[#1C2B2B] mb-4"
               style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
             >
               Need More Help?
             </h2>
-            <p className="text-sm text-[#0d1b2a]/60 mb-6">
+            <p className="text-sm text-[#1C2B2B]/60 mb-6">
               If your operation needs a full walkthrough or documentation review:
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-[#0d1b2a] hover:bg-[#2A3D3D] text-white font-medium px-5 py-3 rounded transition-colors text-sm"
+                className="inline-flex items-center justify-center gap-2 bg-[#1C2B2B] hover:bg-[#2A3D3D] text-white font-medium px-5 py-3 rounded transition-colors text-sm"
                 data-testid="thankyou-cta-walkthrough"
               >
                 Request a Walkthrough — $1,200+
@@ -181,7 +181,7 @@ const HazComThankYouPage = () => {
               </Link>
               <Link
                 to="/safety-check"
-                className="inline-flex items-center justify-center gap-2 border-2 border-[#0d1b2a]/20 hover:border-[#0d1b2a]/40 text-[#0d1b2a] font-medium px-5 py-3 rounded transition-colors text-sm"
+                className="inline-flex items-center justify-center gap-2 border-2 border-[#1C2B2B]/20 hover:border-[#1C2B2B]/40 text-[#1C2B2B] font-medium px-5 py-3 rounded transition-colors text-sm"
                 data-testid="thankyou-cta-safety-check"
               >
                 Run the Safety Check — Free

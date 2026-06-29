@@ -234,7 +234,7 @@ const AdminPage = () => {
   if (!loggedIn) return (
     <main>
       <SEO title="Admin" canonical="/admin" noindex />
-      <section className="min-h-screen flex items-center justify-center" style={{ background: '#0D1B2A' }}>
+      <section className="min-h-screen flex items-center justify-center" style={{ background: '#1C2B2B' }}>
         <div className="w-full max-w-sm px-4">
           <h1 className="text-2xl font-bold text-white mb-6 text-center" data-testid="admin-login-title">Admin Dashboard</h1>
           <form onSubmit={handleLogin} className="space-y-4" data-testid="admin-login-form">
@@ -263,7 +263,7 @@ const AdminPage = () => {
       <SEO title="Admin Dashboard" canonical="/admin" noindex />
 
       {/* Top bar */}
-      <div className="sticky top-0 z-40" style={{ background: '#0D1B2A', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+      <div className="sticky top-0 z-40" style={{ background: '#1C2B2B', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
         <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between py-3">
           <h1 className="text-base font-bold text-white flex items-center gap-2" data-testid="admin-title">
             <span className="w-6 h-6 rounded flex items-center justify-center text-xs font-bold" style={{ background: '#C9A84C', color: '#111' }}>G</span>
@@ -529,7 +529,7 @@ const AdminPage = () => {
               {/* ── Sample Report download tile (GL-WEB-020) ── */}
               {stats.sample_reports && (
                 <div
-                  className="mb-8 border border-[#1a6fc4]/30 rounded-lg p-5 bg-gradient-to-br from-[#f4f8fc] to-white"
+                  className="mb-8 border border-[#2A52A0]/30 rounded-lg p-5 bg-gradient-to-br from-[#f4f8fc] to-white"
                   data-testid="sample-report-tile"
                 >
                   <div className="flex items-baseline justify-between mb-3">
@@ -556,9 +556,9 @@ const AdminPage = () => {
                       <p className="text-2xl font-bold text-green-700">{stats.sample_reports.converted}</p>
                       <p className="text-[10px] text-gray-400 mt-0.5">to intake / walkthrough</p>
                     </div>
-                    <div className="border-l-4 border-[#1a6fc4] rounded-md p-3 bg-[#f4f8fc]" data-testid="sr-conversion-rate">
+                    <div className="border-l-4 border-[#2A52A0] rounded-md p-3 bg-[#f4f8fc]" data-testid="sr-conversion-rate">
                       <p className="text-[10px] text-gray-500 uppercase tracking-wide mb-1">Conv. Rate</p>
-                      <p className="text-2xl font-bold text-[#1560ae]">{stats.sample_reports.conversion_rate}%</p>
+                      <p className="text-2xl font-bold text-[#1F3F80]">{stats.sample_reports.conversion_rate}%</p>
                       <p className="text-[10px] text-gray-400 mt-0.5">SR → full lead</p>
                     </div>
                   </div>

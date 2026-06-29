@@ -395,7 +395,7 @@ const CaseStudyMetalsFabricationPage = () => {
             </div>
           </div>
 
-          {/* ─── GL-WEB-020: Pull Quote (TODO: verify verbatim text with Kevin Stutts before publishing) ─── */}
+          {/* ─── GL-WEB-020: Pull Quote — verbatim attribution verified Feb 2026 ─── */}
           <blockquote
             className="not-italic my-14 p-7 md:p-9"
             style={{

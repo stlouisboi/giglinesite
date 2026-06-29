@@ -57,24 +57,24 @@ const ContactPage = () => {
       </section>
 
       {/* Quick-Action CTA Block (GL-WEB-021) */}
-      <section className="py-12 md:py-14" style={{ backgroundColor: '#FBFBF9', borderBottom: '1px solid rgba(13,27,42,0.08)' }} data-testid="contact-quick-actions">
+      <section className="py-12 md:py-14" style={{ backgroundColor: '#FBFBF9', borderBottom: '1px solid rgba(28,43,43,0.08)' }} data-testid="contact-quick-actions">
         <div className="container max-w-5xl">
           <p
-            className="text-base md:text-lg leading-[1.7] text-[#0d1b2a]/85 mb-3 max-w-3xl"
+            className="text-base md:text-lg leading-[1.7] text-[#1C2B2B]/85 mb-3 max-w-3xl"
             style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
-            <strong className="text-[#0d1b2a]">Request a walkthrough or ask a question first.</strong>
+            <strong className="text-[#1C2B2B]">Request a walkthrough or ask a question first.</strong>
           </p>
-          <p className="text-sm md:text-base leading-[1.7] text-[#0d1b2a]/65 mb-7 max-w-3xl">
+          <p className="text-sm md:text-base leading-[1.7] text-[#1C2B2B]/65 mb-7 max-w-3xl">
             GigLine serves small manufacturers, warehouses, contractors, and fleet operations within roughly 60 miles of Winston-Salem. Most walkthroughs are scheduled during normal business hours. Reports delivered within 24&ndash;48 hours.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
             <a
               href="tel:3363298899"
               className="inline-flex items-center justify-center gap-2 px-5 py-4 rounded transition-colors font-semibold text-white text-[15px]"
-              style={{ background: '#0d1b2a', border: '1px solid #D4A93E' }}
+              style={{ background: '#1C2B2B', border: '1px solid #C9A84C' }}
               onMouseEnter={(e) => (e.currentTarget.style.background = '#152538')}
-              onMouseLeave={(e) => (e.currentTarget.style.background = '#0d1b2a')}
+              onMouseLeave={(e) => (e.currentTarget.style.background = '#1C2B2B')}
               data-testid="contact-cta-call"
             >
               <Phone size={17} /> Call Vince
@@ -82,19 +82,19 @@ const ContactPage = () => {
             <a
               href="mailto:vince@giglinecompliance.com"
               className="inline-flex items-center justify-center gap-2 px-5 py-4 rounded transition-colors font-semibold text-white text-[15px]"
-              style={{ background: '#0d1b2a', border: '1px solid #D4A93E' }}
+              style={{ background: '#1C2B2B', border: '1px solid #C9A84C' }}
               onMouseEnter={(e) => (e.currentTarget.style.background = '#152538')}
-              onMouseLeave={(e) => (e.currentTarget.style.background = '#0d1b2a')}
+              onMouseLeave={(e) => (e.currentTarget.style.background = '#1C2B2B')}
               data-testid="contact-cta-email"
             >
               <Mail size={17} /> Email Vince
             </a>
             <Link
               to="/intake"
-              className="inline-flex items-center justify-center gap-2 px-5 py-4 rounded transition-colors font-bold text-[#0d1b2a] text-[15px]"
-              style={{ background: '#D4A93E', border: '1px solid #D4A93E' }}
+              className="inline-flex items-center justify-center gap-2 px-5 py-4 rounded transition-colors font-bold text-[#1C2B2B] text-[15px]"
+              style={{ background: '#C9A84C', border: '1px solid #C9A84C' }}
               onMouseEnter={(e) => (e.currentTarget.style.background = '#bf962f')}
-              onMouseLeave={(e) => (e.currentTarget.style.background = '#D4A93E')}
+              onMouseLeave={(e) => (e.currentTarget.style.background = '#C9A84C')}
               data-testid="contact-cta-walkthrough"
             >
               Request Walkthrough <ArrowRight size={17} />
@@ -141,7 +141,7 @@ const ContactPage = () => {
               >
                 <p
                   className="text-3xl md:text-4xl font-extrabold mb-4"
-                  style={{ color: '#D4A93E', fontFamily: "'JetBrains Mono', monospace" }}
+                  style={{ color: '#C9A84C', fontFamily: "'JetBrains Mono', monospace" }}
                 >
                   {s.n}
                 </p>
@@ -240,11 +240,11 @@ const ContactPage = () => {
             {/* Quick Contact micro-form (GL-WEB-021 A/B) — replaces the heavier ContactForm */}
             <div className="lg:col-span-2">
               <QuickContactCard variant="light" />
-              <p className="text-sm text-[#0d1b2a]/60 mt-4 leading-relaxed" data-testid="contact-full-intake-fallback">
+              <p className="text-sm text-[#1C2B2B]/60 mt-4 leading-relaxed" data-testid="contact-full-intake-fallback">
                 Need to share more detail (operation type, headcount, machine count, deadlines)?{' '}
                 <Link
                   to="/intake"
-                  className="font-semibold text-[#1a6fc4] hover:text-[#0d1b2a] underline underline-offset-4 transition-colors"
+                  className="font-semibold text-[#2A52A0] hover:text-[#1C2B2B] underline underline-offset-4 transition-colors"
                 >
                   Use the full intake form →
                 </Link>

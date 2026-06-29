@@ -125,7 +125,7 @@ const ResourcesPage = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#0d1b2a] text-white py-16 md:py-24" data-testid="resources-hero">
+      <section className="bg-[#1C2B2B] text-white py-16 md:py-24" data-testid="resources-hero">
         <div className="container max-w-4xl">
           <p
             className="uppercase font-bold mb-4"
@@ -157,11 +157,11 @@ const ResourcesPage = () => {
                 <li
                   key={r.id}
                   className="rounded-lg p-6 md:p-7 flex flex-col"
-                  style={{ background: '#F9F8F6', border: '1px solid rgba(13,27,42,0.10)' }}
+                  style={{ background: '#F9F8F6', border: '1px solid rgba(28,43,43,0.10)' }}
                   data-testid={`resource-card-${r.id}`}
                 >
                   <div className="flex items-start gap-3 mb-3">
-                    <Icon size={22} className="text-[#1a6fc4] flex-shrink-0 mt-0.5" />
+                    <Icon size={22} className="text-[#2A52A0] flex-shrink-0 mt-0.5" />
                     <div className="flex-grow">
                       <div
                         className="flex flex-wrap items-center gap-2 mb-1.5"
@@ -169,28 +169,28 @@ const ResourcesPage = () => {
                       >
                         <span
                           className="uppercase font-bold text-[10px] tracking-[0.18em] px-2 py-0.5 rounded"
-                          style={{ background: 'rgba(26,111,196,0.10)', color: '#1a6fc4' }}
+                          style={{ background: 'rgba(42,82,160,0.10)', color: '#2A52A0' }}
                         >
                           {r.type}
                         </span>
                         <span
-                          className="uppercase text-[10px] tracking-[0.16em] text-[#0d1b2a]/50"
+                          className="uppercase text-[10px] tracking-[0.16em] text-[#1C2B2B]/50"
                         >
                           {r.gate}
                         </span>
                       </div>
-                      <h2 className="text-xl font-bold text-[#0d1b2a] leading-tight">
+                      <h2 className="text-xl font-bold text-[#1C2B2B] leading-tight">
                         {r.title}
                       </h2>
                     </div>
                   </div>
-                  <p className="text-[15px] text-[#0d1b2a]/65 leading-relaxed mb-5 flex-grow">
+                  <p className="text-[15px] text-[#1C2B2B]/65 leading-relaxed mb-5 flex-grow">
                     {r.description}
                   </p>
                   {r.internal ? (
                     <Link
                       to={r.href}
-                      className="inline-flex items-center justify-center gap-2 bg-[#0d1b2a] hover:bg-[#1c2e44] text-white font-semibold px-5 py-3 rounded transition-colors text-sm self-start"
+                      className="inline-flex items-center justify-center gap-2 bg-[#1C2B2B] hover:bg-[#1c2e44] text-white font-semibold px-5 py-3 rounded transition-colors text-sm self-start"
                       data-testid={`resource-cta-${r.id}`}
                     >
                       {r.cta}
@@ -201,7 +201,7 @@ const ResourcesPage = () => {
                       href={r.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 bg-[#0d1b2a] hover:bg-[#1c2e44] text-white font-semibold px-5 py-3 rounded transition-colors text-sm self-start"
+                      className="inline-flex items-center justify-center gap-2 bg-[#1C2B2B] hover:bg-[#1c2e44] text-white font-semibold px-5 py-3 rounded transition-colors text-sm self-start"
                       data-testid={`resource-cta-${r.id}`}
                     >
                       <Download size={14} />
@@ -216,18 +216,18 @@ const ResourcesPage = () => {
       </section>
 
       {/* Closing CTA */}
-      <section className="py-14 md:py-20 bg-[#F9F8F6] border-t border-[#0d1b2a]/10" data-testid="resources-cta">
+      <section className="py-14 md:py-20 bg-[#F9F8F6] border-t border-[#1C2B2B]/10" data-testid="resources-cta">
         <div className="container max-w-2xl text-center">
-          <p className="text-base md:text-lg text-[#0d1b2a]/65 mb-2">Need more than a guide?</p>
+          <p className="text-base md:text-lg text-[#1C2B2B]/65 mb-2">Need more than a guide?</p>
           <p
-            className="text-xl md:text-2xl text-[#0d1b2a] font-semibold mb-7"
+            className="text-xl md:text-2xl text-[#1C2B2B] font-semibold mb-7"
             style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
             Schedule a walkthrough and get findings written for your operation.
           </p>
           <Link
             to="/intake?service=safety-walkthrough-report&utm_source=resources-hub&utm_medium=website&utm_campaign=resources-cta"
-            className="inline-flex items-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-7 py-4 rounded transition-colors"
+            className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-7 py-4 rounded transition-colors"
             data-testid="resources-bottom-cta"
           >
             Request a Walkthrough

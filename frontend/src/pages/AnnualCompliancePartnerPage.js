@@ -78,10 +78,10 @@ const WHO_CARDS = [
   },
 ];
 
-const GOLD = '#D4A93E';
-const NAVY = '#0d1b2a';
+const GOLD = '#C9A84C';
+const NAVY = '#1C2B2B';
 
-const Eyebrow = ({ children, color = '#1a6fc4' }) => (
+const Eyebrow = ({ children, color = '#2A52A0' }) => (
   <p
     className="uppercase font-bold mb-3"
     style={{ ...mono, fontSize: '10.4px', letterSpacing: '0.20em', color }}
@@ -208,11 +208,11 @@ const AnnualCompliancePartnerPage = () => {
             <div
               className="rounded-lg p-5"
               style={{
-                background: 'rgba(212,169,62,0.06)',
-                border: '1px solid rgba(212,169,62,0.30)',
+                background: 'rgba(201,168,76,0.06)',
+                border: '1px solid rgba(201,168,76,0.30)',
               }}
             >
-              <p className="text-[13px] leading-[1.65]" style={{ color: 'rgba(212,169,62,0.95)' }}>
+              <p className="text-[13px] leading-[1.65]" style={{ color: 'rgba(201,168,76,0.95)' }}>
                 GigLine accepts a limited number of annual partners. Engagements are scheduled on a first-confirmed
                 basis.
               </p>
@@ -228,7 +228,7 @@ const AnnualCompliancePartnerPage = () => {
           <h2 className="text-3xl md:text-4xl font-extrabold leading-[1.15] mb-4 tracking-tight max-w-3xl" style={{ color: NAVY }}>
             Everything. For one fixed annual price.
           </h2>
-          <p className="text-base text-[#0d1b2a]/65 leading-[1.75] mb-12 max-w-2xl">
+          <p className="text-base text-[#1C2B2B]/65 leading-[1.75] mb-12 max-w-2xl">
             No hourly billing. No scope creep. No surprise invoices when something happens.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -247,8 +247,8 @@ const AnnualCompliancePartnerPage = () => {
                       width: 36,
                       height: 36,
                       borderRadius: 8,
-                      background: 'rgba(26,111,196,0.10)',
-                      color: '#1a6fc4',
+                      background: 'rgba(42,82,160,0.10)',
+                      color: '#2A52A0',
                     }}
                   >
                     <Icon size={18} strokeWidth={2} />
@@ -257,7 +257,7 @@ const AnnualCompliancePartnerPage = () => {
                     <h3 className="text-[16.5px] font-bold mb-2 leading-snug" style={{ color: NAVY }}>
                       {card.title}
                     </h3>
-                    <p className="text-[14px] text-[#0d1b2a]/70 leading-[1.7]">{card.body}</p>
+                    <p className="text-[14px] text-[#1C2B2B]/70 leading-[1.7]">{card.body}</p>
                   </div>
                 </div>
               );
@@ -345,7 +345,7 @@ const AnnualCompliancePartnerPage = () => {
                       width: 32,
                       height: 32,
                       borderRadius: '50%',
-                      background: 'rgba(212,169,62,0.15)',
+                      background: 'rgba(201,168,76,0.15)',
                       color: GOLD,
                     }}
                   >
@@ -367,7 +367,7 @@ const AnnualCompliancePartnerPage = () => {
           <h2 className="text-3xl md:text-4xl font-extrabold leading-[1.15] mb-5 tracking-tight" style={{ color: NAVY }}>
             Most annual partners start with a Compliance Readiness Visit.
           </h2>
-          <p className="text-base md:text-lg text-[#0d1b2a]/75 leading-[1.85] mb-10 max-w-3xl">
+          <p className="text-base md:text-lg text-[#1C2B2B]/75 leading-[1.85] mb-10 max-w-3xl">
             The CRV establishes a baseline — where your operation stands today, what needs to be fixed first, and what
             the ongoing oversight should focus on. It is the most efficient way to start an annual engagement and the
             most defensible way to document your starting point.
@@ -403,7 +403,7 @@ const AnnualCompliancePartnerPage = () => {
           </div>
           <a
             href="tel:3363298899"
-            className="inline-flex items-center gap-2 text-[#0d1b2a]/60 hover:text-[#0d1b2a] text-sm mt-8 transition-colors"
+            className="inline-flex items-center gap-2 text-[#1C2B2B]/60 hover:text-[#1C2B2B] text-sm mt-8 transition-colors"
             data-testid="acp-cta-phone"
           >
             <Phone size={14} />

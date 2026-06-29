@@ -147,10 +147,10 @@ const FAQPage = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#0d1b2a] text-white py-16 md:py-24">
+      <section className="bg-[#1C2B2B] text-white py-16 md:py-24">
         <div className="container max-w-4xl">
           <p
-            className="uppercase tracking-[3px] text-[#1a6fc4] mb-5"
+            className="uppercase tracking-[3px] text-[#2A52A0] mb-5"
             style={{ ...mono, fontSize: '11px' }}
             data-testid="faq-kicker"
           >
@@ -189,19 +189,19 @@ const FAQPage = () => {
                     aria-expanded={open}
                   >
                     <span
-                      className="font-semibold text-[#0d1b2a] text-base md:text-lg leading-snug"
+                      className="font-semibold text-[#1C2B2B] text-base md:text-lg leading-snug"
                       style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
                     >
                       {f.q}
                     </span>
                     <ChevronDown
                       size={20}
-                      className={`flex-shrink-0 mt-1 text-[#1a6fc4] transition-transform ${open ? 'rotate-180' : ''}`}
+                      className={`flex-shrink-0 mt-1 text-[#2A52A0] transition-transform ${open ? 'rotate-180' : ''}`}
                     />
                   </button>
                   {open && (
                     <div
-                      className="px-5 pb-5 md:px-6 md:pb-6 text-[#0d1b2a]/75 leading-relaxed text-sm md:text-base space-y-3"
+                      className="px-5 pb-5 md:px-6 md:pb-6 text-[#1C2B2B]/75 leading-relaxed text-sm md:text-base space-y-3"
                       data-testid={`faq-answer-${i}`}
                     >
                       {f.a.split('\n\n').map((para, j) => (
@@ -217,7 +217,7 @@ const FAQPage = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-20 bg-[#0d1b2a] text-white">
+      <section className="py-16 md:py-20 bg-[#1C2B2B] text-white">
         <div className="container max-w-2xl text-center">
           <h2
             className="text-2xl md:text-3xl font-bold mb-4"
@@ -231,7 +231,7 @@ const FAQPage = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/intake"
-              className="inline-flex items-center justify-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#1a6fc4]/20"
+              className="inline-flex items-center justify-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#2A52A0]/20"
               data-testid="faq-cta-primary"
             >
               Request a Walkthrough

@@ -128,7 +128,7 @@ const SafetyCheckPage = () => {
     }
   };
 
-  const inputCls = "w-full px-4 py-3 border border-[#0d1b2a]/15 rounded bg-white text-[#0d1b2a] placeholder:text-[#0d1b2a]/40 focus:outline-none focus:ring-2 focus:ring-[#1560ae]/50 focus:border-transparent";
+  const inputCls = "w-full px-4 py-3 border border-[#1C2B2B]/15 rounded bg-white text-[#1C2B2B] placeholder:text-[#1C2B2B]/40 focus:outline-none focus:ring-2 focus:ring-[#1F3F80]/50 focus:border-transparent";
 
   return (
     <main className="bg-white" data-testid="safety-check-page">
@@ -139,7 +139,7 @@ const SafetyCheckPage = () => {
       />
 
       {/* Header */}
-      <section className="bg-[#0d1b2a] text-white py-16 md:py-20">
+      <section className="bg-[#1C2B2B] text-white py-16 md:py-20">
         <div className="container max-w-3xl">
           <p className="text-xs font-semibold tracking-widest text-white/50 uppercase mb-4" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
             GigLine Safety Check
@@ -159,31 +159,31 @@ const SafetyCheckPage = () => {
       {phase === 'questions' && (
         <section className="py-12 md:py-16">
           <div className="container max-w-3xl">
-            <p className="text-lg text-[#0d1b2a]/70 mb-10 leading-relaxed italic border-l-2 border-[#1560ae] pl-6" data-testid="safety-check-frame-text">
+            <p className="text-lg text-[#1C2B2B]/70 mb-10 leading-relaxed italic border-l-2 border-[#1F3F80] pl-6" data-testid="safety-check-frame-text">
               Six questions. Honest answers. You'll know where you stand.
             </p>
 
-            <div className="mb-12 pb-8 border-b border-[#0d1b2a]/10">
-              <h2 className="text-base font-semibold text-[#0d1b2a] mb-2">What This Is Measuring</h2>
-              <p className="text-sm text-[#0d1b2a]/60 leading-relaxed">
+            <div className="mb-12 pb-8 border-b border-[#1C2B2B]/10">
+              <h2 className="text-base font-semibold text-[#1C2B2B] mb-2">What This Is Measuring</h2>
+              <p className="text-sm text-[#1C2B2B]/60 leading-relaxed">
                 These questions reflect conditions that are cited repeatedly across manufacturing, warehousing, and contractor operations.
               </p>
-              <p className="text-sm text-[#0d1b2a]/60 mt-2">
+              <p className="text-sm text-[#1C2B2B]/60 mt-2">
                 If you cannot answer "yes" with confidence, that area likely needs attention.
               </p>
             </div>
 
             <div className="space-y-10">
               {QUESTIONS.map((q) => (
-                <div key={q.id} className="border-l-2 border-[#1560ae]/30 pl-6 py-1" data-testid={`question-${q.id}`}>
-                  <p className="text-[10px] font-medium tracking-widest text-[#0d1b2a]/30 uppercase mb-3">{String(q.id).padStart(2, '0')}</p>
-                  <p className="text-base font-medium text-[#0d1b2a] mb-2 leading-relaxed">{q.text}</p>
-                  <p className="text-xs text-[#0d1b2a]/40 mb-5">{q.citation}</p>
+                <div key={q.id} className="border-l-2 border-[#1F3F80]/30 pl-6 py-1" data-testid={`question-${q.id}`}>
+                  <p className="text-[10px] font-medium tracking-widest text-[#1C2B2B]/30 uppercase mb-3">{String(q.id).padStart(2, '0')}</p>
+                  <p className="text-base font-medium text-[#1C2B2B] mb-2 leading-relaxed">{q.text}</p>
+                  <p className="text-xs text-[#1C2B2B]/40 mb-5">{q.citation}</p>
                   <div className="flex gap-3">
                     <button
                       type="button"
                       onClick={() => handleAnswer(q.id, 'yes')}
-                      className={`px-6 py-2.5 rounded font-medium text-sm transition-colors ${answers[q.id] === 'yes' ? 'bg-[#0d1b2a] text-white' : 'bg-[#F5F5F3] text-[#0d1b2a] hover:bg-[#E8E8E5]'}`}
+                      className={`px-6 py-2.5 rounded font-medium text-sm transition-colors ${answers[q.id] === 'yes' ? 'bg-[#1C2B2B] text-white' : 'bg-[#F5F5F3] text-[#1C2B2B] hover:bg-[#E8E8E5]'}`}
                       data-testid={`question-${q.id}-yes`}
                     >
                       Yes — Confirmed
@@ -191,7 +191,7 @@ const SafetyCheckPage = () => {
                     <button
                       type="button"
                       onClick={() => handleAnswer(q.id, 'no')}
-                      className={`px-6 py-2.5 rounded font-medium text-sm transition-colors ${answers[q.id] === 'no' ? 'bg-[#8B2500] text-white' : 'bg-[#F5F5F3] text-[#0d1b2a] hover:bg-[#E8E8E5]'}`}
+                      className={`px-6 py-2.5 rounded font-medium text-sm transition-colors ${answers[q.id] === 'no' ? 'bg-[#8B2500] text-white' : 'bg-[#F5F5F3] text-[#1C2B2B] hover:bg-[#E8E8E5]'}`}
                       data-testid={`question-${q.id}-no`}
                     >
                       No — Not in Place
@@ -208,33 +208,33 @@ const SafetyCheckPage = () => {
       {phase === 'gate' && (
         <section className="py-12 md:py-16">
           <div className="container max-w-lg">
-            <p className="text-base text-[#0d1b2a]/60 mb-8 leading-relaxed" data-testid="gate-message">
+            <p className="text-base text-[#1C2B2B]/60 mb-8 leading-relaxed" data-testid="gate-message">
               Enter your email to see your results and get a short summary you can keep on file.
             </p>
 
             <form onSubmit={handleGateSubmit} className="space-y-4" data-testid="gate-form">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-[#0d1b2a] mb-1">First Name <span className="text-[#8B2500]">*</span></label>
+                <label htmlFor="name" className="block text-sm font-medium text-[#1C2B2B] mb-1">First Name <span className="text-[#8B2500]">*</span></label>
                 <input id="name" name="name" value={gateData.name} onChange={handleGateChange} className={inputCls} placeholder="Your first name" data-testid="gate-name" />
                 {gateErrors.name && <p className="text-xs text-[#8B2500] mt-1">{gateErrors.name}</p>}
               </div>
               <div>
-                <label htmlFor="company" className="block text-sm font-medium text-[#0d1b2a] mb-1">Company Name <span className="text-[#8B2500]">*</span></label>
+                <label htmlFor="company" className="block text-sm font-medium text-[#1C2B2B] mb-1">Company Name <span className="text-[#8B2500]">*</span></label>
                 <input id="company" name="company" value={gateData.company} onChange={handleGateChange} className={inputCls} placeholder="Company or operation name" data-testid="gate-company" />
                 {gateErrors.company && <p className="text-xs text-[#8B2500] mt-1">{gateErrors.company}</p>}
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-[#0d1b2a] mb-1">Email <span className="text-[#8B2500]">*</span></label>
+                <label htmlFor="email" className="block text-sm font-medium text-[#1C2B2B] mb-1">Email <span className="text-[#8B2500]">*</span></label>
                 <input id="email" name="email" type="email" value={gateData.email} onChange={handleGateChange} className={inputCls} placeholder="you@company.com" data-testid="gate-email" />
                 {gateErrors.email && <p className="text-xs text-[#8B2500] mt-1">{gateErrors.email}</p>}
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-[#0d1b2a] mb-1">Phone <span className="text-[#0d1b2a]/40">(optional)</span></label>
+                  <label htmlFor="phone" className="block text-sm font-medium text-[#1C2B2B] mb-1">Phone <span className="text-[#1C2B2B]/40">(optional)</span></label>
                   <input id="phone" name="phone" type="tel" value={gateData.phone} onChange={handleGateChange} className={inputCls} placeholder="(555) 000-0000" data-testid="gate-phone" />
                 </div>
                 <div>
-                  <label htmlFor="role" className="block text-sm font-medium text-[#0d1b2a] mb-1">Role <span className="text-[#0d1b2a]/40">(optional)</span></label>
+                  <label htmlFor="role" className="block text-sm font-medium text-[#1C2B2B] mb-1">Role <span className="text-[#1C2B2B]/40">(optional)</span></label>
                   <select id="role" name="role" value={gateData.role} onChange={handleGateChange} className={inputCls} data-testid="gate-role">
                     {ROLES.map((r) => <option key={r.value} value={r.value}>{r.label}</option>)}
                   </select>
@@ -246,14 +246,14 @@ const SafetyCheckPage = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold py-4 rounded transition-colors disabled:opacity-50 text-base"
+                className="w-full bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold py-4 rounded transition-colors disabled:opacity-50 text-base"
                 data-testid="gate-submit"
               >
                 {isSubmitting ? 'Loading your results...' : 'See My Results'}
               </button>
             </form>
 
-            <p className="text-xs text-[#0d1b2a]/40 mt-4 text-center">
+            <p className="text-xs text-[#1C2B2B]/40 mt-4 text-center">
               No spam. Just your results and a follow-up if it's useful.
             </p>
           </div>
@@ -291,8 +291,8 @@ const SafetyCheckPage = () => {
 
         return (
           <>
-            <hr className="border-[#0d1b2a]/10" />
-            <section className="bg-[#0d1b2a] text-white py-16 md:py-20" data-testid="results-section">
+            <hr className="border-[#1C2B2B]/10" />
+            <section className="bg-[#1C2B2B] text-white py-16 md:py-20" data-testid="results-section">
               <div className="container max-w-3xl">
 
                 {/* Score numerals */}
@@ -368,7 +368,7 @@ const SafetyCheckPage = () => {
                   <div className="mt-4 flex flex-col sm:flex-row gap-3 items-start" data-testid="results-cta-block">
                     <Link
                       to="/intake?service=safety-walkthrough-report"
-                      className="inline-flex items-center gap-2 bg-[#1a6fc4] hover:bg-[#1560ae] text-white font-bold px-7 py-3.5 rounded transition-colors text-base"
+                      className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-7 py-3.5 rounded transition-colors text-base"
                       data-testid="results-cta-primary"
                     >
                       Request a Safety Walkthrough
@@ -411,7 +411,7 @@ const SafetyCheckPage = () => {
                   Want Vince to review your score? Reply directly —{' '}
                   <a
                     href="mailto:vince@giglinecompliance.com?subject=Safety%20Check%20Review"
-                    className="text-[#D4A93E] hover:text-white underline underline-offset-4 transition-colors"
+                    className="text-[#C9A84C] hover:text-white underline underline-offset-4 transition-colors"
                   >
                     vince@giglinecompliance.com
                   </a>

@@ -18,9 +18,9 @@ const SLUG = 'safety-walkthrough';
 const INTAKE_HREF = `/intake?service=${SLUG}`;
 const CRV_HREF = '/services/compliance-readiness-visit';
 
-const BLUE = '#1a6fc4';
-const NAVY = '#0d1b2a';
-const GOLD = '#D4A93E';
+const BLUE = '#2A52A0';
+const NAVY = '#1C2B2B';
+const GOLD = '#C9A84C';
 const CREAM = '#f5f4f0';
 
 const DELIVERABLES = [
@@ -78,7 +78,7 @@ const SafetyWalkthroughPage = () => {
             An on-site walkthrough focused purely on physical hazards. Photo-documented findings with CFR citations and a prioritized fix list — delivered within 48 hours. The fastest way to know where your operation stands.
           </p>
           <div className="flex flex-wrap items-center gap-x-7 gap-y-3 mb-12">
-            <Link to={INTAKE_HREF} className="inline-flex items-center justify-center gap-2 font-bold px-6 py-3.5 rounded-lg text-[15px] transition-colors text-white" style={{ background: BLUE }} onMouseEnter={(e) => (e.currentTarget.style.background = '#1560ae')} onMouseLeave={(e) => (e.currentTarget.style.background = BLUE)} data-testid="sw-cta-hero">
+            <Link to={INTAKE_HREF} className="inline-flex items-center justify-center gap-2 font-bold px-6 py-3.5 rounded-lg text-[15px] transition-colors text-white" style={{ background: BLUE }} onMouseEnter={(e) => (e.currentTarget.style.background = '#1F3F80')} onMouseLeave={(e) => (e.currentTarget.style.background = BLUE)} data-testid="sw-cta-hero">
               Request a Safety Walkthrough <ArrowRight size={17} />
             </Link>
             <span className="inline-flex items-center gap-2 text-white/55 text-sm" style={mono}><Clock size={14} />Report in 48 hours</span>
@@ -109,11 +109,11 @@ const SafetyWalkthroughPage = () => {
               const Icon = d.icon;
               return (
                 <div key={i} className="rounded-xl p-7" style={{ background: CREAM, border: '1px solid #e8e5dd' }} data-testid={`sw-deliverable-${i + 1}`}>
-                  <div className="flex items-center justify-center mb-5" style={{ width: 36, height: 36, borderRadius: 8, background: 'rgba(26,111,196,0.10)', color: BLUE }}>
+                  <div className="flex items-center justify-center mb-5" style={{ width: 36, height: 36, borderRadius: 8, background: 'rgba(42,82,160,0.10)', color: BLUE }}>
                     <Icon size={18} strokeWidth={2} />
                   </div>
                   <h3 className="text-[17px] font-bold mb-2.5 leading-snug" style={{ color: NAVY }}>{d.title}</h3>
-                  <p className="text-[14px] text-[#0d1b2a]/70 leading-[1.7]">{d.body}</p>
+                  <p className="text-[14px] text-[#1C2B2B]/70 leading-[1.7]">{d.body}</p>
                 </div>
               );
             })}
@@ -126,7 +126,7 @@ const SafetyWalkthroughPage = () => {
         <div className="container max-w-4xl">
           <Eyebrow>What We Find</Eyebrow>
           <h2 className="text-3xl md:text-4xl font-extrabold leading-[1.15] mb-4 tracking-tight" style={{ color: NAVY }}>The eight most common physical violations.</h2>
-          <p className="text-base text-[#0d1b2a]/70 leading-[1.75] mb-10 max-w-3xl">
+          <p className="text-base text-[#1C2B2B]/70 leading-[1.75] mb-10 max-w-3xl">
             These are the findings that appear most frequently across manufacturing and warehouse operations in the Piedmont Triad. Most operations have at least three. Some have all eight.
           </p>
           <ol className="space-y-1">
@@ -149,7 +149,7 @@ const SafetyWalkthroughPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {WHEN_CARDS.map((card, i) => (
               <div key={i} className="rounded-xl p-6" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }} data-testid={`sw-when-card-${i + 1}`}>
-                <div className="flex items-center justify-center mb-5" style={{ width: 32, height: 32, borderRadius: '50%', background: 'rgba(212,169,62,0.15)', color: GOLD }}>
+                <div className="flex items-center justify-center mb-5" style={{ width: 32, height: 32, borderRadius: '50%', background: 'rgba(201,168,76,0.15)', color: GOLD }}>
                   <ChevronRight size={18} strokeWidth={2.5} />
                 </div>
                 <h3 className="text-[15.5px] font-bold mb-3 leading-snug text-white">{card.title}</h3>
@@ -165,7 +165,7 @@ const SafetyWalkthroughPage = () => {
         <div className="container max-w-3xl text-center">
           <Eyebrow>Ready to Start?</Eyebrow>
           <h2 className="text-3xl md:text-4xl font-extrabold leading-[1.15] mb-5 tracking-tight" style={{ color: NAVY }}>Request a Safety Walkthrough.</h2>
-          <p className="text-base md:text-lg text-[#0d1b2a]/75 leading-[1.85] mb-10 max-w-3xl mx-auto">
+          <p className="text-base md:text-lg text-[#1C2B2B]/75 leading-[1.85] mb-10 max-w-3xl mx-auto">
             Fixed price. Private engagement. Report in 48 hours. Or upgrade to the Compliance Readiness Visit and get the documentation review included in the same visit.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -176,7 +176,7 @@ const SafetyWalkthroughPage = () => {
               Upgrade to a Compliance Readiness Visit
             </Link>
           </div>
-          <a href="tel:3363298899" className="inline-flex items-center gap-2 text-[#0d1b2a]/60 hover:text-[#0d1b2a] text-sm mt-8 transition-colors" data-testid="sw-cta-phone">
+          <a href="tel:3363298899" className="inline-flex items-center gap-2 text-[#1C2B2B]/60 hover:text-[#1C2B2B] text-sm mt-8 transition-colors" data-testid="sw-cta-phone">
             <Phone size={14} />Questions? Call or text Vince directly — (336) 329-8899
           </a>
         </div>

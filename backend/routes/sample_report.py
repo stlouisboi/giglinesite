@@ -1,6 +1,7 @@
 """Sample Compliance Report download route (GL-WEB-017 Item 2)."""
 
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
+from fastapi.responses import FileResponse
 from datetime import datetime, timezone
 import asyncio
 import base64
@@ -13,6 +14,19 @@ from models import SampleReportRequest
 
 router = APIRouter()
 logger = logging.getLogger('gigline')
+
+
+@router.get("/sample-report/pdf")
+async def download_sample_report_pdf():
+    """Direct PDF download — opened in a new tab after form submit (GL-WEB-020)."""
+    if not SAMPLE_REPORT_PDF.exists():
+        raise HTTPException(status_code=404, detail="Sample Report not available.")
+    return FileResponse(
+        path=str(SAMPLE_REPORT_PDF),
+        media_type="application/pdf",
+        filename="GL_Sample_Compliance_Report.pdf",
+        headers={"Content-Disposition": 'inline; filename="GL_Sample_Compliance_Report.pdf"'},
+    )
 
 
 @router.post("/sample-report/submit")
@@ -93,8 +107,16 @@ async def submit_sample_report(request: SampleReportRequest):
         })
 
         logger.info(f"Sample report sent to {email}")
-        return {"success": True, "message": "Sample report sent to your email"}
+        return {
+            "success": True,
+            "message": "Sample report sent to your email",
+            "download_url": "/api/sample-report/pdf",
+        }
 
     except Exception as e:
         logger.error(f"Sample report email error: {str(e)}")
-        return {"success": True, "message": "Sample report sent to your email"}
+        return {
+            "success": True,
+            "message": "Sample report sent to your email",
+            "download_url": "/api/sample-report/pdf",
+        }

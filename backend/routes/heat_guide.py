@@ -1,6 +1,7 @@
 """Heat stress guide routes."""
 
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
+from fastapi.responses import FileResponse
 from datetime import datetime, timezone
 import asyncio
 import base64
@@ -13,6 +14,19 @@ from models import HeatGuideRequest
 
 router = APIRouter()
 logger = logging.getLogger('gigline')
+
+
+@router.get("/heat-guide/pdf")
+async def download_heat_guide_pdf():
+    """Direct PDF download — opened in a new tab after form submit (GL-WEB-020)."""
+    if not HEAT_STRESS_PDF.exists():
+        raise HTTPException(status_code=404, detail="Heat Stress guide not available.")
+    return FileResponse(
+        path=str(HEAT_STRESS_PDF),
+        media_type="application/pdf",
+        filename="GL_Heat_Stress_Action_Template_2026.pdf",
+        headers={"Content-Disposition": 'inline; filename="GL_Heat_Stress_Action_Template_2026.pdf"'},
+    )
 
 
 @router.post("/heat-guide/submit")
@@ -86,8 +100,16 @@ async def submit_heat_guide(request: HeatGuideRequest):
         })
 
         logger.info(f"Heat guide sent to {email}")
-        return {"success": True, "message": "Template sent to your email"}
+        return {
+            "success": True,
+            "message": "Template sent to your email",
+            "download_url": "/api/heat-guide/pdf",
+        }
 
     except Exception as e:
         logger.error(f"Heat guide email error: {str(e)}")
-        return {"success": True, "message": "Template sent to your email"}
+        return {
+            "success": True,
+            "message": "Template sent to your email",
+            "download_url": "/api/heat-guide/pdf",
+        }

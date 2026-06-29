@@ -50,8 +50,13 @@ const OshaInspectionGuidePage = () => {
         }),
       });
       const data = await res.json();
-      if (data && data.success) setStatus('sent');
-      else setStatus('error');
+      if (data && data.success) {
+        // Open PDF in a new tab immediately (GL-WEB-020) — email/MailerLite still delivers as backup
+        if (data.download_url) {
+          window.open(`${API_URL}${data.download_url}`, '_blank', 'noopener,noreferrer');
+        }
+        setStatus('sent');
+      } else setStatus('error');
     } catch {
       setStatus('error');
     }
@@ -110,11 +115,21 @@ const OshaInspectionGuidePage = () => {
                   className="text-xl md:text-2xl font-bold text-[#0d1b2a] mb-3"
                   style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
                 >
-                  Check your inbox. Your guide is on the way.
+                  Your guide just opened in a new tab.
                 </h2>
-                <p className="text-sm text-[#0d1b2a]/65 mb-6">
-                  We sent the OSHA Inspection Guide to <strong className="text-[#0d1b2a]">{email}</strong>. If it doesn&rsquo;t arrive within a few minutes, check spam.
+                <p className="text-sm text-[#0d1b2a]/65 mb-4">
+                  We also sent a copy to <strong className="text-[#0d1b2a]">{email}</strong> for safekeeping. If the new tab didn&rsquo;t open (popup blocker), use the button below to open it directly.
                 </p>
+                <a
+                  href={`${API_URL}/api/osha-inspection-guide/pdf`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-[#0d1b2a] hover:bg-[#1c2e44] text-white font-semibold px-5 py-3 rounded transition-colors text-sm mb-6"
+                  data-testid="oig-fallback-download"
+                >
+                  <BookOpen size={14} />
+                  Open the OSHA Inspection Guide
+                </a>
                 <div className="pt-6 border-t border-[#0d1b2a]/10">
                   <p className="text-sm text-[#0d1b2a]/60 mb-3">
                     Want to know exactly where your own operation stands? Take the 90-second self-screen.

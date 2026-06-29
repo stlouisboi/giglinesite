@@ -6,7 +6,8 @@ automation attached to that group — the backend does NOT serve or attach
 the PDF itself.
 """
 
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
+from fastapi.responses import FileResponse
 from datetime import datetime, timezone
 import asyncio
 import logging
@@ -19,6 +20,19 @@ import base64
 
 router = APIRouter()
 logger = logging.getLogger("gigline")
+
+
+@router.get("/osha-inspection-guide/pdf")
+async def download_osha_guide_pdf():
+    """Direct PDF download — opened in a new tab after form submit (GL-WEB-020)."""
+    if not OSHA_GUIDE_PDF.exists():
+        raise HTTPException(status_code=404, detail="OSHA Inspection Guide not available.")
+    return FileResponse(
+        path=str(OSHA_GUIDE_PDF),
+        media_type="application/pdf",
+        filename="GigLine_OSHA_Inspection_Guide.pdf",
+        headers={"Content-Disposition": 'inline; filename="GigLine_OSHA_Inspection_Guide.pdf"'},
+    )
 
 
 @router.post("/osha-inspection-guide/submit")
@@ -116,4 +130,8 @@ async def submit_osha_inspection_guide(request: OshaInspectionGuideRequest):
     except Exception as e:
         logger.error(f"OSHA guide Vince-notification error: {e}")
 
-    return {"success": True, "message": "Check your inbox. Your guide is on the way."}
+    return {
+        "success": True,
+        "message": "Check your inbox. Your guide is on the way.",
+        "download_url": "/api/osha-inspection-guide/pdf",
+    }

@@ -20,6 +20,10 @@ const HeatGuidePage = () => {
       });
       const data = await res.json();
       if (data.success) {
+        // Open PDF in a new tab immediately (GL-WEB-020) — email still delivers as backup
+        if (data.download_url) {
+          window.open(`${API_URL}${data.download_url}`, '_blank', 'noopener,noreferrer');
+        }
         setStatus('sent');
       }
     } catch {
@@ -60,14 +64,26 @@ const HeatGuidePage = () => {
             {status === 'sent' ? (
               <div data-testid="heat-guide-success">
                 <h2 className="text-xl font-bold text-[#0d1b2a] mb-3" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
-                  Check Your Inbox
+                  Your guide just opened in a new tab.
                 </h2>
                 <p className="text-sm text-[#0d1b2a]/60 mb-4">
-                  The 2026 Heat Stress Action Template has been sent to <strong className="text-[#0d1b2a]">{email}</strong>. Print it and post it.
+                  We also sent a copy to <strong className="text-[#0d1b2a]">{email}</strong> for safekeeping. If the new tab didn&rsquo;t open (popup blocker), use the button below.
                 </p>
-                <Link to="/safety-check" className="inline-flex items-center gap-2 text-sm text-[#1560ae] font-medium hover:underline">
-                  Run the Free Safety Check while you're here <ArrowRight size={14} />
-                </Link>
+                <a
+                  href={`${API_URL}/api/heat-guide/pdf`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-[#0d1b2a] hover:bg-[#1c2e44] text-white font-semibold px-5 py-3 rounded transition-colors text-sm mb-4"
+                  data-testid="heat-guide-fallback-download"
+                >
+                  <Download size={14} />
+                  Open the Heat Stress Template
+                </a>
+                <div className="mt-2">
+                  <Link to="/safety-check" className="inline-flex items-center gap-2 text-sm text-[#1560ae] font-medium hover:underline">
+                    Run the Free Safety Check while you&rsquo;re here <ArrowRight size={14} />
+                  </Link>
+                </div>
               </div>
             ) : (
               <>

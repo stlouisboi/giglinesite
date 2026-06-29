@@ -28,6 +28,10 @@ const SampleReportPage = () => {
       });
       const data = await res.json();
       if (data && data.success) {
+        // Open PDF in a new tab immediately (GL-WEB-020) — email/MailerLite still delivers as backup
+        if (data.download_url) {
+          window.open(`${API_URL}${data.download_url}`, '_blank', 'noopener,noreferrer');
+        }
         setStatus('sent');
       } else {
         setStatus('error');
@@ -82,11 +86,21 @@ const SampleReportPage = () => {
                   className="text-xl font-bold text-[#0d1b2a] mb-3"
                   style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
                 >
-                  Check your inbox &mdash; it&rsquo;s on its way.
+                  Your guide just opened in a new tab.
                 </h2>
                 <p className="text-sm text-[#0d1b2a]/70 mb-4">
-                  We sent the Sample Compliance Report to <strong className="text-[#0d1b2a]">{email}</strong>. If it doesn&rsquo;t arrive within a few minutes, check spam &mdash; or reply to the email when it lands.
+                  We also sent a copy to <strong className="text-[#0d1b2a]">{email}</strong> for safekeeping. If the new tab didn&rsquo;t open (popup blocker), use the button below to download it directly.
                 </p>
+                <a
+                  href={`${API_URL}/api/sample-report/pdf`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-[#0d1b2a] hover:bg-[#1c2e44] text-white font-semibold px-5 py-3 rounded transition-colors text-sm mb-6"
+                  data-testid="sample-report-fallback-download"
+                >
+                  <Download size={14} />
+                  Open the Sample Report
+                </a>
                 <div className="mt-6 pt-6 border-t border-[#0d1b2a]/10">
                   <p className="text-sm text-[#0d1b2a]/60 mb-3">Ready to schedule a walkthrough that produces a report like this for your operation?</p>
                   <Link

@@ -473,6 +473,38 @@ const HomePage = () => {
               <span className="font-semibold text-[#0d1b2a]">The walkthrough is that window.</span>
             </p>
           </Reveal>
+
+          {/* Concrete scenario — anchored to the real Statesville case study */}
+          <Reveal>
+            <div
+              className="mt-10 p-7 md:p-8 max-w-4xl"
+              style={{
+                background: '#0d1b2a',
+                borderLeft: '4px solid #c8922a',
+                borderRadius: '12px',
+                color: 'white',
+              }}
+              data-testid="cost-scenario"
+            >
+              <p
+                className="uppercase font-bold mb-3"
+                style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10.5px', letterSpacing: '0.22em', color: '#c8922a' }}
+              >
+                What That Looks Like
+              </p>
+              <p className="text-[15.5px] md:text-[17px] leading-[1.7] text-white/85" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+                A 9-person metals fabrication facility in Statesville. One combined walkthrough and documentation review. <strong className="text-white">13 findings.</strong> Seven carried serious-citation risk in the <strong className="text-white">$7,000 to $15,621 per-finding range</strong> &mdash; one inspection visit could have stacked those into <strong className="text-white">six figures of penalty exposure</strong>. The corrective action plan closed twelve of thirteen findings inside seven days.
+              </p>
+              <Link
+                to="/case-study/metals-fabrication-statesville"
+                className="inline-flex items-center gap-1.5 mt-5 font-semibold text-sm transition-colors"
+                style={{ color: '#c8922a', fontFamily: "'JetBrains Mono', monospace" }}
+                data-testid="cost-scenario-cta"
+              >
+                Read the engagement &rarr;
+              </Link>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -498,6 +530,7 @@ const HomePage = () => {
                 title: 'Safety Walkthrough',
                 price: 'From $1,200',
                 body: 'A documented on-site walkthrough of your facility. Photo evidence, CFR citations, penalty exposure per finding, and a Top 10 Fixes report \u2014 delivered in writing within 48 hours.',
+                outcome: 'You leave with: a written report you can hand to a supervisor and a fix list ranked by citation risk.',
                 cta: { label: 'Request a Walkthrough', to: '/intake?service=safety-walkthrough-report' },
                 testid: 'home-service-walkthrough',
               },
@@ -506,6 +539,7 @@ const HomePage = () => {
                 title: 'Compliance Readiness Visit',
                 price: 'From $2,000',
                 body: 'The Safety Walkthrough plus a full Documentation Review in a single visit. We walk the floor and review your written programs, training records, and OSHA logs \u2014 then give you a prioritized corrective action plan.',
+                outcome: 'You leave with: a single compliance score covering both floor and files, plus a 30/60/90-day corrective action plan with owners and dates.',
                 cta: { label: 'Schedule a Visit', to: '/intake?service=compliance-readiness-visit' },
                 featured: true,
                 badge: '★ Recommended Starting Point',
@@ -516,6 +550,7 @@ const HomePage = () => {
                 title: 'Quarterly Maintenance',
                 price: 'From $950/quarter',
                 body: 'Keep the system alive between annual walkthroughs. Quarterly documentation review, training record audit, SDS inventory check, corrective action tracker review, and a brief site visit if needed.',
+                outcome: 'You leave with: a safety system that stays current and a paper trail of good-faith effort defensible against insurers and customer audits.',
                 cta: { label: 'Ask About Quarterly', to: '/intake?service=quarterly-compliance-maintenance' },
                 testid: 'home-service-quarterly',
               },
@@ -524,6 +559,7 @@ const HomePage = () => {
                 title: 'Safety Check',
                 price: 'Free',
                 body: 'Not sure where to start? A free 90-second self-assessment covering the six most common OSHA violations in general industry. No contact information required.',
+                outcome: 'You leave with: a personalized exposure score and a short list of the gaps most worth checking on your floor.',
                 cta: { label: 'Take the Safety Check', to: '/safety-check' },
                 testid: 'home-service-safety-check',
               },
@@ -580,7 +616,23 @@ const HomePage = () => {
                   >
                     {s.price}
                   </p>
-                  <p className="text-[14px] text-[#0d1b2a]/65 leading-[1.65] mb-7 flex-grow">{s.body}</p>
+                  <p className="text-[14px] text-[#0d1b2a]/65 leading-[1.65] mb-4 flex-grow">{s.body}</p>
+
+                  {s.outcome && (
+                    <p
+                      className="mb-6 px-3 py-2.5 text-[13px] leading-[1.5] rounded"
+                      style={{
+                        background: s.featured ? 'rgba(31,111,235,0.06)' : 'rgba(13,27,42,0.035)',
+                        borderLeft: `2px solid ${s.featured ? '#1a6fc4' : '#c8922a'}`,
+                        color: '#0d1b2a',
+                        fontFamily: "Georgia, 'Times New Roman', serif",
+                        fontStyle: 'italic',
+                      }}
+                      data-testid={`${s.testid}-outcome`}
+                    >
+                      {s.outcome}
+                    </p>
+                  )}
 
                   <Link
                     to={s.cta.to}

@@ -23,6 +23,7 @@ from routes.onboarding import router as onboarding_router
 from routes.portal import router as portal_router
 from routes.supervisor_kit import router as supervisor_kit_router
 from routes.sample_report import router as sample_report_router
+from routes.quick_contact import router as quick_contact_router
 
 app = FastAPI()
 
@@ -43,6 +44,7 @@ api_router.include_router(onboarding_router)
 api_router.include_router(portal_router)
 api_router.include_router(supervisor_kit_router)
 api_router.include_router(sample_report_router)
+api_router.include_router(quick_contact_router)
 
 app.include_router(api_router)
 

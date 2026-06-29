@@ -7,6 +7,99 @@ import FieldNotesNewsletter from '../components/FieldNotesNewsletter';
 
 const API = process.env.REACT_APP_BACKEND_URL;
 
+/**
+ * Map each Field Note slug to the 1–2 most relevant service pages.
+ * Drives the "Service that handles this on the floor" callout near the bottom of each article.
+ * Adding a new article? Add an entry here so the cross-link block renders.
+ */
+const SERVICE_LINKS_BY_SLUG = {
+  'heat-stress': [
+    { title: 'Safety Walkthrough', body: 'On-site review of heat-exposure tasks, controls, and your HIIPP in action.', to: '/services/safety-walkthrough' },
+    { title: 'Document Development', body: 'Written HIIPP, daily heat check, and training records that match your operation.', to: '/services/document-development' },
+  ],
+  'forklift-safety': [
+    { title: 'Safety Walkthrough', body: 'On-floor review of forklift traffic, pedestrian separation, and pre-shift inspection practice.', to: '/services/safety-walkthrough' },
+    { title: 'Document Development', body: 'Operator certifications, evaluation records, and pre-shift checklists that satisfy 1910.178(l).', to: '/services/document-development' },
+  ],
+  'electrical-safety': [
+    { title: 'Safety Walkthrough', body: 'Panel access, GFCI coverage, cord management, and Subpart S compliance checked on the floor.', to: '/services/safety-walkthrough' },
+    { title: 'Incident Review', body: 'For shock events, near-miss arc flash, or any electrical incident: documented root cause and corrective action.', to: '/services/incident-review' },
+  ],
+  'hazcom': [
+    { title: 'Document Development', body: 'Written HazCom program, container labels, SDS index, and training records for the most-cited OSHA standard.', to: '/services/document-development' },
+    { title: 'Compliance Readiness Visit', body: 'Floor + files in a single visit — confirms your HazCom system actually matches the chemicals on site.', to: '/services/compliance-readiness-visit' },
+  ],
+  'machine-guarding': [
+    { title: 'Safety Walkthrough', body: 'Every guarded point of operation checked against 1910.212 and the equipment-specific standards.', to: '/services/safety-walkthrough' },
+  ],
+  'walking-surfaces': [
+    { title: 'Safety Walkthrough', body: 'Floor condition, housekeeping, slip/trip hazards, and Subpart D compliance documented with photos.', to: '/services/safety-walkthrough' },
+  ],
+  'lockout-tagout': [
+    { title: 'Document Development', body: 'Written LOTO program, machine-specific procedures, periodic inspection records, and training documentation.', to: '/services/document-development' },
+    { title: 'Safety Walkthrough', body: 'On-the-floor verification that LOTO devices are present, accessible, and being used.', to: '/services/safety-walkthrough' },
+  ],
+  'emergency-action-plans': [
+    { title: 'Document Development', body: 'Written EAP, evacuation diagrams, alarm-system documentation, and drill records to satisfy 1910.38.', to: '/services/document-development' },
+  ],
+  'ppe-assessment': [
+    { title: 'Document Development', body: 'Written PPE hazard assessment certification — the first citation under 1910.132 when missing.', to: '/services/document-development' },
+  ],
+  'fall-protection': [
+    { title: 'Safety Walkthrough', body: 'Every 4-foot+ exposure, anchor point, and elevated walking surface checked against Subpart D.', to: '/services/safety-walkthrough' },
+  ],
+  'confined-space': [
+    { title: 'Document Development', body: 'Written permit-required program, entry permits, and rescue plan that satisfies 1910.146.', to: '/services/document-development' },
+    { title: 'Safety Walkthrough', body: 'Every confined space on site identified, classified, and signed per the standard.', to: '/services/safety-walkthrough' },
+  ],
+  'scaffolding-safety': [
+    { title: 'Safety Walkthrough', body: 'Erection, inspection, and use practices reviewed against 1926.451 — competent person verification on site.', to: '/services/safety-walkthrough' },
+  ],
+  'hearing-conservation': [
+    { title: 'Document Development', body: 'Written hearing conservation program, audiogram records, and noise exposure assessments per 1910.95.', to: '/services/document-development' },
+  ],
+  'bloodborne-pathogens': [
+    { title: 'Document Development', body: 'Written exposure control plan, hepatitis B vaccination records, and training documentation per 1910.1030.', to: '/services/document-development' },
+  ],
+  'ai-generated-safety-programs': [
+    { title: 'Document Development', body: 'Written programs built around your equipment and chemicals — not AI templates that name a different operation.', to: '/services/document-development' },
+  ],
+  'recordkeeping-300-log': [
+    { title: 'Compliance Readiness Visit', body: '300 Log, 300A summary, and severe-injury reporting practice all reviewed in a single visit.', to: '/services/compliance-readiness-visit' },
+    { title: 'Document Development', body: 'Recordable-injury decision tree and 300/300A maintenance procedure built for your operation.', to: '/services/document-development' },
+  ],
+  'respiratory-protection': [
+    { title: 'Document Development', body: 'Written respiratory protection program, medical evaluation, fit testing, and training records per 1910.134.', to: '/services/document-development' },
+  ],
+  'silica-respirable-crystalline': [
+    { title: 'Compliance Readiness Visit', body: 'Exposure assessment, written exposure control plan, and medical surveillance review for stone/concrete operations.', to: '/services/compliance-readiness-visit' },
+    { title: 'Document Development', body: 'Written silica exposure control plan tailored to the tasks and materials on your floor.', to: '/services/document-development' },
+  ],
+  'hot-work-welding': [
+    { title: 'Safety Walkthrough', body: 'Hot-work area designation, fire watch practice, cylinder storage, and Subpart Q compliance checked on site.', to: '/services/safety-walkthrough' },
+    { title: 'Document Development', body: 'Written hot work permit program (NFPA 51B-based) that insurance carriers and customers accept.', to: '/services/document-development' },
+  ],
+  'abrasive-wheels': [
+    { title: 'Safety Walkthrough', body: 'Every grinder in the shop checked against the 1/8" work rest and 1/4" tongue-guard standards under 1910.215.', to: '/services/safety-walkthrough' },
+  ],
+  'ladder-safety': [
+    { title: 'Safety Walkthrough', body: 'Every portable ladder on site inspected against 1910.23 — damaged ladders tagged out before OSHA does it for you.', to: '/services/safety-walkthrough' },
+  ],
+  'eye-face-protection': [
+    { title: 'Document Development', body: 'Written PPE hazard assessment certification per 1910.132 — the first citation when missing.', to: '/services/document-development' },
+  ],
+  'trenching-excavation': [
+    { title: 'Safety Walkthrough', body: 'Protective systems, competent-person inspection, soil classification, and egress reviewed against Subpart P.', to: '/services/safety-walkthrough' },
+  ],
+  'cranes-rigging': [
+    { title: 'Safety Walkthrough', body: 'Daily/annual inspection practice, sling condition, capacity marking, and operator authorization checked on site.', to: '/services/safety-walkthrough' },
+    { title: 'Document Development', body: 'Annual inspection logs, operator training records, and rigging gear inspection procedures.', to: '/services/document-development' },
+  ],
+  'nc-osha-vs-federal': [
+    { title: 'Compliance Readiness Visit', body: 'Practitioner walkthrough framed against NC State Plan enforcement reality — not federal-OSHA-only theory.', to: '/services/compliance-readiness-visit' },
+  ],
+};
+
 /* ── Field Note content database ── */
 const NOTES = {
   'heat-stress': {
@@ -1550,6 +1643,41 @@ const FieldNoteDetailPage = () => {
 
           {/* Newsletter capture — soft list-builder per article */}
           <FieldNotesNewsletter source={`field-note-${slug}`} />
+
+          {/* Service that handles this on the floor (GL-WEB-018) */}
+          {SERVICE_LINKS_BY_SLUG[slug] && (
+            <div className="mb-10" data-testid="note-related-services">
+              <p
+                className="text-xs uppercase tracking-wider mb-3"
+                style={{ fontFamily: "'JetBrains Mono', monospace", color: '#1a6fc4' }}
+              >
+                Where this gets handled
+              </p>
+              <h3
+                className="text-lg md:text-xl font-bold text-[#0d1b2a] mb-5 leading-snug"
+                style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+              >
+                Want this audited on your floor?
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {SERVICE_LINKS_BY_SLUG[slug].map((svc) => (
+                  <Link
+                    key={svc.to}
+                    to={svc.to}
+                    className="block p-5 rounded-lg transition-colors group"
+                    style={{ background: '#F9F8F6', border: '1px solid rgba(13,27,42,0.10)' }}
+                    data-testid={`note-service-link-${svc.to.split('/').pop()}`}
+                  >
+                    <p className="font-bold text-[15px] text-[#0d1b2a] mb-1 group-hover:text-[#1560ae] transition-colors flex items-center gap-1.5">
+                      {svc.title}
+                      <ArrowRight size={14} className="opacity-50 group-hover:opacity-100 transition-opacity" />
+                    </p>
+                    <p className="text-[13.5px] text-[#0d1b2a]/65 leading-[1.55]">{svc.body}</p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Related Field Notes */}
           {note.relatedNotes && (

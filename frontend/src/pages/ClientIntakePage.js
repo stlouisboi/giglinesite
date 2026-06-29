@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Check, ArrowRight } from 'lucide-react';
 import SEO from '../components/SEO';
+import QuickContactCard from '../components/QuickContactCard';
 import { getAttribution, trackEvent } from '../utils/analytics';
 
 const API = process.env.REACT_APP_BACKEND_URL;
@@ -436,6 +437,14 @@ const ClientIntakePage = () => {
       </section>
 
       <main className="max-w-3xl mx-auto px-5 md:px-8 py-12 md:py-16 space-y-16 md:space-y-20">
+
+        {/* ── Quick-contact alternative (low-friction path for prospects who want to talk first) ── */}
+        <section data-testid="intake-quick-contact-section">
+          <QuickContactCard variant="dark" />
+          <p className="text-xs mt-4 text-center" style={{ color: C.sec, ...mono, letterSpacing: '0.18em' }}>
+            &mdash; OR &mdash; FILL OUT THE FULL INTAKE BELOW FOR A FIXED QUOTE
+          </p>
+        </section>
 
         {/* ═══ S1 — Company & Contact ═══ */}
         <section data-testid="intake-section-01">

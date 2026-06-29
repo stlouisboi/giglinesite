@@ -81,3 +81,9 @@ class SampleReportRequest(BaseModel):
     first_name: str
     email: EmailStr
     company: Optional[str] = ""
+
+
+class QuickContactRequest(BaseModel):
+    name: str
+    contact: str  # email or phone — whichever the prospect prefers
+    message: Optional[str] = ""

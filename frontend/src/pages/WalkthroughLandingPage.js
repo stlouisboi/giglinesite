@@ -440,7 +440,7 @@ const WalkthroughLandingPage = () => {
 
           {/* Google rating badge — light variant */}
           <a
-            href="https://maps.app.goo.gl/WChsxpQBLJninrYq9"
+            href="https://maps.app.goo.gl/hp6QcmRpfjVzNru38"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-6 inline-flex items-center gap-3 px-5 py-3 transition-colors hover:bg-white"

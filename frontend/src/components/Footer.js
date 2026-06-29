@@ -25,7 +25,7 @@ const Footer = () => {
               Safety Walkthroughs and Documentation Readiness Reviews for Small Operations
             </p>
             <a
-              href="https://maps.app.goo.gl/WChsxpQBLJninrYq9"
+              href="https://maps.app.goo.gl/hp6QcmRpfjVzNru38"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-sm text-white/60 hover:text-white transition-colors mb-4"

@@ -131,7 +131,7 @@ const StatusPage = () => {
               Small operations trust other operators more than marketing. A few sentences on Google goes a long way in helping other Triad businesses find GigLine.
             </p>
             <a
-              href="https://maps.app.goo.gl/WChsxpQBLJninrYq9"
+              href="https://maps.app.goo.gl/hp6QcmRpfjVzNru38"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackReviewClick('status_page')}

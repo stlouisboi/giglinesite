@@ -22,6 +22,9 @@ import SampleReportPage from './pages/SampleReportPage';
 import ResourcesPage from './pages/ResourcesPage';
 import OshaInspectionGuidePage from './pages/OshaInspectionGuidePage';
 import OshaComplianceGuidePage from './pages/OshaComplianceGuidePage';
+import ForkliftComplianceReviewNCPage from './pages/ForkliftComplianceReviewNCPage';
+import LOTOProcedureReviewNCPage from './pages/LOTOProcedureReviewNCPage';
+import OSHADocumentationReviewNCPage from './pages/OSHADocumentationReviewNCPage';
 import ClientIntakePage from './pages/ClientIntakePage';
 import StatusPage from './pages/StatusPage';
 import ReportPage from './pages/ReportPage';
@@ -106,6 +109,9 @@ function App() {
                   <Route path="/resources" element={<ResourcesPage />} />
                   <Route path="/osha-inspection-guide" element={<OshaInspectionGuidePage />} />
                   <Route path="/osha-compliance-guide" element={<OshaComplianceGuidePage />} />
+                  <Route path="/forklift-compliance-review-nc" element={<ForkliftComplianceReviewNCPage />} />
+                  <Route path="/loto-procedure-review-nc" element={<LOTOProcedureReviewNCPage />} />
+                  <Route path="/osha-documentation-review-nc" element={<OSHADocumentationReviewNCPage />} />
                   <Route path="/request-walkthrough" element={<Navigate to="/intake" replace />} />
                   <Route path="/admin" element={<AdminPage />} />
                   <Route path="/field-notes" element={<FieldNotesPage />} />

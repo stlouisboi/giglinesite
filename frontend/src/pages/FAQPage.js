@@ -113,6 +113,35 @@ export const FAQS = [
     q: 'How does Quarterly Compliance Maintenance work?',
     a: "Quarterly Compliance Maintenance ($950/quarter) keeps the safety system current between annual walkthroughs. Each quarter GigLine performs a documentation review (training records, OSHA 300 log, written program review, SDS inventory check), a corrective action tracker review, and a brief site visit if any changes warrant one. The quarterly cadence keeps small documentation gaps from becoming citation-level exposures and ensures the system you paid to build does not decay between Annual Partner visits. It is the natural next step after the OSHA-Ready Control System buildout for operations that want ongoing accountability without the full Annual Partner commitment.",
   },
+  // ─── Added Feb 2026 audit ───
+  {
+    q: 'Can a safety walkthrough create legal risk for my company?',
+    a: "A private safety walkthrough is a voluntary, confidential review delivered to you only. GigLine does not contact OSHA, NCDOL, insurance carriers, or any regulator. The written report is private. That said, once a finding is documented, the expectation is that the operation will act on it within a reasonable corrective-action window. The risk is greater when a gap is identified, documented, and then ignored than when the gap is found and remediated. Many operators specifically use the walkthrough as evidence of good-faith effort \u2014 a documented before/after with corrective action assigned can support an OSHA Penalty Reduction in the unlikely event of a future inspection. If you are concerned about specific legal exposure (active inspection, post-citation window, ongoing litigation), the right move is to involve legal counsel before scheduling.",
+  },
+  {
+    q: 'Should I fix everything before you come?',
+    a: "No. Showing GigLine a sanitized version of the operation defeats the purpose. The walkthrough is built to surface what your team has stopped seeing \u2014 the pallet in the pedestrian lane, the unlabeled spray bottle, the SDS that nobody can find under pressure. Cleaning up beforehand hides exactly the issues you are paying to identify. The best engagements are when the operation looks like a normal Tuesday. If something is unsafe enough to be an immediate injury risk, fix it first \u2014 otherwise let the floor speak for itself.",
+  },
+  {
+    q: 'Can supervisors be present during the walkthrough?',
+    a: "Yes \u2014 supervisors and the plant manager are encouraged to walk along. Two reasons: first, they often have context on why something looks the way it does (a machine pending relocation, a training session scheduled for next week, a documented exception). Second, supervisors who watch a walkthrough learn what to look for going forward \u2014 the engagement becomes a partial training event without billing for one. The only situation where it's better for supervisors not to attend is when leadership specifically wants an unfiltered baseline assessment with no operational explanations attached.",
+  },
+  {
+    q: 'Do you provide written programs, or only review them?',
+    a: "Both. The Documentation Readiness Review identifies which written programs are missing or insufficient \u2014 that's a review service. The Document Development service then writes the specific programs flagged as gaps: Lockout/Tagout (with machine-specific procedures), Hazard Communication, PPE Hazard Assessment, Emergency Action Plan, Bloodborne Pathogens, and others. Single programs start at $350. A full 5+ program suite starts at $2,000. GigLine does not sell a generic template package \u2014 every program is scoped to your actual operation, equipment, and hazard inventory.",
+  },
+  {
+    q: 'Can you help after an incident but before OSHA contacts us?',
+    a: "Yes. Post-incident, pre-inspection support is one of the most time-sensitive engagements GigLine handles. After a recordable injury, near-miss, or employee complaint, there is typically a window before OSHA, the insurance carrier, or a customer auditor follows up. A walkthrough during that window helps document the corrective action path, identify any related exposures that the incident surfaced, and produce a written record showing the operation took the issue seriously. Call (336) 329-8899 directly if the situation is time-critical \u2014 same-week scheduling can usually be accommodated.",
+  },
+  {
+    q: 'Can a walkthrough help with insurance loss control visits?',
+    a: "Yes. Insurance loss control consultants often visit small manufacturing and warehouse operations to assess physical hazards, written programs, and recordkeeping. A GigLine walkthrough completed before the loss control visit gives the operation a documented baseline and a corrective action plan in motion \u2014 which carriers tend to view favorably. Findings from a GigLine engagement are private, but the corrective action work product can be shared with the carrier at the operation's discretion to demonstrate ongoing safety management.",
+  },
+  {
+    q: 'Do you offer monthly safety support?',
+    a: "Not month-to-month, no. GigLine offers three ongoing options: (1) Quarterly Compliance Maintenance at $950/quarter \u2014 the lightest cadence; (2) the Annual Compliance Partner program, billed monthly, which includes the annual walkthrough plus document maintenance, quarterly check-ins, and direct phone support; and (3) one-off engagements as needed. The reason monthly retainer isn't offered is that most small operations don't generate a month's worth of safety work between visits \u2014 the quarterly cadence matches the actual rhythm of small-operation compliance better than a monthly retainer would.",
+  },
 ];
 
 const FAQPage = () => {

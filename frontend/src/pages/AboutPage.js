@@ -465,6 +465,104 @@ This is GigLine Safety & Compliance.`}
         </div>
       </section>
 
+      {/* ═══ Audit additions: WHO I HELP · WHY THE NAME · SERVICE AREA ═══ */}
+      <section className="py-16 md:py-20" style={{ background: '#F9F8F6', borderTop: '1px solid rgba(28,43,43,0.08)' }} data-testid="about-audit-additions">
+        <div className="container max-w-4xl">
+
+          {/* WHO I HELP */}
+          <Reveal>
+            <div className="mb-14 md:mb-16" data-testid="about-who-i-help">
+              <p
+                className="uppercase font-bold mb-3"
+                style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.22em', color: '#C9A84C' }}
+              >
+                Who I Help
+              </p>
+              <h2 className="text-2xl md:text-3xl font-bold mb-5 leading-tight tracking-tight" style={{ color: '#1C2B2B', fontFamily: "Georgia, 'Times New Roman', serif" }}>
+                Small operations where safety is handled by whoever has time.
+              </h2>
+              <p className="text-base md:text-[17px] leading-[1.75] text-[#1C2B2B]/75 max-w-3xl mb-5">
+                GigLine works with small and mid-size manufacturers, warehouses, contractors, and fleet operations in the Piedmont Triad &mdash; typically 5 to 150 employees, no full-time safety manager, and a plant manager or owner who knows safety matters but is also expected to run production at the same time.
+              </p>
+              <p className="text-base md:text-[17px] leading-[1.75] text-[#1C2B2B]/75 max-w-3xl">
+                <em>I do not show up to impress your team with theory. I show up to look at the same floor your people walk every day and identify what has become normal, overlooked, or undocumented.</em>
+              </p>
+            </div>
+          </Reveal>
+
+          {/* WHY THE NAME GIGLINE */}
+          <Reveal delay={80}>
+            <div className="mb-14 md:mb-16" data-testid="about-name-origin">
+              <p
+                className="uppercase font-bold mb-3"
+                style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.22em', color: '#C9A84C' }}
+              >
+                Why the Name GigLine
+              </p>
+              <h2 className="text-2xl md:text-3xl font-bold mb-5 leading-tight tracking-tight" style={{ color: '#1C2B2B', fontFamily: "Georgia, 'Times New Roman', serif" }}>
+                The gig line is a Navy term for personal readiness.
+              </h2>
+              <p className="text-base md:text-[17px] leading-[1.75] text-[#1C2B2B]/75 max-w-3xl mb-5">
+                It refers to the straight line formed by the edge of a sailor&rsquo;s shirt button placket, the edge of the belt buckle, and the trouser fly. When all three line up, the uniform is squared away. When one is off, everything looks off.
+              </p>
+              <p className="text-base md:text-[17px] leading-[1.75] text-[#1C2B2B]/75 max-w-3xl">
+                That&rsquo;s the standard GigLine brings to safety: the floor, the binder, and the story have to line up. When they do, an operation is ready for OSHA, insurance, customers, or any other set of eyes. When one is off, the gap is visible to anyone trained to look.
+              </p>
+            </div>
+          </Reveal>
+
+          {/* SERVICE AREA */}
+          <Reveal delay={160}>
+            <div data-testid="about-service-area">
+              <p
+                className="uppercase font-bold mb-3"
+                style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.22em', color: '#C9A84C' }}
+              >
+                Service Area
+              </p>
+              <h2 className="text-2xl md:text-3xl font-bold mb-5 leading-tight tracking-tight" style={{ color: '#1C2B2B', fontFamily: "Georgia, 'Times New Roman', serif" }}>
+                Kernersville-based. NC Piedmont Triad and surrounding.
+              </h2>
+              <p className="text-base md:text-[17px] leading-[1.75] text-[#1C2B2B]/75 max-w-3xl mb-6">
+                Most on-site walkthroughs are scheduled within roughly 60 miles of Winston-Salem. Charlotte and Raleigh metro engagements considered based on scope and travel.
+              </p>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2" data-testid="about-service-cities">
+                {[
+                  'Kernersville',
+                  'Winston-Salem',
+                  'Greensboro',
+                  'High Point',
+                  'Burlington',
+                  'Lexington',
+                  'Thomasville',
+                  'Clemmons',
+                  'Mocksville',
+                  'Salisbury',
+                  'Asheboro',
+                  'Statesville',
+                ].map((city) => (
+                  <span
+                    key={city}
+                    className="inline-block px-3 py-1.5 rounded text-center"
+                    style={{
+                      ...mono,
+                      fontSize: '11px',
+                      letterSpacing: '0.06em',
+                      background: 'white',
+                      color: '#1C2B2B',
+                      border: '1px solid rgba(28,43,43,0.10)',
+                    }}
+                  >
+                    {city}, NC
+                  </span>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+
+        </div>
+      </section>
+
       {/* ═══ EDITORIAL / PRESS BIO — copy-paste-ready credentials for editors ═══ */}
       <section className="py-16 md:py-20 bg-white" style={{ borderTop: '1px solid rgba(28,43,43,0.08)' }} data-testid="about-press-bio-section">
         <div className="container max-w-3xl">

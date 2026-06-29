@@ -160,6 +160,65 @@ const SafetyWalkthroughPage = () => {
         </div>
       </section>
 
+      {/* Best Fit / Not Best Fit — buyer self-qualification (Feb 2026 audit) */}
+      <section className="py-20 md:py-24" style={{ background: '#F9F8F6' }} data-testid="sw-fit">
+        <div className="container max-w-5xl">
+          <Eyebrow>Self-Check</Eyebrow>
+          <h2 className="text-3xl md:text-4xl font-extrabold leading-[1.15] mb-4 tracking-tight" style={{ color: NAVY }}>
+            Is a Safety Walkthrough the right call for you right now?
+          </h2>
+          <p className="text-base md:text-lg text-[#1C2B2B]/70 leading-[1.85] mb-10 max-w-3xl">
+            The walkthrough is a focused, single-visit engagement. It works best in specific situations &mdash; and there are situations where one of the other GigLine services fits better.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+            <div
+              className="p-6 md:p-7 rounded bg-white"
+              style={{ border: '1px solid rgba(31,107,72,0.30)', borderLeft: '4px solid #1f6b48' }}
+              data-testid="sw-fit-best"
+            >
+              <p className="uppercase font-bold mb-4" style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.22em', color: '#1f6b48' }}>
+                Best Fit
+              </p>
+              <ul className="space-y-2.5">
+                {[
+                  'You have 5&ndash;150 employees and no full-time safety manager',
+                  'You want a fast, written read on what an OSHA inspector would see',
+                  'You\u2019ve had a near-miss, complaint, or new customer audit requirement',
+                  'You\u2019re scaling production and want to lock the safety baseline before growth',
+                  'You want to know what to fix first, in priority order, before spending',
+                ].map((d, i) => (
+                  <li key={i} className="flex items-start gap-2 text-[15px] leading-[1.6]" style={{ color: NAVY }} dangerouslySetInnerHTML={{ __html: `<span style="color:#1f6b48;font-weight:700;margin-top:1px">✓</span> <span>${d}</span>` }} />
+                ))}
+              </ul>
+            </div>
+            <div
+              className="p-6 md:p-7 rounded bg-white"
+              style={{ border: '1px solid rgba(138,40,40,0.20)', borderLeft: '4px solid #8a2828' }}
+              data-testid="sw-fit-not"
+            >
+              <p className="uppercase font-bold mb-4" style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.22em', color: '#8a2828' }}>
+                Not Best Fit
+              </p>
+              <ul className="space-y-2.5">
+                {[
+                  { d: 'You\u2019re already in an active OSHA inspection or post-citation window', alt: 'You need legal counsel, not a walkthrough' },
+                  { d: 'You need written safety programs built from scratch', alt: 'Choose the Compliance Readiness Visit instead' },
+                  { d: 'You only need a documentation review &mdash; binders, SDS, training logs', alt: 'Choose the Documentation Readiness Review' },
+                  { d: 'You want ongoing month-to-month safety support', alt: 'Ask about the Annual Compliance Partner program' },
+                  { d: 'You\u2019re looking for OSHA 10/30 training delivery', alt: 'That\u2019s not what GigLine does' },
+                ].map((row, i) => (
+                  <li key={i} className="text-[15px] leading-[1.55]" style={{ color: NAVY }}>
+                    <span style={{ color: '#8a2828', fontWeight: 700 }}>—</span>{' '}
+                    <span dangerouslySetInnerHTML={{ __html: row.d }} />
+                    <span className="block text-[13px] mt-0.5" style={{ color: '#8a2828', ...mono }}>→ {row.alt}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* What GigLine Does / Doesn't Do — positioning clarity (Feb 2026 audit) */}
       <section className="py-20 md:py-24 bg-white" data-testid="sw-scope">
         <div className="container max-w-5xl">

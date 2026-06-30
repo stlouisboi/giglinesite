@@ -751,7 +751,7 @@ const AdminPage = () => {
               <div className="overflow-x-auto">
                 <table className="w-full text-sm" data-testid="intakes-table">
                   <thead>
-                    <tr className="bg-[#1C2B2B] text-white text-left">
+                    <tr className="bg-[#2A52A0] text-white text-left">
                       <th className="px-3 py-2.5 text-xs font-medium">Submitted</th>
                       <th className="px-3 py-2.5 text-xs font-medium">Company</th>
                       <th className="px-3 py-2.5 text-xs font-medium">Contact</th>
@@ -834,7 +834,7 @@ const AdminPage = () => {
               <div className="overflow-x-auto">
                 <table className="w-full text-sm" data-testid="bookings-table">
                   <thead>
-                    <tr className="bg-[#1C2B2B] text-white text-left">
+                    <tr className="bg-[#2A52A0] text-white text-left">
                       <th className="px-3 py-2.5 text-xs font-medium">Date</th>
                       <th className="px-3 py-2.5 text-xs font-medium">Company</th>
                       <th className="px-3 py-2.5 text-xs font-medium">Tier</th>
@@ -879,7 +879,7 @@ const AdminPage = () => {
                   <h2 className="text-lg font-bold text-[#1C2B2B] mb-4">Safety Check Submissions</h2>
                   <div className="overflow-x-auto mb-8">
                     <table className="w-full text-sm">
-                      <thead><tr className="bg-[#1C2B2B] text-white text-left">
+                      <thead><tr className="bg-[#2A52A0] text-white text-left">
                         <th className="px-3 py-2.5 text-xs">Date</th><th className="px-3 py-2.5 text-xs">Name</th><th className="px-3 py-2.5 text-xs">Company</th><th className="px-3 py-2.5 text-xs">Email</th><th className="px-3 py-2.5 text-xs text-center">Score</th><th className="px-3 py-2.5 text-xs text-center">Risk</th><th className="px-3 py-2.5 text-xs text-center">Actions</th>
                       </tr></thead>
                       <tbody>
@@ -925,7 +925,7 @@ const AdminPage = () => {
         <div className="fixed inset-0 z-50 flex justify-end" onClick={() => setViewItem(null)}>
           <div className="absolute inset-0 bg-black/40" />
           <div className="relative w-full max-w-lg bg-white h-full overflow-y-auto shadow-2xl" onClick={e => e.stopPropagation()} data-testid="view-drawer">
-            <div className="sticky top-0 bg-[#1C2B2B] px-6 py-4 flex items-center justify-between z-10">
+            <div className="sticky top-0 bg-[#2A52A0] px-6 py-4 flex items-center justify-between z-10">
               <h3 className="text-base font-bold text-white">{viewItem.company || 'Details'}</h3>
               <button onClick={() => setViewItem(null)} className="text-white/50 hover:text-white"><X size={18} /></button>
             </div>
@@ -1028,7 +1028,7 @@ const DownloadsTab = ({ token }) => {
     <div data-testid="downloads-tab">
       <h2 className="text-lg font-bold text-[#1C2B2B] mb-4">Recent Downloads</h2>
       <table className="w-full text-sm">
-        <thead><tr className="bg-[#1C2B2B] text-white text-left">
+        <thead><tr className="bg-[#2A52A0] text-white text-left">
           <th className="px-3 py-2.5 text-xs">Date</th><th className="px-3 py-2.5 text-xs">Type</th><th className="px-3 py-2.5 text-xs">Details</th>
         </tr></thead>
         <tbody>

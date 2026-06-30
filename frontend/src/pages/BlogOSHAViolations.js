@@ -30,7 +30,7 @@ const articleSchema = {
     "@type": "Organization",
     "name": "GigLine Safety & Compliance",
     "url": "https://giglinecompliance.com",
-    "logo": { "@type": "ImageObject", "url": "https://www.giglinecompliance.com/gigline-logo-2026-v2.png" }
+    "logo": { "@type": "ImageObject", "url": "https://www.giglinecompliance.com/gigline-logo-3d.png" }
   },
   "datePublished": defined.datePublished,
   "dateModified": defined.dateModified,

@@ -42,7 +42,7 @@ const LOCAL_BUSINESS = {
   telephone: '+13363298899',
   email: 'vince@giglinecompliance.com',
   image: `${BASE_URL}/og-image.png`,
-  logo: `${BASE_URL}/gigline-logo-2026-v2.png`,
+  logo: `${BASE_URL}/gigline-logo-3d.png`,
   founder: { '@type': 'Person', '@id': `${BASE_URL}/#vince`, name: 'Vince Lawrence' },
   address: {
     '@type': 'PostalAddress',

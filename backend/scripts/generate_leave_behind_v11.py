@@ -68,7 +68,7 @@ def register_fonts():
 
 
 # ─── Paths ───
-LOGO_PATH = "/app/frontend/public/gigline-logo-2026-v2.png"
+LOGO_PATH = "/app/frontend/public/gigline-logo-3d.png"
 OUT_DIR = "/app/backend/internal_docs"
 OUT_PATH = os.path.join(OUT_DIR, "GigLine_LeaveBehind_v11.pdf")
 os.makedirs(OUT_DIR, exist_ok=True)

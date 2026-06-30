@@ -28,8 +28,8 @@ React 18 (CRA), Tailwind, FastAPI, MongoDB (motor), Stripe LIVE, Resend LIVE, Ma
 ### P0 — none open
 ### P1
 - 3 city-targeted "OSHA Safety Consultant" landing pages — Winston-Salem, Greensboro, High Point (distinct from existing `/safety-walkthrough/:city` pages; targets "OSHA consultant" search intent). **Awaiting user direction on whether to build new keyword-targeted routes or close as duplicate of existing city pages.**
-- Wire real hero photos to remaining 16 Field Notes (waiting on user uploads).
 ### P2
+- Wire real hero photos to remaining 16 Field Notes (low priority per user, waiting on uploads).
 - Refactor repeated stats querying in `admin.py` into `get_stats_for_collection(db_collection)` helper.
 - Quick-Contact 30-day trendline tile on Admin Dashboard (mini chart per lead magnet).
 - "Featured In" logo strip on `/about` when first guest article publishes.

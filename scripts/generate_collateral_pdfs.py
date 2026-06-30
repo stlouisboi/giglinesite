@@ -1024,8 +1024,396 @@ def build_osha_guide_pdf():
     print('✓', out)
 
 
+# ═════════════════════════════════════════════════════════════════════════
+# Document 4 — Statesville Metals Fabrication Case Study
+# ═════════════════════════════════════════════════════════════════════════
+STATESVILLE_CA = [
+    ('CA-001', 'Written Safety & Health Program required address update to new facility location',
+     'Updated all safety and training forms and policies to reflect future address at 170/174 Innovation Drive.', 'Closed Jun 22', False),
+    ('CA-002', 'SDS Library gap — Star Fire AW46 Hydraulic Oil and Simple Green not in digital library or physical binder',
+     'Added SDS for both products to physical binder, digital folder, and internal plant information website.', 'Closed Jun 22', False),
+    ('CA-003', 'Simple Green spray bottles observed unlabeled — GHS labeling required',
+     'Labeled both spray bottles with appropriate GHS-compliant labels.', 'Closed Jun 22', False),
+    ('CA-004', 'Machine Guarding Documentation present but compliance gaps identified',
+     'Added machine guarding policy to new hire orientation.', 'Closed Jun 22', False),
+    ('CA-005', 'Fire Prevention Plan controls in place informally but not captured in a formal document',
+     'Wrote formal Fire Prevention Plan with job-specific tasks and cross-reference to Emergency Action Plan.', 'Closed Jun 22', False),
+    ('CA-006', 'Heat Stress Prevention Plan not present — required under 29 CFR 1910 General Duty Clause and NC OSHA guidance',
+     'Wrote Heat Stress Prevention Plan and added to new hire orientation.', 'Closed Jun 22', False),
+    ('CA-007', 'No Corrective Action Log present at facility',
+     'Created Corrective Action Log; employee training protocol established.', 'Closed Jun 22', False),
+    ('CA-008', 'Near-Miss / Close-Call Report Log not present — OSHA best practice for identifying hazardous conditions before injury',
+     'Created Near-Miss Log and reporting document; training scheduled.', 'Closed Jun 22', False),
+    ('CA-009', 'Four 5-gallon pails of AW46 Hydraulic Oil stored on production floor adjacent to D-coiler with no SDS present',
+     'SDS added to binder, digital folder, and internal plant website.', 'Closed Jun 22', False),
+    ('CA-010', 'Propane cylinder stored upright without chain, bracket, or restraint — positioned adjacent to flammables cabinet with no separation distance',
+     'Cylinder relocated to forklift storage area away from flammables cabinet; permanent rack planned for new facility.', 'Closed Jun 22', False),
+    ('CA-011', 'Bloodborne Pathogen Exposure Control Plan not present — required under 29 CFR 1910.1030',
+     'Wrote Bloodborne Pathogen Exposure Control Plan and added to new hire training.', 'Closed Jun 22', False),
+    ('CA-012', 'Shear blade point-of-operation on roll former cut-off mechanism unguarded and accessible during operation',
+     'Light curtains and safety fence planned post-relocation; machine will be set in final position at new facility before guarding is installed.', 'Open — Due Sept 1', True),
+    ('CA-013', 'Employee Safety Handbook required material revision to meet General Duty Clause requirements',
+     'Updated all safety documents for compliance; REV numbering system implemented for version tracking.', 'Closed Jun 22', False),
+]
+
+CASE_FAQS_4 = [
+    ('What if my walkthrough turns up more than 13 findings?',
+     "That depends on the facility. A newer operation with a plant manager actively building programs — like the one in this engagement — is going to look different from a 20-year-old facility that hasn't had a third-party review in a decade. More findings isn't a failure. It's information. The report prioritizes every finding by citation risk so you know what to fix first and what can wait."),
+    ('Does an 80.3 compliance score mean the facility was OSHA-ready?',
+     "Not exactly. The compliance score measures written-program coverage. An 80.3 means solid coverage on paper with targeted gaps underneath. The physical findings (the propane cylinder, the unguarded shear blade) are captured separately in the priority ratings. A facility can score well on documentation and still have serious physical hazards. That's why the walkthrough covers both."),
+    ('What does the written report actually contain?',
+     "Every finding documented against the applicable CFR standard, with the specific regulation cited. Photo documentation of physical hazards. A penalty exposure estimate per finding based on OSHA published maximums. A corrective action for each finding with a recommended timeline. A compliance score and a corrective action log pre-populated with every finding. The report in this engagement ran 18 pages and was delivered four days after the walkthrough."),
+    ("What if I can't fix everything before an OSHA inspection arrives?",
+     "Fix the P2 findings first — those are the serious citation risks with dollar exposure attached. A documented corrective action plan with assigned owners and target dates is evidence of good-faith effort. OSHA distinguishes between a facility that knew about a hazard and ignored it and one that identified it, documented it, and was actively working through remediation."),
+    ('Will GigLine share my findings with anyone?',
+     "No. Findings are not shared, published, or referenced without written permission. The engagement in this case study is referenced publicly only because the client permitted it — and the client name is withheld at their request."),
+]
+
+
+def build_case_study_statesville_pdf():
+    out = os.path.join(ASSET_DIR, 'gl-case-study-statesville-2026.pdf')
+    story = []
+
+    # ── Snapshot strip
+    snapshot = [
+        ['Location', 'Headcount', 'Scope', 'Visit'],
+        ['Statesville, NC', '9 employees', 'Walkthrough + Docs', 'Jun 18, 2026'],
+    ]
+    snap_t = Table(snapshot, colWidths=[1.6 * inch] * 4)
+    snap_t.setStyle(TableStyle([
+        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+        ('FONTSIZE', (0, 0), (-1, 0), 8),
+        ('TEXTCOLOR', (0, 0), (-1, 0), GOLD),
+        ('FONTNAME', (0, 1), (-1, 1), 'Helvetica-Bold'),
+        ('FONTSIZE', (0, 1), (-1, 1), 11),
+        ('TEXTCOLOR', (0, 1), (-1, 1), NAVY_DEEP),
+        ('TOPPADDING', (0, 0), (-1, -1), 8),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 8),
+        ('LINEABOVE', (0, 0), (-1, 0), 0.5, RULE),
+        ('LINEBELOW', (0, -1), (-1, -1), 0.5, RULE),
+    ]))
+    story.append(snap_t)
+    story.append(Spacer(1, 6))
+
+    # ── Headline numbers
+    nums = [['13', '80.3', '4'],
+            ['Findings\n7 serious · 6 documentation', 'Compliance Score\nof 100', 'Days\nwalkthrough → report']]
+    num_t = Table(nums, colWidths=[2.13 * inch] * 3)
+    num_t.setStyle(TableStyle([
+        ('FONTNAME', (0, 0), (-1, 0), 'Times-Bold'),
+        ('FONTSIZE', (0, 0), (-1, 0), 28),
+        ('TEXTCOLOR', (0, 0), (-1, 0), NAVY_DEEP),
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('FONTNAME', (0, 1), (-1, 1), 'Helvetica-Bold'),
+        ('FONTSIZE', (0, 1), (-1, 1), 8),
+        ('TEXTCOLOR', (0, 1), (-1, 1), GOLD),
+        ('TOPPADDING', (0, 0), (-1, 0), 14),
+        ('BOTTOMPADDING', (0, 0), (-1, 0), 4),
+        ('TOPPADDING', (0, 1), (-1, 1), 0),
+        ('BOTTOMPADDING', (0, 1), (-1, 1), 14),
+        ('LINEBELOW', (0, -1), (-1, -1), 0.5, RULE),
+    ]))
+    story.append(num_t)
+    story.append(Spacer(1, 14))
+
+    # ── Client note
+    story.append(Paragraph(
+        '<i>Client name withheld at the client&rsquo;s request. All findings, citations, and outcomes '
+        'are accurate to the engagement. Report ID: 62FC03EB.</i>',
+        S['body_muted']
+    ))
+
+    # ── The Situation
+    story.append(Paragraph('THE SITUATION', S['eyebrow']))
+    story.append(Paragraph('A 9-person fabrication shop ramping up production.', S['h2']))
+    story.append(HRFlowable(width='100%', thickness=0.6, color=GOLD, spaceAfter=8))
+    story.append(Paragraph(
+        'A 9-person metals fabrication operation in Statesville, NC. Two roll formers, two forklifts, '
+        'an active flammables cabinet, a growing crew.',
+        S['body']
+    ))
+    story.append(Paragraph(
+        'The plant manager held an OSHA 30-Hour General Industry certification and had built out most '
+        'of his safety documentation — some of it using AI-generated templates. He believed his '
+        'programs were largely in order. He brought GigLine in to confirm that before production scaled.',
+        S['body']
+    ))
+
+    # ── The Engagement
+    story.append(Paragraph('THE ENGAGEMENT', S['eyebrow']))
+    story.append(Paragraph('Combined Safety Walkthrough + Documentation Review.', S['h2']))
+    story.append(HRFlowable(width='100%', thickness=0.6, color=GOLD, spaceAfter=8))
+    story.append(Paragraph(
+        'One on-site visit covering both the physical floor and the written programs. Visit date: '
+        'June 18, 2026. Written 18-page report delivered June 22, 2026 — four days after the walkthrough.',
+        S['body']
+    ))
+
+    # ── What the walkthrough found
+    story.append(PageBreak())
+    story.append(Paragraph('WHAT THE WALKTHROUGH FOUND', S['eyebrow']))
+    story.append(Paragraph('13 findings. 7 serious. 6 documentation gaps.', S['h1']))
+    story.append(HRFlowable(width='100%', thickness=1, color=GOLD, spaceAfter=10))
+    story.append(Paragraph(
+        'Compliance score: <b>80.3 out of 100</b>. Solid written-program coverage on paper. '
+        'Targeted gaps underneath it that required immediate attention before full production ramp-up.',
+        S['body']
+    ))
+
+    # Two key physical findings
+    story.append(Paragraph('Findings that required action before the next production shift:', S['callout']))
+
+    for finding in [
+        {
+            'priority': 'P2 — SERIOUS', 'n': 'Finding 10',
+            'cfr': '29 CFR 1910.110(b)(6)(i)',
+            'penalty': 'Up to $16,550 per violation (2026 Serious max)',
+            'title': 'Unsecured propane cylinder adjacent to flammable storage cabinet',
+            'body': 'One propane cylinder stored upright with no chain, bracket, or restraint — positioned immediately adjacent to the flammable liquids storage cabinet with no separation distance. In a fire event, that arrangement is accelerant against fuel.',
+            'corrective': 'Secure immediately. Relocate minimum 20 feet from the cabinet or install a 30-minute fire-rated barrier. Due date: June 20, 2026 — two days out.',
+        },
+        {
+            'priority': 'P2 — SERIOUS', 'n': 'Finding 12',
+            'cfr': '29 CFR 1910.212(a)(1)',
+            'penalty': 'Up to $16,550 per violation (2026 Serious max)',
+            'title': 'Unguarded shear point of operation on roll former cut-off mechanism',
+            'body': 'The shear blade on the roll former cut-off mechanism was accessible during operation. A yellow perimeter rail was present on the outfeed side — it did not address the point of operation at the shear head.',
+            'corrective': 'Install point-of-operation guarding before production employees operate the equipment. Due date: before next production run.',
+        },
+    ]:
+        block = []
+        meta_t = Table(
+            [[Paragraph(f'<b><font color="#102A43">{finding["priority"]}</font></b>', S['body_tight']),
+              Paragraph(f'<font color="#5A6671">{finding["n"]}</font>', S['body_tight']),
+              Paragraph(f'<font color="#2A52A0"><b>{finding["cfr"]}</b></font>', S['body_tight'])]],
+            colWidths=[1.4 * inch, 0.9 * inch, 4.1 * inch]
+        )
+        meta_t.setStyle(TableStyle([
+            ('LEFTPADDING', (0, 0), (-1, -1), 0),
+            ('RIGHTPADDING', (0, 0), (-1, -1), 0),
+            ('TOPPADDING', (0, 0), (-1, -1), 0),
+            ('BOTTOMPADDING', (0, 0), (-1, -1), 2),
+            ('BACKGROUND', (0, 0), (0, 0), colors.HexColor('#F4E9CC')),
+        ]))
+        block.append(meta_t)
+        block.append(Paragraph(f'<b>{finding["title"]}</b>', S['callout']))
+        block.append(Paragraph(finding['body'], S['body']))
+        block.append(Paragraph(
+            f'<b>Estimated Penalty Exposure:</b> {finding["penalty"]}',
+            S['body_muted']
+        ))
+        block.append(Paragraph(f'<b>Corrective Action:</b> {finding["corrective"]}', S['body']))
+        block.append(HRFlowable(width='100%', thickness=0.3, color=RULE,
+                                spaceBefore=4, spaceAfter=8))
+        story.append(KeepTogether(block))
+
+    story.append(Paragraph(
+        '<i>Penalty figures are educational estimates based on OSHA published maximum penalty '
+        'schedules (29 CFR 1903.15 / 2026 adjusted rates). Actual penalties assessed by OSHA vary '
+        'by employer size, history, good-faith effort, and gravity of the violation.</i>',
+        S['body_muted']
+    ))
+
+    # Documentation picture
+    story.append(Spacer(1, 10))
+    story.append(Paragraph('The documentation picture:', S['callout']))
+    story.append(Paragraph(
+        "The IIPP existed but was built from an AI-generated template. It listed the wrong facility "
+        "address. It lacked required elements for management leadership, hazard identification, and "
+        "program evaluation. It had not been reviewed against actual operations.",
+        S['body']
+    ))
+    story.append(Paragraph(
+        "The SDS library had one confirmed gap: Star Fire AW46 Hydraulic Oil — a product actively "
+        "in use at the D-coiler hydraulic power unit, four five-gallon pails on the floor, no SDS "
+        "on file. That gap alone carries potential serious-citation exposure of up to $16,550 per "
+        "violation under 29 CFR 1910.1200(g)(1).",
+        S['body']
+    ))
+    story.append(Paragraph(
+        "Three required documents were missing entirely: Heat Stress Prevention Plan, Bloodborne "
+        "Pathogen Exposure Control Plan, and a Corrective Action Log. The Fire Prevention Plan, "
+        "Container Label System, and Machine Guarding Documentation were present but each had "
+        "discrete gaps against current standards.",
+        S['body']
+    ))
+
+    # ── After the report
+    story.append(PageBreak())
+    story.append(Paragraph('AFTER THE REPORT', S['eyebrow']))
+    story.append(Paragraph('From inspection to corrective action in four days.', S['h1']))
+    story.append(HRFlowable(width='100%', thickness=1, color=GOLD, spaceAfter=10))
+
+    # Outcomes bar
+    outcomes = [['13', '12 of 13', '4 Days', '92.3%'],
+                ['Findings Identified', 'Closed Within 4 Days', 'To Close 12 of 13', 'Closure Rate']]
+    out_t = Table(outcomes, colWidths=[1.6 * inch] * 4)
+    out_t.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, -1), NAVY_DEEP),
+        ('FONTNAME', (0, 0), (-1, 0), 'Times-Bold'),
+        ('FONTSIZE', (0, 0), (-1, 0), 22),
+        ('TEXTCOLOR', (0, 0), (-1, 0), GOLD),
+        ('FONTNAME', (0, 1), (-1, 1), 'Helvetica-Bold'),
+        ('FONTSIZE', (0, 1), (-1, 1), 7.5),
+        ('TEXTCOLOR', (0, 1), (-1, 1), WHITE),
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+        ('TOPPADDING', (0, 0), (-1, 0), 16),
+        ('BOTTOMPADDING', (0, 0), (-1, 0), 4),
+        ('TOPPADDING', (0, 1), (-1, 1), 0),
+        ('BOTTOMPADDING', (0, 1), (-1, 1), 14),
+    ]))
+    story.append(out_t)
+    story.append(Spacer(1, 10))
+
+    story.append(Paragraph(
+        'Twelve of 13 findings were closed within four days of the walkthrough — before the formal '
+        'due date and without pausing production. The one remaining item, the unguarded shear blade '
+        'on the roll former, has a documented remediation plan: light curtains and a permanent safety '
+        'fence, to be installed after the machine is set in its final position at the new facility '
+        'location.',
+        S['body']
+    ))
+    story.append(Paragraph(
+        'The engagement moved Amero Steel Supply from a compliance score of 80.3 to a post-action '
+        'rate of 92.3% — with the remaining gap tied to a planned capital improvement, not a '
+        'documentation failure.',
+        S['body']
+    ))
+
+    # ── Pull quote
+    story.append(Spacer(1, 10))
+    quote_t = Table(
+        [[Paragraph(
+            '<i><font size="14">&ldquo;We knew some of these gaps existed. What we didn&rsquo;t '
+            'know was how fast we could close them.&rdquo;</font></i><br/><br/>'
+            '<font color="#C9A84C"><b>— KEVIN STUTTS, PLANT MANAGER, AMERO STEEL SUPPLY</b></font>',
+            ParagraphStyle('quote', fontName='Times-Roman', fontSize=11, leading=18,
+                           textColor=WHITE, leftIndent=12, rightIndent=12, alignment=TA_LEFT)
+        )]],
+        colWidths=[6.4 * inch]
+    )
+    quote_t.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, -1), NAVY_DEEP),
+        ('LEFTPADDING', (0, 0), (-1, -1), 18),
+        ('RIGHTPADDING', (0, 0), (-1, -1), 18),
+        ('TOPPADDING', (0, 0), (-1, -1), 22),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 22),
+        ('LINEBEFORE', (0, 0), (0, 0), 4, GOLD),
+    ]))
+    story.append(quote_t)
+
+    # ── Findings & Corrective Actions Table
+    story.append(PageBreak())
+    story.append(Paragraph('FINDINGS & CORRECTIVE ACTIONS', S['eyebrow']))
+    story.append(Paragraph('What we found. What they did.', S['h1']))
+    story.append(HRFlowable(width='100%', thickness=1, color=GOLD, spaceAfter=10))
+    story.append(Paragraph(
+        'Every finding below was identified during the June 18, 2026 walkthrough. Corrective '
+        'actions were assigned to Kevin Stutts, Plant Manager. 12 of 13 findings were closed '
+        'within four days of the inspection date.',
+        S['body']
+    ))
+    story.append(Spacer(1, 8))
+
+    rows = [['ID', 'Issue', 'Action Taken', 'Status']]
+    for ca in STATESVILLE_CA:
+        rows.append([
+            Paragraph(f'<b>{ca[0]}</b>', S['body_tight']),
+            Paragraph(ca[1], S['body_tight']),
+            Paragraph(ca[2], S['body_tight']),
+            Paragraph(
+                f'<b><font color="{"#8a6a18" if ca[4] else "#1f6b48"}">{ca[3]}</font></b>',
+                S['body_tight']
+            ),
+        ])
+    ca_t = Table(rows, colWidths=[0.7 * inch, 2.5 * inch, 2.4 * inch, 1.0 * inch], repeatRows=1)
+    ca_t.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, 0), NAVY_DEEP),
+        ('TEXTCOLOR', (0, 0), (-1, 0), WHITE),
+        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+        ('FONTSIZE', (0, 0), (-1, 0), 9),
+        ('ROWBACKGROUNDS', (0, 1), (-1, -1), [WHITE, PAPER]),
+        ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+        ('LEFTPADDING', (0, 0), (-1, -1), 6),
+        ('RIGHTPADDING', (0, 0), (-1, -1), 6),
+        ('TOPPADDING', (0, 0), (-1, -1), 6),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 6),
+        ('LINEBELOW', (0, 0), (-1, 0), 1.2, GOLD),
+        ('LINEBELOW', (0, 1), (-1, -1), 0.25, RULE),
+    ]))
+    story.append(ca_t)
+
+    # ── What this engagement is not + Pattern
+    story.append(PageBreak())
+    story.append(Paragraph('CONTEXT', S['eyebrow']))
+    story.append(Paragraph('What this engagement is not.', S['h2']))
+    story.append(HRFlowable(width='100%', thickness=0.6, color=GOLD, spaceAfter=8))
+    story.append(Paragraph(
+        'No OSHA inspection followed this walkthrough. There is no citation outcome to report.',
+        S['body']
+    ))
+    story.append(Paragraph(
+        'The value is the written record — a documented baseline of what existed, what was missing, '
+        'and what needed to change, in the plant manager&rsquo;s hands, before anyone outside the '
+        'facility looked. <b>A written record of good-faith corrective action is defensible. A '
+        'belief that things are in order is not.</b>',
+        S['body']
+    ))
+
+    story.append(Paragraph('THE PATTERN', S['eyebrow']))
+    story.append(Paragraph('Why these findings are not unusual.', S['h2']))
+    story.append(HRFlowable(width='100%', thickness=0.6, color=GOLD, spaceAfter=8))
+    story.append(Paragraph(
+        'The findings at this facility are not unusual. AI-generated documents that don&rsquo;t '
+        'match actual operations, missing machine-specific procedures, chemical hazards without '
+        'complete SDS coverage, and physical hazards the team has stopped seeing — these are among '
+        'the most frequently cited violations in general industry OSHA enforcement.',
+        S['body']
+    ))
+    story.append(Paragraph(
+        'They show up across facilities of every size. They are also fixable. Most of them '
+        'don&rsquo;t require a consultant to fix. They require knowing they exist.',
+        S['body']
+    ))
+
+    # ── FAQ
+    story.append(Paragraph('AFTER YOU READ THIS', S['eyebrow']))
+    story.append(Paragraph('What people ask after reading this engagement.', S['h2']))
+    story.append(HRFlowable(width='100%', thickness=0.6, color=GOLD, spaceAfter=8))
+    for q, a in CASE_FAQS_4:
+        block = [
+            Paragraph(f'<b>{q}</b>', S['callout']),
+            Paragraph(a, S['body']),
+            HRFlowable(width='30%', thickness=0.5, color=GOLD, spaceBefore=2, spaceAfter=8),
+        ]
+        story.append(KeepTogether(block))
+
+    # ── Closing
+    story.append(Spacer(1, 12))
+    story.append(HRFlowable(width='100%', thickness=1.2, color=NAVY_BRIGHT, spaceAfter=8))
+    story.append(Paragraph('Ready to see what&rsquo;s on your floor?', S['h2']))
+    story.append(Paragraph(
+        'A Safety Walkthrough starts at <b>$1,200</b>. Written report within 48 hours. '
+        'Fixed quote before scheduling. Everything stays private. Call <b>(336) 329-8899</b> or '
+        'visit <b>giglinecompliance.com/intake</b>.',
+        S['body']
+    ))
+
+    build_doc(
+        path=out,
+        running_title='Case Study · Statesville',
+        cover_eyebrow='CASE STUDY  ·  GL-CA-ASS-2026-06  ·  REPORT ID 62FC03EB',
+        cover_title='What a Safety Walkthrough Actually Finds.',
+        cover_sub='A metals fabrication facility in Statesville, NC brought GigLine in for a combined Safety Walkthrough and Documentation Review. Thirteen findings. One written report. No inspection ever happened — and that is the point.',
+        story=story,
+    )
+    print('✓', out)
+
+
 if __name__ == '__main__':
     build_faq_pdf()
     build_pricing_pdf()
     build_osha_guide_pdf()
-    print('\nAll three PDFs generated in', ASSET_DIR)
+    build_case_study_statesville_pdf()
+    print('\nAll PDFs generated in', ASSET_DIR)

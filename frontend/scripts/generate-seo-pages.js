@@ -949,6 +949,121 @@ const routes = [
       <p>GigLine Safety &amp; Compliance — (336) 329-8899 — vince@giglinecompliance.com</p>
     `,
   },
+  // ─── Service-area landing pages (keyword-targeted, registered Jan 2026) ───
+  {
+    path: '/forklift-compliance-review-nc',
+    title: 'Forklift Safety Compliance Review NC | GigLine Safety & Compliance',
+    description: 'On-site forklift / Powered Industrial Truck safety compliance review for NC manufacturers, warehouses, and distribution operations. 29 CFR 1910.178. Written report in 48 hours. From $1,200.',
+    canonical: '/forklift-compliance-review-nc',
+    schemas: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        name: 'Forklift / Powered Industrial Truck Compliance Review',
+        description: 'On-site focused review of forklift program, daily inspection logs, operator certifications, pedestrian separation, and floor practices against 29 CFR 1910.178. Written report within 48 hours.',
+        provider: { '@id': `${BASE_URL}/#business` },
+        areaServed: { '@type': 'State', name: 'North Carolina' },
+        serviceType: 'Forklift Compliance Review',
+        offers: { '@type': 'Offer', price: '1200', priceCurrency: 'USD', availability: 'https://schema.org/InStock' },
+      },
+      faqSchema([
+        { q: 'What does the Forklift Compliance Review cover?', a: 'The written PIT program against your actual fleet, operator certification roster vs. floor operators, daily pre-shift inspection logs, forklift physical condition (forks, seat belt, horn, tires, data plate), pedestrian / forklift separation and aisle marking, charging or propane storage compliance, and refresher training documentation.' },
+        { q: 'Which OSHA standard governs forklifts?', a: '29 CFR 1910.178 (Powered Industrial Trucks). This is consistently one of OSHA\'s most-cited general-industry standards.' },
+        { q: 'How long does the on-site visit take?', a: 'Typically 1 to 3 hours on the floor depending on fleet size. Written report delivered within 48 hours.' },
+        { q: 'How much does a Forklift Compliance Review cost?', a: 'From $1,200. Fixed quote provided before scheduling. No retainer.' },
+      ]),
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }, { name: 'Forklift Compliance Review', path: '/forklift-compliance-review-nc' }]),
+    ],
+    content: `
+      <h1>Forklift Safety Compliance Review for NC Operations</h1>
+      <p>Powered Industrial Trucks are one of OSHA's most-cited general-industry standards. A focused on-site review of your forklift program, daily inspections, operator certifications, and floor practices — written report in 48 hours. From $1,200.</p>
+      <h2>Built for Operations Running 1 to 12 Forklifts</h2>
+      <p>Small manufacturers and warehouses running propane, electric, or LPG forklifts. Distribution and 3PL operations with multiple shifts and rotating operators. Operations that have had a forklift near-miss, complaint, or recent operator turnover. Plant managers who are not sure whether last year's operator certifications are still current.</p>
+      <h2>Common Findings</h2>
+      <p>Operator certifications expired or never documented in writing. Daily pre-shift inspection logs incomplete, blank, or filled out from memory at end of day. No site-specific evaluation of pedestrian traffic, blind corners, or load-handling zones. Refresher training not performed after near-miss, damage, or operator change. Forklifts operated with damaged forks, missing horn, broken seat belt, or missing data plate. No documented refresher when a new attachment, fuel type, or trailer type is introduced.</p>
+      <h2>What Gets Reviewed</h2>
+      <p>Written Powered Industrial Truck program against your actual fleet. Operator certification roster vs. current operators on the floor. Daily pre-shift inspection sheets (sample audit). Forklift physical condition: tires, forks, seat belt, horn, lights, data plate. Pedestrian / forklift separation, aisle marking, blind corner mirrors. Charging area or propane storage compliance (NFPA / OSHA cross-reference). Documented refresher training following any near-miss or damage incident.</p>
+      <h2>What You Receive</h2>
+      <p>Photo-documented finding list against 29 CFR 1910.178. Severity priority (high / medium / low) per finding. Specific corrective actions for each gap, with CFR citation. Operator certification roster template if missing. Daily pre-shift inspection log template if missing. A "top 5 fixes" summary the plant manager can hand to the floor.</p>
+      <p>GigLine Safety &amp; Compliance — (336) 329-8899 — vince@giglinecompliance.com</p>
+    `,
+  },
+  {
+    path: '/loto-procedure-review-nc',
+    title: 'Lockout Tagout Procedure Review NC | GigLine Safety & Compliance',
+    description: 'On-site Lockout/Tagout (LOTO) procedure review for NC manufacturers and fabricators. Machine-specific procedures, authorized employee training, annual audit. 29 CFR 1910.147. From $1,200.',
+    canonical: '/loto-procedure-review-nc',
+    schemas: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        name: 'Lockout/Tagout (LOTO) Procedure Review',
+        description: 'On-site review of machine-specific lockout/tagout procedures, authorized employee training, energy-isolation hardware, and annual audit against 29 CFR 1910.147. Written report within 48 hours.',
+        provider: { '@id': `${BASE_URL}/#business` },
+        areaServed: { '@type': 'State', name: 'North Carolina' },
+        serviceType: 'Lockout/Tagout Procedure Review',
+        offers: { '@type': 'Offer', price: '1200', priceCurrency: 'USD', availability: 'https://schema.org/InStock' },
+      },
+      faqSchema([
+        { q: 'What does the LOTO Procedure Review cover?', a: 'Written Control of Hazardous Energy program against your actual machinery, machine-specific lockout procedures with energy-source identification, authorized vs. affected employee training rosters, lock and tag hardware (sufficient padlocks, dedicated assignments), annual procedure audit documentation, and group lockout / shift change practices.' },
+        { q: 'Which OSHA standard governs LOTO?', a: '29 CFR 1910.147 (Control of Hazardous Energy / Lockout-Tagout). LOTO failures are one of OSHA\'s top fatality-driver standards.' },
+        { q: 'Are machine-specific procedures actually required?', a: 'Yes — under 1910.147(c)(4), a written procedure must exist for each machine or piece of equipment that has more than one energy source or that requires more than a simple single-source lockout.' },
+        { q: 'How much does a LOTO Procedure Review cost?', a: 'From $1,200. Fixed quote provided before scheduling. No retainer.' },
+      ]),
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }, { name: 'LOTO Procedure Review', path: '/loto-procedure-review-nc' }]),
+    ],
+    content: `
+      <h1>Lockout/Tagout Procedure Review for NC Operations</h1>
+      <p>LOTO failures are one of OSHA's top fatality-driver standards. A focused on-site review of your machine-specific procedures, authorized employee training, energy-isolation hardware, and annual audit — written report in 48 hours. From $1,200.</p>
+      <h2>Built for Manufacturers, Fabricators &amp; Maintenance-Intensive Operations</h2>
+      <p>Small to mid-size manufacturers and fabricators with multiple energy sources on the floor (electrical, pneumatic, hydraulic, thermal, gravity). Operations where maintenance is performed by in-house technicians, contractors, or rotating shift supervisors. Operations preparing for an OSHA inspection, an insurance loss-control audit, or a customer compliance review.</p>
+      <h2>Common Findings</h2>
+      <p>No machine-specific written procedures for equipment with multiple energy sources. Procedures exist on paper but are not posted at the machines, or are out of date relative to current equipment. Annual audit not performed or not documented. Authorized employee training not refreshed when new equipment is added or when procedures change. Lock and tag hardware not assigned to individual employees (shared locks, generic tags). Group lockout / shift change handoff practices not formalized.</p>
+      <h2>What Gets Reviewed</h2>
+      <p>Written Control of Hazardous Energy program against your actual machinery list. Machine-specific lockout procedures (sample audit). Authorized vs. affected employee training rosters. Lock and tag hardware: sufficient quantity, dedicated assignment, color/tag standardization. Annual procedure audit documentation under 1910.147(c)(6). Group lockout and shift-change practices. Contractor and outside service LOTO coordination.</p>
+      <h2>What You Receive</h2>
+      <p>Photo-documented finding list against 29 CFR 1910.147. Severity priority (high / medium / low) per finding. Specific corrective actions, with CFR citation. Machine-specific procedure template if your existing format is incomplete. Annual audit template if missing. A "top 5 fixes" summary the plant or maintenance manager can act on first.</p>
+      <p>GigLine Safety &amp; Compliance — (336) 329-8899 — vince@giglinecompliance.com</p>
+    `,
+  },
+  {
+    path: '/osha-documentation-review-nc',
+    title: 'OSHA Documentation Review NC | Written Programs, Training, OSHA 300 | GigLine',
+    description: 'Off-site OSHA documentation readiness review for NC manufacturers, warehouses, and contractors. Written programs, training records, OSHA 300 log, SDS binder, retention. From $1,300.',
+    canonical: '/osha-documentation-review-nc',
+    schemas: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        name: 'OSHA Documentation Review (NC)',
+        description: 'Off-site OSHA documentation readiness review of written safety programs, training records, OSHA 300/300A logs, SDS inventory, and retention practices. Written findings report within 48 hours.',
+        provider: { '@id': `${BASE_URL}/#business` },
+        areaServed: { '@type': 'State', name: 'North Carolina' },
+        serviceType: 'OSHA Documentation Review',
+        offers: { '@type': 'Offer', price: '1300', priceCurrency: 'USD', availability: 'https://schema.org/InStock' },
+      },
+      faqSchema([
+        { q: 'What is reviewed in the OSHA Documentation Review?', a: 'Written safety programs (HazCom, LOTO, IIPP, Bloodborne Pathogens, Emergency Action Plan, Heat Stress, PPE Hazard Assessment), training records and refresher cycles, OSHA 300 / 300A logs and posting compliance, SDS inventory against chemicals in active use, and retention practices for required documents.' },
+        { q: 'Is the review remote or on-site?', a: 'Off-site / remote-friendly. We send a secure upload link and a prep checklist by email — no need to mail physical binders. On-site option available if preferred.' },
+        { q: 'How long does the review take?', a: 'Once documents are received, written findings report is delivered within 48 hours.' },
+        { q: 'How much does an OSHA Documentation Review cost?', a: 'From $1,300. Fixed quote provided before any documents are reviewed.' },
+      ]),
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }, { name: 'OSHA Documentation Review', path: '/osha-documentation-review-nc' }]),
+    ],
+    content: `
+      <h1>OSHA Documentation Review for NC Operations</h1>
+      <p>The paperwork OSHA, your insurance carrier, or a customer auditor asks for first. An off-site readiness review of your written programs, training records, OSHA 300/300A logs, SDS inventory, and retention practices — written report in 48 hours. From $1,300.</p>
+      <h2>Built for Operations Preparing for an Audit, Inspection, or Customer Compliance Review</h2>
+      <p>Small to mid-size manufacturers, warehouses, distribution centers, and contractors in NC. New safety coordinators inheriting binders from a predecessor. Companies past the size where paperwork can stay informal. Operations that have a customer or insurer asking for documentation.</p>
+      <h2>Common Findings</h2>
+      <p>Written programs built from a downloaded template with wrong facility name, wrong addresses, or required elements missing. Training records that show "completed" without dates, signatures, or topic outlines. OSHA 300 log incomplete or not posted Feb 1 - Apr 30 as required. SDS binder missing sheets for chemicals actively in use on the floor. No documented schedule for annual program review.</p>
+      <h2>What Gets Reviewed</h2>
+      <p>Written HazCom program and SDS binder against actual chemical inventory. Lockout/Tagout written program and machine-specific procedures (paperwork side). IIPP / written safety program. Emergency Action Plan and exit-map currency. Heat Stress, Bloodborne Pathogens, Respiratory, and Hearing Conservation programs where applicable. OSHA 300 / 300A log and posting compliance. Training records: rosters, dates, signatures, topic outlines. Document retention practices and review-cycle documentation.</p>
+      <h2>What You Receive</h2>
+      <p>Document-by-document finding list against the applicable CFR standard. Severity priority per finding. Specific corrective actions and templates for any missing or insufficient documents. A "top 5 documents to fix first" summary for the safety coordinator. Optional re-review at no extra cost once corrections are made (within 60 days).</p>
+      <p>GigLine Safety &amp; Compliance — (336) 329-8899 — vince@giglinecompliance.com</p>
+    `,
+  },
   {
     path: '/documentation-gap-check',
     title: 'OSHA Documentation Readiness Review — Written Programs, SDS & Training Records | GigLine',

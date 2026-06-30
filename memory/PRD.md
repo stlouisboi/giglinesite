@@ -50,7 +50,12 @@ React 18 (CRA), Tailwind, FastAPI, MongoDB (motor), Stripe LIVE, Resend LIVE, Ma
 - `data-testid` on every interactive element and critical UI element.
 
 ## Recent Changelog
-- 2026-02 — **Sitewide search added (admin + public)**
+- 2026-02 — **3 service-area landing pages registered in SSR** (`generate-seo-pages.js`):
+  - `/forklift-compliance-review-nc` — Service schema (price $1,200, 29 CFR 1910.178), 4 FAQ entries, BreadcrumbList, ~250 words of crawler-readable content
+  - `/loto-procedure-review-nc` — Service schema (price $1,200, 29 CFR 1910.147), 4 FAQ entries, BreadcrumbList, ~250 words of content
+  - `/osha-documentation-review-nc` — Service schema (price $1,300, OSHA documentation review), 4 FAQ entries, BreadcrumbList, ~250 words of content
+  - Each page now ships pre-rendered HTML for crawlers (Google reads JSON-LD without rendering JS), and Helmet still hydrates the same tags client-side. SSR build now generates 71 SEO HTML files (was 68).
+- 2026-02 — **Vercel build fix** — `commitNavigation` in `SiteSearch.js` wrapped in `useCallback` to satisfy CRA's `react-hooks/exhaustive-deps` rule. Verified via testing agent + local `CI=true yarn build` (21.67s, exit 0).
   - **Admin search bar** at top of toolbar — case-insensitive filter across Intakes (company, contactName, email, phone, clientToken, dba, industry), Bookings (company, contact, email, phone, clientToken, service), Safety Check submissions (name, email, company), and Walkthrough Leads CRM (via `externalQuery` prop). Verified: filtering "test" on 11 intakes → 4 (the test leads). Clear button (X) inline.
   - **Public-site search** — new `<SiteSearch>` modal triggered by search icon in Navbar (desktop + mobile). Keyboard shortcuts: `/` or `Cmd/Ctrl+K` to open, arrow keys + Enter to navigate, Esc to close. 71-entry hand-curated index in `src/data/siteSearchIndex.js` covering all pages, 25 Field Notes, 7 services, 3 service-area landings, 5 lead magnets, case study, blogs, FAQ, resources. Score-weighted ranking (title-start = 100, title-contains = 70, keywords = 40, type = 20).
 - 2026-02 — **🎨 Color refinement: deep dark navy `#102A43` for section backgrounds, bright `#2A52A0` for headers/CTAs** — Per user palette doc + screenshots, refined the rebrand:

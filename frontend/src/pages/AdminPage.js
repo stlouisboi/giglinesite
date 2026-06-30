@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { X, Upload, ChevronRight, Eye, RefreshCw, FileText, Users, Briefcase, DollarSign, Clock } from 'lucide-react';
+import { X, Upload, ChevronRight, Eye, RefreshCw, FileText, Users, Briefcase, DollarSign, Clock, Trash2 } from 'lucide-react';
 import SEO from '../components/SEO';
 import WalkthroughLeadsCRM from '../components/WalkthroughLeadsCRM';
 
@@ -192,6 +192,31 @@ const AdminPage = () => {
     setStatusModal(null);
     setNewStatus('');
     fetchAll(token);
+  };
+
+  // Inline per-row delete: archives the lead by default (recoverable). Hold Shift while clicking for hard delete.
+  const deleteRowInline = async (kind, docId, label, e) => {
+    if (!docId) { setToolbarMessage('Cannot delete — missing identifier'); return; }
+    const isHard = e?.shiftKey === true;
+    const verb = isHard ? 'PERMANENTLY DELETE' : 'Archive';
+    if (!window.confirm(`${verb} this lead?\n\n${label}\n\n${isHard ? '⚠ Permanent — cannot be undone.' : 'Recoverable from the archive collection if needed.'}`)) return;
+    try {
+      const res = await fetch(
+        `${API}/api/admin/lead/${kind}/${encodeURIComponent(docId)}?token=${token}${isHard ? '&hard=true' : ''}`,
+        { method: 'DELETE' }
+      );
+      if (res.ok) {
+        const d = await res.json();
+        setToolbarMessage(`Deleted lead (${d.archived ? 'archived' : 'permanent'}) ✓`);
+        fetchAll(token);
+        if (kind === 'safety_check' || kind === 'walkthrough') fetchLeads();
+      } else {
+        const d = await res.json().catch(() => ({}));
+        setToolbarMessage(`Delete failed: ${d.detail || res.status}`);
+      }
+    } catch (err) {
+      setToolbarMessage(`Delete error: ${err.message}`);
+    }
   };
 
   const handleReportUpload = async (e) => {
@@ -779,6 +804,16 @@ const AdminPage = () => {
                                 </button>
                               )}
                               {item.reportUrl && <Badge color="bg-emerald-100 text-emerald-700">Delivered</Badge>}
+                              {(item.clientToken || item.id) && (
+                                <button
+                                  onClick={(e) => deleteRowInline('intake', item.clientToken || item.id, `${item.company || 'Unknown'} — ${item.contactName || item.email || item.clientToken || item.id}`, e)}
+                                  className="text-[10px] font-medium px-2 py-1 rounded border border-red-200 text-red-500 hover:bg-red-50 hover:border-red-400 transition-colors flex items-center gap-1"
+                                  title="Click to archive · Shift+Click to permanently delete"
+                                  data-testid={`delete-intake-${i}`}
+                                >
+                                  <Trash2 size={10} />
+                                </button>
+                              )}
                             </div>
                           </td>
                         </tr>
@@ -845,7 +880,7 @@ const AdminPage = () => {
                   <div className="overflow-x-auto mb-8">
                     <table className="w-full text-sm">
                       <thead><tr className="bg-[#1C2B2B] text-white text-left">
-                        <th className="px-3 py-2.5 text-xs">Date</th><th className="px-3 py-2.5 text-xs">Name</th><th className="px-3 py-2.5 text-xs">Company</th><th className="px-3 py-2.5 text-xs">Email</th><th className="px-3 py-2.5 text-xs text-center">Score</th><th className="px-3 py-2.5 text-xs text-center">Risk</th>
+                        <th className="px-3 py-2.5 text-xs">Date</th><th className="px-3 py-2.5 text-xs">Name</th><th className="px-3 py-2.5 text-xs">Company</th><th className="px-3 py-2.5 text-xs">Email</th><th className="px-3 py-2.5 text-xs text-center">Score</th><th className="px-3 py-2.5 text-xs text-center">Risk</th><th className="px-3 py-2.5 text-xs text-center">Actions</th>
                       </tr></thead>
                       <tbody>
                         {leads.safety_checks.map((l, i) => (
@@ -856,6 +891,18 @@ const AdminPage = () => {
                             <td className="px-3 py-3"><a href={`mailto:${l.email}`} className="text-[#B8972C] hover:underline">{l.email}</a></td>
                             <td className="px-3 py-3 text-center font-bold">{l.score_gaps}/6</td>
                             <td className="px-3 py-3 text-center"><Badge color={l.score_level === 'HIGH' ? 'bg-red-500 text-white' : l.score_level === 'MEDIUM' ? 'bg-orange-400 text-white' : 'bg-green-500 text-white'}>{l.score_level}</Badge></td>
+                            <td className="px-3 py-3 text-center">
+                              {l.id && (
+                                <button
+                                  onClick={(e) => deleteRowInline('safety_check', l.id, `${l.name || 'Unknown'} — ${l.email || l.id}`, e)}
+                                  className="text-[10px] font-medium px-2 py-1 rounded border border-red-200 text-red-500 hover:bg-red-50 hover:border-red-400 transition-colors inline-flex items-center gap-1"
+                                  title="Click to archive · Shift+Click to permanently delete"
+                                  data-testid={`delete-safety-check-${i}`}
+                                >
+                                  <Trash2 size={10} />
+                                </button>
+                              )}
+                            </td>
                           </tr>
                         ))}
                       </tbody>

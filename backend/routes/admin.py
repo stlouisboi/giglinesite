@@ -286,10 +286,11 @@ async def seo_health_check_endpoint(token: str = "", email: bool = False):
 
 # ═══ Collection name registry — single source of truth for which collections support which actions ═══
 LEAD_COLLECTIONS = {
-    "intake": ("gl_intake_submissions", "clientToken"),
-    "walkthrough": ("walkthrough_requests", "id"),
-    "safety_check": ("safety_check_submissions", "id"),
-    "heat_guide": ("heat_guide_leads", "id"),
+    # (collection_name, primary_id_field, fallback_id_field_or_None)
+    "intake": ("gl_intake_submissions", "clientToken", "id"),
+    "walkthrough": ("walkthrough_requests", "id", None),
+    "safety_check": ("safety_check_submissions", "id", None),
+    "heat_guide": ("heat_guide_leads", "id", None),
 }
 
 
@@ -305,9 +306,14 @@ async def delete_lead(kind: str, doc_id: str, token: str = "", hard: bool = Fals
         raise HTTPException(status_code=401, detail="Unauthorized")
     if kind not in LEAD_COLLECTIONS:
         raise HTTPException(status_code=400, detail=f"Unknown lead kind '{kind}'. Valid: {list(LEAD_COLLECTIONS)}")
-    coll_name, id_field = LEAD_COLLECTIONS[kind]
+    coll_name, id_field, fallback_field = LEAD_COLLECTIONS[kind]
     coll = db[coll_name]
+    # Try primary id field first; fall back to alternate if not found.
     doc = await coll.find_one({id_field: doc_id})
+    matched_field = id_field
+    if not doc and fallback_field:
+        doc = await coll.find_one({fallback_field: doc_id})
+        matched_field = fallback_field
     if not doc:
         raise HTTPException(status_code=404, detail=f"{kind} '{doc_id}' not found")
     if not hard:
@@ -315,8 +321,8 @@ async def delete_lead(kind: str, doc_id: str, token: str = "", hard: bool = Fals
         doc["archived_at"] = datetime.now(timezone.utc).isoformat()
         doc["archived_by"] = "admin"
         await archive.insert_one(doc)
-    result = await coll.delete_one({id_field: doc_id})
-    logger.info(f"Admin deleted {kind}/{doc_id} (hard={hard})")
+    result = await coll.delete_one({matched_field: doc_id})
+    logger.info(f"Admin deleted {kind}/{doc_id} via {matched_field} (hard={hard})")
     return {"status": "ok", "deleted": result.deleted_count, "archived": not hard}
 
 
@@ -412,7 +418,7 @@ async def export_csv(kind: str, token: str = ""):
         return _rows_to_csv(rows, f"gigline-revenue-{today}.csv")
     if kind not in LEAD_COLLECTIONS:
         raise HTTPException(status_code=400, detail=f"Unknown export kind '{kind}'. Valid: intake, walkthrough, safety_check, heat_guide, revenue")
-    coll_name, _ = LEAD_COLLECTIONS[kind]
+    coll_name, _, _ = LEAD_COLLECTIONS[kind]
     rows = await db[coll_name].find({}, {"_id": 0}).sort("timestamp", -1).to_list(5000)
     # Many collections use `created_at` instead of `timestamp` — fall back if no rows from sort
     if not rows:

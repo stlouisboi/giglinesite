@@ -129,13 +129,20 @@ const Navbar = () => {
             <button
               type="button"
               onClick={() => setSearchOpen(true)}
-              className="flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap p-1.5 rounded hover:bg-gray-100"
+              className="flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap pl-2 pr-1.5 py-1 rounded hover:bg-gray-100 group"
               style={{ color: '#1C2B2B' }}
               aria-label="Search the site"
               title="Search (press / or Ctrl+K)"
               data-testid="nav-search-btn"
             >
               <Search size={16} />
+              <kbd
+                className="hidden xl:inline-flex items-center justify-center text-[10px] font-mono font-semibold border rounded px-1.5 py-0.5 group-hover:border-gray-400 transition-colors"
+                style={{ borderColor: '#D9E2EC', color: '#5B6B7A', minWidth: '20px', height: '18px', lineHeight: 1 }}
+                data-testid="nav-search-hint"
+              >
+                /
+              </kbd>
             </button>
             <a
               href="tel:3363298899"

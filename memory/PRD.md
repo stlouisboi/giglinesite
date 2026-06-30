@@ -50,6 +50,7 @@ React 18 (CRA), Tailwind, FastAPI, MongoDB (motor), Stripe LIVE, Resend LIVE, Ma
 - `data-testid` on every interactive element and critical UI element.
 
 ## Recent Changelog
+- 2026-02 — **Admin "Sources — Last 30 Days" tile added** — Closes the loop on the review-CTA effort. New grid of compact stat cards (5-col desktop / 2-col mobile) above the existing all-time "Conversions by Source" table showing first-touch UTM source counts for last 30 days. Pulls from BOTH `walkthrough_requests` (top-level `utm_source`) AND `gl_intake_submissions` (`attribution.firstTouch.utm_source`). Review-CTA surfaces (`case-study`, `thankyou-intake`, `footer`) highlighted in gold. Backend: new `lead_sources_30d` field in `/api/admin/stats`. Frontend tile at `data-testid="lead-sources-30d"`.
 - 2026-02 — **Google review CTAs added** to 2 high-intent pages:
   - **Case Study (`/case-study/metals-fabrication-statesville`)**: New "Worked with GigLine? Leave a Google review" strip below the closing CTA band. UTM: `?utm_source=case-study&utm_medium=website&utm_campaign=review-request`. Uses gold-on-navy outline pattern, side-by-side at desktop, stacks at mobile.
   - **Intake Thank-You (`/thank-you-intake`)**: New card between CTA cards and footer with "Already worked with GigLine before?" copy. UTM: `?utm_source=thankyou-intake&utm_medium=website&utm_campaign=review-request`. Soft-ask design — won't pressure new intakes, primes repeat clients who land here mid-engagement.

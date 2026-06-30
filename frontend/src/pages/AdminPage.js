@@ -625,10 +625,46 @@ const AdminPage = () => {
               </div>
 
               {/* ── Conversions by Source ── */}
+              {stats.lead_sources_30d && stats.lead_sources_30d.length > 0 && (
+                <div className="mt-10" data-testid="lead-sources-30d">
+                  <div className="flex items-baseline justify-between mb-3">
+                    <h2 className="text-lg font-bold text-[#1C2B2B]">Sources — Last 30 Days</h2>
+                    <p className="text-xs text-gray-400">{stats.lead_sources_30d.reduce((sum, s) => sum + s.count, 0)} leads</p>
+                  </div>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5">
+                    {stats.lead_sources_30d.map((s, i) => {
+                      const maxC = Math.max(...stats.lead_sources_30d.map(x => x.count), 1);
+                      const barWidth = (s.count / maxC) * 100;
+                      const isReviewCTA = ['case-study', 'thankyou-intake', 'footer'].includes(s.source);
+                      return (
+                        <div
+                          key={i}
+                          className="border border-gray-100 rounded-lg p-3 bg-white"
+                          data-testid={`source-30d-${s.source}`}
+                        >
+                          <p className={`text-[10px] font-medium uppercase tracking-wider truncate ${isReviewCTA ? 'text-[#B8972C]' : 'text-gray-400'}`}>
+                            {s.source}
+                          </p>
+                          <p className="text-xl font-bold text-[#1C2B2B] mt-0.5">{s.count}</p>
+                          <div className="mt-1.5 h-1 bg-gray-100 rounded-full overflow-hidden">
+                            <div
+                              className="h-full rounded-full"
+                              style={{ width: `${barWidth}%`, backgroundColor: isReviewCTA ? '#B8972C' : '#9ca3af' }}
+                            />
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <p className="text-[10px] text-gray-300 mt-2">First-touch UTM source across full intakes + walkthrough requests. Gold = review-CTA surfaces.</p>
+                </div>
+              )}
+
+              {/* ── Conversions by Source (all-time) ── */}
               {sourcesData && sourcesData.sources && sourcesData.sources.length > 0 && (
                 <div className="mt-10" data-testid="leads-by-source">
                   <div className="flex items-baseline justify-between mb-3">
-                    <h2 className="text-lg font-bold text-[#1C2B2B]">Conversions by Source</h2>
+                    <h2 className="text-lg font-bold text-[#1C2B2B]">Conversions by Source — All Time</h2>
                     <p className="text-xs text-gray-400">
                       {sourcesData.totals.total_leads} leads · {sourcesData.totals.total_reports_delivered} converted · ${(sourcesData.totals.total_revenue || 0).toLocaleString()} revenue
                     </p>

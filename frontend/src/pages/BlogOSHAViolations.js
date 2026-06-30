@@ -193,7 +193,7 @@ const BlogOSHAViolations = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#2A52A0] text-white py-16 md:py-24">
+      <section className="bg-[#102A43] text-white py-16 md:py-24">
         <div className="container max-w-3xl">
           <p
             className="text-xs font-semibold tracking-widest text-[#2A52A0] uppercase mb-4"
@@ -282,7 +282,7 @@ const BlogOSHAViolations = () => {
         >
           <div className="container max-w-3xl">
             <div className="flex items-start gap-4 mb-6">
-              <div className="bg-[#2A52A0] text-white w-10 h-10 rounded flex items-center justify-center flex-shrink-0">
+              <div className="bg-[#102A43] text-white w-10 h-10 rounded flex items-center justify-center flex-shrink-0">
                 <v.icon size={20} />
               </div>
               <div>
@@ -371,7 +371,7 @@ const BlogOSHAViolations = () => {
               { title: "Perform regular inspections", desc: "Daily forklift checks, annual LOTO procedure reviews, quarterly chemical inventory updates" },
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-4">
-                <span className="bg-[#2A52A0] text-white text-sm font-bold w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <span className="bg-[#102A43] text-white text-sm font-bold w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                   {i + 1}
                 </span>
                 <div>
@@ -416,7 +416,7 @@ const BlogOSHAViolations = () => {
       </section>
 
       {/* Related Resources / CTA */}
-      <section className="py-14 md:py-20 bg-[#2A52A0] text-white" data-testid="blog-cta-section">
+      <section className="py-14 md:py-20 bg-[#102A43] text-white" data-testid="blog-cta-section">
         <div className="container max-w-3xl">
           <h2
             className="text-xl md:text-2xl font-bold mb-8"
@@ -468,7 +468,7 @@ const BlogOSHAViolations = () => {
           <div className="border border-[#2A52A0]/20 bg-white rounded-lg p-6 md:p-8 text-center" data-testid="blog-walkthrough-callout">
             <p className="text-lg font-bold text-[#1C2B2B] mb-2">Not sure if these violations exist in your shop?</p>
             <p className="text-sm text-[#1C2B2B]/60 mb-5">A GigLine Safety Walkthrough will flag them with photos and a prioritized fix list — usually within 48 hours.</p>
-            <Link to="/intake" className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-6 py-3 rounded transition-colors">
+            <Link to="/intake" className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-6 py-3 rounded transition-colors">
               Request a Safety Walkthrough <ArrowRight size={16} />
             </Link>
           </div>
@@ -479,7 +479,7 @@ const BlogOSHAViolations = () => {
       <section className="py-10 border-t border-[#2A52A0]/10">
         <div className="container max-w-3xl">
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-full bg-[#2A52A0] flex items-center justify-center flex-shrink-0">
+            <div className="w-12 h-12 rounded-full bg-[#102A43] flex items-center justify-center flex-shrink-0">
               <span className="text-white font-bold text-sm">VL</span>
             </div>
             <div>

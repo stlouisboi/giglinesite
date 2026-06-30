@@ -8,7 +8,7 @@ import SEO from '../components/SEO';
  * Each consumer passes a config object describing the service, target buyer, and findings.
  */
 
-const NAVY = '#2A52A0';
+const NAVY = '#102A43';
 const BLUE = '#2A52A0';
 const GOLD = '#C9A84C';
 const CREAM = '#F9F8F6';

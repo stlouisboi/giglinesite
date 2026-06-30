@@ -139,7 +139,7 @@ const SafetyCheckPage = () => {
       />
 
       {/* Header */}
-      <section className="bg-[#2A52A0] text-white py-16 md:py-20">
+      <section className="bg-[#102A43] text-white py-16 md:py-20">
         <div className="container max-w-3xl">
           <p className="text-xs font-semibold tracking-widest text-white/50 uppercase mb-4" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
             GigLine Safety Check
@@ -183,7 +183,7 @@ const SafetyCheckPage = () => {
                     <button
                       type="button"
                       onClick={() => handleAnswer(q.id, 'yes')}
-                      className={`px-6 py-2.5 rounded font-medium text-sm transition-colors ${answers[q.id] === 'yes' ? 'bg-[#2A52A0] text-white' : 'bg-[#F5F5F3] text-[#1C2B2B] hover:bg-[#E8E8E5]'}`}
+                      className={`px-6 py-2.5 rounded font-medium text-sm transition-colors ${answers[q.id] === 'yes' ? 'bg-[#102A43] text-white' : 'bg-[#F5F5F3] text-[#1C2B2B] hover:bg-[#E8E8E5]'}`}
                       data-testid={`question-${q.id}-yes`}
                     >
                       Yes — Confirmed
@@ -246,7 +246,7 @@ const SafetyCheckPage = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold py-4 rounded transition-colors disabled:opacity-50 text-base"
+                className="w-full bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold py-4 rounded transition-colors disabled:opacity-50 text-base"
                 data-testid="gate-submit"
               >
                 {isSubmitting ? 'Loading your results...' : 'See My Results'}
@@ -292,7 +292,7 @@ const SafetyCheckPage = () => {
         return (
           <>
             <hr className="border-[#2A52A0]/10" />
-            <section className="bg-[#2A52A0] text-white py-16 md:py-20" data-testid="results-section">
+            <section className="bg-[#102A43] text-white py-16 md:py-20" data-testid="results-section">
               <div className="container max-w-3xl">
 
                 {/* Score numerals */}
@@ -368,7 +368,7 @@ const SafetyCheckPage = () => {
                   <div className="mt-4 flex flex-col sm:flex-row gap-3 items-start" data-testid="results-cta-block">
                     <Link
                       to="/intake?service=safety-walkthrough-report"
-                      className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-7 py-3.5 rounded transition-colors text-base"
+                      className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-7 py-3.5 rounded transition-colors text-base"
                       data-testid="results-cta-primary"
                     >
                       Request a Safety Walkthrough

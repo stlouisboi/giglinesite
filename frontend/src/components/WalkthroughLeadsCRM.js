@@ -53,7 +53,7 @@ const StatusPill = ({ status, onChange }) => {
   );
 };
 
-const WalkthroughLeadsCRM = ({ token }) => {
+const WalkthroughLeadsCRM = ({ token, externalQuery = '' }) => {
   const [leads, setLeads] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all'); // status filter
@@ -64,6 +64,9 @@ const WalkthroughLeadsCRM = ({ token }) => {
   const [editForm, setEditForm] = useState({});
   const [noteText, setNoteText] = useState('');
   const [savingNote, setSavingNote] = useState(false);
+
+  // External (admin-toolbar) search query overrides local search input when provided.
+  const effectiveSearch = externalQuery || search;
 
   const fetchLeads = useCallback(async () => {
     setLoading(true);
@@ -150,8 +153,8 @@ const WalkthroughLeadsCRM = ({ token }) => {
   // ── Filter / Search ───────────────────────────────────
   const filtered = leads.filter((l) => {
     if (filter !== 'all' && l.status !== filter) return false;
-    if (search) {
-      const q = search.toLowerCase();
+    if (effectiveSearch) {
+      const q = effectiveSearch.toLowerCase();
       return [l.name, l.company, l.email, l.phone].some((v) => (v || '').toLowerCase().includes(q));
     }
     return true;

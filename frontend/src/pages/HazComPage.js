@@ -50,7 +50,7 @@ const HazComPage = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#2A52A0] text-white py-16 md:py-24">
+      <section className="bg-[#102A43] text-white py-16 md:py-24">
         <div className="container max-w-3xl">
           <p
             className="text-xs font-semibold tracking-widest text-[#2A52A0] uppercase mb-4"
@@ -172,7 +172,7 @@ const HazComPage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-[#2A52A0] text-white" data-testid="hazcom-cta-section">
+      <section className="py-16 md:py-24 bg-[#102A43] text-white" data-testid="hazcom-cta-section">
         <div className="container max-w-2xl text-center">
           <p className="text-white/70 text-lg mb-8">
             Most owners have this running same afternoon.
@@ -180,7 +180,7 @@ const HazComPage = () => {
           <button
             onClick={handleCheckout}
             disabled={isLoading}
-            className="bg-[#2A52A0] hover:bg-[#1F3F80] text-[#1C2B2B] font-bold text-lg px-10 py-4 rounded transition-colors disabled:opacity-50 inline-flex items-center gap-2"
+            className="bg-[#102A43] hover:bg-[#1F3F80] text-[#1C2B2B] font-bold text-lg px-10 py-4 rounded transition-colors disabled:opacity-50 inline-flex items-center gap-2"
             data-testid="hazcom-buy-button"
           >
             {isLoading ? 'Redirecting...' : 'Buy Now — $29'}
@@ -199,7 +199,7 @@ const HazComPage = () => {
           <div className="border border-[#2A52A0]/20 bg-white rounded-lg p-6 md:p-8 text-center" data-testid="hazcom-walkthrough-callout">
             <p className="text-lg font-bold text-[#1C2B2B] mb-2">Not sure if these violations exist in your shop?</p>
             <p className="text-sm text-[#1C2B2B]/60 mb-5">A GigLine Safety Walkthrough will flag them with photos and a prioritized fix list — usually within 48 hours.</p>
-            <Link to="/intake" className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-6 py-3 rounded transition-colors">
+            <Link to="/intake" className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-6 py-3 rounded transition-colors">
               Request a Safety Walkthrough <ArrowRight size={16} />
             </Link>
           </div>

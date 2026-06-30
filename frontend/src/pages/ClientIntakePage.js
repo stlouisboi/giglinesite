@@ -886,7 +886,7 @@ const ClientIntakePage = () => {
       {/* ── About Vince block (mirrors /about) ── */}
       <section
         className="border-t"
-        style={{ borderColor: C.border, background: '#2A52A0' }}
+        style={{ borderColor: C.border, background: '#102A43' }}
         data-testid="intake-about-vince"
       >
         <div className="max-w-6xl mx-auto px-5 md:px-8 py-16 md:py-24">

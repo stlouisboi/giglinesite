@@ -133,7 +133,7 @@ const HomePage = () => {
       ═══════════════════════════════════════════════ */}
       <section
         className="relative min-h-[60vh] xl:min-h-[85vh] overflow-hidden"
-        style={{ backgroundColor: '#2A52A0' }}
+        style={{ backgroundColor: '#102A43' }}
         data-testid="hero-section"
       >
         <div className="flex flex-col xl:flex-row h-full min-h-[60vh] xl:min-h-[85vh]">
@@ -148,8 +148,8 @@ const HomePage = () => {
               data-testid="hero-image"
             />
             {/* Gradient bleed into text column */}
-            <div className="hidden xl:block absolute inset-y-0 right-0 w-1/3 bg-gradient-to-r from-transparent to-[#2A52A0]" />
-            <div className="xl:hidden absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#2A52A0] to-transparent" />
+            <div className="hidden xl:block absolute inset-y-0 right-0 w-1/3 bg-gradient-to-r from-transparent to-[#102A43]" />
+            <div className="xl:hidden absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#102A43] to-transparent" />
           </div>
 
           {/* Right — Copy */}
@@ -203,7 +203,7 @@ const HomePage = () => {
                       cta_destination: '/intake?service=safety-walkthrough-report',
                       page_path: typeof window !== 'undefined' ? window.location.pathname : '/',
                     })}
-                    className="bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center justify-center gap-2 shadow-lg shadow-[#2A52A0]/20"
+                    className="bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center justify-center gap-2 shadow-lg shadow-[#2A52A0]/20"
                     data-testid="hero-cta-primary"
                   >
                     Request a Walkthrough
@@ -319,7 +319,7 @@ const HomePage = () => {
             <div
               className="p-7 md:p-9 rounded-md"
               style={{
-                background: '#2A52A0',
+                background: '#102A43',
                 borderLeft: '4px solid #C9A84C',
                 color: 'white',
               }}
@@ -425,7 +425,7 @@ const HomePage = () => {
             <div
               className="mt-12 md:mt-14 p-7 md:p-8"
               style={{
-                background: '#2A52A0',
+                background: '#102A43',
                 borderLeft: '4px solid #c8922a',
                 borderRadius: '0 8px 8px 0',
               }}
@@ -519,7 +519,7 @@ const HomePage = () => {
             <div
               className="mt-10 p-7 md:p-8 max-w-4xl"
               style={{
-                background: '#2A52A0',
+                background: '#102A43',
                 borderLeft: '4px solid #c8922a',
                 borderRadius: '12px',
                 color: 'white',
@@ -622,7 +622,7 @@ const HomePage = () => {
                         top: 0,
                         left: '50%',
                         transform: 'translate(-50%, -50%)',
-                        background: '#2A52A0',
+                        background: '#102A43',
                         color: '#fff',
                         fontSize: '10.5px',
                         letterSpacing: '0.14em',
@@ -738,7 +738,7 @@ const HomePage = () => {
             </div>
             <Link
               to="/sample-report"
-              className="inline-flex items-center justify-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-semibold px-6 py-3.5 rounded transition-colors whitespace-nowrap text-sm md:text-base"
+              className="inline-flex items-center justify-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-semibold px-6 py-3.5 rounded transition-colors whitespace-nowrap text-sm md:text-base"
               data-testid="home-sample-report-cta"
             >
               Download a Sample Report &rarr;
@@ -811,7 +811,7 @@ const HomePage = () => {
       </section>
 
       {/* ═══ TESTIMONIALS + CASE STUDY + TRACK RECORD (relocated per spec — between Services and How It Works) ═══ */}
-      <section className="py-20 md:py-28" style={{ backgroundColor: '#2A52A0' }} data-testid="trust-section">
+      <section className="py-20 md:py-28" style={{ backgroundColor: '#102A43' }} data-testid="trust-section">
         <div className="container max-w-7xl grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12">
 
           {/* LEFT — What Clients Say */}
@@ -914,7 +914,7 @@ const HomePage = () => {
                             width: '52px',
                             height: '52px',
                             borderRadius: '50%',
-                            background: '#2A52A0',
+                            background: '#102A43',
                             color: '#fff',
                             fontSize: '14px',
                             fontWeight: 700,
@@ -947,7 +947,7 @@ const HomePage = () => {
             <div className="flex justify-center">
               <Link
                 to="/intake"
-                className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold transition-colors"
+                className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold transition-colors"
                 style={{ padding: '13px 28px', borderRadius: '4px', fontSize: '14px', boxShadow: '0 10px 24px -10px rgba(31,111,235,0.55)' }}
                 data-testid="how-it-works-cta"
               >
@@ -959,7 +959,7 @@ const HomePage = () => {
       </section>
 
       {/* ═══ SECTION 8 — ABOUT GIGLINE (dark navy, two-column) ═══ */}
-      <section className="py-16 md:py-24" style={{ backgroundColor: '#2A52A0' }} data-testid="about-section">
+      <section className="py-16 md:py-24" style={{ backgroundColor: '#102A43' }} data-testid="about-section">
         <div className="container max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
 
@@ -1151,7 +1151,7 @@ This is GigLine Safety & Compliance.`}
             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
               <Link
                 to="/intake"
-                className="inline-flex items-center justify-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold transition-colors"
                 style={{ padding: '15px 30px', borderRadius: '4px', fontSize: '15px', boxShadow: '0 10px 24px -10px rgba(31,111,235,0.55)' }}
                 data-testid="bottom-cta-primary"
               >

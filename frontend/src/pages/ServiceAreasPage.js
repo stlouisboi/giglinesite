@@ -44,7 +44,7 @@ const ServiceAreasPage = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#2A52A0] text-white py-16 md:py-24">
+      <section className="bg-[#102A43] text-white py-16 md:py-24">
         <div className="container max-w-4xl">
           <p
             className="uppercase tracking-[3px] text-[#2A52A0] mb-5"
@@ -208,7 +208,7 @@ const ServiceAreasPage = () => {
       </section>
 
       {/* Outside service area note + CTA */}
-      <section className="py-16 md:py-20 bg-[#2A52A0] text-white">
+      <section className="py-16 md:py-20 bg-[#102A43] text-white">
         <div className="container max-w-2xl text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-4" style={serif}>
             Operation outside these cities?
@@ -219,7 +219,7 @@ const ServiceAreasPage = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/intake"
-              className="inline-flex items-center justify-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#2A52A0]/20"
+              className="inline-flex items-center justify-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#2A52A0]/20"
               data-testid="service-areas-cta-primary"
             >
               Request a Walkthrough

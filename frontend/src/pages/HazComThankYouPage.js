@@ -59,7 +59,7 @@ const HazComThankYouPage = () => {
           </p>
           <Link
             to="/hazcom"
-            className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#2A3D3D] text-white font-semibold px-6 py-3 rounded transition-colors"
+            className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#2A3D3D] text-white font-semibold px-6 py-3 rounded transition-colors"
           >
             Back to HazCom Starter Pack
             <ArrowRight size={16} />
@@ -85,7 +85,7 @@ const HazComThankYouPage = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#2A52A0] text-white py-12 md:py-16">
+      <section className="bg-[#102A43] text-white py-12 md:py-16">
         <div className="container max-w-3xl">
           <div className="flex items-center gap-3 mb-4">
             <CheckCircle size={28} className="text-[#2A52A0]" />
@@ -150,7 +150,7 @@ const HazComThankYouPage = () => {
                 'Review annually or when chemicals change',
               ].map((step, i) => (
                 <li key={i} className="flex items-start gap-3 text-[#1C2B2B]/70 text-sm">
-                  <span className="bg-[#2A52A0] text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="bg-[#102A43] text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                     {i + 1}
                   </span>
                   {step}
@@ -173,7 +173,7 @@ const HazComThankYouPage = () => {
             <div className="flex flex-col sm:flex-row gap-3">
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-[#2A52A0] hover:bg-[#2A3D3D] text-white font-medium px-5 py-3 rounded transition-colors text-sm"
+                className="inline-flex items-center justify-center gap-2 bg-[#102A43] hover:bg-[#2A3D3D] text-white font-medium px-5 py-3 rounded transition-colors text-sm"
                 data-testid="thankyou-cta-walkthrough"
               >
                 Request a Walkthrough — $1,200+

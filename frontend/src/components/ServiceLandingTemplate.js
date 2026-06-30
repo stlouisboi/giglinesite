@@ -41,7 +41,7 @@ const ServiceLandingTemplate = ({
       {/* ── Hero ── */}
       <section
         className="relative py-20 md:py-28"
-        style={{ backgroundColor: '#2A52A0' }}
+        style={{ backgroundColor: '#102A43' }}
         data-testid="svc-hero"
       >
         <div className="container max-w-5xl">
@@ -68,7 +68,7 @@ const ServiceLandingTemplate = ({
           <div className="flex flex-col sm:flex-row gap-3 mb-5" data-testid="svc-hero-ctas">
             <Link
               to="/intake"
-              className="bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center justify-center gap-2 shadow-lg shadow-[#2A52A0]/20"
+              className="bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center justify-center gap-2 shadow-lg shadow-[#2A52A0]/20"
               data-testid="svc-cta-primary"
             >
               Request a Safety Walkthrough
@@ -209,7 +209,7 @@ const ServiceLandingTemplate = ({
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
             <Link
               to="/intake"
-              className="bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded transition-colors inline-flex items-center gap-2 shadow-lg shadow-[#2A52A0]/20"
+              className="bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded transition-colors inline-flex items-center gap-2 shadow-lg shadow-[#2A52A0]/20"
               data-testid="svc-closing-cta-primary"
             >
               Request a Safety Walkthrough
@@ -255,7 +255,7 @@ const Section = ({ eyebrow, title, intro, bullets, bg, testid, bulletStyle = 'ch
             {bulletStyle === 'check' ? (
               <Check size={18} className="flex-shrink-0 mt-1 text-[#2A52A0]" strokeWidth={2.5} />
             ) : (
-              <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#2A52A0] mt-3" aria-hidden="true" />
+              <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#102A43] mt-3" aria-hidden="true" />
             )}
             <p className="text-base md:text-lg text-[#1C2B2B]/90 leading-relaxed">{b}</p>
           </li>

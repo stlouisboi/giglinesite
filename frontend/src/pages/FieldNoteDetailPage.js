@@ -1551,7 +1551,7 @@ const FieldNoteDetailPage = () => {
           runtime to avoid Google "Duplicate field" warnings. */}
 
       {/* Header */}
-      <section className="bg-[#2A52A0] py-16 md:py-24" data-testid="note-header">
+      <section className="bg-[#102A43] py-16 md:py-24" data-testid="note-header">
         <div className="container max-w-3xl">
           <Link to="/field-notes" className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-[#2A52A0] transition-colors mb-6" data-testid="back-to-notes">
             <ArrowLeft size={14} /> Field Notes
@@ -1778,7 +1778,7 @@ const FieldNoteDetailPage = () => {
                     <button
                       type="submit"
                       disabled={dlStatus === 'sending'}
-                      className="bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-6 py-3 rounded transition-colors inline-flex items-center justify-center gap-2 text-sm disabled:opacity-60"
+                      className="bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-6 py-3 rounded transition-colors inline-flex items-center justify-center gap-2 text-sm disabled:opacity-60"
                       data-testid="download-submit-btn"
                     >
                       <Download size={16} />
@@ -1873,7 +1873,7 @@ const FieldNoteDetailPage = () => {
       )}
 
       {/* CTA */}
-      <section className="py-16 md:py-24 bg-[#2A52A0]" data-testid="note-cta">
+      <section className="py-16 md:py-24 bg-[#102A43]" data-testid="note-cta">
         <div className="container max-w-3xl text-center">
           <p className="text-lg text-white/60 mb-2">
             If you're not sure how this looks in your operation —
@@ -1883,7 +1883,7 @@ const FieldNoteDetailPage = () => {
           </p>
           <Link
             to="/intake"
-            className="bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
+            className="bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
             data-testid="note-walkthrough-cta"
           >
             Request a Walkthrough

@@ -72,7 +72,7 @@ const ContactPage = () => {
             <a
               href="tel:3363298899"
               className="inline-flex items-center justify-center gap-2 px-5 py-4 rounded transition-colors font-semibold text-white text-[15px]"
-              style={{ background: '#2A52A0', border: '1px solid #C9A84C' }}
+              style={{ background: '#102A43', border: '1px solid #C9A84C' }}
               onMouseEnter={(e) => (e.currentTarget.style.background = '#152538')}
               onMouseLeave={(e) => (e.currentTarget.style.background = '#2A52A0')}
               data-testid="contact-cta-call"
@@ -82,7 +82,7 @@ const ContactPage = () => {
             <a
               href="mailto:vince@giglinecompliance.com"
               className="inline-flex items-center justify-center gap-2 px-5 py-4 rounded transition-colors font-semibold text-white text-[15px]"
-              style={{ background: '#2A52A0', border: '1px solid #C9A84C' }}
+              style={{ background: '#102A43', border: '1px solid #C9A84C' }}
               onMouseEnter={(e) => (e.currentTarget.style.background = '#152538')}
               onMouseLeave={(e) => (e.currentTarget.style.background = '#2A52A0')}
               data-testid="contact-cta-email"

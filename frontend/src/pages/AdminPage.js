@@ -799,7 +799,7 @@ const AdminPage = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {(intakes || []).map((item, i) => {
+                    {(intakes || []).filter(item => matchesSearch(item, searchQuery, ['company', 'contactName', 'email', 'phone', 'clientToken', 'dba', 'industry'])).map((item, i) => {
                       const flags = getFlags(item);
                       return (
                         <tr key={i} className="border-b border-gray-100 hover:bg-gray-50" data-testid={`intake-row-${i}`}>
@@ -880,7 +880,7 @@ const AdminPage = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {(bookings || []).map((item, i) => (
+                    {(bookings || []).filter(item => matchesSearch(item, searchQuery, ['company', 'contactName', 'email', 'phone', 'clientToken', 'service'])).map((item, i) => (
                       <tr key={i} className="border-b border-gray-100 hover:bg-gray-50" data-testid={`booking-row-${i}`}>
                         <td className="px-3 py-3 text-xs text-gray-400">{item.createdAt ? new Date(item.createdAt).toLocaleDateString() : '—'}</td>
                         <td className="px-3 py-3 font-medium text-[#1C2B2B]">{item.company || '—'}</td>
@@ -918,7 +918,7 @@ const AdminPage = () => {
                         <th className="px-3 py-2.5 text-xs">Date</th><th className="px-3 py-2.5 text-xs">Name</th><th className="px-3 py-2.5 text-xs">Company</th><th className="px-3 py-2.5 text-xs">Email</th><th className="px-3 py-2.5 text-xs text-center">Score</th><th className="px-3 py-2.5 text-xs text-center">Risk</th><th className="px-3 py-2.5 text-xs text-center">Actions</th>
                       </tr></thead>
                       <tbody>
-                        {leads.safety_checks.map((l, i) => (
+                        {leads.safety_checks.filter(l => matchesSearch(l, searchQuery, ['name', 'email', 'company'])).map((l, i) => (
                           <tr key={i} className="border-b border-gray-100 hover:bg-gray-50">
                             <td className="px-3 py-3 text-xs text-gray-400">{l.timestamp ? new Date(l.timestamp).toLocaleDateString() : '—'}</td>
                             <td className="px-3 py-3 font-medium">{l.name}</td>
@@ -944,7 +944,7 @@ const AdminPage = () => {
                     </table>
                     {leads.safety_checks.length === 0 && <p className="py-6 text-center text-gray-300">No submissions</p>}
                   </div>
-                  <WalkthroughLeadsCRM token={token} />
+                  <WalkthroughLeadsCRM token={token} externalQuery={searchQuery} />
                 </>
               )}
             </div>

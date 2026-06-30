@@ -330,7 +330,7 @@ const ServicesPage = () => {
       {/* ═══ 1. HERO ═══ */}
       <section
         className="relative overflow-hidden"
-        style={{ backgroundColor: '#2A52A0' }}
+        style={{ backgroundColor: '#102A43' }}
         data-testid="services-hero"
       >
         <div className="flex flex-col md:flex-row min-h-[480px] md:min-h-[560px]">
@@ -398,7 +398,7 @@ const ServicesPage = () => {
               <a
                 key={l.href}
                 href={l.href}
-                className="flex-shrink-0 px-3 md:px-4 py-1.5 md:py-2 rounded-full border transition-colors hover:bg-[#2A52A0] hover:text-white hover:border-[#2A52A0]"
+                className="flex-shrink-0 px-3 md:px-4 py-1.5 md:py-2 rounded-full border transition-colors hover:bg-[#102A43] hover:text-white hover:border-[#2A52A0]"
                 style={{ borderColor: 'rgba(16,33,51,0.18)', color: '#1C2B2B' }}
                 data-testid={`jump-nav-${l.href.replace('#','')}`}
               >
@@ -444,7 +444,7 @@ const ServicesPage = () => {
             <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
               <Link
                 to="/safety-check"
-                className="inline-flex items-center justify-center gap-2 border-2 border-[#2A52A0] hover:bg-[#2A52A0] hover:text-white text-[#1C2B2B] font-bold px-6 py-3 rounded-lg text-sm transition-colors"
+                className="inline-flex items-center justify-center gap-2 border-2 border-[#2A52A0] hover:bg-[#102A43] hover:text-white text-[#1C2B2B] font-bold px-6 py-3 rounded-lg text-sm transition-colors"
                 data-testid="services-safety-check-link"
               >
                 Take the Safety Check
@@ -624,7 +624,7 @@ const ServicesPage = () => {
                       fireServicesCtaClick('Schedule a Visit', intakeLink('compliance-readiness-visit'));
                       trackServiceBooking && trackServiceBooking('Compliance Readiness Visit');
                     }}
-                    className="w-full inline-flex items-center justify-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-6 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#2A52A0]/20 mb-2"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-6 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#2A52A0]/20 mb-2"
                     data-testid="svc-card-compliance-readiness-cta"
                   >
                     Schedule a Visit
@@ -642,7 +642,7 @@ const ServicesPage = () => {
                   {/* Ops Manager Trust Block */}
                   <div
                     className="rounded-xl p-5"
-                    style={{ background: '#2A52A0', border: '1px solid rgba(201,168,76,0.25)' }}
+                    style={{ background: '#102A43', border: '1px solid rgba(201,168,76,0.25)' }}
                     data-testid="crv-ops-trust-block"
                   >
                     <p
@@ -702,7 +702,7 @@ const ServicesPage = () => {
             </div>
             <Link
               to="/sample-report"
-              className="inline-flex items-center justify-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-semibold px-6 py-3.5 rounded transition-colors whitespace-nowrap text-sm md:text-base"
+              className="inline-flex items-center justify-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-semibold px-6 py-3.5 rounded transition-colors whitespace-nowrap text-sm md:text-base"
               data-testid="services-sample-report-cta"
             >
               Download a Sample Report &rarr;
@@ -820,7 +820,7 @@ const ServicesPage = () => {
                       <Link
                         to={s.directLink || intakeLink(s.intakeService)}
                         onClick={() => trackServiceBooking && trackServiceBooking(s.title)}
-                        className="inline-flex items-center justify-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-6 py-3.5 rounded-lg text-[15px] transition-colors shadow-md shadow-[#2A52A0]/15"
+                        className="inline-flex items-center justify-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-6 py-3.5 rounded-lg text-[15px] transition-colors shadow-md shadow-[#2A52A0]/15"
                         data-testid={`${s.testid}-cta`}
                       >
                         {s.cta}
@@ -885,7 +885,7 @@ const ServicesPage = () => {
       })}
 
       {/* ═══ 7. OSHA-READY CONTROL SYSTEM — Premium dedicated section ═══ */}
-      <section className="py-20 md:py-28 scroll-mt-32" id="control-system" style={{ backgroundColor: '#2A52A0' }} data-testid="services-control-system">
+      <section className="py-20 md:py-28 scroll-mt-32" id="control-system" style={{ backgroundColor: '#102A43' }} data-testid="services-control-system">
         <div className="container max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-10 md:gap-14 items-start">
             <Reveal>
@@ -1203,7 +1203,7 @@ const ServicesPage = () => {
                     className={`inline-flex items-center justify-center gap-2 font-bold px-6 py-3 rounded-lg text-base transition-colors self-start border-2 ${
                       isAnnual
                         ? 'border-[#C9A84C] text-[#C9A84C] hover:bg-[#C9A84C] hover:text-[#1C2B2B]'
-                        : 'border-[#2A52A0] text-[#2A52A0] hover:bg-[#2A52A0] hover:text-white'
+                        : 'border-[#2A52A0] text-[#2A52A0] hover:bg-[#102A43] hover:text-white'
                     }`}
                     data-testid={`${s.testid}-cta`}
                   >
@@ -1247,7 +1247,7 @@ const ServicesPage = () => {
               {/* Dark navy header */}
               <div
                 className="grid grid-cols-[140px_1.4fr_1.5fr_140px] px-8 py-6 uppercase font-bold text-white"
-                style={{ ...mono, fontSize: '11px', letterSpacing: '0.18em', backgroundColor: '#2A52A0' }}
+                style={{ ...mono, fontSize: '11px', letterSpacing: '0.18em', backgroundColor: '#102A43' }}
               >
                 <div>Stage</div>
                 <div>What You Need</div>
@@ -1358,7 +1358,7 @@ const ServicesPage = () => {
               <Link
                 to={intakeLink()}
                 onClick={() => fireServicesCtaClick('Readiness Path · Intake Form', intakeLink())}
-                className="inline-flex items-center justify-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-7 py-4 rounded-lg text-[15px] transition-colors shadow-md shadow-[#2A52A0]/15 whitespace-nowrap self-start md:self-auto"
+                className="inline-flex items-center justify-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-7 py-4 rounded-lg text-[15px] transition-colors shadow-md shadow-[#2A52A0]/15 whitespace-nowrap self-start md:self-auto"
                 data-testid="readiness-path-intake-cta-button"
               >
                 Start the Intake Form
@@ -1376,7 +1376,7 @@ const ServicesPage = () => {
       <CaseStudyTeaser source="services" />
 
       {/* ═══ 12. FOUNDER (compact, links to /about) ═══ */}
-      <section className="py-20 md:py-24" style={{ backgroundColor: '#2A52A0' }} data-testid="services-founder">
+      <section className="py-20 md:py-24" style={{ backgroundColor: '#102A43' }} data-testid="services-founder">
         <div className="container max-w-5xl">
           <div className="flex flex-col md:flex-row gap-10 md:gap-14 items-center md:items-start">
             <div className="w-44 md:w-52 flex-shrink-0">
@@ -1507,7 +1507,7 @@ const ServicesPage = () => {
           <a
             href="tel:+13363298899"
             onClick={() => trackPhoneClick && trackPhoneClick('services-bottom-cta')}
-            className="inline-flex items-center gap-3 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#2A52A0]/25"
+            className="inline-flex items-center gap-3 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#2A52A0]/25"
             data-testid="services-bottom-cta-call"
           >
             <Phone size={20} />

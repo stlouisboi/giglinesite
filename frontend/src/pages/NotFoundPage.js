@@ -13,7 +13,7 @@ const NotFoundPage = () => {
         noindex
       />
 
-      <section className="py-24 md:py-32 bg-[#2A52A0] text-white min-h-[60vh] flex items-center">
+      <section className="py-24 md:py-32 bg-[#102A43] text-white min-h-[60vh] flex items-center">
         <div className="container max-w-2xl text-center">
           <p
             className="text-[120px] md:text-[180px] font-extrabold leading-none mb-4"

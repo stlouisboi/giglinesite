@@ -12,7 +12,7 @@ import {
 import SEO from '../components/SEO';
 
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
-const NAVY = '#2A52A0';
+const NAVY = '#102A43';
 const GOLD = '#C9A84C';
 const BLUE = '#2A52A0';
 const CREAM = '#F9F8F6';

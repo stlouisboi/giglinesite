@@ -10,7 +10,7 @@ import { ArrowRight, Camera, Phone } from 'lucide-react';
   walkthrough report deliverable. Not interactive.
 */
 
-const DOC_HEADER_BG = '#2A52A0';
+const DOC_HEADER_BG = '#102A43';
 const DOC_BORDER = 'rgba(11,31,51,0.10)';
 const TEXT_DARK = '#1C2B2B';
 const TEXT_MUTED = 'rgba(11,31,51,0.72)';
@@ -221,7 +221,7 @@ const SampleReportSection = () => {
         <div className="mt-10 md:mt-12 text-center" data-testid="sample-report-cta-wrap">
           <Link
             to="/intake"
-            className="inline-flex items-center justify-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold py-4 px-8 rounded-lg transition-colors text-[15px] md:text-base"
+            className="inline-flex items-center justify-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold py-4 px-8 rounded-lg transition-colors text-[15px] md:text-base"
             style={{ ...heading, boxShadow: '0 6px 18px rgba(31,111,235,0.18)' }}
             data-testid="sample-report-cta"
           >

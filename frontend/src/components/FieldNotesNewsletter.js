@@ -48,7 +48,7 @@ const FieldNotesNewsletter = ({ source = 'field-notes' }) => {
       <div
         className="rounded-xl overflow-hidden"
         style={{
-          backgroundColor: '#2A52A0',
+          backgroundColor: '#102A43',
           border: '1px solid rgba(31,111,235,0.25)',
         }}
       >
@@ -78,7 +78,7 @@ const FieldNotesNewsletter = ({ source = 'field-notes' }) => {
               <div className="text-center" data-testid="newsletter-success">
                 <span
                   className="inline-flex items-center justify-center w-11 h-11 rounded-full mb-4"
-                  style={{ backgroundColor: '#2A52A0' }}
+                  style={{ backgroundColor: '#102A43' }}
                 >
                   <Check size={22} color="#fff" strokeWidth={3} />
                 </span>
@@ -121,7 +121,7 @@ const FieldNotesNewsletter = ({ source = 'field-notes' }) => {
                 <button
                   type="submit"
                   disabled={submitting || !email.trim()}
-                  className="w-full inline-flex items-center justify-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] disabled:opacity-50 text-white font-bold px-5 py-3.5 rounded transition-colors whitespace-nowrap shadow-lg shadow-[#2A52A0]/20"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] disabled:opacity-50 text-white font-bold px-5 py-3.5 rounded transition-colors whitespace-nowrap shadow-lg shadow-[#2A52A0]/20"
                   data-testid="newsletter-submit"
                 >
                   {submitting ? 'Sending\u2026' : 'Subscribe'}

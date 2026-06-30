@@ -125,7 +125,7 @@ const ResourcesPage = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#2A52A0] text-white py-16 md:py-24" data-testid="resources-hero">
+      <section className="bg-[#102A43] text-white py-16 md:py-24" data-testid="resources-hero">
         <div className="container max-w-4xl">
           <p
             className="uppercase font-bold mb-4"
@@ -190,7 +190,7 @@ const ResourcesPage = () => {
                   {r.internal ? (
                     <Link
                       to={r.href}
-                      className="inline-flex items-center justify-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-semibold px-5 py-3 rounded transition-colors text-sm self-start"
+                      className="inline-flex items-center justify-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-semibold px-5 py-3 rounded transition-colors text-sm self-start"
                       data-testid={`resource-cta-${r.id}`}
                     >
                       {r.cta}
@@ -201,7 +201,7 @@ const ResourcesPage = () => {
                       href={r.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-semibold px-5 py-3 rounded transition-colors text-sm self-start"
+                      className="inline-flex items-center justify-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-semibold px-5 py-3 rounded transition-colors text-sm self-start"
                       data-testid={`resource-cta-${r.id}`}
                     >
                       <Download size={14} />
@@ -227,7 +227,7 @@ const ResourcesPage = () => {
           </p>
           <Link
             to="/intake?service=safety-walkthrough-report&utm_source=resources-hub&utm_medium=website&utm_campaign=resources-cta"
-            className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-7 py-4 rounded transition-colors"
+            className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-7 py-4 rounded transition-colors"
             data-testid="resources-bottom-cta"
           >
             Request a Walkthrough

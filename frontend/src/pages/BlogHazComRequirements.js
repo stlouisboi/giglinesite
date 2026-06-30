@@ -128,7 +128,7 @@ const BlogHazComRequirements = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#2A52A0] text-white py-16 md:py-24">
+      <section className="bg-[#102A43] text-white py-16 md:py-24">
         <div className="container max-w-3xl">
           <p className="text-xs font-semibold tracking-widest text-[#2A52A0] uppercase mb-4" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
             COMPLIANCE GUIDE
@@ -322,7 +322,7 @@ const BlogHazComRequirements = () => {
               { title: "Contractor communication", desc: "How chemical hazards are shared with outside employers" },
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-3">
-                <span className="bg-[#2A52A0] text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">{i + 1}</span>
+                <span className="bg-[#102A43] text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">{i + 1}</span>
                 <div>
                   <span className="font-semibold text-[#1C2B2B] text-sm">{item.title}</span>
                   <span className="text-[#1C2B2B]/60 text-sm"> — {item.desc}</span>
@@ -490,7 +490,7 @@ const BlogHazComRequirements = () => {
               { title: "Maintain", desc: "Update the chemical inventory and SDS when products change. Train new employees before they work with chemicals." },
             ].map((step, i) => (
               <li key={i} className="flex items-start gap-4">
-                <span className="bg-[#2A52A0] text-white text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">{i + 1}</span>
+                <span className="bg-[#102A43] text-white text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">{i + 1}</span>
                 <div>
                   <p className="font-semibold text-[#1C2B2B] text-sm">{step.title}</p>
                   <p className="text-sm text-[#1C2B2B]/60">{step.desc}</p>
@@ -502,7 +502,7 @@ const BlogHazComRequirements = () => {
       </section>
 
       {/* Related Resources / CTA */}
-      <section className="py-14 md:py-20 bg-[#2A52A0] text-white" data-testid="hazcom-blog-cta">
+      <section className="py-14 md:py-20 bg-[#102A43] text-white" data-testid="hazcom-blog-cta">
         <div className="container max-w-3xl">
           <h2 className="text-xl md:text-2xl font-bold mb-8" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             Related Resources
@@ -539,7 +539,7 @@ const BlogHazComRequirements = () => {
           <div className="border border-[#2A52A0]/20 bg-white rounded-lg p-6 md:p-8 text-center" data-testid="blog-walkthrough-callout">
             <p className="text-lg font-bold text-[#1C2B2B] mb-2">Not sure if these violations exist in your shop?</p>
             <p className="text-sm text-[#1C2B2B]/60 mb-5">A GigLine Safety Walkthrough will flag them with photos and a prioritized fix list — usually within 48 hours.</p>
-            <Link to="/intake" className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-6 py-3 rounded transition-colors">
+            <Link to="/intake" className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-6 py-3 rounded transition-colors">
               Request a Safety Walkthrough <ArrowRight size={16} />
             </Link>
           </div>
@@ -550,7 +550,7 @@ const BlogHazComRequirements = () => {
       <section className="py-10 border-t border-[#2A52A0]/10">
         <div className="container max-w-3xl">
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-full bg-[#2A52A0] flex items-center justify-center flex-shrink-0">
+            <div className="w-12 h-12 rounded-full bg-[#102A43] flex items-center justify-center flex-shrink-0">
               <span className="text-white font-bold text-sm">VL</span>
             </div>
             <div>

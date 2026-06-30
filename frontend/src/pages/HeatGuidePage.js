@@ -39,7 +39,7 @@ const HeatGuidePage = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#2A52A0] text-white py-16 md:py-24">
+      <section className="bg-[#102A43] text-white py-16 md:py-24">
         <div className="container max-w-3xl">
           <p className="text-xs font-semibold tracking-widest text-[#2A52A0] uppercase mb-4" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
             FREE DOWNLOAD
@@ -73,7 +73,7 @@ const HeatGuidePage = () => {
                   href={`${API_URL}/api/heat-guide/pdf`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-semibold px-5 py-3 rounded transition-colors text-sm mb-4"
+                  className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-semibold px-5 py-3 rounded transition-colors text-sm mb-4"
                   data-testid="heat-guide-fallback-download"
                 >
                   <Download size={14} />
@@ -106,7 +106,7 @@ const HeatGuidePage = () => {
                   <button
                     type="submit"
                     disabled={status === 'sending'}
-                    className="w-full bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-semibold py-3 rounded transition-colors inline-flex items-center justify-center gap-2 disabled:opacity-50"
+                    className="w-full bg-[#102A43] hover:bg-[#1F3F80] text-white font-semibold py-3 rounded transition-colors inline-flex items-center justify-center gap-2 disabled:opacity-50"
                     data-testid="heat-guide-submit"
                   >
                     {status === 'sending' ? 'Sending...' : 'Send Me the Template'}
@@ -149,7 +149,7 @@ const HeatGuidePage = () => {
         <div className="container max-w-2xl text-center">
           <p className="text-[#1C2B2B]/60 text-sm mb-4">Need more than a template?</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Link to="/contact" className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#2A3D3D] text-white font-medium px-6 py-3 rounded transition-colors text-sm">
+            <Link to="/contact" className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#2A3D3D] text-white font-medium px-6 py-3 rounded transition-colors text-sm">
               Book a Walkthrough — Starting at $1,200
               <ArrowRight size={16} />
             </Link>

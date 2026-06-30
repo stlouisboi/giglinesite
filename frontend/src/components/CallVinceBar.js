@@ -2,7 +2,7 @@ import React from 'react';
 
 const CallVinceBar = ({ message = "Ready to talk through your operation?" }) => {
   return (
-    <div className="w-full bg-[#2A52A0] py-5 px-4 border-y border-[#C9A84C]/20">
+    <div className="w-full bg-[#102A43] py-5 px-4 border-y border-[#C9A84C]/20">
       <div className="container mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 text-center sm:text-left">
         
         <p className="text-sm text-white/50">

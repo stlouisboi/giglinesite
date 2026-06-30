@@ -50,7 +50,7 @@ const SampleReportPage = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#2A52A0] text-white py-16 md:py-24" data-testid="sample-report-hero">
+      <section className="bg-[#102A43] text-white py-16 md:py-24" data-testid="sample-report-hero">
         <div className="container max-w-3xl">
           <p
             className="uppercase font-bold mb-4"
@@ -95,7 +95,7 @@ const SampleReportPage = () => {
                   href={`${API_URL}/api/sample-report/pdf`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-semibold px-5 py-3 rounded transition-colors text-sm mb-6"
+                  className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-semibold px-5 py-3 rounded transition-colors text-sm mb-6"
                   data-testid="sample-report-fallback-download"
                 >
                   <Download size={14} />
@@ -105,7 +105,7 @@ const SampleReportPage = () => {
                   <p className="text-sm text-[#1C2B2B]/60 mb-3">Ready to schedule a walkthrough that produces a report like this for your operation?</p>
                   <Link
                     to="/intake?service=safety-walkthrough-report&utm_source=sample-report&utm_medium=website&utm_campaign=sample-report-followup"
-                    className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-semibold px-5 py-3 rounded transition-colors text-sm"
+                    className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-semibold px-5 py-3 rounded transition-colors text-sm"
                     data-testid="sample-report-intake-cta"
                   >
                     Request a Walkthrough
@@ -177,7 +177,7 @@ const SampleReportPage = () => {
                   <button
                     type="submit"
                     disabled={status === 'sending'}
-                    className="w-full bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-semibold py-3 rounded transition-colors inline-flex items-center justify-center gap-2 disabled:opacity-50"
+                    className="w-full bg-[#102A43] hover:bg-[#1F3F80] text-white font-semibold py-3 rounded transition-colors inline-flex items-center justify-center gap-2 disabled:opacity-50"
                     data-testid="sample-report-submit"
                   >
                     {status === 'sending' ? (
@@ -259,7 +259,7 @@ const SampleReportPage = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-14 md:py-20 bg-[#2A52A0] text-white" data-testid="sample-report-cta">
+      <section className="py-14 md:py-20 bg-[#102A43] text-white" data-testid="sample-report-cta">
         <div className="container max-w-2xl text-center">
           <p className="text-base md:text-lg text-white/65 mb-2">Reading a sample is useful.</p>
           <p className="text-lg md:text-xl text-white font-medium mb-7">
@@ -267,7 +267,7 @@ const SampleReportPage = () => {
           </p>
           <Link
             to="/intake?service=safety-walkthrough-report&utm_source=sample-report&utm_medium=website&utm_campaign=sample-report-cta"
-            className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded transition-colors"
+            className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded transition-colors"
             data-testid="sample-report-bottom-cta"
           >
             Request a Walkthrough

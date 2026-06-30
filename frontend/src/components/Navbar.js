@@ -1,11 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Phone, Search } from 'lucide-react';
 import { trackPhoneClick } from '../utils/analytics';
+import SiteSearch from './SiteSearch';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const location = useLocation();
+
+  // Global keyboard shortcut: '/' or Cmd/Ctrl+K opens search
+  useEffect(() => {
+    const onKey = (e) => {
+      const target = e.target;
+      const isInInput = target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable);
+      if (!isInInput && e.key === '/') {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -22,8 +42,8 @@ const Navbar = () => {
       <nav className="container" aria-label="Main navigation">
         {/* Mobile + Tablet: 3-column grid (icons | logo | icons) so logo stays centered. Desktop: flex justify-between. */}
         <div className="grid grid-cols-3 items-center h-20 md:h-24 lg:flex lg:justify-between lg:h-24 xl:h-28 2xl:h-32">
-          {/* LEFT cell (mobile/tablet): phone icon. Desktop: nothing here, logo lives in LEFT of flex */}
-          <div className="flex items-center justify-start lg:hidden" data-testid="mobile-left-cell">
+          {/* LEFT cell (mobile/tablet): phone icon + search. Desktop: nothing here, logo lives in LEFT of flex */}
+          <div className="flex items-center justify-start gap-2 lg:hidden" data-testid="mobile-left-cell">
             <a
               href="tel:3363298899"
               onClick={() => trackPhoneClick('navbar_mobile_icon')}
@@ -34,6 +54,16 @@ const Navbar = () => {
             >
               <Phone size={20} />
             </a>
+            <button
+              type="button"
+              onClick={() => setSearchOpen(true)}
+              className="flex items-center justify-center w-11 h-11 rounded-full"
+              style={{ background: 'rgba(28,43,43,0.05)', color: '#1C2B2B' }}
+              aria-label="Search"
+              data-testid="mobile-search-btn"
+            >
+              <Search size={18} />
+            </button>
           </div>
 
           {/* CENTER cell (mobile/tablet): logo centered. Desktop: logo + Carolina-Built credentials block, left-aligned */}
@@ -96,6 +126,17 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
+            <button
+              type="button"
+              onClick={() => setSearchOpen(true)}
+              className="flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap p-1.5 rounded hover:bg-gray-100"
+              style={{ color: '#1C2B2B' }}
+              aria-label="Search the site"
+              title="Search (press / or Ctrl+K)"
+              data-testid="nav-search-btn"
+            >
+              <Search size={16} />
+            </button>
             <a
               href="tel:3363298899"
               onClick={() => trackPhoneClick('navbar_desktop')}
@@ -176,6 +217,7 @@ const Navbar = () => {
           </div>
         )}
       </nav>
+      <SiteSearch open={searchOpen} onClose={() => setSearchOpen(false)} />
     </header>
   );
 };

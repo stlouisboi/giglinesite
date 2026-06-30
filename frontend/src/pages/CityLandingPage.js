@@ -206,7 +206,7 @@ const CityLandingPage = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#2A52A0] text-white py-16 md:py-24">
+      <section className="bg-[#102A43] text-white py-16 md:py-24">
         <div className="container max-w-4xl">
           <div className="flex items-center gap-2 mb-6">
             <MapPin size={16} className="text-[#2A52A0]" />
@@ -236,7 +236,7 @@ const CityLandingPage = () => {
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
               to="/intake"
-              className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#2A52A0]/20"
+              className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#2A52A0]/20"
               data-testid="city-cta-primary"
             >
               Request a Walkthrough
@@ -364,7 +364,7 @@ const CityLandingPage = () => {
       </section>
 
       {/* Pricing */}
-      <section className="py-16 md:py-20 bg-[#2A52A0] text-white">
+      <section className="py-16 md:py-20 bg-[#102A43] text-white">
         <div className="container max-w-2xl text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             Starting at {priceStartLabel}
@@ -384,7 +384,7 @@ const CityLandingPage = () => {
           )}
           <Link
             to="/intake"
-            className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#2A52A0]/20"
+            className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded transition-colors shadow-lg shadow-[#2A52A0]/20"
           >
             Request a Walkthrough
             <ArrowRight size={18} />

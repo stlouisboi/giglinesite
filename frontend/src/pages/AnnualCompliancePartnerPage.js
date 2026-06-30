@@ -79,7 +79,7 @@ const WHO_CARDS = [
 ];
 
 const GOLD = '#C9A84C';
-const NAVY = '#2A52A0';
+const NAVY = '#102A43';
 
 const Eyebrow = ({ children, color = '#2A52A0' }) => (
   <p

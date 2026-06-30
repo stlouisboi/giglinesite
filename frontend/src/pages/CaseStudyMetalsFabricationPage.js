@@ -203,7 +203,7 @@ const CaseStudyMetalsFabricationPage = () => {
             <Link
               to="/intake?service=safety-walkthrough-report&utm_source=case-study&utm_medium=website&utm_campaign=case-top-cta"
               className="inline-flex items-center gap-2 font-bold px-6 py-3 rounded transition-colors text-white"
-              style={{ background: '#2A52A0', fontFamily: "'Manrope', sans-serif", fontSize: '15px' }}
+              style={{ background: '#102A43', fontFamily: "'Manrope', sans-serif", fontSize: '15px' }}
               onMouseEnter={(e) => (e.currentTarget.style.background = '#1F3F80')}
               onMouseLeave={(e) => (e.currentTarget.style.background = '#2A52A0')}
             >

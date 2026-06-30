@@ -201,7 +201,7 @@ const DocumentDevelopmentPage = () => {
       />
 
       {/* ═══ Hero + Pricing Callout (single dark-navy section) ═══ */}
-      <section className="bg-[#2A52A0] text-white pt-20 md:pt-24 pb-16 md:pb-20" data-testid="dd-hero">
+      <section className="bg-[#102A43] text-white pt-20 md:pt-24 pb-16 md:pb-20" data-testid="dd-hero">
         <div className="container max-w-6xl">
           <Eyebrow>Document Development</Eyebrow>
           <h1 className="text-3xl md:text-4xl lg:text-[52px] font-extrabold leading-[1.08] mb-7 tracking-tight max-w-4xl">
@@ -220,7 +220,7 @@ const DocumentDevelopmentPage = () => {
           <div className="flex flex-wrap items-center gap-x-7 gap-y-3 mb-12">
             <Link
               to={INTAKE_HREF}
-              className="inline-flex items-center justify-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-6 py-3.5 rounded-lg text-[15px] transition-colors"
+              className="inline-flex items-center justify-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-6 py-3.5 rounded-lg text-[15px] transition-colors"
               data-testid="dd-cta-hero"
             >
               Ask About Document Development
@@ -406,7 +406,7 @@ const DocumentDevelopmentPage = () => {
               >
                 <div
                   className="grid grid-cols-[1fr_auto] gap-x-5 px-5 py-3.5"
-                  style={{ background: '#2A52A0', color: '#ffffff' }}
+                  style={{ background: '#102A43', color: '#ffffff' }}
                 >
                   <span
                     className="uppercase font-bold"
@@ -512,7 +512,7 @@ const DocumentDevelopmentPage = () => {
       {/* ═══ Inline CTA Bar ═══ */}
       <section
         className="py-5"
-        style={{ background: '#2A52A0', borderTop: '1px solid rgba(255,255,255,0.06)' }}
+        style={{ background: '#102A43', borderTop: '1px solid rgba(255,255,255,0.06)' }}
         data-testid="dd-cta-bar"
       >
         <div className="container max-w-6xl">
@@ -537,7 +537,7 @@ const DocumentDevelopmentPage = () => {
               </Link>
               <Link
                 to={INTAKE_HREF}
-                className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-5 py-2.5 rounded-lg text-[13.5px] transition-colors"
+                className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-5 py-2.5 rounded-lg text-[13.5px] transition-colors"
                 data-testid="dd-bar-cta"
               >
                 Ask About Document Development
@@ -577,7 +577,7 @@ const DocumentDevelopmentPage = () => {
       </section>
 
       {/* ═══ Closing CTA ═══ */}
-      <section className="py-20 md:py-24" style={{ background: '#2A52A0' }} data-testid="dd-closing">
+      <section className="py-20 md:py-24" style={{ background: '#102A43' }} data-testid="dd-closing">
         <div className="container max-w-3xl text-center">
           <Eyebrow color="#C9A84C">Ready to Start?</Eyebrow>
           <h2 className="text-3xl md:text-4xl font-extrabold text-white leading-[1.15] mb-5 tracking-tight">
@@ -590,7 +590,7 @@ const DocumentDevelopmentPage = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to={CRV_HREF}
-              className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-7 py-4 rounded-lg text-base transition-colors"
+              className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-7 py-4 rounded-lg text-base transition-colors"
               data-testid="dd-cta-crv"
             >
               Start with a Documentation Review

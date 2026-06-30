@@ -166,7 +166,7 @@ const AboutPage = () => {
       />
 
       {/* ═══ HERO + FOUNDER (one continuous dark navy section) ═══ */}
-      <section className="bg-[#2A52A0] text-white" data-testid="about-hero-founder">
+      <section className="bg-[#102A43] text-white" data-testid="about-hero-founder">
         <div className="container max-w-6xl pt-20 md:pt-28 pb-14 md:pb-20 text-center">
           <Reveal>
             <h1
@@ -433,7 +433,7 @@ This is GigLine Safety & Compliance.`}
       </section>
 
       {/* ═══ U.S. NAVY VETERAN BAND ═══ */}
-      <section className="py-14 md:py-16 bg-[#2A52A0]" data-testid="about-navy-band">
+      <section className="py-14 md:py-16 bg-[#102A43]" data-testid="about-navy-band">
         <div className="container max-w-4xl">
           <Reveal>
             <div className="flex items-start gap-5 md:gap-6">
@@ -654,7 +654,7 @@ This is GigLine Safety & Compliance.`}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 to="/intake"
-                className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#2A52A0]/15"
+                className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#2A52A0]/15"
                 data-testid="about-cta-walkthrough"
               >
                 Request a Walkthrough
@@ -662,7 +662,7 @@ This is GigLine Safety & Compliance.`}
               </Link>
               <a
                 href="tel:3363298899"
-                className="inline-flex items-center gap-2 bg-white border-2 border-[#2A52A0] hover:bg-[#2A52A0] hover:text-white text-[#1C2B2B] font-bold px-8 py-4 rounded-lg text-base transition-colors"
+                className="inline-flex items-center gap-2 bg-white border-2 border-[#2A52A0] hover:bg-[#102A43] hover:text-white text-[#1C2B2B] font-bold px-8 py-4 rounded-lg text-base transition-colors"
                 data-testid="about-cta-phone"
               >
                 <Phone size={16} />

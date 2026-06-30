@@ -71,7 +71,7 @@ const OshaInspectionGuidePage = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#2A52A0] text-white py-16 md:py-24" data-testid="oig-hero">
+      <section className="bg-[#102A43] text-white py-16 md:py-24" data-testid="oig-hero">
         <div className="container max-w-3xl">
           <p
             className="uppercase font-bold mb-4"
@@ -124,7 +124,7 @@ const OshaInspectionGuidePage = () => {
                   href={`${API_URL}/api/osha-inspection-guide/pdf`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-semibold px-5 py-3 rounded transition-colors text-sm mb-6"
+                  className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-semibold px-5 py-3 rounded transition-colors text-sm mb-6"
                   data-testid="oig-fallback-download"
                 >
                   <BookOpen size={14} />
@@ -136,7 +136,7 @@ const OshaInspectionGuidePage = () => {
                   </p>
                   <Link
                     to="/safety-check"
-                    className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-semibold px-5 py-3 rounded transition-colors text-sm"
+                    className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-semibold px-5 py-3 rounded transition-colors text-sm"
                     data-testid="oig-safety-check-cta"
                   >
                     Take the Safety Check
@@ -187,7 +187,7 @@ const OshaInspectionGuidePage = () => {
                   <button
                     type="submit"
                     disabled={status === 'sending'}
-                    className="w-full bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-semibold py-3 rounded transition-colors inline-flex items-center justify-center gap-2 disabled:opacity-50"
+                    className="w-full bg-[#102A43] hover:bg-[#1F3F80] text-white font-semibold py-3 rounded transition-colors inline-flex items-center justify-center gap-2 disabled:opacity-50"
                     data-testid="oig-submit"
                   >
                     {status === 'sending' ? (

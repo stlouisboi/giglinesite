@@ -197,7 +197,7 @@ const ServiceDetailPage = () => {
       />
 
       {/* ═══ Hero ═══ */}
-      <section className="bg-[#2A52A0] text-white py-20 md:py-28">
+      <section className="bg-[#102A43] text-white py-20 md:py-28">
         <div className="container max-w-4xl">
           {svc.badge && (
             <span
@@ -229,7 +229,7 @@ const ServiceDetailPage = () => {
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
             <Link
               to={intakeLink(svc.intakeService)}
-              className="inline-flex items-center justify-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-6 py-3.5 rounded-lg text-[15px] transition-colors"
+              className="inline-flex items-center justify-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-6 py-3.5 rounded-lg text-[15px] transition-colors"
               data-testid={`${slug}-cta-hero`}
             >
               {svc.cta}
@@ -287,7 +287,7 @@ const ServiceDetailPage = () => {
                 >
                   <div
                     className="flex-shrink-0 flex items-center justify-center font-extrabold text-white"
-                    style={{ width: 40, height: 40, borderRadius: '50%', background: '#2A52A0', ...mono, fontSize: '15px' }}
+                    style={{ width: 40, height: 40, borderRadius: '50%', background: '#102A43', ...mono, fontSize: '15px' }}
                   >
                     {i + 1}
                   </div>
@@ -306,7 +306,7 @@ const ServiceDetailPage = () => {
       {svc.valueAnchor && (
         <section className="py-16 bg-white">
           <div className="container max-w-3xl">
-            <div className="rounded-2xl p-8 md:p-10" style={{ background: '#2A52A0' }}>
+            <div className="rounded-2xl p-8 md:p-10" style={{ background: '#102A43' }}>
               <p className="uppercase font-bold mb-5" style={{ ...mono, fontSize: '10.4px', letterSpacing: '0.20em', color: '#C9A84C' }}>
                 Value Anchor
               </p>
@@ -341,7 +341,7 @@ const ServiceDetailPage = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to={intakeLink(svc.intakeService)}
-              className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-7 py-4 rounded-lg text-base transition-colors"
+              className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-7 py-4 rounded-lg text-base transition-colors"
               data-testid={`${slug}-cta-bottom`}
             >
               {svc.cta}
@@ -349,7 +349,7 @@ const ServiceDetailPage = () => {
             </Link>
             <a
               href="tel:3363298899"
-              className="inline-flex items-center gap-2 bg-white border-2 border-[#2A52A0] hover:bg-[#2A52A0] hover:text-white text-[#1C2B2B] font-bold px-7 py-4 rounded-lg text-base transition-colors"
+              className="inline-flex items-center gap-2 bg-white border-2 border-[#2A52A0] hover:bg-[#102A43] hover:text-white text-[#1C2B2B] font-bold px-7 py-4 rounded-lg text-base transition-colors"
               data-testid={`${slug}-cta-phone`}
             >
               <Phone size={16} />

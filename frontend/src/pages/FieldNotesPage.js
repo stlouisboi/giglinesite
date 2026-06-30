@@ -270,7 +270,7 @@ const FieldNotesPage = () => {
       <section
         className="py-16 md:py-24 relative overflow-hidden"
         style={{
-          backgroundColor: '#2A52A0',
+          backgroundColor: '#102A43',
           backgroundImage: 'linear-gradient(rgba(28,43,43,0.55), rgba(28,43,43,0.72)), url(/assets/field-notes-header.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
@@ -421,7 +421,7 @@ const FieldNotesPage = () => {
                         </p>
                         <div className="flex flex-wrap gap-2">
                           {note.topics.map((topic) => (
-                            <span key={topic} className="text-xs px-2 py-1 rounded bg-[#2A52A0]/5 text-[#1C2B2B]/50">
+                            <span key={topic} className="text-xs px-2 py-1 rounded bg-[#102A43]/5 text-[#1C2B2B]/50">
                               {topic}
                             </span>
                           ))}
@@ -447,14 +447,14 @@ const FieldNotesPage = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-24 bg-[#2A52A0]" data-testid="field-notes-cta">
+      <section className="py-16 md:py-24 bg-[#102A43]" data-testid="field-notes-cta">
         <div className="container max-w-3xl text-center">
           <p className="text-lg text-white/60 mb-6">
             Reading about it is useful. Having someone walk your floor is better.
           </p>
           <Link
             to="/intake"
-            className="bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
+            className="bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
             data-testid="field-notes-walkthrough-cta"
           >
             Request a Walkthrough

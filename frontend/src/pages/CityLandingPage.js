@@ -206,7 +206,7 @@ const CityLandingPage = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#1C2B2B] text-white py-16 md:py-24">
+      <section className="bg-[#2A52A0] text-white py-16 md:py-24">
         <div className="container max-w-4xl">
           <div className="flex items-center gap-2 mb-6">
             <MapPin size={16} className="text-[#2A52A0]" />
@@ -364,7 +364,7 @@ const CityLandingPage = () => {
       </section>
 
       {/* Pricing */}
-      <section className="py-16 md:py-20 bg-[#1C2B2B] text-white">
+      <section className="py-16 md:py-20 bg-[#2A52A0] text-white">
         <div className="container max-w-2xl text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             Starting at {priceStartLabel}

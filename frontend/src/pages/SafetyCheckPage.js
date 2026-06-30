@@ -128,7 +128,7 @@ const SafetyCheckPage = () => {
     }
   };
 
-  const inputCls = "w-full px-4 py-3 border border-[#1C2B2B]/15 rounded bg-white text-[#1C2B2B] placeholder:text-[#1C2B2B]/40 focus:outline-none focus:ring-2 focus:ring-[#1F3F80]/50 focus:border-transparent";
+  const inputCls = "w-full px-4 py-3 border border-[#2A52A0]/15 rounded bg-white text-[#1C2B2B] placeholder:text-[#1C2B2B]/40 focus:outline-none focus:ring-2 focus:ring-[#1F3F80]/50 focus:border-transparent";
 
   return (
     <main className="bg-white" data-testid="safety-check-page">
@@ -139,7 +139,7 @@ const SafetyCheckPage = () => {
       />
 
       {/* Header */}
-      <section className="bg-[#1C2B2B] text-white py-16 md:py-20">
+      <section className="bg-[#2A52A0] text-white py-16 md:py-20">
         <div className="container max-w-3xl">
           <p className="text-xs font-semibold tracking-widest text-white/50 uppercase mb-4" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
             GigLine Safety Check
@@ -163,7 +163,7 @@ const SafetyCheckPage = () => {
               Six questions. Honest answers. You'll know where you stand.
             </p>
 
-            <div className="mb-12 pb-8 border-b border-[#1C2B2B]/10">
+            <div className="mb-12 pb-8 border-b border-[#2A52A0]/10">
               <h2 className="text-base font-semibold text-[#1C2B2B] mb-2">What This Is Measuring</h2>
               <p className="text-sm text-[#1C2B2B]/60 leading-relaxed">
                 These questions reflect conditions that are cited repeatedly across manufacturing, warehousing, and contractor operations.
@@ -183,7 +183,7 @@ const SafetyCheckPage = () => {
                     <button
                       type="button"
                       onClick={() => handleAnswer(q.id, 'yes')}
-                      className={`px-6 py-2.5 rounded font-medium text-sm transition-colors ${answers[q.id] === 'yes' ? 'bg-[#1C2B2B] text-white' : 'bg-[#F5F5F3] text-[#1C2B2B] hover:bg-[#E8E8E5]'}`}
+                      className={`px-6 py-2.5 rounded font-medium text-sm transition-colors ${answers[q.id] === 'yes' ? 'bg-[#2A52A0] text-white' : 'bg-[#F5F5F3] text-[#1C2B2B] hover:bg-[#E8E8E5]'}`}
                       data-testid={`question-${q.id}-yes`}
                     >
                       Yes — Confirmed
@@ -291,8 +291,8 @@ const SafetyCheckPage = () => {
 
         return (
           <>
-            <hr className="border-[#1C2B2B]/10" />
-            <section className="bg-[#1C2B2B] text-white py-16 md:py-20" data-testid="results-section">
+            <hr className="border-[#2A52A0]/10" />
+            <section className="bg-[#2A52A0] text-white py-16 md:py-20" data-testid="results-section">
               <div className="container max-w-3xl">
 
                 {/* Score numerals */}

@@ -176,7 +176,7 @@ const FAQPage = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#1C2B2B] text-white py-16 md:py-24">
+      <section className="bg-[#2A52A0] text-white py-16 md:py-24">
         <div className="container max-w-4xl">
           <p
             className="uppercase tracking-[3px] text-[#2A52A0] mb-5"
@@ -246,7 +246,7 @@ const FAQPage = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-20 bg-[#1C2B2B] text-white">
+      <section className="py-16 md:py-20 bg-[#2A52A0] text-white">
         <div className="container max-w-2xl text-center">
           <h2
             className="text-2xl md:text-3xl font-bold mb-4"

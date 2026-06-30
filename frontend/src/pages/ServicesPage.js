@@ -330,7 +330,7 @@ const ServicesPage = () => {
       {/* ═══ 1. HERO ═══ */}
       <section
         className="relative overflow-hidden"
-        style={{ backgroundColor: '#1C2B2B' }}
+        style={{ backgroundColor: '#2A52A0' }}
         data-testid="services-hero"
       >
         <div className="flex flex-col md:flex-row min-h-[480px] md:min-h-[560px]">
@@ -444,7 +444,7 @@ const ServicesPage = () => {
             <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
               <Link
                 to="/safety-check"
-                className="inline-flex items-center justify-center gap-2 border-2 border-[#1C2B2B] hover:bg-[#1C2B2B] hover:text-white text-[#1C2B2B] font-bold px-6 py-3 rounded-lg text-sm transition-colors"
+                className="inline-flex items-center justify-center gap-2 border-2 border-[#2A52A0] hover:bg-[#2A52A0] hover:text-white text-[#1C2B2B] font-bold px-6 py-3 rounded-lg text-sm transition-colors"
                 data-testid="services-safety-check-link"
               >
                 Take the Safety Check
@@ -642,7 +642,7 @@ const ServicesPage = () => {
                   {/* Ops Manager Trust Block */}
                   <div
                     className="rounded-xl p-5"
-                    style={{ background: '#1C2B2B', border: '1px solid rgba(201,168,76,0.25)' }}
+                    style={{ background: '#2A52A0', border: '1px solid rgba(201,168,76,0.25)' }}
                     data-testid="crv-ops-trust-block"
                   >
                     <p
@@ -702,7 +702,7 @@ const ServicesPage = () => {
             </div>
             <Link
               to="/sample-report"
-              className="inline-flex items-center justify-center gap-2 bg-[#1C2B2B] hover:bg-[#1c2e44] text-white font-semibold px-6 py-3.5 rounded transition-colors whitespace-nowrap text-sm md:text-base"
+              className="inline-flex items-center justify-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-semibold px-6 py-3.5 rounded transition-colors whitespace-nowrap text-sm md:text-base"
               data-testid="services-sample-report-cta"
             >
               Download a Sample Report &rarr;
@@ -885,7 +885,7 @@ const ServicesPage = () => {
       })}
 
       {/* ═══ 7. OSHA-READY CONTROL SYSTEM — Premium dedicated section ═══ */}
-      <section className="py-20 md:py-28 scroll-mt-32" id="control-system" style={{ backgroundColor: '#1C2B2B' }} data-testid="services-control-system">
+      <section className="py-20 md:py-28 scroll-mt-32" id="control-system" style={{ backgroundColor: '#2A52A0' }} data-testid="services-control-system">
         <div className="container max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-10 md:gap-14 items-start">
             <Reveal>
@@ -1075,7 +1075,7 @@ const ServicesPage = () => {
                   id={s.anchor}
                   className="h-full rounded-xl p-7 md:p-8 flex flex-col scroll-mt-32"
                   style={{
-                    background: isAnnual ? '#1C2B2B' : '#ffffff',
+                    background: isAnnual ? '#2A52A0' : '#ffffff',
                     border: isAnnual ? '1px solid rgba(201,168,76,0.35)' : '1px solid #dde3ea',
                     boxShadow: isAnnual ? '0 8px 24px -8px rgba(28,43,43,0.25)' : '0 1px 0 rgba(28,43,43,0.02)',
                   }}
@@ -1247,7 +1247,7 @@ const ServicesPage = () => {
               {/* Dark navy header */}
               <div
                 className="grid grid-cols-[140px_1.4fr_1.5fr_140px] px-8 py-6 uppercase font-bold text-white"
-                style={{ ...mono, fontSize: '11px', letterSpacing: '0.18em', backgroundColor: '#1C2B2B' }}
+                style={{ ...mono, fontSize: '11px', letterSpacing: '0.18em', backgroundColor: '#2A52A0' }}
               >
                 <div>Stage</div>
                 <div>What You Need</div>
@@ -1376,7 +1376,7 @@ const ServicesPage = () => {
       <CaseStudyTeaser source="services" />
 
       {/* ═══ 12. FOUNDER (compact, links to /about) ═══ */}
-      <section className="py-20 md:py-24" style={{ backgroundColor: '#1C2B2B' }} data-testid="services-founder">
+      <section className="py-20 md:py-24" style={{ backgroundColor: '#2A52A0' }} data-testid="services-founder">
         <div className="container max-w-5xl">
           <div className="flex flex-col md:flex-row gap-10 md:gap-14 items-center md:items-start">
             <div className="w-44 md:w-52 flex-shrink-0">

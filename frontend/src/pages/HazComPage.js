@@ -50,7 +50,7 @@ const HazComPage = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#1C2B2B] text-white py-16 md:py-24">
+      <section className="bg-[#2A52A0] text-white py-16 md:py-24">
         <div className="container max-w-3xl">
           <p
             className="text-xs font-semibold tracking-widest text-[#2A52A0] uppercase mb-4"
@@ -81,7 +81,7 @@ const HazComPage = () => {
       </section>
 
       {/* Problem Statement */}
-      <section className="py-14 md:py-20 border-b border-[#1C2B2B]/10">
+      <section className="py-14 md:py-20 border-b border-[#2A52A0]/10">
         <div className="container max-w-3xl">
           <h2
             className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-6"
@@ -143,7 +143,7 @@ const HazComPage = () => {
             ].map((doc) => (
               <div
                 key={doc.id}
-                className="bg-white border border-[#1C2B2B]/10 rounded p-6"
+                className="bg-white border border-[#2A52A0]/10 rounded p-6"
                 style={{ borderTop: '3px solid #2A52A0' }}
                 data-testid={`hazcom-card-${doc.id}`}
               >
@@ -172,7 +172,7 @@ const HazComPage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-[#1C2B2B] text-white" data-testid="hazcom-cta-section">
+      <section className="py-16 md:py-24 bg-[#2A52A0] text-white" data-testid="hazcom-cta-section">
         <div className="container max-w-2xl text-center">
           <p className="text-white/70 text-lg mb-8">
             Most owners have this running same afternoon.
@@ -207,7 +207,7 @@ const HazComPage = () => {
       </section>
 
       {/* Footer Note */}
-      <section className="py-10 border-t border-[#1C2B2B]/10">
+      <section className="py-10 border-t border-[#2A52A0]/10">
         <div className="container max-w-2xl text-center">
           <p className="text-sm text-[#1C2B2B]/50">
             Built on OSHA's most cited violations in general industry.<br />

@@ -39,7 +39,7 @@ const HeatGuidePage = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#1C2B2B] text-white py-16 md:py-24">
+      <section className="bg-[#2A52A0] text-white py-16 md:py-24">
         <div className="container max-w-3xl">
           <p className="text-xs font-semibold tracking-widest text-[#2A52A0] uppercase mb-4" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
             FREE DOWNLOAD
@@ -59,7 +59,7 @@ const HeatGuidePage = () => {
       {/* Email Gate — placeholder for GL-WEB-008 MailerLite integration */}
       <section className="py-14 md:py-20" data-testid="heat-guide-gate">
         <div className="container max-w-xl text-center">
-          <div className="bg-[#F9F8F6] border border-[#1C2B2B]/10 rounded-lg p-8">
+          <div className="bg-[#F9F8F6] border border-[#2A52A0]/10 rounded-lg p-8">
             <Download size={32} className="text-[#2A52A0] mx-auto mb-4" />
             {status === 'sent' ? (
               <div data-testid="heat-guide-success">
@@ -73,7 +73,7 @@ const HeatGuidePage = () => {
                   href={`${API_URL}/api/heat-guide/pdf`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-[#1C2B2B] hover:bg-[#1c2e44] text-white font-semibold px-5 py-3 rounded transition-colors text-sm mb-4"
+                  className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-semibold px-5 py-3 rounded transition-colors text-sm mb-4"
                   data-testid="heat-guide-fallback-download"
                 >
                   <Download size={14} />
@@ -100,7 +100,7 @@ const HeatGuidePage = () => {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-4 py-3 border border-[#1C2B2B]/20 rounded text-sm focus:outline-none focus:border-[#2A52A0]"
+                    className="w-full px-4 py-3 border border-[#2A52A0]/20 rounded text-sm focus:outline-none focus:border-[#2A52A0]"
                     data-testid="heat-guide-email-input"
                   />
                   <button
@@ -123,7 +123,7 @@ const HeatGuidePage = () => {
       </section>
 
       {/* What's in the template */}
-      <section className="py-12 md:py-16 border-t border-[#1C2B2B]/10">
+      <section className="py-12 md:py-16 border-t border-[#2A52A0]/10">
         <div className="container max-w-3xl">
           <h2 className="text-lg font-bold text-[#1C2B2B] mb-6" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             What's in the Template
@@ -149,11 +149,11 @@ const HeatGuidePage = () => {
         <div className="container max-w-2xl text-center">
           <p className="text-[#1C2B2B]/60 text-sm mb-4">Need more than a template?</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Link to="/contact" className="inline-flex items-center gap-2 bg-[#1C2B2B] hover:bg-[#2A3D3D] text-white font-medium px-6 py-3 rounded transition-colors text-sm">
+            <Link to="/contact" className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#2A3D3D] text-white font-medium px-6 py-3 rounded transition-colors text-sm">
               Book a Walkthrough — Starting at $1,200
               <ArrowRight size={16} />
             </Link>
-            <Link to="/safety-check" className="inline-flex items-center gap-2 border-2 border-[#1C2B2B]/20 hover:border-[#1C2B2B]/40 text-[#1C2B2B] font-medium px-6 py-3 rounded transition-colors text-sm">
+            <Link to="/safety-check" className="inline-flex items-center gap-2 border-2 border-[#2A52A0]/20 hover:border-[#2A52A0]/40 text-[#1C2B2B] font-medium px-6 py-3 rounded transition-colors text-sm">
               Run the Safety Check — Free
             </Link>
           </div>

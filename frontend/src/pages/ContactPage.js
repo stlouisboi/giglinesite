@@ -72,9 +72,9 @@ const ContactPage = () => {
             <a
               href="tel:3363298899"
               className="inline-flex items-center justify-center gap-2 px-5 py-4 rounded transition-colors font-semibold text-white text-[15px]"
-              style={{ background: '#1C2B2B', border: '1px solid #C9A84C' }}
+              style={{ background: '#2A52A0', border: '1px solid #C9A84C' }}
               onMouseEnter={(e) => (e.currentTarget.style.background = '#152538')}
-              onMouseLeave={(e) => (e.currentTarget.style.background = '#1C2B2B')}
+              onMouseLeave={(e) => (e.currentTarget.style.background = '#2A52A0')}
               data-testid="contact-cta-call"
             >
               <Phone size={17} /> Call Vince
@@ -82,9 +82,9 @@ const ContactPage = () => {
             <a
               href="mailto:vince@giglinecompliance.com"
               className="inline-flex items-center justify-center gap-2 px-5 py-4 rounded transition-colors font-semibold text-white text-[15px]"
-              style={{ background: '#1C2B2B', border: '1px solid #C9A84C' }}
+              style={{ background: '#2A52A0', border: '1px solid #C9A84C' }}
               onMouseEnter={(e) => (e.currentTarget.style.background = '#152538')}
-              onMouseLeave={(e) => (e.currentTarget.style.background = '#1C2B2B')}
+              onMouseLeave={(e) => (e.currentTarget.style.background = '#2A52A0')}
               data-testid="contact-cta-email"
             >
               <Mail size={17} /> Email Vince

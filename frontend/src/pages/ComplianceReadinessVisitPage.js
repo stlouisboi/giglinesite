@@ -23,7 +23,7 @@ const INTAKE_HREF = `/intake?service=${SLUG}`;
 const WALKTHROUGH_HREF = '/services/safety-walkthrough-report';
 
 const GOLD = '#C9A84C';
-const NAVY = '#1C2B2B';
+const NAVY = '#2A52A0';
 const BLUE = '#2A52A0';
 const CREAM = '#f5f4f0';
 

@@ -259,7 +259,7 @@ const AdminPage = () => {
   if (!loggedIn) return (
     <main>
       <SEO title="Admin" canonical="/admin" noindex />
-      <section className="min-h-screen flex items-center justify-center" style={{ background: '#1C2B2B' }}>
+      <section className="min-h-screen flex items-center justify-center" style={{ background: '#2A52A0' }}>
         <div className="w-full max-w-sm px-4">
           <h1 className="text-2xl font-bold text-white mb-6 text-center" data-testid="admin-login-title">Admin Dashboard</h1>
           <form onSubmit={handleLogin} className="space-y-4" data-testid="admin-login-form">
@@ -288,7 +288,7 @@ const AdminPage = () => {
       <SEO title="Admin Dashboard" canonical="/admin" noindex />
 
       {/* Top bar */}
-      <div className="sticky top-0 z-40" style={{ background: '#1C2B2B', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+      <div className="sticky top-0 z-40" style={{ background: '#2A52A0', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
         <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between py-3">
           <h1 className="text-base font-bold text-white flex items-center gap-2" data-testid="admin-title">
             <span className="w-6 h-6 rounded flex items-center justify-center text-xs font-bold" style={{ background: '#C9A84C', color: '#111' }}>G</span>

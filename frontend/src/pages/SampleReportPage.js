@@ -50,7 +50,7 @@ const SampleReportPage = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#1C2B2B] text-white py-16 md:py-24" data-testid="sample-report-hero">
+      <section className="bg-[#2A52A0] text-white py-16 md:py-24" data-testid="sample-report-hero">
         <div className="container max-w-3xl">
           <p
             className="uppercase font-bold mb-4"
@@ -95,13 +95,13 @@ const SampleReportPage = () => {
                   href={`${API_URL}/api/sample-report/pdf`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-[#1C2B2B] hover:bg-[#1c2e44] text-white font-semibold px-5 py-3 rounded transition-colors text-sm mb-6"
+                  className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-semibold px-5 py-3 rounded transition-colors text-sm mb-6"
                   data-testid="sample-report-fallback-download"
                 >
                   <Download size={14} />
                   Open the Sample Report
                 </a>
-                <div className="mt-6 pt-6 border-t border-[#1C2B2B]/10">
+                <div className="mt-6 pt-6 border-t border-[#2A52A0]/10">
                   <p className="text-sm text-[#1C2B2B]/60 mb-3">Ready to schedule a walkthrough that produces a report like this for your operation?</p>
                   <Link
                     to="/intake?service=safety-walkthrough-report&utm_source=sample-report&utm_medium=website&utm_campaign=sample-report-followup"
@@ -151,7 +151,7 @@ const SampleReportPage = () => {
                     required
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
-                    className="w-full px-4 py-3 border border-[#1C2B2B]/20 rounded text-sm focus:outline-none focus:border-[#2A52A0] focus:ring-1 focus:ring-[#2A52A0]/30"
+                    className="w-full px-4 py-3 border border-[#2A52A0]/20 rounded text-sm focus:outline-none focus:border-[#2A52A0] focus:ring-1 focus:ring-[#2A52A0]/30"
                     data-testid="sample-report-firstname-input"
                     autoComplete="given-name"
                   />
@@ -161,7 +161,7 @@ const SampleReportPage = () => {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-4 py-3 border border-[#1C2B2B]/20 rounded text-sm focus:outline-none focus:border-[#2A52A0] focus:ring-1 focus:ring-[#2A52A0]/30"
+                    className="w-full px-4 py-3 border border-[#2A52A0]/20 rounded text-sm focus:outline-none focus:border-[#2A52A0] focus:ring-1 focus:ring-[#2A52A0]/30"
                     data-testid="sample-report-email-input"
                     autoComplete="email"
                   />
@@ -170,7 +170,7 @@ const SampleReportPage = () => {
                     placeholder="Company (optional)"
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
-                    className="w-full px-4 py-3 border border-[#1C2B2B]/20 rounded text-sm focus:outline-none focus:border-[#2A52A0] focus:ring-1 focus:ring-[#2A52A0]/30"
+                    className="w-full px-4 py-3 border border-[#2A52A0]/20 rounded text-sm focus:outline-none focus:border-[#2A52A0] focus:ring-1 focus:ring-[#2A52A0]/30"
                     data-testid="sample-report-company-input"
                     autoComplete="organization"
                   />
@@ -207,7 +207,7 @@ const SampleReportPage = () => {
 
       {/* What the report contains */}
       <section
-        className="py-12 md:py-20 border-t border-[#1C2B2B]/10"
+        className="py-12 md:py-20 border-t border-[#2A52A0]/10"
         data-testid="sample-report-contents"
       >
         <div className="container max-w-3xl">
@@ -259,7 +259,7 @@ const SampleReportPage = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-14 md:py-20 bg-[#1C2B2B] text-white" data-testid="sample-report-cta">
+      <section className="py-14 md:py-20 bg-[#2A52A0] text-white" data-testid="sample-report-cta">
         <div className="container max-w-2xl text-center">
           <p className="text-base md:text-lg text-white/65 mb-2">Reading a sample is useful.</p>
           <p className="text-lg md:text-xl text-white font-medium mb-7">

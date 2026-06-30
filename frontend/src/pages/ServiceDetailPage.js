@@ -197,7 +197,7 @@ const ServiceDetailPage = () => {
       />
 
       {/* ═══ Hero ═══ */}
-      <section className="bg-[#1C2B2B] text-white py-20 md:py-28">
+      <section className="bg-[#2A52A0] text-white py-20 md:py-28">
         <div className="container max-w-4xl">
           {svc.badge && (
             <span
@@ -306,7 +306,7 @@ const ServiceDetailPage = () => {
       {svc.valueAnchor && (
         <section className="py-16 bg-white">
           <div className="container max-w-3xl">
-            <div className="rounded-2xl p-8 md:p-10" style={{ background: '#1C2B2B' }}>
+            <div className="rounded-2xl p-8 md:p-10" style={{ background: '#2A52A0' }}>
               <p className="uppercase font-bold mb-5" style={{ ...mono, fontSize: '10.4px', letterSpacing: '0.20em', color: '#C9A84C' }}>
                 Value Anchor
               </p>
@@ -349,7 +349,7 @@ const ServiceDetailPage = () => {
             </Link>
             <a
               href="tel:3363298899"
-              className="inline-flex items-center gap-2 bg-white border-2 border-[#1C2B2B] hover:bg-[#1C2B2B] hover:text-white text-[#1C2B2B] font-bold px-7 py-4 rounded-lg text-base transition-colors"
+              className="inline-flex items-center gap-2 bg-white border-2 border-[#2A52A0] hover:bg-[#2A52A0] hover:text-white text-[#1C2B2B] font-bold px-7 py-4 rounded-lg text-base transition-colors"
               data-testid={`${slug}-cta-phone`}
             >
               <Phone size={16} />

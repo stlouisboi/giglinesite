@@ -19,7 +19,7 @@ const INTAKE_HREF = `/intake?service=${SLUG}`;
 const CRV_HREF = '/services/compliance-readiness-visit';
 
 const BLUE = '#2A52A0';
-const NAVY = '#1C2B2B';
+const NAVY = '#2A52A0';
 const GOLD = '#C9A84C';
 const CREAM = '#f5f4f0';
 

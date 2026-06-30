@@ -128,7 +128,7 @@ const BlogHazComRequirements = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#1C2B2B] text-white py-16 md:py-24">
+      <section className="bg-[#2A52A0] text-white py-16 md:py-24">
         <div className="container max-w-3xl">
           <p className="text-xs font-semibold tracking-widest text-[#2A52A0] uppercase mb-4" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
             COMPLIANCE GUIDE
@@ -150,7 +150,7 @@ const BlogHazComRequirements = () => {
       </section>
 
       {/* Table of Contents */}
-      <section className="py-8 border-b border-[#1C2B2B]/10" data-testid="hazcom-toc">
+      <section className="py-8 border-b border-[#2A52A0]/10" data-testid="hazcom-toc">
         <div className="container max-w-3xl">
           <p className="text-xs font-semibold tracking-widest text-[#1C2B2B]/40 uppercase mb-4" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
             IN THIS GUIDE
@@ -180,7 +180,7 @@ const BlogHazComRequirements = () => {
       </section>
 
       {/* Do small businesses need HazCom? */}
-      <section className="py-12 md:py-16 border-b border-[#1C2B2B]/10" id="do-i-need">
+      <section className="py-12 md:py-16 border-b border-[#2A52A0]/10" id="do-i-need">
         <div className="container max-w-3xl">
           <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             Do small businesses need a HazCom program?
@@ -205,7 +205,7 @@ const BlogHazComRequirements = () => {
         </div>
       </section>
 
-      <section className="py-12 md:py-16 border-b border-[#1C2B2B]/10" id="what-is-hcs">
+      <section className="py-12 md:py-16 border-b border-[#2A52A0]/10" id="what-is-hcs">
         <div className="container max-w-3xl">
           <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             What is the OSHA Hazard Communication Standard?
@@ -240,7 +240,7 @@ const BlogHazComRequirements = () => {
           </p>
           <div className="space-y-8">
             {fourRequirements.map((req) => (
-              <div key={req.num} className="bg-white border border-[#1C2B2B]/10 rounded p-6" style={{ borderTop: '3px solid #2A52A0' }}>
+              <div key={req.num} className="bg-white border border-[#2A52A0]/10 rounded p-6" style={{ borderTop: '3px solid #2A52A0' }}>
                 <div className="flex items-start gap-3 mb-4">
                   <req.icon size={22} className="text-[#2A52A0] flex-shrink-0 mt-0.5" />
                   <div>
@@ -271,7 +271,7 @@ const BlogHazComRequirements = () => {
         </div>
       </section>
 
-      <section className="py-12 md:py-16 border-b border-[#1C2B2B]/10" id="chemicals-sds">
+      <section className="py-12 md:py-16 border-b border-[#2A52A0]/10" id="chemicals-sds">
         <div className="container max-w-3xl">
           <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-6" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             What chemicals require an SDS?
@@ -306,7 +306,7 @@ const BlogHazComRequirements = () => {
       </section>
 
       {/* How to create a written program */}
-      <section className="py-12 md:py-16 border-b border-[#1C2B2B]/10" id="written-program">
+      <section className="py-12 md:py-16 border-b border-[#2A52A0]/10" id="written-program">
         <div className="container max-w-3xl">
           <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-6" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             How do I create a written HazCom program?
@@ -322,7 +322,7 @@ const BlogHazComRequirements = () => {
               { title: "Contractor communication", desc: "How chemical hazards are shared with outside employers" },
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-3">
-                <span className="bg-[#1C2B2B] text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">{i + 1}</span>
+                <span className="bg-[#2A52A0] text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">{i + 1}</span>
                 <div>
                   <span className="font-semibold text-[#1C2B2B] text-sm">{item.title}</span>
                   <span className="text-[#1C2B2B]/60 text-sm"> — {item.desc}</span>
@@ -339,7 +339,7 @@ const BlogHazComRequirements = () => {
         </div>
       </section>
 
-      <section className="py-12 md:py-16 border-b border-[#1C2B2B]/10" id="sds-location">
+      <section className="py-12 md:py-16 border-b border-[#2A52A0]/10" id="sds-location">
         <div className="container max-w-3xl">
           <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             Where should the SDS binder be located?
@@ -364,7 +364,7 @@ const BlogHazComRequirements = () => {
         </div>
       </section>
 
-      <section className="py-12 md:py-16 border-b border-[#1C2B2B]/10" id="penalties" data-testid="hazcom-penalties">
+      <section className="py-12 md:py-16 border-b border-[#2A52A0]/10" id="penalties" data-testid="hazcom-penalties">
         <div className="container max-w-3xl">
           <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-2" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             What are the penalties for HazCom violations?
@@ -374,14 +374,14 @@ const BlogHazComRequirements = () => {
           </p>
           <table className="w-full text-sm mb-6" data-testid="hazcom-penalty-table">
             <thead>
-              <tr className="border-b-2 border-[#1C2B2B]/10">
+              <tr className="border-b-2 border-[#2A52A0]/10">
                 <th className="text-left py-3 pr-4 font-semibold text-[#1C2B2B]">Violation Type</th>
                 <th className="text-right py-3 font-semibold text-[#1C2B2B]">Maximum Penalty</th>
               </tr>
             </thead>
             <tbody>
               {penaltyData.map((row) => (
-                <tr key={row.type} className="border-b border-[#1C2B2B]/5">
+                <tr key={row.type} className="border-b border-[#2A52A0]/5">
                   <td className="py-3 pr-4 text-[#1C2B2B]/70">{row.type}</td>
                   <td className="py-3 text-right font-semibold text-[#1C2B2B]" style={{ fontFamily: "'JetBrains Mono', monospace" }}>{row.amount}</td>
                 </tr>
@@ -400,14 +400,14 @@ const BlogHazComRequirements = () => {
         </div>
       </section>
 
-      <section className="py-12 md:py-16 border-b border-[#1C2B2B]/10" id="training-frequency">
+      <section className="py-12 md:py-16 border-b border-[#2A52A0]/10" id="training-frequency">
         <div className="container max-w-3xl">
           <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-6" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             How often is HazCom training required?
           </h2>
           <table className="w-full text-sm mb-4">
             <thead>
-              <tr className="border-b-2 border-[#1C2B2B]/10">
+              <tr className="border-b-2 border-[#2A52A0]/10">
                 <th className="text-left py-3 pr-4 font-semibold text-[#1C2B2B]">Timing</th>
                 <th className="text-left py-3 font-semibold text-[#1C2B2B]">Requirement</th>
               </tr>
@@ -418,7 +418,7 @@ const BlogHazComRequirements = () => {
                 { timing: "New chemical", req: "When a new hazard is introduced to the work area" },
                 { timing: "New employee", req: "Before initial assignment to area with chemical exposure" },
               ].map((row) => (
-                <tr key={row.timing} className="border-b border-[#1C2B2B]/5">
+                <tr key={row.timing} className="border-b border-[#2A52A0]/5">
                   <td className="py-3 pr-4 text-[#1C2B2B] font-medium text-sm">{row.timing}</td>
                   <td className="py-3 text-[#1C2B2B]/70 text-sm">{row.req}</td>
                 </tr>
@@ -429,7 +429,7 @@ const BlogHazComRequirements = () => {
         </div>
       </section>
 
-      <section className="py-12 md:py-16 border-b border-[#1C2B2B]/10" id="consumer-exemption">
+      <section className="py-12 md:py-16 border-b border-[#2A52A0]/10" id="consumer-exemption">
         <div className="container max-w-3xl">
           <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             Do I need HazCom if I only use household cleaning products?
@@ -446,14 +446,14 @@ const BlogHazComRequirements = () => {
         </div>
       </section>
 
-      <section className="py-12 md:py-16 border-b border-[#1C2B2B]/10" id="msds-vs-sds">
+      <section className="py-12 md:py-16 border-b border-[#2A52A0]/10" id="msds-vs-sds">
         <div className="container max-w-3xl">
           <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-6" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             What is the difference between MSDS and SDS?
           </h2>
           <table className="w-full text-sm mb-4">
             <thead>
-              <tr className="border-b-2 border-[#1C2B2B]/10">
+              <tr className="border-b-2 border-[#2A52A0]/10">
                 <th className="text-left py-3 pr-4 font-semibold text-[#1C2B2B]">MSDS (Pre-2012)</th>
                 <th className="text-left py-3 font-semibold text-[#1C2B2B]">SDS (Current)</th>
               </tr>
@@ -464,7 +464,7 @@ const BlogHazComRequirements = () => {
                 { old: "Inconsistent hazard classification", current: "GHS-aligned classification" },
                 { old: "No required pictograms", current: "GHS pictograms required" },
               ].map((row, i) => (
-                <tr key={i} className="border-b border-[#1C2B2B]/5">
+                <tr key={i} className="border-b border-[#2A52A0]/5">
                   <td className="py-3 pr-4 text-[#1C2B2B]/50 text-sm">{row.old}</td>
                   <td className="py-3 text-[#1C2B2B]/70 text-sm">{row.current}</td>
                 </tr>
@@ -502,7 +502,7 @@ const BlogHazComRequirements = () => {
       </section>
 
       {/* Related Resources / CTA */}
-      <section className="py-14 md:py-20 bg-[#1C2B2B] text-white" data-testid="hazcom-blog-cta">
+      <section className="py-14 md:py-20 bg-[#2A52A0] text-white" data-testid="hazcom-blog-cta">
         <div className="container max-w-3xl">
           <h2 className="text-xl md:text-2xl font-bold mb-8" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             Related Resources
@@ -547,10 +547,10 @@ const BlogHazComRequirements = () => {
       </section>
 
       {/* Author Box */}
-      <section className="py-10 border-t border-[#1C2B2B]/10">
+      <section className="py-10 border-t border-[#2A52A0]/10">
         <div className="container max-w-3xl">
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-full bg-[#1C2B2B] flex items-center justify-center flex-shrink-0">
+            <div className="w-12 h-12 rounded-full bg-[#2A52A0] flex items-center justify-center flex-shrink-0">
               <span className="text-white font-bold text-sm">VL</span>
             </div>
             <div>

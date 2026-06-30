@@ -12,7 +12,7 @@ import {
 import SEO from '../components/SEO';
 
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
-const NAVY = '#1C2B2B';
+const NAVY = '#2A52A0';
 const GOLD = '#C9A84C';
 const BLUE = '#2A52A0';
 const CREAM = '#F9F8F6';
@@ -203,7 +203,7 @@ const OshaComplianceGuidePage = () => {
               <section
                 key={cluster.id}
                 id={cluster.id}
-                className={`scroll-mt-24 ${idx > 0 ? 'mt-16 md:mt-20 pt-12 md:pt-14 border-t border-[#1C2B2B]/10' : ''}`}
+                className={`scroll-mt-24 ${idx > 0 ? 'mt-16 md:mt-20 pt-12 md:pt-14 border-t border-[#2A52A0]/10' : ''}`}
                 data-testid={`cluster-${cluster.id}`}
               >
                 <div className="flex items-start gap-4 mb-5">
@@ -263,7 +263,7 @@ const OshaComplianceGuidePage = () => {
       </section>
 
       {/* Closing CTA */}
-      <section className="py-14 md:py-20 border-t border-[#1C2B2B]/10" style={{ background: CREAM }} data-testid="osha-guide-cta">
+      <section className="py-14 md:py-20 border-t border-[#2A52A0]/10" style={{ background: CREAM }} data-testid="osha-guide-cta">
         <div className="container max-w-3xl">
           {/* Trust strip — anchors the closing CTA in real numbers (GL-WEB-022) */}
           <div

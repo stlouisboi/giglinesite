@@ -193,7 +193,7 @@ const BlogOSHAViolations = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#1C2B2B] text-white py-16 md:py-24">
+      <section className="bg-[#2A52A0] text-white py-16 md:py-24">
         <div className="container max-w-3xl">
           <p
             className="text-xs font-semibold tracking-widest text-[#2A52A0] uppercase mb-4"
@@ -222,7 +222,7 @@ const BlogOSHAViolations = () => {
       </section>
 
       {/* Quick Summary */}
-      <section className="py-10 border-b border-[#1C2B2B]/10">
+      <section className="py-10 border-b border-[#2A52A0]/10">
         <div className="container max-w-3xl">
           <div className="bg-[#F9F8F6] border-l-3 border-[#2A52A0] p-6 rounded" style={{ borderLeft: '3px solid #2A52A0' }}>
             <h2 className="text-base font-bold text-[#1C2B2B] mb-3">The Five Standards</h2>
@@ -239,7 +239,7 @@ const BlogOSHAViolations = () => {
       </section>
 
       {/* Penalty Table */}
-      <section className="py-12 md:py-16 border-b border-[#1C2B2B]/10" id="penalties">
+      <section className="py-12 md:py-16 border-b border-[#2A52A0]/10" id="penalties">
         <div className="container max-w-3xl">
           <h2
             className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-2"
@@ -251,14 +251,14 @@ const BlogOSHAViolations = () => {
           <div className="overflow-x-auto">
             <table className="w-full text-sm" data-testid="penalty-table">
               <thead>
-                <tr className="border-b-2 border-[#1C2B2B]/10">
+                <tr className="border-b-2 border-[#2A52A0]/10">
                   <th className="text-left py-3 pr-4 font-semibold text-[#1C2B2B]">Violation Type</th>
                   <th className="text-right py-3 font-semibold text-[#1C2B2B]">Maximum Penalty</th>
                 </tr>
               </thead>
               <tbody>
                 {penaltyData.map((row) => (
-                  <tr key={row.type} className="border-b border-[#1C2B2B]/5">
+                  <tr key={row.type} className="border-b border-[#2A52A0]/5">
                     <td className="py-3 pr-4 text-[#1C2B2B]/70">{row.type}</td>
                     <td className="py-3 text-right font-semibold text-[#1C2B2B]" style={{ fontFamily: "'JetBrains Mono', monospace" }}>{row.amount}</td>
                   </tr>
@@ -276,13 +276,13 @@ const BlogOSHAViolations = () => {
       {violations.map((v) => (
         <section
           key={v.num}
-          className="py-12 md:py-16 border-b border-[#1C2B2B]/10"
+          className="py-12 md:py-16 border-b border-[#2A52A0]/10"
           id={`violation-${v.num}`}
           data-testid={`violation-section-${v.num}`}
         >
           <div className="container max-w-3xl">
             <div className="flex items-start gap-4 mb-6">
-              <div className="bg-[#1C2B2B] text-white w-10 h-10 rounded flex items-center justify-center flex-shrink-0">
+              <div className="bg-[#2A52A0] text-white w-10 h-10 rounded flex items-center justify-center flex-shrink-0">
                 <v.icon size={20} />
               </div>
               <div>
@@ -371,7 +371,7 @@ const BlogOSHAViolations = () => {
               { title: "Perform regular inspections", desc: "Daily forklift checks, annual LOTO procedure reviews, quarterly chemical inventory updates" },
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-4">
-                <span className="bg-[#1C2B2B] text-white text-sm font-bold w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <span className="bg-[#2A52A0] text-white text-sm font-bold w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                   {i + 1}
                 </span>
                 <div>
@@ -385,7 +385,7 @@ const BlogOSHAViolations = () => {
       </section>
 
       {/* Signs Section */}
-      <section className="py-12 md:py-16 border-b border-[#1C2B2B]/10">
+      <section className="py-12 md:py-16 border-b border-[#2A52A0]/10">
         <div className="container max-w-3xl">
           <h2
             className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-6"
@@ -416,7 +416,7 @@ const BlogOSHAViolations = () => {
       </section>
 
       {/* Related Resources / CTA */}
-      <section className="py-14 md:py-20 bg-[#1C2B2B] text-white" data-testid="blog-cta-section">
+      <section className="py-14 md:py-20 bg-[#2A52A0] text-white" data-testid="blog-cta-section">
         <div className="container max-w-3xl">
           <h2
             className="text-xl md:text-2xl font-bold mb-8"
@@ -476,10 +476,10 @@ const BlogOSHAViolations = () => {
       </section>
 
       {/* Author Box */}
-      <section className="py-10 border-t border-[#1C2B2B]/10">
+      <section className="py-10 border-t border-[#2A52A0]/10">
         <div className="container max-w-3xl">
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-full bg-[#1C2B2B] flex items-center justify-center flex-shrink-0">
+            <div className="w-12 h-12 rounded-full bg-[#2A52A0] flex items-center justify-center flex-shrink-0">
               <span className="text-white font-bold text-sm">VL</span>
             </div>
             <div>

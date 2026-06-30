@@ -270,7 +270,7 @@ const FieldNotesPage = () => {
       <section
         className="py-16 md:py-24 relative overflow-hidden"
         style={{
-          backgroundColor: '#1C2B2B',
+          backgroundColor: '#2A52A0',
           backgroundImage: 'linear-gradient(rgba(28,43,43,0.55), rgba(28,43,43,0.72)), url(/assets/field-notes-header.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
@@ -331,7 +331,7 @@ const FieldNotesPage = () => {
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
                 placeholder="Search field notes…"
-                className="w-full pl-10 pr-10 py-3 rounded border border-[#1C2B2B]/15 bg-white text-sm text-[#1C2B2B] placeholder:text-[#1C2B2B]/40 focus:outline-none focus:border-[#2A52A0] focus:ring-1 focus:ring-[#2A52A0]/30"
+                className="w-full pl-10 pr-10 py-3 rounded border border-[#2A52A0]/15 bg-white text-sm text-[#1C2B2B] placeholder:text-[#1C2B2B]/40 focus:outline-none focus:border-[#2A52A0] focus:ring-1 focus:ring-[#2A52A0]/30"
                 data-testid="field-notes-search-input"
               />
               {keyword && (
@@ -349,7 +349,7 @@ const FieldNotesPage = () => {
             <select
               value={cfrFilter}
               onChange={(e) => setCfrFilter(e.target.value)}
-              className="md:w-72 py-3 px-3 rounded border border-[#1C2B2B]/15 bg-white text-sm text-[#1C2B2B] focus:outline-none focus:border-[#2A52A0] focus:ring-1 focus:ring-[#2A52A0]/30"
+              className="md:w-72 py-3 px-3 rounded border border-[#2A52A0]/15 bg-white text-sm text-[#1C2B2B] focus:outline-none focus:border-[#2A52A0] focus:ring-1 focus:ring-[#2A52A0]/30"
               data-testid="field-notes-cfr-filter"
               aria-label="Filter by CFR subpart"
             >
@@ -421,7 +421,7 @@ const FieldNotesPage = () => {
                         </p>
                         <div className="flex flex-wrap gap-2">
                           {note.topics.map((topic) => (
-                            <span key={topic} className="text-xs px-2 py-1 rounded bg-[#1C2B2B]/5 text-[#1C2B2B]/50">
+                            <span key={topic} className="text-xs px-2 py-1 rounded bg-[#2A52A0]/5 text-[#1C2B2B]/50">
                               {topic}
                             </span>
                           ))}
@@ -447,7 +447,7 @@ const FieldNotesPage = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-24 bg-[#1C2B2B]" data-testid="field-notes-cta">
+      <section className="py-16 md:py-24 bg-[#2A52A0]" data-testid="field-notes-cta">
         <div className="container max-w-3xl text-center">
           <p className="text-lg text-white/60 mb-6">
             Reading about it is useful. Having someone walk your floor is better.

@@ -10,7 +10,7 @@ import { ArrowRight, Camera, Phone } from 'lucide-react';
   walkthrough report deliverable. Not interactive.
 */
 
-const DOC_HEADER_BG = '#1C2B2B';
+const DOC_HEADER_BG = '#2A52A0';
 const DOC_BORDER = 'rgba(11,31,51,0.10)';
 const TEXT_DARK = '#1C2B2B';
 const TEXT_MUTED = 'rgba(11,31,51,0.72)';

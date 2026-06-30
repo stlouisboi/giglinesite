@@ -22,7 +22,7 @@ const INTAKE_HREF = `/intake?service=${SLUG}`;
 const QUARTERLY_HREF = '/services/quarterly-compliance-maintenance';
 const ACP_HREF = '/services/annual-compliance-partner';
 const BLUE = '#2A52A0';
-const NAVY = '#1C2B2B';
+const NAVY = '#2A52A0';
 const GOLD = '#C9A84C';
 const CREAM = '#f5f4f0';
 const ORANGE = '#e07a3d';

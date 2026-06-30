@@ -41,7 +41,7 @@ const ServiceLandingTemplate = ({
       {/* ── Hero ── */}
       <section
         className="relative py-20 md:py-28"
-        style={{ backgroundColor: '#1C2B2B' }}
+        style={{ backgroundColor: '#2A52A0' }}
         data-testid="svc-hero"
       >
         <div className="container max-w-5xl">
@@ -177,11 +177,11 @@ const ServiceLandingTemplate = ({
               {nextSteps.intro}
             </p>
           )}
-          <div className="space-y-0 border-t border-[#1C2B2B]/10">
+          <div className="space-y-0 border-t border-[#2A52A0]/10">
             {nextSteps.steps.map((step, i) => (
               <div
                 key={i}
-                className="flex items-start gap-5 py-5 border-b border-[#1C2B2B]/10"
+                className="flex items-start gap-5 py-5 border-b border-[#2A52A0]/10"
                 data-testid={`svc-next-step-${i}`}
               >
                 <span

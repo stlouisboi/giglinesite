@@ -44,7 +44,7 @@ const ServiceAreasPage = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#1C2B2B] text-white py-16 md:py-24">
+      <section className="bg-[#2A52A0] text-white py-16 md:py-24">
         <div className="container max-w-4xl">
           <p
             className="uppercase tracking-[3px] text-[#2A52A0] mb-5"
@@ -86,7 +86,7 @@ const ServiceAreasPage = () => {
               <Link
                 key={city.slug}
                 to={`/safety-walkthrough/${city.slug}`}
-                className="group block bg-white rounded-lg border border-[#1C2B2B]/10 hover:border-[#2A52A0] p-5 transition-colors"
+                className="group block bg-white rounded-lg border border-[#2A52A0]/10 hover:border-[#2A52A0] p-5 transition-colors"
                 data-testid={`area-link-${city.slug}`}
               >
                 <div className="flex items-start justify-between gap-3 mb-2">
@@ -132,7 +132,7 @@ const ServiceAreasPage = () => {
               <Link
                 key={city.slug}
                 to={`/safety-walkthrough/${city.slug}`}
-                className="group block bg-[#F9F8F6] rounded-lg border border-[#1C2B2B]/10 hover:border-[#2A52A0] p-5 transition-colors"
+                className="group block bg-[#F9F8F6] rounded-lg border border-[#2A52A0]/10 hover:border-[#2A52A0] p-5 transition-colors"
                 data-testid={`area-link-${city.slug}`}
               >
                 <div className="flex items-start justify-between gap-3 mb-2">
@@ -181,7 +181,7 @@ const ServiceAreasPage = () => {
               <Link
                 key={city.slug}
                 to={`/safety-walkthrough/${city.slug}`}
-                className="group block bg-white rounded-lg border border-[#1C2B2B]/10 hover:border-[#2A52A0] p-5 transition-colors"
+                className="group block bg-white rounded-lg border border-[#2A52A0]/10 hover:border-[#2A52A0] p-5 transition-colors"
                 data-testid={`area-link-${city.slug}`}
               >
                 <div className="flex items-start justify-between gap-3 mb-2">
@@ -208,7 +208,7 @@ const ServiceAreasPage = () => {
       </section>
 
       {/* Outside service area note + CTA */}
-      <section className="py-16 md:py-20 bg-[#1C2B2B] text-white">
+      <section className="py-16 md:py-20 bg-[#2A52A0] text-white">
         <div className="container max-w-2xl text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-4" style={serif}>
             Operation outside these cities?

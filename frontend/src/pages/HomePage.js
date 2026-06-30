@@ -133,7 +133,7 @@ const HomePage = () => {
       ═══════════════════════════════════════════════ */}
       <section
         className="relative min-h-[60vh] xl:min-h-[85vh] overflow-hidden"
-        style={{ backgroundColor: '#1C2B2B' }}
+        style={{ backgroundColor: '#2A52A0' }}
         data-testid="hero-section"
       >
         <div className="flex flex-col xl:flex-row h-full min-h-[60vh] xl:min-h-[85vh]">
@@ -148,8 +148,8 @@ const HomePage = () => {
               data-testid="hero-image"
             />
             {/* Gradient bleed into text column */}
-            <div className="hidden xl:block absolute inset-y-0 right-0 w-1/3 bg-gradient-to-r from-transparent to-[#1C2B2B]" />
-            <div className="xl:hidden absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#1C2B2B] to-transparent" />
+            <div className="hidden xl:block absolute inset-y-0 right-0 w-1/3 bg-gradient-to-r from-transparent to-[#2A52A0]" />
+            <div className="xl:hidden absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#2A52A0] to-transparent" />
           </div>
 
           {/* Right — Copy */}
@@ -319,7 +319,7 @@ const HomePage = () => {
             <div
               className="p-7 md:p-9 rounded-md"
               style={{
-                background: '#1C2B2B',
+                background: '#2A52A0',
                 borderLeft: '4px solid #C9A84C',
                 color: 'white',
               }}
@@ -425,7 +425,7 @@ const HomePage = () => {
             <div
               className="mt-12 md:mt-14 p-7 md:p-8"
               style={{
-                background: '#1C2B2B',
+                background: '#2A52A0',
                 borderLeft: '4px solid #c8922a',
                 borderRadius: '0 8px 8px 0',
               }}
@@ -519,7 +519,7 @@ const HomePage = () => {
             <div
               className="mt-10 p-7 md:p-8 max-w-4xl"
               style={{
-                background: '#1C2B2B',
+                background: '#2A52A0',
                 borderLeft: '4px solid #c8922a',
                 borderRadius: '12px',
                 color: 'white',
@@ -738,7 +738,7 @@ const HomePage = () => {
             </div>
             <Link
               to="/sample-report"
-              className="inline-flex items-center justify-center gap-2 bg-[#1C2B2B] hover:bg-[#1c2e44] text-white font-semibold px-6 py-3.5 rounded transition-colors whitespace-nowrap text-sm md:text-base"
+              className="inline-flex items-center justify-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-semibold px-6 py-3.5 rounded transition-colors whitespace-nowrap text-sm md:text-base"
               data-testid="home-sample-report-cta"
             >
               Download a Sample Report &rarr;
@@ -811,7 +811,7 @@ const HomePage = () => {
       </section>
 
       {/* ═══ TESTIMONIALS + CASE STUDY + TRACK RECORD (relocated per spec — between Services and How It Works) ═══ */}
-      <section className="py-20 md:py-28" style={{ backgroundColor: '#1C2B2B' }} data-testid="trust-section">
+      <section className="py-20 md:py-28" style={{ backgroundColor: '#2A52A0' }} data-testid="trust-section">
         <div className="container max-w-7xl grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12">
 
           {/* LEFT — What Clients Say */}
@@ -914,7 +914,7 @@ const HomePage = () => {
                             width: '52px',
                             height: '52px',
                             borderRadius: '50%',
-                            background: '#1C2B2B',
+                            background: '#2A52A0',
                             color: '#fff',
                             fontSize: '14px',
                             fontWeight: 700,
@@ -959,7 +959,7 @@ const HomePage = () => {
       </section>
 
       {/* ═══ SECTION 8 — ABOUT GIGLINE (dark navy, two-column) ═══ */}
-      <section className="py-16 md:py-24" style={{ backgroundColor: '#1C2B2B' }} data-testid="about-section">
+      <section className="py-16 md:py-24" style={{ backgroundColor: '#2A52A0' }} data-testid="about-section">
         <div className="container max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
 

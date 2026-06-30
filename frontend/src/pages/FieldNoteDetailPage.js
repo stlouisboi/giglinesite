@@ -1551,7 +1551,7 @@ const FieldNoteDetailPage = () => {
           runtime to avoid Google "Duplicate field" warnings. */}
 
       {/* Header */}
-      <section className="bg-[#1C2B2B] py-16 md:py-24" data-testid="note-header">
+      <section className="bg-[#2A52A0] py-16 md:py-24" data-testid="note-header">
         <div className="container max-w-3xl">
           <Link to="/field-notes" className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-[#2A52A0] transition-colors mb-6" data-testid="back-to-notes">
             <ArrowLeft size={14} /> Field Notes
@@ -1637,7 +1637,7 @@ const FieldNoteDetailPage = () => {
             <div className="space-y-3">
               {note.sections.checklist.map((item, i) => (
                 <label key={i} className="flex items-start gap-3 cursor-pointer group">
-                  <input type="checkbox" className="mt-1 w-4 h-4 rounded border-[#1C2B2B]/20 text-[#2A52A0] focus:ring-[#2A52A0] accent-[#2A52A0]" />
+                  <input type="checkbox" className="mt-1 w-4 h-4 rounded border-[#2A52A0]/20 text-[#2A52A0] focus:ring-[#2A52A0] accent-[#2A52A0]" />
                   <span className="text-base text-[#1C2B2B]/70 group-hover:text-[#1C2B2B] transition-colors">{item}</span>
                 </label>
               ))}
@@ -1649,7 +1649,7 @@ const FieldNoteDetailPage = () => {
 
           {/* CFR Citation */}
           {note.cfrCitation && (
-            <div className="mb-12 py-4 border-t border-[#1C2B2B]/10" data-testid="note-cfr-citation">
+            <div className="mb-12 py-4 border-t border-[#2A52A0]/10" data-testid="note-cfr-citation">
               <p className="text-xs text-[#1C2B2B]/40 uppercase tracking-wider" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
                 Regulation Reference
               </p>
@@ -1772,7 +1772,7 @@ const FieldNoteDetailPage = () => {
                       value={dlEmail}
                       onChange={(e) => setDlEmail(e.target.value)}
                       placeholder="Your work email"
-                      className="flex-grow px-4 py-3 rounded border border-[#1C2B2B]/15 bg-white text-sm text-[#1C2B2B] placeholder:text-[#1C2B2B]/30 focus:outline-none focus:border-[#2A52A0] focus:ring-1 focus:ring-[#2A52A0]/30"
+                      className="flex-grow px-4 py-3 rounded border border-[#2A52A0]/15 bg-white text-sm text-[#1C2B2B] placeholder:text-[#1C2B2B]/30 focus:outline-none focus:border-[#2A52A0] focus:ring-1 focus:ring-[#2A52A0]/30"
                       data-testid="download-email-input"
                     />
                     <button
@@ -1873,7 +1873,7 @@ const FieldNoteDetailPage = () => {
       )}
 
       {/* CTA */}
-      <section className="py-16 md:py-24 bg-[#1C2B2B]" data-testid="note-cta">
+      <section className="py-16 md:py-24 bg-[#2A52A0]" data-testid="note-cta">
         <div className="container max-w-3xl text-center">
           <p className="text-lg text-white/60 mb-2">
             If you're not sure how this looks in your operation —

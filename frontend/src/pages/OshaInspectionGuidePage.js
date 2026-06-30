@@ -71,7 +71,7 @@ const OshaInspectionGuidePage = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#1C2B2B] text-white py-16 md:py-24" data-testid="oig-hero">
+      <section className="bg-[#2A52A0] text-white py-16 md:py-24" data-testid="oig-hero">
         <div className="container max-w-3xl">
           <p
             className="uppercase font-bold mb-4"
@@ -124,13 +124,13 @@ const OshaInspectionGuidePage = () => {
                   href={`${API_URL}/api/osha-inspection-guide/pdf`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-[#1C2B2B] hover:bg-[#1c2e44] text-white font-semibold px-5 py-3 rounded transition-colors text-sm mb-6"
+                  className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#1F3F80] text-white font-semibold px-5 py-3 rounded transition-colors text-sm mb-6"
                   data-testid="oig-fallback-download"
                 >
                   <BookOpen size={14} />
                   Open the OSHA Inspection Guide
                 </a>
-                <div className="pt-6 border-t border-[#1C2B2B]/10">
+                <div className="pt-6 border-t border-[#2A52A0]/10">
                   <p className="text-sm text-[#1C2B2B]/60 mb-3">
                     Want to know exactly where your own operation stands? Take the 90-second self-screen.
                   </p>
@@ -162,7 +162,7 @@ const OshaInspectionGuidePage = () => {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-4 py-3 border border-[#1C2B2B]/20 rounded text-sm focus:outline-none focus:border-[#2A52A0] focus:ring-1 focus:ring-[#2A52A0]/30"
+                    className="w-full px-4 py-3 border border-[#2A52A0]/20 rounded text-sm focus:outline-none focus:border-[#2A52A0] focus:ring-1 focus:ring-[#2A52A0]/30"
                     data-testid="oig-email-input"
                     autoComplete="email"
                   />
@@ -171,7 +171,7 @@ const OshaInspectionGuidePage = () => {
                     placeholder="First name (optional)"
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
-                    className="w-full px-4 py-3 border border-[#1C2B2B]/20 rounded text-sm focus:outline-none focus:border-[#2A52A0] focus:ring-1 focus:ring-[#2A52A0]/30"
+                    className="w-full px-4 py-3 border border-[#2A52A0]/20 rounded text-sm focus:outline-none focus:border-[#2A52A0] focus:ring-1 focus:ring-[#2A52A0]/30"
                     data-testid="oig-firstname-input"
                     autoComplete="given-name"
                   />
@@ -180,7 +180,7 @@ const OshaInspectionGuidePage = () => {
                     placeholder="Company (optional)"
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
-                    className="w-full px-4 py-3 border border-[#1C2B2B]/20 rounded text-sm focus:outline-none focus:border-[#2A52A0] focus:ring-1 focus:ring-[#2A52A0]/30"
+                    className="w-full px-4 py-3 border border-[#2A52A0]/20 rounded text-sm focus:outline-none focus:border-[#2A52A0] focus:ring-1 focus:ring-[#2A52A0]/30"
                     data-testid="oig-company-input"
                     autoComplete="organization"
                   />
@@ -221,7 +221,7 @@ const OshaInspectionGuidePage = () => {
 
       {/* What's Inside */}
       <section
-        className="py-14 md:py-20 border-t border-[#1C2B2B]/10"
+        className="py-14 md:py-20 border-t border-[#2A52A0]/10"
         data-testid="oig-whats-inside"
       >
         <div className="container max-w-4xl">

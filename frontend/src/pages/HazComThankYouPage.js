@@ -59,7 +59,7 @@ const HazComThankYouPage = () => {
           </p>
           <Link
             to="/hazcom"
-            className="inline-flex items-center gap-2 bg-[#1C2B2B] hover:bg-[#2A3D3D] text-white font-semibold px-6 py-3 rounded transition-colors"
+            className="inline-flex items-center gap-2 bg-[#2A52A0] hover:bg-[#2A3D3D] text-white font-semibold px-6 py-3 rounded transition-colors"
           >
             Back to HazCom Starter Pack
             <ArrowRight size={16} />
@@ -85,7 +85,7 @@ const HazComThankYouPage = () => {
       />
 
       {/* Hero */}
-      <section className="bg-[#1C2B2B] text-white py-12 md:py-16">
+      <section className="bg-[#2A52A0] text-white py-12 md:py-16">
         <div className="container max-w-3xl">
           <div className="flex items-center gap-3 mb-4">
             <CheckCircle size={28} className="text-[#2A52A0]" />
@@ -116,7 +116,7 @@ const HazComThankYouPage = () => {
                 href={downloadUrl(file.filename)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between p-5 bg-[#F9F8F6] border border-[#1C2B2B]/10 rounded hover:border-[#2A52A0]/40 transition-colors group"
+                className="flex items-center justify-between p-5 bg-[#F9F8F6] border border-[#2A52A0]/10 rounded hover:border-[#2A52A0]/40 transition-colors group"
                 data-testid={`download-${file.filename.split('.')[0]}`}
               >
                 <div>
@@ -135,7 +135,7 @@ const HazComThankYouPage = () => {
           </p>
 
           {/* Next Steps */}
-          <div className="border-t border-[#1C2B2B]/10 pt-10 mb-12">
+          <div className="border-t border-[#2A52A0]/10 pt-10 mb-12">
             <h2
               className="text-lg font-bold text-[#1C2B2B] mb-6"
               style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
@@ -160,7 +160,7 @@ const HazComThankYouPage = () => {
           </div>
 
           {/* Need More Help */}
-          <div className="bg-[#F9F8F6] border border-[#1C2B2B]/10 rounded p-8">
+          <div className="bg-[#F9F8F6] border border-[#2A52A0]/10 rounded p-8">
             <h2
               className="text-lg font-bold text-[#1C2B2B] mb-4"
               style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
@@ -173,7 +173,7 @@ const HazComThankYouPage = () => {
             <div className="flex flex-col sm:flex-row gap-3">
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-[#1C2B2B] hover:bg-[#2A3D3D] text-white font-medium px-5 py-3 rounded transition-colors text-sm"
+                className="inline-flex items-center justify-center gap-2 bg-[#2A52A0] hover:bg-[#2A3D3D] text-white font-medium px-5 py-3 rounded transition-colors text-sm"
                 data-testid="thankyou-cta-walkthrough"
               >
                 Request a Walkthrough — $1,200+
@@ -181,7 +181,7 @@ const HazComThankYouPage = () => {
               </Link>
               <Link
                 to="/safety-check"
-                className="inline-flex items-center justify-center gap-2 border-2 border-[#1C2B2B]/20 hover:border-[#1C2B2B]/40 text-[#1C2B2B] font-medium px-5 py-3 rounded transition-colors text-sm"
+                className="inline-flex items-center justify-center gap-2 border-2 border-[#2A52A0]/20 hover:border-[#2A52A0]/40 text-[#1C2B2B] font-medium px-5 py-3 rounded transition-colors text-sm"
                 data-testid="thankyou-cta-safety-check"
               >
                 Run the Safety Check — Free

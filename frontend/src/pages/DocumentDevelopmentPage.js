@@ -201,7 +201,7 @@ const DocumentDevelopmentPage = () => {
       />
 
       {/* ═══ Hero + Pricing Callout (single dark-navy section) ═══ */}
-      <section className="bg-[#1C2B2B] text-white pt-20 md:pt-24 pb-16 md:pb-20" data-testid="dd-hero">
+      <section className="bg-[#2A52A0] text-white pt-20 md:pt-24 pb-16 md:pb-20" data-testid="dd-hero">
         <div className="container max-w-6xl">
           <Eyebrow>Document Development</Eyebrow>
           <h1 className="text-3xl md:text-4xl lg:text-[52px] font-extrabold leading-[1.08] mb-7 tracking-tight max-w-4xl">
@@ -406,7 +406,7 @@ const DocumentDevelopmentPage = () => {
               >
                 <div
                   className="grid grid-cols-[1fr_auto] gap-x-5 px-5 py-3.5"
-                  style={{ background: '#1C2B2B', color: '#ffffff' }}
+                  style={{ background: '#2A52A0', color: '#ffffff' }}
                 >
                   <span
                     className="uppercase font-bold"
@@ -512,7 +512,7 @@ const DocumentDevelopmentPage = () => {
       {/* ═══ Inline CTA Bar ═══ */}
       <section
         className="py-5"
-        style={{ background: '#1C2B2B', borderTop: '1px solid rgba(255,255,255,0.06)' }}
+        style={{ background: '#2A52A0', borderTop: '1px solid rgba(255,255,255,0.06)' }}
         data-testid="dd-cta-bar"
       >
         <div className="container max-w-6xl">
@@ -577,7 +577,7 @@ const DocumentDevelopmentPage = () => {
       </section>
 
       {/* ═══ Closing CTA ═══ */}
-      <section className="py-20 md:py-24" style={{ background: '#1C2B2B' }} data-testid="dd-closing">
+      <section className="py-20 md:py-24" style={{ background: '#2A52A0' }} data-testid="dd-closing">
         <div className="container max-w-3xl text-center">
           <Eyebrow color="#C9A84C">Ready to Start?</Eyebrow>
           <h2 className="text-3xl md:text-4xl font-extrabold text-white leading-[1.15] mb-5 tracking-tight">

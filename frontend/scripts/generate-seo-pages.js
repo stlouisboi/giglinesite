@@ -69,6 +69,29 @@ const LOCAL_BUSINESS = {
     { '@type': 'City', name: 'Raleigh' },
   ],
   priceRange: '$950–$12000',
+  paymentAccepted: 'Credit Card, ACH, Check, Stripe',
+  currenciesAccepted: 'USD',
+  slogan: 'Find the gaps before OSHA does.',
+  knowsAbout: [
+    'OSHA compliance',
+    'OSHA 29 CFR 1910 (General Industry)',
+    'OSHA 29 CFR 1926 (Construction)',
+    'safety walkthroughs',
+    'hazard communication (HazCom)',
+    'lockout/tagout (LOTO)',
+    'machine guarding',
+    'forklift / powered industrial truck safety',
+    'fall protection',
+    'respiratory protection',
+    'incident investigation',
+    'OSHA 300 recordkeeping',
+    'safety program documentation',
+    'manufacturing safety',
+    'warehouse safety',
+    'fleet safety',
+    'contractor safety',
+    'North Carolina OSHA inspection preparation',
+  ],
   openingHours: 'Mo-Fr 08:00-18:00',
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
@@ -1352,12 +1375,15 @@ function generateRouteHTML(templateHTML, route) {
   // <title> — still replaced (always present in template)
   html = html.replace(/<title>[^<]*<\/title>/, `<title>${route.title}</title>`);
 
-  // Per-page SEO tags injected before </head> (description, canonical, og:url/title/description,
-  // twitter:title/description). These do NOT exist in the static template — Helmet handles them
-  // client-side. The SSR script injects them so raw-HTML crawlers see them in production.
+  // Per-page SEO tags injected before </head> (description, canonical, hreflang,
+  // og:url/title/description, twitter:title/description). These do NOT exist in
+  // the static template — Helmet handles them client-side. The SSR script injects
+  // them so raw-HTML crawlers see them in production.
   const perPageTags = [
     `<meta name="description" content="${route.description}" />`,
     `<link rel="canonical" href="${BASE_URL}${route.canonical}" />`,
+    `<link rel="alternate" hreflang="en-us" href="${BASE_URL}${route.canonical}" />`,
+    `<link rel="alternate" hreflang="x-default" href="${BASE_URL}${route.canonical}" />`,
     `<meta property="og:url" content="${BASE_URL}${route.canonical}" />`,
     `<meta property="og:title" content="${route.title}" />`,
     `<meta property="og:description" content="${route.description}" />`,

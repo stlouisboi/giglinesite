@@ -34,7 +34,7 @@ React 18 (CRA), Tailwind, FastAPI, MongoDB (motor), Stripe LIVE, Resend LIVE, Ma
 - "Featured In" logo strip on `/about` when first guest article publishes.
 - 4-touch MailerLite retention sequence (Vince user-side build in MailerLite UI).
 - MailerLite automation for `hr-osha-guide-download` group (Vince user-side).
-- (Optional) `hreflang="en-us"` + enriched local-business schema (`priceRange`/`servicearea`) for stronger NC-local visibility on "OSHA consultant near me" queries.
+- (Optional, future) `aggregateRating` schema enrichment — add once Vince accumulates 5+ verified Google reviews. Currently skipped (Google requires real data, not placeholder).
 
 ## Architecture Notes
 - All backend routes under `/api`.
@@ -50,6 +50,9 @@ React 18 (CRA), Tailwind, FastAPI, MongoDB (motor), Stripe LIVE, Resend LIVE, Ma
 - `data-testid` on every interactive element and critical UI element.
 
 ## Recent Changelog
+- 2026-02 — **Wave 3 SEO enrichment shipped** (NC-local visibility boost):
+  - **hreflang tags**: Added `<link rel="alternate" hreflang="en-us">` + `<link rel="alternate" hreflang="x-default">` to every page (via `SEO.js` for client-side + `generate-seo-pages.js` for SSR/crawlers). Self-referencing, signals US-English language/region to Google.
+  - **LocalBusiness schema enrichment**: Added `slogan` ("Find the gaps before OSHA does."), `paymentAccepted` ("Credit Card, ACH, Check, Stripe"), `currenciesAccepted` ("USD"), and an 18-entry `knowsAbout` array covering OSHA standards (1910, 1926), hazard topics (HazCom, LOTO, machine guarding, fall protection, respiratory, forklift), recordkeeping, and audience verticals (manufacturing/warehouse/fleet/contractor). Strengthens topical authority signals for "OSHA consultant near me" type queries.
 - 2026-02 — **Wave 2 audit fix shipped** (canonical hygiene + 301 redirects):
   - **3-way duplicate consolidated**: `/services/safety-walkthrough` + `/services/safety-walkthrough-report` → 301 to `/safety-walkthrough`. Canonical on the page updated from `/services/safety-walkthrough` to `/safety-walkthrough` (matches sitemap). BreadcrumbList schema updated.
   - **Privacy duplicate fixed**: `/privacy` → 301 to `/privacy-policy`. `PrivacyPolicyPage` canonical updated to `/privacy-policy`. Two dangling `href="/privacy"` refs in `ClientIntakePage.js` updated.

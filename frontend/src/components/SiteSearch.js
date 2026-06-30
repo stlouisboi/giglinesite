@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Search, X, Clock } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { SITE_SEARCH_INDEX } from '../data/siteSearchIndex';
@@ -102,11 +102,11 @@ export const SiteSearch = ({ open, onClose }) => {
 
   useEffect(() => { setSelectedIdx(0); }, [query]);
 
-  const commitNavigation = (path, q) => {
+  const commitNavigation = useCallback((path, q) => {
     saveRecent(q || query);
     navigate(path);
     onClose();
-  };
+  }, [query, navigate, onClose]);
 
   useEffect(() => {
     if (!open) return;
@@ -121,7 +121,7 @@ export const SiteSearch = ({ open, onClose }) => {
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [open, onClose, results, selectedIdx, navigate, query]);
+  }, [open, onClose, results, selectedIdx, commitNavigation]);
 
   if (!open) return null;
 

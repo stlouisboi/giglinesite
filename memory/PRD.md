@@ -50,6 +50,10 @@ React 18 (CRA), Tailwind, FastAPI, MongoDB (motor), Stripe LIVE, Resend LIVE, Ma
 - `data-testid` on every interactive element and critical UI element.
 
 ## Recent Changelog
+- 2026-02 — **Google review CTAs added** to 2 high-intent pages:
+  - **Case Study (`/case-study/metals-fabrication-statesville`)**: New "Worked with GigLine? Leave a Google review" strip below the closing CTA band. UTM: `?utm_source=case-study&utm_medium=website&utm_campaign=review-request`. Uses gold-on-navy outline pattern, side-by-side at desktop, stacks at mobile.
+  - **Intake Thank-You (`/thank-you-intake`)**: New card between CTA cards and footer with "Already worked with GigLine before?" copy. UTM: `?utm_source=thankyou-intake&utm_medium=website&utm_campaign=review-request`. Soft-ask design — won't pressure new intakes, primes repeat clients who land here mid-engagement.
+  - Goal: accelerate path to 5+ reviews so `aggregateRating` schema can be activated (unlocks rich-result star ratings in Google SERP).
 - 2026-02 — **Wave 3 SEO enrichment shipped** (NC-local visibility boost):
   - **hreflang tags**: Added `<link rel="alternate" hreflang="en-us">` + `<link rel="alternate" hreflang="x-default">` to every page (via `SEO.js` for client-side + `generate-seo-pages.js` for SSR/crawlers). Self-referencing, signals US-English language/region to Google.
   - **LocalBusiness schema enrichment**: Added `slogan` ("Find the gaps before OSHA does."), `paymentAccepted` ("Credit Card, ACH, Check, Stripe"), `currenciesAccepted` ("USD"), and an 18-entry `knowsAbout` array covering OSHA standards (1910, 1926), hazard topics (HazCom, LOTO, machine guarding, fall protection, respiratory, forklift), recordkeeping, and audience verticals (manufacturing/warehouse/fleet/contractor). Strengthens topical authority signals for "OSHA consultant near me" type queries.

@@ -155,6 +155,42 @@ const ThankYouIntakePage = () => {
         </div>
       </section>
 
+      {/* Review request — soft ask, only for repeat clients who land here from intake */}
+      <section className="pb-12 md:pb-16">
+        <div className="container max-w-3xl mx-auto px-5 md:px-8">
+          <div
+            className="rounded-lg p-6 md:p-7 flex flex-col md:flex-row items-center gap-5 md:gap-7 text-center md:text-left"
+            style={{
+              background: 'white',
+              border: `1px solid ${GOLD}40`,
+              boxShadow: '0 2px 12px rgba(11,31,51,0.05)',
+            }}
+            data-testid="thankyou-review-card"
+          >
+            <span className="text-3xl flex-shrink-0" style={{ color: GOLD }}>★</span>
+            <div className="flex-1">
+              <h3 className="text-lg font-bold mb-1.5" style={{ ...heading, color: NAVY }}>
+                Already worked with GigLine before?
+              </h3>
+              <p className="text-sm leading-relaxed" style={{ color: 'rgba(11,31,51,0.62)' }}>
+                A short note on Google helps other plant managers in the Triad find this work. Takes about a minute.
+              </p>
+            </div>
+            <a
+              href="https://maps.app.goo.gl/4D3TVUAeyfzbm7WbA?utm_source=thankyou-intake&utm_medium=website&utm_campaign=review-request"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 font-bold py-2.5 px-5 rounded transition-all text-sm whitespace-nowrap flex-shrink-0"
+              style={{ backgroundColor: GOLD, color: NAVY, fontFamily: "'Manrope', sans-serif" }}
+              data-testid="thankyou-google-review-cta"
+            >
+              Leave a Google review
+              <ArrowRight size={14} />
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer style={{ backgroundColor: '#0F1A26' }}>
         <div className="container max-w-3xl mx-auto px-5 md:px-8 py-10 text-center">

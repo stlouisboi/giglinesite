@@ -556,6 +556,43 @@ const CaseStudyMetalsFabricationPage = () => {
           </p>
         </div>
       </section>
+
+      {/* ─────────── REVIEW STRIP ─────────── */}
+      <section
+        className="px-5 md:px-8 py-10 md:py-12 border-t"
+        style={{ backgroundColor: '#0F1A26', borderColor: 'rgba(255,255,255,0.06)' }}
+        data-testid="case-review-strip"
+      >
+        <div className="max-w-3xl mx-auto flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 text-center md:text-left">
+          <div>
+            <p
+              className="uppercase font-bold tracking-[0.22em] mb-2"
+              style={{ color: GOLD, ...mono, fontSize: '10px' }}
+            >
+              Worked with GigLine?
+            </p>
+            <p className="text-sm md:text-base text-white/70 leading-relaxed">
+              A short note on Google helps other plant managers in the Triad find this work.
+            </p>
+          </div>
+          <a
+            href="https://maps.app.goo.gl/4D3TVUAeyfzbm7WbA?utm_source=case-study&utm_medium=website&utm_campaign=review-request"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 font-bold py-2.5 px-5 rounded transition-all text-sm whitespace-nowrap"
+            style={{
+              backgroundColor: 'rgba(201,168,76,0.12)',
+              color: GOLD,
+              border: `1px solid ${GOLD}`,
+              fontFamily: "'Manrope', sans-serif",
+            }}
+            data-testid="case-google-review-cta"
+          >
+            <span>★</span> Leave a Google review
+            <ArrowRight size={14} />
+          </a>
+        </div>
+      </section>
     </main>
   );
 };

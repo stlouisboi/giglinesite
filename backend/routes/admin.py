@@ -109,6 +109,35 @@ async def admin_stats(token: str = ""):
     # OSHA Inspection Guide (HR-targeted) metrics (GL-WEB-021)
     hr_osha_guide_stats = await lead_magnet_stats(db.osha_inspection_guide_leads)
 
+    # ── UTM source breakdown (last 30 days): which surfaces drive actual lead conversions
+    # Aggregates utm_source across walkthrough_requests (top-level) and
+    # gl_intake_submissions.attribution.firstTouch (first-touch attribution).
+    source_counts: dict[str, int] = {}
+
+    # walkthrough_requests — top-level utm_source field
+    async for d in db.walkthrough_requests.find(
+        {"timestamp": {"$gte": thirty_days_ago}},
+        {"_id": 0, "utm_source": 1},
+    ):
+        src = (d.get("utm_source") or "").strip().lower() or "direct"
+        source_counts[src] = source_counts.get(src, 0) + 1
+
+    # gl_intake_submissions — attribution.firstTouch.utm_source
+    async for d in db.gl_intake_submissions.find(
+        {"created_at": {"$gte": thirty_days_ago}},
+        {"_id": 0, "attribution": 1},
+    ):
+        first = (d.get("attribution") or {}).get("firstTouch") or {}
+        src = (first.get("utm_source") or "").strip().lower() or "direct"
+        source_counts[src] = source_counts.get(src, 0) + 1
+
+    # Sort DESC by count, cap top 10 to keep payload small
+    lead_sources_30d = sorted(
+        [{"source": s, "count": c} for s, c in source_counts.items()],
+        key=lambda x: x["count"],
+        reverse=True,
+    )[:10]
+
     return {
         "safety_checks": {"total": total_checks, "last_7d": checks_7d, "last_30d": checks_30d},
         "risk_breakdown": {"high": high_risk, "medium": medium_risk, "low": low_risk},
@@ -124,6 +153,7 @@ async def admin_stats(token: str = ""):
         "quick_contacts": quick_contacts_stats,
         "sample_reports": sample_reports_stats,
         "hr_osha_guide": hr_osha_guide_stats,
+        "lead_sources_30d": lead_sources_30d,
     }
 
 

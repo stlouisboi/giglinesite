@@ -1,4 +1,14 @@
 {
+  "redirects": [
+    { "source": "/services/safety-walkthrough", "destination": "/safety-walkthrough", "permanent": true },
+    { "source": "/services/safety-walkthrough-report", "destination": "/safety-walkthrough", "permanent": true },
+    { "source": "/privacy", "destination": "/privacy-policy", "permanent": true },
+    { "source": "/terms", "destination": "/terms-of-service", "permanent": true },
+    { "source": "/request-walkthrough", "destination": "/intake", "permanent": true },
+    { "source": "/onboarding", "destination": "/intake", "permanent": true },
+    { "source": "/onboarding/confirmed", "destination": "/intake", "permanent": true },
+    { "source": "/case-studies/mocksville-plastics-osha-inspection", "destination": "/case-study/metals-fabrication-statesville", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ],

@@ -864,7 +864,7 @@ const ClientIntakePage = () => {
               </span>
               <span className="text-sm leading-relaxed" style={{ color: C.sec }}>
                 I have read and agree to the{' '}
-                <a href="/privacy" target="_blank" rel="noopener noreferrer" className="font-bold underline" style={{ color: C.blue }} data-testid="intake-privacy-link">
+                <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="font-bold underline" style={{ color: C.blue }} data-testid="intake-privacy-link">
                   GigLine Privacy Policy
                 </a>.
               </span>
@@ -1013,7 +1013,7 @@ This is GigLine Safety & Compliance.`}
           <p className="text-xs" style={{ color: C.muted }}>
             GigLine Safety &amp; Compliance &middot; (336) 329-8899 &middot;{' '}
             <a href="mailto:vince@giglinecompliance.com" className="hover:text-white transition-colors">vince@giglinecompliance.com</a>
-            {' · '}<a href="/privacy" className="hover:text-white transition-colors">Privacy Policy</a>
+            {' · '}<a href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</a>
           </p>
         </div>
       </footer>

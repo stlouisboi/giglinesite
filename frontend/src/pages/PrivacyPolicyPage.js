@@ -16,7 +16,7 @@ const PrivacyPolicyPage = () => {
       <SEO
         title="Privacy Policy | GigLine Safety & Compliance"
         description="How GigLine Safety & Compliance collects, uses, and protects your information."
-        canonical="/privacy"
+        canonical="/privacy-policy"
       />
 
       <header style={{ backgroundColor: NAVY }} className="py-12 md:py-16">

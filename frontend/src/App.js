@@ -91,8 +91,9 @@ function App() {
                   <Route path="/services/document-development" element={<DocumentDevelopmentPage />} />
                   <Route path="/services/annual-compliance-partner" element={<AnnualCompliancePartnerPage />} />
                   <Route path="/services/compliance-readiness-visit" element={<ComplianceReadinessVisitPage />} />
-                  <Route path="/services/safety-walkthrough" element={<SafetyWalkthroughPage />} />
-                  <Route path="/services/safety-walkthrough-report" element={<SafetyWalkthroughPage />} />
+                  {/* 301-equivalent: legacy /services/safety-walkthrough URLs consolidated to /safety-walkthrough */}
+                  <Route path="/services/safety-walkthrough" element={<Navigate to="/safety-walkthrough" replace />} />
+                  <Route path="/services/safety-walkthrough-report" element={<Navigate to="/safety-walkthrough" replace />} />
                   <Route path="/services/incident-review" element={<IncidentReviewPage />} />
                   <Route path="/services/osha-ready-control-system" element={<OshaReadyControlSystemPage />} />
                   <Route path="/services/:slug" element={<ServiceDetailPage />} />
@@ -128,9 +129,9 @@ function App() {
                   <Route path="/case-studies/mocksville-plastics-osha-inspection" element={<Navigate to="/case-study/metals-fabrication-statesville" replace />} />
                   <Route path="/supervisor-kit" element={<SupervisorKitPage />} />
                   <Route path="/supervisor-kit/thank-you" element={<SupervisorKitThankYouPage />} />
-                  <Route path="/privacy" element={<PrivacyPolicyPage />} />
+                  <Route path="/privacy" element={<Navigate to="/privacy-policy" replace />} />
                   <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-                  <Route path="/terms" element={<TermsOfServicePage />} />
+                  <Route path="/terms" element={<Navigate to="/terms-of-service" replace />} />
                   <Route path="/terms-of-service" element={<TermsOfServicePage />} />
                   <Route path="*" element={<NotFoundPage />} />
                 </Routes>

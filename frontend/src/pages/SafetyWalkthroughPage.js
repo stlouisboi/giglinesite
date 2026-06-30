@@ -59,10 +59,10 @@ const SafetyWalkthroughPage = () => {
       <SEO
         title="Safety Walkthrough — From $1,200 | GigLine"
         description="On-site safety walkthrough focused purely on physical hazards. Photo-documented findings with CFR citations and prioritized Top 10 fix list delivered within 48 hours. From $1,200."
-        canonical={`/services/${SLUG}`}
+        canonical={`/safety-walkthrough`}
         schema={[
           { '@context': 'https://schema.org', '@type': 'Service', name: 'Safety Walkthrough', provider: { '@type': 'LocalBusiness', name: 'GigLine Safety & Compliance', url: 'https://www.giglinecompliance.com', telephone: '+13363298899' }, areaServed: { '@type': 'State', name: 'North Carolina' }, offers: { '@type': 'Offer', price: '1200', priceCurrency: 'USD', description: 'Safety Walkthrough from $1,200 — on-site physical hazard inspection.' }, description: 'On-site walkthrough focused on physical hazards with photo-documented CFR-cited findings delivered as a Top 10 priority report within 48 hours.' },
-          { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [ { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.giglinecompliance.com/' }, { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://www.giglinecompliance.com/services' }, { '@type': 'ListItem', position: 3, name: 'Safety Walkthrough', item: `https://www.giglinecompliance.com/services/${SLUG}` } ] },
+          { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [ { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.giglinecompliance.com/' }, { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://www.giglinecompliance.com/services' }, { '@type': 'ListItem', position: 3, name: 'Safety Walkthrough', item: 'https://www.giglinecompliance.com/safety-walkthrough' } ] },
         ]}
       />
 

@@ -1,7 +1,45 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Search, X } from 'lucide-react';
+import { Search, X, Clock } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { SITE_SEARCH_INDEX } from '../data/siteSearchIndex';
+
+const RECENT_KEY = 'gl_search_recent';
+const RECENT_LIMIT = 5;
+
+const loadRecent = () => {
+  try {
+    const raw = localStorage.getItem(RECENT_KEY);
+    if (!raw) return [];
+    const arr = JSON.parse(raw);
+    return Array.isArray(arr) ? arr.slice(0, RECENT_LIMIT) : [];
+  } catch { return []; }
+};
+const saveRecent = (q) => {
+  if (!q || !q.trim()) return;
+  try {
+    const trimmed = q.trim();
+    const prev = loadRecent().filter(x => x.toLowerCase() !== trimmed.toLowerCase());
+    const next = [trimmed, ...prev].slice(0, RECENT_LIMIT);
+    localStorage.setItem(RECENT_KEY, JSON.stringify(next));
+  } catch { /* ignore quota / disabled storage */ }
+};
+const clearRecent = () => { try { localStorage.removeItem(RECENT_KEY); } catch { /* */ } };
+
+/** Bold the first case-insensitive match of `query` inside `text`. */
+const Highlight = ({ text, query }) => {
+  if (!text) return null;
+  const q = (query || '').trim();
+  if (!q) return <>{text}</>;
+  const idx = text.toLowerCase().indexOf(q.toLowerCase());
+  if (idx === -1) return <>{text}</>;
+  return (
+    <>
+      {text.slice(0, idx)}
+      <span className="bg-[#C9A84C]/30 text-[#1C2B2B] rounded-sm px-0.5 -mx-0.5 font-semibold">{text.slice(idx, idx + q.length)}</span>
+      {text.slice(idx + q.length)}
+    </>
+  );
+};
 
 /**
  * Sitewide search modal. Triggered by the search icon in the Navbar.
@@ -38,6 +76,7 @@ const scoreEntry = (entry, query) => {
 export const SiteSearch = ({ open, onClose }) => {
   const [query, setQuery] = useState('');
   const [selectedIdx, setSelectedIdx] = useState(0);
+  const [recents, setRecents] = useState([]);
   const inputRef = useRef(null);
   const listRef = useRef(null);
   const navigate = useNavigate();
@@ -56,11 +95,18 @@ export const SiteSearch = ({ open, onClose }) => {
     if (open) {
       setQuery('');
       setSelectedIdx(0);
+      setRecents(loadRecent());
       setTimeout(() => inputRef.current?.focus(), 30);
     }
   }, [open]);
 
   useEffect(() => { setSelectedIdx(0); }, [query]);
+
+  const commitNavigation = (path, q) => {
+    saveRecent(q || query);
+    navigate(path);
+    onClose();
+  };
 
   useEffect(() => {
     if (!open) return;
@@ -70,13 +116,12 @@ export const SiteSearch = ({ open, onClose }) => {
       if (e.key === 'ArrowUp') { e.preventDefault(); setSelectedIdx(i => Math.max(i - 1, 0)); }
       if (e.key === 'Enter' && results[selectedIdx]) {
         e.preventDefault();
-        navigate(results[selectedIdx].path);
-        onClose();
+        commitNavigation(results[selectedIdx].path);
       }
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [open, onClose, results, selectedIdx, navigate]);
+  }, [open, onClose, results, selectedIdx, navigate, query]);
 
   if (!open) return null;
 
@@ -115,10 +160,41 @@ export const SiteSearch = ({ open, onClose }) => {
         {/* Results */}
         <div ref={listRef} className="max-h-[60vh] overflow-y-auto">
           {query.trim() === '' ? (
-            <div className="px-5 py-10 text-center text-sm text-gray-400" data-testid="site-search-empty">
-              <p className="mb-2">Search across the entire site</p>
-              <p className="text-xs">25 Field Notes · all services · resources · case study · FAQ</p>
-            </div>
+            recents.length > 0 ? (
+              <div data-testid="site-search-recents">
+                <div className="flex items-center justify-between px-5 pt-3 pb-1">
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Recent searches</p>
+                  <button
+                    onClick={() => { clearRecent(); setRecents([]); }}
+                    className="text-[10px] text-gray-400 hover:text-gray-700"
+                    data-testid="site-search-clear-recents"
+                  >
+                    Clear
+                  </button>
+                </div>
+                <ul role="listbox">
+                  {recents.map((r, i) => (
+                    <li key={i}>
+                      <button
+                        type="button"
+                        onClick={() => { setQuery(r); inputRef.current?.focus(); }}
+                        className="w-full text-left flex items-center gap-3 px-5 py-2.5 hover:bg-gray-50"
+                        data-testid={`site-search-recent-${i}`}
+                      >
+                        <Clock size={14} className="text-gray-400 flex-shrink-0" />
+                        <span className="text-sm text-[#1C2B2B]">{r}</span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+                <p className="px-5 pb-5 pt-1 text-[11px] text-gray-400">Tip: press <kbd className="px-1 py-0.5 bg-gray-100 rounded font-mono text-[10px]">/</kbd> from anywhere to jump back here.</p>
+              </div>
+            ) : (
+              <div className="px-5 py-10 text-center text-sm text-gray-400" data-testid="site-search-empty">
+                <p className="mb-2">Search across the entire site</p>
+                <p className="text-xs">25 Field Notes · all services · resources · case study · FAQ</p>
+              </div>
+            )
           ) : results.length === 0 ? (
             <div className="px-5 py-10 text-center text-sm text-gray-400" data-testid="site-search-noresults">
               No results for &ldquo;<span className="text-[#1C2B2B] font-medium">{query}</span>&rdquo;.
@@ -129,7 +205,7 @@ export const SiteSearch = ({ open, onClose }) => {
                 <li key={r.path}>
                   <Link
                     to={r.path}
-                    onClick={onClose}
+                    onClick={() => commitNavigation(r.path)}
                     onMouseEnter={() => setSelectedIdx(i)}
                     className={`flex items-center justify-between gap-3 px-5 py-3 transition-colors border-l-4 ${i === selectedIdx ? 'bg-[#F4F6FB] border-l-[#2A52A0]' : 'border-l-transparent hover:bg-gray-50'}`}
                     data-testid={`site-search-result-${i}`}
@@ -137,8 +213,8 @@ export const SiteSearch = ({ open, onClose }) => {
                     aria-selected={i === selectedIdx}
                   >
                     <div className="min-w-0 flex-1">
-                      <p className="text-sm font-medium text-[#1C2B2B] truncate">{r.title}</p>
-                      <p className="text-[11px] text-gray-400 truncate">{r.path}</p>
+                      <p className="text-sm font-medium text-[#1C2B2B] truncate"><Highlight text={r.title} query={query} /></p>
+                      <p className="text-[11px] text-gray-400 truncate"><Highlight text={r.path} query={query} /></p>
                     </div>
                     <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded ${TYPE_TONE[r.type] || 'bg-gray-100 text-gray-700'} flex-shrink-0`}>
                       {r.type}

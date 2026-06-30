@@ -85,6 +85,17 @@ const AdminPage = () => {
   const [deleteForm, setDeleteForm] = useState({ kind: 'intake', docId: '', hard: false });
   const [deleteSubmitting, setDeleteSubmitting] = useState(false);
   const [toolbarMessage, setToolbarMessage] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // Case-insensitive multi-field text match for admin search.
+  const matchesSearch = (item, query, fields) => {
+    if (!query) return true;
+    const q = query.toLowerCase();
+    return fields.some(f => {
+      const v = item?.[f];
+      return v && String(v).toLowerCase().includes(q);
+    });
+  };
 
   const submitRevenue = async () => {
     if (!revenueForm.amount || Number(revenueForm.amount) <= 0) {
@@ -324,9 +335,33 @@ const AdminPage = () => {
         </div>
       )}
 
-      {/* Admin Toolbar — Export CSV / Add Revenue / Delete Lead */}
+      {/* Admin Toolbar — Search / Export CSV / Add Revenue / Delete Lead */}
       <div className="border-b bg-white" style={{ borderColor: '#e5e5e5' }}>
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 flex items-center gap-3 flex-wrap" data-testid="admin-toolbar">
+          {/* Global search */}
+          <div className="relative flex-shrink-0" data-testid="admin-search-container">
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search company, name, email..."
+              className="pl-7 pr-7 py-1.5 text-xs rounded border border-gray-200 focus:outline-none focus:border-[#2A52A0] w-60"
+              data-testid="admin-search-input"
+              aria-label="Search leads, intakes, bookings"
+            />
+            <svg className="absolute left-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" strokeWidth="2"/><path strokeWidth="2" strokeLinecap="round" d="m21 21-4.3-4.3"/></svg>
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                aria-label="Clear search"
+                data-testid="admin-search-clear"
+              >
+                <X size={12} />
+              </button>
+            )}
+          </div>
+          <div className="border-l border-gray-200 h-5 mx-1" />
           <span className="text-[10px] uppercase font-bold text-gray-400 tracking-widest mr-2">Tools</span>
           {/* Export CSV downloads */}
           <a

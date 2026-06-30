@@ -123,7 +123,7 @@ const AboutPage = () => {
     <main data-testid="about-page">
       <SEO
         title="Safety Consultant Kernersville NC — Vince Lawrence | GigLine"
-        description="25+ years on the floor. OSHA 30-Hour certified. Navy veteran. The same eyes an inspector uses — before they show up. (336) 329-8899."
+        description="25+ years on the floor. OSHA 30-Hour certified. Navy veteran. An OSHA-informed floor review before an inspector shows up. (336) 329-8899."
         canonical="/about"
         schema={[
           {

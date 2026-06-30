@@ -37,7 +37,7 @@ const FINDINGS = [
       'One propane cylinder observed stored upright without chain, bracket, or restraint system to prevent tipping. Cylinder positioned immediately adjacent to the flammable liquids storage cabinet with no separation distance between the two.',
     correctiveAction:
       'Secure propane cylinder immediately with a chain bracket or cylinder stand rated for compressed gas storage. Relocate cylinder a minimum of 20 feet from the flammable storage cabinet or install a fire-resistant barrier of at least 30-minute rating between them. When not in active use, store propane cylinder outside or in a designated outdoor compressed gas storage area.',
-    penalty: '$7,000 – $14,502 (Serious)',
+    penalty: 'Up to $16,550 (Serious)',
     fixBy: 'Immediate',
     photoUrl: '/floor-findings/propane-cylinder.jpg',
   },
@@ -52,7 +52,7 @@ const FINDINGS = [
       'Shear blade point of operation on roll former cut-off mechanism observed without point-of-operation guarding. Blade accessible during operation. Perimeter safety rail present on outfeed side does not address the point of operation at the shear head.',
     correctiveAction:
       'Install point-of-operation guarding on the shear blade to prevent operator contact with the cutting hazard. Acceptable methods include barrier guards, two-hand controls, or presence-sensing devices. Post machine-specific LOTO procedure at the shear station before any maintenance or jam-clearing is performed. Complete guarding installation before production employees are assigned to operate this equipment.',
-    penalty: '$7,000 – $14,502 (Serious)',
+    penalty: 'Up to $16,550 (Serious)',
     fixBy: 'Before production employees operate equipment',
     photoUrl: '/floor-findings/machine-guarding.jpg',
   },
@@ -67,7 +67,7 @@ const FINDINGS = [
       'No SDS present in digital SDS library or physical binder for a hydraulic oil product actively in use on the production floor. Four 5-gallon pails observed stored adjacent to the hydraulic power unit. Product in active use in the machine.',
     correctiveAction:
       'Obtain and maintain Safety Data Sheets for all hazardous chemicals present in the workplace. Ensure SDSs are readily accessible to employees during their work shifts in the area where hazardous chemicals are used or stored.',
-    penalty: '$7,000 – $15,621 (Serious)',
+    penalty: 'Up to $16,550 (Serious)',
     fixBy: 'Before fluid is used in production',
     photoUrl: '/floor-findings/hazcom-sds.jpg',
   },

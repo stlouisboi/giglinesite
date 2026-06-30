@@ -15,11 +15,11 @@ export const FAQS = [
   },
   {
     q: 'What does an OSHA safety consultant do on-site?',
-    a: "During a GigLine Safety Walkthrough, Vince Lawrence \u2014 OSHA 30-Hour Certified safety compliance consultant based in Kernersville, NC \u2014 walks every area of your facility. He photographs findings, documents each one against the applicable CFR standard, and estimates the penalty exposure per finding. Within 48 hours you receive a written report with photo documentation, CFR citations, and a prioritized list of corrective actions. The engagement is private \u2014 findings are not shared, published, or referenced without written permission.",
+    a: "During a GigLine Safety Walkthrough, Vince Lawrence \u2014 OSHA 30-Hour Certified safety compliance consultant based in Kernersville, NC \u2014 walks every area of your facility. He photographs findings, documents each one against the applicable CFR standard, and provides an estimated penalty exposure based on OSHA published maximums. Within 48 hours you receive a written report with photo documentation, CFR citations, and a prioritized list of corrective actions. The engagement is private \u2014 findings are not shared, published, or referenced without written permission.",
   },
   {
     q: 'How do I prepare for an OSHA inspection in a small manufacturing plant?',
-    a: "The most effective preparation is a third-party walkthrough before OSHA arrives. OSHA inspections are triggered by employee complaints, referrals, fatalities, or programmed inspections \u2014 they do not announce in advance. A GigLine Safety Walkthrough gives you a written report of what an inspector is likely to find, documented against the same standards OSHA uses. The walkthrough starts at $1,200. A single serious citation can cost up to $16,550.",
+    a: "The most effective preparation is a third-party walkthrough before OSHA arrives. OSHA inspections are triggered by employee complaints, referrals, fatalities, or programmed inspections \u2014 they do not announce in advance. A GigLine Safety Walkthrough gives you a written report of the conditions an inspector may review, documented against the same standards OSHA uses. The walkthrough starts at $1,200. A single serious citation can cost up to $16,550.",
   },
   {
     q: 'What is a Compliance Readiness Visit?',
@@ -31,7 +31,7 @@ export const FAQS = [
   },
   {
     q: "What's included in a GigLine safety walkthrough?",
-    a: "A GigLine safety walkthrough includes a 1–3-hour on-site review, photo-documented safety observations, OSHA-related references where applicable, and a written \"Top 10 Fixes\" report delivered within 24–48 hours. Findings are color-coded: RED for urgent items, AMBER for near-term corrections, and GREEN for what your team is doing well.",
+    a: "A GigLine safety walkthrough includes a 1–3-hour on-site review, photo-documented safety observations, OSHA-related references where applicable, and a written \"Top 10 Fixes\" report delivered within 48 hours. Findings are color-coded: RED for urgent items, AMBER for near-term corrections, and GREEN for what your team is doing well.",
   },
   {
     q: 'How long does a safety walkthrough take on-site?',
@@ -55,7 +55,7 @@ export const FAQS = [
   },
   {
     q: 'How fast do I get my walkthrough report?',
-    a: 'Reports are typically delivered within 24 to 48 hours of the on-site visit. The report is provided as a PDF and may include photos, OSHA-related references where applicable, and prioritized corrective action recommendations. Many clients receive the report by the next business day.',
+    a: 'Reports are typically delivered within 48 hours of the on-site visit. The report is provided as a PDF and may include photos, OSHA-related references where applicable, and prioritized corrective action recommendations. Many clients receive the report by the next business day.',
   },
   {
     q: 'What is a "Top 10 Fixes" report?',

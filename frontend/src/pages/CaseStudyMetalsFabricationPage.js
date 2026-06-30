@@ -42,7 +42,7 @@ const CASE_FAQS = [
   },
   {
     q: 'What does the written report actually contain?',
-    a: "Every finding documented against the applicable CFR standard, with the specific regulation cited. Photo documentation of physical hazards. A penalty exposure estimate per finding based on current OSHA rates. A corrective action for each finding with a recommended timeline. A compliance score and document coverage summary. A corrective action log pre-populated with every finding, ready to assign owners and track close-out. The report in this engagement ran 18 pages and was delivered four days after the walkthrough.",
+    a: "Every finding documented against the applicable CFR standard, with the specific regulation cited. Photo documentation of physical hazards. A penalty exposure estimate per finding based on OSHA published maximums. A corrective action for each finding with a recommended timeline. A compliance score and document coverage summary. A corrective action log pre-populated with every finding, ready to assign owners and track close-out. The report in this engagement ran 18 pages and was delivered four days after the walkthrough.",
   },
   {
     q: "What if I can't fix everything before an OSHA inspection arrives?",
@@ -105,7 +105,7 @@ const CaseStudyMetalsFabricationPage = () => {
               {
                 '@type': 'Question',
                 name: 'What does the written report actually contain?',
-                acceptedAnswer: { '@type': 'Answer', text: "Every finding documented against the applicable CFR standard, with the specific regulation cited. Photo documentation of physical hazards. A penalty exposure estimate per finding based on current OSHA rates. A corrective action for each finding with a recommended timeline. A compliance score and document coverage summary. A corrective action log pre-populated with every finding, ready to assign owners and track close-out. The report in this engagement ran 18 pages and was delivered four days after the walkthrough." },
+                acceptedAnswer: { '@type': 'Answer', text: "Every finding documented against the applicable CFR standard, with the specific regulation cited. Photo documentation of physical hazards. A penalty exposure estimate per finding based on OSHA published maximums. A corrective action for each finding with a recommended timeline. A compliance score and document coverage summary. A corrective action log pre-populated with every finding, ready to assign owners and track close-out. The report in this engagement ran 18 pages and was delivered four days after the walkthrough." },
               },
               {
                 '@type': 'Question',
@@ -262,6 +262,14 @@ const CaseStudyMetalsFabricationPage = () => {
               corrective="Install point-of-operation guarding before production employees operate the equipment. Due date: before next production run."
             />
           </div>
+
+          <p
+            className="not-italic text-[12px] md:text-[13px] leading-[1.55] italic mb-10"
+            style={{ color: TEXT_MUTED, fontFamily: "'Manrope', sans-serif" }}
+            data-testid="case-penalty-disclaimer"
+          >
+            Note: Penalty figures are educational estimates based on OSHA published maximum penalty schedules (29 CFR 1903.15 / 2026 adjusted rates). Actual penalties assessed by OSHA vary by employer size, history, good-faith effort, and gravity of the violation.
+          </p>
 
           <H3>The documentation picture:</H3>
 
@@ -732,7 +740,7 @@ const Finding = ({ priority, n, cfr, penalty, title, body, corrective }) => (
           className="uppercase font-bold tracking-[0.18em]"
           style={{ color: GOLD, ...mono, fontSize: '10px' }}
         >
-          Penalty Exposure
+          Estimated Penalty Exposure
         </span>
         <span
           className="text-[13px] font-semibold"

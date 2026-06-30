@@ -25,7 +25,7 @@ const INSIDE_CARDS = [
   {
     title: 'Most Common HR-Facing Citations',
     body:
-      'OSHA 300 Log, training records, written programs, HazCom — the documentation gaps inspectors find most often, with penalty exposure per violation.',
+      'OSHA 300 Log, training records, written programs, HazCom — the documentation gaps inspectors find most often, with estimated penalty exposure based on OSHA published maximums.',
   },
 ];
 

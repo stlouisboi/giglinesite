@@ -569,7 +569,7 @@ const HomePage = () => {
                 Icon: ClipboardList,
                 title: 'Safety Walkthrough',
                 price: 'From $1,200',
-                body: 'A documented on-site walkthrough of your facility. Photo evidence, CFR citations, penalty exposure per finding, and a Top 10 Fixes report \u2014 delivered in writing within 48 hours.',
+                body: 'A documented on-site walkthrough of your facility. Photo evidence, CFR citations, estimated penalty exposure based on OSHA published maximums, and a Top 10 Fixes report \u2014 delivered in writing within 48 hours.',
                 outcome: 'You leave with: a written report you can hand to a supervisor and a fix list ranked by citation risk.',
                 cta: { label: 'Request a Walkthrough', to: '/intake?service=safety-walkthrough-report' },
                 testid: 'home-service-walkthrough',
@@ -887,7 +887,7 @@ const HomePage = () => {
               { n: '01', title: 'You reach out.', body: 'Fill out the intake form or call directly. Tell us your facility type, approximate square footage, and what\u2019s on your mind. No commitment required.' },
               { n: '02', title: 'We give you a fixed quote.', body: 'Based on your facility size, complexity, and the scope of the engagement. You\u2019ll have a number before we schedule anything.' },
               { n: '03', title: 'We walk your floor.', body: 'Vince comes to your facility. He walks every area, photographs findings, and documents what he sees against the applicable OSHA standards. Typically 1\u20133 hours on-site depending on facility size and complexity.', boldTail: 'Minimal disruption to production.' },
-              { n: '04', title: 'You get a written report in 48 hours.', body: 'Photo documentation, CFR citations, penalty exposure per finding, and a prioritized list of corrective actions. Yours to keep, act on, and share with your team.' },
+              { n: '04', title: 'You get a written report in 48 hours.', body: 'Photo documentation, CFR citations, estimated penalty exposure based on OSHA published maximums, and a prioritized list of corrective actions. Yours to keep, act on, and share with your team.' },
             ];
             return (
               <div className="relative mb-14" data-testid="how-it-works-timeline">

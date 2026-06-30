@@ -123,7 +123,7 @@ const VINCE_PERSON = {
 // Homepage FAQ mirrors the visible FAQ section on the homepage
 const HOMEPAGE_FAQS = [
   { q: 'How long are you on-site?', a: "Most walkthroughs take 1 to 3 hours on-site depending on the size of the operation. A small shop may take less than an hour. Larger warehouses, production floors, or multi-area operations may take 2 to 3 hours or require a larger scoped visit. You'll know the range before I arrive." },
-  { q: "What do I get when it's done?", a: "A written report delivered within 24 to 48 hours. It includes photo-documented findings, OSHA-related references where applicable, and a plain-language corrective action recommendation for each item. No guesswork about what to fix or why." },
+  { q: "What do I get when it's done?", a: "A written report delivered within 48 hours. It includes photo-documented findings, OSHA-related references where applicable, and a plain-language corrective action recommendation for each item. No guesswork about what to fix or why." },
   { q: 'Do you work with my insurance company or report to OSHA?', a: "No. This is a private engagement. Nothing leaves the building except the report I give you. As part of a standard engagement, I don't contact your insurer, your carrier, or any regulatory agency. What you do with the findings is entirely your decision." },
   { q: 'What if my operation is outside the Triad?', a: 'On-site walkthroughs are available within roughly 60 miles of Winston-Salem — covering the full Triad and surrounding areas. For locations beyond that range, contact me directly. Travel engagements are available and travel fees may apply.' },
 ];
@@ -131,17 +131,17 @@ const HOMEPAGE_FAQS = [
 // Canonical 18-question FAQ for /faq page
 const FULL_FAQS = [
   { q: 'How much does an OSHA safety walkthrough cost in North Carolina?', a: "GigLine safety walkthroughs start at $1,200. Price is scoped based on square footage, machine count, employee count, and hazard complexity. Fixed quote before scheduling. No hourly billing, no retainer, no surprise invoice. For context: a single OSHA serious violation can cost up to $16,550 per citation (2026 adjusted rate). The walkthrough identifies what's exposed before an inspector does." },
-  { q: 'What does an OSHA safety consultant do on-site?', a: "During a GigLine Safety Walkthrough, Vince Lawrence — OSHA 30-Hour Certified safety compliance consultant based in Kernersville, NC — walks every area of your facility. He photographs findings, documents each one against the applicable CFR standard, and estimates the penalty exposure per finding. Within 48 hours you receive a written report with photo documentation, CFR citations, and a prioritized list of corrective actions. The engagement is private — findings are not shared, published, or referenced without written permission." },
-  { q: 'How do I prepare for an OSHA inspection in a small manufacturing plant?', a: "The most effective preparation is a third-party walkthrough before OSHA arrives. OSHA inspections are triggered by employee complaints, referrals, fatalities, or programmed inspections — they do not announce in advance. A GigLine Safety Walkthrough gives you a written report of what an inspector is likely to find, documented against the same standards OSHA uses. The walkthrough starts at $1,200. A single serious citation can cost up to $16,550." },
+  { q: 'What does an OSHA safety consultant do on-site?', a: "During a GigLine Safety Walkthrough, Vince Lawrence — OSHA 30-Hour Certified safety compliance consultant based in Kernersville, NC — walks every area of your facility. He photographs findings, documents each one against the applicable CFR standard, and provides an estimated penalty exposure based on OSHA published maximums. Within 48 hours you receive a written report with photo documentation, CFR citations, and a prioritized list of corrective actions. The engagement is private — findings are not shared, published, or referenced without written permission." },
+  { q: 'How do I prepare for an OSHA inspection in a small manufacturing plant?', a: "The most effective preparation is a third-party walkthrough before OSHA arrives. OSHA inspections are triggered by employee complaints, referrals, fatalities, or programmed inspections — they do not announce in advance. A GigLine Safety Walkthrough gives you a written report of the conditions an inspector may review, documented against the same standards OSHA uses. The walkthrough starts at $1,200. A single serious citation can cost up to $16,550." },
   { q: 'What is a Compliance Readiness Visit?', a: "GigLine's most complete single engagement. Combines the Safety Walkthrough and Documentation Review in one on-site visit. One consolidated written report covering both physical findings and documentation gaps, with a prioritized corrective action plan. Starts at $2,000. Booking separately starts at $2,500. The combined visit covers both for less." },
   { q: 'What is the difference between a Safety Walkthrough and a Compliance Readiness Visit?', a: "The Safety Walkthrough covers the physical floor — starts at $1,200, report in 48 hours. The CRV adds a full documentation review to the same visit — written programs, training records, HazCom binder, OSHA 300 log — starts at $2,000. If unsure, the walkthrough is the lower-barrier starting point." },
-  { q: "What's included in a GigLine safety walkthrough?", a: "A GigLine safety walkthrough includes a 1–3-hour on-site review, photo-documented safety observations, OSHA-related references where applicable, and a written 'Top 10 Fixes' report delivered within 24–48 hours. Findings are color-coded: RED for urgent items, AMBER for near-term corrections, and GREEN for what your team is doing well." },
+  { q: "What's included in a GigLine safety walkthrough?", a: "A GigLine safety walkthrough includes a 1–3-hour on-site review, photo-documented safety observations, OSHA-related references where applicable, and a written 'Top 10 Fixes' report delivered within 48 hours. Findings are color-coded: RED for urgent items, AMBER for near-term corrections, and GREEN for what your team is doing well." },
   { q: 'How long does a safety walkthrough take on-site?', a: 'Most walkthroughs take 1 to 3 hours on-site. A small shop under 10,000 sq ft may take less than an hour. Larger warehouses, production floors, or multi-area operations may take 2 to 3 hours or require a larger scoped visit. You will receive a time estimate before the visit.' },
   { q: "What's the difference between a safety walkthrough and an OSHA inspection?", a: 'An OSHA inspection is performed by a federal or state compliance officer and may result in citations, penalties, and required abatement. A GigLine safety walkthrough is a private, voluntary review performed by an independent consultant. Findings are delivered only to you — nothing is reported to OSHA, your insurance carrier, or any third party.' },
   { q: 'Do I need a written HazCom program if I have fewer than 10 employees?', a: 'In most cases, yes. Under OSHA 29 CFR 1910.1200, employers with hazardous chemicals in the workplace must maintain a written Hazard Communication program, regardless of headcount. Exceptions are limited and generally apply only to sealed consumer-packaged products used in the same way a household consumer would use them.' },
   { q: 'What areas of North Carolina does GigLine serve?', a: 'GigLine is based in Kernersville, NC and serves the Piedmont Triad, including Winston-Salem, Greensboro, High Point, Burlington, Lexington, Thomasville, Salisbury, and surrounding communities. Most on-site work is scheduled within roughly 60 miles of Winston-Salem. Charlotte and Raleigh metro engagements may be considered based on scope and travel.' },
   { q: 'Will GigLine report findings to OSHA?', a: "No. GigLine engagements are private. The written report is delivered to the client only. GigLine does not contact OSHA, your insurance carrier, or any regulatory agency as part of a standard walkthrough or documentation review." },
-  { q: 'How fast do I get my walkthrough report?', a: 'Reports are typically delivered within 24 to 48 hours of the on-site visit. The report is provided as a PDF and may include photos, OSHA-related references where applicable, and prioritized corrective action recommendations. Many clients receive the report by the next business day.' },
+  { q: 'How fast do I get my walkthrough report?', a: 'Reports are typically delivered within 48 hours of the on-site visit. The report is provided as a PDF and may include photos, OSHA-related references where applicable, and prioritized corrective action recommendations. Many clients receive the report by the next business day.' },
   { q: 'What is a "Top 10 Fixes" report?', a: "The GigLine deliverable for a safety walkthrough. It ranks the ten most important findings from your on-site visit, organized RED for urgent items, AMBER for near-term corrections, and GREEN for what your team is doing well. Each item includes what was observed, why it matters, the OSHA-related reference where applicable, and a recommended corrective action." },
   { q: 'Does GigLine work with my insurance carrier?', a: 'No. The engagement is strictly between the business owner and GigLine. Nothing is shared with insurance carriers, brokers, or third parties. What you choose to do with the report — including sharing it with your carrier — is entirely your decision.' },
   { q: 'Can I see a sample safety walkthrough report before I book?', a: "Yes. Email vince@giglinecompliance.com or call (336) 329-8899 and request a sanitized sample. Sensitive client details are redacted but the structure, depth, and OSHA references are identical to what you'll receive." },
@@ -218,7 +218,7 @@ const routes = [
       <p>OSHA doesn't announce inspections. They arrive after a complaint, a referral, or a fatality — or as part of a programmed inspection targeting your industry. By the time they're on your floor, the window to fix things has closed. The walkthrough is that window.</p>
       <h2>Services — Three ways to work with GigLine.</h2>
       <ul>
-        <li><a href="/safety-walkthrough">Safety Walkthrough</a> — From $1,200. Documented on-site walkthrough with photo evidence, CFR citations, penalty exposure per finding, and a Top 10 Fixes report within 48 hours.</li>
+        <li><a href="/safety-walkthrough">Safety Walkthrough</a> — From $1,200. Documented on-site walkthrough with photo evidence, CFR citations, estimated penalty exposure based on OSHA published maximums, and a Top 10 Fixes report within 48 hours.</li>
         <li><a href="/osha-compliance-gap-check">Compliance Readiness Visit</a> — From $2,000. Walkthrough plus a full Documentation Review in a single visit. Most Requested.</li>
         <li><a href="/documentation-gap-check">OSHA Documentation Readiness Review (standalone)</a> — From $1,300.</li>
         <li><a href="/safety-check">Safety Check</a> — Free 90-second self-assessment of the six most common OSHA violations in general industry. No contact info required.</li>
@@ -259,7 +259,7 @@ const routes = [
   {
     path: '/about',
     title: 'Safety Consultant Kernersville NC — Vince Lawrence | GigLine',
-    description: '25+ years on the floor. OSHA 30-Hour certified. Navy veteran. The same eyes an inspector uses — before they show up. (336) 329-8899.',
+    description: '25+ years on the floor. OSHA 30-Hour certified. Navy veteran. An OSHA-informed floor review before an inspector shows up. (336) 329-8899.',
     canonical: '/about',
     schemas: [VINCE_PERSON, breadcrumb([{ name: 'Home', path: '/' }, { name: 'About', path: '/about' }])],
     content: `
@@ -310,7 +310,7 @@ const routes = [
       <p>The floor and the files reviewed in a single visit. Full safety walkthrough on-site, OSHA Documentation Readiness Review, single compliance percentage score, photo documentation, CFR citations, written report within 48 hours. Supervisor Safety Starter System included.</p>
       <h2>Standalone Services</h2>
       <h3>Safety Walkthrough Report — Starting at $1,200</h3>
-      <p>On-site walkthrough (1–3 hours). Photo-documented hazard findings. CFR citations + 2026 penalty exposure per finding. Top 10 Fixes report — RED / AMBER / GREEN priority. Delivered within 24–48 hours.</p>
+      <p>On-site walkthrough (1–3 hours). Photo-documented hazard findings. CFR citations + estimated penalty exposure based on OSHA published maximums. Top 10 Fixes report — RED / AMBER / GREEN priority. Delivered within 48 hours.</p>
       <h3>OSHA Documentation Readiness Review — Starting at ${DOC_REVIEW_PRICE_LABEL}</h3>
       <p>Structured review of written programs, training records, OSHA logs, inspection records, and SDS compliance. 53-item checklist across seven OSHA categories.</p>
       <h3>Incident Review & Corrective Action Support — Starting at $1,500</h3>
@@ -488,12 +488,12 @@ const routes = [
   {
     path: '/intake',
     title: 'Request a Safety Walkthrough | GigLine Safety & Compliance',
-    description: 'Request an on-site safety walkthrough for your operation. One visit. Clear findings. Written report within 24-48 hours. Kernersville, NC.',
+    description: 'Request an on-site safety walkthrough for your operation. One visit. Clear findings. Written report within 48 hours. Kernersville, NC.',
     canonical: '/intake',
     schemas: [LOCAL_BUSINESS],
     content: `
       <h1>Request a Safety Walkthrough</h1>
-      <p>Schedule an on-site safety walkthrough with GigLine Safety &amp; Compliance. One visit. Clear findings. Written report within 24-48 hours. <strong>Starting at $1,200</strong>.</p>
+      <p>Schedule an on-site safety walkthrough with GigLine Safety &amp; Compliance. One visit. Clear findings. Written report within 48 hours. <strong>Starting at $1,200</strong>.</p>
       <p>Serving small manufacturers, warehouses, contractors, and fleets in the Kernersville/Triad, NC area.</p>
 
       <h2>Three ways to reach Vince</h2>
@@ -638,7 +638,7 @@ const routes = [
           {
             '@type': 'Question',
             name: 'What does the written report actually contain?',
-            acceptedAnswer: { '@type': 'Answer', text: "Every finding documented against the applicable CFR standard, with the specific regulation cited. Photo documentation of physical hazards. A penalty exposure estimate per finding based on current OSHA rates. A corrective action for each finding with a recommended timeline. A compliance score and document coverage summary. A corrective action log pre-populated with every finding, ready to assign owners and track close-out. The report in this engagement ran 18 pages and was delivered four days after the walkthrough." },
+            acceptedAnswer: { '@type': 'Answer', text: "Every finding documented against the applicable CFR standard, with the specific regulation cited. Photo documentation of physical hazards. A penalty exposure estimate per finding based on OSHA published maximums. A corrective action for each finding with a recommended timeline. A compliance score and document coverage summary. A corrective action log pre-populated with every finding, ready to assign owners and track close-out. The report in this engagement ran 18 pages and was delivered four days after the walkthrough." },
           },
           {
             '@type': 'Question',
@@ -667,13 +667,15 @@ const routes = [
       <p>13 findings. 7 serious citation risk (P2). 6 documentation gaps (P3). 0 critical. Compliance score: 80.3 out of 100.</p>
 
       <h3>Finding 10 &mdash; Unsecured propane cylinder (29 CFR 1910.110(b)(6)(i))</h3>
-      <p>One propane cylinder stored upright with no chain, bracket, or restraint &mdash; positioned immediately adjacent to the flammable liquids storage cabinet with no separation distance. Penalty exposure: $7,000 to $14,502 (Serious).</p>
+      <p>One propane cylinder stored upright with no chain, bracket, or restraint &mdash; positioned immediately adjacent to the flammable liquids storage cabinet with no separation distance. Estimated penalty exposure based on OSHA published maximums: up to $16,550 (Serious).</p>
 
       <h3>Finding 12 &mdash; Unguarded shear point of operation (29 CFR 1910.212(a)(1))</h3>
-      <p>The shear blade on the roll former cut-off mechanism was accessible during operation. The perimeter rail did not address the point of operation. Penalty exposure: $7,000 to $14,502 (Serious).</p>
+      <p>The shear blade on the roll former cut-off mechanism was accessible during operation. The perimeter rail did not address the point of operation. Estimated penalty exposure based on OSHA published maximums: up to $16,550 (Serious).</p>
 
       <h3>Documentation gaps</h3>
-      <p>The IIPP existed but was built from an AI-generated template &mdash; wrong facility address, missing required elements, not reviewed against actual operations. The SDS library was missing a sheet for Star Fire AW46 Hydraulic Oil &mdash; a product actively in use. Penalty exposure under 29 CFR 1910.1200(g)(1): $7,000 to $15,621. Three required documents were missing entirely: Heat Stress Prevention Plan, Bloodborne Pathogen Exposure Control Plan, and a Corrective Action Log.</p>
+      <p>The IIPP existed but was built from an AI-generated template &mdash; wrong facility address, missing required elements, not reviewed against actual operations. The SDS library was missing a sheet for Star Fire AW46 Hydraulic Oil &mdash; a product actively in use. Estimated penalty exposure based on OSHA published maximums under 29 CFR 1910.1200(g)(1): up to $16,550 per violation. Three required documents were missing entirely: Heat Stress Prevention Plan, Bloodborne Pathogen Exposure Control Plan, and a Corrective Action Log.</p>
+
+      <p><em>Note: Penalty figures are educational estimates based on OSHA published maximum penalty schedules (29 CFR 1903.15 / 2026 adjusted rates). Actual penalties assessed by OSHA vary by employer size, history, good-faith effort, and gravity of the violation.</em></p>
 
       <h2>What the Engagement Delivered</h2>
       <p>A written report documenting all 13 findings against applicable CFR standards, with photo documentation of the two highest-priority physical hazards and a corrective action summary pre-populated with every finding, priority rating, assigned due date, and recommended corrective action.</p>
@@ -735,7 +737,7 @@ const routes = [
       <ul>
         <li>Photo-documented findings — every observation captured on the floor.</li>
         <li>CFR citation per finding — specific regulation, not generic language.</li>
-        <li>2026 penalty exposure per finding — $16,550 serious / $165,514 willful.</li>
+        <li>2026 estimated penalty exposure based on OSHA published maximums — $16,550 serious / $165,514 willful.</li>
         <li>RED / AMBER / GREEN priority sorting so supervisors know what to fix first.</li>
         <li>30 / 60 / 90-day corrective action plan with owners and target dates.</li>
       </ul>
@@ -897,7 +899,7 @@ const routes = [
         '@context': 'https://schema.org',
         '@type': 'Service',
         name: 'On-Site Safety Walkthrough',
-        description: 'On-site OSHA-focused safety walkthrough for manufacturers, warehouses, contractors, and fleet operations across North Carolina. Written report delivered within 24-48 hours.',
+        description: 'On-site OSHA-focused safety walkthrough for manufacturers, warehouses, contractors, and fleet operations across North Carolina. Written report delivered within 48 hours.',
         provider: { '@id': `${BASE_URL}/#business` },
         areaServed: { '@type': 'State', name: 'North Carolina' },
         offers: { '@type': 'Offer', price: '1200', priceCurrency: 'USD' },
@@ -905,7 +907,7 @@ const routes = [
       faqSchema([
         { q: 'Who is the safety walkthrough built for?', a: 'Small to mid-size manufacturers, warehouses, distribution centers, contractors, and fleet operations in North Carolina — typically 5 to 100 employees with no full-time safety manager on staff.' },
         { q: 'What gets reviewed during a safety walkthrough?', a: 'Walking-working surfaces and egress, electrical panel clearance, machine guarding and energy control, powered industrial trucks, hazard communication, PPE and fall protection, and recordkeeping — the same OSHA standards an inspector would focus on.' },
-        { q: 'What do I receive after the walkthrough?', a: 'A PDF report within 24-48 hours with photo-documented findings, OSHA-related references where applicable, prioritized corrective action recommendations, and color-coded priorities (RED, AMBER, GREEN).' },
+        { q: 'What do I receive after the walkthrough?', a: 'A PDF report within 48 hours with photo-documented findings, OSHA-related references where applicable, prioritized corrective action recommendations, and color-coded priorities (RED, AMBER, GREEN).' },
         { q: 'How much does a safety walkthrough cost?', a: 'Walkthroughs start at $1,200. Most engagements fall between $1,200 and $2,000 depending on size and scope. Fixed quote before scheduling. No retainer.' },
       ]),
       breadcrumb([{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }, { name: 'Safety Walkthrough', path: '/safety-walkthrough' }]),
@@ -1138,7 +1140,7 @@ Object.keys(CITY_META).forEach((city) => {
         '@context': 'https://schema.org',
         '@type': 'Service',
         name: `Safety Walkthrough in ${m.name}, NC`,
-        description: `On-site OSHA safety walkthroughs for ${m.industries} in ${m.name} and surrounding areas. Written report delivered within 24–48 hours. Starting at ${priceStartLabel}.`,
+        description: `On-site OSHA safety walkthroughs for ${m.industries} in ${m.name} and surrounding areas. Written report delivered within 48 hours. Starting at ${priceStartLabel}.`,
         provider: { '@id': `${BASE_URL}/#business` },
         areaServed: { '@type': 'City', name: m.name, containedInPlace: { '@type': 'State', name: 'North Carolina' } },
         offers: { '@type': 'Offer', price: String(m.price), priceCurrency: 'USD' },
@@ -1148,7 +1150,7 @@ Object.keys(CITY_META).forEach((city) => {
     ],
     content: `
       <h1>Safety Walkthrough — ${m.name}, NC</h1>
-      <p>On-site OSHA safety walkthroughs for ${m.industries} in ${m.name} and surrounding areas. Starting at ${priceStartLabel}. Written report delivered within 24-48 hours.</p>
+      <p>On-site OSHA safety walkthroughs for ${m.industries} in ${m.name} and surrounding areas. Starting at ${priceStartLabel}. Written report delivered within 48 hours.</p>
       <h2>${m.name} Safety Walkthrough FAQ</h2>
       ${cityFaqs.map((f) => `<h3>${f.q}</h3><p>${f.a}</p>`).join('')}
       <p><a href="/faq">See all 18 frequently asked questions →</a></p>

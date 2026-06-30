@@ -57,7 +57,7 @@ const ALL_STEPS = [
   {
     id: 6,
     title: 'Written report within 48 hours',
-    body: 'CFR citations, penalty exposure per finding, prioritized corrective action plan, photo documentation. Delivered by email. Yours to keep.',
+    body: 'CFR citations, estimated penalty exposure based on OSHA published maximums, prioritized corrective action plan, photo documentation. Delivered by email. Yours to keep.',
     crvOnly: false,
   },
 ];

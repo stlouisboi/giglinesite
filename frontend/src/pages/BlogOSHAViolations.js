@@ -175,11 +175,11 @@ const violations = [
 ];
 
 const penaltyData = [
-  { type: "Serious", amount: "$16,550 per violation" },
-  { type: "Other-Than-Serious", amount: "$16,550 per violation" },
-  { type: "Willful", amount: "$165,514 per violation" },
-  { type: "Repeat", amount: "$165,514 per violation" },
-  { type: "Failure to Abate", amount: "$16,550 per day" },
+  { type: "Serious", amount: "Up to $16,550 per violation" },
+  { type: "Other-Than-Serious", amount: "Up to $16,550 per violation" },
+  { type: "Willful", amount: "Up to $165,514 per violation" },
+  { type: "Repeat", amount: "Up to $165,514 per violation" },
+  { type: "Failure to Abate", amount: "Up to $16,550 per day" },
 ];
 
 const BlogOSHAViolations = () => {

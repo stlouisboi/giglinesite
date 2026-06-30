@@ -408,7 +408,7 @@ const ClientIntakePage = () => {
             {
               n: '4',
               title: 'You get the report in writing',
-              body: 'Within 48 hours of the walkthrough. Photo documentation, CFR citations, penalty exposure per finding, and a prioritized corrective action plan. Yours to keep.',
+              body: 'Within 48 hours of the walkthrough. Photo documentation, CFR citations, estimated penalty exposure based on OSHA published maximums, and a prioritized corrective action plan. Yours to keep.',
             },
           ].map((step) => (
             <div

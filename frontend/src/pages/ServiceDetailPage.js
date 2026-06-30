@@ -18,7 +18,7 @@ const SERVICES = {
     whatsIncluded: [
       'On-site walkthrough (1\u20133 hours, scheduled at your convenience)',
       'Photo-documented hazard findings with location and area annotations',
-      'CFR citations + 2026 penalty exposure calculated per finding',
+      'CFR citations + estimated penalty exposure calculated based on OSHA published maximums',
       'Top 10 priority findings \u2014 RED / AMBER / GREEN, CFR citation + corrective action for each',
       'Delivered as PDF within 24\u201348 hours',
       'Fixed quote before scheduling \u2014 no scope creep, no hourly billing',
@@ -27,7 +27,7 @@ const SERVICES = {
     process: [
       ['Quote and schedule', "You contact GigLine, share your facility size and industry. A fixed quote is issued within one business day. No hourly billing."],
       ['On-site walkthrough', 'Vince walks your floor for 1\u20133 hours. Photographs every finding. Annotates with location, severity, and CFR citation on the spot.'],
-      ['Written report delivered', 'Within 24\u201348 hours, you receive a PDF with photo-documented findings, CFR citations, 2026 penalty exposure, and a prioritized corrective action list.'],
+      ['Written report delivered', 'Within 48 hours, you receive a PDF with photo-documented findings, CFR citations, an estimated penalty exposure based on OSHA published maximums, and a prioritized corrective action list.'],
       ['30-day follow-up call', 'A scheduled 30-minute call to discuss what was corrected, what remains, and what to prioritize next.'],
     ],
     best: 'Operations that want to know where they stand on the floor before OSHA, an insurer, or a customer auditor shows up.',

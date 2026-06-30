@@ -103,7 +103,7 @@ const STANDALONE = [
     whatsIncluded: [
       'On-site walkthrough (1\u20133 hours)',
       'Photo-documented hazard findings',
-      'CFR citations + 2026 penalty exposure per finding',
+      'CFR citations + estimated penalty exposure based on OSHA published maximums',
       'Top 10 priority findings \u2014 RED / AMBER / GREEN, CFR citation + corrective action for each',
       'Delivered within 24\u201348 hours',
       'Fixed quote before scheduling',
@@ -656,7 +656,7 @@ const ServicesPage = () => {
                         'Fixed quote · No retainer',
                         'Navy Veteran owned',
                         'Kernersville, NC based',
-                        '24–48 hr written report',
+                        '48 hr written report',
                       ].map((line) => (
                         <li key={line} className="flex items-start gap-2 text-[12.5px] text-white/80 leading-snug">
                           <Check size={13} className="flex-shrink-0 mt-0.5 text-[#C9A84C]" strokeWidth={3} />

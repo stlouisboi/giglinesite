@@ -105,16 +105,16 @@ const fourRequirements = [
 ];
 
 const penaltyData = [
-  { type: "Serious", amount: "$16,550 per violation" },
-  { type: "Willful", amount: "$165,514 per violation" },
-  { type: "Repeat", amount: "$165,514 per violation" },
+  { type: "Serious", amount: "Up to $16,550 per violation" },
+  { type: "Willful", amount: "Up to $165,514 per violation" },
+  { type: "Repeat", amount: "Up to $165,514 per violation" },
 ];
 
 const commonCitations = [
-  "No written HazCom program ($16,550)",
-  "Missing SDS for chemicals on site ($16,550 per chemical)",
-  "Unlabeled secondary containers ($16,550 per container)",
-  "No documented employee training ($16,550)",
+  "No written HazCom program (up to $16,550)",
+  "Missing SDS for chemicals on site (up to $16,550 per chemical)",
+  "Unlabeled secondary containers (up to $16,550 per container)",
+  "No documented employee training (up to $16,550)",
 ];
 
 const BlogHazComRequirements = () => {
@@ -137,7 +137,7 @@ const BlogHazComRequirements = () => {
             {defined.headline}
           </h1>
           <p className="text-white/70 text-base leading-relaxed mb-6">
-            If your business uses any hazardous chemicals — cleaners, solvents, paints, lubricants, welding gases — you need a Hazard Communication program. OSHA 29 CFR 1910.1200 requires four things: a written program, Safety Data Sheets for every chemical, proper container labels, and documented employee training. There is no exemption for small businesses. Penalties reach $16,550 per violation.
+            If your business uses any hazardous chemicals — cleaners, solvents, paints, lubricants, welding gases — you need a Hazard Communication program. OSHA 29 CFR 1910.1200 requires four things: a written program, Safety Data Sheets for every chemical, proper container labels, and documented employee training. There is no exemption for small businesses. Penalties can reach up to $16,550 per violation.
           </p>
           <div className="flex items-center gap-4 text-sm text-white/50">
             <span>Vince Lawrence</span>

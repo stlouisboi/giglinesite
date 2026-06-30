@@ -234,7 +234,7 @@ const SampleReportPage = () => {
                 d: 'Specific regulation referenced — 1910.147, 1910.178, 1910.1200, etc. — not generic "safety concern" language.',
               },
               {
-                t: '2026 penalty exposure',
+                t: 'estimated penalty exposure based on OSHA published maximums',
                 d: 'Dollar exposure per finding using current OSHA penalty tables — $16,550 serious / $165,514 willful.',
               },
               {

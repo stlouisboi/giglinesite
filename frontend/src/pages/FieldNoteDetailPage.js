@@ -176,7 +176,7 @@ The fix isn't expensive. A written Heat Illness Prevention Plan, customized to y
       { question: 'What is the most common forklift violation cited by OSHA?', answer: 'The most common forklift violations involve incomplete or missing operator training documentation, lack of daily pre-shift inspection records, and failure to maintain pedestrian separation in high-traffic areas.' },
     ],
     relatedNotes: ['walking-surfaces', 'lockout-tagout', 'ppe-assessment'],
-    heroImage: '/assets/field-notes/forklift-safety-inspection.png',
+    heroImage: '/assets/field-notes/forklift-safety-inspection.jpg',
     heroImageAlt: 'Forklift daily pre-shift inspection — GigLine walkthrough field photo',
     sections: {
       whatItIs: `Forklift safety is more than a certification card. OSHA's standard for Powered Industrial Trucks — 29 CFR 1910.178 — covers operator training and evaluation, daily pre-shift inspections, pedestrian separation, load capacity, and refueling/charging procedures. Most operations have the laminated training card from when the operator started years ago. The daily practices that go with it have usually slipped.
@@ -288,7 +288,7 @@ Corrective action: photograph every panel in your facility today. Mark the floor
       { question: 'What is a secondary container and why does it matter?', answer: 'A secondary container is any container you fill from the original — a spray bottle, a small jug poured from a 55-gallon drum, even a bucket of mixed cleaner. Every secondary container must be labeled with the product name and hazard information unless it is used by one employee in one shift. Missing secondary container labels are one of the most common HazCom citations.' },
     ],
     relatedNotes: ['ppe-assessment', 'machine-guarding', 'respiratory-protection'],
-    heroImage: '/assets/field-notes/hazcom-sds-binder.png',
+    heroImage: '/assets/field-notes/hazcom-sds-binder.jpg',
     heroImageAlt: 'SDS binder and chemical container labeling — Hazard Communication 29 CFR 1910.1200',
     sections: {
       whatItIs: `Hazard Communication is OSHA's most-cited general industry standard. Year after year. 29 CFR 1910.1200 — also called HazCom or the "Employee Right-to-Know" standard — is also one of the most achievable to fix, which makes the citation rate even more frustrating. Almost every HazCom citation in a small operation is preventable with a few hours of organized paperwork.
@@ -401,7 +401,7 @@ Corrective action: photograph every machine in your facility today. For each one
       { question: 'Why are walking-surface citations so common?', answer: 'Walking-working surface hazards (slips, trips, falls, blocked aisles, poor housekeeping) are visible from the moment an OSHA inspector walks through the door. They are also the leading source of recordable injuries in general industry — about 25% of all reported workplace injuries involve slips, trips, or falls. The combination of high visibility and high injury rate produces consistent citation rates.' },
     ],
     relatedNotes: ['fall-protection', 'forklift-safety', 'ladder-safety'],
-    heroImage: '/assets/field-notes/walking-surfaces-housekeeping.png',
+    heroImage: '/assets/field-notes/walking-surfaces-housekeeping.jpg',
     heroImageAlt: 'Cluttered aisle and poor housekeeping observed during a GigLine walkthrough',
     sections: {
       whatItIs: `Walking and working surfaces are governed by 29 CFR 1910 Subpart D, which covers floors, aisles, stairways, fixed and portable ladders, dockboards, and fall protection. The core housekeeping rule — 1910.22(a) — requires every workplace to be kept clean, orderly, and in a sanitary condition. The rule sounds soft until you walk a small operation in the middle of a production run: cords across walkways, hoses snaking through aisles, pallets parked in the middle of pedestrian zones, and "temporary" spills that have been there for three days.
@@ -524,7 +524,7 @@ Corrective action: photograph every piece of equipment with hazardous energy in 
       { question: 'How often does OSHA require fire extinguisher inspections?', answer: 'Under 29 CFR 1910.157(e), portable fire extinguishers must be visually inspected monthly and given an annual maintenance check by a qualified person, with the date and inspector recorded on the extinguisher tag. Hydrostatic testing is required every 5 or 12 years depending on the extinguisher type.' },
     ],
     relatedNotes: ['hazcom', 'walking-surfaces', 'bloodborne-pathogens'],
-    heroImage: '/assets/field-notes/emergency-action-plans-blocked-egress.png',
+    heroImage: '/assets/field-notes/emergency-action-plans-blocked-egress.jpg',
     heroImageAlt: 'Blocked egress / emergency exit route obstruction — 29 CFR 1910.37',
     sections: {
       whatItIs: `Emergency Action Plans are governed by 29 CFR 1910.38, with the related Fire Prevention Plan requirements at 1910.39 and the portable fire extinguisher requirements at 1910.157. The standards are easy to overlook in a small operation because most days nothing happens — and most operators do not think about emergency planning until something goes wrong or until OSHA shows up and asks for the documentation.
@@ -872,7 +872,7 @@ Corrective action: walk every elevated surface in your facility with a tape meas
       { question: 'When does the 300A summary have to be posted?', answer: 'The 300A annual summary must be posted in a conspicuous location at each establishment from February 1 through April 30 of the year following the year covered. It must be certified by a company executive before posting. Failure to post is one of the most common recordkeeping citations during scheduled inspections.' },
     ],
     relatedNotes: ['hazcom', 'emergency-action-plans', 'bloodborne-pathogens'],
-    heroImage: '/assets/field-notes/recordkeeping-300-log.png',
+    heroImage: '/assets/field-notes/recordkeeping-300-log.jpg',
     heroImageAlt: 'OSHA 300 log and recordkeeping documentation — 29 CFR Part 1904',
     sections: {
       whatItIs: `OSHA recordkeeping is governed by 29 CFR Part 1904 — the standard that requires employers to record work-related injuries and illnesses on three connected forms: the OSHA 300 (the running log of every recordable case), the OSHA 301 (the incident report for each case, with details OSHA can audit), and the OSHA 300A (the annual summary posted on the workplace bulletin board). The standard sounds simple — write down the injuries, post a summary, keep the records — but it is one of the most under-maintained programs in small operations, and one of the easiest for OSHA to cite because the gap is on paper.
@@ -919,7 +919,7 @@ Corrective action: download the current OSHA 300 log, 301 incident form, and 300
     subtitle: "What ChatGPT can't see on your floor — and why OSHA can.",
     seoTitle: "AI-Generated Safety Programs vs. OSHA Compliance: What ChatGPT Can't See on Your Floor",
     seo: "Operators are using ChatGPT to generate OSHA safety programs. The output looks compliant — until an inspector arrives. Here's why AI-generated programs fail at the floor level, and what a real walkthrough surfaces that AI cannot.",
-    heroImage: '/assets/field-notes/ai-safety-programs-hero.png',
+    heroImage: '/assets/field-notes/ai-safety-programs-hero.jpg',
     heroImageAlt: 'AI Can Write a Safety Program. It Cannot Walk Your Floor — GigLine Field Note',
     cfrCitation: 'Applies across General Industry — 29 CFR 1910 · Inspection Methods reference: OSHA Field Operations Manual',
     oshaChecks: [

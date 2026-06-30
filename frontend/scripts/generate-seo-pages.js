@@ -1162,14 +1162,14 @@ Object.keys(CITY_META).forEach((city) => {
 // Field note detail pages
 const NOTE_HERO_IMAGES = {
   'electrical-safety': '/assets/field-notes/electrical-safety-exposed-wires.jpg',
-  'forklift-safety': '/assets/field-notes/forklift-safety-inspection.png',
+  'forklift-safety': '/assets/field-notes/forklift-safety-inspection.jpg',
   'lockout-tagout': '/assets/field-notes/lockout-tagout-lock.jpeg',
-  'hazcom': '/assets/field-notes/hazcom-sds-binder.png',
-  'walking-surfaces': '/assets/field-notes/walking-surfaces-housekeeping.png',
-  'emergency-action-plans': '/assets/field-notes/emergency-action-plans-blocked-egress.png',
-  'recordkeeping-300-log': '/assets/field-notes/recordkeeping-300-log.png',
+  'hazcom': '/assets/field-notes/hazcom-sds-binder.jpg',
+  'walking-surfaces': '/assets/field-notes/walking-surfaces-housekeeping.jpg',
+  'emergency-action-plans': '/assets/field-notes/emergency-action-plans-blocked-egress.jpg',
+  'recordkeeping-300-log': '/assets/field-notes/recordkeeping-300-log.jpg',
   'machine-guarding': '/assets/field-notes/machine-guarding-shear.jpg',
-  'ai-generated-safety-programs': '/assets/field-notes/ai-safety-programs-hero.png',
+  'ai-generated-safety-programs': '/assets/field-notes/ai-safety-programs-hero.jpg',
 };
 
 const RELATED_NOTES = {
@@ -1207,7 +1207,7 @@ const fieldNotes = [
     desc: 'Operators are using ChatGPT to generate OSHA safety programs. The output looks compliant — until an inspector arrives. Why AI-generated programs fail at the floor level.',
     customSeoTitle: "AI-Generated Safety Programs vs. OSHA Compliance: What ChatGPT Can't See on Your Floor | GigLine Safety & Compliance",
     customH1: "An AI-Generated Safety Program Is Not a Working Safety Program",
-    ogImage: '/assets/field-notes/ai-safety-programs-hero.png',
+    ogImage: '/assets/field-notes/ai-safety-programs-hero.jpg',
     customContent: `
       <h1>An AI-Generated Safety Program Is Not a Working Safety Program</h1>
       <p><em>What ChatGPT can't see on your floor — and why OSHA can.</em></p>
@@ -1349,34 +1349,28 @@ function buildSchemaBlock(schemas) {
 function generateRouteHTML(templateHTML, route) {
   let html = templateHTML;
 
-  // <title>
+  // <title> — still replaced (always present in template)
   html = html.replace(/<title>[^<]*<\/title>/, `<title>${route.title}</title>`);
 
-  // description
-  html = html.replace(
-    /<meta name="description" content="[^"]*"\s*\/?>/,
+  // Per-page SEO tags injected before </head> (description, canonical, og:url/title/description,
+  // twitter:title/description). These do NOT exist in the static template — Helmet handles them
+  // client-side. The SSR script injects them so raw-HTML crawlers see them in production.
+  const perPageTags = [
     `<meta name="description" content="${route.description}" />`,
-  );
-
-  // canonical
-  html = html.replace(
-    /<link rel="canonical" href="[^"]*"\s*\/?>/,
     `<link rel="canonical" href="${BASE_URL}${route.canonical}" />`,
-  );
+    `<meta property="og:url" content="${BASE_URL}${route.canonical}" />`,
+    `<meta property="og:title" content="${route.title}" />`,
+    `<meta property="og:description" content="${route.description}" />`,
+    `<meta name="twitter:title" content="${route.title}" />`,
+    `<meta name="twitter:description" content="${route.description}" />`,
+  ];
 
-  // OG
-  html = html.replace(/<meta property="og:url" content="[^"]*"\s*\/?>/, `<meta property="og:url" content="${BASE_URL}${route.canonical}" />`);
-  html = html.replace(/<meta property="og:title" content="[^"]*"\s*\/?>/, `<meta property="og:title" content="${route.title}" />`);
-  html = html.replace(/<meta property="og:description" content="[^"]*"\s*\/?>/, `<meta property="og:description" content="${route.description}" />`);
+  // Optional og:image override (replaces the default if route specifies one)
   if (route.ogImage) {
     const ogImageUrl = route.ogImage.startsWith('http') ? route.ogImage : `${BASE_URL}${route.ogImage}`;
-    html = html.replace(/<meta property="og:image" content="[^"]*"\s*\/?>/, `<meta property="og:image" content="${ogImageUrl}" />`);
-    html = html.replace(/<meta name="twitter:image" content="[^"]*"\s*\/?>/, `<meta name="twitter:image" content="${ogImageUrl}" />`);
+    html = html.replace(/<meta property="og:image" content="https:\/\/www\.giglinecompliance\.com\/og-image\.png"\s*\/?>/, `<meta property="og:image" content="${ogImageUrl}" />`);
+    html = html.replace(/<meta name="twitter:image" content="https:\/\/www\.giglinecompliance\.com\/og-image\.png"\s*\/?>/, `<meta name="twitter:image" content="${ogImageUrl}" />`);
   }
-
-  // Twitter
-  html = html.replace(/<meta name="twitter:title" content="[^"]*"\s*\/?>/, `<meta name="twitter:title" content="${route.title}" />`);
-  html = html.replace(/<meta name="twitter:description" content="[^"]*"\s*\/?>/, `<meta name="twitter:description" content="${route.description}" />`);
 
   // Strip ALL existing JSON-LD schema blocks from the template (LocalBusiness
   // from index.html) so every route gets a clean, route-specific schema set.
@@ -1384,9 +1378,10 @@ function generateRouteHTML(templateHTML, route) {
 
   // Inject route-specific schema block right before </head>
   const schemaBlock = buildSchemaBlock(route.schemas || []);
-  if (schemaBlock) {
-    html = html.replace('</head>', `${schemaBlock}\n  </head>`);
-  }
+
+  // Combine per-page tags + schema and inject before </head>
+  const injection = `    ${perPageTags.join('\n    ')}\n${schemaBlock || ''}\n  `;
+  html = html.replace('</head>', `${injection}</head>`);
 
   // Inject crawler-visible content into #root
   // ── FOUC fix ──

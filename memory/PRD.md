@@ -50,6 +50,10 @@ React 18 (CRA), Tailwind, FastAPI, MongoDB (motor), Stripe LIVE, Resend LIVE, Ma
 - `data-testid` on every interactive element and critical UI element.
 
 ## Recent Changelog
+- 2026-02 — **Wave 1 audit fix shipped** (image optimization + dedupe SEO meta tags):
+  - **Image weight reduction: 24.1 MB → 2.5 MB (89%, ~21.5 MB saved sitewide)**. Optimized 13 oversized images: 9 PNG photos converted to JPG (max 1600px, quality 82) + 2 graphics PNGs palette-quantized + 2 JPGs re-encoded. Per-page weight dropped 57-64% on heavy pages (forklift Field Note 3.5MB → 1.3MB, About 2.9MB → 1.3MB, city pages 3.0MB → 1.2MB). Updated 5 file references across FieldNoteDetailPage, FieldNotesPage, HomePage, AboutPage, ClientIntakePage, SSR script.
+  - **Removed duplicate SEO meta tags** — Stripped static per-page meta tags (`description`, `canonical`, `og:url`/`title`/`description`, `twitter:title`/`description`) from `public/index.html` so `react-helmet-async` is the single source of truth client-side. Updated `generate-seo-pages.js` to INJECT these tags into static HTML at build time (instead of `.replace()` against now-absent template tags). Verified: every page now serves exactly ONE canonical, description, og:url tag.
+  - **Page audit results**: 22 routes tested at mobile (390×844) + tablet (768×1024) → **0 horizontal overflow**, single H1 per page, 100% alt-tag coverage, all routes 200 OK, NotFound page correctly noindex'd.
 - 2026-02 — **Sitewide audit copy sweep shipped** (P0 from user audit punch list, mirrored to `generate-seo-pages.js`):
   - "The same eyes an inspector uses" → "An OSHA-informed floor review before an inspector shows up"
   - "what an inspector is likely to find" → "conditions an inspector may review"

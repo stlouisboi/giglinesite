@@ -911,7 +911,7 @@ const ClientIntakePage = () => {
                 style={{ border: '1px solid rgba(255,255,255,0.10)', background: 'rgba(255,255,255,0.03)' }}
               >
                 <img
-                  src="/vince-founder.png"
+                  src="/vince-founder.jpg"
                   alt="Vince Lawrence — Founder, GigLine Safety & Compliance"
                   className="w-full h-auto block"
                   loading="lazy"

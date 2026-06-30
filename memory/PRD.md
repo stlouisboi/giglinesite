@@ -27,9 +27,12 @@ React 18 (CRA), Tailwind, FastAPI, MongoDB (motor), Stripe LIVE, Resend LIVE, Ma
 ## Roadmap (prioritized)
 ### P0 — none open
 ### P1
-- Real case study with findings + corrective actions + outcomes (currently placeholder).
+- 3 city-targeted "OSHA Safety Consultant" landing pages — Winston-Salem, Greensboro, High Point (distinct from existing `/safety-walkthrough/:city` pages; targets "OSHA consultant" search intent). **Awaiting user direction on whether to build new keyword-targeted routes or close as duplicate of existing city pages.**
+- Wire real hero photos to remaining 16 Field Notes (waiting on user uploads).
 ### P2
 - Refactor repeated stats querying in `admin.py` into `get_stats_for_collection(db_collection)` helper.
+- Quick-Contact 30-day trendline tile on Admin Dashboard (mini chart per lead magnet).
+- "Featured In" logo strip on `/about` when first guest article publishes.
 - 4-touch MailerLite retention sequence (Vince user-side build in MailerLite UI).
 - MailerLite automation for `hr-osha-guide-download` group (Vince user-side).
 
@@ -47,6 +50,16 @@ React 18 (CRA), Tailwind, FastAPI, MongoDB (motor), Stripe LIVE, Resend LIVE, Ma
 - `data-testid` on every interactive element and critical UI element.
 
 ## Recent Changelog
+- 2026-02 — **Sitewide audit copy sweep shipped** (P0 from user audit punch list, mirrored to `generate-seo-pages.js`):
+  - "The same eyes an inspector uses" → "An OSHA-informed floor review before an inspector shows up"
+  - "what an inspector is likely to find" → "conditions an inspector may review"
+  - "penalty exposure per finding" → "estimated penalty exposure based on OSHA published maximums" (sitewide replace_all across HomePage, ClientIntakePage, WalkthroughDaySection, ServicesPage, ServiceDetailPage, SampleReportPage, OshaInspectionGuidePage, CityLandingPage, generate-seo-pages.js)
+  - All "$16,550 / $165,514 / $14,502" dollar refs prefixed with "Up to " (FieldNoteDetailPage, BlogHazComRequirements, BlogOSHAViolations penaltyData tables, SampleReportSection findings)
+  - "$15,621" residual on `/services` Sample Report finding 3 normalized to "Up to $16,550 (Serious)"
+  - "24–48 hours / 24-48 hours / 24 to 48 hours" → "within 48 hours" everywhere (FAQ, City pages, Services, ServiceDetail, SSR script)
+  - Added educational disclaimer paragraph below Case Study findings (`data-testid="case-penalty-disclaimer"`) clarifying penalty figures are estimates based on OSHA published maximums per 29 CFR 1903.15
+  - Case Study finding column header renamed "Penalty Exposure" → "Estimated Penalty Exposure"
+- 2026-02 — **New favicon shipped** — Black/silver-"g"/gold-buckle brand mark replaces previous icon. Generated all required sizes (16/32/48/180/192/512 PNG + multi-res `favicon.ico`) and bumped cache-buster `?v=4` in `index.html` so browsers pick up immediately.
 - 2026-02 — **Audit batch 2 shipped (d/e/f/g/h):** (d) `/about` got 3 new sections — Who I Help, Why the Name GigLine (Navy origin), Service Area with 12-city pill grid; (e) `/faq` got 7 new entries (legal risk, supervisor presence, post-incident timing, insurance loss control, monthly support, etc.); (f) `/safety-walkthrough` got "Best Fit / Not Best Fit" buyer self-qualification block; (g) 3 new service-specific landing pages created via reusable `<ServiceLandingPage>` component — `/forklift-compliance-review-nc`, `/loto-procedure-review-nc`, `/osha-documentation-review-nc` — each with Schema.org Service JSON-LD, sitemap.xml entries; (h) Case Study page gained a top inline CTA above the body.
 - 2026-02 — **Audit response batch shipped**: (1) Brand hex aligned site-wide to canonical `#1C2B2B` / `#2A52A0` / `#C9A84C` (1,187 replacements across 45 files); (2) Case study penalty ranges normalized to 2026 OSHA max ($16,550); (3) Blog penalty/date notes updated (Top 5 OSHA + HazCom) — "January 2025" → "2026 max effective Jan 15, 2026"; (4) Homepage hero microcopy "Private engagement. Report in 48 hours" → "Private findings. Written report within 48 hours"; (5) Homepage case study teaser updated to use 2026 max + "four days" closure; (6) Safety Walkthrough page gained "What a GigLine walkthrough is — and what it isn't" Does/Doesn't scope block + legal disclaimer; (7) Sample Report page got an ungated "Open the PDF directly" escape hatch above the email gate (lead capture preserved as the secondary option); (8) Kevin Stutts pull-quote TODO removed (quote verified).
 - 2026-02 — `/contact` micro-form swap: replaced heavy ContactForm with QuickContactCard (already wired to `/api/quick-contact/submit`) + "Use the full intake form →" fallback link. Reduces friction for visitors who just want to start a conversation.

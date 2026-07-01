@@ -2,6 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Lock, FileText, Users, ClipboardCheck, AlertTriangle, Wrench } from 'lucide-react';
 import SEO from '../components/SEO';
+import StickyTOC from '../components/StickyTOC';
+
+const tocItems = [
+  { id: "what-loto-is", label: "What LOTO actually is" },
+  { id: "when-required", label: "When is LOTO required?" },
+  { id: "written-program", label: "The written program" },
+  { id: "six-steps", label: "The six-step procedure" },
+  { id: "machine-specific", label: "Machine-specific procedures" },
+  { id: "training", label: "Training requirements" },
+  { id: "annual-audit", label: "The annual audit" },
+  { id: "citations", label: "Top citation traps" },
+];
 
 const defined = {
   headline: "LOTO Program Requirements for Small Facilities",
@@ -58,6 +70,7 @@ const BlogLOTOProgram = () => {
   return (
     <main data-testid="blog-loto-program">
       <SEO title={defined.headline} description={defined.description} canonical={defined.canonical} schema={combinedSchema} />
+      <StickyTOC items={tocItems} />
 
       <section className="bg-[#102A43] text-white py-16 md:py-24">
         <div className="container max-w-3xl">

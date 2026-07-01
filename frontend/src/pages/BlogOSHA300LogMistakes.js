@@ -2,6 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, FileText, ClipboardCheck, AlertTriangle, Calendar, Users, BookOpen } from 'lucide-react';
 import SEO from '../components/SEO';
+import StickyTOC from '../components/StickyTOC';
+
+const tocItems = [
+  { id: "who-must-keep", label: "Who must keep the 300 log?" },
+  { id: "three-forms", label: "The three forms" },
+  { id: "six-mistakes", label: "Six common mistakes" },
+  { id: "recordability", label: "The recordability test" },
+  { id: "300a-window", label: "The 300A posting window" },
+  { id: "retention", label: "Retention requirements" },
+  { id: "penalties", label: "2026 penalty exposure" },
+  { id: "action", label: "Annual cleanup plan" },
+];
 
 const defined = {
   headline: "OSHA 300 Log: Common Mistakes That Trigger Citations",
@@ -47,6 +59,7 @@ const BlogOSHA300LogMistakes = () => {
   return (
     <main data-testid="blog-osha-300-mistakes">
       <SEO title={defined.headline} description={defined.description} canonical={defined.canonical} schema={combinedSchema} />
+      <StickyTOC items={tocItems} />
 
       <section className="bg-[#102A43] text-white py-16 md:py-24">
         <div className="container max-w-3xl">

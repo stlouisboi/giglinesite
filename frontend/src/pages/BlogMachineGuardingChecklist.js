@@ -2,6 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Shield, AlertTriangle, Wrench, ClipboardCheck, Eye, FileText } from 'lucide-react';
 import SEO from '../components/SEO';
+import StickyTOC from '../components/StickyTOC';
+
+const tocItems = [
+  { id: "what-standard-requires", label: "What 1910.212 actually says" },
+  { id: "four-hazards", label: "The four hazard categories" },
+  { id: "checklist", label: "The walkthrough checklist" },
+  { id: "top-citations", label: "Top citation traps" },
+  { id: "penalties", label: "2026 penalty exposure" },
+  { id: "training", label: "Training & documentation" },
+  { id: "abrasive-wheels", label: "Abrasive wheels (1910.215)" },
+  { id: "action-plan", label: "30-day action plan" },
+];
 
 const defined = {
   headline: "OSHA Machine Guarding Checklist for Small Manufacturers",
@@ -76,6 +88,7 @@ const BlogMachineGuardingChecklist = () => {
   return (
     <main data-testid="blog-machine-guarding-checklist">
       <SEO title={defined.headline} description={defined.description} canonical={defined.canonical} schema={combinedSchema} />
+      <StickyTOC items={tocItems} />
 
       {/* Hero */}
       <section className="bg-[#102A43] text-white py-16 md:py-24">

@@ -2,6 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Truck, FileText, Users, ClipboardCheck, AlertTriangle, Award } from 'lucide-react';
 import SEO from '../components/SEO';
+import StickyTOC from '../components/StickyTOC';
+
+const tocItems = [
+  { id: "what-standard", label: "The 1910.178 standard" },
+  { id: "six-checks", label: "Six things inspectors check" },
+  { id: "certifications", label: "Operator certifications" },
+  { id: "daily-log", label: "The daily inspection log" },
+  { id: "traffic", label: "Traffic controls" },
+  { id: "citations", label: "Top forklift citations" },
+  { id: "penalties", label: "2026 penalty exposure" },
+  { id: "action", label: "30-day cleanup plan" },
+];
 
 const defined = {
   headline: "OSHA Forklift Compliance: What Inspectors Actually Check",
@@ -52,6 +64,7 @@ const BlogForkliftCompliance = () => {
   return (
     <main data-testid="blog-forklift-compliance">
       <SEO title={defined.headline} description={defined.description} canonical={defined.canonical} schema={combinedSchema} />
+      <StickyTOC items={tocItems} />
 
       <section className="bg-[#102A43] text-white py-16 md:py-24">
         <div className="container max-w-3xl">

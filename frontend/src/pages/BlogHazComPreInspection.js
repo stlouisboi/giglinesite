@@ -2,6 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, BookOpen, FileText, ClipboardCheck, AlertTriangle, Tag } from 'lucide-react';
 import SEO from '../components/SEO';
+import StickyTOC from '../components/StickyTOC';
+
+const tocItems = [
+  { id: "why-hazcom", label: "Why HazCom keeps getting cited" },
+  { id: "inspector-flow", label: "The inspector's five-step flow" },
+  { id: "elements", label: "Required program elements" },
+  { id: "sds-binder", label: "The SDS binder" },
+  { id: "labels", label: "Container labels" },
+  { id: "training", label: "Training documentation" },
+  { id: "citations", label: "Top citation traps" },
+  { id: "action", label: "30-day cleanup plan" },
+];
 
 const defined = {
   headline: "Written HazCom Program: What You Need Before an OSHA Inspection",
@@ -57,6 +69,7 @@ const BlogHazComPreInspection = () => {
   return (
     <main data-testid="blog-hazcom-pre-inspection">
       <SEO title={defined.headline} description={defined.description} canonical={defined.canonical} schema={combinedSchema} />
+      <StickyTOC items={tocItems} />
 
       <section className="bg-[#102A43] text-white py-16 md:py-24">
         <div className="container max-w-3xl">

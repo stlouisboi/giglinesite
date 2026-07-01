@@ -446,20 +446,33 @@ const FieldNotesPage = () => {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* ═══ GL-WEB-025: Field Notes Booking CTA (bottom) ═══ */}
       <section className="py-16 md:py-24 bg-[#102A43]" data-testid="field-notes-cta">
         <div className="container max-w-3xl text-center">
-          <p className="text-lg text-white/60 mb-6">
-            Reading about it is useful. Having someone walk your floor is better.
+          <h2 className="text-2xl md:text-4xl font-bold text-white mb-4 leading-tight" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+            What you just read is what we look for on the floor.
+          </h2>
+          <p className="text-base md:text-lg text-white/70 leading-relaxed mb-8 max-w-2xl mx-auto">
+            If any of these gaps exist in your operation, a Safety Walkthrough will find them — before OSHA does.
           </p>
-          <Link
-            to="/intake"
-            className="bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
-            data-testid="field-notes-walkthrough-cta"
-          >
-            Request a Walkthrough
-            <ArrowRight size={18} />
-          </Link>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+            <Link
+              to="/intake?service=safety-walkthrough-report"
+              className="w-full sm:w-auto bg-[#C9A84C] hover:bg-[#B8972C] text-[#102A43] font-bold px-8 py-4 rounded transition-colors inline-flex items-center justify-center gap-2"
+              data-testid="field-notes-walkthrough-cta"
+            >
+              Request a Walkthrough
+              <ArrowRight size={18} />
+            </Link>
+            <Link
+              to="/safety-check"
+              className="text-sm text-white/60 hover:text-[#C9A84C] transition-colors inline-flex items-center gap-1.5"
+              data-testid="field-notes-safety-check-link"
+            >
+              Or take the 6-question Safety Check first
+              <ArrowRight size={14} />
+            </Link>
+          </div>
         </div>
       </section>
     </main>

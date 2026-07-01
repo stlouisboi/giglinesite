@@ -23,10 +23,15 @@ React 18 (CRA), Tailwind, FastAPI, MongoDB (motor), Stripe LIVE, Resend LIVE, Ma
 - Legacy `$650` `/onboarding` retired — all walkthrough copy cites "From $1,200".
 - Factual-accuracy sweep done (no Amero Steel / BF Goodrich employment claims).
 - Backlink playbook in `/app/memory/backlink-playbook.md`.
+- **GL-WEB-024 (Feb 2026)**: `/contact` now has a 4-field Simple Contact Form (name/email/phone/message + honeypot) wired to `/api/contact-message/submit` — sends Resend confirmation to prospect + notification to Vince. Below the form, a navy/gold Calendly Scope Call CTA block ("Prefer a scheduled call?" → "Book a Scope Call") using a **placeholder Calendly URL** — swap `CALENDLY_SCOPE_CALL_URL` in `/app/frontend/src/components/ScopeCallCTA.js` once Vince completes GL-WEB-022 Calendly Stage 1 setup. Full intake form link preserved as third option.
 
 ## Roadmap (prioritized)
 ### P0 — none open
-### P1 — none open
+### P1
+- **Post-Calendly-setup swap**: Once Vince finishes GL-WEB-022 (Calendly Stage 1 event type), replace placeholder URL in `/app/frontend/src/components/ScopeCallCTA.js` (`CALENDLY_SCOPE_CALL_URL`) with the live Stage 1 link.
+- **GL-WEB-026**: Field Notes SSR fix — convert `/field-notes/[slug]` to static generation via the existing `generate-seo-pages.js` pipeline so article body content is present in initial HTML (currently CSR-only per audit).
+- Generate 4 remaining collateral PDFs (awaiting names from Vince).
+- Fix `gl-fm-2026.pdf` deprecated shield logo (PyMuPDF smask blocker — try pikepdf).
 ### P2
 - Wire real hero photos to remaining 16 Field Notes (low priority per user, waiting on uploads).
 - Refactor repeated stats querying in `admin.py` into `get_stats_for_collection(db_collection)` helper.

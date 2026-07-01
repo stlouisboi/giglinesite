@@ -23,6 +23,7 @@ from routes.portal import router as portal_router
 from routes.supervisor_kit import router as supervisor_kit_router
 from routes.sample_report import router as sample_report_router
 from routes.quick_contact import router as quick_contact_router
+from routes.contact_message import router as contact_message_router
 from routes.osha_inspection_guide import router as osha_inspection_guide_router
 
 app = FastAPI()
@@ -44,6 +45,7 @@ api_router.include_router(portal_router)
 api_router.include_router(supervisor_kit_router)
 api_router.include_router(sample_report_router)
 api_router.include_router(quick_contact_router)
+api_router.include_router(contact_message_router)
 api_router.include_router(osha_inspection_guide_router)
 
 app.include_router(api_router)

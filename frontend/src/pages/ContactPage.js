@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Clock, ArrowRight } from 'lucide-react';
 import SEO from '../components/SEO';
-import QuickContactCard from '../components/QuickContactCard';
+import ContactMessageForm from '../components/ContactMessageForm';
+import ScopeCallCTA from '../components/ScopeCallCTA';
 
 const ContactPage = () => {
   return (
@@ -237,16 +238,19 @@ const ContactPage = () => {
               </div>
             </div>
 
-            {/* Quick Contact micro-form (GL-WEB-021 A/B) — replaces the heavier ContactForm */}
-            <div className="lg:col-span-2">
-              <QuickContactCard variant="light" />
-              <p className="text-sm text-[#1C2B2B]/60 mt-4 leading-relaxed" data-testid="contact-full-intake-fallback">
-                Need to share more detail (operation type, headcount, machine count, deadlines)?{' '}
+            {/* GL-WEB-024 — Simple Contact Form + Calendly Scope Call CTA, stacked. */}
+            <div className="lg:col-span-2 space-y-6">
+              <ContactMessageForm />
+
+              <ScopeCallCTA />
+
+              <p className="text-sm text-[#1C2B2B]/60 leading-relaxed" data-testid="contact-full-intake-fallback">
+                Ready for a full engagement? Share operation type, headcount, machine count, and deadlines using the{' '}
                 <Link
                   to="/intake"
                   className="font-semibold text-[#2A52A0] hover:text-[#1C2B2B] underline underline-offset-4 transition-colors"
                 >
-                  Use the full intake form →
+                  full intake form &rarr;
                 </Link>
               </p>
             </div>

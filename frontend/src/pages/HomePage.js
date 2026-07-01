@@ -196,6 +196,30 @@ const HomePage = () => {
                 On-site safety walkthroughs for manufacturers, warehouses, contractors, and fleet operations across the Piedmont Triad. Fixed quote. Private findings. Written report within 48 hours.
               </p>
 
+              {/* ═══ GL-WEB-023: Trust badges above the fold ═══ */}
+              <div
+                className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 mb-6"
+                data-testid="hero-trust-badges"
+                role="list"
+                aria-label="Consultant credentials"
+              >
+                {[
+                  { Icon: ShieldCheck, label: 'OSHA 30-Hour Certified' },
+                  { Icon: Anchor, label: 'U.S. Navy Veteran' },
+                  { Icon: Factory, label: '25+ Years Floor-Level Experience' },
+                ].map((b, i) => (
+                  <div
+                    key={i}
+                    role="listitem"
+                    className="flex items-center gap-2 text-[13px] text-[#CBD5E1]"
+                    data-testid={`hero-trust-badge-${i}`}
+                  >
+                    <b.Icon size={16} className="text-[#C9A84C] flex-shrink-0" strokeWidth={1.8} />
+                    <span className="font-medium">{b.label}</span>
+                  </div>
+                ))}
+              </div>
+
               <div className="flex flex-col items-start gap-3 mb-5" data-testid="hero-ctas">
                 <div className="flex flex-col sm:flex-row sm:items-center gap-4 w-full sm:w-auto">
                   <Link

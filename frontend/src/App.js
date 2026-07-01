@@ -57,6 +57,7 @@ const DocumentationGapCheckPage       = lazy(() => import('./pages/Documentation
 const OshaComplianceGapCheckPage      = lazy(() => import('./pages/OshaComplianceGapCheckPage'));
 
 // Content marketing / pillar blog posts (Nov 2025 launch batch)
+const BlogHubPage                     = lazy(() => import('./pages/BlogHubPage'));
 const BlogMachineGuardingChecklist    = lazy(() => import('./pages/BlogMachineGuardingChecklist'));
 const BlogLOTOProgram                 = lazy(() => import('./pages/BlogLOTOProgram'));
 const BlogForkliftCompliance          = lazy(() => import('./pages/BlogForkliftCompliance'));
@@ -133,6 +134,7 @@ function App() {
                     <Route path="/safety-check" element={<SafetyCheckPage />} />
                     <Route path="/hazcom" element={<HazComPage />} />
                     <Route path="/hazcom/thank-you" element={<HazComThankYouPage />} />
+                    <Route path="/blog" element={<BlogHubPage />} />
                     <Route path="/blog/top-5-osha-violations-small-manufacturing" element={<BlogOSHAViolations />} />
                     <Route path="/blog/hazcom-requirements-small-business" element={<BlogHazComRequirements />} />
                     <Route path="/blog/osha-machine-guarding-checklist-small-manufacturers" element={<BlogMachineGuardingChecklist />} />

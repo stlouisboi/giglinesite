@@ -509,6 +509,38 @@ const routes = [
     `,
   },
   {
+    path: '/blog',
+    title: 'OSHA Compliance Guides & Field Reports | GigLine Blog',
+    description: 'Long-form OSHA compliance guides for small manufacturers, warehouses, and contractors — machine guarding, LOTO, forklift, HazCom, recordkeeping. Written by an OSHA-30 consultant walking Piedmont Triad shops weekly.',
+    canonical: '/blog',
+    schemas: [
+      {
+        '@context': 'https://schema.org', '@type': 'CollectionPage',
+        name: 'OSHA Compliance Guides & Field Reports',
+        description: 'Long-form OSHA compliance guides for small manufacturers, warehouses, and contractors.',
+        url: `${BASE_URL}/blog`,
+        isPartOf: { '@type': 'WebSite', name: 'GigLine Safety & Compliance', url: BASE_URL },
+        publisher: { '@id': `${BASE_URL}/#business` },
+        inLanguage: 'en-US',
+      },
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Blog', path: '/blog' }]),
+    ],
+    content: `
+      <h1>OSHA Compliance Guides & Field Reports</h1>
+      <p>By Vince Lawrence — GigLine Safety &amp; Compliance</p>
+      <p>Long-form OSHA compliance guides for small manufacturers, warehouses, and contractors. Every guide is CFR-cited with current 2026 penalty amounts.</p>
+      <ul>
+        <li><a href="/blog/osha-300-log-common-mistakes-citations">OSHA 300 Log: Common Mistakes That Trigger Citations</a></li>
+        <li><a href="/blog/written-hazcom-program-before-osha-inspection">Written HazCom Program Before an OSHA Inspection</a></li>
+        <li><a href="/blog/osha-forklift-compliance-inspector-checklist">OSHA Forklift Compliance: What Inspectors Check</a></li>
+        <li><a href="/blog/loto-program-requirements-small-facilities">LOTO Program Requirements for Small Facilities</a></li>
+        <li><a href="/blog/osha-machine-guarding-checklist-small-manufacturers">OSHA Machine Guarding Checklist for Small Manufacturers</a></li>
+        <li><a href="/blog/hazcom-requirements-small-business">HazCom Requirements for Small Businesses</a></li>
+        <li><a href="/blog/top-5-osha-violations-small-manufacturing">Top 5 OSHA Violations in Small Manufacturing</a></li>
+      </ul>
+    `,
+  },
+  {
     path: '/blog/osha-machine-guarding-checklist-small-manufacturers',
     title: 'OSHA Machine Guarding Checklist for Small Manufacturers | GigLine',
     description: 'The machine guarding requirements OSHA cites most often in small manufacturing — with a practical checklist, CFR citations, and 2026 penalty exposures.',

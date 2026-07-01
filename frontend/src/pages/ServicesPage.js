@@ -1136,7 +1136,7 @@ const ServicesPage = () => {
                       {s.bodyExtended && <p>{s.bodyExtended}</p>}
                     </div>
                   ) : (
-                    <p className={`text-base leading-relaxed mb-6 ${isAnnual ? 'text-white/85' : 'text-[#1C2B2B]/85'}`}>{s.body}</p>
+                    <p className="text-base text-[#1C2B2B]/85 leading-relaxed mb-6">{s.body}</p>
                   )}
 
                   {/* What's Included list (Annual Partner only) */}

@@ -16,8 +16,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#2A52A0" />
     
-    <!-- LCP hero preload — homepage hero image, high priority so mobile fetches it early -->
-    <link rel="preload" as="image" href="/vince-inspecting.webp" fetchpriority="high" />
+    <!-- LCP hero preload — responsive: browser fetches the right size for the viewport
+         (400w mobile, 600w tablet, 843w or original for desktop). Massive mobile LCP win. -->
+    <link rel="preload" as="image"
+          imagesrcset="/vince-inspecting-400w.webp 400w, /vince-inspecting-600w.webp 600w, /vince-inspecting-843w.webp 843w, /vince-inspecting.webp 1024w"
+          imagesizes="(max-width: 1280px) 100vw, 60vw"
+          fetchpriority="high" />
+    
+    <!-- Preconnect to Google Tag Manager (analytics) so the TCP + TLS handshake
+         completes in parallel with page paint rather than blocking after load. -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
     
     <!-- JetBrains Mono — non-blocking font load. Preload + async swap so the stylesheet
          request does not block first paint. Dropped weight 500 (unused). -->

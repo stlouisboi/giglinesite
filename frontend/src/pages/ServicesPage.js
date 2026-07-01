@@ -1083,7 +1083,7 @@ const ServicesPage = () => {
                   id={s.anchor}
                   className="h-full rounded-xl p-7 md:p-8 flex flex-col scroll-mt-32"
                   style={{
-                    background: isAnnual ? '#102A43' : '#ffffff',
+                    background: isAnnual ? '#0A1E33' : '#ffffff',
                     border: isAnnual ? '1px solid rgba(201,168,76,0.35)' : '1px solid #dde3ea',
                     boxShadow: isAnnual ? '0 8px 24px -8px rgba(28,43,43,0.25)' : '0 1px 0 rgba(28,43,43,0.02)',
                   }}
@@ -1136,7 +1136,7 @@ const ServicesPage = () => {
                       {s.bodyExtended && <p>{s.bodyExtended}</p>}
                     </div>
                   ) : (
-                    <p className="text-base text-[#1C2B2B]/85 leading-relaxed mb-6">{s.body}</p>
+                    <p className={`text-base leading-relaxed mb-6 ${isAnnual ? 'text-white/85' : 'text-[#1C2B2B]/85'}`}>{s.body}</p>
                   )}
 
                   {/* What's Included list (Annual Partner only) */}

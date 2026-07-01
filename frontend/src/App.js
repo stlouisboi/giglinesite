@@ -56,6 +56,13 @@ const OshaReadyControlSystemPage      = lazy(() => import('./pages/OshaReadyCont
 const DocumentationGapCheckPage       = lazy(() => import('./pages/DocumentationGapCheckPage'));
 const OshaComplianceGapCheckPage      = lazy(() => import('./pages/OshaComplianceGapCheckPage'));
 
+// Content marketing / pillar blog posts (Nov 2025 launch batch)
+const BlogMachineGuardingChecklist    = lazy(() => import('./pages/BlogMachineGuardingChecklist'));
+const BlogLOTOProgram                 = lazy(() => import('./pages/BlogLOTOProgram'));
+const BlogForkliftCompliance          = lazy(() => import('./pages/BlogForkliftCompliance'));
+const BlogHazComPreInspection         = lazy(() => import('./pages/BlogHazComPreInspection'));
+const BlogOSHA300LogMistakes          = lazy(() => import('./pages/BlogOSHA300LogMistakes'));
+
 import './App.css';
 
 // Minimal skeleton shown while a lazy chunk loads. Kept small so it never
@@ -128,6 +135,11 @@ function App() {
                     <Route path="/hazcom/thank-you" element={<HazComThankYouPage />} />
                     <Route path="/blog/top-5-osha-violations-small-manufacturing" element={<BlogOSHAViolations />} />
                     <Route path="/blog/hazcom-requirements-small-business" element={<BlogHazComRequirements />} />
+                    <Route path="/blog/osha-machine-guarding-checklist-small-manufacturers" element={<BlogMachineGuardingChecklist />} />
+                    <Route path="/blog/loto-program-requirements-small-facilities" element={<BlogLOTOProgram />} />
+                    <Route path="/blog/osha-forklift-compliance-inspector-checklist" element={<BlogForkliftCompliance />} />
+                    <Route path="/blog/written-hazcom-program-before-osha-inspection" element={<BlogHazComPreInspection />} />
+                    <Route path="/blog/osha-300-log-common-mistakes-citations" element={<BlogOSHA300LogMistakes />} />
                     <Route path="/heat-guide" element={<HeatGuidePage />} />
                     <Route path="/sample-report" element={<SampleReportPage />} />
                     <Route path="/resources" element={<ResourcesPage />} />

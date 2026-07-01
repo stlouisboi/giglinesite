@@ -509,6 +509,146 @@ const routes = [
     `,
   },
   {
+    path: '/blog/osha-machine-guarding-checklist-small-manufacturers',
+    title: 'OSHA Machine Guarding Checklist for Small Manufacturers | GigLine',
+    description: 'The machine guarding requirements OSHA cites most often in small manufacturing — with a practical checklist, CFR citations, and 2026 penalty exposures.',
+    canonical: '/blog/osha-machine-guarding-checklist-small-manufacturers',
+    schemas: [
+      {
+        '@context': 'https://schema.org', '@type': 'Article',
+        headline: 'OSHA Machine Guarding Checklist for Small Manufacturers',
+        description: 'The machine guarding requirements OSHA cites most often in small manufacturing — with a practical checklist, CFR citations, and 2026 penalty exposures.',
+        image: `${BASE_URL}/og-image.png`,
+        author: { '@id': `${BASE_URL}/#vince` },
+        publisher: { '@id': `${BASE_URL}/#business` },
+        mainEntityOfPage: `${BASE_URL}/blog/osha-machine-guarding-checklist-small-manufacturers`,
+        datePublished: '2025-10-14', dateModified: '2025-10-14',
+        articleSection: 'OSHA Compliance', inLanguage: 'en-US',
+      },
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Blog', path: '/field-notes' }, { name: 'Machine Guarding Checklist', path: '/blog/osha-machine-guarding-checklist-small-manufacturers' }]),
+    ],
+    content: `
+      <h1>OSHA Machine Guarding Checklist for Small Manufacturers</h1>
+      <p>By Vince Lawrence — GigLine Safety &amp; Compliance</p>
+      <p>Machine guarding sits in OSHA's Top 10 most-cited standards every year. This guide walks through what an OSHA inspector actually looks for and what the 2026 penalty exposure is.</p>
+      <h2>The four hazard categories (29 CFR 1910.212)</h2><p>Point of operation, ingoing nip points, rotating parts, and flying chips or sparks. If any of these hazards exists on a machine and can be reached by an employee, a guard is required.</p>
+      <h2>Abrasive wheels (29 CFR 1910.215)</h2><p>Work rest gap ≤ 1/8 inch. Tongue guard gap ≤ 1/4 inch. Ring test every wheel before mounting.</p>
+      <h2>Common citations</h2><p>Bench grinder work rest gaps, unguarded shear points on roll formers, missing chip guards on lathes, and guards removed for jam clearing.</p>
+    `,
+  },
+  {
+    path: '/blog/loto-program-requirements-small-facilities',
+    title: 'LOTO Program Requirements for Small Facilities | GigLine',
+    description: 'OSHA 1910.147 Control of Hazardous Energy — written program elements, machine-specific procedures, training, and the citations that catch small facilities.',
+    canonical: '/blog/loto-program-requirements-small-facilities',
+    schemas: [
+      {
+        '@context': 'https://schema.org', '@type': 'Article',
+        headline: 'LOTO Program Requirements for Small Facilities',
+        description: 'OSHA 1910.147 Control of Hazardous Energy — written program elements, machine-specific procedures, training, and the citations that catch small facilities.',
+        image: `${BASE_URL}/og-image.png`,
+        author: { '@id': `${BASE_URL}/#vince` },
+        publisher: { '@id': `${BASE_URL}/#business` },
+        mainEntityOfPage: `${BASE_URL}/blog/loto-program-requirements-small-facilities`,
+        datePublished: '2025-10-28', dateModified: '2025-10-28',
+        articleSection: 'OSHA Compliance', inLanguage: 'en-US',
+      },
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Blog', path: '/field-notes' }, { name: 'LOTO Program Requirements', path: '/blog/loto-program-requirements-small-facilities' }]),
+    ],
+    content: `
+      <h1>LOTO Program Requirements for Small Facilities</h1>
+      <p>By Vince Lawrence — GigLine Safety &amp; Compliance</p>
+      <p>Lockout/Tagout under 29 CFR 1910.147 has been in OSHA's Top 5 most-cited standards for two decades. Here is what a compliant program actually requires.</p>
+      <h2>Elements of the written program</h2><p>Purpose, scope, responsibility assignments, machine-specific procedures, training records, periodic inspection procedure, group lockout procedure, and contractor coordination.</p>
+      <h2>The six-step procedure</h2><p>Notify affected employees, shut down normally, isolate all energy sources, apply personal locks and tags, release stored energy, verify isolation.</p>
+      <h2>The annual periodic inspection (1910.147(c)(6))</h2><p>Required annually. Performed by an authorized employee other than the one using the procedure. Documented with equipment, date, employees involved, and inspector.</p>
+    `,
+  },
+  {
+    path: '/blog/osha-forklift-compliance-inspector-checklist',
+    title: 'OSHA Forklift Compliance: What Inspectors Check | GigLine',
+    description: 'The forklift-related items OSHA inspectors ask for first — operator certifications, daily inspection logs, traffic controls — with CFR sections and 2026 penalty exposures.',
+    canonical: '/blog/osha-forklift-compliance-inspector-checklist',
+    schemas: [
+      {
+        '@context': 'https://schema.org', '@type': 'Article',
+        headline: 'OSHA Forklift Compliance: What Inspectors Actually Check',
+        description: 'The forklift-related items OSHA inspectors ask for first — operator certifications, daily inspection logs, traffic controls.',
+        image: `${BASE_URL}/og-image.png`,
+        author: { '@id': `${BASE_URL}/#vince` },
+        publisher: { '@id': `${BASE_URL}/#business` },
+        mainEntityOfPage: `${BASE_URL}/blog/osha-forklift-compliance-inspector-checklist`,
+        datePublished: '2025-11-11', dateModified: '2025-11-11',
+        articleSection: 'OSHA Compliance', inLanguage: 'en-US',
+      },
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Blog', path: '/field-notes' }, { name: 'OSHA Forklift Compliance', path: '/blog/osha-forklift-compliance-inspector-checklist' }]),
+    ],
+    content: `
+      <h1>OSHA Forklift Compliance: What Inspectors Actually Check</h1>
+      <p>By Vince Lawrence — GigLine Safety &amp; Compliance</p>
+      <p>The powered industrial truck standard (29 CFR 1910.178) is one of OSHA's most-cited every year. Two subsections generate most citations: operator training (l) and inspection logs (q).</p>
+      <h2>Operator certification (1910.178(l))</h2><p>Formal instruction + practical training + evaluation of performance. Evaluation must be re-performed every three years — 1910.178(l)(4)(iii).</p>
+      <h2>Daily inspection logs (1910.178(q)(7))</h2><p>Pre-shift inspection before every use. Written log — truck ID, date, operator, defects noted. Defects that make the truck unsafe remove it from service.</p>
+      <h2>Traffic controls</h2><p>Painted pedestrian lanes, convex mirrors at blind intersections, defined loading zones, and signage. Not prescribed by rule name, but cited under the general duty clause when struck-by hazards exist.</p>
+    `,
+  },
+  {
+    path: '/blog/written-hazcom-program-before-osha-inspection',
+    title: 'Written HazCom Program Before an OSHA Inspection | GigLine',
+    description: 'The written Hazard Communication program checklist OSHA works through during an inspection — chemical inventory, SDS binder, GHS labels, training records.',
+    canonical: '/blog/written-hazcom-program-before-osha-inspection',
+    schemas: [
+      {
+        '@context': 'https://schema.org', '@type': 'Article',
+        headline: 'Written HazCom Program: What You Need Before an OSHA Inspection',
+        description: 'The written Hazard Communication program checklist OSHA works through during an inspection — chemical inventory, SDS binder, GHS labels, training records.',
+        image: `${BASE_URL}/og-image.png`,
+        author: { '@id': `${BASE_URL}/#vince` },
+        publisher: { '@id': `${BASE_URL}/#business` },
+        mainEntityOfPage: `${BASE_URL}/blog/written-hazcom-program-before-osha-inspection`,
+        datePublished: '2025-11-25', dateModified: '2025-11-25',
+        articleSection: 'OSHA Compliance', inLanguage: 'en-US',
+      },
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Blog', path: '/field-notes' }, { name: 'HazCom Before OSHA Inspection', path: '/blog/written-hazcom-program-before-osha-inspection' }]),
+    ],
+    content: `
+      <h1>Written HazCom Program: What You Need Before an OSHA Inspection</h1>
+      <p>By Vince Lawrence — GigLine Safety &amp; Compliance</p>
+      <p>Hazard Communication (29 CFR 1910.1200) is OSHA's second-most-cited standard in general industry. Here is exactly what an inspector works through during a HazCom-focused inspection.</p>
+      <h2>Required elements</h2><p>Chemical inventory list, SDS management procedure, labeling program, employee training procedure, non-routine task procedure, multi-employer/contractor procedure, and executive signature with review date.</p>
+      <h2>SDS accessibility</h2><p>1910.1200(g)(1) requires SDS "readily accessible" during work shift. Employees must retrieve within 60 seconds without asking a supervisor.</p>
+      <h2>Container labels</h2><p>Original containers require six GHS elements. Secondary containers require product identifier and general hazard info.</p>
+    `,
+  },
+  {
+    path: '/blog/osha-300-log-common-mistakes-citations',
+    title: 'OSHA 300 Log: Common Mistakes That Trigger Citations | GigLine',
+    description: 'The recordkeeping mistakes OSHA cites most on the 300 log — misclassification, missing 300A postings, incomplete 301 forms. With 2026 penalty exposure.',
+    canonical: '/blog/osha-300-log-common-mistakes-citations',
+    schemas: [
+      {
+        '@context': 'https://schema.org', '@type': 'Article',
+        headline: 'OSHA 300 Log: Common Mistakes That Trigger Citations',
+        description: 'The recordkeeping mistakes OSHA cites most on the 300 log — misclassification, missing 300A postings, incomplete 301 forms.',
+        image: `${BASE_URL}/og-image.png`,
+        author: { '@id': `${BASE_URL}/#vince` },
+        publisher: { '@id': `${BASE_URL}/#business` },
+        mainEntityOfPage: `${BASE_URL}/blog/osha-300-log-common-mistakes-citations`,
+        datePublished: '2025-12-09', dateModified: '2025-12-09',
+        articleSection: 'OSHA Compliance', inLanguage: 'en-US',
+      },
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Blog', path: '/field-notes' }, { name: 'OSHA 300 Log Mistakes', path: '/blog/osha-300-log-common-mistakes-citations' }]),
+    ],
+    content: `
+      <h1>OSHA 300 Log: Common Mistakes That Trigger Citations</h1>
+      <p>By Vince Lawrence — GigLine Safety &amp; Compliance</p>
+      <p>The 300 log, 300A summary, and 301 incident report together are one of OSHA's fastest paperwork requirements — and one of the top citation sources every year.</p>
+      <h2>Recordability (29 CFR 1904.7)</h2><p>Death, days away from work, restricted work, medical treatment beyond first aid, loss of consciousness, or diagnosis of a significant injury or illness. If any applies, the case is recordable.</p>
+      <h2>300A posting window (1904.32)</h2><p>February 1 through April 30 every year. Executive-certified. Posted in a conspicuous location. Retained for five years.</p>
+      <h2>Common mistakes</h2><p>Misclassifying first aid vs medical treatment, missing 300A posting, no executive certification, 301 forms not completed within 7 days, restricted-work days miscounted.</p>
+    `,
+  },
+  {
     path: '/intake',
     title: 'Request a Safety Walkthrough | GigLine Safety & Compliance',
     description: 'Request an on-site safety walkthrough for your operation. One visit. Clear findings. Written report within 48 hours. Kernersville, NC.',

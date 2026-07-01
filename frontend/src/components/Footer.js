@@ -12,14 +12,12 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <div className="mb-4">
-              <img
-                src="/gigline-logo-dark-bg.png?v=4"
+              <img src="/gigline-logo-dark-bg.png?v=4"
                 alt="GigLine Safety & Compliance"
                 className="h-16 w-auto"
                 loading="lazy"
                 width="240"
-                height="86"
-              />
+                height="86" />
             </div>
             <p className="text-white/60 text-sm mb-4">
               Safety Walkthroughs and Documentation Readiness Reviews for Small Operations

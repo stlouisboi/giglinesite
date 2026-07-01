@@ -39,7 +39,7 @@ const FINDINGS = [
       'Secure propane cylinder immediately with a chain bracket or cylinder stand rated for compressed gas storage. Relocate cylinder a minimum of 20 feet from the flammable storage cabinet or install a fire-resistant barrier of at least 30-minute rating between them. When not in active use, store propane cylinder outside or in a designated outdoor compressed gas storage area.',
     penalty: 'Up to $16,550 (Serious)',
     fixBy: 'Immediate',
-    photoUrl: '/floor-findings/propane-cylinder.jpg',
+    photoUrl: '/floor-findings/propane-cylinder.webp',
   },
   {
     n: '02',
@@ -54,7 +54,7 @@ const FINDINGS = [
       'Install point-of-operation guarding on the shear blade to prevent operator contact with the cutting hazard. Acceptable methods include barrier guards, two-hand controls, or presence-sensing devices. Post machine-specific LOTO procedure at the shear station before any maintenance or jam-clearing is performed. Complete guarding installation before production employees are assigned to operate this equipment.',
     penalty: 'Up to $16,550 (Serious)',
     fixBy: 'Before production employees operate equipment',
-    photoUrl: '/floor-findings/machine-guarding.jpg',
+    photoUrl: '/floor-findings/machine-guarding.webp',
   },
   {
     n: '03',
@@ -69,7 +69,7 @@ const FINDINGS = [
       'Obtain and maintain Safety Data Sheets for all hazardous chemicals present in the workplace. Ensure SDSs are readily accessible to employees during their work shifts in the area where hazardous chemicals are used or stored.',
     penalty: 'Up to $16,550 (Serious)',
     fixBy: 'Before fluid is used in production',
-    photoUrl: '/floor-findings/hazcom-sds.jpg',
+    photoUrl: '/floor-findings/hazcom-sds.webp',
   },
 ];
 
@@ -392,12 +392,10 @@ const PhotoPlaceholder = ({ area, photoUrl }) => {
         }}
         data-testid="photo-placeholder"
       >
-        <img
-          src={photoUrl}
+        <img src={photoUrl}
           alt={`Field photo — ${area}`}
           className="w-full h-full object-cover"
-          loading="lazy"
-        />
+          loading="lazy" />
         {/* SAMPLE — ANONYMIZED badge */}
         <span
           className="absolute uppercase font-bold"

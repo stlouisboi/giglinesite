@@ -40,8 +40,7 @@ const FieldManualBand = ({ source = 'homepage' }) => {
               data-testid="field-manual-cover-link"
               aria-label="Open the 2026 Triad OSHA Field Manual"
             >
-              <img
-                src="/assets/gl-fm-2026-cover.jpg"
+              <img src="/assets/gl-fm-2026-cover.webp" height="1000" width="772"
                 alt="The 2026 Triad OSHA Field Manual — cover"
                 className="w-full h-auto block"
                 style={{
@@ -50,8 +49,7 @@ const FieldManualBand = ({ source = 'homepage' }) => {
                   boxShadow: '0 14px 36px rgba(11,31,51,0.22)',
                 }}
                 loading="lazy"
-                data-testid="field-manual-cover"
-              />
+                data-testid="field-manual-cover" />
             </a>
           </div>
 

@@ -141,7 +141,7 @@ const AboutPage = () => {
             "telephone": "+13363298899",
             "email": "vince@giglinecompliance.com",
             "url": "https://www.giglinecompliance.com/about",
-            "image": "https://www.giglinecompliance.com/vince-portrait.jpg",
+            "image": "https://www.giglinecompliance.com/vince-portrait.webp",
             "description": "Vince Lawrence is a safety consultant with 25+ years of experience in manufacturing, fleet, and warehouse operations. OSHA 30-Hour Certified in General Industry. U.S. Navy veteran. Founder of GigLine Safety & Compliance in Kernersville, NC.",
             "sameAs": [
               "https://www.giglinecompliance.com",
@@ -194,13 +194,11 @@ const AboutPage = () => {
                 style={{ border: '1px solid rgba(255,255,255,0.10)', background: 'rgba(255,255,255,0.03)' }}
                 data-testid="about-founder-photo-wrap"
               >
-                <img
-                  src="/vince-founder.jpg"
+                <img src="/vince-founder.webp" height="1411" width="1114"
                   alt="Vince Lawrence — Founder, GigLine Safety & Compliance"
                   className="w-full h-auto block"
                   loading="eager"
-                  data-testid="about-founder-photo"
-                />
+                  data-testid="about-founder-photo" />
               </div>
 
               <div className="grid grid-cols-3 gap-3" data-testid="about-stats-grid">

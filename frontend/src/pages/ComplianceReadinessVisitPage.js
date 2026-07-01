@@ -167,7 +167,7 @@ const CTABar = () => (
     <div className="container max-w-6xl">
       <div className="flex flex-col md:flex-row items-center md:justify-between gap-4">
         <div className="flex items-center gap-2.5">
-          <img src="/gigline-logo-dark-bg.png?v=4" alt="" className="h-7 w-auto" />
+          <img src="/gigline-logo-dark-bg.png?v=4" loading="lazy" alt="" className="h-7 w-auto" />
           <span
             className="uppercase font-bold"
             style={{

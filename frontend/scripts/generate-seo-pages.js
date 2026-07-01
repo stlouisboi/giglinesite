@@ -120,7 +120,7 @@ const VINCE_PERSON = {
   telephone: '+13363298899',
   email: 'vince@giglinecompliance.com',
   url: `${BASE_URL}/about`,
-  image: `${BASE_URL}/vince-portrait.jpg`,
+  image: `${BASE_URL}/vince-portrait.webp`,
   description:
     'Vince Lawrence is a safety consultant with 25+ years of experience in manufacturing, fleet, and warehouse operations. OSHA 30-Hour Certified in General Industry. U.S. Navy veteran. Founder of GigLine Safety & Compliance in Kernersville, NC.',
   hasCredential: [
@@ -1299,15 +1299,15 @@ Object.keys(CITY_META).forEach((city) => {
 
 // Field note detail pages
 const NOTE_HERO_IMAGES = {
-  'electrical-safety': '/assets/field-notes/electrical-safety-exposed-wires.jpg',
-  'forklift-safety': '/assets/field-notes/forklift-safety-inspection.jpg',
-  'lockout-tagout': '/assets/field-notes/lockout-tagout-lock.jpeg',
-  'hazcom': '/assets/field-notes/hazcom-sds-binder.jpg',
-  'walking-surfaces': '/assets/field-notes/walking-surfaces-housekeeping.jpg',
-  'emergency-action-plans': '/assets/field-notes/emergency-action-plans-blocked-egress.jpg',
-  'recordkeeping-300-log': '/assets/field-notes/recordkeeping-300-log.jpg',
-  'machine-guarding': '/assets/field-notes/machine-guarding-shear.jpg',
-  'ai-generated-safety-programs': '/assets/field-notes/ai-safety-programs-hero.jpg',
+  'electrical-safety': '/assets/field-notes/electrical-safety-exposed-wires.webp',
+  'forklift-safety': '/assets/field-notes/forklift-safety-inspection.webp',
+  'lockout-tagout': '/assets/field-notes/lockout-tagout-lock.webp',
+  'hazcom': '/assets/field-notes/hazcom-sds-binder.webp',
+  'walking-surfaces': '/assets/field-notes/walking-surfaces-housekeeping.webp',
+  'emergency-action-plans': '/assets/field-notes/emergency-action-plans-blocked-egress.webp',
+  'recordkeeping-300-log': '/assets/field-notes/recordkeeping-300-log.webp',
+  'machine-guarding': '/assets/field-notes/machine-guarding-shear.webp',
+  'ai-generated-safety-programs': '/assets/field-notes/ai-safety-programs-hero.webp',
 };
 
 const RELATED_NOTES = {
@@ -1345,7 +1345,7 @@ const fieldNotes = [
     desc: 'Operators are using ChatGPT to generate OSHA safety programs. The output looks compliant — until an inspector arrives. Why AI-generated programs fail at the floor level.',
     customSeoTitle: "AI-Generated Safety Programs vs. OSHA Compliance: What ChatGPT Can't See on Your Floor | GigLine Safety & Compliance",
     customH1: "An AI-Generated Safety Program Is Not a Working Safety Program",
-    ogImage: '/assets/field-notes/ai-safety-programs-hero.jpg',
+    ogImage: '/assets/field-notes/ai-safety-programs-hero.webp',
     customContent: `
       <h1>An AI-Generated Safety Program Is Not a Working Safety Program</h1>
       <p><em>What ChatGPT can't see on your floor — and why OSHA can.</em></p>

@@ -358,7 +358,7 @@ const ClientIntakePage = () => {
       <nav className="sticky top-0 z-50" style={{ background: C.deeper, borderBottom: `1px solid ${C.border}` }}>
         <div className="flex items-center justify-between px-6 py-3 max-w-3xl mx-auto">
           <a href="/" className="flex items-center gap-3 hover:opacity-90 transition-opacity" data-testid="intake-logo">
-            <img src="/gigline-logo-dark-bg.png?v=4" alt="GigLine Safety & Compliance" className="h-12 md:h-14 w-auto" />
+            <img src="/gigline-logo-dark-bg.png?v=4" loading="lazy" alt="GigLine Safety & Compliance" className="h-12 md:h-14 w-auto" />
           </a>
           <div className="hidden md:flex items-center gap-2 text-right">
             <span className="text-xs font-bold uppercase tracking-[2px]" style={{ color: C.blue, ...mono }}>Master Intake</span>
@@ -910,13 +910,11 @@ const ClientIntakePage = () => {
                 className="rounded-xl overflow-hidden mb-5"
                 style={{ border: '1px solid rgba(255,255,255,0.10)', background: 'rgba(255,255,255,0.03)' }}
               >
-                <img
-                  src="/vince-founder.jpg"
+                <img src="/vince-founder.webp" height="1411" width="1114"
                   alt="Vince Lawrence — Founder, GigLine Safety & Compliance"
                   className="w-full h-auto block"
                   loading="lazy"
-                  data-testid="intake-about-photo"
-                />
+                  data-testid="intake-about-photo" />
               </div>
               <div className="grid grid-cols-3 gap-3">
                 {[

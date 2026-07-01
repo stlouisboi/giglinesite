@@ -220,14 +220,12 @@ const CityLandingPage = () => {
           >
             <span className="inline-flex items-center gap-4 flex-wrap">
               <span>Safety Walkthroughs in {data.name}</span>
-              <img
-                src="/assets/carolina-built-badge.png"
+              <img src="/assets/carolina-built-badge.webp" height="1200" width="1200"
                 alt="Carolina-Built · Navy Veteran Owned · Kernersville NC"
                 className="inline-block w-20 sm:w-24 lg:w-28 h-auto select-none align-middle"
                 style={{ filter: 'drop-shadow(0 6px 14px rgba(0,0,0,0.35))' }}
                 loading="eager"
-                data-testid="city-carolina-badge"
-              />
+                data-testid="city-carolina-badge" />
             </span>
           </h1>
           <p className="text-base md:text-lg text-white/55 max-w-2xl leading-relaxed mb-8">

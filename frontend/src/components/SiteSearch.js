@@ -227,7 +227,7 @@ export const SiteSearch = ({ open, onClose }) => {
         </div>
 
         {/* Footer hints */}
-        <div className="px-5 py-2.5 border-t border-gray-100 flex items-center gap-4 text-[10px] text-gray-400 bg-gray-50">
+        <div className="px-5 py-2.5 border-t border-gray-100 flex items-center gap-4 text-[10px] text-gray-600 bg-gray-50">
           <span><kbd className="px-1.5 py-0.5 bg-white border border-gray-200 rounded font-mono">↑</kbd> <kbd className="px-1.5 py-0.5 bg-white border border-gray-200 rounded font-mono">↓</kbd> navigate</span>
           <span><kbd className="px-1.5 py-0.5 bg-white border border-gray-200 rounded font-mono">↵</kbd> select</span>
           <span><kbd className="px-1.5 py-0.5 bg-white border border-gray-200 rounded font-mono">esc</kbd> close</span>

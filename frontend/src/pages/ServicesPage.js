@@ -336,14 +336,12 @@ const ServicesPage = () => {
         <div className="flex flex-col md:flex-row min-h-[480px] md:min-h-[560px]">
           {/* Image — left 40% on desktop, top on mobile */}
           <div className="relative w-full md:w-2/5 md:flex-shrink-0">
-            <img
-              src="/services-hero.jpg"
+            <img src="/services-hero.webp" height="900" width="1600"
               alt="On-site safety walkthrough — warehouse and manufacturing operations across the Piedmont Triad"
               className="w-full h-64 md:h-full object-cover"
               loading="eager"
               fetchPriority="high"
-              data-testid="services-hero-image"
-            />
+              data-testid="services-hero-image" />
             {/* Soft navy fade on right edge to blend into copy panel on desktop */}
             <div
               className="hidden md:block absolute inset-y-0 right-0 w-24 pointer-events-none"
@@ -1381,12 +1379,10 @@ const ServicesPage = () => {
           <div className="flex flex-col md:flex-row gap-10 md:gap-14 items-center md:items-start">
             <div className="w-44 md:w-52 flex-shrink-0">
               <Reveal>
-                <img
-                  src="/vince-portrait.jpg"
+                <img src="/vince-portrait.webp" loading="lazy" height="1200" width="947"
                   alt="Vince Lawrence — Founder, GigLine Safety & Compliance"
                   className="w-full rounded"
-                  data-testid="services-founder-photo"
-                />
+                  data-testid="services-founder-photo" />
               </Reveal>
             </div>
             <div className="flex-grow text-center md:text-left">

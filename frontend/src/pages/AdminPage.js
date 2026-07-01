@@ -278,7 +278,7 @@ const AdminPage = () => {
               className="w-full px-4 py-3 bg-white/5 border border-white/15 text-white rounded-lg focus:outline-none focus:border-[#C9A84C] placeholder:text-white/30"
               placeholder="Enter admin password" data-testid="admin-password" />
             {loginError && <p className="text-red-400 text-sm">{loginError}</p>}
-            <button type="submit" className="w-full bg-[#C9A84C] hover:bg-[#B8972C] text-white font-semibold py-3 rounded-lg transition-colors" data-testid="admin-login-btn">Log In</button>
+            <button type="submit" className="w-full bg-[#C9A84C] hover:bg-[#B8972C] text-[#102A43] font-semibold py-3 rounded-lg transition-colors" data-testid="admin-login-btn">Log In</button>
           </form>
         </div>
       </section>
@@ -1023,7 +1023,7 @@ const AdminPage = () => {
             </select>
             <div className="flex gap-2">
               <button onClick={() => setStatusModal(null)} className="flex-1 text-sm py-2 rounded-lg border border-gray-200 text-gray-500">Cancel</button>
-              <button onClick={handleStatusUpdate} className="flex-1 text-sm py-2 rounded-lg bg-[#C9A84C] text-white font-bold hover:bg-[#B8972C] transition-colors" data-testid="status-save-btn">Save</button>
+              <button onClick={handleStatusUpdate} className="flex-1 text-sm py-2 rounded-lg bg-[#C9A84C] text-[#102A43] font-bold hover:bg-[#B8972C] transition-colors" data-testid="status-save-btn">Save</button>
             </div>
           </div>
         </div>

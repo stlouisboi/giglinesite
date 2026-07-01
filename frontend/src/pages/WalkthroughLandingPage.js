@@ -89,13 +89,11 @@ const WalkthroughLandingPage = () => {
         data-testid="wt-header"
       >
         <a href="https://www.giglinecompliance.com" className="flex items-center">
-          <img
-            src="/gigline-logo-3d.png?v=3"
+          <img src="/gigline-logo-3d.png?v=3" loading="lazy"
             alt="GigLine Safety & Compliance"
             className="h-9 md:h-11 w-auto"
             width="244"
-            height="100"
-          />
+            height="100" />
         </a>
         <a
           href="tel:3363298899"
@@ -473,13 +471,11 @@ const WalkthroughLandingPage = () => {
       >
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <a href="https://www.giglinecompliance.com" className="block">
-            <img
-              src="/gigline-logo-3d.png?v=3"
+            <img src="/gigline-logo-3d.png?v=3" loading="lazy"
               alt="GigLine Safety & Compliance"
               className="h-9 md:h-10 w-auto"
               width="244"
-              height="100"
-            />
+              height="100" />
           </a>
 
           <div className="text-sm md:text-[15px] flex flex-col md:items-end gap-2" style={{ color: TEXT_MUTED }}>

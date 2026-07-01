@@ -30,7 +30,7 @@ const NotFoundPage = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to="/"
-              className="bg-[#C9A84C] hover:bg-[#B8972C] text-white font-semibold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
+              className="bg-[#C9A84C] hover:bg-[#B8972C] text-[#102A43] font-semibold px-8 py-4 rounded transition-colors inline-flex items-center gap-2"
               data-testid="not-found-home-cta"
             >
               Back to Home

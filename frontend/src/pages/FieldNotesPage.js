@@ -271,7 +271,7 @@ const FieldNotesPage = () => {
         className="py-16 md:py-24 relative overflow-hidden"
         style={{
           backgroundColor: '#102A43',
-          backgroundImage: 'linear-gradient(rgba(28,43,43,0.55), rgba(28,43,43,0.72)), url(/assets/field-notes-header.jpg)',
+          backgroundImage: 'linear-gradient(rgba(28,43,43,0.55), rgba(28,43,43,0.72)), url(/assets/field-notes-header.webp)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',

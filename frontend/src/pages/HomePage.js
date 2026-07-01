@@ -43,11 +43,11 @@ const Reveal = ({ children, className = '', delay = 0 }) => {
 
 /* ── Stock images ── */
 const IMG = {
-  hero: 'https://www.giglinecompliance.com/vince-inspecting.jpg',
-  grid1: '/cluttered-aisles.jpg',
-  grid2: '/blocked-electrical-panel.jpg',
-  grid3: '/machine-guarding.jpg',
-  grid4: '/blocked-fire-riser.jpg',
+  hero: 'https://www.giglinecompliance.com/vince-inspecting.webp',
+  grid1: '/cluttered-aisles.webp',
+  grid2: '/blocked-electrical-panel.webp',
+  grid3: '/machine-guarding.webp',
+  grid4: '/blocked-fire-riser.webp',
   proof: 'https://images.unsplash.com/photo-1644079446600-219068676743?w=1400&q=80&fit=crop&auto=format',
 };
 
@@ -139,16 +139,14 @@ const HomePage = () => {
         <div className="flex flex-col xl:flex-row h-full min-h-[60vh] xl:min-h-[85vh]">
           {/* Left — Photo */}
           <div className="relative w-full xl:w-3/5 h-[45vh] xl:h-auto overflow-hidden">
-            <img
-              src="/vince-inspecting.webp"
+            <img src="/vince-inspecting.webp"
               alt="Vince Lawrence of GigLine Safety & Compliance inspecting a facility during an on-site OSHA safety walkthrough"
               className="absolute inset-0 w-full h-full object-cover img-zoom"
               loading="eager"
               fetchPriority="high"
               width="843"
               height="1264"
-              data-testid="hero-image"
-            />
+              data-testid="hero-image" />
             {/* Gradient bleed into text column */}
             <div className="hidden xl:block absolute inset-y-0 right-0 w-1/3 bg-gradient-to-r from-transparent to-[#102A43]" />
             <div className="xl:hidden absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#102A43] to-transparent" />
@@ -268,12 +266,12 @@ const HomePage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10">
             {[
-              { num: '01', title: 'Incomplete LOTO Procedures', body: 'Machine-specific written procedures missing or not posted at the point of use. One of the most cited serious violations in manufacturing \u2014 and one of the easiest to correct before an inspection.', image: '/floor-findings/loto-tag.jpg', alt: 'A red lockout/tagout padlock and DANGER DO NOT OPERATE tag signed and dated by a maintenance worker on industrial equipment' },
-              { num: '02', title: 'Forklift & PIT Gaps', body: 'Expired operator certifications, missing pre-shift inspection logs, and unmarked pedestrian zones. These show up on nearly every floor we walk.', image: '/floor-findings/forklift-pit.jpg', alt: 'A warehouse aisle with a forklift showing an expired operator certification sticker and a pre-shift inspection station with no forms available' },
-              { num: '03', title: 'Hazard Communication Failures', body: 'SDSs not accessible at point of use, unlabeled secondary containers, and training records that don\u2019t match the chemical inventory. OSHA\u2019s most frequently cited standard.', image: '/floor-findings/hazcom-sds.jpg', alt: 'A worker stands puzzled in front of a wall-mounted HazCom training log, chemical inventory list, and empty Safety Data Sheets binder beside a bench of unlabeled spray bottles and chemical containers' },
-              { num: '04', title: 'Electrical Hazard Exposures', body: 'Open junction boxes, missing knockouts, and energized equipment without proper guarding. Often overlooked because they\u2019ve been that way for years.', image: '/floor-findings/electrical-junction.jpg', alt: 'An open electrical junction box with exposed wires and missing knockouts, partially blocked by stacked cardboard inventory boxes against a wooden wall' },
-              { num: '05', title: 'Blocked or Unmarked Egress', body: 'Exit routes obstructed by inventory, emergency lighting not tested, and exit signs missing or burned out. Simple to fix. Expensive to ignore.', image: '/floor-findings/blocked-egress.jpg', alt: 'A warehouse exit corridor with shrink-wrapped pallets stacked directly in front of an exit door, the exit sign and emergency lighting fixture above the doorway obscured, between tall pallet racking and a yellow guard rail' },
-              { num: '06', title: 'Recordkeeping Deficiencies', body: 'OSHA 300 logs not current, 300A summaries not posted during the required February\u2013April window, and incident records that don\u2019t meet the retention standard.', image: '/floor-findings/recordkeeping.jpg', alt: 'A safety coordinator reviewing an OSHA 300 log at a desk stacked with old incident report binders labeled by year and a paper stack marked INCOMPLETE, beneath a Safety Postings corkboard with Job Safety and Health poster and Emergency Action Plan forms' },
+              { num: '01', title: 'Incomplete LOTO Procedures', body: 'Machine-specific written procedures missing or not posted at the point of use. One of the most cited serious violations in manufacturing \u2014 and one of the easiest to correct before an inspection.', image: '/floor-findings/loto-tag.webp', alt: 'A red lockout/tagout padlock and DANGER DO NOT OPERATE tag signed and dated by a maintenance worker on industrial equipment' },
+              { num: '02', title: 'Forklift & PIT Gaps', body: 'Expired operator certifications, missing pre-shift inspection logs, and unmarked pedestrian zones. These show up on nearly every floor we walk.', image: '/floor-findings/forklift-pit.webp', alt: 'A warehouse aisle with a forklift showing an expired operator certification sticker and a pre-shift inspection station with no forms available' },
+              { num: '03', title: 'Hazard Communication Failures', body: 'SDSs not accessible at point of use, unlabeled secondary containers, and training records that don\u2019t match the chemical inventory. OSHA\u2019s most frequently cited standard.', image: '/floor-findings/hazcom-sds.webp', alt: 'A worker stands puzzled in front of a wall-mounted HazCom training log, chemical inventory list, and empty Safety Data Sheets binder beside a bench of unlabeled spray bottles and chemical containers' },
+              { num: '04', title: 'Electrical Hazard Exposures', body: 'Open junction boxes, missing knockouts, and energized equipment without proper guarding. Often overlooked because they\u2019ve been that way for years.', image: '/floor-findings/electrical-junction.webp', alt: 'An open electrical junction box with exposed wires and missing knockouts, partially blocked by stacked cardboard inventory boxes against a wooden wall' },
+              { num: '05', title: 'Blocked or Unmarked Egress', body: 'Exit routes obstructed by inventory, emergency lighting not tested, and exit signs missing or burned out. Simple to fix. Expensive to ignore.', image: '/floor-findings/blocked-egress.webp', alt: 'A warehouse exit corridor with shrink-wrapped pallets stacked directly in front of an exit door, the exit sign and emergency lighting fixture above the doorway obscured, between tall pallet racking and a yellow guard rail' },
+              { num: '06', title: 'Recordkeeping Deficiencies', body: 'OSHA 300 logs not current, 300A summaries not posted during the required February\u2013April window, and incident records that don\u2019t meet the retention standard.', image: '/floor-findings/recordkeeping.webp', alt: 'A safety coordinator reviewing an OSHA 300 log at a desk stacked with old incident report binders labeled by year and a paper stack marked INCOMPLETE, beneath a Safety Postings corkboard with Job Safety and Health poster and Emergency Action Plan forms' },
             ].map((c, i) => (
               <Reveal key={c.num} delay={i * 70}>
                 <div className="flex flex-col" data-testid={`floor-finding-${c.num}`}>
@@ -283,14 +281,12 @@ const HomePage = () => {
                       style={{ aspectRatio: '16 / 10', border: '1px solid #dde3ea' }}
                       data-testid={`floor-finding-image-${c.num}`}
                     >
-                      <img
-                        src={c.image}
+                      <img src={c.image}
                         alt={c.alt}
                         className="w-full h-full object-cover"
                         loading="lazy"
                         width="800"
-                        height="500"
-                      />
+                        height="500" />
                     </div>
                   )}
                   <span
@@ -977,17 +973,14 @@ const HomePage = () => {
                   }}
                   data-testid="about-photo-panel"
                 >
-                  <img
-                    src="/vince-about.png"
+                  <img src="/vince-about.webp" height="900" width="711"
                     alt="Vince Lawrence — Founder, GigLine Safety & Compliance"
                     className="w-full h-auto block"
                     style={{ filter: 'brightness(0.95) contrast(1.05)' }}
-                    loading="lazy"
-                  />
+                    loading="lazy" />
                 </div>
                 <div className="mt-6 flex items-center gap-4" data-testid="about-carolina-badge-block">
-                  <img
-                    src="/assets/carolina-built-badge.png"
+                  <img src="/assets/carolina-built-badge.webp" height="1200" width="1200"
                     alt="Carolina-Built · Navy Veteran Owned · Kernersville NC"
                     className="select-none flex-shrink-0"
                     style={{
@@ -995,8 +988,7 @@ const HomePage = () => {
                       height: 'auto',
                       filter: 'drop-shadow(0 6px 14px rgba(0,0,0,0.45))',
                     }}
-                    loading="lazy"
-                  />
+                    loading="lazy" />
                   <p
                     className="uppercase font-semibold leading-snug"
                     style={{

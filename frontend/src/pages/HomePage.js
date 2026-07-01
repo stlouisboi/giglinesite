@@ -747,6 +747,45 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* ═══ OSHA GUIDES BAND — pillar-content hub cross-sell ═══ */}
+      <section
+        className="py-16 md:py-20 bg-white border-t"
+        style={{ borderColor: '#dde3ea' }}
+        data-testid="home-guides-band"
+      >
+        <div className="container max-w-5xl">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+            <div>
+              <p className="uppercase font-bold tracking-[0.22em] mb-2" style={{ color: '#2A52A0', fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }}>OSHA Compliance Guides</p>
+              <h2 className="font-bold leading-tight text-[#1C2B2B] text-[22px] md:text-[26px]" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+                Long-form guides for the citations you&rsquo;re most likely to see.
+              </h2>
+            </div>
+            <Link to="/blog" className="text-sm font-semibold text-[#2A52A0] hover:text-[#1F3F80] transition-colors whitespace-nowrap inline-flex items-center gap-1.5" data-testid="home-guides-viewall">
+              View all guides <ArrowRight size={14} />
+            </Link>
+          </div>
+          <div className="grid md:grid-cols-3 gap-5">
+            {[
+              { slug: 'osha-300-log-common-mistakes-citations', topic: 'RECORDKEEPING', title: 'OSHA 300 Log: Common Mistakes That Trigger Citations', minutes: '11 min' },
+              { slug: 'osha-machine-guarding-checklist-small-manufacturers', topic: 'MACHINE GUARDING', title: 'OSHA Machine Guarding Checklist for Small Manufacturers', minutes: '11 min' },
+              { slug: 'osha-forklift-compliance-inspector-checklist', topic: 'FORKLIFT', title: 'OSHA Forklift Compliance: What Inspectors Actually Check', minutes: '10 min' },
+            ].map((g) => (
+              <Link key={g.slug} to={`/blog/${g.slug}`} className="group block" data-testid={`home-guide-${g.slug}`}>
+                <article className="bg-[#F9F8F6] border border-[#2A52A0]/10 rounded p-5 md:p-6 h-full flex flex-col hover:border-[#2A52A0]/40 hover:bg-white transition-all">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[10px] font-semibold tracking-widest text-[#2A52A0] uppercase px-2 py-0.5 bg-[#2A52A0]/8 rounded" style={{ fontFamily: "'JetBrains Mono', monospace" }}>{g.topic}</span>
+                    <span className="text-[11px] text-[#1C2B2B]/40">{g.minutes} read</span>
+                  </div>
+                  <h3 className="text-[15px] font-bold text-[#1C2B2B] leading-snug mb-4 group-hover:text-[#1F3F80] transition-colors flex-grow" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>{g.title}</h3>
+                  <span className="text-xs font-semibold text-[#2A52A0] inline-flex items-center gap-1.5 group-hover:gap-2 transition-all mt-auto">Read the guide <ArrowRight size={12} /></span>
+                </article>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ═══ WHAT HAPPENS ON THE DAY OF YOUR WALKTHROUGH ═══ */}
       <WalkthroughDaySection variant="crv" surface="light" />
 

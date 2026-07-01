@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { trackPageView, initAttribution } from './utils/analytics';
@@ -6,51 +6,73 @@ import ScrollToTop from './components/ScrollToTop';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import MobileStickyFooter from './components/MobileStickyFooter';
+
+// Eager: renders instantly on every landing — the LCP path
 import HomePage from './pages/HomePage';
-import ServicesPage from './pages/ServicesPage';
-import AboutPage from './pages/AboutPage';
-import ContactPage from './pages/ContactPage';
-import PaymentSuccessPage from './pages/PaymentSuccessPage';
-import SafetyCheckPage from './pages/SafetyCheckPage';
-import NotFoundPage from './pages/NotFoundPage';
-import HazComPage from './pages/HazComPage';
-import HazComThankYouPage from './pages/HazComThankYouPage';
-import BlogOSHAViolations from './pages/BlogOSHAViolations';
-import BlogHazComRequirements from './pages/BlogHazComRequirements';
-import HeatGuidePage from './pages/HeatGuidePage';
-import SampleReportPage from './pages/SampleReportPage';
-import ResourcesPage from './pages/ResourcesPage';
-import OshaInspectionGuidePage from './pages/OshaInspectionGuidePage';
-import OshaComplianceGuidePage from './pages/OshaComplianceGuidePage';
-import ForkliftComplianceReviewNCPage from './pages/ForkliftComplianceReviewNCPage';
-import LOTOProcedureReviewNCPage from './pages/LOTOProcedureReviewNCPage';
-import OSHADocumentationReviewNCPage from './pages/OSHADocumentationReviewNCPage';
-import ClientIntakePage from './pages/ClientIntakePage';
-import StatusPage from './pages/StatusPage';
-import ReportPage from './pages/ReportPage';
-import AdminPage from './pages/AdminPage';
-import FieldNotesPage from './pages/FieldNotesPage';
-import FieldNoteDetailPage from './pages/FieldNoteDetailPage';
-import CityLandingPage from './pages/CityLandingPage';
-import FAQPage from './pages/FAQPage';
-import ServiceDetailPage from './pages/ServiceDetailPage';
-import DocumentDevelopmentPage from './pages/DocumentDevelopmentPage';
-import AnnualCompliancePartnerPage from './pages/AnnualCompliancePartnerPage';
-import ComplianceReadinessVisitPage from './pages/ComplianceReadinessVisitPage';
-import ServiceAreasPage from './pages/ServiceAreasPage';
-import WalkthroughLandingPage from './pages/WalkthroughLandingPage';
-import CaseStudyMetalsFabricationPage from './pages/CaseStudyMetalsFabricationPage';
-import SupervisorKitPage from './pages/SupervisorKitPage';
-import SupervisorKitThankYouPage from './pages/SupervisorKitThankYouPage';
-import ThankYouIntakePage from './pages/ThankYouIntakePage';
-import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
-import TermsOfServicePage from './pages/TermsOfServicePage';
-import SafetyWalkthroughPage from './pages/SafetyWalkthroughPage';
-import IncidentReviewPage from './pages/IncidentReviewPage';
-import OshaReadyControlSystemPage from './pages/OshaReadyControlSystemPage';
-import DocumentationGapCheckPage from './pages/DocumentationGapCheckPage';
-import OshaComplianceGapCheckPage from './pages/OshaComplianceGapCheckPage';
+
+// Lazy: 43 secondary pages split into per-route chunks.
+// Users who never visit /admin or /faq never download those bundles.
+const ServicesPage                    = lazy(() => import('./pages/ServicesPage'));
+const AboutPage                       = lazy(() => import('./pages/AboutPage'));
+const ContactPage                     = lazy(() => import('./pages/ContactPage'));
+const PaymentSuccessPage              = lazy(() => import('./pages/PaymentSuccessPage'));
+const SafetyCheckPage                 = lazy(() => import('./pages/SafetyCheckPage'));
+const NotFoundPage                    = lazy(() => import('./pages/NotFoundPage'));
+const HazComPage                      = lazy(() => import('./pages/HazComPage'));
+const HazComThankYouPage              = lazy(() => import('./pages/HazComThankYouPage'));
+const BlogOSHAViolations              = lazy(() => import('./pages/BlogOSHAViolations'));
+const BlogHazComRequirements          = lazy(() => import('./pages/BlogHazComRequirements'));
+const HeatGuidePage                   = lazy(() => import('./pages/HeatGuidePage'));
+const SampleReportPage                = lazy(() => import('./pages/SampleReportPage'));
+const ResourcesPage                   = lazy(() => import('./pages/ResourcesPage'));
+const OshaInspectionGuidePage         = lazy(() => import('./pages/OshaInspectionGuidePage'));
+const OshaComplianceGuidePage         = lazy(() => import('./pages/OshaComplianceGuidePage'));
+const ForkliftComplianceReviewNCPage  = lazy(() => import('./pages/ForkliftComplianceReviewNCPage'));
+const LOTOProcedureReviewNCPage       = lazy(() => import('./pages/LOTOProcedureReviewNCPage'));
+const OSHADocumentationReviewNCPage   = lazy(() => import('./pages/OSHADocumentationReviewNCPage'));
+const ClientIntakePage                = lazy(() => import('./pages/ClientIntakePage'));
+const StatusPage                      = lazy(() => import('./pages/StatusPage'));
+const ReportPage                      = lazy(() => import('./pages/ReportPage'));
+const AdminPage                       = lazy(() => import('./pages/AdminPage'));
+const FieldNotesPage                  = lazy(() => import('./pages/FieldNotesPage'));
+const FieldNoteDetailPage             = lazy(() => import('./pages/FieldNoteDetailPage'));
+const CityLandingPage                 = lazy(() => import('./pages/CityLandingPage'));
+const FAQPage                         = lazy(() => import('./pages/FAQPage'));
+const ServiceDetailPage               = lazy(() => import('./pages/ServiceDetailPage'));
+const DocumentDevelopmentPage         = lazy(() => import('./pages/DocumentDevelopmentPage'));
+const AnnualCompliancePartnerPage     = lazy(() => import('./pages/AnnualCompliancePartnerPage'));
+const ComplianceReadinessVisitPage    = lazy(() => import('./pages/ComplianceReadinessVisitPage'));
+const ServiceAreasPage                = lazy(() => import('./pages/ServiceAreasPage'));
+const WalkthroughLandingPage          = lazy(() => import('./pages/WalkthroughLandingPage'));
+const CaseStudyMetalsFabricationPage  = lazy(() => import('./pages/CaseStudyMetalsFabricationPage'));
+const SupervisorKitPage               = lazy(() => import('./pages/SupervisorKitPage'));
+const SupervisorKitThankYouPage       = lazy(() => import('./pages/SupervisorKitThankYouPage'));
+const ThankYouIntakePage              = lazy(() => import('./pages/ThankYouIntakePage'));
+const PrivacyPolicyPage               = lazy(() => import('./pages/PrivacyPolicyPage'));
+const TermsOfServicePage              = lazy(() => import('./pages/TermsOfServicePage'));
+const SafetyWalkthroughPage           = lazy(() => import('./pages/SafetyWalkthroughPage'));
+const IncidentReviewPage              = lazy(() => import('./pages/IncidentReviewPage'));
+const OshaReadyControlSystemPage      = lazy(() => import('./pages/OshaReadyControlSystemPage'));
+const DocumentationGapCheckPage       = lazy(() => import('./pages/DocumentationGapCheckPage'));
+const OshaComplianceGapCheckPage      = lazy(() => import('./pages/OshaComplianceGapCheckPage'));
+
 import './App.css';
+
+// Minimal skeleton shown while a lazy chunk loads. Kept small so it never
+// steals the LCP slot on the homepage (which is eager and doesn't hit this).
+function PageFallback() {
+  return (
+    <div
+      className="flex items-center justify-center py-24"
+      role="status"
+      aria-live="polite"
+      aria-label="Loading page"
+      data-testid="page-loading-fallback"
+    >
+      <div className="h-8 w-8 rounded-full border-2 border-[#C9A84C] border-t-transparent animate-spin" />
+    </div>
+  );
+}
 
 function RouteTracker() {
   const location = useLocation();
@@ -69,78 +91,80 @@ function App() {
       <Router>
         <RouteTracker />
         <ScrollToTop />
-        <Routes>
-          {/* Standalone portal pages — own nav, no global Navbar/Footer */}
-          <Route path="/walkthrough" element={<WalkthroughLandingPage />} />
-          <Route path="/intake" element={<ClientIntakePage />} />
-          {/* /onboarding portal retired (legacy pricing). Forward old links to /intake. */}
-          <Route path="/onboarding" element={<Navigate to="/intake" replace />} />
-          <Route path="/onboarding/confirmed" element={<Navigate to="/intake" replace />} />
-          <Route path="/status/:clientToken" element={<StatusPage />} />
-          <Route path="/report/:clientToken" element={<ReportPage />} />
-          <Route path="/thank-you-intake" element={<ThankYouIntakePage />} />
+        <Suspense fallback={<PageFallback />}>
+          <Routes>
+            {/* Standalone portal pages — own nav, no global Navbar/Footer */}
+            <Route path="/walkthrough" element={<WalkthroughLandingPage />} />
+            <Route path="/intake" element={<ClientIntakePage />} />
+            {/* /onboarding portal retired (legacy pricing). Forward old links to /intake. */}
+            <Route path="/onboarding" element={<Navigate to="/intake" replace />} />
+            <Route path="/onboarding/confirmed" element={<Navigate to="/intake" replace />} />
+            <Route path="/status/:clientToken" element={<StatusPage />} />
+            <Route path="/report/:clientToken" element={<ReportPage />} />
+            <Route path="/thank-you-intake" element={<ThankYouIntakePage />} />
 
-          {/* Standard pages with global Navbar + Footer */}
-          <Route path="*" element={
-            <div className="flex flex-col min-h-screen">
-              <Navbar />
-              <div className="flex-grow pb-20 md:pb-0">
-                <Routes>
-                  <Route path="/" element={<HomePage />} />
-                  <Route path="/services" element={<ServicesPage />} />
-                  <Route path="/services/document-development" element={<DocumentDevelopmentPage />} />
-                  <Route path="/services/annual-compliance-partner" element={<AnnualCompliancePartnerPage />} />
-                  <Route path="/services/compliance-readiness-visit" element={<ComplianceReadinessVisitPage />} />
-                  {/* 301-equivalent: legacy /services/safety-walkthrough URLs consolidated to /safety-walkthrough */}
-                  <Route path="/services/safety-walkthrough" element={<Navigate to="/safety-walkthrough" replace />} />
-                  <Route path="/services/safety-walkthrough-report" element={<Navigate to="/safety-walkthrough" replace />} />
-                  <Route path="/services/incident-review" element={<IncidentReviewPage />} />
-                  <Route path="/services/osha-ready-control-system" element={<OshaReadyControlSystemPage />} />
-                  <Route path="/services/:slug" element={<ServiceDetailPage />} />
-                  <Route path="/about" element={<AboutPage />} />
-                  <Route path="/contact" element={<ContactPage />} />
-                  <Route path="/payment-success" element={<PaymentSuccessPage />} />
-                  <Route path="/safety-check" element={<SafetyCheckPage />} />
-                  <Route path="/hazcom" element={<HazComPage />} />
-                  <Route path="/hazcom/thank-you" element={<HazComThankYouPage />} />
-                  <Route path="/blog/top-5-osha-violations-small-manufacturing" element={<BlogOSHAViolations />} />
-                  <Route path="/blog/hazcom-requirements-small-business" element={<BlogHazComRequirements />} />
-                  <Route path="/heat-guide" element={<HeatGuidePage />} />
-                  <Route path="/sample-report" element={<SampleReportPage />} />
-                  <Route path="/resources" element={<ResourcesPage />} />
-                  <Route path="/osha-inspection-guide" element={<OshaInspectionGuidePage />} />
-                  <Route path="/osha-compliance-guide" element={<OshaComplianceGuidePage />} />
-                  <Route path="/forklift-compliance-review-nc" element={<ForkliftComplianceReviewNCPage />} />
-                  <Route path="/loto-procedure-review-nc" element={<LOTOProcedureReviewNCPage />} />
-                  <Route path="/osha-documentation-review-nc" element={<OSHADocumentationReviewNCPage />} />
-                  <Route path="/request-walkthrough" element={<Navigate to="/intake" replace />} />
-                  <Route path="/admin" element={<AdminPage />} />
-                  <Route path="/field-notes" element={<FieldNotesPage />} />
-                  <Route path="/field-notes/:slug" element={<FieldNoteDetailPage />} />
-                  {/* Buyer-intent service landing pages (Findability Framework) — must be defined
-                      before the dynamic /safety-walkthrough/:city route below. */}
-                  <Route path="/safety-walkthrough" element={<SafetyWalkthroughPage />} />
-                  <Route path="/documentation-gap-check" element={<DocumentationGapCheckPage />} />
-                  <Route path="/osha-compliance-gap-check" element={<OshaComplianceGapCheckPage />} />
-                  <Route path="/safety-walkthrough/:city" element={<CityLandingPage />} />
-                  <Route path="/faq" element={<FAQPage />} />
-                  <Route path="/service-areas" element={<ServiceAreasPage />} />
-                  <Route path="/case-study/metals-fabrication-statesville" element={<CaseStudyMetalsFabricationPage />} />
-                  <Route path="/case-studies/mocksville-plastics-osha-inspection" element={<Navigate to="/case-study/metals-fabrication-statesville" replace />} />
-                  <Route path="/supervisor-kit" element={<SupervisorKitPage />} />
-                  <Route path="/supervisor-kit/thank-you" element={<SupervisorKitThankYouPage />} />
-                  <Route path="/privacy" element={<Navigate to="/privacy-policy" replace />} />
-                  <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-                  <Route path="/terms" element={<Navigate to="/terms-of-service" replace />} />
-                  <Route path="/terms-of-service" element={<TermsOfServicePage />} />
-                  <Route path="*" element={<NotFoundPage />} />
-                </Routes>
+            {/* Standard pages with global Navbar + Footer */}
+            <Route path="*" element={
+              <div className="flex flex-col min-h-screen">
+                <Navbar />
+                <div className="flex-grow pb-20 md:pb-0">
+                  <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/services" element={<ServicesPage />} />
+                    <Route path="/services/document-development" element={<DocumentDevelopmentPage />} />
+                    <Route path="/services/annual-compliance-partner" element={<AnnualCompliancePartnerPage />} />
+                    <Route path="/services/compliance-readiness-visit" element={<ComplianceReadinessVisitPage />} />
+                    {/* 301-equivalent: legacy /services/safety-walkthrough URLs consolidated to /safety-walkthrough */}
+                    <Route path="/services/safety-walkthrough" element={<Navigate to="/safety-walkthrough" replace />} />
+                    <Route path="/services/safety-walkthrough-report" element={<Navigate to="/safety-walkthrough" replace />} />
+                    <Route path="/services/incident-review" element={<IncidentReviewPage />} />
+                    <Route path="/services/osha-ready-control-system" element={<OshaReadyControlSystemPage />} />
+                    <Route path="/services/:slug" element={<ServiceDetailPage />} />
+                    <Route path="/about" element={<AboutPage />} />
+                    <Route path="/contact" element={<ContactPage />} />
+                    <Route path="/payment-success" element={<PaymentSuccessPage />} />
+                    <Route path="/safety-check" element={<SafetyCheckPage />} />
+                    <Route path="/hazcom" element={<HazComPage />} />
+                    <Route path="/hazcom/thank-you" element={<HazComThankYouPage />} />
+                    <Route path="/blog/top-5-osha-violations-small-manufacturing" element={<BlogOSHAViolations />} />
+                    <Route path="/blog/hazcom-requirements-small-business" element={<BlogHazComRequirements />} />
+                    <Route path="/heat-guide" element={<HeatGuidePage />} />
+                    <Route path="/sample-report" element={<SampleReportPage />} />
+                    <Route path="/resources" element={<ResourcesPage />} />
+                    <Route path="/osha-inspection-guide" element={<OshaInspectionGuidePage />} />
+                    <Route path="/osha-compliance-guide" element={<OshaComplianceGuidePage />} />
+                    <Route path="/forklift-compliance-review-nc" element={<ForkliftComplianceReviewNCPage />} />
+                    <Route path="/loto-procedure-review-nc" element={<LOTOProcedureReviewNCPage />} />
+                    <Route path="/osha-documentation-review-nc" element={<OSHADocumentationReviewNCPage />} />
+                    <Route path="/request-walkthrough" element={<Navigate to="/intake" replace />} />
+                    <Route path="/admin" element={<AdminPage />} />
+                    <Route path="/field-notes" element={<FieldNotesPage />} />
+                    <Route path="/field-notes/:slug" element={<FieldNoteDetailPage />} />
+                    {/* Buyer-intent service landing pages (Findability Framework) — must be defined
+                        before the dynamic /safety-walkthrough/:city route below. */}
+                    <Route path="/safety-walkthrough" element={<SafetyWalkthroughPage />} />
+                    <Route path="/documentation-gap-check" element={<DocumentationGapCheckPage />} />
+                    <Route path="/osha-compliance-gap-check" element={<OshaComplianceGapCheckPage />} />
+                    <Route path="/safety-walkthrough/:city" element={<CityLandingPage />} />
+                    <Route path="/faq" element={<FAQPage />} />
+                    <Route path="/service-areas" element={<ServiceAreasPage />} />
+                    <Route path="/case-study/metals-fabrication-statesville" element={<CaseStudyMetalsFabricationPage />} />
+                    <Route path="/case-studies/mocksville-plastics-osha-inspection" element={<Navigate to="/case-study/metals-fabrication-statesville" replace />} />
+                    <Route path="/supervisor-kit" element={<SupervisorKitPage />} />
+                    <Route path="/supervisor-kit/thank-you" element={<SupervisorKitThankYouPage />} />
+                    <Route path="/privacy" element={<Navigate to="/privacy-policy" replace />} />
+                    <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+                    <Route path="/terms" element={<Navigate to="/terms-of-service" replace />} />
+                    <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+                    <Route path="*" element={<NotFoundPage />} />
+                  </Routes>
+                </div>
+                <Footer />
+                <MobileStickyFooter />
               </div>
-              <Footer />
-              <MobileStickyFooter />
-            </div>
-          } />
-        </Routes>
+            } />
+          </Routes>
+        </Suspense>
       </Router>
     </HelmetProvider>
   );

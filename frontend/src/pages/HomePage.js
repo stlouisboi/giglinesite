@@ -145,6 +145,8 @@ const HomePage = () => {
               className="absolute inset-0 w-full h-full object-cover img-zoom"
               loading="eager"
               fetchPriority="high"
+              width="843"
+              height="1264"
               data-testid="hero-image"
             />
             {/* Gradient bleed into text column */}

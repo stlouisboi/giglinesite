@@ -16,10 +16,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#2A52A0" />
     
-    <!-- JetBrains Mono for regulatory/citation text -->
+    <!-- LCP hero preload — homepage hero image, high priority so mobile fetches it early -->
+    <link rel="preload" as="image" href="/vince-inspecting.webp" fetchpriority="high" />
+    
+    <!-- JetBrains Mono — non-blocking font load. Preload + async swap so the stylesheet
+         request does not block first paint. Dropped weight 500 (unused). -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap" /></noscript>
     
     <!-- Primary Meta Tags (description, canonical, og:url/title/description, twitter:title/description
          are injected per-page by react-helmet-async at runtime and by /scripts/generate-seo-pages.js

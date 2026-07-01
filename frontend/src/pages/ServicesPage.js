@@ -65,6 +65,15 @@ const fireServicesCtaClick = (ctaText, ctaDestination) => {
   });
 };
 
+/* GA4 services comparison-table row tap — reveals which attribute drives upsell interest */
+const fireCompareRowClick = (rowLabel) => {
+  if (typeof window === 'undefined') return;
+  trackEvent('compare_row_click', {
+    row_label: rowLabel,
+    page_path: window.location.pathname,
+  });
+};
+
 /* ═══ Who GigLine Helps ═══ */
 const WHO_HELPS = [
   {
@@ -1344,7 +1353,10 @@ const ServicesPage = () => {
                     ].map((row, ri) => (
                       <tr
                         key={row.label}
-                        style={{ borderTop: '1px solid #EEF1F4', background: ri % 2 === 1 ? '#FBFCFD' : '#ffffff' }}
+                        onClick={() => fireCompareRowClick(row.label)}
+                        onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(42,82,160,0.055)')}
+                        onMouseLeave={(e) => (e.currentTarget.style.background = ri % 2 === 1 ? '#FBFCFD' : '#ffffff')}
+                        style={{ borderTop: '1px solid #EEF1F4', background: ri % 2 === 1 ? '#FBFCFD' : '#ffffff', cursor: 'pointer' }}
                         data-testid={`comparison-row-${ri}`}
                       >
                         <th

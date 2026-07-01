@@ -24,6 +24,7 @@ React 18 (CRA), Tailwind, FastAPI, MongoDB (motor), Stripe LIVE, Resend LIVE, Ma
 - Factual-accuracy sweep done (no Amero Steel / BF Goodrich employment claims).
 - Backlink playbook in `/app/memory/backlink-playbook.md`.
 - **GL-WEB-024 (Feb 2026)**: `/contact` now has a 4-field Simple Contact Form (name/email/phone/message + honeypot) wired to `/api/contact-message/submit` — sends Resend confirmation to prospect + notification to Vince. Below the form, a navy/gold Calendly Scope Call CTA block ("Prefer a scheduled call?" → "Book a Scope Call") using a **placeholder Calendly URL** — swap `CALENDLY_SCOPE_CALL_URL` in `/app/frontend/src/components/ScopeCallCTA.js` once Vince completes GL-WEB-022 Calendly Stage 1 setup. Full intake form link preserved as third option.
+- **Services Comparison Table (Feb 2026)**: `/services#compare` — new side-by-side comparison of the four core engagements (Safety Walkthrough / Documentation Review / Compliance Readiness Visit / OSHA-Ready Control System). 12 rows (on-site walkthrough, photo findings, CFR citations, program review, compliance %, RED/AMBER/GREEN, 90-day tracker, physical binder buildout, supervisor handoff, 30-day check-in, turnaround, best-when). CRV column highlighted with "★ Most Requested" gold badge. Mobile-friendly via `overflow-x-auto` with `min-w-[880px]`. Sticky jump-nav now includes "Compare" link (`#compare`).
 
 ## Roadmap (prioritized)
 ### P0 — none open

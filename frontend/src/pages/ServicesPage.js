@@ -391,6 +391,7 @@ const ServicesPage = () => {
               { label: 'Compliance Readiness Visit', href: '#crv' },
               { label: 'Incident Review', href: '#incident' },
               { label: 'OSHA-Ready Control System', href: '#control-system' },
+              { label: 'Compare', href: '#compare' },
               { label: 'Annual Partner', href: '#annual' },
             ].map((l) => (
               <a
@@ -1213,6 +1214,219 @@ const ServicesPage = () => {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* ═══ 8b. SERVICE COMPARISON TABLE — side-by-side of the four core engagements ═══ */}
+      <section
+        className="py-20 md:py-28 scroll-mt-32"
+        id="compare"
+        style={{ backgroundColor: '#FBFCFD', borderTop: '1px solid #dde3ea' }}
+        data-testid="services-comparison"
+      >
+        <div className="container max-w-6xl">
+          <Reveal>
+            <p
+              className="uppercase font-bold mb-4"
+              style={{ ...mono, fontSize: '10.4px', fontWeight: 700, letterSpacing: '2.08px', color: '#2A52A0' }}
+              data-testid="comparison-eyebrow"
+            >
+              Side-by-Side Comparison
+            </p>
+            <h2
+              className="text-3xl md:text-4xl lg:text-[44px] font-extrabold text-[#1C2B2B] leading-[1.1] mb-4 max-w-4xl tracking-tight"
+              data-testid="comparison-headline"
+            >
+              Compare the four core engagements.
+            </h2>
+            <div className="mb-8" style={{ width: '56px', height: '3px', background: '#C9A84C', borderRadius: '2px' }} />
+            <p className="text-base md:text-lg text-[#1C2B2B]/65 leading-[1.85] mb-12 max-w-3xl">
+              Every operation is different. This table shows exactly what each engagement includes, so you can pick the one that matches where you are today &mdash; not one size larger, not one size smaller.
+            </p>
+          </Reveal>
+
+          <Reveal>
+            <div
+              className="rounded-2xl overflow-hidden bg-white"
+              style={{ border: '1px solid #dde3ea', boxShadow: '0 1px 0 rgba(28,43,43,0.02)' }}
+              data-testid="comparison-table-wrap"
+            >
+              {/* Scrollable on mobile, static on desktop */}
+              <div className="overflow-x-auto">
+                <table
+                  className="w-full min-w-[880px] border-collapse"
+                  data-testid="comparison-table"
+                >
+                  <thead>
+                    <tr style={{ backgroundColor: '#102A43' }}>
+                      <th
+                        scope="col"
+                        className="text-left px-6 py-5 uppercase text-white/70 font-bold align-bottom"
+                        style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.18em', width: '22%' }}
+                      >
+                        Engagement
+                      </th>
+                      {[
+                        { key: 'walkthrough', label: 'Safety Walkthrough', price: 'From $1,200', anchor: '#walkthrough', service: 'safety-walkthrough-report' },
+                        { key: 'docs', label: 'Documentation Review', price: 'From $1,300', anchor: '#docs-review', service: 'documentation-readiness-review' },
+                        { key: 'crv', label: 'Compliance Readiness Visit', price: 'From $2,000', anchor: '#crv', service: 'compliance-readiness-visit', highlight: true },
+                        { key: 'control', label: 'OSHA-Ready Control System', price: 'From $4,500', anchor: '#control-system', service: 'osha-ready-control-system' },
+                      ].map((col) => (
+                        <th
+                          key={col.key}
+                          scope="col"
+                          className="text-left px-5 py-5 align-bottom relative"
+                          style={{
+                            background: col.highlight ? 'linear-gradient(180deg, #2A52A0 0%, #1F3F80 100%)' : 'transparent',
+                            width: '19.5%',
+                          }}
+                          data-testid={`comparison-col-${col.key}`}
+                        >
+                          {col.highlight && (
+                            <span
+                              className="absolute top-2 right-3 uppercase font-bold rounded-full"
+                              style={{
+                                ...mono,
+                                fontSize: '9px',
+                                letterSpacing: '0.14em',
+                                color: '#1C2B2B',
+                                background: '#C9A84C',
+                                padding: '3px 8px',
+                              }}
+                              data-testid={`comparison-badge-${col.key}`}
+                            >
+                              ★ Most Requested
+                            </span>
+                          )}
+                          <p
+                            className="uppercase text-white/70 font-bold mb-2"
+                            style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.14em' }}
+                          >
+                            {col.label}
+                          </p>
+                          <p className="font-extrabold text-[#C9A84C] leading-none mb-3" style={{ ...mono, fontSize: '17px' }}>
+                            {col.price}
+                          </p>
+                          <Link
+                            to={intakeLink(col.service)}
+                            onClick={() => trackServiceBooking && trackServiceBooking(col.label)}
+                            className="inline-flex items-center gap-1 text-white/95 hover:text-[#C9A84C] font-bold text-[12.5px] transition-colors border-b border-white/25 hover:border-[#C9A84C] pb-0.5"
+                            data-testid={`comparison-cta-${col.key}`}
+                          >
+                            Request
+                            <ArrowRight size={12} />
+                          </Link>
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[
+                      // Each row: label, [walkthrough, docs, crv, control]
+                      // Values: true = check, false = dash, string = text (short label)
+                      { label: 'On-site walkthrough', v: [true, false, true, true] },
+                      { label: 'Photo-documented findings', v: [true, false, true, true] },
+                      { label: 'CFR citations + penalty exposure', v: [true, true, true, true] },
+                      { label: 'Written program & records review', v: [false, true, true, true] },
+                      { label: 'Compliance % score', v: [false, true, true, true] },
+                      { label: 'Prioritized fix list (RED/AMBER/GREEN)', v: [true, true, true, true] },
+                      { label: '90-day corrective action tracker', v: [false, false, true, true] },
+                      { label: 'Physical binder & digital folder buildout', v: [false, false, false, true] },
+                      { label: 'Supervisor training + handoff walkthrough', v: [false, false, false, true] },
+                      { label: '30-day check-in call included', v: [false, false, true, true] },
+                      { label: 'Turnaround', v: ['24–48 hrs', '3–5 days', '48 hrs', '2–4 weeks'] },
+                      { label: 'Best when…', v: [
+                        'You need floor hazards identified fast.',
+                        'You need to know exactly what your files say.',
+                        'You need both floor and files scored together.',
+                        'You need the full system built and handed off.',
+                      ] },
+                    ].map((row, ri) => (
+                      <tr
+                        key={row.label}
+                        style={{ borderTop: '1px solid #EEF1F4', background: ri % 2 === 1 ? '#FBFCFD' : '#ffffff' }}
+                        data-testid={`comparison-row-${ri}`}
+                      >
+                        <th
+                          scope="row"
+                          className="text-left align-top px-6 py-4 text-[14px] font-semibold text-[#1C2B2B]"
+                        >
+                          {row.label}
+                        </th>
+                        {row.v.map((cell, ci) => {
+                          const isHighlightCol = ci === 2;
+                          const bgHighlight = isHighlightCol ? { background: 'rgba(42,82,160,0.05)' } : {};
+                          if (cell === true) {
+                            return (
+                              <td
+                                key={ci}
+                                className="px-5 py-4 align-top text-center"
+                                style={bgHighlight}
+                                data-testid={`comparison-cell-${ri}-${ci}`}
+                              >
+                                <span
+                                  className="inline-flex items-center justify-center rounded-full"
+                                  style={{
+                                    width: '26px',
+                                    height: '26px',
+                                    backgroundColor: 'rgba(42,82,160,0.10)',
+                                    border: '1px solid rgba(42,82,160,0.28)',
+                                  }}
+                                  aria-label="Included"
+                                >
+                                  <Check size={15} strokeWidth={3} className="text-[#2A52A0]" />
+                                </span>
+                              </td>
+                            );
+                          }
+                          if (cell === false) {
+                            return (
+                              <td
+                                key={ci}
+                                className="px-5 py-4 align-top text-center"
+                                style={bgHighlight}
+                                data-testid={`comparison-cell-${ri}-${ci}`}
+                              >
+                                <span
+                                  className="inline-block text-[#1C2B2B]/25 font-bold"
+                                  style={{ ...mono, fontSize: '15px' }}
+                                  aria-label="Not included"
+                                >
+                                  —
+                                </span>
+                              </td>
+                            );
+                          }
+                          return (
+                            <td
+                              key={ci}
+                              className="px-5 py-4 align-top text-[13.5px] text-[#1C2B2B]/80 leading-snug"
+                              style={bgHighlight}
+                              data-testid={`comparison-cell-${ri}-${ci}`}
+                            >
+                              {cell}
+                            </td>
+                          );
+                        })}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </Reveal>
+
+          <p
+            className="text-sm text-[#1C2B2B]/55 italic mt-5 leading-relaxed max-w-3xl"
+            style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+            data-testid="comparison-footnote"
+          >
+            Not sure which one fits? Call or text{' '}
+            <a href="tel:3363298899" onClick={() => trackPhoneClick && trackPhoneClick('services-comparison')} className="font-bold text-[#2A52A0] hover:text-[#1F3F80] underline underline-offset-4">
+              (336) 329-8899
+            </a>{' '}
+            &mdash; Vince will confirm which engagement matches your situation in under five minutes.
+          </p>
         </div>
       </section>
 

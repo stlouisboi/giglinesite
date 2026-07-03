@@ -2,6 +2,7 @@
 
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import FileResponse, StreamingResponse
+from pathlib import Path
 from datetime import datetime, timezone, timedelta
 import os
 import io
@@ -10,35 +11,48 @@ import uuid
 import logging
 
 import resend
-from config import db, ADMIN_PASSWORD, SENDER_EMAIL, VINCE_EMAIL
+from config import db, ADMIN_PASSWORD, SENDER_EMAIL, VINCE_EMAIL, SUPERVISOR_KIT_FILES
 
 router = APIRouter()
 logger = logging.getLogger('gigline')
 
 
 INTERNAL_DOCS_DIR = "/app/backend/internal_docs"
-KIT_FILES_DIR = "/app/backend/kit_files"
+# Portable: resolve kit_files relative to backend/ so it works on Railway,
+# local, and dev container regardless of the deploy root.
+_BACKEND_ROOT = Path(__file__).resolve().parent.parent
+KIT_FILES_DIR = str(_BACKEND_ROOT / "kit_files")
 
 
 @router.get("/admin/kit-files")
 async def list_kit_files(token: str = ""):
-    """Admin-only: list the 11 Supervisor Safety Starter System PDFs on disk."""
+    """Admin-only: list the 11 Supervisor Safety Starter System PDFs on disk.
+
+    Uses SUPERVISOR_KIT_FILES from config so the list always matches the
+    manifest used by the buyer-email attachment code.
+    """
     if token != ADMIN_PASSWORD:
         raise HTTPException(status_code=401, detail="Unauthorized")
-    if not os.path.isdir(KIT_FILES_DIR):
-        return {"files": []}
     files = []
-    for name in sorted(os.listdir(KIT_FILES_DIR)):
-        if not name.lower().endswith(".pdf"):
-            continue
-        path = os.path.join(KIT_FILES_DIR, name)
-        st = os.stat(path)
-        files.append({
-            "filename": name,
-            "size_kb": round(st.st_size / 1024, 1),
-            "modified": datetime.fromtimestamp(st.st_mtime, tz=timezone.utc).isoformat(),
-        })
-    return {"files": files, "count": len(files)}
+    for name, path in SUPERVISOR_KIT_FILES.items():
+        p = Path(path)
+        if p.is_file():
+            st = p.stat()
+            files.append({
+                "filename": name,
+                "size_kb": round(st.st_size / 1024, 1),
+                "modified": datetime.fromtimestamp(st.st_mtime, tz=timezone.utc).isoformat(),
+                "on_disk": True,
+            })
+        else:
+            files.append({
+                "filename": name,
+                "size_kb": 0,
+                "modified": None,
+                "on_disk": False,
+            })
+    files.sort(key=lambda f: f["filename"])
+    return {"files": files, "count": sum(1 for f in files if f["on_disk"]), "expected": len(SUPERVISOR_KIT_FILES)}
 
 
 @router.get("/admin/kit-files/{filename}")
@@ -47,10 +61,13 @@ async def download_kit_file(filename: str, token: str = ""):
     if token != ADMIN_PASSWORD:
         raise HTTPException(status_code=401, detail="Unauthorized")
     safe_name = os.path.basename(filename)
-    filepath = os.path.join(KIT_FILES_DIR, safe_name)
-    if not os.path.isfile(filepath):
+    # Must be in the SUPERVISOR_KIT_FILES manifest (prevents arbitrary reads)
+    if safe_name not in SUPERVISOR_KIT_FILES:
         raise HTTPException(status_code=404, detail="Kit file not found")
-    return FileResponse(filepath, media_type="application/pdf", filename=safe_name)
+    filepath = SUPERVISOR_KIT_FILES[safe_name]
+    if not Path(filepath).is_file():
+        raise HTTPException(status_code=404, detail="Kit file not on disk in this environment")
+    return FileResponse(str(filepath), media_type="application/pdf", filename=safe_name)
 
 
 @router.get("/admin/internal-docs/{filename}")

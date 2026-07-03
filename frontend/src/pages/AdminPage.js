@@ -1106,7 +1106,7 @@ const KitFilesTab = ({ token }) => {
     <div data-testid="kit-pdfs-tab">
       <div className="flex items-baseline justify-between mb-4">
         <h2 className="text-lg font-bold text-[#1C2B2B]">Supervisor Safety Starter System — Kit PDFs</h2>
-        <p className="text-xs text-gray-400">{data.count} files · <code className="text-[10px] bg-gray-100 px-1 py-0.5 rounded">/app/backend/kit_files/</code></p>
+        <p className="text-xs text-gray-400">{data.count}/{data.expected ?? data.files.length} on disk</p>
       </div>
       <p className="text-xs text-gray-500 mb-5 leading-relaxed">
         The 11 print-ready PDFs auto-attached to every $600 digital-kit purchase confirmation email.
@@ -1127,18 +1127,22 @@ const KitFilesTab = ({ token }) => {
             <tr key={f.filename} className="border-b border-gray-100 hover:bg-gray-50" data-testid={`kit-pdf-row-${i}`}>
               <td className="px-3 py-3 text-xs text-gray-400">{String(i + 1).padStart(2, '0')}</td>
               <td className="px-3 py-3 text-[13px] text-[#1C2B2B] font-mono">{f.filename}</td>
-              <td className="px-3 py-3 text-xs text-gray-500">{f.size_kb} KB</td>
-              <td className="px-3 py-3 text-xs text-gray-400">{new Date(f.modified).toLocaleDateString()}</td>
+              <td className="px-3 py-3 text-xs text-gray-500">{f.on_disk === false ? '—' : `${f.size_kb} KB`}</td>
+              <td className="px-3 py-3 text-xs text-gray-400">{f.modified ? new Date(f.modified).toLocaleDateString() : '—'}</td>
               <td className="px-3 py-3 text-right">
-                <a
-                  href={`${API}/api/admin/kit-files/${encodeURIComponent(f.filename)}?token=${encodeURIComponent(token)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 rounded border border-[#C9A84C] text-[#B8972C] hover:bg-[#C9A84C]/10 transition-colors"
-                  data-testid={`kit-pdf-download-${i}`}
-                >
-                  Download PDF
-                </a>
+                {f.on_disk === false ? (
+                  <span className="inline-block text-[10px] font-bold px-2 py-1 rounded bg-red-50 text-red-600" data-testid={`kit-pdf-missing-${i}`}>Missing on server</span>
+                ) : (
+                  <a
+                    href={`${API}/api/admin/kit-files/${encodeURIComponent(f.filename)}?token=${encodeURIComponent(token)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 rounded border border-[#C9A84C] text-[#B8972C] hover:bg-[#C9A84C]/10 transition-colors"
+                    data-testid={`kit-pdf-download-${i}`}
+                  >
+                    Download PDF
+                  </a>
+                )}
               </td>
             </tr>
           ))}

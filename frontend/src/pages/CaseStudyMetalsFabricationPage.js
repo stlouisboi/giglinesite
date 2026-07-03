@@ -291,6 +291,37 @@ const CaseStudyMetalsFabricationPage = () => {
           <P>Twelve of 13 findings were closed within four days of the walkthrough &mdash; before the formal due date and without pausing production. The one remaining item &mdash; the unguarded shear blade on the roll former &mdash; has a documented remediation plan: light curtains and a permanent safety fence, to be installed after the machine is set in its final position at the new facility location. The corrective action log entry reads: &ldquo;No current way to guard shear, will add light curtains and safety fence after moving machine to new location and setting in final place.&rdquo;</P>
           <P>That&rsquo;s how a corrective action log is supposed to work. Findings documented. Owners assigned. Plans recorded. Progress trackable.</P>
 
+          {/* GL-WEB-017 — Standalone Corrective Action Log download (ungated) */}
+          <div
+            className="not-italic my-10"
+            style={{ fontFamily: "'Manrope', sans-serif" }}
+            data-testid="corrective-action-log-download-block"
+          >
+            <a
+              href="/sample-corrective-action-log"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 font-bold px-6 py-3.5 rounded-lg text-[15px] transition-colors"
+              style={{
+                background: '#ffffff',
+                color: NAVY,
+                border: `2px solid ${GOLD}`,
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = '#FBF6E7')}
+              onMouseLeave={(e) => (e.currentTarget.style.background = '#ffffff')}
+              data-testid="corrective-action-log-download-btn"
+            >
+              Download Sample Corrective Action Log (PDF)
+            </a>
+            <p
+              className="text-[13px] mt-2.5"
+              style={{ color: TEXT_SUBTLE }}
+              data-testid="corrective-action-log-download-note"
+            >
+              No email required. Opens as PDF.
+            </p>
+          </div>
+
           {/* ─── GL-WEB-020: 4-stat outcomes bar (navy / gold accents) ─── */}
           <div
             className="not-italic my-12 grid grid-cols-2 md:grid-cols-4 gap-0 rounded-md overflow-hidden"

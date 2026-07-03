@@ -10,6 +10,7 @@
     { "source": "/case-studies/mocksville-plastics-osha-inspection", "destination": "/case-study/metals-fabrication-statesville", "permanent": true }
   ],
   "rewrites": [
+    { "source": "/sample-corrective-action-log", "destination": "/assets/GigLine_Sample_Corrective_Action_Log.pdf" },
     { "source": "/(.*)", "destination": "/index.html" }
   ],
   "headers": [

@@ -65,7 +65,7 @@ class TestGoogleReviewURL:
         for line in content.splitlines():
             if line.startswith("GIGLINE_GOOGLE_REVIEW_URL="):
                 val = line.split("=", 1)[1]
-                assert "maps.app.goo.gl/4D3TVUAeyfzbm7WbA" in val
+                assert "g.page/r/CdlAYUu_I3xpEAI/review" in val
                 assert "utm_source=safety-check-pdf" in val
                 assert "utm_campaign=review-request" in val
                 break

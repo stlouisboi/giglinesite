@@ -20,7 +20,7 @@ from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT
 try:
     from config import GIGLINE_GOOGLE_REVIEW_URL
 except Exception:
-    GIGLINE_GOOGLE_REVIEW_URL = 'https://www.google.com/search?q=GigLine+Safety+%26+Compliance+Kernersville+NC'
+    GIGLINE_GOOGLE_REVIEW_URL = 'https://g.page/r/CdlAYUu_I3xpEAI/review'
 
 # Brand colors
 CHARCOAL = colors.HexColor("#1C2B2B")

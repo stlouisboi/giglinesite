@@ -161,5 +161,5 @@ SUPERVISOR_KIT_FILES = {
 # Fallback is a Google search for GigLine in Kernersville, NC.
 GIGLINE_GOOGLE_REVIEW_URL = os.environ.get(
     'GIGLINE_GOOGLE_REVIEW_URL',
-    'https://www.google.com/search?q=GigLine+Safety+%26+Compliance+Kernersville+NC',
+    'https://g.page/r/CdlAYUu_I3xpEAI/review',
 )

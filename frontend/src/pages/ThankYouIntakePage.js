@@ -177,7 +177,7 @@ const ThankYouIntakePage = () => {
               </p>
             </div>
             <a
-              href="https://maps.app.goo.gl/4D3TVUAeyfzbm7WbA?utm_source=thankyou-intake&utm_medium=website&utm_campaign=review-request"
+              href="https://g.page/r/CdlAYUu_I3xpEAI/review?utm_source=thankyou-intake&utm_medium=website&utm_campaign=review-request"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 font-bold py-2.5 px-5 rounded transition-all text-sm whitespace-nowrap flex-shrink-0"

@@ -291,6 +291,7 @@ const AdminPage = () => {
     { id: 'bookings', label: 'Bookings', icon: <DollarSign size={14} /> },
     { id: 'leads', label: 'Leads', icon: <Users size={14} /> },
     { id: 'downloads', label: 'Downloads', icon: <Clock size={14} /> },
+    { id: 'kit-pdfs', label: 'Kit PDFs', icon: <FileText size={14} /> },
   ];
 
   /* ── Dashboard ── */
@@ -952,6 +953,9 @@ const AdminPage = () => {
 
           {/* ── DOWNLOADS ── */}
           {tab === 'downloads' && <DownloadsTab token={token} />}
+
+          {/* ── KIT PDFs ── */}
+          {tab === 'kit-pdfs' && <KitFilesTab token={token} />}
         </div>
       </div>
 
@@ -1054,7 +1058,7 @@ const DownloadsTab = ({ token }) => {
   const [events, setEvents] = useState(null);
   useEffect(() => {
     (async () => {
-      try { const res = await fetch(`${API}/api/admin/downloads?token=${token}&limit=100`); if (res.ok) setEvents(await res.json()); } catch {}
+      try { const res = await fetch(`${API}/api/admin/downloads?token=${token}&limit=100`); if (res.ok) setEvents(await res.json()); } catch (_e) { /* silent */ }
     })();
   }, [token]);
   if (!events) return <p className="text-gray-400">Loading...</p>;
@@ -1077,6 +1081,70 @@ const DownloadsTab = ({ token }) => {
         </tbody>
       </table>
       {events.events.length === 0 && <p className="py-8 text-center text-gray-300">No downloads yet</p>}
+    </div>
+  );
+};
+
+/* ── Kit PDFs sub-tab (GL-WEB-024b) — admin access to the 11 SS-* files ── */
+const KitFilesTab = ({ token }) => {
+  const [data, setData] = useState(null);
+  const [err, setErr] = useState('');
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await fetch(`${API}/api/admin/kit-files?token=${token}`);
+        if (!res.ok) { setErr(`HTTP ${res.status}`); return; }
+        setData(await res.json());
+      } catch (e) { setErr(String(e)); }
+    })();
+  }, [token]);
+
+  if (err) return <p className="text-red-500 text-sm" data-testid="kit-pdfs-error">Failed to load: {err}</p>;
+  if (!data) return <p className="text-gray-400">Loading...</p>;
+
+  return (
+    <div data-testid="kit-pdfs-tab">
+      <div className="flex items-baseline justify-between mb-4">
+        <h2 className="text-lg font-bold text-[#1C2B2B]">Supervisor Safety Starter System — Kit PDFs</h2>
+        <p className="text-xs text-gray-400">{data.count} files · <code className="text-[10px] bg-gray-100 px-1 py-0.5 rounded">/app/backend/kit_files/</code></p>
+      </div>
+      <p className="text-xs text-gray-500 mb-5 leading-relaxed">
+        The 11 print-ready PDFs auto-attached to every $600 digital-kit purchase confirmation email.
+        Physical-kit orders ship the printed binder; these are the source files for that print run.
+      </p>
+      <table className="w-full text-sm" data-testid="kit-pdfs-table">
+        <thead>
+          <tr className="bg-[#2A52A0] text-white text-left">
+            <th className="px-3 py-2.5 text-xs">#</th>
+            <th className="px-3 py-2.5 text-xs">Filename</th>
+            <th className="px-3 py-2.5 text-xs">Size</th>
+            <th className="px-3 py-2.5 text-xs">Modified</th>
+            <th className="px-3 py-2.5 text-xs text-right">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.files.map((f, i) => (
+            <tr key={f.filename} className="border-b border-gray-100 hover:bg-gray-50" data-testid={`kit-pdf-row-${i}`}>
+              <td className="px-3 py-3 text-xs text-gray-400">{String(i + 1).padStart(2, '0')}</td>
+              <td className="px-3 py-3 text-[13px] text-[#1C2B2B] font-mono">{f.filename}</td>
+              <td className="px-3 py-3 text-xs text-gray-500">{f.size_kb} KB</td>
+              <td className="px-3 py-3 text-xs text-gray-400">{new Date(f.modified).toLocaleDateString()}</td>
+              <td className="px-3 py-3 text-right">
+                <a
+                  href={`${API}/api/admin/kit-files/${encodeURIComponent(f.filename)}?token=${encodeURIComponent(token)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 rounded border border-[#C9A84C] text-[#B8972C] hover:bg-[#C9A84C]/10 transition-colors"
+                  data-testid={`kit-pdf-download-${i}`}
+                >
+                  Download PDF
+                </a>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {data.files.length === 0 && <p className="py-8 text-center text-gray-300">No kit files on disk</p>}
     </div>
   );
 };

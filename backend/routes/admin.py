@@ -17,6 +17,40 @@ logger = logging.getLogger('gigline')
 
 
 INTERNAL_DOCS_DIR = "/app/backend/internal_docs"
+KIT_FILES_DIR = "/app/backend/kit_files"
+
+
+@router.get("/admin/kit-files")
+async def list_kit_files(token: str = ""):
+    """Admin-only: list the 11 Supervisor Safety Starter System PDFs on disk."""
+    if token != ADMIN_PASSWORD:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    if not os.path.isdir(KIT_FILES_DIR):
+        return {"files": []}
+    files = []
+    for name in sorted(os.listdir(KIT_FILES_DIR)):
+        if not name.lower().endswith(".pdf"):
+            continue
+        path = os.path.join(KIT_FILES_DIR, name)
+        st = os.stat(path)
+        files.append({
+            "filename": name,
+            "size_kb": round(st.st_size / 1024, 1),
+            "modified": datetime.fromtimestamp(st.st_mtime, tz=timezone.utc).isoformat(),
+        })
+    return {"files": files, "count": len(files)}
+
+
+@router.get("/admin/kit-files/{filename}")
+async def download_kit_file(filename: str, token: str = ""):
+    """Admin-only: download a Supervisor Safety Starter System PDF."""
+    if token != ADMIN_PASSWORD:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    safe_name = os.path.basename(filename)
+    filepath = os.path.join(KIT_FILES_DIR, safe_name)
+    if not os.path.isfile(filepath):
+        raise HTTPException(status_code=404, detail="Kit file not found")
+    return FileResponse(filepath, media_type="application/pdf", filename=safe_name)
 
 
 @router.get("/admin/internal-docs/{filename}")

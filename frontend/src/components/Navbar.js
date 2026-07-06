@@ -41,8 +41,8 @@ const Navbar = () => {
     <header className="sticky top-0 z-50 bg-white" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }} data-testid="navbar">
       <nav className="container" aria-label="Main navigation">
         {/* Mobile + Tablet: 3-column grid (icons | logo | icons) so logo stays centered. Desktop: flex justify-between. */}
-        {/* Row height is auto (grows with logo); py-* gives consistent breathing room. */}
-        <div className="grid grid-cols-3 items-center py-3 md:py-4 lg:flex lg:justify-between lg:py-5 xl:py-6">
+        {/* Row height is auto (grows with logo); minimal py-* since the tall logo is already the vertical anchor. */}
+        <div className="grid grid-cols-3 items-center py-1 md:py-1 lg:flex lg:justify-between lg:py-1.5 xl:py-2">
           {/* LEFT cell (mobile/tablet): phone icon + search. Desktop: nothing here, logo lives in LEFT of flex */}
           <div className="flex items-center justify-start gap-2 lg:hidden" data-testid="mobile-left-cell">
             <a

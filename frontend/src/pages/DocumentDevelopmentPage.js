@@ -518,7 +518,7 @@ const DocumentDevelopmentPage = () => {
         <div className="container max-w-6xl">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2.5">
-              <img src="/gigline-logo-dark-bg.png?v=4" loading="lazy" alt="" className="h-7 w-auto" />
+              <img src="/gigline-logo-dark-bg.png?v=6" loading="lazy" alt="" className="h-7 w-auto" />
               <span
                 className="uppercase font-bold"
                 style={{ ...mono, fontSize: '10px', letterSpacing: '0.20em', color: 'rgba(255,255,255,0.55)' }}

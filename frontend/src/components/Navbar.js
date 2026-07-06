@@ -74,9 +74,9 @@ const Navbar = () => {
               className="flex items-center"
               data-testid="navbar-logo"
             >
-              <img src="/gigline-logo-3d.png?v=6"
+              <img src="/gigline-logo-3d.png?v=7"
                 alt="GigLine Safety & Compliance"
-                className="h-[120px] md:h-48 lg:h-[168px] xl:h-[216px] 2xl:h-60 w-auto"
+                className="h-12 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto"
                 style={{ filter: 'drop-shadow(0 2px 8px rgba(28,43,43,0.10))' }}
                 loading="eager"
                 fetchPriority="high"

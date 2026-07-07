@@ -90,11 +90,20 @@ def build_cover(
     process_flow: Optional[Iterable[str]] = None,
     footer_line: str = 'GigLine Safety & Compliance  |  OSHA-Aligned Field Tools',
     logo_path: str = DEFAULT_LOGO,
+    client_name: Optional[str] = None,
 ) -> str:
     """Write the reusable GigLine v3 branded cover to `out_path`.
 
+    If `client_name` is provided, the header slug is overridden to
+    `PREPARED FOR {CLIENT NAME.upper()} | {year}` — used for personalized
+    deliverables handed back to specific engagements.
+
     Returns the absolute path written.
     """
+    if client_name:
+        from datetime import datetime
+        header_slug = f'PREPARED FOR {client_name.strip().upper()}  |  {datetime.now().year}'
+
     out_p = Path(out_path)
     out_p.parent.mkdir(parents=True, exist_ok=True)
 
@@ -288,6 +297,14 @@ def _paint_cover(c: rl_canvas.Canvas, **cover_kwargs):
     Everything inside `build_cover` except file I/O. Extracted so
     `prepend_cover_to_pdf` can reuse the same rendering.
     """
+    # Honour the same client_name → header_slug override as build_cover.
+    client_name = cover_kwargs.pop('client_name', None)
+    if client_name:
+        from datetime import datetime
+        cover_kwargs['header_slug'] = (
+            f'PREPARED FOR {client_name.strip().upper()}  |  {datetime.now().year}'
+        )
+
     title = cover_kwargs['title']
     subtitle = cover_kwargs.get('subtitle')
     body = cover_kwargs.get('body')

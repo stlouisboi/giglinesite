@@ -70,6 +70,77 @@ async def download_kit_file(filename: str, token: str = ""):
     return FileResponse(str(filepath), media_type="application/pdf", filename=safe_name)
 
 
+# GL-WEB-018f — On-demand client-personalized cover generator.
+# Streams a copy of any collateral PDF with the client's company name
+# printed in the "PREPARED FOR ..." header slug on the cover.
+COLLATERAL_DIR = Path("/app/frontend/public/assets")
+
+
+@router.get("/admin/personalized-pdfs")
+async def list_personalizable_pdfs(token: str = ""):
+    """Return the list of collateral PDFs that can be personalized."""
+    if token != ADMIN_PASSWORD:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    from lib.pdf_cover_metadata import COVERS
+    items = []
+    for filename, meta in COVERS.items():
+        path = COLLATERAL_DIR / filename
+        items.append({
+            "filename": filename,
+            "title": meta.get("title", filename),
+            "on_disk": path.is_file(),
+        })
+    items.sort(key=lambda x: x["title"])
+    return {"pdfs": items, "count": sum(1 for x in items if x["on_disk"])}
+
+
+@router.get("/admin/personalized-pdf/{filename}")
+async def download_personalized_pdf(
+    filename: str,
+    client_name: str,
+    token: str = "",
+):
+    """Admin-only: build a client-personalized copy of a collateral PDF and stream it.
+
+    The header slug on the cover changes to `PREPARED FOR {CLIENT NAME} | {year}`.
+    File is generated in-memory each request (no disk write) so nothing leaks
+    into the public /assets directory.
+    """
+    if token != ADMIN_PASSWORD:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+    safe_name = os.path.basename(filename)
+    from lib.pdf_cover_metadata import COVERS
+    if safe_name not in COVERS:
+        raise HTTPException(status_code=404, detail="PDF not in personalization manifest")
+    src_path = COLLATERAL_DIR / safe_name
+    if not src_path.is_file():
+        raise HTTPException(status_code=404, detail=f"Source PDF missing on server: {safe_name}")
+
+    client_name_clean = (client_name or "").strip()
+    if not client_name_clean or len(client_name_clean) > 80:
+        raise HTTPException(status_code=400, detail="client_name must be 1-80 characters")
+
+    # Build to a temp file inside /tmp — never expose in /assets
+    import tempfile
+    from lib.pdf_cover import prepend_cover_to_pdf
+    meta = COVERS[safe_name]
+    replace_p1 = meta.get("replace_page_1", False)
+    kwargs = {k: v for k, v in meta.items() if k != "replace_page_1"}
+    kwargs["client_name"] = client_name_clean
+
+    with tempfile.NamedTemporaryFile(suffix=".pdf", delete=False, prefix="gl_perso_") as tmp:
+        tmp_path = tmp.name
+    prepend_cover_to_pdf(
+        str(src_path), tmp_path,
+        replace_page_1=replace_p1,
+        **kwargs,
+    )
+    slug = client_name_clean.lower().replace(" ", "-").replace("/", "-")[:40]
+    download_name = f"{safe_name.rsplit('.', 1)[0]}__{slug}.pdf"
+    return FileResponse(tmp_path, media_type="application/pdf", filename=download_name)
+
+
 @router.get("/admin/internal-docs/{filename}")
 async def download_internal_doc(filename: str, token: str = ""):
     """Admin-only: download internal reference docs (field checklists, SOPs, etc.)."""

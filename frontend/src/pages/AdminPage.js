@@ -292,6 +292,7 @@ const AdminPage = () => {
     { id: 'bookings', label: 'Bookings', icon: <DollarSign size={14} /> },
     { id: 'leads', label: 'Leads', icon: <Users size={14} /> },
     { id: 'downloads', label: 'Downloads', icon: <Clock size={14} /> },
+    { id: 'personalize', label: 'Personalize PDF', icon: <FileText size={14} /> },
     ...(SUPERVISOR_KIT_ENABLED ? [{ id: 'kit-pdfs', label: 'Kit PDFs', icon: <FileText size={14} /> }] : []),
   ];
 
@@ -957,6 +958,9 @@ const AdminPage = () => {
 
           {/* ── KIT PDFs ── (feature-flagged) */}
           {SUPERVISOR_KIT_ENABLED && tab === 'kit-pdfs' && <KitFilesTab token={token} />}
+
+          {/* ── PERSONALIZE PDF ── */}
+          {tab === 'personalize' && <PersonalizePdfTab token={token} />}
         </div>
       </div>
 
@@ -1150,6 +1154,96 @@ const KitFilesTab = ({ token }) => {
         </tbody>
       </table>
       {data.files.length === 0 && <p className="py-8 text-center text-gray-300">No kit files on disk</p>}
+    </div>
+  );
+};
+
+/* ── Personalize PDF sub-tab (GL-WEB-018f) — client-name → PDF cover slug ── */
+const PersonalizePdfTab = ({ token }) => {
+  const [pdfs, setPdfs] = useState(null);
+  const [selected, setSelected] = useState('');
+  const [clientName, setClientName] = useState('');
+  const [err, setErr] = useState('');
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await fetch(`${API}/api/admin/personalized-pdfs?token=${token}`);
+        if (!res.ok) { setErr(`HTTP ${res.status}`); return; }
+        const data = await res.json();
+        setPdfs(data);
+        if (data.pdfs && data.pdfs.length) setSelected(data.pdfs.find((p) => p.on_disk)?.filename || '');
+      } catch (e) { setErr(String(e)); }
+    })();
+  }, [token]);
+
+  const downloadHref = selected && clientName.trim()
+    ? `${API}/api/admin/personalized-pdf/${encodeURIComponent(selected)}?client_name=${encodeURIComponent(clientName.trim())}&token=${encodeURIComponent(token)}`
+    : null;
+
+  if (err) return <p className="text-red-500 text-sm" data-testid="personalize-error">Failed to load: {err}</p>;
+  if (!pdfs) return <p className="text-gray-400">Loading...</p>;
+
+  return (
+    <div data-testid="personalize-pdf-tab">
+      <h2 className="text-lg font-bold text-[#1C2B2B] mb-1">Personalize a collateral PDF</h2>
+      <p className="text-xs text-gray-500 mb-5 leading-relaxed max-w-2xl">
+        Generate a copy of any collateral PDF with the client&rsquo;s company name printed in the cover&rsquo;s
+        <em> &ldquo;PREPARED FOR&hellip;&rdquo; </em> header slug. Nothing is written to the public assets folder &mdash;
+        the personalized copy streams directly to your download.
+      </p>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
+        <div>
+          <label className="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">PDF</label>
+          <select
+            value={selected}
+            onChange={(e) => setSelected(e.target.value)}
+            className="w-full px-3 py-2.5 text-sm text-[#1C2B2B] bg-white border border-gray-200 rounded focus:outline-none focus:border-[#2A52A0]"
+            data-testid="personalize-pdf-select"
+          >
+            {pdfs.pdfs.filter((p) => p.on_disk).map((p) => (
+              <option key={p.filename} value={p.filename}>{p.title}</option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label className="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Client / Company Name</label>
+          <input
+            type="text"
+            value={clientName}
+            onChange={(e) => setClientName(e.target.value)}
+            placeholder="Acme Manufacturing"
+            maxLength={80}
+            className="w-full px-3 py-2.5 text-sm text-[#1C2B2B] bg-white border border-gray-200 rounded focus:outline-none focus:border-[#2A52A0]"
+            data-testid="personalize-client-name"
+          />
+        </div>
+        <div>
+          {downloadHref ? (
+            <a
+              href={downloadHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center w-full gap-2 bg-[#102A43] hover:bg-[#2A52A0] text-white font-bold px-5 py-2.5 rounded transition-colors text-sm"
+              style={{ border: '1px solid #C9A84C' }}
+              data-testid="personalize-download-btn"
+            >
+              Generate &amp; Download
+            </a>
+          ) : (
+            <button
+              disabled
+              className="inline-flex items-center justify-center w-full gap-2 bg-gray-200 text-gray-400 font-bold px-5 py-2.5 rounded text-sm cursor-not-allowed"
+              data-testid="personalize-download-btn"
+            >
+              Enter a client name
+            </button>
+          )}
+        </div>
+      </div>
+      <p className="text-[11px] text-gray-400 mt-3">
+        Cover header will read: <code className="bg-gray-100 px-1.5 py-0.5 rounded text-[11px]">PREPARED FOR {(clientName || '{company}').toUpperCase()}  |  {new Date().getFullYear()}</code>
+      </p>
     </div>
   );
 };

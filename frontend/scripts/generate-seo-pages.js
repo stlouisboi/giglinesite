@@ -14,6 +14,11 @@
 const fs = require('fs');
 const path = require('path');
 
+// GL-WEB-026 — Shared Field Note content database (same source used by the
+// React FieldNoteDetailPage). Every article body, checklist, and FAQ that
+// prospects can see on the client is now mirrored into the SSR HTML.
+const { NOTES: FIELD_NOTE_CONTENT } = require('../src/data/fieldNoteContent');
+
 const BUILD_DIR = path.join(__dirname, '..', 'build');
 const BASE_URL = 'https://www.giglinecompliance.com';
 
@@ -1591,6 +1596,90 @@ const fieldNotes = [
   { slug: 'cranes-rigging', title: 'Overhead Cranes & Rigging', desc: 'Daily inspections, annual inspections, sling condition, rated capacity, operator training — OSHA 29 CFR 1910.179 and 1910.184 for fab and metals shops.' },
   { slug: 'nc-osha-vs-federal', title: 'NC State Plan vs. Federal OSHA', desc: 'How North Carolina OSHA differs from federal OSHA. NCDOL inspections, free consultation through BETS, and what changes for Triad operations.' },
 ];
+
+// GL-WEB-026 — Convert a Field Note entry into SSR-ready semantic HTML.
+// Pulls the structured content (whatItIs, whatGetsMissed, whatISee, oshaChecks,
+// checklist, faqSchema) from the shared FIELD_NOTE_CONTENT database and
+// renders each section so search engines and AI answer engines see the full
+// article body without executing JavaScript.
+function escapeHtml(str) {
+  if (str == null) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+function paragraphsFrom(text) {
+  return String(text || '')
+    .split(/\n\s*\n/)
+    .map((p) => p.trim())
+    .filter(Boolean)
+    .map((p) => `<p>${escapeHtml(p)}</p>`)
+    .join('');
+}
+
+function listFrom(items) {
+  if (!Array.isArray(items) || !items.length) return '';
+  return `<ul>${items.map((li) => `<li>${escapeHtml(li)}</li>`).join('')}</ul>`;
+}
+
+function renderFieldNoteBody(note) {
+  const shared = FIELD_NOTE_CONTENT[note.slug];
+  // Notes without a shared entry keep the legacy short SSR body so nothing regresses.
+  if (!shared) {
+    return `<h1>${escapeHtml(note.title)}</h1>`
+      + `<p>${escapeHtml(note.desc || '')}</p>`
+      + `<p>Field Note by Vince Lawrence — GigLine Safety &amp; Compliance — (336) 329-8899</p>`;
+  }
+
+  const title = shared.title || note.title;
+  const subtitle = shared.subtitle ? `<p><em>${escapeHtml(shared.subtitle)}</em></p>` : '';
+  const cfr = shared.cfrCitation ? `<p><strong>CFR reference:</strong> ${escapeHtml(shared.cfrCitation)}</p>` : '';
+  const desc = note.desc ? `<p>${escapeHtml(note.desc)}</p>` : '';
+
+  const sec = shared.sections || {};
+  const whatItIs = sec.whatItIs
+    ? `<h2>What this is</h2>${paragraphsFrom(sec.whatItIs)}`
+    : '';
+  const whatGetsMissed = Array.isArray(sec.whatGetsMissed) && sec.whatGetsMissed.length
+    ? `<h2>What gets missed</h2>${listFrom(sec.whatGetsMissed)}`
+    : '';
+  const oshaChecks = Array.isArray(shared.oshaChecks) && shared.oshaChecks.length
+    ? `<h2>What OSHA checks</h2>${listFrom(shared.oshaChecks)}`
+    : '';
+  const whatISee = sec.whatISee
+    ? `<h2>What I see on the floor</h2>${paragraphsFrom(sec.whatISee)}`
+    : '';
+  const checklist = Array.isArray(sec.checklist) && sec.checklist.length
+    ? `<h2>Field checklist</h2>${listFrom(sec.checklist)}`
+    : '';
+
+  let faqHtml = '';
+  if (Array.isArray(shared.faqSchema) && shared.faqSchema.length) {
+    const items = shared.faqSchema
+      .map((f) => `<h3>${escapeHtml(f.question)}</h3>${paragraphsFrom(f.answer)}`)
+      .join('');
+    faqHtml = `<h2>Frequently asked questions</h2>${items}`;
+  }
+
+  const footer = `<p>Field Note by Vince Lawrence — GigLine Safety &amp; Compliance — Kernersville, NC — <a href="tel:3363298899">(336) 329-8899</a></p>`;
+
+  return [
+    `<h1>${escapeHtml(title)}</h1>`,
+    subtitle,
+    cfr,
+    desc,
+    whatItIs,
+    whatGetsMissed,
+    oshaChecks,
+    whatISee,
+    checklist,
+    faqHtml,
+    footer,
+  ].filter(Boolean).join('');
+}
+
 fieldNotes.forEach((note, idx) => {
   // Distribute publication dates evenly from 2025-09-01 → 2026-02-01 for freshness signals
   const startMs = new Date('2025-09-01T00:00:00Z').getTime();
@@ -1633,7 +1722,16 @@ fieldNotes.forEach((note, idx) => {
         .join('')}<li><a href="/services">Safety Walkthrough Services →</a></li></ul>`
     : '';
 
-  const baseContent = note.customContent || `<h1>${note.title}</h1><p>${note.desc}</p><p>Field Note by Vince Lawrence — GigLine Safety &amp; Compliance — (336) 329-8899</p>`;
+  const baseContent = note.customContent || renderFieldNoteBody(note);
+
+  // Include FAQPage schema if this note has faqSchema entries in the shared
+  // content database (not only the legacy customFaqs on the SSR side).
+  const sharedNote = FIELD_NOTE_CONTENT[note.slug];
+  if (!note.customFaqs && sharedNote && Array.isArray(sharedNote.faqSchema) && sharedNote.faqSchema.length) {
+    schemas.push(
+      faqSchema(sharedNote.faqSchema.map((f) => ({ q: f.question, a: f.answer })))
+    );
+  }
 
   routes.push({
     path: `/field-notes/${note.slug}`,

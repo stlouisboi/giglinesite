@@ -498,7 +498,7 @@ async def submit_intake(data: IntakeSubmission):
     # Service-lane-specific opening line
     lane_opener = {
         "walkthrough": "Thanks for requesting a Safety Walkthrough. Vince will be in touch within 1 business day to confirm scope and schedule.",
-        "doc_review": "Thanks for requesting an OSHA Documentation Readiness Review. The prep checklist is attached. Vince will follow up within 1 business day with a fixed quote.",
+        "doc_review": "Thanks for requesting an OSHA Documentation Readiness Review. Your prep checklist is attached — personalized for your company. Vince will follow up within 1 business day with a fixed quote.",
         "incident_review": "Thanks for reaching out about an incident review. These move fast — Vince will be in touch shortly, often same day.",
         "doc_creation": "Thanks for the program creation request. Vince will review your selections and follow up within 1 business day with a quote.",
         "not_sure": "Thanks for reaching out. Vince will review what you submitted and follow up within 1 business day to figure out the right fit.",
@@ -548,18 +548,58 @@ async def submit_intake(data: IntakeSubmission):
         "html": client_html,
         "reply_to": VINCE_EMAIL,
     }
-    # Attach prep checklist for Doc Review lane only
+    # Attach personalized prep checklist for Doc Review lane only.
+    # Uses the same GigLine Cover v3 template as the admin "Personalize PDF" tab —
+    # header slug becomes "PREPARED FOR {COMPANY} | {year}".
     if data.serviceSelected == "doc_review":
-        prep_path = "/app/frontend/public/assets/gl-doc-review-prep-checklist.pdf"
+        src_prep_path = "/app/frontend/public/assets/gl-doc-review-prep-checklist.pdf"
         try:
-            with open(prep_path, "rb") as fp:
-                import base64
-                client_send_payload["attachments"] = [{
-                    "filename": "GigLine_DocReview_PrepChecklist.pdf",
-                    "content": base64.b64encode(fp.read()).decode("ascii"),
-                }]
+            import base64
+            import tempfile
+            from lib.pdf_cover import prepend_cover_to_pdf
+            from lib.pdf_cover_metadata import COVERS
+
+            meta = COVERS["gl-doc-review-prep-checklist.pdf"]
+            # The on-disk PDF already carries a v3 cover as page 1, so we
+            # swap it (rather than prepend) with the personalized version.
+            kwargs = {k: v for k, v in meta.items() if k != "replace_page_1"}
+            personalize_for = (data.companyName or data.contactName or "").strip()
+            if personalize_for:
+                kwargs["client_name"] = personalize_for
+
+            with tempfile.NamedTemporaryFile(suffix=".pdf", delete=False, prefix="gl_intake_prep_") as _tmp:
+                tmp_prep_path = _tmp.name
+            prepend_cover_to_pdf(
+                src_prep_path, tmp_prep_path,
+                replace_page_1=True,
+                **kwargs,
+            )
+
+            with open(tmp_prep_path, "rb") as fp:
+                pdf_bytes = fp.read()
+            try:
+                os.unlink(tmp_prep_path)
+            except OSError:
+                pass
+
+            slug = (personalize_for or "gigline").lower()
+            slug = "".join(ch if ch.isalnum() else "-" for ch in slug).strip("-")[:40] or "gigline"
+            filename = f"GigLine_DocReview_PrepChecklist__{slug}.pdf"
+            client_send_payload["attachments"] = [{
+                "filename": filename,
+                "content": base64.b64encode(pdf_bytes).decode("ascii"),
+            }]
         except Exception as e:
-            logger.warning(f"Prep checklist attachment skipped: {e}")
+            logger.warning(f"Personalized prep checklist skipped, falling back to static PDF: {e}")
+            try:
+                import base64
+                with open(src_prep_path, "rb") as fp:
+                    client_send_payload["attachments"] = [{
+                        "filename": "GigLine_DocReview_PrepChecklist.pdf",
+                        "content": base64.b64encode(fp.read()).decode("ascii"),
+                    }]
+            except Exception as e2:
+                logger.warning(f"Static prep checklist attachment also skipped: {e2}")
 
     # ─────────────────────────────────────────────────────────
     # VINCE NOTIFICATION EMAIL — monospaced, structured, includes priority flags

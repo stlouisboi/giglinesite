@@ -119,7 +119,7 @@ COVERS = {
             'Emergency action plan',
         ],
         process_flow=['Gather', 'Deliver', 'Review', 'Score', 'Report'],
-        replace_page_1=False,
+        replace_page_1=True,
     ),
     'gl-lm-001-digital.pdf': dict(
         title='Top 5 Heat-Related OSHA Violations',

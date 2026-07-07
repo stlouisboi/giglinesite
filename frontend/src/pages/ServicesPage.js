@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Phone, Check, Factory, Truck, Warehouse, HardHat, ShieldCheck, Zap, FileText, Users, Wrench, BookOpen, CheckCircle2 } from 'lucide-react';
 import { trackServiceBooking, trackPhoneClick, trackEvent } from '../utils/analytics';
 import SEO from '../components/SEO';
+import { SUPERVISOR_KIT_ENABLED } from '../config/features';
 import CaseStudyTeaser from '../components/CaseStudyTeaser';
 import SampleReportSection from '../components/SampleReportSection';
 import WalkthroughDaySection from '../components/WalkthroughDaySection';
@@ -203,7 +204,8 @@ const STANDALONE = [
     testid: 'svc-standalone-doc-dev',
   },
   {
-    // Product card — not a service engagement
+    // Product card — not a service engagement (feature-flagged; see /app/frontend/src/config/features.js)
+    __gated: !SUPERVISOR_KIT_ENABLED,
     eyebrow: 'Supervisor Safety Starter System',
     title: 'Supervisor Safety Starter System',
     headline: "Can't schedule a walkthrough yet? Start here.",
@@ -741,7 +743,7 @@ const ServicesPage = () => {
       </section>
 
       {/* Per-service bands — each with its own background color for visual separation */}
-      {STANDALONE.map((s, idx) => {
+      {STANDALONE.filter((s) => !s.__gated).map((s, idx) => {
         const cardOnLeft = idx % 2 === 1;
         const listLabel = s.listLabel || "What's Included";
         return (

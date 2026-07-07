@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Truck, FileText, Users, ClipboardCheck, AlertTriangle, Award } from 'lucide-react';
 import SEO from '../components/SEO';
 import StickyTOC from '../components/StickyTOC';
+import { SUPERVISOR_KIT_ENABLED } from '../config/features';
 
 const tocItems = [
   { id: "what-standard", label: "The 1910.178 standard" },
@@ -249,10 +250,12 @@ const BlogForkliftCompliance = () => {
               <div><p className="font-medium text-white group-hover:text-[#2A52A0] transition-colors text-sm">Safety Walkthrough — $1,200</p><p className="text-xs text-white/50 mt-1">Warehouse floor review including forklift program, traffic controls, and pedestrian separation.</p></div>
               <ArrowRight size={18} className="text-white/30 group-hover:text-[#2A52A0] transition-colors flex-shrink-0" />
             </Link>
+            {SUPERVISOR_KIT_ENABLED && (
             <Link to="/supervisor-kit" className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#2A52A0]/40 transition-colors group">
               <div><p className="font-medium text-white group-hover:text-[#2A52A0] transition-colors text-sm">Supervisor Safety Starter System — $600</p><p className="text-xs text-white/50 mt-1">11 print-ready documents including forklift inspection log and operator certification template.</p></div>
               <ArrowRight size={18} className="text-white/30 group-hover:text-[#2A52A0] transition-colors flex-shrink-0" />
             </Link>
+            )}
             <Link to="/forklift-compliance-review-nc" className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#2A52A0]/40 transition-colors group">
               <div><p className="font-medium text-white group-hover:text-[#2A52A0] transition-colors text-sm">Forklift Compliance Review</p><p className="text-xs text-white/50 mt-1">Standalone forklift program audit including certifications and daily inspection logs.</p></div>
               <ArrowRight size={18} className="text-white/30 group-hover:text-[#2A52A0] transition-colors flex-shrink-0" />

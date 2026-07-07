@@ -22,11 +22,21 @@ import resend
 from config import (
     db, USE_NATIVE_STRIPE, stripe_api_key,
     SUPERVISOR_KIT_PRODUCTS, SUPERVISOR_KIT_FILES, SENDER_EMAIL, VINCE_EMAIL,
+    SUPERVISOR_KIT_ENABLED,
 )
 from integrations.mailerlite import add_to_kit_buyer
 
 router = APIRouter()
 logger = logging.getLogger('gigline')
+
+
+def _require_enabled():
+    """Return 503 if the Supervisor Kit is soft-disabled via feature flag."""
+    if not SUPERVISOR_KIT_ENABLED:
+        raise HTTPException(
+            status_code=503,
+            detail="The Supervisor Safety Starter System is temporarily unavailable. Call (336) 329-8899 for details.",
+        )
 
 
 class KitCheckoutRequest(BaseModel):
@@ -108,12 +118,14 @@ async def _create_kit_session(variant: str, payload: KitCheckoutRequest, http_re
 @router.post("/checkout/supervisor-kit-digital")
 async def checkout_digital(payload: KitCheckoutRequest, http_request: Request):
     """Create Stripe Checkout session for the $600 digital kit."""
+    _require_enabled()
     return await _create_kit_session("digital", payload, http_request)
 
 
 @router.post("/checkout/supervisor-kit-physical")
 async def checkout_physical(payload: KitCheckoutRequest, http_request: Request):
     """Create Stripe Checkout session for the $675 physical kit (US shipping captured at checkout)."""
+    _require_enabled()
     return await _create_kit_session("physical", payload, http_request)
 
 

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, BookOpen, FileText, ClipboardCheck, AlertTriangle, Tag } from 'lucide-react';
 import SEO from '../components/SEO';
 import StickyTOC from '../components/StickyTOC';
+import { SUPERVISOR_KIT_ENABLED } from '../config/features';
 
 const tocItems = [
   { id: "why-hazcom", label: "Why HazCom keeps getting cited" },
@@ -243,10 +244,12 @@ const BlogHazComPreInspection = () => {
         <div className="container max-w-3xl">
           <h2 className="text-xl md:text-2xl font-bold mb-8" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>Related Resources</h2>
           <div className="space-y-4 mb-10">
+            {SUPERVISOR_KIT_ENABLED && (
             <Link to="/supervisor-kit" className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#2A52A0]/40 transition-colors group">
               <div><p className="font-medium text-white group-hover:text-[#2A52A0] transition-colors text-sm">Supervisor Safety Starter System — $600</p><p className="text-xs text-white/50 mt-1">11 print-ready documents including a written HazCom program template, chemical inventory sheet, and training log.</p></div>
               <ArrowRight size={18} className="text-white/30 group-hover:text-[#2A52A0] transition-colors flex-shrink-0" />
             </Link>
+            )}
             <Link to="/hazcom" className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#2A52A0]/40 transition-colors group">
               <div><p className="font-medium text-white group-hover:text-[#2A52A0] transition-colors text-sm">HazCom Starter Pack — $29</p><p className="text-xs text-white/50 mt-1">Written program, SDS checklist, and training log for immediate download.</p></div>
               <ArrowRight size={18} className="text-white/30 group-hover:text-[#2A52A0] transition-colors flex-shrink-0" />
@@ -268,6 +271,7 @@ const BlogHazComPreInspection = () => {
         </div>
       </section>
 
+      {SUPERVISOR_KIT_ENABLED && (
       <section className="py-12 bg-[#F9F8F6]">
         <div className="container max-w-3xl">
           <div className="border border-[#2A52A0]/20 bg-white rounded-lg p-6 md:p-8 text-center">
@@ -277,6 +281,7 @@ const BlogHazComPreInspection = () => {
           </div>
         </div>
       </section>
+      )}
 
       <section className="py-10 border-t border-[#2A52A0]/10">
         <div className="container max-w-3xl">

@@ -163,3 +163,9 @@ GIGLINE_GOOGLE_REVIEW_URL = os.environ.get(
     'GIGLINE_GOOGLE_REVIEW_URL',
     'https://g.page/r/CdlAYUu_I3xpEAI/review',
 )
+
+# GL-WEB-018 (Jul 2026) — Supervisor Safety Starter System feature flag.
+# When false: checkout endpoints return 503, /supervisor-kit redirects to /services,
+# UI tiles/links are hidden across the site. /verify keeps working so existing
+# paid orders can still be confirmed. Flip via SUPERVISOR_KIT_ENABLED=true in .env.
+SUPERVISOR_KIT_ENABLED = os.environ.get('SUPERVISOR_KIT_ENABLED', 'false').lower() == 'true'

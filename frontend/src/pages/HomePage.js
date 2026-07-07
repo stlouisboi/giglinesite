@@ -6,6 +6,7 @@ import CaseStudyTeaser from '../components/CaseStudyTeaser';
 import FieldManualBand from '../components/FieldManualBand';
 import WalkthroughDaySection from '../components/WalkthroughDaySection';
 import { trackPhoneClick, trackReviewClick, trackEvent } from '../utils/analytics';
+import { SUPERVISOR_KIT_ENABLED } from '../config/features';
 
 /* ── Scroll-reveal ── */
 const useReveal = () => {
@@ -813,7 +814,8 @@ const HomePage = () => {
       {/* ═══ WHAT HAPPENS ON THE DAY OF YOUR WALKTHROUGH ═══ */}
       <WalkthroughDaySection variant="crv" surface="light" />
 
-      {/* ═══ SUPERVISOR KIT BAND — single-CTA cross-sell ═══ */}
+      {/* ═══ SUPERVISOR KIT BAND — single-CTA cross-sell (gated by feature flag) ═══ */}
+      {SUPERVISOR_KIT_ENABLED && (
       <section
         className="py-16 md:py-20"
         style={{
@@ -872,6 +874,7 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+      )}
 
       {/* ═══ TESTIMONIALS + CASE STUDY + TRACK RECORD (relocated per spec — between Services and How It Works) ═══ */}
       <section className="py-20 md:py-28" style={{ backgroundColor: '#102A43' }} data-testid="trust-section">

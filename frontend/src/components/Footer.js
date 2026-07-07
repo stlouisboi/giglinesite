@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, Linkedin } from 'lucide-react';
+import { SUPERVISOR_KIT_ENABLED } from '../config/features';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -105,11 +106,11 @@ const Footer = () => {
                     path: '/osha-inspection-guide',
                     desc: 'What OSHA looks for when they walk in. Free guide for HR managers and safety coordinators.',
                   },
-                  {
+                  ...(SUPERVISOR_KIT_ENABLED ? [{
                     name: 'Supervisor Safety Starter System',
                     path: '/supervisor-kit',
                     desc: '11 documents. CFR-cited. $600 digital · $675 physical. Included free with every Compliance Readiness Visit.',
-                  },
+                  }] : []),
                   {
                     name: 'Sample Compliance Report',
                     path: '/sample-report',

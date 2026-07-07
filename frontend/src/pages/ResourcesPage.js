@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Download, FileText, ClipboardCheck, Shield, BookOpen, FileSearch, Mail, Package, Compass } from 'lucide-react';
 import SEO from '../components/SEO';
+import { SUPERVISOR_KIT_ENABLED } from '../config/features';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL;
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
@@ -81,6 +82,7 @@ const RESOURCES = [
   },
   {
     id: 'supervisor-kit',
+    __gated: !SUPERVISOR_KIT_ENABLED,
     title: 'Supervisor Safety Starter System',
     type: 'Paid Kit',
     gate: 'From $600',
@@ -151,7 +153,7 @@ const ResourcesPage = () => {
       <section className="py-16 md:py-20 bg-white" data-testid="resources-grid">
         <div className="container max-w-5xl">
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
-            {RESOURCES.map((r) => {
+            {RESOURCES.filter((r) => !r.__gated).map((r) => {
               const Icon = r.icon;
               return (
                 <li

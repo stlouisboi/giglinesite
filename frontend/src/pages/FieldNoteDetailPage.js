@@ -3,6 +3,7 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import { ArrowRight, ArrowLeft, Download, Check } from 'lucide-react';
 import { trackPDFDownload } from '../utils/analytics';
 import SEO from '../components/SEO';
+import { SUPERVISOR_KIT_ENABLED } from '../config/features';
 import FieldNotesNewsletter from '../components/FieldNotesNewsletter';
 
 const API = process.env.REACT_APP_BACKEND_URL;
@@ -1792,8 +1793,8 @@ const FieldNoteDetailPage = () => {
         </section>
       )}
 
-      {/* Related Documents CTA — for articles that specify a kitCrossSell card set */}
-      {note.kitCrossSell && Array.isArray(note.kitCrossSell.cards) && (
+      {/* Related Documents CTA — for articles that specify a kitCrossSell card set (gated by kit feature flag) */}
+      {SUPERVISOR_KIT_ENABLED && note.kitCrossSell && Array.isArray(note.kitCrossSell.cards) && (
         <section
           className="py-16 md:py-20"
           style={{ background: '#FAF7F1', borderTop: '1px solid #E5DDCD' }}

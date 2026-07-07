@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { X, Upload, ChevronRight, Eye, RefreshCw, FileText, Users, Briefcase, DollarSign, Clock, Trash2 } from 'lucide-react';
 import SEO from '../components/SEO';
 import WalkthroughLeadsCRM from '../components/WalkthroughLeadsCRM';
+import { SUPERVISOR_KIT_ENABLED } from '../config/features';
 
 const API = process.env.REACT_APP_BACKEND_URL;
 
@@ -291,7 +292,7 @@ const AdminPage = () => {
     { id: 'bookings', label: 'Bookings', icon: <DollarSign size={14} /> },
     { id: 'leads', label: 'Leads', icon: <Users size={14} /> },
     { id: 'downloads', label: 'Downloads', icon: <Clock size={14} /> },
-    { id: 'kit-pdfs', label: 'Kit PDFs', icon: <FileText size={14} /> },
+    ...(SUPERVISOR_KIT_ENABLED ? [{ id: 'kit-pdfs', label: 'Kit PDFs', icon: <FileText size={14} /> }] : []),
   ];
 
   /* ── Dashboard ── */
@@ -954,8 +955,8 @@ const AdminPage = () => {
           {/* ── DOWNLOADS ── */}
           {tab === 'downloads' && <DownloadsTab token={token} />}
 
-          {/* ── KIT PDFs ── */}
-          {tab === 'kit-pdfs' && <KitFilesTab token={token} />}
+          {/* ── KIT PDFs ── (feature-flagged) */}
+          {SUPERVISOR_KIT_ENABLED && tab === 'kit-pdfs' && <KitFilesTab token={token} />}
         </div>
       </div>
 

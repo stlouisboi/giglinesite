@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'r
 import { HelmetProvider } from 'react-helmet-async';
 import { trackPageView, initAttribution } from './utils/analytics';
 import ScrollToTop from './components/ScrollToTop';
+import { SUPERVISOR_KIT_ENABLED } from './config/features';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import MobileStickyFooter from './components/MobileStickyFooter';
@@ -164,8 +165,17 @@ function App() {
                     <Route path="/service-areas" element={<ServiceAreasPage />} />
                     <Route path="/case-study/metals-fabrication-statesville" element={<CaseStudyMetalsFabricationPage />} />
                     <Route path="/case-studies/mocksville-plastics-osha-inspection" element={<Navigate to="/case-study/metals-fabrication-statesville" replace />} />
-                    <Route path="/supervisor-kit" element={<SupervisorKitPage />} />
-                    <Route path="/supervisor-kit/thank-you" element={<SupervisorKitThankYouPage />} />
+                    {SUPERVISOR_KIT_ENABLED ? (
+                      <>
+                        <Route path="/supervisor-kit" element={<SupervisorKitPage />} />
+                        <Route path="/supervisor-kit/thank-you" element={<SupervisorKitThankYouPage />} />
+                      </>
+                    ) : (
+                      <>
+                        <Route path="/supervisor-kit" element={<Navigate to="/services" replace />} />
+                        <Route path="/supervisor-kit/thank-you" element={<Navigate to="/services" replace />} />
+                      </>
+                    )}
                     <Route path="/privacy" element={<Navigate to="/privacy-policy" replace />} />
                     <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
                     <Route path="/terms" element={<Navigate to="/terms-of-service" replace />} />

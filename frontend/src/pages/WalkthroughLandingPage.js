@@ -188,6 +188,63 @@ const WalkthroughLandingPage = () => {
       </section>
 
       {/* ─────────────────────────────────────────────
+          SECTION 3.5 — SOCIAL PROOF STAT CARD
+          Inline outcome card linking to the CRV case study
+      ───────────────────────────────────────────── */}
+      <section
+        className="px-5 md:px-8 py-10 md:py-14"
+        style={{ backgroundColor: BG_WARM }}
+        data-testid="wt-social-proof-section"
+      >
+        <div className="max-w-3xl mx-auto">
+          <a
+            href="/case-study/metals-fabrication-statesville"
+            className="group grid grid-cols-1 md:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] items-center gap-6 md:gap-8 p-5 md:p-6 transition-shadow"
+            style={{
+              backgroundColor: BG_CARD,
+              border: `1px solid ${BORDER}`,
+              boxShadow: '0 2px 12px rgba(10,22,40,0.05)',
+            }}
+            data-testid="wt-social-proof-card"
+          >
+            <img
+              src="/assets/case-study-statesville-12-of-13.webp"
+              alt="12 of 13 corrective actions closed in 7 days — GigLine walkthrough + documentation review at a metals fabrication facility in Statesville, NC."
+              loading="lazy"
+              className="w-full h-auto block"
+              style={{ border: `1px solid ${BORDER}` }}
+              data-testid="wt-social-proof-image"
+            />
+            <div>
+              <p
+                className="uppercase font-bold tracking-[0.24em] mb-3"
+                style={{ color: GOLD, fontSize: '10px' }}
+              >
+                Recent Outcome
+              </p>
+              <p
+                className="font-bold leading-[1.25] mb-3 text-[22px] md:text-[26px]"
+                style={{ fontFamily: "'Manrope', sans-serif", color: NAVY }}
+              >
+                12 of 13 corrective actions closed in 7 days.
+              </p>
+              <p className="text-[14px] md:text-[15px] leading-[1.6] mb-4" style={{ color: TEXT_MUTED }}>
+                From a Compliance Readiness Visit (walkthrough + doc review combined) — Statesville, NC.
+              </p>
+              <span
+                className="inline-flex items-center gap-1.5 font-bold text-[13px] md:text-[14px]"
+                style={{ color: NAVY, borderBottom: `2px solid ${GOLD}`, paddingBottom: '2px' }}
+                data-testid="wt-social-proof-cta"
+              >
+                See the full case study
+                <ArrowRight size={14} />
+              </span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      {/* ─────────────────────────────────────────────
           SECTION 4 — THE FORM (primary conversion)
       ───────────────────────────────────────────── */}
       <section

@@ -335,6 +335,57 @@ const ComplianceReadinessVisitPage = () => {
         </div>
       </section>
 
+      {/* ═══ Social proof — real outcome graphic (full-width strip) ═══ */}
+      <section
+        className="py-14 md:py-16"
+        style={{ background: CREAM, borderBottom: '1px solid #e8e5dd' }}
+        data-testid="crv-social-proof"
+      >
+        <div className="container max-w-5xl">
+          <figure>
+            <Link
+              to="/case-study/metals-fabrication-statesville"
+              className="block rounded-xl overflow-hidden transition-shadow"
+              style={{
+                background: '#ffffff',
+                border: '1px solid #e8e5dd',
+                boxShadow: '0 6px 24px rgba(16,42,67,0.06)',
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.boxShadow = '0 10px 32px rgba(16,42,67,0.12)')}
+              onMouseLeave={(e) => (e.currentTarget.style.boxShadow = '0 6px 24px rgba(16,42,67,0.06)')}
+              data-testid="crv-social-proof-link"
+            >
+              <img
+                src="/assets/case-study-statesville-12-of-13.webp"
+                alt="12 of 13 corrective actions closed in 7 days — outcome of a GigLine Compliance Readiness Visit at a metals fabrication facility in Statesville, NC."
+                loading="lazy"
+                className="w-full h-auto block"
+                data-testid="crv-social-proof-image"
+              />
+            </Link>
+            <figcaption
+              className="mt-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2 text-[13px]"
+              style={{ color: 'rgba(28,43,43,0.65)' }}
+            >
+              <span className="italic">
+                Real outcome from a 2026 Compliance Readiness Visit — Statesville, NC.
+              </span>
+              <Link
+                to="/case-study/metals-fabrication-statesville"
+                className="inline-flex items-center gap-1.5 font-bold transition-colors"
+                style={{ color: BLUE }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = NAVY)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = BLUE)}
+                data-testid="crv-social-proof-case-link"
+              >
+                View the case study
+                <ArrowRight size={13} />
+              </Link>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
       {/* ═══ What You Get — 7 deliverables with 18-page report highlighted ═══ */}
       <section className="py-20 md:py-24 bg-white" data-testid="crv-deliverables">
         <div className="container max-w-6xl">

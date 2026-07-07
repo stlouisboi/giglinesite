@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { X, Upload, ChevronRight, Eye, RefreshCw, FileText, Users, Briefcase, DollarSign, Clock, Trash2 } from 'lucide-react';
+import { X, Upload, ChevronRight, Eye, RefreshCw, FileText, Users, Briefcase, DollarSign, Clock, Trash2, Search } from 'lucide-react';
 import SEO from '../components/SEO';
 import WalkthroughLeadsCRM from '../components/WalkthroughLeadsCRM';
 import { SUPERVISOR_KIT_ENABLED } from '../config/features';
@@ -293,6 +293,7 @@ const AdminPage = () => {
     { id: 'leads', label: 'Leads', icon: <Users size={14} /> },
     { id: 'downloads', label: 'Downloads', icon: <Clock size={14} /> },
     { id: 'personalize', label: 'Personalize PDF', icon: <FileText size={14} /> },
+    { id: 'indexing', label: 'SEO Indexing', icon: <Search size={14} /> },
     ...(SUPERVISOR_KIT_ENABLED ? [{ id: 'kit-pdfs', label: 'Kit PDFs', icon: <FileText size={14} /> }] : []),
   ];
 
@@ -961,6 +962,9 @@ const AdminPage = () => {
 
           {/* ── PERSONALIZE PDF ── */}
           {tab === 'personalize' && <PersonalizePdfTab token={token} />}
+
+          {/* ── GOOGLE INDEXING ── */}
+          {tab === 'indexing' && <GoogleIndexingTab token={token} />}
         </div>
       </div>
 
@@ -1244,6 +1248,274 @@ const PersonalizePdfTab = ({ token }) => {
       <p className="text-[11px] text-gray-400 mt-3">
         Cover header will read: <code className="bg-gray-100 px-1.5 py-0.5 rounded text-[11px]">PREPARED FOR {(clientName || '{company}').toUpperCase()}  |  {new Date().getFullYear()}</code>
       </p>
+    </div>
+  );
+};
+
+/* ── Google Indexing sub-tab — submit URLs to the Google Indexing API ── */
+const GoogleIndexingTab = ({ token }) => {
+  const [status, setStatus] = useState(null);
+  const [singleUrl, setSingleUrl] = useState('');
+  const [singleType, setSingleType] = useState('URL_UPDATED');
+  const [singleResult, setSingleResult] = useState(null);
+  const [singleBusy, setSingleBusy] = useState(false);
+
+  const [bulkType, setBulkType] = useState('URL_UPDATED');
+  const [bulkDays, setBulkDays] = useState(30);
+  const [bulkLimit, setBulkLimit] = useState(25);
+  const [bulkResult, setBulkResult] = useState(null);
+  const [bulkBusy, setBulkBusy] = useState(false);
+
+  const [log, setLog] = useState([]);
+  const [logBusy, setLogBusy] = useState(false);
+
+  const loadStatus = useCallback(async () => {
+    try {
+      const res = await fetch(`${API}/api/admin/google-index/status?token=${encodeURIComponent(token)}`);
+      const data = await res.json();
+      setStatus(data);
+    } catch (e) { setStatus({ configured: false, error: String(e) }); }
+  }, [token]);
+
+  const loadLog = useCallback(async () => {
+    setLogBusy(true);
+    try {
+      const res = await fetch(`${API}/api/admin/google-index/log?token=${encodeURIComponent(token)}&limit=50`);
+      const data = await res.json();
+      setLog(data.items || []);
+    } catch (e) { /* ignore */ }
+    setLogBusy(false);
+  }, [token]);
+
+  useEffect(() => { loadStatus(); loadLog(); }, [loadStatus, loadLog]);
+
+  const submitSingle = async () => {
+    setSingleBusy(true); setSingleResult(null);
+    try {
+      const res = await fetch(`${API}/api/admin/google-index/submit-url`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token, url: singleUrl.trim(), notification_type: singleType }),
+      });
+      const data = await res.json();
+      setSingleResult({ ok: res.ok, data });
+      loadLog();
+    } catch (e) { setSingleResult({ ok: false, data: { error: String(e) } }); }
+    setSingleBusy(false);
+  };
+
+  const submitBulk = async () => {
+    setBulkBusy(true); setBulkResult(null);
+    try {
+      const res = await fetch(`${API}/api/admin/google-index/submit-sitemap`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          token,
+          notification_type: bulkType,
+          days: Number(bulkDays) || 0,
+          limit: Number(bulkLimit) || 25,
+        }),
+      });
+      const data = await res.json();
+      setBulkResult({ ok: res.ok, data });
+      loadLog();
+    } catch (e) { setBulkResult({ ok: false, data: { error: String(e) } }); }
+    setBulkBusy(false);
+  };
+
+  return (
+    <div data-testid="google-indexing-tab" className="space-y-8">
+      <div>
+        <h2 className="text-lg font-bold text-[#1C2B2B] mb-1">Google Indexing API</h2>
+        <p className="text-xs text-gray-500 leading-relaxed max-w-3xl">
+          Notify Google when pages are added, updated, or removed. Uses the service-account credentials
+          configured in <code className="bg-gray-100 px-1 rounded">GOOGLE_INDEXING_SA_JSON_BASE64</code>.
+          Setup instructions: <code className="bg-gray-100 px-1 rounded">/app/memory/GOOGLE_INDEXING_SETUP.md</code>.
+        </p>
+      </div>
+
+      {/* ── Status card ── */}
+      <div className="bg-white rounded-lg border border-gray-200 p-4" data-testid="google-indexing-status">
+        <div className="flex items-center justify-between mb-2">
+          <h3 className="text-sm font-bold text-[#1C2B2B]">Connection status</h3>
+          <button onClick={loadStatus} className="text-xs text-[#2A52A0] hover:underline inline-flex items-center gap-1" data-testid="google-indexing-refresh-status">
+            <RefreshCw size={12} /> Refresh
+          </button>
+        </div>
+        {!status ? <p className="text-xs text-gray-400">Loading&hellip;</p> : (
+          status.configured ? (
+            <div className="text-xs space-y-1">
+              <p><span className="inline-block w-2 h-2 rounded-full bg-green-500 mr-1.5" /> <span className="text-green-700 font-bold">Configured</span></p>
+              <p className="text-gray-600">Service account: <code className="bg-gray-100 px-1 rounded">{status.service_account_email}</code></p>
+              <p className="text-gray-600">Sitemap present: {status.sitemap_present ? 'yes' : <span className="text-red-500">no (bulk push disabled)</span>}</p>
+              <p className="text-gray-500 text-[11px] mt-2">Add this email as an <strong>Owner</strong> in Google Search Console for <code className="bg-gray-100 px-1 rounded">giglinecompliance.com</code> before submissions will succeed.</p>
+            </div>
+          ) : (
+            <div className="text-xs">
+              <p><span className="inline-block w-2 h-2 rounded-full bg-red-500 mr-1.5" /> <span className="text-red-700 font-bold">Not configured</span></p>
+              <p className="text-gray-600 mt-1">{status.error}</p>
+            </div>
+          )
+        )}
+      </div>
+
+      {/* ── Single URL card ── */}
+      <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <h3 className="text-sm font-bold text-[#1C2B2B] mb-3">Submit a single URL</h3>
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_180px_150px] gap-3 items-end">
+          <div>
+            <label className="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">URL</label>
+            <input
+              type="url"
+              value={singleUrl}
+              onChange={(e) => setSingleUrl(e.target.value)}
+              placeholder="https://www.giglinecompliance.com/field-notes/..."
+              className="w-full px-3 py-2.5 text-sm text-[#1C2B2B] bg-white border border-gray-200 rounded focus:outline-none focus:border-[#2A52A0]"
+              data-testid="google-indexing-single-url"
+            />
+          </div>
+          <div>
+            <label className="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Type</label>
+            <select
+              value={singleType}
+              onChange={(e) => setSingleType(e.target.value)}
+              className="w-full px-3 py-2.5 text-sm text-[#1C2B2B] bg-white border border-gray-200 rounded focus:outline-none focus:border-[#2A52A0]"
+              data-testid="google-indexing-single-type"
+            >
+              <option value="URL_UPDATED">URL_UPDATED</option>
+              <option value="URL_DELETED">URL_DELETED</option>
+            </select>
+          </div>
+          <button
+            onClick={submitSingle}
+            disabled={!singleUrl.trim() || singleBusy}
+            className="inline-flex items-center justify-center gap-2 bg-[#102A43] hover:bg-[#2A52A0] disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed text-white font-bold px-5 py-2.5 rounded transition-colors text-sm"
+            data-testid="google-indexing-single-submit"
+          >
+            {singleBusy ? 'Submitting…' : 'Submit'}
+          </button>
+        </div>
+        {singleResult && (
+          <div
+            className={`mt-3 text-xs p-3 rounded ${singleResult.ok ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`}
+            data-testid="google-indexing-single-result"
+          >
+            <pre className="whitespace-pre-wrap break-all font-mono text-[11px]">{JSON.stringify(singleResult.data, null, 2)}</pre>
+          </div>
+        )}
+      </div>
+
+      {/* ── Bulk sitemap card ── */}
+      <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <h3 className="text-sm font-bold text-[#1C2B2B] mb-1">Bulk push from sitemap.xml</h3>
+        <p className="text-[11px] text-gray-500 mb-4 max-w-2xl">
+          Parses <code className="bg-gray-100 px-1 rounded">/sitemap.xml</code> and submits URLs whose <code className="bg-gray-100 px-1 rounded">&lt;lastmod&gt;</code> is within the last N days. Hard-capped at {' '}
+          <strong>{status?.bulk_limit_hard || 100}</strong> URLs per call to preserve your daily Indexing API quota.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-[180px_120px_120px_150px] gap-3 items-end">
+          <div>
+            <label className="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Type</label>
+            <select
+              value={bulkType}
+              onChange={(e) => setBulkType(e.target.value)}
+              className="w-full px-3 py-2.5 text-sm text-[#1C2B2B] bg-white border border-gray-200 rounded"
+              data-testid="google-indexing-bulk-type"
+            >
+              <option value="URL_UPDATED">URL_UPDATED</option>
+              <option value="URL_DELETED">URL_DELETED</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Days (lastmod)</label>
+            <input
+              type="number"
+              min="0"
+              max="365"
+              value={bulkDays}
+              onChange={(e) => setBulkDays(e.target.value)}
+              className="w-full px-3 py-2.5 text-sm text-[#1C2B2B] bg-white border border-gray-200 rounded"
+              data-testid="google-indexing-bulk-days"
+            />
+          </div>
+          <div>
+            <label className="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">Limit</label>
+            <input
+              type="number"
+              min="1"
+              max={status?.bulk_limit_hard || 100}
+              value={bulkLimit}
+              onChange={(e) => setBulkLimit(e.target.value)}
+              className="w-full px-3 py-2.5 text-sm text-[#1C2B2B] bg-white border border-gray-200 rounded"
+              data-testid="google-indexing-bulk-limit"
+            />
+          </div>
+          <button
+            onClick={submitBulk}
+            disabled={bulkBusy}
+            className="inline-flex items-center justify-center gap-2 bg-[#102A43] hover:bg-[#2A52A0] disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed text-white font-bold px-5 py-2.5 rounded transition-colors text-sm"
+            data-testid="google-indexing-bulk-submit"
+          >
+            {bulkBusy ? 'Pushing…' : 'Push from sitemap'}
+          </button>
+        </div>
+        {bulkResult && (
+          <div
+            className={`mt-3 text-xs p-3 rounded ${bulkResult.ok ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`}
+            data-testid="google-indexing-bulk-result"
+          >
+            <div className="grid grid-cols-4 gap-3 mb-2 text-center">
+              <div><p className="text-[10px] text-gray-500 uppercase">Matched</p><p className="text-sm font-bold">{bulkResult.data.total_matched ?? '—'}</p></div>
+              <div><p className="text-[10px] text-gray-500 uppercase">Limit</p><p className="text-sm font-bold">{bulkResult.data.limit_applied ?? '—'}</p></div>
+              <div><p className="text-[10px] text-gray-500 uppercase">Submitted</p><p className="text-sm font-bold text-green-700">{bulkResult.data.submitted ?? 0}</p></div>
+              <div><p className="text-[10px] text-gray-500 uppercase">Failed</p><p className="text-sm font-bold text-red-700">{bulkResult.data.failed ?? 0}</p></div>
+            </div>
+            <pre className="whitespace-pre-wrap break-all font-mono text-[11px] max-h-48 overflow-auto">{JSON.stringify(bulkResult.data.items || bulkResult.data, null, 2)}</pre>
+          </div>
+        )}
+      </div>
+
+      {/* ── Recent log card ── */}
+      <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="text-sm font-bold text-[#1C2B2B]">Recent submissions</h3>
+          <button onClick={loadLog} className="text-xs text-[#2A52A0] hover:underline inline-flex items-center gap-1" data-testid="google-indexing-refresh-log">
+            <RefreshCw size={12} /> Refresh
+          </button>
+        </div>
+        {logBusy ? <p className="text-xs text-gray-400">Loading&hellip;</p> : (
+          log.length === 0 ? <p className="text-xs text-gray-400">No submissions yet.</p> : (
+            <div className="overflow-auto max-h-96">
+              <table className="w-full text-xs" data-testid="google-indexing-log-table">
+                <thead className="text-left text-gray-500 border-b border-gray-200">
+                  <tr>
+                    <th className="py-2 pr-3">When</th>
+                    <th className="py-2 pr-3">URL</th>
+                    <th className="py-2 pr-3">Type</th>
+                    <th className="py-2 pr-3">Source</th>
+                    <th className="py-2 pr-3">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {log.map((r, i) => (
+                    <tr key={i} className="border-b border-gray-100">
+                      <td className="py-2 pr-3 text-gray-500 whitespace-nowrap">{(r.createdAt || '').replace('T', ' ').slice(0, 19)}</td>
+                      <td className="py-2 pr-3 text-[#1C2B2B] max-w-md truncate" title={r.url}>{r.url}</td>
+                      <td className="py-2 pr-3"><code className="bg-gray-100 px-1 rounded text-[10px]">{r.notification_type}</code></td>
+                      <td className="py-2 pr-3 text-gray-500">{r.source}</td>
+                      <td className="py-2 pr-3">
+                        {r.status === 'success'
+                          ? <Badge color="bg-green-100 text-green-700">OK</Badge>
+                          : <span title={r.error || ''}><Badge color="bg-red-100 text-red-700">ERR {r.http_status || ''}</Badge></span>}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )
+        )}
+      </div>
     </div>
   );
 };

@@ -588,6 +588,43 @@ const CaseStudyMetalsFabricationPage = () => {
         </div>
       </section>
 
+      {/* ─────────── ASSESSOR BYLINE (veteran badge) ─────────── */}
+      <section
+        className="px-5 md:px-8 py-12 md:py-14"
+        style={{ backgroundColor: '#FBFBF9', borderTop: `1px solid ${BORDER}` }}
+        data-testid="case-assessor-byline"
+      >
+        <div className="max-w-3xl mx-auto flex flex-col sm:flex-row items-center gap-6 sm:gap-8 text-center sm:text-left">
+          <img
+            src="/assets/veteran-owned-badge.webp"
+            alt="Veteran-Owned Company"
+            width="180"
+            height="115"
+            loading="lazy"
+            className="flex-shrink-0 rounded-sm"
+            style={{ maxWidth: '180px', height: 'auto' }}
+            data-testid="case-veteran-badge"
+          />
+          <div>
+            <p
+              className="uppercase font-bold tracking-[0.24em] mb-2"
+              style={{ color: GOLD, ...mono, fontSize: '10.5px' }}
+            >
+              About the Assessor
+            </p>
+            <p
+              className="text-lg md:text-xl font-bold mb-2"
+              style={{ fontFamily: "'Manrope', sans-serif", color: NAVY }}
+            >
+              Vince Lawrence — U.S. Navy Veteran, OSHA 30-Hour Certified
+            </p>
+            <p className="text-sm md:text-base leading-relaxed" style={{ color: 'rgba(11,31,51,0.66)' }}>
+              Founder of GigLine Safety &amp; Compliance. Twenty-plus years across manufacturing, construction, and utility environments. Every walkthrough, report, and corrective-action call on this page was made by Vince personally.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* ─────────── REVIEW STRIP ─────────── */}
       <section
         className="px-5 md:px-8 py-10 md:py-12 border-t"

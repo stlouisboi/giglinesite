@@ -194,6 +194,16 @@ const ThankYouIntakePage = () => {
       {/* Footer */}
       <footer style={{ backgroundColor: '#0F1A26' }}>
         <div className="container max-w-3xl mx-auto px-5 md:px-8 py-10 text-center">
+          <img
+            src="/assets/veteran-owned-badge-sm.webp"
+            alt="Veteran-Owned Company"
+            width="140"
+            height="90"
+            loading="lazy"
+            className="mx-auto mb-5 rounded-sm"
+            style={{ maxWidth: '140px', height: 'auto' }}
+            data-testid="thankyou-veteran-badge"
+          />
           <p className="text-sm" style={{ color: 'rgba(255,255,255,0.55)' }}>
             Questions before we follow up?
           </p>

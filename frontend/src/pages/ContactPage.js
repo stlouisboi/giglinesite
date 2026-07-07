@@ -236,6 +236,23 @@ const ContactPage = () => {
                   For urgent incidents, note that in your message.
                 </p>
               </div>
+
+              {/* Veteran-Owned trust badge */}
+              <div className="mt-8 flex flex-col items-start" data-testid="contact-veteran-badge-block">
+                <img
+                  src="/assets/veteran-owned-badge.webp"
+                  alt="Veteran-Owned Company"
+                  width="200"
+                  height="128"
+                  loading="lazy"
+                  className="rounded-sm"
+                  style={{ maxWidth: '200px', height: 'auto' }}
+                  data-testid="contact-veteran-badge"
+                />
+                <p className="mt-3 text-xs text-[#1C2B2B]/60 leading-relaxed">
+                  U.S. Navy veteran-owned &amp; operated. Founded by <strong>Vince Lawrence</strong>.
+                </p>
+              </div>
             </div>
 
             {/* GL-WEB-024 — Simple Contact Form + Calendly Scope Call CTA, stacked. */}

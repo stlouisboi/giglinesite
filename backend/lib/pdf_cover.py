@@ -398,3 +398,22 @@ def _paint_cover(c: rl_canvas.Canvas, **cover_kwargs):
     c.setFillColor(INK_MUTED)
     c.drawCentredString(PAGE_W / 2, 0.55 * 72,
                         f'{footer_line}  |  {version_footer}')
+
+    # GL-WEB-veteran — Veteran-owned trust badge, bottom-left of cover.
+    # Small mark (0.85" wide) so it reads as a seal, not a design element.
+    try:
+        badge_path = Path(__file__).parent / 'assets' / 'veteran-owned-badge.png'
+        if badge_path.is_file():
+            badge_w = 0.85 * 72   # ~61pt wide
+            badge_h = badge_w * (596.0 / 928.0)  # preserve aspect from source
+            c.drawImage(
+                ImageReader(str(badge_path)),
+                MARGIN,
+                0.42 * 72,
+                width=badge_w,
+                height=badge_h,
+                mask='auto',
+                preserveAspectRatio=True,
+            )
+    except Exception:
+        pass  # Badge is decorative — never fail cover generation over it.

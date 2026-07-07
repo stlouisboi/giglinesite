@@ -153,6 +153,21 @@ const HomePage = () => {
             {/* Gradient bleed into text column */}
             <div className="hidden xl:block absolute inset-y-0 right-0 w-1/3 bg-gradient-to-r from-transparent to-[#102A43]" />
             <div className="xl:hidden absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#102A43] to-transparent" />
+            {/* Veteran-owned corner stamp */}
+            <img
+              src="/assets/veteran-owned-badge-sm.webp"
+              alt="Veteran-Owned Company"
+              width="120"
+              height="77"
+              loading="eager"
+              className="absolute bottom-4 left-4 md:bottom-5 md:left-5 rounded-sm z-20"
+              style={{
+                maxWidth: '110px',
+                height: 'auto',
+                boxShadow: '0 4px 14px rgba(0,0,0,0.35)',
+              }}
+              data-testid="hero-veteran-badge"
+            />
           </div>
 
           {/* Right — Copy */}

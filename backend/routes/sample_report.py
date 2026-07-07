@@ -83,6 +83,12 @@ async def submit_sample_report(request: SampleReportRequest):
                     (336) 329-8899<br/>
                     giglinecompliance.com
                 </p>
+                <p style="margin-top:10px;">
+                    <img src="https://www.giglinecompliance.com/assets/veteran-owned-badge-sm.png"
+                         alt="Veteran-Owned Company"
+                         width="120" height="77"
+                         style="display:block;max-width:120px;height:auto;border:0;" />
+                </p>
             </div>
             """,
             "attachments": [{

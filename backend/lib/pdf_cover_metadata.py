@@ -44,7 +44,7 @@ COVERS = {
             'Follow-up + verification',
             'How to reach Vince directly',
         ],
-        replace_page_1=False,
+        replace_page_1=True,
     ),
     'gl-pricing-2026.pdf': dict(
         title='Pricing & Engagement Menu',
@@ -63,7 +63,7 @@ COVERS = {
             'Bundled program discounts',
         ],
         process_flow=['Scope', 'Quote', 'Schedule', 'Deliver'],
-        replace_page_1=False,
+        replace_page_1=True,
     ),
     'gl-osha-inspection-guide-2026.pdf': dict(
         title='The OSHA Inspection Response Guide',
@@ -82,7 +82,7 @@ COVERS = {
             'Contest & abatement timelines',
         ],
         process_flow=['Greet', 'Opening', 'Walkaround', 'Closing', 'Respond'],
-        replace_page_1=False,
+        replace_page_1=True,
     ),
     'gl-case-study-statesville-2026.pdf': dict(
         title='Metals Fabrication Case Study',
@@ -100,7 +100,7 @@ COVERS = {
             'Verified fix outcomes',
             'What changed on the floor',
         ],
-        replace_page_1=False,
+        replace_page_1=True,
     ),
     'gl-doc-review-prep-checklist.pdf': dict(
         title='Documentation Readiness Review',
@@ -138,7 +138,7 @@ COVERS = {
             'Same-week corrective actions',
         ],
         process_flow=['Identify', 'Document', 'Train', 'Verify'],
-        replace_page_1=False,
+        replace_page_1=True,
     ),
     'GigLine_Sample_Corrective_Action_Log.pdf': dict(
         title='Sample Corrective Action Log',

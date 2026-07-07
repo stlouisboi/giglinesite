@@ -244,6 +244,12 @@ async def _send_kit_buyer_email(variant: str, email: str, customer_name: str) ->
                     GigLine Safety &amp; Compliance<br/>
                     (336) 329-8899 &middot; vince@giglinecompliance.com
                 </p>
+                <p style="margin-top:10px;">
+                    <img src="https://www.giglinecompliance.com/assets/veteran-owned-badge-sm.png"
+                         alt="Veteran-Owned Company"
+                         width="120" height="77"
+                         style="display:block;max-width:120px;height:auto;border:0;" />
+                </p>
             </div>
         """
         try:

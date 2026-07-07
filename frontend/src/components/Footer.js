@@ -33,6 +33,16 @@ const Footer = () => {
               <span style={{ color: '#C9A84C' }}>★</span> 5.0 on Google Reviews
             </a>
             <p className="text-white/50 text-sm mb-4">Kernersville, NC</p>
+            <img
+              src="/assets/veteran-owned-badge-sm.webp"
+              alt="Veteran-Owned Company"
+              width="140"
+              height="90"
+              loading="lazy"
+              className="mb-5 rounded-sm"
+              style={{ maxWidth: '140px', height: 'auto' }}
+              data-testid="footer-veteran-badge"
+            />
             <div className="space-y-2">
               <a
                 href="mailto:vince@giglinecompliance.com"

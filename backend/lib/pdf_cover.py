@@ -32,7 +32,8 @@ from reportlab.lib.utils import ImageReader
 from reportlab.pdfgen import canvas as rl_canvas
 
 # ── Brand palette (matches /app/frontend/src palette + Vince-approved cover) ──
-BG_CHARCOAL = HexColor('#1C2B2B')
+# Deep navy — matches header hero. NOT the deprecated #1C2B2B dark green.
+BG_CHARCOAL = HexColor('#102A43')
 INK_WHITE = HexColor('#FFFFFF')
 INK_MUTED = HexColor('#C7CFD3')
 GOLD = HexColor('#C9A84C')

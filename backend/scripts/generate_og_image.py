@@ -17,7 +17,10 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter
 import cairosvg
 
 OUT = "/app/frontend/public/og-image.png"
-LOGO_SVG = "/app/frontend/public/gigline-logo-full-horizontal-white.svg"
+# New flat logo (Jul 2026 refresh) — dark-bg variant so charcoal→white pixels
+# read on the navy OG background. Direct PNG load; SVG version deprecated.
+LOGO_PNG = "/app/frontend/public/gigline-logo-dark-bg.png"
+LOGO_SVG = "/app/frontend/public/gigline-logo-full-horizontal-white.svg"  # legacy fallback
 PORTRAIT_PATH = "/app/frontend/public/vince-portrait.png"
 SIZE = (1200, 630)
 
@@ -44,6 +47,13 @@ def load_font(size, bold=False):
 
 
 def render_logo(target_height):
+    """Load the new flat logo PNG and scale to target height (transparent bg)."""
+    if os.path.exists(LOGO_PNG):
+        img = Image.open(LOGO_PNG).convert("RGBA")
+        scale = target_height / img.height
+        new_w = int(img.width * scale)
+        return img.resize((new_w, target_height), Image.LANCZOS)
+    # Legacy SVG fallback (kept for safety if the PNG is missing)
     png_bytes = cairosvg.svg2png(url=LOGO_SVG, output_height=target_height)
     return Image.open(io.BytesIO(png_bytes)).convert("RGBA")
 

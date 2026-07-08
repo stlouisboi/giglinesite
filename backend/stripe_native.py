@@ -83,22 +83,31 @@ async def get_checkout_status(session_id):
     """Get status of a checkout session."""
     init_stripe()
     try:
-        session = stripe.checkout.Session.retrieve(
-            session_id,
-            expand=['customer_details', 'shipping_details'],
-        )
+        # Stripe API removed `shipping_details` from the `expand` allow-list;
+        # it's returned by default on completed sessions. `customer_details`
+        # is also returned by default and doesn't need to be expanded.
+        session = stripe.checkout.Session.retrieve(session_id)
+        cd = session.customer_details
+        sd = getattr(session, 'shipping_details', None)
+        # `customer_details` and `shipping_details` are Stripe objects, not dicts —
+        # use attribute access and coerce nested address to dict for downstream code.
+        shipping_out = None
+        if sd:
+            addr = getattr(sd, 'address', None)
+            shipping_out = {
+                'name': getattr(sd, 'name', None),
+                'address': dict(addr) if addr else None,
+            }
         return {
             'status': session.status,
             'payment_status': session.payment_status,
             'amount_total': session.amount_total,
             'currency': session.currency,
             'metadata': dict(session.metadata) if session.metadata else {},
-            'customer_email': (session.customer_details or {}).get('email') if session.customer_details else None,
-            'customer_name': (session.customer_details or {}).get('name') if session.customer_details else None,
-            'customer_phone': (session.customer_details or {}).get('phone') if session.customer_details else None,
-            'shipping_details': (
-                dict(session.shipping_details) if getattr(session, 'shipping_details', None) else None
-            ),
+            'customer_email': getattr(cd, 'email', None) if cd else None,
+            'customer_name': getattr(cd, 'name', None) if cd else None,
+            'customer_phone': getattr(cd, 'phone', None) if cd else None,
+            'shipping_details': shipping_out,
         }
     except Exception as e:
         logger.error(f"Stripe get_checkout_status error: {str(e)}")

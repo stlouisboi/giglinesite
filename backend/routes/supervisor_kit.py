@@ -249,7 +249,7 @@ async def _send_kit_buyer_email(variant: str, email: str, customer_name: str) ->
                 <p style="margin-top: 22px; padding: 12px; background: #FAF7F1; border-left: 3px solid #C5A059; font-size: 14px;">
                     <strong>Important:</strong> This system supports documentation. It does not guarantee OSHA compliance, prevent citations, eliminate hazards, or replace the employer's responsibility to maintain a safe workplace. Employers remain responsible for identifying applicable standards, correcting recognized hazards, training employees, and maintaining accurate records.
                 </p>
-                <p style="margin-top: 22px;">Once you've used the system for a while, an <strong>OS Implementation Review</strong> (starting at $850) gives you a second set of eyes on what's actually been documented, corrected, and closed out. Reply to this email or call (336) 329-8899 when you're ready.</p>
+                <p style="margin-top: 22px;">Once you've used the system for a while, an optional <strong>GigLine Implementation Review</strong> (from $850) gives you a second set of eyes on what's actually been documented, corrected, and closed out. Reply to this email or call (336) 329-8899 when you're ready.</p>
                 <hr style="margin: 24px 0; border: none; border-top: 1px solid #ddd;" />
                 <p style="color: #888; font-size: 14px;">
                     &mdash; Vince Lawrence<br/>

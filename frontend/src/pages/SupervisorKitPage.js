@@ -52,14 +52,10 @@ const BEFORE_LIST = [
 ];
 
 const AFTER_LIST = [
-  'Core records organized into one supervisor-run system',
-  'Hazardous chemicals listed and tracked',
-  'SDS access reviewed and documented',
-  'Monthly inspection rhythm established',
-  'Corrective actions assigned, dated, and verified',
-  'HazCom talk, attendance, and knowledge check filed together',
-  'One Phone Call Card posted and reviewed',
-  '30-day checklist and 90-day roadmap guide the rollout',
+  'You know what was inspected.',
+  'You know what still needs correction.',
+  'You know who owns the next step.',
+  'You know where the record lives.',
 ];
 
 /* Rhythm — 5-step operating loop */
@@ -138,13 +134,13 @@ const AUDIENCE_CARDS = [
   },
 ];
 
-/* Mailto for OS Implementation Review CTA (no Stripe SKU — needs scoping) */
+/* Mailto for GigLine Implementation Review CTA (no Stripe SKU — needs scoping) */
 const REVIEW_MAILTO = (
   'mailto:vince@giglinecompliance.com'
-  + '?subject=' + encodeURIComponent('OS Implementation Review Request')
+  + '?subject=' + encodeURIComponent('GigLine Implementation Review Request')
   + '&body=' + encodeURIComponent(
       "Hi Vince,\n\n"
-      + "I'd like to schedule an OS Implementation Review.\n\n"
+      + "I'd like to schedule a GigLine Implementation Review.\n\n"
       + "- Company:\n"
       + "- Number of employees:\n"
       + "- How long we've had the Supervisor Safety OS in place:\n"
@@ -335,28 +331,46 @@ const SupervisorKitPage = () => {
           </ul>
 
           {/* Primary + secondary CTAs */}
-          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-14 md:mb-16">
-            <button
-              type="button"
-              onClick={() => buy('digital')}
-              disabled={loading.digital}
-              className="inline-flex items-center justify-center gap-2 font-bold py-4 px-7 transition-all text-base disabled:opacity-50 hover:brightness-110"
-              style={{ background: NAVY, color: 'white', ...sans }}
-              data-testid="kit-hero-cta-digital"
-            >
-              {loading.digital ? 'Processing…' : 'Buy Digital Kit — $600'}
-              <ArrowRight size={18} />
-            </button>
-            <button
-              type="button"
-              onClick={() => buy('physical')}
-              disabled={loading.physical}
-              className="inline-flex items-center justify-center gap-2 font-bold py-4 px-7 transition-all text-base border-2 disabled:opacity-50 hover:brightness-110"
-              style={{ borderColor: NAVY, color: NAVY, background: 'transparent', ...sans }}
-              data-testid="kit-hero-cta-physical"
-            >
-              {loading.physical ? 'Processing…' : 'Buy Physical Binder Kit — $700'}
-            </button>
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center items-stretch sm:items-start mb-14 md:mb-16">
+            <div className="flex flex-col items-center gap-2">
+              <button
+                type="button"
+                onClick={() => buy('digital')}
+                disabled={loading.digital}
+                className="inline-flex items-center justify-center gap-2 font-bold py-4 px-7 transition-all text-base disabled:opacity-50 hover:brightness-110"
+                style={{ background: NAVY, color: 'white', ...sans }}
+                data-testid="kit-hero-cta-digital"
+              >
+                {loading.digital ? 'Processing…' : 'Buy Digital Kit — $600'}
+                <ArrowRight size={18} />
+              </button>
+              <p
+                className="text-[12.5px] leading-tight text-center"
+                style={{ color: TEXT_SUBTLE, ...serif, fontStyle: 'italic' }}
+                data-testid="kit-hero-cta-digital-micro"
+              >
+                Instant download. Start organizing records today.
+              </p>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <button
+                type="button"
+                onClick={() => buy('physical')}
+                disabled={loading.physical}
+                className="inline-flex items-center justify-center gap-2 font-bold py-4 px-7 transition-all text-base border-2 disabled:opacity-50 hover:brightness-110"
+                style={{ borderColor: NAVY, color: NAVY, background: 'transparent', ...sans }}
+                data-testid="kit-hero-cta-physical"
+              >
+                {loading.physical ? 'Processing…' : 'Buy Physical Binder Kit — $700'}
+              </button>
+              <p
+                className="text-[12.5px] leading-tight text-center"
+                style={{ color: TEXT_SUBTLE, ...serif, fontStyle: 'italic' }}
+                data-testid="kit-hero-cta-physical-micro"
+              >
+                Printed, organized, and shipped free.
+              </p>
+            </div>
           </div>
 
           {/* Stats bar */}
@@ -452,7 +466,7 @@ const SupervisorKitPage = () => {
             className="text-[15.5px] md:text-[17px] italic leading-[1.7] mt-10 max-w-3xl"
             style={{ color: TEXT_MUTED, ...serif }}
           >
-            The value is not the PDF. The value is knowing what has been inspected, what has been documented, what still needs correction, and who owns the next step.
+            That is the shift: safety stops living in memory and starts living in a visible system.
           </p>
         </div>
       </section>
@@ -499,6 +513,9 @@ const SupervisorKitPage = () => {
           <H2>A complete 17-document, 20-page supervisor safety documentation system.</H2>
           <p className="text-[16px] md:text-[17px] leading-[1.75] max-w-3xl mb-6" style={{ color: TEXT_MUTED, ...serif }}>
             The Supervisor Safety OS includes example pages, blank working forms, implementation tools, HazCom documentation, SDS tracking, inspection records, corrective action tracking, emergency information, and a next-step review path.
+          </p>
+          <p className="text-[15.5px] md:text-[16.5px] leading-[1.75] max-w-3xl mb-6 font-bold" style={{ color: NAVY, ...sans }}>
+            This is not a stack of random forms. Each document has a job: help your supervisor document what was checked, what was missing, what was assigned, and what still needs review.
           </p>
           <div
             className="rounded-md p-4 md:p-5 mb-10"
@@ -642,13 +659,13 @@ const SupervisorKitPage = () => {
               featured
             />
             <PricingCard
-              label="OS Implementation Review"
-              price="from $850"
+              label="GigLine Implementation Review — Optional"
+              price="From $850"
               subline="For teams that want a second set of eyes after they start using the system."
               body="GigLine reviews your completed records and provides written feedback on missing documentation, open follow-up, and next steps."
               bullets={REVIEW_BULLETS}
               bestFor="Teams that want to know whether the system is being used correctly before an audit, inspection, insurance request, or leadership review."
-              ctaLabel="Request OS Implementation Review"
+              ctaLabel="Request GigLine Implementation Review"
               ctaTestId="kit-buy-review"
               href={REVIEW_MAILTO}
             />
@@ -782,7 +799,7 @@ const SupervisorKitPage = () => {
               style={{ borderColor: 'rgba(255,255,255,0.5)', color: 'white', background: 'transparent', ...sans }}
               data-testid="kit-final-cta-review"
             >
-              Request OS Implementation Review
+              Request GigLine Implementation Review
             </a>
           </div>
           <div className="pt-4 border-t border-white/15">

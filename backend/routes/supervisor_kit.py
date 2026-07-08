@@ -31,7 +31,7 @@ logger = logging.getLogger('gigline')
 
 
 def _require_enabled():
-    """Return 503 if the Supervisor Kit is soft-disabled via feature flag."""
+    """Return 503 if the Supervisor Safety OS is soft-disabled via feature flag."""
     if not SUPERVISOR_KIT_ENABLED:
         raise HTTPException(
             status_code=503,
@@ -176,7 +176,11 @@ async def verify_kit_session(session_id: str, http_request: Request):
 
         if not existing and customer_email:
             await _send_kit_buyer_email(variant, customer_email, customer_name)
-            await _send_vince_kit_notification(variant, customer_email, customer_name, shipping, metadata, result.get("amount_total"))
+            await _send_vince_kit_notification(
+                variant, customer_email, customer_name,
+                result.get("customer_phone"), shipping, metadata,
+                result.get("amount_total"),
+            )
             asyncio.create_task(add_to_kit_buyer(
                 email=customer_email,
                 variant=variant,
@@ -197,12 +201,13 @@ async def verify_kit_session(session_id: str, http_request: Request):
 async def _send_kit_buyer_email(variant: str, email: str, customer_name: str) -> None:
     """Send the buyer confirmation email via Resend.
 
-    Digital variant attaches the complete 20-page GigLine Supervisor Safety OS PDF
-    plus every one of the 17 individual per-document PDFs for easy reprinting.
-    Physical variant gets a confirmation message; PDFs ship in the binder.
+    Digital variant attaches the complete GigLine Supervisor Safety OS v1 PDF
+    (17-document, 20-page master). Individual per-doc files exist on disk but are
+    not attached in v1 to keep the sales promise clean ("one system, one file").
+    Physical variant gets a confirmation message; the printed kit ships in the binder.
     """
     if variant == "digital":
-        # Attach the complete 20-page system + all 17 individual per-doc PDFs
+        # Attach the complete 20-page master PDF (single deliverable in v1).
         attachments = []
         for fname, fpath in SUPERVISOR_KIT_FILES.items():
             if fpath.exists():
@@ -216,7 +221,8 @@ async def _send_kit_buyer_email(variant: str, email: str, customer_name: str) ->
         body_html = """
             <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; color: #1C2B2B; line-height: 1.6;">
                 <h1 style="font-size: 22px; margin-bottom: 12px; color: #0A1628;">Your order is confirmed.</h1>
-                <p>The complete 20-page <strong>GigLine Supervisor Safety OS</strong> is attached to this email as a single print-ready PDF, along with every one of the 17 individual documents so you can reprint any single page whenever you need it.</p>
+                <p>The complete <strong>GigLine Supervisor Safety OS</strong> — a 17-document, 20-page supervisor safety documentation system — is attached to this email as a single print-ready PDF (<em>GigLine_Supervisor_Safety_OS_v1.pdf</em>).</p>
+                <p>Print it, put it in a supervisor's hands, and start the rhythm: <strong>inspect &rarr; document &rarr; assign &rarr; verify &rarr; review.</strong></p>
                 <h3 style="margin-top: 22px; margin-bottom: 8px; font-size: 14px; letter-spacing: 0.05em;">WHAT'S INSIDE</h3>
                 <ol style="color: #444; padding-left: 20px;">
                     <li>SS-01 &mdash; Start Here / How to Use This System</li>
@@ -235,12 +241,15 @@ async def _send_kit_buyer_email(variant: str, email: str, customer_name: str) ->
                 </ol>
                 <h3 style="margin-top: 22px; margin-bottom: 8px; font-size: 14px; letter-spacing: 0.05em;">FIRST STEPS</h3>
                 <ol style="color: #444; padding-left: 20px;">
-                    <li>Open <strong>GigLine_Supervisor_Safety_OS_v1.pdf</strong> first &mdash; the complete bound system with cover, notice, table of contents, and every document in order.</li>
-                    <li>Print the complete system for the binder, or print individual pages as needed from the SS-XX PDFs.</li>
-                    <li>Start with SS-01 to plan your rollout, then work through SS-02's 30-day checklist.</li>
-                    <li>Post SS-10 (Emergency Response / One Phone Call Card) at the supervisor station.</li>
+                    <li>Open the attached PDF. Start with <strong>SS-01</strong> to plan your rollout.</li>
+                    <li>Work through <strong>SS-02</strong> (30-Day Action Checklist) week-by-week.</li>
+                    <li>Post <strong>SS-10</strong> (Emergency Response / One Phone Call Card) at the supervisor station.</li>
+                    <li>Use <strong>SS-11</strong> (90-Day Implementation Roadmap) to keep the rhythm going after the first month.</li>
                 </ol>
-                <p style="margin-top: 22px;">Questions about implementation, reply to this email or call (336) 329-8899.</p>
+                <p style="margin-top: 22px; padding: 12px; background: #FAF7F1; border-left: 3px solid #C5A059; font-size: 14px;">
+                    <strong>Important:</strong> This system supports documentation. It does not guarantee OSHA compliance, prevent citations, eliminate hazards, or replace the employer's responsibility to maintain a safe workplace. Employers remain responsible for identifying applicable standards, correcting recognized hazards, training employees, and maintaining accurate records.
+                </p>
+                <p style="margin-top: 22px;">Once you've used the system for a while, an <strong>OS Implementation Review</strong> (starting at $850) gives you a second set of eyes on what's actually been documented, corrected, and closed out. Reply to this email or call (336) 329-8899 when you're ready.</p>
                 <hr style="margin: 24px 0; border: none; border-top: 1px solid #ddd;" />
                 <p style="color: #888; font-size: 14px;">
                     &mdash; Vince Lawrence<br/>
@@ -272,7 +281,7 @@ async def _send_kit_buyer_email(variant: str, email: str, customer_name: str) ->
         return
 
     # Physical variant
-    subject = "Your GigLine Supervisor Safety OS — Physical Kit"
+    subject = "Your GigLine Supervisor Safety OS — Physical Binder Kit"
     body_html = """
         <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; color: #1C2B2B; line-height: 1.6;">
             <h1 style="font-size: 22px; margin-bottom: 12px; color: #0A1628;">Your order is confirmed.</h1>
@@ -299,7 +308,7 @@ async def _send_kit_buyer_email(variant: str, email: str, customer_name: str) ->
         logger.error(f"Supervisor kit confirmation email error: {e}")
 
 
-async def _send_vince_kit_notification(variant, email, name, shipping, metadata, amount_cents):
+async def _send_vince_kit_notification(variant, email, name, phone, shipping, metadata, amount_cents):
     """Internal notification email to Vince with all order details."""
     amount_str = f"${(amount_cents or 0) / 100:.2f}"
     label = SUPERVISOR_KIT_PRODUCTS[variant]["name"]
@@ -316,11 +325,17 @@ async def _send_vince_kit_notification(variant, email, name, shipping, metadata,
             </p>
         """
     company = metadata.get("company_name", "") if metadata else ""
+    phone_row = f'<p style="margin: 0;"><strong>Buyer phone:</strong> {phone}</p>' if phone else ''
+    fulfillment_note = (
+        "Digital kits: system auto-emails GigLine_Supervisor_Safety_OS_v1.pdf. No action needed."
+        if variant == "digital"
+        else "Physical kits: pack the binder + Owner&rsquo;s Card and ship via <strong>USPS Priority (free — no charge to buyer)</strong>."
+    )
     try:
         resend.Emails.send({
             "from": SENDER_EMAIL,
             "to": [VINCE_EMAIL],
-            "subject": f"Supervisor Kit ({variant.upper()}) — New Purchase ({email})",
+            "subject": f"Supervisor Safety OS ({variant.upper()}) — New Purchase ({email})",
             "html": f"""
                 <div style="font-family: Arial, sans-serif; max-width: 600px; color: #1C2B2B;">
                     <h2 style="margin-bottom: 8px;">GigLine Supervisor Safety OS &mdash; new order</h2>
@@ -328,13 +343,11 @@ async def _send_vince_kit_notification(variant, email, name, shipping, metadata,
                     <p style="margin: 0;"><strong>Amount:</strong> {amount_str}</p>
                     <p style="margin: 0;"><strong>Buyer email:</strong> {email}</p>
                     <p style="margin: 0;"><strong>Buyer name:</strong> {name or '(not provided)'}</p>
+                    {phone_row}
                     {f'<p style="margin: 0;"><strong>Company:</strong> {company}</p>' if company else ''}
                     {shipping_block}
                     <hr style="margin: 16px 0; border: none; border-top: 1px solid #ddd;" />
-                    <p style="color: #888; font-size: 13px;">
-                        Digital kits: email the 11 PDFs from your kit folder.<br/>
-                        Physical kits: pack the binder, USB, and Owner&rsquo;s Card; ship USPS Priority within 3 business days.
-                    </p>
+                    <p style="color: #888; font-size: 13px;">{fulfillment_note}</p>
                 </div>
             """,
         })

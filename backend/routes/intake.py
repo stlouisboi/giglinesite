@@ -747,7 +747,7 @@ Safety Walkthrough : From $1,200 (small ops typically $1,200–$2,000) + travel 
 Compliance Readiness Visit : From $2,000 (Walkthrough + Doc Review in a single visit; saves up to $500 vs separate)
 Incident Review    : From $1,500 (root cause, OSHA recordability, corrective action plan)
 Doc Development    : single program from $350 | LOTO + up to 5 machines from $650 | LOTO + 6–15 machines from $1,200 | full suite (5+ programs) from $2,000
-Supervisor Kit     : $600 digital / $700 physical (included free with every CRV)
+Supervisor Safety OS: $600 Digital Kit / $700 Physical Binder Kit (included free with every CRV)
 
 ───────────────────────────────────────────────────────
 STATUS PAGE: {status_url}

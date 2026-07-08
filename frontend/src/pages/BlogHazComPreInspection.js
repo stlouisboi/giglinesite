@@ -277,7 +277,7 @@ const BlogHazComPreInspection = () => {
           <div className="border border-[#2A52A0]/20 bg-white rounded-lg p-6 md:p-8 text-center">
             <p className="text-lg font-bold text-[#1C2B2B] mb-2">Not sure if your HazCom program would survive an inspection?</p>
             <p className="text-sm text-[#1C2B2B]/60 mb-5">The GigLine Supervisor Safety OS gives you a fillable written program, chemical inventory, and training log — ready for print and site-specific use in an hour.</p>
-            <Link to="/supervisor-kit" className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-6 py-3 rounded transition-colors">Get the Supervisor Kit <ArrowRight size={16} /></Link>
+            <Link to="/supervisor-kit" className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-6 py-3 rounded transition-colors">Get the Supervisor Safety OS <ArrowRight size={16} /></Link>
           </div>
         </div>
       </section>

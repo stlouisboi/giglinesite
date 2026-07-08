@@ -16,7 +16,7 @@ const sans = { fontFamily: "'Manrope', sans-serif" };
 const serif = { fontFamily: "Georgia, 'Times New Roman', serif" };
 
 /**
- * Stripe redirects buyers here after the Supervisor Kit checkout.
+ * Stripe redirects buyers here after the Supervisor Safety OS checkout.
  * We poll /api/supervisor-kit/verify which (a) confirms payment status,
  * (b) sends the Resend confirmation email + Vince notification on first call,
  * and (c) tags the buyer in MailerLite.

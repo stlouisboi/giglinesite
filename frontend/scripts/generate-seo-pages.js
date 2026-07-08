@@ -757,7 +757,7 @@ const routes = [
           },
           {
             '@type': 'Offer',
-            name: 'Physical Kit',
+            name: 'Physical Binder Kit',
             description: 'Printed, bound, and shipped USPS Priority. Includes GigLine 2026 Triad OSHA Field Manual and direct contact card.',
             price: '675',
             priceCurrency: 'USD',
@@ -795,7 +795,7 @@ const routes = [
 
       <h2>Pricing</h2>
       <p><strong>Digital Kit &mdash; $600.</strong> Instant download. All 17 documents as print-ready PDFs, plus the complete 20-page bound system.</p>
-      <p><strong>Physical Kit &mdash; $700.</strong> Printed and bound in a 3-ring binder. Includes the GigLine 2026 Triad OSHA Field Manual and a personal contact card for direct access to Vince. Free USPS Priority shipping &mdash; delivered within 3 business days.</p>
+      <p><strong>Physical Binder Kit &mdash; $700.</strong> Printed and bound in a 3-ring binder. Includes the GigLine 2026 Triad OSHA Field Manual and a personal contact card for direct access to Vince. Free USPS Priority shipping &mdash; delivered within 3 business days.</p>
       <p><em>Included at no additional cost with every Compliance Readiness Visit ($2,000).</em></p>
 
       <h2>Questions?</h2>

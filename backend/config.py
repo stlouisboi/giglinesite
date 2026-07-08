@@ -134,21 +134,22 @@ SUPERVISOR_KIT_PRODUCTS = {
         "needs_shipping": False,
     },
     "physical": {
-        "name": "GigLine Supervisor Safety OS — Physical Kit",
+        "name": "GigLine Supervisor Safety OS — Physical Binder Kit",
         "amount_cents": 70000,  # $700 (includes free USPS Priority shipping)
         "sku": "supervisor-kit-physical",
         "needs_shipping": True,
     },
 }
 
-# The 17 individual per-doc PDFs + the complete 20-page bound system, all extracted from
-# GigLine_Supervisor_Safety_OS_v1.pdf via backend/scripts/split_supervisor_os.py.
-# Digital-Kit fulfillment attaches the complete PDF PLUS every individual file per the
-# `/supervisor-kit` sales copy ("Individual page files included for easy reprinting").
-SUPERVISOR_KIT_COMPLETE_FILE = {
+# The digital fulfillment attaches ONLY the complete 20-page master PDF for now.
+# Individual per-doc PDFs exist on disk (kit_files/os_v1_individual/) but are not
+# promised on the public sales page yet — keep them staged for a future v1.1 add-on.
+SUPERVISOR_KIT_FILES = {
     "GigLine_Supervisor_Safety_OS_v1.pdf": ROOT_DIR / "kit_files" / "GigLine_Supervisor_Safety_OS_v1.pdf",
 }
 
+# Kept for reference / future launch — do not include in fulfillment until we're ready
+# to promise "individual files" on the sales page.
 _KIT_INDIVIDUAL_DIR = ROOT_DIR / "kit_files" / "os_v1_individual"
 SUPERVISOR_KIT_INDIVIDUAL_FILES = {
     "SS-01_Start_Here.pdf":                             _KIT_INDIVIDUAL_DIR / "SS-01_Start_Here.pdf",
@@ -169,10 +170,6 @@ SUPERVISOR_KIT_INDIVIDUAL_FILES = {
     "SS-11_90_Day_Implementation_Roadmap.pdf":          _KIT_INDIVIDUAL_DIR / "SS-11_90_Day_Implementation_Roadmap.pdf",
     "SS-12_Next_Step_Book_GigLine_Review.pdf":          _KIT_INDIVIDUAL_DIR / "SS-12_Next_Step_Book_GigLine_Review.pdf",
 }
-
-# Preserved for backwards-compat with anything still importing the old constant.
-# Complete-first ordering matches the customer's expected inbox experience.
-SUPERVISOR_KIT_FILES = {**SUPERVISOR_KIT_COMPLETE_FILE, **SUPERVISOR_KIT_INDIVIDUAL_FILES}
 
 # ── Google Business Profile review URL ──
 # Vince can swap to a short link (g.page/r/...) via env var without code change.

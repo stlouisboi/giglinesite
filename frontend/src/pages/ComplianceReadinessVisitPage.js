@@ -662,6 +662,80 @@ const ComplianceReadinessVisitPage = () => {
         <CTABar />
       </section>
 
+      {/* ═══ OS vs CRV differentiator — for supervisors who already have the Supervisor Safety OS ═══ */}
+      <section className="py-20 md:py-24 bg-white" data-testid="crv-vs-os" style={{ borderTop: `1px solid #e8e5dd` }}>
+        <div className="container max-w-5xl">
+          <div className="text-center mb-12">
+            <Eyebrow>OS vs CRV — What&rsquo;s the Difference?</Eyebrow>
+            <h2 className="text-3xl md:text-4xl font-extrabold leading-[1.15] tracking-tight" style={{ color: NAVY }}>
+              The OS is documentation-only. The CRV is site-specific.
+            </h2>
+            <p className="text-base md:text-lg text-[#1C2B2B]/70 mt-5 max-w-3xl mx-auto leading-[1.75]">
+              The <Link to="/supervisor-kit" className="font-bold underline" style={{ color: BLUE }} data-testid="crv-vs-os-kit-link">GigLine Supervisor Safety OS</Link> gives your team a system to organize safety paperwork. The Compliance Readiness Visit walks your floor and reviews your binder against what OSHA actually looks at.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            {/* OS card */}
+            <div
+              className="rounded-lg p-7 md:p-8"
+              style={{ background: '#ffffff', border: '1px solid #e8e5dd', boxShadow: '0 4px 14px rgba(16,42,67,0.06)' }}
+              data-testid="crv-vs-os-card-os"
+            >
+              <p className="uppercase font-bold tracking-[0.22em] mb-3" style={{ color: 'rgba(10,22,40,0.55)', ...mono, fontSize: '11px' }}>
+                Supervisor Safety OS — from $600
+              </p>
+              <p className="text-lg md:text-xl font-bold mb-4 leading-tight" style={{ color: NAVY }}>
+                A documentation system your supervisors run themselves.
+              </p>
+              <ul className="space-y-2.5 text-[15px] leading-[1.65] text-[#1C2B2B]/75">
+                <li>17-document, 20-page supervisor safety documentation system</li>
+                <li>You fill in your own facility details, chemicals, SDS locations</li>
+                <li>Supports your monthly inspection and corrective-action rhythm</li>
+                <li>Delivered digitally or as a physical binder</li>
+              </ul>
+              <p className="mt-5 pt-5 text-[13.5px] italic leading-relaxed" style={{ color: 'rgba(10,22,40,0.55)', borderTop: '1px solid #e8e5dd' }}>
+                Does not include a site-specific walkthrough, OSHA compliance evaluation, or written report from Vince.
+              </p>
+            </div>
+
+            {/* CRV card (featured) */}
+            <div
+              className="rounded-lg p-7 md:p-8 relative"
+              style={{ background: NAVY, color: 'white', border: `1px solid ${GOLD}`, boxShadow: '0 18px 40px rgba(16,42,67,0.20)' }}
+              data-testid="crv-vs-os-card-crv"
+            >
+              <span
+                className="absolute -top-3 right-6 uppercase font-bold tracking-[0.18em] px-3 py-1 rounded-sm"
+                style={{ background: GOLD, color: NAVY, ...mono, fontSize: '10.5px' }}
+              >
+                Site-Specific
+              </span>
+              <p className="uppercase font-bold tracking-[0.22em] mb-3" style={{ color: GOLD, ...mono, fontSize: '11px' }}>
+                Compliance Readiness Visit — from $2,000
+              </p>
+              <p className="text-lg md:text-xl font-bold mb-4 leading-tight">
+                Vince walks your floor and reviews your binder.
+              </p>
+              <ul className="space-y-2.5 text-[15px] leading-[1.65] text-white/85">
+                <li>Full on-site safety walkthrough with photo documentation</li>
+                <li>Documentation Readiness Review against OSHA-cited standards</li>
+                <li>Written report with a single compliance percentage score</li>
+                <li>CFR citations on every finding + prioritized corrective actions</li>
+                <li><strong className="text-white">Supervisor Safety OS included at no additional cost</strong></li>
+              </ul>
+              <p className="mt-5 pt-5 text-[13.5px] italic leading-relaxed text-white/60" style={{ borderTop: '1px solid rgba(255,255,255,0.15)' }}>
+                For teams that want a second set of eyes on both the floor AND the paperwork before an inspection, incident, or audit.
+              </p>
+            </div>
+          </div>
+
+          <p className="text-center text-[14px] md:text-[15px] italic mt-10 max-w-3xl mx-auto text-[#1C2B2B]/60 leading-relaxed">
+            Already own the Supervisor Safety OS? The CRV cost is <strong className="not-italic" style={{ color: NAVY }}>reduced by your OS purchase price</strong> — mention your order at booking.
+          </p>
+        </div>
+      </section>
+
       {/* ═══ Closing CTA (cream) ═══ */}
       <section className="py-20 md:py-24" style={{ background: CREAM }} data-testid="crv-closing">
         <div className="container max-w-4xl text-center">

@@ -11,7 +11,7 @@ Output:    /app/backend/internal_docs/GigLine_LeaveBehind_v10.pdf
 Pricing (Feb 2026, verified against /services live page):
   - Safety Walkthrough          starting at $1,200
   - Compliance Readiness Visit  starting at $2,000
-  - Supervisor Safety Starter   $600 digital · $675 physical
+  - Supervisor Safety Starter   $600 digital · $700 physical
 """
 
 import os
@@ -257,9 +257,9 @@ def build():
         ("Safety Walkthrough", "Starting at $1,200",
          "Floor walkthrough, written report in 48 hours. Best when you want fresh eyes on the floor."),
         ("Compliance Readiness Visit", "Starting at $2,000",
-         "Floor + files. Reviews written programs, training records, OSHA 300 log, and HazCom binder. Includes the Supervisor Safety Starter System."),
-        ("Supervisor Safety Starter System", "$600 digital · $675 physical",
-         "11 CFR-cited documents. Written HazCom program, SDS index, training log, inspection checklist, \"If OSHA Shows Up\" protocol. Standalone product."),
+         "Floor + files. Reviews written programs, training records, OSHA 300 log, and HazCom binder. Includes the GigLine Supervisor Safety OS."),
+        ("GigLine Supervisor Safety OS", "$600 digital · $700 physical",
+         "17 CFR-cited documents. Written HazCom program, SDS index, training log, inspection checklist, \"If OSHA Shows Up\" protocol. Standalone product."),
         ("Incident Review &amp; Corrective Action", "Starting at $1,500",
          "After an event. Documents what happened, what caused it, and what to do next. Filed correctly."),
     ]

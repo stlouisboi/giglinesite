@@ -252,7 +252,7 @@ const BlogForkliftCompliance = () => {
             </Link>
             {SUPERVISOR_KIT_ENABLED && (
             <Link to="/supervisor-kit" className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#2A52A0]/40 transition-colors group">
-              <div><p className="font-medium text-white group-hover:text-[#2A52A0] transition-colors text-sm">Supervisor Safety Starter System — $600</p><p className="text-xs text-white/50 mt-1">11 print-ready documents including forklift inspection log and operator certification template.</p></div>
+              <div><p className="font-medium text-white group-hover:text-[#2A52A0] transition-colors text-sm">GigLine Supervisor Safety OS — $600</p><p className="text-xs text-white/50 mt-1">11 print-ready documents including forklift inspection log and operator certification template.</p></div>
               <ArrowRight size={18} className="text-white/30 group-hover:text-[#2A52A0] transition-colors flex-shrink-0" />
             </Link>
             )}

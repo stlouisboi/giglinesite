@@ -26,7 +26,7 @@ LIST_PAST_CLIENT = "Past Client"
 LIST_PAUSED = "Paused — Active Engagement"
 # GL-WEB-RET-001 — Past-client 4-touch retention (Day 30/60/90/180)
 LIST_RETENTION_4_TOUCH = "Retention - 4 Touch"
-# GL-WEB-015 — Supervisor Safety Starter System purchases
+# GL-WEB-015 — GigLine Supervisor Safety OS purchases
 LIST_KIT_DIGITAL = "supervisor-kit-digital"
 LIST_KIT_PHYSICAL = "supervisor-kit-physical"
 
@@ -467,7 +467,7 @@ async def add_to_kit_buyer(
     company: str = "",
 ) -> bool:
     """
-    GL-WEB-015 — Tag Supervisor Safety Starter System buyer in MailerLite.
+    GL-WEB-015 — Tag GigLine Supervisor Safety OS buyer in MailerLite.
 
     `variant` must be 'digital' or 'physical'. Adds the contact to the
     matching kit group (a no-op if the group does not exist).

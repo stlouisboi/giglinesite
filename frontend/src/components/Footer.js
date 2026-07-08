@@ -117,9 +117,9 @@ const Footer = () => {
                     desc: 'What OSHA looks for when they walk in. Free guide for HR managers and safety coordinators.',
                   },
                   ...(SUPERVISOR_KIT_ENABLED ? [{
-                    name: 'Supervisor Safety Starter System',
+                    name: 'GigLine Supervisor Safety OS',
                     path: '/supervisor-kit',
-                    desc: '11 documents. CFR-cited. $600 digital · $675 physical. Included free with every Compliance Readiness Visit.',
+                    desc: '17 documents. CFR-cited. $600 digital · $700 physical. Included free with every Compliance Readiness Visit.',
                   }] : []),
                   {
                     name: 'Sample Compliance Report',

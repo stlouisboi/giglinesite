@@ -321,13 +321,13 @@ def build():
         {
             "name": "Compliance Readiness Visit",
             "price": "Starting at $2,000",
-            "desc": "Floor + files. Reviews written programs, training records, OSHA 300 log, and HazCom binder. Includes the Supervisor Safety Starter System.",
+            "desc": "Floor + files. Reviews written programs, training records, OSHA 300 log, and HazCom binder. Includes the GigLine Supervisor Safety OS.",
             "highlight": True,
         },
         {
-            "name": "Supervisor Safety Starter System",
-            "price": "$600 digital · $675 physical",
-            "desc": '11 CFR-cited documents. Written HazCom program, SDS index, training log, inspection checklist, "If OSHA Shows Up" protocol. Standalone product.',
+            "name": "GigLine Supervisor Safety OS",
+            "price": "$600 digital · $700 physical",
+            "desc": '17 CFR-cited documents. Written HazCom program, SDS index, training log, inspection checklist, "If OSHA Shows Up" protocol. Standalone product.',
             "highlight": False,
         },
         {

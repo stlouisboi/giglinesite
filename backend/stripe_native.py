@@ -55,6 +55,19 @@ async def create_checkout(amount_cents, currency, success_url, cancel_url, metad
             }
             # Also capture phone number for shipping coordination
             session_kwargs['phone_number_collection'] = {'enabled': True}
+            # Explicit $0 "Free USPS Priority Shipping" line so it shows on Stripe Checkout
+            # (address collection alone would leave the shipping cost silent / ambiguous).
+            session_kwargs['shipping_options'] = [{
+                'shipping_rate_data': {
+                    'type': 'fixed_amount',
+                    'fixed_amount': {'amount': 0, 'currency': currency},
+                    'display_name': 'Free USPS Priority Shipping',
+                    'delivery_estimate': {
+                        'minimum': {'unit': 'business_day', 'value': 2},
+                        'maximum': {'unit': 'business_day', 'value': 5},
+                    },
+                },
+            }]
 
         session = stripe.checkout.Session.create(**session_kwargs)
         return {

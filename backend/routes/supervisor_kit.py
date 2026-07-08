@@ -1,8 +1,8 @@
-"""Supervisor Safety Starter System — Stripe checkout + Resend delivery (GL-WEB-015 pass 2).
+"""GigLine Supervisor Safety OS — Stripe checkout + Resend delivery (GL-WEB-015 pass 2).
 
 Routes:
   POST /api/checkout/supervisor-kit-digital   → create Stripe session ($600, no shipping)
-  POST /api/checkout/supervisor-kit-physical  → create Stripe session ($675, US shipping capture)
+  POST /api/checkout/supervisor-kit-physical  → create Stripe session ($700, US shipping capture, free USPS Priority)
   GET  /api/supervisor-kit/verify             → poll on success page; sends confirmation email + MailerLite tag
 
 Note: until the 11 PDFs are uploaded, the digital confirmation email tells the
@@ -35,7 +35,7 @@ def _require_enabled():
     if not SUPERVISOR_KIT_ENABLED:
         raise HTTPException(
             status_code=503,
-            detail="The Supervisor Safety Starter System is temporarily unavailable. Call (336) 329-8899 for details.",
+            detail="The GigLine Supervisor Safety OS is temporarily unavailable. Call (336) 329-8899 for details.",
         )
 
 
@@ -124,7 +124,7 @@ async def checkout_digital(payload: KitCheckoutRequest, http_request: Request):
 
 @router.post("/checkout/supervisor-kit-physical")
 async def checkout_physical(payload: KitCheckoutRequest, http_request: Request):
-    """Create Stripe Checkout session for the $675 physical kit (US shipping captured at checkout)."""
+    """Create Stripe Checkout session for the $700 physical kit (US shipping captured at checkout, free USPS Priority)."""
     _require_enabled()
     return await _create_kit_session("physical", payload, http_request)
 
@@ -211,11 +211,11 @@ async def _send_kit_buyer_email(variant: str, email: str, customer_name: str) ->
             else:
                 logger.warning(f"Supervisor kit PDF missing on disk: {fname}")
 
-        subject = "Your GigLine Supervisor Safety Starter System"
+        subject = "Your GigLine GigLine Supervisor Safety OS"
         body_html = """
             <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; color: #1C2B2B; line-height: 1.6;">
                 <h1 style="font-size: 22px; margin-bottom: 12px; color: #0A1628;">Your order is confirmed.</h1>
-                <p>All 11 documents of the Supervisor Safety Starter System are attached to this email as print-ready PDFs.</p>
+                <p>All 17 documents of the GigLine Supervisor Safety OS are attached to this email as print-ready PDFs.</p>
                 <h3 style="margin-top: 22px; margin-bottom: 8px; font-size: 14px; letter-spacing: 0.05em;">WHAT'S INSIDE</h3>
                 <ol style="color: #444; padding-left: 20px;">
                     <li>Quick Reference Summary Card &mdash; post at your supervisor station</li>
@@ -269,7 +269,7 @@ async def _send_kit_buyer_email(variant: str, email: str, customer_name: str) ->
         return
 
     # Physical variant
-    subject = "Your GigLine Supervisor Safety Starter System — Physical Kit"
+    subject = "Your GigLine GigLine Supervisor Safety OS — Physical Kit"
     body_html = """
         <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; color: #1C2B2B; line-height: 1.6;">
             <h1 style="font-size: 22px; margin-bottom: 12px; color: #0A1628;">Your order is confirmed.</h1>
@@ -320,7 +320,7 @@ async def _send_vince_kit_notification(variant, email, name, shipping, metadata,
             "subject": f"Supervisor Kit ({variant.upper()}) — New Purchase ({email})",
             "html": f"""
                 <div style="font-family: Arial, sans-serif; max-width: 600px; color: #1C2B2B;">
-                    <h2 style="margin-bottom: 8px;">Supervisor Safety Starter System &mdash; new order</h2>
+                    <h2 style="margin-bottom: 8px;">GigLine Supervisor Safety OS &mdash; new order</h2>
                     <p style="margin: 0;"><strong>Variant:</strong> {label}</p>
                     <p style="margin: 0;"><strong>Amount:</strong> {amount_str}</p>
                     <p style="margin: 0;"><strong>Buyer email:</strong> {email}</p>

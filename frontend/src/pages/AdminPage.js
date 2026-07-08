@@ -1114,7 +1114,7 @@ const KitFilesTab = ({ token }) => {
   return (
     <div data-testid="kit-pdfs-tab">
       <div className="flex items-baseline justify-between mb-4">
-        <h2 className="text-lg font-bold text-[#1C2B2B]">Supervisor Safety Starter System — Kit PDFs</h2>
+        <h2 className="text-lg font-bold text-[#1C2B2B]">GigLine Supervisor Safety OS — Kit PDFs</h2>
         <p className="text-xs text-gray-400">{data.count}/{data.expected ?? data.files.length} on disk</p>
       </div>
       <p className="text-xs text-gray-500 mb-5 leading-relaxed">

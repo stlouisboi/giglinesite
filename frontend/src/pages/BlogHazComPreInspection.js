@@ -246,7 +246,7 @@ const BlogHazComPreInspection = () => {
           <div className="space-y-4 mb-10">
             {SUPERVISOR_KIT_ENABLED && (
             <Link to="/supervisor-kit" className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#2A52A0]/40 transition-colors group">
-              <div><p className="font-medium text-white group-hover:text-[#2A52A0] transition-colors text-sm">Supervisor Safety Starter System — $600</p><p className="text-xs text-white/50 mt-1">11 print-ready documents including a written HazCom program template, chemical inventory sheet, and training log.</p></div>
+              <div><p className="font-medium text-white group-hover:text-[#2A52A0] transition-colors text-sm">GigLine Supervisor Safety OS — $600</p><p className="text-xs text-white/50 mt-1">11 print-ready documents including a written HazCom program template, chemical inventory sheet, and training log.</p></div>
               <ArrowRight size={18} className="text-white/30 group-hover:text-[#2A52A0] transition-colors flex-shrink-0" />
             </Link>
             )}
@@ -276,7 +276,7 @@ const BlogHazComPreInspection = () => {
         <div className="container max-w-3xl">
           <div className="border border-[#2A52A0]/20 bg-white rounded-lg p-6 md:p-8 text-center">
             <p className="text-lg font-bold text-[#1C2B2B] mb-2">Not sure if your HazCom program would survive an inspection?</p>
-            <p className="text-sm text-[#1C2B2B]/60 mb-5">The Supervisor Safety Starter System gives you a fillable written program, chemical inventory, and training log — ready for print and site-specific use in an hour.</p>
+            <p className="text-sm text-[#1C2B2B]/60 mb-5">The GigLine Supervisor Safety OS gives you a fillable written program, chemical inventory, and training log — ready for print and site-specific use in an hour.</p>
             <Link to="/supervisor-kit" className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-6 py-3 rounded transition-colors">Get the Supervisor Kit <ArrowRight size={16} /></Link>
           </div>
         </div>

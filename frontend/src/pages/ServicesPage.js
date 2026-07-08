@@ -206,10 +206,10 @@ const STANDALONE = [
   {
     // Product card — not a service engagement (feature-flagged; see /app/frontend/src/config/features.js)
     __gated: !SUPERVISOR_KIT_ENABLED,
-    eyebrow: 'Supervisor Safety Starter System',
-    title: 'Supervisor Safety Starter System',
+    eyebrow: 'GigLine Supervisor Safety OS',
+    title: 'GigLine Supervisor Safety OS',
     headline: "Can't schedule a walkthrough yet? Start here.",
-    price: '$600 digital · $675 physical',
+    price: '$600 digital · $700 physical',
     body: 'A standalone product, not a service engagement. 11 print-ready documents — CFR-cited, GigLine-built — covering the written HazCom program, chemical and SDS indexes, training records, monthly inspection checklist, an "If OSHA Shows Up" protocol, and the supervisor station cards that keep the system alive on the floor. Use it to build the foundation before a walkthrough, or as the documentation layer afterward.',
     listLabel: "What's Inside",
     bgColor: '#FAF7F1',

@@ -83,7 +83,7 @@ const RESOURCES = [
   {
     id: 'supervisor-kit',
     __gated: !SUPERVISOR_KIT_ENABLED,
-    title: 'Supervisor Safety Starter System',
+    title: 'GigLine Supervisor Safety OS',
     type: 'Paid Kit',
     gate: 'From $600',
     icon: Package,

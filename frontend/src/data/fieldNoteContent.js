@@ -176,7 +176,7 @@ Corrective action: photograph every panel in your facility today. Mark the floor
     cfrCitation: '29 CFR 1910.1200 (Hazard Communication Standard) · OSHA Top-Cited Violation, General Industry',
     kitCrossSell: {
       headline: 'The HazCom program — already written.',
-      intro: 'The three HazCom-anchor documents from the GigLine Supervisor Safety Starter System are the exact forms OSHA expects when they ask for your written program. CFR-cited. Customizable. Print-ready. $600 for the digital kit, included free with every Compliance Readiness Visit.',
+      intro: 'The three HazCom-anchor documents from the GigLine GigLine Supervisor Safety OS are the exact forms OSHA expects when they ask for your written program. CFR-cited. Customizable. Print-ready. $600 for the digital kit, included free with every Compliance Readiness Visit.',
       cards: [
         { num: '04', label: 'Written HazCom Program', body: 'Your 1910.1200(e) required written program. Customize the company name, sign it, file it. The single document most operations get cited for missing.' },
         { num: '02', label: 'Chemical Inventory Log', body: 'Every chemical on site, line by line. The basis for your SDS index and the document an inspector asks for first.' },
@@ -356,7 +356,7 @@ Corrective action: buy a 5-gallon bucket of safety yellow paint and re-mark ever
     cfrCitation: '29 CFR 1910.147',
     kitCrossSell: {
       headline: 'The LOTO documentation layer.',
-      intro: 'Three documents from the GigLine Supervisor Safety Starter System cover the documentation gaps that get LOTO citations. The kit does not replace machine-specific procedures (you still need those for each piece of equipment) — but it builds the training, inspection, and OSHA-response layer around them. $600 for the digital kit, included free with every Compliance Readiness Visit.',
+      intro: 'Three documents from the GigLine GigLine Supervisor Safety OS cover the documentation gaps that get LOTO citations. The kit does not replace machine-specific procedures (you still need those for each piece of equipment) — but it builds the training, inspection, and OSHA-response layer around them. $600 for the digital kit, included free with every Compliance Readiness Visit.',
       cards: [
         { num: '10', label: 'Employee Training Record Log', body: 'Documents every LOTO training session for authorized, affected, and other employees. The training trail OSHA asks for under 1910.147(c)(7).' },
         { num: '09', label: 'Monthly Safety Inspection Checklist', body: 'Includes LOTO equipment checks — locks at point of use, interlocks functional, energy isolation devices labeled. Proves the periodic inspection happened.' },
@@ -760,7 +760,7 @@ Corrective action: walk every elevated surface in your facility with a tape meas
     cfrCitation: '29 CFR Part 1904',
     kitCrossSell: {
       headline: 'The forms that handle this on the floor.',
-      intro: 'Three documents from the GigLine Supervisor Safety Starter System map directly to the recordkeeping requirements in this article. CFR-cited. Print-ready. $600 for the digital kit, included free with every Compliance Readiness Visit.',
+      intro: 'Three documents from the GigLine GigLine Supervisor Safety OS map directly to the recordkeeping requirements in this article. CFR-cited. Print-ready. $600 for the digital kit, included free with every Compliance Readiness Visit.',
       cards: [
         { num: '09', label: 'Monthly Safety Inspection Checklist', body: '40+ items. Signature block. Retention instruction. The corrective action proof you need on file when OSHA asks.' },
         { num: '10', label: 'Employee Training Record Log', body: 'Documents every safety training session — dates, topics, attendees, signatures. The training-record trail OSHA cross-checks against the 300 log.' },

@@ -125,17 +125,17 @@ SAMPLE_REPORT_PDF = ROOT_DIR / "sample_report_files" / "GL_Sample_Compliance_Rep
 # Backend-side Resend fallback delivery. Primary delivery still runs via MailerLite automation.
 OSHA_GUIDE_PDF = ROOT_DIR / "osha_guide_files" / "GigLine_OSHA_Inspection_Guide.pdf"
 
-# ── Supervisor Safety Starter System (GL-WEB-015) ──
+# ── GigLine Supervisor Safety OS (GL-WEB-015) ──
 SUPERVISOR_KIT_PRODUCTS = {
     "digital": {
-        "name": "Supervisor Safety Starter System — Digital Kit",
+        "name": "GigLine Supervisor Safety OS — Digital Kit",
         "amount_cents": 60000,  # $600
         "sku": "supervisor-kit-digital",
         "needs_shipping": False,
     },
     "physical": {
-        "name": "Supervisor Safety Starter System — Physical Kit",
-        "amount_cents": 67500,  # $675
+        "name": "GigLine Supervisor Safety OS — Physical Kit",
+        "amount_cents": 70000,  # $700 (includes free USPS Priority shipping)
         "sku": "supervisor-kit-physical",
         "needs_shipping": True,
     },
@@ -164,7 +164,7 @@ GIGLINE_GOOGLE_REVIEW_URL = os.environ.get(
     'https://g.page/r/CdlAYUu_I3xpEAI/review',
 )
 
-# GL-WEB-018 (Jul 2026) — Supervisor Safety Starter System feature flag.
+# GL-WEB-018 (Jul 2026) — GigLine Supervisor Safety OS feature flag.
 # When false: checkout endpoints return 503, /supervisor-kit redirects to /services,
 # UI tiles/links are hidden across the site. /verify keeps working so existing
 # paid orders can still be confirmed. Flip via SUPERVISOR_KIT_ENABLED=true in .env.

@@ -26,7 +26,7 @@ KIT_FILES_DIR = str(_BACKEND_ROOT / "kit_files")
 
 @router.get("/admin/kit-files")
 async def list_kit_files(token: str = ""):
-    """Admin-only: list the 11 Supervisor Safety Starter System PDFs on disk.
+    """Admin-only: list the 11 GigLine Supervisor Safety OS PDFs on disk.
 
     Uses SUPERVISOR_KIT_FILES from config so the list always matches the
     manifest used by the buyer-email attachment code.
@@ -57,7 +57,7 @@ async def list_kit_files(token: str = ""):
 
 @router.get("/admin/kit-files/{filename}")
 async def download_kit_file(filename: str, token: str = ""):
-    """Admin-only: download a Supervisor Safety Starter System PDF."""
+    """Admin-only: download a GigLine Supervisor Safety OS PDF."""
     if token != ADMIN_PASSWORD:
         raise HTTPException(status_code=401, detail="Unauthorized")
     safe_name = os.path.basename(filename)

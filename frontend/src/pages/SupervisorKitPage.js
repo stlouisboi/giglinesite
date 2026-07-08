@@ -19,42 +19,48 @@ const mono = { fontFamily: "'JetBrains Mono', monospace" };
 const sans = { fontFamily: "'Manrope', sans-serif" };
 const serif = { fontFamily: "Georgia, 'Times New Roman', serif" };
 
-/* ── The 11 documents — SS-XX prefix + 1-line description (mirrors Manus reference) ── */
+/* ── The 17 documents — SS-XX code + title (Supervisor Safety OS spec) ── */
 const KIT_CONTENTS = [
-  { num: '00', title: 'Quick Reference Summary Card', desc: 'Post at your supervisor station. Emergency contacts, when to call, monthly schedule at a glance.' },
-  { num: '01', title: 'Welcome & Usage Guide', desc: 'Read first. Sets up the system and tells you exactly how to use each piece.' },
-  { num: '02', title: 'Chemical Inventory Log', desc: 'List every chemical on site. Required under 29 CFR 1910.1200(e)(1)(i).' },
-  { num: '03', title: 'SDS Index & Binder Log', desc: 'Track SDS location per chemical. Cross-reference with SS-02.' },
-  { num: '04', title: 'Written HazCom Program', desc: "Your facility's required written hazard communication program. Fill in, sign, retain." },
-  { num: '05', title: '30-Day Supervisor Action Checklist', desc: 'Week-by-week implementation roadmap. Work through it in sequence.' },
-  { num: '06', title: 'One Phone Call Card', desc: 'Six scenarios that require you to call GigLine before anything else. Post at supervisor station.' },
-  { num: '07', title: 'If OSHA Shows Up', desc: 'Seven-step protocol for the first ten minutes of an inspection. Post near your front entrance.' },
-  { num: '08', title: 'When to Call for Help', desc: 'Red Flag List — 20+ conditions requiring immediate action, with CFR citations.' },
-  { num: '09', title: 'Monthly Safety Inspection Checklist', desc: '40+ items, signature block, retention instruction. Complete one per month.' },
-  { num: '10', title: 'Employee Training Record Log', desc: 'Document every safety training session. Retention: indefinitely.' },
+  { num: '01',  title: 'Start Here / How to Use This System' },
+  { num: '02',  title: '30-Day Action Checklist' },
+  { num: '03A', title: 'Chemical Inventory Log — Example' },
+  { num: '03B', title: 'Chemical Inventory Log — Blank' },
+  { num: '04A', title: 'SDS Index — Example' },
+  { num: '04B', title: 'SDS Index — Blank' },
+  { num: '05',  title: 'Written Hazard Communication Program' },
+  { num: '06A', title: 'Monthly Safety Inspection Checklist — Example' },
+  { num: '06B', title: 'Monthly Safety Inspection Checklist — Blank' },
+  { num: '07A', title: 'Corrective Action Log — Example' },
+  { num: '07B', title: 'Corrective Action Log — Blank' },
+  { num: '08',  title: 'OSHA Coverage Map' },
+  { num: '09A', title: 'Employee HazCom Toolbox Talk + Attendance' },
+  { num: '09B', title: 'Employee HazCom Knowledge Check' },
+  { num: '10',  title: 'Emergency Response / One Phone Call Card' },
+  { num: '11',  title: '90-Day Implementation Roadmap' },
+  { num: '12',  title: 'Next Step / Book a GigLine Review' },
 ];
 
 /* ── Hero stats ── */
 const HERO_STATS = [
-  { value: '11', label: 'Documents' },
-  { value: '40+', label: 'Inspection Items' },
+  { value: '17', label: 'Documents' },
+  { value: '16', label: 'Inspection Items' },
   { value: '6', label: 'CFR Standards Covered' },
   { value: '$16,550', label: 'Max Penalty Per Violation' },
 ];
 
 /* ── Pricing cards data ── */
 const DIGITAL_BULLETS = [
-  'All 11 documents',
-  'Print-ready PDF format',
-  'Instant delivery to your inbox',
+  'All 17 documents, complete 20-page system',
+  'Individual page files included for easy reprinting',
+  'Print-ready PDF format, instant delivery',
   'GigLine business line for questions: (336) 329-8899',
 ];
 
 const PHYSICAL_BULLETS = [
-  'All 11 documents printed and bound in a 3-ring binder',
+  'All 17 documents printed and bound in a 3-ring binder',
   'GigLine 2026 Triad OSHA Field Manual included',
   'Personal contact card — direct access to Vince',
-  'Ships USPS Priority within 3 business days',
+  'Free USPS Priority shipping — delivered within 3 business days',
   'Shipping address captured at checkout',
 ];
 
@@ -205,15 +211,15 @@ const SupervisorKitPage = () => {
       style={{ backgroundColor: BG_WARM, color: NAVY }}
     >
       <SEO
-        title="Supervisor Safety Starter System | GigLine Safety & Compliance"
-        description="11 documents. CFR citations. Built for the person responsible for safety when no one else is watching. $600 digital. $675 physical with binder, field manual, and direct access to Vince."
+        title="GigLine Supervisor Safety OS | GigLine Safety & Compliance"
+        description="17 documents. CFR citations. Built for the person responsible for safety when no one else is watching. $600 digital. $700 physical with free shipping, binder, field manual, and direct access to Vince."
         canonical="/supervisor-kit"
       />
 
       {/* ─────────── HERO ─────────── */}
       <section className="px-5 md:px-8 pt-20 md:pt-28 pb-14 md:pb-16" data-testid="kit-hero">
         <div className="max-w-4xl mx-auto text-center">
-          <SectionLabel>Supervisor Safety Starter System</SectionLabel>
+          <SectionLabel>Supervisor Safety OS</SectionLabel>
           <h1
             className="font-bold leading-[1.08] tracking-tight mb-6 text-[32px] md:text-[44px] lg:text-[52px]"
             style={{ ...sans, color: NAVY }}
@@ -226,7 +232,7 @@ const SupervisorKitPage = () => {
             style={{ color: TEXT_MUTED, ...serif }}
             data-testid="kit-hero-subhead"
           >
-            11 documents. CFR citations. Inspection protocols. Every form maps directly to an OSHA standard. Use it consistently and you will be prepared for any inspection, incident, or audit.
+            17 documents. CFR citations. Inspection protocols. Every form maps directly to an OSHA standard. Use it consistently and you will be prepared for any inspection, incident, or audit.
           </p>
 
           {/* Hero stats bar (mirrors Manus reference) */}
@@ -278,12 +284,12 @@ const SupervisorKitPage = () => {
             data-testid="kit-value-callout"
           >
             <p className="text-[14.5px] md:text-[15px] leading-[1.6]" style={{ color: NAVY, ...serif }}>
-              <strong>Estimated compliance value:</strong> $600&ndash;$800 to have a consultant build these documents from scratch. This kit delivers the same structure, CFR-cited and ready to adapt.
+              <strong>Estimated compliance value:</strong> $800&ndash;$1,200 to have a consultant build documents like this from scratch. This kit delivers that structure, CFR-cited and ready to adapt.
             </p>
           </div>
 
           <ul
-            className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5"
+            className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4"
             data-testid="kit-contents-list"
           >
             {KIT_CONTENTS.map((item) => (
@@ -299,8 +305,9 @@ const SupervisorKitPage = () => {
                     color: GOLD,
                     ...mono,
                     fontSize: '11.5px',
-                    width: '46px',
+                    minWidth: '58px',
                     height: '24px',
+                    padding: '0 8px',
                     letterSpacing: '0.04em',
                   }}
                 >
@@ -308,17 +315,11 @@ const SupervisorKitPage = () => {
                 </span>
                 <div className="flex-1">
                   <h3
-                    className="font-bold text-[15.5px] md:text-[16.5px] leading-snug mb-1"
+                    className="font-bold text-[15.5px] md:text-[16.5px] leading-snug"
                     style={{ ...sans, color: NAVY }}
                   >
                     {item.title}
                   </h3>
-                  <p
-                    className="text-[14.5px] md:text-[15px] leading-[1.6]"
-                    style={{ color: TEXT_MUTED, ...serif }}
-                  >
-                    {item.desc}
-                  </p>
                 </div>
               </li>
             ))}
@@ -327,7 +328,7 @@ const SupervisorKitPage = () => {
             className="text-sm leading-relaxed mt-12 italic"
             style={{ color: TEXT_SUBTLE, ...serif }}
           >
-            Digital kit includes all 11 documents as print-ready PDFs. Physical kit includes everything printed and bound in a 3-ring binder, plus the GigLine 2026 Triad OSHA Field Manual and a personal contact card for direct access to Vince.
+            Digital kit includes the complete 20-page system as a print-ready PDF, plus every document as an individual file. Physical kit includes everything printed and bound in a 3-ring binder, plus the GigLine 2026 Triad OSHA Field Manual and a personal contact card for direct access to Vince.
           </p>
         </div>
       </section>
@@ -368,7 +369,7 @@ const SupervisorKitPage = () => {
             <PricingCard
               label="Digital Kit"
               price="$600"
-              subline="Instant download — all 11 documents as print-ready PDFs"
+              subline="Instant download — complete system as print-ready PDFs"
               bullets={DIGITAL_BULLETS}
               ctaLabel="Buy Digital Kit — $600"
               ctaTestId="kit-buy-digital"
@@ -377,10 +378,10 @@ const SupervisorKitPage = () => {
             />
             <PricingCard
               label="Physical Kit"
-              price="$675"
-              subline="Printed, bound, and shipped USPS Priority"
+              price="$700"
+              subline="Printed, bound, and shipped free via USPS Priority"
               bullets={PHYSICAL_BULLETS}
-              ctaLabel="Buy Physical Kit — $675"
+              ctaLabel="Buy Physical Kit — $700"
               ctaTestId="kit-buy-physical"
               onBuy={() => buy('physical')}
               loading={loading.physical}
@@ -466,7 +467,7 @@ const SupervisorKitPage = () => {
             className="text-[17px] md:text-[18px] leading-[1.65] mb-4"
             style={{ color: TEXT_MUTED, ...serif }}
           >
-            The Supervisor Safety Starter System is included at no additional cost.
+            The GigLine Supervisor Safety OS is included at no additional cost.
           </p>
           <p className="text-[15px]" style={{ color: TEXT_SUBTLE }}>
             Call or text{' '}

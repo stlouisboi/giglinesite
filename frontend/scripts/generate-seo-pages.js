@@ -335,7 +335,7 @@ const routes = [
       <h2>Who GigLine Helps</h2>
       <p>Manufacturers, warehouses & distribution, contractors, and fleet operations — the four operation types most likely to receive an OSHA inspection, an insurance review, or a customer-audit request in the Piedmont Triad.</p>
       <h2>Compliance Readiness Visit — Recommended Starting Point — Starting at $2,000</h2>
-      <p>The floor and the files reviewed in a single visit. Full safety walkthrough on-site, OSHA Documentation Readiness Review, single compliance percentage score, photo documentation, CFR citations, written report within 48 hours. Supervisor Safety Starter System included.</p>
+      <p>The floor and the files reviewed in a single visit. Full safety walkthrough on-site, OSHA Documentation Readiness Review, single compliance percentage score, photo documentation, CFR citations, written report within 48 hours. GigLine Supervisor Safety OS included.</p>
       <h2>Standalone Services</h2>
       <h3>Safety Walkthrough Report — Starting at $1,200</h3>
       <p>On-site walkthrough (1–3 hours). Photo-documented hazard findings. CFR citations + estimated penalty exposure based on OSHA published maximums. Top 10 Fixes report — RED / AMBER / GREEN priority. Delivered within 48 hours.</p>
@@ -729,19 +729,19 @@ const routes = [
   },
   {
     path: '/supervisor-kit',
-    title: 'Supervisor Safety Starter System | GigLine Safety & Compliance',
-    description: '11 documents. CFR citations. Built for the person responsible for safety when no one else is watching. $600 digital. $675 physical with binder, field manual, and direct access to Vince.',
+    title: 'GigLine Supervisor Safety OS | GigLine Safety & Compliance',
+    description: '17 documents. CFR citations. Built for the person responsible for safety when no one else is watching. $600 digital. $700 physical with free shipping, binder, field manual, and direct access to Vince.',
     canonical: '/supervisor-kit',
     schemas: [
       LOCAL_BUSINESS,
       breadcrumb([
         { name: 'Home', path: '/' },
-        { name: 'Supervisor Safety Starter System', path: '/supervisor-kit' },
+        { name: 'GigLine Supervisor Safety OS', path: '/supervisor-kit' },
       ]),
       {
         '@context': 'https://schema.org',
         '@type': 'Product',
-        name: 'Supervisor Safety Starter System',
+        name: 'GigLine Supervisor Safety OS',
         description: '11-document supervisor-ready safety system built for small manufacturing, warehouse, and contractor operations. CFR-cited. Inspection protocols. HazCom program, SDS index, training records, monthly inspection checklist, "If OSHA Shows Up" protocol, and more.',
         brand: { '@type': 'Brand', name: 'GigLine Safety & Compliance' },
         category: 'Workplace Safety / OSHA Compliance Documentation',
@@ -749,7 +749,7 @@ const routes = [
           {
             '@type': 'Offer',
             name: 'Digital Kit',
-            description: 'Instant download — all 11 documents as print-ready PDFs',
+            description: 'Instant download — all 17 documents as print-ready PDFs',
             price: '600',
             priceCurrency: 'USD',
             availability: 'https://schema.org/InStock',
@@ -768,28 +768,34 @@ const routes = [
       },
     ],
     content: `
-      <h1>Supervisor Safety Starter System</h1>
+      <h1>GigLine Supervisor Safety OS</h1>
       <p><strong>Built for the person responsible for safety when no one else is watching.</strong></p>
-      <p>11 documents. CFR citations. Inspection protocols. Every form maps directly to an OSHA standard. Use it consistently and you will be prepared for any inspection, incident, or audit.</p>
+      <p>17 documents. CFR citations. Inspection protocols. Every form maps directly to an OSHA standard. Use it consistently and you will be prepared for any inspection, incident, or audit.</p>
 
       <h2>What&rsquo;s inside</h2>
       <ol>
-        <li>Quick Reference Summary Card &mdash; post at your supervisor station</li>
-        <li>Welcome &amp; Usage Guide &mdash; read first, sets up the system</li>
-        <li>Chemical Inventory Log &mdash; list every chemical on site</li>
-        <li>SDS Index &amp; Binder Log &mdash; track SDS location per chemical</li>
-        <li>Written HazCom Program &mdash; your required written safety program</li>
-        <li>30-Day Supervisor Action Checklist &mdash; week-by-week implementation roadmap</li>
-        <li>One Phone Call Card &mdash; six scenarios, post at your supervisor station</li>
-        <li>If OSHA Shows Up &mdash; seven-step protocol, post near your front entrance</li>
-        <li>When to Call for Help &mdash; Red Flag List with CFR citations</li>
-        <li>Monthly Safety Inspection Checklist &mdash; 40+ items, signature block, retention instruction</li>
-        <li>Employee Training Record Log &mdash; document every safety training session</li>
+        <li>SS-01 &mdash; Start Here / How to Use This System</li>
+        <li>SS-02 &mdash; 30-Day Action Checklist</li>
+        <li>SS-03A &mdash; Chemical Inventory Log (Example)</li>
+        <li>SS-03B &mdash; Chemical Inventory Log (Blank)</li>
+        <li>SS-04A &mdash; SDS Index (Example)</li>
+        <li>SS-04B &mdash; SDS Index (Blank)</li>
+        <li>SS-05 &mdash; Written Hazard Communication Program</li>
+        <li>SS-06A &mdash; Monthly Safety Inspection Checklist (Example)</li>
+        <li>SS-06B &mdash; Monthly Safety Inspection Checklist (Blank)</li>
+        <li>SS-07A &mdash; Corrective Action Log (Example)</li>
+        <li>SS-07B &mdash; Corrective Action Log (Blank)</li>
+        <li>SS-08 &mdash; OSHA Coverage Map</li>
+        <li>SS-09A &mdash; Employee HazCom Toolbox Talk + Attendance</li>
+        <li>SS-09B &mdash; Employee HazCom Knowledge Check</li>
+        <li>SS-10 &mdash; Emergency Response / One Phone Call Card</li>
+        <li>SS-11 &mdash; 90-Day Implementation Roadmap</li>
+        <li>SS-12 &mdash; Next Step / Book a GigLine Review</li>
       </ol>
 
       <h2>Pricing</h2>
-      <p><strong>Digital Kit &mdash; $600.</strong> Instant download. All 11 documents as print-ready PDFs.</p>
-      <p><strong>Physical Kit &mdash; $675.</strong> Printed and bound in a 3-ring binder. Includes the GigLine 2026 Triad OSHA Field Manual and a personal contact card for direct access to Vince. Ships USPS Priority within 3 business days.</p>
+      <p><strong>Digital Kit &mdash; $600.</strong> Instant download. All 17 documents as print-ready PDFs, plus the complete 20-page bound system.</p>
+      <p><strong>Physical Kit &mdash; $700.</strong> Printed and bound in a 3-ring binder. Includes the GigLine 2026 Triad OSHA Field Manual and a personal contact card for direct access to Vince. Free USPS Priority shipping &mdash; delivered within 3 business days.</p>
       <p><em>Included at no additional cost with every Compliance Readiness Visit ($2,000).</em></p>
 
       <h2>Questions?</h2>
@@ -971,7 +977,7 @@ const routes = [
         <li><a href="/blog/hazcom-requirements-small-business">HazCom Compliance Guide</a> — Full breakdown of the OSHA HazCom standard.</li>
         <li><a href="/sample-report">Sample Compliance Report</a> — A redacted real report. Email capture.</li>
         <li><a href="/osha-inspection-guide">OSHA Inspection Guide — HR & Safety Leaders</a> — What OSHA looks for when they walk in. Email capture.</li>
-        <li><a href="/supervisor-kit">Supervisor Safety Starter System</a> — The full digital kit of CFR-cited written programs, training rosters, and OSHA-response templates. From $600.</li>
+        <li><a href="/supervisor-kit">GigLine Supervisor Safety OS</a> — The full digital kit of CFR-cited written programs, training rosters, and OSHA-response templates. From $600.</li>
         <li><a href="${BASE_URL}/api/field-checklist">Field Inspection Checklist</a> — The printable on-floor checklist GigLine uses during walkthroughs. Ungated PDF.</li>
       </ul>
       <p>GigLine Safety &amp; Compliance — Vince Lawrence — (336) 329-8899 — Kernersville, NC</p>
@@ -1295,7 +1301,7 @@ const routes = [
       },
       faqSchema([
         { q: 'Who is a Compliance Readiness Visit for?', a: 'Operations with OSHA on the calendar, those that had a recordable injury or workers\' comp flag, businesses where an insurance carrier or major customer asked for documented compliance evidence, or operations going through M&A due diligence.' },
-        { q: 'What is included in a Compliance Readiness Visit?', a: 'A combined on-site walkthrough and OSHA Documentation Readiness Review — covering both the floor AND the binder, plus a cross-check between them. Includes the Supervisor Safety Starter System.' },
+        { q: 'What is included in a Compliance Readiness Visit?', a: 'A combined on-site walkthrough and OSHA Documentation Readiness Review — covering both the floor AND the binder, plus a cross-check between them. Includes the GigLine Supervisor Safety OS.' },
         { q: 'How is this different from a safety walkthrough?', a: 'A safety walkthrough covers the floor. An OSHA Documentation Readiness Review covers the binder. A Compliance Readiness Visit does both, plus a cross-check that confirms the floor reality matches the written programs.' },
         { q: 'How much does a Compliance Readiness Visit cost?', a: 'Compliance Readiness Visits start at $2,000. Custom-quoted by operation size and scope. No retainer.' },
       ]),

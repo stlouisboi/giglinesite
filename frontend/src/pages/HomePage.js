@@ -852,7 +852,7 @@ const HomePage = () => {
                 }}
                 data-testid="home-kit-band-eyebrow"
               >
-                Supervisor Safety Starter System
+                GigLine Supervisor Safety OS
               </p>
               <h2
                 className="font-bold leading-tight tracking-tight mb-3 text-[24px] md:text-[30px] lg:text-[34px] text-white"
@@ -869,7 +869,7 @@ const HomePage = () => {
                 }}
                 data-testid="home-kit-band-body"
               >
-                11 CFR-cited documents &mdash; written HazCom program, SDS index, training log, monthly inspection checklist, &ldquo;If OSHA Shows Up&rdquo; protocol. Use it before a walkthrough, or as the foundation after. <strong style={{ color: '#C5A059' }}>$600 digital &middot; $675 physical</strong>. Included free with every Compliance Readiness Visit.
+                17 CFR-cited documents &mdash; written HazCom program, SDS index, training log, monthly inspection checklist, &ldquo;If OSHA Shows Up&rdquo; protocol. Use it before a walkthrough, or as the foundation after. <strong style={{ color: '#C5A059' }}>$600 digital &middot; $700 physical</strong>. Included free with every Compliance Readiness Visit.
               </p>
             </div>
             <div className="flex-shrink-0 md:text-right">

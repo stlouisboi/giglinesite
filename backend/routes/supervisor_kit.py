@@ -197,11 +197,12 @@ async def verify_kit_session(session_id: str, http_request: Request):
 async def _send_kit_buyer_email(variant: str, email: str, customer_name: str) -> None:
     """Send the buyer confirmation email via Resend.
 
-    Digital variant attaches all 11 supervisor kit PDFs directly to the email.
+    Digital variant attaches the complete 20-page GigLine Supervisor Safety OS PDF
+    plus every one of the 17 individual per-document PDFs for easy reprinting.
     Physical variant gets a confirmation message; PDFs ship in the binder.
     """
     if variant == "digital":
-        # Attach all 11 PDFs
+        # Attach the complete 20-page system + all 17 individual per-doc PDFs
         attachments = []
         for fname, fpath in SUPERVISOR_KIT_FILES.items():
             if fpath.exists():
@@ -211,31 +212,33 @@ async def _send_kit_buyer_email(variant: str, email: str, customer_name: str) ->
             else:
                 logger.warning(f"Supervisor kit PDF missing on disk: {fname}")
 
-        subject = "Your GigLine GigLine Supervisor Safety OS"
+        subject = "Your GigLine Supervisor Safety OS"
         body_html = """
             <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; color: #1C2B2B; line-height: 1.6;">
                 <h1 style="font-size: 22px; margin-bottom: 12px; color: #0A1628;">Your order is confirmed.</h1>
-                <p>All 17 documents of the GigLine Supervisor Safety OS are attached to this email as print-ready PDFs.</p>
+                <p>The complete 20-page <strong>GigLine Supervisor Safety OS</strong> is attached to this email as a single print-ready PDF, along with every one of the 17 individual documents so you can reprint any single page whenever you need it.</p>
                 <h3 style="margin-top: 22px; margin-bottom: 8px; font-size: 14px; letter-spacing: 0.05em;">WHAT'S INSIDE</h3>
                 <ol style="color: #444; padding-left: 20px;">
-                    <li>Quick Reference Summary Card &mdash; post at your supervisor station</li>
-                    <li>Welcome &amp; Usage Guide &mdash; read first</li>
-                    <li>Chemical Inventory Log</li>
-                    <li>SDS Index &amp; Binder Log</li>
-                    <li>Written HazCom Program</li>
-                    <li>30-Day Supervisor Action Checklist</li>
-                    <li>One Phone Call Card</li>
-                    <li>If OSHA Shows Up &mdash; seven-step protocol</li>
-                    <li>When to Call for Help &mdash; Red Flag List</li>
-                    <li>Monthly Safety Inspection Checklist</li>
-                    <li>Employee Training Record Log</li>
+                    <li>SS-01 &mdash; Start Here / How to Use This System</li>
+                    <li>SS-02 &mdash; 30-Day Action Checklist</li>
+                    <li>SS-03A / SS-03B &mdash; Chemical Inventory Log (Example + Blank)</li>
+                    <li>SS-04A / SS-04B &mdash; SDS Index (Example + Blank)</li>
+                    <li>SS-05 &mdash; Written Hazard Communication Program</li>
+                    <li>SS-06A / SS-06B &mdash; Monthly Safety Inspection Checklist (Example + Blank)</li>
+                    <li>SS-07A / SS-07B &mdash; Corrective Action Log (Example + Blank)</li>
+                    <li>SS-08 &mdash; OSHA Coverage Map</li>
+                    <li>SS-09A &mdash; Employee HazCom Toolbox Talk + Attendance</li>
+                    <li>SS-09B &mdash; Employee HazCom Knowledge Check</li>
+                    <li>SS-10 &mdash; Emergency Response / One Phone Call Card</li>
+                    <li>SS-11 &mdash; 90-Day Implementation Roadmap</li>
+                    <li>SS-12 &mdash; Next Step / Book a GigLine Review</li>
                 </ol>
                 <h3 style="margin-top: 22px; margin-bottom: 8px; font-size: 14px; letter-spacing: 0.05em;">FIRST STEPS</h3>
                 <ol style="color: #444; padding-left: 20px;">
-                    <li>Open <strong>SS-01_Welcome.pdf</strong> first &mdash; it explains how the system fits together.</li>
-                    <li>Open each PDF, fill in your company name, and print.</li>
-                    <li>Post the Quick Reference Card at the supervisor station.</li>
-                    <li>Post "If OSHA Shows Up" near the front entrance.</li>
+                    <li>Open <strong>GigLine_Supervisor_Safety_OS_v1.pdf</strong> first &mdash; the complete bound system with cover, notice, table of contents, and every document in order.</li>
+                    <li>Print the complete system for the binder, or print individual pages as needed from the SS-XX PDFs.</li>
+                    <li>Start with SS-01 to plan your rollout, then work through SS-02's 30-day checklist.</li>
+                    <li>Post SS-10 (Emergency Response / One Phone Call Card) at the supervisor station.</li>
                 </ol>
                 <p style="margin-top: 22px;">Questions about implementation, reply to this email or call (336) 329-8899.</p>
                 <hr style="margin: 24px 0; border: none; border-top: 1px solid #ddd;" />
@@ -269,7 +272,7 @@ async def _send_kit_buyer_email(variant: str, email: str, customer_name: str) ->
         return
 
     # Physical variant
-    subject = "Your GigLine GigLine Supervisor Safety OS — Physical Kit"
+    subject = "Your GigLine Supervisor Safety OS — Physical Kit"
     body_html = """
         <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; color: #1C2B2B; line-height: 1.6;">
             <h1 style="font-size: 22px; margin-bottom: 12px; color: #0A1628;">Your order is confirmed.</h1>

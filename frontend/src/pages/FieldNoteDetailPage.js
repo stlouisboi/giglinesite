@@ -420,7 +420,7 @@ const FieldNoteDetailPage = () => {
               className="text-[15.5px] md:text-base leading-[1.7] mb-10 max-w-2xl"
               style={{ color: 'rgba(10,22,40,0.72)', fontFamily: "Georgia, 'Times New Roman', serif" }}
             >
-              {note.kitCrossSell.intro || `Documents from the GigLine GigLine Supervisor Safety OS map directly to the requirements in this article. CFR-cited. Print-ready. $600 for the digital kit, included free with every Compliance Readiness Visit.`}
+              {note.kitCrossSell.intro || `Documents from the GigLine Supervisor Safety OS map directly to the requirements in this article. CFR-cited. Print-ready. $600 for the digital kit, included free with every Compliance Readiness Visit.`}
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 mb-8">
               {note.kitCrossSell.cards.map((card) => (

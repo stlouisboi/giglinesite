@@ -141,20 +141,38 @@ SUPERVISOR_KIT_PRODUCTS = {
     },
 }
 
-# The 11 PDFs that make up the kit. Names match the labels shown on /supervisor-kit.
-SUPERVISOR_KIT_FILES = {
-    "SS-00_Quick_Reference_Card.pdf": ROOT_DIR / "kit_files" / "SS-00_Quick_Reference_Card.pdf",
-    "SS-01_Welcome.pdf": ROOT_DIR / "kit_files" / "SS-01_Welcome.pdf",
-    "SS-02_Chemical_Inventory_Log.pdf": ROOT_DIR / "kit_files" / "SS-02_Chemical_Inventory_Log.pdf",
-    "SS-03_SDS_Index.pdf": ROOT_DIR / "kit_files" / "SS-03_SDS_Index.pdf",
-    "SS-04_Written_HazCom_Program.pdf": ROOT_DIR / "kit_files" / "SS-04_Written_HazCom_Program.pdf",
-    "SS-05_30Day_Action_Checklist.pdf": ROOT_DIR / "kit_files" / "SS-05_30Day_Action_Checklist.pdf",
-    "SS-06_One_Phone_Call_Card.pdf": ROOT_DIR / "kit_files" / "SS-06_One_Phone_Call_Card.pdf",
-    "SS-07_If_OSHA_Shows_Up.pdf": ROOT_DIR / "kit_files" / "SS-07_If_OSHA_Shows_Up.pdf",
-    "SS-08_When_To_Call_For_Help.pdf": ROOT_DIR / "kit_files" / "SS-08_When_To_Call_For_Help.pdf",
-    "SS-09_Monthly_Safety_Inspection.pdf": ROOT_DIR / "kit_files" / "SS-09_Monthly_Safety_Inspection.pdf",
-    "SS-10_Training_Record_Log.pdf": ROOT_DIR / "kit_files" / "SS-10_Training_Record_Log.pdf",
+# The 17 individual per-doc PDFs + the complete 20-page bound system, all extracted from
+# GigLine_Supervisor_Safety_OS_v1.pdf via backend/scripts/split_supervisor_os.py.
+# Digital-Kit fulfillment attaches the complete PDF PLUS every individual file per the
+# `/supervisor-kit` sales copy ("Individual page files included for easy reprinting").
+SUPERVISOR_KIT_COMPLETE_FILE = {
+    "GigLine_Supervisor_Safety_OS_v1.pdf": ROOT_DIR / "kit_files" / "GigLine_Supervisor_Safety_OS_v1.pdf",
 }
+
+_KIT_INDIVIDUAL_DIR = ROOT_DIR / "kit_files" / "os_v1_individual"
+SUPERVISOR_KIT_INDIVIDUAL_FILES = {
+    "SS-01_Start_Here.pdf":                             _KIT_INDIVIDUAL_DIR / "SS-01_Start_Here.pdf",
+    "SS-02_30_Day_Action_Checklist.pdf":                _KIT_INDIVIDUAL_DIR / "SS-02_30_Day_Action_Checklist.pdf",
+    "SS-03A_Chemical_Inventory_Log_Example.pdf":        _KIT_INDIVIDUAL_DIR / "SS-03A_Chemical_Inventory_Log_Example.pdf",
+    "SS-03B_Chemical_Inventory_Log_Blank.pdf":          _KIT_INDIVIDUAL_DIR / "SS-03B_Chemical_Inventory_Log_Blank.pdf",
+    "SS-04A_SDS_Index_Example.pdf":                     _KIT_INDIVIDUAL_DIR / "SS-04A_SDS_Index_Example.pdf",
+    "SS-04B_SDS_Index_Blank.pdf":                       _KIT_INDIVIDUAL_DIR / "SS-04B_SDS_Index_Blank.pdf",
+    "SS-05_Written_HazCom_Program.pdf":                 _KIT_INDIVIDUAL_DIR / "SS-05_Written_HazCom_Program.pdf",
+    "SS-06A_Monthly_Safety_Inspection_Example.pdf":     _KIT_INDIVIDUAL_DIR / "SS-06A_Monthly_Safety_Inspection_Example.pdf",
+    "SS-06B_Monthly_Safety_Inspection_Blank.pdf":       _KIT_INDIVIDUAL_DIR / "SS-06B_Monthly_Safety_Inspection_Blank.pdf",
+    "SS-07A_Corrective_Action_Log_Example.pdf":         _KIT_INDIVIDUAL_DIR / "SS-07A_Corrective_Action_Log_Example.pdf",
+    "SS-07B_Corrective_Action_Log_Blank.pdf":           _KIT_INDIVIDUAL_DIR / "SS-07B_Corrective_Action_Log_Blank.pdf",
+    "SS-08_OSHA_Coverage_Map.pdf":                      _KIT_INDIVIDUAL_DIR / "SS-08_OSHA_Coverage_Map.pdf",
+    "SS-09A_HazCom_Toolbox_Talk.pdf":                   _KIT_INDIVIDUAL_DIR / "SS-09A_HazCom_Toolbox_Talk.pdf",
+    "SS-09B_HazCom_Knowledge_Check.pdf":                _KIT_INDIVIDUAL_DIR / "SS-09B_HazCom_Knowledge_Check.pdf",
+    "SS-10_Emergency_Response_Card.pdf":                _KIT_INDIVIDUAL_DIR / "SS-10_Emergency_Response_Card.pdf",
+    "SS-11_90_Day_Implementation_Roadmap.pdf":          _KIT_INDIVIDUAL_DIR / "SS-11_90_Day_Implementation_Roadmap.pdf",
+    "SS-12_Next_Step_Book_GigLine_Review.pdf":          _KIT_INDIVIDUAL_DIR / "SS-12_Next_Step_Book_GigLine_Review.pdf",
+}
+
+# Preserved for backwards-compat with anything still importing the old constant.
+# Complete-first ordering matches the customer's expected inbox experience.
+SUPERVISOR_KIT_FILES = {**SUPERVISOR_KIT_COMPLETE_FILE, **SUPERVISOR_KIT_INDIVIDUAL_FILES}
 
 # ── Google Business Profile review URL ──
 # Vince can swap to a short link (g.page/r/...) via env var without code change.

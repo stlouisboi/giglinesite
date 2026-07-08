@@ -71,7 +71,7 @@ const SupervisorKitThankYouPage = () => {
     >
       <SEO
         title="Order Confirmed | GigLine Supervisor Safety OS"
-        description="Your GigLine GigLine Supervisor Safety OS order is confirmed."
+        description="Your GigLine Supervisor Safety OS order is confirmed."
         canonical="/supervisor-kit/thank-you"
         noindex
       />

@@ -15,6 +15,7 @@ import {
   ChevronRight,
 } from 'lucide-react';
 import SEO from '../components/SEO';
+import RelatedFieldNotesStrip from '../components/RelatedFieldNotesStrip';
 
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
 
@@ -735,8 +736,6 @@ const ComplianceReadinessVisitPage = () => {
           </p>
         </div>
       </section>
-
-import RelatedFieldNotesStrip from '../components/RelatedFieldNotesStrip';
 
       {/* ═══ Related Field Notes — internal linking to boost long-tail indexing ═══ */}
       <RelatedFieldNotesStrip

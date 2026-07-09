@@ -17,6 +17,7 @@ import {
   ChevronRight,
 } from 'lucide-react';
 import SEO from '../components/SEO';
+import RelatedFieldNotesStrip from '../components/RelatedFieldNotesStrip';
 
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
 
@@ -577,6 +578,16 @@ const DocumentDevelopmentPage = () => {
       </section>
 
       {/* ═══ Closing CTA ═══ */}
+      <RelatedFieldNotesStrip
+        heading="Field Notes that pair with Document Development"
+        intro="Real examples of what a working written program looks like — and where teams typically leave gaps."
+        notes={[
+          { slug: 'hazcom', title: 'Written HazCom Program — what a working one looks like', blurb: 'Beyond the SDS binder: what OSHA expects your written HazCom program to actually cover.' },
+          { slug: 'recordkeeping-300-log', title: 'OSHA 300 Log — the mistakes I see most often', blurb: 'Recordkeeping errors that turn a routine inspection into a citation.' },
+          { slug: 'respiratory-protection', title: 'Respiratory Protection — the written program most sites are missing', blurb: 'Fit-test docs, medical evals, cartridge change-out — the written pieces OSHA asks for first.' },
+        ]}
+      />
+
       <section className="py-20 md:py-24" style={{ background: '#102A43' }} data-testid="dd-closing">
         <div className="container max-w-3xl text-center">
           <Eyebrow color="#C9A84C">Ready to Start?</Eyebrow>

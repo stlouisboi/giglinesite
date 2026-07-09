@@ -11,6 +11,7 @@ import {
   ChevronRight,
 } from 'lucide-react';
 import SEO from '../components/SEO';
+import RelatedFieldNotesStrip from '../components/RelatedFieldNotesStrip';
 
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
 
@@ -284,6 +285,16 @@ const SafetyWalkthroughPage = () => {
       </section>
 
       {/* Closing CTA */}
+      <RelatedFieldNotesStrip
+        heading="Field Notes that pair with a Safety Walkthrough"
+        intro="What Vince is scanning for during your walkthrough — organized so you can review it before he arrives."
+        notes={[
+          { slug: 'machine-guarding', title: 'Machine Guarding — the #1 general-industry citation', blurb: 'Point-of-operation, power-transmission, and the everyday oversights that trigger 1910.212.' },
+          { slug: 'walking-surfaces', title: 'Walking-Working Surfaces — the trip hazards you stopped seeing', blurb: 'What OSHA looks at first when they enter your floor — spills, cords, aisles, mezzanine edges.' },
+          { slug: 'electrical-safety', title: 'Electrical Safety — exposed panels and LOTO gaps', blurb: 'The panel doors, junction boxes, and cord assemblies that quietly generate the most citations.' },
+        ]}
+      />
+
       <section className="py-20 md:py-24" style={{ background: CREAM }} data-testid="sw-closing">
         <div className="container max-w-3xl text-center">
           <Eyebrow>Ready to Start?</Eyebrow>

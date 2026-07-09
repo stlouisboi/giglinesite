@@ -14,6 +14,7 @@ import {
   ChevronRight,
 } from 'lucide-react';
 import SEO from '../components/SEO';
+import RelatedFieldNotesStrip from '../components/RelatedFieldNotesStrip';
 
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
 
@@ -361,6 +362,16 @@ const AnnualCompliancePartnerPage = () => {
       </section>
 
       {/* ═══ How to Start (cream bg) ═══ */}
+      <RelatedFieldNotesStrip
+        heading="Field Notes that pair with the Annual Compliance Partner"
+        intro="The compliance topics that come up year after year — and what changes in North Carolina you'll want to track."
+        notes={[
+          { slug: 'nc-osha-vs-federal', title: 'NC OSHA vs Federal OSHA — the differences that matter', blurb: 'State-plan quirks, penalty structures, and the NC-specific rules that show up in inspections.' },
+          { slug: 'recordkeeping-300-log', title: 'OSHA 300 Log — the mistakes I see most often', blurb: 'The recordkeeping habits that make annual submissions painless instead of painful.' },
+          { slug: 'hazcom', title: 'Written HazCom Program — what a working one looks like', blurb: 'What to keep current every year — new chemicals, revised SDS, updated employee training.' },
+        ]}
+      />
+
       <section className="py-20 md:py-24" style={{ background: '#f5f4f0' }} data-testid="acp-how-to-start">
         <div className="container max-w-4xl">
           <Eyebrow>How to Start</Eyebrow>

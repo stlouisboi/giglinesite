@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, Lock, Clock, AlertTriangle, Search, FileWarning, ClipboardEdit, Target } from 'lucide-react';
 import SEO from '../components/SEO';
+import RelatedFieldNotesStrip from '../components/RelatedFieldNotesStrip';
 
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
 const SLUG = 'incident-review';
@@ -112,6 +113,16 @@ const IncidentReviewPage = () => {
       </section>
 
       {/* Act Now — red urgent closing CTA */}
+      <RelatedFieldNotesStrip
+        heading="Field Notes that pair with an Incident Review"
+        intro="What Vince pulls apart after an incident — and how to keep the same failure from repeating."
+        notes={[
+          { slug: 'lockout-tagout', title: 'Lockout / Tagout — the failures behind most amputations', blurb: 'Where LOTO programs quietly break down between the written program and the machine.' },
+          { slug: 'recordkeeping-300-log', title: 'OSHA 300 Log — the mistakes I see most often', blurb: 'What to log, when to log it, and the classification errors that get flagged after an inspection.' },
+          { slug: 'emergency-action-plans', title: 'Emergency Action Plans — beyond the fire drill', blurb: 'Alarm chains, muster points, and the plan gaps that surface exactly when you need them not to.' },
+        ]}
+      />
+
       <section className="py-20 md:py-24" style={{ background: NAVY }} data-testid="ir-closing">
         <div className="container max-w-3xl text-center">
           <Eyebrow color={RED}>Act Now</Eyebrow>

@@ -5,6 +5,7 @@ import { trackPDFDownload } from '../utils/analytics';
 import SEO from '../components/SEO';
 import { SUPERVISOR_KIT_ENABLED } from '../config/features';
 import FieldNotesNewsletter from '../components/FieldNotesNewsletter';
+import StickyLeadMagnetBar from '../components/StickyLeadMagnetBar';
 /* GL-WEB-026 — Field Note content is a shared database, imported once here
    and re-used by /app/frontend/scripts/generate-seo-pages.js for SSR. */
 import { NOTES } from '../data/fieldNoteContent';
@@ -142,6 +143,7 @@ const FieldNoteDetailPage = () => {
 
   return (
     <main>
+      <StickyLeadMagnetBar />
       <SEO
         title={note.seoTitle || `${note.title} — Field Notes | GigLine Safety & Compliance`}
         description={note.seo}

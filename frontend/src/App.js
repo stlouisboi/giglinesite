@@ -64,6 +64,7 @@ const BlogLOTOProgram                 = lazy(() => import('./pages/BlogLOTOProgr
 const BlogForkliftCompliance          = lazy(() => import('./pages/BlogForkliftCompliance'));
 const BlogHazComPreInspection         = lazy(() => import('./pages/BlogHazComPreInspection'));
 const BlogOSHA300LogMistakes          = lazy(() => import('./pages/BlogOSHA300LogMistakes'));
+const BlogMidYear2026OshaUpdate       = lazy(() => import('./pages/BlogMidYear2026OshaUpdate'));
 
 import './App.css';
 
@@ -143,6 +144,7 @@ function App() {
                     <Route path="/blog/osha-forklift-compliance-inspector-checklist" element={<BlogForkliftCompliance />} />
                     <Route path="/blog/written-hazcom-program-before-osha-inspection" element={<BlogHazComPreInspection />} />
                     <Route path="/blog/osha-300-log-common-mistakes-citations" element={<BlogOSHA300LogMistakes />} />
+                    <Route path="/blog/mid-year-2026-osha-update-nc-manufacturers" element={<BlogMidYear2026OshaUpdate />} />
                     <Route path="/heat-guide" element={<HeatGuidePage />} />
                     <Route path="/sample-report" element={<SampleReportPage />} />
                     <Route path="/resources" element={<ResourcesPage />} />

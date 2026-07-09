@@ -736,6 +736,19 @@ const ComplianceReadinessVisitPage = () => {
         </div>
       </section>
 
+import RelatedFieldNotesStrip from '../components/RelatedFieldNotesStrip';
+
+      {/* ═══ Related Field Notes — internal linking to boost long-tail indexing ═══ */}
+      <RelatedFieldNotesStrip
+        heading="Field Notes that pair with the Compliance Readiness Visit"
+        intro="During a CRV, these are the topics that come up most often on the floor and in the binder. Read them before your visit — they'll help you know what Vince is looking for."
+        notes={[
+          { slug: 'recordkeeping-300-log', title: 'OSHA 300 Log — the mistakes I see most often', blurb: 'Common recordkeeping errors that turn a routine inspection into a citation.' },
+          { slug: 'hazcom', title: 'Written HazCom Program — what a working one looks like', blurb: 'Beyond the SDS binder: what OSHA expects your written HazCom program to actually cover.' },
+          { slug: 'machine-guarding', title: 'Machine Guarding — the #1 general-industry citation', blurb: 'Point-of-operation, power-transmission, and the everyday oversights that trigger 1910.212.' },
+        ]}
+      />
+
       {/* ═══ Closing CTA (cream) ═══ */}
       <section className="py-20 md:py-24" style={{ background: CREAM }} data-testid="crv-closing">
         <div className="container max-w-4xl text-center">

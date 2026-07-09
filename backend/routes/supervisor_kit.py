@@ -221,7 +221,7 @@ async def _send_kit_buyer_email(variant: str, email: str, customer_name: str) ->
         body_html = """
             <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; color: #1C2B2B; line-height: 1.6;">
                 <h1 style="font-size: 22px; margin-bottom: 12px; color: #0A1628;">Your order is confirmed.</h1>
-                <p>The complete <strong>GigLine Supervisor Safety OS</strong> — a 17-document, 20-page supervisor safety documentation system — is attached to this email as a single print-ready PDF (<em>GigLine_Supervisor_Safety_OS_v1.pdf</em>).</p>
+                <p>The complete <strong>GigLine Supervisor Safety OS</strong> — a 17-document, 20-page supervisor safety documentation system — is attached to this email as a single print-ready PDF (<em>GigLine_Supervisor_Safety_OS_v1.pdf</em>), along with every individual document as its own file so you can reprint any single page whenever you need it.</p>
                 <p>Print it, put it in a supervisor's hands, and start the rhythm: <strong>inspect &rarr; document &rarr; assign &rarr; verify &rarr; review.</strong></p>
                 <h3 style="margin-top: 22px; margin-bottom: 8px; font-size: 14px; letter-spacing: 0.05em;">WHAT'S INSIDE</h3>
                 <ol style="color: #444; padding-left: 20px;">

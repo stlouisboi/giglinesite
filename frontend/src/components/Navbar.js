@@ -76,7 +76,7 @@ const Navbar = () => {
             >
               <img src="/gigline-logo-3d.png?v=7"
                 alt="GigLine Safety & Compliance"
-                className="h-12 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto"
+                className="h-16 md:h-20 lg:h-24 xl:h-24 2xl:h-28 w-auto"
                 style={{ filter: 'drop-shadow(0 2px 8px rgba(28,43,43,0.10))' }}
                 loading="eager"
                 fetchPriority="high"

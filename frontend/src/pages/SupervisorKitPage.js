@@ -93,6 +93,7 @@ const VALUE_CARDS = [
 /* Pricing card content (3 tiers) */
 const DIGITAL_BULLETS = [
   'Complete 17-document / 20-page Supervisor Safety OS',
+  'Plus 17 individual per-doc PDFs for easy single-page reprints',
   'Example and blank working forms',
   '30-Day Action Checklist',
   '90-Day Implementation Roadmap',

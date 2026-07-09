@@ -141,15 +141,13 @@ SUPERVISOR_KIT_PRODUCTS = {
     },
 }
 
-# The digital fulfillment attaches ONLY the complete 20-page master PDF for now.
-# Individual per-doc PDFs exist on disk (kit_files/os_v1_individual/) but are not
-# promised on the public sales page yet — keep them staged for a future v1.1 add-on.
+# v1.1 — Digital fulfillment attaches the complete 20-page master PDF PLUS every
+# one of the 17 individual per-doc PDFs so buyers can reprint any single form
+# on demand without re-splitting the bound system.
 SUPERVISOR_KIT_FILES = {
     "GigLine_Supervisor_Safety_OS_v1.pdf": ROOT_DIR / "kit_files" / "GigLine_Supervisor_Safety_OS_v1.pdf",
 }
 
-# Kept for reference / future launch — do not include in fulfillment until we're ready
-# to promise "individual files" on the sales page.
 _KIT_INDIVIDUAL_DIR = ROOT_DIR / "kit_files" / "os_v1_individual"
 SUPERVISOR_KIT_INDIVIDUAL_FILES = {
     "SS-01_Start_Here.pdf":                             _KIT_INDIVIDUAL_DIR / "SS-01_Start_Here.pdf",
@@ -170,6 +168,10 @@ SUPERVISOR_KIT_INDIVIDUAL_FILES = {
     "SS-11_90_Day_Implementation_Roadmap.pdf":          _KIT_INDIVIDUAL_DIR / "SS-11_90_Day_Implementation_Roadmap.pdf",
     "SS-12_Next_Step_Book_GigLine_Review.pdf":          _KIT_INDIVIDUAL_DIR / "SS-12_Next_Step_Book_GigLine_Review.pdf",
 }
+
+# Complete-first ordering matches the customer's expected inbox experience:
+# the bound master opens first, then the individual files sit below it.
+SUPERVISOR_KIT_FILES = {**SUPERVISOR_KIT_FILES, **SUPERVISOR_KIT_INDIVIDUAL_FILES}
 
 # ── Google Business Profile review URL ──
 # Vince can swap to a short link (g.page/r/...) via env var without code change.

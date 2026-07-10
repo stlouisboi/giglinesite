@@ -1,0 +1,456 @@
+import React from 'react';
+import { useParams, Link, Navigate } from 'react-router-dom';
+import { ArrowRight, ArrowLeft, Check, ShieldCheck, ClipboardList, Lock } from 'lucide-react';
+import SEO from '../components/SEO';
+import ProofGapEngineSteps from '../components/ProofGapEngineSteps';
+import KitPricingTiers from '../components/KitPricingTiers';
+import { KIT_DETAILS, KIT_CATALOG } from '../data/citationProofKits';
+
+const NAVY = '#102A43';
+const GOLD = '#C9A84C';
+const BG_WARM = '#FAF7F1';
+const PANEL = '#F3ECDB';
+const BORDER = '#e8e5dd';
+
+const mono = { fontFamily: "'JetBrains Mono', monospace" };
+const sans = { fontFamily: "'Manrope', sans-serif" };
+const serif = { fontFamily: "Georgia, 'Times New Roman', serif" };
+
+const CitationProofKitDetailPage = () => {
+  const { slug } = useParams();
+  const kit = KIT_DETAILS[slug];
+
+  if (!kit) {
+    return <Navigate to="/citation-proof-kits" replace />;
+  }
+
+  return (
+    <main data-testid={`kit-detail-page-${slug}`} style={{ backgroundColor: BG_WARM, color: NAVY }}>
+      <SEO
+        title={`${kit.name} | ${kit.system} | GigLine Safety & Compliance`}
+        description={`${kit.outcomeHeadline} ${kit.proofPromise}`}
+        canonical={`/citation-proof-kits/${slug}`}
+      />
+
+      {/* ═══════════ HERO ═══════════ */}
+      <section className="px-5 md:px-8 pt-16 md:pt-20 pb-14 md:pb-16" data-testid="kit-detail-hero">
+        <div className="max-w-4xl mx-auto">
+          <Link
+            to="/citation-proof-kits"
+            className="inline-flex items-center gap-2 text-[13px] font-bold mb-6 hover:underline"
+            style={{ color: 'rgba(10,22,40,0.62)', ...mono }}
+            data-testid="kit-detail-back-link"
+          >
+            <ArrowLeft size={13} />
+            Back to Citation-Proof Kits
+          </Link>
+
+          <p
+            className="uppercase font-bold tracking-[0.28em] mb-3"
+            style={{ color: GOLD, ...mono, fontSize: '11px' }}
+            data-testid="kit-detail-kicker"
+          >
+            {kit.system}
+          </p>
+
+          {/* 1. OUTCOME HEADLINE (leads with outcome, not features) */}
+          <h1
+            className="font-bold leading-[1.1] tracking-tight mb-6 text-[30px] md:text-[40px] lg:text-[46px]"
+            style={{ ...sans, color: NAVY }}
+            data-testid="kit-detail-outcome-headline"
+          >
+            {kit.outcomeHeadline}
+          </h1>
+
+          {/* 2. SHORT PROBLEM STATEMENT */}
+          <p
+            className="text-[16.5px] md:text-[18.5px] leading-[1.65] max-w-3xl mb-5 italic"
+            style={{ color: 'rgba(10,22,40,0.7)', ...serif }}
+            data-testid="kit-detail-problem"
+          >
+            {kit.problemStatement}
+          </p>
+
+          {/* 3. PROOF/CONTROL PROMISE */}
+          <p
+            className="text-[16px] md:text-[17.5px] leading-[1.7] max-w-3xl mb-8"
+            style={{ color: NAVY, ...serif }}
+            data-testid="kit-detail-proof-promise"
+          >
+            <strong style={{ ...sans }}>What this kit does:</strong> {kit.proofPromise}
+          </p>
+
+          {/* 4. PROPRIETARY TOOL CALLOUT (as mechanism, not product) */}
+          <div
+            className="rounded-md p-5 md:p-6 mb-10"
+            style={{ background: PANEL, border: `1px solid ${BORDER}` }}
+            data-testid="kit-detail-tool-callout"
+          >
+            <p
+              className="uppercase font-bold tracking-[0.18em] mb-2"
+              style={{ color: GOLD, ...mono, fontSize: '10.5px' }}
+            >
+              Control Mechanism
+            </p>
+            <p
+              className="font-bold text-[17px] md:text-[19px] leading-snug mb-2"
+              style={{ color: NAVY, ...sans }}
+              data-testid="kit-detail-tool-name"
+            >
+              {kit.proprietaryToolName}
+            </p>
+            <p className="text-[14.5px] leading-[1.65]" style={{ color: 'rgba(10,22,40,0.72)', ...serif }}>
+              {kit.proprietaryToolDescription}
+            </p>
+          </div>
+
+          {/* 5. PRICING OPTIONS CTA */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 mb-10">
+            {kit.ready ? (
+              <Link
+                to={`/contact?kit=${slug}&tier=digital&price=150&intent=purchase`}
+                className="inline-flex items-center gap-2 font-bold py-3 px-6 rounded transition-all text-[14px]"
+                style={{ background: NAVY, color: 'white', ...sans }}
+                data-testid="kit-detail-hero-primary-cta"
+              >
+                Buy Digital Kit &mdash; $150
+                <ArrowRight size={14} />
+              </Link>
+            ) : (
+              <Link
+                to={`/contact?kit=${slug}&intent=notify`}
+                className="inline-flex items-center gap-2 font-bold py-3 px-6 rounded transition-all text-[14px]"
+                style={{ background: NAVY, color: 'white', ...sans }}
+                data-testid="kit-detail-hero-primary-cta"
+              >
+                <Lock size={13} />
+                Notify Me When Available
+              </Link>
+            )}
+            <a
+              href="#pricing"
+              className="inline-flex items-center gap-2 font-bold py-3 px-6 rounded transition-all text-[14px]"
+              style={{ background: 'transparent', color: NAVY, border: `1px solid ${NAVY}`, ...sans }}
+              data-testid="kit-detail-hero-secondary-cta"
+            >
+              View All Options
+            </a>
+          </div>
+
+          {/* Hero support strip */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4" data-testid="kit-detail-hero-support">
+            <HeroSupportCard label="Standard" value={kit.standard} />
+            <HeroSupportCard label="Score" value={kit.scoreIndexName} />
+            <HeroSupportCard label="Delivery" value="Digital, Control, or Binder" />
+            <HeroSupportCard
+              label="Status"
+              value={kit.ready ? 'Available Now' : 'In Build'}
+              accent={kit.ready ? GOLD : 'rgba(10,22,40,0.5)'}
+            />
+          </div>
+
+          {/* Process flow line */}
+          {kit.flowLine && (
+            <div className="mt-10 pt-8 border-t" style={{ borderColor: BORDER }}>
+              <p
+                className="uppercase font-bold tracking-[0.18em] mb-4"
+                style={{ color: 'rgba(10,22,40,0.5)', ...mono, fontSize: '10.5px' }}
+              >
+                The Control Flow
+              </p>
+              <div className="flex flex-wrap items-center gap-2 md:gap-3" data-testid="kit-detail-flow">
+                {kit.flowLine.map((step, i) => (
+                  <React.Fragment key={step}>
+                    <span
+                      className="inline-flex items-center px-3 py-2 rounded"
+                      style={{
+                        background: 'white',
+                        border: `1px solid ${BORDER}`,
+                        color: NAVY,
+                        ...sans,
+                        fontSize: '13px',
+                        fontWeight: 700,
+                      }}
+                    >
+                      {step}
+                    </span>
+                    {i < kit.flowLine.length - 1 && (
+                      <span style={{ color: GOLD, ...mono, fontSize: '14px' }}>&rarr;</span>
+                    )}
+                  </React.Fragment>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* ═══════════ WHAT THIS KIT GETS YOU (outcome-first) ═══════════ */}
+      <section className="px-5 md:px-8 py-20 md:py-24 bg-white border-t" style={{ borderColor: BORDER }} data-testid="kit-detail-outcomes">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-12 max-w-3xl">
+            <p
+              className="uppercase font-bold tracking-[0.28em] mb-3"
+              style={{ color: GOLD, ...mono, fontSize: '11px' }}
+            >
+              What This Kit Gets You
+            </p>
+            <h2
+              className="text-2xl md:text-3xl lg:text-4xl font-extrabold leading-[1.15] mb-4 tracking-tight"
+              style={{ color: NAVY, ...sans }}
+            >
+              Four outcomes. Not four downloads.
+            </h2>
+            <p
+              className="text-base md:text-[17px] leading-relaxed"
+              style={{ color: 'rgba(10,22,40,0.68)', ...serif }}
+            >
+              You&rsquo;re not buying a form packet. You&rsquo;re buying a way to know what proof you have, what&rsquo;s missing, what needs fixing, and what to hand over first.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+            {kit.outcomes.map((o, i) => (
+              <div
+                key={i}
+                className="rounded-md p-6 md:p-7"
+                style={{ background: '#FBFBF9', border: `1px solid ${BORDER}` }}
+                data-testid={`kit-detail-outcome-${i + 1}`}
+              >
+                <div className="flex items-start gap-3 mb-3">
+                  <Check size={18} strokeWidth={2.5} style={{ color: GOLD, flexShrink: 0, marginTop: 2 }} />
+                  <h3
+                    className="font-bold text-[17px] md:text-[18.5px] leading-snug"
+                    style={{ color: NAVY, ...sans }}
+                  >
+                    {o.headline}
+                  </h3>
+                </div>
+                <p className="text-[14.5px] leading-[1.65]" style={{ color: 'rgba(10,22,40,0.7)', ...serif }}>
+                  {o.body}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════ HOW THE KIT WORKS (4-step framework) ═══════════ */}
+      <ProofGapEngineSteps
+        kicker="How the Kit Works"
+        heading="Score. Sort. Fix. Pull."
+        intro="This kit runs on the same four-step control loop as every kit in the Citation-Proof Series. The sequence is what turns forms into a system."
+      />
+
+      {/* ═══════════ KEY PROOF (what you\'ll be able to produce) ═══════════ */}
+      <section className="px-5 md:px-8 py-20 md:py-24" style={{ background: PANEL }} data-testid="kit-detail-key-proof">
+        <div className="max-w-4xl mx-auto">
+          <p
+            className="uppercase font-bold tracking-[0.28em] mb-3"
+            style={{ color: GOLD, ...mono, fontSize: '11px' }}
+          >
+            Proof You&rsquo;ll Be Able to Produce
+          </p>
+          <h2
+            className="text-2xl md:text-3xl lg:text-4xl font-extrabold leading-[1.15] mb-4 tracking-tight"
+            style={{ color: NAVY, ...sans }}
+          >
+            The records that get handed over first.
+          </h2>
+          <p
+            className="text-base md:text-[17px] leading-relaxed mb-8"
+            style={{ color: 'rgba(10,22,40,0.68)', ...serif }}
+          >
+            When an inspector, insurer, customer, or owner asks, this is what the First-Pull Packet&trade; produces — in order.
+          </p>
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {kit.keyProof.map((item, i) => (
+              <li
+                key={i}
+                className="flex items-start gap-3 p-4 rounded-md"
+                style={{ background: 'white', border: `1px solid ${BORDER}` }}
+                data-testid={`kit-detail-proof-${i}`}
+              >
+                <ClipboardList size={16} strokeWidth={2.2} style={{ color: GOLD, flexShrink: 0, marginTop: 2 }} />
+                <span className="text-[14.5px] leading-[1.55]" style={{ color: NAVY, ...serif }}>
+                  {item}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* ═══════════ PRICING TIERS ═══════════ */}
+      <div id="pricing">
+        <KitPricingTiers kitSlug={slug} ready={kit.ready} />
+      </div>
+
+      {/* ═══════════ PREFER WE BUILD IT WITH YOU ═══════════ */}
+      <section className="px-5 md:px-8 py-16 md:py-20 bg-white border-t" style={{ borderColor: BORDER }} data-testid="kit-detail-done-with-you">
+        <div className="max-w-3xl mx-auto text-center">
+          <p
+            className="uppercase font-bold tracking-[0.28em] mb-3"
+            style={{ color: GOLD, ...mono, fontSize: '11px' }}
+          >
+            Prefer We Build It With You?
+          </p>
+          <h3
+            className="text-2xl md:text-3xl font-bold leading-tight mb-4"
+            style={{ color: NAVY, ...sans }}
+          >
+            The Binder Edition isn&rsquo;t just a printed kit.
+          </h3>
+          <p
+            className="text-[15.5px] md:text-[17px] leading-[1.7] mb-6"
+            style={{ color: 'rgba(10,22,40,0.72)', ...serif }}
+          >
+            If you don&rsquo;t want another download sitting on your computer, GigLine will help assemble the binder, organize the First-Pull Packet&trade;, and walk you through setup so the system is running before we leave the call.
+          </p>
+          <Link
+            to={kit.ready ? `/contact?kit=${slug}&tier=binder&price=600&intent=purchase` : `/contact?kit=${slug}&tier=binder&intent=notify`}
+            className="inline-flex items-center gap-2 font-bold py-3 px-6 rounded transition-all text-[14px]"
+            style={{ background: NAVY, color: 'white', ...sans }}
+            data-testid="kit-detail-done-with-you-cta"
+          >
+            {kit.ready ? 'Choose Binder Edition' : 'Notify Me When Binder Edition Ships'}
+            <ArrowRight size={14} />
+          </Link>
+        </div>
+      </section>
+
+      {/* ═══════════ KIT-SPECIFIC FAQ ═══════════ */}
+      {kit.faq && kit.faq.length > 0 && (
+        <section className="px-5 md:px-8 py-20 md:py-24" style={{ background: BG_WARM }} data-testid="kit-detail-faq">
+          <div className="max-w-3xl mx-auto">
+            <p
+              className="uppercase font-bold tracking-[0.28em] mb-3"
+              style={{ color: GOLD, ...mono, fontSize: '11px' }}
+            >
+              Frequently Asked
+            </p>
+            <h2
+              className="text-2xl md:text-3xl lg:text-4xl font-extrabold leading-[1.15] mb-8 tracking-tight"
+              style={{ color: NAVY, ...sans }}
+            >
+              What buyers ask before they order.
+            </h2>
+            <div className="space-y-5">
+              {kit.faq.map((item, i) => (
+                <details
+                  key={i}
+                  className="group rounded-md p-5 md:p-6"
+                  style={{ background: 'white', border: `1px solid ${BORDER}` }}
+                  data-testid={`kit-detail-faq-item-${i}`}
+                >
+                  <summary
+                    className="cursor-pointer font-bold text-[15.5px] md:text-[16.5px] leading-snug list-none flex items-start gap-3"
+                    style={{ color: NAVY, ...sans }}
+                  >
+                    <span
+                      className="inline-block mt-1"
+                      style={{ color: GOLD, ...mono, fontSize: '14px', flexShrink: 0 }}
+                    >
+                      Q.
+                    </span>
+                    <span>{item.q}</span>
+                  </summary>
+                  <p
+                    className="mt-3 pl-7 text-[14.5px] md:text-[15.5px] leading-[1.7]"
+                    style={{ color: 'rgba(10,22,40,0.72)', ...serif }}
+                  >
+                    {item.a}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ═══════════ COMPLIANCE NOTE ═══════════ */}
+      <section className="px-5 md:px-8 py-14 md:py-16 border-t" style={{ background: PANEL, borderColor: BORDER }} data-testid="kit-detail-compliance-note">
+        <div className="max-w-3xl mx-auto">
+          <p
+            className="uppercase font-bold tracking-[0.28em] mb-3"
+            style={{ color: 'rgba(10,22,40,0.5)', ...mono, fontSize: '10.5px' }}
+          >
+            Important Notice
+          </p>
+          <p className="text-[14.5px] md:text-[16px] leading-[1.7]" style={{ color: 'rgba(10,22,40,0.72)', ...serif }}>
+            This kit is a compliance-readiness tool. It does not guarantee OSHA compliance, prevent citations, or replace a qualified on-site assessment. Only OSHA determines compliance. Every facility, machine, task, and workforce is different.
+          </p>
+        </div>
+      </section>
+
+      {/* ═══════════ RELATED KITS ═══════════ */}
+      <section className="px-5 md:px-8 py-16 md:py-20 bg-white border-t" style={{ borderColor: BORDER }} data-testid="kit-detail-related">
+        <div className="max-w-5xl mx-auto">
+          <p
+            className="uppercase font-bold tracking-[0.28em] mb-3"
+            style={{ color: GOLD, ...mono, fontSize: '11px' }}
+          >
+            Other Kits in the Series
+          </p>
+          <h3
+            className="text-xl md:text-2xl font-bold leading-tight mb-8"
+            style={{ color: NAVY, ...sans }}
+          >
+            Other proof gaps you might need to close.
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {KIT_CATALOG.filter((k) => k.slug !== slug).slice(0, 3).map((k) => (
+              <Link
+                key={k.slug}
+                to={`/citation-proof-kits/${k.slug}`}
+                className="group block rounded-md p-5 transition-shadow"
+                style={{ background: '#FBFBF9', border: `1px solid ${BORDER}` }}
+                onMouseEnter={(e) => (e.currentTarget.style.boxShadow = '0 10px 24px rgba(16,42,67,0.08)')}
+                onMouseLeave={(e) => (e.currentTarget.style.boxShadow = 'none')}
+                data-testid={`kit-detail-related-${k.slug}`}
+              >
+                <p
+                  className="uppercase font-bold tracking-[0.18em] mb-2"
+                  style={{ color: 'rgba(10,22,40,0.5)', ...mono, fontSize: '10px' }}
+                >
+                  {k.ready ? 'Available' : 'In Build'}
+                </p>
+                <h4 className="font-bold text-[15.5px] leading-snug mb-2" style={{ color: NAVY, ...sans }}>
+                  {k.name}
+                </h4>
+                <p className="text-[13.5px] leading-[1.55]" style={{ color: 'rgba(10,22,40,0.65)', ...serif }}>
+                  {k.outcome}
+                </p>
+                <span
+                  className="inline-flex items-center gap-1.5 mt-3 font-bold text-[12.5px]"
+                  style={{ color: NAVY, ...sans }}
+                >
+                  View Kit
+                  <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+};
+
+const HeroSupportCard = ({ label, value, accent = 'rgba(10,22,40,0.5)' }) => (
+  <div
+    className="rounded-md p-3 md:p-4"
+    style={{ background: 'white', border: `1px solid ${BORDER}` }}
+  >
+    <p
+      className="uppercase font-bold tracking-[0.15em] mb-1"
+      style={{ color: accent, ...mono, fontSize: '9.5px' }}
+    >
+      {label}
+    </p>
+    <p className="text-[12.5px] md:text-[13px] font-bold leading-tight" style={{ color: NAVY, ...sans }}>
+      {value}
+    </p>
+  </div>
+);
+
+export default CitationProofKitDetailPage;

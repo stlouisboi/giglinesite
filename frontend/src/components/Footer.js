@@ -79,6 +79,7 @@ const Footer = () => {
                 {[
                   { name: 'Home', path: '/' },
                   { name: 'Services', path: '/services' },
+                  { name: 'Citation-Proof Kits', path: '/citation-proof-kits' },
                   { name: 'Field Notes', path: '/field-notes' },
                   { name: 'Blog', path: '/blog' },
                   { name: 'Service Areas', path: '/service-areas' },
@@ -121,6 +122,11 @@ const Footer = () => {
                     path: '/supervisor-kit',
                     desc: '17 documents. CFR-cited. $600 digital · $700 physical. Included free with every Compliance Readiness Visit.',
                   }] : []),
+                  {
+                    name: 'Citation-Proof Kit Series',
+                    path: '/citation-proof-kits',
+                    desc: 'Five compliance-control kits: LOTO, Forklift/PIT, HazCom, Incident-to-Correction, and New Hire. Starting at $150.',
+                  },
                   {
                     name: 'Sample Compliance Report',
                     path: '/sample-report',

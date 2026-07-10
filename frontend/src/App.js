@@ -66,6 +66,10 @@ const BlogHazComPreInspection         = lazy(() => import('./pages/BlogHazComPre
 const BlogOSHA300LogMistakes          = lazy(() => import('./pages/BlogOSHA300LogMistakes'));
 const BlogMidYear2026OshaUpdate       = lazy(() => import('./pages/BlogMidYear2026OshaUpdate'));
 
+// Citation-Proof Kit Series
+const CitationProofKitsPage           = lazy(() => import('./pages/CitationProofKitsPage'));
+const CitationProofKitDetailPage      = lazy(() => import('./pages/CitationProofKitDetailPage'));
+
 import './App.css';
 
 // Minimal skeleton shown while a lazy chunk loads. Kept small so it never
@@ -167,6 +171,11 @@ function App() {
                     <Route path="/service-areas" element={<ServiceAreasPage />} />
                     <Route path="/case-study/metals-fabrication-statesville" element={<CaseStudyMetalsFabricationPage />} />
                     <Route path="/case-studies/mocksville-plastics-osha-inspection" element={<Navigate to="/case-study/metals-fabrication-statesville" replace />} />
+                    {/* Citation-Proof Kit Series */}
+                    <Route path="/citation-proof-kits" element={<CitationProofKitsPage />} />
+                    <Route path="/citation-proof-kits/:slug" element={<CitationProofKitDetailPage />} />
+                    <Route path="/kits" element={<Navigate to="/citation-proof-kits" replace />} />
+                    <Route path="/kits/*" element={<Navigate to="/citation-proof-kits" replace />} />
                     {SUPERVISOR_KIT_ENABLED ? (
                       <>
                         <Route path="/supervisor-kit" element={<SupervisorKitPage />} />

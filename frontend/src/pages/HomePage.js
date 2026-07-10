@@ -1039,6 +1039,132 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* ═══ LATEST FROM THE FIELD — 3 recent Field Notes + Mid-Year 2026 blog ═══ */}
+      <section
+        className="py-16 md:py-24 bg-white border-t"
+        style={{ borderColor: '#e8e5dd' }}
+        data-testid="latest-from-field-section"
+      >
+        <div className="container max-w-6xl mx-auto px-5 md:px-8">
+          <Reveal>
+            <p
+              className="uppercase font-bold tracking-[0.28em] mb-3"
+              style={{ color: '#C9A84C', ...mono, fontSize: '11px' }}
+            >
+              Latest From the Field
+            </p>
+            <h2
+              className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#102A43] leading-[1.15] mb-3 tracking-tight"
+              style={heading}
+            >
+              What Vince is seeing on Piedmont Triad floors right now.
+            </h2>
+            <p
+              className="text-base md:text-[17px] leading-relaxed max-w-2xl mb-12"
+              style={{ color: 'rgba(10,22,40,0.65)', fontFamily: "Georgia, serif" }}
+            >
+              Plain-language field notes and mid-year updates &mdash; no fluff, no fear-mongering, no consultant-speak.
+            </p>
+          </Reveal>
+
+          {(() => {
+            const cards = [
+              {
+                type: 'Blog Post',
+                to: '/blog/mid-year-2026-osha-update-nc-manufacturers',
+                title: 'Mid-Year 2026 OSHA Update for NC Manufacturers',
+                blurb: 'Heat rule progress, silica enforcement, penalty adjustments, and 4 more shifts Piedmont operations need to know before Q3.',
+                testid: 'latest-blog-mid-year-2026',
+              },
+              {
+                type: 'Field Note',
+                to: '/field-notes/ai-generated-safety-programs',
+                title: 'AI-Generated Safety Programs',
+                blurb: 'ChatGPT can write an OSHA program that looks compliant &mdash; until an inspector arrives. What AI cannot see on your floor.',
+                testid: 'latest-field-note-ai-generated',
+              },
+              {
+                type: 'Field Note',
+                to: '/field-notes/heat-stress',
+                title: 'Heat Stress',
+                blurb: 'How heat exposure gets missed, what triggers the OSHA NEP, and what small operations can do about it before July.',
+                testid: 'latest-field-note-heat-stress',
+              },
+              {
+                type: 'Field Note',
+                to: '/field-notes/forklift-safety',
+                title: 'Forklift Safety',
+                blurb: 'Certification gets the headlines. Daily inspections and pedestrian separation are where most operations break down.',
+                testid: 'latest-field-note-forklift',
+              },
+            ];
+            return (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5" data-testid="latest-from-field-grid">
+                {cards.map((c, i) => (
+                  <Reveal key={c.to} delay={i * 80}>
+                    <Link
+                      to={c.to}
+                      className="group block h-full rounded-md p-5 md:p-6 transition-shadow"
+                      style={{
+                        background: '#FBFBF9',
+                        border: '1px solid #e8e5dd',
+                        boxShadow: '0 4px 12px rgba(16,42,67,0.04)',
+                      }}
+                      onMouseEnter={(e) => (e.currentTarget.style.boxShadow = '0 10px 28px rgba(16,42,67,0.10)')}
+                      onMouseLeave={(e) => (e.currentTarget.style.boxShadow = '0 4px 12px rgba(16,42,67,0.04)')}
+                      data-testid={c.testid}
+                    >
+                      <p
+                        className="uppercase font-bold tracking-[0.18em] mb-3"
+                        style={{
+                          color: c.type === 'Blog Post' ? '#C9A84C' : 'rgba(10,22,40,0.5)',
+                          ...mono,
+                          fontSize: '10.5px',
+                        }}
+                      >
+                        {c.type}
+                      </p>
+                      <h3
+                        className="font-bold text-[17px] md:text-[18px] leading-snug mb-2.5"
+                        style={{ color: '#102A43', ...heading }}
+                      >
+                        {c.title}
+                      </h3>
+                      <p
+                        className="text-[14px] md:text-[14.5px] leading-[1.6] mb-4"
+                        style={{ color: 'rgba(10,22,40,0.65)', fontFamily: "Georgia, serif" }}
+                        dangerouslySetInnerHTML={{ __html: c.blurb }}
+                      />
+                      <span
+                        className="inline-flex items-center gap-1.5 font-bold text-[13px]"
+                        style={{ color: '#102A43' }}
+                      >
+                        Read {c.type === 'Blog Post' ? 'the post' : 'the note'}
+                        <ArrowRight size={13} className="transition-transform group-hover:translate-x-0.5" />
+                      </span>
+                    </Link>
+                  </Reveal>
+                ))}
+              </div>
+            );
+          })()}
+
+          <Reveal>
+            <div className="mt-10 text-center">
+              <Link
+                to="/field-notes"
+                className="inline-flex items-center gap-2 font-bold text-[14px] md:text-[15px] underline hover:no-underline"
+                style={{ color: '#102A43' }}
+                data-testid="latest-from-field-view-all"
+              >
+                Browse all Field Notes
+                <ArrowRight size={14} />
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ═══ SECTION 8 — ABOUT GIGLINE (dark navy, two-column) ═══ */}
       <section className="py-16 md:py-24" style={{ backgroundColor: '#102A43' }} data-testid="about-section">
         <div className="container max-w-6xl">

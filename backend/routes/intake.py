@@ -514,6 +514,19 @@ async def submit_intake(data: IntakeSubmission):
     <li style="margin-bottom:4px;">You receive a proposed scope and fixed quote within 1 business day.</li>
     <li style="margin-bottom:4px;">Once confirmed, the engagement is scheduled at a time that works for your operation.</li>
   </ol>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:18px 0 22px;">
+    <tr>
+      <td style="border-left:3px solid #C9A84C;padding:6px 0 6px 14px;">
+        <p style="font-size:15px;font-style:italic;color:#4A5A6A;margin:0 0 6px;line-height:1.55;">
+          Most safety gaps do not start as major failures. They start as things someone noticed,
+          mentioned, meant to fix, and never documented all the way through.
+        </p>
+        <p style="font-size:14px;font-weight:bold;color:#0A1628;margin:0;font-family:Arial,sans-serif;">
+          That&rsquo;s what this engagement is here to close.
+        </p>
+      </td>
+    </tr>
+  </table>
   <p style="font-size:15px;">While you&rsquo;re waiting, here&rsquo;s something worth keeping:</p>
   <p style="font-size:15px;">The <strong>2026 Triad OSHA Field Manual</strong>. 12 pages. The 7 violations OSHA cites Piedmont Triad operations for most often &mdash; CFR codes, penalty ranges, and the fix for each one.</p>
   <p style="font-size:15px;margin:14px 0;">

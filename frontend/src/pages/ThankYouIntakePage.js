@@ -87,6 +87,27 @@ const ThankYouIntakePage = () => {
               desc="Once you approve the quote, Vince schedules the walkthrough, review, or service start at a time that works for your operation."
             />
           </div>
+
+          {/* Mindset-shift pull quote — mirrors the /supervisor-kit "visibility problem" framing */}
+          <div
+            className="mt-12 md:mt-14 border-l-4 pl-5 md:pl-6 py-2"
+            style={{ borderColor: GOLD }}
+            data-testid="thankyou-mindset-pullquote"
+          >
+            <p
+              className="text-[15px] md:text-[17px] leading-[1.65] italic"
+              style={{ color: 'rgba(11,31,51,0.72)', fontFamily: "Georgia, 'Times New Roman', serif" }}
+            >
+              Most safety gaps do not start as major failures. They start as things someone noticed,
+              mentioned, meant to fix, and never documented all the way through.
+            </p>
+            <p
+              className="mt-3 text-[14px] md:text-[15px] font-bold not-italic"
+              style={{ color: NAVY, ...heading }}
+            >
+              That&rsquo;s what this engagement is here to close.
+            </p>
+          </div>
         </div>
       </section>
 

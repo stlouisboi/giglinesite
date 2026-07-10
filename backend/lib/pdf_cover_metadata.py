@@ -105,7 +105,9 @@ COVERS = {
     'gl-doc-review-prep-checklist.pdf': dict(
         title='Documentation Readiness Review',
         subtitle='Pre-Engagement Prep Checklist',
-        body='What to pull together before your GigLine Documentation Readiness Review so we can score your files against the same standard OSHA uses — and give you a compliance % on day one.',
+        body=('Safety documentation is not about having forms — it is about proving the work is being '
+              'followed through. Pull these records together so we can score what you already have and '
+              'show you exactly where the visibility gaps are.'),
         header_slug='PROSPECT PREP | VERSION 2026',
         version_footer='2026 Edition',
         whats_inside_items=[

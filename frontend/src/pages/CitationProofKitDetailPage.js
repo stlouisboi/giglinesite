@@ -683,24 +683,27 @@ const CitationProofKitDetailPage = () => {
   );
 };
 
-const HeroSupportCard = ({ label, value, accent = 'rgba(10,22,40,0.5)', onDark = false }) => (
-  <div
-    className="rounded-md p-3 md:p-4"
-    style={{
-      background: onDark ? 'rgba(255,255,255,0.06)' : 'white',
-      border: onDark ? '1px solid rgba(255,255,255,0.12)' : `1px solid ${BORDER}`,
-    }}
-  >
-    <p
-      className="uppercase font-bold tracking-[0.15em] mb-1"
-      style={{ color: accent, ...mono, fontSize: '9.5px' }}
+const HeroSupportCard = ({ label, value, accent, onDark = false }) => {
+  const labelColor = accent || (onDark ? 'rgba(255,255,255,0.55)' : 'rgba(10,22,40,0.5)');
+  return (
+    <div
+      className="rounded-md p-3 md:p-4"
+      style={{
+        background: onDark ? 'rgba(255,255,255,0.06)' : 'white',
+        border: onDark ? '1px solid rgba(255,255,255,0.12)' : `1px solid ${BORDER}`,
+      }}
     >
-      {label}
-    </p>
-    <p className="text-[12.5px] md:text-[13px] font-bold leading-tight" style={{ color: onDark ? 'white' : NAVY, ...sans }}>
-      {value}
-    </p>
-  </div>
-);
+      <p
+        className="uppercase font-bold tracking-[0.15em] mb-1"
+        style={{ color: labelColor, ...mono, fontSize: '9.5px' }}
+      >
+        {label}
+      </p>
+      <p className="text-[12.5px] md:text-[13px] font-bold leading-tight" style={{ color: onDark ? 'white' : NAVY, ...sans }}>
+        {value}
+      </p>
+    </div>
+  );
+};
 
 export default CitationProofKitDetailPage;

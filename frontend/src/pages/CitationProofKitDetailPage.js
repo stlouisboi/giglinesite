@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
-import { ArrowRight, ArrowLeft, Check, ShieldCheck, ClipboardList, Lock } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Check, ShieldCheck, ClipboardList, Lock, AlertTriangle } from 'lucide-react';
 import SEO from '../components/SEO';
 import ProofGapEngineSteps from '../components/ProofGapEngineSteps';
 import KitPricingTiers from '../components/KitPricingTiers';
@@ -185,6 +185,68 @@ const CitationProofKitDetailPage = () => {
         </div>
       </section>
 
+      {/* ═══════════ WHAT'S AT STAKE (optional — only if kit provides stakes) ═══════════ */}
+      {kit.stakes && (
+        <section
+          className="px-5 md:px-8 py-16 md:py-20 border-t"
+          style={{ background: NAVY, color: 'white', borderColor: 'rgba(255,255,255,0.08)' }}
+          data-testid="kit-detail-stakes"
+        >
+          <div className="max-w-6xl mx-auto">
+            <div className="max-w-3xl mb-10">
+              <p
+                className="uppercase font-bold tracking-[0.28em] mb-3 inline-flex items-center gap-2"
+                style={{ color: GOLD, ...mono, fontSize: '11px' }}
+              >
+                <AlertTriangle size={13} />
+                {kit.stakes.kicker}
+              </p>
+              <h2
+                className="text-2xl md:text-3xl lg:text-4xl font-extrabold leading-[1.15] mb-4 tracking-tight"
+                style={{ ...sans, color: 'white' }}
+              >
+                {kit.stakes.headline}
+              </h2>
+              <p className="text-[15.5px] md:text-[17px] leading-[1.7]" style={{ color: 'rgba(255,255,255,0.78)', ...serif }}>
+                {kit.stakes.body}
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+              {kit.stakes.stats.map((s, i) => (
+                <div
+                  key={i}
+                  className="rounded-md p-6 md:p-7"
+                  style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.10)' }}
+                  data-testid={`kit-detail-stakes-stat-${i}`}
+                >
+                  <p
+                    className="uppercase font-bold tracking-[0.15em] mb-2"
+                    style={{ color: GOLD, ...mono, fontSize: '10px' }}
+                  >
+                    {s.label}
+                  </p>
+                  <p
+                    className="font-extrabold text-[32px] md:text-[38px] leading-none mb-3"
+                    style={{ color: 'white', ...sans }}
+                  >
+                    {s.value}
+                  </p>
+                  <p className="text-[13.5px] leading-[1.55]" style={{ color: 'rgba(255,255,255,0.72)', ...serif }}>
+                    {s.sub}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <p
+              className="mt-6 text-[12.5px] italic"
+              style={{ color: 'rgba(255,255,255,0.5)', ...serif }}
+            >
+              {kit.stakes.source}
+            </p>
+          </div>
+        </section>
+      )}
+
       {/* ═══════════ WHAT THIS KIT GETS YOU (outcome-first) ═══════════ */}
       <section className="px-5 md:px-8 py-20 md:py-24 bg-white border-t" style={{ borderColor: BORDER }} data-testid="kit-detail-outcomes">
         <div className="max-w-6xl mx-auto">
@@ -233,6 +295,67 @@ const CitationProofKitDetailPage = () => {
           </div>
         </div>
       </section>
+
+      {/* ═══════════ CONTROL MECHANISMS (optional — outcome-first tool cards) ═══════════ */}
+      {kit.controlMechanisms && kit.controlMechanisms.length > 0 && (
+        <section
+          className="px-5 md:px-8 py-20 md:py-24 border-t"
+          style={{ background: BG_WARM, borderColor: BORDER }}
+          data-testid="kit-detail-control-mechanisms"
+        >
+          <div className="max-w-6xl mx-auto">
+            <div className="mb-12 max-w-3xl">
+              <p
+                className="uppercase font-bold tracking-[0.28em] mb-3"
+                style={{ color: GOLD, ...mono, fontSize: '11px' }}
+              >
+                The Control Mechanisms Inside
+              </p>
+              <h2
+                className="text-2xl md:text-3xl lg:text-4xl font-extrabold leading-[1.15] mb-4 tracking-tight"
+                style={{ color: NAVY, ...sans }}
+              >
+                Four tools. Each one does a specific job.
+              </h2>
+              <p className="text-base md:text-[17px] leading-relaxed" style={{ color: 'rgba(10,22,40,0.68)', ...serif }}>
+                You&rsquo;re not buying a folder of forms. You&rsquo;re buying a set of control mechanisms &mdash; each engineered to close a specific proof gap.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+              {kit.controlMechanisms.map((cm, i) => (
+                <div
+                  key={i}
+                  className="rounded-md p-6 md:p-7"
+                  style={{ background: 'white', border: `1px solid ${BORDER}` }}
+                  data-testid={`kit-detail-mechanism-${i}`}
+                >
+                  {/* OUTCOME leads (the point of Vince's rule) */}
+                  <p
+                    className="font-bold text-[17px] md:text-[18.5px] leading-snug mb-4"
+                    style={{ color: NAVY, ...sans, fontFeatureSettings: '"liga" 0, "clig" 0, "dlig" 0' }}
+                  >
+                    {cm.outcome}
+                  </p>
+                  <div className="pt-4 border-t" style={{ borderColor: BORDER }}>
+                    <p
+                      className="uppercase font-bold tracking-[0.15em] mb-1.5"
+                      style={{ color: GOLD, ...mono, fontSize: '10px' }}
+                    >
+                      The Tool That Makes It Possible
+                    </p>
+                    <p className="text-[15px] font-bold leading-snug mb-1.5" style={{ color: NAVY, ...sans }}>
+                      {cm.toolName}
+                    </p>
+                    <p className="text-[13.5px] leading-[1.55] italic" style={{ color: 'rgba(10,22,40,0.65)', ...serif }}>
+                      {cm.toolNote}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ═══════════ HOW THE KIT WORKS (4-step framework) ═══════════ */}
       <ProofGapEngineSteps

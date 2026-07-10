@@ -110,9 +110,9 @@ export const KIT_CATALOG = [
   {
     slug: 'loto-readiness-kit',
     name: 'Machine-Specific LOTO Readiness Kit',
-    outcome: 'Prove every machine has a written, photo-verified lockout procedure supervisors can actually run.',
-    problem: 'We do not have written, machine-specific lockout/tagout procedures — or the ones we have don’t match the floor.',
-    controlTool: 'Photo Lockout Map™',
+    outcome: 'Build machine-specific LOTO proof your team can actually follow on the floor.',
+    problem: 'We can’t produce a written procedure for each machine — and the ones we have don’t match the equipment or the isolation points.',
+    controlTool: 'Machine-Specific Procedure Builder™ + Photo Lockout Map™',
     startingAt: 150,
     startingAtLabel: 'Starting at $150',
     ready: true,
@@ -169,35 +169,71 @@ export const KIT_DETAILS = {
     standard: '29 CFR 1910.147',
     ready: true,
     // Hero (5-step outcome-first structure)
-    outcomeHeadline: 'Prove every machine has a written, photo-verified lockout procedure your supervisors can actually run.',
-    problemStatement: 'Most facilities have some LOTO paperwork — but nobody can show a specific procedure for a specific machine, with photos of the energy sources, the isolation points, and the verification steps.',
-    proofPromise: 'This kit organizes energy-control procedures machine by machine, so any supervisor can pull the right lockout sheet and any operator can see the exact points to isolate.',
-    proprietaryToolName: 'Photo Lockout Map™',
-    proprietaryToolDescription: 'A visual lockout guide that attaches labeled photos of the actual machine, energy-isolating devices, stored-energy points, verification points, installed lockout devices, and danger zones. This is the control mechanism that makes machine-specific LOTO real instead of theoretical.',
-    scoreIndexName: 'Energy-Control Readiness Index™',
+    outcomeHeadline: 'Build machine-specific LOTO proof your team can actually follow on the floor.',
+    problemStatement: 'OSHA cites employers for missing machine-specific lockout procedures more than any other 1910.147 failure. A one-page policy that says “lock out equipment before servicing” does not satisfy the standard — (c)(4)(i) requires a documented procedure for each machine, and (c)(4)(ii) defines the exact elements it must contain.',
+    proofPromise: 'This kit walks a non-expert through every required element, machine by machine — with photo isolation maps, a 0–100 self-audit mapped to the CFR sub-paragraphs OSHA cites, and the exact sequence of documents an inspector asks for first.',
+    proprietaryToolName: 'Machine-Specific Procedure Builder™ + Photo Lockout Map™',
+    proprietaryToolDescription: 'The Procedure Builder™ is the primary control tool — an 11-step generator that produces a compliant (c)(4) procedure for any machine. Photo Lockout Map™ is Step 4A: labeled photos of every isolation point on the actual machine, so any authorized employee — or an inspector — can see the lockout at a glance instead of reading a generic template.',
+    scoreIndexName: 'Citation-Proof Score™ (0–100)',
     // Flow line for hero support
     flowLine: ['Identify', 'Shut Down', 'Isolate', 'Verify', 'Certify'],
+    // Stakes strip — factual, cited to OSHA source
+    stakes: {
+      kicker: 'What’s at Stake in 2026',
+      headline: 'OSHA’s #4 most-cited standard.',
+      body: 'FY2025 lockout/tagout citations totaled 2,177 — the #1 root cause was the absence of a written, machine-specific energy-control procedure. Penalties are frozen at 2025 levels — the highest in the agency’s history.',
+      stats: [
+        { value: '$16,550', label: 'Per Serious Violation', sub: 'The maximum for a serious or other-than-serious citation.' },
+        { value: '$165,514', label: 'Per Willful or Repeat', sub: 'The maximum where OSHA shows you knew and did nothing — or cited you before.' },
+        { value: '2,177', label: 'FY2025 LOTO Citations', sub: 'OSHA’s #4 most-cited standard. Instance-by-instance policy multiplies exposure per worker.' },
+      ],
+      source: 'Source: 2026 OSHA civil penalty schedule; OSHA FY2025 Top 10 Most-Cited Standards.',
+    },
     // What this kit gets you (outcome-first, not feature-list)
     outcomes: [
-      { headline: 'Machine-specific lockout procedures that actually exist', body: 'Every powered piece of equipment gets its own written procedure with photos of the energy sources and isolation points — not a generic template with the wrong machine name.' },
-      { headline: 'Annual inspection certification you can pull on demand', body: 'The annual LOTO procedure inspection required under 1910.147(c)(6) becomes a scheduled event with a signed certification form for each machine.' },
-      { headline: 'A training log that ties each employee to each procedure', body: 'Authorized, affected, and other employees are documented against the specific procedures they were trained on — not a single blanket sign-in sheet.' },
-      { headline: 'A lock and tag register that survives turnover', body: 'Every lock, tag, and hasp is assigned, tracked, and reissued when employees leave. The register makes the physical control system auditable.' },
+      { headline: 'A defensible procedure for every machine — not a generic template', body: 'The 11-step Procedure Builder™ walks a non-expert through every element required by (c)(4)(ii): use statement, energy survey, shutdown, isolation, stored-energy release, verification, and release. Two fully worked examples (a 50-ton hydraulic press and a Haas VF-2 CNC) show what a completed procedure looks like end to end.' },
+      { headline: 'A 0–100 self-audit that tells you exactly where you stand', body: 'The Citation-Proof Score™ Rubric grades your program against the ten line items OSHA actually cites, each mapped to its exact CFR sub-paragraph. Score 90+ and you’re Citation-Proof. Under 50 and a citation is likely — you know which document closes each gap before OSHA asks for it.' },
+      { headline: 'Photo isolation maps that end the “where do I lock it?” conversation', body: 'Photo Lockout Map™ (Step 4A) attaches labeled photos of the main disconnect, air shutoff, hydraulic bleed, stored-energy point, verification point, and danger zone. Any authorized employee — including one who’s never worked that machine — can see the lockout at a glance.' },
+      { headline: 'The Inspector’s First 10 Questions — and the exact document that answers each', body: 'When a CSHO opens a LOTO inspection, they ask for documents in a predictable order. This card gives you the question, why it’s asked, and the item from your binder that answers it. If you can produce items 1–4 in under two minutes, you’ve already shown an active safety-management system.' },
     ],
-    // Proprietary tool callout section
+    // Optional: Control mechanisms section (outcome-first, tool as mechanism)
+    controlMechanisms: [
+      {
+        outcome: 'Generate a compliant (c)(4) procedure for any machine — without hiring a consultant.',
+        toolName: 'Machine-Specific Procedure Builder™',
+        toolNote: 'Step-by-step 11-step generator with the Energy Source Decoder™ built in.',
+      },
+      {
+        outcome: 'Know your program’s citation exposure in ten minutes — before OSHA scores it for you.',
+        toolName: 'Citation-Proof Score™ Rubric',
+        toolNote: '0–100 self-audit mapped to the exact CFR sub-paragraphs.',
+      },
+      {
+        outcome: 'Hand over proof in the order an inspector asks for it — instead of scrambling.',
+        toolName: 'Inspector’s First 10 Questions Card',
+        toolNote: 'The predictable CSHO sequence + the item from your kit that answers each.',
+      },
+      {
+        outcome: 'Show any employee where every lock, bleed valve, and verification point lives — with photos.',
+        toolName: 'Photo Lockout Map™',
+        toolNote: 'Step 4A of the Procedure Builder — visual proof, not paragraphs.',
+      },
+    ],
     // Key proof section
     keyProof: [
-      'Written energy-control program aligned to 1910.147',
-      'Machine-specific procedures with photo isolation maps',
-      'Annual procedure inspection certification',
-      'Authorized / affected / other employee training log',
-      'Lock and tag register with reissue tracking',
+      'Written Energy-Control Program (Form A) — (c)(1)',
+      'Machine-specific procedures with Photo Lockout Maps — (c)(4)(i)(ii)',
+      'Periodic Inspection Certification (Form B) — (c)(6)',
+      'Training Certification Log (Form C) — (c)(7)(iv)',
+      'Lock & Tag Assignment Register (Form D) — (c)(5)',
+      'Two fully worked examples — 50-ton press and Haas VF-2 CNC',
     ],
     // Kit-specific FAQ
     faq: [
-      { q: 'Do I need a separate procedure for every machine?', a: 'Yes, if the machine has different energy sources, isolation points, or hazard controls. OSHA is explicit under 1910.147(c)(4) — procedures must be specific enough that an authorized employee can perform the isolation. Generic templates are a citation risk.' },
-      { q: 'What does the Photo Lockout Map replace?', a: 'It replaces the assumption that operators know where each isolation point is. Photos of the actual machine make the procedure usable by any authorized employee — including someone who has never worked that machine before.' },
-      { q: 'Does this cover contractor lockout?', a: 'The kit includes the outer program language for host-employer / contractor coordination, but the on-site coordination itself is a facility policy that we help you document, not a pre-fillable form.' },
+      { q: 'Do I need a separate procedure for every machine?', a: 'Yes, if the machine has different energy sources, isolation points, or hazard controls. OSHA is explicit under 1910.147(c)(4) — procedures must be specific enough that an authorized employee can perform the isolation. Generic templates are the #1 LOTO citation.' },
+      { q: 'What does the Photo Lockout Map replace?', a: 'It replaces the assumption that operators know where each isolation point is. Photos of the actual machine make the procedure usable by any authorized employee — including someone who has never worked that machine before, or an inspector reading it in real time.' },
+      { q: 'How does the Citation-Proof Score™ work?', a: 'It’s a 0–100 rubric graded against the ten LOTO line items OSHA actually cites, each mapped to a specific CFR sub-paragraph. Full points if it exists, is signed and dated, and matches the floor. Half points if it’s incomplete or generic. Zero if it’s missing or contradicted by practice. Under 50 = citation likely. 90+ = Citation-Proof. It is a readiness self-assessment, not a legal certification.' },
+      { q: 'Does this cover contractor lockout?', a: 'Yes — Step 10 of the Procedure Builder addresses (f)(2) host-employer / contractor coordination and (f)(3) group LOTO methods (lockbox, multi-lock hasp). The on-site coordination itself is a facility policy the kit helps you document.' },
     ],
   },
 

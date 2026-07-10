@@ -16,6 +16,8 @@ const NOTES = {
     subtitle: 'What Actually Matters on the Floor',
     seo: 'Heat stress safety for small operations. What gets missed, what OSHA looks for, and what to do about it.',
     cfrCitation: 'OSHA General Duty Clause — Section 5(a)(1) · OSHA NEP CPL 03-00-024 (Heat Hazard NEP)',
+    heroImage: '/assets/field-notes/heat-stress-cooldown-station.webp',
+    heroImageAlt: 'Manufacturing floor cool-down station with water cooler, "Water. Rest. Shade." signage, and workers under the 96°F heat index — GigLine field photo',
     download: {
       title: '2026 Heat Stress Action Template',
       description: 'A printable checklist and action plan for managing heat stress on the floor. Built for small operations.',

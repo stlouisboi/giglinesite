@@ -296,7 +296,7 @@ const SupervisorKitPage = () => {
     <main data-testid="supervisor-kit-page" style={{ backgroundColor: BG_WARM, color: NAVY }}>
       <SEO
         title="GigLine Supervisor Safety OS | Supervisor Safety Documentation System"
-        description="Turn scattered safety paperwork into a supervisor-run documentation system. The GigLine Supervisor Safety OS helps small manufacturing teams inspect, document, assign, verify, and review basic safety responsibilities."
+        description="Turn scattered safety paperwork into a visible supervisor-run system. The GigLine Supervisor Safety OS helps small manufacturing teams inspect, document, assign, verify, and review safety follow-up."
         canonical="/supervisor-kit"
       />
 
@@ -407,14 +407,21 @@ const SupervisorKitPage = () => {
       <section className="px-5 md:px-8 py-20 md:py-24" data-testid="kit-problem">
         <div className="max-w-3xl mx-auto">
           <SectionLabel>The Problem</SectionLabel>
-          <H2>Safety work often happens. The proof does not.</H2>
+          <H2>They don&rsquo;t just have a paperwork problem. They have a visibility problem.</H2>
           <div className="space-y-4 text-[16px] md:text-[17px] leading-[1.75]" style={{ color: TEXT_MUTED, ...serif }}>
+            <p>Safety work often happens. The proof does not.</p>
             <p>In small manufacturing operations, safety responsibilities often live in scattered binders, old folders, supervisor memory, inboxes, and good intentions.</p>
             <p>A hazard may get noticed but never assigned.</p>
             <p>A chemical may be used without a clean inventory record.</p>
             <p>An SDS may exist somewhere, but nobody knows where.</p>
             <p>An inspection may happen, but failed items never move into corrective action.</p>
             <p>A supervisor may care about safety but lack a simple system to run every month.</p>
+            <p style={{ color: NAVY }} className="pt-4 font-semibold not-italic text-[17px] md:text-[18px] leading-[1.6]">
+              Most safety gaps do not start as major failures. They start as things someone noticed, mentioned, meant to fix, and never documented all the way through.
+            </p>
+            <p style={{ color: TEXT_MUTED }} className="not-italic">
+              The Supervisor Safety OS turns those loose ends into a visible system: inspect, document, assign, verify, and review.
+            </p>
             <p style={{ color: NAVY }} className="pt-2 font-bold not-italic">That is the gap the Supervisor Safety OS is built to close.</p>
           </div>
         </div>

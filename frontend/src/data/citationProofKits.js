@@ -116,6 +116,7 @@ export const KIT_CATALOG = [
     startingAt: 150,
     startingAtLabel: 'Starting at $150',
     ready: true,
+    cardImage: '/assets/kits/loto/loto-hero.png',
   },
   {
     slug: 'forklift-pit-readiness-kit',
@@ -168,6 +169,15 @@ export const KIT_DETAILS = {
     system: 'Machine-Specific Energy-Control Documentation & Self-Audit System',
     standard: '29 CFR 1910.147',
     ready: true,
+    // Product image assets — content-rich compositions with baked-in copy.
+    // Presence of these fields triggers image-driven section rendering.
+    productImages: {
+      hero: '/assets/kits/loto/loto-hero.png',
+      problemPanel: '/assets/kits/loto/loto-problem-panel.png',
+      whatsInside: '/assets/kits/loto/loto-whats-inside.png',
+      physicalMockup: '/assets/kits/loto/loto-physical-mockup.png',
+      photoMapSpotlight: '/assets/kits/loto/loto-photo-map.png',
+    },
     // Hero (5-step outcome-first structure)
     outcomeHeadline: 'Build machine-specific LOTO proof your team can actually follow on the floor.',
     problemStatement: 'OSHA cites employers for missing machine-specific lockout procedures more than any other 1910.147 failure. A one-page policy that says “lock out equipment before servicing” does not satisfy the standard — (c)(4)(i) requires a documented procedure for each machine, and (c)(4)(ii) defines the exact elements it must contain.',

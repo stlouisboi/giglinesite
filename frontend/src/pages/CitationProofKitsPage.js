@@ -139,6 +139,20 @@ const CitationProofKitsPage = () => {
                 onMouseLeave={(e) => (e.currentTarget.style.boxShadow = '0 4px 12px rgba(16,42,67,0.05)')}
                 data-testid={`kit-card-${kit.slug}`}
               >
+                {kit.cardImage && (
+                  <div
+                    className="-mx-6 md:-mx-7 -mt-6 md:-mt-7 mb-5 overflow-hidden rounded-t-md"
+                    style={{ background: NAVY }}
+                  >
+                    <img
+                      src={kit.cardImage}
+                      alt={`${kit.name} — product mockup`}
+                      className="w-full h-auto"
+                      style={{ display: 'block' }}
+                      loading="lazy"
+                    />
+                  </div>
+                )}
                 <div className="flex items-start justify-between mb-3">
                   <p
                     className="uppercase font-bold tracking-[0.18em]"

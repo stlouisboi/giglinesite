@@ -33,12 +33,17 @@ const CitationProofKitDetailPage = () => {
       />
 
       {/* ═══════════ HERO ═══════════ */}
-      <section className="px-5 md:px-8 pt-16 md:pt-20 pb-14 md:pb-16" data-testid="kit-detail-hero">
-        <div className="max-w-4xl mx-auto">
+      <section
+        className="px-5 md:px-8 pt-16 md:pt-20 pb-14 md:pb-16"
+        data-testid="kit-detail-hero"
+        style={kit.productImages?.hero ? { background: NAVY, color: 'white' } : {}}
+      >
+        <div className={kit.productImages?.hero ? 'max-w-7xl mx-auto grid grid-cols-1 xl:grid-cols-2 gap-10 xl:gap-14 items-center' : 'max-w-4xl mx-auto'}>
+          <div>
           <Link
             to="/citation-proof-kits"
             className="inline-flex items-center gap-2 text-[13px] font-bold mb-6 hover:underline"
-            style={{ color: 'rgba(10,22,40,0.62)', ...mono }}
+            style={{ color: kit.productImages?.hero ? 'rgba(255,255,255,0.6)' : 'rgba(10,22,40,0.62)', ...mono }}
             data-testid="kit-detail-back-link"
           >
             <ArrowLeft size={13} />
@@ -56,7 +61,7 @@ const CitationProofKitDetailPage = () => {
           {/* 1. OUTCOME HEADLINE (leads with outcome, not features) */}
           <h1
             className="font-bold leading-[1.1] tracking-tight mb-6 text-[30px] md:text-[40px] lg:text-[46px]"
-            style={{ ...sans, color: NAVY }}
+            style={{ ...sans, color: kit.productImages?.hero ? 'white' : NAVY }}
             data-testid="kit-detail-outcome-headline"
           >
             {kit.outcomeHeadline}
@@ -65,7 +70,7 @@ const CitationProofKitDetailPage = () => {
           {/* 2. SHORT PROBLEM STATEMENT */}
           <p
             className="text-[16.5px] md:text-[18.5px] leading-[1.65] max-w-3xl mb-5 italic"
-            style={{ color: 'rgba(10,22,40,0.7)', ...serif }}
+            style={{ color: kit.productImages?.hero ? 'rgba(255,255,255,0.78)' : 'rgba(10,22,40,0.7)', ...serif }}
             data-testid="kit-detail-problem"
           >
             {kit.problemStatement}
@@ -74,16 +79,19 @@ const CitationProofKitDetailPage = () => {
           {/* 3. PROOF/CONTROL PROMISE */}
           <p
             className="text-[16px] md:text-[17.5px] leading-[1.7] max-w-3xl mb-8"
-            style={{ color: NAVY, ...serif }}
+            style={{ color: kit.productImages?.hero ? 'rgba(255,255,255,0.92)' : NAVY, ...serif }}
             data-testid="kit-detail-proof-promise"
           >
-            <strong style={{ ...sans }}>What this kit does:</strong> {kit.proofPromise}
+            <strong style={{ ...sans, color: kit.productImages?.hero ? 'white' : NAVY }}>What this kit does:</strong> {kit.proofPromise}
           </p>
 
           {/* 4. PROPRIETARY TOOL CALLOUT (as mechanism, not product) */}
           <div
             className="rounded-md p-5 md:p-6 mb-10"
-            style={{ background: PANEL, border: `1px solid ${BORDER}` }}
+            style={{
+              background: kit.productImages?.hero ? 'rgba(255,255,255,0.05)' : PANEL,
+              border: kit.productImages?.hero ? '1px solid rgba(255,255,255,0.12)' : `1px solid ${BORDER}`,
+            }}
             data-testid="kit-detail-tool-callout"
           >
             <p
@@ -94,12 +102,12 @@ const CitationProofKitDetailPage = () => {
             </p>
             <p
               className="font-bold text-[17px] md:text-[19px] leading-snug mb-2"
-              style={{ color: NAVY, ...sans }}
+              style={{ color: kit.productImages?.hero ? 'white' : NAVY, ...sans }}
               data-testid="kit-detail-tool-name"
             >
               {kit.proprietaryToolName}
             </p>
-            <p className="text-[14.5px] leading-[1.65]" style={{ color: 'rgba(10,22,40,0.72)', ...serif }}>
+            <p className="text-[14.5px] leading-[1.65]" style={{ color: kit.productImages?.hero ? 'rgba(255,255,255,0.78)' : 'rgba(10,22,40,0.72)', ...serif }}>
               {kit.proprietaryToolDescription}
             </p>
           </div>
@@ -110,7 +118,7 @@ const CitationProofKitDetailPage = () => {
               <Link
                 to={`/contact?kit=${slug}&tier=digital&price=150&intent=purchase`}
                 className="inline-flex items-center gap-2 font-bold py-3 px-6 rounded transition-all text-[14px]"
-                style={{ background: NAVY, color: 'white', ...sans }}
+                style={{ background: GOLD, color: NAVY, ...sans }}
                 data-testid="kit-detail-hero-primary-cta"
               >
                 Buy Digital Kit &mdash; $150
@@ -120,7 +128,7 @@ const CitationProofKitDetailPage = () => {
               <Link
                 to={`/contact?kit=${slug}&intent=notify`}
                 className="inline-flex items-center gap-2 font-bold py-3 px-6 rounded transition-all text-[14px]"
-                style={{ background: NAVY, color: 'white', ...sans }}
+                style={{ background: GOLD, color: NAVY, ...sans }}
                 data-testid="kit-detail-hero-primary-cta"
               >
                 <Lock size={13} />
@@ -130,31 +138,59 @@ const CitationProofKitDetailPage = () => {
             <a
               href="#pricing"
               className="inline-flex items-center gap-2 font-bold py-3 px-6 rounded transition-all text-[14px]"
-              style={{ background: 'transparent', color: NAVY, border: `1px solid ${NAVY}`, ...sans }}
+              style={{
+                background: 'transparent',
+                color: kit.productImages?.hero ? 'white' : NAVY,
+                border: `1px solid ${kit.productImages?.hero ? 'rgba(255,255,255,0.35)' : NAVY}`,
+                ...sans,
+              }}
               data-testid="kit-detail-hero-secondary-cta"
             >
               View All Options
             </a>
           </div>
+          </div>
 
-          {/* Hero support strip */}
+          {/* HERO PRODUCT IMAGE (right column) */}
+          {kit.productImages?.hero && (
+            <div className="flex items-center justify-center xl:justify-end" data-testid="kit-detail-hero-image">
+              <img
+                src={kit.productImages.hero}
+                alt={`${kit.name} — product mockup`}
+                className="w-full h-auto max-w-[720px]"
+                style={{ display: 'block' }}
+              />
+            </div>
+          )}
+        </div>
+
+        {/* Hero support strip + control flow — full-width below the 2-col */}
+        <div className={kit.productImages?.hero ? 'max-w-7xl mx-auto mt-12 md:mt-16' : 'max-w-4xl mx-auto'}>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4" data-testid="kit-detail-hero-support">
-            <HeroSupportCard label="Standard" value={kit.standard} />
-            <HeroSupportCard label="Score" value={kit.scoreIndexName} />
-            <HeroSupportCard label="Delivery" value="Digital, Control, or Binder" />
+            <HeroSupportCard label="Standard" value={kit.standard} onDark={!!kit.productImages?.hero} />
+            <HeroSupportCard label="Score" value={kit.scoreIndexName} onDark={!!kit.productImages?.hero} />
+            <HeroSupportCard label="Delivery" value="Digital, Control, or Binder" onDark={!!kit.productImages?.hero} />
             <HeroSupportCard
               label="Status"
               value={kit.ready ? 'Available Now' : 'In Build'}
-              accent={kit.ready ? GOLD : 'rgba(10,22,40,0.5)'}
+              accent={kit.ready ? GOLD : (kit.productImages?.hero ? 'rgba(255,255,255,0.5)' : 'rgba(10,22,40,0.5)')}
+              onDark={!!kit.productImages?.hero}
             />
           </div>
 
           {/* Process flow line */}
           {kit.flowLine && (
-            <div className="mt-10 pt-8 border-t" style={{ borderColor: BORDER }}>
+            <div
+              className="mt-10 pt-8 border-t"
+              style={{ borderColor: kit.productImages?.hero ? 'rgba(255,255,255,0.12)' : BORDER }}
+            >
               <p
                 className="uppercase font-bold tracking-[0.18em] mb-4"
-                style={{ color: 'rgba(10,22,40,0.5)', ...mono, fontSize: '10.5px' }}
+                style={{
+                  color: kit.productImages?.hero ? 'rgba(255,255,255,0.55)' : 'rgba(10,22,40,0.5)',
+                  ...mono,
+                  fontSize: '10.5px',
+                }}
               >
                 The Control Flow
               </p>
@@ -164,9 +200,9 @@ const CitationProofKitDetailPage = () => {
                     <span
                       className="inline-flex items-center px-3 py-2 rounded"
                       style={{
-                        background: 'white',
-                        border: `1px solid ${BORDER}`,
-                        color: NAVY,
+                        background: kit.productImages?.hero ? 'rgba(255,255,255,0.08)' : 'white',
+                        border: kit.productImages?.hero ? '1px solid rgba(255,255,255,0.15)' : `1px solid ${BORDER}`,
+                        color: kit.productImages?.hero ? 'white' : NAVY,
                         ...sans,
                         fontSize: '13px',
                         fontWeight: 700,
@@ -184,6 +220,24 @@ const CitationProofKitDetailPage = () => {
           )}
         </div>
       </section>
+
+      {/* ═══════════ PROBLEM PANEL (image-driven when provided) ═══════════ */}
+      {kit.productImages?.problemPanel && (
+        <section
+          className="px-5 md:px-8 py-16 md:py-20 border-t"
+          style={{ background: '#F5F5F0', borderColor: BORDER }}
+          data-testid="kit-detail-problem-panel"
+        >
+          <div className="max-w-6xl mx-auto">
+            <img
+              src={kit.productImages.problemPanel}
+              alt="What this kit helps you organize — control of hazardous energy documentation"
+              className="w-full h-auto"
+              style={{ display: 'block' }}
+            />
+          </div>
+        </section>
+      )}
 
       {/* ═══════════ WHAT'S AT STAKE (optional — only if kit provides stakes) ═══════════ */}
       {kit.stakes && (
@@ -296,8 +350,24 @@ const CitationProofKitDetailPage = () => {
         </div>
       </section>
 
-      {/* ═══════════ CONTROL MECHANISMS (optional — outcome-first tool cards) ═══════════ */}
-      {kit.controlMechanisms && kit.controlMechanisms.length > 0 && (
+      {/* ═══════════ WHAT'S INSIDE (image-driven when provided, else fallback to card grid) ═══════════ */}
+      {kit.productImages?.whatsInside ? (
+        <section
+          className="px-5 md:px-8 py-16 md:py-20 border-t"
+          style={{ background: '#F5F5F0', borderColor: BORDER }}
+          data-testid="kit-detail-whats-inside"
+        >
+          <div className="max-w-6xl mx-auto">
+            <img
+              src={kit.productImages.whatsInside}
+              alt={`What's inside the ${kit.name} — Citation-Proof Score, Main Builder Tool, Inspector's First 10 Questions, Worked Example, Core Fillable Forms, Regulatory Basis`}
+              className="w-full h-auto"
+              style={{ display: 'block' }}
+            />
+          </div>
+        </section>
+      ) : (
+        kit.controlMechanisms && kit.controlMechanisms.length > 0 && (
         <section
           className="px-5 md:px-8 py-20 md:py-24 border-t"
           style={{ background: BG_WARM, borderColor: BORDER }}
@@ -355,6 +425,7 @@ const CitationProofKitDetailPage = () => {
             </div>
           </div>
         </section>
+        )
       )}
 
       {/* ═══════════ HOW THE KIT WORKS (4-step framework) ═══════════ */}
@@ -403,12 +474,64 @@ const CitationProofKitDetailPage = () => {
         </div>
       </section>
 
+      {/* ═══════════ PHOTO LOCKOUT MAP SPOTLIGHT (image-driven, dark navy full-width) ═══════════ */}
+      {kit.productImages?.photoMapSpotlight && (
+        <section
+          className="px-5 md:px-8 py-12 md:py-16"
+          style={{ background: NAVY }}
+          data-testid="kit-detail-photo-map-spotlight"
+        >
+          <div className="max-w-6xl mx-auto">
+            <img
+              src={kit.productImages.photoMapSpotlight}
+              alt="Photo Lockout Map™ — proprietary visual lockout guidance tool that identifies machine energy isolation points"
+              className="w-full h-auto"
+              style={{ display: 'block' }}
+            />
+          </div>
+        </section>
+      )}
+
       {/* ═══════════ PRICING TIERS ═══════════ */}
       <div id="pricing">
         <KitPricingTiers kitSlug={slug} ready={kit.ready} />
       </div>
 
       {/* ═══════════ PREFER WE BUILD IT WITH YOU ═══════════ */}
+      {kit.productImages?.physicalMockup ? (
+        <section className="px-5 md:px-8 py-16 md:py-20" style={{ background: NAVY, color: 'white' }} data-testid="kit-detail-done-with-you">
+          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 items-center">
+            <div>
+              <img
+                src={kit.productImages.physicalMockup}
+                alt={`${kit.name} — physical binder mockup`}
+                className="w-full h-auto"
+                style={{ display: 'block' }}
+              />
+            </div>
+            <div>
+              <p className="uppercase font-bold tracking-[0.28em] mb-3" style={{ color: GOLD, ...mono, fontSize: '11px' }}>
+                Prefer We Build It With You?
+              </p>
+              <h3 className="text-2xl md:text-3xl font-bold leading-tight mb-4" style={{ color: 'white', ...sans }}>
+                The Binder Edition isn&rsquo;t just a printed kit.
+              </h3>
+              <p className="text-[15.5px] md:text-[17px] leading-[1.7] mb-6" style={{ color: 'rgba(255,255,255,0.78)', ...serif }}>
+                If you don&rsquo;t want another download sitting on your computer, GigLine will help assemble the binder, organize the First-Pull Packet&trade;, and walk you through setup so the system is running before we leave the call.
+              </p>
+              <Link
+                to={kit.ready ? `/contact?kit=${slug}&tier=binder&price=600&intent=purchase` : `/contact?kit=${slug}&tier=binder&intent=notify`}
+                className="inline-flex items-center gap-2 font-bold py-3 px-6 rounded transition-all text-[14px]"
+                style={{ background: GOLD, color: NAVY, ...sans }}
+                data-testid="kit-detail-done-with-you-cta"
+              >
+                {kit.ready ? 'Choose Binder Edition' : 'Notify Me When Binder Edition Ships'}
+                <ArrowRight size={14} />
+              </Link>
+            </div>
+          </div>
+        </section>
+      ) : (
       <section className="px-5 md:px-8 py-16 md:py-20 bg-white border-t" style={{ borderColor: BORDER }} data-testid="kit-detail-done-with-you">
         <div className="max-w-3xl mx-auto text-center">
           <p
@@ -440,6 +563,7 @@ const CitationProofKitDetailPage = () => {
           </Link>
         </div>
       </section>
+      )}
 
       {/* ═══════════ KIT-SPECIFIC FAQ ═══════════ */}
       {kit.faq && kit.faq.length > 0 && (
@@ -559,10 +683,13 @@ const CitationProofKitDetailPage = () => {
   );
 };
 
-const HeroSupportCard = ({ label, value, accent = 'rgba(10,22,40,0.5)' }) => (
+const HeroSupportCard = ({ label, value, accent = 'rgba(10,22,40,0.5)', onDark = false }) => (
   <div
     className="rounded-md p-3 md:p-4"
-    style={{ background: 'white', border: `1px solid ${BORDER}` }}
+    style={{
+      background: onDark ? 'rgba(255,255,255,0.06)' : 'white',
+      border: onDark ? '1px solid rgba(255,255,255,0.12)' : `1px solid ${BORDER}`,
+    }}
   >
     <p
       className="uppercase font-bold tracking-[0.15em] mb-1"
@@ -570,7 +697,7 @@ const HeroSupportCard = ({ label, value, accent = 'rgba(10,22,40,0.5)' }) => (
     >
       {label}
     </p>
-    <p className="text-[12.5px] md:text-[13px] font-bold leading-tight" style={{ color: NAVY, ...sans }}>
+    <p className="text-[12.5px] md:text-[13px] font-bold leading-tight" style={{ color: onDark ? 'white' : NAVY, ...sans }}>
       {value}
     </p>
   </div>

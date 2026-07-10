@@ -730,7 +730,7 @@ const routes = [
   {
     path: '/supervisor-kit',
     title: 'GigLine Supervisor Safety OS | GigLine Safety & Compliance',
-    description: '17 documents. CFR citations. Built for the person responsible for safety when no one else is watching. $600 digital. $700 physical with free shipping, binder, field manual, and direct access to Vince.',
+    description: 'Turn scattered safety paperwork into a visible supervisor-run system. The GigLine Supervisor Safety OS helps small manufacturing teams inspect, document, assign, verify, and review safety follow-up.',
     canonical: '/supervisor-kit',
     schemas: [
       LOCAL_BUSINESS,

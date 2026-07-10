@@ -476,6 +476,18 @@ const SupervisorKitPage = () => {
           >
             That is the shift: safety stops living in memory and starts living in a visible system.
           </p>
+          <div
+            className="mt-8 max-w-3xl border-l-4 pl-5 md:pl-6 py-3"
+            style={{ borderColor: GOLD }}
+            data-testid="kit-outcome-callout"
+          >
+            <p
+              className="font-bold leading-[1.4] text-[18px] md:text-[22px]"
+              style={{ ...sans, color: NAVY }}
+            >
+              Safety documentation is not about having forms &mdash; it is about proving the work is being followed through.
+            </p>
+          </div>
         </div>
       </section>
 

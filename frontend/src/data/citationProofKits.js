@@ -106,6 +106,9 @@ export const KIT_TIERS = [
 
 // Catalog card summary for the /citation-proof-kits index page.
 // Copy leads with the OUTCOME the buyer walks away with, not the tool.
+// `cardImage` is the hero mockup for kits that have finished art.
+// `placeholder` is the fallback for kits still in build — an array of text lines
+// rendered on a navy background in gold.
 export const KIT_CATALOG = [
   {
     slug: 'loto-readiness-kit',
@@ -117,6 +120,7 @@ export const KIT_CATALOG = [
     startingAtLabel: 'Starting at $150',
     ready: true,
     cardImage: '/assets/kits/loto/loto-hero.png',
+    placeholder: null,
   },
   {
     slug: 'forklift-pit-readiness-kit',
@@ -127,6 +131,8 @@ export const KIT_CATALOG = [
     startingAt: 150,
     startingAtLabel: 'Starting at $150',
     ready: true,
+    cardImage: null,
+    placeholder: ['Forklift / PIT', 'Readiness Kit'],
   },
   {
     slug: 'hazcom-pro-kit',
@@ -137,6 +143,8 @@ export const KIT_CATALOG = [
     startingAt: 150,
     startingAtLabel: 'Starting at $150',
     ready: false,
+    cardImage: null,
+    placeholder: ['HazCom Pro Kit'],
   },
   {
     slug: 'incident-to-correction-kit',
@@ -147,6 +155,8 @@ export const KIT_CATALOG = [
     startingAt: 150,
     startingAtLabel: 'Starting at $150',
     ready: false,
+    cardImage: null,
+    placeholder: ['Incident-to-Correction', 'Kit'],
   },
   {
     slug: 'new-hire-orientation-kit',
@@ -157,6 +167,8 @@ export const KIT_CATALOG = [
     startingAt: 150,
     startingAtLabel: 'Starting at $150',
     ready: false,
+    cardImage: null,
+    placeholder: ['New Hire Safety', 'Orientation Kit'],
   },
 ];
 

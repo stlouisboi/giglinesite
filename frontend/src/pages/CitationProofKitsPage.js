@@ -25,6 +25,18 @@ const TRUST_STRIP = [
 const CitationProofKitsPage = () => {
   return (
     <main data-testid="citation-proof-kits-page" style={{ backgroundColor: BG_WARM, color: NAVY }}>
+      {/* Card hover states — nested rules that inline style can't reach */}
+      <style>{`
+        .kit-card:hover {
+          box-shadow: 0 6px 20px rgba(0,0,0,0.12) !important;
+        }
+        .kit-card:hover .kit-card-gold-border {
+          height: 6px !important;
+        }
+        .kit-card:hover .kit-card-cta {
+          color: #B8902E !important;
+        }
+      `}</style>
       <SEO
         title="Citation-Proof Kit Series | GigLine Safety & Compliance"
         description="Five practical compliance-control kits for small manufacturers, warehouses, contractors, and fleet operations. Turn scattered safety activity into inspection-ready proof — before OSHA, an insurer, or a customer asks for it."
@@ -129,85 +141,197 @@ const CitationProofKitsPage = () => {
               <Link
                 key={kit.slug}
                 to={`/citation-proof-kits/${kit.slug}`}
-                className="group block rounded-md p-6 md:p-7 h-full transition-shadow"
+                className="kit-card group block h-full overflow-hidden transition-all"
                 style={{
                   background: 'white',
-                  border: '1px solid #e8e5dd',
-                  boxShadow: '0 4px 12px rgba(16,42,67,0.05)',
+                  border: '1px solid #E0E0E0',
+                  borderRadius: '8px',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+                  transition: 'box-shadow 0.2s ease',
+                  display: 'flex',
+                  flexDirection: 'column',
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.boxShadow = '0 12px 32px rgba(16,42,67,0.12)')}
-                onMouseLeave={(e) => (e.currentTarget.style.boxShadow = '0 4px 12px rgba(16,42,67,0.05)')}
                 data-testid={`kit-card-${kit.slug}`}
               >
-                {kit.cardImage && (
-                  <div
-                    className="-mx-6 md:-mx-7 -mt-6 md:-mt-7 mb-5 overflow-hidden rounded-t-md"
-                    style={{ background: NAVY }}
-                  >
+                {/* 1. IMAGE HEADER — 200px desktop / 160px mobile, gold bottom border */}
+                <div
+                  className="kit-card-image relative overflow-hidden h-[160px] md:h-[200px] flex-shrink-0"
+                  style={{ background: NAVY }}
+                >
+                  {kit.cardImage ? (
                     <img
                       src={kit.cardImage}
                       alt={`${kit.name} — product mockup`}
-                      className="w-full h-auto"
-                      style={{ display: 'block' }}
+                      className="w-full h-full"
+                      style={{ objectFit: 'cover', display: 'block' }}
                       loading="lazy"
                     />
-                  </div>
-                )}
-                <div className="flex items-start justify-between mb-3">
-                  <p
-                    className="uppercase font-bold tracking-[0.18em]"
-                    style={{ color: 'rgba(10,22,40,0.5)', ...mono, fontSize: '10.5px' }}
-                  >
-                    Kit
-                  </p>
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center px-4">
+                      <div className="text-center">
+                        {(kit.placeholder || [kit.name]).map((line, i) => (
+                          <p
+                            key={i}
+                            style={{
+                              color: GOLD,
+                              ...sans,
+                              fontWeight: 700,
+                              fontSize: '20px',
+                              lineHeight: 1.2,
+                              margin: 0,
+                            }}
+                          >
+                            {line}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  {/* IN BUILD badge — top-right of image area */}
                   {!kit.ready && (
                     <span
-                      className="inline-flex items-center gap-1.5 uppercase font-bold tracking-[0.15em] px-2 py-1 rounded-sm"
-                      style={{ color: NAVY, background: PANEL, ...mono, fontSize: '9.5px' }}
+                      className="absolute uppercase font-bold inline-flex items-center gap-1.5"
+                      style={{
+                        top: '12px',
+                        right: '12px',
+                        background: NAVY,
+                        border: `1px solid ${GOLD}`,
+                        color: GOLD,
+                        borderRadius: '4px',
+                        padding: '4px 10px',
+                        fontSize: '11px',
+                        letterSpacing: '0.1em',
+                        fontFamily: "Arial, sans-serif",
+                      }}
+                      data-testid={`kit-card-badge-${kit.slug}`}
                     >
                       <Lock size={10} strokeWidth={2.5} />
                       In Build
                     </span>
                   )}
+                  {/* Gold bottom border — 4px baseline, grows to 6px on hover */}
+                  <div
+                    className="kit-card-gold-border absolute left-0 right-0 bottom-0"
+                    style={{ height: '4px', background: GOLD, transition: 'height 0.2s ease' }}
+                  />
                 </div>
-                <h3
-                  className="font-bold text-[19px] md:text-[20px] leading-snug mb-3"
-                  style={{ color: NAVY, ...sans }}
-                >
-                  {kit.name}
-                </h3>
-                <p
-                  className="font-bold text-[15px] leading-[1.5] mb-4"
-                  style={{ color: NAVY, ...sans }}
-                >
-                  {kit.outcome}
-                </p>
-                <p
-                  className="text-[13.5px] leading-[1.6] italic mb-5"
-                  style={{ color: 'rgba(10,22,40,0.62)', ...serif }}
-                >
-                  {kit.problem}
-                </p>
-                <div className="pt-4 border-t" style={{ borderColor: '#e8e5dd' }}>
+
+                {/* CARD BODY */}
+                <div className="flex-1 flex flex-col p-4 md:pt-4 md:px-5 md:pb-5">
+                  {/* 2. KIT LABEL */}
                   <p
-                    className="uppercase font-bold tracking-[0.15em] mb-1.5"
-                    style={{ color: GOLD, ...mono, fontSize: '9.5px' }}
+                    className="uppercase font-bold"
+                    style={{
+                      color: '#888888',
+                      fontFamily: 'Arial, sans-serif',
+                      fontSize: '11px',
+                      letterSpacing: '0.16em',
+                      margin: 0,
+                    }}
+                  >
+                    Kit
+                  </p>
+
+                  {/* 3. KIT NAME */}
+                  <h3
+                    style={{
+                      color: NAVY,
+                      ...sans,
+                      fontWeight: 700,
+                      fontSize: '20px',
+                      lineHeight: 1.3,
+                      margin: '4px 0 0',
+                    }}
+                  >
+                    {kit.name}
+                  </h3>
+
+                  {/* 4. PRIMARY DESCRIPTION (outcome) */}
+                  <p
+                    style={{
+                      color: NAVY,
+                      fontFamily: 'Arial, sans-serif',
+                      fontWeight: 700,
+                      fontSize: '15px',
+                      lineHeight: 1.5,
+                      margin: '8px 0 0',
+                    }}
+                  >
+                    {kit.outcome}
+                  </p>
+
+                  {/* 5. SECONDARY DESCRIPTION (problem, italic) */}
+                  <p
+                    style={{
+                      color: '#666666',
+                      fontFamily: 'Arial, sans-serif',
+                      fontStyle: 'italic',
+                      fontSize: '14px',
+                      lineHeight: 1.55,
+                      margin: '6px 0 0',
+                    }}
+                  >
+                    {kit.problem}
+                  </p>
+
+                  {/* Spacer pushes control tool + footer to bottom for equal-height cards */}
+                  <div style={{ flex: 1, minHeight: '16px' }} />
+
+                  {/* 6. CONTROL TOOL LABEL */}
+                  <p
+                    className="uppercase font-bold"
+                    style={{
+                      color: GOLD,
+                      fontFamily: 'Arial, sans-serif',
+                      fontSize: '11px',
+                      letterSpacing: '0.16em',
+                      margin: '16px 0 0',
+                    }}
                   >
                     Control Tool
                   </p>
-                  <p className="text-[13.5px] leading-[1.5] mb-4" style={{ color: NAVY, ...sans, fontWeight: 600 }}>
+
+                  {/* 7. CONTROL TOOL NAME */}
+                  <p
+                    style={{
+                      color: NAVY,
+                      fontFamily: 'Arial, sans-serif',
+                      fontWeight: 700,
+                      fontSize: '15px',
+                      lineHeight: 1.4,
+                      margin: '4px 0 20px',
+                    }}
+                  >
                     {kit.controlTool}
                   </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-[14px] font-bold" style={{ color: NAVY, ...sans }}>
+
+                  {/* 8. BOTTOM ROW — Starting at $X / View Kit → with top border */}
+                  <div
+                    className="flex items-center justify-between"
+                    style={{ borderTop: '1px solid #E0E0E0', paddingTop: '20px' }}
+                  >
+                    <span
+                      style={{
+                        color: NAVY,
+                        fontFamily: 'Arial, sans-serif',
+                        fontWeight: 700,
+                        fontSize: '15px',
+                      }}
+                    >
                       {kit.startingAtLabel}
                     </span>
                     <span
-                      className="inline-flex items-center gap-1.5 font-bold text-[13px] transition-colors"
-                      style={{ color: NAVY, ...sans }}
+                      className="kit-card-cta inline-flex items-center gap-1"
+                      style={{
+                        color: GOLD,
+                        fontFamily: 'Arial, sans-serif',
+                        fontWeight: 700,
+                        fontSize: '14px',
+                        transition: 'color 0.2s ease',
+                      }}
                     >
                       View Kit
-                      <ArrowRight size={13} className="transition-transform group-hover:translate-x-0.5" />
+                      <ArrowRight size={13} strokeWidth={2.5} className="transition-transform group-hover:translate-x-0.5" />
                     </span>
                   </div>
                 </div>

@@ -496,7 +496,7 @@ const ComplianceReadinessVisitPage = () => {
               </p>
               {/* Sample report cards — placeholder pages */}
               <div
-                className="grid grid-cols-2 gap-3 p-4 rounded-xl"
+                className="grid grid-cols-2 gap-3 p-4 rounded-xl max-w-md mx-auto lg:max-w-none lg:mx-0"
                 style={{ background: '#ffffff', border: '1px solid #e8e5dd' }}
               >
                 <div

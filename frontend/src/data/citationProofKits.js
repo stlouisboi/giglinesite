@@ -131,7 +131,7 @@ export const KIT_CATALOG = [
     startingAt: 150,
     startingAtLabel: 'Starting at $150',
     ready: true,
-    cardImage: null,
+    cardImage: '/assets/kits/pit/pit-hero.png',
     placeholder: ['Forklift / PIT', 'Readiness Kit'],
   },
   {
@@ -280,6 +280,17 @@ export const KIT_DETAILS = {
     system: 'Forklift Compliance Control System',
     standard: '29 CFR 1910.178(l)',
     ready: true,
+    // Product image assets — content-rich compositions with baked-in copy.
+    // Presence of these fields triggers image-driven section rendering.
+    productImages: {
+      hero: '/assets/kits/pit/pit-hero.png',
+      problemPanel: '/assets/kits/pit/pit-problem-panel.png',
+      problemPanelAlt: 'What this kit helps you organize — operator training, evaluation, and certification documentation',
+      whatsInside: '/assets/kits/pit/pit-whats-inside.png',
+      photoMapSpotlight: '/assets/kits/pit/pit-matrix.png',
+      photoMapSpotlightAlt: 'Operator Training & Evaluation Builder™ — proprietary tool that documents the three-part program across all 22 required topics for one operator on one truck type',
+      physicalMockup: '/assets/kits/pit/pit-physical-mockup.png',
+    },
     outcomeHeadline: 'Know exactly who is cleared to operate which truck — and when their next evaluation is due.',
     problemStatement: 'Not another training packet. A system that proves training, evaluation, re-evaluation, refresher triggers, and daily readiness — before OSHA does. Most facilities can produce a stack of forklift certificates. Almost none can show a complete four-element certification per operator, per truck type — with the three-year re-evaluation actually tracked.',
     proofPromise: 'This kit walks a non-expert through every required element — the Training & Evaluation Builder™ covers the three parts of (l)(2)(ii) and the 22 required topics of (l)(3), a 0–100 self-audit mapped to the (l) sub-paragraphs OSHA cites, and a fully worked example (Class IV sit-down counterbalance) so the Builder is never blank.',

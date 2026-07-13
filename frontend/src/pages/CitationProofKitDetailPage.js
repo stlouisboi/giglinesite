@@ -231,7 +231,7 @@ const CitationProofKitDetailPage = () => {
           <div className="max-w-6xl mx-auto">
             <img
               src={kit.productImages.problemPanel}
-              alt="What this kit helps you organize — control of hazardous energy documentation"
+              alt={kit.productImages.problemPanelAlt || 'What this kit helps you organize'}
               className="w-full h-auto"
               style={{ display: 'block' }}
             />
@@ -484,7 +484,7 @@ const CitationProofKitDetailPage = () => {
           <div className="max-w-6xl mx-auto">
             <img
               src={kit.productImages.photoMapSpotlight}
-              alt="Photo Lockout Map™ — proprietary visual lockout guidance tool that identifies machine energy isolation points"
+              alt={kit.productImages.photoMapSpotlightAlt || 'Proprietary visual proof tool'}
               className="w-full h-auto"
               style={{ display: 'block' }}
             />

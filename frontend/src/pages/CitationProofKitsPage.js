@@ -141,11 +141,11 @@ const CitationProofKitsPage = () => {
             {KIT_CATALOG.map((kit) => (
               <Link
                 key={kit.slug}
-                to={`/citation-proof-kits/${kit.slug}`}
+                to={kit.externalHref || `/citation-proof-kits/${kit.slug}`}
                 className="kit-card group block h-full overflow-hidden transition-all"
                 style={{
                   background: 'white',
-                  border: '1px solid #E0E0E0',
+                  border: kit.starterVariant ? `1px dashed ${GOLD}` : '1px solid #E0E0E0',
                   borderRadius: '8px',
                   boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
                   transition: 'box-shadow 0.2s ease',
@@ -188,6 +188,26 @@ const CitationProofKitsPage = () => {
                       </div>
                     </div>
                   )}
+                  {/* $29 STARTER pill — top-left of image, mirrors IN BUILD placement */}
+                  {kit.starterVariant && (
+                    <span
+                      className="absolute uppercase font-bold inline-flex items-center"
+                      style={{
+                        top: '12px',
+                        left: '12px',
+                        background: GOLD,
+                        color: NAVY,
+                        borderRadius: '4px',
+                        padding: '4px 10px',
+                        fontSize: '11px',
+                        letterSpacing: '0.1em',
+                        fontFamily: 'Arial, sans-serif',
+                      }}
+                      data-testid={`kit-card-starter-badge-${kit.slug}`}
+                    >
+                      $29 Starter
+                    </span>
+                  )}
                   {/* IN BUILD badge — top-right of image area */}
                   {!kit.ready && (
                     <span
@@ -223,14 +243,14 @@ const CitationProofKitsPage = () => {
                   <p
                     className="uppercase font-bold"
                     style={{
-                      color: '#888888',
+                      color: kit.starterVariant ? GOLD : '#888888',
                       fontFamily: 'Arial, sans-serif',
                       fontSize: '11px',
                       letterSpacing: '0.16em',
                       margin: 0,
                     }}
                   >
-                    Kit
+                    {kit.starterVariant ? 'Starter Pack' : 'Kit'}
                   </p>
 
                   {/* 3. KIT NAME */}
@@ -319,7 +339,7 @@ const CitationProofKitsPage = () => {
                       margin: '16px 0 0',
                     }}
                   >
-                    Control Tool
+                    {kit.starterVariant ? 'What You Get' : 'Control Tool'}
                   </p>
 
                   {/* 7. CONTROL TOOL NAME */}
@@ -361,7 +381,7 @@ const CitationProofKitsPage = () => {
                         transition: 'color 0.2s ease',
                       }}
                     >
-                      View Kit
+                      {kit.starterVariant ? 'Get the Starter Pack' : 'View Kit'}
                       <ArrowRight size={13} strokeWidth={2.5} className="transition-transform group-hover:translate-x-0.5" />
                     </span>
                   </div>

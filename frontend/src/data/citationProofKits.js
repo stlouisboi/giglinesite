@@ -170,6 +170,21 @@ export const KIT_CATALOG = [
     cardImage: null,
     placeholder: ['New Hire Safety', 'Orientation Kit'],
   },
+  {
+    // Lead-magnet ramp — visually secondary card, feeds into the HazCom Pro Kit
+    slug: 'hazcom-starter-pack',
+    name: 'HazCom Starter Pack',
+    outcome: 'The $29 entry pack — written program, SDS binder checklist, and training log.',
+    problem: 'You need the HazCom paperwork basics fast, and you\u2019re not ready for the full Pro Kit yet.',
+    controlTool: '11-page starter set → ramps up to the HazCom Pro Kit',
+    startingAt: 29,
+    startingAtLabel: '$29',
+    ready: true,
+    cardImage: null,
+    placeholder: ['HazCom', 'Starter Pack'],
+    starterVariant: true,
+    externalHref: '/hazcom-starter-pack',
+  },
 ];
 
 // Full per-kit content used by /citation-proof-kits/[slug]

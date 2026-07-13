@@ -80,7 +80,7 @@ export const KIT_TIERS = [
       'Live Excel tracker where applicable',
       'QR Evidence Hub setup guide',
     ],
-    badge: 'Most Popular',
+    badge: 'Recommended for most facilities',
     ctaLabel: 'Get the Control System',
   },
   {
@@ -196,6 +196,13 @@ export const KIT_DETAILS = {
     system: 'Machine-Specific Energy-Control Documentation & Self-Audit System',
     standard: '29 CFR 1910.147',
     ready: true,
+    ctaShortName: 'LOTO',
+    heroSupportLine: 'Built for facilities that need machine-specific lockout proof they can produce before OSHA, an insurer, or a serious injury forces the question.',
+    builtFor: [
+      { role: 'Plant Managers', description: 'Know every machine has a documented, machine-specific lockout procedure.' },
+      { role: 'Maintenance Supervisors', description: 'Isolate energy the same way every time — even with new hires or contractors.' },
+      { role: 'Small Business Owners', description: 'Have a system you can show during an inspection, insurance audit, or after an incident.' },
+    ],
     // Product image assets — content-rich compositions with baked-in copy.
     // Presence of these fields triggers image-driven section rendering.
     productImages: {
@@ -280,6 +287,13 @@ export const KIT_DETAILS = {
     system: 'Forklift Compliance Control System',
     standard: '29 CFR 1910.178(l)',
     ready: true,
+    ctaShortName: 'PIT',
+    heroSupportLine: 'Built for facilities that need PIT records they can find, trust, and produce before OSHA, an insurer, or leadership asks for them.',
+    builtFor: [
+      { role: 'Plant Managers', description: 'Know who is cleared and what records are missing.' },
+      { role: 'Warehouse Supervisors', description: 'Track daily readiness, refresher triggers, and evaluations.' },
+      { role: 'Small Business Owners', description: 'Have a system that can be shown during an inspection or audit.' },
+    ],
     // Product image assets — content-rich compositions with baked-in copy.
     // Presence of these fields triggers image-driven section rendering.
     productImages: {
@@ -365,6 +379,13 @@ export const KIT_DETAILS = {
     system: 'Chemical Inventory, SDS, Labeling & Training Control System',
     standard: '29 CFR 1910.1200',
     ready: false,
+    ctaShortName: 'HazCom',
+    heroSupportLine: 'Built for facilities that need chemical inventory, SDS access, labeling, and training records they can produce the moment an inspector or an employee asks.',
+    builtFor: [
+      { role: 'Plant Managers', description: 'Know every chemical is inventoried, labeled, and matched to a current SDS.' },
+      { role: 'Line Supervisors', description: 'Give every worker access to the SDS they need, when they need it.' },
+      { role: 'Small Business Owners', description: 'Have a written HazCom program that stands up to inspection.' },
+    ],
     outcomeHeadline: 'Turn a scattered SDS drawer and a mystery chemical list into a controlled program you can hand OSHA in ten minutes.',
     problemStatement: 'HazCom is the #1 cited standard in general industry — not because chemicals are rare, but because the paperwork trailing behind them almost never lines up. The inventory says one thing, the SDS binder says another, and half the labels are missing.',
     proofPromise: 'This kit builds a chemical program you can actually control: every chemical inventoried, every SDS current, every label verified, every employee trained, and every new chemical routed through an approval step before it comes in the door.',
@@ -399,6 +420,13 @@ export const KIT_DETAILS = {
     system: 'Incident, Near-Miss & Corrective Action Control System',
     standard: 'OSHA recordkeeping and corrective-action program support (general)',
     ready: false,
+    ctaShortName: 'Incident',
+    heroSupportLine: 'Built for facilities that need incident, near-miss, and corrective-action records they can produce the moment leadership, an insurer, or OSHA asks for them.',
+    builtFor: [
+      { role: 'Plant Managers', description: 'Know every incident was logged, investigated, and closed with a corrective action.' },
+      { role: 'HR / Safety Coordinators', description: 'Keep the corrective-action loop moving — no reports sitting open for months.' },
+      { role: 'Small Business Owners', description: 'Have an incident and closure record you can produce during an insurance claim or audit.' },
+    ],
     outcomeHeadline: 'Close the loop on every incident, near miss, and hazard report — with proof it actually got fixed.',
     problemStatement: 'Most facilities are decent at writing the incident report. Almost none can show what changed as a result. The corrective action is either verbal, undocumented, or "in progress" for six months. That gap is what turns a near miss into the next injury.',
     proofPromise: 'This kit takes the reporting-to-closure loop and turns it into a controlled sequence: report, investigate, correct, verify, communicate, and prevent repeat. No item stays open without an owner and a due date.',
@@ -435,6 +463,13 @@ export const KIT_DETAILS = {
     system: 'Day-One Safety Readiness & Authorization Control System',
     standard: 'OSHA training and orientation proof support (general)',
     ready: false,
+    ctaShortName: 'New Hire',
+    heroSupportLine: 'Built for facilities that need new-hire safety training records they can produce the moment an inspector or a workers-compensation adjuster asks for them.',
+    builtFor: [
+      { role: 'Plant Managers', description: 'Know every new hire completed orientation before they hit the floor.' },
+      { role: 'HR / Onboarding Coordinators', description: 'Have one repeatable path — no matter who runs orientation.' },
+      { role: 'Small Business Owners', description: 'Have proof of initial safety training for every employee on payroll.' },
+    ],
     outcomeHeadline: 'Prove every new hire was oriented, restricted, equipped, and released — before they touched a machine.',
     problemStatement: 'Most facilities orient new hires. Very few can prove it in the level of detail an inspector, insurer, or defense attorney will want. And almost none document the equipment or task restrictions in place until training and evaluation are complete.',
     proofPromise: 'This kit runs the new hire through a defined sequence — orient, restrict, equip, train, release, follow up — with a paper trail at each step. The restrictions are explicit, the release is documented, and the follow-up is scheduled.',

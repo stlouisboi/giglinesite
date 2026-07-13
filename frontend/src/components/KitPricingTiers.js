@@ -139,7 +139,7 @@ const KitPricingTiers = ({
         )}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 items-stretch">
           {KIT_TIERS.map((tier) => {
-            const isFeatured = tier.badge === 'Most Popular';
+            const isFeatured = tier.id === 'control-system';
             return (
               <div
                 key={tier.id}
@@ -154,12 +154,12 @@ const KitPricingTiers = ({
               >
                 {isFeatured && (
                   <div
-                    className="absolute -top-3 left-6 uppercase font-bold tracking-[0.2em] px-3 py-1 rounded-sm"
+                    className="absolute -top-3 left-6 uppercase font-bold tracking-[0.1em] px-3 py-1 rounded-sm whitespace-nowrap"
                     style={{
                       background: GOLD,
                       color: NAVY,
                       fontFamily: "'JetBrains Mono', monospace",
-                      fontSize: '10.5px',
+                      fontSize: '9.5px',
                     }}
                     data-testid={`kit-tier-${tier.id}-badge`}
                   >

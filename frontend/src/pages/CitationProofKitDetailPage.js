@@ -67,6 +67,20 @@ const CitationProofKitDetailPage = () => {
             {kit.outcomeHeadline}
           </h1>
 
+          {/* 1b. HERO SUPPORT LINE — role/outcome framing for conversion */}
+          {kit.heroSupportLine && (
+            <p
+              className="text-[15.5px] md:text-[17px] leading-[1.6] max-w-3xl mb-6"
+              style={{
+                color: kit.productImages?.hero ? 'rgba(255,255,255,0.82)' : 'rgba(10,22,40,0.78)',
+                ...sans,
+              }}
+              data-testid="kit-detail-hero-support-line"
+            >
+              {kit.heroSupportLine}
+            </p>
+          )}
+
           {/* 2. SHORT PROBLEM STATEMENT */}
           <p
             className="text-[16.5px] md:text-[18.5px] leading-[1.65] max-w-3xl mb-5 italic"
@@ -115,15 +129,15 @@ const CitationProofKitDetailPage = () => {
           {/* 5. PRICING OPTIONS CTA */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 mb-10">
             {kit.ready ? (
-              <Link
-                to={`/contact?kit=${slug}&tier=digital&price=150&intent=purchase`}
+              <a
+                href="#pricing"
                 className="inline-flex items-center gap-2 font-bold py-3 px-6 rounded transition-all text-[14px]"
                 style={{ background: GOLD, color: NAVY, ...sans }}
                 data-testid="kit-detail-hero-primary-cta"
               >
-                Buy Digital Kit &mdash; $150
+                Choose Your {kit.ctaShortName || kit.name} Kit
                 <ArrowRight size={14} />
-              </Link>
+              </a>
             ) : (
               <Link
                 to={`/contact?kit=${slug}&intent=notify`}
@@ -146,7 +160,7 @@ const CitationProofKitDetailPage = () => {
               }}
               data-testid="kit-detail-hero-secondary-cta"
             >
-              View All Options
+              Compare the 3 Options
             </a>
           </div>
           </div>
@@ -488,6 +502,62 @@ const CitationProofKitDetailPage = () => {
               className="w-full h-auto"
               style={{ display: 'block' }}
             />
+          </div>
+        </section>
+      )}
+
+      {/* ═══════════ BUILT FOR ═══════════ */}
+      {kit.builtFor && kit.builtFor.length > 0 && (
+        <section
+          className="px-5 md:px-8 py-14 md:py-18 bg-white border-t"
+          style={{ borderColor: BORDER }}
+          data-testid="kit-detail-built-for"
+        >
+          <div className="max-w-5xl mx-auto">
+            <p
+              className="uppercase font-bold tracking-[0.28em] mb-3"
+              style={{ color: GOLD, ...mono, fontSize: '11px' }}
+            >
+              Built For
+            </p>
+            <h3
+              className="text-2xl md:text-3xl font-bold leading-tight mb-10"
+              style={{ color: NAVY, ...sans }}
+            >
+              Who this kit is built for.
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+              {kit.builtFor.map((item, i) => (
+                <div
+                  key={i}
+                  className="flex flex-col"
+                  data-testid={`kit-detail-built-for-item-${i}`}
+                >
+                  <div
+                    className="inline-flex items-center justify-center rounded-md mb-4"
+                    style={{
+                      background: PANEL,
+                      width: 40,
+                      height: 40,
+                    }}
+                  >
+                    <Check size={20} strokeWidth={2.5} style={{ color: GOLD }} />
+                  </div>
+                  <h4
+                    className="font-bold text-[16.5px] md:text-[18px] leading-tight mb-2"
+                    style={{ color: NAVY, ...sans }}
+                  >
+                    {item.role}
+                  </h4>
+                  <p
+                    className="text-[14.5px] leading-[1.65]"
+                    style={{ color: 'rgba(10,22,40,0.72)', ...serif }}
+                  >
+                    {item.description}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       )}

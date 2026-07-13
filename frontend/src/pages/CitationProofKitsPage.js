@@ -138,7 +138,7 @@ const CitationProofKitsPage = () => {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-            {KIT_CATALOG.map((kit) => (
+            {KIT_CATALOG.filter((k) => !k.starterVariant).map((kit) => (
               <Link
                 key={kit.slug}
                 to={kit.externalHref || `/citation-proof-kits/${kit.slug}`}
@@ -267,29 +267,28 @@ const CitationProofKitsPage = () => {
                     {kit.name}
                   </h3>
 
-                  {/* 4. PRIMARY DESCRIPTION (outcome) */}
+                  {/* 4. PRIMARY OUTCOME (bolder, larger — leads the card) */}
                   <p
                     style={{
                       color: NAVY,
-                      fontFamily: 'Arial, sans-serif',
+                      fontFamily: "'Manrope', sans-serif",
                       fontWeight: 700,
-                      fontSize: '15px',
-                      lineHeight: 1.5,
-                      margin: '8px 0 0',
+                      fontSize: '15.5px',
+                      lineHeight: 1.45,
+                      margin: '10px 0 0',
                     }}
                   >
                     {kit.outcome}
                   </p>
 
-                  {/* 5. SECONDARY DESCRIPTION (problem, italic) */}
+                  {/* 5. RISK / PROOF GAP (plain, one sentence, non-italic per new spec) */}
                   <p
                     style={{
-                      color: '#666666',
+                      color: '#555555',
                       fontFamily: 'Arial, sans-serif',
-                      fontStyle: 'italic',
-                      fontSize: '14px',
+                      fontSize: '13.5px',
                       lineHeight: 1.55,
-                      margin: '6px 0 0',
+                      margin: '8px 0 0',
                     }}
                   >
                     {kit.problem}
@@ -339,7 +338,7 @@ const CitationProofKitsPage = () => {
                       margin: '16px 0 0',
                     }}
                   >
-                    {kit.starterVariant ? 'What You Get' : 'Control Tool'}
+                    {kit.starterVariant ? 'What You Get' : 'Includes'}
                   </p>
 
                   {/* 7. CONTROL TOOL NAME */}
@@ -389,6 +388,55 @@ const CitationProofKitsPage = () => {
               </Link>
             ))}
           </div>
+
+          {/* Starter Pack strip — separated from the 5 full kits per user's direction */}
+          {(() => {
+            const starter = KIT_CATALOG.find((k) => k.starterVariant);
+            if (!starter) return null;
+            return (
+              <div
+                className="mt-14 md:mt-16 rounded-md p-6 md:p-7 flex flex-col md:flex-row md:items-center gap-5 md:gap-8"
+                style={{
+                  background: 'white',
+                  border: `1px dashed ${GOLD}`,
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
+                }}
+                data-testid="kit-starter-strip"
+              >
+                <div className="flex-1">
+                  <p
+                    className="uppercase font-bold tracking-[0.16em] mb-2"
+                    style={{ color: GOLD, fontFamily: 'Arial, sans-serif', fontSize: '11px' }}
+                  >
+                    Not Ready for the Full HazCom Kit?
+                  </p>
+                  <h3
+                    className="font-bold text-[19px] md:text-[22px] leading-snug mb-2"
+                    style={{ color: NAVY, ...sans }}
+                  >
+                    HazCom Starter Pack &mdash; $29
+                  </h3>
+                  <p
+                    className="text-[14px] md:text-[15px] leading-[1.55]"
+                    style={{ color: '#555555', fontFamily: 'Arial, sans-serif' }}
+                  >
+                    An 11-page entry pack &mdash; written HazCom program, SDS binder checklist, and training verification log. Ramps up to the HazCom Pro Kit when you&rsquo;re ready.
+                  </p>
+                </div>
+                <Link
+                  to={starter.externalHref}
+                  className="inline-flex items-center gap-2 font-bold py-3 px-6 rounded transition-opacity flex-shrink-0"
+                  style={{ background: NAVY, color: 'white', fontFamily: 'Arial, sans-serif', fontSize: '14px' }}
+                  onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.9')}
+                  onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+                  data-testid="kit-starter-strip-cta"
+                >
+                  Get the Starter Pack
+                  <ArrowRight size={14} strokeWidth={2.5} />
+                </Link>
+              </div>
+            );
+          })()}
         </div>
       </section>
 

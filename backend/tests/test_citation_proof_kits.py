@@ -110,3 +110,21 @@ class TestCitationProofKitCheckout:
         )
         assert r.status_code == 200
         assert r.json().get("verified") is False
+
+
+class TestCitationProofKitPDFDeliverables:
+    """The auto-attach flow requires branded PDFs on disk. If these are missing
+    the buyer email falls back to the manual-delivery copy and Vince gets an
+    ACTION REQUIRED notification. Fail loudly in CI rather than let that ship."""
+
+    def test_loto_digital_pdf_present(self):
+        import os
+        path = "/app/backend/kit_files/GigLine_LOTO_Digital_Compliance_Kit_150.pdf"
+        assert os.path.isfile(path), f"Missing branded PDF: {path}"
+        assert os.path.getsize(path) > 50_000, f"PDF suspiciously small: {path}"
+
+    def test_pit_digital_pdf_present(self):
+        import os
+        path = "/app/backend/kit_files/GigLine_PIT_Digital_Compliance_Kit_150.pdf"
+        assert os.path.isfile(path), f"Missing branded PDF: {path}"
+        assert os.path.getsize(path) > 50_000, f"PDF suspiciously small: {path}"

@@ -200,6 +200,8 @@ CITATION_PROOF_KIT_DIGITAL_PRODUCTS = {
         "amount_cents": 15000,  # $150
         "sku": "citation-proof-loto-digital",
         "slug": "loto-readiness-kit",
+        "pdf_path": "/app/backend/kit_files/GigLine_LOTO_Digital_Compliance_Kit_150.pdf",
+        "pdf_filename": "GigLine_LOTO_Digital_Compliance_Kit.pdf",
     },
     "forklift-pit-readiness-kit": {
         "name": "Forklift / PIT Readiness Kit — Digital Compliance Kit",
@@ -207,5 +209,7 @@ CITATION_PROOF_KIT_DIGITAL_PRODUCTS = {
         "amount_cents": 15000,  # $150
         "sku": "citation-proof-pit-digital",
         "slug": "forklift-pit-readiness-kit",
+        "pdf_path": "/app/backend/kit_files/GigLine_PIT_Digital_Compliance_Kit_150.pdf",
+        "pdf_filename": "GigLine_PIT_Digital_Compliance_Kit.pdf",
     },
 }

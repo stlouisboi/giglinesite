@@ -139,16 +139,16 @@ const CitationProofKitThankYouPage = () => {
                   className="uppercase font-bold tracking-[0.22em] mb-2"
                   style={{ color: GOLD, ...mono, fontSize: '11px' }}
                 >
-                  Delivery coming separately
+                  Check your inbox
                 </p>
                 <h3 className="text-[18px] md:text-[20px] font-extrabold mb-2 leading-tight" style={{ color: NAVY, ...sans }}>
-                  Your GigLine digital kit is on the way.
+                  Your kit was just emailed to you.
                 </h3>
                 <p className="text-[15px] leading-[1.7] mb-3" style={{ color: 'rgba(10,22,40,0.78)', ...serif }}>
-                  Your GigLine digital kit download will be delivered to your email address separately &mdash; typically within one business day. Files are prepared and sent manually so you receive the current, working version of every tool.
+                  A confirmation email is on its way to the address you used at checkout &mdash; with your <strong>{kitName} Digital Compliance Kit</strong> attached as a PDF. Open the cover page first: it maps every tool inside and the order to work through them.
                 </p>
                 <p className="text-[14px] leading-[1.65]" style={{ color: 'rgba(10,22,40,0.65)', ...serif }}>
-                  Check your inbox (including spam) for a message from <strong>vince@giglinecompliance.com</strong>. If you don&rsquo;t see it within one business day, call <strong>(336) 329-8899</strong>.
+                  Don&rsquo;t see it in a few minutes? Check spam and quarantine for a message from <strong>vince@giglinecompliance.com</strong>. Still nothing? Call <strong>(336) 329-8899</strong> and we&rsquo;ll resend directly.
                 </p>
               </div>
 
@@ -162,15 +162,15 @@ const CitationProofKitThankYouPage = () => {
                 <ol className="space-y-3 text-[14.5px] leading-[1.7]" style={{ color: 'rgba(10,22,40,0.8)', ...serif }}>
                   <li className="flex gap-3">
                     <span className="font-bold" style={{ color: GOLD, ...mono, fontSize: '13px', minWidth: 22 }}>01</span>
-                    <span>You&rsquo;ll receive a confirmation email at the address you used at checkout.</span>
+                    <span>Open the confirmation email and download the PDF attachment. Save a copy where your team can find it.</span>
                   </li>
                   <li className="flex gap-3">
                     <span className="font-bold" style={{ color: GOLD, ...mono, fontSize: '13px', minWidth: 22 }}>02</span>
-                    <span>Vince sends your kit files in a separate email — usually within one business day.</span>
+                    <span>Start with the <strong>Citation-Proof Score&trade; Rubric</strong> to see where you stand today &mdash; before you build anything.</span>
                   </li>
                   <li className="flex gap-3">
                     <span className="font-bold" style={{ color: GOLD, ...mono, fontSize: '13px', minWidth: 22 }}>03</span>
-                    <span>Open the builder tools first. Then work through the Citation-Proof Score&trade; to see where you stand.</span>
+                    <span>Run the primary Builder tool for one machine, area, or operator to establish the pattern before rolling it out further.</span>
                   </li>
                 </ol>
               </div>

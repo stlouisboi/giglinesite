@@ -96,7 +96,7 @@ async def checkout_citation_proof_kit_digital(payload: KitDigitalCheckoutRequest
             "company_name": payload.company_name,
             "attribution": payload.attribution,
             "status": "pending_payment",
-            "fulfillment_status": "pending_manual",
+            "fulfillment_status": "pending_delivery",
             "created_at": datetime.now(timezone.utc).isoformat(),
         })
 
@@ -154,11 +154,22 @@ async def verify_citation_proof_kit_session(session_id: str):
         )
 
         if not existing_paid and customer_email:
-            await _send_buyer_confirmation(slug, product, customer_email, customer_name)
+            pdf_delivered = await _send_buyer_confirmation(slug, product, customer_email, customer_name)
             await _send_vince_notification(
                 slug, product, customer_email, customer_name,
                 result.get("customer_phone"), metadata,
                 result.get("amount_total"),
+                pdf_delivered=pdf_delivered,
+            )
+            # Mark fulfillment state now that we know the delivery outcome.
+            await db.gl_citation_proof_kit_orders.update_one(
+                {"session_id": session_id},
+                {"$set": {
+                    "fulfillment_status": "auto_delivered" if pdf_delivered else "pending_manual",
+                    "fulfillment_completed_at": (
+                        datetime.now(timezone.utc).isoformat() if pdf_delivered else None
+                    ),
+                }},
             )
             # Fire-and-forget: enroll buyer in the standard lead-nurture list so
             # they receive GigLine's regular follow-up cadence.
@@ -180,13 +191,63 @@ async def verify_citation_proof_kit_session(session_id: str):
         return {"verified": False}
 
 
-async def _send_buyer_confirmation(slug: str, product: dict, email: str, customer_name: str) -> None:
-    """Buyer confirmation — tier-specific template. Manual fulfillment language."""
+async def _send_buyer_confirmation(slug: str, product: dict, email: str, customer_name: str) -> bool:
+    """Buyer confirmation — auto-attaches the branded kit PDF.
+
+    Returns True if the branded PDF was found on disk and attached to the email,
+    False if the file was missing and the fallback (manual-delivery) copy was used.
+    Vince's notification uses this to know whether he still needs to follow up.
+
+    Falls back to manual-fulfillment copy if the PDF file is missing on disk
+    (so a bad deploy doesn't leave the buyer completely in the dark).
+    """
+    import base64
+    from pathlib import Path
+
     short_name = product["short_name"]
     first_name = (customer_name.split(" ")[0].strip() if customer_name else "")
     greeting = f"Hi {first_name}," if first_name else "Hi,"
 
-    subject = f"Your order was received — {short_name} (Digital Compliance Kit)"
+    subject = f"Your {short_name} — Digital Compliance Kit (attached)"
+
+    pdf_path = Path(product.get("pdf_path", ""))
+    pdf_filename = product.get("pdf_filename", f"{slug}.pdf")
+    pdf_attached = pdf_path.is_file()
+
+    if pdf_attached:
+        callout_title = "Your kit is attached to this email"
+        callout_body = (
+            f"Your GigLine {short_name} Digital Compliance Kit is attached as a PDF "
+            f"({pdf_filename}). Open the cover page first — it lists everything inside "
+            "and the order to work through the tools."
+        )
+        while_you_wait_heading = "How to use this kit"
+        while_you_wait_items = [
+            f"Open <strong>{pdf_filename}</strong> and read the cover page first — it maps the tools inside and the order to work them.",
+            "Start with the <strong>Citation-Proof Score™ Rubric</strong> to see where you stand today. Under 50 = citation likely. 90+ = Citation-Proof.",
+            "Then run the primary Builder tool for one machine, area, or operator to establish the pattern before rolling out further.",
+            "Reply to this email with any facility-specific questions &mdash; Vince reviews responses personally.",
+        ]
+    else:
+        # Deploy safety: if the file disappeared, don't silently promise an attachment.
+        logger.error(f"citation-proof-kit PDF missing on disk: {pdf_path}")
+        callout_title = "Delivery coming separately"
+        callout_body = (
+            "Your GigLine digital kit download will be delivered to this email address separately "
+            "&mdash; typically within one business day. Files are prepared and sent manually so you "
+            "get the current, working version of every tool."
+        )
+        while_you_wait_heading = "While you wait"
+        while_you_wait_items = [
+            "Check that <strong>vince@giglinecompliance.com</strong> is not blocked or in spam.",
+            "Reply to this email with any specifics about your facility that would help Vince tailor the worked examples.",
+            "If you don&rsquo;t see your files within one business day, call <strong>(336) 329-8899</strong>.",
+        ]
+
+    while_you_wait_html = "\n".join(
+        f'<li style="margin-bottom: 8px; line-height: 1.65;">{item}</li>'
+        for item in while_you_wait_items
+    )
 
     body_html = f"""
         <div style="font-family: Georgia, serif; max-width: 620px; margin: 0 auto; color: #102A43; line-height: 1.65;">
@@ -202,19 +263,17 @@ async def _send_buyer_confirmation(slug: str, product: dict, email: str, custome
             </p>
             <div style="background: #F3ECDB; border-left: 3px solid #C9A84C; padding: 14px 16px; margin: 18px 0;">
                 <p style="margin: 0; font-family: 'Manrope', sans-serif; font-weight: 700; color: #102A43; font-size: 15px;">
-                    Delivery coming separately
+                    {callout_title}
                 </p>
                 <p style="margin: 8px 0 0 0; font-size: 14.5px;">
-                    Your GigLine digital kit download will be delivered to this email address separately &mdash; typically within one business day. Files are prepared and sent manually so you get the current, working version of every tool.
+                    {callout_body}
                 </p>
             </div>
             <h3 style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; margin: 22px 0 8px 0; color: #102A43; font-family: 'Manrope', sans-serif;">
-                While you wait
+                {while_you_wait_heading}
             </h3>
             <ol style="padding-left: 20px; margin: 0 0 16px 0; color: #102A43;">
-                <li style="margin-bottom: 6px;">Check that <strong>vince@giglinecompliance.com</strong> is not blocked or in spam.</li>
-                <li style="margin-bottom: 6px;">Reply to this email with any specifics about your facility that would help Vince tailor the worked examples.</li>
-                <li style="margin-bottom: 6px;">If you don&rsquo;t see your files within one business day, call <strong>(336) 329-8899</strong>.</li>
+                {while_you_wait_html}
             </ol>
             <p style="margin: 22px 0 0 0; padding: 12px 14px; background: #FAF7F1; border-left: 3px solid #C9A84C; font-size: 13.5px; color: #102A43;">
                 <strong>Important:</strong> This kit supports documentation and self-audit. It does not guarantee OSHA compliance, prevent citations, eliminate hazards, or replace the employer&rsquo;s responsibility to maintain a safe workplace. Employers remain responsible for identifying applicable standards, correcting recognized hazards, training employees, and maintaining accurate records.
@@ -234,22 +293,44 @@ async def _send_buyer_confirmation(slug: str, product: dict, email: str, custome
         </div>
     """
 
+    send_kwargs = {
+        "from": SENDER_EMAIL,
+        "to": [email],
+        "subject": subject,
+        "html": body_html,
+        "reply_to": VINCE_EMAIL,
+    }
+
+    if pdf_attached:
+        try:
+            with open(pdf_path, "rb") as fh:
+                pdf_b64 = base64.b64encode(fh.read()).decode("ascii")
+            send_kwargs["attachments"] = [{
+                "filename": pdf_filename,
+                "content": pdf_b64,
+            }]
+        except Exception as e:
+            logger.error(f"Citation-Proof Kit PDF read error ({pdf_path}): {e}")
+
     try:
-        resend.Emails.send({
-            "from": SENDER_EMAIL,
-            "to": [email],
-            "subject": subject,
-            "html": body_html,
-            "reply_to": VINCE_EMAIL,
-        })
-        logger.info(f"Citation-Proof Kit buyer confirmation sent: slug={slug} email={email}")
+        resend.Emails.send(send_kwargs)
+        logger.info(
+            f"Citation-Proof Kit buyer confirmation sent: slug={slug} email={email} "
+            f"pdf_attached={pdf_attached}"
+        )
+        return pdf_attached
     except Exception as e:
         logger.error(f"Citation-Proof Kit buyer email error: {e}")
+        return False
 
 
-async def _send_vince_notification(slug, product, email, name, phone, metadata, amount_cents):
-    """Internal notification email to Vince — includes ACTION REQUIRED language
-    because fulfillment for the Citation-Proof Kits is manual in v1."""
+async def _send_vince_notification(slug, product, email, name, phone, metadata, amount_cents, *, pdf_delivered: bool = False):
+    """Internal notification email to Vince.
+
+    - If the PDF auto-delivered: informational only (FYI + attribution).
+    - If the PDF failed (missing on disk / attachment error): loud ACTION REQUIRED,
+      so Vince can send the file manually.
+    """
     amount_str = f"${(amount_cents or 0) / 100:.2f}"
     label = product["name"]
     short_name = product["short_name"]
@@ -265,17 +346,36 @@ async def _send_vince_notification(slug, product, email, name, phone, metadata, 
             </p>
         """
 
+    if pdf_delivered:
+        subject = f"New order — {short_name} DIGITAL ($150) from {email}"
+        callout_html = (
+            '<p style="margin: 0 0 12px 0; padding: 8px 12px; background: #EAF6EA; '
+            'border-left: 3px solid #2E7D32; font-size: 14px;">'
+            '<strong>Kit auto-delivered.</strong> The buyer received the branded PDF as an '
+            'attachment on the confirmation email. No action required unless they reply with a question.'
+            '</p>'
+        )
+    else:
+        subject = f"ACTION REQUIRED — {short_name} DIGITAL ($150) purchase from {email}"
+        callout_html = (
+            '<p style="margin: 0 0 12px 0; padding: 8px 12px; background: #FFF3D6; '
+            'border-left: 3px solid #C9A84C; font-size: 14px;">'
+            '<strong>ACTION REQUIRED — auto-delivery failed.</strong> Send the '
+            f'{short_name} Digital Kit files to the buyer directly (the confirmation email '
+            'used the fallback copy telling them to expect a separate email). Do NOT attach '
+            'raw DOCX; use the packaged deliverable.'
+            '</p>'
+        )
+
     try:
         resend.Emails.send({
             "from": SENDER_EMAIL,
             "to": [VINCE_EMAIL],
-            "subject": f"ACTION REQUIRED — {short_name} DIGITAL ($150) purchase from {email}",
+            "subject": subject,
             "html": f"""
                 <div style="font-family: Arial, sans-serif; max-width: 600px; color: #102A43;">
                     <h2 style="margin: 0 0 8px 0;">Citation-Proof Kit &mdash; new digital order</h2>
-                    <p style="margin: 0 0 12px 0; padding: 8px 12px; background: #FFF3D6; border-left: 3px solid #C9A84C; font-size: 14px;">
-                        <strong>Manual fulfillment required.</strong> Send the {short_name} Digital Kit files to the buyer directly. Do NOT attach raw DOCX; use the packaged deliverable.
-                    </p>
+                    {callout_html}
                     <p style="margin: 0;"><strong>Kit:</strong> {label}</p>
                     <p style="margin: 0;"><strong>Slug:</strong> {slug}</p>
                     <p style="margin: 0;"><strong>Amount:</strong> {amount_str}</p>
@@ -291,6 +391,6 @@ async def _send_vince_notification(slug, product, email, name, phone, metadata, 
                 </div>
             """,
         })
-        logger.info(f"Vince notified of citation-proof-kit order: slug={slug} email={email}")
+        logger.info(f"Vince notified of citation-proof-kit order: slug={slug} email={email} pdf_delivered={pdf_delivered}")
     except Exception as e:
         logger.error(f"Vince notification email error (citation-proof-kit): {e}")

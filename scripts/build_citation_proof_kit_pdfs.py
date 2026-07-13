@@ -26,7 +26,7 @@ from lib.pdf_cover import prepend_cover_to_pdf  # noqa: E402
 
 
 ASSETS = {
-    'loto-readiness-kit': {
+    'loto-readiness-kit-150': {
         'source_docx_url': 'https://customer-assets.emergentagent.com/job_z-project-9/artifacts/jd4cc53v_GigLine_LOTO_Digital_Compliance_Kit_.docx',
         'output_pdf': '/app/backend/kit_files/GigLine_LOTO_Digital_Compliance_Kit_150.pdf',
         'cover': {
@@ -54,7 +54,36 @@ ASSETS = {
             'footer_line': 'GigLine Safety & Compliance  |  29 CFR 1910.147',
         },
     },
-    'forklift-pit-readiness-kit': {
+    'loto-readiness-kit-300': {
+        'source_docx_url': 'https://customer-assets.emergentagent.com/job_z-project-9/artifacts/axvd99w0_GigLine_LOTO_Compliance_Control_System.docx',
+        'output_pdf': '/app/backend/kit_files/GigLine_LOTO_Compliance_Control_System_300.pdf',
+        'cover': {
+            'title': 'Machine-Specific LOTO Readiness Kit',
+            'subtitle': 'Compliance Control System — $300',
+            'body': (
+                'Everything in the Digital Compliance Kit — plus the First-Pull Packet™, '
+                'optional QR Evidence Hub setup guide, field-use supervisor reference '
+                'tools, and on-site Photo Lockout Map™ photography available as an upsell. '
+                'Built for facilities that need the full inspection-response system.'
+            ),
+            'header_slug': 'CITATION-PROOF KIT SERIES  |  VERSION 1.0',
+            'version_footer': 'Version 1.0',
+            'whats_inside_heading': "What's Inside",
+            'whats_inside_items': [
+                'Everything in the Digital Compliance Kit',
+                'First-Pull Packet™ — organized to hand over',
+                'Two Fully Worked Examples (Press + CNC)',
+                'Kit-Spine Forms A–D',
+                '30-Day LOTO Binder Reset Plan™',
+                'Optional QR Evidence Hub setup guide',
+                'Field-use supervisor reference tools',
+                'Regulatory Basis & Sources — cited to 1910.147',
+            ],
+            'process_flow': ['Identify', 'Shut Down', 'Isolate', 'Verify', 'Certify'],
+            'footer_line': 'GigLine Safety & Compliance  |  29 CFR 1910.147',
+        },
+    },
+    'forklift-pit-readiness-kit-150': {
         'source_docx_url': 'https://customer-assets.emergentagent.com/job_z-project-9/artifacts/ryl7act9_GigLine_PIT_Digital_Compliance_Kit_150.docx',
         'output_pdf': '/app/backend/kit_files/GigLine_PIT_Digital_Compliance_Kit_150.pdf',
         'cover': {
@@ -77,6 +106,38 @@ ASSETS = {
                 'Refresher-Training Trigger Log (Form D)',
                 'Citation-Proof Score™ Rubric',
                 "Inspector's First 10 Questions Card",
+            ],
+            'process_flow': ['Instruct', 'Train', 'Evaluate', 'Certify', 'Re-Evaluate'],
+            'footer_line': 'GigLine Safety & Compliance  |  29 CFR 1910.178',
+        },
+    },
+    'forklift-pit-readiness-kit-300': {
+        'source_docx_url': 'https://customer-assets.emergentagent.com/job_z-project-9/artifacts/k58biupn_GigLine_PIT_Compliance_Control_System_300_600%20%281%29.docx',
+        'output_pdf': '/app/backend/kit_files/GigLine_PIT_Compliance_Control_System_300.pdf',
+        'cover': {
+            'title': 'Forklift / PIT Readiness Kit',
+            'subtitle': 'Compliance Control System — $300',
+            'body': (
+                'Everything in the Digital Compliance Kit — plus the First-Pull Packet™, '
+                'optional QR Evidence Hub setup guide, and field-use supervisor reference '
+                'tools. Built for facilities that need the full 1910.178(l) '
+                'inspection-response system.'
+            ),
+            'header_slug': 'CITATION-PROOF KIT SERIES  |  VERSION 1.0',
+            'version_footer': 'Version 1.0',
+            'whats_inside_heading': "What's Inside",
+            'whats_inside_items': [
+                'Everything in the Digital Compliance Kit',
+                'Operator Training & Evaluation Builder™',
+                'Training & Evaluation Certification (Form A)',
+                '3-Year Re-Evaluation Autopilot Tracker (Form B)',
+                'Daily / Pre-Shift Inspection (Form C)',
+                'Refresher-Training Trigger Log (Form D)',
+                'First-Pull Packet™ — organized to hand over',
+                'Citation-Proof Score™ Rubric',
+                "Inspector's First 10 Questions Card",
+                'Field-use supervisor reference tools',
+                'Regulatory Basis & Sources — cited to 1910.178',
             ],
             'process_flow': ['Instruct', 'Train', 'Evaluate', 'Certify', 'Re-Evaluate'],
             'footer_line': 'GigLine Safety & Compliance  |  29 CFR 1910.178',
@@ -107,10 +168,10 @@ def main() -> None:
     work = Path('/tmp/gl_kit_build')
     work.mkdir(parents=True, exist_ok=True)
 
-    for slug, spec in ASSETS.items():
-        print(f'\n── Building {slug} ──')
+    for key, spec in ASSETS.items():
+        print(f'\n── Building {key} ──')
 
-        docx = work / f'{slug}.docx'
+        docx = work / f'{key}.docx'
         print(f'  1) Downloading DOCX → {docx.name}')
         _download(spec['source_docx_url'], docx)
 

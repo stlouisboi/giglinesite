@@ -188,28 +188,85 @@ GIGLINE_GOOGLE_REVIEW_URL = os.environ.get(
 SUPERVISOR_KIT_ENABLED = os.environ.get('SUPERVISOR_KIT_ENABLED', 'false').lower() == 'true'
 
 # ── Citation-Proof Kit Series (Feb 2026) ──
-# ONLY the $150 Digital tier ships with Stripe checkout in v1. The $300 Control
-# System and $600 Binder Edition tiers still route through the lead-capture /contact
-# flow for manual quoting. Digital fulfillment is MANUAL — the confirmation email
-# tells the buyer their kit will arrive via a separate email from Vince. Raw DOCX
-# files are NOT attached/auto-sent.
-CITATION_PROOF_KIT_DIGITAL_PRODUCTS = {
-    "loto-readiness-kit": {
+# 6 product/tier combinations across 2 kits — 3 tiers each.
+# All ship via Stripe Checkout. Digital + Control System are electronic-only
+# (auto-attach PDF). Binder Edition attaches the SAME PDF as Control System
+# and also physically ships a pre-printed, tabbed binder — Stripe collects
+# the ship-to address inline during checkout, Vince receives an ACTION
+# REQUIRED "SHIP THIS BINDER" email with the address block.
+CITATION_PROOF_KIT_PRODUCTS = {
+    ("loto-readiness-kit", "digital"): {
         "name": "Machine-Specific LOTO Readiness Kit — Digital Compliance Kit",
         "short_name": "Machine-Specific LOTO Readiness Kit",
-        "amount_cents": 15000,  # $150
+        "tier_label": "Digital Compliance Kit",
+        "amount_cents": 15000,
         "sku": "citation-proof-loto-digital",
-        "slug": "loto-readiness-kit",
         "pdf_path": "/app/backend/kit_files/GigLine_LOTO_Digital_Compliance_Kit_150.pdf",
         "pdf_filename": "GigLine_LOTO_Digital_Compliance_Kit.pdf",
+        "physical_binder": False,
+        "collect_shipping": False,
     },
-    "forklift-pit-readiness-kit": {
+    ("loto-readiness-kit", "control-system"): {
+        "name": "Machine-Specific LOTO Readiness Kit — Compliance Control System",
+        "short_name": "Machine-Specific LOTO Readiness Kit",
+        "tier_label": "Compliance Control System",
+        "amount_cents": 30000,
+        "sku": "citation-proof-loto-control-system",
+        "pdf_path": "/app/backend/kit_files/GigLine_LOTO_Compliance_Control_System_300.pdf",
+        "pdf_filename": "GigLine_LOTO_Compliance_Control_System.pdf",
+        "physical_binder": False,
+        "collect_shipping": False,
+    },
+    ("loto-readiness-kit", "binder"): {
+        "name": "Machine-Specific LOTO Readiness Kit — Inspector-Ready Binder Edition",
+        "short_name": "Machine-Specific LOTO Readiness Kit",
+        "tier_label": "Inspector-Ready Binder Edition",
+        "amount_cents": 60000,
+        "sku": "citation-proof-loto-binder",
+        "pdf_path": "/app/backend/kit_files/GigLine_LOTO_Compliance_Control_System_300.pdf",
+        "pdf_filename": "GigLine_LOTO_Compliance_Control_System.pdf",
+        "physical_binder": True,
+        "collect_shipping": True,
+    },
+    ("forklift-pit-readiness-kit", "digital"): {
         "name": "Forklift / PIT Readiness Kit — Digital Compliance Kit",
         "short_name": "Forklift / PIT Readiness Kit",
-        "amount_cents": 15000,  # $150
+        "tier_label": "Digital Compliance Kit",
+        "amount_cents": 15000,
         "sku": "citation-proof-pit-digital",
-        "slug": "forklift-pit-readiness-kit",
         "pdf_path": "/app/backend/kit_files/GigLine_PIT_Digital_Compliance_Kit_150.pdf",
         "pdf_filename": "GigLine_PIT_Digital_Compliance_Kit.pdf",
+        "physical_binder": False,
+        "collect_shipping": False,
     },
+    ("forklift-pit-readiness-kit", "control-system"): {
+        "name": "Forklift / PIT Readiness Kit — Compliance Control System",
+        "short_name": "Forklift / PIT Readiness Kit",
+        "tier_label": "Compliance Control System",
+        "amount_cents": 30000,
+        "sku": "citation-proof-pit-control-system",
+        "pdf_path": "/app/backend/kit_files/GigLine_PIT_Compliance_Control_System_300.pdf",
+        "pdf_filename": "GigLine_PIT_Compliance_Control_System.pdf",
+        "physical_binder": False,
+        "collect_shipping": False,
+    },
+    ("forklift-pit-readiness-kit", "binder"): {
+        "name": "Forklift / PIT Readiness Kit — Inspector-Ready Binder Edition",
+        "short_name": "Forklift / PIT Readiness Kit",
+        "tier_label": "Inspector-Ready Binder Edition",
+        "amount_cents": 60000,
+        "sku": "citation-proof-pit-binder",
+        "pdf_path": "/app/backend/kit_files/GigLine_PIT_Compliance_Control_System_300.pdf",
+        "pdf_filename": "GigLine_PIT_Compliance_Control_System.pdf",
+        "physical_binder": True,
+        "collect_shipping": True,
+    },
+}
+
+# Backwards-compat alias — old endpoint / old code paths still expect only the
+# $150 digital entries under this name. Keep in sync with the digital entries above.
+CITATION_PROOF_KIT_DIGITAL_PRODUCTS = {
+    slug: {**cfg, "slug": slug}
+    for (slug, tier), cfg in CITATION_PROOF_KIT_PRODUCTS.items()
+    if tier == "digital"
 }

@@ -9,15 +9,13 @@ const PANEL = '#F3ECDB';
 
 const API = process.env.REACT_APP_BACKEND_URL;
 
-// Kits whose $150 Digital tier is wired to live Stripe checkout.
+// Kits whose ALL THREE tiers are wired to live Stripe checkout.
 // Every other kit / tier still routes through the /contact lead-capture flow.
-const DIGITAL_STRIPE_ENABLED_SLUGS = new Set([
+const STRIPE_ENABLED_SLUGS = new Set([
   'loto-readiness-kit',
   'forklift-pit-readiness-kit',
 ]);
 
-// Read first-touch attribution off localStorage if the site's attribution
-// tracker has stored it. Silent no-op if absent.
 const getAttribution = () => {
   try {
     const raw = localStorage.getItem('gl_attribution');
@@ -56,19 +54,20 @@ const KitPricingTiers = ({
     ? 'Every kit in the Citation-Proof Series is offered in three tiers. Buy the level that matches how much of the build you want to do yourself — and how quickly you need the physical binder in the supervisor’s hands.'
     : 'Buy the tier that matches how much of the build you want to run yourself.');
 
-  const stripeEnabledForDigital = ready && !universalTiers && DIGITAL_STRIPE_ENABLED_SLUGS.has(kitSlug);
-  const [checkoutLoading, setCheckoutLoading] = useState(false);
+  const stripeEnabled = ready && !universalTiers && STRIPE_ENABLED_SLUGS.has(kitSlug);
+  const [checkoutLoadingTier, setCheckoutLoadingTier] = useState(null);
   const [checkoutError, setCheckoutError] = useState(null);
 
-  const startDigitalCheckout = async () => {
+  const startTierCheckout = async (tierId) => {
     setCheckoutError(null);
-    setCheckoutLoading(true);
+    setCheckoutLoadingTier(tierId);
     try {
-      const res = await fetch(`${API}/api/checkout/citation-proof-kit-digital`, {
+      const res = await fetch(`${API}/api/checkout/citation-proof-kit`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           slug: kitSlug,
+          tier: tierId,
           origin_url: window.location.origin,
           attribution: getAttribution(),
         }),
@@ -82,7 +81,7 @@ const KitPricingTiers = ({
     } catch {
       setCheckoutError('Network error. Please call (336) 329-8899.');
     }
-    setCheckoutLoading(false);
+    setCheckoutLoadingTier(null);
   };
 
   const buildCtaHref = (tier) => {
@@ -102,8 +101,10 @@ const KitPricingTiers = ({
   const ctaLabel = (tier) => {
     if (universalTiers) return 'View the Kits';
     if (!ready) return 'Notify Me When Available';
-    if (stripeEnabledForDigital && tier.id === 'digital') {
-      return checkoutLoading ? 'Starting checkout…' : 'Buy Digital Kit — $150';
+    if (stripeEnabled) {
+      if (checkoutLoadingTier === tier.id) return 'Starting checkout…';
+      // Preserve the tier-specific label from KIT_TIERS.
+      return tier.ctaLabel;
     }
     return tier.ctaLabel;
   };
@@ -231,11 +232,11 @@ const KitPricingTiers = ({
                       </li>
                     ))}
                   </ul>
-                  {stripeEnabledForDigital && tier.id === 'digital' ? (
+                  {stripeEnabled ? (
                     <button
                       type="button"
-                      onClick={startDigitalCheckout}
-                      disabled={checkoutLoading}
+                      onClick={() => startTierCheckout(tier.id)}
+                      disabled={checkoutLoadingTier !== null}
                       className="inline-flex items-center justify-center gap-2 font-bold py-3 px-5 rounded transition-all text-[14px] w-full disabled:opacity-70"
                       style={{
                         background: isFeatured ? GOLD : NAVY,
@@ -246,9 +247,9 @@ const KitPricingTiers = ({
                       onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
                       data-testid={`kit-tier-${tier.id}-cta`}
                     >
-                      {checkoutLoading ? <Loader2 size={14} className="animate-spin" /> : null}
+                      {checkoutLoadingTier === tier.id ? <Loader2 size={14} className="animate-spin" /> : null}
                       {ctaLabel(tier)}
-                      {!checkoutLoading && <ArrowRight size={14} />}
+                      {checkoutLoadingTier !== tier.id && <ArrowRight size={14} />}
                     </button>
                   ) : (
                     <Link

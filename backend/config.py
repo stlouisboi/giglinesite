@@ -186,3 +186,26 @@ GIGLINE_GOOGLE_REVIEW_URL = os.environ.get(
 # UI tiles/links are hidden across the site. /verify keeps working so existing
 # paid orders can still be confirmed. Flip via SUPERVISOR_KIT_ENABLED=true in .env.
 SUPERVISOR_KIT_ENABLED = os.environ.get('SUPERVISOR_KIT_ENABLED', 'false').lower() == 'true'
+
+# ── Citation-Proof Kit Series (Feb 2026) ──
+# ONLY the $150 Digital tier ships with Stripe checkout in v1. The $300 Control
+# System and $600 Binder Edition tiers still route through the lead-capture /contact
+# flow for manual quoting. Digital fulfillment is MANUAL — the confirmation email
+# tells the buyer their kit will arrive via a separate email from Vince. Raw DOCX
+# files are NOT attached/auto-sent.
+CITATION_PROOF_KIT_DIGITAL_PRODUCTS = {
+    "loto-readiness-kit": {
+        "name": "Machine-Specific LOTO Readiness Kit — Digital Compliance Kit",
+        "short_name": "Machine-Specific LOTO Readiness Kit",
+        "amount_cents": 15000,  # $150
+        "sku": "citation-proof-loto-digital",
+        "slug": "loto-readiness-kit",
+    },
+    "forklift-pit-readiness-kit": {
+        "name": "Forklift / PIT Readiness Kit — Digital Compliance Kit",
+        "short_name": "Forklift / PIT Readiness Kit",
+        "amount_cents": 15000,  # $150
+        "sku": "citation-proof-pit-digital",
+        "slug": "forklift-pit-readiness-kit",
+    },
+}

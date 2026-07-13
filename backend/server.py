@@ -21,6 +21,7 @@ from routes.newsletter import router as newsletter_router
 from routes.intake import router as intake_router
 from routes.portal import router as portal_router
 from routes.supervisor_kit import router as supervisor_kit_router
+from routes.citation_proof_kits import router as citation_proof_kits_router
 from routes.sample_report import router as sample_report_router
 from routes.quick_contact import router as quick_contact_router
 from routes.contact_message import router as contact_message_router
@@ -44,6 +45,7 @@ api_router.include_router(newsletter_router)
 api_router.include_router(intake_router)
 api_router.include_router(portal_router)
 api_router.include_router(supervisor_kit_router)
+api_router.include_router(citation_proof_kits_router)
 api_router.include_router(sample_report_router)
 api_router.include_router(quick_contact_router)
 api_router.include_router(contact_message_router)

@@ -1,11 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Check, ArrowRight, Lock } from 'lucide-react';
+import { Check, ArrowRight, Lock, Loader2 } from 'lucide-react';
 import { KIT_TIERS } from '../data/citationProofKits';
 
 const NAVY = '#102A43';
 const GOLD = '#C9A84C';
 const PANEL = '#F3ECDB';
+
+const API = process.env.REACT_APP_BACKEND_URL;
+
+// Kits whose $150 Digital tier is wired to live Stripe checkout.
+// Every other kit / tier still routes through the /contact lead-capture flow.
+const DIGITAL_STRIPE_ENABLED_SLUGS = new Set([
+  'loto-readiness-kit',
+  'forklift-pit-readiness-kit',
+]);
+
+// Read first-touch attribution off localStorage if the site's attribution
+// tracker has stored it. Silent no-op if absent.
+const getAttribution = () => {
+  try {
+    const raw = localStorage.getItem('gl_attribution');
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+};
 
 /**
  * KitPricingTiers — reusable 3-tier pricing card grid.
@@ -36,6 +56,35 @@ const KitPricingTiers = ({
     ? 'Every kit in the Citation-Proof Series is offered in three tiers. Buy the level that matches how much of the build you want to do yourself — and how quickly you need the physical binder in the supervisor’s hands.'
     : 'Buy the tier that matches how much of the build you want to run yourself.');
 
+  const stripeEnabledForDigital = ready && !universalTiers && DIGITAL_STRIPE_ENABLED_SLUGS.has(kitSlug);
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
+  const [checkoutError, setCheckoutError] = useState(null);
+
+  const startDigitalCheckout = async () => {
+    setCheckoutError(null);
+    setCheckoutLoading(true);
+    try {
+      const res = await fetch(`${API}/api/checkout/citation-proof-kit-digital`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          slug: kitSlug,
+          origin_url: window.location.origin,
+          attribution: getAttribution(),
+        }),
+      });
+      const data = await res.json();
+      if (res.ok && data.url) {
+        window.location.href = data.url;
+        return;
+      }
+      setCheckoutError('Could not start checkout. Please call (336) 329-8899.');
+    } catch {
+      setCheckoutError('Network error. Please call (336) 329-8899.');
+    }
+    setCheckoutLoading(false);
+  };
+
   const buildCtaHref = (tier) => {
     if (universalTiers) {
       return '/citation-proof-kits';
@@ -53,6 +102,9 @@ const KitPricingTiers = ({
   const ctaLabel = (tier) => {
     if (universalTiers) return 'View the Kits';
     if (!ready) return 'Notify Me When Available';
+    if (stripeEnabledForDigital && tier.id === 'digital') {
+      return checkoutLoading ? 'Starting checkout…' : 'Buy Digital Kit — $150';
+    }
     return tier.ctaLabel;
   };
 
@@ -179,27 +231,62 @@ const KitPricingTiers = ({
                       </li>
                     ))}
                   </ul>
-                  <Link
-                    to={buildCtaHref(tier)}
-                    className="inline-flex items-center justify-center gap-2 font-bold py-3 px-5 rounded transition-all text-[14px] w-full"
-                    style={{
-                      background: isFeatured ? GOLD : NAVY,
-                      color: isFeatured ? NAVY : 'white',
-                      fontFamily: "'Manrope', sans-serif",
-                    }}
-                    onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.9')}
-                    onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
-                    data-testid={`kit-tier-${tier.id}-cta`}
-                  >
-                    {!ready && <Lock size={13} />}
-                    {ctaLabel(tier)}
-                    {ready && <ArrowRight size={14} />}
-                  </Link>
+                  {stripeEnabledForDigital && tier.id === 'digital' ? (
+                    <button
+                      type="button"
+                      onClick={startDigitalCheckout}
+                      disabled={checkoutLoading}
+                      className="inline-flex items-center justify-center gap-2 font-bold py-3 px-5 rounded transition-all text-[14px] w-full disabled:opacity-70"
+                      style={{
+                        background: isFeatured ? GOLD : NAVY,
+                        color: isFeatured ? NAVY : 'white',
+                        fontFamily: "'Manrope', sans-serif",
+                      }}
+                      onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.9')}
+                      onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+                      data-testid={`kit-tier-${tier.id}-cta`}
+                    >
+                      {checkoutLoading ? <Loader2 size={14} className="animate-spin" /> : null}
+                      {ctaLabel(tier)}
+                      {!checkoutLoading && <ArrowRight size={14} />}
+                    </button>
+                  ) : (
+                    <Link
+                      to={buildCtaHref(tier)}
+                      className="inline-flex items-center justify-center gap-2 font-bold py-3 px-5 rounded transition-all text-[14px] w-full"
+                      style={{
+                        background: isFeatured ? GOLD : NAVY,
+                        color: isFeatured ? NAVY : 'white',
+                        fontFamily: "'Manrope', sans-serif",
+                      }}
+                      onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.9')}
+                      onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+                      data-testid={`kit-tier-${tier.id}-cta`}
+                    >
+                      {!ready && <Lock size={13} />}
+                      {ctaLabel(tier)}
+                      {ready && <ArrowRight size={14} />}
+                    </Link>
+                  )}
                 </div>
               </div>
             );
           })}
         </div>
+        {checkoutError && (
+          <div
+            className="mt-6 p-4 rounded-md text-[14px] leading-[1.55]"
+            style={{
+              background: '#fef2f2',
+              border: '1px solid #fecaca',
+              color: '#991b1b',
+              fontFamily: "Georgia, serif",
+            }}
+            data-testid="kit-pricing-checkout-error"
+          >
+            {checkoutError}
+          </div>
+        )}
         {universalTiers && (
           <div className="mt-10 text-center">
             <Link

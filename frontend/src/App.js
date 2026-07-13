@@ -69,6 +69,7 @@ const BlogMidYear2026OshaUpdate       = lazy(() => import('./pages/BlogMidYear20
 // Citation-Proof Kit Series
 const CitationProofKitsPage           = lazy(() => import('./pages/CitationProofKitsPage'));
 const CitationProofKitDetailPage      = lazy(() => import('./pages/CitationProofKitDetailPage'));
+const CitationProofKitThankYouPage    = lazy(() => import('./pages/CitationProofKitThankYouPage'));
 
 import './App.css';
 
@@ -175,6 +176,7 @@ function App() {
                     <Route path="/case-studies/mocksville-plastics-osha-inspection" element={<Navigate to="/case-study/metals-fabrication-statesville" replace />} />
                     {/* Citation-Proof Kit Series */}
                     <Route path="/citation-proof-kits" element={<CitationProofKitsPage />} />
+                    <Route path="/citation-proof-kits/:slug/thank-you" element={<CitationProofKitThankYouPage />} />
                     <Route path="/citation-proof-kits/:slug" element={<CitationProofKitDetailPage />} />
                     <Route path="/kits" element={<Navigate to="/citation-proof-kits" replace />} />
                     <Route path="/kits/*" element={<Navigate to="/citation-proof-kits" replace />} />

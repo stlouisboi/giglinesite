@@ -1,0 +1,249 @@
+import React, { useEffect, useState } from 'react';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
+import { CheckCircle2, Phone, Mail, ArrowLeft, ArrowRight, Loader2 } from 'lucide-react';
+import SEO from '../components/SEO';
+import { KIT_DETAILS } from '../data/citationProofKits';
+
+const API = process.env.REACT_APP_BACKEND_URL;
+
+const NAVY = '#102A43';
+const GOLD = '#C9A84C';
+const BG_WARM = '#FAF7F1';
+const PANEL = '#F3ECDB';
+const BORDER = '#e8e5dd';
+
+const mono = { fontFamily: "'JetBrains Mono', monospace" };
+const sans = { fontFamily: "'Manrope', sans-serif" };
+const serif = { fontFamily: "Georgia, 'Times New Roman', serif" };
+
+/**
+ * Stripe redirects the buyer here after a Citation-Proof Kit ($150 Digital) purchase.
+ * The page polls /api/citation-proof-kit/verify which:
+ *   1. Confirms payment_status = paid via Stripe
+ *   2. Sends the buyer confirmation email (via Resend) on first paid verify call
+ *   3. Sends Vince the ACTION REQUIRED notification so he manually fulfills the kit
+ *
+ * Fulfillment is deliberately MANUAL in v1 — the email tells the buyer the kit will
+ * arrive in a separate email from Vince, typically within 1 business day.
+ */
+const CitationProofKitThankYouPage = () => {
+  const { slug } = useParams();
+  const [params] = useSearchParams();
+  const sessionId = params.get('session_id');
+  const kit = KIT_DETAILS[slug];
+  const kitName = kit?.name || 'GigLine Citation-Proof Kit';
+
+  const [state, setState] = useState({ loading: true, verified: false });
+
+  useEffect(() => {
+    if (!sessionId) {
+      setState({ loading: false, verified: false });
+      return;
+    }
+    let cancelled = false;
+    let attempts = 0;
+    const poll = async () => {
+      attempts += 1;
+      try {
+        const res = await fetch(
+          `${API}/api/citation-proof-kit/verify?session_id=${encodeURIComponent(sessionId)}`
+        );
+        const data = await res.json();
+        if (cancelled) return;
+        if (data.verified) {
+          setState({ loading: false, verified: true });
+          return;
+        }
+        if (attempts < 6) {
+          setTimeout(poll, 1500);
+        } else {
+          setState({ loading: false, verified: false });
+        }
+      } catch {
+        if (attempts < 6) {
+          setTimeout(poll, 1500);
+        } else {
+          setState({ loading: false, verified: false });
+        }
+      }
+    };
+    poll();
+    return () => {
+      cancelled = true;
+    };
+  }, [sessionId]);
+
+  return (
+    <main
+      data-testid="citation-proof-kit-thankyou-page"
+      style={{ backgroundColor: BG_WARM, color: NAVY, minHeight: '70vh' }}
+    >
+      <SEO
+        title={`Order Confirmed | ${kitName} | GigLine Safety & Compliance`}
+        description={`Your ${kitName} Digital Compliance Kit order is confirmed.`}
+        canonical={`/citation-proof-kits/${slug || ''}/thank-you`}
+        noindex
+      />
+
+      <section className="px-5 md:px-8 py-16 md:py-24">
+        <div className="max-w-2xl mx-auto">
+          {state.loading && (
+            <div
+              className="rounded-md p-6 md:p-8 text-center"
+              style={{ background: 'white', border: `1px solid ${BORDER}` }}
+              data-testid="kit-thankyou-loading"
+            >
+              <Loader2 size={28} className="animate-spin mx-auto mb-3" style={{ color: GOLD }} />
+              <p className="text-[15px]" style={{ color: 'rgba(10,22,40,0.7)', ...serif }}>
+                Confirming your order with Stripe…
+              </p>
+            </div>
+          )}
+
+          {!state.loading && state.verified && (
+            <div data-testid="kit-thankyou-success">
+              <div className="mb-8 text-center">
+                <div
+                  className="inline-flex items-center justify-center rounded-full mb-4"
+                  style={{ background: PANEL, width: 60, height: 60 }}
+                >
+                  <CheckCircle2 size={30} strokeWidth={2} style={{ color: GOLD }} />
+                </div>
+                <p
+                  className="uppercase font-bold tracking-[0.28em] mb-3"
+                  style={{ color: GOLD, ...mono, fontSize: '11px' }}
+                >
+                  Order Confirmed
+                </p>
+                <h1
+                  className="text-[28px] md:text-[36px] font-extrabold leading-[1.15] mb-4"
+                  style={{ color: NAVY, ...sans }}
+                  data-testid="kit-thankyou-headline"
+                >
+                  Your order was received successfully.
+                </h1>
+                <p
+                  className="text-[16px] md:text-[17.5px] leading-[1.65] max-w-xl mx-auto"
+                  style={{ color: 'rgba(10,22,40,0.75)', ...serif }}
+                >
+                  Thanks for purchasing the <strong style={{ ...sans, color: NAVY }}>{kitName}</strong> — Digital Compliance Kit.
+                </p>
+              </div>
+
+              <div
+                className="rounded-md p-6 md:p-7 mb-8"
+                style={{ background: PANEL, borderLeft: `3px solid ${GOLD}` }}
+                data-testid="kit-thankyou-fulfillment-note"
+              >
+                <p
+                  className="uppercase font-bold tracking-[0.22em] mb-2"
+                  style={{ color: GOLD, ...mono, fontSize: '11px' }}
+                >
+                  Delivery coming separately
+                </p>
+                <h3 className="text-[18px] md:text-[20px] font-extrabold mb-2 leading-tight" style={{ color: NAVY, ...sans }}>
+                  Your GigLine digital kit is on the way.
+                </h3>
+                <p className="text-[15px] leading-[1.7] mb-3" style={{ color: 'rgba(10,22,40,0.78)', ...serif }}>
+                  Your GigLine digital kit download will be delivered to your email address separately &mdash; typically within one business day. Files are prepared and sent manually so you receive the current, working version of every tool.
+                </p>
+                <p className="text-[14px] leading-[1.65]" style={{ color: 'rgba(10,22,40,0.65)', ...serif }}>
+                  Check your inbox (including spam) for a message from <strong>vince@giglinecompliance.com</strong>. If you don&rsquo;t see it within one business day, call <strong>(336) 329-8899</strong>.
+                </p>
+              </div>
+
+              <div
+                className="rounded-md p-6 md:p-7 mb-8"
+                style={{ background: 'white', border: `1px solid ${BORDER}` }}
+              >
+                <h3 className="text-[15px] font-extrabold uppercase tracking-[0.14em] mb-4" style={{ color: NAVY, ...sans }}>
+                  What happens next
+                </h3>
+                <ol className="space-y-3 text-[14.5px] leading-[1.7]" style={{ color: 'rgba(10,22,40,0.8)', ...serif }}>
+                  <li className="flex gap-3">
+                    <span className="font-bold" style={{ color: GOLD, ...mono, fontSize: '13px', minWidth: 22 }}>01</span>
+                    <span>You&rsquo;ll receive a confirmation email at the address you used at checkout.</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="font-bold" style={{ color: GOLD, ...mono, fontSize: '13px', minWidth: 22 }}>02</span>
+                    <span>Vince sends your kit files in a separate email — usually within one business day.</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="font-bold" style={{ color: GOLD, ...mono, fontSize: '13px', minWidth: 22 }}>03</span>
+                    <span>Open the builder tools first. Then work through the Citation-Proof Score&trade; to see where you stand.</span>
+                  </li>
+                </ol>
+              </div>
+
+              <div className="text-center mb-10">
+                <Link
+                  to="/citation-proof-kits"
+                  className="inline-flex items-center gap-2 font-bold text-[14px] underline hover:no-underline"
+                  style={{ color: NAVY, ...sans }}
+                  data-testid="kit-thankyou-back-catalog"
+                >
+                  <ArrowLeft size={14} />
+                  Back to the Citation-Proof Kit Series
+                </Link>
+              </div>
+
+              <div
+                className="rounded-md p-5"
+                style={{ background: 'white', border: `1px solid ${BORDER}` }}
+              >
+                <p className="text-[13px] font-bold uppercase tracking-[0.18em] mb-3" style={{ color: 'rgba(10,22,40,0.6)', ...mono }}>
+                  Questions?
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 text-[14px]" style={{ color: 'rgba(10,22,40,0.78)', ...serif }}>
+                  <a href="tel:+13363298899" className="inline-flex items-center gap-2 hover:underline">
+                    <Phone size={14} style={{ color: GOLD }} />
+                    (336) 329-8899
+                  </a>
+                  <a href="mailto:vince@giglinecompliance.com" className="inline-flex items-center gap-2 hover:underline">
+                    <Mail size={14} style={{ color: GOLD }} />
+                    vince@giglinecompliance.com
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {!state.loading && !state.verified && (
+            <div
+              className="rounded-md p-6 md:p-8"
+              style={{ background: 'white', border: `1px solid ${BORDER}` }}
+              data-testid="kit-thankyou-unverified"
+            >
+              <h1 className="text-[24px] md:text-[30px] font-extrabold mb-4 leading-tight" style={{ color: NAVY, ...sans }}>
+                We couldn&rsquo;t confirm your payment.
+              </h1>
+              <p className="text-[15px] leading-[1.7] mb-4" style={{ color: 'rgba(10,22,40,0.75)', ...serif }}>
+                If you completed checkout, your order may still be processing on Stripe&rsquo;s end. Refresh this page in a minute, or call GigLine directly and we&rsquo;ll confirm on our end.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 mt-6">
+                <a
+                  href="tel:+13363298899"
+                  className="inline-flex items-center justify-center gap-2 font-bold py-3 px-5 rounded text-[14px]"
+                  style={{ background: NAVY, color: 'white', ...sans }}
+                >
+                  <Phone size={14} />
+                  Call (336) 329-8899
+                </a>
+                <Link
+                  to="/citation-proof-kits"
+                  className="inline-flex items-center justify-center gap-2 font-bold py-3 px-5 rounded text-[14px]"
+                  style={{ background: 'transparent', color: NAVY, border: `1.5px solid ${NAVY}`, ...sans }}
+                >
+                  Back to Kits
+                  <ArrowRight size={14} />
+                </Link>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+    </main>
+  );
+};
+
+export default CitationProofKitThankYouPage;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { CheckCircle2, Phone, Mail, ArrowLeft } from 'lucide-react';
+import { CheckCircle2, Phone, Mail, ArrowLeft, ArrowRight } from 'lucide-react';
 import SEO from '../components/SEO';
 
 const API = process.env.REACT_APP_BACKEND_URL;
@@ -206,6 +206,46 @@ const SupervisorKitThankYouPage = () => {
             >
               <Mail size={16} />
               Email Vince
+            </a>
+          </div>
+
+          {/* Implementation Support Upsell — per user's brief, belongs on the confirmation page, not the main sales page */}
+          <div
+            className="mt-14 md:mt-16 rounded-md p-6 md:p-8 text-left"
+            style={{ background: NAVY, color: 'white', border: `1px solid ${GOLD}` }}
+            data-testid="kit-thankyou-implementation-upsell"
+          >
+            <p
+              className="uppercase font-bold tracking-[0.28em] mb-3"
+              style={{ color: GOLD, ...mono, fontSize: '10.5px' }}
+            >
+              Optional Next Step
+            </p>
+            <h2
+              className="font-bold leading-tight mb-4 text-[22px] md:text-[26px]"
+              style={{ ...sans, color: 'white' }}
+            >
+              Need Help Installing the System in Your Facility?
+            </h2>
+            <p className="text-[15px] md:text-[16px] leading-[1.7] mb-4" style={{ color: 'rgba(255,255,255,0.8)', ...serif }}>
+              GigLine implementation support helps your team:
+            </p>
+            <ul className="mb-6 space-y-1.5 text-[14.5px] md:text-[15.5px] leading-[1.55]" style={{ color: 'rgba(255,255,255,0.82)', ...serif }}>
+              <li>&mdash; Assign internal ownership</li>
+              <li>&mdash; Organize the system for your facility</li>
+              <li>&mdash; Establish the inspection rhythm</li>
+              <li>&mdash; Set corrective-action responsibilities</li>
+              <li>&mdash; Review documentation expectations</li>
+              <li>&mdash; Prepare the first 30-day implementation cycle</li>
+            </ul>
+            <a
+              href="mailto:vince@giglinecompliance.com?subject=Supervisor%20Safety%20OS%20Implementation%20Support"
+              className="inline-flex items-center justify-center gap-2 font-bold py-3 px-6 transition-all text-[14.5px] hover:brightness-110"
+              style={{ background: GOLD, color: NAVY, ...sans }}
+              data-testid="kit-thankyou-implementation-cta"
+            >
+              Book Implementation Support
+              <ArrowRight size={14} />
             </a>
           </div>
 

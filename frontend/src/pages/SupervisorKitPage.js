@@ -31,6 +31,52 @@ const HERO_SUPPORTING = [
   'No more binder that exists but does not get used.',
 ];
 
+/* Boundaries — what the system does not do */
+const NOT_DESIGNED_TO = [
+  'Guarantee OSHA compliance',
+  'Replace site-specific hazard assessments',
+  'Replace required employee training',
+  'Replace qualified legal, engineering, medical, or safety advice',
+  'Correct hazards automatically',
+  'Serve as a substitute for management accountability',
+];
+
+/* FAQ — 8 questions the user brief specified */
+const FAQ = [
+  {
+    q: 'Is this an employee safety training course?',
+    a: 'No. The Supervisor Safety OS is an operational documentation and control system. It helps supervisors organize inspections, findings, corrective actions, reporting, and recurring safety reviews. Site-specific training may still be required based on your operations and applicable regulations.',
+  },
+  {
+    q: 'How quickly can we start using it?',
+    a: 'You can begin reviewing and implementing the digital system immediately after purchase. Start with the quick-start instructions, identify who will own the process, and establish your first inspection and corrective-action cycle.',
+  },
+  {
+    q: 'Is this only for manufacturing facilities?',
+    a: 'No. The system can support small manufacturing operations, warehouses, contractors, service businesses, and fleet operations. The organization must adapt the tools to its actual workplace hazards and responsibilities.',
+  },
+  {
+    q: 'Does this guarantee that we will pass an OSHA inspection?',
+    a: 'No responsible safety professional can guarantee the outcome of an OSHA inspection. The system is designed to help your organization improve visibility, documentation, corrective-action tracking, and supervisor accountability.',
+  },
+  {
+    q: 'Can we customize the documents?',
+    a: 'Customization rights depend on the license included with the purchased edition. Your organization may also need to add site-specific information, responsible personnel, emergency details, and facility procedures.',
+  },
+  {
+    q: 'Can GigLine help us implement the system?',
+    a: 'Implementation support may be purchased separately after checkout. This keeps the main purchase process simple while giving organizations the option to receive additional guidance.',
+  },
+  {
+    q: 'Is this for one facility or multiple locations?',
+    a: 'The standard license covers a single facility and its supervisors. Multi-site organizations may require an expanded license — contact GigLine for a scoped quote.',
+  },
+  {
+    q: 'Is this a replacement for a safety manager?',
+    a: 'No. The system helps supervisors operate more consistently, but it does not replace competent safety leadership or professional support when those resources are necessary.',
+  },
+];
+
 /* Hero stats bar (4 tiles) */
 const HERO_STATS = [
   { value: '17', label: 'Documents' },
@@ -58,10 +104,33 @@ const AFTER_LIST = [
   'You know where the record lives.',
 ];
 
-/* Rhythm — 5-step operating loop */
-const RHYTHM_STEPS = ['Inspect', 'Document', 'Assign', 'Verify', 'Review'];
+/* Rhythm — 5-step operating loop (Inspect → Assign → Verify → Document → Review) */
+const RHYTHM_STEPS = ['Inspect', 'Assign', 'Verify', 'Document', 'Review'];
 
-/* What's Included — 17 documents (code | title | help) */
+/* Rhythm — detailed step descriptions for the solution section */
+const RHYTHM_DETAILED = [
+  { name: 'Inspect', body: 'Use structured walkthroughs and checklists to identify hazards and documentation gaps.' },
+  { name: 'Assign',  body: 'Record the issue, corrective action, responsible person, and expected completion date.' },
+  { name: 'Verify',  body: 'Confirm that the correction was completed — not merely discussed.' },
+  { name: 'Document',body: 'Maintain visible records showing what was found, what changed, and who verified closure.' },
+  { name: 'Review',  body: 'Use a recurring supervisor review process to keep unresolved items from disappearing.' },
+];
+
+/* What Is Included — 10 outcome categories (sell the operational function, not the doc code) */
+const CONTENTS_CATEGORIES = [
+  { name: 'Quick-Start Implementation Guidance',    body: 'Clear instructions showing supervisors how to begin using the system and establish the first operating cycle.' },
+  { name: 'Supervisor Inspection Tools',            body: 'Practical inspection sheets for identifying workplace hazards, unsafe conditions, and documentation gaps.' },
+  { name: 'Corrective Action Control',              body: 'A defined process for assigning findings, tracking responsibility, setting completion dates, and verifying closure.' },
+  { name: 'Hazard and Incident Reporting',          body: 'Tools for documenting hazards, near misses, incidents, and unsafe conditions before they are forgotten or repeated.' },
+  { name: 'Stop Work Authority',                    body: 'A clear framework supporting an employee\u2019s or supervisor\u2019s authority to pause work when an uncontrolled hazard presents an immediate risk.' },
+  { name: 'Chemical and SDS Control',               body: 'Structured logs and reference tools for tracking workplace chemicals and maintaining safety data sheet visibility.' },
+  { name: 'Powered Industrial Truck Checks',        body: 'Documented inspection tools for forklifts and other powered industrial trucks.' },
+  { name: 'Toolbox Talk and Knowledge Check',       body: 'A repeatable method for conducting short safety discussions and documenting employee understanding.' },
+  { name: 'Emergency Information',                  body: 'A centralized quick-reference sheet for emergency contacts, response information, and critical facility details.' },
+  { name: 'Training and Annual Review Tracking',    body: 'Tools for documenting required training, recurring reviews, and supervisor follow-through.' },
+];
+
+/* What's Included — 17 documents (code | title | help) — kept for the deep-detail table below the categories */
 const KIT_CONTENTS = [
   { code: 'SS-01',  title: 'Start Here / How to Use This System',          help: 'Gives supervisors a clear starting point and shows how the system works.' },
   { code: 'SS-02',  title: '30-Day Action Checklist',                      help: 'Turns setup into a week-by-week plan instead of a someday project.' },
@@ -303,23 +372,51 @@ const SupervisorKitPage = () => {
       {/* ═════════ HERO ═════════ */}
       <section className="px-5 md:px-8 pt-20 md:pt-28 pb-14 md:pb-16" data-testid="kit-hero">
         <div className="max-w-4xl mx-auto text-center">
-          <SectionLabel>Supervisor Safety OS</SectionLabel>
+          <SectionLabel>GigLine Supervisor Safety OS</SectionLabel>
           <h1
             className="font-bold leading-[1.08] tracking-tight mb-6 text-[32px] md:text-[44px] lg:text-[52px]"
             style={{ ...sans, color: NAVY }}
             data-testid="kit-hero-headline"
           >
-            Turn scattered safety paperwork into a system your supervisors can actually run.
+            Install a Repeatable Supervisor Safety System &mdash; Without Building It From Scratch.
           </h1>
           <p
-            className="text-[17px] md:text-[19px] leading-[1.65] max-w-3xl mx-auto mb-8"
+            className="text-[17px] md:text-[19px] leading-[1.65] max-w-3xl mx-auto mb-6"
             style={{ color: TEXT_MUTED, ...serif }}
             data-testid="kit-hero-subhead"
           >
-            Built for small manufacturing teams without a full-time safety manager, the GigLine Supervisor Safety OS helps supervisors inspect, document, assign, verify, and review basic safety responsibilities using one organized system.
+            Give supervisors a practical system to identify hazards, assign corrective actions, document follow-through, and keep safety work visible.
           </p>
-          {/* Supporting "no more..." lines */}
-          <ul className="max-w-2xl mx-auto mb-10 space-y-1.5" data-testid="kit-hero-supporting">
+          <p
+            className="text-[15px] md:text-[16px] leading-[1.7] max-w-3xl mx-auto mb-10 italic"
+            style={{ color: TEXT_SUBTLE, ...serif }}
+            data-testid="kit-hero-audience"
+          >
+            Built for small manufacturers, warehouses, contractors, and fleet operations that need stronger safety control &mdash; but do not have a full-time safety manager.
+          </p>
+
+          {/* Single primary CTA — anchors to pricing/edition selection */}
+          <div className="flex flex-col items-center gap-3 mb-14 md:mb-16">
+            <a
+              href="#pricing"
+              className="inline-flex items-center justify-center gap-2 font-bold py-4 px-8 transition-all text-base hover:brightness-110"
+              style={{ background: NAVY, color: 'white', ...sans }}
+              data-testid="kit-hero-cta"
+            >
+              Get the Supervisor Safety OS
+              <ArrowRight size={18} />
+            </a>
+            <p
+              className="text-[13px] leading-tight text-center italic"
+              style={{ color: TEXT_SUBTLE, ...serif }}
+              data-testid="kit-hero-cta-micro"
+            >
+              Start using the system immediately after purchase.
+            </p>
+          </div>
+
+          {/* Supporting "no more..." lines — moved below CTA */}
+          <ul className="max-w-2xl mx-auto mb-14 space-y-1.5" data-testid="kit-hero-supporting">
             {HERO_SUPPORTING.map((line, i) => (
               <li
                 key={i}
@@ -330,49 +427,6 @@ const SupervisorKitPage = () => {
               </li>
             ))}
           </ul>
-
-          {/* Primary + secondary CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center items-stretch sm:items-start mb-14 md:mb-16">
-            <div className="flex flex-col items-center gap-2">
-              <button
-                type="button"
-                onClick={() => buy('digital')}
-                disabled={loading.digital}
-                className="inline-flex items-center justify-center gap-2 font-bold py-4 px-7 transition-all text-base disabled:opacity-50 hover:brightness-110"
-                style={{ background: NAVY, color: 'white', ...sans }}
-                data-testid="kit-hero-cta-digital"
-              >
-                {loading.digital ? 'Processing…' : 'Buy Digital Kit — $600'}
-                <ArrowRight size={18} />
-              </button>
-              <p
-                className="text-[12.5px] leading-tight text-center"
-                style={{ color: TEXT_SUBTLE, ...serif, fontStyle: 'italic' }}
-                data-testid="kit-hero-cta-digital-micro"
-              >
-                Instant download. Start organizing records today.
-              </p>
-            </div>
-            <div className="flex flex-col items-center gap-2">
-              <button
-                type="button"
-                onClick={() => buy('physical')}
-                disabled={loading.physical}
-                className="inline-flex items-center justify-center gap-2 font-bold py-4 px-7 transition-all text-base border-2 disabled:opacity-50 hover:brightness-110"
-                style={{ borderColor: NAVY, color: NAVY, background: 'transparent', ...sans }}
-                data-testid="kit-hero-cta-physical"
-              >
-                {loading.physical ? 'Processing…' : 'Buy Physical Binder Kit — $700'}
-              </button>
-              <p
-                className="text-[12.5px] leading-tight text-center"
-                style={{ color: TEXT_SUBTLE, ...serif, fontStyle: 'italic' }}
-                data-testid="kit-hero-cta-physical-micro"
-              >
-                Printed, organized, and shipped free.
-              </p>
-            </div>
-          </div>
 
           {/* Stats bar */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-4xl mx-auto" data-testid="kit-hero-stats">
@@ -494,10 +548,13 @@ const SupervisorKitPage = () => {
       {/* ═════════ RHYTHM ═════════ */}
       <section className="px-5 md:px-8 py-20 md:py-24" data-testid="kit-rhythm">
         <div className="max-w-4xl mx-auto">
-          <SectionLabel>The Rhythm</SectionLabel>
-          <H2>Inspect &rarr; Document &rarr; Assign &rarr; Verify &rarr; Review</H2>
+          <SectionLabel>The Operating Rhythm</SectionLabel>
+          <H2>Turn Loose Safety Tasks Into a Visible Operating System.</H2>
+          <p className="text-[16px] md:text-[17px] leading-[1.75] mb-8" style={{ color: TEXT_MUTED, ...serif }}>
+            The GigLine Supervisor Safety OS gives your team a repeatable process for managing everyday safety responsibilities. Instead of relying on memory or disconnected forms, supervisors follow a defined operating rhythm:
+          </p>
           {/* Visual step chain */}
-          <div className="flex flex-wrap gap-2 md:gap-3 items-center mb-8" data-testid="kit-rhythm-steps">
+          <div className="flex flex-wrap gap-2 md:gap-3 items-center mb-10" data-testid="kit-rhythm-steps">
             {RHYTHM_STEPS.map((step, i) => (
               <React.Fragment key={step}>
                 <span
@@ -512,39 +569,90 @@ const SupervisorKitPage = () => {
               </React.Fragment>
             ))}
           </div>
-          <div className="space-y-4 text-[16px] md:text-[17px] leading-[1.75]" style={{ color: TEXT_MUTED, ...serif }}>
-            <p>The Supervisor Safety OS gives your team a repeatable monthly rhythm.</p>
-            <ul className="space-y-1.5 pl-1">
-              <li><strong style={{ color: NAVY }}>Inspect</strong> the work area.</li>
-              <li><strong style={{ color: NAVY }}>Document</strong> what was found.</li>
-              <li><strong style={{ color: NAVY }}>Assign</strong> corrective action.</li>
-              <li><strong style={{ color: NAVY }}>Verify</strong> the fix.</li>
-              <li><strong style={{ color: NAVY }}>Review</strong> open items before they disappear into the background.</li>
-            </ul>
-            <p>This is not paperwork for paperwork&rsquo;s sake. It is a practical operating rhythm for supervisors who need to keep safety records moving.</p>
+          {/* Rhythm detailed grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 mb-10" data-testid="kit-rhythm-detailed">
+            {RHYTHM_DETAILED.map((s, i) => (
+              <div
+                key={s.name}
+                className="rounded-md p-5"
+                style={{ background: 'white', border: `1px solid ${BORDER}` }}
+                data-testid={`kit-rhythm-step-${i + 1}`}
+              >
+                <p className="uppercase font-bold tracking-[0.18em] mb-2" style={{ color: GOLD, ...mono, fontSize: '10.5px' }}>
+                  Step {String(i + 1).padStart(2, '0')}
+                </p>
+                <p className="font-bold text-[19px] md:text-[21px] mb-2 leading-tight" style={{ ...sans, color: NAVY }}>
+                  {s.name}
+                </p>
+                <p className="text-[14.5px] leading-[1.65]" style={{ color: TEXT_MUTED, ...serif }}>
+                  {s.body}
+                </p>
+              </div>
+            ))}
           </div>
+          <p className="text-[16px] md:text-[17px] leading-[1.75]" style={{ color: NAVY, ...serif }}>
+            <strong style={{ ...sans }}>This is not another binder that sits on a shelf.</strong> It is a working control system designed to help supervisors manage safety consistently.
+          </p>
         </div>
       </section>
 
       {/* ═════════ WHAT'S INCLUDED ═════════ */}
       <section className="px-5 md:px-8 py-20 md:py-24" style={{ background: 'white' }} data-testid="kit-contents">
         <div className="max-w-5xl mx-auto">
-          <SectionLabel>What&rsquo;s Included</SectionLabel>
-          <H2>A complete 17-document, 20-page supervisor safety documentation system.</H2>
-          <p className="text-[16px] md:text-[17px] leading-[1.75] max-w-3xl mb-6" style={{ color: TEXT_MUTED, ...serif }}>
-            The Supervisor Safety OS includes example pages, blank working forms, implementation tools, HazCom documentation, SDS tracking, inspection records, corrective action tracking, emergency information, and a next-step review path.
+          <SectionLabel>What Is Included</SectionLabel>
+          <H2>A structured set of tools for running, documenting, and reviewing frontline safety activity.</H2>
+          <p className="text-[16px] md:text-[17px] leading-[1.75] max-w-3xl mb-10" style={{ color: TEXT_MUTED, ...serif }}>
+            The Supervisor Safety OS is not a stack of random forms. Each tool has a defined operational job.
           </p>
-          <p className="text-[15.5px] md:text-[16.5px] leading-[1.75] max-w-3xl mb-6 font-bold" style={{ color: NAVY, ...sans }}>
-            This is not a stack of random forms. Each document has a job: help your supervisor document what was checked, what was missing, what was assigned, and what still needs review.
-          </p>
-          <div
-            className="rounded-md p-4 md:p-5 mb-10"
-            style={{ background: PANEL, border: `1px solid ${BORDER}` }}
-          >
-            <p className="text-[14px] md:text-[15px] leading-[1.65]" style={{ color: NAVY, ...serif }}>
-              Built around common OSHA-aligned documentation areas including HazCom, SDS access, monthly inspections, corrective actions, employee communication, emergency response, and supervisor follow-up.
+
+          {/* Outcome-first category grid (10 cards) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 mb-14" data-testid="kit-contents-categories">
+            {CONTENTS_CATEGORIES.map((c, i) => (
+              <div
+                key={c.name}
+                className="rounded-md p-5 md:p-6"
+                style={{ background: BG_WARM, border: `1px solid ${BORDER}` }}
+                data-testid={`kit-contents-category-${i + 1}`}
+              >
+                <p className="font-bold text-[16.5px] md:text-[17.5px] mb-2 leading-snug" style={{ ...sans, color: NAVY }}>
+                  {c.name}
+                </p>
+                <p className="text-[14.5px] leading-[1.6]" style={{ color: TEXT_MUTED, ...serif }}>
+                  {c.body}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA after Contents — CTA #2 per user's brief */}
+          <div className="text-center mb-14" data-testid="kit-contents-cta-wrap">
+            <a
+              href="#pricing"
+              className="inline-flex items-center justify-center gap-2 font-bold py-4 px-8 transition-all text-base hover:brightness-110"
+              style={{ background: NAVY, color: 'white', ...sans }}
+              data-testid="kit-contents-cta"
+            >
+              Get the Supervisor Safety OS
+              <ArrowRight size={18} />
+            </a>
+            <p className="mt-3 text-[13px] italic" style={{ color: TEXT_SUBTLE, ...serif }}>
+              Digital access. Practical tools. No system-building required.
             </p>
           </div>
+
+          {/* Full document detail table — kept as reference below the outcome cards */}
+          <details className="mt-4 group" data-testid="kit-contents-detail">
+            <summary
+              className="cursor-pointer font-bold text-[15px] mb-4"
+              style={{ color: NAVY, ...sans }}
+            >
+              See the full 17-document reference &rarr;
+            </summary>
+            <div className="mt-6 rounded-md p-4 md:p-5 mb-8" style={{ background: PANEL, border: `1px solid ${BORDER}` }}>
+              <p className="text-[13.5px] md:text-[14.5px] leading-[1.65]" style={{ color: NAVY, ...serif }}>
+                Built around common OSHA-aligned documentation areas including HazCom, SDS access, monthly inspections, corrective actions, employee communication, emergency response, and supervisor follow-up.
+              </p>
+            </div>
 
           {/* Document table */}
           <div className="overflow-x-auto" data-testid="kit-contents-table-wrap">
@@ -604,6 +712,7 @@ const SupervisorKitPage = () => {
               </tbody>
             </table>
           </div>
+          </details>
         </div>
       </section>
 
@@ -647,10 +756,10 @@ const SupervisorKitPage = () => {
       </section>
 
       {/* ═════════ PRICING (3 tiers) ═════════ */}
-      <section className="px-5 md:px-8 py-20 md:py-24" style={{ background: PANEL }} data-testid="kit-pricing">
+      <section id="pricing" className="px-5 md:px-8 py-20 md:py-24" style={{ background: PANEL }} data-testid="kit-pricing">
         <div className="max-w-6xl mx-auto">
-          <SectionLabel>Choose Your Format</SectionLabel>
-          <H2>Start with the system. Add GigLine review when you need a second set of eyes.</H2>
+          <SectionLabel>Choose Your Edition</SectionLabel>
+          <H2>One system. Two editions. Digital-only or physical binder shipped free.</H2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 items-stretch mt-10">
             <PricingCard
@@ -755,12 +864,16 @@ const SupervisorKitPage = () => {
             <AlertCircle size={20} style={{ color: GOLD, flexShrink: 0, marginTop: 4 }} aria-hidden />
             <SectionLabel>Important Notice</SectionLabel>
           </div>
-          <H2>This supports documentation. It does not guarantee compliance.</H2>
+          <H2>This System Is Not Designed To.</H2>
           <div className="space-y-4 text-[15px] md:text-[16px] leading-[1.75]" style={{ color: TEXT_MUTED, ...serif }}>
             <p>The Supervisor Safety OS is designed to help small manufacturing teams organize basic safety documentation, inspection records, corrective actions, HazCom materials, emergency information, and supervisor-led safety follow-up.</p>
-            <p>It is not a substitute for a full safety program, legal advice, professional engineering review, or a site-specific OSHA compliance evaluation.</p>
-            <p>This kit does not guarantee OSHA compliance, prevent citations, eliminate hazards, or replace the employer&rsquo;s responsibility to maintain a safe workplace.</p>
-            <p>Employers remain responsible for identifying applicable standards, correcting recognized hazards, training employees, and maintaining accurate records.</p>
+            <p>The Supervisor Safety OS does not:</p>
+            <ul className="space-y-2 pl-5" style={{ listStyleType: 'disc' }} data-testid="kit-notice-not-designed-to">
+              {NOT_DESIGNED_TO.map((line, i) => (
+                <li key={i} style={{ color: TEXT_MUTED }}>{line}</li>
+              ))}
+            </ul>
+            <p><strong style={{ color: NAVY, ...sans }}>The tools provide structure.</strong> Your organization must still implement the process, complete corrective actions, train employees, and verify that workplace controls are effective.</p>
           </div>
           <div className="mt-6">
             <Link
@@ -776,6 +889,43 @@ const SupervisorKitPage = () => {
         </div>
       </section>
 
+      {/* ═════════ FAQ ═════════ */}
+      <section className="px-5 md:px-8 py-20 md:py-24" data-testid="kit-faq">
+        <div className="max-w-3xl mx-auto">
+          <SectionLabel>Frequently Asked Questions</SectionLabel>
+          <H2>What buyers ask before they install the system.</H2>
+          <div className="space-y-4 mt-8" data-testid="kit-faq-list">
+            {FAQ.map((item, i) => (
+              <details
+                key={i}
+                className="group rounded-md p-5 md:p-6"
+                style={{ background: 'white', border: `1px solid ${BORDER}` }}
+                data-testid={`kit-faq-item-${i + 1}`}
+              >
+                <summary
+                  className="cursor-pointer font-bold text-[16px] md:text-[17px] leading-snug list-none flex items-start gap-3"
+                  style={{ ...sans, color: NAVY }}
+                >
+                  <span
+                    className="inline-block mt-1 flex-shrink-0"
+                    style={{ color: GOLD, ...mono, fontSize: '14px' }}
+                  >
+                    Q.
+                  </span>
+                  <span>{item.q}</span>
+                </summary>
+                <p
+                  className="mt-3 pl-7 text-[14.5px] md:text-[16px] leading-[1.75]"
+                  style={{ color: TEXT_MUTED, ...serif }}
+                >
+                  {item.a}
+                </p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ═════════ FINAL CTA ═════════ */}
       <section
         className="px-5 md:px-8 py-20 md:py-24"
@@ -787,11 +937,16 @@ const SupervisorKitPage = () => {
           style={{ borderTop: `2px solid ${GOLD}`, paddingTop: '36px' }}
         >
           <h2 className="font-bold leading-tight mb-4 text-[28px] md:text-[36px]" style={{ ...sans }}>
-            Ready to stop guessing what is documented?
+            Stop Managing Safety Through Memory.
           </h2>
-          <p className="text-[17px] md:text-[19px] text-white/70 mb-8 leading-relaxed">
-            Start with the Supervisor Safety OS. Build the rhythm. Then bring GigLine in when you need a second set of eyes.
+          <p className="text-[17px] md:text-[19px] text-white/78 mb-3 leading-relaxed">
+            Give supervisors a defined process for identifying hazards, assigning corrections, verifying completion, and documenting what happened.
           </p>
+          <ul className="text-[15px] md:text-[16px] text-white/65 mb-8 leading-relaxed space-y-0.5 italic">
+            <li>No disconnected forms.</li>
+            <li>No guessing who owns the next step.</li>
+            <li>No rebuilding the process from scratch.</li>
+          </ul>
           <div className="flex flex-col gap-3 max-w-md mx-auto mb-8">
             <button
               type="button"
@@ -801,7 +956,7 @@ const SupervisorKitPage = () => {
               style={{ background: GOLD, color: NAVY, ...sans }}
               data-testid="kit-final-cta-digital"
             >
-              {loading.digital ? 'Processing…' : 'Buy Digital Kit — $600'}
+              {loading.digital ? 'Processing…' : 'Get the Supervisor Safety OS — Digital $600'}
             </button>
             <button
               type="button"
@@ -811,17 +966,12 @@ const SupervisorKitPage = () => {
               style={{ borderColor: 'rgba(255,255,255,0.5)', color: 'white', background: 'transparent', ...sans }}
               data-testid="kit-final-cta-physical"
             >
-              {loading.physical ? 'Processing…' : 'Buy Physical Binder Kit — $700'}
+              {loading.physical ? 'Processing…' : 'Get the Physical Binder Edition — $700 (free shipping)'}
             </button>
-            <a
-              href={REVIEW_MAILTO}
-              className="inline-flex items-center justify-center gap-2 font-bold py-4 px-6 transition-all text-base border-2 hover:brightness-110"
-              style={{ borderColor: 'rgba(255,255,255,0.5)', color: 'white', background: 'transparent', ...sans }}
-              data-testid="kit-final-cta-review"
-            >
-              Request GigLine Implementation Review
-            </a>
           </div>
+          <p className="mt-2 mb-6 text-[13px] italic" style={{ color: 'rgba(255,255,255,0.6)' }}>
+            Digital access delivered after purchase. Secure checkout. Clear implementation instructions. Practical tools built for working operations.
+          </p>
           <div className="pt-4 border-t border-white/15">
             <p className="text-[15px] text-white/70 leading-relaxed">
               Questions before you buy? Call or text Vince at{' '}

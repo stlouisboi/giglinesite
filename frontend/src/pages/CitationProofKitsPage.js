@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, ShieldCheck, Lock } from 'lucide-react';
 import SEO from '../components/SEO';
 import ProofGapEngineSteps from '../components/ProofGapEngineSteps';
@@ -23,6 +23,7 @@ const TRUST_STRIP = [
 ];
 
 const CitationProofKitsPage = () => {
+  const navigate = useNavigate();
   return (
     <main data-testid="citation-proof-kits-page" style={{ backgroundColor: BG_WARM, color: NAVY }}>
       {/* Card hover states — nested rules that inline style can't reach */}
@@ -273,6 +274,36 @@ const CitationProofKitsPage = () => {
                   >
                     {kit.problem}
                   </p>
+
+                  {/* Reverse-link to Starter Pack — HazCom Pro Kit only */}
+                  {kit.slug === 'hazcom-pro-kit' && (
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        navigate('/hazcom-starter-pack');
+                      }}
+                      className="text-left"
+                      style={{
+                        color: '#666666',
+                        fontFamily: 'Arial, sans-serif',
+                        fontSize: '13px',
+                        lineHeight: 1.5,
+                        margin: '10px 0 0',
+                        background: 'none',
+                        border: 'none',
+                        padding: 0,
+                        cursor: 'pointer',
+                      }}
+                      data-testid="hazcom-pro-kit-starter-pack-link"
+                    >
+                      Not ready for $150?{' '}
+                      <span style={{ color: GOLD, fontWeight: 700, textDecoration: 'underline' }}>
+                        Start with the $29 Starter Pack &rarr;
+                      </span>
+                    </button>
+                  )}
 
                   {/* Spacer pushes control tool + footer to bottom for equal-height cards */}
                   <div style={{ flex: 1, minHeight: '16px' }} />

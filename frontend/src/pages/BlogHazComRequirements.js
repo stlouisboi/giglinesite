@@ -333,7 +333,7 @@ const BlogHazComRequirements = () => {
           <p className="text-sm text-[#1C2B2B]/60 mb-4">
             The written program must be available to employees upon request and must be reviewed and updated when chemicals or processes change.
           </p>
-          <Link to="/hazcom" className="inline-flex items-center gap-2 text-sm text-[#1F3F80] font-medium hover:underline">
+          <Link to="/hazcom-starter-pack" className="inline-flex items-center gap-2 text-sm text-[#1F3F80] font-medium hover:underline">
             Get a ready-made written HazCom program — $29 <ArrowRight size={14} />
           </Link>
         </div>
@@ -508,7 +508,7 @@ const BlogHazComRequirements = () => {
             Related Resources
           </h2>
           <div className="space-y-4 mb-10">
-            <Link to="/hazcom" className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#2A52A0]/40 transition-colors group" data-testid="hazcom-blog-cta-pack">
+            <Link to="/hazcom-starter-pack" className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#2A52A0]/40 transition-colors group" data-testid="hazcom-blog-cta-pack">
               <div>
                 <p className="font-medium text-white group-hover:text-[#2A52A0] transition-colors text-sm">HazCom Starter Pack — $29</p>
                 <p className="text-xs text-white/50 mt-1">Written program, SDS checklist, training log. Fill in your company name and print.</p>

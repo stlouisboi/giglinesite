@@ -144,7 +144,7 @@ const Footer = () => {
                   },
                   {
                     name: 'HazCom Starter Pack',
-                    path: '/hazcom',
+                    path: '/hazcom-starter-pack',
                     desc: 'Labels, SDS, and written program basics.',
                   },
                   {

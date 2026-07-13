@@ -42,7 +42,7 @@ const HazComThankYouPage = () => {
     return (
       <main className="min-h-[60vh] flex items-center justify-center" data-testid="hazcom-thankyou-loading">
         <div className="text-center">
-          <Loader size={32} className="animate-spin text-[#2A52A0] mx-auto mb-4" />
+          <Loader size={32} className="animate-spin text-[#102A43] mx-auto mb-4" />
           <p className="text-[#1C2B2B]/60">Verifying your purchase...</p>
         </div>
       </main>
@@ -58,7 +58,7 @@ const HazComThankYouPage = () => {
             This download link is invalid or has expired. If you've already purchased, check your email for the download links.
           </p>
           <Link
-            to="/hazcom"
+            to="/hazcom-starter-pack"
             className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#2A3D3D] text-white font-semibold px-6 py-3 rounded transition-colors"
           >
             Back to HazCom Starter Pack
@@ -88,8 +88,8 @@ const HazComThankYouPage = () => {
       <section className="bg-[#102A43] text-white py-12 md:py-16">
         <div className="container max-w-3xl">
           <div className="flex items-center gap-3 mb-4">
-            <CheckCircle size={28} className="text-[#2A52A0]" />
-            <p className="text-xs font-semibold tracking-widest text-[#2A52A0] uppercase" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+            <CheckCircle size={28} className="text-[#102A43]" />
+            <p className="text-xs font-semibold tracking-widest text-[#102A43] uppercase" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
               PURCHASE COMPLETE
             </p>
           </div>
@@ -116,16 +116,16 @@ const HazComThankYouPage = () => {
                 href={downloadUrl(file.filename)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between p-5 bg-[#F9F8F6] border border-[#2A52A0]/10 rounded hover:border-[#2A52A0]/40 transition-colors group"
+                className="flex items-center justify-between p-5 bg-[#F9F8F6] border border-[#102A43]/10 rounded hover:border-[#102A43]/40 transition-colors group"
                 data-testid={`download-${file.filename.split('.')[0]}`}
               >
                 <div>
-                  <p className="font-medium text-[#1C2B2B] text-sm group-hover:text-[#2A52A0] transition-colors">
+                  <p className="font-medium text-[#1C2B2B] text-sm group-hover:text-[#102A43] transition-colors">
                     {file.label}
                   </p>
                   <p className="text-xs text-[#1C2B2B]/50 mt-1">{file.desc} — PDF</p>
                 </div>
-                <Download size={20} className="text-[#1C2B2B]/40 group-hover:text-[#2A52A0] transition-colors flex-shrink-0" />
+                <Download size={20} className="text-[#1C2B2B]/40 group-hover:text-[#102A43] transition-colors flex-shrink-0" />
               </a>
             ))}
           </div>
@@ -135,7 +135,7 @@ const HazComThankYouPage = () => {
           </p>
 
           {/* Next Steps */}
-          <div className="border-t border-[#2A52A0]/10 pt-10 mb-12">
+          <div className="border-t border-[#102A43]/10 pt-10 mb-12">
             <h2
               className="text-lg font-bold text-[#1C2B2B] mb-6"
               style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
@@ -160,7 +160,7 @@ const HazComThankYouPage = () => {
           </div>
 
           {/* Need More Help */}
-          <div className="bg-[#F9F8F6] border border-[#2A52A0]/10 rounded p-8">
+          <div className="bg-[#F9F8F6] border border-[#102A43]/10 rounded p-8">
             <h2
               className="text-lg font-bold text-[#1C2B2B] mb-4"
               style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
@@ -181,7 +181,7 @@ const HazComThankYouPage = () => {
               </Link>
               <Link
                 to="/safety-check"
-                className="inline-flex items-center justify-center gap-2 border-2 border-[#2A52A0]/20 hover:border-[#2A52A0]/40 text-[#1C2B2B] font-medium px-5 py-3 rounded transition-colors text-sm"
+                className="inline-flex items-center justify-center gap-2 border-2 border-[#102A43]/20 hover:border-[#102A43]/40 text-[#1C2B2B] font-medium px-5 py-3 rounded transition-colors text-sm"
                 data-testid="thankyou-cta-safety-check"
               >
                 Run the Safety Check — Free

@@ -138,8 +138,10 @@ function App() {
                     <Route path="/contact" element={<ContactPage />} />
                     <Route path="/payment-success" element={<PaymentSuccessPage />} />
                     <Route path="/safety-check" element={<SafetyCheckPage />} />
-                    <Route path="/hazcom" element={<HazComPage />} />
+                    <Route path="/hazcom" element={<Navigate to="/hazcom-starter-pack" replace />} />
+                    <Route path="/hazcom-starter-pack" element={<HazComPage />} />
                     <Route path="/hazcom/thank-you" element={<HazComThankYouPage />} />
+                    <Route path="/hazcom-starter-pack/thank-you" element={<Navigate to="/hazcom/thank-you" replace />} />
                     <Route path="/blog" element={<BlogHubPage />} />
                     <Route path="/blog/top-5-osha-violations-small-manufacturing" element={<BlogOSHAViolations />} />
                     <Route path="/blog/hazcom-requirements-small-business" element={<BlogHazComRequirements />} />

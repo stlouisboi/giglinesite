@@ -53,11 +53,11 @@ const HazComPage = () => {
       <section className="bg-[#102A43] text-white py-16 md:py-24">
         <div className="container max-w-3xl">
           <p
-            className="text-xs font-semibold tracking-widest text-[#2A52A0] uppercase mb-4"
+            className="text-xs font-semibold tracking-widest text-[#C9A84C] uppercase mb-4"
             style={{ fontFamily: "'JetBrains Mono', monospace" }}
             data-testid="hazcom-label"
           >
-            DIGITAL DOWNLOAD
+            DIGITAL DOWNLOAD · $29 STARTER PACK
           </p>
           <h1
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3"
@@ -67,9 +67,9 @@ const HazComPage = () => {
             HazCom Starter Pack
           </h1>
           <p className="text-xl md:text-2xl text-white/80 mb-8">
-            Small Shop Edition — <span className="text-[#2A52A0] font-bold">$29</span>
+            Small Shop Edition — <span className="text-[#C9A84C] font-bold">$29</span>
           </p>
-          <div className="border-l-2 border-[#2A52A0] pl-6">
+          <div className="border-l-2 border-[#C9A84C] pl-6">
             <p className="text-lg text-white/90 font-medium mb-2">
               #1 OSHA citation in general industry.
             </p>
@@ -81,7 +81,7 @@ const HazComPage = () => {
       </section>
 
       {/* Problem Statement */}
-      <section className="py-14 md:py-20 border-b border-[#2A52A0]/10">
+      <section className="py-14 md:py-20 border-b border-[#102A43]/10">
         <div className="container max-w-3xl">
           <h2
             className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-6"
@@ -96,7 +96,7 @@ const HazComPage = () => {
               'Training records that prove it happened',
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-3 text-[#1C2B2B]/70 text-base">
-                <span className="text-[#2A52A0] font-bold mt-0.5">•</span>
+                <span className="text-[#C9A84C] font-bold mt-0.5">•</span>
                 {item}
               </li>
             ))}
@@ -143,11 +143,11 @@ const HazComPage = () => {
             ].map((doc) => (
               <div
                 key={doc.id}
-                className="bg-white border border-[#2A52A0]/10 rounded p-6"
-                style={{ borderTop: '3px solid #2A52A0' }}
+                className="bg-white border border-[#102A43]/10 rounded p-6"
+                style={{ borderTop: '3px solid #C9A84C' }}
                 data-testid={`hazcom-card-${doc.id}`}
               >
-                <doc.icon size={28} className="text-[#2A52A0] mb-4" />
+                <doc.icon size={28} className="text-[#102A43] mb-4" />
                 <p
                   className="text-[10px] font-semibold tracking-widest text-[#1C2B2B]/40 uppercase mb-2"
                   style={{ fontFamily: "'JetBrains Mono', monospace" }}
@@ -155,7 +155,7 @@ const HazComPage = () => {
                   {doc.id}
                 </p>
                 <h3 className="text-base font-bold text-[#1C2B2B] mb-1">{doc.title}</h3>
-                <p className="text-xs text-[#2A52A0] font-medium mb-3">{doc.pages}</p>
+                <p className="text-xs text-[#102A43] font-medium mb-3">{doc.pages}</p>
                 <p className="text-sm text-[#1C2B2B]/60 leading-relaxed">{doc.desc}</p>
               </div>
             ))}
@@ -193,10 +193,55 @@ const HazComPage = () => {
         </div>
       </section>
 
+      {/* Upgrade to HazCom Pro Kit — lead-magnet → full control system CTA */}
+      <section className="py-14 md:py-20 bg-[#102A43] text-white" data-testid="hazcom-upgrade-cta">
+        <div className="container max-w-3xl text-center">
+          <p
+            className="text-xs font-semibold tracking-[0.28em] text-[#C9A84C] uppercase mb-4"
+            style={{ fontFamily: "'JetBrains Mono', monospace" }}
+          >
+            Ready for the Full Control System?
+          </p>
+          <h2
+            className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 leading-tight"
+            style={{ fontFamily: "'Manrope', sans-serif" }}
+          >
+            The Starter Pack covers the basics.
+            <br className="hidden md:block" />
+            The HazCom Pro Kit is the full control system.
+          </h2>
+          <p
+            className="text-[15.5px] md:text-[17px] leading-[1.7] max-w-2xl mx-auto mb-8"
+            style={{ color: 'rgba(255,255,255,0.78)', fontFamily: "Georgia, serif" }}
+          >
+            SDS management, chemical inventory approval workflow, container label audit, training records tied to your actual chemicals, and audit-ready documentation &mdash; all built out.
+            Includes the Chemical Control Index&trade; and SDS Gap Severity Grid&trade;.
+          </p>
+          <Link
+            to="/citation-proof-kits/hazcom-pro-kit"
+            className="inline-flex items-center gap-2 font-bold py-3 px-6 rounded transition-opacity text-[14px]"
+            style={{
+              background: '#C9A84C',
+              color: '#102A43',
+              fontFamily: "'Manrope', sans-serif",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.9')}
+            onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+            data-testid="hazcom-upgrade-cta-button"
+          >
+            Upgrade to HazCom Pro Kit
+            <ArrowRight size={14} />
+          </Link>
+          <p className="mt-4 text-[12.5px] italic" style={{ color: 'rgba(255,255,255,0.55)', fontFamily: "Georgia, serif" }}>
+            Starting at $150 &middot; Digital, Control System, or Binder Edition
+          </p>
+        </div>
+      </section>
+
       {/* Walkthrough Callout */}
       <section className="py-12 bg-[#F9F8F6]">
         <div className="container max-w-2xl">
-          <div className="border border-[#2A52A0]/20 bg-white rounded-lg p-6 md:p-8 text-center" data-testid="hazcom-walkthrough-callout">
+          <div className="border border-[#102A43]/20 bg-white rounded-lg p-6 md:p-8 text-center" data-testid="hazcom-walkthrough-callout">
             <p className="text-lg font-bold text-[#1C2B2B] mb-2">Not sure if these violations exist in your shop?</p>
             <p className="text-sm text-[#1C2B2B]/60 mb-5">A GigLine Safety Walkthrough will flag them with photos and a prioritized fix list — usually within 48 hours.</p>
             <Link to="/intake" className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-6 py-3 rounded transition-colors">
@@ -207,7 +252,7 @@ const HazComPage = () => {
       </section>
 
       {/* Footer Note */}
-      <section className="py-10 border-t border-[#2A52A0]/10">
+      <section className="py-10 border-t border-[#102A43]/10">
         <div className="container max-w-2xl text-center">
           <p className="text-sm text-[#1C2B2B]/50">
             Built on OSHA's most cited violations in general industry.<br />

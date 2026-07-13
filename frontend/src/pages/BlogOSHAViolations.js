@@ -448,7 +448,7 @@ const BlogOSHAViolations = () => {
               <ArrowRight size={18} className="text-white/30 group-hover:text-[#2A52A0] transition-colors flex-shrink-0" />
             </Link>
             <Link
-              to="/hazcom"
+              to="/hazcom-starter-pack"
               className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#2A52A0]/40 transition-colors group"
               data-testid="blog-cta-hazcom"
             >

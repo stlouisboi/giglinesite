@@ -100,14 +100,16 @@ DOC_LABELS = {
 
 def calculate_proposed_scope(data):
     """Server-side only. Never exposed to client."""
-    # Base price from employee count
+    # Base price from employee count. Aligned to the public $1,200 walkthrough
+    # floor (see PRICING REFERENCE block below) — these used to be $650/$750/$900,
+    # which undercut the site's own stated starting price.
     emp = data.totalEmployees or 0
     if emp <= 75:
-        tier, base = "Small", 650
+        tier, base = "Small", 1200
     elif emp <= 250:
-        tier, base = "Medium", 750
+        tier, base = "Medium", 1500
     else:
-        tier, base = "Large", 900
+        tier, base = "Large", 1800
 
     adjustments = []
     flags = []

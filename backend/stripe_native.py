@@ -17,12 +17,11 @@ def init_stripe():
 async def create_checkout(amount_cents, currency, success_url, cancel_url, metadata=None,
                           customer_email=None, collect_shipping=False, product_name=None):
     """Create a Stripe Checkout Session.
-    Note: amount_cents may actually be in dollars from SERVICE_PACKAGES — 
-    we convert to cents if value looks like dollars (< 10000).
+    Note: amount_cents may actually be in dollars (callers pass product prices
+    like 29.00) — we convert to cents if the value looks like dollars (< 10000).
     """
     init_stripe()
-    # SERVICE_PACKAGES stores amounts in dollars (e.g., 650.00)
-    # Stripe needs cents (e.g., 65000)
+    # Product configs store amounts in dollars (e.g., 29.00); Stripe needs cents (e.g., 2900).
     amount = int(amount_cents)
     if amount < 10000:  # Likely dollars, not cents
         amount = amount * 100

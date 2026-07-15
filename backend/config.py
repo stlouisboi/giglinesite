@@ -54,62 +54,6 @@ logging.basicConfig(
 )
 logger = logging.getLogger('gigline')
 
-# ── SERVICE PACKAGES ──
-
-SERVICE_PACKAGES = {
-    "walkthrough_small": {
-        "name": "Safety Walkthrough & Top 10 Fixes Report (Small Site)",
-        "amount": 650.00,
-        "description": "Local small site - single building, 1 shift",
-    },
-    "walkthrough_standard": {
-        "name": "Safety Walkthrough & Top 10 Fixes Report (Standard)",
-        "amount": 750.00,
-        "description": "Standard site walkthrough with full report",
-    },
-    "documentation_remote": {
-        "name": "OSHA Documentation Readiness Review (Remote)",
-        "amount": 550.00,
-        "description": "Remote review - send PDFs/scans for analysis",
-    },
-    "documentation_onsite": {
-        "name": "OSHA Documentation Readiness Review (On-site)",
-        "amount": 750.00,
-        "description": "On-site document review with follow-up",
-    },
-    "incident_standard": {
-        "name": "Incident Review & Corrective Action Support (Standard)",
-        "amount": 900.00,
-        "description": "Non-emergency incident review, single incident",
-    },
-    "incident_urgent": {
-        "name": "Incident Review & Corrective Action Support (Urgent)",
-        "amount": 1200.00,
-        "description": "High-urgency or complex incident support",
-    },
-    "deposit_walkthrough": {
-        "name": "Deposit - Safety Walkthrough (Balance due before visit)",
-        "amount": 200.00,
-        "description": "Reserve your walkthrough date. Remaining balance due before on-site visit.",
-        "is_deposit": True,
-        "deposit_for": "walkthrough",
-    },
-    "deposit_documentation": {
-        "name": "Deposit - Documentation Review (Balance due before delivery)",
-        "amount": 150.00,
-        "description": "Reserve your review slot. Remaining balance due before report delivery.",
-        "is_deposit": True,
-        "deposit_for": "documentation",
-    },
-    "deposit_incident": {
-        "name": "Deposit - Incident Review (Balance due before engagement)",
-        "amount": 300.00,
-        "description": "Secure immediate support. Remaining balance due before engagement begins.",
-        "is_deposit": True,
-        "deposit_for": "incident",
-    },
-}
-
 HAZCOM_PRODUCT = {
     "name": "HazCom Starter Pack — Small Shop Edition",
     "amount": 29.00,

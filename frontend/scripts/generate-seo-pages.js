@@ -436,15 +436,257 @@ const routes = [
     `,
   },
   {
-    path: '/hazcom',
+    path: '/hazcom-starter-pack',
     title: 'HazCom Starter Pack — $29 | GigLine Safety & Compliance',
     description: "HazCom Starter Pack — $29. Written HazCom program, SDS binder checklist, and training log. 11 pages. Fixes OSHA's #1 citation in general industry.",
-    canonical: '/hazcom',
+    canonical: '/hazcom-starter-pack',
     schemas: [LOCAL_BUSINESS],
     content: `
       <h1>HazCom Starter Pack — $29</h1>
       <p>Written HazCom Program, SDS Binder Checklist + Index, Training Verification Log. 11 pages total. Fill your company name. Print. Done.</p>
       <p>Addresses OSHA 29 CFR 1910.1200 — the #1 citation in general industry.</p>
+      <p>GigLine Safety &amp; Compliance — (336) 329-8899</p>
+    `,
+  },
+  {
+    path: '/citation-proof-kits',
+    title: 'Citation-Proof Kit Series | GigLine Safety & Compliance',
+    description: 'Five practical compliance-control kits for small manufacturers, warehouses, contractors, and fleet operations. Turn scattered safety activity into inspection-ready proof — before OSHA, an insurer, or a customer asks for it.',
+    canonical: '/citation-proof-kits',
+    schemas: [
+      LOCAL_BUSINESS,
+      {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        name: 'Citation-Proof Kit Series',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, item: { '@type': 'Product', name: 'Machine-Specific LOTO Readiness Kit', url: `${BASE_URL}/citation-proof-kits/loto-readiness-kit`, offers: { '@type': 'Offer', price: '150', priceCurrency: 'USD' } } },
+          { '@type': 'ListItem', position: 2, item: { '@type': 'Product', name: 'Forklift / PIT Readiness Kit', url: `${BASE_URL}/citation-proof-kits/forklift-pit-readiness-kit`, offers: { '@type': 'Offer', price: '150', priceCurrency: 'USD' } } },
+          { '@type': 'ListItem', position: 3, item: { '@type': 'Product', name: 'HazCom Pro Kit', url: `${BASE_URL}/citation-proof-kits/hazcom-pro-kit`, offers: { '@type': 'Offer', price: '150', priceCurrency: 'USD' } } },
+          { '@type': 'ListItem', position: 4, item: { '@type': 'Product', name: 'Incident-to-Correction Kit', url: `${BASE_URL}/citation-proof-kits/incident-to-correction-kit`, offers: { '@type': 'Offer', price: '150', priceCurrency: 'USD' } } },
+          { '@type': 'ListItem', position: 5, item: { '@type': 'Product', name: 'New Hire Safety Orientation Kit', url: `${BASE_URL}/citation-proof-kits/new-hire-orientation-kit`, offers: { '@type': 'Offer', price: '150', priceCurrency: 'USD' } } },
+        ],
+      },
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Citation-Proof Kits', path: '/citation-proof-kits' }]),
+    ],
+    content: `
+      <h1>Five kits that turn scattered safety activity into inspection-ready proof.</h1>
+      <p>Practical compliance-control kits for small manufacturers, warehouses, contractors, and fleet operations that need inspection-ready proof before OSHA, an insurer, customer, or owner asks for it.</p>
+      <p>Most safety problems do not start with a lack of effort. They start when the work was done, but the proof is missing, weak, outdated, or does not match the floor. Every kit runs on the same method — the GigLine Proof Gap Engine™: Score where you stand, Sort every gap by type, Fix in the right order, and Pull the records that get handed over first.</p>
+      <ul>
+        <li><a href="/citation-proof-kits/loto-readiness-kit">Machine-Specific LOTO Readiness Kit</a> — Starting at $150. Build machine-specific lockout procedures your team can follow and verify. 29 CFR 1910.147.</li>
+        <li><a href="/citation-proof-kits/forklift-pit-readiness-kit">Forklift / PIT Readiness Kit</a> — Starting at $150. Know exactly who is cleared to operate which truck, and when their next evaluation is due. 29 CFR 1910.178(l).</li>
+        <li><a href="/citation-proof-kits/hazcom-pro-kit">HazCom Pro Kit</a> — Starting at $150. Turn scattered SDS, chemical inventory, and training records into a controlled program. 29 CFR 1910.1200.</li>
+        <li><a href="/citation-proof-kits/incident-to-correction-kit">Incident-to-Correction Kit</a> — Starting at $150. Close the loop on every incident, near miss, and hazard report, with proof it got fixed.</li>
+        <li><a href="/citation-proof-kits/new-hire-orientation-kit">New Hire Safety Orientation Kit</a> — Starting at $150. Prove every new hire was oriented, restricted, equipped, and released before they touched a machine.</li>
+      </ul>
+      <p>Each kit is available as a Digital Compliance Kit ($150), a Compliance Control System ($300), or an Inspector-Ready Binder Edition ($600, physical binder shipped to your facility).</p>
+      <p>Also available: the <a href="/hazcom-starter-pack">HazCom Starter Pack</a> — an $29 entry-level written program, SDS binder checklist, and training log.</p>
+      <p>GigLine Safety &amp; Compliance — (336) 329-8899</p>
+    `,
+  },
+  {
+    path: '/citation-proof-kits/loto-readiness-kit',
+    title: 'Machine-Specific LOTO Readiness Kit | Machine-Specific Energy-Control Documentation & Self-Audit System | GigLine Safety & Compliance',
+    description: 'Build machine-specific LOTO proof your team can actually follow on the floor. This kit walks a non-expert through every required element of 29 CFR 1910.147, machine by machine, with photo isolation maps and a 0–100 self-audit. Starting at $150.',
+    canonical: '/citation-proof-kits/loto-readiness-kit',
+    schemas: [
+      LOCAL_BUSINESS,
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: 'Machine-Specific LOTO Readiness Kit',
+        description: 'Machine-Specific Energy-Control Documentation & Self-Audit System covering 29 CFR 1910.147. Includes the Machine-Specific Procedure Builder™, Photo Lockout Map™, and Citation-Proof Score™.',
+        brand: { '@type': 'Brand', name: 'GigLine Safety & Compliance' },
+        offers: { '@type': 'AggregateOffer', lowPrice: '150', highPrice: '600', priceCurrency: 'USD', offerCount: '3' },
+      },
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Citation-Proof Kits', path: '/citation-proof-kits' }, { name: 'LOTO Readiness Kit', path: '/citation-proof-kits/loto-readiness-kit' }]),
+    ],
+    content: `
+      <h1>Build machine-specific LOTO proof your team can actually follow on the floor.</h1>
+      <p>Machine-Specific Energy-Control Documentation &amp; Self-Audit System — 29 CFR 1910.147.</p>
+      <p>OSHA cites employers for missing machine-specific lockout procedures more than any other 1910.147 failure. A one-page policy that says "lock out equipment before servicing" does not satisfy the standard — (c)(4)(i) requires a documented procedure for each machine, and (c)(4)(ii) defines the exact elements it must contain.</p>
+      <p>This kit walks a non-expert through every required element, machine by machine, with photo isolation maps (Photo Lockout Map™), a 0–100 self-audit mapped to the CFR sub-paragraphs OSHA cites (Citation-Proof Score™), and the exact sequence of documents an inspector asks for first.</p>
+      <h2>What's included</h2>
+      <ul>
+        <li>Written Energy-Control Program (Form A) — (c)(1)</li>
+        <li>Machine-specific procedures with Photo Lockout Maps — (c)(4)(i)(ii)</li>
+        <li>Periodic Inspection Certification (Form B) — (c)(6)</li>
+        <li>Training Certification Log (Form C) — (c)(7)(iv)</li>
+        <li>Lock &amp; Tag Assignment Register (Form D) — (c)(5)</li>
+        <li>Two fully worked examples — a 50-ton hydraulic press and a Haas VF-2 CNC</li>
+      </ul>
+      <h2>Pricing</h2>
+      <p>Digital Compliance Kit — $150. Compliance Control System — $300. Inspector-Ready Binder Edition — $600 (physical binder shipped).</p>
+      <h2>FAQ</h2>
+      <h3>Do I need a separate procedure for every machine?</h3>
+      <p>Yes, if the machine has different energy sources, isolation points, or hazard controls. OSHA is explicit under 1910.147(c)(4) — procedures must be specific enough that an authorized employee can perform the isolation. Generic templates are the #1 LOTO citation.</p>
+      <h3>How does the Citation-Proof Score™ work?</h3>
+      <p>It's a 0–100 rubric graded against the ten LOTO line items OSHA actually cites, each mapped to a specific CFR sub-paragraph. Under 50 means a citation is likely; 90+ is Citation-Proof. It is a readiness self-assessment, not a legal certification.</p>
+      <p>GigLine Safety &amp; Compliance — (336) 329-8899</p>
+    `,
+  },
+  {
+    path: '/citation-proof-kits/forklift-pit-readiness-kit',
+    title: 'Forklift / PIT Readiness Kit | Forklift Compliance Control System | GigLine Safety & Compliance',
+    description: 'Know exactly who is cleared to operate which truck, and when their next evaluation is due. Turns forklift compliance from a stack of certificates into a running control system under 29 CFR 1910.178(l). Starting at $150.',
+    canonical: '/citation-proof-kits/forklift-pit-readiness-kit',
+    schemas: [
+      LOCAL_BUSINESS,
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: 'Forklift / PIT Readiness Kit',
+        description: 'Forklift Compliance Control System covering 29 CFR 1910.178(l). Includes the Operator / Truck Authorization Matrix and Operator Readiness Index™.',
+        brand: { '@type': 'Brand', name: 'GigLine Safety & Compliance' },
+        offers: { '@type': 'AggregateOffer', lowPrice: '150', highPrice: '600', priceCurrency: 'USD', offerCount: '3' },
+      },
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Citation-Proof Kits', path: '/citation-proof-kits' }, { name: 'Forklift / PIT Readiness Kit', path: '/citation-proof-kits/forklift-pit-readiness-kit' }]),
+    ],
+    content: `
+      <h1>Know exactly who is cleared to operate which truck, and when their next evaluation is due.</h1>
+      <p>Forklift Compliance Control System — 29 CFR 1910.178(l).</p>
+      <p>Most facilities can produce a stack of forklift certificates. Almost none can show which operator is cleared on which class of truck, when their three-year re-evaluation is due, or whether their last workplace evaluation was actually observed, not just signed.</p>
+      <p>This kit turns forklift compliance from a stack of certificates into a running control system: authorization, evaluation, re-evaluation, refresher triggers, daily inspection, and trainer credentials, all in one place, via the Operator / Truck Authorization Matrix.</p>
+      <h2>What's included</h2>
+      <ul>
+        <li>Operator certifications tied to truck class(es)</li>
+        <li>Workplace evaluations — initial and periodic</li>
+        <li>Three-year re-evaluation tracker with due dates</li>
+        <li>Refresher trigger log (near miss, damage, accident, new equipment)</li>
+        <li>Pre-shift inspection record</li>
+        <li>Trainer qualification record</li>
+      </ul>
+      <h2>Pricing</h2>
+      <p>Digital Compliance Kit — $150. Compliance Control System — $300. Inspector-Ready Binder Edition — $600 (physical binder shipped).</p>
+      <h2>FAQ</h2>
+      <h3>Is a wallet card enough proof?</h3>
+      <p>No. The wallet card proves training happened at some point. It does not prove workplace evaluation, does not track the three-year re-evaluation, and does not tie the operator to the specific truck class(es) they operate. OSHA asks for all four.</p>
+      <h3>What triggers a refresher?</h3>
+      <p>1910.178(l)(4)(i) lists them: unsafe operation observed, involvement in an accident or near miss, a workplace evaluation showing the operator needs additional training, assignment to a different type of truck, or a change in workplace conditions that could affect safe operation.</p>
+      <p>GigLine Safety &amp; Compliance — (336) 329-8899</p>
+    `,
+  },
+  {
+    path: '/citation-proof-kits/hazcom-pro-kit',
+    title: 'HazCom Pro Kit | Chemical Inventory, SDS, Labeling & Training Control System | GigLine Safety & Compliance',
+    description: 'Turn a scattered SDS drawer and a mystery chemical list into a controlled program you can hand OSHA in ten minutes. Covers 29 CFR 1910.1200 — the #1 cited standard in general industry. Starting at $150.',
+    canonical: '/citation-proof-kits/hazcom-pro-kit',
+    schemas: [
+      LOCAL_BUSINESS,
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: 'HazCom Pro Kit',
+        description: 'Chemical Inventory, SDS, Labeling & Training Control System covering 29 CFR 1910.1200. Includes the Chemical Control Index™ and SDS Gap Severity Grid™.',
+        brand: { '@type': 'Brand', name: 'GigLine Safety & Compliance' },
+        offers: { '@type': 'AggregateOffer', lowPrice: '150', highPrice: '600', priceCurrency: 'USD', offerCount: '3' },
+      },
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Citation-Proof Kits', path: '/citation-proof-kits' }, { name: 'HazCom Pro Kit', path: '/citation-proof-kits/hazcom-pro-kit' }]),
+    ],
+    content: `
+      <h1>Turn a scattered SDS drawer and a mystery chemical list into a controlled program you can hand OSHA in ten minutes.</h1>
+      <p>Chemical Inventory, SDS, Labeling &amp; Training Control System — 29 CFR 1910.1200.</p>
+      <p>HazCom is the #1 cited standard in general industry, not because chemicals are rare, but because the paperwork trailing behind them almost never lines up. The inventory says one thing, the SDS binder says another, and half the labels are missing.</p>
+      <p>This kit builds a chemical program you can actually control: every chemical inventoried, every SDS current, every label verified, every employee trained, and every new chemical routed through an approval step before it comes in the door, via the Chemical Control Index™ and SDS Gap Severity Grid™.</p>
+      <h2>What's included</h2>
+      <ul>
+        <li>Written HazCom program aligned to 1910.1200</li>
+        <li>Chemical inventory with approval trail</li>
+        <li>SDS index with severity-graded gap list</li>
+        <li>Container label audit</li>
+        <li>HazCom training certification</li>
+        <li>New chemical approval form</li>
+      </ul>
+      <h2>Pricing</h2>
+      <p>Digital Compliance Kit — $150. Compliance Control System — $300. Inspector-Ready Binder Edition — $600 (physical binder shipped).</p>
+      <h2>FAQ</h2>
+      <h3>Do I need an SDS for every chemical, even office cleaners?</h3>
+      <p>Consumer products used in a way that matches consumer use are generally exempt, but the moment a product is used in higher frequency, larger quantity, or a different way than a consumer would use it, the exemption drops. Safer default: keep the SDS.</p>
+      <h3>What counts as a "secondary container"?</h3>
+      <p>Any container the chemical was transferred into from the original manufacturer container — spray bottles, buckets, dispensers, dip tanks. Under 1910.1200(f)(6), these must be labeled unless the transferring employee uses the entire amount within their own shift.</p>
+      <p>GigLine Safety &amp; Compliance — (336) 329-8899</p>
+    `,
+  },
+  {
+    path: '/citation-proof-kits/incident-to-correction-kit',
+    title: 'Incident-to-Correction Kit | Incident, Near-Miss & Corrective Action Control System | GigLine Safety & Compliance',
+    description: 'Close the loop on every incident, near miss, and hazard report, with proof it actually got fixed. A controlled sequence: report, investigate, correct, verify, communicate, and prevent repeat. Starting at $150.',
+    canonical: '/citation-proof-kits/incident-to-correction-kit',
+    schemas: [
+      LOCAL_BUSINESS,
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: 'Incident-to-Correction Kit',
+        description: 'Incident, Near-Miss & Corrective Action Control System. Includes the Correction Closure Index™ and Root Cause Ladder™.',
+        brand: { '@type': 'Brand', name: 'GigLine Safety & Compliance' },
+        offers: { '@type': 'AggregateOffer', lowPrice: '150', highPrice: '600', priceCurrency: 'USD', offerCount: '3' },
+      },
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Citation-Proof Kits', path: '/citation-proof-kits' }, { name: 'Incident-to-Correction Kit', path: '/citation-proof-kits/incident-to-correction-kit' }]),
+    ],
+    content: `
+      <h1>Close the loop on every incident, near miss, and hazard report, with proof it actually got fixed.</h1>
+      <p>Incident, Near-Miss &amp; Corrective Action Control System.</p>
+      <p>Most facilities are decent at writing the incident report. Almost none can show what changed as a result. The corrective action is either verbal, undocumented, or "in progress" for six months. That gap is what turns a near miss into the next injury.</p>
+      <p>This kit takes the reporting-to-closure loop and turns it into a controlled sequence: report, investigate, correct, verify, communicate, and prevent repeat, using the Correction Closure Index™ and Root Cause Ladder™. No item stays open without an owner and a due date.</p>
+      <h2>What's included</h2>
+      <ul>
+        <li>Incident report form and near-miss report form</li>
+        <li>Witness statement template and photo evidence log</li>
+        <li>Root cause worksheet</li>
+        <li>Corrective action tracker (owner, due date, closure evidence)</li>
+        <li>Verification-of-correction form</li>
+        <li>Employee communication record</li>
+      </ul>
+      <h2>Pricing</h2>
+      <p>Digital Compliance Kit — $150. Compliance Control System — $300. Inspector-Ready Binder Edition — $600 (physical binder shipped).</p>
+      <h2>FAQ</h2>
+      <h3>Is this a 300-log replacement?</h3>
+      <p>No. This kit sits on top of your OSHA 300/300A/301 recordkeeping. The 300 log records what qualifies. This kit tracks what got fixed, which is what an inspector, insurer, or plaintiff's attorney will ask about next.</p>
+      <h3>Why include near misses?</h3>
+      <p>Because near-miss investigation is where recordable prevention actually happens. A pattern of near misses at the same task is the exact evidence trail behind "the employer knew or should have known" — the phrase inside most General Duty Clause citations.</p>
+      <p>GigLine Safety &amp; Compliance — (336) 329-8899</p>
+    `,
+  },
+  {
+    path: '/citation-proof-kits/new-hire-orientation-kit',
+    title: 'New Hire Safety Orientation Kit | Day-One Safety Readiness & Authorization Control System | GigLine Safety & Compliance',
+    description: 'Prove every new hire was oriented, restricted, equipped, and released before they touched a machine. A defined sequence with a paper trail at each step. Starting at $150.',
+    canonical: '/citation-proof-kits/new-hire-orientation-kit',
+    schemas: [
+      LOCAL_BUSINESS,
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: 'New Hire Safety Orientation Kit',
+        description: 'Day-One Safety Readiness & Authorization Control System. Includes the Day-One Readiness Index™ and Restricted Until Released™ Matrix.',
+        brand: { '@type': 'Brand', name: 'GigLine Safety & Compliance' },
+        offers: { '@type': 'AggregateOffer', lowPrice: '150', highPrice: '600', priceCurrency: 'USD', offerCount: '3' },
+      },
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Citation-Proof Kits', path: '/citation-proof-kits' }, { name: 'New Hire Safety Orientation Kit', path: '/citation-proof-kits/new-hire-orientation-kit' }]),
+    ],
+    content: `
+      <h1>Prove every new hire was oriented, restricted, equipped, and released before they touched a machine.</h1>
+      <p>Day-One Safety Readiness &amp; Authorization Control System.</p>
+      <p>Most facilities orient new hires. Very few can prove it in the level of detail an inspector, insurer, or defense attorney will want. And almost none document the equipment or task restrictions in place until training and evaluation are complete.</p>
+      <p>This kit runs the new hire through a defined sequence — orient, restrict, equip, train, release, follow up — with a paper trail at each step, using the Day-One Readiness Index™ and Restricted Until Released™ Matrix.</p>
+      <h2>What's included</h2>
+      <ul>
+        <li>Orientation checklist and PPE acknowledgment</li>
+        <li>Emergency action plan orientation</li>
+        <li>Hazard reporting / stop-work card</li>
+        <li>Equipment restriction notice</li>
+        <li>Training matrix placement form</li>
+        <li>7-day follow-up form and 30-day check-in form</li>
+      </ul>
+      <h2>Pricing</h2>
+      <p>Digital Compliance Kit — $150. Compliance Control System — $300. Inspector-Ready Binder Edition — $600 (physical binder shipped).</p>
+      <h2>FAQ</h2>
+      <h3>Isn't this just an HR onboarding form?</h3>
+      <p>HR onboarding proves the employee was hired. This kit proves the employee was oriented to the actual safety hazards of your facility, which is what OSHA, an insurer, or a workers' comp reviewer is going to ask for after any first-90-day incident.</p>
+      <h3>Do I need the follow-ups if the employee is doing fine?</h3>
+      <p>The follow-ups are what document that the employee was doing fine, and that safety concerns, near misses, or restrictions were reviewed at the 7-day and 30-day mark. Skipping them removes the paper trail that protects the facility.</p>
       <p>GigLine Safety &amp; Compliance — (336) 329-8899</p>
     `,
   },

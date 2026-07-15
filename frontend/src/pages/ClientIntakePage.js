@@ -289,8 +289,8 @@ const ClientIntakePage = () => {
       if (!f.docCreationScopeType) e.docCreationScopeType = 'Required';
       if (!f.docCreationHasDeadline) e.docCreationHasDeadline = 'Required';
     }
-    // S5 only required for walkthrough or doc_creation
-    if (f.serviceSelected === 'walkthrough' || f.serviceSelected === 'doc_creation') {
+    // S5 required for walkthrough, doc_creation, or compliance_readiness_visit (bundles a walkthrough)
+    if (f.serviceSelected === 'walkthrough' || f.serviceSelected === 'doc_creation' || f.serviceSelected === 'compliance_readiness_visit') {
       if (!f.hazardsPresent.length) e.hazardsPresent = 'Select at least one';
       if (!f.safetyBoardPosted) e.safetyBoardPosted = 'Required';
     }
@@ -778,7 +778,7 @@ const ClientIntakePage = () => {
         </section>
 
         {/* ═══ S5 — Hazards & Facility (conditional) ═══ */}
-        {(f.serviceSelected === 'walkthrough' || f.serviceSelected === 'doc_creation') && (
+        {(f.serviceSelected === 'walkthrough' || f.serviceSelected === 'doc_creation' || f.serviceSelected === 'compliance_readiness_visit') && (
           <section data-testid="intake-section-05">
             <SectionHeader number="05" title="Hazards & Facility Profile" subtitle="Helps Vince come prepared for the visit." />
             <Field label="Hazards present at this facility" required error={errors.hazardsPresent}>

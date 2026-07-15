@@ -5,6 +5,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 import os
 import logging
+import secrets
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -40,6 +41,11 @@ VINCE_EMAIL = os.environ.get('VINCE_EMAIL', 'vince@giglinecompliance.com')
 
 # Admin
 ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'gigline2026')
+
+
+def is_admin(token) -> bool:
+    """Constant-time comparison of a caller-supplied token against ADMIN_PASSWORD."""
+    return secrets.compare_digest(str(token or ""), ADMIN_PASSWORD)
 
 # Logging
 logging.basicConfig(

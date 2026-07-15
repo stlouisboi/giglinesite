@@ -5,8 +5,10 @@ from datetime import datetime, timezone
 import logging
 import traceback
 
+import stripe
+
 from config import (
-    db, USE_NATIVE_STRIPE, stripe_api_key, SERVICE_PACKAGES,
+    db, USE_NATIVE_STRIPE, stripe_api_key, SERVICE_PACKAGES, STRIPE_WEBHOOK_SECRET,
 )
 from models import PaymentTransaction, CheckoutRequest
 
@@ -138,10 +140,18 @@ async def stripe_webhook(request: Request):
     try:
         body = await request.body()
         if USE_NATIVE_STRIPE:
-            import json as _json
-            event_data = _json.loads(body)
-            event_type = event_data.get('type', '')
-            session_data = event_data.get('data', {}).get('object', {})
+            if not STRIPE_WEBHOOK_SECRET:
+                logger.error("Stripe webhook rejected: STRIPE_WEBHOOK_SECRET not configured")
+                raise HTTPException(status_code=500, detail="Webhook not configured")
+
+            signature = request.headers.get("Stripe-Signature")
+            try:
+                event_data = stripe.Webhook.construct_event(body, signature, STRIPE_WEBHOOK_SECRET)
+            except (ValueError, stripe.error.SignatureVerificationError):
+                logger.warning("Stripe webhook signature verification failed")
+                raise HTTPException(status_code=400, detail="Invalid signature")
+
+            session_data = event_data['data']['object']
             session_id = session_data.get('id')
             payment_status = session_data.get('payment_status', 'unknown')
         else:
@@ -161,6 +171,8 @@ async def stripe_webhook(request: Request):
             )
 
         return {"status": "received"}
+    except HTTPException:
+        raise
     except Exception as e:
         logger.error(f"Webhook error: {str(e)}")
         raise HTTPException(status_code=400, detail="Webhook processing failed")

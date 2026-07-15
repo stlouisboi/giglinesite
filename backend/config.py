@@ -29,6 +29,7 @@ except ImportError:
 import stripe as stripe_lib
 
 stripe_api_key = os.environ.get('STRIPE_API_KEY', 'sk_test_emergent')
+STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET', '')
 
 # Resend
 import resend

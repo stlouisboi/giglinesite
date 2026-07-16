@@ -23,15 +23,17 @@ const C = {
 };
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
 
-/* ─── Doc Creation pricing config ─── */
+/* ─── Doc Creation pricing config ───
+   Matches the floor pricing on DocumentDevelopmentPage.js: single written
+   program from $350, LOTO from $650 (up to 5 machine procedures). */
 const DOC_CREATION_FIXED_ITEMS = {
-  'Hazard Communication (HazCom) Program': 149,
-  'Emergency Action Plan': 149,
-  'Lockout / Tagout (LOTO) Program': 199,
-  'PPE Hazard Assessment & Program': 129,
-  'Forklift / Powered Industrial Truck Program': 149,
-  'Respiratory Protection Program': 179,
-  'Bloodborne Pathogens Program': 129,
+  'Hazard Communication (HazCom) Program': 350,
+  'Emergency Action Plan': 350,
+  'Lockout / Tagout (LOTO) Program': 650,
+  'PPE Hazard Assessment & Program': 350,
+  'Forklift / Powered Industrial Truck Program': 350,
+  'Respiratory Protection Program': 350,
+  'Bloodborne Pathogens Program': 350,
 };
 const DOC_CREATION_CUSTOM_ITEMS = [
   'Confined Space Program',
@@ -236,8 +238,9 @@ const ClientIntakePage = () => {
     if (multiFacility || hasCustom) {
       return { mode: 'phone_quote', reason: multiFacility ? 'multi-facility' : 'custom items selected' };
     }
-    if (fixedSelected.length >= 3) {
-      return { mode: 'bundle_399', amount: 399, items: fixedSelected };
+    // 5+ programs = "full written program suite" per DocumentDevelopmentPage.js pricing.
+    if (fixedSelected.length >= 5) {
+      return { mode: 'full_suite', amount: 2000, items: fixedSelected };
     }
     if (fixedSelected.length > 0) {
       const sum = fixedSelected.reduce((acc, i) => acc + DOC_CREATION_FIXED_ITEMS[i], 0);
@@ -704,7 +707,7 @@ const ClientIntakePage = () => {
                 <span {...wrap('docCreationItems')}>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                     {Object.entries(DOC_CREATION_FIXED_ITEMS).map(([item, price]) => (
-                      <CheckboxCard key={item} option={item} price={docCreationPricing.mode === 'bundle_399' || docCreationPricing.mode === 'phone_quote' ? null : price}
+                      <CheckboxCard key={item} option={item} price={docCreationPricing.mode === 'full_suite' || docCreationPricing.mode === 'phone_quote' ? null : price}
                         checked={f.docCreationItems.includes(item)} onToggle={() => toggleArr('docCreationItems', item)} />
                     ))}
                     {DOC_CREATION_CUSTOM_ITEMS.map((item) => (
@@ -715,11 +718,11 @@ const ClientIntakePage = () => {
               </Field>
 
               {/* Hybrid pricing display */}
-              {docCreationPricing.mode === 'bundle_399' && (
+              {docCreationPricing.mode === 'full_suite' && (
                 <div className="rounded-md p-4 mb-5" style={{ background: 'rgba(34,197,94,0.07)', border: '1px solid rgba(34,197,94,0.30)' }} data-testid="pricing-bundle">
-                  <p className="text-xs font-bold uppercase tracking-[2px] mb-1.5" style={{ ...mono, color: '#22C55E' }}>Bundle Pricing Active</p>
+                  <p className="text-xs font-bold uppercase tracking-[2px] mb-1.5" style={{ ...mono, color: '#22C55E' }}>Full-Suite Pricing</p>
                   <p className="text-sm leading-relaxed" style={{ color: C.white }}>
-                    With 3+ fixed-price programs, you qualify for the <strong>$399 bundle</strong> — all selected programs included.
+                    With 5+ programs selected, this is a full written program suite — <strong>from $2,000</strong>. Final scope confirmed on the follow-up call.
                   </p>
                 </div>
               )}
@@ -727,7 +730,7 @@ const ClientIntakePage = () => {
                 <div className="rounded-md p-4 mb-5" style={{ background: C.deep, border: `1px solid ${C.border}` }} data-testid="pricing-individual">
                   <p className="text-xs font-bold uppercase tracking-[2px] mb-1.5" style={{ ...mono, color: C.blue }}>Estimated Total</p>
                   <p className="text-sm leading-relaxed" style={{ color: C.white }}>
-                    Selected programs: <strong>${docCreationPricing.amount}</strong> total. Final scope confirmed on the follow-up call.
+                    Selected programs: <strong>from ${docCreationPricing.amount}</strong> total. Final scope confirmed on the follow-up call.
                   </p>
                 </div>
               )}

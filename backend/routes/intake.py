@@ -293,7 +293,7 @@ class IntakeSubmission(BaseModel):
     docCreationScopeType: str = ""      # review | updates | full_creation
     docCreationHasDeadline: str = ""    # yes | no
     docCreationDeadlineDetails: str = ""
-    docCreationPricingDisplayed: str = ""  # bundle_399 | individual_sum | phone_quote (logged for analytics)
+    docCreationPricingDisplayed: str = ""  # full_suite | individual_sum | phone_quote (logged for analytics)
 
     # ─── Section 5 — Hazards & Facility Profile (Walkthrough OR Doc Creation only) ───
     hazardsPresent: List[str] = []

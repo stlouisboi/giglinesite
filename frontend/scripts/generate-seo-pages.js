@@ -19,6 +19,16 @@ const path = require('path');
 // prospects can see on the client is now mirrored into the SSR HTML.
 const { NOTES: FIELD_NOTE_CONTENT } = require('../src/data/fieldNoteContent');
 
+// GL-WEB-KIT-SSR — Shared Citation-Proof Kit Series content database (same source
+// used by the React CitationProofKits pages). Mirrored into SSR HTML so
+// reviewers, non-JS crawlers, and AI answer engines see kit content + tier
+// structure + brand terms + disclaimer without executing JavaScript.
+const {
+  KIT_TIERS: CITATION_PROOF_KIT_TIERS,
+  KIT_CATALOG: CITATION_PROOF_KIT_CATALOG,
+  KIT_DETAILS: CITATION_PROOF_KIT_DETAILS,
+} = require('../src/data/citationProofKits');
+
 const BUILD_DIR = path.join(__dirname, '..', 'build');
 const BASE_URL = 'https://www.giglinecompliance.com';
 
@@ -1815,6 +1825,172 @@ function generateRouteHTML(templateHTML, route) {
 
   return html;
 }
+
+// ═══════════════════════════════════════════════════════════════════════════
+// GL-WEB-KIT-SSR — Citation-Proof Kit Series SSR pass.
+// Pre-renders the catalog page + all 5 kit detail pages so non-JS reviewers
+// (curl, AI browsing tools, Bing, LinkedIn/X preview scrapers, older search
+// crawlers) see the full tier structure, brand terms, disclaimer, and every
+// proprietary tool name that appears on the client-side render.
+// Thank-you pages are intentionally NOT pre-rendered (they need a live Stripe
+// session_id and remain noindex).
+// ═══════════════════════════════════════════════════════════════════════════
+
+const KIT_SERIES_DISCLAIMER =
+  'Citation-Proof Kit Series and Citation-Proof Score are GigLine trade names — not OSHA certifications. These kits support documentation and self-audit. They do not guarantee OSHA compliance, prevent citations, eliminate hazards, or replace the employer\u2019s responsibility to maintain a safe workplace. Employers remain responsible for identifying applicable standards, correcting recognized hazards, training employees, and maintaining accurate records.';
+
+// Only the 5 Citation-Proof Kits get SSR here. `hazcom-starter-pack` lives at
+// its own /hazcom-starter-pack route (already covered elsewhere in this file).
+const CITATION_PROOF_KIT_SLUGS = [
+  'loto-readiness-kit',
+  'forklift-pit-readiness-kit',
+  'hazcom-pro-kit',
+  'incident-to-correction-kit',
+  'new-hire-orientation-kit',
+];
+
+function renderTierGrid() {
+  const tiers = CITATION_PROOF_KIT_TIERS.map((t) => {
+    const badge = t.badge ? `<em>(${escapeHtml(t.badge)})</em>` : '';
+    const includes = (t.includes || []).map((line) => `<li>${escapeHtml(line)}</li>`).join('');
+    return `
+      <h3>${escapeHtml(t.name)} &mdash; $${t.price} ${badge}</h3>
+      <p><strong>${escapeHtml(t.tagline || '')}</strong></p>
+      <p>${escapeHtml(t.description || '')}</p>
+      ${includes ? `<ul>${includes}</ul>` : ''}
+    `;
+  }).join('');
+  return `
+    <h2>Three tiers per kit.</h2>
+    <p>Every Citation-Proof Kit ships in three tiers. Pick the tier that matches how much of the build you want to do yourself and how quickly you need the physical binder in the supervisor&rsquo;s hands.</p>
+    ${tiers}
+  `;
+}
+
+function renderCatalogRoute() {
+  const activeKits = CITATION_PROOF_KIT_CATALOG.filter((k) =>
+    CITATION_PROOF_KIT_SLUGS.includes(k.slug),
+  );
+  const cards = activeKits.map((k) => `
+    <h3><a href="/citation-proof-kits/${escapeHtml(k.slug)}">${escapeHtml(k.name)}</a> ${k.ready ? '' : '<em>(In Build &mdash; Notify Me When Available)</em>'}</h3>
+    <p><strong>${escapeHtml(k.outcome || '')}</strong></p>
+    <p>${escapeHtml(k.problem || '')}</p>
+    <p><em>Control tool:</em> ${escapeHtml(k.controlTool || '')}</p>
+    <p><em>${escapeHtml(k.startingAtLabel || 'Starting at $150')}</em></p>
+  `).join('');
+
+  return `
+    <h1>Five kits that turn scattered safety activity into inspection-ready proof.</h1>
+    <p>Practical compliance-control kits for small manufacturers, warehouses, contractors, and fleet operations that need inspection-ready proof before OSHA, an insurer, a customer, or an owner asks for it.</p>
+    <p>Most safety problems do not start with a lack of effort. They start when the work was done, but the proof is missing, weak, outdated, or does not match the floor. GigLine kits help you close that proof gap.</p>
+    <h2>The five kits</h2>
+    ${cards}
+    ${renderTierGrid()}
+    <h2>Disclaimer</h2>
+    <p>${escapeHtml(KIT_SERIES_DISCLAIMER)}</p>
+    <p>GigLine Safety &amp; Compliance &mdash; (336) 329-8899 &mdash; vince@giglinecompliance.com</p>
+  `;
+}
+
+function renderKitDetailRoute(slug) {
+  const kit = CITATION_PROOF_KIT_DETAILS[slug];
+  if (!kit) return null;
+  const catalogEntry = CITATION_PROOF_KIT_CATALOG.find((c) => c.slug === slug) || {};
+
+  const outcomes = (kit.outcomes || []).map((o) => `
+    <h3>${escapeHtml(o.headline)}</h3>
+    <p>${escapeHtml(o.body)}</p>
+  `).join('');
+
+  const controlMechanisms = (kit.controlMechanisms || []).map((cm) => `
+    <li><strong>${escapeHtml(cm.toolName)}</strong> &mdash; ${escapeHtml(cm.outcome)}. <em>${escapeHtml(cm.toolNote || '')}</em></li>
+  `).join('');
+
+  const keyProof = (kit.keyProof || []).map((p) => `<li>${escapeHtml(p)}</li>`).join('');
+
+  const builtFor = (kit.builtFor || []).map((b) => `
+    <li><strong>${escapeHtml(b.role)}:</strong> ${escapeHtml(b.description)}</li>
+  `).join('');
+
+  const faq = (kit.faq || []).map((f) => `
+    <h3>${escapeHtml(f.q)}</h3>
+    <p>${escapeHtml(f.a)}</p>
+  `).join('');
+
+  const stakes = kit.stakes ? `
+    <h2>${escapeHtml(kit.stakes.headline)}</h2>
+    <p>${escapeHtml(kit.stakes.body)}</p>
+    <ul>
+      ${(kit.stakes.stats || []).map((s) => `<li><strong>${escapeHtml(s.value)}</strong> &mdash; ${escapeHtml(s.label)}: ${escapeHtml(s.sub || '')}</li>`).join('')}
+    </ul>
+    <p><em>${escapeHtml(kit.stakes.source || '')}</em></p>
+  ` : '';
+
+  const notReadyBanner = kit.ready ? '' : `
+    <p><strong>Status:</strong> In Build. This kit is not yet available for purchase. Join the notify list to be told when it launches.</p>
+  `;
+
+  return `
+    <h1>${escapeHtml(kit.outcomeHeadline || kit.name)}</h1>
+    <p><strong>${escapeHtml(kit.name)} &mdash; ${escapeHtml(kit.subtitle || '')}</strong></p>
+    <p>${escapeHtml(kit.heroSupportLine || '')}</p>
+    ${notReadyBanner}
+    <p><em>Applicable OSHA standard: ${escapeHtml(kit.standard || '')}</em></p>
+    <h2>The Problem</h2>
+    <p>${escapeHtml(kit.problemStatement || '')}</p>
+    <h2>What This Kit Does</h2>
+    <p>${escapeHtml(kit.proofPromise || '')}</p>
+    <h3>${escapeHtml(kit.proprietaryToolName || 'Primary control tool')}</h3>
+    <p>${escapeHtml(kit.proprietaryToolDescription || '')}</p>
+    ${stakes}
+    <h2>What This Kit Gets You</h2>
+    ${outcomes}
+    ${controlMechanisms ? `<h2>Control Mechanisms</h2><ul>${controlMechanisms}</ul>` : ''}
+    ${keyProof ? `<h2>What&rsquo;s Inside (Key Proof)</h2><ul>${keyProof}</ul>` : ''}
+    ${builtFor ? `<h2>Built For</h2><ul>${builtFor}</ul>` : ''}
+    ${renderTierGrid()}
+    ${faq ? `<h2>Frequently Asked Questions</h2>${faq}` : ''}
+    <h2>Disclaimer</h2>
+    <p>${escapeHtml(KIT_SERIES_DISCLAIMER)}</p>
+    <p><a href="/citation-proof-kits">Back to the Citation-Proof Kit Series &rarr;</a></p>
+    <p>GigLine Safety &amp; Compliance &mdash; (336) 329-8899 &mdash; vince@giglinecompliance.com</p>
+  `;
+}
+
+// Push all 6 citation-proof-kit routes (1 catalog + 5 detail pages) into
+// the SSR pipeline.
+routes.push({
+  path: '/citation-proof-kits',
+  title: 'Citation-Proof Kit Series | GigLine Safety & Compliance',
+  description: 'Five compliance-control kits for small manufacturers, warehouses, contractors, and fleet operations. LOTO, Forklift/PIT, HazCom, Incident-to-Correction, and New Hire Orientation. Digital, Control System, or Binder Edition. Starting at $150.',
+  canonical: '/citation-proof-kits',
+  schemas: [
+    LOCAL_BUSINESS,
+    breadcrumb([{ name: 'Home', path: '/' }, { name: 'Citation-Proof Kits', path: '/citation-proof-kits' }]),
+  ],
+  content: renderCatalogRoute(),
+});
+
+CITATION_PROOF_KIT_SLUGS.forEach((slug) => {
+  const kit = CITATION_PROOF_KIT_DETAILS[slug];
+  if (!kit) return;
+  routes.push({
+    path: `/citation-proof-kits/${slug}`,
+    title: `${kit.name} | Citation-Proof Kit Series | GigLine`,
+    description: `${(kit.outcomeHeadline || '').replace(/[""]/g, '"')} ${kit.heroSupportLine || ''}`.trim().slice(0, 300),
+    canonical: `/citation-proof-kits/${slug}`,
+    schemas: [
+      LOCAL_BUSINESS,
+      breadcrumb([
+        { name: 'Home', path: '/' },
+        { name: 'Citation-Proof Kits', path: '/citation-proof-kits' },
+        { name: kit.name, path: `/citation-proof-kits/${slug}` },
+      ]),
+      ...(kit.faq && kit.faq.length ? [faqSchema(kit.faq)] : []),
+    ],
+    content: renderKitDetailRoute(slug),
+  });
+});
 
 function main() {
   const templatePath = path.join(BUILD_DIR, 'index.html');

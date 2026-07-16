@@ -20,7 +20,20 @@
  *   and when their next evaluation is due."
  */
 
-export const PROOF_GAP_ENGINE = [
+/**
+ * Citation-Proof Kit Series — Shared kit content database.
+ *
+ * Single source of truth used by BOTH:
+ *   - React components: CitationProofKitsPage, CitationProofKitDetailPage, KitPricingTiers, ...
+ *   - SSR generator:    /app/frontend/scripts/generate-seo-pages.js
+ *
+ * Exported via CommonJS (`module.exports` at the bottom) so the Node SSR script
+ * can `require()` this file at build time. Webpack transparently handles the
+ * CJS→ESM import in every React component (`import { KIT_DETAILS } from '...'`).
+ * See fieldNoteContent.js for the same pattern.
+ */
+
+const PROOF_GAP_ENGINE = [
   {
     step: '01',
     name: 'Score',
@@ -45,7 +58,7 @@ export const PROOF_GAP_ENGINE = [
 
 // Universal 3-tier structure used by every kit page.
 // Each kit optionally overrides `stripeSku` per tier once wired.
-export const KIT_TIERS = [
+const KIT_TIERS = [
   {
     id: 'digital',
     name: 'Digital Compliance Kit',
@@ -109,7 +122,7 @@ export const KIT_TIERS = [
 // `cardImage` is the hero mockup for kits that have finished art.
 // `placeholder` is the fallback for kits still in build — an array of text lines
 // rendered on a navy background in gold.
-export const KIT_CATALOG = [
+const KIT_CATALOG = [
   {
     slug: 'loto-readiness-kit',
     name: 'Machine-Specific LOTO Readiness Kit',
@@ -189,7 +202,7 @@ export const KIT_CATALOG = [
 
 // Full per-kit content used by /citation-proof-kits/[slug]
 // Each kit follows the outcome-first hero structure.
-export const KIT_DETAILS = {
+const KIT_DETAILS = {
   'loto-readiness-kit': {
     name: 'Machine-Specific LOTO Readiness Kit',
     subtitle: 'With Photo Lockout Maps',
@@ -502,4 +515,12 @@ export const KIT_DETAILS = {
 };
 
 // Everything a kit page needs to render, in one lookup.
-export const getKitBySlug = (slug) => KIT_DETAILS[slug] || null;
+const getKitBySlug = (slug) => KIT_DETAILS[slug] || null;
+
+module.exports = {
+  PROOF_GAP_ENGINE,
+  KIT_TIERS,
+  KIT_CATALOG,
+  KIT_DETAILS,
+  getKitBySlug,
+};

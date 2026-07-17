@@ -53,12 +53,12 @@ const Footer = () => {
                 vince@giglinecompliance.com
               </a>
               <a
-                href="tel:336-329-8899"
+                href="tel:+13363298899"
                 className="flex items-center gap-2 text-sm text-white/60 hover:text-[#1F3F80] transition-colors"
                 data-testid="footer-phone"
               >
                 <Phone size={16} />
-                336-329-8899
+                (336) 329-8899
               </a>
               <Link
                 to="/intake?service=compliance-readiness-visit"

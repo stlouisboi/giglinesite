@@ -39,9 +39,9 @@ export const SITE_SEARCH_INDEX = [
   // ── Lead magnets ───────────────────────────────────────
   { title: 'Free Safety Check (5 questions)', path: '/safety-check', type: 'Lead Magnet', keywords: 'safety check free quiz score risk level high medium low' },
   { title: 'Sample Walkthrough Report (PDF)', path: '/sample-report', type: 'Lead Magnet', keywords: 'sample walkthrough report pdf example deliverable findings cfr' },
-  { title: 'Heat Stress Prevention Guide', path: '/heat-stress-prevention', type: 'Lead Magnet', keywords: 'heat stress prevention guide download summer warm weather hydration' },
-  { title: 'OSHA Inspection Prep Guide (HR)', path: '/osha-inspection-prep-guide', type: 'Lead Magnet', keywords: 'osha inspection prep hr human resources opening conference walkthrough closing' },
-  { title: 'HazCom Compliance Pack', path: '/hazcom', type: 'Lead Magnet', keywords: 'hazcom hazard communication sds safety data sheet program training' },
+  { title: 'Heat Stress Prevention Guide', path: '/heat-guide', type: 'Lead Magnet', keywords: 'heat stress prevention guide download summer warm weather hydration' },
+  { title: 'OSHA Inspection Prep Guide (HR)', path: '/osha-inspection-guide', type: 'Lead Magnet', keywords: 'osha inspection prep hr human resources opening conference walkthrough closing' },
+  { title: 'HazCom Compliance Pack', path: '/hazcom-starter-pack', type: 'Lead Magnet', keywords: 'hazcom hazard communication sds safety data sheet program training' },
 
   // ── Field Notes (25 — comprehensive index) ─────────────
   { title: 'Field Note: AI-Generated Safety Programs', path: '/field-notes/ai-generated-safety-programs', type: 'Field Note', keywords: 'ai chatgpt generated safety programs template missing elements' },

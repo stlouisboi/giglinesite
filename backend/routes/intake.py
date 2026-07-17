@@ -100,14 +100,16 @@ DOC_LABELS = {
 
 def calculate_proposed_scope(data):
     """Server-side only. Never exposed to client."""
-    # Base price from employee count
+    # Base price from employee count. Aligned to the public $1,200 walkthrough
+    # floor (see PRICING REFERENCE block below) — these used to be $650/$750/$900,
+    # which undercut the site's own stated starting price.
     emp = data.totalEmployees or 0
     if emp <= 75:
-        tier, base = "Small", 650
+        tier, base = "Small", 1200
     elif emp <= 250:
-        tier, base = "Medium", 750
+        tier, base = "Medium", 1500
     else:
-        tier, base = "Large", 900
+        tier, base = "Large", 1800
 
     adjustments = []
     flags = []
@@ -291,7 +293,7 @@ class IntakeSubmission(BaseModel):
     docCreationScopeType: str = ""      # review | updates | full_creation
     docCreationHasDeadline: str = ""    # yes | no
     docCreationDeadlineDetails: str = ""
-    docCreationPricingDisplayed: str = ""  # bundle_399 | individual_sum | phone_quote (logged for analytics)
+    docCreationPricingDisplayed: str = ""  # full_suite | individual_sum | phone_quote (logged for analytics)
 
     # ─── Section 5 — Hazards & Facility Profile (Walkthrough OR Doc Creation only) ───
     hazardsPresent: List[str] = []
@@ -463,6 +465,7 @@ async def submit_intake(data: IntakeSubmission):
     }
     SERVICES = {
         "walkthrough": "Safety Walkthrough & Top 10 Fixes Report",
+        "compliance_readiness_visit": "Compliance Readiness Visit",
         "doc_review": "OSHA Documentation Readiness Review",
         "incident_review": "Incident Review & Corrective Action Support",
         "doc_creation": "Safety Documents / Program Creation",
@@ -498,6 +501,7 @@ async def submit_intake(data: IntakeSubmission):
     # Service-lane-specific opening line
     lane_opener = {
         "walkthrough": "Thanks for requesting a Safety Walkthrough. Vince will be in touch within 1 business day to confirm scope and schedule.",
+        "compliance_readiness_visit": "Thanks for requesting a Compliance Readiness Visit — a floor walkthrough and documentation review in a single visit. Vince will be in touch within 1 business day to confirm scope and schedule.",
         "doc_review": "Thanks for requesting an OSHA Documentation Readiness Review. Your prep checklist is attached — personalized for your company. Vince will follow up within 1 business day with a fixed quote.",
         "incident_review": "Thanks for reaching out about an incident review. These move fast — Vince will be in touch shortly, often same day.",
         "doc_creation": "Thanks for the program creation request. Vince will review your selections and follow up within 1 business day with a quote.",
@@ -684,21 +688,11 @@ LANE: DOCUMENT / PROGRAM CREATION
 {pad('Scope type:')}{data.docCreationScopeType or '—'}
 {pad('Has deadline:')}{data.docCreationHasDeadline or '—'} {f'({data.docCreationDeadlineDetails})' if data.docCreationDeadlineDetails else ''}
 {pad('Pricing displayed:')}{data.docCreationPricingDisplayed or '—'}"""
-    elif data.serviceSelected == "walkthrough" or data.serviceSelected == "doc_creation":
-        hazards = "\n".join(f"  • {item}" for item in (data.hazardsPresent or [])) or "  (none flagged)"
-        lane_block = f"""
 
-───────────────────────────────────────────────────────
-HAZARDS & FACILITY PROFILE
-───────────────────────────────────────────────────────
-{pad('Hazards present:')}
-{hazards}
-{pad('Safety board posted:')}{L(YNS, data.safetyBoardPosted)}
-{pad('Additional notes:')}{data.facilityAdditionalNotes or '—'}"""
-
-    # Section 5 hazards block also for walkthrough/doc_creation
+    # Section 5 hazards block for walkthrough / doc_creation / compliance_readiness_visit
+    # (the latter bundles a walkthrough, so it needs the same facility profile)
     s5_block = ""
-    if data.serviceSelected in ("walkthrough", "doc_creation") and data.hazardsPresent:
+    if data.serviceSelected in ("walkthrough", "doc_creation", "compliance_readiness_visit") and data.hazardsPresent:
         hazards = "\n".join(f"  • {item}" for item in data.hazardsPresent)
         s5_block = f"""
 

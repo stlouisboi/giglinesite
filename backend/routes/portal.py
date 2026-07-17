@@ -8,7 +8,7 @@ import os
 import logging
 
 import resend
-from config import db, SENDER_EMAIL, VINCE_EMAIL, ADMIN_PASSWORD
+from config import db, SENDER_EMAIL, VINCE_EMAIL, ADMIN_PASSWORD, is_admin
 from integrations.mailerlite import move_to_past_client
 
 router = APIRouter()
@@ -139,7 +139,7 @@ async def download_report(client_token: str):
 @router.put("/admin/intake/{client_token}/status")
 async def update_intake_status(client_token: str, body: dict, token: str = ""):
     """Admin updates client status stage."""
-    if token != ADMIN_PASSWORD:
+    if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
 
     new_status = body.get("status")
@@ -168,7 +168,7 @@ async def update_intake_status(client_token: str, body: dict, token: str = ""):
 @router.post("/admin/intake/{client_token}/report")
 async def upload_report(client_token: str, token: str = "", file: UploadFile = File(...)):
     """Admin uploads a Safety Check report PDF for a client."""
-    if token != ADMIN_PASSWORD:
+    if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
 
     record = await db.gl_intake_submissions.find_one({"clientToken": client_token}, {"_id": 0})
@@ -239,7 +239,7 @@ async def upload_report(client_token: str, token: str = "", file: UploadFile = F
 @router.get("/admin/intake-submissions")
 async def get_intake_submissions(token: str = "", limit: int = 100):
     """Get all intake submissions with status info for admin dashboard."""
-    if token != ADMIN_PASSWORD:
+    if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
 
     submissions = await db.gl_intake_submissions.find(
@@ -251,7 +251,7 @@ async def get_intake_submissions(token: str = "", limit: int = 100):
 @router.get("/admin/bookings")
 async def get_bookings(token: str = "", limit: int = 100):
     """Get all bookings for admin dashboard."""
-    if token != ADMIN_PASSWORD:
+    if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
 
     bookings = await db.gl_bookings.find({}, {"_id": 0}).sort("createdAt", -1).to_list(limit)
@@ -261,7 +261,7 @@ async def get_bookings(token: str = "", limit: int = 100):
 @router.get("/admin/portal-stats")
 async def get_portal_stats(token: str = ""):
     """Dashboard summary strip data."""
-    if token != ADMIN_PASSWORD:
+    if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
 
     now = datetime.now(timezone.utc)
@@ -292,7 +292,7 @@ async def get_portal_stats(token: str = ""):
 @router.get("/admin/leads-by-source")
 async def get_leads_by_source(token: str = ""):
     """Aggregate leads by first-touch UTM source for conversion analysis."""
-    if token != ADMIN_PASSWORD:
+    if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
 
     leads = await db.gl_intake_submissions.find(

@@ -32,7 +32,7 @@ const HazComPage = () => {
       <SEO
         title="HazCom Starter Pack"
         description="HazCom Starter Pack — $29. Written HazCom program, SDS binder checklist, and training log. 11 pages. Fill your company name. Print. Done. Fixes OSHA's #1 citation in general industry."
-        canonical="/hazcom"
+        canonical="/hazcom-starter-pack"
         schema={{
           "@context": "https://schema.org",
           "@type": "Product",

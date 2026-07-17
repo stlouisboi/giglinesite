@@ -14,7 +14,7 @@ const HazComThankYouPage = () => {
   useEffect(() => {
     const sid = searchParams.get('session_id');
     if (!sid) {
-      navigate('/hazcom', { replace: true });
+      navigate('/hazcom-starter-pack', { replace: true });
       return;
     }
     setSessionId(sid);

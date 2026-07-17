@@ -33,13 +33,6 @@ class PaymentTransaction(BaseModel):
     updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 
-class CheckoutRequest(BaseModel):
-    service_type: str
-    origin_url: str
-    customer_email: Optional[str] = None
-    customer_name: Optional[str] = None
-
-
 class SafetyCheckSubmission(BaseModel):
     name: str
     company: str

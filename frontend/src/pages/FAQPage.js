@@ -179,8 +179,14 @@ const FAQPage = () => {
       <section className="bg-[#102A43] text-white py-16 md:py-24">
         <div className="container max-w-4xl">
           <p
-            className="uppercase tracking-[3px] text-[#2A52A0] mb-5"
-            style={{ ...mono, fontSize: '11px' }}
+            className="uppercase tracking-[3px] mb-5"
+            style={{
+              ...mono,
+              fontSize: '11px',
+              color: '#C9A84C',
+              fontWeight: 700,
+              letterSpacing: '0.28em',
+            }}
             data-testid="faq-kicker"
           >
             Frequently Asked Questions

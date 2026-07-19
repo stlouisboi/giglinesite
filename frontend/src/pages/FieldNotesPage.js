@@ -280,8 +280,15 @@ const FieldNotesPage = () => {
       >
         <div className="container max-w-4xl">
           <p
-            className="uppercase tracking-[3px] text-[#2A52A0] mb-4"
-            style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }}
+            className="uppercase tracking-[3px] mb-4"
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: '11px',
+              color: '#C9A84C',
+              fontWeight: 700,
+              letterSpacing: '0.28em',
+            }}
+            data-testid="field-notes-kicker"
           >
             Field Notes
           </p>

@@ -163,8 +163,15 @@ const FieldNoteDetailPage = () => {
             <ArrowLeft size={14} /> Field Notes
           </Link>
           <p
-            className="uppercase tracking-[3px] text-[#2A52A0] mb-3"
-            style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }}
+            className="uppercase tracking-[3px] mb-3"
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: '11px',
+              color: '#C9A84C',
+              fontWeight: 700,
+              letterSpacing: '0.28em',
+            }}
+            data-testid="field-note-detail-kicker"
           >
             Field Note
           </p>

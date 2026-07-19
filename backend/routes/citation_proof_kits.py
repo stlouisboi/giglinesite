@@ -93,6 +93,15 @@ async def _create_kit_checkout(
 
     try:
         from stripe_native import create_checkout
+        # Build a public HTTPS URL for the product thumbnail Stripe will render
+        # on the checkout page. `origin_url` is the site the buyer came from
+        # (e.g., https://www.giglinecompliance.com), so images work in both
+        # preview and production without env config.
+        product_images = None
+        image_path = product.get("image_path")
+        if image_path and origin_url.startswith("https://"):
+            product_images = [f"{origin_url.rstrip('/')}{image_path}"]
+
         result = await create_checkout(
             amount_cents=product["amount_cents"],
             currency="usd",
@@ -102,6 +111,7 @@ async def _create_kit_checkout(
             customer_email=email,
             collect_shipping=product["collect_shipping"],
             product_name=product["name"],
+            product_images=product_images,
         )
 
         await db.gl_citation_proof_kit_orders.insert_one({

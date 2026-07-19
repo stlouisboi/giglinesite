@@ -15,10 +15,14 @@ def init_stripe():
 
 
 async def create_checkout(amount_cents, currency, success_url, cancel_url, metadata=None,
-                          customer_email=None, collect_shipping=False, product_name=None):
+                          customer_email=None, collect_shipping=False, product_name=None,
+                          product_images=None):
     """Create a Stripe Checkout Session.
     Note: amount_cents may actually be in dollars from SERVICE_PACKAGES — 
     we convert to cents if value looks like dollars (< 10000).
+
+    product_images: optional list of PUBLIC HTTPS URLs (up to 8). First image
+    displays as the product thumbnail on the checkout page.
     """
     init_stripe()
     # SERVICE_PACKAGES stores amounts in dollars (e.g., 650.00)
@@ -32,12 +36,19 @@ async def create_checkout(amount_cents, currency, success_url, cancel_url, metad
             or (metadata.get('service_name') if metadata else None)
             or 'GigLine Service'
         )
+        product_data = {'name': resolved_name}
+        if product_images:
+            # Stripe requires publicly-accessible HTTPS URLs. Silently drop
+            # anything that isn't https:// so a bad env can't break checkout.
+            valid_images = [u for u in product_images if isinstance(u, str) and u.startswith('https://')][:8]
+            if valid_images:
+                product_data['images'] = valid_images
         session_kwargs = {
             'payment_method_types': ['card'],
             'line_items': [{
                 'price_data': {
                     'currency': currency,
-                    'product_data': {'name': resolved_name},
+                    'product_data': product_data,
                     'unit_amount': amount,
                 },
                 'quantity': 1,

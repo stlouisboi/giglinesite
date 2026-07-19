@@ -205,6 +205,7 @@ CITATION_PROOF_KIT_PRODUCTS = {
         "pdf_filename": "GigLine_LOTO_Digital_Compliance_Kit.pdf",
         "physical_binder": False,
         "collect_shipping": False,
+        "image_path": "/assets/kits/loto/loto-hero.png",
     },
     ("loto-readiness-kit", "control-system"): {
         "name": "Machine-Specific LOTO Readiness Kit — Compliance Control System",
@@ -216,6 +217,7 @@ CITATION_PROOF_KIT_PRODUCTS = {
         "pdf_filename": "GigLine_LOTO_Compliance_Control_System.pdf",
         "physical_binder": False,
         "collect_shipping": False,
+        "image_path": "/assets/kits/loto/loto-hero.png",
     },
     ("loto-readiness-kit", "binder"): {
         "name": "Machine-Specific LOTO Readiness Kit — Inspector-Ready Binder Edition",
@@ -227,6 +229,7 @@ CITATION_PROOF_KIT_PRODUCTS = {
         "pdf_filename": "GigLine_LOTO_Compliance_Control_System.pdf",
         "physical_binder": True,
         "collect_shipping": True,
+        "image_path": "/assets/kits/loto/loto-physical-mockup.png",
     },
     ("forklift-pit-readiness-kit", "digital"): {
         "name": "Forklift / PIT Readiness Kit — Digital Compliance Kit",
@@ -238,6 +241,7 @@ CITATION_PROOF_KIT_PRODUCTS = {
         "pdf_filename": "GigLine_PIT_Digital_Compliance_Kit.pdf",
         "physical_binder": False,
         "collect_shipping": False,
+        "image_path": "/assets/kits/pit/pit-hero.png",
     },
     ("forklift-pit-readiness-kit", "control-system"): {
         "name": "Forklift / PIT Readiness Kit — Compliance Control System",
@@ -249,6 +253,7 @@ CITATION_PROOF_KIT_PRODUCTS = {
         "pdf_filename": "GigLine_PIT_Compliance_Control_System.pdf",
         "physical_binder": False,
         "collect_shipping": False,
+        "image_path": "/assets/kits/pit/pit-hero.png",
     },
     ("forklift-pit-readiness-kit", "binder"): {
         "name": "Forklift / PIT Readiness Kit — Inspector-Ready Binder Edition",
@@ -260,6 +265,7 @@ CITATION_PROOF_KIT_PRODUCTS = {
         "pdf_filename": "GigLine_PIT_Compliance_Control_System.pdf",
         "physical_binder": True,
         "collect_shipping": True,
+        "image_path": "/assets/kits/pit/pit-physical-mockup.png",
     },
 }
 

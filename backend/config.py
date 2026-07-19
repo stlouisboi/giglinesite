@@ -107,6 +107,7 @@ HAZCOM_PRODUCT = {
     "name": "HazCom Starter Pack — Small Shop Edition",
     "amount": 29.00,
     "description": "Written HazCom Program, SDS Binder Checklist + Index, Training Verification Log (11 pages total)",
+    "image_path": "/assets/field-notes/hazcom-sds-binder.webp",
 }
 
 HAZCOM_FILES = {
@@ -132,12 +133,14 @@ SUPERVISOR_KIT_PRODUCTS = {
         "amount_cents": 60000,  # $600
         "sku": "supervisor-kit-digital",
         "needs_shipping": False,
+        "image_path": "/assets/gl-fm-2026-cover.webp",
     },
     "physical": {
         "name": "GigLine Supervisor Safety OS — Physical Binder Kit",
         "amount_cents": 70000,  # $700 (includes free USPS Priority shipping)
         "sku": "supervisor-kit-physical",
         "needs_shipping": True,
+        "image_path": "/assets/gl-fm-2026-cover.webp",
     },
 }
 

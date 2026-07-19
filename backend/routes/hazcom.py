@@ -27,32 +27,27 @@ async def create_hazcom_checkout(request: HazComCheckoutRequest, http_request: R
     cancel_url = f"{request.origin_url}/hazcom"
 
     try:
-        if USE_NATIVE_STRIPE:
-            from stripe_native import create_checkout
-            result = await create_checkout(
-                amount_cents=HAZCOM_PRODUCT["amount"],
-                currency="usd",
-                success_url=success_url,
-                cancel_url=cancel_url,
-                metadata={"product": "hazcom_starter_pack", "service_name": HAZCOM_PRODUCT["name"]},
-            )
-            session_url = result['url']
-            session_id = result['session_id']
-        else:
-            from config import StripeCheckout, CheckoutSessionRequest, CheckoutSessionResponse
-            host_url = str(http_request.base_url).rstrip('/')
-            webhook_url = f"{host_url}/api/webhook/stripe"
-            stripe_checkout = StripeCheckout(api_key=stripe_api_key, webhook_url=webhook_url)
-            checkout_request = CheckoutSessionRequest(
-                amount=HAZCOM_PRODUCT["amount"],
-                currency="usd",
-                success_url=success_url,
-                cancel_url=cancel_url,
-                metadata={"product": "hazcom_starter_pack", "service_name": HAZCOM_PRODUCT["name"]},
-            )
-            session = await stripe_checkout.create_checkout_session(checkout_request)
-            session_url = session.url
-            session_id = session.session_id
+        # Build a public HTTPS URL for the Stripe checkout thumbnail.
+        product_images = None
+        image_path = HAZCOM_PRODUCT.get("image_path")
+        if image_path and request.origin_url.startswith("https://"):
+            product_images = [f"{request.origin_url.rstrip('/')}{image_path}"]
+
+        # Always use the native Stripe SDK — the emergentintegrations adapter
+        # doesn't support product images (which we need for checkout thumbnails)
+        # and this matches the supervisor_kit checkout pattern.
+        from stripe_native import create_checkout
+        result = await create_checkout(
+            amount_cents=HAZCOM_PRODUCT["amount"],
+            currency="usd",
+            success_url=success_url,
+            cancel_url=cancel_url,
+            metadata={"product": "hazcom_starter_pack", "service_name": HAZCOM_PRODUCT["name"]},
+            product_name=HAZCOM_PRODUCT["name"],
+            product_images=product_images,
+        )
+        session_url = result['url']
+        session_id = result['session_id']
 
         transaction = PaymentTransaction(
             session_id=session_id,

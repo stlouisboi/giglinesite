@@ -546,3 +546,174 @@ async def export_csv(kind: str, token: str = ""):
     if not rows:
         rows = await db[coll_name].find({}, {"_id": 0}).to_list(5000)
     return _rows_to_csv(rows, f"gigline-{kind}-{today}.csv")
+
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Kit Orders — unified view of paid Citation-Proof Kit + Supervisor Kit orders.
+# Purpose: give Vince a single dashboard to spot $600 binder / $700 physical
+# orders that still need to be shipped, plus a "Mark Shipped" action.
+# ═══════════════════════════════════════════════════════════════════════════════
+
+@router.get("/admin/kit-orders")
+async def admin_kit_orders(token: str = "", filter: str = "all"):
+    """List paid kit orders across Citation-Proof Kits + Supervisor Kit.
+
+    Query params:
+        token   — admin password
+        filter  — "all" (default) | "needs_shipping" | "auto_delivered" | "pending_manual"
+
+    "needs_shipping" surfaces the physical/binder orders whose PDFs have been
+    auto-delivered but that still need a printed binder mailed out.
+    """
+    if token != ADMIN_PASSWORD:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+    valid_filters = {"all", "needs_shipping", "auto_delivered", "pending_manual", "shipped"}
+    if filter not in valid_filters:
+        raise HTTPException(status_code=400, detail=f"Invalid filter. Valid: {sorted(valid_filters)}")
+
+    # ── Citation-Proof Kit orders ──────────────────────────────────────────
+    cp_query = {"status": "paid"}
+    if filter == "needs_shipping":
+        cp_query["fulfillment_status"] = "pdf_delivered_awaiting_ship"
+    elif filter == "auto_delivered":
+        cp_query["fulfillment_status"] = "auto_delivered"
+    elif filter == "pending_manual":
+        cp_query["fulfillment_status"] = "pending_manual"
+    elif filter == "shipped":
+        cp_query["fulfillment_status"] = "shipped"
+
+    cp_orders = await db.gl_citation_proof_kit_orders.find(
+        cp_query, {"_id": 0}
+    ).sort("paid_at", -1).to_list(500)
+
+    # ── Supervisor Kit orders ──────────────────────────────────────────────
+    # Supervisor kit uses variant="physical" for the shippable one; if the filter
+    # is "needs_shipping" we only include physical variant that hasn't been shipped.
+    sk_query = {"status": "paid"}
+    if filter == "needs_shipping":
+        sk_query["variant"] = "physical"
+        sk_query["fulfillment_status"] = {"$ne": "shipped"}
+    elif filter == "shipped":
+        sk_query["fulfillment_status"] = "shipped"
+    elif filter == "auto_delivered":
+        # Supervisor kit digital variant is always auto-delivered
+        sk_query["variant"] = "digital"
+    elif filter == "pending_manual":
+        # Not applicable to supervisor kit; skip
+        sk_query = None
+
+    sk_orders = []
+    if sk_query is not None:
+        sk_orders = await db.gl_supervisor_kit_orders.find(
+            sk_query, {"_id": 0}
+        ).sort("paid_at", -1).to_list(500)
+
+    # ── Normalize both sources into a shared shape ─────────────────────────
+    def _norm_cp(o):
+        return {
+            "source": "citation_proof_kit",
+            "session_id": o.get("session_id"),
+            "product_slug": o.get("kit_slug"),
+            "tier": o.get("tier"),
+            "label": o.get("label"),
+            "amount_cents": o.get("amount_total_cents") or o.get("amount_cents"),
+            "physical": bool(o.get("physical_binder")),
+            "customer_email": o.get("customer_email") or o.get("email"),
+            "customer_name": o.get("customer_name"),
+            "customer_phone": o.get("customer_phone"),
+            "company_name": o.get("company_name"),
+            "shipping_details": o.get("shipping_details"),
+            "fulfillment_status": o.get("fulfillment_status") or "unknown",
+            "tracking_number": o.get("tracking_number"),
+            "shipped_at": o.get("shipped_at"),
+            "paid_at": o.get("paid_at"),
+            "created_at": o.get("created_at"),
+        }
+
+    def _norm_sk(o):
+        variant = o.get("variant") or ""
+        return {
+            "source": "supervisor_kit",
+            "session_id": o.get("session_id"),
+            "product_slug": "supervisor-safety-os",
+            "tier": variant,  # "digital" or "physical"
+            "label": o.get("label"),
+            "amount_cents": o.get("amount_total_cents") or o.get("amount_cents"),
+            "physical": variant == "physical",
+            "customer_email": o.get("customer_email") or o.get("email"),
+            "customer_name": o.get("customer_name"),
+            "customer_phone": o.get("customer_phone"),
+            "company_name": o.get("company_name"),
+            "shipping_details": o.get("shipping_details"),
+            "fulfillment_status": o.get("fulfillment_status") or ("auto_delivered" if variant == "digital" else "pending_ship"),
+            "tracking_number": o.get("tracking_number"),
+            "shipped_at": o.get("shipped_at"),
+            "paid_at": o.get("paid_at"),
+            "created_at": o.get("created_at"),
+        }
+
+    orders = [_norm_cp(o) for o in cp_orders] + [_norm_sk(o) for o in sk_orders]
+    # Sort combined list by paid_at DESC (fallback created_at)
+    orders.sort(key=lambda x: x.get("paid_at") or x.get("created_at") or "", reverse=True)
+
+    # ── Summary counts (always over full paid set, ignoring filter) ────────
+    total_paid_cp = await db.gl_citation_proof_kit_orders.count_documents({"status": "paid"})
+    total_paid_sk = await db.gl_supervisor_kit_orders.count_documents({"status": "paid"})
+    needs_ship_cp = await db.gl_citation_proof_kit_orders.count_documents(
+        {"status": "paid", "fulfillment_status": "pdf_delivered_awaiting_ship"}
+    )
+    needs_ship_sk = await db.gl_supervisor_kit_orders.count_documents(
+        {"status": "paid", "variant": "physical", "fulfillment_status": {"$ne": "shipped"}}
+    )
+
+    return {
+        "orders": orders,
+        "counts": {
+            "total_paid": total_paid_cp + total_paid_sk,
+            "needs_shipping": needs_ship_cp + needs_ship_sk,
+            "citation_proof_kit_paid": total_paid_cp,
+            "supervisor_kit_paid": total_paid_sk,
+        },
+        "filter": filter,
+    }
+
+
+@router.post("/admin/kit-orders/{session_id}/mark-shipped")
+async def admin_mark_kit_shipped(session_id: str, body: dict):
+    """Mark a paid physical/binder order as shipped, with optional tracking number."""
+    token = body.get("token", "")
+    if token != ADMIN_PASSWORD:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+    tracking_number = (body.get("tracking_number") or "").strip()
+    carrier = (body.get("carrier") or "").strip()
+    now_iso = datetime.now(timezone.utc).isoformat()
+
+    update = {
+        "fulfillment_status": "shipped",
+        "shipped_at": now_iso,
+    }
+    if tracking_number:
+        update["tracking_number"] = tracking_number
+    if carrier:
+        update["shipping_carrier"] = carrier
+
+    # Try citation-proof-kit collection first
+    res_cp = await db.gl_citation_proof_kit_orders.update_one(
+        {"session_id": session_id, "status": "paid"},
+        {"$set": update},
+    )
+    if res_cp.matched_count:
+        return {"ok": True, "source": "citation_proof_kit", "session_id": session_id, "shipped_at": now_iso}
+
+    # Fall back to supervisor kit
+    res_sk = await db.gl_supervisor_kit_orders.update_one(
+        {"session_id": session_id, "status": "paid"},
+        {"$set": update},
+    )
+    if res_sk.matched_count:
+        return {"ok": True, "source": "supervisor_kit", "session_id": session_id, "shipped_at": now_iso}
+
+    raise HTTPException(status_code=404, detail="Paid order not found for session_id")

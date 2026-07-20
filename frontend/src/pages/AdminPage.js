@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { X, Upload, ChevronRight, Eye, RefreshCw, FileText, Users, Briefcase, DollarSign, Clock, Trash2, Search } from 'lucide-react';
+import { X, Upload, ChevronRight, Eye, RefreshCw, FileText, Users, Briefcase, DollarSign, Clock, Trash2, Search, Package, Truck } from 'lucide-react';
 import SEO from '../components/SEO';
 import WalkthroughLeadsCRM from '../components/WalkthroughLeadsCRM';
 import { SUPERVISOR_KIT_ENABLED } from '../config/features';
@@ -291,6 +291,7 @@ const AdminPage = () => {
     { id: 'intakes', label: 'Intake Submissions', icon: <FileText size={14} /> },
     { id: 'bookings', label: 'Bookings', icon: <DollarSign size={14} /> },
     { id: 'leads', label: 'Leads', icon: <Users size={14} /> },
+    { id: 'kit-orders', label: 'Kit Orders', icon: <Package size={14} /> },
     { id: 'downloads', label: 'Downloads', icon: <Clock size={14} /> },
     { id: 'personalize', label: 'Personalize PDF', icon: <FileText size={14} /> },
     { id: 'indexing', label: 'SEO Indexing', icon: <Search size={14} /> },
@@ -957,6 +958,9 @@ const AdminPage = () => {
           {/* ── DOWNLOADS ── */}
           {tab === 'downloads' && <DownloadsTab token={token} />}
 
+          {/* Kit Orders — unified view of paid Citation-Proof + Supervisor Kit orders */}
+          {tab === 'kit-orders' && <KitOrdersTab token={token} />}
+
           {/* ── KIT PDFs ── (feature-flagged) */}
           {SUPERVISOR_KIT_ENABLED && tab === 'kit-pdfs' && <KitFilesTab token={token} />}
 
@@ -1093,6 +1097,315 @@ const DownloadsTab = ({ token }) => {
     </div>
   );
 };
+
+/* ── Kit Orders sub-tab — unified paid orders across Citation-Proof + Supervisor kits ── */
+const KitOrdersTab = ({ token }) => {
+  const [data, setData] = useState(null);
+  const [err, setErr] = useState('');
+  const [filter, setFilter] = useState('all');
+  const [refreshing, setRefreshing] = useState(false);
+  const [shippingModal, setShippingModal] = useState(null);
+  const [trackingNumber, setTrackingNumber] = useState('');
+  const [carrier, setCarrier] = useState('USPS');
+  const [savingShip, setSavingShip] = useState(false);
+  const [savingError, setSavingError] = useState('');
+
+  const load = useCallback(async () => {
+    setErr('');
+    setRefreshing(true);
+    try {
+      const res = await fetch(`${API}/api/admin/kit-orders?token=${token}&filter=${filter}`);
+      if (!res.ok) { setErr(`HTTP ${res.status}`); return; }
+      setData(await res.json());
+    } catch (e) {
+      setErr(String(e));
+    } finally {
+      setRefreshing(false);
+    }
+  }, [token, filter]);
+
+  useEffect(() => { load(); }, [load]);
+
+  const handleMarkShipped = async () => {
+    if (!shippingModal) return;
+    setSavingError('');
+    setSavingShip(true);
+    try {
+      const res = await fetch(`${API}/api/admin/kit-orders/${encodeURIComponent(shippingModal.session_id)}/mark-shipped`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token, tracking_number: trackingNumber.trim(), carrier }),
+      });
+      if (!res.ok) {
+        const detail = await res.json().catch(() => ({}));
+        setSavingError(detail.detail || `HTTP ${res.status}`);
+        return;
+      }
+      setShippingModal(null);
+      setTrackingNumber('');
+      setCarrier('USPS');
+      await load();
+    } catch (e) {
+      setSavingError(String(e));
+    } finally {
+      setSavingShip(false);
+    }
+  };
+
+  const money = (cents) => cents == null ? '—' : `$${(cents / 100).toFixed(2)}`;
+  const formatAddr = (s) => {
+    if (!s || !s.address) return '';
+    const a = s.address;
+    const line1 = [a.line1, a.line2].filter(Boolean).join(', ');
+    const line2 = [a.city, a.state, a.postal_code].filter(Boolean).join(', ');
+    return [s.name, line1, line2, a.country].filter(Boolean).join(' · ');
+  };
+  const statusBadge = (status) => {
+    const map = {
+      auto_delivered: { color: 'bg-green-100 text-green-700', label: 'Auto-Delivered' },
+      pdf_delivered_awaiting_ship: { color: 'bg-orange-100 text-orange-700', label: 'PDF Sent · Needs Ship' },
+      pending_manual: { color: 'bg-yellow-100 text-yellow-700', label: 'Pending Manual' },
+      pending_delivery: { color: 'bg-gray-100 text-gray-600', label: 'Pending Delivery' },
+      pending_ship: { color: 'bg-orange-100 text-orange-700', label: 'Needs Ship' },
+      shipped: { color: 'bg-blue-100 text-blue-700', label: 'Shipped' },
+      unknown: { color: 'bg-gray-100 text-gray-500', label: '—' },
+    };
+    const s = map[status] || { color: 'bg-gray-100 text-gray-500', label: status };
+    return <span className={`inline-block text-[10px] font-bold px-2 py-1 rounded ${s.color}`}>{s.label}</span>;
+  };
+
+  const FILTER_CHIPS = [
+    { id: 'all', label: 'All Paid' },
+    { id: 'needs_shipping', label: 'Needs Shipping', highlight: true },
+    { id: 'auto_delivered', label: 'Auto-Delivered' },
+    { id: 'pending_manual', label: 'Pending Manual' },
+    { id: 'shipped', label: 'Shipped' },
+  ];
+
+  if (err) return <p className="text-red-500 text-sm" data-testid="kit-orders-error">Failed to load: {err}</p>;
+  if (!data) return <p className="text-gray-400">Loading...</p>;
+
+  return (
+    <div data-testid="kit-orders-tab">
+      {/* Header + counts */}
+      <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-4">
+        <div>
+          <h2 className="text-lg font-bold text-[#1C2B2B]">Kit Orders</h2>
+          <p className="text-xs text-gray-500 mt-1 leading-relaxed max-w-2xl">
+            Paid orders across the Citation-Proof Kit Series and the Supervisor Safety OS. Use{' '}
+            <strong>Needs Shipping</strong> to see $600 binders and $700 physical kits awaiting a printed drop.
+          </p>
+        </div>
+        <button
+          onClick={load}
+          disabled={refreshing}
+          className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded border border-gray-300 text-gray-600 hover:bg-gray-50 disabled:opacity-50"
+          data-testid="kit-orders-refresh"
+        >
+          <RefreshCw size={12} className={refreshing ? 'animate-spin' : ''} /> Refresh
+        </button>
+      </div>
+
+      {/* Summary counts */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5" data-testid="kit-orders-counts">
+        <div className="bg-white border border-gray-200 rounded-lg p-3">
+          <p className="text-[10px] uppercase tracking-wider text-gray-500 font-semibold">Total Paid</p>
+          <p className="text-2xl font-bold text-[#102A43] mt-1">{data.counts.total_paid}</p>
+        </div>
+        <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
+          <p className="text-[10px] uppercase tracking-wider text-orange-700 font-semibold">Needs Shipping</p>
+          <p className="text-2xl font-bold text-orange-700 mt-1" data-testid="kit-orders-needs-shipping-count">{data.counts.needs_shipping}</p>
+        </div>
+        <div className="bg-white border border-gray-200 rounded-lg p-3">
+          <p className="text-[10px] uppercase tracking-wider text-gray-500 font-semibold">Citation-Proof</p>
+          <p className="text-2xl font-bold text-[#102A43] mt-1">{data.counts.citation_proof_kit_paid}</p>
+        </div>
+        <div className="bg-white border border-gray-200 rounded-lg p-3">
+          <p className="text-[10px] uppercase tracking-wider text-gray-500 font-semibold">Supervisor Kit</p>
+          <p className="text-2xl font-bold text-[#102A43] mt-1">{data.counts.supervisor_kit_paid}</p>
+        </div>
+      </div>
+
+      {/* Filter chips */}
+      <div className="flex flex-wrap gap-2 mb-4" data-testid="kit-orders-filters">
+        {FILTER_CHIPS.map((chip) => {
+          const active = filter === chip.id;
+          const base = 'text-xs font-semibold px-3 py-1.5 rounded-full border transition-colors';
+          const activeCls = chip.highlight
+            ? 'bg-orange-600 border-orange-600 text-white'
+            : 'bg-[#102A43] border-[#102A43] text-white';
+          const idle = 'bg-white border-gray-300 text-gray-600 hover:border-gray-400';
+          return (
+            <button
+              key={chip.id}
+              onClick={() => setFilter(chip.id)}
+              className={`${base} ${active ? activeCls : idle}`}
+              data-testid={`kit-orders-filter-${chip.id}`}
+            >
+              {chip.label}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Table */}
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm min-w-[900px]" data-testid="kit-orders-table">
+          <thead>
+            <tr className="bg-[#2A52A0] text-white text-left">
+              <th className="px-3 py-2.5 text-xs">Paid</th>
+              <th className="px-3 py-2.5 text-xs">Product</th>
+              <th className="px-3 py-2.5 text-xs">Tier</th>
+              <th className="px-3 py-2.5 text-xs text-right">Amount</th>
+              <th className="px-3 py-2.5 text-xs">Customer</th>
+              <th className="px-3 py-2.5 text-xs">Shipping</th>
+              <th className="px-3 py-2.5 text-xs">Status</th>
+              <th className="px-3 py-2.5 text-xs text-right">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.orders.map((o, i) => {
+              const needsShipping = o.physical && o.fulfillment_status !== 'shipped';
+              return (
+                <tr key={o.session_id || i} className="border-b border-gray-100 hover:bg-gray-50 align-top" data-testid={`kit-order-row-${i}`}>
+                  <td className="px-3 py-3 text-xs text-gray-500 whitespace-nowrap">
+                    {o.paid_at ? new Date(o.paid_at).toLocaleDateString() : '—'}
+                    <br />
+                    <span className="text-[10px] text-gray-400">
+                      {o.paid_at ? new Date(o.paid_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : ''}
+                    </span>
+                  </td>
+                  <td className="px-3 py-3 text-[12.5px] text-[#1C2B2B]">
+                    <div className="font-semibold">{o.label || o.product_slug}</div>
+                    <div className="text-[10px] text-gray-400 font-mono mt-0.5">{o.product_slug}</div>
+                  </td>
+                  <td className="px-3 py-3 text-xs text-gray-600 capitalize">{o.tier || '—'}</td>
+                  <td className="px-3 py-3 text-xs text-right font-semibold text-[#102A43] whitespace-nowrap">{money(o.amount_cents)}</td>
+                  <td className="px-3 py-3 text-xs text-gray-600">
+                    <div className="font-semibold text-[#1C2B2B]">{o.customer_name || '—'}</div>
+                    <div>{o.customer_email || '—'}</div>
+                    {o.customer_phone && <div className="text-[10px] text-gray-400 mt-0.5">{o.customer_phone}</div>}
+                    {o.company_name && <div className="text-[10px] text-gray-400 mt-0.5 italic">{o.company_name}</div>}
+                  </td>
+                  <td className="px-3 py-3 text-[11px] text-gray-600 max-w-[220px]">
+                    {o.physical ? (formatAddr(o.shipping_details) || <span className="text-red-500 italic">Missing address</span>) : <span className="text-gray-400">Digital</span>}
+                    {o.tracking_number && (
+                      <div className="mt-1 text-[10px] font-mono text-blue-700">Tracking: {o.tracking_number}</div>
+                    )}
+                  </td>
+                  <td className="px-3 py-3 whitespace-nowrap">
+                    {statusBadge(o.fulfillment_status)}
+                    {o.shipped_at && (
+                      <div className="text-[10px] text-gray-400 mt-1">
+                        Shipped {new Date(o.shipped_at).toLocaleDateString()}
+                      </div>
+                    )}
+                  </td>
+                  <td className="px-3 py-3 text-right">
+                    {needsShipping ? (
+                      <button
+                        onClick={() => { setShippingModal(o); setTrackingNumber(''); setSavingError(''); }}
+                        className="inline-flex items-center gap-1 text-[11px] font-bold px-3 py-1.5 rounded bg-[#C9A84C] text-[#102A43] hover:bg-[#B8972C] transition-colors"
+                        data-testid={`kit-order-mark-shipped-${i}`}
+                      >
+                        <Truck size={12} /> Mark Shipped
+                      </button>
+                    ) : (
+                      <span className="text-[10px] text-gray-300">—</span>
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+        {data.orders.length === 0 && (
+          <p className="py-10 text-center text-gray-300 text-sm" data-testid="kit-orders-empty">
+            No orders match this filter yet.
+          </p>
+        )}
+      </div>
+
+      {/* Mark-Shipped modal */}
+      {shippingModal && (
+        <div
+          className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4"
+          data-testid="mark-shipped-modal"
+          onClick={(e) => { if (e.target === e.currentTarget) setShippingModal(null); }}
+        >
+          <div className="bg-white rounded-lg max-w-md w-full p-6 shadow-2xl">
+            <div className="flex items-start justify-between mb-4">
+              <div>
+                <h3 className="text-lg font-bold text-[#1C2B2B]">Mark as Shipped</h3>
+                <p className="text-xs text-gray-500 mt-1">{shippingModal.label}</p>
+                <p className="text-xs text-gray-400 mt-0.5">{shippingModal.customer_email}</p>
+              </div>
+              <button
+                onClick={() => setShippingModal(null)}
+                className="text-gray-400 hover:text-gray-600"
+                data-testid="mark-shipped-close"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            <div className="space-y-3">
+              <div>
+                <label className="block text-[11px] font-semibold text-gray-600 uppercase tracking-wider mb-1">Carrier</label>
+                <select
+                  value={carrier}
+                  onChange={(e) => setCarrier(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-[#C9A84C]"
+                  data-testid="mark-shipped-carrier"
+                >
+                  <option value="USPS">USPS</option>
+                  <option value="UPS">UPS</option>
+                  <option value="FedEx">FedEx</option>
+                  <option value="DHL">DHL</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-[11px] font-semibold text-gray-600 uppercase tracking-wider mb-1">Tracking Number <span className="text-gray-400 font-normal normal-case">(optional)</span></label>
+                <input
+                  type="text"
+                  value={trackingNumber}
+                  onChange={(e) => setTrackingNumber(e.target.value)}
+                  placeholder="e.g. 9400 1000 0000 0000 0000 00"
+                  className="w-full px-3 py-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-[#C9A84C] font-mono"
+                  data-testid="mark-shipped-tracking"
+                />
+              </div>
+              {savingError && (
+                <p className="text-xs text-red-600" data-testid="mark-shipped-error">{savingError}</p>
+              )}
+            </div>
+
+            <div className="flex gap-2 mt-5">
+              <button
+                onClick={() => setShippingModal(null)}
+                className="flex-1 text-sm py-2 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-50"
+                data-testid="mark-shipped-cancel"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleMarkShipped}
+                disabled={savingShip}
+                className="flex-1 text-sm py-2 rounded-lg bg-[#C9A84C] text-[#102A43] font-bold hover:bg-[#B8972C] transition-colors disabled:opacity-50"
+                data-testid="mark-shipped-confirm"
+              >
+                {savingShip ? 'Saving...' : 'Confirm Shipped'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+
 
 /* ── Kit PDFs sub-tab (GL-WEB-024b) — admin access to the 11 SS-* files ── */
 const KitFilesTab = ({ token }) => {

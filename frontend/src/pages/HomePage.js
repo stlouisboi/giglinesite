@@ -159,8 +159,14 @@ const HomePage = () => {
           <div className="w-full xl:w-2/5 flex items-center px-6 md:px-10 lg:px-14 xl:px-20 py-12 xl:py-0 relative z-10">
             <Reveal>
               <p
-                className="uppercase tracking-[3px] text-[#CBD5E1] mb-5"
-                style={{ ...mono, fontSize: '11px' }}
+                className="uppercase tracking-[3px] mb-5"
+                style={{
+                  ...mono,
+                  fontSize: '11px',
+                  color: '#C9A84C',
+                  fontWeight: 700,
+                  letterSpacing: '0.28em',
+                }}
                 data-testid="hero-label"
               >
                 GigLine Safety & Compliance

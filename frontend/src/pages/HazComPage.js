@@ -180,7 +180,7 @@ const HazComPage = () => {
           <button
             onClick={handleCheckout}
             disabled={isLoading}
-            className="bg-[#102A43] hover:bg-[#1F3F80] text-[#1C2B2B] font-bold text-lg px-10 py-4 rounded transition-colors disabled:opacity-50 inline-flex items-center gap-2"
+            className="bg-[#C9A84C] hover:bg-[#B8972C] text-[#102A43] font-bold text-lg px-10 py-4 rounded transition-colors disabled:opacity-50 inline-flex items-center gap-2"
             data-testid="hazcom-buy-button"
           >
             {isLoading ? 'Redirecting...' : 'Buy Now — $29'}

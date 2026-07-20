@@ -42,7 +42,11 @@ async def create_hazcom_checkout(request: HazComCheckoutRequest, http_request: R
             currency="usd",
             success_url=success_url,
             cancel_url=cancel_url,
-            metadata={"product": "hazcom_starter_pack", "service_name": HAZCOM_PRODUCT["name"]},
+            metadata={
+                "product": "hazcom_starter_pack",
+                "sku": HAZCOM_PRODUCT["sku"],
+                "service_name": HAZCOM_PRODUCT["name"],
+            },
             product_name=HAZCOM_PRODUCT["name"],
             product_images=product_images,
         )

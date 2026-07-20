@@ -105,6 +105,7 @@ SERVICE_PACKAGES = {
 
 HAZCOM_PRODUCT = {
     "name": "HazCom Starter Pack — Small Shop Edition",
+    "sku": "hazcom-starter-pack",
     "amount": 29.00,
     "description": "Written HazCom Program, SDS Binder Checklist + Index, Training Verification Log (11 pages total)",
     "image_path": "/assets/field-notes/hazcom-sds-binder.webp",

@@ -366,7 +366,16 @@ const ServicesPage = () => {
           {/* Copy — right 60% on desktop */}
           <div className="flex-grow flex items-center px-6 md:px-12 lg:px-16 py-12 md:py-16 relative z-10">
             <Reveal>
-              <p className="uppercase tracking-[3px] text-[#2A52A0] mb-5 font-bold" style={{ ...mono, fontSize: '11px' }}>
+              <p
+                className="uppercase tracking-[3px] mb-5 font-bold"
+                style={{
+                  ...mono,
+                  fontSize: '11px',
+                  color: '#C9A84C',
+                  letterSpacing: '0.28em',
+                }}
+                data-testid="services-hero-kicker"
+              >
                 Services · GigLine Safety & Compliance
               </p>
               <h1

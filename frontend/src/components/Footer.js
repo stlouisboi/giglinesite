@@ -178,7 +178,7 @@ const Footer = () => {
         <div className="mt-12 pt-8 border-t border-white/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/40">
             <p data-testid="footer-copyright">
-              &copy; {currentYear} GigLine Safety & Compliance. All rights reserved.
+              &copy; {currentYear} GigLine Safety & Compliance. All rights reserved. &middot; Piedmont Triad, NC
             </p>
             <nav className="flex items-center gap-4 flex-wrap justify-center" data-testid="footer-legal-links">
               <Link to="/privacy-policy" className="hover:text-white transition-colors" data-testid="footer-privacy-link">

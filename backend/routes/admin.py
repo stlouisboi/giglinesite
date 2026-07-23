@@ -682,7 +682,10 @@ async def admin_kit_orders(token: str = "", filter: str = "all"):
 
 @router.post("/admin/kit-orders/{session_id}/mark-shipped")
 async def admin_mark_kit_shipped(session_id: str, body: dict):
-    """Mark a paid physical/binder order as shipped, with optional tracking number."""
+    """Mark a paid physical/binder order as shipped, with optional tracking number.
+
+    Side effect: fires a Resend "your kit is on its way" email to the buyer.
+    """
     token = body.get("token", "")
     if token != ADMIN_PASSWORD:
         raise HTTPException(status_code=401, detail="Unauthorized")
@@ -705,15 +708,40 @@ async def admin_mark_kit_shipped(session_id: str, body: dict):
         {"session_id": session_id, "status": "paid"},
         {"$set": update},
     )
+    order_doc = None
+    source = None
     if res_cp.matched_count:
-        return {"ok": True, "source": "citation_proof_kit", "session_id": session_id, "shipped_at": now_iso}
+        source = "citation_proof_kit"
+        order_doc = await db.gl_citation_proof_kit_orders.find_one({"session_id": session_id})
+    else:
+        # Fall back to supervisor kit
+        res_sk = await db.gl_supervisor_kit_orders.update_one(
+            {"session_id": session_id, "status": "paid"},
+            {"$set": update},
+        )
+        if res_sk.matched_count:
+            source = "supervisor_kit"
+            order_doc = await db.gl_supervisor_kit_orders.find_one({"session_id": session_id})
 
-    # Fall back to supervisor kit
-    res_sk = await db.gl_supervisor_kit_orders.update_one(
-        {"session_id": session_id, "status": "paid"},
-        {"$set": update},
-    )
-    if res_sk.matched_count:
-        return {"ok": True, "source": "supervisor_kit", "session_id": session_id, "shipped_at": now_iso}
+    if not source:
+        raise HTTPException(status_code=404, detail="Paid order not found for session_id")
 
-    raise HTTPException(status_code=404, detail="Paid order not found for session_id")
+    # Fire the shipped-confirmation email (best-effort — never blocks the mutation)
+    email_sent = False
+    if order_doc:
+        try:
+            from lib.kit_lifecycle_emails import send_shipped_confirmation
+            email_sent = await send_shipped_confirmation(order_doc, tracking_number, carrier)
+        except Exception:
+            # Deliberately swallow — DB was already updated, buyer will get anniversary
+            # follow-up regardless, and admin can manually resend from the UI later.
+            import logging
+            logging.getLogger("gigline").exception("shipped-confirmation dispatch failed")
+
+    return {
+        "ok": True,
+        "source": source,
+        "session_id": session_id,
+        "shipped_at": now_iso,
+        "email_sent": email_sent,
+    }

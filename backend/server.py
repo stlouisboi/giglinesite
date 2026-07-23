@@ -89,12 +89,41 @@ async def weekly_summary_scheduler():
         await asyncio.sleep(1800)
 
 
+async def anniversary_followup_scheduler():
+    """Run once per day at ~14:00 UTC (~9 AM EST) to send 90-day follow-ups.
+
+    Delegates to lib.kit_lifecycle_emails.process_anniversary_followups which
+    is idempotent via anniversary_followup_sent_at — so if the container
+    restarts and the loop runs the same day, nobody gets duplicate emails.
+    """
+    from lib.kit_lifecycle_emails import process_anniversary_followups
+    from datetime import datetime, timezone
+    # Small startup delay so migrations / other tasks settle first.
+    await asyncio.sleep(60)
+    last_run_date = None
+    while True:
+        now = datetime.now(timezone.utc)
+        # Fire once per calendar day, on the first tick at/after 14:00 UTC.
+        if now.hour >= 14 and last_run_date != now.date():
+            try:
+                summary = await process_anniversary_followups()
+                total = summary["cp_sent"] + summary["sk_sent"]
+                if total:
+                    logger.info(f"Anniversary scheduler: sent {total} follow-up(s) — {summary}")
+                last_run_date = now.date()
+            except Exception as e:
+                logger.error(f"Anniversary scheduler error: {str(e)}")
+        await asyncio.sleep(3600)  # check hourly
+
+
 @app.on_event("startup")
 async def startup_event():
     asyncio.create_task(drip_scheduler())
     asyncio.create_task(weekly_summary_scheduler())
+    asyncio.create_task(anniversary_followup_scheduler())
     logger.info("Drip email scheduler started (runs every 30 minutes)")
     logger.info("Weekly summary scheduler started (runs Monday 8 AM EST)")
+    logger.info("Anniversary follow-up scheduler started (runs daily ~9 AM EST)")
 
 
 @app.on_event("shutdown")

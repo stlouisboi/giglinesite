@@ -22,10 +22,11 @@ import logging
 import re
 from datetime import datetime, timezone, timedelta
 
-from fastapi import APIRouter, HTTPException
+import resend
+from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel, EmailStr
 
-from config import db, CITATION_PROOF_KIT_PRODUCTS
+from config import db, CITATION_PROOF_KIT_PRODUCTS, SENDER_EMAIL, VINCE_EMAIL
 
 router = APIRouter()
 logger = logging.getLogger("gigline")
@@ -33,6 +34,7 @@ logger = logging.getLogger("gigline")
 # ── Config ─────────────────────────────────────────────────────────────────────
 RESEND_RATE_LIMIT = 3          # max attempts …
 RESEND_WINDOW_MIN = 60         # … per rolling 60-minute window
+ZERO_MATCH_ALERT_DEDUPE_MIN = 60   # only alert Vince once/hour per zero-match email
 EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 
 
@@ -111,8 +113,73 @@ async def _resend_hazcom(session_id: str, email: str) -> tuple[bool, str]:
         return False, str(e)
 
 
+async def _fire_zero_match_alert(email_lc: str, client_ip: str = "", user_agent: str = "") -> bool:
+    """Email Vince when someone hits /resend-my-kit with an email that has zero
+    paid orders on file. Deduped to one alert / email / hour so bots can't spam.
+
+    Returns True if an alert was sent, False if suppressed (dedupe or send error).
+    """
+    since = datetime.now(timezone.utc) - timedelta(minutes=ZERO_MATCH_ALERT_DEDUPE_MIN)
+    already_alerted = await db.gl_resend_log.count_documents({
+        "email_lc": email_lc,
+        "attempted_at": {"$gte": since.isoformat()},
+        "zero_match_alert_sent": True,
+    })
+    if already_alerted:
+        return False  # dedupe hit — Vince already got a heads-up in the last hour
+
+    subject = f"[GigLine] Resend attempt — no paid order found: {email_lc}"
+    text_body = (
+        "Someone hit /resend-my-kit but had no paid GigLine order on file.\n\n"
+        f"Email entered:  {email_lc}\n"
+        f"Timestamp UTC:  {datetime.now(timezone.utc).isoformat()}\n"
+        f"Client IP:      {client_ip or 'unknown'}\n"
+        f"User-Agent:     {user_agent or 'unknown'}\n\n"
+        "Possible reasons:\n"
+        "  • Buyer used a different email at checkout (typo, work-vs-personal address)\n"
+        "  • Chargeback / disputed order previously refunded\n"
+        "  • Someone forwarded the /resend-my-kit link (curious visitor, not a buyer)\n"
+        "  • Bot scraping the endpoint\n\n"
+        "Deduped to one alert per email per hour."
+    )
+    html_body = f"""
+    <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1C2B2B;padding:20px;max-width:560px">
+      <p style="margin:0 0 12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8A6D2F;font-weight:700">
+        GigLine · Zero-Match Resend Attempt
+      </p>
+      <h2 style="margin:0 0 14px;color:#102A43;font-size:18px">Someone hit /resend-my-kit with no paid order on file.</h2>
+      <table cellpadding="6" style="border-collapse:collapse;font-size:14px;margin-bottom:18px">
+        <tr><td style="color:#6B7280">Email entered</td><td><strong>{email_lc}</strong></td></tr>
+        <tr><td style="color:#6B7280">UTC time</td><td>{datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S')}</td></tr>
+        <tr><td style="color:#6B7280">Client IP</td><td>{client_ip or '<em>unknown</em>'}</td></tr>
+        <tr><td style="color:#6B7280">User-Agent</td><td style="font-family:monospace;font-size:11px">{(user_agent or '')[:180]}</td></tr>
+      </table>
+      <p style="color:#6B7280;font-size:12px;line-height:1.5;margin:0">
+        Possible reasons: different email used at checkout, chargeback / refunded order,
+        forwarded /resend-my-kit link, or a bot probing the endpoint.
+      </p>
+      <p style="color:#9CA3AF;font-size:11px;margin-top:16px">
+        Deduped — you&rsquo;ll only get one alert per email per hour, even if the
+        buyer retries the max 3 attempts.
+      </p>
+    </div>
+    """
+    try:
+        resend.Emails.send({
+            "from": SENDER_EMAIL,
+            "to": [VINCE_EMAIL],
+            "subject": subject,
+            "text": text_body,
+            "html": html_body,
+        })
+        return True
+    except Exception as e:
+        logger.exception("zero-match alert send failure: %s", e)
+        return False
+
+
 @router.post("/kit-orders/resend")
-async def resend_kit(request: ResendRequest):
+async def resend_kit(request: ResendRequest, http_request: Request):
     """Public self-serve resend. Always returns 200 unless rate-limited or malformed."""
     email_lc = _norm_email(request.email)
     if not email_lc or not EMAIL_RE.match(email_lc):
@@ -174,12 +241,27 @@ async def resend_kit(request: ResendRequest):
         else:
             errors.append(f"hz:{tx.get('session_id')}:{note}")
 
-    await _log_attempt(
-        email_lc,
-        orders_found=orders_processed,
-        sources=sources,
-        error="; ".join(errors)[:500],
-    )
+    # ── Zero-match heads-up alert ────────────────────────────────────────────
+    # If NO paid order was found for this email, quietly alert Vince so he can
+    # follow up (buyer may have used a different email at checkout, etc.).
+    zero_match_alert_sent = False
+    if orders_processed == 0:
+        client_ip = (
+            http_request.headers.get("x-forwarded-for", "").split(",")[0].strip()
+            or (http_request.client.host if http_request.client else "")
+        )
+        user_agent = http_request.headers.get("user-agent", "")
+        zero_match_alert_sent = await _fire_zero_match_alert(email_lc, client_ip, user_agent)
+
+    # ── Audit log (single row per attempt) ───────────────────────────────────
+    await db.gl_resend_log.insert_one({
+        "email_lc": email_lc,
+        "attempted_at": datetime.now(timezone.utc).isoformat(),
+        "orders_found": orders_processed,
+        "sources": sources,
+        "error": "; ".join(errors)[:500],
+        "zero_match_alert_sent": zero_match_alert_sent,
+    })
 
     # Generic response — never reveals whether the email matched any order.
     return {

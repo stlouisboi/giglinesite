@@ -882,6 +882,148 @@ const HomePage = () => {
       </section>
       )}
 
+      {/* ═══ CITATION-PROOF KIT SERIES STRIP — always on, front-and-center for the 5-kit lineup ═══ */}
+      <section
+        className="py-16 md:py-20"
+        style={{
+          background: '#0A1628',
+          borderTop: '1px solid rgba(197,160,89,0.30)',
+          borderBottom: '1px solid rgba(197,160,89,0.30)',
+        }}
+        data-testid="home-kit-series-band"
+      >
+        <div className="container max-w-6xl">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-14 items-center">
+            {/* LEFT — copy */}
+            <div>
+              <p
+                className="uppercase font-bold tracking-[0.28em] mb-3 inline-flex items-center gap-2"
+                style={{
+                  color: '#C5A059',
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: '11px',
+                }}
+                data-testid="home-kit-series-eyebrow"
+              >
+                <span style={{ background: '#C5A059', color: '#0A1628', padding: '2px 8px', borderRadius: '3px', fontSize: '10px', letterSpacing: '0.14em' }}>NEW</span>
+                Citation-Proof Kit Series
+              </p>
+              <h2
+                className="font-bold leading-[1.15] tracking-tight mb-4 text-[26px] md:text-[32px] lg:text-[36px] text-white"
+                style={{ fontFamily: "'Manrope', sans-serif" }}
+                data-testid="home-kit-series-headline"
+              >
+                Shelf-ready proof for the standards OSHA cites most.
+              </h2>
+              <p
+                className="text-[15.5px] md:text-[17px] leading-[1.7] mb-6"
+                style={{
+                  color: 'rgba(255,255,255,0.75)',
+                  fontFamily: "Georgia, 'Times New Roman', serif",
+                }}
+                data-testid="home-kit-series-body"
+              >
+                Five kits. Three tiers each. One goal: paperwork that survives an inspection.
+                <strong style={{ color: '#C5A059' }}> LOTO</strong> and{' '}
+                <strong style={{ color: '#C5A059' }}>Forklift/PIT</strong> are shipping now &mdash;{' '}
+                <strong style={{ color: 'white' }}>$150 digital &middot; $300 control system &middot; $600 pre-printed binder</strong>.
+                HazCom Pro, Incident-to-Correction, and New Hire Orientation are next.
+              </p>
+              <div className="flex flex-wrap gap-3 items-center">
+                <Link
+                  to="/citation-proof-kits"
+                  className="inline-flex items-center justify-center gap-2 font-bold py-3.5 px-7 transition-all text-[15px] whitespace-nowrap"
+                  style={{
+                    background: '#C5A059',
+                    color: '#0A1628',
+                    fontFamily: "'Manrope', sans-serif",
+                  }}
+                  data-testid="home-kit-series-cta"
+                >
+                  See the Kit Series &rarr;
+                </Link>
+                <Link
+                  to="/hazcom-starter-pack"
+                  className="inline-flex items-center justify-center gap-2 font-bold py-3.5 px-5 transition-all text-[13.5px] whitespace-nowrap border"
+                  style={{
+                    color: 'rgba(255,255,255,0.85)',
+                    borderColor: 'rgba(197,160,89,0.45)',
+                    fontFamily: "'Manrope', sans-serif",
+                  }}
+                  data-testid="home-kit-series-starter"
+                >
+                  Or start with the $29 HazCom Starter &rarr;
+                </Link>
+              </div>
+            </div>
+
+            {/* RIGHT — 2 shipping-now kit chips */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4" data-testid="home-kit-series-chips">
+              {[
+                {
+                  slug: 'loto-readiness-kit',
+                  name: 'LOTO Readiness Kit',
+                  hook: 'Machine-specific procedures your team can follow and verify.',
+                  cfr: '29 CFR 1910.147',
+                },
+                {
+                  slug: 'forklift-pit-readiness-kit',
+                  name: 'Forklift / PIT Readiness Kit',
+                  hook: 'Know exactly who is cleared to operate which truck.',
+                  cfr: '29 CFR 1910.178',
+                },
+              ].map((k) => (
+                <Link
+                  key={k.slug}
+                  to={`/citation-proof-kits/${k.slug}`}
+                  className="block p-5 transition-all hover:translate-y-[-2px]"
+                  style={{
+                    background: 'rgba(255,255,255,0.04)',
+                    border: '1px solid rgba(197,160,89,0.35)',
+                    borderRadius: '12px',
+                  }}
+                  data-testid={`home-kit-series-chip-${k.slug}`}
+                >
+                  <p
+                    className="uppercase font-bold tracking-[0.18em] mb-2"
+                    style={{
+                      color: '#C5A059',
+                      fontFamily: "'JetBrains Mono', monospace",
+                      fontSize: '10px',
+                    }}
+                  >
+                    {k.cfr}
+                  </p>
+                  <h3
+                    className="font-bold text-white text-[15px] md:text-[16px] leading-[1.3] mb-2"
+                    style={{ fontFamily: "'Manrope', sans-serif" }}
+                  >
+                    {k.name}
+                  </h3>
+                  <p
+                    className="text-[13px] leading-[1.55]"
+                    style={{
+                      color: 'rgba(255,255,255,0.65)',
+                      fontFamily: "Georgia, 'Times New Roman', serif",
+                    }}
+                  >
+                    {k.hook}
+                  </p>
+                  <p
+                    className="mt-3 font-semibold text-[12px]"
+                    style={{ color: '#C5A059', fontFamily: "'Manrope', sans-serif" }}
+                  >
+                    Starting at $150 &rarr;
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
       {/* ═══ TESTIMONIALS + CASE STUDY + TRACK RECORD (relocated per spec — between Services and How It Works) ═══ */}
       <section className="py-20 md:py-28" style={{ backgroundColor: '#102A43' }} data-testid="trust-section">
         <div className="container max-w-7xl grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12">

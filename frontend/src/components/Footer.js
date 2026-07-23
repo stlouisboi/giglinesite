@@ -189,6 +189,10 @@ const Footer = () => {
                 Terms of Service
               </Link>
               <span className="text-white/20">&middot;</span>
+              <Link to="/resend-my-kit" className="hover:text-white transition-colors" data-testid="footer-resend-link">
+                Resend My Kit
+              </Link>
+              <span className="text-white/20">&middot;</span>
               <a
                 href="https://www.linkedin.com/in/vincenttlawrence/"
                 target="_blank"

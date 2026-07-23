@@ -182,7 +182,7 @@ const CitationProofKitThankYouPage = () => {
                     A confirmation email is on its way to the address you used at checkout &mdash; with your <strong>{kitName}</strong> {tierLabel} attached as a PDF. Open the cover page first: it maps every tool inside and the order to work through them.
                   </p>
                   <p className="text-[14px] leading-[1.65]" style={{ color: 'rgba(10,22,40,0.65)', ...serif }}>
-                    Don&rsquo;t see it in a few minutes? Check spam and quarantine for a message from <strong>vince@giglinecompliance.com</strong>. Still nothing? Call <strong>(336) 329-8899</strong> and we&rsquo;ll resend directly.
+                    Don&rsquo;t see it in a few minutes? Check spam and quarantine for a message from <strong>vince@giglinecompliance.com</strong>. Still nothing? <Link to="/resend-my-kit" className="font-bold underline" style={{ color: NAVY }} data-testid="thank-you-resend-link">Resend my kit</Link> or call <strong>(336) 329-8899</strong>.
                   </p>
                 </div>
               )}

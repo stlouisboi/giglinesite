@@ -71,6 +71,9 @@ const CitationProofKitsPage           = lazy(() => import('./pages/CitationProof
 const CitationProofKitDetailPage      = lazy(() => import('./pages/CitationProofKitDetailPage'));
 const CitationProofKitThankYouPage    = lazy(() => import('./pages/CitationProofKitThankYouPage'));
 
+// Kit delivery recovery (self-serve resend for spam-blocked emails)
+const ResendMyKitPage                 = lazy(() => import('./pages/ResendMyKitPage'));
+
 import './App.css';
 
 // Minimal skeleton shown while a lazy chunk loads. Kept small so it never
@@ -195,6 +198,7 @@ function App() {
                     <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
                     <Route path="/terms" element={<Navigate to="/terms-of-service" replace />} />
                     <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+                    <Route path="/resend-my-kit" element={<ResendMyKitPage />} />
                     <Route path="*" element={<NotFoundPage />} />
                   </Routes>
                 </div>

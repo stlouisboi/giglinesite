@@ -295,7 +295,7 @@ const AdminPage = () => {
     { id: 'downloads', label: 'Downloads', icon: <Clock size={14} /> },
     { id: 'personalize', label: 'Personalize PDF', icon: <FileText size={14} /> },
     { id: 'indexing', label: 'SEO Indexing', icon: <Search size={14} /> },
-    ...(SUPERVISOR_KIT_ENABLED ? [{ id: 'kit-pdfs', label: 'Kit PDFs', icon: <FileText size={14} /> }] : []),
+    { id: 'pdf-library', label: 'PDF Library', icon: <FileText size={14} /> },
   ];
 
   /* ── Dashboard ── */
@@ -964,6 +964,9 @@ const AdminPage = () => {
           {/* ── KIT PDFs ── (feature-flagged) */}
           {SUPERVISOR_KIT_ENABLED && tab === 'kit-pdfs' && <KitFilesTab token={token} />}
 
+          {/* PDF Library — view/download every kit PDF being sold online (all 3 product families) */}
+          {tab === 'pdf-library' && <PdfLibraryTab token={token} />}
+
           {/* ── PERSONALIZE PDF ── */}
           {tab === 'personalize' && <PersonalizePdfTab token={token} />}
 
@@ -1474,6 +1477,162 @@ const KitFilesTab = ({ token }) => {
     </div>
   );
 };
+
+/* ── PDF Library sub-tab — unified view/download of every kit PDF sold online ── */
+const PDF_GROUPS = [
+  { id: 'citation_proof_kit', label: 'Citation-Proof Kit Series', hint: 'LOTO + Forklift/PIT digital & control-system PDFs. Auto-generated from DOCX by build_citation_proof_kit_pdfs.py — rerun that script to refresh from source.' },
+  { id: 'hazcom',             label: 'HazCom Starter Pack',       hint: 'Written Program, SDS Binder Checklist, and Training Verification Log — attached to every $29 HazCom Starter Pack purchase.' },
+  { id: 'supervisor_kit',     label: 'GigLine Supervisor Safety OS', hint: 'The 11 print-ready PDFs auto-attached to every $600 Supervisor Safety OS digital-kit purchase.' },
+];
+
+const PdfLibraryTab = ({ token }) => {
+  const [groups, setGroups] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [err, setErr] = useState('');
+  const [openGroup, setOpenGroup] = useState('citation_proof_kit');
+
+  useEffect(() => {
+    (async () => {
+      setLoading(true);
+      setErr('');
+      try {
+        const results = await Promise.all(
+          PDF_GROUPS.map(async (g) => {
+            const res = await fetch(`${API}/api/admin/kit-files?token=${token}&group=${g.id}`);
+            if (!res.ok) throw new Error(`${g.label}: HTTP ${res.status}`);
+            return [g.id, await res.json()];
+          })
+        );
+        const merged = {};
+        results.forEach(([id, data]) => { merged[id] = data; });
+        setGroups(merged);
+      } catch (e) {
+        setErr(String(e.message || e));
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, [token]);
+
+  if (err) return <p className="text-red-500 text-sm" data-testid="pdf-library-error">Failed to load: {err}</p>;
+  if (loading) return <p className="text-gray-400">Loading PDF library...</p>;
+
+  return (
+    <div data-testid="pdf-library-tab">
+      <div className="mb-5">
+        <h2 className="text-lg font-bold text-[#1C2B2B]">PDF Library</h2>
+        <p className="text-xs text-gray-500 mt-1 leading-relaxed max-w-3xl">
+          Every branded PDF being sold on giglinecompliance.com in one place. Click a section to expand,
+          then preview or download any file. These are the exact bytes attached to buyer confirmation emails.
+        </p>
+      </div>
+
+      <div className="space-y-3">
+        {PDF_GROUPS.map((g) => {
+          const data = groups[g.id];
+          if (!data) return null;
+          const isOpen = openGroup === g.id;
+          return (
+            <div
+              key={g.id}
+              className="border border-gray-200 rounded-lg overflow-hidden bg-white"
+              data-testid={`pdf-library-group-${g.id}`}
+            >
+              {/* Header row (click to expand/collapse) */}
+              <button
+                type="button"
+                onClick={() => setOpenGroup(isOpen ? null : g.id)}
+                className={`w-full flex items-center justify-between px-4 py-3 text-left transition-colors ${isOpen ? 'bg-[#102A43] text-white' : 'bg-gray-50 hover:bg-gray-100 text-[#1C2B2B]'}`}
+                data-testid={`pdf-library-toggle-${g.id}`}
+              >
+                <div className="flex items-center gap-3">
+                  <FileText size={16} className={isOpen ? 'text-[#C9A84C]' : 'text-gray-400'} />
+                  <div>
+                    <span className="font-bold text-[13.5px]">{g.label}</span>
+                    <span className={`ml-3 text-[11px] font-mono ${isOpen ? 'text-white/70' : 'text-gray-500'}`}>
+                      {data.count}/{data.expected} on disk
+                    </span>
+                  </div>
+                </div>
+                <ChevronRight
+                  size={16}
+                  className={`transition-transform ${isOpen ? 'rotate-90' : ''} ${isOpen ? 'text-white/60' : 'text-gray-400'}`}
+                />
+              </button>
+
+              {/* Body */}
+              {isOpen && (
+                <div className="p-4">
+                  <p className="text-[11.5px] text-gray-500 leading-relaxed mb-3 italic">{g.hint}</p>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-sm" data-testid={`pdf-library-table-${g.id}`}>
+                      <thead>
+                        <tr className="bg-[#2A52A0] text-white text-left">
+                          <th className="px-3 py-2 text-xs">#</th>
+                          <th className="px-3 py-2 text-xs">Filename</th>
+                          <th className="px-3 py-2 text-xs text-right">Size</th>
+                          <th className="px-3 py-2 text-xs">Modified</th>
+                          <th className="px-3 py-2 text-xs text-right">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {data.files.map((f, i) => {
+                          const url = `${API}/api/admin/kit-files/${encodeURIComponent(f.filename)}?token=${encodeURIComponent(token)}&group=${g.id}`;
+                          return (
+                            <tr key={f.filename} className="border-b border-gray-100 hover:bg-gray-50" data-testid={`pdf-library-row-${g.id}-${i}`}>
+                              <td className="px-3 py-2.5 text-xs text-gray-400">{String(i + 1).padStart(2, '0')}</td>
+                              <td className="px-3 py-2.5 text-[12.5px] text-[#1C2B2B] font-mono break-all">{f.filename}</td>
+                              <td className="px-3 py-2.5 text-xs text-gray-500 text-right whitespace-nowrap">{f.on_disk ? `${f.size_kb} KB` : '—'}</td>
+                              <td className="px-3 py-2.5 text-xs text-gray-400 whitespace-nowrap">{f.modified ? new Date(f.modified).toLocaleDateString() : '—'}</td>
+                              <td className="px-3 py-2.5 text-right whitespace-nowrap">
+                                {!f.on_disk ? (
+                                  <span className="inline-block text-[10px] font-bold px-2 py-1 rounded bg-red-50 text-red-600" data-testid={`pdf-library-missing-${g.id}-${i}`}>Missing on server</span>
+                                ) : (
+                                  <div className="inline-flex items-center gap-2">
+                                    <a
+                                      href={url}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1.5 rounded border border-gray-300 text-gray-600 hover:bg-gray-100 transition-colors"
+                                      data-testid={`pdf-library-preview-${g.id}-${i}`}
+                                    >
+                                      <Eye size={11} /> Preview
+                                    </a>
+                                    <a
+                                      href={url}
+                                      download={f.filename}
+                                      className="inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-1.5 rounded bg-[#C9A84C] text-[#102A43] hover:bg-[#B8972C] transition-colors"
+                                      data-testid={`pdf-library-download-${g.id}-${i}`}
+                                    >
+                                      Download
+                                    </a>
+                                  </div>
+                                )}
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      <p className="text-[10.5px] text-gray-400 mt-6 leading-relaxed">
+        Need to replace a PDF? Upload the new file via git/SSH to the same path on the server, then rerun
+        <code className="mx-1 px-1.5 py-0.5 bg-gray-100 rounded font-mono text-[10px]">scripts/build_citation_proof_kit_pdfs.py</code>
+        for the Citation-Proof Kit set (DOCX &rarr; PDF conversion). New buyers get the fresh version on their next
+        purchase; buyers who already received the old copy can request a re-send from the <strong>/resend-my-kit</strong> page.
+      </p>
+    </div>
+  );
+};
+
+
 
 /* ── Personalize PDF sub-tab (GL-WEB-018f) — client-name → PDF cover slug ── */
 const PersonalizePdfTab = ({ token }) => {

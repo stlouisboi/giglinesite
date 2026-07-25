@@ -11,7 +11,10 @@ import uuid
 import logging
 
 import resend
-from config import db, ADMIN_PASSWORD, SENDER_EMAIL, VINCE_EMAIL, SUPERVISOR_KIT_FILES
+from config import (
+    db, ADMIN_PASSWORD, SENDER_EMAIL, VINCE_EMAIL,
+    SUPERVISOR_KIT_FILES, HAZCOM_FILES, CITATION_PROOF_KIT_PRODUCTS,
+)
 
 router = APIRouter()
 logger = logging.getLogger('gigline')
@@ -24,17 +27,58 @@ _BACKEND_ROOT = Path(__file__).resolve().parent.parent
 KIT_FILES_DIR = str(_BACKEND_ROOT / "kit_files")
 
 
-@router.get("/admin/kit-files")
-async def list_kit_files(token: str = ""):
-    """Admin-only: list the 11 GigLine Supervisor Safety OS PDFs on disk.
+# ── PDF Library groups ────────────────────────────────────────────────────────
+# Unified manifest of every PDF being sold online + auto-attached to buyer emails.
+# Used by the /admin/kit-files endpoints so the admin UI can view/download the
+# actual files across all product families in one place.
+def _citation_proof_kit_manifest() -> dict:
+    """De-dupe the citation-proof PDF paths (binder tier shares its PDF with
+    control-system tier, so 6 SKUs collapse to 4 unique files)."""
+    seen: dict[str, str] = {}
+    for cfg in CITATION_PROOF_KIT_PRODUCTS.values():
+        path = cfg.get("pdf_path")
+        if not path:
+            continue
+        name = os.path.basename(path)
+        seen[name] = path
+    return seen
 
-    Uses SUPERVISOR_KIT_FILES from config so the list always matches the
-    manifest used by the buyer-email attachment code.
+
+def _pdf_groups() -> dict:
+    return {
+        "citation_proof_kit": _citation_proof_kit_manifest(),
+        "hazcom": {name: str(p) for name, p in HAZCOM_FILES.items()},
+        "supervisor_kit": {name: str(p) for name, p in SUPERVISOR_KIT_FILES.items()},
+    }
+
+
+PDF_GROUP_LABELS = {
+    "citation_proof_kit": "Citation-Proof Kit Series",
+    "hazcom":             "HazCom Starter Pack",
+    "supervisor_kit":     "GigLine Supervisor Safety OS",
+}
+
+
+@router.get("/admin/kit-files")
+async def list_kit_files(token: str = "", group: str = "supervisor_kit"):
+    """Admin-only: list PDFs on disk for a given product group.
+
+    Query params:
+        token — admin password
+        group — "citation_proof_kit" | "hazcom" | "supervisor_kit" (default: supervisor_kit for back-compat)
+
+    Uses the same source-of-truth manifests the buyer-email attachment code
+    reads from, so the admin sees exactly what customers receive.
     """
     if token != ADMIN_PASSWORD:
         raise HTTPException(status_code=401, detail="Unauthorized")
+    groups = _pdf_groups()
+    if group not in groups:
+        raise HTTPException(status_code=400, detail=f"Unknown group. Valid: {sorted(groups.keys())}")
+
+    manifest = groups[group]
     files = []
-    for name, path in SUPERVISOR_KIT_FILES.items():
+    for name, path in manifest.items():
         p = Path(path)
         if p.is_file():
             st = p.stat()
@@ -52,19 +96,29 @@ async def list_kit_files(token: str = ""):
                 "on_disk": False,
             })
     files.sort(key=lambda f: f["filename"])
-    return {"files": files, "count": sum(1 for f in files if f["on_disk"]), "expected": len(SUPERVISOR_KIT_FILES)}
+    return {
+        "group": group,
+        "group_label": PDF_GROUP_LABELS.get(group, group),
+        "files": files,
+        "count": sum(1 for f in files if f["on_disk"]),
+        "expected": len(manifest),
+    }
 
 
 @router.get("/admin/kit-files/{filename}")
-async def download_kit_file(filename: str, token: str = ""):
-    """Admin-only: download a GigLine Supervisor Safety OS PDF."""
+async def download_kit_file(filename: str, token: str = "", group: str = "supervisor_kit"):
+    """Admin-only: download a PDF from the given product group."""
     if token != ADMIN_PASSWORD:
         raise HTTPException(status_code=401, detail="Unauthorized")
+    groups = _pdf_groups()
+    if group not in groups:
+        raise HTTPException(status_code=400, detail=f"Unknown group. Valid: {sorted(groups.keys())}")
+
     safe_name = os.path.basename(filename)
-    # Must be in the SUPERVISOR_KIT_FILES manifest (prevents arbitrary reads)
-    if safe_name not in SUPERVISOR_KIT_FILES:
-        raise HTTPException(status_code=404, detail="Kit file not found")
-    filepath = SUPERVISOR_KIT_FILES[safe_name]
+    manifest = groups[group]
+    if safe_name not in manifest:
+        raise HTTPException(status_code=404, detail="Kit file not found in this group")
+    filepath = manifest[safe_name]
     if not Path(filepath).is_file():
         raise HTTPException(status_code=404, detail="Kit file not on disk in this environment")
     return FileResponse(str(filepath), media_type="application/pdf", filename=safe_name)

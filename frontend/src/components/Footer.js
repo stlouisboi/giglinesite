@@ -13,7 +13,7 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <div className="mb-4">
-              <img src="/gigline-logo-dark-bg.png?v=7"
+              <img src="/gigline-logo-dark-bg.png?v=8"
                 alt="GigLine Safety & Compliance"
                 className="h-16 w-auto"
                 loading="lazy"

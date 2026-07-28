@@ -515,12 +515,75 @@ const routes = [
     ],
     content: `
       <h1>HazCom Requirements Every Small Business Needs to Know</h1>
-      <p>By Vince Lawrence — GigLine Safety &amp; Compliance</p>
-      <p>Hazard Communication (HazCom) under 29 CFR 1910.1200 is OSHA's most-cited standard in general industry. This guide covers what small businesses need to comply.</p>
-      <h2>Written HazCom Program</h2><p>Every employer with hazardous chemicals must have a written program describing how the workplace will comply with labeling, SDS, and training requirements.</p>
-      <h2>Safety Data Sheets (SDS)</h2><p>An SDS must be maintained for every hazardous chemical in the workplace and be immediately accessible to employees during their shift.</p>
-      <h2>Container Labeling</h2><p>All containers of hazardous chemicals must be labeled with the product name, signal word, hazard statements, and pictograms.</p>
-      <h2>Employee Training</h2><p>Employees must be trained on chemical hazards, how to read labels and SDS, and the location of the written program.</p>
+      <p><strong>By Vince Lawrence &mdash; GigLine Safety &amp; Compliance</strong> &middot; April 2026 &middot; 10 min read</p>
+
+      <p>If your business uses any hazardous chemicals &mdash; cleaners, solvents, paints, lubricants, welding gases &mdash; you need a Hazard Communication program. OSHA <strong>29 CFR 1910.1200</strong> requires four things: a written program, Safety Data Sheets for every chemical, proper container labels, and documented employee training. There is <em>no</em> exemption for small businesses. Penalties can reach up to <strong>$16,550 per violation</strong>, and up to <strong>$165,514</strong> for willful or repeat violations under OSHA&rsquo;s 2026 penalty schedule.</p>
+
+      <h2 id="do-i-need">Do small businesses need a HazCom program?</h2>
+      <p><strong>Yes.</strong> Any business that uses, stores, or handles hazardous chemicals must comply with OSHA&rsquo;s Hazard Communication Standard (29 CFR 1910.1200). There is no small business exemption. If your employees are exposed to chemicals at work &mdash; even common products like cleaning supplies, paints, adhesives, or lubricants &mdash; you are required to have:</p>
+      <ol>
+        <li>A written Hazard Communication program</li>
+        <li>Safety Data Sheets (SDS) for every hazardous chemical</li>
+        <li>Proper GHS-compliant labels on all chemical containers</li>
+        <li>Documented employee training</li>
+      </ol>
+      <p>This applies to manufacturers, auto shops, fabrication shops, warehouses, contractors, and any general industry employer with chemical exposure. HazCom is OSHA&rsquo;s most-cited standard in general industry &mdash; typically number one or two on the Top 10 violations list every year.</p>
+
+      <h2 id="what-is-hcs">What is the OSHA Hazard Communication Standard?</h2>
+      <p>The Hazard Communication Standard (HCS), codified at 29 CFR 1910.1200, requires employers to inform employees about chemical hazards in the workplace. It is also called "HazCom" or the "Right to Know" law. The standard was updated in 2012 to align with the Globally Harmonized System (GHS) of classification and labeling, which standardized: hazard classification criteria, label elements (pictograms, signal words, hazard statements), and Safety Data Sheet format (16 sections).</p>
+      <p>OSHA enforces HazCom under General Industry (1910.1200), Construction (1926.59), and Maritime (1915.1200, 1917.28, 1918.90) standards.</p>
+
+      <h2 id="four-requirements">The four requirements of a HazCom program</h2>
+      <p>OSHA 29 CFR 1910.1200 requires employers to implement four components:</p>
+      <h3>1. Written Hazard Communication Program &mdash; 1910.1200(e)</h3>
+      <p>A written HazCom program describes how your workplace will comply with labeling, SDS, and training requirements. It must include: a list of hazardous chemicals present in the workplace, methods to inform employees of non-routine task hazards, and how you will communicate hazards to contractors on site. The written program must be made available to employees upon request.</p>
+      <h3>2. Safety Data Sheets &mdash; 1910.1200(g)</h3>
+      <p>An SDS must be maintained for every hazardous chemical in the workplace. SDSs must follow the standardized 16-section GHS format and be readily accessible to employees during their shift &mdash; no supervisor permission required. This applies to primary chemicals (paints, solvents, lubricants) as well as products used routinely (cleaners, glues, adhesives).</p>
+      <h3>3. Container Labeling &mdash; 1910.1200(f)</h3>
+      <p>All containers of hazardous chemicals must be labeled. Manufacturer labels must include: product identifier, signal word ("Danger" or "Warning"), hazard statements, precautionary statements, GHS pictograms, and supplier information. Secondary containers (transferred from the original) must also be labeled unless used immediately by the person who transferred them.</p>
+      <h3>4. Employee Training &mdash; 1910.1200(h)</h3>
+      <p>Employees must be trained on the requirements of the HazCom Standard, chemicals in their work area, methods to detect chemical releases, protective measures and safe handling procedures, and the meaning of labels and Safety Data Sheets. Training must occur at initial assignment and whenever a new chemical hazard is introduced. All training must be documented with employee name, date, topics, and signature.</p>
+
+      <h2 id="chemicals-sds">What chemicals require an SDS?</h2>
+      <p>Every hazardous chemical in the workplace requires an SDS. This includes primary industrial chemicals (paints, solvents, lubricants, welding gases, cleaning agents) and any product carrying a GHS pictogram or signal word on the label. Consumer products used <em>strictly</em> in the same manner and duration as normal consumer use may be exempt &mdash; but this exemption rarely applies in workplace settings where volume and frequency exceed household use.</p>
+
+      <h2 id="written-program">How to create a written HazCom program</h2>
+      <p>A compliant written program includes: purpose and scope, hazardous chemical inventory (a list of every hazardous chemical on site), methods for maintaining and accessing SDS, container labeling policy, employee training procedures and records, methods for informing employees of non-routine task hazards, and procedures for communicating hazards to contractors on site. Small manufacturers can often build this in a single afternoon &mdash; GigLine&rsquo;s <a href="/hazcom-starter-pack">HazCom Starter Pack</a> gives you the written program template, SDS binder checklist, and training log for $29.</p>
+
+      <h2 id="sds-location">Where to keep the SDS binder</h2>
+      <p>OSHA requires SDS to be readily accessible to employees during their work shift without requiring supervisor permission. Common locations include the front office, shop floor near chemical storage, break room, or digital access via a computer. If you use digital SDS access, employees must know how to reach it and there must be a backup for power/network outages. The SDS location must be communicated during training.</p>
+
+      <h2 id="penalties">2026 penalties for HazCom violations</h2>
+      <p>OSHA&rsquo;s 2026 maximum penalty schedule for HazCom violations:</p>
+      <ul>
+        <li><strong>Serious violation:</strong> up to $16,550 per violation</li>
+        <li><strong>Willful violation:</strong> up to $165,514 per violation</li>
+        <li><strong>Repeat violation:</strong> up to $165,514 per violation</li>
+      </ul>
+      <p>Common HazCom citations we see during pre-inspection walkthroughs: no written program on file ($16,550), missing SDS for a chemical on site ($16,550 <em>per chemical</em>), unlabeled secondary containers ($16,550 per container), no documented employee training ($16,550). A single inspection can produce multiple citations across all four categories, easily stacking into five-figure penalties for a shop that thought HazCom was "one and done."</p>
+
+      <h2 id="training-frequency">How often is HazCom training required?</h2>
+      <p>OSHA requires HazCom training before initial exposure to hazardous chemicals and whenever a new chemical hazard is introduced. Annual refresher training is not mandated but is strongly recommended and easily documented. All training must be recorded with employee name, date, topics covered, and employee signature. Missing training records is one of the top three HazCom citations issued to small manufacturers.</p>
+
+      <h2 id="consumer-exemption">Are household cleaning products exempt?</h2>
+      <p>Generally, no. The consumer product exemption only applies when the product is used <em>strictly</em> in the same manner, duration, and frequency as normal consumer use. A janitor using industrial-strength cleaner for eight hours a day is not a "consumer" use case &mdash; that&rsquo;s occupational exposure and requires HazCom compliance including the SDS.</p>
+
+      <h2 id="msds-vs-sds">MSDS vs SDS: what changed in 2012?</h2>
+      <p>MSDS (Material Safety Data Sheet) was the pre-2012 format with variable structure. SDS (Safety Data Sheet) is the current GHS-aligned format with a standardized 16-section layout and required pictograms. All employers should have transitioned to SDS format &mdash; if you still have MSDS binders with 8-section or free-form sheets, that&rsquo;s an immediate citation risk. Request updated SDSs from your chemical suppliers.</p>
+
+      <h2 id="getting-started">Getting started with HazCom compliance</h2>
+      <p>For a small manufacturer starting from zero, the fastest path to a compliant HazCom program:</p>
+      <ol>
+        <li><strong>Inventory every hazardous chemical</strong> on site &mdash; walk the shop with a clipboard, list every container by name, manufacturer, and location.</li>
+        <li><strong>Collect SDSs</strong> for each &mdash; request from the manufacturer or download from the supplier&rsquo;s website. File them in a binder or digital folder that any employee can reach.</li>
+        <li><strong>Write the program</strong> &mdash; document your labeling policy, SDS access location, training procedure, and hazard communication for contractors.</li>
+        <li><strong>Train your team</strong> &mdash; cover chemical hazards, label reading, SDS location, and protective measures. Get everyone to sign a training log.</li>
+        <li><strong>Post everything</strong> &mdash; SDS location signage, chemical inventory, and the written program in a visible spot.</li>
+      </ol>
+      <p>If you want the templates pre-built with the small-shop language OSHA inspectors actually accept, GigLine&rsquo;s <a href="/hazcom-starter-pack">HazCom Starter Pack</a> delivers all three &mdash; written program, SDS binder checklist and index, training verification log &mdash; for $29 as an instant PDF download. For a full compliance assessment where we walk your floor and identify every HazCom gap in writing, request a <a href="/safety-walkthrough">Safety Walkthrough</a> starting at $1,200.</p>
+
+      <h2>Not sure if your HazCom program would survive an inspection?</h2>
+      <p>Take the <a href="/safety-check">two-minute Safety Check</a> to see your likely violation zones, or <a href="/walkthrough">request a Safety Walkthrough</a> and we&rsquo;ll walk your floor with a written report in 48 hours. Serving manufacturers, warehouses, and contractors across Kernersville, Winston-Salem, Greensboro, High Point, and the greater Piedmont Triad.</p>
     `,
   },
   {

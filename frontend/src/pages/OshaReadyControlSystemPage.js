@@ -220,7 +220,7 @@ const OshaReadyControlSystemPage = () => {
           <div className="container max-w-6xl">
             <div className="flex flex-col md:flex-row items-center md:justify-between gap-4">
               <div className="flex items-center gap-2.5">
-                <img src="/gigline-logo-dark-bg.png?v=8" loading="lazy" alt="" className="h-7 w-auto" />
+                <img src="/gigline-logo-dark-bg.png?v=9" loading="lazy" alt="" className="h-7 w-auto" />
                 <span className="uppercase font-bold" style={{ ...mono, fontSize: '10px', letterSpacing: '0.20em', color: 'rgba(255,255,255,0.55)' }}>Safety &amp; Compliance</span>
               </div>
               <div className="flex items-center gap-5">

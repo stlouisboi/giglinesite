@@ -136,6 +136,26 @@ const KitPricingTiers = ({
             >
               {intro}
             </p>
+            <div
+              className="mt-6 pt-5 border-t"
+              style={{ borderColor: 'rgba(16,42,67,0.12)' }}
+              data-testid="kit-tier-logic-note"
+            >
+              <p
+                className="uppercase font-bold tracking-[0.14em] mb-1.5"
+                style={{ color: GOLD, fontFamily: "'JetBrains Mono', monospace", fontSize: '10px' }}
+              >
+                Why three tiers
+              </p>
+              <p
+                className="text-[14.5px] md:text-[15.5px] leading-[1.6]"
+                style={{ color: 'rgba(10,22,40,0.75)', fontFamily: "Georgia, serif" }}
+              >
+                Every tier is a folder of separate files &mdash; nothing is rewritten between tiers.
+                Higher tiers <strong>add</strong> files; fix something once and it&rsquo;s fixed everywhere.
+                Buy the tier that matches how you&rsquo;ll actually use it, not the one that looks the most complete on the checkout page.
+              </p>
+            </div>
           </div>
         )}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 items-stretch">

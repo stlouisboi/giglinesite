@@ -955,6 +955,18 @@ const HomePage = () => {
                   Or start with the $29 HazCom Starter &rarr;
                 </Link>
               </div>
+              <Link
+                to="/citation-cost-calculator"
+                className="inline-flex items-center gap-1.5 mt-5 text-[13px] transition-colors hover:opacity-100"
+                style={{
+                  color: 'rgba(197,160,89,0.85)',
+                  fontFamily: "'JetBrains Mono', monospace",
+                  letterSpacing: '0.06em',
+                }}
+                data-testid="home-kit-series-calc-link"
+              >
+                &rarr; Or estimate your OSHA exposure first &mdash; free calculator
+              </Link>
             </div>
 
             {/* RIGHT — 2 shipping-now kit chips */}

@@ -1,0 +1,22 @@
+{
+  "exported_at": "2026-08-03T23:20:23.106580+00:00",
+  "raw_collections": {
+    "gl_intake_submissions": 2,
+    "walkthrough_requests": 9,
+    "gl_bookings": 2,
+    "contact_messages": 2,
+    "quick_contact_leads": 14,
+    "safety_check_submissions": 9,
+    "sample_report_leads": 12,
+    "osha_inspection_guide_leads": 15,
+    "heat_guide_leads": 2,
+    "newsletter_subscribers": 2,
+    "gl_citation_proof_kit_orders": 144,
+    "gl_supervisor_kit_orders": 18,
+    "payment_transactions": 24
+  },
+  "stripe_customers_seen": 0,
+  "unique_contacts": 55,
+  "paid_contacts": 2,
+  "output_dir": "/app/exports/gigline_export_20260803_232022"
+}

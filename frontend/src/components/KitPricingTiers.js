@@ -14,6 +14,7 @@ const API = process.env.REACT_APP_BACKEND_URL;
 const STRIPE_ENABLED_SLUGS = new Set([
   'loto-readiness-kit',
   'forklift-pit-readiness-kit',
+  'hazcom-pro-kit',
 ]);
 
 const getAttribution = () => {

@@ -51,10 +51,11 @@ def test_list_returns_expected_pdf_counts(s, group, min_expected):
 
 def test_list_citation_proof_dedupes_binder_and_control_system(s):
     """Binder tier ($600) reuses the Control System PDF, so the endpoint must
-    return 4 unique files, not 6."""
+    dedupe: each kit contributes 2 unique files (digital + control-system), not 3.
+    LOTO + PIT + HazCom Pro = 3 kits × 2 unique files = 6 total."""
     r = s.get(f"{API}/admin/kit-files?token={ADMIN_PASSWORD}&group=citation_proof_kit")
     filenames = [f["filename"] for f in r.json()["files"]]
-    assert len(filenames) == len(set(filenames)) == 4
+    assert len(filenames) == len(set(filenames)) == 6
 
 
 def test_list_rejects_unknown_group(s):

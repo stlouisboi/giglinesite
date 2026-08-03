@@ -155,8 +155,8 @@ const KIT_CATALOG = [
     controlTool: 'Chemical Control Index™ and SDS Gap Severity Grid™',
     startingAt: 150,
     startingAtLabel: 'Starting at $150',
-    ready: false,
-    cardImage: null,
+    ready: true,
+    cardImage: '/assets/kits/hazcom-pro/hazcom-hero.png',
     placeholder: ['HazCom Pro Kit'],
   },
   {
@@ -391,7 +391,7 @@ const KIT_DETAILS = {
     subtitle: 'Chemical Inventory, SDS, Labeling & Training Control',
     system: 'Chemical Inventory, SDS, Labeling & Training Control System',
     standard: '29 CFR 1910.1200',
-    ready: false,
+    ready: true,
     ctaShortName: 'HazCom',
     heroSupportLine: 'Built for facilities that need chemical inventory, SDS access, labeling, and training records they can produce the moment an inspector or an employee asks.',
     builtFor: [
@@ -399,6 +399,18 @@ const KIT_DETAILS = {
       { role: 'Line Supervisors', description: 'Give every worker access to the SDS they need, when they need it.' },
       { role: 'Small Business Owners', description: 'Have a written HazCom program that stands up to inspection.' },
     ],
+    productImages: {
+      hero: '/assets/kits/hazcom-pro/hazcom-hero.png',
+      whatsInside: '/assets/kits/hazcom-pro/hazcom-whats-inside.png',
+      physicalMockup: '/assets/kits/hazcom-pro/hazcom-binder-600.png',
+      deliverySection: '/assets/kits/hazcom-pro/hazcom-delivery.png',
+      deliverySectionAlt: 'How Delivery Works — Digital: instant PDF access · Control System: PDF + XLSX · Binder Edition: digital access plus printed fulfillment',
+      tierCards: {
+        digital: '/assets/kits/hazcom-pro/hazcom-digital-150.png',
+        'control-system': '/assets/kits/hazcom-pro/hazcom-control-300.png',
+        binder: '/assets/kits/hazcom-pro/hazcom-binder-600.png',
+      },
+    },
     outcomeHeadline: 'Turn a scattered SDS drawer and a mystery chemical list into a controlled program you can hand OSHA in ten minutes.',
     problemStatement: 'HazCom is the #1 cited standard in general industry — not because chemicals are rare, but because the paperwork trailing behind them almost never lines up. The inventory says one thing, the SDS binder says another, and half the labels are missing.',
     proofPromise: 'This kit builds a chemical program you can actually control: every chemical inventoried, every SDS current, every label verified, every employee trained, and every new chemical routed through an approval step before it comes in the door.',

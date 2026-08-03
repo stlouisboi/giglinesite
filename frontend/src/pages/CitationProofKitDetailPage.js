@@ -634,6 +634,24 @@ const CitationProofKitDetailPage = () => {
         </section>
       )}
 
+      {/* ═══════════ HOW DELIVERY WORKS (image-driven when provided) ═══════════ */}
+      {kit.productImages?.deliverySection && (
+        <section
+          className="px-5 md:px-8 py-12 md:py-16 border-t"
+          style={{ background: NAVY, borderColor: 'rgba(255,255,255,0.08)' }}
+          data-testid="kit-detail-delivery-section"
+        >
+          <div className="max-w-6xl mx-auto">
+            <img
+              src={kit.productImages.deliverySection}
+              alt={kit.productImages.deliverySectionAlt || 'How delivery works'}
+              className="w-full h-auto"
+              style={{ display: 'block' }}
+            />
+          </div>
+        </section>
+      )}
+
       {/* ═══════════ PRICING TIERS ═══════════ */}
       <div id="pricing">
         <KitPricingTiers kitSlug={slug} ready={kit.ready} />

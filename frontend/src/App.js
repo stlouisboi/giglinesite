@@ -74,6 +74,9 @@ const CitationProofKitThankYouPage    = lazy(() => import('./pages/CitationProof
 // Kit delivery recovery (self-serve resend for spam-blocked emails)
 const ResendMyKitPage                 = lazy(() => import('./pages/ResendMyKitPage'));
 
+// Citation Cost Calculator — free interactive lead-magnet
+const CitationCostCalculatorPage      = lazy(() => import('./pages/CitationCostCalculatorPage'));
+
 import './App.css';
 
 // Minimal skeleton shown while a lazy chunk loads. Kept small so it never
@@ -199,6 +202,8 @@ function App() {
                     <Route path="/terms" element={<Navigate to="/terms-of-service" replace />} />
                     <Route path="/terms-of-service" element={<TermsOfServicePage />} />
                     <Route path="/resend-my-kit" element={<ResendMyKitPage />} />
+                    <Route path="/citation-cost-calculator" element={<CitationCostCalculatorPage />} />
+                    <Route path="/osha-citation-calculator" element={<Navigate to="/citation-cost-calculator" replace />} />
                     <Route path="*" element={<NotFoundPage />} />
                   </Routes>
                 </div>

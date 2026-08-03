@@ -380,6 +380,7 @@ const CitationProofKitDetailPage = () => {
             />
           </div>
         </section>
+
       ) : (
         kit.controlMechanisms && kit.controlMechanisms.length > 0 && (
         <section
@@ -441,6 +442,77 @@ const CitationProofKitDetailPage = () => {
         </section>
         )
       )}
+
+      {/* ═══════════ INSPECTOR'S FIRST 10 QUESTIONS (authority hook) ═══════════ */}
+      <section
+        className="px-5 md:px-8 py-20 md:py-24 border-t"
+        style={{ background: 'white', borderColor: BORDER }}
+        data-testid="kit-detail-first-questions"
+      >
+        <div className="max-w-4xl mx-auto">
+          <p
+            className="uppercase font-bold tracking-[0.28em] mb-3"
+            style={{ color: GOLD, ...mono, fontSize: '11px' }}
+          >
+            The First 10 Minutes with an OSHA Inspector
+          </p>
+          <h2
+            className="text-2xl md:text-3xl lg:text-4xl font-extrabold leading-[1.15] mb-4 tracking-tight"
+            style={{ color: NAVY, ...sans }}
+          >
+            Most citations don&rsquo;t come from the equipment.
+          </h2>
+          <p className="text-base md:text-[17px] leading-relaxed mb-8" style={{ color: 'rgba(10,22,40,0.68)', ...serif }}>
+            They come from the paperwork the operator can&rsquo;t produce in the first ten minutes. The compliance
+            officer asks a short list of questions, and the person on the floor either hands over a clean answer or
+            starts hunting through binders. Every kit in this series answers those questions <em>before they&rsquo;re asked</em>.
+          </p>
+
+          <div
+            className="rounded-md p-6 md:p-8"
+            style={{ background: BG_WARM, border: `1px solid ${GOLD}`, borderLeftWidth: '4px' }}
+            data-testid="kit-detail-first-questions-callout"
+          >
+            <p
+              className="uppercase font-bold tracking-[0.18em] mb-4"
+              style={{ color: GOLD, ...mono, fontSize: '11px' }}
+            >
+              The Questions Every Officer Opens With
+            </p>
+            <ol className="space-y-3 text-[15.5px] md:text-[16.5px] leading-[1.55]" style={{ color: NAVY, ...serif }}>
+              {[
+                'Show me your written program.',
+                'Where are your training records?',
+                'When was your last periodic inspection?',
+                'Who is your authorized employee for this machine?',
+                'Show me the last time this was audited.',
+                'Where is the SDS binder / chemical inventory?',
+                'Who signed off on this lockout / permit / evaluation?',
+                'What corrective actions have you taken since the last finding?',
+              ].map((q, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <span
+                    className="font-bold flex-shrink-0"
+                    style={{ color: GOLD, ...mono, fontSize: '13px', minWidth: '22px' }}
+                  >
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <span className="italic">&ldquo;{q}&rdquo;</span>
+                </li>
+              ))}
+            </ol>
+            <p
+              className="mt-6 pt-5 text-[14px] md:text-[15px] leading-[1.6] border-t"
+              style={{ color: 'rgba(10,22,40,0.70)', ...serif, borderColor: 'rgba(197,160,89,0.35)' }}
+            >
+              This kit is a folder of answers to that exact list &mdash; mapped to the CFR standard, ready to hand over
+              on the day. That&rsquo;s the difference between <em>closeable in days</em> and <em>exposed for months</em>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+
 
       {/* ═══════════ HOW THE KIT WORKS (4-step framework) ═══════════ */}
       <ProofGapEngineSteps

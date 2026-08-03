@@ -1,0 +1,28 @@
+[
+  {
+    "_id": "69df9deacdbbe38a61bea209",
+    "id": "466ca845-c299-4b5b-b60a-74109e96966e",
+    "name": "RefTest",
+    "company": "RC",
+    "phone": "555",
+    "email": "r@t.com",
+    "role": "",
+    "operation_type": "",
+    "employee_count": "",
+    "score_display": "2/6",
+    "score_gaps": 2,
+    "score_level": "MEDIUM",
+    "concerned_question": "",
+    "what_pushed": "",
+    "answers": {
+      "1": "yes",
+      "2": "no",
+      "3": "yes",
+      "4": "no",
+      "5": "yes",
+      "6": "yes"
+    },
+    "timestamp": "2026-04-15T14:17:14.758736+00:00",
+    "has_pdf": true
+  }
+]

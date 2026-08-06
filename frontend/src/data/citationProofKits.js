@@ -418,6 +418,39 @@ const KIT_DETAILS = {
     proprietaryToolDescription: 'The Chemical Control Index™ scores whether each chemical is controlled end to end — inventory, SDS, labeling, training, approval, and emergency response. The SDS Gap Severity Grid™ ranks chemical and SDS problems by urgency so the facility knows exactly what to fix first when the list is long.',
     scoreIndexName: 'HazCom Readiness Index™',
     flowLine: ['Inventory', 'SDS', 'Label', 'Train', 'Approve', 'Respond'],
+    stakes: {
+      kicker: 'What’s at Stake in 2026',
+      headline: 'OSHA’s #1 most-cited standard in general industry.',
+      body: 'HazCom (29 CFR 1910.1200) leads OSHA’s Top 10 Most-Cited Standards year after year — driven by written-program gaps, missing or outdated Safety Data Sheets, and unlabeled secondary containers. Penalties for 2026 are frozen at 2025 levels, the highest in the agency’s history. Instance-by-instance citation policy means one chemical without a matching SDS can become one citation; ten unlabeled spray bottles in the maintenance shop can become ten separate citations.',
+      stats: [
+        { value: '$16,550', label: 'Per Serious Violation', sub: 'The maximum for a missing written HazCom program, an inaccessible SDS, or an unlabeled secondary container.' },
+        { value: '$165,514', label: 'Per Willful or Repeat', sub: 'The maximum where OSHA shows the employer knew and did nothing — or was cited for the same HazCom failure before.' },
+        { value: '#1', label: 'OSHA Top-10 Rank', sub: 'HazCom has held the #1 slot on OSHA’s Top 10 Most-Cited Standards list for over a decade, with 2,000+ citations issued annually.' },
+      ],
+      source: 'Source: 2026 OSHA civil penalty schedule (penalties frozen at 2025 levels); OSHA FY2025 Top 10 Most-Cited Standards — Hazard Communication, 29 CFR 1910.1200.',
+    },
+    controlMechanisms: [
+      {
+        outcome: 'Make every chemical in the building accountable — inventory, SDS, labeling, training, approval, and emergency response all tied to one control record.',
+        toolName: 'Chemical Control Index™',
+        toolNote: 'The primary control tool. Scores whether each chemical is controlled end to end — not just whether it has an SDS somewhere.',
+      },
+      {
+        outcome: 'Fix the SDS binder in priority order instead of guessing which gap costs you first.',
+        toolName: 'SDS Gap Severity Grid™',
+        toolNote: 'Ranks missing, outdated, or wrong-language SDSs by risk and citation exposure — so the shortlist to fix first is obvious.',
+      },
+      {
+        outcome: 'Catch the citation OSHA writes most often — the unlabeled spray bottle in the maintenance shop.',
+        toolName: 'Secondary Container Label Audit',
+        toolNote: 'Targets the (f)(6) secondary-container labeling gap: the #1 HazCom citation OSHA actually writes on the floor.',
+      },
+      {
+        outcome: 'Prove training was tied to your actual chemical inventory — not a generic PowerPoint.',
+        toolName: 'HazCom Training Certification',
+        toolNote: 'Training records reference the specific hazard classes in your inventory. Employees can point to the SDS they were trained on.',
+      },
+    ],
     outcomes: [
       { headline: 'One chemical inventory that matches the floor', body: 'The inventory, the SDS binder, and the containers on the shelf finally tell the same story. New chemicals are added through a documented approval step.' },
       { headline: 'An SDS index that surfaces gaps before OSHA does', body: 'The SDS Gap Severity Grid™ ranks missing, outdated, or wrong-language SDSs by risk — so the shortlist to fix first is obvious.' },

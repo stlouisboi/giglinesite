@@ -1394,6 +1394,117 @@ const routes = [
       <p>GigLine Safety &amp; Compliance — (336) 329-8899 — vince@giglinecompliance.com</p>
     `,
   },
+  {
+    path: '/blog/osha-penalty-north-carolina-2026',
+    title: 'How Much Is an OSHA Violation in North Carolina in 2026? | GigLine',
+    description: 'The 2026 OSHA penalty schedule for NC small manufacturers. Serious ($16,550), Willful/Repeat ($165,514), Failure-to-Abate — plus the per-instance multipliers and gravity adjustments OSHA actually applies. Free citation cost calculator.',
+    canonical: '/blog/osha-penalty-north-carolina-2026',
+    schemas: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: 'How Much Is an OSHA Violation in North Carolina in 2026?',
+        description: 'The 2026 OSHA penalty schedule explained for NC small manufacturers, with per-instance multipliers, gravity adjustments, and NC OSH specifics.',
+        image: `${BASE_URL}/og-image.png`,
+        author: { '@id': `${BASE_URL}/#vince` },
+        publisher: { '@id': `${BASE_URL}/#business` },
+        mainEntityOfPage: `${BASE_URL}/blog/osha-penalty-north-carolina-2026`,
+        datePublished: '2026-08-03',
+        dateModified: '2026-08-03',
+        articleSection: 'OSHA Enforcement',
+        inLanguage: 'en-US',
+      },
+      breadcrumb([
+        { name: 'Home', path: '/' },
+        { name: 'Blog', path: '/field-notes' },
+        { name: 'OSHA Penalty NC 2026', path: '/blog/osha-penalty-north-carolina-2026' },
+      ]),
+      faqSchema([
+        {
+          q: 'How much is an OSHA violation in North Carolina in 2026?',
+          a: 'The 2026 maximum penalty for a Serious or Other-Than-Serious OSHA violation is $16,550 per violation. Willful and Repeat violations carry a maximum of $165,514 per violation. Failure-to-Abate citations accrue up to $16,550 per day, per violation until abatement is verified. NC OSH follows federal OSHA\u2019s penalty schedule under 29 CFR 1903.15.',
+        },
+        {
+          q: 'Does NC OSH use the same penalty amounts as federal OSHA?',
+          a: 'Yes. As an OSHA-approved State Plan, NC is required to be at least as effective as federal OSHA and mirrors the federal maximum penalty schedule. Differences exist in informal-conference timing, public-sector coverage, and a small number of NC-specific standards \u2014 but the dollar amounts are the same.',
+        },
+        {
+          q: 'What is the effective penalty vs. the maximum?',
+          a: 'The maximum is not the assessment. CSHOs apply gravity, size (up to 60% off for \u226410 employees), good faith (25% off), and history (10% off) adjustments. For most NC manufacturers with 25\u2013100 employees, the effective proposed penalty on a Serious violation is $4,000\u2013$10,000 per citation after adjustments.',
+        },
+        {
+          q: 'Which standards get instance-by-instance citations?',
+          a: 'Machine Guarding (1910.212), Powered Industrial Trucks (1910.178), Lockout/Tagout (1910.147), HazCom secondary container labeling (1910.1200(f)(6)), Respiratory Protection (1910.134), and PPE (1910.132). One finding can become multiple separate citations \u2014 five identical unguarded machines equals five citations, not one.',
+        },
+      ]),
+    ],
+    content: `
+      <h1>How Much Is an OSHA Violation in North Carolina in 2026?</h1>
+      <p><em>By Vince Lawrence &mdash; GigLine Safety &amp; Compliance &mdash; August 2026 &middot; 8 min read</em></p>
+      <p><strong>Short answer:</strong> up to <strong>$16,550</strong> per Serious violation and up to <strong>$165,514</strong> per Willful or Repeat violation under the 2026 OSHA penalty schedule (29 CFR 1903.15). The longer answer &mdash; the one that actually predicts what a citation costs a small NC manufacturer &mdash; involves per-instance multipliers, abatement clocks, and gravity adjustments that never show up in the news.</p>
+
+      <h2>The 2026 OSHA maximum penalty schedule</h2>
+      <ul>
+        <li><strong>Serious / Other-Than-Serious:</strong> up to $16,550 per violation.</li>
+        <li><strong>Willful:</strong> up to $165,514 per violation. Employer knew and did nothing, or acted with plain indifference.</li>
+        <li><strong>Repeat:</strong> up to $165,514 per violation. Cited for a substantially similar violation within the last 5 years at any facility.</li>
+        <li><strong>Failure-to-Abate:</strong> up to $16,550 per day, per violation, until abatement is verified.</li>
+        <li><strong>Posting Violation:</strong> up to $16,550. Missing 300A posting during the Feb 1&ndash;Apr 30 window is the common one.</li>
+      </ul>
+      <p><em>Penalties are frozen at 2025 levels &mdash; the highest in the agency&rsquo;s history &mdash; with no inflation rollback expected.</em></p>
+
+      <h2>The number that actually matters: per-instance multipliers</h2>
+      <p>The $16,550 headline is per-violation. OSHA has enforcement discretion to cite each affected employee or each affected instance as a separate violation on select high-hazard standards. This is where NC small manufacturers get blindsided. Standards where per-instance citations are routine:</p>
+      <ul>
+        <li><strong>Machine Guarding (1910.212)</strong> &mdash; six identical unguarded machines equals six citations, not one.</li>
+        <li><strong>Powered Industrial Trucks (1910.178(l))</strong> &mdash; five forklift operators without a completed four-element training certification equals five citations.</li>
+        <li><strong>Lockout/Tagout (1910.147(c)(4))</strong> &mdash; three machines with no written machine-specific procedure equals three citations.</li>
+        <li><strong>Hazard Communication (1910.1200(f)(6))</strong> &mdash; ten unlabeled secondary containers in the maintenance shop equals ten citations.</li>
+        <li><strong>Respiratory Protection (1910.134)</strong> &mdash; four employees without a completed medical evaluation before respirator use equals four citations.</li>
+      </ul>
+
+      <h2>What NC OSH actually assesses (vs. the maximum)</h2>
+      <p>The maximum is not the assessment. The Compliance Safety and Health Officer calculates the proposed penalty using four adjustment factors under 29 CFR 1903.15:</p>
+      <ol>
+        <li><strong>Gravity</strong> &mdash; severity of the injury the hazard could cause multiplied by probability. Highest at high-severity, greater-probability equals full maximum.</li>
+        <li><strong>Size</strong> &mdash; up to 60% off for &le;10 employees, 30% off for 11&ndash;25, 10% off for 26&ndash;100, 0% off for 101+.</li>
+        <li><strong>Good Faith</strong> &mdash; 25% off for a demonstrated safety-management system with written programs and evidence of corrective action follow-through.</li>
+        <li><strong>History</strong> &mdash; 10% off if no serious/willful/repeat citations in the last 5 years. 10% added if there were.</li>
+      </ol>
+      <p>For most NC manufacturers with 25&ndash;100 employees, the effective proposed penalty on a Serious violation lands around <strong>$4,000&ndash;$10,000 per citation</strong> after all adjustments &mdash; assuming a clean history and demonstrable good faith.</p>
+
+      <h2>What's different in North Carolina</h2>
+      <ul>
+        <li><strong>Faster informal conference availability</strong> &mdash; typically 10 business days from citation issuance, vs. 30&ndash;60 for federal. Use it &mdash; informal conferences settle 60%+ of citations with 15&ndash;40% penalty reductions.</li>
+        <li><strong>Public-sector coverage</strong> &mdash; NC OSH covers state and municipal public-sector employees, unlike federal OSHA.</li>
+        <li><strong>State-specific standards</strong> &mdash; migrant housing, boiler safety, elevator inspection are NC-only.</li>
+        <li><strong>24/7 reporting hotline</strong> &mdash; 1-800-625-2267. Amputations, hospitalizations, fatalities &mdash; 24-hour and 8-hour reporting rules mirror federal.</li>
+      </ul>
+
+      <h2>Estimate your own exposure</h2>
+      <p>Run the numbers with the free <a href="/citation-cost-calculator">GigLine Citation Cost Calculator</a> &mdash; enter violation type, per-instance count, and citation classification to see your low / expected / high exposure range. No email required.</p>
+
+      <h2>Three things that reliably reduce a proposed penalty</h2>
+      <ol>
+        <li><strong>Written programs the CSHO can see.</strong> Not a binder title &mdash; the actual document, dated, signed, with a review cadence and named responsible person. This is where the 25% good-faith reduction lives.</li>
+        <li><strong>Records of corrective action follow-through.</strong> Every past incident, near miss, or hazard observation with documented owner, due date, and closure verification. See the <a href="/citation-proof-kits/incident-to-correction-kit">Incident-to-Correction Kit</a> for the exact structure.</li>
+        <li><strong>An informal conference done well.</strong> Show up with a written abatement plan for every citation, evidence of programs already in place, and specific per-item adjustments requested.</li>
+      </ol>
+
+      <h2>Related reading</h2>
+      <ul>
+        <li><a href="/blog/top-5-osha-violations-small-manufacturing">Top 5 OSHA Violations for Small Manufacturers</a></li>
+        <li><a href="/field-notes/hazcom">HazCom &amp; SDS &mdash; the #1 cited standard</a></li>
+        <li><a href="/field-notes/lockout-tagout">Lockout/Tagout &mdash; per-instance citation risk</a></li>
+        <li><a href="/field-notes/nc-osha-vs-federal">NC OSH vs Federal OSHA &mdash; the differences that matter</a></li>
+        <li><a href="/citation-cost-calculator">Citation Cost Calculator &mdash; run your own numbers</a></li>
+      </ul>
+
+      <p><strong>Ready to know what your exposure actually is?</strong> A <a href="/services/compliance-readiness-visit">Compliance Readiness Visit</a> walks your floor, reviews your binder, and scores your documentation against the exact CFR sections OSHA is enforcing right now &mdash; with a written findings report within 48 hours.</p>
+
+      <p><em>Legal notice: This article summarizes the 2026 OSHA published penalty schedule under 29 CFR 1903.15. Actual issued penalties are determined by OSHA area office review of gravity, good faith, employer size, and history factors. Only OSHA determines final penalty amounts. GigLine Safety &amp; Compliance is not a law firm and does not provide legal advice. Consult a qualified attorney for citation defense.</em></p>
+    `,
+  },
 ];
 
 // Service detail pages (pixel-perfect dedicated pages) — must be pre-rendered so

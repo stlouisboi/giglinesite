@@ -2020,8 +2020,99 @@ function renderKitDetailRoute(slug) {
   `;
 }
 
-// Push all 6 citation-proof-kit routes (1 catalog + 5 detail pages) into
-// the SSR pipeline.
+// Citation Cost Calculator (lead-magnet tool page — high SEO value).
+routes.push({
+  path: '/citation-cost-calculator',
+  title: 'OSHA Citation Cost Calculator — 2026 Penalty Estimator | GigLine',
+  description: 'Estimate the true cost of an OSHA citation using the 2026 published penalty maximums. Serious, willful, repeat, and per-instance exposure — mapped to the standard OSHA cites most often. Free, no email required.',
+  canonical: '/citation-cost-calculator',
+  schemas: [
+    LOCAL_BUSINESS,
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebApplication',
+      name: 'OSHA Citation Cost Calculator',
+      url: `${BASE_URL}/citation-cost-calculator`,
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Web',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      description: 'Free interactive calculator that estimates OSHA citation exposure based on the 2026 published maximum penalty schedule (29 CFR 1903.15). Enter violation type, per-instance count, and citation classification to see estimated exposure.',
+      inLanguage: 'en-US',
+      isPartOf: { '@id': `${BASE_URL}/#business` },
+    },
+    breadcrumb([
+      { name: 'Home', path: '/' },
+      { name: 'Resources', path: '/resources' },
+      { name: 'OSHA Citation Cost Calculator', path: '/citation-cost-calculator' },
+    ]),
+    faqSchema([
+      {
+        q: 'How much can an OSHA citation cost in 2026?',
+        a: 'The 2026 published OSHA maximum penalties are frozen at 2025 levels — the highest in the agency\u2019s history. Serious and Other-Than-Serious citations top out at $16,550 per violation. Willful and Repeat citations top out at $165,514 per violation. Failure-to-Abate citations run up to $16,550 per day, per violation. All amounts are the statutory maximums under 29 CFR 1903.15; actual assessed penalties depend on employer size, good faith, gravity, and history factors.',
+      },
+      {
+        q: 'What is an "instance-by-instance" citation?',
+        a: 'For select high-hazard standards (respirable crystalline silica, machine guarding, LOTO, PPE, and others), OSHA can cite each affected worker or each affected instance as a separate violation. Five untrained forklift operators, for example, can become five separate citations at up to $16,550 each — not one at $16,550. The calculator lets you multiply per-instance exposure so leadership sees the compound risk, not just the headline number.',
+      },
+      {
+        q: 'Are these penalty numbers a legal quote?',
+        a: 'No. The calculator produces a readiness estimate based on the maximum penalty schedule published by OSHA. Actual issued penalties are determined by the compliance officer and OSHA area office using gravity, good faith, employer size, and history adjustments. Only OSHA determines final penalty amounts. Use the number as a planning benchmark, not a legal quote.',
+      },
+      {
+        q: 'What OSHA standards get cited most often?',
+        a: 'OSHA\u2019s FY2025 Top 10 Most-Cited Standards for general industry include Hazard Communication (1910.1200 \u2014 #1), Lockout/Tagout (1910.147 \u2014 #4), Powered Industrial Trucks (1910.178 \u2014 #6), Respiratory Protection (1910.134), Machine Guarding (1910.212), and Electrical (1910.303/305). The calculator is pre-loaded with the standards OSHA cites most often so you can benchmark exposure against real citation patterns.',
+      },
+    ]),
+  ],
+  content: `
+    <h1>OSHA Citation Cost Calculator &mdash; 2026 Penalty Estimator</h1>
+    <p><em>Free. No email required. Uses the 2026 published OSHA maximum penalty schedule (29 CFR 1903.15).</em></p>
+
+    <h2>What this calculator does</h2>
+    <p>Most small manufacturers and warehouse operators know an OSHA citation is expensive. Very few know how expensive it can actually be &mdash; because the headline number in the news is almost never the number OSHA proposes on the citation. This tool estimates the exposure using the same penalty schedule OSHA compliance officers work from, so leadership can see the real range before a citation lands, not after.</p>
+    <p>Enter the violation classification, the standard cited most often at your operation, and the number of affected instances (workers, machines, or per-shift events). The calculator returns a low / expected / high exposure range using published OSHA maximums.</p>
+
+    <h2>2026 OSHA maximum penalty schedule</h2>
+    <p>The 2026 penalty amounts are frozen at 2025 levels &mdash; the highest in the agency&rsquo;s history &mdash; with no inflation rollback. The published maximums (per 29 CFR 1903.15):</p>
+    <ul>
+      <li><strong>Serious / Other-Than-Serious:</strong> up to <strong>$16,550</strong> per violation</li>
+      <li><strong>Willful / Repeat:</strong> up to <strong>$165,514</strong> per violation</li>
+      <li><strong>Failure to Abate:</strong> up to <strong>$16,550</strong> per day, per violation</li>
+      <li><strong>Posting Violation:</strong> up to <strong>$16,550</strong> per violation</li>
+    </ul>
+    <p><em>Source: 2026 OSHA civil penalty schedule; penalty amounts frozen at 2025 levels per the Federal Civil Penalties Inflation Adjustment Act.</em></p>
+
+    <h2>Why per-instance exposure matters</h2>
+    <p>For high-hazard standards &mdash; Hazard Communication, Lockout/Tagout, Machine Guarding, Powered Industrial Trucks, Respiratory Protection, and Personal Protective Equipment &mdash; OSHA can issue instance-by-instance citations. That means five forklift operators without a completed four-element certification under 29 CFR 1910.178(l)(6) can become <strong>five separate citations</strong>, not one. Three untrained employees using respirators without a written program under 1910.134 can become three separate citations. The calculator lets you multiply per-instance exposure so leadership sees the compound number, not the headline.</p>
+
+    <h2>What OSHA cites the most</h2>
+    <p>OSHA&rsquo;s FY2025 Top 10 Most-Cited Standards for general industry &mdash; the standards you should benchmark against first:</p>
+    <ol>
+      <li><a href="/field-notes/hazcom">Hazard Communication</a> &mdash; 29 CFR 1910.1200 (#1)</li>
+      <li>Respiratory Protection &mdash; 29 CFR 1910.134</li>
+      <li>Ladders &mdash; 29 CFR 1910.23</li>
+      <li><a href="/field-notes/lockout-tagout">Lockout/Tagout</a> &mdash; 29 CFR 1910.147</li>
+      <li><a href="/field-notes/machine-guarding">Machine Guarding</a> &mdash; 29 CFR 1910.212</li>
+      <li><a href="/field-notes/forklift-safety">Powered Industrial Trucks</a> &mdash; 29 CFR 1910.178</li>
+      <li><a href="/field-notes/electrical-safety">Electrical Wiring</a> &mdash; 29 CFR 1910.305</li>
+      <li>Electrical General Requirements &mdash; 29 CFR 1910.303</li>
+      <li><a href="/field-notes/fall-protection">Fall Protection (General Industry)</a> &mdash; 29 CFR 1910.28</li>
+      <li><a href="/field-notes/eye-face-protection">Eye &amp; Face Protection</a> &mdash; 29 CFR 1910.133</li>
+    </ol>
+
+    <h2>How to close the gap before a citation</h2>
+    <p>This calculator sizes the exposure. The next step is closing it. GigLine offers two direct paths, depending on how ready you are today:</p>
+    <ul>
+      <li><a href="/safety-walkthrough">Book an on-site Safety Walkthrough</a> &mdash; a written findings report within 48 hours mapped to the CFR standard OSHA cites for each finding. Priced from $1,200.</li>
+      <li><a href="/citation-proof-kits">Start with a Citation-Proof Kit</a> &mdash; self-build documentation systems for LOTO, Forklift/PIT, HazCom, Incident-to-Correction, and New Hire Orientation. Digital tier starts at $150.</li>
+    </ul>
+
+    <p><strong>Legal Notice:</strong> The Citation Cost Calculator is a planning benchmark, not a legal quote. Actual OSHA-assessed penalties are determined by OSHA area office review of gravity, good faith, employer size, and history factors under 29 CFR 1903.15. Only OSHA determines final penalty amounts. GigLine Safety &amp; Compliance is not a law firm and does not provide legal advice. Consult a qualified attorney for citation defense.</p>
+
+    <p><a href="/citation-cost-calculator">&larr; Return to the interactive calculator</a></p>
+  `,
+});
+
 routes.push({
   path: '/citation-proof-kits',
   title: 'Citation-Proof Kit Series | GigLine Safety & Compliance',

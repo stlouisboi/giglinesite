@@ -32,7 +32,9 @@ const collectionSchema = {
 
 // Newest-first. Featured is first item.
 const posts = [
-  { slug: "osha-300-log-common-mistakes-citations", title: "OSHA 300 Log: Common Mistakes That Trigger Citations", excerpt: "The recordkeeping mistakes OSHA cites most on the 300 log — misclassification, missing 300A postings, incomplete 301 forms. With 2026 penalty exposure.", topic: "RECORDKEEPING", published: "Dec 2025", readTime: "11 min", featured: true },
+  { slug: "osha-penalty-north-carolina-2026", title: "How Much Is an OSHA Violation in North Carolina in 2026?", excerpt: "The 2026 OSHA penalty schedule for NC small manufacturers — Serious, Willful, Repeat, Failure-to-Abate — plus per-instance multipliers and gravity adjustments OSHA actually applies. Free citation cost calculator.", topic: "OSHA ENFORCEMENT", published: "Aug 2026", readTime: "8 min", featured: true },
+  { slug: "mid-year-2026-osha-update-nc-manufacturers", title: "Mid-Year 2026 OSHA Update for NC Manufacturers", excerpt: "Six things that changed — or moved on the enforcement radar — in the first half of 2026 for NC manufacturing, packaging, and metals fabrication.", topic: "NC ENFORCEMENT", published: "Jul 2026", readTime: "7 min" },
+  { slug: "osha-300-log-common-mistakes-citations", title: "OSHA 300 Log: Common Mistakes That Trigger Citations", excerpt: "The recordkeeping mistakes OSHA cites most on the 300 log — misclassification, missing 300A postings, incomplete 301 forms. With 2026 penalty exposure.", topic: "RECORDKEEPING", published: "Dec 2025", readTime: "11 min" },
   { slug: "written-hazcom-program-before-osha-inspection", title: "Written HazCom Program: What You Need Before an OSHA Inspection", excerpt: "The written Hazard Communication program checklist OSHA works through — chemical inventory, SDS binder, GHS labels, training records.", topic: "HAZCOM", published: "Nov 2025", readTime: "11 min" },
   { slug: "osha-forklift-compliance-inspector-checklist", title: "OSHA Forklift Compliance: What Inspectors Actually Check", excerpt: "The forklift items OSHA inspectors ask for first — operator certifications, daily inspection logs, traffic controls — with CFR sections and 2026 penalty exposures.", topic: "FORKLIFT", published: "Nov 2025", readTime: "10 min" },
   { slug: "loto-program-requirements-small-facilities", title: "LOTO Program Requirements for Small Facilities", excerpt: "OSHA 1910.147 Control of Hazardous Energy — written program elements, machine-specific procedures, training, and the citations that catch small facilities.", topic: "LOTO", published: "Oct 2025", readTime: "12 min" },
@@ -123,7 +125,7 @@ const BlogHubPage = () => {
       <section className="py-14 md:py-20 bg-[#102A43] text-white">
         <div className="container max-w-3xl text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>Ready to see how your operation compares?</h2>
-          <p className="text-white/70 leading-relaxed mb-8">A GigLine Safety Walkthrough puts everything in these guides against your actual floor. Fixed quote from $1,200. Written report in 48 hours. Private engagement.</p>
+          <p className="text-white/70 leading-relaxed mb-8">A GigLine Safety Walkthrough puts everything in these guides against your actual floor. Fixed quote from $1,300. Written report in 48 hours. Private engagement.</p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link to="/intake" className="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#B8972C] text-[#102A43] font-bold px-8 py-4 rounded transition-colors">Request a Walkthrough <ArrowRight size={16} /></Link>
             <Link to="/safety-check" className="inline-flex items-center gap-2 border border-white/30 hover:border-[#C9A84C] text-white font-bold px-8 py-4 rounded transition-colors">Run the Free Safety Check <ArrowRight size={16} /></Link>

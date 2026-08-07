@@ -54,6 +54,7 @@ const TermsOfServicePage              = lazy(() => import('./pages/TermsOfServic
 const SafetyWalkthroughPage           = lazy(() => import('./pages/SafetyWalkthroughPage'));
 const IncidentReviewPage              = lazy(() => import('./pages/IncidentReviewPage'));
 const OshaReadyControlSystemPage      = lazy(() => import('./pages/OshaReadyControlSystemPage'));
+const CorrectiveActionImplementationPage = lazy(() => import('./pages/CorrectiveActionImplementationPage'));
 const DocumentationGapCheckPage       = lazy(() => import('./pages/DocumentationGapCheckPage'));
 const OshaComplianceGapCheckPage      = lazy(() => import('./pages/OshaComplianceGapCheckPage'));
 
@@ -65,6 +66,7 @@ const BlogForkliftCompliance          = lazy(() => import('./pages/BlogForkliftC
 const BlogHazComPreInspection         = lazy(() => import('./pages/BlogHazComPreInspection'));
 const BlogOSHA300LogMistakes          = lazy(() => import('./pages/BlogOSHA300LogMistakes'));
 const BlogMidYear2026OshaUpdate       = lazy(() => import('./pages/BlogMidYear2026OshaUpdate'));
+const BlogOSHAPenaltyNC2026           = lazy(() => import('./pages/BlogOSHAPenaltyNC2026'));
 
 // Citation-Proof Kit Series
 const CitationProofKitsPage           = lazy(() => import('./pages/CitationProofKitsPage'));
@@ -140,6 +142,7 @@ function App() {
                     <Route path="/services/safety-walkthrough-report" element={<Navigate to="/safety-walkthrough" replace />} />
                     <Route path="/services/incident-review" element={<IncidentReviewPage />} />
                     <Route path="/services/osha-ready-control-system" element={<OshaReadyControlSystemPage />} />
+                    <Route path="/services/corrective-action-implementation" element={<CorrectiveActionImplementationPage />} />
                     <Route path="/services/:slug" element={<ServiceDetailPage />} />
                     <Route path="/about" element={<AboutPage />} />
                     <Route path="/contact" element={<ContactPage />} />
@@ -158,6 +161,7 @@ function App() {
                     <Route path="/blog/written-hazcom-program-before-osha-inspection" element={<BlogHazComPreInspection />} />
                     <Route path="/blog/osha-300-log-common-mistakes-citations" element={<BlogOSHA300LogMistakes />} />
                     <Route path="/blog/mid-year-2026-osha-update-nc-manufacturers" element={<BlogMidYear2026OshaUpdate />} />
+                    <Route path="/blog/osha-penalty-north-carolina-2026" element={<BlogOSHAPenaltyNC2026 />} />
                     <Route path="/heat-guide" element={<HeatGuidePage />} />
                     <Route path="/sample-report" element={<SampleReportPage />} />
                     <Route path="/resources" element={<ResourcesPage />} />

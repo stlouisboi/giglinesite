@@ -323,7 +323,7 @@ const OshaComplianceGuidePage = () => {
               <ArrowRight size={18} />
             </Link>
             <p className="text-xs text-[#1C2B2B]/45 mt-5" style={mono}>
-              From $1,200 · Findings in 48 hours · NC Piedmont Triad
+              From $1,300 · Findings in 48 hours · NC Piedmont Triad
             </p>
           </div>
         </div>

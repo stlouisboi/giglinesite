@@ -176,7 +176,7 @@ const HazComThankYouPage = () => {
                 className="inline-flex items-center justify-center gap-2 bg-[#102A43] hover:bg-[#2A3D3D] text-white font-medium px-5 py-3 rounded transition-colors text-sm"
                 data-testid="thankyou-cta-walkthrough"
               >
-                Request a Walkthrough — $1,200+
+                Request a Walkthrough — $1,300+
                 <ArrowRight size={16} />
               </Link>
               <Link

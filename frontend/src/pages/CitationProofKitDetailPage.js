@@ -634,10 +634,65 @@ const CitationProofKitDetailPage = () => {
         </section>
       )}
 
+      {/* ═══════════ HOW DELIVERY WORKS (image-driven when provided) ═══════════ */}
+      {kit.productImages?.deliverySection && (
+        <section
+          className="px-5 md:px-8 py-12 md:py-16 border-t"
+          style={{ background: NAVY, borderColor: 'rgba(255,255,255,0.08)' }}
+          data-testid="kit-detail-delivery-section"
+        >
+          <div className="max-w-6xl mx-auto">
+            <img
+              src={kit.productImages.deliverySection}
+              alt={kit.productImages.deliverySectionAlt || 'How delivery works'}
+              className="w-full h-auto"
+              style={{ display: 'block' }}
+            />
+          </div>
+        </section>
+      )}
+
       {/* ═══════════ PRICING TIERS ═══════════ */}
       <div id="pricing">
         <KitPricingTiers kitSlug={slug} ready={kit.ready} />
       </div>
+
+      {/* ═══════════ IMPLEMENTATION BRIDGE (brief Section 16) ═══════════ */}
+      <section
+        className="px-5 md:px-8 py-14 md:py-20 border-t"
+        style={{ background: '#f5f4f0', borderColor: '#e5e2d9' }}
+        data-testid="kit-detail-implementation-bridge"
+      >
+        <div className="max-w-4xl mx-auto text-center">
+          <p
+            className="uppercase font-bold mb-3"
+            style={{ ...mono, fontSize: '11px', letterSpacing: '0.22em', color: '#2A52A0' }}
+          >
+            Need Help Implementing the System?
+          </p>
+          <h3
+            className="text-2xl md:text-3xl font-bold leading-tight mb-4"
+            style={{ color: NAVY, ...serif }}
+          >
+            Have the kit but want hands-on help organizing it around your actual records?
+          </h3>
+          <p
+            className="text-[15.5px] md:text-[17px] leading-[1.75] mb-8 max-w-2xl mx-auto"
+            style={{ color: 'rgba(28,43,43,0.75)', ...serif }}
+          >
+            If you know which safety-control area needs attention but need hands-on help organizing the process around your actual facility records, GigLine can separately scope Corrective Action Implementation.
+          </p>
+          <Link
+            to="/services/corrective-action-implementation"
+            className="inline-flex items-center gap-2 font-bold py-3 px-6 rounded transition-all text-[14px]"
+            style={{ background: NAVY, color: 'white', ...sans }}
+            data-testid="kit-detail-corrective-action-cta"
+          >
+            Ask About Corrective Action Support
+            <span aria-hidden="true">&rarr;</span>
+          </Link>
+        </div>
+      </section>
 
       {/* ═══════════ PREFER WE BUILD IT WITH YOU ═══════════ */}
       {kit.productImages?.physicalMockup ? (

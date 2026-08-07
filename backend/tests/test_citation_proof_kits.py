@@ -87,14 +87,14 @@ class TestCitationProofKitCheckoutErrors:
         r = api_client.post(
             f"{API}/checkout/citation-proof-kit",
             json={
-                "slug": "hazcom-pro-kit",
+                "slug": "does-not-exist-kit",
                 "tier": "digital",
                 "origin_url": "https://example.com",
             },
             timeout=15,
         )
         assert r.status_code == 400
-        assert "hazcom-pro-kit" in r.text
+        assert "does-not-exist-kit" in r.text
 
     def test_missing_slug_returns_422(self, api_client):
         r = api_client.post(

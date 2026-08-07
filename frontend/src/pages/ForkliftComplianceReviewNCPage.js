@@ -5,7 +5,7 @@ const config = {
   slug: 'forklift-compliance-review-nc',
   canonical: '/forklift-compliance-review-nc',
   seoTitle: 'Forklift Safety Compliance Review NC | GigLine Safety & Compliance',
-  seoDescription: 'On-site forklift / Powered Industrial Truck safety compliance review for NC manufacturers, warehouses, and distribution operations. 29 CFR 1910.178. Written report in 48 hours. From $1,200.',
+  seoDescription: 'On-site forklift / Powered Industrial Truck safety compliance review for NC manufacturers, warehouses, and distribution operations. 29 CFR 1910.178. Written report in 48 hours. From $1,300.',
   eyebrow: 'Forklift / PIT Compliance Review',
   headline: 'Forklift Safety Compliance Review for NC operations.',
   subhead: 'Powered Industrial Trucks are one of OSHA\u2019s most-cited general industry standards. A focused on-site review of your forklift program, daily inspections, operator certifications, and floor practices \u2014 written report in 48 hours.',
@@ -44,7 +44,7 @@ const config = {
     'A "top 5 fixes" summary the plant manager can hand to the floor',
   ],
   cfrRef: '29 CFR 1910.178 (Powered Industrial Trucks)',
-  priceFrom: 'From $1,200',
+  priceFrom: 'From $1,300',
   ctaPath: '/intake?service=forklift-compliance-review&utm_source=forklift-landing&utm_medium=website&utm_campaign=service-landing',
 };
 

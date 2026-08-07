@@ -236,7 +236,7 @@ const BlogOSHA300LogMistakes = () => {
           <h2 className="text-xl md:text-2xl font-bold mb-8" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>Related Resources</h2>
           <div className="space-y-4 mb-10">
             <Link to="/services/compliance-readiness-visit" className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#2A52A0]/40 transition-colors group">
-              <div><p className="font-medium text-white group-hover:text-[#2A52A0] transition-colors text-sm">Compliance Readiness Visit — from $2,000</p><p className="text-xs text-white/50 mt-1">Full recordkeeping audit — every 300 log, 300A summary, and 301 form reviewed with a written corrective action list.</p></div>
+              <div><p className="font-medium text-white group-hover:text-[#2A52A0] transition-colors text-sm">Compliance Readiness Visit — from $2,500</p><p className="text-xs text-white/50 mt-1">Full recordkeeping audit — every 300 log, 300A summary, and 301 form reviewed with a written corrective action list.</p></div>
               <ArrowRight size={18} className="text-white/30 group-hover:text-[#2A52A0] transition-colors flex-shrink-0" />
             </Link>
             <Link to="/osha-documentation-review-nc" className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#2A52A0]/40 transition-colors group">

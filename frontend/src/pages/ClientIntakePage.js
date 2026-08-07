@@ -218,6 +218,7 @@ const ClientIntakePage = () => {
       // Premium engagements with no exact radio match — route to "I need guidance" so Vince can scope on call
       'annual-compliance-partner': 'not_sure',
       'osha-ready-control-system': 'not_sure',
+      'corrective-action-implementation': 'not_sure',
     };
     const mapped = serviceParam && map[serviceParam];
     if (mapped) {
@@ -547,8 +548,8 @@ const ClientIntakePage = () => {
           <Field label="Service" required error={errors.serviceSelected}>
             <span {...wrap('serviceSelected')}>
               <RadioList value={f.serviceSelected} onChange={(v) => set('serviceSelected', v)} options={[
-                { value: 'walkthrough', label: 'Safety Walkthrough & Top 10 Fixes Report — On-site visit + written report (from $1,200)' },
-                { value: 'compliance_readiness_visit', label: 'Compliance Readiness Visit — Floor walkthrough + documentation review in one visit (from $2,000)' },
+                { value: 'walkthrough', label: 'Safety Walkthrough & Top 10 Fixes Report — On-site visit + written report (from $1,300)' },
+                { value: 'compliance_readiness_visit', label: 'Compliance Readiness Visit — Floor walkthrough + documentation review in one visit (from $2,500)' },
                 { value: 'doc_review', label: 'OSHA Documentation Readiness Review — Review of written programs, training records, logs (from $1,300)' },
                 { value: 'incident_review', label: 'Incident Review & Corrective Action Support — Post-injury / near-miss response (from $1,500)' },
                 { value: 'doc_creation', label: 'Safety Documents / Program Creation — New programs, manuals, training packs' },

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, BookOpen, Monitor, FileText, Bot, Zap, ShieldCheck, Star, Anchor, Factory, MapPin, ClipboardList, Shield, CheckCircle2, FileImage, Repeat } from 'lucide-react';
+import { ArrowRight, Check, BookOpen, Monitor, FileText, Bot, Zap, ShieldCheck, Star, Anchor, Factory, MapPin, ClipboardList, Shield, CheckCircle2, FileImage } from 'lucide-react';
 import SEO from '../components/SEO';
 import CaseStudyTeaser from '../components/CaseStudyTeaser';
 import FieldManualBand from '../components/FieldManualBand';
@@ -110,8 +110,9 @@ const HomePage = () => {
             "@type": "OfferCatalog",
             "name": "Safety Services",
             "itemListElement": [
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Safety Walkthrough & Top 10 Fixes Report", "description": "On-site facility walkthrough with written report." }, "price": "1200", "priceCurrency": "USD" },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "OSHA Documentation Readiness Review", "description": "Review of written safety programs and training records." }, "price": "1300", "priceCurrency": "USD" },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Safety Walkthrough & Top 10 Fixes Report", "description": "On-site facility walkthrough with written report." }, "price": "1300", "priceCurrency": "USD" },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "OSHA Documentation Readiness Review", "description": "Structured review of written safety programs, training records, and evidence." }, "price": "1700", "priceCurrency": "USD" },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Compliance Readiness Visit", "description": "Combined walkthrough and documentation review in a single engagement." }, "price": "2500", "priceCurrency": "USD" },
               { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Incident Review & Corrective Action Support", "description": "Post-incident documentation and corrective action." }, "price": "1500", "priceCurrency": "USD" }
             ]
           }
@@ -230,16 +231,16 @@ const HomePage = () => {
               <div className="flex flex-col items-start gap-3 mb-5" data-testid="hero-ctas">
                 <div className="flex flex-col sm:flex-row sm:items-center gap-4 w-full sm:w-auto">
                   <Link
-                    to="/intake?service=safety-walkthrough-report"
+                    to="/intake?service=compliance-readiness-visit"
                     onClick={() => trackEvent('hero_cta_primary', {
-                      cta_text: 'Request a Walkthrough',
-                      cta_destination: '/intake?service=safety-walkthrough-report',
+                      cta_text: 'Request a Compliance Readiness Visit',
+                      cta_destination: '/intake?service=compliance-readiness-visit',
                       page_path: typeof window !== 'undefined' ? window.location.pathname : '/',
                     })}
                     className="bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center justify-center gap-2 shadow-lg shadow-[#2A52A0]/20"
                     data-testid="hero-cta-primary"
                   >
-                    Request a Walkthrough
+                    Request a Compliance Readiness Visit
                     <ArrowRight size={18} />
                   </Link>
                   <Link
@@ -281,6 +282,106 @@ const HomePage = () => {
           Institutional / restrained. Inter throughout. No gradients,
           no decorative backgrounds, no Unsplash stock photos.
       ═══════════════════════════════════════════════════════════════ */}
+
+      {/* ═══ SECTION 2A — FLOOR → FINDINGS → FIXES → PROOF (buyer journey) ═══ */}
+      <section
+        className="py-20 md:py-24"
+        style={{ background: '#102A43', color: 'white' }}
+        data-testid="home-buyer-journey"
+      >
+        <div className="container max-w-6xl">
+          <Reveal>
+            <p
+              className="uppercase tracking-[0.18em] font-semibold mb-3"
+              style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', color: '#C9A84C' }}
+              data-testid="buyer-journey-eyebrow"
+            >
+              The GigLine Buyer Journey
+            </p>
+            <h2
+              className="text-3xl md:text-5xl font-bold mb-4 max-w-3xl"
+              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+              data-testid="buyer-journey-headline"
+            >
+              Floor. Findings. Fixes. Proof.
+            </h2>
+            <p className="text-base md:text-lg text-white/70 leading-relaxed mb-12 max-w-3xl">
+              A simple operating model. Four connected steps from what is happening on the floor to organized, retrievable evidence.
+            </p>
+          </Reveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8" data-testid="buyer-journey-steps">
+            {[
+              {
+                num: '01',
+                title: 'Floor',
+                headline: 'See what is actually happening.',
+                body: 'GigLine reviews the work environment, equipment, work practices, and observable safety-control conditions.',
+              },
+              {
+                num: '02',
+                title: 'Findings',
+                headline: 'Know what matters most.',
+                body: 'GigLine documents findings, photographs conditions where appropriate, prioritizes issues, and identifies documentation or evidence weaknesses.',
+              },
+              {
+                num: '03',
+                title: 'Fixes',
+                headline: 'Close the priority gaps.',
+                body: 'Clients can act internally or engage GigLine for separately scoped Corrective Action Implementation.',
+              },
+              {
+                num: '04',
+                title: 'Proof',
+                headline: 'Keep the control organized.',
+                body: 'Citation-Proof Kits and ongoing support help management maintain records, ownership, corrective actions, and retrievable evidence.',
+              },
+            ].map((step, i) => (
+              <Reveal key={step.num} delay={i * 100}>
+                <div
+                  className="h-full flex flex-col"
+                  style={{
+                    background: 'rgba(255,255,255,0.03)',
+                    border: '1px solid rgba(255,255,255,0.08)',
+                    borderTop: '3px solid #C9A84C',
+                    borderRadius: '12px',
+                    padding: '28px 24px',
+                  }}
+                  data-testid={`buyer-journey-step-${step.num}`}
+                >
+                  <p
+                    className="font-bold mb-3"
+                    style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '13px', color: '#C9A84C', letterSpacing: '0.12em' }}
+                  >
+                    {step.num}
+                  </p>
+                  <h3
+                    className="text-2xl font-bold mb-2"
+                    style={{ fontFamily: "Georgia, serif", color: 'white' }}
+                  >
+                    {step.title}
+                  </h3>
+                  <p className="text-[15px] font-semibold text-white/90 mb-3 leading-snug">
+                    {step.headline}
+                  </p>
+                  <p className="text-[14px] text-white/65 leading-relaxed">
+                    {step.body}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={400}>
+            <p
+              className="text-sm md:text-[15px] italic text-white/55 mt-10 max-w-3xl leading-relaxed"
+              data-testid="buyer-journey-footnote"
+            >
+              Safety paperwork is not the same as safety control. GigLine helps connect policy, execution, ownership, corrective action, and evidence.
+            </p>
+          </Reveal>
+        </div>
+      </section>
 
       {/* ═══ SECTION 2 — WHAT WE FIND ON THE FLOOR (GL-WEB-008) ═══ */}
       <section className="py-20 md:py-24 bg-white border-t border-b" style={{ borderColor: '#dde3ea' }} data-testid="floor-findings-section">
@@ -505,7 +606,7 @@ const HomePage = () => {
               A serious OSHA violation can cost up to $16,550 per citation.
             </h2>
             <p className="text-base md:text-lg text-[#1C2B2B]/70 leading-relaxed mb-12 max-w-3xl">
-              That&apos;s per citation. A single inspection can produce multiple citations across multiple standards. The Safety Walkthrough starts at $1,200.
+              That&apos;s per citation. A single inspection can produce multiple citations across multiple standards. The Safety Walkthrough starts at $1,300.
             </p>
           </Reveal>
 
@@ -599,37 +700,37 @@ const HomePage = () => {
               {
                 Icon: ClipboardList,
                 title: 'Safety Walkthrough',
-                price: 'From $1,200',
-                body: 'A documented on-site walkthrough of your facility. Photo evidence, CFR citations, estimated penalty exposure based on OSHA published maximums, and a Top 10 Fixes report \u2014 delivered in writing within 48 hours.',
-                outcome: 'You leave with: a written report you can hand to a supervisor and a fix list ranked by citation risk.',
+                price: 'Starting at $1,300',
+                body: 'A documented on-site walkthrough of your facility. Photo-evidenced findings, prioritized fixes, and a written report delivered within 48 hours. Best for operations that primarily want fresh eyes on what is happening on the floor.',
+                outcome: 'You leave with: a written report you can hand to a supervisor and a prioritized fix list.',
                 cta: { label: 'Request a Walkthrough', to: '/intake?service=safety-walkthrough-report' },
                 testid: 'home-service-walkthrough',
               },
               {
-                Icon: Shield,
-                title: 'Compliance Readiness Visit',
-                price: 'From $2,000',
-                body: 'The Safety Walkthrough plus a full Documentation Review in a single visit. We walk the floor and review your written programs, training records, and OSHA logs \u2014 then give you a prioritized corrective action plan.',
-                outcome: 'You leave with: a single compliance score covering both floor and files, plus a 30/60/90-day corrective action plan with owners and dates.',
-                cta: { label: 'Schedule a Visit', to: '/intake?service=compliance-readiness-visit' },
-                featured: true,
-                badge: '★ Recommended Starting Point',
-                testid: 'home-service-readiness-visit',
+                Icon: FileText,
+                title: 'Documentation Readiness Review',
+                price: 'Starting at $1,700',
+                body: 'A structured review of your safety documentation and evidence. Baseline scope covers one facility, up to five core categories, up to 25 uploaded files, and one findings-review call. Best when the floor may be under control but the records need checking.',
+                outcome: 'You leave with: a prioritized list of documentation gaps and the corrective-action sequence to close them.',
+                cta: { label: 'Request a Documentation Review', to: '/intake?service=documentation-readiness-review' },
+                testid: 'home-service-doc-review',
               },
               {
-                Icon: Repeat,
-                title: 'Quarterly Maintenance',
-                price: 'From $950/quarter',
-                body: 'Keep the system alive between annual walkthroughs. Quarterly documentation review, training record audit, SDS inventory check, corrective action tracker review, and a brief site visit if needed.',
-                outcome: 'You leave with: a safety system that stays current and a paper trail of good-faith effort defensible against insurers and customer audits.',
-                cta: { label: 'Ask About Quarterly', to: '/intake?service=quarterly-compliance-maintenance' },
-                testid: 'home-service-quarterly',
+                Icon: Shield,
+                title: 'Compliance Readiness Visit',
+                price: 'Starting at $2,500',
+                body: 'The Safety Walkthrough combined with the Documentation Readiness Review in a single engagement. Best when you don\u2019t know whether the priority gaps are on the floor, in the documentation, or both.',
+                outcome: 'You leave with: floor and documentation findings, a prioritized corrective-action list, and a 30-day roadmap.',
+                cta: { label: 'Request a Compliance Readiness Visit', to: '/intake?service=compliance-readiness-visit' },
+                featured: true,
+                badge: 'BEST VALUE',
+                testid: 'home-service-readiness-visit',
               },
               {
                 Icon: CheckCircle2,
                 title: 'Safety Check',
                 price: 'Free',
-                body: 'Not sure where to start? A free 90-second self-assessment covering the six most common OSHA violations in general industry. No contact information required.',
+                body: 'Not sure where to start? A free 90-second self-assessment covering the most common OSHA exposures in general industry. No contact information required.',
                 outcome: 'You leave with: a personalized exposure score and a short list of the gaps most worth checking on your floor.',
                 cta: { label: 'Take the Safety Check', to: '/safety-check' },
                 testid: 'home-service-safety-check',
@@ -718,6 +819,12 @@ const HomePage = () => {
           </div>
 
           <Reveal>
+            <p
+              className="text-sm md:text-[15px] italic text-[#1C2B2B]/65 mb-6 max-w-3xl text-center mx-auto leading-relaxed"
+              data-testid="home-services-savings-note"
+            >
+              At the standard starting scope, the Safety Walkthrough and Documentation Readiness Review total $3,000 when purchased separately. The combined Compliance Readiness Visit starts at $2,500, a $500 combined-service savings.
+            </p>
             <p className="text-sm text-[#1C2B2B]/60 italic mb-8 max-w-3xl text-center mx-auto">
               Incident review, document development, ongoing compliance partnerships, and OSHA-ready control systems are also available.
             </p>

@@ -8,20 +8,13 @@ import CaseStudyTeaser from '../components/CaseStudyTeaser';
 import SampleReportSection from '../components/SampleReportSection';
 import WalkthroughDaySection from '../components/WalkthroughDaySection';
 
-/* ═══ GL-WEB-008 — Staged content update for OSHA Documentation Readiness Review ═══
-   Triggered by GL-SPEC-APP-002 (Document Review Module — 148 element-level checks).
-   When `REACT_APP_GL_WEB_008_ENABLED` is "true", the services page swaps in:
-     • Description: two-layer (53-item + element-by-element) framing
-     • Price: $750 → $1,200 (4 places — card, Readiness Path link, Pricing Reference row, FAQ)
-     • Meta description: adds "verify documentation compliance element by element"
-   Flag stays false until Vince confirms conditions 1–5 in Section 5 of GL-WEB-008.
-*/
-const GL_WEB_008 = process.env.REACT_APP_GL_WEB_008_ENABLED === 'true';
-const DOC_REVIEW_DESCRIPTION = 'A structured review of your safety documentation across 53 required items in seven OSHA categories. Layer one checks whether required programs exist. Layer two checks whether each document contains what it is legally required to contain \u2014 element by element, standard by standard. You receive a single compliance percentage score and a prioritized gap list. Fixed quote. Private engagement.';
-const DOC_REVIEW_PRICE = 'From $1,300';
-const DOC_REVIEW_PRICING_REF_PRICE = 'Starting at $1,300';
-const DOC_REVIEW_PATH_OFFER = 'OSHA Documentation Readiness Review \u2014 from $1,300';
-const SERVICES_META_DESCRIPTION = 'OSHA-readiness support for small industrial operations. GigLine helps manufacturers, warehouses, contractors, and fleet operations identify visible hazards, verify documentation compliance element by element, and resolve inspection-readiness issues before they become citations. Fixed pricing. No retainer.';
+/* ── Owner-approved final public pricing (Aug 2026 refactor).
+   REACT_APP_GL_WEB_008_ENABLED retired — refactor supersedes the flag. ── */
+const DOC_REVIEW_DESCRIPTION = 'A structured review of your safety documentation. Baseline scope covers one facility, up to five core safety program or evidence categories, up to 25 uploaded files, representative training and evidence records, prioritized findings, and one findings-review call. Fixed quote. Additional categories, extensive historical cleanup, or program creation are separately scoped.';
+const DOC_REVIEW_PRICE = 'From $1,700';
+const DOC_REVIEW_PRICING_REF_PRICE = 'Starting at $1,700';
+const DOC_REVIEW_PATH_OFFER = 'OSHA Documentation Readiness Review \u2014 from $1,700';
+const SERVICES_META_DESCRIPTION = 'OSHA-readiness support for small industrial operations. GigLine helps manufacturers, warehouses, contractors, and fleet operations find gaps on the floor, review safety documentation and evidence, and organize corrective action. Find. Build. Maintain. Fixed pricing. No retainer.';
 
 /* ── Scroll-reveal — mirrors HomePage.js exactly ── */
 const useReveal = () => {
@@ -105,9 +98,9 @@ const STANDALONE = [
     eyebrow: 'Safety Walkthrough Report',
     title: 'Safety Walkthrough Report',
     headline: 'The first step when you need exposure identified quickly.',
-    price: 'From $1,200',
+    price: 'From $1,300',
     body: 'An on-site walkthrough focused purely on physical hazards. You get a photo-documented report and a prioritized fix list in 48 hours. No retainer. No follow-up obligation.',
-    priceAnchor: 'Most operations fall between $1,200 and $2,000.',
+    priceAnchor: 'Most operations fall between $1,300 and $2,100.',
     listLabel: "What's Included",
     bgColor: '#ffffff',
     whatsIncluded: [
@@ -129,18 +122,18 @@ const STANDALONE = [
     eyebrow: 'OSHA Documentation Readiness Review',
     title: 'OSHA Documentation Readiness Review',
     headline: 'Know exactly what your files say before an inspector does.',
-    price: 'From $1,300',
-    body: 'A structured review of your written programs, training records, OSHA logs, and SDS compliance. You get a compliance percentage score and a prioritized corrective action sequence \u2014 not a generic checklist.',
-    listLabel: "What's Reviewed",
+    price: 'From $1,700',
+    body: DOC_REVIEW_DESCRIPTION,
+    priceAnchor: 'Baseline scope: one facility, up to five core categories, up to 25 uploaded files. Additional categories are separately scoped.',
+    listLabel: "Baseline Scope",
     bgColor: '#EFEEE8',
     whatsIncluded: [
-      'Written safety programs (LOTO, HazCom, PPE, EAP)',
-      'Training records by employee and role',
-      'OSHA 300/300A/301 logs',
-      'Inspection and maintenance records',
-      'SDS inventory and compliance',
-      '53-item checklist across 7 OSHA categories',
-      'Compliance percentage score + priority corrective action sequence',
+      'One facility',
+      'Up to five core safety program or evidence categories (e.g., LOTO, HazCom, PPE, EAP, training)',
+      'Up to 25 uploaded files',
+      'Representative training and evidence records',
+      'Prioritized findings with corrective-action direction',
+      'One findings-review call',
     ],
     best: 'Operations preparing for an audit, insurance review, or customer pre-qualification who need to know specifically what documentation gaps exist.',
     cta: 'Request a Documentation Review',
@@ -287,18 +280,18 @@ const RECURRING = [
 
 /* ═══ Readiness Path table ═══ */
 const READINESS_PATH = [
-  { stage: 'Find the issues', need: 'What would OSHA see on our floor?', offer: 'Safety Walkthrough', priceFrom: '$1,200', link: intakeLink('safety-walkthrough-report') },
-  { stage: 'Check the files', need: 'Are our documents inspection-ready?', offer: 'OSHA Documentation Readiness Review', priceFrom: '$1,300', link: intakeLink('documentation-readiness-review') },
-  { stage: 'Review both', need: 'We need the floor and files checked.', offer: 'Compliance Readiness Visit', priceFrom: '$2,000', link: intakeLink('compliance-readiness-visit') },
+  { stage: 'Find the issues', need: 'What would OSHA see on our floor?', offer: 'Safety Walkthrough', priceFrom: '$1,300', link: intakeLink('safety-walkthrough-report') },
+  { stage: 'Check the files', need: 'Are our documents inspection-ready?', offer: 'OSHA Documentation Readiness Review', priceFrom: '$1,700', link: intakeLink('documentation-readiness-review') },
+  { stage: 'Review both', need: 'We need the floor and files checked.', offer: 'Compliance Readiness Visit', priceFrom: '$2,500', link: intakeLink('compliance-readiness-visit') },
   { stage: 'Build the system', need: 'We need this organized and defensible.', offer: 'OSHA-Ready Control System', priceFrom: '$4,500', link: intakeLink('osha-ready-control-system') },
   { stage: 'Keep it current', need: 'We need ongoing accountability.', offer: 'Quarterly / Annual Partner', priceFrom: '$950/qtr', link: intakeLink('annual-compliance-partner') },
 ];
 
 /* ═══ Pricing reference block ═══ */
 const PRICING_REF = [
-  ['Safety Walkthrough', 'Starting at $1,200'],
+  ['Safety Walkthrough', 'Starting at $1,300'],
   ['OSHA Documentation Readiness Review', DOC_REVIEW_PRICING_REF_PRICE],
-  ['Compliance Readiness Visit', 'Starting at $2,000'],
+  ['Compliance Readiness Visit', 'Starting at $2,500'],
   ['Incident Review & Corrective Action', 'Starting at $1,500'],
   ['OSHA-Ready Control System', 'Starting at $4,500'],
   ['Quarterly Compliance Maintenance', 'Starting at $950/quarter'],
@@ -410,6 +403,7 @@ const ServicesPage = () => {
               { label: 'Documentation Review', href: '#docs-review' },
               { label: 'Compliance Readiness Visit', href: '#crv' },
               { label: 'Incident Review', href: '#incident' },
+              { label: 'Corrective Action', href: '/services/corrective-action-implementation' },
               { label: 'OSHA-Ready Control System', href: '#control-system' },
               { label: 'Compare', href: '#compare' },
               { label: 'Annual Partner', href: '#annual' },
@@ -437,6 +431,137 @@ const ServicesPage = () => {
               data-testid="services-authority-line"
             >
               Built for small operations that need practical safety support without hiring a full-time safety manager.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ═══ 2B. FIND / BUILD / MAINTAIN — operating-model overview (Aug 2026 refactor) ═══ */}
+      <section
+        className="py-14 md:py-20 border-t"
+        style={{ backgroundColor: '#f5f4f0', borderColor: '#dde3ea' }}
+        data-testid="services-find-build-maintain"
+      >
+        <div className="container max-w-6xl">
+          <Reveal>
+            <p
+              className="uppercase font-bold mb-3"
+              style={{ ...mono, fontSize: '10.5px', fontWeight: 700, letterSpacing: '0.18em', color: '#2A52A0' }}
+              data-testid="fbm-eyebrow"
+            >
+              The GigLine Operating Model
+            </p>
+            <h2
+              className="text-3xl md:text-[42px] font-extrabold text-[#1C2B2B] leading-tight mb-4 max-w-3xl tracking-tight"
+              data-testid="fbm-headline"
+            >
+              Find. Build. Maintain.
+            </h2>
+            <div className="mb-8" style={{ width: '56px', height: '3px', background: '#C9A84C', borderRadius: '2px' }} />
+            <p className="text-base md:text-lg text-[#1C2B2B]/70 leading-[1.8] max-w-3xl mb-10">
+              Three simple categories. Every GigLine engagement fits inside one of them.
+            </p>
+          </Reveal>
+
+          <div className="grid md:grid-cols-3 gap-6" data-testid="fbm-grid">
+            {[
+              {
+                key: 'find',
+                label: 'FIND',
+                title: 'Diagnostic services',
+                body: 'See what is on the floor. See what the documentation says. See both.',
+                items: [
+                  { name: 'Safety Walkthrough', href: '#walkthrough', price: 'From $1,300' },
+                  { name: 'Documentation Readiness Review', href: '#docs-review', price: 'From $1,700' },
+                  { name: 'Compliance Readiness Visit', href: '#crv', price: 'From $2,500', badge: 'BEST VALUE' },
+                ],
+              },
+              {
+                key: 'build',
+                label: 'BUILD',
+                title: 'Implementation services',
+                body: 'Close the priority gaps. Or build broader connected safety infrastructure.',
+                items: [
+                  { name: 'Corrective Action Implementation', href: '/services/corrective-action-implementation', price: 'Custom, from $2,500' },
+                  { name: 'OSHA-Ready Control System', href: '#control-system', price: 'From $4,500' },
+                ],
+              },
+              {
+                key: 'maintain',
+                label: 'MAINTAIN',
+                title: 'Products & ongoing support',
+                body: 'Keep the control organized. Records, ownership, and evidence retrievable.',
+                items: [
+                  { name: 'Citation-Proof Kit Series', href: '/citation-proof-kits', price: '$150 / $300 / $600' },
+                  { name: 'Quarterly Compliance Maintenance', href: '#annual', price: 'From $950/quarter' },
+                  { name: 'Annual Compliance Control Partner', href: '#annual', price: '$12,000/year' },
+                ],
+              },
+            ].map((cat) => (
+              <div
+                key={cat.key}
+                className="rounded-xl bg-white p-6 h-full flex flex-col"
+                style={{
+                  border: '1px solid #dde3ea',
+                  borderTop: '3px solid #C9A84C',
+                }}
+                data-testid={`fbm-category-${cat.key}`}
+              >
+                <p
+                  className="uppercase font-extrabold mb-2"
+                  style={{ ...mono, fontSize: '11px', letterSpacing: '0.22em', color: '#C9A84C' }}
+                >
+                  {cat.label}
+                </p>
+                <h3 className="text-lg font-bold mb-2 leading-snug" style={{ color: '#102A43', fontFamily: "Georgia, serif" }}>
+                  {cat.title}
+                </h3>
+                <p className="text-[14.5px] leading-[1.65] text-[#1C2B2B]/70 mb-5">{cat.body}</p>
+                <ul className="space-y-2.5 mt-auto">
+                  {cat.items.map((it) => {
+                    const isAnchor = it.href.startsWith('#');
+                    const cls = 'group flex items-start justify-between gap-3 py-1 text-[14px] hover:text-[#2A52A0] transition-colors';
+                    const inner = (
+                      <>
+                        <span className="flex-1">
+                          <span className="font-semibold text-[#1C2B2B] group-hover:text-[#2A52A0]">{it.name}</span>
+                          {it.badge && (
+                            <span
+                              className="ml-2 uppercase font-bold rounded-full px-1.5 py-0.5"
+                              style={{ ...mono, fontSize: '8.5px', letterSpacing: '0.12em', color: '#102A43', background: '#C9A84C' }}
+                            >
+                              {it.badge}
+                            </span>
+                          )}
+                        </span>
+                        <span className="text-[13px] text-[#1C2B2B]/60 flex-shrink-0" style={mono}>{it.price}</span>
+                      </>
+                    );
+                    return isAnchor ? (
+                      <li key={it.name}>
+                        <a href={it.href} className={cls} data-testid={`fbm-item-${cat.key}-${it.name.slice(0, 12).replace(/\s+/g, '-').toLowerCase()}`}>
+                          {inner}
+                        </a>
+                      </li>
+                    ) : (
+                      <li key={it.name}>
+                        <Link to={it.href} className={cls} data-testid={`fbm-item-${cat.key}-${it.name.slice(0, 12).replace(/\s+/g, '-').toLowerCase()}`}>
+                          {inner}
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <Reveal delay={200}>
+            <p
+              className="italic text-sm md:text-[15px] text-[#1C2B2B]/60 mt-8 max-w-3xl leading-relaxed"
+              data-testid="fbm-savings-note"
+            >
+              At the standard starting scope, the Safety Walkthrough and Documentation Readiness Review total $3,000 when purchased separately. The combined Compliance Readiness Visit starts at $2,500, a $500 combined-service savings.
             </p>
           </Reveal>
         </div>
@@ -594,7 +719,7 @@ const ServicesPage = () => {
                       {[
                         'Full physical hazard walkthrough (2\u20134 hours)',
                         'Photo-documented findings with CFR citations',
-                        'Structured documentation review (53-item checklist)',
+                        'Structured documentation review (baseline: 5 categories, 25 files)',
                         'Single compliance percentage score \u2014 floor and files combined',
                         '18-page CFR-cited field audit report within 48 hours',
                         'Compliance score with prioritized finding categories',
@@ -615,7 +740,7 @@ const ServicesPage = () => {
                     className="italic text-[#1C2B2B]/65 text-sm md:text-[15px] leading-relaxed mb-6 max-w-2xl"
                     data-testid="crv-anchor-line"
                   >
-                    Booked separately, the Safety Walkthrough and Documentation Review start at $2,500. The Compliance Readiness Visit covers both in a single visit &mdash; from $2,000.
+                    Booked separately, the Safety Walkthrough and Documentation Review total $3,000. The Compliance Readiness Visit covers both in a single visit &mdash; from $2,500. A $500 combined-service savings.
                   </p>
                 </div>
 
@@ -631,7 +756,7 @@ const ServicesPage = () => {
                       Starting At
                     </p>
                     <p className="text-4xl md:text-5xl font-bold text-[#2A52A0] leading-none tracking-tight mb-1" style={mono} data-testid="crv-price-large">
-                      $2,000
+                      $2,500
                     </p>
                     <p className="text-[#1C2B2B]/45 italic" style={{ ...mono, fontSize: '11px' }}>
                       fixed quote
@@ -1287,9 +1412,9 @@ const ServicesPage = () => {
                         Engagement
                       </th>
                       {[
-                        { key: 'walkthrough', label: 'Safety Walkthrough', price: 'From $1,200', anchor: '#walkthrough', service: 'safety-walkthrough-report' },
-                        { key: 'docs', label: 'Documentation Review', price: 'From $1,300', anchor: '#docs-review', service: 'documentation-readiness-review' },
-                        { key: 'crv', label: 'Compliance Readiness Visit', price: 'From $2,000', anchor: '#crv', service: 'compliance-readiness-visit', highlight: true },
+                        { key: 'walkthrough', label: 'Safety Walkthrough', price: 'From $1,300', anchor: '#walkthrough', service: 'safety-walkthrough-report' },
+                        { key: 'docs', label: 'Documentation Review', price: 'From $1,700', anchor: '#docs-review', service: 'documentation-readiness-review' },
+                        { key: 'crv', label: 'Compliance Readiness Visit', price: 'From $2,500', anchor: '#crv', service: 'compliance-readiness-visit', highlight: true },
                         { key: 'control', label: 'OSHA-Ready Control System', price: 'From $4,500', anchor: '#control-system', service: 'osha-ready-control-system' },
                       ].map((col) => (
                         <th

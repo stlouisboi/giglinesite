@@ -11,7 +11,7 @@ const mono = { fontFamily: "'JetBrains Mono', monospace" };
 export const FAQS = [
   {
     q: 'How much does an OSHA safety walkthrough cost in North Carolina?',
-    a: "GigLine safety walkthroughs start at $1,200. Price is scoped based on square footage, machine count, employee count, and hazard complexity. Fixed quote before scheduling. No hourly billing, no retainer, no surprise invoice. For context: a single OSHA serious violation can cost up to $16,550 per citation (2026 adjusted rate). The walkthrough identifies what's exposed before an inspector does.",
+    a: "GigLine safety walkthroughs start at $1,300. Price is scoped based on square footage, machine count, employee count, and hazard complexity. Fixed quote before scheduling. No hourly billing, no retainer, no surprise invoice. For context: a single OSHA serious violation can cost up to $16,550 per citation (2026 adjusted rate). The walkthrough identifies what's exposed before an inspector does.",
   },
   {
     q: 'What does an OSHA safety consultant do on-site?',
@@ -19,15 +19,15 @@ export const FAQS = [
   },
   {
     q: 'How do I prepare for an OSHA inspection in a small manufacturing plant?',
-    a: "The most effective preparation is a third-party walkthrough before OSHA arrives. OSHA inspections are triggered by employee complaints, referrals, fatalities, or programmed inspections \u2014 they do not announce in advance. A GigLine Safety Walkthrough gives you a written report of the conditions an inspector may review, documented against the same standards OSHA uses. The walkthrough starts at $1,200. A single serious citation can cost up to $16,550.",
+    a: "The most effective preparation is a third-party walkthrough before OSHA arrives. OSHA inspections are triggered by employee complaints, referrals, fatalities, or programmed inspections \u2014 they do not announce in advance. A GigLine Safety Walkthrough gives you a written report of the conditions an inspector may review, documented against the same standards OSHA uses. The walkthrough starts at $1,300. A single serious citation can cost up to $16,550.",
   },
   {
     q: 'What is a Compliance Readiness Visit?',
-    a: "GigLine's most complete single engagement. Combines the Safety Walkthrough and Documentation Review in one on-site visit. One consolidated written report covering both physical findings and documentation gaps, with a prioritized corrective action plan. Starts at $2,000. Booking separately starts at $2,500. The combined visit covers both for less.",
+    a: "GigLine's most complete single engagement. Combines the Safety Walkthrough and Documentation Readiness Review in one on-site visit. One written report covering both physical findings and documentation gaps, with a prioritized corrective action plan. Starts at $2,500. At the standard starting scope, the Safety Walkthrough and Documentation Readiness Review total $3,000 when purchased separately. The combined Compliance Readiness Visit starts at $2,500, a $500 combined-service savings.",
   },
   {
     q: 'What is the difference between a Safety Walkthrough and a Compliance Readiness Visit?',
-    a: "The Safety Walkthrough covers the physical floor \u2014 starts at $1,200, report in 48 hours. The CRV adds a full documentation review to the same visit \u2014 written programs, training records, HazCom binder, OSHA 300 log \u2014 starts at $2,000. If unsure, the walkthrough is the lower-barrier starting point.",
+    a: "The Safety Walkthrough covers the physical floor \u2014 starts at $1,300, report in 48 hours. The CRV combines the Safety Walkthrough with the Documentation Readiness Review in a single engagement \u2014 baseline documentation scope covers one facility, up to five core categories, and up to 25 uploaded files. CRV starts at $2,500 (a $500 combined-service savings vs. booking the two separately). If unsure, start with the walkthrough as the lower-barrier option.",
   },
   {
     q: "What's included in a GigLine safety walkthrough?",
@@ -99,7 +99,7 @@ export const FAQS = [
   },
   {
     q: "What's actually delivered in a Compliance Readiness Visit?",
-    a: "The Compliance Readiness Visit (from $2,000) is GigLine's most-requested engagement. You receive: (1) a full on-site walkthrough of the production floor, storage, chemical areas, and egress routes \u2014 2 to 4 hours depending on facility size; (2) a structured review of your written safety programs, training records, OSHA 300/300A/301 logs, inspection records, and SDS inventory using a 53-item checklist across 7 OSHA categories; (3) an 18-page CFR-cited audit report delivered within 48 hours; (4) a single compliance percentage score for floor and files combined; (5) a 90-day remediation tracker, pre-populated and ready to assign to supervisors; (6) a 'What to Say If OSHA Calls' guidance sheet; and (7) a 30-day check-in call. Fixed quote. Private engagement. No retainer.",
+    a: "The Compliance Readiness Visit (from $2,500) combines the Safety Walkthrough with the Documentation Readiness Review in a single engagement. You receive: (1) an on-site walkthrough of the production floor, storage, chemical areas, and egress routes \u2014 typically 1 to 3 hours depending on facility size; (2) a structured documentation review at the baseline scope \u2014 one facility, up to five core safety program or evidence categories, up to 25 uploaded files, and representative training and evidence records; (3) a written findings report delivered within 48 hours; (4) prioritized corrective actions covering both floor and documentation; (5) a 30-day corrective-action roadmap; and (6) one findings-review call. Fixed quote. Private engagement. No retainer. Additional documentation categories, extensive historical cleanup, or program creation are separately scoped.",
   },
   {
     q: "Who is the Annual Compliance Control Partner program designed for?",
@@ -261,7 +261,7 @@ const FAQPage = () => {
             Ready to schedule a walkthrough?
           </h2>
           <p className="text-white/55 mb-8 text-base md:text-lg">
-            One on-site visit. A written report within 48 hours. Starting at $1,200.
+            One on-site visit. A written report within 48 hours. Starting at $1,300.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

@@ -1,0 +1,18 @@
+[
+  {
+    "_id": "6a233ca457a5b07045c9c4ce",
+    "id": "9465a8a2-7736-4d6b-9432-06bb66481cc6",
+    "email": "vincelaw336+mltest@gmail.com",
+    "source": "manual_test",
+    "subscribed_at": "2026-06-05T21:16:20.322271+00:00",
+    "status": "active"
+  },
+  {
+    "_id": "6a237b0756bef12e7a656743",
+    "id": "f828a4b9-b28e-45ce-bce7-dc503239f721",
+    "email": "stephlaw336@gmail.com",
+    "source": "field-notes-index",
+    "subscribed_at": "2026-06-06T01:42:31.985033+00:00",
+    "status": "active"
+  }
+]

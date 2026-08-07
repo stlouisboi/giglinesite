@@ -36,8 +36,8 @@ export const COMPLIANCE_READINESS_VISIT = {
 // ─── BUILD ─── implementation services ───────────────────────────────────
 export const CORRECTIVE_ACTION_IMPLEMENTATION = {
   amountFrom: 2500,
-  label: 'Custom quote, typically $2,500+',
-  shortLabel: 'Custom quote, from $2,500',
+  label: 'Custom quote — most projects begin at $2,500',
+  shortLabel: 'Custom quote',
 };
 
 export const OSHA_READY_CONTROL_SYSTEM = {

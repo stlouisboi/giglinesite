@@ -482,7 +482,7 @@ const ServicesPage = () => {
                 title: 'Implementation services',
                 body: 'Close the priority gaps. Or build broader connected safety infrastructure.',
                 items: [
-                  { name: 'Corrective Action Implementation', href: '/services/corrective-action-implementation', price: 'Custom, from $2,500' },
+                  { name: 'Corrective Action Implementation', href: '/services/corrective-action-implementation', price: 'Custom quote' },
                   { name: 'OSHA-Ready Control System', href: '#control-system', price: 'From $4,500' },
                 ],
               },

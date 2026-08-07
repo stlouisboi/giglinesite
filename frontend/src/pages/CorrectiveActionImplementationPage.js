@@ -146,12 +146,11 @@ const CorrectiveActionImplementationPage = () => (
           >
             Pricing
           </p>
-          <p className="text-5xl md:text-6xl font-extrabold text-white mb-3 leading-none" style={mono}>
-            $2,500+
+          <p className="text-4xl md:text-5xl font-extrabold text-white mb-2 leading-none" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }} data-testid="cai-hero-price-primary">
+            Custom Quote
           </p>
-          <p className="text-white/75 mb-6 leading-relaxed">
-            Custom quote per engagement. Fixed price before scheduling. Implementation is always
-            separately scoped — the quote varies with findings, complexity, and facility size.
+          <p className="text-white/70 mb-6 text-[15px] leading-relaxed" data-testid="cai-hero-price-support">
+            Most projects begin at <span className="font-semibold text-white" style={mono}>$2,500</span>. Fixed price before scheduling. Implementation is always separately scoped — the quote varies with findings, complexity, and facility size.
           </p>
           <div style={{ borderTop: '1px solid rgba(255,255,255,0.10)' }} className="pt-5">
             <p

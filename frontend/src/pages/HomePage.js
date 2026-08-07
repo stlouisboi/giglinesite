@@ -723,7 +723,7 @@ const HomePage = () => {
                 outcome: 'You leave with: floor and documentation findings, a prioritized corrective-action list, and a 30-day roadmap.',
                 cta: { label: 'Request a Compliance Readiness Visit', to: '/intake?service=compliance-readiness-visit' },
                 featured: true,
-                badge: '★ Best Value \u2014 Save $500',
+                badge: 'BEST VALUE',
                 testid: 'home-service-readiness-visit',
               },
               {
@@ -819,6 +819,12 @@ const HomePage = () => {
           </div>
 
           <Reveal>
+            <p
+              className="text-sm md:text-[15px] italic text-[#1C2B2B]/65 mb-6 max-w-3xl text-center mx-auto leading-relaxed"
+              data-testid="home-services-savings-note"
+            >
+              At the standard starting scope, the Safety Walkthrough and Documentation Readiness Review total $3,000 when purchased separately. The combined Compliance Readiness Visit starts at $2,500, a $500 combined-service savings.
+            </p>
             <p className="text-sm text-[#1C2B2B]/60 italic mb-8 max-w-3xl text-center mx-auto">
               Incident review, document development, ongoing compliance partnerships, and OSHA-ready control systems are also available.
             </p>

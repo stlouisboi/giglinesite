@@ -210,7 +210,7 @@ const CaseStudyMetalsFabricationPage = () => {
               Request a Walkthrough Like This <ArrowRight size={16} />
             </Link>
             <span className="text-sm" style={{ color: TEXT_SUBTLE, ...mono }}>
-              From $1,200 · Findings in 48 hours
+              From $1,300 · Findings in 48 hours
             </span>
           </div>
         </div>
@@ -563,7 +563,7 @@ const CaseStudyMetalsFabricationPage = () => {
             className="text-2xl md:text-4xl font-bold leading-tight mb-6"
             style={{ fontFamily: "'Manrope', sans-serif" }}
           >
-            A Safety Walkthrough starts at $1,200.
+            A Safety Walkthrough starts at $1,300.
           </h2>
           <p className="text-base md:text-lg leading-relaxed mb-10 max-w-2xl mx-auto text-white/65">
             Written report within 48 hours. Fixed quote before scheduling. Everything stays private.

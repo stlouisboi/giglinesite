@@ -819,7 +819,7 @@ const SupervisorKitPage = () => {
             style={{ color: TEXT_SUBTLE, ...serif }}
             data-testid="kit-crv-note"
           >
-            The Supervisor Safety OS is included at no additional cost with every Compliance Readiness Visit starting at $2,000. Already a CRV client? Contact GigLine at{' '}
+            The Supervisor Safety OS is included at no additional cost with every Compliance Readiness Visit starting at $2,500. Already a CRV client? Contact GigLine at{' '}
             <a href="tel:+13363298899" className="font-bold underline hover:no-underline" style={{ color: NAVY }}>
               (336) 329-8899
             </a>{' '}

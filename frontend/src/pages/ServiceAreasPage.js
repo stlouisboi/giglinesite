@@ -73,7 +73,7 @@ const ServiceAreasPage = () => {
             className="uppercase tracking-[3px] text-[#2A52A0] mb-3"
             style={{ ...mono, fontSize: '11px' }}
           >
-            Triad Core — Starting at $1,200
+            Triad Core — Starting at $1,300
           </p>
           <h2
             className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-8"
@@ -119,7 +119,7 @@ const ServiceAreasPage = () => {
             className="uppercase tracking-[3px] text-[#2A52A0] mb-3"
             style={{ ...mono, fontSize: '11px' }}
           >
-            Outer Tier — Starting at $1,200 + travel fee
+            Outer Tier — Starting at $1,300 + travel fee
           </p>
           <h2
             className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-8"

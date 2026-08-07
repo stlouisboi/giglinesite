@@ -247,7 +247,7 @@ const BlogForkliftCompliance = () => {
           <h2 className="text-xl md:text-2xl font-bold mb-8" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>Related Resources</h2>
           <div className="space-y-4 mb-10">
             <Link to="/safety-walkthrough" className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#2A52A0]/40 transition-colors group">
-              <div><p className="font-medium text-white group-hover:text-[#2A52A0] transition-colors text-sm">Safety Walkthrough — $1,200</p><p className="text-xs text-white/50 mt-1">Warehouse floor review including forklift program, traffic controls, and pedestrian separation.</p></div>
+              <div><p className="font-medium text-white group-hover:text-[#2A52A0] transition-colors text-sm">Safety Walkthrough — $1,300</p><p className="text-xs text-white/50 mt-1">Warehouse floor review including forklift program, traffic controls, and pedestrian separation.</p></div>
               <ArrowRight size={18} className="text-white/30 group-hover:text-[#2A52A0] transition-colors flex-shrink-0" />
             </Link>
             {SUPERVISOR_KIT_ENABLED && (

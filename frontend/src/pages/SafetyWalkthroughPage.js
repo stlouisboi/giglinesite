@@ -58,11 +58,11 @@ const SafetyWalkthroughPage = () => {
   return (
     <main data-testid="safety-walkthrough-page">
       <SEO
-        title="Safety Walkthrough — From $1,200 | GigLine"
-        description="On-site safety walkthrough focused purely on physical hazards. Photo-documented findings with CFR citations and prioritized Top 10 fix list delivered within 48 hours. From $1,200."
+        title="Safety Walkthrough — From $1,300 | GigLine"
+        description="On-site safety walkthrough focused purely on physical hazards. Photo-documented findings with CFR citations and prioritized Top 10 fix list delivered within 48 hours. From $1,300."
         canonical={`/safety-walkthrough`}
         schema={[
-          { '@context': 'https://schema.org', '@type': 'Service', name: 'Safety Walkthrough', provider: { '@type': 'LocalBusiness', name: 'GigLine Safety & Compliance', url: 'https://www.giglinecompliance.com', telephone: '+13363298899' }, areaServed: { '@type': 'State', name: 'North Carolina' }, offers: { '@type': 'Offer', price: '1200', priceCurrency: 'USD', description: 'Safety Walkthrough from $1,200 — on-site physical hazard inspection.' }, description: 'On-site walkthrough focused on physical hazards with photo-documented CFR-cited findings delivered as a Top 10 priority report within 48 hours.' },
+          { '@context': 'https://schema.org', '@type': 'Service', name: 'Safety Walkthrough', provider: { '@type': 'LocalBusiness', name: 'GigLine Safety & Compliance', url: 'https://www.giglinecompliance.com', telephone: '+13363298899' }, areaServed: { '@type': 'State', name: 'North Carolina' }, offers: { '@type': 'Offer', price: '1200', priceCurrency: 'USD', description: 'Safety Walkthrough from $1,300 — on-site physical hazard inspection.' }, description: 'On-site walkthrough focused on physical hazards with photo-documented CFR-cited findings delivered as a Top 10 priority report within 48 hours.' },
           { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [ { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.giglinecompliance.com/' }, { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://www.giglinecompliance.com/services' }, { '@type': 'ListItem', position: 3, name: 'Safety Walkthrough', item: 'https://www.giglinecompliance.com/safety-walkthrough' } ] },
         ]}
       />
@@ -88,12 +88,12 @@ const SafetyWalkthroughPage = () => {
           <div className="rounded-xl p-7 md:p-8 grid grid-cols-1 md:grid-cols-[minmax(260px,320px)_1fr] gap-7 md:gap-10 items-start" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.10)' }} data-testid="sw-price-block">
             <div>
               <Eyebrow color={GOLD}>Fixed Price</Eyebrow>
-              <p className="text-3xl md:text-[34px] font-extrabold text-white leading-none mb-3 tracking-tight" style={mono}>From $1,200</p>
+              <p className="text-3xl md:text-[34px] font-extrabold text-white leading-none mb-3 tracking-tight" style={mono}>From $1,300</p>
               <p className="text-[13px] text-white/55 leading-[1.6]">Varies by facility size and employee count.</p>
             </div>
             <div>
               <p className="text-[14.5px] text-white/80 leading-[1.75]">
-                Need the floor and the files reviewed together? The <Link to={CRV_HREF} className="font-bold underline" style={{ color: GOLD }} data-testid="sw-crv-link">Compliance Readiness Visit</Link> covers both in a single visit from <span className="font-bold text-white" style={mono}>$2,000</span> — saving up to <span className="font-bold text-white" style={mono}>$500</span> vs. booking separately.
+                Need the floor and the files reviewed together? The <Link to={CRV_HREF} className="font-bold underline" style={{ color: GOLD }} data-testid="sw-crv-link">Compliance Readiness Visit</Link> covers both in a single visit from <span className="font-bold text-white" style={mono}>$2,500</span> — saving <span className="font-bold text-white" style={mono}>$500</span> vs. booking separately.
               </p>
             </div>
           </div>

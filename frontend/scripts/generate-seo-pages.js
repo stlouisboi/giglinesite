@@ -168,11 +168,11 @@ const HOMEPAGE_FAQS = [
 
 // Canonical 18-question FAQ for /faq page
 const FULL_FAQS = [
-  { q: 'How much does an OSHA safety walkthrough cost in North Carolina?', a: "GigLine safety walkthroughs start at $1,200. Price is scoped based on square footage, machine count, employee count, and hazard complexity. Fixed quote before scheduling. No hourly billing, no retainer, no surprise invoice. For context: a single OSHA serious violation can cost up to $16,550 per citation (2026 adjusted rate). The walkthrough identifies what's exposed before an inspector does." },
+  { q: 'How much does an OSHA safety walkthrough cost in North Carolina?', a: "GigLine safety walkthroughs start at $1,300. Price is scoped based on square footage, machine count, employee count, and hazard complexity. Fixed quote before scheduling. No hourly billing, no retainer, no surprise invoice. For context: a single OSHA serious violation can cost up to $16,550 per citation (2026 adjusted rate). The walkthrough identifies what's exposed before an inspector does." },
   { q: 'What does an OSHA safety consultant do on-site?', a: "During a GigLine Safety Walkthrough, Vince Lawrence — OSHA 30-Hour Certified safety compliance consultant based in Kernersville, NC — walks every area of your facility. He photographs findings, documents each one against the applicable CFR standard, and provides an estimated penalty exposure based on OSHA published maximums. Within 48 hours you receive a written report with photo documentation, CFR citations, and a prioritized list of corrective actions. The engagement is private — findings are not shared, published, or referenced without written permission." },
-  { q: 'How do I prepare for an OSHA inspection in a small manufacturing plant?', a: "The most effective preparation is a third-party walkthrough before OSHA arrives. OSHA inspections are triggered by employee complaints, referrals, fatalities, or programmed inspections — they do not announce in advance. A GigLine Safety Walkthrough gives you a written report of the conditions an inspector may review, documented against the same standards OSHA uses. The walkthrough starts at $1,200. A single serious citation can cost up to $16,550." },
-  { q: 'What is a Compliance Readiness Visit?', a: "GigLine's most complete single engagement. Combines the Safety Walkthrough and Documentation Review in one on-site visit. One consolidated written report covering both physical findings and documentation gaps, with a prioritized corrective action plan. Starts at $2,000. Booking separately starts at $2,500. The combined visit covers both for less." },
-  { q: 'What is the difference between a Safety Walkthrough and a Compliance Readiness Visit?', a: "The Safety Walkthrough covers the physical floor — starts at $1,200, report in 48 hours. The CRV adds a full documentation review to the same visit — written programs, training records, HazCom binder, OSHA 300 log — starts at $2,000. If unsure, the walkthrough is the lower-barrier starting point." },
+  { q: 'How do I prepare for an OSHA inspection in a small manufacturing plant?', a: "The most effective preparation is a third-party walkthrough before OSHA arrives. OSHA inspections are triggered by employee complaints, referrals, fatalities, or programmed inspections — they do not announce in advance. A GigLine Safety Walkthrough gives you a written report of the conditions an inspector may review, documented against the same standards OSHA uses. The walkthrough starts at $1,300. A single serious citation can cost up to $16,550." },
+  { q: 'What is a Compliance Readiness Visit?', a: "GigLine's most complete single engagement. Combines the Safety Walkthrough and Documentation Review in one on-site visit. One consolidated written report covering both physical findings and documentation gaps, with a prioritized corrective action plan. Starts at $2,500. Booking separately starts at $2,500. The combined visit covers both for less." },
+  { q: 'What is the difference between a Safety Walkthrough and a Compliance Readiness Visit?', a: "The Safety Walkthrough covers the physical floor — starts at $1,300, report in 48 hours. The CRV adds a full documentation review to the same visit — written programs, training records, HazCom binder, OSHA 300 log — starts at $2,500. If unsure, the walkthrough is the lower-barrier starting point." },
   { q: "What's included in a GigLine safety walkthrough?", a: "A GigLine safety walkthrough includes a 1–3-hour on-site review, photo-documented safety observations, OSHA-related references where applicable, and a written 'Top 10 Fixes' report delivered within 48 hours. Findings are color-coded: RED for urgent items, AMBER for near-term corrections, and GREEN for what your team is doing well." },
   { q: 'How long does a safety walkthrough take on-site?', a: 'Most walkthroughs take 1 to 3 hours on-site. A small shop under 10,000 sq ft may take less than an hour. Larger warehouses, production floors, or multi-area operations may take 2 to 3 hours or require a larger scoped visit. You will receive a time estimate before the visit.' },
   { q: "What's the difference between a safety walkthrough and an OSHA inspection?", a: 'An OSHA inspection is performed by a federal or state compliance officer and may result in citations, penalties, and required abatement. A GigLine safety walkthrough is a private, voluntary review performed by an independent consultant. Findings are delivered only to you — nothing is reported to OSHA, your insurance carrier, or any third party.' },
@@ -252,12 +252,12 @@ const routes = [
       <p><strong>Private by Default.</strong> GigLine does not share, publish, or reference client facility data. Your findings stay between us.</p>
       <p><strong>Built on the Floor, Not in a Classroom.</strong> Vince Lawrence spent years inside manufacturing operations — glass and vinyl, rubber compounding, metals fabrication.</p>
       <h2>The Cost of Waiting — A serious OSHA violation can cost up to $16,550 per citation.</h2>
-      <p>That's per citation. A single inspection can produce multiple citations across multiple standards. The Safety Walkthrough starts at $1,200. Max penalty per willful or repeat violation: $165,514. Time from walkthrough to written report: 48 hours.</p>
+      <p>That's per citation. A single inspection can produce multiple citations across multiple standards. The Safety Walkthrough starts at $1,300. Max penalty per willful or repeat violation: $165,514. Time from walkthrough to written report: 48 hours.</p>
       <p>OSHA doesn't announce inspections. They arrive after a complaint, a referral, or a fatality — or as part of a programmed inspection targeting your industry. By the time they're on your floor, the window to fix things has closed. The walkthrough is that window.</p>
       <h2>Services — Three ways to work with GigLine.</h2>
       <ul>
-        <li><a href="/safety-walkthrough">Safety Walkthrough</a> — From $1,200. Documented on-site walkthrough with photo evidence, CFR citations, estimated penalty exposure based on OSHA published maximums, and a Top 10 Fixes report within 48 hours.</li>
-        <li><a href="/osha-compliance-gap-check">Compliance Readiness Visit</a> — From $2,000. Walkthrough plus a full Documentation Review in a single visit. Most Requested.</li>
+        <li><a href="/safety-walkthrough">Safety Walkthrough</a> — From $1,300. Documented on-site walkthrough with photo evidence, CFR citations, estimated penalty exposure based on OSHA published maximums, and a Top 10 Fixes report within 48 hours.</li>
+        <li><a href="/osha-compliance-gap-check">Compliance Readiness Visit</a> — From $2,500. Walkthrough plus a full Documentation Review in a single visit. Most Requested.</li>
         <li><a href="/documentation-gap-check">OSHA Documentation Readiness Review (standalone)</a> — From $1,300.</li>
         <li><a href="/safety-check">Safety Check</a> — Free 90-second self-assessment of the six most common OSHA violations in general industry. No contact info required.</li>
       </ul>
@@ -344,10 +344,10 @@ const routes = [
       <p>Take the free 90-Second Safety Check — six yes-or-no questions, immediate risk score, no email required to start. Ready for a professional review? <a href="/intake?service=compliance-readiness-visit">Schedule a Compliance Readiness Visit</a>.</p>
       <h2>Who GigLine Helps</h2>
       <p>Manufacturers, warehouses & distribution, contractors, and fleet operations — the four operation types most likely to receive an OSHA inspection, an insurance review, or a customer-audit request in the Piedmont Triad.</p>
-      <h2>Compliance Readiness Visit — Recommended Starting Point — Starting at $2,000</h2>
+      <h2>Compliance Readiness Visit — Recommended Starting Point — Starting at $2,500</h2>
       <p>The floor and the files reviewed in a single visit. Full safety walkthrough on-site, OSHA Documentation Readiness Review, single compliance percentage score, photo documentation, CFR citations, written report within 48 hours. GigLine Supervisor Safety OS included.</p>
       <h2>Standalone Services</h2>
-      <h3>Safety Walkthrough Report — Starting at $1,200</h3>
+      <h3>Safety Walkthrough Report — Starting at $1,300</h3>
       <p>On-site walkthrough (1–3 hours). Photo-documented hazard findings. CFR citations + estimated penalty exposure based on OSHA published maximums. Top 10 Fixes report — RED / AMBER / GREEN priority. Delivered within 48 hours.</p>
       <h3>OSHA Documentation Readiness Review — Starting at ${DOC_REVIEW_PRICE_LABEL}</h3>
       <p>Structured review of written programs, training records, OSHA logs, inspection records, and SDS compliance. 53-item checklist across seven OSHA categories.</p>
@@ -360,7 +360,7 @@ const routes = [
       <h2>The Natural Next Step — Quarterly and Annual Support</h2>
       <p>Quarterly Compliance Maintenance — Starting at $950/quarter. Annual Compliance Control Partner — $12,000/year ($1,000/month equivalent).</p>
       <h2>The GigLine Readiness Path</h2>
-      <p>Find the issues — Safety Walkthrough from $1,200. Check the files — OSHA Documentation Readiness Review from ${DOC_REVIEW_PRICE_LABEL}. Review both — Compliance Readiness Visit from $2,000. Build the system — OSHA-Ready Control System from $4,500. Keep it current — Quarterly Maintenance from $950/quarter.</p>
+      <p>Find the issues — Safety Walkthrough from $1,300. Check the files — OSHA Documentation Readiness Review from ${DOC_REVIEW_PRICE_LABEL}. Review both — Compliance Readiness Visit from $2,500. Build the system — OSHA-Ready Control System from $4,500. Keep it current — Quarterly Maintenance from $950/quarter.</p>
       <h2>Recent Engagement &mdash; Case Study</h2>
       <p><a href="/case-study/metals-fabrication-statesville">What a Safety Walkthrough Actually Finds</a>.</p>
       <p>After payment, you'll receive a scheduling confirmation within one business day.</p>
@@ -393,7 +393,7 @@ const routes = [
     content: `
       <h1>Service Areas — On-Site Safety Walkthroughs Across North Carolina</h1>
       <p>Based in Kernersville, NC. Routine engagements within 60 miles of Winston-Salem. Scheduled engagements available in Charlotte and Raleigh metros.</p>
-      <h2>Triad Core — Starting at $1,200 (within 30 miles of Kernersville)</h2>
+      <h2>Triad Core — Starting at $1,300 (within 30 miles of Kernersville)</h2>
       <ul>
         <li><a href="/safety-walkthrough/kernersville">Kernersville, NC</a> — GigLine HQ</li>
         <li><a href="/safety-walkthrough/winston-salem">Winston-Salem, NC</a> — 10 miles</li>
@@ -405,7 +405,7 @@ const routes = [
         <li><a href="/safety-walkthrough/mocksville">Mocksville, NC</a> — 25 miles</li>
         <li><a href="/safety-walkthrough/burlington">Burlington, NC</a> — 30 miles</li>
       </ul>
-      <h2>Outer Tier — Starting at $1,200 + travel fee</h2>
+      <h2>Outer Tier — Starting at $1,300 + travel fee</h2>
       <ul>
         <li><a href="/safety-walkthrough/asheboro">Asheboro, NC</a> — 35 miles</li>
         <li><a href="/safety-walkthrough/salisbury">Salisbury, NC</a> — 50 miles</li>
@@ -580,7 +580,7 @@ const routes = [
         <li><strong>Train your team</strong> &mdash; cover chemical hazards, label reading, SDS location, and protective measures. Get everyone to sign a training log.</li>
         <li><strong>Post everything</strong> &mdash; SDS location signage, chemical inventory, and the written program in a visible spot.</li>
       </ol>
-      <p>If you want the templates pre-built with the small-shop language OSHA inspectors actually accept, GigLine&rsquo;s <a href="/hazcom-starter-pack">HazCom Starter Pack</a> delivers all three &mdash; written program, SDS binder checklist and index, training verification log &mdash; for $29 as an instant PDF download. For a full compliance assessment where we walk your floor and identify every HazCom gap in writing, request a <a href="/safety-walkthrough">Safety Walkthrough</a> starting at $1,200.</p>
+      <p>If you want the templates pre-built with the small-shop language OSHA inspectors actually accept, GigLine&rsquo;s <a href="/hazcom-starter-pack">HazCom Starter Pack</a> delivers all three &mdash; written program, SDS binder checklist and index, training verification log &mdash; for $29 as an instant PDF download. For a full compliance assessment where we walk your floor and identify every HazCom gap in writing, request a <a href="/safety-walkthrough">Safety Walkthrough</a> starting at $1,300.</p>
 
       <h2>Not sure if your HazCom program would survive an inspection?</h2>
       <p>Take the <a href="/safety-check">two-minute Safety Check</a> to see your likely violation zones, or <a href="/walkthrough">request a Safety Walkthrough</a> and we&rsquo;ll walk your floor with a written report in 48 hours. Serving manufacturers, warehouses, and contractors across Kernersville, Winston-Salem, Greensboro, High Point, and the greater Piedmont Triad.</p>
@@ -766,7 +766,7 @@ const routes = [
     schemas: [LOCAL_BUSINESS],
     content: `
       <h1>Request a Safety Walkthrough</h1>
-      <p>Schedule an on-site safety walkthrough with GigLine Safety &amp; Compliance. One visit. Clear findings. Written report within 48 hours. <strong>Starting at $1,200</strong>.</p>
+      <p>Schedule an on-site safety walkthrough with GigLine Safety &amp; Compliance. One visit. Clear findings. Written report within 48 hours. <strong>Starting at $1,300</strong>.</p>
       <p>Serving small manufacturers, warehouses, contractors, and fleets in the Kernersville/Triad, NC area.</p>
 
       <h2>Three ways to reach Vince</h2>
@@ -869,7 +869,7 @@ const routes = [
       <h2>Pricing</h2>
       <p><strong>Digital Kit &mdash; $600.</strong> Instant download. All 17 documents as print-ready PDFs, plus the complete 20-page bound system.</p>
       <p><strong>Physical Binder Kit &mdash; $700.</strong> Printed and bound in a 3-ring binder. Includes the GigLine 2026 Triad OSHA Field Manual and a personal contact card for direct access to Vince. Free USPS Priority shipping &mdash; delivered within 3 business days.</p>
-      <p><em>Included at no additional cost with every Compliance Readiness Visit ($2,000).</em></p>
+      <p><em>Included at no additional cost with every Compliance Readiness Visit ($2,500).</em></p>
 
       <h2>Questions?</h2>
       <p>Call or text <a href="tel:+13363298899">(336) 329-8899</a>. Vince picks up.</p>
@@ -965,7 +965,7 @@ const routes = [
       <h2>The Pattern</h2>
       <p>AI-generated documents that don&rsquo;t match actual operations, missing machine-specific procedures, chemical hazards without complete SDS coverage, and physical hazards the team has stopped seeing &mdash; these are among the most frequently cited violations in general industry OSHA enforcement. They are also fixable.</p>
 
-      <p>A Safety Walkthrough starts at $1,200. Written report within 48 hours. <a href="https://www.giglinecompliance.com/intake?service=safety-walkthrough-report">Request a Walkthrough</a>.</p>
+      <p>A Safety Walkthrough starts at $1,300. Written report within 48 hours. <a href="https://www.giglinecompliance.com/intake?service=safety-walkthrough-report">Request a Walkthrough</a>.</p>
 
       <p>GigLine Safety &amp; Compliance &mdash; Vince Lawrence &mdash; (336) 329-8899 &mdash; <a href="https://www.giglinecompliance.com">giglinecompliance.com</a></p>
     `,
@@ -1164,14 +1164,14 @@ const routes = [
       </ul>
 
       <h2>Reading is the easy part.</h2>
-      <p>See what these standards look like on your floor. <a href="/intake?service=safety-walkthrough-report&utm_source=osha-guide-pillar&utm_medium=website&utm_campaign=pillar-cta">Request a Safety Walkthrough</a>. From $1,200. Findings in 48 hours. NC Piedmont Triad.</p>
+      <p>See what these standards look like on your floor. <a href="/intake?service=safety-walkthrough-report&utm_source=osha-guide-pillar&utm_medium=website&utm_campaign=pillar-cta">Request a Safety Walkthrough</a>. From $1,300. Findings in 48 hours. NC Piedmont Triad.</p>
       <p>GigLine Safety &amp; Compliance — Vince Lawrence — (336) 329-8899 — Kernersville, NC</p>
     `,
   },
   {
     path: '/safety-walkthrough',
     title: 'Safety Walkthrough — On-Site OSHA Review for NC Operations | GigLine',
-    description: 'On-site safety walkthrough for manufacturers, warehouses, contractors, and fleet operations across North Carolina. Photo-documented findings, OSHA references, and a written report in 48 hours. Starting at $1,200.',
+    description: 'On-site safety walkthrough for manufacturers, warehouses, contractors, and fleet operations across North Carolina. Photo-documented findings, OSHA references, and a written report in 48 hours. Starting at $1,300.',
     canonical: '/safety-walkthrough',
     schemas: [
       {
@@ -1187,13 +1187,13 @@ const routes = [
         { q: 'Who is the safety walkthrough built for?', a: 'Small to mid-size manufacturers, warehouses, distribution centers, contractors, and fleet operations in North Carolina — typically 5 to 100 employees with no full-time safety manager on staff.' },
         { q: 'What gets reviewed during a safety walkthrough?', a: 'Walking-working surfaces and egress, electrical panel clearance, machine guarding and energy control, powered industrial trucks, hazard communication, PPE and fall protection, and recordkeeping — the same OSHA standards an inspector would focus on.' },
         { q: 'What do I receive after the walkthrough?', a: 'A PDF report within 48 hours with photo-documented findings, OSHA-related references where applicable, prioritized corrective action recommendations, and color-coded priorities (RED, AMBER, GREEN).' },
-        { q: 'How much does a safety walkthrough cost?', a: 'Walkthroughs start at $1,200. Most engagements fall between $1,200 and $2,000 depending on size and scope. Fixed quote before scheduling. No retainer.' },
+        { q: 'How much does a safety walkthrough cost?', a: 'Walkthroughs start at $1,300. Most engagements fall between $1,300 and $2,100 depending on size and scope. Fixed quote before scheduling. No retainer.' },
       ]),
       breadcrumb([{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }, { name: 'Safety Walkthrough', path: '/safety-walkthrough' }]),
     ],
     content: `
       <h1>On-Site Safety Walkthroughs for Manufacturers, Warehouses, Contractors &amp; Fleets</h1>
-      <p>A trained outside eye on your floor. We walk your operation the way an OSHA Compliance Officer would, flag what would get cited, and hand you a written, prioritized fix list within 48 hours. Starting at $1,200.</p>
+      <p>A trained outside eye on your floor. We walk your operation the way an OSHA Compliance Officer would, flag what would get cited, and hand you a written, prioritized fix list within 48 hours. Starting at $1,300.</p>
       <h2>Who It's For</h2>
       <p>Small to mid-size manufacturer, warehouse, distribution center, contractor, or fleet operation in North Carolina with 5 to 100 employees and no full-time safety manager. Especially built for operations with OSHA on the calendar, a recent recordable injury, or a recent expansion.</p>
       <h2>What's Reviewed</h2>
@@ -1209,7 +1209,7 @@ const routes = [
   {
     path: '/forklift-compliance-review-nc',
     title: 'Forklift Safety Compliance Review NC | GigLine Safety & Compliance',
-    description: 'On-site forklift / Powered Industrial Truck safety compliance review for NC manufacturers, warehouses, and distribution operations. 29 CFR 1910.178. Written report in 48 hours. From $1,200.',
+    description: 'On-site forklift / Powered Industrial Truck safety compliance review for NC manufacturers, warehouses, and distribution operations. 29 CFR 1910.178. Written report in 48 hours. From $1,300.',
     canonical: '/forklift-compliance-review-nc',
     schemas: [
       {
@@ -1226,13 +1226,13 @@ const routes = [
         { q: 'What does the Forklift Compliance Review cover?', a: 'The written PIT program against your actual fleet, operator certification roster vs. floor operators, daily pre-shift inspection logs, forklift physical condition (forks, seat belt, horn, tires, data plate), pedestrian / forklift separation and aisle marking, charging or propane storage compliance, and refresher training documentation.' },
         { q: 'Which OSHA standard governs forklifts?', a: '29 CFR 1910.178 (Powered Industrial Trucks). This is consistently one of OSHA\'s most-cited general-industry standards.' },
         { q: 'How long does the on-site visit take?', a: 'Typically 1 to 3 hours on the floor depending on fleet size. Written report delivered within 48 hours.' },
-        { q: 'How much does a Forklift Compliance Review cost?', a: 'From $1,200. Fixed quote provided before scheduling. No retainer.' },
+        { q: 'How much does a Forklift Compliance Review cost?', a: 'From $1,300. Fixed quote provided before scheduling. No retainer.' },
       ]),
       breadcrumb([{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }, { name: 'Forklift Compliance Review', path: '/forklift-compliance-review-nc' }]),
     ],
     content: `
       <h1>Forklift Safety Compliance Review for NC Operations</h1>
-      <p>Powered Industrial Trucks are one of OSHA's most-cited general-industry standards. A focused on-site review of your forklift program, daily inspections, operator certifications, and floor practices — written report in 48 hours. From $1,200.</p>
+      <p>Powered Industrial Trucks are one of OSHA's most-cited general-industry standards. A focused on-site review of your forklift program, daily inspections, operator certifications, and floor practices — written report in 48 hours. From $1,300.</p>
       <h2>Built for Operations Running 1 to 12 Forklifts</h2>
       <p>Small manufacturers and warehouses running propane, electric, or LPG forklifts. Distribution and 3PL operations with multiple shifts and rotating operators. Operations that have had a forklift near-miss, complaint, or recent operator turnover. Plant managers who are not sure whether last year's operator certifications are still current.</p>
       <h2>Common Findings</h2>
@@ -1247,7 +1247,7 @@ const routes = [
   {
     path: '/loto-procedure-review-nc',
     title: 'Lockout Tagout Procedure Review NC | GigLine Safety & Compliance',
-    description: 'On-site Lockout/Tagout (LOTO) procedure review for NC manufacturers and fabricators. Machine-specific procedures, authorized employee training, annual audit. 29 CFR 1910.147. From $1,200.',
+    description: 'On-site Lockout/Tagout (LOTO) procedure review for NC manufacturers and fabricators. Machine-specific procedures, authorized employee training, annual audit. 29 CFR 1910.147. From $1,300.',
     canonical: '/loto-procedure-review-nc',
     schemas: [
       {
@@ -1264,13 +1264,13 @@ const routes = [
         { q: 'What does the LOTO Procedure Review cover?', a: 'Written Control of Hazardous Energy program against your actual machinery, machine-specific lockout procedures with energy-source identification, authorized vs. affected employee training rosters, lock and tag hardware (sufficient padlocks, dedicated assignments), annual procedure audit documentation, and group lockout / shift change practices.' },
         { q: 'Which OSHA standard governs LOTO?', a: '29 CFR 1910.147 (Control of Hazardous Energy / Lockout-Tagout). LOTO failures are one of OSHA\'s top fatality-driver standards.' },
         { q: 'Are machine-specific procedures actually required?', a: 'Yes — under 1910.147(c)(4), a written procedure must exist for each machine or piece of equipment that has more than one energy source or that requires more than a simple single-source lockout.' },
-        { q: 'How much does a LOTO Procedure Review cost?', a: 'From $1,200. Fixed quote provided before scheduling. No retainer.' },
+        { q: 'How much does a LOTO Procedure Review cost?', a: 'From $1,300. Fixed quote provided before scheduling. No retainer.' },
       ]),
       breadcrumb([{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }, { name: 'LOTO Procedure Review', path: '/loto-procedure-review-nc' }]),
     ],
     content: `
       <h1>Lockout/Tagout Procedure Review for NC Operations</h1>
-      <p>LOTO failures are one of OSHA's top fatality-driver standards. A focused on-site review of your machine-specific procedures, authorized employee training, energy-isolation hardware, and annual audit — written report in 48 hours. From $1,200.</p>
+      <p>LOTO failures are one of OSHA's top fatality-driver standards. A focused on-site review of your machine-specific procedures, authorized employee training, energy-isolation hardware, and annual audit — written report in 48 hours. From $1,300.</p>
       <h2>Built for Manufacturers, Fabricators &amp; Maintenance-Intensive Operations</h2>
       <p>Small to mid-size manufacturers and fabricators with multiple energy sources on the floor (electrical, pneumatic, hydraulic, thermal, gravity). Operations where maintenance is performed by in-house technicians, contractors, or rotating shift supervisors. Operations preparing for an OSHA inspection, an insurance loss-control audit, or a customer compliance review.</p>
       <h2>Common Findings</h2>
@@ -1376,13 +1376,13 @@ const routes = [
         { q: 'Who is a Compliance Readiness Visit for?', a: 'Operations with OSHA on the calendar, those that had a recordable injury or workers\' comp flag, businesses where an insurance carrier or major customer asked for documented compliance evidence, or operations going through M&A due diligence.' },
         { q: 'What is included in a Compliance Readiness Visit?', a: 'A combined on-site walkthrough and OSHA Documentation Readiness Review — covering both the floor AND the binder, plus a cross-check between them. Includes the GigLine Supervisor Safety OS.' },
         { q: 'How is this different from a safety walkthrough?', a: 'A safety walkthrough covers the floor. An OSHA Documentation Readiness Review covers the binder. A Compliance Readiness Visit does both, plus a cross-check that confirms the floor reality matches the written programs.' },
-        { q: 'How much does a Compliance Readiness Visit cost?', a: 'Compliance Readiness Visits start at $2,000. Custom-quoted by operation size and scope. No retainer.' },
+        { q: 'How much does a Compliance Readiness Visit cost?', a: 'Compliance Readiness Visits start at $2,500. Custom-quoted by operation size and scope. No retainer.' },
       ]),
       breadcrumb([{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }, { name: 'Compliance Readiness Visit', path: '/osha-compliance-gap-check' }]),
     ],
     content: `
       <h1>A Compliance Readiness Visit Before an Inspection, Audit, or Insurance Review</h1>
-      <p>The most thorough engagement GigLine offers. A combined on-site walkthrough and documentation review — covering the floor AND the binder — so you know exactly where you stand against the OSHA standards that apply to your operation. Most engagements between $1,200 and $2,400.</p>
+      <p>The most thorough engagement GigLine offers. A combined on-site walkthrough and documentation review — covering the floor AND the binder — so you know exactly where you stand against the OSHA standards that apply to your operation. Most engagements between $1,300 and $2,400.</p>
       <h2>Who It's For</h2>
       <p>OSHA inspection on the calendar. Recent recordable injury, severe near-miss, or workers' comp flag. Insurance carrier or major customer requesting documented compliance evidence. M&amp;A due diligence. New safety responsibility and need a full independent baseline.</p>
       <h2>What's Reviewed</h2>
@@ -1513,10 +1513,10 @@ const routes = [
 const SERVICE_DETAIL_ROUTES = [
   {
     slug: 'safety-walkthrough-report',
-    title: 'Safety Walkthrough Report — From $1,200 | GigLine',
+    title: 'Safety Walkthrough Report — From $1,300 | GigLine',
     description: 'On-site OSHA walkthrough with photo-documented findings, CFR citations, and a 48-hour written report. Fixed quote. Private engagement. Serving the Piedmont Triad.',
     h1: 'Find what\'s exposed. Before OSHA does.',
-    summary: 'An on-site walkthrough focused purely on physical hazards. Photo-documented findings, CFR citations, and a prioritized fix list delivered within 48 hours. From $1,200.',
+    summary: 'An on-site walkthrough focused purely on physical hazards. Photo-documented findings, CFR citations, and a prioritized fix list delivered within 48 hours. From $1,300.',
     price: '1200',
     breadcrumbName: 'Safety Walkthrough Report',
   },
@@ -1531,10 +1531,10 @@ const SERVICE_DETAIL_ROUTES = [
   },
   {
     slug: 'compliance-readiness-visit',
-    title: 'Compliance Readiness Visit — From $2,000 | GigLine',
-    description: "GigLine's most requested engagement. On-site walkthrough + documentation review in a single visit. 18-page CFR-cited report. 90-day remediation tracker. From $2,000.",
+    title: 'Compliance Readiness Visit — From $2,500 | GigLine',
+    description: "GigLine's most requested engagement. On-site walkthrough + documentation review in a single visit. 18-page CFR-cited report. 90-day remediation tracker. From $2,500.",
     h1: 'Floor and files reviewed in a single engagement.',
-    summary: 'The most requested GigLine engagement. A Safety Walkthrough and OSHA Documentation Readiness Review combined into a single on-site visit. 18-page CFR-cited report delivered in 48 hours. From $2,000.',
+    summary: 'The most requested GigLine engagement. A Safety Walkthrough and OSHA Documentation Readiness Review combined into a single on-site visit. 18-page CFR-cited report delivered in 48 hours. From $2,500.',
     price: '2000',
     breadcrumbName: 'Compliance Readiness Visit',
   },
@@ -1571,8 +1571,17 @@ const SERVICE_DETAIL_ROUTES = [
     description: 'A complete OSHA control system for small manufacturers — written programs, training, recordkeeping, and audit-ready documentation, built and maintained by GigLine.',
     h1: 'A complete OSHA control system built around your operation.',
     summary: 'A premium engagement for small manufacturers ready to operate at full OSHA-ready status. Written programs, training, recordkeeping, and audit-ready documentation built and maintained by GigLine.',
-    price: '18000',
+    price: '4500',
     breadcrumbName: 'OSHA-Ready Control System',
+  },
+  {
+    slug: 'corrective-action-implementation',
+    title: 'Corrective Action Implementation — Close the Findings | GigLine',
+    description: 'GigLine helps close selected safety-control findings after an assessment. Hands-on implementation. Custom-quoted per facility. Typically from $2,500 depending on scope.',
+    h1: 'We found the gap. Now GigLine can help you close it.',
+    summary: 'Hands-on implementation of selected safety-control findings identified in a GigLine assessment or comparable review. Includes organizing PIT authorization, HazCom evidence, training records, corrective-action tracking, and document control. Custom-quoted per facility. Typically from $2,500 — quote reflects number of findings, complexity, program area, facility size, employees, shifts, travel, and amount of hands-on work.',
+    price: '2500',
+    breadcrumbName: 'Corrective Action Implementation',
   },
 ];
 
@@ -1625,8 +1634,8 @@ const CITY_META = {
 
 Object.keys(CITY_META).forEach((city) => {
   const m = CITY_META[city];
-  const priceTop = 2000;
-  const priceStartLabel = m.travelNote ? `$1,200 + travel fee` : `$${m.price.toLocaleString()}`;
+  const priceTop = 2100;
+  const priceStartLabel = m.travelNote ? `$1,300 + travel fee` : `$${m.price.toLocaleString()}`;
   const priceRangeLabel = `$${m.price.toLocaleString()}–$${priceTop.toLocaleString()}`;
   const cityFaqs = [
     { q: `How much does a safety walkthrough cost in ${m.name}, NC?`, a: `Safety walkthroughs for ${m.name}-area operations start at ${priceStartLabel}. Most small operations fall in the ${priceRangeLabel} range depending on square footage and scope. You'll receive a fixed quote before scheduling.${m.travelNote ? ` ${m.name} is outside the Triad core, so a travel fee applies in addition to the base walkthrough price.` : ''}` },
@@ -2214,7 +2223,7 @@ routes.push({
     <h2>How to close the gap before a citation</h2>
     <p>This calculator sizes the exposure. The next step is closing it. GigLine offers two direct paths, depending on how ready you are today:</p>
     <ul>
-      <li><a href="/safety-walkthrough">Book an on-site Safety Walkthrough</a> &mdash; a written findings report within 48 hours mapped to the CFR standard OSHA cites for each finding. Priced from $1,200.</li>
+      <li><a href="/safety-walkthrough">Book an on-site Safety Walkthrough</a> &mdash; a written findings report within 48 hours mapped to the CFR standard OSHA cites for each finding. Priced from $1,300.</li>
       <li><a href="/citation-proof-kits">Start with a Citation-Proof Kit</a> &mdash; self-build documentation systems for LOTO, Forklift/PIT, HazCom, Incident-to-Correction, and New Hire Orientation. Digital tier starts at $150.</li>
     </ul>
 

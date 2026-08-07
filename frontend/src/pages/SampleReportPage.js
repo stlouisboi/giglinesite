@@ -274,7 +274,7 @@ const SampleReportPage = () => {
             <ArrowRight size={18} />
           </Link>
           <p className="text-sm text-white/40 mt-5">
-            Starting at $1,200. Written report within 48 hours.
+            Starting at $1,300. Written report within 48 hours.
           </p>
         </div>
       </section>

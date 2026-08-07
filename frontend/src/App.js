@@ -54,6 +54,7 @@ const TermsOfServicePage              = lazy(() => import('./pages/TermsOfServic
 const SafetyWalkthroughPage           = lazy(() => import('./pages/SafetyWalkthroughPage'));
 const IncidentReviewPage              = lazy(() => import('./pages/IncidentReviewPage'));
 const OshaReadyControlSystemPage      = lazy(() => import('./pages/OshaReadyControlSystemPage'));
+const CorrectiveActionImplementationPage = lazy(() => import('./pages/CorrectiveActionImplementationPage'));
 const DocumentationGapCheckPage       = lazy(() => import('./pages/DocumentationGapCheckPage'));
 const OshaComplianceGapCheckPage      = lazy(() => import('./pages/OshaComplianceGapCheckPage'));
 
@@ -141,6 +142,7 @@ function App() {
                     <Route path="/services/safety-walkthrough-report" element={<Navigate to="/safety-walkthrough" replace />} />
                     <Route path="/services/incident-review" element={<IncidentReviewPage />} />
                     <Route path="/services/osha-ready-control-system" element={<OshaReadyControlSystemPage />} />
+                    <Route path="/services/corrective-action-implementation" element={<CorrectiveActionImplementationPage />} />
                     <Route path="/services/:slug" element={<ServiceDetailPage />} />
                     <Route path="/about" element={<AboutPage />} />
                     <Route path="/contact" element={<ContactPage />} />

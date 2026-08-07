@@ -125,7 +125,7 @@ const BlogHubPage = () => {
       <section className="py-14 md:py-20 bg-[#102A43] text-white">
         <div className="container max-w-3xl text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>Ready to see how your operation compares?</h2>
-          <p className="text-white/70 leading-relaxed mb-8">A GigLine Safety Walkthrough puts everything in these guides against your actual floor. Fixed quote from $1,200. Written report in 48 hours. Private engagement.</p>
+          <p className="text-white/70 leading-relaxed mb-8">A GigLine Safety Walkthrough puts everything in these guides against your actual floor. Fixed quote from $1,300. Written report in 48 hours. Private engagement.</p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link to="/intake" className="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#B8972C] text-[#102A43] font-bold px-8 py-4 rounded transition-colors">Request a Walkthrough <ArrowRight size={16} /></Link>
             <Link to="/safety-check" className="inline-flex items-center gap-2 border border-white/30 hover:border-[#C9A84C] text-white font-bold px-8 py-4 rounded transition-colors">Run the Free Safety Check <ArrowRight size={16} /></Link>

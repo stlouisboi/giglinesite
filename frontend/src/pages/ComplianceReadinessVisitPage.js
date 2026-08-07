@@ -210,8 +210,8 @@ const ComplianceReadinessVisitPage = () => {
   return (
     <main data-testid="compliance-readiness-visit-page">
       <SEO
-        title="Compliance Readiness Visit — From $2,000 | GigLine"
-        description="The floor and the files reviewed in a single engagement. 18-page CFR-cited field audit report delivered within 48 hours. 90-day remediation tracker, OSHA guidance sheet, and 30-day check-in call included. From $2,000."
+        title="Compliance Readiness Visit — From $2,500 | GigLine"
+        description="The floor and the files reviewed in a single engagement. Written findings report delivered within 48 hours. 30-day corrective-action roadmap and findings-review call included. Starting at $2,500."
         canonical={`/services/${SLUG}`}
         schema={[
           {
@@ -229,7 +229,7 @@ const ComplianceReadinessVisitPage = () => {
               '@type': 'Offer',
               price: '2000',
               priceCurrency: 'USD',
-              description: 'Compliance Readiness Visit from $2,000 — combined walkthrough + documentation review.',
+              description: 'Compliance Readiness Visit from $2,500 — combined walkthrough + documentation review.',
             },
             description:
               'On-site walkthrough plus full documentation review delivered as a single 18-page CFR-cited field audit report within 48 hours.',
@@ -298,14 +298,14 @@ const ComplianceReadinessVisitPage = () => {
             }}
             data-testid="crv-price-block"
           >
-            {/* LEFT: From $2,000 */}
+            {/* LEFT: From $2,500 */}
             <div>
               <Eyebrow color={GOLD}>Fixed Price</Eyebrow>
               <p
                 className="text-3xl md:text-[34px] font-extrabold text-white leading-none mb-3 tracking-tight"
                 style={mono}
               >
-                From $2,000
+                From $2,500
               </p>
               <p className="text-[13px] text-white/55 leading-[1.65]">
                 Varies by facility size and employee count. Fixed quote provided before scheduling.
@@ -314,8 +314,8 @@ const ComplianceReadinessVisitPage = () => {
             {/* CENTER: Value comparison */}
             <div className="md:px-2">
               <p className="text-[14.5px] text-white/80 leading-[1.75]">
-                Booked separately, the Safety Walkthrough and Documentation Review start at <span className="font-bold text-white" style={mono}>$2,500</span>. The
-                Compliance Readiness Visit covers both in a single visit.
+                Booked separately, the Safety Walkthrough and Documentation Readiness Review total <span className="font-bold text-white" style={mono}>$3,000</span>. The
+                Compliance Readiness Visit covers both in a single visit &mdash; a <span className="font-bold text-white" style={mono}>$500</span> combined-service savings.
               </p>
             </div>
             {/* RIGHT: $16,550 penalty callout */}
@@ -713,7 +713,7 @@ const ComplianceReadinessVisitPage = () => {
                 Site-Specific
               </span>
               <p className="uppercase font-bold tracking-[0.22em] mb-3" style={{ color: GOLD, ...mono, fontSize: '11px' }}>
-                Compliance Readiness Visit — from $2,000
+                Compliance Readiness Visit — from $2,500
               </p>
               <p className="text-lg md:text-xl font-bold mb-4 leading-tight">
                 Vince walks your floor and reviews your binder.

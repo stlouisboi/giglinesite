@@ -328,7 +328,8 @@ const HomePage = () => {
                 num: '03',
                 title: 'Fixes',
                 headline: 'Close the priority gaps.',
-                body: 'Clients can act internally or engage GigLine for separately scoped Corrective Action Implementation.',
+                body: 'Use your internal team, or engage GigLine for hands-on Corrective Action Implementation around selected findings.',
+                cta: { label: 'Learn About Corrective Action Support \u2192', to: '/services/corrective-action-implementation' },
               },
               {
                 num: '04',
@@ -367,6 +368,16 @@ const HomePage = () => {
                   <p className="text-[14px] text-white/65 leading-relaxed">
                     {step.body}
                   </p>
+                  {step.cta && (
+                    <Link
+                      to={step.cta.to}
+                      className="inline-flex items-center gap-1 mt-4 text-[13px] font-semibold self-start hover:text-white transition-colors"
+                      style={{ color: '#C9A84C' }}
+                      data-testid={`buyer-journey-step-${step.num}-cta`}
+                    >
+                      {step.cta.label}
+                    </Link>
+                  )}
                 </div>
               </Reveal>
             ))}

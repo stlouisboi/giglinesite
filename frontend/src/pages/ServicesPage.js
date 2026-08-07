@@ -1028,6 +1028,141 @@ const ServicesPage = () => {
         );
       })}
 
+      {/* ═══ 6B. BUILD THE CONTROL — 2-card BUILD section (Aug 2026 refactor) ═══ */}
+      <section
+        className="py-16 md:py-24 border-t"
+        style={{ backgroundColor: '#FBFCFD', borderColor: '#dde3ea' }}
+        data-testid="services-build-the-control"
+      >
+        <div className="container max-w-6xl">
+          <Reveal>
+            <p
+              className="uppercase font-bold mb-3"
+              style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.22em', color: '#2A52A0' }}
+              data-testid="build-the-control-eyebrow"
+            >
+              BUILD THE CONTROL
+            </p>
+            <h2
+              className="text-3xl md:text-[42px] font-extrabold text-[#1C2B2B] leading-tight mb-4 max-w-3xl tracking-tight"
+              data-testid="build-the-control-headline"
+            >
+              Finding the gap is only the first step.
+            </h2>
+            <div className="mb-6" style={{ width: '48px', height: '3px', background: '#C9A84C', borderRadius: '2px' }} />
+            <p className="text-base md:text-[17px] text-[#1C2B2B]/70 leading-[1.75] max-w-3xl mb-10" data-testid="build-the-control-lede">
+              When a client wants help closing selected findings, GigLine can move from assessment into implementation.
+            </p>
+          </Reveal>
+
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8" data-testid="build-the-control-cards">
+            {/* CARD A — Corrective Action Implementation */}
+            <Reveal>
+              <div
+                className="h-full flex flex-col rounded-xl bg-white p-7 md:p-9"
+                style={{ border: '1px solid #dde3ea', borderTop: '3px solid #C9A84C' }}
+                data-testid="build-card-cai"
+              >
+                <p
+                  className="uppercase font-bold mb-2"
+                  style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.16em', color: '#C9A84C' }}
+                >
+                  Corrective Action Implementation
+                </p>
+                <h3
+                  className="text-2xl md:text-[26px] font-bold mb-3 leading-tight"
+                  style={{ color: '#102A43', fontFamily: "Georgia, 'Times New Roman', serif" }}
+                >
+                  Custom Quote
+                </h3>
+                <p className="text-[14.5px] text-[#1C2B2B]/70 mb-4 leading-[1.65]">
+                  Most projects begin at <span className="font-semibold text-[#1C2B2B]" style={mono}>$2,500</span>.
+                </p>
+                <p className="text-[15px] text-[#1C2B2B]/75 leading-[1.7] mb-6 flex-1">
+                  Best for selected findings or one defined implementation project. GigLine organizes ownership, records, and evidence around the specific findings you want closed.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3 mt-auto">
+                  <Link
+                    to="/intake?service=corrective-action-implementation"
+                    onClick={() => fireServicesCtaClick('Ask About Corrective Action Support', '/intake?service=corrective-action-implementation')}
+                    className="inline-flex items-center gap-2 font-bold py-3 px-5 rounded-lg text-[14px] transition-colors"
+                    style={{ background: '#102A43', color: 'white' }}
+                    data-testid="build-card-cai-cta"
+                  >
+                    Ask About Corrective Action Support
+                    <ArrowRight size={14} />
+                  </Link>
+                  <Link
+                    to="/services/corrective-action-implementation"
+                    className="inline-flex items-center gap-1 text-[#2A52A0] hover:text-[#1F3F80] font-semibold text-[13.5px] self-center"
+                    data-testid="build-card-cai-learn"
+                  >
+                    Learn more &rarr;
+                  </Link>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* CARD B — OSHA-Ready Control System */}
+            <Reveal delay={100}>
+              <div
+                className="h-full flex flex-col rounded-xl bg-white p-7 md:p-9"
+                style={{ border: '1px solid #dde3ea', borderTop: '3px solid #2A52A0' }}
+                data-testid="build-card-orcs"
+              >
+                <p
+                  className="uppercase font-bold mb-2"
+                  style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.16em', color: '#2A52A0' }}
+                >
+                  OSHA-Ready Control System
+                </p>
+                <h3
+                  className="text-2xl md:text-[26px] font-bold mb-3 leading-tight"
+                  style={{ color: '#102A43', fontFamily: "Georgia, 'Times New Roman', serif" }}
+                >
+                  Starting at $4,500
+                </h3>
+                <p className="text-[14.5px] text-[#1C2B2B]/70 mb-4 leading-[1.65]">
+                  Broader engagement across multiple connected control areas.
+                </p>
+                <p className="text-[15px] text-[#1C2B2B]/75 leading-[1.7] mb-6 flex-1">
+                  Best for multiple connected control areas or broader facility safety infrastructure. Physical command system, digital folder architecture, training matrix, and evidence system built to work together.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3 mt-auto">
+                  <a
+                    href="#control-system"
+                    className="inline-flex items-center gap-2 font-bold py-3 px-5 rounded-lg text-[14px] transition-colors"
+                    style={{ background: '#2A52A0', color: 'white' }}
+                    data-testid="build-card-orcs-cta"
+                  >
+                    Explore the Control System
+                    <ArrowRight size={14} />
+                  </a>
+                  <Link
+                    to="/services/osha-ready-control-system"
+                    className="inline-flex items-center gap-1 text-[#2A52A0] hover:text-[#1F3F80] font-semibold text-[13.5px] self-center"
+                    data-testid="build-card-orcs-learn"
+                  >
+                    See detail &rarr;
+                  </Link>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+
+          <Reveal delay={200}>
+            <p
+              className="text-[15px] md:text-base text-[#1C2B2B]/70 leading-[1.75] mt-10 max-w-3xl"
+              data-testid="build-the-control-distinction"
+            >
+              <span className="font-semibold text-[#1C2B2B]">Need selected findings fixed?</span> Corrective Action Implementation.
+              <br className="hidden md:block" />
+              <span className="font-semibold text-[#1C2B2B]">Need broader safety infrastructure built?</span> OSHA-Ready Control System.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ═══ 7. OSHA-READY CONTROL SYSTEM — Premium dedicated section ═══ */}
       <section className="py-20 md:py-28 scroll-mt-32" id="control-system" style={{ backgroundColor: '#102A43' }} data-testid="services-control-system">
         <div className="container max-w-6xl">

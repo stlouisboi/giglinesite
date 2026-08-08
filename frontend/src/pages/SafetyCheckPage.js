@@ -49,7 +49,7 @@ const SafetyCheckPage = () => {
   /* ── Scoring ── */
   const noCount = Object.values(answers).filter(a => a === 'no').length;
   const flaggedTopics = QUESTIONS.filter(q => answers[q.id] === 'no').map(q => q.topic);
-  const scoreLevel = noCount <= 1 ? 'low' : noCount <= 3 ? 'medium' : 'high';
+  const scoreLevel = noCount === 0 ? 'low' : noCount <= 3 ? 'medium' : 'high';
 
   // ─── Topic-aware routing (Aug 2026): map flagged topics → matching offer ──
   // Medium tier: single-topic dominance → matching kit or walkthrough
@@ -300,7 +300,12 @@ const SafetyCheckPage = () => {
       {/* ━━━ PHASE 3: RESULTS (tier-based) ━━━ */}
       {phase === 'results' && (() => {
         const confirmed = 6 - noCount; // Number of "Yes — Confirmed"
-        const tier = confirmed >= 5 ? 'low' : confirmed >= 3 ? 'medium' : 'high';
+        // Single-flag routing (Feb 2026): 1 flagged topic now unlocks the
+        // medium-tier kit route instead of falling into the low-tier guide.
+        //   low    = 0 flags  (all 6 confirmed)
+        //   medium = 1–3 flags (topic-routed to kit / walkthrough)
+        //   high   = 4+ flags (CRV / multi-control)
+        const tier = confirmed >= 6 ? 'low' : confirmed >= 3 ? 'medium' : 'high';
 
         const TIER = {
           low: {
@@ -314,8 +319,12 @@ const SafetyCheckPage = () => {
             label: 'GAPS IDENTIFIED',
             labelClass: 'bg-amber-400/15 text-amber-300 border-amber-300/30',
             scoreClass: 'text-amber-200',
-            headline: 'You have documented gaps in at least two cited areas.',
-            body: "These gaps are fixable — but they're also exactly what an OSHA inspector looks for. A walkthrough puts a written record in your hands before anyone else sees the floor.",
+            headline: noCount === 1
+              ? 'You have a documented gap in one cited area.'
+              : 'You have documented gaps in at least one cited area.',
+            body: noCount === 1
+              ? "Even one unconfirmed area is exactly what an OSHA inspector looks for first. The good news: it's fixable — and there's usually a matching kit or walkthrough that closes it fast."
+              : "These gaps are fixable — but they're also exactly what an OSHA inspector looks for. A walkthrough puts a written record in your hands before anyone else sees the floor.",
           },
           high: {
             label: 'HIGH EXPOSURE',

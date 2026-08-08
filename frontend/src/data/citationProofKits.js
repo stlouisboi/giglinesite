@@ -219,7 +219,7 @@ const KIT_DETAILS = {
     // Product image assets — content-rich compositions with baked-in copy.
     // Presence of these fields triggers image-driven section rendering.
     productImages: {
-      hero: '/assets/kits/loto/loto-hero.png',
+      hero: '/assets/kits/loto/loto-editorial-hero.jpg',
       problemPanel: '/assets/kits/loto/loto-problem-panel.png',
       whatsInside: '/assets/kits/loto/loto-whats-inside.png',
       physicalMockup: '/assets/kits/loto/loto-physical-mockup.png',
@@ -310,7 +310,7 @@ const KIT_DETAILS = {
     // Product image assets — content-rich compositions with baked-in copy.
     // Presence of these fields triggers image-driven section rendering.
     productImages: {
-      hero: '/assets/kits/pit/pit-hero.png',
+      hero: '/assets/kits/pit/pit-editorial-hero.jpg',
       problemPanel: '/assets/kits/pit/pit-problem-panel.png',
       problemPanelAlt: 'What this kit helps you organize — operator training, evaluation, and certification documentation',
       whatsInside: '/assets/kits/pit/pit-whats-inside.png',
@@ -400,7 +400,7 @@ const KIT_DETAILS = {
       { role: 'Small Business Owners', description: 'Have a written HazCom program that stands up to inspection.' },
     ],
     productImages: {
-      hero: '/assets/kits/hazcom-pro/hazcom-hero.png',
+      hero: '/assets/kits/hazcom-pro/hazcom-editorial-hero.jpg',
       whatsInside: '/assets/kits/hazcom-pro/hazcom-whats-inside.png',
       physicalMockup: '/assets/kits/hazcom-pro/hazcom-binder-600.png',
       deliverySection: '/assets/kits/hazcom-pro/hazcom-delivery.png',

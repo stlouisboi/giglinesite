@@ -87,72 +87,95 @@ const CorrectiveActionImplementationPage = () => (
 
     {/* ═══ HERO ═══ */}
     <section className="py-20 md:py-28" style={{ background: NAVY, color: 'white' }}>
-      <div className="container max-w-6xl grid lg:grid-cols-2 gap-10 items-start">
-        <div>
-          <p
-            className="uppercase tracking-[0.18em] font-semibold mb-4"
-            style={{ ...mono, fontSize: '11px', color: GOLD }}
-            data-testid="corrective-action-eyebrow"
-          >
-            BUILD · Corrective Action Implementation
-          </p>
-          <h1
-            className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
-            style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
-            data-testid="corrective-action-headline"
-          >
-            We found the gap. Now GigLine can help you close it.
-          </h1>
-          <p className="text-base md:text-lg text-white/75 leading-relaxed mb-6 max-w-xl">
-            After an assessment identifies what needs to change, Corrective Action Implementation is
-            the hands-on engagement that closes selected findings — with ownership, records, and
-            evidence organized so the control actually works between visits.
-          </p>
-          <p className="text-sm text-white/55 leading-relaxed mb-8 max-w-xl">
-            Not another assessment. Not a subscription. A separately scoped engagement to organize
-            the ownership, records, and evidence around the specific findings you want closed.
-          </p>
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-            <Link
-              to="/intake?service=corrective-action-implementation"
-              className="inline-flex items-center gap-2 bg-white hover:bg-white/95 font-bold px-7 py-4 rounded-lg transition-colors"
-              style={{ color: NAVY }}
-              data-testid="corrective-action-hero-cta"
+      <div className="container max-w-6xl">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-14 items-center mb-12">
+          <div>
+            <p
+              className="uppercase tracking-[0.18em] font-semibold mb-4"
+              style={{ ...mono, fontSize: '11px', color: GOLD }}
+              data-testid="corrective-action-eyebrow"
             >
-              Ask About Corrective Action Support
-              <ArrowRight size={18} />
-            </Link>
-            <a
-              href="tel:3363298899"
-              className="inline-flex items-center gap-2 text-white/85 hover:text-white font-semibold text-base underline underline-offset-4 decoration-white/30 hover:decoration-white transition-colors"
-              data-testid="corrective-action-hero-phone"
+              BUILD · Corrective Action Implementation
+            </p>
+            <h1
+              className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+              data-testid="corrective-action-headline"
             >
-              <Phone size={16} />
-              (336) 329-8899
-            </a>
+              We found the gap. Now GigLine can help you close it.
+            </h1>
+            <p className="text-base md:text-lg text-white/75 leading-relaxed mb-6 max-w-xl">
+              After an assessment identifies what needs to change, Corrective Action Implementation is
+              the hands-on engagement that closes selected findings — with ownership, records, and
+              evidence organized so the control actually works between visits.
+            </p>
+            <p className="text-sm text-white/55 leading-relaxed mb-8 max-w-xl">
+              Not another assessment. Not a subscription. A separately scoped engagement to organize
+              the ownership, records, and evidence around the specific findings you want closed.
+            </p>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+              <Link
+                to="/intake?service=corrective-action-implementation"
+                className="inline-flex items-center gap-2 bg-white hover:bg-white/95 font-bold px-7 py-4 rounded-lg transition-colors"
+                style={{ color: NAVY }}
+                data-testid="corrective-action-hero-cta"
+              >
+                Ask About Corrective Action Support
+                <ArrowRight size={18} />
+              </Link>
+              <a
+                href="tel:3363298899"
+                className="inline-flex items-center gap-2 text-white/85 hover:text-white font-semibold text-base underline underline-offset-4 decoration-white/30 hover:decoration-white transition-colors"
+                data-testid="corrective-action-hero-phone"
+              >
+                <Phone size={16} />
+                (336) 329-8899
+              </a>
+            </div>
+          </div>
+
+          <div
+            className="rounded-xl overflow-hidden"
+            style={{ border: '1px solid rgba(201,168,76,0.30)', boxShadow: '0 20px 60px -20px rgba(0,0,0,0.55)' }}
+            data-testid="cai-hero-image-wrap"
+          >
+            <img
+              src="/service-hero-cai.jpg"
+              alt="Safety technician in an orange safety vest kneeling to install a bright yellow machine guard on a metal-shop lathe with a wrench, an open Corrective Actions binder and torque wrench on the workbench alongside, with a forklift and shop floor blurred in the background"
+              width="1600"
+              height="900"
+              loading="eager"
+              fetchPriority="high"
+              className="w-full h-auto block"
+              data-testid="cai-hero-image"
+            />
           </div>
         </div>
 
+        {/* Pricing panel — spans full width beneath hero */}
         <div
-          className="rounded-xl p-8"
+          className="rounded-xl p-8 grid grid-cols-1 md:grid-cols-[minmax(260px,320px)_1fr] gap-7 md:gap-10 items-start"
           style={{
             background: 'rgba(255,255,255,0.04)',
             border: '1px solid rgba(255,255,255,0.10)',
           }}
+          data-testid="cai-pricing-panel"
         >
-          <p
-            className="uppercase font-bold mb-2"
-            style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.14em', color: GOLD }}
-          >
-            Pricing
-          </p>
-          <p className="text-4xl md:text-5xl font-extrabold text-white mb-2 leading-none" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }} data-testid="cai-hero-price-primary">
-            Custom Quote
-          </p>
-          <p className="text-white/70 mb-6 text-[15px] leading-relaxed" data-testid="cai-hero-price-support">
-            Most projects begin at <span className="font-semibold text-white" style={mono}>$2,500</span>. Fixed price before scheduling. Implementation is always separately scoped — the quote varies with findings, complexity, and facility size.
-          </p>
-          <div style={{ borderTop: '1px solid rgba(255,255,255,0.10)' }} className="pt-5">
+          <div>
+            <p
+              className="uppercase font-bold mb-2"
+              style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.14em', color: GOLD }}
+            >
+              Pricing
+            </p>
+            <p className="text-4xl md:text-5xl font-extrabold text-white mb-2 leading-none" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }} data-testid="cai-hero-price-primary">
+              Custom Quote
+            </p>
+            <p className="text-white/70 text-[15px] leading-relaxed" data-testid="cai-hero-price-support">
+              Most projects begin at <span className="font-semibold text-white" style={mono}>$2,500</span>. Fixed price before scheduling. Implementation is always separately scoped — the quote varies with findings, complexity, and facility size.
+            </p>
+          </div>
+          <div>
             <p
               className="uppercase font-bold mb-3"
               style={{ ...mono, fontSize: '10px', letterSpacing: '0.14em', color: 'rgba(255,255,255,0.55)' }}

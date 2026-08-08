@@ -154,6 +154,11 @@ React 18 (CRA), Tailwind, FastAPI, MongoDB (motor), Stripe LIVE, Resend LIVE, Ma
 - 2026-02 (prev fork) — Legacy `/onboarding` retired.
 - 2026-02 (prev fork) — Factual sweep + Google Review UTM consolidation.
 - 2026-02 (prev fork) — 9 new Field Notes (25 total) + backlink playbook.
+- **2026-02 — Product Discovery Update (Phase 1 + Phase 2)**:
+  - `/services` MAINTAIN column expanded from 3 → 5 items in exact order: Citation-Proof Kit Series ($150/$300/$600) → Supervisor Safety OS (From $600, `/supervisor-kit`) → HazCom Starter Pack ($29, `/hazcom-starter-pack`) → Quarterly Compliance Maintenance (From $950/quarter) → Annual Compliance Control Partner ($12,000/year). Existing card component/pattern reused; no visual redesign. `ServicesPage.js` lines ~495–500.
+  - Homepage: new **Secondary Product Discovery Strip** inserted immediately below the Floor→Findings→Fixes→Proof section (before "What we find on the floor"). Heading "Build the control your team can run.", supporting copy "GigLine tools help operations turn safety expectations into assigned ownership, usable records, corrective-action follow-up, and retrievable proof." 3 lightweight cards: Citation-Proof Kit Series ($150–$600, `/citation-proof-kits`), Supervisor Safety OS (From $600, `/supervisor-kit`), HazCom Starter Pack ($29, `/hazcom-starter-pack`). Warm cream `#f5f4f0` background, gold top-rule, muted CTAs — intentionally quieter than the primary CRV CTA and the dark-navy Citation-Proof Kit Series band further down. `data-testid="home-product-discovery-strip"` and per-card CTAs. Includes disclaimer footnote that tools do not replace Walkthroughs / Documentation Readiness Review / CRV. `HomePage.js` inserted after buyer-journey (line ~395).
+  - Supervisor Safety OS pricing confirmed on existing product page: $600 digital / $700 physical binder → per spec, displayed as "From $600" everywhere.
+  - No navbar changes. No SEO route/metadata changes. No changes to Safety Walkthrough / Doc Readiness Review / CRV / OSHA-Ready Control System / Corrective Action Implementation pricing.
 
 ## Test Credentials
 See `/app/memory/test_credentials.md`.

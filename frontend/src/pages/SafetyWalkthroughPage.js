@@ -105,7 +105,7 @@ const SafetyWalkthroughPage = () => {
         <div className="container max-w-6xl">
           <Eyebrow>What&apos;s Included</Eyebrow>
           <h2 className="text-3xl md:text-4xl font-extrabold leading-[1.15] mb-12 tracking-tight max-w-3xl" style={{ color: NAVY }}>Three deliverables. One visit.</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
             {DELIVERABLES.map((d, i) => {
               const Icon = d.icon;
               return (

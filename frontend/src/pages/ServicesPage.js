@@ -338,18 +338,18 @@ const ServicesPage = () => {
         style={{ backgroundColor: '#102A43' }}
         data-testid="services-hero"
       >
-        <div className="flex flex-col md:flex-row min-h-[480px] md:min-h-[560px]">
-          {/* Image — left 40% on desktop, top on mobile */}
-          <div className="relative w-full md:w-2/5 md:flex-shrink-0">
+        <div className="flex flex-col lg:flex-row min-h-[480px] lg:min-h-[560px]">
+          {/* Image — left 40% on desktop, top on mobile + tablet */}
+          <div className="relative w-full lg:w-2/5 lg:flex-shrink-0">
             <img src="/services-hero.webp" height="900" width="1600"
               alt="On-site safety walkthrough — warehouse and manufacturing operations across the Piedmont Triad"
-              className="w-full h-64 md:h-full object-cover"
+              className="w-full h-64 md:h-80 lg:h-full object-cover"
               loading="eager"
               fetchPriority="high"
               data-testid="services-hero-image" />
             {/* Soft navy fade on right edge to blend into copy panel on desktop */}
             <div
-              className="hidden md:block absolute inset-y-0 right-0 w-24 pointer-events-none"
+              className="hidden lg:block absolute inset-y-0 right-0 w-24 pointer-events-none"
               style={{
                 background: 'linear-gradient(to right, rgba(11,31,51,0) 0%, rgba(11,31,51,0.92) 100%)',
               }}

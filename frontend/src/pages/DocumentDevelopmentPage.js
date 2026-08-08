@@ -284,7 +284,7 @@ const DocumentDevelopmentPage = () => {
           <h2 className="text-3xl md:text-4xl font-extrabold text-[#1C2B2B] leading-[1.15] mb-12 tracking-tight max-w-3xl">
             If the document doesn&apos;t exist, the program doesn&apos;t exist.
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {WHY_CARDS.map((card, i) => {
               const Icon = card.icon;
               return (
@@ -486,7 +486,7 @@ const DocumentDevelopmentPage = () => {
           <h2 className="text-3xl md:text-4xl font-extrabold text-[#1C2B2B] leading-[1.15] mb-12 tracking-tight max-w-3xl">
             Three steps from gap to compliant document.
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
             {PROCESS_STEPS.map((step, i) => (
               <div
                 key={i}

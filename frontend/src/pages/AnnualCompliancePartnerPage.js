@@ -329,7 +329,7 @@ const AnnualCompliancePartnerPage = () => {
             <h2 className="text-3xl md:text-4xl font-extrabold leading-[1.15] mb-12 tracking-tight text-white max-w-4xl">
               The Annual Compliance Partner is right for you when:
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
               {WHO_CARDS.map((card, i) => (
                 <div
                   key={i}

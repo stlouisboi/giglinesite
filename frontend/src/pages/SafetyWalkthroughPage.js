@@ -70,20 +70,40 @@ const SafetyWalkthroughPage = () => {
       {/* Hero + 2-col Fixed Price block */}
       <section className="pt-20 md:pt-24 pb-16 md:pb-20" style={{ background: NAVY }} data-testid="sw-hero">
         <div className="container max-w-6xl">
-          <Eyebrow color={GOLD}>Safety Walkthrough</Eyebrow>
-          <h1 className="text-3xl md:text-4xl lg:text-[52px] font-extrabold leading-[1.08] mb-7 tracking-tight text-white max-w-5xl">
-            <span className="block">Find what&apos;s exposed.</span>
-            <span className="block" style={{ color: GOLD }}>Before OSHA does.</span>
-          </h1>
-          <p className="text-base md:text-lg text-white/75 leading-[1.8] mb-9 max-w-3xl">
-            An on-site walkthrough focused purely on physical hazards. Photo-documented findings with CFR citations and a prioritized fix list — delivered within 48 hours. The fastest way to know where your operation stands.
-          </p>
-          <div className="flex flex-wrap items-center gap-x-7 gap-y-3 mb-12">
-            <Link to={INTAKE_HREF} className="inline-flex items-center justify-center gap-2 font-bold px-6 py-3.5 rounded-lg text-[15px] transition-colors text-white" style={{ background: BLUE }} onMouseEnter={(e) => (e.currentTarget.style.background = '#1F3F80')} onMouseLeave={(e) => (e.currentTarget.style.background = BLUE)} data-testid="sw-cta-hero">
-              Request a Safety Walkthrough <ArrowRight size={17} />
-            </Link>
-            <span className="inline-flex items-center gap-2 text-white/55 text-sm" style={mono}><Clock size={14} />Report in 48 hours</span>
-            <span className="inline-flex items-center gap-2 text-white/55 text-sm" style={mono}><Lock size={14} />Private engagement</span>
+          <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-14 items-center mb-12">
+            <div>
+              <Eyebrow color={GOLD}>Safety Walkthrough</Eyebrow>
+              <h1 className="text-3xl md:text-4xl lg:text-[52px] font-extrabold leading-[1.08] mb-7 tracking-tight text-white max-w-5xl">
+                <span className="block">Find what&apos;s exposed.</span>
+                <span className="block" style={{ color: GOLD }}>Before OSHA does.</span>
+              </h1>
+              <p className="text-base md:text-lg text-white/75 leading-[1.8] mb-9 max-w-3xl">
+                An on-site walkthrough focused purely on physical hazards. Photo-documented findings with CFR citations and a prioritized fix list — delivered within 48 hours. The fastest way to know where your operation stands.
+              </p>
+              <div className="flex flex-wrap items-center gap-x-7 gap-y-3">
+                <Link to={INTAKE_HREF} className="inline-flex items-center justify-center gap-2 font-bold px-6 py-3.5 rounded-lg text-[15px] transition-colors text-white" style={{ background: BLUE }} onMouseEnter={(e) => (e.currentTarget.style.background = '#1F3F80')} onMouseLeave={(e) => (e.currentTarget.style.background = BLUE)} data-testid="sw-cta-hero">
+                  Request a Safety Walkthrough <ArrowRight size={17} />
+                </Link>
+                <span className="inline-flex items-center gap-2 text-white/55 text-sm" style={mono}><Clock size={14} />Report in 48 hours</span>
+                <span className="inline-flex items-center gap-2 text-white/55 text-sm" style={mono}><Lock size={14} />Private engagement</span>
+              </div>
+            </div>
+            <div
+              className="rounded-xl overflow-hidden"
+              style={{ border: '1px solid rgba(201,168,76,0.30)', boxShadow: '0 20px 60px -20px rgba(0,0,0,0.55)' }}
+              data-testid="sw-hero-image-wrap"
+            >
+              <img
+                src="/service-hero-walkthrough.jpg"
+                alt="Safety consultant walking a real manufacturing floor with a clipboard, observing CNC machines and pallet racking with a forklift blurred in the background"
+                width="1600"
+                height="900"
+                loading="eager"
+                fetchPriority="high"
+                className="w-full h-auto block"
+                data-testid="sw-hero-image"
+              />
+            </div>
           </div>
           <div className="rounded-xl p-7 md:p-8 grid grid-cols-1 md:grid-cols-[minmax(260px,320px)_1fr] gap-7 md:gap-10 items-start" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.10)' }} data-testid="sw-price-block">
             <div>
@@ -105,7 +125,7 @@ const SafetyWalkthroughPage = () => {
         <div className="container max-w-6xl">
           <Eyebrow>What&apos;s Included</Eyebrow>
           <h2 className="text-3xl md:text-4xl font-extrabold leading-[1.15] mb-12 tracking-tight max-w-3xl" style={{ color: NAVY }}>Three deliverables. One visit.</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
             {DELIVERABLES.map((d, i) => {
               const Icon = d.icon;
               return (

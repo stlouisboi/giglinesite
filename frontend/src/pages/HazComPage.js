@@ -51,31 +51,55 @@ const HazComPage = () => {
 
       {/* Hero */}
       <section className="bg-[#102A43] text-white py-16 md:py-24">
-        <div className="container max-w-3xl">
-          <p
-            className="text-xs font-semibold tracking-widest text-[#C9A84C] uppercase mb-4"
-            style={{ fontFamily: "'JetBrains Mono', monospace" }}
-            data-testid="hazcom-label"
-          >
-            DIGITAL DOWNLOAD · $29 STARTER PACK
-          </p>
-          <h1
-            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3"
-            style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
-            data-testid="hazcom-headline"
-          >
-            HazCom Starter Pack
-          </h1>
-          <p className="text-xl md:text-2xl text-white/80 mb-8">
-            Small Shop Edition — <span className="text-[#C9A84C] font-bold">$29</span>
-          </p>
-          <div className="border-l-2 border-[#C9A84C] pl-6">
-            <p className="text-lg text-white/90 font-medium mb-2">
-              #1 OSHA citation in general industry.
-            </p>
-            <p className="text-white/60">
-              Every shop has chemicals. Most don't have the paperwork.
-            </p>
+        <div className="container max-w-6xl">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-14 items-center">
+            <div>
+              <p
+                className="text-xs font-semibold tracking-widest text-[#C9A84C] uppercase mb-4"
+                style={{ fontFamily: "'JetBrains Mono', monospace" }}
+                data-testid="hazcom-label"
+              >
+                DIGITAL DOWNLOAD · $29 STARTER PACK
+              </p>
+              <h1
+                className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3"
+                style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+                data-testid="hazcom-headline"
+              >
+                HazCom Starter Pack
+              </h1>
+              <p className="text-xl md:text-2xl text-white/80 mb-8">
+                Small Shop Edition — <span className="text-[#C9A84C] font-bold">$29</span>
+              </p>
+              <div className="border-l-2 border-[#C9A84C] pl-6">
+                <p className="text-lg text-white/90 font-medium mb-2">
+                  #1 OSHA citation in general industry.
+                </p>
+                <p className="text-white/60">
+                  Every shop has chemicals. Most don't have the paperwork.
+                </p>
+              </div>
+            </div>
+            <div className="relative" data-testid="hazcom-hero-image-wrap">
+              <div
+                className="rounded-xl overflow-hidden"
+                style={{
+                  border: '1px solid rgba(201,168,76,0.35)',
+                  boxShadow: '0 20px 60px -20px rgba(0,0,0,0.55)',
+                }}
+              >
+                <img
+                  src="/hazcom-starter-pack-hero.png"
+                  alt="GigLine HazCom Starter Pack shown on a stainless-steel workbench: a yellow Hazardous Chemicals SDS Binder next to three printed OSHA-compliant forms — Written HazCom Program, SDS Binder Checklist + Index, and Training Verification Log — with safety glasses and cut-resistant work gloves, in front of a warehouse wall marked with GHS hazard pictograms and a Safety Is Everyone's Job sign"
+                  className="w-full h-auto block"
+                  loading="eager"
+                  fetchPriority="high"
+                  width="1200"
+                  height="900"
+                  data-testid="hazcom-hero-image"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -117,7 +141,7 @@ const HazComPage = () => {
             What's Included
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {[
               {
                 id: 'GL-HAZCOM-001',

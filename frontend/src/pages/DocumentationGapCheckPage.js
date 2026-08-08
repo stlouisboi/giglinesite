@@ -14,6 +14,10 @@ const DocumentationGapCheckPage = () => (
     headline="Independent Review of Your Safety Documentation — Programs, SDS & Training Records."
     subheadline="If OSHA opened your binder tomorrow, what would they find? An OSHA Documentation Readiness Review walks every written program, training record, and SDS file against the actual standards — and tells you exactly what is missing, expired, or out of date."
     priceLine={`Starting at ${PRICE_LABEL} · Fixed quote before scheduling · Remote-friendly or on-site.`}
+    heroImage={{
+      src: '/service-hero-doc-review.jpg',
+      alt: 'GigLine Documentation Readiness Review — stack of navy hardcover safety-compliance binders with color-coded tabs, printed safety-program pages with highlighter and red pen, and a laptop showing a checklist on a manufacturing office desk',
+    }}
     whoItsFor={{
       intro: 'This engagement is built for operations that have safety paperwork — but aren\'t sure it would hold up under an inspector\'s review.',
       bullets: [

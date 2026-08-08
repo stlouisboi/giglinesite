@@ -25,6 +25,7 @@ const ServiceLandingTemplate = ({
   headline,
   subheadline,
   priceLine,
+  heroImage,           // optional: { src, alt } — right-column editorial photo
   // Sections
   whoItsFor,           // { intro, bullets[] }
   theProblem,          // { intro, bullets[] }
@@ -44,57 +45,79 @@ const ServiceLandingTemplate = ({
         style={{ backgroundColor: '#102A43' }}
         data-testid="svc-hero"
       >
-        <div className="container max-w-5xl">
-          <p
-            className="uppercase tracking-[3px] text-[#CBD5E1] mb-5"
-            style={{ ...mono, fontSize: '11px' }}
-            data-testid="svc-eyebrow"
-          >
-            {eyebrow}
-          </p>
-          <h1
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.15] mb-6 max-w-4xl"
-            data-testid="svc-headline"
-          >
-            {headline}
-          </h1>
-          <p
-            className="text-base md:text-lg text-[#CBD5E1] leading-relaxed mb-8 max-w-2xl"
-            data-testid="svc-sub"
-          >
-            {subheadline}
-          </p>
+        <div className="container max-w-6xl">
+          <div className={heroImage ? 'grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-14 items-center' : ''}>
+            <div>
+              <p
+                className="uppercase tracking-[3px] text-[#CBD5E1] mb-5"
+                style={{ ...mono, fontSize: '11px' }}
+                data-testid="svc-eyebrow"
+              >
+                {eyebrow}
+              </p>
+              <h1
+                className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.15] mb-6 max-w-4xl"
+                data-testid="svc-headline"
+              >
+                {headline}
+              </h1>
+              <p
+                className="text-base md:text-lg text-[#CBD5E1] leading-relaxed mb-8 max-w-2xl"
+                data-testid="svc-sub"
+              >
+                {subheadline}
+              </p>
 
-          <div className="flex flex-col sm:flex-row gap-3 mb-5" data-testid="svc-hero-ctas">
-            <Link
-              to="/intake"
-              className="bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center justify-center gap-2 shadow-lg shadow-[#2A52A0]/20"
-              data-testid="svc-cta-primary"
-            >
-              Request a Safety Walkthrough
-              <ArrowRight size={18} />
-            </Link>
-            <Link
-              to="/intake"
-              className="border-2 border-white/25 hover:border-white/55 text-white font-semibold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center justify-center gap-2"
-              data-testid="svc-cta-secondary"
-            >
-              Start Client Intake
-            </Link>
-            <a
-              href="tel:+13363298899"
-              className="border-2 border-white/15 hover:border-white/40 text-white font-medium px-6 py-4 rounded-lg text-base transition-colors inline-flex items-center justify-center gap-2"
-              data-testid="svc-cta-call"
-            >
-              <Phone size={16} />
-              (336) 329-8899
-            </a>
+              <div className="flex flex-col sm:flex-row gap-3 mb-5" data-testid="svc-hero-ctas">
+                <Link
+                  to="/intake"
+                  className="bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center justify-center gap-2 shadow-lg shadow-[#2A52A0]/20"
+                  data-testid="svc-cta-primary"
+                >
+                  Request a Safety Walkthrough
+                  <ArrowRight size={18} />
+                </Link>
+                <Link
+                  to="/intake"
+                  className="border-2 border-white/25 hover:border-white/55 text-white font-semibold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center justify-center gap-2"
+                  data-testid="svc-cta-secondary"
+                >
+                  Start Client Intake
+                </Link>
+                <a
+                  href="tel:+13363298899"
+                  className="border-2 border-white/15 hover:border-white/40 text-white font-medium px-6 py-4 rounded-lg text-base transition-colors inline-flex items-center justify-center gap-2"
+                  data-testid="svc-cta-call"
+                >
+                  <Phone size={16} />
+                  (336) 329-8899
+                </a>
+              </div>
+              {priceLine && (
+                <p className="text-base text-white/85" data-testid="svc-price-line">
+                  {priceLine}
+                </p>
+              )}
+            </div>
+            {heroImage && (
+              <div
+                className="rounded-xl overflow-hidden"
+                style={{ border: '1px solid rgba(201,168,76,0.30)', boxShadow: '0 20px 60px -20px rgba(0,0,0,0.55)' }}
+                data-testid="svc-hero-image-wrap"
+              >
+                <img
+                  src={heroImage.src}
+                  alt={heroImage.alt}
+                  width="1600"
+                  height="900"
+                  loading="eager"
+                  fetchPriority="high"
+                  className="w-full h-auto block"
+                  data-testid="svc-hero-image"
+                />
+              </div>
+            )}
           </div>
-          {priceLine && (
-            <p className="text-base text-white/85" data-testid="svc-price-line">
-              {priceLine}
-            </p>
-          )}
         </div>
       </section>
 

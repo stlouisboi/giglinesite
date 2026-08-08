@@ -394,6 +394,171 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* ═══ SECTION 2A2 — SECONDARY PRODUCT DISCOVERY STRIP (Feb 2026)
+           Lightweight product-discovery band beneath the buyer journey.
+           Intentionally quieter than the primary CRV CTA and the Citation-Proof
+           Kit Series strip further down. For self-directed buyers, not a
+           replacement for Walkthroughs or Compliance Readiness Visits. ═══ */}
+      <section
+        className="py-16 md:py-20 border-b"
+        style={{ background: '#f5f4f0', borderColor: '#dde3ea' }}
+        data-testid="home-product-discovery-strip"
+      >
+        <div className="container max-w-6xl">
+          <Reveal>
+            <p
+              className="uppercase font-bold mb-3"
+              style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10.5px', letterSpacing: '0.18em', color: '#2A52A0' }}
+              data-testid="home-product-discovery-eyebrow"
+            >
+              GigLine Tools
+            </p>
+            <h2
+              className="text-2xl md:text-[34px] font-bold text-[#1C2B2B] leading-tight mb-3 max-w-3xl tracking-tight"
+              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+              data-testid="home-product-discovery-headline"
+            >
+              Build the control your team can run.
+            </h2>
+            <div className="mb-6" style={{ width: '48px', height: '3px', background: '#C9A84C', borderRadius: '2px' }} />
+            <p
+              className="text-[15px] md:text-[16.5px] text-[#1C2B2B]/70 leading-[1.75] max-w-3xl mb-10"
+              data-testid="home-product-discovery-body"
+            >
+              GigLine tools help operations turn safety expectations into assigned ownership, usable records, corrective-action follow-up, and retrievable proof.
+            </p>
+          </Reveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6" data-testid="home-product-discovery-grid">
+            {[
+              {
+                key: 'kits',
+                title: 'Citation-Proof Kit Series',
+                price: '$150–$600',
+                copy: 'For a specific safety-control gap such as PIT, HazCom, LOTO, incident response, or new-hire records.',
+                ctaLabel: 'Explore Control Kits',
+                to: '/citation-proof-kits',
+                image: '/card-citation-proof-kits.jpg',
+                imageAlt: 'Navy hardcover safety-compliance binder with color-coded index tabs and a tablet showing a Safety Checklist on a wooden industrial workbench, with a warehouse aisle and forklift softly blurred in the background — GigLine Citation-Proof Kit Series editorial product photograph',
+                overlayEyebrow: 'Kit Series',
+                overlayName: 'Citation-Proof',
+              },
+              {
+                key: 'supervisor',
+                title: 'Supervisor Safety OS',
+                price: 'From $600',
+                copy: 'For supervisors and operations leaders who need a practical system for running daily safety responsibility.',
+                ctaLabel: 'Explore Supervisor Safety OS',
+                to: '/supervisor-kit',
+                image: '/card-supervisor-safety-os.jpg',
+                imageAlt: 'Operations supervisor in a manufacturing facility holding a clipboard and tablet, performing a routine floor inspection with a forklift and machinists softly blurred in the background — GigLine Supervisor Safety OS editorial product photograph',
+                overlayEyebrow: 'Operating System',
+                overlayName: 'Supervisor Safety',
+              },
+              {
+                key: 'hazcom',
+                title: 'HazCom Starter Pack',
+                price: '$29',
+                copy: 'A practical first step for getting basic chemical and SDS organization under control.',
+                ctaLabel: 'Start With HazCom',
+                to: '/hazcom-starter-pack',
+                image: '/card-hazcom-starter-pack.jpg',
+                imageAlt: 'Yellow SDS binder with labeled chemical containers, printed Hazard Communication checklist, safety glasses, and gloves organized on an industrial shop workbench — GigLine HazCom Starter Pack editorial product photograph',
+                overlayEyebrow: 'Starter Pack',
+                overlayName: 'HazCom',
+              },
+            ].map((card, i) => (
+              <Reveal key={card.key} delay={i * 90}>
+                <div
+                  className="h-full flex flex-col rounded-xl bg-white overflow-hidden transition-all hover:-translate-y-0.5"
+                  style={{
+                    border: '1px solid #dde3ea',
+                    borderTop: '3px solid #C9A84C',
+                  }}
+                  data-testid={`home-product-discovery-card-${card.key}`}
+                >
+                  <div
+                    className="relative w-full overflow-hidden"
+                    style={{ aspectRatio: '16 / 9', background: '#102A43' }}
+                    data-testid={`home-product-discovery-card-${card.key}-image-wrap`}
+                  >
+                    <img
+                      src={card.image}
+                      alt={card.imageAlt}
+                      loading="lazy"
+                      width="1600"
+                      height="900"
+                      className="w-full h-full object-cover block"
+                      data-testid={`home-product-discovery-card-${card.key}-image`}
+                    />
+                    {/* Design-layer branded product label overlay */}
+                    <div
+                      className="absolute left-3 top-3 md:left-4 md:top-4 rounded-md backdrop-blur-sm"
+                      style={{
+                        background: 'rgba(16,42,67,0.86)',
+                        borderLeft: '3px solid #C9A84C',
+                        padding: '6px 10px 7px 10px',
+                        maxWidth: '70%',
+                      }}
+                      data-testid={`home-product-discovery-card-${card.key}-overlay`}
+                    >
+                      <p
+                        className="uppercase font-bold text-white/70 leading-none mb-0.5"
+                        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8.5px', letterSpacing: '0.16em' }}
+                      >
+                        {card.overlayEyebrow}
+                      </p>
+                      <p
+                        className="font-bold text-[#C9A84C] leading-tight"
+                        style={{ fontFamily: "Georgia, serif", fontSize: '13px' }}
+                      >
+                        {card.overlayName}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="p-6 flex flex-col flex-1">
+                    <h3
+                      className="text-[19px] md:text-[20px] font-bold text-[#102A43] leading-snug mb-1"
+                      style={{ fontFamily: "Georgia, serif" }}
+                      data-testid={`home-product-discovery-card-${card.key}-title`}
+                    >
+                      {card.title}
+                    </h3>
+                    <p
+                      className="mb-3 text-[13px] font-semibold text-[#1C2B2B]/70"
+                      style={{ fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.04em' }}
+                      data-testid={`home-product-discovery-card-${card.key}-price`}
+                    >
+                      {card.price}
+                    </p>
+                    <p className="text-[14.5px] text-[#1C2B2B]/75 leading-[1.65] mb-5 flex-1">
+                      {card.copy}
+                    </p>
+                    <Link
+                      to={card.to}
+                      className="inline-flex items-center gap-1.5 font-semibold text-[14px] text-[#2A52A0] hover:text-[#102A43] transition-colors self-start"
+                      data-testid={`home-product-discovery-card-${card.key}-cta`}
+                    >
+                      {card.ctaLabel}
+                      <ArrowRight size={15} />
+                    </Link>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={320}>
+            <p
+              className="italic text-[13px] md:text-[14px] text-[#1C2B2B]/55 mt-8 max-w-3xl leading-relaxed"
+              data-testid="home-product-discovery-footnote"
+            >
+              Tools support control and evidence organization. They do not replace a Safety Walkthrough, Documentation Readiness Review, or Compliance Readiness Visit for facilities that need a professional review.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ═══ SECTION 2 — WHAT WE FIND ON THE FLOOR (GL-WEB-008) ═══ */}
       <section className="py-20 md:py-24 bg-white border-t border-b" style={{ borderColor: '#dde3ea' }} data-testid="floor-findings-section">
         <div className="container max-w-6xl">

@@ -102,7 +102,7 @@ const Footer = () => {
           </div>
 
           {/* Resources */}
-          <div>
+          <div className="sm:col-span-2 lg:col-span-1">
             <h4 className="text-base font-semibold mb-4 text-white/90">Resources</h4>
             <nav aria-label="Footer resources">
               <ul className="space-y-4">

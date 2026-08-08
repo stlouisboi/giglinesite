@@ -254,39 +254,59 @@ const ComplianceReadinessVisitPage = () => {
       {/* ═══ Hero + Fixed Price 3-col block (dark navy) ═══ */}
       <section className="pt-20 md:pt-24 pb-16 md:pb-20" style={{ background: NAVY }} data-testid="crv-hero">
         <div className="container max-w-6xl">
-          <Eyebrow color={GOLD}>Compliance Readiness Visit</Eyebrow>
-          <h1 className="text-3xl md:text-4xl lg:text-[52px] font-extrabold leading-[1.08] mb-7 tracking-tight text-white max-w-5xl">
-            <span className="block">The floor and the files.</span>
-            <span className="block italic" style={{ color: GOLD, fontStyle: 'italic' }}>
-              One visit. One report.
-            </span>
-          </h1>
-          <p className="text-base md:text-lg text-white/75 leading-[1.8] mb-9 max-w-3xl">
-            The most complete picture of where your operation stands before OSHA shows up. Physical walkthrough plus
-            full documentation review — delivered as a single, CFR-cited field audit report within 48 hours.
-          </p>
+          <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-14 items-center mb-12">
+            <div>
+              <Eyebrow color={GOLD}>Compliance Readiness Visit</Eyebrow>
+              <h1 className="text-3xl md:text-4xl lg:text-[52px] font-extrabold leading-[1.08] mb-7 tracking-tight text-white max-w-5xl">
+                <span className="block">The floor and the files.</span>
+                <span className="block italic" style={{ color: GOLD, fontStyle: 'italic' }}>
+                  One visit. One report.
+                </span>
+              </h1>
+              <p className="text-base md:text-lg text-white/75 leading-[1.8] mb-9 max-w-3xl">
+                The most complete picture of where your operation stands before OSHA shows up. Physical walkthrough plus
+                full documentation review — delivered as a single, CFR-cited field audit report within 48 hours.
+              </p>
 
-          {/* CTA row — GOLD button for the recommended starting engagement */}
-          <div className="flex flex-wrap items-center gap-x-7 gap-y-3 mb-12">
-            <Link
-              to={INTAKE_HREF}
-              className="inline-flex items-center justify-center gap-2 font-bold px-6 py-3.5 rounded-lg text-[15px] transition-colors"
-              style={{ background: GOLD, color: NAVY }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = '#c8922a')}
-              onMouseLeave={(e) => (e.currentTarget.style.background = GOLD)}
-              data-testid="crv-cta-hero"
+              {/* CTA row — GOLD button for the recommended starting engagement */}
+              <div className="flex flex-wrap items-center gap-x-7 gap-y-3">
+                <Link
+                  to={INTAKE_HREF}
+                  className="inline-flex items-center justify-center gap-2 font-bold px-6 py-3.5 rounded-lg text-[15px] transition-colors"
+                  style={{ background: GOLD, color: NAVY }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = '#c8922a')}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = GOLD)}
+                  data-testid="crv-cta-hero"
+                >
+                  Schedule a Compliance Readiness Visit
+                  <ArrowRight size={17} />
+                </Link>
+                <span className="inline-flex items-center gap-2 text-white/55 text-sm" style={mono}>
+                  <Clock size={14} />
+                  Report delivered within 48 hours
+                </span>
+                <span className="inline-flex items-center gap-2 text-white/55 text-sm" style={mono}>
+                  <Lock size={14} />
+                  Private engagement
+                </span>
+              </div>
+            </div>
+            <div
+              className="rounded-xl overflow-hidden"
+              style={{ border: '1px solid rgba(201,168,76,0.30)', boxShadow: '0 20px 60px -20px rgba(0,0,0,0.55)' }}
+              data-testid="crv-hero-image-wrap"
             >
-              Schedule a Compliance Readiness Visit
-              <ArrowRight size={17} />
-            </Link>
-            <span className="inline-flex items-center gap-2 text-white/55 text-sm" style={mono}>
-              <Clock size={14} />
-              Report delivered within 48 hours
-            </span>
-            <span className="inline-flex items-center gap-2 text-white/55 text-sm" style={mono}>
-              <Lock size={14} />
-              Private engagement
-            </span>
+              <img
+                src="/service-hero-crv.jpg"
+                alt="GigLine consultant and facility supervisor walking a manufacturing floor together during a compliance readiness visit, tablet in hand, forklift and machinery in the background"
+                width="1600"
+                height="900"
+                loading="eager"
+                fetchPriority="high"
+                className="w-full h-auto block"
+                data-testid="crv-hero-image"
+              />
+            </div>
           </div>
 
           {/* Fixed Price 3-column block — embedded in hero */}
@@ -594,7 +614,7 @@ const ComplianceReadinessVisitPage = () => {
           <h2 className="text-3xl md:text-4xl font-extrabold leading-[1.15] mb-12 tracking-tight text-white text-center">
             Book a Compliance Readiness Visit when:
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
             {WHO_CARDS.map((card, i) => (
               <div
                 key={i}

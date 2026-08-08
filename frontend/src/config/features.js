@@ -1,16 +1,15 @@
 /**
  * GL-WEB-018 (Jul 2026) — Feature flags.
  *
- * `SUPERVISOR_KIT_ENABLED` toggles all UI + routing for the Supervisor Safety
- * Starter System. When false: hides tiles/links, redirects `/supervisor-kit`
- * to `/services`, hides cross-sell blocks in blogs & field notes.
+ * `SUPERVISOR_KIT_ENABLED` was originally env-driven so the Supervisor Safety
+ * OS could be toggled off on production without a redeploy. As of Aug 2026 the
+ * kit is a permanent live product — hard-coded to `true` to eliminate the
+ * Vercel env-var dependency that caused the route to redirect to `/services`
+ * when the variable wasn't set on the deploy target.
  *
  * Backend has a matching flag (`SUPERVISOR_KIT_ENABLED` in backend/.env)
- * that returns 503 on checkout endpoints while keeping /verify functional
- * for any in-flight paid orders.
- *
- * Flip via `REACT_APP_SUPERVISOR_KIT_ENABLED=true` in frontend/.env + rebuild.
+ * that still controls whether checkout endpoints are live. Keep that in sync
+ * if the kit ever needs to be taken offline again.
  */
 
-export const SUPERVISOR_KIT_ENABLED =
-  (process.env.REACT_APP_SUPERVISOR_KIT_ENABLED || '').toLowerCase() === 'true';
+export const SUPERVISOR_KIT_ENABLED = true;

@@ -5,7 +5,7 @@ const config = {
   slug: 'osha-documentation-review-nc',
   canonical: '/osha-documentation-review-nc',
   seoTitle: 'OSHA Documentation Review NC | Written Programs, Training, OSHA 300 | GigLine',
-  seoDescription: 'Off-site OSHA documentation readiness review for NC manufacturers, warehouses, and contractors. Written programs, training records, OSHA 300 log, SDS binder, retention. From $1,300.',
+  seoDescription: 'Off-site OSHA documentation readiness review for NC manufacturers, warehouses, and contractors. Written programs, training records, OSHA 300 log, SDS binder, retention. From $1,700.',
   eyebrow: 'OSHA Documentation Review',
   headline: 'OSHA Documentation Review for NC operations.',
   subhead: 'The paperwork OSHA, your insurance carrier, or a customer auditor asks for first. An off-site readiness review of your written programs, training records, OSHA 300/300A logs, SDS inventory, and retention practices \u2014 written report in 48 hours.',

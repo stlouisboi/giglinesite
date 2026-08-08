@@ -54,7 +54,7 @@ COVERS = {
         version_footer='2026 Edition',
         whats_inside_items=[
             'Safety Walkthrough — From $1,200',
-            'Documentation Readiness Review — From $1,300',
+            'Documentation Readiness Review — From $1,700',
             'Compliance Readiness Visit — From $2,000',
             'OSHA-Ready Control System — From $4,500',
             'Annual Compliance Control Partner',

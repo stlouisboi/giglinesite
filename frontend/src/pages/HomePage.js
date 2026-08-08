@@ -438,9 +438,10 @@ const HomePage = () => {
                 copy: 'For a specific safety-control gap such as PIT, HazCom, LOTO, incident response, or new-hire records.',
                 ctaLabel: 'Explore Control Kits',
                 to: '/citation-proof-kits',
-                image: '/citation-proof-kits-card.png',
-                imageAlt: 'GigLine Citation-Proof Kit Series — Forklift / PIT Readiness Kit with binder, indexed tabs, and Operator Training Record page shown on a dark navy background',
-                imageObjectPosition: 'center',
+                image: '/card-citation-proof-kits.jpg',
+                imageAlt: 'Navy hardcover safety-compliance binder with color-coded index tabs and a tablet showing a Safety Checklist on a wooden industrial workbench, with a warehouse aisle and forklift softly blurred in the background — GigLine Citation-Proof Kit Series editorial product photograph',
+                overlayEyebrow: 'Kit Series',
+                overlayName: 'Citation-Proof',
               },
               {
                 key: 'supervisor',
@@ -449,9 +450,10 @@ const HomePage = () => {
                 copy: 'For supervisors and operations leaders who need a practical system for running daily safety responsibility.',
                 ctaLabel: 'Explore Supervisor Safety OS',
                 to: '/supervisor-kit',
-                image: '/supervisor-safety-os-card.png',
-                imageAlt: 'GigLine Supervisor Safety OS cover — Supervisor-run safety documentation and inspection system with What\u2019s Inside checklist and Inspect \u2192 Document \u2192 Assign \u2192 Verify \u2192 Review flow',
-                imageObjectPosition: 'center top',
+                image: '/card-supervisor-safety-os.jpg',
+                imageAlt: 'Operations supervisor in a manufacturing facility holding a clipboard and tablet, performing a routine floor inspection with a forklift and machinists softly blurred in the background — GigLine Supervisor Safety OS editorial product photograph',
+                overlayEyebrow: 'Operating System',
+                overlayName: 'Supervisor Safety',
               },
               {
                 key: 'hazcom',
@@ -460,9 +462,10 @@ const HomePage = () => {
                 copy: 'A practical first step for getting basic chemical and SDS organization under control.',
                 ctaLabel: 'Start With HazCom',
                 to: '/hazcom-starter-pack',
-                image: '/hazcom-starter-pack-hero.png',
-                imageAlt: 'GigLine HazCom Starter Pack on a stainless workbench: yellow SDS Binder, Written HazCom Program, SDS Binder Checklist + Index, and Training Verification Log with safety glasses and work gloves',
-                imageObjectPosition: 'center',
+                image: '/card-hazcom-starter-pack.jpg',
+                imageAlt: 'Yellow SDS binder with labeled chemical containers, printed Hazard Communication checklist, safety glasses, and gloves organized on an industrial shop workbench — GigLine HazCom Starter Pack editorial product photograph',
+                overlayEyebrow: 'Starter Pack',
+                overlayName: 'HazCom',
               },
             ].map((card, i) => (
               <Reveal key={card.key} delay={i * 90}>
@@ -475,20 +478,43 @@ const HomePage = () => {
                   data-testid={`home-product-discovery-card-${card.key}`}
                 >
                   <div
-                    className="w-full overflow-hidden"
-                    style={{ aspectRatio: '16 / 10', background: '#102A43' }}
+                    className="relative w-full overflow-hidden"
+                    style={{ aspectRatio: '16 / 9', background: '#102A43' }}
                     data-testid={`home-product-discovery-card-${card.key}-image-wrap`}
                   >
                     <img
                       src={card.image}
                       alt={card.imageAlt}
                       loading="lazy"
-                      width="800"
-                      height="500"
+                      width="1600"
+                      height="900"
                       className="w-full h-full object-cover block"
-                      style={{ objectPosition: card.imageObjectPosition }}
                       data-testid={`home-product-discovery-card-${card.key}-image`}
                     />
+                    {/* Design-layer branded product label overlay */}
+                    <div
+                      className="absolute left-3 top-3 md:left-4 md:top-4 rounded-md backdrop-blur-sm"
+                      style={{
+                        background: 'rgba(16,42,67,0.86)',
+                        borderLeft: '3px solid #C9A84C',
+                        padding: '6px 10px 7px 10px',
+                        maxWidth: '70%',
+                      }}
+                      data-testid={`home-product-discovery-card-${card.key}-overlay`}
+                    >
+                      <p
+                        className="uppercase font-bold text-white/70 leading-none mb-0.5"
+                        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8.5px', letterSpacing: '0.16em' }}
+                      >
+                        {card.overlayEyebrow}
+                      </p>
+                      <p
+                        className="font-bold text-[#C9A84C] leading-tight"
+                        style={{ fontFamily: "Georgia, serif", fontSize: '13px' }}
+                      >
+                        {card.overlayName}
+                      </p>
+                    </div>
                   </div>
                   <div className="p-6 flex flex-col flex-1">
                     <h3

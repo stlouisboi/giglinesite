@@ -412,8 +412,8 @@ const ServicesPage = () => {
               <a
                 key={l.href}
                 href={l.href}
-                className="flex-shrink-0 px-3 md:px-4 py-1.5 md:py-2 rounded-full border transition-colors hover:bg-[#102A43] hover:text-white hover:border-[#2A52A0]"
-                style={{ borderColor: 'rgba(16,33,51,0.18)', color: '#1C2B2B' }}
+                className="flex-shrink-0 px-3 md:px-4 py-1.5 md:py-2 rounded-full border text-[#1C2B2B] transition-colors hover:bg-[#102A43] hover:text-white hover:border-[#2A52A0]"
+                style={{ borderColor: 'rgba(16,33,51,0.18)' }}
                 data-testid={`jump-nav-${l.href.replace('#','')}`}
               >
                 {l.label}

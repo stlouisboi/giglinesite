@@ -51,6 +51,43 @@ const SafetyCheckPage = () => {
   const flaggedTopics = QUESTIONS.filter(q => answers[q.id] === 'no').map(q => q.topic);
   const scoreLevel = noCount <= 1 ? 'low' : noCount <= 3 ? 'medium' : 'high';
 
+  // ─── Topic-aware routing (Aug 2026): map flagged topics → matching offer ──
+  // Medium tier: single-topic dominance → matching kit or walkthrough
+  // High tier: multi-control situation → CRV (combined engagement)
+  const routeFromTopics = (topics) => {
+    if (!topics || topics.length === 0) return null;
+    // HazCom-heavy — 1910.1200
+    if (topics.length === 1 && topics[0] === 'HazCom & SDS') {
+      return {
+        primary: { label: 'Explore the HazCom Pro Kit', to: '/citation-proof-kits/hazcom-pro-kit', testid: 'route-hazcom-kit' },
+        secondary: { label: 'Or request a Documentation Readiness Review →', to: '/intake?service=documentation-readiness-review', testid: 'route-doc-review' },
+      };
+    }
+    // Forklift/PIT-heavy — 1910.178
+    if (topics.length === 1 && topics[0] === 'Forklift Certification') {
+      return {
+        primary: { label: 'Explore the Forklift/PIT Readiness Kit', to: '/citation-proof-kits/forklift-pit-readiness-kit', testid: 'route-pit-kit' },
+        secondary: { label: 'Or request a Safety Walkthrough →', to: '/intake?service=safety-walkthrough-report', testid: 'route-walkthrough' },
+      };
+    }
+    // LOTO or Machine Guarding-heavy — 1910.147 / 1910.212
+    if (topics.length <= 2 && topics.every(t => t === 'Lockout-Tagout' || t === 'Machine Guarding')) {
+      const isLoto = topics.includes('Lockout-Tagout');
+      return {
+        primary: { label: 'Request a Safety Walkthrough', to: '/intake?service=safety-walkthrough-report', testid: 'route-walkthrough' },
+        secondary: isLoto
+          ? { label: 'Or explore the LOTO Readiness Kit →', to: '/citation-proof-kits/loto-readiness-kit', testid: 'route-loto-kit' }
+          : { label: 'Or request a Compliance Readiness Visit →', to: '/intake?service=compliance-readiness-visit', testid: 'route-crv' },
+      };
+    }
+    // Multi-control situation (3+ gaps or mixed categories) → CRV
+    return {
+      primary: { label: 'Request a Compliance Readiness Visit', to: '/intake?service=compliance-readiness-visit', testid: 'route-crv' },
+      secondary: { label: 'Or start with a Safety Walkthrough →', to: '/intake?service=safety-walkthrough-report', testid: 'route-walkthrough' },
+    };
+  };
+  const topicRoute = routeFromTopics(flaggedTopics);
+
   /* ── Handlers ── */
   const handleAnswer = (questionId, answer) => {
     const updated = { ...answers, [questionId]: answer };
@@ -364,23 +401,25 @@ const SafetyCheckPage = () => {
                   </div>
                 )}
 
-                {tier === 'medium' && (
+                {tier === 'medium' && topicRoute && (
                   <div className="mt-4 flex flex-col sm:flex-row gap-3 items-start" data-testid="results-cta-block">
                     <Link
-                      to="/intake?service=safety-walkthrough-report"
+                      to={topicRoute.primary.to}
                       className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-7 py-3.5 rounded transition-colors text-base"
-                      data-testid="results-cta-primary"
+                      data-testid={`results-cta-primary-${topicRoute.primary.testid}`}
                     >
-                      Request a Safety Walkthrough
+                      {topicRoute.primary.label}
                       <ArrowRight size={18} />
                     </Link>
-                    <Link
-                      to="/safety-walkthrough"
-                      className="inline-flex items-center gap-2 text-white/70 hover:text-white underline underline-offset-4 px-2 py-3.5 text-sm"
-                      data-testid="results-cta-secondary"
-                    >
-                      See what a walkthrough covers →
-                    </Link>
+                    {topicRoute.secondary && (
+                      <Link
+                        to={topicRoute.secondary.to}
+                        className="inline-flex items-center gap-2 text-white/70 hover:text-white underline underline-offset-4 px-2 py-3.5 text-sm"
+                        data-testid={`results-cta-secondary-${topicRoute.secondary.testid}`}
+                      >
+                        {topicRoute.secondary.label}
+                      </Link>
+                    )}
                   </div>
                 )}
 
@@ -394,11 +433,11 @@ const SafetyCheckPage = () => {
                       Call or Text Vince Now — (336) 329-8899
                     </a>
                     <Link
-                      to="/intake?service=safety-walkthrough-report"
+                      to="/intake?service=compliance-readiness-visit"
                       className="inline-flex items-center gap-2 text-white/70 hover:text-white underline underline-offset-4 px-2 py-3.5 text-sm"
-                      data-testid="results-cta-secondary"
+                      data-testid="results-cta-secondary-route-crv"
                     >
-                      Or request a walkthrough online →
+                      Or request a Compliance Readiness Visit →
                     </Link>
                   </div>
                 )}

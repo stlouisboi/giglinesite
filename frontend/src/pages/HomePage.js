@@ -438,6 +438,9 @@ const HomePage = () => {
                 copy: 'For a specific safety-control gap such as PIT, HazCom, LOTO, incident response, or new-hire records.',
                 ctaLabel: 'Explore Control Kits',
                 to: '/citation-proof-kits',
+                image: '/citation-proof-kits-card.png',
+                imageAlt: 'GigLine Citation-Proof Kit Series — Forklift / PIT Readiness Kit with binder, indexed tabs, and Operator Training Record page shown on a dark navy background',
+                imageObjectPosition: 'center',
               },
               {
                 key: 'supervisor',
@@ -446,6 +449,9 @@ const HomePage = () => {
                 copy: 'For supervisors and operations leaders who need a practical system for running daily safety responsibility.',
                 ctaLabel: 'Explore Supervisor Safety OS',
                 to: '/supervisor-kit',
+                image: '/supervisor-safety-os-card.png',
+                imageAlt: 'GigLine Supervisor Safety OS cover — Supervisor-run safety documentation and inspection system with What\u2019s Inside checklist and Inspect \u2192 Document \u2192 Assign \u2192 Verify \u2192 Review flow',
+                imageObjectPosition: 'center top',
               },
               {
                 key: 'hazcom',
@@ -454,42 +460,63 @@ const HomePage = () => {
                 copy: 'A practical first step for getting basic chemical and SDS organization under control.',
                 ctaLabel: 'Start With HazCom',
                 to: '/hazcom-starter-pack',
+                image: '/hazcom-starter-pack-hero.png',
+                imageAlt: 'GigLine HazCom Starter Pack on a stainless workbench: yellow SDS Binder, Written HazCom Program, SDS Binder Checklist + Index, and Training Verification Log with safety glasses and work gloves',
+                imageObjectPosition: 'center',
               },
             ].map((card, i) => (
               <Reveal key={card.key} delay={i * 90}>
                 <div
-                  className="h-full flex flex-col rounded-xl bg-white p-6 transition-all hover:-translate-y-0.5"
+                  className="h-full flex flex-col rounded-xl bg-white overflow-hidden transition-all hover:-translate-y-0.5"
                   style={{
                     border: '1px solid #dde3ea',
                     borderTop: '3px solid #C9A84C',
                   }}
                   data-testid={`home-product-discovery-card-${card.key}`}
                 >
-                  <h3
-                    className="text-[19px] md:text-[20px] font-bold text-[#102A43] leading-snug mb-1"
-                    style={{ fontFamily: "Georgia, serif" }}
-                    data-testid={`home-product-discovery-card-${card.key}-title`}
+                  <div
+                    className="w-full overflow-hidden"
+                    style={{ aspectRatio: '16 / 10', background: '#102A43' }}
+                    data-testid={`home-product-discovery-card-${card.key}-image-wrap`}
                   >
-                    {card.title}
-                  </h3>
-                  <p
-                    className="mb-3 text-[13px] font-semibold text-[#1C2B2B]/70"
-                    style={{ fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.04em' }}
-                    data-testid={`home-product-discovery-card-${card.key}-price`}
-                  >
-                    {card.price}
-                  </p>
-                  <p className="text-[14.5px] text-[#1C2B2B]/75 leading-[1.65] mb-5 flex-1">
-                    {card.copy}
-                  </p>
-                  <Link
-                    to={card.to}
-                    className="inline-flex items-center gap-1.5 font-semibold text-[14px] text-[#2A52A0] hover:text-[#102A43] transition-colors self-start"
-                    data-testid={`home-product-discovery-card-${card.key}-cta`}
-                  >
-                    {card.ctaLabel}
-                    <ArrowRight size={15} />
-                  </Link>
+                    <img
+                      src={card.image}
+                      alt={card.imageAlt}
+                      loading="lazy"
+                      width="800"
+                      height="500"
+                      className="w-full h-full object-cover block"
+                      style={{ objectPosition: card.imageObjectPosition }}
+                      data-testid={`home-product-discovery-card-${card.key}-image`}
+                    />
+                  </div>
+                  <div className="p-6 flex flex-col flex-1">
+                    <h3
+                      className="text-[19px] md:text-[20px] font-bold text-[#102A43] leading-snug mb-1"
+                      style={{ fontFamily: "Georgia, serif" }}
+                      data-testid={`home-product-discovery-card-${card.key}-title`}
+                    >
+                      {card.title}
+                    </h3>
+                    <p
+                      className="mb-3 text-[13px] font-semibold text-[#1C2B2B]/70"
+                      style={{ fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.04em' }}
+                      data-testid={`home-product-discovery-card-${card.key}-price`}
+                    >
+                      {card.price}
+                    </p>
+                    <p className="text-[14.5px] text-[#1C2B2B]/75 leading-[1.65] mb-5 flex-1">
+                      {card.copy}
+                    </p>
+                    <Link
+                      to={card.to}
+                      className="inline-flex items-center gap-1.5 font-semibold text-[14px] text-[#2A52A0] hover:text-[#102A43] transition-colors self-start"
+                      data-testid={`home-product-discovery-card-${card.key}-cta`}
+                    >
+                      {card.ctaLabel}
+                      <ArrowRight size={15} />
+                    </Link>
+                  </div>
                 </div>
               </Reveal>
             ))}

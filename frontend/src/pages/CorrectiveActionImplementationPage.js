@@ -87,7 +87,7 @@ const CorrectiveActionImplementationPage = () => (
 
     {/* ═══ HERO ═══ */}
     <section className="py-20 md:py-28" style={{ background: NAVY, color: 'white' }}>
-      <div className="container max-w-6xl grid md:grid-cols-2 gap-10 items-center">
+      <div className="container max-w-6xl grid lg:grid-cols-2 gap-10 items-start">
         <div>
           <p
             className="uppercase tracking-[0.18em] font-semibold mb-4"
@@ -192,7 +192,7 @@ const CorrectiveActionImplementationPage = () => (
           findings. The other builds broader connected safety infrastructure across the operation.
         </p>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid lg:grid-cols-2 gap-6">
           <div
             className="rounded-lg p-6"
             style={{ background: '#FBFCFD', border: '1px solid #dde3ea' }}

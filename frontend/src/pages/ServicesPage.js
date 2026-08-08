@@ -289,13 +289,14 @@ const READINESS_PATH = [
 
 /* ═══ Pricing reference block ═══ */
 const PRICING_REF = [
-  ['Safety Walkthrough', 'Starting at $1,300'],
-  ['OSHA Documentation Readiness Review', DOC_REVIEW_PRICING_REF_PRICE],
-  ['Compliance Readiness Visit', 'Starting at $2,500'],
-  ['Incident Review & Corrective Action', 'Starting at $1,500'],
-  ['OSHA-Ready Control System', 'Starting at $4,500'],
-  ['Quarterly Compliance Maintenance', 'Starting at $950/quarter'],
-  ['Annual Compliance Control Partner', '$12,000/year'],
+  { name: 'Safety Walkthrough', price: 'Starting at $1,300', category: 'FIND' },
+  { name: 'OSHA Documentation Readiness Review', price: DOC_REVIEW_PRICING_REF_PRICE, category: 'FIND' },
+  { name: 'Compliance Readiness Visit', price: 'Starting at $2,500', category: 'FIND', badge: 'BEST VALUE' },
+  { name: 'Incident Review & Corrective Action', price: 'Starting at $1,500', category: 'FIND' },
+  { name: 'Corrective Action Implementation', price: 'Custom quote', category: 'BUILD' },
+  { name: 'OSHA-Ready Control System', price: 'Starting at $4,500', category: 'BUILD' },
+  { name: 'Quarterly Compliance Maintenance', price: 'Starting at $950/quarter', category: 'MAINTAIN' },
+  { name: 'Annual Compliance Control Partner', price: '$12,000/year', category: 'MAINTAIN' },
 ];
 
 /* ═══ Services FAQ ═══ */
@@ -685,7 +686,7 @@ const ServicesPage = () => {
                   className="uppercase tracking-[2px] font-bold text-white"
                   style={{ ...mono, fontSize: '10.5px' }}
                 >
-                  ★ Most Requested
+                  BEST VALUE
                 </span>
               </div>
 
@@ -1375,7 +1376,7 @@ const ServicesPage = () => {
                       }}
                       data-testid={`${s.testid}-badge`}
                     >
-                      ★ {s.badge}
+                      {s.badge}
                     </span>
                   )}
                   <h3 className={`text-xl md:text-2xl font-bold mb-2 ${isAnnual ? 'text-white' : 'text-[#1C2B2B]'}`}>{s.title}</h3>
@@ -1534,7 +1535,7 @@ const ServicesPage = () => {
               {/* Scrollable on mobile, static on desktop */}
               <div className="overflow-x-auto">
                 <table
-                  className="w-full min-w-[880px] border-collapse"
+                  className="w-full min-w-[720px] border-collapse"
                   data-testid="comparison-table"
                 >
                   <thead>
@@ -1564,18 +1565,18 @@ const ServicesPage = () => {
                         >
                           {col.highlight && (
                             <span
-                              className="absolute top-2 right-3 uppercase font-bold rounded-full"
+                              className="absolute top-2 right-3 uppercase font-extrabold rounded"
                               style={{
                                 ...mono,
                                 fontSize: '9px',
-                                letterSpacing: '0.14em',
-                                color: '#1C2B2B',
+                                letterSpacing: '0.16em',
+                                color: '#102A43',
                                 background: '#C9A84C',
                                 padding: '3px 8px',
                               }}
                               data-testid={`comparison-badge-${col.key}`}
                             >
-                              ★ Most Requested
+                              BEST VALUE
                             </span>
                           )}
                           <p
@@ -1606,19 +1607,20 @@ const ServicesPage = () => {
                       // Values: true = check, false = dash, string = text (short label)
                       { label: 'On-site walkthrough', v: [true, false, true, true] },
                       { label: 'Photo-documented findings', v: [true, false, true, true] },
-                      { label: 'CFR citations + penalty exposure', v: [true, true, true, true] },
-                      { label: 'Written program & records review', v: [false, true, true, true] },
-                      { label: 'Compliance % score', v: [false, true, true, true] },
-                      { label: 'Prioritized fix list (RED/AMBER/GREEN)', v: [true, true, true, true] },
-                      { label: '90-day corrective action tracker', v: [false, false, true, true] },
+                      { label: 'CFR-referenced findings', v: [true, true, true, true] },
+                      { label: 'Structured documentation review', v: [false, true, true, true] },
+                      { label: 'Baseline: 5 categories, 25 files', v: [false, true, true, true] },
+                      { label: 'Representative training records reviewed', v: [false, true, true, true] },
+                      { label: 'Prioritized findings (RED/AMBER/GREEN)', v: [true, true, true, true] },
+                      { label: '30-day corrective-action roadmap', v: [false, false, true, true] },
                       { label: 'Physical binder & digital folder buildout', v: [false, false, false, true] },
                       { label: 'Supervisor training + handoff walkthrough', v: [false, false, false, true] },
-                      { label: '30-day check-in call included', v: [false, false, true, true] },
+                      { label: 'One findings-review call included', v: [false, true, true, true] },
                       { label: 'Turnaround', v: ['24–48 hrs', '3–5 days', '48 hrs', '2–4 weeks'] },
                       { label: 'Best when…', v: [
                         'You need floor hazards identified fast.',
                         'You need to know exactly what your files say.',
-                        'You need both floor and files scored together.',
+                        'You need both floor and files reviewed together.',
                         'You need the full system built and handed off.',
                       ] },
                     ].map((row, ri) => (
@@ -1638,7 +1640,7 @@ const ServicesPage = () => {
                         </th>
                         {row.v.map((cell, ci) => {
                           const isHighlightCol = ci === 2;
-                          const bgHighlight = isHighlightCol ? { background: 'rgba(42,82,160,0.05)' } : {};
+                          const bgHighlight = isHighlightCol ? { background: 'rgba(42,82,160,0.07)', borderLeft: '1px solid rgba(42,82,160,0.12)', borderRight: '1px solid rgba(42,82,160,0.12)' } : {};
                           if (cell === true) {
                             return (
                               <td
@@ -1648,16 +1650,16 @@ const ServicesPage = () => {
                                 data-testid={`comparison-cell-${ri}-${ci}`}
                               >
                                 <span
-                                  className="inline-flex items-center justify-center rounded-full"
+                                  className="inline-flex items-center justify-center rounded-full transition-transform"
                                   style={{
-                                    width: '26px',
-                                    height: '26px',
-                                    backgroundColor: 'rgba(42,82,160,0.10)',
-                                    border: '1px solid rgba(42,82,160,0.28)',
+                                    width: '28px',
+                                    height: '28px',
+                                    backgroundColor: isHighlightCol ? 'rgba(201,168,76,0.18)' : 'rgba(42,82,160,0.10)',
+                                    border: isHighlightCol ? '1px solid rgba(201,168,76,0.55)' : '1px solid rgba(42,82,160,0.28)',
                                   }}
                                   aria-label="Included"
                                 >
-                                  <Check size={15} strokeWidth={3} className="text-[#2A52A0]" />
+                                  <Check size={16} strokeWidth={3} className={isHighlightCol ? 'text-[#C9A84C]' : 'text-[#2A52A0]'} />
                                 </span>
                               </td>
                             );
@@ -1741,7 +1743,7 @@ const ServicesPage = () => {
             >
               {/* Dark navy header */}
               <div
-                className="grid grid-cols-[140px_1.4fr_1.5fr_140px] px-8 py-6 uppercase font-bold text-white"
+                className="hidden lg:grid grid-cols-[140px_1.4fr_1.5fr_140px] px-8 py-6 uppercase font-bold text-white"
                 style={{ ...mono, fontSize: '11px', letterSpacing: '0.18em', backgroundColor: '#102A43' }}
               >
                 <div>Stage</div>
@@ -1754,12 +1756,14 @@ const ServicesPage = () => {
                   key={row.stage}
                   to={row.link}
                   onClick={() => fireServicesCtaClick(`Readiness Path · ${row.stage}`, row.link)}
-                  className="grid grid-cols-[140px_1.4fr_1.5fr_140px] px-8 py-7 items-center transition-colors hover:bg-[#FBFCFD]"
-                  style={{ backgroundColor: i % 2 === 0 ? '#ffffff' : '#F7F6F2' }}
+                  className="hidden lg:grid grid-cols-[140px_1.4fr_1.5fr_140px] px-8 py-7 items-center transition-all hover:bg-[#F3ECDB] hover:shadow-inner group"
+                  style={{ backgroundColor: i % 2 === 0 ? '#ffffff' : '#F7F6F2', borderLeft: '3px solid transparent' }}
+                  onMouseEnter={(e) => { e.currentTarget.style.borderLeftColor = '#C9A84C'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.borderLeftColor = 'transparent'; }}
                   data-testid={`readiness-path-row-${i + 1}`}
                 >
                   <div
-                    className="uppercase font-bold text-[#2A52A0]"
+                    className="uppercase font-bold text-[#2A52A0] group-hover:text-[#102A43] transition-colors"
                     style={{ ...mono, fontSize: '12.5px', letterSpacing: '0.12em' }}
                   >
                     Stage {i + 1}
@@ -1767,12 +1771,12 @@ const ServicesPage = () => {
                   <div className="text-[#1C2B2B]/80 italic text-[15px] leading-snug">
                     &ldquo;{row.need}&rdquo;
                   </div>
-                  <div className="font-bold text-[#1C2B2B] text-[15.5px] leading-snug">
+                  <div className="font-bold text-[#1C2B2B] text-[15.5px] leading-snug group-hover:text-[#2A52A0] transition-colors">
                     {row.offer}
                   </div>
                   <div className="text-right">
                     <span className="text-[#1C2B2B]/55 text-[13px] block">from</span>
-                    <span className="font-extrabold text-[#1C2B2B] text-[16px]" style={mono}>
+                    <span className="font-extrabold text-[#1C2B2B] text-[17px]" style={mono}>
                       {row.priceFrom}
                     </span>
                   </div>
@@ -1781,8 +1785,8 @@ const ServicesPage = () => {
             </div>
           </Reveal>
 
-          {/* Mobile stacked cards */}
-          <div className="md:hidden space-y-3" data-testid="readiness-path-mobile">
+          {/* Mobile + tablet stacked cards */}
+          <div className="lg:hidden space-y-3" data-testid="readiness-path-mobile">
             {READINESS_PATH.map((row, i) => (
               <Reveal key={row.stage}>
                 <Link
@@ -1969,17 +1973,45 @@ const ServicesPage = () => {
               </p>
               <div
                 className="rounded-xl bg-white overflow-hidden"
-                style={{ border: '1px solid #dde3ea', boxShadow: '0 1px 0 rgba(28,43,43,0.02)' }}
+                style={{ border: '1px solid #dde3ea', boxShadow: '0 1px 3px rgba(28,43,43,0.04)' }}
               >
-                {PRICING_REF.map(([name, price], i) => (
+                {PRICING_REF.map((row, i) => (
                   <div
-                    key={name}
-                    className="grid grid-cols-[1fr_auto] gap-4 px-6 py-4 items-center"
+                    key={row.name}
+                    className="grid grid-cols-[80px_1fr_auto] gap-4 px-6 py-4 items-center transition-colors hover:bg-[#FBFCFD] group"
                     style={{ borderBottom: i < PRICING_REF.length - 1 ? '1px solid rgba(16,33,51,0.06)' : 'none' }}
                     data-testid={`pricing-ref-row-${i + 1}`}
                   >
-                    <span className="text-base text-[#1C2B2B] font-semibold">{name}</span>
-                    <span className="text-base font-bold text-[#2A52A0] whitespace-nowrap" style={mono}>{price}</span>
+                    <span
+                      className="uppercase font-extrabold"
+                      style={{
+                        ...mono,
+                        fontSize: '9.5px',
+                        letterSpacing: '0.18em',
+                        color: row.category === 'FIND' ? '#2A52A0' : row.category === 'BUILD' ? '#C9A84C' : '#1C2B2B',
+                      }}
+                    >
+                      {row.category}
+                    </span>
+                    <span className="text-base text-[#1C2B2B] font-semibold flex items-center gap-2 flex-wrap">
+                      {row.name}
+                      {row.badge && (
+                        <span
+                          className="uppercase font-extrabold rounded"
+                          style={{
+                            ...mono,
+                            fontSize: '9px',
+                            letterSpacing: '0.16em',
+                            color: '#102A43',
+                            background: '#C9A84C',
+                            padding: '2px 7px',
+                          }}
+                        >
+                          {row.badge}
+                        </span>
+                      )}
+                    </span>
+                    <span className="text-base font-bold text-[#2A52A0] whitespace-nowrap group-hover:text-[#102A43] transition-colors" style={mono}>{row.price}</span>
                   </div>
                 ))}
               </div>

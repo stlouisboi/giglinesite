@@ -159,7 +159,7 @@ const KitPricingTiers = ({
             </div>
           </div>
         )}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 md:gap-6 items-stretch">
           {KIT_TIERS.map((tier) => {
             const isFeatured = tier.id === 'control-system';
             return (

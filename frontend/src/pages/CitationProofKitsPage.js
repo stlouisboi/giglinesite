@@ -137,7 +137,7 @@ const CitationProofKitsPage = () => {
               Each kit targets one specific gap. Start with the one that is actually a problem in your operation — you can add more later.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-6">
             {KIT_CATALOG.filter((k) => !k.starterVariant).map((kit) => (
               <Link
                 key={kit.slug}

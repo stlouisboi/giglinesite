@@ -132,7 +132,7 @@ const KIT_CATALOG = [
     startingAt: 150,
     startingAtLabel: 'Starting at $150',
     ready: true,
-    cardImage: '/assets/kits/loto/loto-hero.png',
+    cardImage: '/assets/kits/loto/loto-editorial-hero.jpg',
     placeholder: null,
   },
   {
@@ -144,7 +144,7 @@ const KIT_CATALOG = [
     startingAt: 150,
     startingAtLabel: 'Starting at $150',
     ready: true,
-    cardImage: '/assets/kits/pit/pit-hero.png',
+    cardImage: '/assets/kits/pit/pit-editorial-hero.jpg',
     placeholder: ['Forklift / PIT', 'Readiness Kit'],
   },
   {
@@ -156,7 +156,7 @@ const KIT_CATALOG = [
     startingAt: 150,
     startingAtLabel: 'Starting at $150',
     ready: true,
-    cardImage: '/assets/kits/hazcom-pro/hazcom-hero.png',
+    cardImage: '/assets/kits/hazcom-pro/hazcom-editorial-hero.jpg',
     placeholder: ['HazCom Pro Kit'],
   },
   {

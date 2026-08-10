@@ -273,7 +273,7 @@ const FieldNotesPage = () => {
           backgroundColor: '#102A43',
           backgroundImage: 'linear-gradient(rgba(28,43,43,0.55), rgba(28,43,43,0.72)), url(/assets/field-notes-header.webp)',
           backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundPosition: '50% 20%',
           backgroundRepeat: 'no-repeat',
         }}
         data-testid="field-notes-header"

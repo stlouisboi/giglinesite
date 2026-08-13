@@ -322,9 +322,11 @@ This is GigLine Safety & Compliance.`}
               <p>
                 In the military, your <strong className="text-[#1C2B2B]">gig line</strong> is the straight line formed by your shirt, your belt buckle, and your trouser fly.
               </p>
-              <p>If it is off &mdash; even slightly &mdash; you are <span className="font-bold uppercase">unsat</span> (unsatisfactory).</p>
               <p>
-                It is a small detail. But it represents something larger: attention to alignment, discipline in execution, and the understanding that inspectors notice what others ignore.
+                If your gig line was out of alignment, it could earn an <span className="font-bold uppercase">unsat</span> &mdash; unsatisfactory &mdash; during inspection.
+              </p>
+              <p>
+                It was a small detail, but it represented something larger: attention to standards, discipline in execution, and the understanding that inspectors notice what others overlook.
               </p>
             </div>
           </Reveal>

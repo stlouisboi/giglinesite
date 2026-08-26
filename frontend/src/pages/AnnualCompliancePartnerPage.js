@@ -96,7 +96,7 @@ const AnnualCompliancePartnerPage = () => {
     <main data-testid="annual-compliance-partner-page">
       <SEO
         title="Annual Compliance Partner — $12,000/year | GigLine"
-        description="Ongoing OSHA compliance support for small operations. Four quarterly on-site visits, annual documentation audit, on-call support, incident review included. $12,000/year ($1,000/month equivalent). Limited availability."
+        description="Year-long OSHA support — 4 quarterly visits, annual doc audit, on-call, incident review. $12,000/year. Limited availability."
         canonical={`/services/${SLUG}`}
         schema={[
           {

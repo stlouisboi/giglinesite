@@ -17,7 +17,7 @@ const tocItems = [
 
 const defined = {
   headline: "OSHA Machine Guarding Checklist for Small Manufacturers",
-  description: "The machine guarding requirements OSHA cites most often in small manufacturing — with a practical checklist, CFR citations, and 2026 penalty exposures. Written by a safety consultant who walks NC production floors weekly.",
+  description: "OSHA machine guarding for small manufacturers — practical checklist, CFR citations, 2026 penalty exposures.",
   canonical: "/blog/osha-machine-guarding-checklist-small-manufacturers",
   datePublished: "2025-10-14",
   dateModified: "2025-10-14",

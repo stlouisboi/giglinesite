@@ -160,7 +160,7 @@ const DocumentDevelopmentPage = () => {
     <main data-testid="document-development-page">
       <SEO
         title="Document Development — Written OSHA Programs from $350 | GigLine"
-        description="GigLine writes the safety programs your operation needs — LOTO, HazCom, PPE, EAP, and full suites — scoped to your specific equipment, chemicals, and job classifications. Fixed price after a documentation review."
+        description="GigLine writes custom OSHA programs — LOTO, HazCom, PPE, EAP — scoped to your equipment, chemicals & job classifications."
         canonical={`/services/${SLUG}`}
         schema={[
           {

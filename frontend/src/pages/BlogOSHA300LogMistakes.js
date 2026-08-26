@@ -18,7 +18,7 @@ const tocItems = [
 
 const defined = {
   headline: "OSHA 300 Log: Common Mistakes That Trigger Citations",
-  description: "The recordkeeping mistakes OSHA cites most on the 300 log — misclassification, missing 300A postings, incomplete 301 forms. With 2026 penalty exposure and a working-copy walkthrough from a consultant who reviews these logs weekly.",
+  description: "OSHA 300-log mistakes — misclassification, missing 300A postings, incomplete 301 forms. 2026 penalty exposure + walkthrough.",
   canonical: "/blog/osha-300-log-common-mistakes-citations",
   datePublished: "2025-12-09",
   dateModified: "2025-12-09",

@@ -115,7 +115,7 @@ const OshaComplianceGuidePage = () => {
     '@type': 'WebPage',
     name: 'The OSHA Compliance Guide for Small Manufacturing & Warehouse Operations',
     description:
-      'A complete index of 25 OSHA compliance topics for NC manufacturing, warehouse, and contractor operations — organized by hazard cluster, CFR-cited, written by Vince Lawrence.',
+      '25 CFR-cited OSHA compliance topics for NC manufacturers, warehouses & contractors — organized by hazard cluster.',
     url: 'https://www.giglinecompliance.com/osha-compliance-guide',
     inLanguage: 'en-US',
   };
@@ -138,7 +138,7 @@ const OshaComplianceGuidePage = () => {
     <main data-testid="osha-compliance-guide-page">
       <SEO
         title="The OSHA Compliance Guide — All 25 Topics, Organized by Hazard | GigLine"
-        description="The complete OSHA compliance reference for NC small manufacturing and warehouse operations. 25 CFR-cited field notes organized into six hazard clusters — written by Vince Lawrence, GigLine Safety & Compliance."
+        description="OSHA compliance reference for NC small manufacturing — 25 CFR-cited field notes across 6 hazard clusters. By Vince Lawrence."
         canonical="/osha-compliance-guide"
         schema={[pageSchema, collectionSchema]}
       />

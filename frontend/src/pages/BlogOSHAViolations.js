@@ -5,7 +5,7 @@ import SEO from '../components/SEO';
 
 const defined = {
   headline: "Top 5 OSHA Violations in Small Manufacturing",
-  description: "The five most-cited OSHA violations in small manufacturing: Hazard Communication, Lockout/Tagout, Machine Guarding, Powered Industrial Trucks, and Walking-Working Surfaces. Includes CFR references, penalty amounts, and compliance requirements.",
+  description: "5 most-cited OSHA violations in small manufacturing — HazCom, LOTO, machine guarding, PIT, walking surfaces. CFR + penalty exposure.",
   canonical: "/blog/top-5-osha-violations-small-manufacturing",
   datePublished: "2026-04-07",
   dateModified: "2026-04-07",

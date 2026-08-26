@@ -30,7 +30,7 @@ const IncidentReviewPage = () => {
     <main data-testid="incident-review-page">
       <SEO
         title="Incident Review — Time-Sensitive | GigLine"
-        description="Call GigLine before you file anything or talk to anyone after a workplace incident. Root cause analysis, regulatory obligation review, documentation guidance, and corrective action plan. Same-day response. Private engagement."
+        description="Call GigLine after a workplace incident. Root cause analysis, regulatory review, documentation guidance, corrective plan. Same-day. Private engagement."
         canonical={`/services/${SLUG}`}
         schema={[
           { '@context': 'https://schema.org', '@type': 'Service', name: 'Incident Review', provider: { '@type': 'LocalBusiness', name: 'GigLine Safety & Compliance', url: 'https://www.giglinecompliance.com', telephone: '+13363298899' }, areaServed: { '@type': 'State', name: 'North Carolina' }, offers: { '@type': 'Offer', priceCurrency: 'USD', description: 'Incident Review — fixed quote provided on the call. Same-day response.' }, description: 'Time-sensitive post-incident review covering root cause analysis, regulatory obligations, documentation guidance, and corrective action planning.' },

@@ -59,7 +59,7 @@ const SafetyWalkthroughPage = () => {
     <main data-testid="safety-walkthrough-page">
       <SEO
         title="Safety Walkthrough — From $1,300 | GigLine"
-        description="On-site safety walkthrough focused purely on physical hazards. Photo-documented findings with CFR citations and prioritized Top 10 fix list delivered within 48 hours. From $1,300."
+        description="On-site OSHA safety walkthrough for NC manufacturers. Photo-documented CFR-cited findings + Top 10 fix list in 48 hours. From $1,300."
         canonical={`/safety-walkthrough`}
         schema={[
           { '@context': 'https://schema.org', '@type': 'Service', name: 'Safety Walkthrough', provider: { '@type': 'LocalBusiness', name: 'GigLine Safety & Compliance', url: 'https://www.giglinecompliance.com', telephone: '+13363298899' }, areaServed: { '@type': 'State', name: 'North Carolina' }, offers: { '@type': 'Offer', price: '1200', priceCurrency: 'USD', description: 'Safety Walkthrough from $1,300 — on-site physical hazard inspection.' }, description: 'On-site walkthrough focused on physical hazards with photo-documented CFR-cited findings delivered as a Top 10 priority report within 48 hours.' },

@@ -14,7 +14,7 @@ const DOC_REVIEW_DESCRIPTION = 'A structured review of your safety documentation
 const DOC_REVIEW_PRICE = 'From $1,700';
 const DOC_REVIEW_PRICING_REF_PRICE = 'Starting at $1,700';
 const DOC_REVIEW_PATH_OFFER = 'OSHA Documentation Readiness Review \u2014 from $1,700';
-const SERVICES_META_DESCRIPTION = 'OSHA-readiness support for small industrial operations. GigLine helps manufacturers, warehouses, contractors, and fleet operations find gaps on the floor, review safety documentation and evidence, and organize corrective action. Find. Build. Maintain. Fixed pricing. No retainer.';
+const SERVICES_META_DESCRIPTION = 'OSHA readiness for NC manufacturers, warehouses & contractors. Find gaps, review documentation, close corrective actions. From $1,300. Find. Build. Maintain. Fixed pricing. No retainer.';
 
 /* ── Scroll-reveal — mirrors HomePage.js exactly ── */
 const useReveal = () => {

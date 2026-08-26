@@ -211,7 +211,7 @@ const ComplianceReadinessVisitPage = () => {
     <main data-testid="compliance-readiness-visit-page">
       <SEO
         title="Compliance Readiness Visit — From $2,500 | GigLine"
-        description="The floor and the files reviewed in a single engagement. Written findings report delivered within 48 hours. 30-day corrective-action roadmap and findings-review call included. Starting at $2,500."
+        description="The floor + the files in one visit. CFR-cited 48-hour report, 30-day corrective-action roadmap, findings-review call. From $2,500."
         canonical={`/services/${SLUG}`}
         schema={[
           {

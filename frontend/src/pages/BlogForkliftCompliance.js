@@ -18,7 +18,7 @@ const tocItems = [
 
 const defined = {
   headline: "OSHA Forklift Compliance: What Inspectors Actually Check",
-  description: "The forklift-related items OSHA inspectors ask for first — operator certifications, daily inspection logs, traffic controls — with the CFR sections and 2026 penalty exposures. From a consultant walking Piedmont Triad warehouse floors weekly.",
+  description: "OSHA forklift compliance — operator certifications, daily inspections, traffic controls. CFR + 2026 penalty exposure.",
   canonical: "/blog/osha-forklift-compliance-inspector-checklist",
   datePublished: "2025-11-11",
   dateModified: "2025-11-11",

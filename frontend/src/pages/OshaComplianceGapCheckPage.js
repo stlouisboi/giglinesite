@@ -4,7 +4,7 @@ import ServiceLandingTemplate from '../components/ServiceLandingTemplate';
 const OshaComplianceGapCheckPage = () => (
   <ServiceLandingTemplate
     seoTitle="Compliance Readiness Visit — Pre-Inspection Review for NC Operations"
-    seoDescription="Full Compliance Readiness Visit — combined on-site walkthrough and OSHA Documentation Readiness Review. Built for operations preparing for an OSHA inspection, audit, or insurance review. Written report in 48 hours. Serving NC manufacturers, warehouses, contractors, and fleets."
+    seoDescription="Compliance Readiness Visit — walkthrough + doc review in one engagement. Prepare for OSHA inspection, audit, or insurance. From $2,500."
     canonical="/osha-compliance-gap-check"
     eyebrow="Service · Compliance Readiness Visit"
     headline="A Compliance Readiness Visit Before an Inspection, Audit, or Insurance Review."

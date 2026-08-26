@@ -5,7 +5,7 @@ import SEO from '../components/SEO';
 
 const defined = {
   headline: "How Much Is an OSHA Violation in North Carolina in 2026?",
-  description: "The 2026 OSHA penalty schedule, explained for NC small manufacturers. Serious, Willful, Repeat, Failure-to-Abate — with the multipliers OSHA compliance officers actually apply on the ground. Includes free citation cost calculator.",
+  description: "2026 OSHA penalty schedule for NC — Serious, Willful, Repeat, Failure-to-Abate + real-world multipliers. Free calculator included.",
   canonical: "/blog/osha-penalty-north-carolina-2026",
   datePublished: "2026-08-03",
   dateModified: "2026-08-03",

@@ -40,7 +40,7 @@ const CitationProofKitsPage = () => {
       `}</style>
       <SEO
         title="Citation-Proof Kit Series | GigLine Safety & Compliance"
-        description="Five practical compliance-control kits for small manufacturers, warehouses, contractors, and fleet operations. Turn scattered safety activity into inspection-ready proof — before OSHA, an insurer, or a customer asks for it."
+        description="5 practical compliance-control kits for small NC operations. Turn scattered safety activity into inspection-ready proof. From $150."
         canonical="/citation-proof-kits"
       />
 

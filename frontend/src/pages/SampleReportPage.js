@@ -45,7 +45,7 @@ const SampleReportPage = () => {
     <main data-testid="sample-report-page">
       <SEO
         title="Sample Compliance Report | GigLine Safety & Compliance"
-        description="See exactly what you get. A real GigLine compliance report — facility name redacted. Findings, CFR citations, penalty exposure, and the prioritized fix list. Download free."
+        description="See exactly what you get — a real GigLine compliance report. Findings, CFR citations, penalty exposure, fix list. Download free."
         canonical="/sample-report"
       />
 

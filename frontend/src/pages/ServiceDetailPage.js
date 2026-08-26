@@ -13,7 +13,7 @@ const SERVICES = {
     headline: 'The first step when you need exposure identified quickly.',
     price: 'From $1,300',
     metaTitle: 'Safety Walkthrough Report — From $1,300 | GigLine',
-    metaDesc: 'On-site OSHA walkthrough with photo-documented findings, CFR citations, and a 48-hour written report. Fixed quote. Private engagement. Serving the Piedmont Triad.',
+    metaDesc: 'On-site OSHA walkthrough — photo-documented findings, CFR citations, 48-hour report. Fixed quote. Piedmont Triad NC. From $1,300.',
     body: 'An on-site walkthrough focused purely on physical hazards. You get a photo-documented report and a prioritized fix list within 48 hours. No retainer. No follow-up obligation. The walkthrough takes 1\u20133 hours depending on facility size; the report lands in your inbox within two business days.',
     whatsIncluded: [
       'On-site walkthrough (1\u20133 hours, scheduled at your convenience)',
@@ -126,7 +126,7 @@ const SERVICES = {
     price: '$12,000/year',
     priceSecondary: '$1,000/month equivalent',
     metaTitle: 'Annual Compliance Control Partner — $12,000/year | GigLine',
-    metaDesc: 'A year-long compliance partnership for small manufacturers. Two walkthroughs + four documentation reviews + quarterly review calls + on-call access. From $12,000/year.',
+    metaDesc: 'Year-long OSHA compliance partnership — 2 walkthroughs, 4 doc reviews, quarterly calls, on-call access. $12,000/year.',
     body: 'Two full walkthroughs per year. Quarterly documentation reviews. Training record maintenance. OSHA 300A posting reminders. Pre-inspection readiness review. Management safety review. GigLine becomes your ongoing compliance resource \u2014 available when something happens and proactive between visits.',
     whatsIncluded: [
       'Two Safety Walkthroughs per year \u2014 on-site, photographed, reported within 48 hours',

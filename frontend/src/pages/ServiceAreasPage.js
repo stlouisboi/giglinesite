@@ -38,7 +38,7 @@ const ServiceAreasPage = () => {
     <main data-testid="service-areas-page">
       <SEO
         title="Service Areas — NC Safety Walkthroughs | GigLine Safety & Compliance"
-        description="GigLine provides on-site OSHA safety walkthroughs across 13 North Carolina cities — Kernersville, Winston-Salem, Greensboro, High Point, Burlington and more. Find your city."
+        description="GigLine on-site OSHA walkthroughs across 13 NC cities — Kernersville, Winston-Salem, Greensboro, High Point, Burlington & more."
         canonical="/service-areas"
         schema={breadcrumbSchema}
       />

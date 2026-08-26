@@ -18,7 +18,7 @@ const tocItems = [
 
 const defined = {
   headline: "Written HazCom Program: What You Need Before an OSHA Inspection",
-  description: "The written Hazard Communication program checklist OSHA works through during an inspection — chemical inventory, SDS binder, GHS labels, training records. From a consultant walking Piedmont Triad shops weekly.",
+  description: "OSHA HazCom inspection checklist — chemical inventory, SDS binder, GHS labels, training records. From an NC OSHA consultant.",
   canonical: "/blog/written-hazcom-program-before-osha-inspection",
   datePublished: "2025-11-25",
   dateModified: "2025-11-25",

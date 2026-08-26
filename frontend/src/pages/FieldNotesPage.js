@@ -172,7 +172,7 @@ const FIELD_NOTES = [
     slug: 'abrasive-wheels',
     title: 'Abrasive Wheels & Bench Grinders',
     subtitle: 'The Tongue Guard at 1/8 of an Inch',
-    description: 'Bench grinder compliance — tongue guards, work rests, ring tests, RPM limits. 29 CFR 1910.215. One of OSHA's most-cited standards.',
+    description: 'Bench grinder compliance — tongue guards, work rests, ring tests, RPM limits. 29 CFR 1910.215. One of OSHA\'s most-cited standards.',
     topics: ['tongue guards', 'work rests', 'ring testing'],
   },
   {
@@ -207,7 +207,7 @@ const FIELD_NOTES = [
     slug: 'nc-osha-vs-federal',
     title: 'NC State Plan vs. Federal OSHA',
     subtitle: 'What North Carolina Does Differently',
-    description: 'NC operates an approved State Plan. Compliance officers come from NC DOL, not federal OSHA. Here's what applies to Triad operations.',
+    description: 'NC operates an approved State Plan. Compliance officers come from NC DOL, not federal OSHA. Here\'s what applies to Triad operations.',
     topics: ['NC State Plan', 'NCDOL inspections', 'consultation services'],
   },
 ];

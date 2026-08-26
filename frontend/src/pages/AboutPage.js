@@ -142,7 +142,7 @@ const AboutPage = () => {
             "email": "vince@giglinecompliance.com",
             "url": "https://www.giglinecompliance.com/about",
             "image": "https://www.giglinecompliance.com/vince-portrait.webp",
-            "description": "Vince Lawrence is a safety consultant with 25+ years of experience in manufacturing, fleet, and warehouse operations. OSHA 30-Hour Certified in General Industry. U.S. Navy veteran. Founder of GigLine Safety & Compliance in Kernersville, NC.",
+            "description": "Vince Lawrence — 25+ years in manufacturing/fleet/warehouse safety. OSHA 30-Hour Certified. Navy veteran. Founder of GigLine.",
             "sameAs": [
               "https://www.giglinecompliance.com",
               "https://www.giglinecompliance.com/about",

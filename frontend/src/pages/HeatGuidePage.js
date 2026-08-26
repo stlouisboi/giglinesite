@@ -34,7 +34,7 @@ const HeatGuidePage = () => {
     <main data-testid="heat-guide-page">
       <SEO
         title="2026 Heat Stress Action Template"
-        description="Free 2026 Heat Stress Action Template for NC manufacturing and warehouse operations. Daily heat check, trigger levels, written plan checklist, and enforcement reference. Download the PDF."
+        description="Free 2026 Heat Stress Action Template for NC manufacturing & warehouses. Daily heat check, trigger levels, written plan."
         canonical="/heat-guide"
       />
 

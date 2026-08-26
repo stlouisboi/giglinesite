@@ -76,7 +76,7 @@ const WalkthroughLandingPage = () => {
     >
       <SEO
         title="Request a Safety Walkthrough | GigLine Safety & Compliance"
-        description="Schedule an on-site safety walkthrough with Vince Lawrence. GigLine identifies your top OSHA exposure points and delivers a written report ranked by risk. One visit. No retainer. Serving the Piedmont Triad, NC."
+        description="Schedule an on-site safety walkthrough with Vince Lawrence. Top OSHA exposures + risk-ranked report. Piedmont Triad NC."
         canonical="/walkthrough"
       />
 

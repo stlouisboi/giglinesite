@@ -17,7 +17,7 @@ const tocItems = [
 
 const defined = {
   headline: "LOTO Program Requirements for Small Facilities",
-  description: "OSHA 1910.147 Control of Hazardous Energy in plain English — written program elements, machine-specific procedures, training, and the citations that catch small facilities. From an OSHA consultant walking NC floors weekly.",
+  description: "OSHA 1910.147 LOTO in plain English — written program, machine-specific procedures, training & citations that catch small facilities.",
   canonical: "/blog/loto-program-requirements-small-facilities",
   datePublished: "2025-10-28",
   dateModified: "2025-10-28",

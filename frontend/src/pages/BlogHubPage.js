@@ -15,7 +15,7 @@ import SEO from '../components/SEO';
 
 const defined = {
   title: "OSHA Compliance Guides & Field Reports | GigLine Blog",
-  description: "Long-form OSHA compliance guides for small manufacturers, warehouses, and contractors — machine guarding, LOTO, forklift, HazCom, recordkeeping. Written by an OSHA-30 consultant walking Piedmont Triad shops weekly.",
+  description: "OSHA compliance guides for NC manufacturers, warehouses & contractors — machine guarding, LOTO, forklift, HazCom, recordkeeping.",
   canonical: "/blog",
 };
 

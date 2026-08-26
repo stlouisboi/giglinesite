@@ -365,7 +365,7 @@ const SupervisorKitPage = () => {
     <main data-testid="supervisor-kit-page" style={{ backgroundColor: BG_WARM, color: NAVY }}>
       <SEO
         title="GigLine Supervisor Safety OS | Supervisor Safety Documentation System"
-        description="Turn scattered safety paperwork into a visible supervisor-run system. The GigLine Supervisor Safety OS helps small manufacturing teams inspect, document, assign, verify, and review safety follow-up."
+        description="Turn scattered safety paperwork into a supervisor-run system — inspect, document, assign, verify, review. From $600."
         canonical="/supervisor-kit"
       />
 

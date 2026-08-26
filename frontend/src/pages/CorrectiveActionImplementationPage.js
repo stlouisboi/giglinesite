@@ -11,7 +11,7 @@ const mono = { fontFamily: "'JetBrains Mono', monospace" };
 const meta = {
   title: 'Corrective Action Implementation — Close the Findings | GigLine',
   description:
-    'GigLine helps close selected safety-control findings after an assessment. Hands-on implementation. Custom-quoted per facility. Typically from $2,500 depending on scope.',
+    'Hands-on implementation to close safety-control findings after an assessment. Custom quote per facility, typically from $2,500.',
   canonical: '/services/corrective-action-implementation',
 };
 
@@ -28,13 +28,13 @@ const schema = {
   areaServed: { '@type': 'State', name: 'North Carolina' },
   serviceType: 'Safety Compliance Implementation',
   description:
-    'Hands-on implementation of selected safety-control findings identified in a GigLine assessment or comparable review. Includes organizing PIT authorization, HazCom evidence, training records, corrective-action tracking, and document control. Custom quote per engagement. Most projects begin at $2,500.',
+    'Hands-on implementation to close safety findings identified in a GigLine assessment. Custom-quoted, most projects from $2,500.',
   offers: {
     '@type': 'Offer',
     price: '2500',
     priceCurrency: 'USD',
     description:
-      'Corrective Action Implementation — custom quote. Most projects begin at $2,500 and are driven by the number of findings, complexity, program area, facility size, and hands-on work required.',
+      'Corrective Action Implementation — custom quote. Most projects begin at $2,500 based on findings, complexity, and facility size.',
   },
 };
 

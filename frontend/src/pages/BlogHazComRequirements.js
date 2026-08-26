@@ -5,7 +5,7 @@ import SEO from '../components/SEO';
 
 const defined = {
   headline: "HazCom Requirements for Small Businesses",
-  description: "Complete guide to OSHA Hazard Communication requirements for small businesses. Covers written programs, Safety Data Sheets, labeling, training, and penalties under 29 CFR 1910.1200.",
+  description: "Guide to OSHA HazCom for small businesses — written programs, SDS, labeling, training & penalties under 29 CFR 1910.1200.",
   canonical: "/blog/hazcom-requirements-small-business",
   datePublished: "2026-04-07",
   dateModified: "2026-04-07",

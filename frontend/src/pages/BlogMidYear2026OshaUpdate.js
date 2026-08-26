@@ -5,7 +5,7 @@ import SEO from '../components/SEO';
 
 const defined = {
   headline: "Mid-Year 2026 OSHA Update for NC Manufacturers",
-  description: "Six things that changed — or moved on the enforcement radar — in the first half of 2026 for North Carolina manufacturing, packaging, and metals fabrication. Heat NEP renewed, PSM enforcement priorities, penalty tier adjustments, and what NC OSH is quietly flagging in inspections.",
+  description: "Mid-2026 OSHA update for NC manufacturing — Heat NEP, PSM, penalty tiers + what NC OSH is quietly flagging in inspections.",
   canonical: "/blog/mid-year-2026-osha-update-nc-manufacturers",
   datePublished: "2026-07-09",
   dateModified: "2026-07-09",

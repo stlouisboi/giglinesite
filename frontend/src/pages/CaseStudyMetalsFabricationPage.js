@@ -62,7 +62,7 @@ const CaseStudyMetalsFabricationPage = () => {
     >
       <SEO
         title="What a Safety Walkthrough Actually Finds | GigLine Case Study"
-        description="A metals fabrication facility in Statesville, NC brought GigLine in for a combined walkthrough and documentation review. 13 findings. 80.3 compliance score. Here's what the engagement delivered."
+        description="Metals fabrication case study in Statesville, NC. Combined walkthrough + doc review. 13 findings. 80.3 compliance score.'s what the engagement delivered."
         canonical="/case-study/metals-fabrication-statesville"
         schema={[
           {
@@ -70,7 +70,7 @@ const CaseStudyMetalsFabricationPage = () => {
             '@type': 'Article',
             headline: 'What a Safety Walkthrough Actually Finds — Statesville Metals Fabrication Case Study',
             description:
-              "A 9-person metals fabrication facility in Statesville, NC brought GigLine in for a combined Safety Walkthrough and Documentation Review on June 18, 2026. 13 findings. 80.3 compliance score. 12 of 13 corrective actions closed within four days of the walkthrough.",
+              "Metals fab case study, Statesville NC — walkthrough + doc review. 13 findings. 80.3 score. 12 of 13 actions closed in 4 days.",
             author: { '@type': 'Person', name: 'Vince Lawrence', url: 'https://www.giglinecompliance.com/about' },
             publisher: { '@type': 'Organization', name: 'GigLine Safety & Compliance', url: 'https://www.giglinecompliance.com' },
             datePublished: '2026-06-22',

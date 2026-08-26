@@ -5,7 +5,7 @@ const config = {
   slug: 'loto-procedure-review-nc',
   canonical: '/loto-procedure-review-nc',
   seoTitle: 'Lockout Tagout Procedure Review NC | GigLine Safety & Compliance',
-  seoDescription: 'On-site Lockout/Tagout (LOTO) procedure review for NC manufacturers and fabricators. Machine-specific procedures, authorized employee training, annual audit. 29 CFR 1910.147. From $1,300.',
+  seoDescription: 'On-site LOTO procedure review for NC manufacturers. Machine-specific procedures, training, annual audit. 29 CFR 1910.147. From $1,300.',
   eyebrow: 'LOTO Procedure Review',
   headline: 'Lockout/Tagout Procedure Review for NC operations.',
   subhead: 'LOTO failures are one of OSHA\u2019s top fatality-driver standards. A focused on-site review of your machine-specific procedures, authorized employee training, energy-isolation hardware, and annual audit \u2014 written report in 48 hours.',

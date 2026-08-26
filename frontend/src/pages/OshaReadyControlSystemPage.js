@@ -68,10 +68,10 @@ const OshaReadyControlSystemPage = () => {
     <main data-testid="osha-ready-control-system-page">
       <SEO
         title="OSHA-Ready Control System — From $4,500 | GigLine"
-        description="Complete physical and digital safety infrastructure built to your operation. Four-binder command system, digital folder architecture, training matrix + SDS, written programs, log templates, and supervisor handoff. From $4,500."
+        description="Complete physical + digital OSHA infrastructure — 4-binder system, digital folders, training matrix, SDS, programs. From $4,500."
         canonical={`/services/${SLUG}`}
         schema={[
-          { '@context': 'https://schema.org', '@type': 'Service', name: 'OSHA-Ready Control System', provider: { '@type': 'LocalBusiness', name: 'GigLine Safety & Compliance', url: 'https://www.giglinecompliance.com', telephone: '+13363298899' }, areaServed: { '@type': 'State', name: 'North Carolina' }, offers: { '@type': 'Offer', price: '4500', priceCurrency: 'USD', description: 'OSHA-Ready Control System from $4,500 — complete safety infrastructure buildout.' }, description: 'Complete physical and digital safety infrastructure buildout: four-binder system, digital folder architecture, training matrix and SDS organization, written programs built to your operation, log templates, and supervisor handoff session.' },
+          { '@context': 'https://schema.org', '@type': 'Service', name: 'OSHA-Ready Control System', provider: { '@type': 'LocalBusiness', name: 'GigLine Safety & Compliance', url: 'https://www.giglinecompliance.com', telephone: '+13363298899' }, areaServed: { '@type': 'State', name: 'North Carolina' }, offers: { '@type': 'Offer', price: '4500', priceCurrency: 'USD', description: 'OSHA-Ready Control System from $4,500 — complete safety infrastructure buildout.' }, description: 'Complete physical + digital OSHA infrastructure: 4-binder system, digital folders, training matrix, SDS, programs. From $4,500.' },
           { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.giglinecompliance.com/' }, { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://www.giglinecompliance.com/services' }, { '@type': 'ListItem', position: 3, name: 'OSHA-Ready Control System', item: `https://www.giglinecompliance.com/services/${SLUG}` }] },
         ]}
       />

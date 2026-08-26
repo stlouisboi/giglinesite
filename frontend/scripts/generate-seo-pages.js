@@ -137,7 +137,7 @@ const VINCE_PERSON = {
   url: `${BASE_URL}/about`,
   image: `${BASE_URL}/vince-portrait.webp`,
   description:
-    'Vince Lawrence is a safety consultant with 25+ years of experience in manufacturing, fleet, and warehouse operations. OSHA 30-Hour Certified in General Industry. U.S. Navy veteran. Founder of GigLine Safety & Compliance in Kernersville, NC.',
+    'Vince Lawrence — 25+ years in manufacturing/fleet/warehouse safety. OSHA 30-Hour Certified. Navy veteran. Founder of GigLine.',
   hasCredential: [
     { '@type': 'EducationalOccupationalCredential', credentialCategory: 'certification', name: 'OSHA 30-Hour General Industry Certification' },
     { '@type': 'EducationalOccupationalCredential', credentialCategory: 'military service', name: 'U.S. Navy Veteran' },
@@ -322,9 +322,9 @@ const routes = [
           { '@type': 'ListItem', position: 2, item: { '@type': 'Service', name: 'Safety Walkthrough & Top 10 Fixes Report', description: 'A structured on-site review of common OSHA exposure areas with a Top 10 priority report.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '1200', priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 3, item: { '@type': 'Service', name: 'OSHA Documentation Readiness Review', description: DOC_REVIEW_DESCRIPTION, provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: DOC_REVIEW_PRICE_NUM, priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 4, item: { '@type': 'Service', name: 'Incident Review & Corrective Action Support', description: 'Post-incident review, OSHA recordability determination, and corrective action documentation.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '1500', priceCurrency: 'USD' } } },
-          { '@type': 'ListItem', position: 5, item: { '@type': 'Service', name: 'GigLine OSHA-Ready Control System', description: 'Complete four-binder physical command system, digital folder architecture, training matrix, SDS organization, and corrective action tracker. Includes supervisor walkthrough at handoff.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '4500', priceCurrency: 'USD' } } },
+          { '@type': 'ListItem', position: 5, item: { '@type': 'Service', name: 'GigLine OSHA-Ready Control System', description: 'Four-binder command system + digital folder architecture, training matrix, SDS organization & corrective action tracker. From $4,500.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '4500', priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 6, item: { '@type': 'Service', name: 'Quarterly Compliance Maintenance', description: 'Ongoing quarterly documentation review, training record audit, and corrective action tracker review.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '950', priceCurrency: 'USD' } } },
-          { '@type': 'ListItem', position: 7, item: { '@type': 'Service', name: 'Annual Compliance Control Partner', description: 'Two annual walkthroughs, four documentation reviews per year, quarterly review calls, OSHA 300A posting reminders, pre-inspection readiness review, and direct on-call access between visits. $1,000/month equivalent.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '12000', priceCurrency: 'USD' } } },
+          { '@type': 'ListItem', position: 7, item: { '@type': 'Service', name: 'Annual Compliance Control Partner', description: '2 walkthroughs, 4 doc reviews, quarterly calls, 300A reminders, on-call access. Full-year OSHA compliance partnership. $12,000/year.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '12000', priceCurrency: 'USD' } } },
         ],
       },
       faqSchema([
@@ -387,7 +387,7 @@ const routes = [
   {
     path: '/service-areas',
     title: 'Service Areas — NC Safety Walkthroughs | GigLine Safety & Compliance',
-    description: 'GigLine provides on-site OSHA safety walkthroughs across 13 North Carolina cities — Kernersville, Winston-Salem, Greensboro, High Point, Burlington and more. Find your city.',
+    description: 'GigLine on-site OSHA walkthroughs across 13 NC cities — Kernersville, Winston-Salem, Greensboro, High Point, Burlington & more.',
     canonical: '/service-areas',
     schemas: [breadcrumb([{ name: 'Home', path: '/' }, { name: 'Service Areas', path: '/service-areas' }])],
     content: `
@@ -422,7 +422,7 @@ const routes = [
   {
     path: '/contact',
     title: 'Contact | GigLine Safety & Compliance',
-    description: 'Contact GigLine Safety & Compliance. Request a walkthrough, documentation review, or incident response support. Vince Lawrence — (336) 329-8899. Kernersville, NC.',
+    description: 'Contact GigLine Safety & Compliance. Request a walkthrough, doc review, or incident support. Vince Lawrence — (336) 329-8899.',
     canonical: '/contact',
     schemas: [LOCAL_BUSINESS, breadcrumb([{ name: 'Home', path: '/' }, { name: 'Contact', path: '/contact' }])],
     content: `
@@ -461,14 +461,14 @@ const routes = [
   {
     path: '/blog/top-5-osha-violations-small-manufacturing',
     title: 'Top 5 OSHA Violations in Small Manufacturing | GigLine Safety & Compliance',
-    description: 'The five most-cited OSHA violations in small manufacturing: Hazard Communication, Lockout/Tagout, Machine Guarding, Powered Industrial Trucks, and Walking-Working Surfaces.',
+    description: 'The 5 most-cited OSHA violations in small manufacturing — HazCom, LOTO, machine guarding, PIT, walking-working surfaces.',
     canonical: '/blog/top-5-osha-violations-small-manufacturing',
     schemas: [
       {
         '@context': 'https://schema.org',
         '@type': 'Article',
         headline: 'The Top 5 OSHA Violations in Small Manufacturing — And What They Actually Cost',
-        description: 'The five most-cited OSHA violations in small manufacturing: Hazard Communication, Lockout/Tagout, Machine Guarding, Powered Industrial Trucks, and Walking-Working Surfaces.',
+        description: 'The 5 most-cited OSHA violations in small manufacturing — HazCom, LOTO, machine guarding, PIT, walking-working surfaces.',
         image: `${BASE_URL}/og-image.png`,
         author: { '@id': `${BASE_URL}/#vince` },
         publisher: { '@id': `${BASE_URL}/#business` },
@@ -494,14 +494,14 @@ const routes = [
   {
     path: '/blog/hazcom-requirements-small-business',
     title: 'HazCom Requirements for Small Businesses | GigLine Safety & Compliance',
-    description: 'Complete guide to OSHA Hazard Communication requirements for small businesses. Written programs, Safety Data Sheets, labeling, training, and penalties under 29 CFR 1910.1200.',
+    description: 'Guide to OSHA HazCom for small businesses — written programs, SDS, labeling, training & penalties under 29 CFR 1910.1200.',
     canonical: '/blog/hazcom-requirements-small-business',
     schemas: [
       {
         '@context': 'https://schema.org',
         '@type': 'Article',
         headline: 'HazCom Requirements Every Small Business Needs to Know',
-        description: 'Complete guide to OSHA Hazard Communication requirements for small businesses. Written programs, Safety Data Sheets, labeling, training, and penalties under 29 CFR 1910.1200.',
+        description: 'Guide to OSHA HazCom for small businesses — written programs, SDS, labeling, training & penalties under 29 CFR 1910.1200.',
         image: `${BASE_URL}/og-image.png`,
         author: { '@id': `${BASE_URL}/#vince` },
         publisher: { '@id': `${BASE_URL}/#business` },
@@ -589,7 +589,7 @@ const routes = [
   {
     path: '/blog',
     title: 'OSHA Compliance Guides & Field Reports | GigLine Blog',
-    description: 'Long-form OSHA compliance guides for small manufacturers, warehouses, and contractors — machine guarding, LOTO, forklift, HazCom, recordkeeping. Written by an OSHA-30 consultant walking Piedmont Triad shops weekly.',
+    description: 'OSHA compliance guides for NC manufacturers, warehouses & contractors — machine guarding, LOTO, forklift, HazCom, recordkeeping.',
     canonical: '/blog',
     schemas: [
       {
@@ -677,7 +677,7 @@ const routes = [
   {
     path: '/blog/osha-forklift-compliance-inspector-checklist',
     title: 'OSHA Forklift Compliance: What Inspectors Check | GigLine',
-    description: 'The forklift-related items OSHA inspectors ask for first — operator certifications, daily inspection logs, traffic controls — with CFR sections and 2026 penalty exposures.',
+    description: 'OSHA forklift compliance — operator certifications, daily inspections, traffic controls. CFR + 2026 penalty exposure.',
     canonical: '/blog/osha-forklift-compliance-inspector-checklist',
     schemas: [
       {
@@ -783,7 +783,7 @@ const routes = [
   {
     path: '/walkthrough',
     title: 'Request a Safety Walkthrough | GigLine Safety & Compliance',
-    description: 'Schedule an on-site safety walkthrough with Vince Lawrence. GigLine identifies your top OSHA exposure points and delivers a written report ranked by risk. One visit. No retainer. Serving the Piedmont Triad, NC.',
+    description: 'Schedule an on-site safety walkthrough with Vince Lawrence. Top OSHA exposures + risk-ranked report. Piedmont Triad NC.',
     canonical: '/walkthrough',
     schemas: [LOCAL_BUSINESS],
     content: `
@@ -803,7 +803,7 @@ const routes = [
   {
     path: '/supervisor-kit',
     title: 'GigLine Supervisor Safety OS | GigLine Safety & Compliance',
-    description: 'Turn scattered safety paperwork into a visible supervisor-run system. The GigLine Supervisor Safety OS helps small manufacturing teams inspect, document, assign, verify, and review safety follow-up.',
+    description: 'Turn scattered safety paperwork into a supervisor-run system — inspect, document, assign, verify, review. From $600.',
     canonical: '/supervisor-kit',
     schemas: [
       LOCAL_BUSINESS,
@@ -815,7 +815,7 @@ const routes = [
         '@context': 'https://schema.org',
         '@type': 'Product',
         name: 'GigLine Supervisor Safety OS',
-        description: '11-document supervisor-ready safety system built for small manufacturing, warehouse, and contractor operations. CFR-cited. Inspection protocols. HazCom program, SDS index, training records, monthly inspection checklist, "If OSHA Shows Up" protocol, and more.',
+        description: '11-document supervisor-ready safety system for small NC operations. CFR-cited protocols, HazCom, SDS, training records. From $600. "If OSHA Shows Up" protocol, and more.',
         brand: { '@type': 'Brand', name: 'GigLine Safety & Compliance' },
         category: 'Workplace Safety / OSHA Compliance Documentation',
         offers: [
@@ -878,14 +878,14 @@ const routes = [
   {
     path: '/case-study/metals-fabrication-statesville',
     title: 'What a Safety Walkthrough Actually Finds | GigLine Case Study',
-    description: "A metals fabrication facility in Statesville, NC brought GigLine in for a combined walkthrough and documentation review. 13 findings. 80.3 compliance score. Here's what the engagement delivered.",
+    description: "Metals fabrication case study in Statesville, NC. Combined walkthrough + doc review. 13 findings. 80.3 compliance score.'s what the engagement delivered.",
     canonical: '/case-study/metals-fabrication-statesville',
     schemas: [
       {
         '@context': 'https://schema.org',
         '@type': 'Article',
         headline: 'What a Safety Walkthrough Actually Finds — Statesville Metals Fabrication Case Study',
-        description: 'A 9-person metals fabrication facility in Statesville, NC. Combined walkthrough and documentation review. 13 findings. 80.3 compliance score. 12 of 13 corrective actions closed within four days of the walkthrough.',
+        description: 'Statesville NC metals fab case study — walkthrough + doc review. 13 findings. 80.3 score. 12 of 13 actions closed in 4 days.',
         image: `${BASE_URL}/og-image.png`,
         author: { '@id': `${BASE_URL}/#vince` },
         publisher: { '@id': `${BASE_URL}/#business` },
@@ -1003,7 +1003,7 @@ const routes = [
   {
     path: '/sample-report',
     title: 'Sample Compliance Report | GigLine Safety & Compliance',
-    description: 'See exactly what you get. A real GigLine compliance report — facility name redacted. Findings, CFR citations, penalty exposure, and the prioritized fix list. Download free.',
+    description: 'See exactly what you get — a real GigLine compliance report. Findings, CFR citations, penalty exposure, fix list. Download free.',
     canonical: '/sample-report',
     schemas: [
       LOCAL_BUSINESS,
@@ -1084,7 +1084,7 @@ const routes = [
   {
     path: '/osha-compliance-guide',
     title: 'The OSHA Compliance Guide — All 25 Topics, Organized by Hazard | GigLine',
-    description: 'The complete OSHA compliance reference for NC small manufacturing and warehouse operations. 25 CFR-cited field notes organized into six hazard clusters — written by Vince Lawrence, GigLine Safety & Compliance.',
+    description: 'OSHA compliance reference for NC small manufacturing — 25 CFR-cited field notes across 6 hazard clusters. By Vince Lawrence.',
     canonical: '/osha-compliance-guide',
     schemas: [
       LOCAL_BUSINESS,
@@ -1093,7 +1093,7 @@ const routes = [
         '@type': 'CollectionPage',
         name: 'OSHA Compliance Field Notes — Topical Index',
         url: `${BASE_URL}/osha-compliance-guide`,
-        description: 'A topical index of 25 CFR-cited OSHA compliance articles by Vince Lawrence, organized into six hazard clusters for NC small manufacturing and warehouse operations.',
+        description: 'Index of 25 CFR-cited OSHA compliance articles across 6 hazard clusters. Written for NC small manufacturing operations.',
         inLanguage: 'en-US',
         isPartOf: { '@id': `${BASE_URL}/#business` },
       },
@@ -1171,14 +1171,14 @@ const routes = [
   {
     path: '/safety-walkthrough',
     title: 'Safety Walkthrough — On-Site OSHA Review for NC Operations | GigLine',
-    description: 'On-site safety walkthrough for manufacturers, warehouses, contractors, and fleet operations across North Carolina. Photo-documented findings, OSHA references, and a written report in 48 hours. Starting at $1,300.',
+    description: 'On-site OSHA safety walkthrough for NC manufacturers & warehouses. Photo-documented findings, 48-hour report. From $1,300.',
     canonical: '/safety-walkthrough',
     schemas: [
       {
         '@context': 'https://schema.org',
         '@type': 'Service',
         name: 'On-Site Safety Walkthrough',
-        description: 'On-site OSHA-focused safety walkthrough for manufacturers, warehouses, contractors, and fleet operations across North Carolina. Written report delivered within 48 hours.',
+        description: 'On-site OSHA safety walkthrough for NC manufacturers, warehouses & contractors. Written report in 48 hours. From $1,300.',
         provider: { '@id': `${BASE_URL}/#business` },
         areaServed: { '@type': 'State', name: 'North Carolina' },
         offers: { '@type': 'Offer', price: '1200', priceCurrency: 'USD' },
@@ -1209,14 +1209,14 @@ const routes = [
   {
     path: '/forklift-compliance-review-nc',
     title: 'Forklift Safety Compliance Review NC | GigLine Safety & Compliance',
-    description: 'On-site forklift / Powered Industrial Truck safety compliance review for NC manufacturers, warehouses, and distribution operations. 29 CFR 1910.178. Written report in 48 hours. From $1,300.',
+    description: 'On-site forklift/PIT compliance review for NC manufacturers & warehouses. 29 CFR 1910.178. 48-hour report. From $1,300.',
     canonical: '/forklift-compliance-review-nc',
     schemas: [
       {
         '@context': 'https://schema.org',
         '@type': 'Service',
         name: 'Forklift / Powered Industrial Truck Compliance Review',
-        description: 'On-site focused review of forklift program, daily inspection logs, operator certifications, pedestrian separation, and floor practices against 29 CFR 1910.178. Written report within 48 hours.',
+        description: 'Forklift program review — daily inspection logs, operator certs, pedestrian separation. 29 CFR 1910.178. 48-hour report.',
         provider: { '@id': `${BASE_URL}/#business` },
         areaServed: { '@type': 'State', name: 'North Carolina' },
         serviceType: 'Forklift Compliance Review',
@@ -1247,14 +1247,14 @@ const routes = [
   {
     path: '/loto-procedure-review-nc',
     title: 'Lockout Tagout Procedure Review NC | GigLine Safety & Compliance',
-    description: 'On-site Lockout/Tagout (LOTO) procedure review for NC manufacturers and fabricators. Machine-specific procedures, authorized employee training, annual audit. 29 CFR 1910.147. From $1,300.',
+    description: 'On-site LOTO procedure review for NC manufacturers. Machine-specific procedures, training, annual audit. 29 CFR 1910.147. From $1,300.',
     canonical: '/loto-procedure-review-nc',
     schemas: [
       {
         '@context': 'https://schema.org',
         '@type': 'Service',
         name: 'Lockout/Tagout (LOTO) Procedure Review',
-        description: 'On-site review of machine-specific lockout/tagout procedures, authorized employee training, energy-isolation hardware, and annual audit against 29 CFR 1910.147. Written report within 48 hours.',
+        description: 'On-site LOTO review — machine-specific procedures, training, energy isolation, annual audit. 29 CFR 1910.147. 48-hour report.',
         provider: { '@id': `${BASE_URL}/#business` },
         areaServed: { '@type': 'State', name: 'North Carolina' },
         serviceType: 'Lockout/Tagout Procedure Review',
@@ -1285,14 +1285,14 @@ const routes = [
   {
     path: '/osha-documentation-review-nc',
     title: 'OSHA Documentation Review NC | Written Programs, Training, OSHA 300 | GigLine',
-    description: 'Off-site OSHA documentation readiness review for NC manufacturers, warehouses, and contractors. Written programs, training records, OSHA 300 log, SDS binder, retention. From $1,300.',
+    description: 'OSHA documentation readiness review for NC manufacturers. Written programs, training records, 300 log, SDS binder. From $1,700.',
     canonical: '/osha-documentation-review-nc',
     schemas: [
       {
         '@context': 'https://schema.org',
         '@type': 'Service',
         name: 'OSHA Documentation Review (NC)',
-        description: 'Off-site OSHA documentation readiness review of written safety programs, training records, OSHA 300/300A logs, SDS inventory, and retention practices. Written findings report within 48 hours.',
+        description: 'OSHA documentation readiness review — written programs, training records, 300/300A logs, SDS inventory. 48-hour report. From $1,700.',
         provider: { '@id': `${BASE_URL}/#business` },
         areaServed: { '@type': 'State', name: 'North Carolina' },
         serviceType: 'OSHA Documentation Review',
@@ -1330,7 +1330,7 @@ const routes = [
         '@context': 'https://schema.org',
         '@type': 'Service',
         name: 'OSHA Documentation Readiness Review',
-        description: 'Independent review of written OSHA safety programs, SDS binders, training records, and required documentation. Written findings report delivered within 48 hours.',
+        description: 'Independent review of OSHA written programs, SDS binders, training records & documentation. 48-hour findings report. From $1,700.',
         provider: { '@id': `${BASE_URL}/#business` },
         areaServed: { '@type': 'State', name: 'North Carolina' },
         offers: { '@type': 'Offer', price: DOC_REVIEW_PRICE_NUM, priceCurrency: 'USD' },
@@ -1360,14 +1360,14 @@ const routes = [
   {
     path: '/osha-compliance-gap-check',
     title: 'Compliance Readiness Visit — Pre-Inspection Review for NC Operations | GigLine',
-    description: 'Full Compliance Readiness Visit — combined on-site walkthrough and OSHA Documentation Readiness Review. Built for operations preparing for an OSHA inspection, audit, or insurance review. Written report in 48 hours. Serving NC manufacturers, warehouses, contractors, and fleets.',
+    description: 'Compliance Readiness Visit — walkthrough + doc review in one engagement. Prepare for OSHA inspection, audit, or insurance. From $2,500.',
     canonical: '/osha-compliance-gap-check',
     schemas: [
       {
         '@context': 'https://schema.org',
         '@type': 'Service',
         name: 'Compliance Readiness Visit',
-        description: 'A combined on-site walkthrough and OSHA Documentation Readiness Review for operations preparing for an OSHA inspection, audit, or insurance review. The most thorough engagement GigLine offers.',
+        description: 'Combined on-site walkthrough + OSHA doc review for NC operations preparing for inspection, audit, or insurance. From $2,500.',
         provider: { '@id': `${BASE_URL}/#business` },
         areaServed: { '@type': 'State', name: 'North Carolina' },
         offers: { '@type': 'Offer', price: '2000', priceCurrency: 'USD' },
@@ -1397,7 +1397,7 @@ const routes = [
   {
     path: '/blog/osha-penalty-north-carolina-2026',
     title: 'How Much Is an OSHA Violation in North Carolina in 2026? | GigLine',
-    description: 'The 2026 OSHA penalty schedule for NC small manufacturers. Serious ($16,550), Willful/Repeat ($165,514), Failure-to-Abate — plus the per-instance multipliers and gravity adjustments OSHA actually applies. Free citation cost calculator.',
+    description: '2026 OSHA penalty schedule for NC — Serious ($16,550), Willful/Repeat ($165,514), Failure-to-Abate + per-instance multipliers. Free citation cost calculator.',
     canonical: '/blog/osha-penalty-north-carolina-2026',
     schemas: [
       {
@@ -1514,7 +1514,7 @@ const SERVICE_DETAIL_ROUTES = [
   {
     slug: 'safety-walkthrough-report',
     title: 'Safety Walkthrough Report — From $1,300 | GigLine',
-    description: 'On-site OSHA walkthrough with photo-documented findings, CFR citations, and a 48-hour written report. Fixed quote. Private engagement. Serving the Piedmont Triad.',
+    description: 'On-site OSHA walkthrough — photo-documented findings, CFR citations, 48-hour report. Fixed quote. Piedmont Triad NC. From $1,300.',
     h1: 'Find what\'s exposed. Before OSHA does.',
     summary: 'An on-site walkthrough focused purely on physical hazards. Photo-documented findings, CFR citations, and a prioritized fix list delivered within 48 hours. From $1,300.',
     price: '1200',
@@ -1523,7 +1523,7 @@ const SERVICE_DETAIL_ROUTES = [
   {
     slug: 'documentation-readiness-review',
     title: 'OSHA Documentation Readiness Review — From $1,300 | GigLine',
-    description: 'A structured 53-item review of written programs, training records, OSHA logs, and SDS compliance. Compliance percentage score + prioritized corrective action sequence.',
+    description: '53-item review of OSHA written programs, training records, logs & SDS. Compliance score + prioritized corrective action plan.',
     h1: 'Know exactly what your files say before an inspector does.',
     summary: 'A structured review of written programs, training records, OSHA logs, and SDS compliance. 53 items across 7 OSHA categories. Compliance score + prioritized corrective actions. From $1,300.',
     price: '1300',
@@ -1541,7 +1541,7 @@ const SERVICE_DETAIL_ROUTES = [
   {
     slug: 'annual-compliance-partner',
     title: 'Annual Compliance Control Partner — $12,000/year | GigLine',
-    description: 'A year-long compliance partnership for small manufacturers. Two walkthroughs + four documentation reviews + quarterly review calls + on-call access. From $12,000/year.',
+    description: 'Year-long OSHA compliance partnership — 2 walkthroughs, 4 doc reviews, quarterly calls, on-call access. $12,000/year.',
     h1: 'When OSHA shows up, you need someone who already knows your operation.',
     summary: 'Two full walkthroughs per year. Quarterly documentation reviews. Training record maintenance. Pre-inspection readiness review. On-call access between visits. $12,000/year ($1,000/month equivalent).',
     price: '12000',
@@ -1550,7 +1550,7 @@ const SERVICE_DETAIL_ROUTES = [
   {
     slug: 'document-development',
     title: 'Safety Document Development — Written OSHA Programs | GigLine',
-    description: 'Custom-written OSHA safety programs for small NC operations — LOTO, HazCom, PPE, EAP, and more. Built to your facility, your equipment, your employees. Not a template.',
+    description: 'Custom OSHA safety programs for NC operations — LOTO, HazCom, PPE, EAP. Built to your facility, your equipment. Not a template.',
     h1: 'Written safety programs that match your operation.',
     summary: 'Custom-written OSHA safety programs — LOTO, HazCom, PPE, EAP, and more. Built specifically for your facility, equipment, and employees. Not a template. Five program tiers available.',
     price: '1500',
@@ -1568,7 +1568,7 @@ const SERVICE_DETAIL_ROUTES = [
   {
     slug: 'osha-ready-control-system',
     title: 'OSHA-Ready Control System — Premium Engagement | GigLine',
-    description: 'A complete OSHA control system for small manufacturers — written programs, training, recordkeeping, and audit-ready documentation, built and maintained by GigLine.',
+    description: 'Complete OSHA control system for small NC manufacturers — written programs, training, recordkeeping, audit-ready docs. From $4,500.',
     h1: 'A complete OSHA control system built around your operation.',
     summary: 'A premium engagement for small manufacturers ready to operate at full OSHA-ready status. Written programs, training, recordkeeping, and audit-ready documentation built and maintained by GigLine.',
     price: '4500',
@@ -1577,7 +1577,7 @@ const SERVICE_DETAIL_ROUTES = [
   {
     slug: 'corrective-action-implementation',
     title: 'Corrective Action Implementation — Close the Findings | GigLine',
-    description: 'GigLine helps close selected safety-control findings after an assessment. Hands-on implementation. Custom quote. Most projects begin at $2,500, depending on the specific findings and scope.',
+    description: 'Hands-on implementation to close safety-control findings after a GigLine assessment. Custom quote, most projects from $2,500.',
     h1: 'We found the gap. Now GigLine can help you close it.',
     summary: 'Hands-on implementation of selected safety-control findings identified in a GigLine assessment or comparable review. Includes organizing PIT authorization, HazCom evidence, training records, corrective-action tracking, and document control. Custom quote per engagement. Most projects begin at $2,500 — the quote is driven by the number of findings, complexity, program area, facility size, employees, shifts, travel, and hands-on work required.',
     price: '2500',
@@ -2144,7 +2144,7 @@ function renderKitDetailRoute(slug) {
 routes.push({
   path: '/citation-cost-calculator',
   title: 'OSHA Citation Cost Calculator — 2026 Penalty Estimator | GigLine',
-  description: 'Estimate the true cost of an OSHA citation using the 2026 published penalty maximums. Serious, willful, repeat, and per-instance exposure — mapped to the standard OSHA cites most often. Free, no email required.',
+  description: 'Estimate the true cost of an OSHA citation. 2026 penalty maximums — serious, willful, repeat, per-instance. Free, no email.',
   canonical: '/citation-cost-calculator',
   schemas: [
     LOCAL_BUSINESS,
@@ -2156,7 +2156,7 @@ routes.push({
       applicationCategory: 'BusinessApplication',
       operatingSystem: 'Web',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-      description: 'Free interactive calculator that estimates OSHA citation exposure based on the 2026 published maximum penalty schedule (29 CFR 1903.15). Enter violation type, per-instance count, and citation classification to see estimated exposure.',
+      description: 'Free OSHA citation cost calculator — estimate 2026 penalty exposure (29 CFR 1903.15). Enter violation type & count.',
       inLanguage: 'en-US',
       isPartOf: { '@id': `${BASE_URL}/#business` },
     },
@@ -2236,7 +2236,7 @@ routes.push({
 routes.push({
   path: '/citation-proof-kits',
   title: 'Citation-Proof Kit Series | GigLine Safety & Compliance',
-  description: 'Five compliance-control kits for small manufacturers, warehouses, contractors, and fleet operations. LOTO, Forklift/PIT, HazCom, Incident-to-Correction, and New Hire Orientation. Digital, Control System, or Binder Edition. Starting at $150.',
+  description: '5 compliance-control kits — LOTO, Forklift/PIT, HazCom, Incident, New Hire. Digital, Control System, or Binder Edition. From $150.',
   canonical: '/citation-proof-kits',
   schemas: [
     LOCAL_BUSINESS,

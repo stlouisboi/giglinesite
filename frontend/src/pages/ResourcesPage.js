@@ -15,7 +15,7 @@ const RESOURCES = [
     gate: 'Ungated',
     icon: Compass,
     description:
-      'The full topical index. All 25 GigLine Field Notes, organized into six hazard clusters — Chemical & Health, Mechanical & Energy, Fall & Height, PPE, Recordkeeping & Enforcement, and Operations. Built for the person responsible for safety who needs the whole landscape on one page.',
+      '25 GigLine Field Notes across 6 hazard clusters — Chemical, Mechanical, Fall, PPE, Recordkeeping, Operations. The whole landscape.',
     cta: 'Open the Guide',
     href: '/osha-compliance-guide',
     internal: true,
@@ -27,7 +27,7 @@ const RESOURCES = [
     gate: 'Ungated',
     icon: ClipboardCheck,
     description:
-      'A free 90-second self-screen that surfaces the OSHA exposure points most often missed in small operations. Generates a personalized PDF report at the end — no email required to start.',
+      'Free 90-second OSHA self-screen — surfaces exposure points most often missed. Personalized PDF report. No email to start.',
     cta: 'Start the Check',
     href: '/safety-check',
     internal: true,
@@ -39,7 +39,7 @@ const RESOURCES = [
     gate: 'Email capture',
     icon: BookOpen,
     description:
-      '2026 Heat Stress Action Template for NC manufacturing and warehouse operations. Daily heat check, trigger levels, written plan checklist, and enforcement reference. One page. Print and post.',
+      '2026 Heat Stress Action Template for NC manufacturing & warehouses. Daily check, trigger levels, plan. One page — print and post.',
     cta: 'Get Access',
     href: '/heat-guide',
     internal: true,
@@ -51,7 +51,7 @@ const RESOURCES = [
     gate: 'Ungated read',
     icon: Shield,
     description:
-      'Full plain-language breakdown of the OSHA Hazard Communication standard — written program, SDS management, container labeling, and employee training. The #1 most cited OSHA violation in general industry.',
+      'Plain-language OSHA HazCom breakdown — written program, SDS, labeling, training. #1 most-cited OSHA violation in general industry.',
     cta: 'Read the Guide',
     href: '/blog/hazcom-requirements-small-business',
     internal: true,
@@ -63,7 +63,7 @@ const RESOURCES = [
     gate: 'Email capture',
     icon: FileSearch,
     description:
-      'A redacted real compliance report — facility name removed, every finding intact. CFR citations, penalty exposure, RED/AMBER/GREEN fix list, and the 30/60/90-day corrective action plan.',
+      'Redacted real GigLine compliance report — CFR citations, penalty exposure, RED/AMBER/GREEN fix list, 30/60/90-day plan.',
     cta: 'Get Access',
     href: '/sample-report',
     internal: true,
@@ -75,7 +75,7 @@ const RESOURCES = [
     gate: 'Email capture',
     icon: Mail,
     description:
-      'What OSHA looks for when they walk in. Built for HR managers and safety coordinators — what to have ready before, what happens during, and what to do in the 15-day window after. CFR-cited.',
+      'OSHA inspection prep guide for HR & safety leads — what to have ready, what happens during, what to do in the 15-day window.',
     cta: 'Get Access',
     href: '/osha-inspection-guide',
     internal: true,
@@ -88,7 +88,7 @@ const RESOURCES = [
     gate: 'From $600',
     icon: Package,
     description:
-      'The full digital kit of CFR-cited, print-ready safety documents GigLine uses on every walkthrough — written programs, training rosters, inspection logs, and OSHA-response templates. Built for the supervisor responsible for safety on the floor. Included free with every Compliance Readiness Visit.',
+      'CFR-cited digital safety kit — programs, training rosters, inspection logs, OSHA response templates. Free with every CRV.',
     cta: 'See the Kit',
     href: '/supervisor-kit',
     internal: true,
@@ -100,7 +100,7 @@ const RESOURCES = [
     gate: 'Ungated',
     icon: FileText,
     description:
-      'The printable on-floor inspection checklist GigLine uses during walkthroughs. Covers machine guarding, electrical, walking surfaces, LOTO, fire/exit, PPE, chemical handling, and recordkeeping touchpoints.',
+      'Printable OSHA inspection checklist — machine guarding, electrical, LOTO, walking surfaces, PPE, chemicals, recordkeeping.',
     cta: 'Download',
     href: `${API_URL}/api/field-checklist`,
     internal: false,

@@ -61,7 +61,7 @@ const HomePage = () => {
     <main className="overflow-x-hidden">
       <SEO
         title="OSHA Safety Walkthrough — Piedmont Triad NC | GigLine"
-        description="Safety becomes the thing you'll get to. OSHA doesn't wait. On-site safety walkthroughs for NC manufacturers and warehouses — fixed quote, written report in 48 hours. (336) 329-8899."
+        description="Safety becomes the thing you'll get to. On-site OSHA walkthroughs for NC manufacturers & warehouses. 48-hour report, from $1,300."
         canonical="/"
         schema={{
           "@context": "https://schema.org",

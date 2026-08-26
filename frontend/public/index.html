@@ -71,6 +71,19 @@
       gtag('js', new Date());
       gtag('config', 'G-FNX42NP1QT', { send_page_view: false });
     </script>
+
+    <!-- Microsoft Clarity (session recording + heatmaps) — activates only when REACT_APP_MS_CLARITY_ID is set -->
+    <script>
+      (function(){
+        var id = "%REACT_APP_MS_CLARITY_ID%";
+        if (!id || id === "" || id.indexOf("REACT_APP_") === 0) return;
+        (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", id);
+      })();
+    </script>
     
     <title>GigLine Safety & Compliance | Safety Walkthroughs & Documentation Readiness Reviews for Small Operations</title>
     

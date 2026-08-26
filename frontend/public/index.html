@@ -2,17 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/x-icon" href="%PUBLIC_URL%/favicon.ico?v=9" />
+    <link rel="icon" type="image/x-icon" href="%PUBLIC_URL%/favicon.ico?v=10" />
     <!-- Theme-aware favicons: dark-body icon for light browser tabs, light-body icon for dark browser tabs -->
-    <link rel="icon" type="image/png" sizes="32x32" media="(prefers-color-scheme: light)" href="%PUBLIC_URL%/favicon-dark-icon-32.png?v=9" />
-    <link rel="icon" type="image/png" sizes="16x16" media="(prefers-color-scheme: light)" href="%PUBLIC_URL%/favicon-dark-icon-16.png?v=9" />
-    <link rel="icon" type="image/png" sizes="32x32" media="(prefers-color-scheme: dark)" href="%PUBLIC_URL%/favicon-light-icon-32.png?v=9" />
-    <link rel="icon" type="image/png" sizes="16x16" media="(prefers-color-scheme: dark)" href="%PUBLIC_URL%/favicon-light-icon-16.png?v=9" />
+    <link rel="icon" type="image/png" sizes="32x32" media="(prefers-color-scheme: light)" href="%PUBLIC_URL%/favicon-dark-icon-32.png?v=10" />
+    <link rel="icon" type="image/png" sizes="16x16" media="(prefers-color-scheme: light)" href="%PUBLIC_URL%/favicon-dark-icon-16.png?v=10" />
+    <link rel="icon" type="image/png" sizes="32x32" media="(prefers-color-scheme: dark)" href="%PUBLIC_URL%/favicon-light-icon-32.png?v=10" />
+    <link rel="icon" type="image/png" sizes="16x16" media="(prefers-color-scheme: dark)" href="%PUBLIC_URL%/favicon-light-icon-16.png?v=10" />
     <!-- Fallback for browsers that don't support prefers-color-scheme media on link -->
-    <link rel="icon" type="image/png" sizes="48x48" href="%PUBLIC_URL%/favicon-48.png?v=9" />
-    <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/favicon-dark-icon-180.png?v=9" />
-    <link rel="icon" type="image/png" sizes="192x192" href="%PUBLIC_URL%/android-chrome-192.png?v=5" />
-    <link rel="icon" type="image/png" sizes="512x512" href="%PUBLIC_URL%/android-chrome-512.png?v=5" />
+    <link rel="icon" type="image/png" sizes="48x48" href="%PUBLIC_URL%/favicon-48.png?v=10" />
+    <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/favicon-dark-icon-180.png?v=10" />
+    <link rel="icon" type="image/png" sizes="192x192" href="%PUBLIC_URL%/android-chrome-192.png?v=10" />
+    <link rel="icon" type="image/png" sizes="512x512" href="%PUBLIC_URL%/android-chrome-512.png?v=10" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#2A52A0" />
     
@@ -70,6 +70,19 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-FNX42NP1QT', { send_page_view: false });
+    </script>
+
+    <!-- Microsoft Clarity (session recording + heatmaps) — activates only when REACT_APP_MS_CLARITY_ID is set -->
+    <script>
+      (function(){
+        var id = "%REACT_APP_MS_CLARITY_ID%";
+        if (!id || id === "" || id.indexOf("REACT_APP_") === 0) return;
+        (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", id);
+      })();
     </script>
     
     <title>GigLine Safety & Compliance | Safety Walkthroughs & Documentation Readiness Reviews for Small Operations</title>

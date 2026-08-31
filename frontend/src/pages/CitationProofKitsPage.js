@@ -26,7 +26,7 @@ const CitationProofKitsPage = () => {
   const navigate = useNavigate();
   return (
     <main data-testid="citation-proof-kits-page" style={{ backgroundColor: BG_WARM, color: NAVY }}>
-      {/* Card hover states — nested rules that inline style can't reach */}
+      {/* Card hover states, nested rules that inline style can't reach */}
       <style>{`
         .kit-card:hover {
           box-shadow: 0 6px 20px rgba(0,0,0,0.12) !important;
@@ -111,7 +111,7 @@ const CitationProofKitsPage = () => {
       <ProofGapEngineSteps
         kicker="Built on the GigLine Proof Gap Engine™"
         heading="One method. Four steps. Every kit."
-        intro="Every kit in the Citation-Proof Series runs on the same four-step method. It doesn’t matter which control area you’re fixing — the sequence is always the same: Score where you stand, Sort every gap by type, Fix in the right order, and Pull the records that get handed over first."
+        intro="Every kit in the Citation-Proof Series runs on the same four-step method. It doesn’t matter which control area you’re fixing, the sequence is always the same: Score where you stand, Sort every gap by type, Fix in the right order, and Pull the records that get handed over first."
       />
 
       {/* ═══════════ KIT GRID ═══════════ */}
@@ -134,7 +134,7 @@ const CitationProofKitsPage = () => {
               className="text-base md:text-[17px] leading-relaxed"
               style={{ color: 'rgba(10,22,40,0.68)', ...serif }}
             >
-              Each kit targets one specific gap. Start with the one that is actually a problem in your operation — you can add more later.
+              Each kit targets one specific gap. Start with the one that is actually a problem in your operation, you can add more later.
             </p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-6">
@@ -154,7 +154,7 @@ const CitationProofKitsPage = () => {
                 }}
                 data-testid={`kit-card-${kit.slug}`}
               >
-                {/* 1. IMAGE HEADER — 200px desktop / 160px mobile, gold bottom border */}
+                {/* 1. IMAGE HEADER, 200px desktop / 160px mobile, gold bottom border */}
                 <div
                   className="kit-card-image relative overflow-hidden h-[160px] md:h-[200px] flex-shrink-0"
                   style={{ background: NAVY }}
@@ -162,7 +162,7 @@ const CitationProofKitsPage = () => {
                   {kit.cardImage ? (
                     <img
                       src={kit.cardImage}
-                      alt={`${kit.name} — product mockup`}
+                      alt={`${kit.name}, product mockup`}
                       className="w-full h-full"
                       style={{ objectFit: 'cover', display: 'block' }}
                       loading="lazy"
@@ -188,7 +188,7 @@ const CitationProofKitsPage = () => {
                       </div>
                     </div>
                   )}
-                  {/* $29 STARTER pill — top-left of image, mirrors IN BUILD placement */}
+                  {/* $29 STARTER pill, top-left of image, mirrors IN BUILD placement */}
                   {kit.starterVariant && (
                     <span
                       className="absolute uppercase font-bold inline-flex items-center"
@@ -208,7 +208,7 @@ const CitationProofKitsPage = () => {
                       $29 Starter
                     </span>
                   )}
-                  {/* IN BUILD badge — top-right of image area */}
+                  {/* IN BUILD badge, top-right of image area */}
                   {!kit.ready && (
                     <span
                       className="absolute uppercase font-bold inline-flex items-center gap-1.5"
@@ -230,7 +230,7 @@ const CitationProofKitsPage = () => {
                       In Build
                     </span>
                   )}
-                  {/* Gold bottom border — 4px baseline, grows to 6px on hover */}
+                  {/* Gold bottom border, 4px baseline, grows to 6px on hover */}
                   <div
                     className="kit-card-gold-border absolute left-0 right-0 bottom-0"
                     style={{ height: '4px', background: GOLD, transition: 'height 0.2s ease' }}
@@ -267,7 +267,7 @@ const CitationProofKitsPage = () => {
                     {kit.name}
                   </h3>
 
-                  {/* 4. PRIMARY OUTCOME (bolder, larger — leads the card) */}
+                  {/* 4. PRIMARY OUTCOME (bolder, larger, leads the card) */}
                   <p
                     style={{
                       color: NAVY,
@@ -294,7 +294,7 @@ const CitationProofKitsPage = () => {
                     {kit.problem}
                   </p>
 
-                  {/* Reverse-link to Starter Pack — HazCom Pro Kit only */}
+                  {/* Reverse-link to Starter Pack, HazCom Pro Kit only */}
                   {kit.slug === 'hazcom-pro-kit' && (
                     <button
                       type="button"
@@ -355,7 +355,7 @@ const CitationProofKitsPage = () => {
                     {kit.controlTool}
                   </p>
 
-                  {/* 8. BOTTOM ROW — Starting at $X / View Kit → with top border */}
+                  {/* 8. BOTTOM ROW, Starting at $X / View Kit → with top border */}
                   <div
                     className="flex items-center justify-between"
                     style={{ borderTop: '1px solid #E0E0E0', paddingTop: '20px' }}
@@ -389,7 +389,7 @@ const CitationProofKitsPage = () => {
             ))}
           </div>
 
-          {/* Starter Pack strip — separated from the 5 full kits per user's direction */}
+          {/* Starter Pack strip, separated from the 5 full kits per user's direction */}
           {(() => {
             const starter = KIT_CATALOG.find((k) => k.starterVariant);
             if (!starter) return null;
@@ -414,13 +414,13 @@ const CitationProofKitsPage = () => {
                     className="font-bold text-[19px] md:text-[22px] leading-snug mb-2"
                     style={{ color: NAVY, ...sans }}
                   >
-                    HazCom Starter Pack &mdash; $29
+                    HazCom Starter Pack , $29
                   </h3>
                   <p
                     className="text-[14px] md:text-[15px] leading-[1.55]"
                     style={{ color: '#555555', fontFamily: 'Arial, sans-serif' }}
                   >
-                    An 11-page entry pack &mdash; written HazCom program, SDS binder checklist, and training verification log. Ramps up to the HazCom Pro Kit when you&rsquo;re ready.
+                    An 11-page entry pack , written HazCom program, SDS binder checklist, and training verification log. Ramps up to the HazCom Pro Kit when you&rsquo;re ready.
                   </p>
                 </div>
                 <Link
@@ -445,7 +445,7 @@ const CitationProofKitsPage = () => {
         universalTiers
         kickerOverride="Simple Pricing Across Every Kit"
         headingOverride="Three tiers. Same across every kit."
-        introOverride="Every kit in the Citation-Proof Series is offered in three tiers. Buy the level that matches how much of the build you want to do yourself — and how quickly you need the physical binder in the supervisor’s hands."
+        introOverride="Every kit in the Citation-Proof Series is offered in three tiers. Buy the level that matches how much of the build you want to do yourself, and how quickly you need the physical binder in the supervisor’s hands."
       />
 
       {/* ═══════════ BUNDLE TEASER ═══════════ */}
@@ -484,7 +484,7 @@ const CitationProofKitsPage = () => {
                   &raquo;
                 </span>
                 <span style={{ color: 'rgba(10,22,40,0.78)', ...serif }}>
-                  <strong style={{ color: NAVY, ...sans }}>{b.name}</strong> &mdash; {b.kits}
+                  <strong style={{ color: NAVY, ...sans }}>{b.name}</strong> , {b.kits}
                 </span>
               </li>
             ))}
@@ -520,7 +520,7 @@ const CitationProofKitsPage = () => {
             className="text-[15.5px] md:text-[17px] leading-relaxed max-w-2xl mx-auto mb-5"
             style={{ color: 'rgba(10,22,40,0.68)', ...serif }}
           >
-            The GigLine Supervisor Safety OS is the broader, 17-document system that runs the monthly rhythm — inspect, document, assign, verify, and review — across every hazard area at once.
+            The GigLine Supervisor Safety OS is the broader, 17-document system that runs the monthly rhythm, inspect, document, assign, verify, and review, across every hazard area at once.
           </p>
           <Link
             to="/supervisor-kit"
@@ -547,7 +547,7 @@ const CitationProofKitsPage = () => {
             className="text-xl md:text-2xl font-bold leading-tight mb-4"
             style={{ color: NAVY, ...sans }}
           >
-            What GigLine kits are — and what they are not.
+            What GigLine kits are, and what they are not.
           </h3>
           <p className="text-[15px] md:text-[16px] leading-[1.7] mb-4" style={{ color: 'rgba(10,22,40,0.72)', ...serif }}>
             GigLine kits are compliance-readiness tools. They do not guarantee OSHA compliance, prevent citations, or replace a qualified on-site assessment. Only OSHA determines compliance. Every facility, machine, task, and workforce is different.
@@ -568,7 +568,7 @@ const CitationProofKitsPage = () => {
             Not sure which kit fits your facility?
           </h3>
           <p className="text-[15.5px] md:text-[17px] leading-[1.7] mb-8" style={{ color: 'rgba(255,255,255,0.78)', ...serif }}>
-            Call Vince directly, or drop a line — he’ll help you figure out which proof gap is actually the priority.
+            Call Vince directly, or drop a line, he’ll help you figure out which proof gap is actually the priority.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <a

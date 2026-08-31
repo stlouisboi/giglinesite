@@ -29,7 +29,7 @@ const FieldManualBand = ({ source = 'homepage' }) => {
             boxShadow: '0 2px 12px rgba(11,31,51,0.04)',
           }}
         >
-          {/* Left — actual PDF cover thumbnail */}
+          {/* Left, actual PDF cover thumbnail */}
           <div className="md:col-span-4 flex justify-center md:justify-start">
             <a
               href="/assets/gl-fm-2026.pdf"
@@ -41,7 +41,7 @@ const FieldManualBand = ({ source = 'homepage' }) => {
               aria-label="Open the 2026 Triad OSHA Field Manual"
             >
               <img src="/assets/gl-fm-2026-cover.webp" height="1000" width="772"
-                alt="The 2026 Triad OSHA Field Manual — cover"
+                alt="The 2026 Triad OSHA Field Manual, cover"
                 className="w-full h-auto block"
                 style={{
                   aspectRatio: '772 / 1000',
@@ -53,7 +53,7 @@ const FieldManualBand = ({ source = 'homepage' }) => {
             </a>
           </div>
 
-          {/* Right — copy + CTA */}
+          {/* Right, copy + CTA */}
           <div className="md:col-span-8">
             <p
               className="uppercase font-bold tracking-[0.28em] mb-4"
@@ -74,7 +74,7 @@ const FieldManualBand = ({ source = 'homepage' }) => {
               style={{ color: 'rgba(11,31,51,0.72)' }}
               data-testid="field-manual-summary"
             >
-              The 7 violations OSHA cites Piedmont Triad manufacturers for most often &mdash; with CFR citations, real penalty ranges, what they look like on the floor, and the fix for each one. The same reference I hand to clients.
+              The 7 violations OSHA cites Piedmont Triad manufacturers for most often , with CFR citations, real penalty ranges, what they look like on the floor, and the fix for each one. The same reference I hand to clients.
             </p>
 
             <a

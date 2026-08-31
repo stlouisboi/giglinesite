@@ -1,7 +1,7 @@
 import React from 'react';
 
 /**
- * "What happens on the day of your walkthrough" — six-step rail.
+ * "What happens on the day of your walkthrough", six-step rail.
  *
  * @param {'crv'|'walkthrough'} variant
  *   - 'crv' (default): renders all six steps; Step 4 (Documentation review) shows a CRV-only badge.
@@ -27,13 +27,13 @@ const ALL_STEPS = [
   {
     id: 1,
     title: 'Vince arrives',
-    body: "No clipboard, no form to fill out. Brief introductory conversation — who's on site, what areas are in scope, anything you want him to pay particular attention to.",
+    body: "No clipboard, no form to fill out. Brief introductory conversation, who's on site, what areas are in scope, anything you want him to pay particular attention to.",
     crvOnly: false,
   },
   {
     id: 2,
     title: 'Floor walkthrough',
-    body: 'Every production area, storage zone, and egress path. Vince moves through the facility the way an OSHA inspector would — looking at equipment, chemical storage, guarding, housekeeping, and anything that creates exposure.',
+    body: 'Every production area, storage zone, and egress path. Vince moves through the facility the way an OSHA inspector would, looking at equipment, chemical storage, guarding, housekeeping, and anything that creates exposure.',
     crvOnly: false,
   },
   {

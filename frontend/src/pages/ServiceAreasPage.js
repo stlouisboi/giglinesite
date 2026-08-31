@@ -6,7 +6,7 @@ import SEO from '../components/SEO';
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
 const serif = { fontFamily: "Georgia, 'Times New Roman', serif" };
 
-// Same metadata used by city pages — kept inline so this page stays self-contained
+// Same metadata used by city pages, kept inline so this page stays self-contained
 // and Google sees a real internal-linking hub for the 13 city URLs.
 const SERVICE_AREAS = [
   { slug: 'kernersville',  name: 'Kernersville',  region: 'Forsyth County',    distance: 'GigLine HQ',                  price: 650 },
@@ -37,8 +37,8 @@ const ServiceAreasPage = () => {
   return (
     <main data-testid="service-areas-page">
       <SEO
-        title="Service Areas — NC Safety Walkthroughs | GigLine Safety & Compliance"
-        description="GigLine on-site OSHA walkthroughs across 13 NC cities — Kernersville, Winston-Salem, Greensboro, High Point, Burlington & more."
+        title="Service Areas, NC Safety Walkthroughs | GigLine Safety & Compliance"
+        description="GigLine on-site OSHA walkthroughs across 13 NC cities, Kernersville, Winston-Salem, Greensboro, High Point, Burlington & more."
         canonical="/service-areas"
         schema={breadcrumbSchema}
       />
@@ -66,14 +66,14 @@ const ServiceAreasPage = () => {
         </div>
       </section>
 
-      {/* Tier 1 — Triad core */}
+      {/* Tier 1, Triad core */}
       <section className="py-16 md:py-20" style={{ backgroundColor: '#F9F8F6' }}>
         <div className="container max-w-5xl">
           <p
             className="uppercase tracking-[3px] text-[#2A52A0] mb-3"
             style={{ ...mono, fontSize: '11px' }}
           >
-            Triad Core — Starting at $1,300
+            Triad Core, Starting at $1,300
           </p>
           <h2
             className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-8"
@@ -112,14 +112,14 @@ const ServiceAreasPage = () => {
         </div>
       </section>
 
-      {/* Tier 2 — Outer */}
+      {/* Tier 2, Outer */}
       <section className="py-16 md:py-20 bg-white">
         <div className="container max-w-5xl">
           <p
             className="uppercase tracking-[3px] text-[#2A52A0] mb-3"
             style={{ ...mono, fontSize: '11px' }}
           >
-            Outer Tier — Starting at $1,300 + travel fee
+            Outer Tier, Starting at $1,300 + travel fee
           </p>
           <h2
             className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-8"
@@ -158,7 +158,7 @@ const ServiceAreasPage = () => {
         </div>
       </section>
 
-      {/* Tier 3 — Scheduled metros */}
+      {/* Tier 3, Scheduled metros */}
       <section className="py-16 md:py-20" style={{ backgroundColor: '#F9F8F6' }}>
         <div className="container max-w-5xl">
           <p
@@ -174,7 +174,7 @@ const ServiceAreasPage = () => {
             Charlotte and Raleigh metros
           </h2>
           <p className="text-[#1C2B2B]/65 mb-8 max-w-2xl text-sm md:text-base leading-relaxed">
-            Charlotte and Raleigh area walkthroughs are available on a scheduled basis. Contact directly to confirm availability and pricing — travel considerations apply.
+            Charlotte and Raleigh area walkthroughs are available on a scheduled basis. Contact directly to confirm availability and pricing, travel considerations apply.
           </p>
           <div className="grid sm:grid-cols-2 gap-4 max-w-2xl">
             {SERVICE_AREAS.filter((c) => c.price === null).map((city) => (

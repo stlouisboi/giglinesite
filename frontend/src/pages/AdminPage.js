@@ -208,10 +208,10 @@ const AdminPage = () => {
 
   // Inline per-row delete: archives the lead by default (recoverable). Hold Shift while clicking for hard delete.
   const deleteRowInline = async (kind, docId, label, e) => {
-    if (!docId) { setToolbarMessage('Cannot delete — missing identifier'); return; }
+    if (!docId) { setToolbarMessage('Cannot delete, missing identifier'); return; }
     const isHard = e?.shiftKey === true;
     const verb = isHard ? 'PERMANENTLY DELETE' : 'Archive';
-    if (!window.confirm(`${verb} this lead?\n\n${label}\n\n${isHard ? '⚠ Permanent — cannot be undone.' : 'Recoverable from the archive collection if needed.'}`)) return;
+    if (!window.confirm(`${verb} this lead?\n\n${label}\n\n${isHard ? '⚠ Permanent, cannot be undone.' : 'Recoverable from the archive collection if needed.'}`)) return;
     try {
       const res = await fetch(
         `${API}/api/admin/lead/${kind}/${encodeURIComponent(docId)}?token=${token}${isHard ? '&hard=true' : ''}`,
@@ -340,7 +340,7 @@ const AdminPage = () => {
         </div>
       )}
 
-      {/* Admin Toolbar — Search / Export CSV / Add Revenue / Delete Lead */}
+      {/* Admin Toolbar, Search / Export CSV / Add Revenue / Delete Lead */}
       <div className="border-b bg-white" style={{ borderColor: '#e5e5e5' }}>
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 flex items-center gap-3 flex-wrap" data-testid="admin-toolbar">
           {/* Global search */}
@@ -498,7 +498,7 @@ const AdminPage = () => {
               </div>
               <label className="flex items-center gap-2 text-xs text-red-600 font-semibold cursor-pointer">
                 <input type="checkbox" checked={deleteForm.hard} onChange={(e) => setDeleteForm({ ...deleteForm, hard: e.target.checked })} data-testid="delete-hard" />
-                Permanent delete (skip archive — irreversible)
+                Permanent delete (skip archive, irreversible)
               </label>
             </div>
             <div className="flex items-center gap-2 mt-5">
@@ -628,7 +628,7 @@ const AdminPage = () => {
                     </div>
                   </div>
                   <p className="text-[11px] text-gray-400 mt-3 leading-snug">
-                    Conversion = sample report download email later matched in a full intake or walkthrough request. High-intent leads — expect a higher conversion rate here than other email magnets.
+                    Conversion = sample report download email later matched in a full intake or walkthrough request. High-intent leads, expect a higher conversion rate here than other email magnets.
                   </p>
                 </div>
               )}
@@ -640,7 +640,7 @@ const AdminPage = () => {
                   data-testid="hr-osha-guide-tile"
                 >
                   <div className="flex items-baseline justify-between mb-3">
-                    <h2 className="text-base font-bold text-[#1C2B2B]">OSHA Inspection Guide — HR &amp; Safety Leaders</h2>
+                    <h2 className="text-base font-bold text-[#1C2B2B]">OSHA Inspection Guide, HR &amp; Safety Leaders</h2>
                     <span className="text-[10px] uppercase tracking-wider text-gray-400 font-mono">
                       HR-targeted lead magnet
                     </span>
@@ -670,7 +670,7 @@ const AdminPage = () => {
                     </div>
                   </div>
                   <p className="text-[11px] text-gray-400 mt-3 leading-snug">
-                    Conversion = HR Inspection Guide download email later matched in a full intake or walkthrough request. The HR / safety-coordinator audience tends to be the early-warning channel into a buying org — watch for converters here moving up the decision chain.
+                    Conversion = HR Inspection Guide download email later matched in a full intake or walkthrough request. The HR / safety-coordinator audience tends to be the early-warning channel into a buying org, watch for converters here moving up the decision chain.
                   </p>
                 </div>
               )}
@@ -693,7 +693,7 @@ const AdminPage = () => {
               {stats.lead_sources_30d && stats.lead_sources_30d.length > 0 && (
                 <div className="mt-10" data-testid="lead-sources-30d">
                   <div className="flex items-baseline justify-between mb-3">
-                    <h2 className="text-lg font-bold text-[#1C2B2B]">Sources — Last 30 Days</h2>
+                    <h2 className="text-lg font-bold text-[#1C2B2B]">Sources, Last 30 Days</h2>
                     <p className="text-xs text-gray-400">{stats.lead_sources_30d.reduce((sum, s) => sum + s.count, 0)} leads</p>
                   </div>
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5">
@@ -729,7 +729,7 @@ const AdminPage = () => {
               {sourcesData && sourcesData.sources && sourcesData.sources.length > 0 && (
                 <div className="mt-10" data-testid="leads-by-source">
                   <div className="flex items-baseline justify-between mb-3">
-                    <h2 className="text-lg font-bold text-[#1C2B2B]">Conversions by Source — All Time</h2>
+                    <h2 className="text-lg font-bold text-[#1C2B2B]">Conversions by Source, All Time</h2>
                     <p className="text-xs text-gray-400">
                       {sourcesData.totals.total_leads} leads · {sourcesData.totals.total_reports_delivered} converted · ${(sourcesData.totals.total_revenue || 0).toLocaleString()} revenue
                     </p>
@@ -808,9 +808,9 @@ const AdminPage = () => {
                       const flags = getFlags(item);
                       return (
                         <tr key={i} className="border-b border-gray-100 hover:bg-gray-50" data-testid={`intake-row-${i}`}>
-                          <td className="px-3 py-3 text-xs text-gray-400">{item.submittedAt ? new Date(item.submittedAt).toLocaleDateString() : '—'}</td>
-                          <td className="px-3 py-3 font-medium text-[#1C2B2B]">{item.company || '—'}</td>
-                          <td className="px-3 py-3 text-gray-500">{item.contactName || '—'}</td>
+                          <td className="px-3 py-3 text-xs text-gray-400">{item.submittedAt ? new Date(item.submittedAt).toLocaleDateString() : ','}</td>
+                          <td className="px-3 py-3 font-medium text-[#1C2B2B]">{item.company || ','}</td>
+                          <td className="px-3 py-3 text-gray-500">{item.contactName || ','}</td>
                           <td className="px-3 py-3 text-xs">
                             <SourceCell attribution={item.attribution} referralSource={item.referralSource} />
                           </td>
@@ -846,7 +846,7 @@ const AdminPage = () => {
                               {item.reportUrl && <Badge color="bg-emerald-100 text-emerald-700">Delivered</Badge>}
                               {(item.clientToken || item.id) && (
                                 <button
-                                  onClick={(e) => deleteRowInline('intake', item.clientToken || item.id, `${item.company || 'Unknown'} — ${item.contactName || item.email || item.clientToken || item.id}`, e)}
+                                  onClick={(e) => deleteRowInline('intake', item.clientToken || item.id, `${item.company || 'Unknown'}, ${item.contactName || item.email || item.clientToken || item.id}`, e)}
                                   className="text-[10px] font-medium px-2 py-1 rounded border border-red-200 text-red-500 hover:bg-red-50 hover:border-red-400 transition-colors flex items-center gap-1"
                                   title="Click to archive · Shift+Click to permanently delete"
                                   data-testid={`delete-intake-${i}`}
@@ -887,8 +887,8 @@ const AdminPage = () => {
                   <tbody>
                     {(bookings || []).filter(item => matchesSearch(item, searchQuery, ['company', 'contactName', 'email', 'phone', 'clientToken', 'service'])).map((item, i) => (
                       <tr key={i} className="border-b border-gray-100 hover:bg-gray-50" data-testid={`booking-row-${i}`}>
-                        <td className="px-3 py-3 text-xs text-gray-400">{item.createdAt ? new Date(item.createdAt).toLocaleDateString() : '—'}</td>
-                        <td className="px-3 py-3 font-medium text-[#1C2B2B]">{item.company || '—'}</td>
+                        <td className="px-3 py-3 text-xs text-gray-400">{item.createdAt ? new Date(item.createdAt).toLocaleDateString() : ','}</td>
+                        <td className="px-3 py-3 font-medium text-[#1C2B2B]">{item.company || ','}</td>
                         <td className="px-3 py-3 text-xs">{(item.tier || '').charAt(0).toUpperCase() + (item.tier || '').slice(1)}{item.addRetainer ? ' + Retainer' : ''}</td>
                         <td className="px-3 py-3 font-bold text-[#B8972C]">${item.totalCharged || 0}</td>
                         <td className="px-3 py-3">
@@ -896,7 +896,7 @@ const AdminPage = () => {
                             {item.paymentStatus === 'paid' ? 'Confirmed' : 'Pending'}
                           </Badge>
                         </td>
-                        <td className="px-3 py-3 text-xs text-gray-500">{item.preferredDate || '—'}</td>
+                        <td className="px-3 py-3 text-xs text-gray-500">{item.preferredDate || ','}</td>
                         <td className="px-3 py-3">
                           <button onClick={() => setViewItem(item)} className="text-[10px] font-medium px-2 py-1 rounded border border-gray-200 hover:bg-gray-50 transition-colors flex items-center gap-1" data-testid={`view-booking-${i}`}>
                             <Eye size={10} /> View
@@ -925,7 +925,7 @@ const AdminPage = () => {
                       <tbody>
                         {leads.safety_checks.filter(l => matchesSearch(l, searchQuery, ['name', 'email', 'company'])).map((l, i) => (
                           <tr key={i} className="border-b border-gray-100 hover:bg-gray-50">
-                            <td className="px-3 py-3 text-xs text-gray-400">{l.timestamp ? new Date(l.timestamp).toLocaleDateString() : '—'}</td>
+                            <td className="px-3 py-3 text-xs text-gray-400">{l.timestamp ? new Date(l.timestamp).toLocaleDateString() : ','}</td>
                             <td className="px-3 py-3 font-medium">{l.name}</td>
                             <td className="px-3 py-3">{l.company}</td>
                             <td className="px-3 py-3"><a href={`mailto:${l.email}`} className="text-[#B8972C] hover:underline">{l.email}</a></td>
@@ -934,7 +934,7 @@ const AdminPage = () => {
                             <td className="px-3 py-3 text-center">
                               {l.id && (
                                 <button
-                                  onClick={(e) => deleteRowInline('safety_check', l.id, `${l.name || 'Unknown'} — ${l.email || l.id}`, e)}
+                                  onClick={(e) => deleteRowInline('safety_check', l.id, `${l.name || 'Unknown'}, ${l.email || l.id}`, e)}
                                   className="text-[10px] font-medium px-2 py-1 rounded border border-red-200 text-red-500 hover:bg-red-50 hover:border-red-400 transition-colors inline-flex items-center gap-1"
                                   title="Click to archive · Shift+Click to permanently delete"
                                   data-testid={`delete-safety-check-${i}`}
@@ -958,13 +958,13 @@ const AdminPage = () => {
           {/* ── DOWNLOADS ── */}
           {tab === 'downloads' && <DownloadsTab token={token} />}
 
-          {/* Kit Orders — unified view of paid Citation-Proof + Supervisor Kit orders */}
+          {/* Kit Orders, unified view of paid Citation-Proof + Supervisor Kit orders */}
           {tab === 'kit-orders' && <KitOrdersTab token={token} />}
 
           {/* ── KIT PDFs ── (feature-flagged) */}
           {SUPERVISOR_KIT_ENABLED && tab === 'kit-pdfs' && <KitFilesTab token={token} />}
 
-          {/* PDF Library — view/download every kit PDF being sold online (all 3 product families) */}
+          {/* PDF Library, view/download every kit PDF being sold online (all 3 product families) */}
           {tab === 'pdf-library' && <PdfLibraryTab token={token} />}
 
           {/* ── PERSONALIZE PDF ── */}
@@ -1055,7 +1055,7 @@ const AdminPage = () => {
           <div className="absolute inset-0 bg-black/40" />
           <div className="relative bg-white rounded-xl p-6 w-full max-w-sm shadow-2xl" onClick={e => e.stopPropagation()} data-testid="upload-modal">
             <h3 className="text-base font-bold text-[#1C2B2B] mb-1">Upload Report</h3>
-            <p className="text-xs text-gray-400 mb-4">{uploadModal.company} — {uploadModal.clientToken}</p>
+            <p className="text-xs text-gray-400 mb-4">{uploadModal.company}, {uploadModal.clientToken}</p>
             <label className="block cursor-pointer rounded-lg border-2 border-dashed border-gray-200 p-6 text-center hover:border-[#C9A84C] transition-colors">
               <Upload size={24} className="mx-auto text-gray-300 mb-2" />
               <p className="text-sm text-gray-500">{uploading ? 'Uploading...' : 'Click to select PDF (max 20MB)'}</p>
@@ -1091,7 +1091,7 @@ const DownloadsTab = ({ token }) => {
             <tr key={i} className="border-b border-gray-100 hover:bg-gray-50">
               <td className="px-3 py-3 text-xs text-gray-400">{new Date(ev.timestamp).toLocaleString()}</td>
               <td className="px-3 py-3"><Badge color="bg-gray-100 text-gray-600">{typeLabel(ev.type)}</Badge></td>
-              <td className="px-3 py-3 text-gray-500 text-xs">{ev.email || ev.submission_id || ev.filename || '—'}</td>
+              <td className="px-3 py-3 text-gray-500 text-xs">{ev.email || ev.submission_id || ev.filename || ','}</td>
             </tr>
           ))}
         </tbody>
@@ -1101,7 +1101,7 @@ const DownloadsTab = ({ token }) => {
   );
 };
 
-/* ── Kit Orders sub-tab — unified paid orders across Citation-Proof + Supervisor kits ── */
+/* ── Kit Orders sub-tab, unified paid orders across Citation-Proof + Supervisor kits ── */
 const KitOrdersTab = ({ token }) => {
   const [data, setData] = useState(null);
   const [err, setErr] = useState('');
@@ -1155,7 +1155,7 @@ const KitOrdersTab = ({ token }) => {
     }
   };
 
-  const money = (cents) => cents == null ? '—' : `$${(cents / 100).toFixed(2)}`;
+  const money = (cents) => cents == null ? ',' : `$${(cents / 100).toFixed(2)}`;
   const formatAddr = (s) => {
     if (!s || !s.address) return '';
     const a = s.address;
@@ -1171,7 +1171,7 @@ const KitOrdersTab = ({ token }) => {
       pending_delivery: { color: 'bg-gray-100 text-gray-600', label: 'Pending Delivery' },
       pending_ship: { color: 'bg-orange-100 text-orange-700', label: 'Needs Ship' },
       shipped: { color: 'bg-blue-100 text-blue-700', label: 'Shipped' },
-      unknown: { color: 'bg-gray-100 text-gray-500', label: '—' },
+      unknown: { color: 'bg-gray-100 text-gray-500', label: ',' },
     };
     const s = map[status] || { color: 'bg-gray-100 text-gray-500', label: status };
     return <span className={`inline-block text-[10px] font-bold px-2 py-1 rounded ${s.color}`}>{s.label}</span>;
@@ -1272,7 +1272,7 @@ const KitOrdersTab = ({ token }) => {
               return (
                 <tr key={o.session_id || i} className="border-b border-gray-100 hover:bg-gray-50 align-top" data-testid={`kit-order-row-${i}`}>
                   <td className="px-3 py-3 text-xs text-gray-500 whitespace-nowrap">
-                    {o.paid_at ? new Date(o.paid_at).toLocaleDateString() : '—'}
+                    {o.paid_at ? new Date(o.paid_at).toLocaleDateString() : ','}
                     <br />
                     <span className="text-[10px] text-gray-400">
                       {o.paid_at ? new Date(o.paid_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : ''}
@@ -1282,11 +1282,11 @@ const KitOrdersTab = ({ token }) => {
                     <div className="font-semibold">{o.label || o.product_slug}</div>
                     <div className="text-[10px] text-gray-400 font-mono mt-0.5">{o.product_slug}</div>
                   </td>
-                  <td className="px-3 py-3 text-xs text-gray-600 capitalize">{o.tier || '—'}</td>
+                  <td className="px-3 py-3 text-xs text-gray-600 capitalize">{o.tier || ','}</td>
                   <td className="px-3 py-3 text-xs text-right font-semibold text-[#102A43] whitespace-nowrap">{money(o.amount_cents)}</td>
                   <td className="px-3 py-3 text-xs text-gray-600">
-                    <div className="font-semibold text-[#1C2B2B]">{o.customer_name || '—'}</div>
-                    <div>{o.customer_email || '—'}</div>
+                    <div className="font-semibold text-[#1C2B2B]">{o.customer_name || ','}</div>
+                    <div>{o.customer_email || ','}</div>
                     {o.customer_phone && <div className="text-[10px] text-gray-400 mt-0.5">{o.customer_phone}</div>}
                     {o.company_name && <div className="text-[10px] text-gray-400 mt-0.5 italic">{o.company_name}</div>}
                   </td>
@@ -1314,7 +1314,7 @@ const KitOrdersTab = ({ token }) => {
                         <Truck size={12} /> Mark Shipped
                       </button>
                     ) : (
-                      <span className="text-[10px] text-gray-300">—</span>
+                      <span className="text-[10px] text-gray-300">,</span>
                     )}
                   </td>
                 </tr>
@@ -1410,7 +1410,7 @@ const KitOrdersTab = ({ token }) => {
 
 
 
-/* ── Kit PDFs sub-tab (GL-WEB-024b) — admin access to the 11 SS-* files ── */
+/* ── Kit PDFs sub-tab (GL-WEB-024b), admin access to the 11 SS-* files ── */
 const KitFilesTab = ({ token }) => {
   const [data, setData] = useState(null);
   const [err, setErr] = useState('');
@@ -1430,7 +1430,7 @@ const KitFilesTab = ({ token }) => {
   return (
     <div data-testid="kit-pdfs-tab">
       <div className="flex items-baseline justify-between mb-4">
-        <h2 className="text-lg font-bold text-[#1C2B2B]">GigLine Supervisor Safety OS — Kit PDFs</h2>
+        <h2 className="text-lg font-bold text-[#1C2B2B]">GigLine Supervisor Safety OS, Kit PDFs</h2>
         <p className="text-xs text-gray-400">{data.count}/{data.expected ?? data.files.length} on disk</p>
       </div>
       <p className="text-xs text-gray-500 mb-5 leading-relaxed">
@@ -1452,8 +1452,8 @@ const KitFilesTab = ({ token }) => {
             <tr key={f.filename} className="border-b border-gray-100 hover:bg-gray-50" data-testid={`kit-pdf-row-${i}`}>
               <td className="px-3 py-3 text-xs text-gray-400">{String(i + 1).padStart(2, '0')}</td>
               <td className="px-3 py-3 text-[13px] text-[#1C2B2B] font-mono">{f.filename}</td>
-              <td className="px-3 py-3 text-xs text-gray-500">{f.on_disk === false ? '—' : `${f.size_kb} KB`}</td>
-              <td className="px-3 py-3 text-xs text-gray-400">{f.modified ? new Date(f.modified).toLocaleDateString() : '—'}</td>
+              <td className="px-3 py-3 text-xs text-gray-500">{f.on_disk === false ? ',' : `${f.size_kb} KB`}</td>
+              <td className="px-3 py-3 text-xs text-gray-400">{f.modified ? new Date(f.modified).toLocaleDateString() : ','}</td>
               <td className="px-3 py-3 text-right">
                 {f.on_disk === false ? (
                   <span className="inline-block text-[10px] font-bold px-2 py-1 rounded bg-red-50 text-red-600" data-testid={`kit-pdf-missing-${i}`}>Missing on server</span>
@@ -1478,10 +1478,10 @@ const KitFilesTab = ({ token }) => {
   );
 };
 
-/* ── PDF Library sub-tab — unified view/download of every kit PDF sold online ── */
+/* ── PDF Library sub-tab, unified view/download of every kit PDF sold online ── */
 const PDF_GROUPS = [
-  { id: 'citation_proof_kit', label: 'Citation-Proof Kit Series', hint: 'LOTO + Forklift/PIT digital & control-system PDFs. Auto-generated from DOCX by build_citation_proof_kit_pdfs.py — rerun that script to refresh from source.' },
-  { id: 'hazcom',             label: 'HazCom Starter Pack',       hint: 'Written Program, SDS Binder Checklist, and Training Verification Log — attached to every $29 HazCom Starter Pack purchase.' },
+  { id: 'citation_proof_kit', label: 'Citation-Proof Kit Series', hint: 'LOTO + Forklift/PIT digital & control-system PDFs. Auto-generated from DOCX by build_citation_proof_kit_pdfs.py, rerun that script to refresh from source.' },
+  { id: 'hazcom',             label: 'HazCom Starter Pack',       hint: 'Written Program, SDS Binder Checklist, and Training Verification Log, attached to every $29 HazCom Starter Pack purchase.' },
   { id: 'supervisor_kit',     label: 'GigLine Supervisor Safety OS', hint: 'The 11 print-ready PDFs auto-attached to every $600 Supervisor Safety OS digital-kit purchase.' },
 ];
 
@@ -1582,8 +1582,8 @@ const PdfLibraryTab = ({ token }) => {
                             <tr key={f.filename} className="border-b border-gray-100 hover:bg-gray-50" data-testid={`pdf-library-row-${g.id}-${i}`}>
                               <td className="px-3 py-2.5 text-xs text-gray-400">{String(i + 1).padStart(2, '0')}</td>
                               <td className="px-3 py-2.5 text-[12.5px] text-[#1C2B2B] font-mono break-all">{f.filename}</td>
-                              <td className="px-3 py-2.5 text-xs text-gray-500 text-right whitespace-nowrap">{f.on_disk ? `${f.size_kb} KB` : '—'}</td>
-                              <td className="px-3 py-2.5 text-xs text-gray-400 whitespace-nowrap">{f.modified ? new Date(f.modified).toLocaleDateString() : '—'}</td>
+                              <td className="px-3 py-2.5 text-xs text-gray-500 text-right whitespace-nowrap">{f.on_disk ? `${f.size_kb} KB` : ','}</td>
+                              <td className="px-3 py-2.5 text-xs text-gray-400 whitespace-nowrap">{f.modified ? new Date(f.modified).toLocaleDateString() : ','}</td>
                               <td className="px-3 py-2.5 text-right whitespace-nowrap">
                                 {!f.on_disk ? (
                                   <span className="inline-block text-[10px] font-bold px-2 py-1 rounded bg-red-50 text-red-600" data-testid={`pdf-library-missing-${g.id}-${i}`}>Missing on server</span>
@@ -1634,7 +1634,7 @@ const PdfLibraryTab = ({ token }) => {
 
 
 
-/* ── Personalize PDF sub-tab (GL-WEB-018f) — client-name → PDF cover slug ── */
+/* ── Personalize PDF sub-tab (GL-WEB-018f), client-name → PDF cover slug ── */
 const PersonalizePdfTab = ({ token }) => {
   const [pdfs, setPdfs] = useState(null);
   const [selected, setSelected] = useState('');
@@ -1665,7 +1665,7 @@ const PersonalizePdfTab = ({ token }) => {
       <h2 className="text-lg font-bold text-[#1C2B2B] mb-1">Personalize a collateral PDF</h2>
       <p className="text-xs text-gray-500 mb-5 leading-relaxed max-w-2xl">
         Generate a copy of any collateral PDF with the client&rsquo;s company name printed in the cover&rsquo;s
-        <em> &ldquo;PREPARED FOR&hellip;&rdquo; </em> header slug. Nothing is written to the public assets folder &mdash;
+        <em> &ldquo;PREPARED FOR&hellip;&rdquo; </em> header slug. Nothing is written to the public assets folder ,
         the personalized copy streams directly to your download.
       </p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
@@ -1724,7 +1724,7 @@ const PersonalizePdfTab = ({ token }) => {
   );
 };
 
-/* ── Google Indexing sub-tab — submit URLs to the Google Indexing API ── */
+/* ── Google Indexing sub-tab, submit URLs to the Google Indexing API ── */
 const GoogleIndexingTab = ({ token }) => {
   const [status, setStatus] = useState(null);
   const [singleUrl, setSingleUrl] = useState('');
@@ -1937,8 +1937,8 @@ const GoogleIndexingTab = ({ token }) => {
             data-testid="google-indexing-bulk-result"
           >
             <div className="grid grid-cols-4 gap-3 mb-2 text-center">
-              <div><p className="text-[10px] text-gray-500 uppercase">Matched</p><p className="text-sm font-bold">{bulkResult.data.total_matched ?? '—'}</p></div>
-              <div><p className="text-[10px] text-gray-500 uppercase">Limit</p><p className="text-sm font-bold">{bulkResult.data.limit_applied ?? '—'}</p></div>
+              <div><p className="text-[10px] text-gray-500 uppercase">Matched</p><p className="text-sm font-bold">{bulkResult.data.total_matched ?? ','}</p></div>
+              <div><p className="text-[10px] text-gray-500 uppercase">Limit</p><p className="text-sm font-bold">{bulkResult.data.limit_applied ?? ','}</p></div>
               <div><p className="text-[10px] text-gray-500 uppercase">Submitted</p><p className="text-sm font-bold text-green-700">{bulkResult.data.submitted ?? 0}</p></div>
               <div><p className="text-[10px] text-gray-500 uppercase">Failed</p><p className="text-sm font-bold text-red-700">{bulkResult.data.failed ?? 0}</p></div>
             </div>

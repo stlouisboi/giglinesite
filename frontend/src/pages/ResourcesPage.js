@@ -15,7 +15,7 @@ const RESOURCES = [
     gate: 'Ungated',
     icon: Compass,
     description:
-      '25 GigLine Field Notes across 6 hazard clusters — Chemical, Mechanical, Fall, PPE, Recordkeeping, Operations. The whole landscape.',
+      '25 GigLine Field Notes across 6 hazard clusters, Chemical, Mechanical, Fall, PPE, Recordkeeping, Operations. The whole landscape.',
     cta: 'Open the Guide',
     href: '/osha-compliance-guide',
     internal: true,
@@ -27,7 +27,7 @@ const RESOURCES = [
     gate: 'Ungated',
     icon: ClipboardCheck,
     description:
-      'Free 90-second OSHA self-screen — surfaces exposure points most often missed. Personalized PDF report. No email to start.',
+      'Free 90-second OSHA self-screen, surfaces exposure points most often missed. Personalized PDF report. No email to start.',
     cta: 'Start the Check',
     href: '/safety-check',
     internal: true,
@@ -39,7 +39,7 @@ const RESOURCES = [
     gate: 'Email capture',
     icon: BookOpen,
     description:
-      '2026 Heat Stress Action Template for NC manufacturing & warehouses. Daily check, trigger levels, plan. One page — print and post.',
+      '2026 Heat Stress Action Template for NC manufacturing & warehouses. Daily check, trigger levels, plan. One page, print and post.',
     cta: 'Get Access',
     href: '/heat-guide',
     internal: true,
@@ -51,7 +51,7 @@ const RESOURCES = [
     gate: 'Ungated read',
     icon: Shield,
     description:
-      'Plain-language OSHA HazCom breakdown — written program, SDS, labeling, training. #1 most-cited OSHA violation in general industry.',
+      'Plain-language OSHA HazCom breakdown, written program, SDS, labeling, training. #1 most-cited OSHA violation in general industry.',
     cta: 'Read the Guide',
     href: '/blog/hazcom-requirements-small-business',
     internal: true,
@@ -63,19 +63,19 @@ const RESOURCES = [
     gate: 'Email capture',
     icon: FileSearch,
     description:
-      'Redacted real GigLine compliance report — CFR citations, penalty exposure, RED/AMBER/GREEN fix list, 30/60/90-day plan.',
+      'Redacted real GigLine compliance report, CFR citations, penalty exposure, RED/AMBER/GREEN fix list, 30/60/90-day plan.',
     cta: 'Get Access',
     href: '/sample-report',
     internal: true,
   },
   {
     id: 'osha-inspection-guide',
-    title: 'OSHA Inspection Guide — HR & Safety Leaders',
+    title: 'OSHA Inspection Guide, HR & Safety Leaders',
     type: 'Guide',
     gate: 'Email capture',
     icon: Mail,
     description:
-      'OSHA inspection prep guide for HR & safety leads — what to have ready, what happens during, what to do in the 15-day window.',
+      'OSHA inspection prep guide for HR & safety leads, what to have ready, what happens during, what to do in the 15-day window.',
     cta: 'Get Access',
     href: '/osha-inspection-guide',
     internal: true,
@@ -88,7 +88,7 @@ const RESOURCES = [
     gate: 'From $600',
     icon: Package,
     description:
-      'CFR-cited digital safety kit — programs, training rosters, inspection logs, OSHA response templates. Free with every CRV.',
+      'CFR-cited digital safety kit, programs, training rosters, inspection logs, OSHA response templates. Free with every CRV.',
     cta: 'See the Kit',
     href: '/supervisor-kit',
     internal: true,
@@ -100,7 +100,7 @@ const RESOURCES = [
     gate: 'Ungated',
     icon: FileText,
     description:
-      'Printable OSHA inspection checklist — machine guarding, electrical, LOTO, walking surfaces, PPE, chemicals, recordkeeping.',
+      'Printable OSHA inspection checklist, machine guarding, electrical, LOTO, walking surfaces, PPE, chemicals, recordkeeping.',
     cta: 'Download',
     href: `${API_URL}/api/field-checklist`,
     internal: false,
@@ -113,7 +113,7 @@ const ResourcesPage = () => {
     '@type': 'WebPage',
     name: 'Safety Resources | GigLine Safety & Compliance',
     description:
-      'Free and gated safety resources for manufacturing and warehouse supervisors — guides, checklists, and compliance tools from GigLine.',
+      'Free and gated safety resources for manufacturing and warehouse supervisors, guides, checklists, and compliance tools from GigLine.',
     url: 'https://www.giglinecompliance.com/resources',
   };
 
@@ -121,7 +121,7 @@ const ResourcesPage = () => {
     <main data-testid="resources-page">
       <SEO
         title="Safety Resources | GigLine Safety & Compliance"
-        description="Free and gated safety resources for manufacturing and warehouse supervisors — guides, checklists, and compliance tools from GigLine."
+        description="Free and gated safety resources for manufacturing and warehouse supervisors, guides, checklists, and compliance tools from GigLine."
         canonical="/resources"
         schema={[pageSchema]}
       />

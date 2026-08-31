@@ -39,7 +39,7 @@ export const FAQS = [
   },
   {
     q: "What's the difference between a safety walkthrough and an OSHA inspection?",
-    a: "An OSHA inspection is performed by a federal or state compliance officer and may result in citations, penalties, and required abatement. A GigLine safety walkthrough is a private, voluntary review performed by an independent consultant. Findings are delivered only to you — nothing is reported to OSHA, your insurance carrier, or any third party.",
+    a: "An OSHA inspection is performed by a federal or state compliance officer and may result in citations, penalties, and required abatement. A GigLine safety walkthrough is a private, voluntary review performed by an independent consultant. Findings are delivered only to you, nothing is reported to OSHA, your insurance carrier, or any third party.",
   },
   {
     q: 'Do I need a written HazCom program if I have fewer than 10 employees?',
@@ -63,7 +63,7 @@ export const FAQS = [
   },
   {
     q: 'Does GigLine work with my insurance carrier?',
-    a: "No. The engagement is strictly between the business owner and GigLine. Nothing is shared with insurance carriers, brokers, or third parties. What you choose to do with the report — including sharing it with your carrier — is entirely your decision.",
+    a: "No. The engagement is strictly between the business owner and GigLine. Nothing is shared with insurance carriers, brokers, or third parties. What you choose to do with the report, including sharing it with your carrier, is entirely your decision.",
   },
   {
     q: 'Can I see a sample safety walkthrough report before I book?',
@@ -79,7 +79,7 @@ export const FAQS = [
   },
   {
     q: 'Is Vince Lawrence OSHA certified?',
-    a: "Vince Lawrence is OSHA 30-Hour Certified in General Industry and has 25+ years of hands-on experience in manufacturing, fleet, and warehouse safety. He is also a U.S. Navy veteran. GigLine is owner-operated — every walkthrough and report is performed personally by Vince.",
+    a: "Vince Lawrence is OSHA 30-Hour Certified in General Industry and has 25+ years of hands-on experience in manufacturing, fleet, and warehouse safety. He is also a U.S. Navy veteran. GigLine is owner-operated, every walkthrough and report is performed personally by Vince.",
   },
   {
     q: 'What happens if OSHA shows up after my walkthrough?',
@@ -91,7 +91,7 @@ export const FAQS = [
   },
   {
     q: 'How should I prepare for a safety walkthrough?',
-    a: "Nothing special. Do not stage, clean up, or hide anything — the walkthrough is most valuable when the floor looks the way it normally does. Have your written safety programs, SDS binder, and training records accessible. A brief floor manager or supervisor introduction at the start helps.",
+    a: "Nothing special. Do not stage, clean up, or hide anything, the walkthrough is most valuable when the floor looks the way it normally does. Have your written safety programs, SDS binder, and training records accessible. A brief floor manager or supervisor introduction at the start helps.",
   },
   {
     q: 'How do I book a safety walkthrough with GigLine?',
@@ -170,7 +170,7 @@ const FAQPage = () => {
     <main data-testid="faq-page">
       <SEO
         title="Safety Walkthrough FAQ | OSHA Compliance Questions Answered | GigLine"
-        description="Answers to the most common questions about OSHA safety walkthroughs in North Carolina — cost, duration, what's included, how reports work, and who GigLine serves."
+        description="Answers to the most common questions about OSHA safety walkthroughs in North Carolina, cost, duration, what's included, how reports work, and who GigLine serves."
         canonical="/faq"
         schema={[faqSchema, breadcrumbSchema]}
       />

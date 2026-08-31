@@ -25,15 +25,15 @@ const GOLD = '#C9A84C';
 const CREAM = '#f5f4f0';
 
 const DELIVERABLES = [
-  { icon: Footprints, title: 'On-Site Floor Walkthrough', body: 'I walk every accessible area of your operation — production floor, storage, loading dock, maintenance areas. Every hazard documented on the spot.' },
+  { icon: Footprints, title: 'On-Site Floor Walkthrough', body: 'I walk every accessible area of your operation, production floor, storage, loading dock, maintenance areas. Every hazard documented on the spot.' },
   { icon: Camera, title: 'Photo-Documented Findings', body: 'Every finding photographed, CFR-cited, and rated by severity. Priority 1 findings are called out verbally before I leave the facility.' },
-  { icon: FileText, title: 'Top 10 Priority Findings — 48 Hours', body: 'The 10 highest-exposure findings from the walkthrough, each with RED / AMBER / GREEN severity, CFR citation, and recommended corrective action. Ordered by what to fix first.' },
+  { icon: FileText, title: 'Top 10 Priority Findings, 48 Hours', body: 'The 10 highest-exposure findings from the walkthrough, each with RED / AMBER / GREEN severity, CFR citation, and recommended corrective action. Ordered by what to fix first.' },
 ];
 
 const VIOLATIONS = [
   { title: 'Blocked or obstructed egress routes', cfr: '29 CFR 1910.37' },
   { title: 'Electrical panel clearance violations', cfr: '29 CFR 1910.303' },
-  { title: 'Machine guarding gaps — exposed nip points, shear points', cfr: '29 CFR 1910.212' },
+  { title: 'Machine guarding gaps, exposed nip points, shear points', cfr: '29 CFR 1910.212' },
   { title: 'Fire extinguisher access and inspection gaps', cfr: '29 CFR 1910.157' },
   { title: 'Unsecured compressed gas cylinders', cfr: '29 CFR 1910.101' },
   { title: 'Forklift pedestrian separation failures', cfr: '29 CFR 1910.178' },
@@ -58,11 +58,11 @@ const SafetyWalkthroughPage = () => {
   return (
     <main data-testid="safety-walkthrough-page">
       <SEO
-        title="Safety Walkthrough — From $1,300 | GigLine"
+        title="Safety Walkthrough, From $1,300 | GigLine"
         description="On-site OSHA safety walkthrough for NC manufacturers. Photo-documented CFR-cited findings + Top 10 fix list in 48 hours. From $1,300."
         canonical={`/safety-walkthrough`}
         schema={[
-          { '@context': 'https://schema.org', '@type': 'Service', name: 'Safety Walkthrough', provider: { '@type': 'LocalBusiness', name: 'GigLine Safety & Compliance', url: 'https://www.giglinecompliance.com', telephone: '+13363298899' }, areaServed: { '@type': 'State', name: 'North Carolina' }, offers: { '@type': 'Offer', price: '1200', priceCurrency: 'USD', description: 'Safety Walkthrough from $1,300 — on-site physical hazard inspection.' }, description: 'On-site walkthrough focused on physical hazards with photo-documented CFR-cited findings delivered as a Top 10 priority report within 48 hours.' },
+          { '@context': 'https://schema.org', '@type': 'Service', name: 'Safety Walkthrough', provider: { '@type': 'LocalBusiness', name: 'GigLine Safety & Compliance', url: 'https://www.giglinecompliance.com', telephone: '+13363298899' }, areaServed: { '@type': 'State', name: 'North Carolina' }, offers: { '@type': 'Offer', price: '1200', priceCurrency: 'USD', description: 'Safety Walkthrough from $1,300, on-site physical hazard inspection.' }, description: 'On-site walkthrough focused on physical hazards with photo-documented CFR-cited findings delivered as a Top 10 priority report within 48 hours.' },
           { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [ { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.giglinecompliance.com/' }, { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://www.giglinecompliance.com/services' }, { '@type': 'ListItem', position: 3, name: 'Safety Walkthrough', item: 'https://www.giglinecompliance.com/safety-walkthrough' } ] },
         ]}
       />
@@ -78,7 +78,7 @@ const SafetyWalkthroughPage = () => {
                 <span className="block" style={{ color: GOLD }}>Before OSHA does.</span>
               </h1>
               <p className="text-base md:text-lg text-white/75 leading-[1.8] mb-9 max-w-3xl">
-                An on-site walkthrough focused purely on physical hazards. Photo-documented findings with CFR citations and a prioritized fix list — delivered within 48 hours. The fastest way to know where your operation stands.
+                An on-site walkthrough focused purely on physical hazards. Photo-documented findings with CFR citations and a prioritized fix list, delivered within 48 hours. The fastest way to know where your operation stands.
               </p>
               <div className="flex flex-wrap items-center gap-x-7 gap-y-3">
                 <Link to={INTAKE_HREF} className="inline-flex items-center justify-center gap-2 font-bold px-6 py-3.5 rounded-lg text-[15px] transition-colors text-white" style={{ background: BLUE }} onMouseEnter={(e) => (e.currentTarget.style.background = '#1F3F80')} onMouseLeave={(e) => (e.currentTarget.style.background = BLUE)} data-testid="sw-cta-hero">
@@ -113,7 +113,7 @@ const SafetyWalkthroughPage = () => {
             </div>
             <div>
               <p className="text-[14.5px] text-white/80 leading-[1.75]">
-                Need the floor and the files reviewed together? The <Link to={CRV_HREF} className="font-bold underline" style={{ color: GOLD }} data-testid="sw-crv-link">Compliance Readiness Visit</Link> covers both in a single visit from <span className="font-bold text-white" style={mono}>$2,500</span> — saving <span className="font-bold text-white" style={mono}>$500</span> vs. booking separately.
+                Need the floor and the files reviewed together? The <Link to={CRV_HREF} className="font-bold underline" style={{ color: GOLD }} data-testid="sw-crv-link">Compliance Readiness Visit</Link> covers both in a single visit from <span className="font-bold text-white" style={mono}>$2,500</span>, saving <span className="font-bold text-white" style={mono}>$500</span> vs. booking separately.
               </p>
             </div>
           </div>
@@ -142,7 +142,7 @@ const SafetyWalkthroughPage = () => {
         </div>
       </section>
 
-      {/* What We Find — 8 numbered CFR-cited violations */}
+      {/* What We Find, 8 numbered CFR-cited violations */}
       <section className="py-20 md:py-24" style={{ background: CREAM }} data-testid="sw-violations">
         <div className="container max-w-4xl">
           <Eyebrow>What We Find</Eyebrow>
@@ -162,7 +162,7 @@ const SafetyWalkthroughPage = () => {
         </div>
       </section>
 
-      {/* When to Book This — 4-card grid on dark navy */}
+      {/* When to Book This, 4-card grid on dark navy */}
       <section className="py-20 md:py-24" style={{ background: NAVY }} data-testid="sw-when">
         <div className="container max-w-6xl">
           <p className="uppercase font-bold mb-3 text-center" style={{ ...mono, fontSize: '10.4px', letterSpacing: '0.20em', color: GOLD }}>When to Book This</p>
@@ -181,7 +181,7 @@ const SafetyWalkthroughPage = () => {
         </div>
       </section>
 
-      {/* Best Fit / Not Best Fit — buyer self-qualification (Feb 2026 audit) */}
+      {/* Best Fit / Not Best Fit, buyer self-qualification (Feb 2026 audit) */}
       <section className="py-20 md:py-24" style={{ background: '#F9F8F6' }} data-testid="sw-fit">
         <div className="container max-w-5xl">
           <Eyebrow>Self-Check</Eyebrow>
@@ -189,7 +189,7 @@ const SafetyWalkthroughPage = () => {
             Is a Safety Walkthrough the right call for you right now?
           </h2>
           <p className="text-base md:text-lg text-[#1C2B2B]/70 leading-[1.85] mb-10 max-w-3xl">
-            The walkthrough is a focused, single-visit engagement. It works best in specific situations &mdash; and there are situations where one of the other GigLine services fits better.
+            The walkthrough is a focused, single-visit engagement. It works best in specific situations , and there are situations where one of the other GigLine services fits better.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
             <div
@@ -202,7 +202,7 @@ const SafetyWalkthroughPage = () => {
               </p>
               <ul className="space-y-2.5">
                 {[
-                  'You have 5&ndash;150 employees and no full-time safety manager',
+                  'You have 5-150 employees and no full-time safety manager',
                   'You want a fast, written read on what an OSHA inspector would see',
                   'You\u2019ve had a near-miss, complaint, or new customer audit requirement',
                   'You\u2019re scaling production and want to lock the safety baseline before growth',
@@ -224,12 +224,12 @@ const SafetyWalkthroughPage = () => {
                 {[
                   { d: 'You\u2019re already in an active OSHA inspection or post-citation window', alt: 'You need legal counsel, not a walkthrough' },
                   { d: 'You need written safety programs built from scratch', alt: 'Choose the Compliance Readiness Visit instead' },
-                  { d: 'You only need a documentation review &mdash; binders, SDS, training logs', alt: 'Choose the Documentation Readiness Review' },
+                  { d: 'You only need a documentation review , binders, SDS, training logs', alt: 'Choose the Documentation Readiness Review' },
                   { d: 'You want ongoing month-to-month safety support', alt: 'Ask about the Annual Compliance Partner program' },
                   { d: 'You\u2019re looking for OSHA 10/30 training delivery', alt: 'That\u2019s not what GigLine does' },
                 ].map((row, i) => (
                   <li key={i} className="text-[15px] leading-[1.55]" style={{ color: NAVY }}>
-                    <span style={{ color: '#8a2828', fontWeight: 700 }}>—</span>{' '}
+                    <span style={{ color: '#8a2828', fontWeight: 700 }}>,</span>{' '}
                     <span dangerouslySetInnerHTML={{ __html: row.d }} />
                     <span className="block text-[13px] mt-0.5" style={{ color: '#8a2828', ...mono }}>→ {row.alt}</span>
                   </li>
@@ -240,15 +240,15 @@ const SafetyWalkthroughPage = () => {
         </div>
       </section>
 
-      {/* What GigLine Does / Doesn't Do — positioning clarity (Feb 2026 audit) */}
+      {/* What GigLine Does / Doesn't Do, positioning clarity (Feb 2026 audit) */}
       <section className="py-20 md:py-24 bg-white" data-testid="sw-scope">
         <div className="container max-w-5xl">
           <Eyebrow>The Scope</Eyebrow>
           <h2 className="text-3xl md:text-4xl font-extrabold leading-[1.15] mb-4 tracking-tight" style={{ color: NAVY }}>
-            What a GigLine walkthrough is &mdash; and what it isn&rsquo;t.
+            What a GigLine walkthrough is , and what it isn&rsquo;t.
           </h2>
           <p className="text-base md:text-lg text-[#1C2B2B]/70 leading-[1.85] mb-10 max-w-3xl">
-            A clear scope protects both sides. Here&rsquo;s exactly what you can expect to walk away with &mdash; and the lines GigLine does not cross.
+            A clear scope protects both sides. Here&rsquo;s exactly what you can expect to walk away with , and the lines GigLine does not cross.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
             <div
@@ -291,7 +291,7 @@ const SafetyWalkthroughPage = () => {
                   'Sell generic templates as a substitute for site-specific safety programs',
                 ].map((d, i) => (
                   <li key={i} className="flex items-start gap-2 text-[15px] leading-[1.6]" style={{ color: NAVY }}>
-                    <span className="font-bold" style={{ color: '#8a2828', marginTop: '1px' }}>—</span>
+                    <span className="font-bold" style={{ color: '#8a2828', marginTop: '1px' }}>,</span>
                     <span>{d}</span>
                   </li>
                 ))}
@@ -307,11 +307,11 @@ const SafetyWalkthroughPage = () => {
       {/* Closing CTA */}
       <RelatedFieldNotesStrip
         heading="Field Notes that pair with a Safety Walkthrough"
-        intro="What Vince is scanning for during your walkthrough — organized so you can review it before he arrives."
+        intro="What Vince is scanning for during your walkthrough, organized so you can review it before he arrives."
         notes={[
-          { slug: 'machine-guarding', title: 'Machine Guarding — the #1 general-industry citation', blurb: 'Point-of-operation, power-transmission, and the everyday oversights that trigger 1910.212.' },
-          { slug: 'walking-surfaces', title: 'Walking-Working Surfaces — the trip hazards you stopped seeing', blurb: 'What OSHA looks at first when they enter your floor — spills, cords, aisles, mezzanine edges.' },
-          { slug: 'electrical-safety', title: 'Electrical Safety — exposed panels and LOTO gaps', blurb: 'The panel doors, junction boxes, and cord assemblies that quietly generate the most citations.' },
+          { slug: 'machine-guarding', title: 'Machine Guarding, the #1 general-industry citation', blurb: 'Point-of-operation, power-transmission, and the everyday oversights that trigger 1910.212.' },
+          { slug: 'walking-surfaces', title: 'Walking-Working Surfaces, the trip hazards you stopped seeing', blurb: 'What OSHA looks at first when they enter your floor, spills, cords, aisles, mezzanine edges.' },
+          { slug: 'electrical-safety', title: 'Electrical Safety, exposed panels and LOTO gaps', blurb: 'The panel doors, junction boxes, and cord assemblies that quietly generate the most citations.' },
         ]}
       />
 
@@ -331,7 +331,7 @@ const SafetyWalkthroughPage = () => {
             </Link>
           </div>
           <a href="tel:3363298899" className="inline-flex items-center gap-2 text-[#1C2B2B]/60 hover:text-[#1C2B2B] text-sm mt-8 transition-colors" data-testid="sw-cta-phone">
-            <Phone size={14} />Questions? Call or text Vince directly — (336) 329-8899
+            <Phone size={14} />Questions? Call or text Vince directly, (336) 329-8899
           </a>
         </div>
       </section>

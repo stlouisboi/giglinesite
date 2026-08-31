@@ -13,32 +13,32 @@ const TEXT_SUBTLE = 'rgba(10,22,40,0.55)';
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
 const serif = { fontFamily: "Georgia, 'Times New Roman', serif" };
 
-// GL-WEB-020 — 13 corrective actions from the June 18, 2026 walkthrough.
+// GL-WEB-020, 13 corrective actions from the June 18, 2026 walkthrough.
 // 12 of 13 closed June 22, 2026 (4 days). 1 open (shear guard, scheduled post-relocation).
 const CORRECTIVE_ACTIONS = [
   { id: 'CA-001', issue: 'Written Safety & Health Program required address update to new facility location', action: 'Updated all safety and training forms and policies to reflect future address at 170/174 Innovation Drive.', status: 'Closed Jun 22', open: false },
-  { id: 'CA-002', issue: 'SDS Library gap — Star Fire AW46 Hydraulic Oil and Simple Green not in digital library or physical binder', action: 'Added SDS for both products to physical binder, digital folder, and internal plant information website.', status: 'Closed Jun 22', open: false },
-  { id: 'CA-003', issue: 'Simple Green spray bottles observed unlabeled — GHS labeling required (product name, signal word, hazard pictograms)', action: 'Labeled both spray bottles with appropriate GHS-compliant labels.', status: 'Closed Jun 22', open: false },
+  { id: 'CA-002', issue: 'SDS Library gap, Star Fire AW46 Hydraulic Oil and Simple Green not in digital library or physical binder', action: 'Added SDS for both products to physical binder, digital folder, and internal plant information website.', status: 'Closed Jun 22', open: false },
+  { id: 'CA-003', issue: 'Simple Green spray bottles observed unlabeled, GHS labeling required (product name, signal word, hazard pictograms)', action: 'Labeled both spray bottles with appropriate GHS-compliant labels.', status: 'Closed Jun 22', open: false },
   { id: 'CA-004', issue: 'Machine Guarding Documentation present but compliance gaps identified', action: 'Added machine guarding policy to new hire orientation.', status: 'Closed Jun 22', open: false },
   { id: 'CA-005', issue: 'Fire Prevention Plan controls in place informally but not captured in a formal document', action: 'Wrote formal Fire Prevention Plan with job-specific tasks and cross-reference to Emergency Action Plan.', status: 'Closed Jun 22', open: false },
-  { id: 'CA-006', issue: 'Heat Stress Prevention Plan not present — required under 29 CFR 1910 General Duty Clause and NC OSHA guidance', action: 'Wrote Heat Stress Prevention Plan and added to new hire orientation.', status: 'Closed Jun 22', open: false },
+  { id: 'CA-006', issue: 'Heat Stress Prevention Plan not present, required under 29 CFR 1910 General Duty Clause and NC OSHA guidance', action: 'Wrote Heat Stress Prevention Plan and added to new hire orientation.', status: 'Closed Jun 22', open: false },
   { id: 'CA-007', issue: 'No Corrective Action Log present at facility', action: 'Created Corrective Action Log; employee training protocol established.', status: 'Closed Jun 22', open: false },
-  { id: 'CA-008', issue: 'Near-Miss / Close-Call Report Log not present — OSHA best practice for identifying and correcting hazardous conditions before injury', action: 'Created Near-Miss Log and reporting document; training scheduled.', status: 'Closed Jun 22', open: false },
+  { id: 'CA-008', issue: 'Near-Miss / Close-Call Report Log not present, OSHA best practice for identifying and correcting hazardous conditions before injury', action: 'Created Near-Miss Log and reporting document; training scheduled.', status: 'Closed Jun 22', open: false },
   { id: 'CA-009', issue: 'Four 5-gallon pails of AW46 Hydraulic Oil stored on production floor adjacent to D-coiler with no SDS present', action: 'SDS added to binder, digital folder, and internal plant website.', status: 'Closed Jun 22', open: false },
-  { id: 'CA-010', issue: 'Propane cylinder stored upright without chain, bracket, or restraint — positioned adjacent to flammables cabinet with no separation distance', action: 'Cylinder relocated to forklift storage area away from flammables cabinet; permanent rack planned for new facility.', status: 'Closed Jun 22', open: false },
-  { id: 'CA-011', issue: 'Bloodborne Pathogen Exposure Control Plan not present — required under 29 CFR 1910.1030', action: 'Wrote Bloodborne Pathogen Exposure Control Plan and added to new hire training.', status: 'Closed Jun 22', open: false },
-  { id: 'CA-012', issue: 'Shear blade point-of-operation on roll former cut-off mechanism unguarded and accessible during operation', action: 'Light curtains and safety fence planned post-relocation; machine will be set in final position at new facility before guarding is installed.', status: 'Open — Due Sept 1', open: true },
+  { id: 'CA-010', issue: 'Propane cylinder stored upright without chain, bracket, or restraint, positioned adjacent to flammables cabinet with no separation distance', action: 'Cylinder relocated to forklift storage area away from flammables cabinet; permanent rack planned for new facility.', status: 'Closed Jun 22', open: false },
+  { id: 'CA-011', issue: 'Bloodborne Pathogen Exposure Control Plan not present, required under 29 CFR 1910.1030', action: 'Wrote Bloodborne Pathogen Exposure Control Plan and added to new hire training.', status: 'Closed Jun 22', open: false },
+  { id: 'CA-012', issue: 'Shear blade point-of-operation on roll former cut-off mechanism unguarded and accessible during operation', action: 'Light curtains and safety fence planned post-relocation; machine will be set in final position at new facility before guarding is installed.', status: 'Open, Due Sept 1', open: true },
   { id: 'CA-013', issue: 'Employee Safety Handbook required material revision to meet General Duty Clause requirements', action: 'Updated all safety documents for compliance; REV numbering system implemented for version tracking.', status: 'Closed Jun 22', open: false },
 ];
 
 const CASE_FAQS = [
   {
     q: 'What if my walkthrough turns up more than 13 findings?',
-    a: "That depends on the facility. A newer operation with a plant manager actively building programs — like the one in this engagement — is going to look different from a 20-year-old facility that hasn't had a third-party review in a decade. More findings isn't a failure. It's information. The report prioritizes every finding by citation risk so you know what to fix first and what can wait. You leave with a ranked corrective action plan, not a list of problems with no direction attached.",
+    a: "That depends on the facility. A newer operation with a plant manager actively building programs, like the one in this engagement, is going to look different from a 20-year-old facility that hasn't had a third-party review in a decade. More findings isn't a failure. It's information. The report prioritizes every finding by citation risk so you know what to fix first and what can wait. You leave with a ranked corrective action plan, not a list of problems with no direction attached.",
   },
   {
     q: 'Does an 80.3 compliance score mean the facility was OSHA-ready?',
-    a: "Not exactly. The compliance score measures written-program coverage — how complete your documentation is relative to what OSHA expects to see. An 80.3 means solid coverage on paper with targeted gaps underneath. The physical findings (the propane cylinder, the unguarded shear blade) are captured separately in the priority ratings. A facility can score well on documentation and still have serious physical hazards. That's exactly why the walkthrough covers both.",
+    a: "Not exactly. The compliance score measures written-program coverage, how complete your documentation is relative to what OSHA expects to see. An 80.3 means solid coverage on paper with targeted gaps underneath. The physical findings (the propane cylinder, the unguarded shear blade) are captured separately in the priority ratings. A facility can score well on documentation and still have serious physical hazards. That's exactly why the walkthrough covers both.",
   },
   {
     q: 'What does the written report actually contain?',
@@ -46,11 +46,11 @@ const CASE_FAQS = [
   },
   {
     q: "What if I can't fix everything before an OSHA inspection arrives?",
-    a: "Fix the P2 findings first — those are the serious citation risks with dollar exposure attached. A documented corrective action plan with assigned owners and target dates is evidence of good-faith effort. OSHA distinguishes between a facility that knew about a hazard and ignored it and one that identified it, documented it, and was actively working through remediation. The written report gives you that documentation. It doesn't guarantee anything, but it puts you in a materially better position than having no record at all.",
+    a: "Fix the P2 findings first, those are the serious citation risks with dollar exposure attached. A documented corrective action plan with assigned owners and target dates is evidence of good-faith effort. OSHA distinguishes between a facility that knew about a hazard and ignored it and one that identified it, documented it, and was actively working through remediation. The written report gives you that documentation. It doesn't guarantee anything, but it puts you in a materially better position than having no record at all.",
   },
   {
     q: 'Will GigLine share my findings with anyone?',
-    a: "No. Findings are not shared, published, or referenced without written permission. Not with OSHA, not with your insurer, not with anyone. The report belongs to you. The engagement in this case study is referenced publicly only because the client permitted it — and the client name is withheld at their request. Every engagement operates the same way by default.",
+    a: "No. Findings are not shared, published, or referenced without written permission. Not with OSHA, not with your insurer, not with anyone. The report belongs to you. The engagement in this case study is referenced publicly only because the client permitted it, and the client name is withheld at their request. Every engagement operates the same way by default.",
   },
 ];
 
@@ -68,9 +68,9 @@ const CaseStudyMetalsFabricationPage = () => {
           {
             '@context': 'https://schema.org',
             '@type': 'Article',
-            headline: 'What a Safety Walkthrough Actually Finds — Statesville Metals Fabrication Case Study',
+            headline: 'What a Safety Walkthrough Actually Finds, Statesville Metals Fabrication Case Study',
             description:
-              "Metals fab case study, Statesville NC — walkthrough + doc review. 13 findings. 80.3 score. 12 of 13 actions closed in 4 days.",
+              "Metals fab case study, Statesville NC, walkthrough + doc review. 13 findings. 80.3 score. 12 of 13 actions closed in 4 days.",
             author: { '@type': 'Person', name: 'Vince Lawrence', url: 'https://www.giglinecompliance.com/about' },
             publisher: { '@type': 'Organization', name: 'GigLine Safety & Compliance', url: 'https://www.giglinecompliance.com' },
             datePublished: '2026-06-22',
@@ -95,12 +95,12 @@ const CaseStudyMetalsFabricationPage = () => {
               {
                 '@type': 'Question',
                 name: 'What if my walkthrough turns up more than 13 findings?',
-                acceptedAnswer: { '@type': 'Answer', text: "That depends on the facility. A newer operation with a plant manager actively building programs — like the one in this engagement — is going to look different from a 20-year-old facility that hasn't had a third-party review in a decade. More findings isn't a failure. It's information. The report prioritizes every finding by citation risk so you know what to fix first and what can wait. You leave with a ranked corrective action plan, not a list of problems with no direction attached." },
+                acceptedAnswer: { '@type': 'Answer', text: "That depends on the facility. A newer operation with a plant manager actively building programs, like the one in this engagement, is going to look different from a 20-year-old facility that hasn't had a third-party review in a decade. More findings isn't a failure. It's information. The report prioritizes every finding by citation risk so you know what to fix first and what can wait. You leave with a ranked corrective action plan, not a list of problems with no direction attached." },
               },
               {
                 '@type': 'Question',
                 name: 'Does an 80.3 compliance score mean the facility was OSHA-ready?',
-                acceptedAnswer: { '@type': 'Answer', text: "Not exactly. The compliance score measures written-program coverage — how complete your documentation is relative to what OSHA expects to see. An 80.3 means solid coverage on paper with targeted gaps underneath. The physical findings (the propane cylinder, the unguarded shear blade) are captured separately in the priority ratings. A facility can score well on documentation and still have serious physical hazards. That's exactly why the walkthrough covers both." },
+                acceptedAnswer: { '@type': 'Answer', text: "Not exactly. The compliance score measures written-program coverage, how complete your documentation is relative to what OSHA expects to see. An 80.3 means solid coverage on paper with targeted gaps underneath. The physical findings (the propane cylinder, the unguarded shear blade) are captured separately in the priority ratings. A facility can score well on documentation and still have serious physical hazards. That's exactly why the walkthrough covers both." },
               },
               {
                 '@type': 'Question',
@@ -110,12 +110,12 @@ const CaseStudyMetalsFabricationPage = () => {
               {
                 '@type': 'Question',
                 name: "What if I can't fix everything before an OSHA inspection arrives?",
-                acceptedAnswer: { '@type': 'Answer', text: "Fix the P2 findings first — those are the serious citation risks with dollar exposure attached. A documented corrective action plan with assigned owners and target dates is evidence of good-faith effort. OSHA distinguishes between a facility that knew about a hazard and ignored it and one that identified it, documented it, and was actively working through remediation. The written report gives you that documentation. It doesn't guarantee anything, but it puts you in a materially better position than having no record at all." },
+                acceptedAnswer: { '@type': 'Answer', text: "Fix the P2 findings first, those are the serious citation risks with dollar exposure attached. A documented corrective action plan with assigned owners and target dates is evidence of good-faith effort. OSHA distinguishes between a facility that knew about a hazard and ignored it and one that identified it, documented it, and was actively working through remediation. The written report gives you that documentation. It doesn't guarantee anything, but it puts you in a materially better position than having no record at all." },
               },
               {
                 '@type': 'Question',
                 name: 'Will GigLine share my findings with anyone?',
-                acceptedAnswer: { '@type': 'Answer', text: "No. Findings are not shared, published, or referenced without written permission. Not with OSHA, not with your insurer, not with anyone. The report belongs to you. The engagement in this case study is referenced publicly only because the client permitted it — and the client name is withheld at their request. Every engagement operates the same way by default." },
+                acceptedAnswer: { '@type': 'Answer', text: "No. Findings are not shared, published, or referenced without written permission. Not with OSHA, not with your insurer, not with anyone. The report belongs to you. The engagement in this case study is referenced publicly only because the client permitted it, and the client name is withheld at their request. Every engagement operates the same way by default." },
               },
             ],
           },
@@ -164,7 +164,7 @@ const CaseStudyMetalsFabricationPage = () => {
             style={{ color: TEXT_MUTED, ...serif }}
             data-testid="case-subhead"
           >
-            A metals fabrication facility in Statesville, NC brought GigLine in for a combined Safety Walkthrough and Documentation Review. Thirteen findings. One written report. No inspection ever happened &mdash; and that is the point.
+            A metals fabrication facility in Statesville, NC brought GigLine in for a combined Safety Walkthrough and Documentation Review. Thirteen findings. One written report. No inspection ever happened , and that is the point.
           </p>
 
           <p
@@ -198,7 +198,7 @@ const CaseStudyMetalsFabricationPage = () => {
             <NumberItem stat="4" label="Days" sub="walkthrough → report" />
           </div>
 
-          {/* GL-WEB-022: Inline CTA — keeps the conversion ask visible above the long body */}
+          {/* GL-WEB-022: Inline CTA, keeps the conversion ask visible above the long body */}
           <div className="mt-8 mb-2 flex flex-wrap items-center gap-4" data-testid="case-top-cta">
             <Link
               to="/intake?service=safety-walkthrough-report&utm_source=case-study&utm_medium=website&utm_campaign=case-top-cta"
@@ -227,13 +227,13 @@ const CaseStudyMetalsFabricationPage = () => {
           {/* THE SITUATION */}
           <H2>The Situation</H2>
           <P>A 9-person metals fabrication operation in Statesville, NC. Two roll formers, two forklifts, an active flammables cabinet, a growing crew.</P>
-          <P>The plant manager held an OSHA 30-Hour General Industry certification and had built out most of his safety documentation &mdash; some of it using AI-generated templates. He believed his programs were largely in order.</P>
+          <P>The plant manager held an OSHA 30-Hour General Industry certification and had built out most of his safety documentation , some of it using AI-generated templates. He believed his programs were largely in order.</P>
           <P>He brought GigLine in to confirm that before production scaled.</P>
 
           {/* THE ENGAGEMENT */}
           <H2>The Engagement</H2>
-          <P>Scope: Combined Safety Walkthrough and Documentation Review &mdash; one visit covering both the physical floor and the written programs.</P>
-          <P>Visit date: June 18, 2026. Written report delivered June 22, 2026 &mdash; four days after the walkthrough.</P>
+          <P>Scope: Combined Safety Walkthrough and Documentation Review , one visit covering both the physical floor and the written programs.</P>
+          <P>Visit date: June 18, 2026. Written report delivered June 22, 2026 , four days after the walkthrough.</P>
 
           {/* WHAT THE WALKTHROUGH FOUND */}
           <H2>What the Walkthrough Found</H2>
@@ -244,21 +244,21 @@ const CaseStudyMetalsFabricationPage = () => {
 
           <div className="not-italic mt-6 mb-12 space-y-5" style={{ fontFamily: "'Manrope', sans-serif" }} data-testid="case-physical-findings">
             <Finding
-              priority="P2 — Serious"
+              priority="P2, Serious"
               n="Finding 10"
               cfr="29 CFR 1910.110(b)(6)(i)"
               penalty="Up to $16,550 per violation (2026 Serious max)"
               title="Unsecured propane cylinder adjacent to flammable storage cabinet"
-              body="One propane cylinder stored upright with no chain, bracket, or restraint — positioned immediately adjacent to the flammable liquids storage cabinet with no separation distance. In a fire event, that arrangement is accelerant against fuel."
-              corrective="Secure immediately. Relocate minimum 20 feet from the cabinet or install a 30-minute fire-rated barrier. Due date assigned: June 20, 2026 — two days out."
+              body="One propane cylinder stored upright with no chain, bracket, or restraint, positioned immediately adjacent to the flammable liquids storage cabinet with no separation distance. In a fire event, that arrangement is accelerant against fuel."
+              corrective="Secure immediately. Relocate minimum 20 feet from the cabinet or install a 30-minute fire-rated barrier. Due date assigned: June 20, 2026, two days out."
             />
             <Finding
-              priority="P2 — Serious"
+              priority="P2, Serious"
               n="Finding 12"
               cfr="29 CFR 1910.212(a)(1)"
               penalty="Up to $16,550 per violation (2026 Serious max)"
               title="Unguarded shear point of operation on roll former cut-off mechanism"
-              body="The shear blade on the roll former cut-off mechanism was accessible during operation. A yellow perimeter rail was present on the outfeed side — it did not address the point of operation at the shear head."
+              body="The shear blade on the roll former cut-off mechanism was accessible during operation. A yellow perimeter rail was present on the outfeed side, it did not address the point of operation at the shear head."
               corrective="Install point-of-operation guarding before production employees operate the equipment. Due date: before next production run."
             />
           </div>
@@ -275,7 +275,7 @@ const CaseStudyMetalsFabricationPage = () => {
 
           <P>The IIPP existed but was built from an AI-generated template. It listed the wrong facility address. It lacked required elements for management leadership, hazard identification, and program evaluation. It had not been reviewed against actual operations.</P>
 
-          <P>The SDS library had one confirmed gap: Star Fire AW46 Hydraulic Oil &mdash; a product actively in use at the D-coiler hydraulic power unit, four five-gallon pails on the floor, no SDS on file. That gap alone carries potential serious-citation exposure of <strong>up to $16,550 per violation</strong> under 29 CFR 1910.1200(g)(1), per the 2026 OSHA maximum penalty schedule.</P>
+          <P>The SDS library had one confirmed gap: Star Fire AW46 Hydraulic Oil , a product actively in use at the D-coiler hydraulic power unit, four five-gallon pails on the floor, no SDS on file. That gap alone carries potential serious-citation exposure of <strong>up to $16,550 per violation</strong> under 29 CFR 1910.1200(g)(1), per the 2026 OSHA maximum penalty schedule.</P>
 
           <P>Three required documents were missing entirely: Heat Stress Prevention Plan, Bloodborne Pathogen Exposure Control Plan, and a Corrective Action Log.</P>
 
@@ -284,14 +284,14 @@ const CaseStudyMetalsFabricationPage = () => {
           {/* WHAT THE ENGAGEMENT DELIVERED */}
           <H2>What the Engagement Delivered</H2>
           <P>A written report documenting all 13 findings against applicable CFR standards, with photo documentation of the two highest-priority physical hazards and a corrective action summary pre-populated with every finding, priority rating, assigned due date where applicable, and recommended corrective action.</P>
-          <P>The plant manager came into the engagement believing his programs were close to ready. The report showed him specifically where they weren&rsquo;t &mdash; before an OSHA inspector, a customer audit, or an incident did.</P>
+          <P>The plant manager came into the engagement believing his programs were close to ready. The report showed him specifically where they weren&rsquo;t , before an OSHA inspector, a customer audit, or an incident did.</P>
 
           {/* AFTER THE REPORT */}
           <H2>After the Report</H2>
-          <P>Twelve of 13 findings were closed within four days of the walkthrough &mdash; before the formal due date and without pausing production. The one remaining item &mdash; the unguarded shear blade on the roll former &mdash; has a documented remediation plan: light curtains and a permanent safety fence, to be installed after the machine is set in its final position at the new facility location. The corrective action log entry reads: &ldquo;No current way to guard shear, will add light curtains and safety fence after moving machine to new location and setting in final place.&rdquo;</P>
+          <P>Twelve of 13 findings were closed within four days of the walkthrough , before the formal due date and without pausing production. The one remaining item , the unguarded shear blade on the roll former , has a documented remediation plan: light curtains and a permanent safety fence, to be installed after the machine is set in its final position at the new facility location. The corrective action log entry reads: &ldquo;No current way to guard shear, will add light curtains and safety fence after moving machine to new location and setting in final place.&rdquo;</P>
           <P>That&rsquo;s how a corrective action log is supposed to work. Findings documented. Owners assigned. Plans recorded. Progress trackable.</P>
 
-          {/* GL-WEB-017 — Standalone Corrective Action Log download (ungated) */}
+          {/* GL-WEB-017, Standalone Corrective Action Log download (ungated) */}
           <div
             className="not-italic my-10"
             style={{ fontFamily: "'Manrope', sans-serif" }}
@@ -442,15 +442,15 @@ const CaseStudyMetalsFabricationPage = () => {
             </h2>
             <div className="space-y-5 max-w-3xl" style={{ ...serif }}>
               <p className="text-[16px] md:text-[17px] leading-[1.72]" style={{ color: TEXT_MUTED }}>
-                Amero Steel Supply completed 12 of 13 corrective actions within four days of the GigLine walkthrough &mdash; before the formal due date and without pausing production. The one open item, a shear blade point-of-operation guard, is scheduled for installation after the facility relocates to 170/174 Innovation Drive in August 2026.
+                Amero Steel Supply completed 12 of 13 corrective actions within four days of the GigLine walkthrough , before the formal due date and without pausing production. The one open item, a shear blade point-of-operation guard, is scheduled for installation after the facility relocates to 170/174 Innovation Drive in August 2026.
               </p>
               <p className="text-[16px] md:text-[17px] leading-[1.72]" style={{ color: TEXT_MUTED }}>
-                The engagement moved Amero from a compliance score of 80.3 to a post-action rate of 92.3% &mdash; with the remaining gap tied to a planned capital improvement, not a documentation failure.
+                The engagement moved Amero from a compliance score of 80.3 to a post-action rate of 92.3% , with the remaining gap tied to a planned capital improvement, not a documentation failure.
               </p>
             </div>
           </div>
 
-          {/* ─── GL-WEB-020: Pull Quote — verbatim attribution verified Feb 2026 ─── */}
+          {/* ─── GL-WEB-020: Pull Quote, verbatim attribution verified Feb 2026 ─── */}
           <blockquote
             className="not-italic my-14 p-7 md:p-9"
             style={{
@@ -468,7 +468,7 @@ const CaseStudyMetalsFabricationPage = () => {
               className="uppercase tracking-[0.22em] font-bold"
               style={{ color: GOLD, ...mono, fontSize: '10.5px' }}
             >
-              — Kevin Stutts, Plant Manager, Amero Steel Supply
+             , Kevin Stutts, Plant Manager, Amero Steel Supply
             </footer>
           </blockquote>
 
@@ -492,7 +492,7 @@ const CaseStudyMetalsFabricationPage = () => {
               Want to see what an actual GigLine report looks like?
             </h3>
             <p className="text-[15px] md:text-base leading-[1.65] mb-5" style={{ color: TEXT_MUTED, ...serif }}>
-              A redacted version of a real compliance report &mdash; facility name removed, every finding, CFR citation, penalty exposure, and corrective action intact. The format you&rsquo;d receive within 48 hours of your own walkthrough.
+              A redacted version of a real compliance report , facility name removed, every finding, CFR citation, penalty exposure, and corrective action intact. The format you&rsquo;d receive within 48 hours of your own walkthrough.
             </p>
             <Link
               to="/sample-report"
@@ -507,12 +507,12 @@ const CaseStudyMetalsFabricationPage = () => {
           {/* WHAT THIS ENGAGEMENT IS NOT */}
           <H2>What This Engagement Is Not</H2>
           <P>No OSHA inspection followed this walkthrough. There is no citation outcome to report.</P>
-          <P>The value is the written record &mdash; a documented baseline of what existed, what was missing, and what needed to change, in the plant manager&rsquo;s hands, before anyone outside the facility looked.</P>
+          <P>The value is the written record , a documented baseline of what existed, what was missing, and what needed to change, in the plant manager&rsquo;s hands, before anyone outside the facility looked.</P>
           <P><strong>A written record of good-faith corrective action is defensible. A belief that things are in order is not.</strong></P>
 
           {/* THE PATTERN */}
           <H2>The Pattern</H2>
-          <P>The findings at this facility are not unusual. AI-generated documents that don&rsquo;t match actual operations, missing machine-specific procedures, chemical hazards without complete SDS coverage, and physical hazards the team has stopped seeing &mdash; these are among the most frequently cited violations in general industry OSHA enforcement.</P>
+          <P>The findings at this facility are not unusual. AI-generated documents that don&rsquo;t match actual operations, missing machine-specific procedures, chemical hazards without complete SDS coverage, and physical hazards the team has stopped seeing , these are among the most frequently cited violations in general industry OSHA enforcement.</P>
           <P>They show up across facilities of every size. They are also fixable. Most of them don&rsquo;t require a consultant to fix. They require knowing they exist.</P>
 
         </div>
@@ -616,7 +616,7 @@ const CaseStudyMetalsFabricationPage = () => {
               className="text-lg md:text-xl font-bold mb-2"
               style={{ fontFamily: "'Manrope', sans-serif", color: NAVY }}
             >
-              Vince Lawrence — U.S. Navy Veteran, OSHA 30-Hour Certified
+              Vince Lawrence, U.S. Navy Veteran, OSHA 30-Hour Certified
             </p>
             <p className="text-sm md:text-base leading-relaxed" style={{ color: 'rgba(11,31,51,0.66)' }}>
               Founder of GigLine Safety &amp; Compliance. Twenty-plus years across manufacturing, construction, and utility environments. Every walkthrough, report, and corrective-action call on this page was made by Vince personally.

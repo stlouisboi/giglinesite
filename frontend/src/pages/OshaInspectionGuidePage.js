@@ -10,7 +10,7 @@ const INSIDE_CARDS = [
   {
     title: 'Before the Inspection',
     body:
-      'Written programs, OSHA logs, training records, and physical readiness — with CFR citations for each.',
+      'Written programs, OSHA logs, training records, and physical readiness, with CFR citations for each.',
   },
   {
     title: 'During the Inspection',
@@ -20,12 +20,12 @@ const INSIDE_CARDS = [
   {
     title: 'After the Inspection',
     body:
-      'The 24-hour action window and the 15-day citation response period — step by step.',
+      'The 24-hour action window and the 15-day citation response period, step by step.',
   },
   {
     title: 'Most Common HR-Facing Citations',
     body:
-      'OSHA 300 Log, training records, written programs, HazCom — the documentation gaps inspectors find most often, with estimated penalty exposure based on OSHA published maximums.',
+      'OSHA 300 Log, training records, written programs, HazCom, the documentation gaps inspectors find most often, with estimated penalty exposure based on OSHA published maximums.',
   },
 ];
 
@@ -51,7 +51,7 @@ const OshaInspectionGuidePage = () => {
       });
       const data = await res.json();
       if (data && data.success) {
-        // Open PDF in a new tab immediately (GL-WEB-020) — email/MailerLite still delivers as backup
+        // Open PDF in a new tab immediately (GL-WEB-020), email/MailerLite still delivers as backup
         if (data.download_url) {
           window.open(`${API_URL}${data.download_url}`, '_blank', 'noopener,noreferrer');
         }
@@ -66,7 +66,7 @@ const OshaInspectionGuidePage = () => {
     <main data-testid="osha-inspection-guide-page">
       <SEO
         title="OSHA Inspection Guide for HR & Safety Leaders | GigLine Safety & Compliance"
-        description="What OSHA looks for when they walk in — and what your documentation needs to show. Free guide for HR managers and safety coordinators in the NC Piedmont Triad."
+        description="What OSHA looks for when they walk in, and what your documentation needs to show. Free guide for HR managers and safety coordinators in the NC Piedmont Triad."
         canonical="/osha-inspection-guide"
       />
 
@@ -88,7 +88,7 @@ const OshaInspectionGuidePage = () => {
             What OSHA Looks For When They Walk In.
           </h1>
           <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-6">
-            A practical guide for HR managers, safety coordinators, and plant managers &mdash; covering what to have ready before the inspection, what happens during it, and what to do in the 15-day window after.
+            A practical guide for HR managers, safety coordinators, and plant managers , covering what to have ready before the inspection, what happens during it, and what to do in the 15-day window after.
           </p>
           <p
             className="text-xs md:text-[13px] text-white/50 leading-snug"

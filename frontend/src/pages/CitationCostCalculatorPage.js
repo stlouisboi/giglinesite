@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, ArrowRight, AlertTriangle, ShieldCheck, DollarSign } from 'lucide-react';
 
 /*
-  /citation-cost-calculator — interactive lead-magnet.
+  /citation-cost-calculator, interactive lead-magnet.
   Visitor selects the OSHA standards they have open gaps in, sets severity + count,
   and sees estimated 2026 maximum penalty exposure in real time. Each row that
   matches a GigLine kit gets a cross-sell CTA.
@@ -12,7 +12,7 @@ import { ArrowLeft, ArrowRight, AlertTriangle, ShieldCheck, DollarSign } from 'l
   2026 OSHA penalty schedule (verified against DOL Federal Register annual update):
     Serious / Other-than-serious:  $16,550 per violation
     Willful / Repeat:              $165,514 per violation
-    Failure-to-abate:              $16,550 per day (not modeled — asks user for lump)
+    Failure-to-abate:              $16,550 per day (not modeled, asks user for lump)
 */
 
 const NAVY = '#102A43';
@@ -51,7 +51,7 @@ const STANDARDS = [
     id: 'machine-guarding',
     cfr: '29 CFR 1910.212',
     name: 'Machine Guarding',
-    hook: 'General requirements for all machines — points of operation, ingoing nip points',
+    hook: 'General requirements for all machines, points of operation, ingoing nip points',
     kit: null,
   },
   {
@@ -103,10 +103,10 @@ const CitationCostCalculatorPage = () => {
   return (
     <div className="bg-[#F9F8F6] min-h-screen" data-testid="citation-cost-calculator-page">
       <Helmet>
-        <title>OSHA Citation Cost Calculator — 2026 Penalty Estimator | GigLine</title>
-        <meta name="description" content="Estimate your 2026 OSHA penalty exposure. Interactive calculator using current DOL maximum fines — up to $16,550 per serious violation and $165,514 per willful/repeat. Free, no signup." />
+        <title>OSHA Citation Cost Calculator, 2026 Penalty Estimator | GigLine</title>
+        <meta name="description" content="Estimate your 2026 OSHA penalty exposure. Interactive calculator using current DOL maximum fines, up to $16,550 per serious violation and $165,514 per willful/repeat. Free, no signup." />
         <link rel="canonical" href="https://www.giglinecompliance.com/citation-cost-calculator" />
-        <meta property="og:title" content="OSHA Citation Cost Calculator — 2026 Penalty Estimator" />
+        <meta property="og:title" content="OSHA Citation Cost Calculator, 2026 Penalty Estimator" />
         <meta property="og:description" content="Enter your open compliance gaps. See real-dollar OSHA exposure at 2026 penalty rates. Free tool from GigLine Safety & Compliance." />
       </Helmet>
 
@@ -122,7 +122,7 @@ const CitationCostCalculatorPage = () => {
           </h1>
           <p className="text-base md:text-lg text-white/80 max-w-2xl leading-relaxed">
             Pick the standards you know you have open gaps in. See your estimated OSHA exposure at
-            <strong className="text-white"> 2026 penalty rates</strong> &mdash; up to <strong className="text-white">$16,550 per serious violation</strong> and{' '}
+            <strong className="text-white"> 2026 penalty rates</strong> , up to <strong className="text-white">$16,550 per serious violation</strong> and{' '}
             <strong className="text-white">$165,514 per willful or repeat</strong>. Not legal advice; just the DOL math.
           </p>
         </div>
@@ -132,7 +132,7 @@ const CitationCostCalculatorPage = () => {
       <section className="py-10 md:py-14">
         <div className="max-w-4xl mx-auto px-4">
           <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-5 md:p-8" data-testid="calc-form">
-            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#1C2B2B] mb-4">Step 1 &mdash; Check the standards you have gaps in</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#1C2B2B] mb-4">Step 1 , Check the standards you have gaps in</p>
 
             <div className="grid grid-cols-1 gap-3" data-testid="calc-standard-list">
               {STANDARDS.map((s) => {
@@ -250,12 +250,12 @@ const CitationCostCalculatorPage = () => {
                           </span>
                         ) : (
                           <span className="text-[11.5px] text-gray-500">
-                            <Link to={r.kit.href} className="text-[#C9A84C] font-bold hover:underline">{r.kit.name}</Link> — coming soon
+                            <Link to={r.kit.href} className="text-[#C9A84C] font-bold hover:underline">{r.kit.name}</Link>, coming soon
                           </span>
                         )
                       ) : (
                         <Link to="/walkthrough" className="text-[11.5px] text-[#C9A84C] font-bold hover:underline">
-                          Not a kit — request a Safety Walkthrough &rarr;
+                          Not a kit, request a Safety Walkthrough &rarr;
                         </Link>
                       )}
                     </div>
@@ -289,7 +289,7 @@ const CitationCostCalculatorPage = () => {
               <strong>How this is calculated.</strong> Each violation multiplies by the DOL&rsquo;s 2026
               maximum: <strong>$16,550</strong> for serious / other-than-serious,{' '}
               <strong>$165,514</strong> for willful or repeat. Actual assessed penalties vary by employer
-              size, history, good-faith factors, and negotiation &mdash; this tool shows the ceiling, not
+              size, history, good-faith factors, and negotiation , this tool shows the ceiling, not
               the floor.
             </p>
             <p>

@@ -9,14 +9,14 @@ import SampleReportSection from '../components/SampleReportSection';
 import WalkthroughDaySection from '../components/WalkthroughDaySection';
 
 /* ── Owner-approved final public pricing (Aug 2026 refactor).
-   REACT_APP_GL_WEB_008_ENABLED retired — refactor supersedes the flag. ── */
+   REACT_APP_GL_WEB_008_ENABLED retired, refactor supersedes the flag. ── */
 const DOC_REVIEW_DESCRIPTION = 'A structured review of your safety documentation. Baseline scope covers one facility, up to five core safety program or evidence categories, up to 25 uploaded files, representative training and evidence records, prioritized findings, and one findings-review call. Fixed quote. Additional categories, extensive historical cleanup, or program creation are separately scoped.';
 const DOC_REVIEW_PRICE = 'From $1,700';
 const DOC_REVIEW_PRICING_REF_PRICE = 'Starting at $1,700';
 const DOC_REVIEW_PATH_OFFER = 'OSHA Documentation Readiness Review \u2014 from $1,700';
 const SERVICES_META_DESCRIPTION = 'OSHA readiness for NC manufacturers, warehouses & contractors. Find gaps, review documentation, close corrective actions. From $1,300. Find. Build. Maintain. Fixed pricing. No retainer.';
 
-/* ── Scroll-reveal — mirrors HomePage.js exactly ── */
+/* ── Scroll-reveal, mirrors HomePage.js exactly ── */
 const useReveal = () => {
   const ref = useRef(null);
   useEffect(() => {
@@ -49,7 +49,7 @@ const mono = { fontFamily: "'JetBrains Mono', monospace" };
 
 const intakeLink = (svc) => `/intake?service=${encodeURIComponent(svc)}`;
 
-/* GA4 services CTA click — fired alongside intent so we can see full funnel */
+/* GA4 services CTA click, fired alongside intent so we can see full funnel */
 const fireServicesCtaClick = (ctaText, ctaDestination) => {
   if (typeof window === 'undefined') return;
   trackEvent('services_cta_click', {
@@ -59,7 +59,7 @@ const fireServicesCtaClick = (ctaText, ctaDestination) => {
   });
 };
 
-/* GA4 services comparison-table row tap — reveals which attribute drives upsell interest */
+/* GA4 services comparison-table row tap, reveals which attribute drives upsell interest */
 const fireCompareRowClick = (rowLabel) => {
   if (typeof window === 'undefined') return;
   trackEvent('compare_row_click', {
@@ -73,26 +73,26 @@ const WHO_HELPS = [
   {
     Icon: Factory,
     title: 'Manufacturers',
-    desc: 'Plastics, fabrication, food, building materials — 10 to 250 employees, single facility or multi-site Triad operations.',
+    desc: 'Plastics, fabrication, food, building materials, 10 to 250 employees, single facility or multi-site Triad operations.',
   },
   {
     Icon: Warehouse,
     title: 'Warehouses & Distribution',
-    desc: 'Powered industrial trucks, racking systems, dock operations — facilities where one untrained operator becomes a $16,550 finding.',
+    desc: 'Powered industrial trucks, racking systems, dock operations, facilities where one untrained operator becomes a $16,550 finding.',
   },
   {
     Icon: HardHat,
     title: 'Contractors',
-    desc: 'General contractors, electrical, mechanical, framing — operations bidding work that requires a documented safety program.',
+    desc: 'General contractors, electrical, mechanical, framing, operations bidding work that requires a documented safety program.',
   },
   {
     Icon: Truck,
     title: 'Fleet Operations',
-    desc: 'Trucking, delivery, service fleets — DOT-adjacent operations that also fall under OSHA general industry standards on their yards and shops.',
+    desc: 'Trucking, delivery, service fleets, DOT-adjacent operations that also fall under OSHA general industry standards on their yards and shops.',
   },
 ];
 
-/* ═══ Standalone Services (Section 6 — excludes Compliance Visit + Control System which get their own sections) ═══ */
+/* ═══ Standalone Services (Section 6, excludes Compliance Visit + Control System which get their own sections) ═══ */
 const STANDALONE = [
   {
     eyebrow: 'Safety Walkthrough Report',
@@ -197,26 +197,26 @@ const STANDALONE = [
     testid: 'svc-standalone-doc-dev',
   },
   {
-    // Product card — not a service engagement (feature-flagged; see /app/frontend/src/config/features.js)
+    // Product card, not a service engagement (feature-flagged; see /app/frontend/src/config/features.js)
     __gated: !SUPERVISOR_KIT_ENABLED,
     eyebrow: 'GigLine Supervisor Safety OS',
     title: 'GigLine Supervisor Safety OS',
     headline: "Can't schedule a walkthrough yet? Start here.",
     price: '$600 digital · $700 physical',
-    body: 'A standalone product, not a service engagement. 11 print-ready documents — CFR-cited, GigLine-built — covering the written HazCom program, chemical and SDS indexes, training records, monthly inspection checklist, an "If OSHA Shows Up" protocol, and the supervisor station cards that keep the system alive on the floor. Use it to build the foundation before a walkthrough, or as the documentation layer afterward.',
+    body: 'A standalone product, not a service engagement. 11 print-ready documents, CFR-cited, GigLine-built, covering the written HazCom program, chemical and SDS indexes, training records, monthly inspection checklist, an "If OSHA Shows Up" protocol, and the supervisor station cards that keep the system alive on the floor. Use it to build the foundation before a walkthrough, or as the documentation layer afterward.',
     listLabel: "What's Inside",
     bgColor: '#FAF7F1',
     whatsIncluded: [
-      'Written HazCom Program — the document most often cited for missing',
+      'Written HazCom Program, the document most often cited for missing',
       'Chemical Inventory Log + SDS Index & Binder Log',
       'Monthly Safety Inspection Checklist (40+ items, signature block)',
       'Employee Training Record Log',
-      'If OSHA Shows Up — seven-step front-desk protocol',
-      '30-Day Supervisor Action Checklist — week-by-week implementation roadmap',
+      'If OSHA Shows Up, seven-step front-desk protocol',
+      '30-Day Supervisor Action Checklist, week-by-week implementation roadmap',
       'Quick Reference Summary Card + One Phone Call Card + When to Call for Help',
       'Physical kit adds GigLine 2026 Triad OSHA Field Manual + direct contact card',
     ],
-    best: 'Operations that need the documentation layer in place fast — before a walkthrough is scheduled, after one is completed, or as a standalone foundation when budget for a full Compliance Readiness Visit is not yet available.',
+    best: 'Operations that need the documentation layer in place fast, before a walkthrough is scheduled, after one is completed, or as a standalone foundation when budget for a full Compliance Readiness Visit is not yet available.',
     cta: 'See the Full Kit',
     directLink: '/supervisor-kit',
     detailsHref: '/supervisor-kit',
@@ -307,11 +307,11 @@ const SERVICES_FAQ = [
   },
   {
     q: 'Are the prices fixed or do they go up later?',
-    a: 'Fixed quote before scheduling. The price you see is the starting point — GigLine will confirm scope and confirm the final fixed quote in writing before any visit is scheduled. No hourly billing. No retainer. No long-term contracts.',
+    a: 'Fixed quote before scheduling. The price you see is the starting point, GigLine will confirm scope and confirm the final fixed quote in writing before any visit is scheduled. No hourly billing. No retainer. No long-term contracts.',
   },
   {
     q: 'Do I have to sign up for ongoing services?',
-    a: 'No. Every service is a single engagement. Quarterly Maintenance and the Annual Compliance Control Partner are optional — they exist for operations that want the system kept current after the Control System is built.',
+    a: 'No. Every service is a single engagement. Quarterly Maintenance and the Annual Compliance Control Partner are optional, they exist for operations that want the system kept current after the Control System is built.',
   },
   {
     q: 'Will GigLine share findings with OSHA or my insurance carrier?',
@@ -327,7 +327,7 @@ const ServicesPage = () => {
   return (
     <main className="overflow-x-hidden bg-white">
       <SEO
-        title="OSHA Compliance Services — Walkthroughs & Documentation Reviews | GigLine"
+        title="OSHA Compliance Services, Walkthroughs & Documentation Reviews | GigLine"
         description={SERVICES_META_DESCRIPTION}
         canonical="/services"
       />
@@ -339,10 +339,10 @@ const ServicesPage = () => {
         data-testid="services-hero"
       >
         <div className="flex flex-col lg:flex-row min-h-[480px] lg:min-h-[560px]">
-          {/* Image — left 40% on desktop, top on mobile + tablet */}
+          {/* Image, left 40% on desktop, top on mobile + tablet */}
           <div className="relative w-full lg:w-2/5 lg:flex-shrink-0">
             <img src="/services-hero.webp" height="900" width="1600"
-              alt="On-site safety walkthrough — warehouse and manufacturing operations across the Piedmont Triad"
+              alt="On-site safety walkthrough, warehouse and manufacturing operations across the Piedmont Triad"
               className="w-full h-64 md:h-80 lg:h-full object-cover"
               loading="eager"
               fetchPriority="high"
@@ -357,7 +357,7 @@ const ServicesPage = () => {
             />
           </div>
 
-          {/* Copy — right 60% on desktop */}
+          {/* Copy, right 60% on desktop */}
           <div className="flex-grow flex items-center px-6 md:px-12 lg:px-16 py-12 md:py-16 relative z-10">
             <Reveal>
               <p
@@ -437,7 +437,7 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      {/* ═══ 2B. FIND / BUILD / MAINTAIN — operating-model overview (Aug 2026 refactor) ═══ */}
+      {/* ═══ 2B. FIND / BUILD / MAINTAIN, operating-model overview (Aug 2026 refactor) ═══ */}
       <section
         className="py-14 md:py-20 border-t"
         style={{ backgroundColor: '#f5f4f0', borderColor: '#dde3ea' }}
@@ -570,7 +570,7 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      {/* ═══ 3. 90-SECOND SAFETY CHECK — intake door, reduced visual weight ═══ */}
+      {/* ═══ 3. 90-SECOND SAFETY CHECK, intake door, reduced visual weight ═══ */}
       <section
         className="py-7 md:py-8 border-t border-b"
         style={{ backgroundColor: '#F7F1E0', borderColor: 'rgba(201,168,76,0.35)' }}
@@ -586,7 +586,7 @@ const ServicesPage = () => {
               Not sure where to start?
             </p>
             <p className="text-base md:text-lg text-[#1C2B2B] leading-relaxed mb-6 max-w-2xl mx-auto" data-testid="services-safety-check-intro">
-              Not sure where you stand? Take the free 90-Second Safety Check — six yes-or-no questions, immediate risk score, no email required to start.
+              Not sure where you stand? Take the free 90-Second Safety Check, six yes-or-no questions, immediate risk score, no email required to start.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
               <Link
@@ -661,7 +661,7 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      {/* ═══ 5. COMPLIANCE READINESS VISIT — Featured, standalone ═══ */}
+      {/* ═══ 5. COMPLIANCE READINESS VISIT, Featured, standalone ═══ */}
       <section className="py-20 md:py-28" style={{ backgroundColor: '#F7F9FC' }} data-testid="services-readiness-visit">
         <div className="container max-w-5xl">
           <Reveal>
@@ -704,7 +704,7 @@ const ServicesPage = () => {
                     Compliance Readiness Visit
                   </h2>
                   <p className="text-base md:text-lg text-[#1C2B2B]/80 leading-relaxed mb-6 max-w-2xl">
-                    The floor and the files reviewed in a single visit. Most operations don&apos;t need a separate walkthrough and documentation review — they need both, scored together, with a single readiness report. This is that engagement.
+                    The floor and the files reviewed in a single visit. Most operations don&apos;t need a separate walkthrough and documentation review, they need both, scored together, with a single readiness report. This is that engagement.
                   </p>
 
                   <div
@@ -743,7 +743,7 @@ const ServicesPage = () => {
                     className="italic text-[#1C2B2B]/65 text-sm md:text-[15px] leading-relaxed mb-6 max-w-2xl"
                     data-testid="crv-anchor-line"
                   >
-                    Booked separately, the Safety Walkthrough and Documentation Review total $3,000. The Compliance Readiness Visit covers both in a single visit &mdash; from $2,500. A $500 combined-service savings.
+                    Booked separately, the Safety Walkthrough and Documentation Review total $3,000. The Compliance Readiness Visit covers both in a single visit , from $2,500. A $500 combined-service savings.
                   </p>
                 </div>
 
@@ -844,7 +844,7 @@ const ServicesPage = () => {
                 Want a preview before you schedule?
               </h2>
               <p className="text-[15px] md:text-base text-[#1C2B2B]/65 leading-relaxed max-w-2xl">
-                Download a redacted compliance report &mdash; facility name removed, every other detail intact. Findings, CFR citations, penalty exposure, RED/AMBER/GREEN fix list, and the corrective action plan.
+                Download a redacted compliance report , facility name removed, every other detail intact. Findings, CFR citations, penalty exposure, RED/AMBER/GREEN fix list, and the corrective action plan.
               </p>
             </div>
             <Link
@@ -858,7 +858,7 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      {/* ═══ 6. STANDALONE SERVICES — Intro band ═══ */}
+      {/* ═══ 6. STANDALONE SERVICES, Intro band ═══ */}
       <section className="pt-24 md:pt-32 pb-12 md:pb-16" style={{ backgroundColor: '#f5f4f0' }} data-testid="services-standalone">
         <div className="container max-w-6xl">
           <Reveal>
@@ -873,13 +873,13 @@ const ServicesPage = () => {
             </h2>
             <div className="mb-8" style={{ width: '56px', height: '3px', background: '#C9A84C', borderRadius: '2px' }} />
             <p className="text-base md:text-lg text-[#1C2B2B]/65 leading-[1.85] max-w-3xl">
-              For operations that already know which side they need reviewed &mdash; the floor, the files, or a specific incident. Each engagement is scoped, quoted, and delivered independently.
+              For operations that already know which side they need reviewed , the floor, the files, or a specific incident. Each engagement is scoped, quoted, and delivered independently.
             </p>
           </Reveal>
         </div>
       </section>
 
-      {/* Per-service bands — each with its own background color for visual separation */}
+      {/* Per-service bands, each with its own background color for visual separation */}
       {STANDALONE.filter((s) => !s.__gated).map((s, idx) => {
         const cardOnLeft = idx % 2 === 1;
         const listLabel = s.listLabel || "What's Included";
@@ -993,7 +993,7 @@ const ServicesPage = () => {
                         data-testid={`${s.testid}-phone-cta`}
                       >
                         <Phone size={15} />
-                        Call Now &mdash; (336) 329-8899
+                        Call Now , (336) 329-8899
                       </a>
                     )}
                   </div>
@@ -1031,7 +1031,7 @@ const ServicesPage = () => {
         );
       })}
 
-      {/* ═══ 6B. BUILD THE CONTROL — 2-card BUILD section (Aug 2026 refactor) ═══ */}
+      {/* ═══ 6B. BUILD THE CONTROL, 2-card BUILD section (Aug 2026 refactor) ═══ */}
       <section
         className="py-16 md:py-24 border-t"
         style={{ backgroundColor: '#FBFCFD', borderColor: '#dde3ea' }}
@@ -1059,7 +1059,7 @@ const ServicesPage = () => {
           </Reveal>
 
           <div className="grid md:grid-cols-2 gap-6 md:gap-8" data-testid="build-the-control-cards">
-            {/* CARD A — Corrective Action Implementation */}
+            {/* CARD A, Corrective Action Implementation */}
             <Reveal>
               <div
                 className="h-full flex flex-col rounded-xl bg-white p-7 md:p-9"
@@ -1106,7 +1106,7 @@ const ServicesPage = () => {
               </div>
             </Reveal>
 
-            {/* CARD B — OSHA-Ready Control System */}
+            {/* CARD B, OSHA-Ready Control System */}
             <Reveal delay={100}>
               <div
                 className="h-full flex flex-col rounded-xl bg-white p-7 md:p-9"
@@ -1166,7 +1166,7 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      {/* ═══ 7. OSHA-READY CONTROL SYSTEM — Premium dedicated section ═══ */}
+      {/* ═══ 7. OSHA-READY CONTROL SYSTEM, Premium dedicated section ═══ */}
       <section className="py-20 md:py-28 scroll-mt-32" id="control-system" style={{ backgroundColor: '#102A43' }} data-testid="services-control-system">
         <div className="container max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-10 md:gap-14 items-start">
@@ -1209,7 +1209,7 @@ const ServicesPage = () => {
               <div className="mb-7" style={{ width: '64px', height: '3px', background: '#C9A84C', borderRadius: '2px' }} />
 
               <p className="text-base md:text-lg text-[#CBD5E1] leading-relaxed mb-6">
-                GigLine constructs the complete safety infrastructure your operation needs to pass any OSHA inspection, customer audit, or insurance review &mdash; and hands it back to your team with a system they can actually maintain.
+                GigLine constructs the complete safety infrastructure your operation needs to pass any OSHA inspection, customer audit, or insurance review , and hands it back to your team with a system they can actually maintain.
               </p>
               <p
                 className="text-lg md:text-xl font-semibold text-white leading-snug mb-10"
@@ -1288,7 +1288,7 @@ const ServicesPage = () => {
                 {
                   Icon: Wrench,
                   title: 'Corrective Action Tracker',
-                  body: 'Live status of every open finding — assigned, dated, and closeable by supervisors. Mirrors what an OSHA CO expects to see during a follow-up.',
+                  body: 'Live status of every open finding, assigned, dated, and closeable by supervisors. Mirrors what an OSHA CO expects to see during a follow-up.',
                 },
                 {
                   Icon: BookOpen,
@@ -1333,7 +1333,7 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      {/* ═══ 8. QUARTERLY + ANNUAL SUPPORT — natural next step after Control System ═══ */}
+      {/* ═══ 8. QUARTERLY + ANNUAL SUPPORT, natural next step after Control System ═══ */}
       <section className="py-20 md:py-24 bg-white" data-testid="services-recurring">
         <div className="container max-w-6xl">
           <Reveal>
@@ -1344,7 +1344,7 @@ const ServicesPage = () => {
               Once the system is built, keep it current.
             </h2>
             <p className="text-base md:text-lg text-[#1C2B2B]/70 leading-relaxed mb-12 max-w-3xl">
-              The Control System is the foundation. Quarterly and Annual support are how operations keep that foundation alive — without hiring a full-time safety manager.
+              The Control System is the foundation. Quarterly and Annual support are how operations keep that foundation alive, without hiring a full-time safety manager.
             </p>
           </Reveal>
 
@@ -1400,7 +1400,7 @@ const ServicesPage = () => {
                   )}
                   {!s.priceSecondary && <div className="mb-4" />}
 
-                  {/* Body — either single paragraph (Quarterly) or multi-paragraph (Annual) */}
+                  {/* Body, either single paragraph (Quarterly) or multi-paragraph (Annual) */}
                   {s.bodyTagline || s.bodyExtended ? (
                     <div className={`space-y-4 mb-6 text-base leading-relaxed ${isAnnual ? 'text-white/80' : 'text-[#1C2B2B]/85'}`}>
                       <p>{s.body}</p>
@@ -1428,7 +1428,7 @@ const ServicesPage = () => {
                             <Check size={18} className="flex-shrink-0 mt-0.5 text-[#C9A84C]" strokeWidth={3} />
                             <span>
                               <span className="font-semibold text-white">{item.label}</span>
-                              {item.detail && <span className="text-white/70"> &mdash; {item.detail}</span>}
+                              {item.detail && <span className="text-white/70"> , {item.detail}</span>}
                               {item.value && (
                                 <span className="text-[#C9A84C]/85 italic" style={mono}> &nbsp;({item.value})</span>
                               )}
@@ -1500,7 +1500,7 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      {/* ═══ 8b. SERVICE COMPARISON TABLE — side-by-side of the four core engagements ═══ */}
+      {/* ═══ 8b. SERVICE COMPARISON TABLE, side-by-side of the four core engagements ═══ */}
       <section
         className="py-20 md:py-28 scroll-mt-32"
         id="compare"
@@ -1524,7 +1524,7 @@ const ServicesPage = () => {
             </h2>
             <div className="mb-8" style={{ width: '56px', height: '3px', background: '#C9A84C', borderRadius: '2px' }} />
             <p className="text-base md:text-lg text-[#1C2B2B]/65 leading-[1.85] mb-12 max-w-3xl">
-              Every operation is different. This table shows exactly what each engagement includes, so you can pick the one that matches where you are today &mdash; not one size larger, not one size smaller.
+              Every operation is different. This table shows exactly what each engagement includes, so you can pick the one that matches where you are today , not one size larger, not one size smaller.
             </p>
           </Reveal>
 
@@ -1679,7 +1679,7 @@ const ServicesPage = () => {
                                   style={{ ...mono, fontSize: '15px' }}
                                   aria-label="Not included"
                                 >
-                                  —
+                                  ,
                                 </span>
                               </td>
                             );
@@ -1712,7 +1712,7 @@ const ServicesPage = () => {
             <a href="tel:3363298899" onClick={() => trackPhoneClick && trackPhoneClick('services-comparison')} className="font-bold text-[#2A52A0] hover:text-[#1F3F80] underline underline-offset-4">
               (336) 329-8899
             </a>{' '}
-            &mdash; Vince will confirm which engagement matches your situation in under five minutes.
+            , Vince will confirm which engagement matches your situation in under five minutes.
           </p>
         </div>
       </section>
@@ -1736,7 +1736,7 @@ const ServicesPage = () => {
             </p>
           </Reveal>
 
-          {/* Desktop table — Manus style */}
+          {/* Desktop table, Manus style */}
           <Reveal>
             <div
               className="hidden md:block rounded-2xl overflow-hidden"
@@ -1823,7 +1823,7 @@ const ServicesPage = () => {
               className="text-base md:text-lg text-[#1C2B2B]/75 leading-relaxed text-center mt-10 max-w-3xl mx-auto"
               data-testid="readiness-path-footnote"
             >
-              Most clients start with the <strong className="text-[#1C2B2B]">Compliance Readiness Visit</strong>. GigLine will tell you exactly where to start before you schedule anything &mdash;{' '}
+              Most clients start with the <strong className="text-[#1C2B2B]">Compliance Readiness Visit</strong>. GigLine will tell you exactly where to start before you schedule anything ,{' '}
               <a
                 href="tel:+13363298899"
                 onClick={() => trackPhoneClick && trackPhoneClick('readiness-path-footnote')}
@@ -1847,7 +1847,7 @@ const ServicesPage = () => {
                   className="uppercase font-bold mb-2"
                   style={{ ...mono, fontSize: '10.4px', letterSpacing: '0.20em', color: '#2A52A0' }}
                 >
-                  GL-INTAKE-002 &middot; 7 Sections &middot; ~5&ndash;7 min
+                  GL-INTAKE-002 &middot; 7 Sections &middot; ~5-7 min
                 </p>
                 <h3 className="text-xl md:text-2xl font-extrabold text-[#1C2B2B] leading-tight mb-2 tracking-tight">
                   Not sure which stage you&apos;re at? Start with the intake form.
@@ -1883,7 +1883,7 @@ const ServicesPage = () => {
             <div className="w-44 md:w-52 flex-shrink-0">
               <Reveal>
                 <img src="/vince-portrait.webp" loading="lazy" height="1200" width="947"
-                  alt="Vince Lawrence — Founder, GigLine Safety & Compliance"
+                  alt="Vince Lawrence, Founder, GigLine Safety & Compliance"
                   className="w-full rounded"
                   data-testid="services-founder-photo" />
               </Reveal>
@@ -2022,7 +2022,7 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      {/* ═══ 14. FINAL CTA — tap-to-call ═══ */}
+      {/* ═══ 14. FINAL CTA, tap-to-call ═══ */}
       <section className="py-20 md:py-28" style={{ backgroundColor: '#000000' }} data-testid="services-bottom-cta">
         <div className="container max-w-3xl text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">

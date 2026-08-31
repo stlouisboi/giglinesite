@@ -43,7 +43,7 @@ export const SITE_SEARCH_INDEX = [
   { title: 'OSHA Inspection Prep Guide (HR)', path: '/osha-inspection-prep-guide', type: 'Lead Magnet', keywords: 'osha inspection prep hr human resources opening conference walkthrough closing' },
   { title: 'HazCom Compliance Pack', path: '/hazcom', type: 'Lead Magnet', keywords: 'hazcom hazard communication sds safety data sheet program training' },
 
-  // ── Field Notes (25 — comprehensive index) ─────────────
+  // ── Field Notes (25, comprehensive index) ─────────────
   { title: 'Field Note: AI-Generated Safety Programs', path: '/field-notes/ai-generated-safety-programs', type: 'Field Note', keywords: 'ai chatgpt generated safety programs template missing elements' },
   { title: 'Field Note: Heat Stress', path: '/field-notes/heat-stress', type: 'Field Note', keywords: 'heat stress prevention plan hydration summer warm weather' },
   { title: 'Field Note: Forklift Safety', path: '/field-notes/forklift-safety', type: 'Field Note', keywords: 'forklift powered industrial truck pit safety operator training' },
@@ -77,7 +77,7 @@ export const SITE_SEARCH_INDEX = [
   { title: 'Blog: All OSHA Compliance Guides', path: '/blog', type: 'Blog', keywords: 'blog guides articles osha compliance guides field reports index' },
   { title: 'Blog: OSHA 300 Log Common Mistakes', path: '/blog/osha-300-log-common-mistakes-citations', type: 'Blog', keywords: 'osha 300 log 300a 301 recordkeeping mistakes citations first aid medical treatment' },
   { title: 'Blog: Written HazCom Program Before OSHA Inspection', path: '/blog/written-hazcom-program-before-osha-inspection', type: 'Blog', keywords: 'hazcom written program inspection sds ghs labels training 1910.1200' },
-  { title: 'Blog: OSHA Forklift Compliance — What Inspectors Check', path: '/blog/osha-forklift-compliance-inspector-checklist', type: 'Blog', keywords: 'forklift 1910.178 operator certification daily inspection log traffic pit' },
+  { title: 'Blog: OSHA Forklift Compliance, What Inspectors Check', path: '/blog/osha-forklift-compliance-inspector-checklist', type: 'Blog', keywords: 'forklift 1910.178 operator certification daily inspection log traffic pit' },
   { title: 'Blog: LOTO Program Requirements for Small Facilities', path: '/blog/loto-program-requirements-small-facilities', type: 'Blog', keywords: 'loto lockout tagout 1910.147 machine specific procedure annual inspection' },
   { title: 'Blog: OSHA Machine Guarding Checklist', path: '/blog/osha-machine-guarding-checklist-small-manufacturers', type: 'Blog', keywords: 'machine guarding 1910.212 1910.215 abrasive wheel shear point of operation nip point' },
   { title: 'Blog: HazCom Requirements for Small Businesses', path: '/blog/hazcom-requirements-small-business', type: 'Blog', keywords: 'hazcom requirements 1910.1200 sds ghs labels training small business' },

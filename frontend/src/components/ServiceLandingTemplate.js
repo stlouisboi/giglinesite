@@ -25,7 +25,7 @@ const ServiceLandingTemplate = ({
   headline,
   subheadline,
   priceLine,
-  heroImage,           // optional: { src, alt } — right-column editorial photo
+  heroImage,           // optional: { src, alt }, right-column editorial photo
   // Sections
   whoItsFor,           // { intro, bullets[] }
   theProblem,          // { intro, bullets[] }
@@ -247,7 +247,7 @@ const ServiceLandingTemplate = ({
             </Link>
           </div>
           <p className="text-base text-[#CBD5E1]" style={mono} data-testid="svc-closing-contact">
-            Or call Vince directly — (336) 329-8899
+            Or call Vince directly, (336) 329-8899
           </p>
         </div>
       </section>

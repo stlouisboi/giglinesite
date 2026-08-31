@@ -1,5 +1,5 @@
 /**
- * GigLine Analytics — GA4 event helpers + UTM first-touch attribution
+ * GigLine Analytics, GA4 event helpers + UTM first-touch attribution
  * Usage: import { trackEvent, initAttribution } from '../utils/analytics';
  */
 
@@ -106,7 +106,7 @@ export function trackPageView(path, title) {
   });
 }
 
-/** Track a custom event — auto-appends first/last-touch attribution */
+/** Track a custom event, auto-appends first/last-touch attribution */
 export function trackEvent(eventName, params = {}) {
   gtag('event', eventName, { ...getAttributionParams(), ...params });
 }

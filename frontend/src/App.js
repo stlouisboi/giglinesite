@@ -8,7 +8,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import MobileStickyFooter from './components/MobileStickyFooter';
 
-// Eager: renders instantly on every landing — the LCP path
+// Eager: renders instantly on every landing, the LCP path
 import HomePage from './pages/HomePage';
 
 // Lazy: 43 secondary pages split into per-route chunks.
@@ -76,7 +76,7 @@ const CitationProofKitThankYouPage    = lazy(() => import('./pages/CitationProof
 // Kit delivery recovery (self-serve resend for spam-blocked emails)
 const ResendMyKitPage                 = lazy(() => import('./pages/ResendMyKitPage'));
 
-// Citation Cost Calculator — free interactive lead-magnet
+// Citation Cost Calculator, free interactive lead-magnet
 const CitationCostCalculatorPage      = lazy(() => import('./pages/CitationCostCalculatorPage'));
 
 import './App.css';
@@ -116,7 +116,7 @@ function App() {
         <ScrollToTop />
         <Suspense fallback={<PageFallback />}>
           <Routes>
-            {/* Standalone portal pages — own nav, no global Navbar/Footer */}
+            {/* Standalone portal pages, own nav, no global Navbar/Footer */}
             <Route path="/walkthrough" element={<WalkthroughLandingPage />} />
             <Route path="/intake" element={<ClientIntakePage />} />
             {/* /onboarding portal retired (legacy pricing). Forward old links to /intake. */}
@@ -174,7 +174,7 @@ function App() {
                     <Route path="/admin" element={<AdminPage />} />
                     <Route path="/field-notes" element={<FieldNotesPage />} />
                     <Route path="/field-notes/:slug" element={<FieldNoteDetailPage />} />
-                    {/* Buyer-intent service landing pages (Findability Framework) — must be defined
+                    {/* Buyer-intent service landing pages (Findability Framework), must be defined
                         before the dynamic /safety-walkthrough/:city route below. */}
                     <Route path="/safety-walkthrough" element={<SafetyWalkthroughPage />} />
                     <Route path="/documentation-gap-check" element={<DocumentationGapCheckPage />} />

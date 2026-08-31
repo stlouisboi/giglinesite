@@ -25,7 +25,7 @@ const ContactForm = ({ compact = false }) => {
 
   const serviceOptions = [
     { value: '', label: 'Select a service' },
-    { value: 'not-sure', label: 'Not Sure — Need Advice' },
+    { value: 'not-sure', label: 'Not Sure, Need Advice' },
     { value: 'walkthrough', label: 'Safety Walkthrough & Top 10 Fixes Report' },
     { value: 'documentation', label: 'OSHA Documentation Readiness Review' },
     { value: 'incident', label: 'Incident Review & Corrective Action Support' },
@@ -56,7 +56,7 @@ const ContactForm = ({ compact = false }) => {
           email: formData.email,
           service_type: formData.serviceType,
           message: formData.message,
-          sms_consent: formData.smsConsent ? 'YES — opted in' : 'NO',
+          sms_consent: formData.smsConsent ? 'YES, opted in' : 'NO',
         }),
       });
 
@@ -226,7 +226,7 @@ const ContactForm = ({ compact = false }) => {
         </div>
       )}
 
-      {/* GL-WEB-014 — SMS opt-in consent checkbox (RingCentral 10DLC requirement) */}
+      {/* GL-WEB-014, SMS opt-in consent checkbox (RingCentral 10DLC requirement) */}
       <div
         className="rounded-md p-4"
         style={{ background: '#F7F9FC', border: '1px solid rgba(11,31,51,0.10)' }}

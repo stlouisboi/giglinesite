@@ -39,11 +39,11 @@ const INCLUDED_CARDS = [
     icon: PhoneCall,
     title: 'On-Call Support',
     body:
-      'Call or text when something happens — an incident, a near-miss, a regulatory question, a customer audit request. You have someone who already knows your floor.',
+      'Call or text when something happens, an incident, a near-miss, a regulatory question, a customer audit request. You have someone who already knows your floor.',
   },
   {
     icon: ShieldAlert,
-    title: 'Incident Review — Included',
+    title: 'Incident Review, Included',
     body:
       "If something happens, the incident review is included in the annual engagement. No additional fee. No scrambling to find someone who doesn't know your operation.",
   },
@@ -51,7 +51,7 @@ const INCLUDED_CARDS = [
     icon: Activity,
     title: 'Corrective Action Tracking',
     body:
-      "Every finding tracked from identification to closure. A running record of your operation's safety improvement — the kind of documentation that matters if OSHA shows up.",
+      "Every finding tracked from identification to closure. A running record of your operation's safety improvement, the kind of documentation that matters if OSHA shows up.",
   },
   {
     icon: Anchor,
@@ -65,7 +65,7 @@ const WHO_CARDS = [
   {
     title: "You've already had a walkthrough or CRV",
     body:
-      'You know where you stand. Now you need someone to help you stay there — and catch what changes between inspections.',
+      'You know where you stand. Now you need someone to help you stay there, and catch what changes between inspections.',
   },
   {
     title: "You don't have a dedicated safety person",
@@ -75,7 +75,7 @@ const WHO_CARDS = [
   {
     title: 'Your operation is high-hazard or high-growth',
     body:
-      'New equipment, new employees, new processes — every change creates new exposure. Quarterly visits catch it before it becomes a citation.',
+      'New equipment, new employees, new processes, every change creates new exposure. Quarterly visits catch it before it becomes a citation.',
   },
 ];
 
@@ -95,8 +95,8 @@ const AnnualCompliancePartnerPage = () => {
   return (
     <main data-testid="annual-compliance-partner-page">
       <SEO
-        title="Annual Compliance Partner — $12,000/year | GigLine"
-        description="Year-long OSHA support — 4 quarterly visits, annual doc audit, on-call, incident review. $12,000/year. Limited availability."
+        title="Annual Compliance Partner, $12,000/year | GigLine"
+        description="Year-long OSHA support, 4 quarterly visits, annual doc audit, on-call, incident review. $12,000/year. Limited availability."
         canonical={`/services/${SLUG}`}
         schema={[
           {
@@ -114,7 +114,7 @@ const AnnualCompliancePartnerPage = () => {
               '@type': 'Offer',
               price: '12000',
               priceCurrency: 'USD',
-              description: 'Annual Compliance Partner — $12,000/year ($1,000/month equivalent).',
+              description: 'Annual Compliance Partner, $12,000/year ($1,000/month equivalent).',
             },
             description:
               'Ongoing OSHA compliance support including four quarterly on-site visits, annual documentation audit, on-call support, and incident review.',
@@ -152,7 +152,7 @@ const AnnualCompliancePartnerPage = () => {
             Annual Compliance Partner engagement is how that work gets done.
           </p>
 
-          {/* CTA row — GOLD button for the premium engagement */}
+          {/* CTA row, GOLD button for the premium engagement */}
           <div className="flex flex-wrap items-center gap-x-7 gap-y-3 mb-12">
             <Link
               to={INTAKE_HREF}
@@ -175,7 +175,7 @@ const AnnualCompliancePartnerPage = () => {
             </span>
           </div>
 
-          {/* Annual Investment 3-column pricing block — embedded in hero */}
+          {/* Annual Investment 3-column pricing block, embedded in hero */}
           <div
             className="rounded-xl p-7 md:p-8 grid grid-cols-1 md:grid-cols-[minmax(260px,320px)_1fr_minmax(220px,280px)] gap-7 md:gap-8 items-start"
             style={{
@@ -202,7 +202,7 @@ const AnnualCompliancePartnerPage = () => {
               <p className="text-[14.5px] text-white/80 leading-[1.75]">
                 A retained safety consultant in the Southeast typically bills $1,500–$3,000/month. At $1,000/month
                 equivalent, the Annual Compliance Partner delivers the same continuity at a structured, predictable
-                cost — designed for operations that need consistent oversight without adding headcount.
+                cost, designed for operations that need consistent oversight without adding headcount.
               </p>
             </div>
             {/* RIGHT: Limited availability callout */}
@@ -323,7 +323,7 @@ const AnnualCompliancePartnerPage = () => {
           </div>
         </div>
 
-        {/* Who This Is For — 3-col cards on dark navy */}
+        {/* Who This Is For, 3-col cards on dark navy */}
         <div className="py-16 md:py-20" data-testid="acp-who">
           <div className="container max-w-6xl">
             <h2 className="text-3xl md:text-4xl font-extrabold leading-[1.15] mb-12 tracking-tight text-white max-w-4xl">
@@ -364,11 +364,11 @@ const AnnualCompliancePartnerPage = () => {
       {/* ═══ How to Start (cream bg) ═══ */}
       <RelatedFieldNotesStrip
         heading="Field Notes that pair with the Annual Compliance Partner"
-        intro="The compliance topics that come up year after year — and what changes in North Carolina you'll want to track."
+        intro="The compliance topics that come up year after year, and what changes in North Carolina you'll want to track."
         notes={[
-          { slug: 'nc-osha-vs-federal', title: 'NC OSHA vs Federal OSHA — the differences that matter', blurb: 'State-plan quirks, penalty structures, and the NC-specific rules that show up in inspections.' },
-          { slug: 'recordkeeping-300-log', title: 'OSHA 300 Log — the mistakes I see most often', blurb: 'The recordkeeping habits that make annual submissions painless instead of painful.' },
-          { slug: 'hazcom', title: 'Written HazCom Program — what a working one looks like', blurb: 'What to keep current every year — new chemicals, revised SDS, updated employee training.' },
+          { slug: 'nc-osha-vs-federal', title: 'NC OSHA vs Federal OSHA, the differences that matter', blurb: 'State-plan quirks, penalty structures, and the NC-specific rules that show up in inspections.' },
+          { slug: 'recordkeeping-300-log', title: 'OSHA 300 Log, the mistakes I see most often', blurb: 'The recordkeeping habits that make annual submissions painless instead of painful.' },
+          { slug: 'hazcom', title: 'Written HazCom Program, what a working one looks like', blurb: 'What to keep current every year, new chemicals, revised SDS, updated employee training.' },
         ]}
       />
 
@@ -379,7 +379,7 @@ const AnnualCompliancePartnerPage = () => {
             Most annual partners start with a Compliance Readiness Visit.
           </h2>
           <p className="text-base md:text-lg text-[#1C2B2B]/75 leading-[1.85] mb-10 max-w-3xl">
-            The CRV establishes a baseline — where your operation stands today, what needs to be fixed first, and what
+            The CRV establishes a baseline, where your operation stands today, what needs to be fixed first, and what
             the ongoing oversight should focus on. It is the most efficient way to start an annual engagement and the
             most defensible way to document your starting point.
           </p>
@@ -418,7 +418,7 @@ const AnnualCompliancePartnerPage = () => {
             data-testid="acp-cta-phone"
           >
             <Phone size={14} />
-            Questions? Call or text Vince directly — (336) 329-8899
+            Questions? Call or text Vince directly, (336) 329-8899
           </a>
         </div>
       </section>

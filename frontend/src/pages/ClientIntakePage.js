@@ -8,7 +8,7 @@ import { getAttribution, trackEvent } from '../utils/analytics';
 const API = process.env.REACT_APP_BACKEND_URL;
 
 /*
-  GL-INTAKE-002 — Master Service Intake Form
+  GL-INTAKE-002, Master Service Intake Form
   Single-scroll layout. Conditional branching by service lane.
   Hybrid pricing display for Doc Creation lane.
 */
@@ -202,7 +202,7 @@ const ClientIntakePage = () => {
   /* ─── Source attribution (which dedicated service page sent this lead) ─── */
   const [sourceServiceSlug, setSourceServiceSlug] = useState('');
 
-  /* ─── URL param pre-selection (?service=<slug>) — full slug map across all dedicated service pages ─── */
+  /* ─── URL param pre-selection (?service=<slug>), full slug map across all dedicated service pages ─── */
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const serviceParam = params.get('service') || '';
@@ -215,7 +215,7 @@ const ClientIntakePage = () => {
       'documentation-readiness-review': 'doc_review',
       'document-development': 'doc_creation',
       'incident-review': 'incident_review',
-      // Premium engagements with no exact radio match — route to "I need guidance" so Vince can scope on call
+      // Premium engagements with no exact radio match, route to "I need guidance" so Vince can scope on call
       'annual-compliance-partner': 'not_sure',
       'osha-ready-control-system': 'not_sure',
       'corrective-action-implementation': 'not_sure',
@@ -320,7 +320,7 @@ const ClientIntakePage = () => {
         ...f,
         docCreationPricingDisplayed: docCreationPricing.mode,
         attribution: getAttribution(),
-        // Source-page attribution — which dedicated service page sent this lead
+        // Source-page attribution, which dedicated service page sent this lead
         source_service_slug: sourceServiceSlug || 'direct',
       };
       const res = await fetch(`${API}/api/intake/submit`, {
@@ -353,7 +353,7 @@ const ClientIntakePage = () => {
   /* ═════════════════════════════════════════════════════ */
   return (
     <div className="min-h-screen" style={{ background: C.bg }}>
-      <SEO title="Client Safety Intake | GigLine Safety & Compliance" description="Master service intake — tell GigLine about your operation." canonical="/intake" />
+      <SEO title="Client Safety Intake | GigLine Safety & Compliance" description="Master service intake, tell GigLine about your operation." canonical="/intake" />
 
       {/* ── Nav ── */}
       <nav className="sticky top-0 z-50" style={{ background: C.deeper, borderBottom: `1px solid ${C.border}` }}>
@@ -394,7 +394,7 @@ const ClientIntakePage = () => {
             {
               n: '1',
               title: 'We review your submission',
-              body: "You'll get a confirmation email within a few minutes. Vince reviews every intake personally — usually same day.",
+              body: "You'll get a confirmation email within a few minutes. Vince reviews every intake personally, usually same day.",
             },
             {
               n: '2',
@@ -443,17 +443,17 @@ const ClientIntakePage = () => {
         <section data-testid="intake-quick-contact-section">
           <QuickContactCard variant="dark" />
           <p className="text-xs mt-4 text-center" style={{ color: C.sec, ...mono, letterSpacing: '0.18em' }}>
-            &mdash; OR &mdash; FILL OUT THE FULL INTAKE BELOW FOR A FIXED QUOTE
+            , OR , FILL OUT THE FULL INTAKE BELOW FOR A FIXED QUOTE
           </p>
         </section>
 
-        {/* ═══ S1 — Company & Contact ═══ */}
+        {/* ═══ S1, Company & Contact ═══ */}
         <section data-testid="intake-section-01">
           <SectionHeader number="01" title="Company & Contact" subtitle="Who you are and where you operate." />
           <Field label="Company / facility name" required error={errors.companyName}>
             <span {...wrap('companyName')}><TextInput {...setField('companyName')} placeholder="Acme Manufacturing, Inc." data-testid="intake-companyName" /></span>
           </Field>
-          <Field label="Facility city, state" required hint="Just the city and state — full address gets confirmed on the call." error={errors.facilityCityState}>
+          <Field label="Facility city, state" required hint="Just the city and state, full address gets confirmed on the call." error={errors.facilityCityState}>
             <span {...wrap('facilityCityState')}><TextInput {...setField('facilityCityState')} placeholder="Kernersville, NC" data-testid="intake-facilityCityState" /></span>
           </Field>
           <div className="grid md:grid-cols-2 gap-x-5">
@@ -513,10 +513,10 @@ const ClientIntakePage = () => {
           )}
         </section>
 
-        {/* ═══ S2 — Service Selection ═══ */}
+        {/* ═══ S2, Service Selection ═══ */}
         <section data-testid="intake-section-02" data-source-service-slug={sourceServiceSlug || 'direct'}>
           <SectionHeader number="02" title="What service are you requesting?" subtitle="Pick the closest match. We'll talk through any nuances on the call." />
-          {/* Source attribution banner — visible only when user arrived from a dedicated service page */}
+          {/* Source attribution banner, visible only when user arrived from a dedicated service page */}
           {sourceServiceSlug && (
             <div
               className="rounded-md px-4 py-3 mb-5 flex items-center gap-3 flex-wrap"
@@ -541,25 +541,25 @@ const ClientIntakePage = () => {
                   .replace(/\bPpe\b/g, 'PPE')}
               </span>
               <span className="text-white/50 text-xs" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-                · Pre-selected below — change if needed
+                · Pre-selected below, change if needed
               </span>
             </div>
           )}
           <Field label="Service" required error={errors.serviceSelected}>
             <span {...wrap('serviceSelected')}>
               <RadioList value={f.serviceSelected} onChange={(v) => set('serviceSelected', v)} options={[
-                { value: 'walkthrough', label: 'Safety Walkthrough & Top 10 Fixes Report — On-site visit + written report (from $1,300)' },
-                { value: 'compliance_readiness_visit', label: 'Compliance Readiness Visit — Floor walkthrough + documentation review in one visit (from $2,500)' },
-                { value: 'doc_review', label: 'OSHA Documentation Readiness Review — Review of written programs, training records, logs (from $1,700)' },
-                { value: 'incident_review', label: 'Incident Review & Corrective Action Support — Post-injury / near-miss response (from $1,500)' },
-                { value: 'doc_creation', label: 'Safety Documents / Program Creation — New programs, manuals, training packs' },
-                { value: 'not_sure', label: "I need guidance — let Vince recommend" },
+                { value: 'walkthrough', label: 'Safety Walkthrough & Top 10 Fixes Report, On-site visit + written report (from $1,300)' },
+                { value: 'compliance_readiness_visit', label: 'Compliance Readiness Visit, Floor walkthrough + documentation review in one visit (from $2,500)' },
+                { value: 'doc_review', label: 'OSHA Documentation Readiness Review, Review of written programs, training records, logs (from $1,700)' },
+                { value: 'incident_review', label: 'Incident Review & Corrective Action Support, Post-injury / near-miss response (from $1,500)' },
+                { value: 'doc_creation', label: 'Safety Documents / Program Creation, New programs, manuals, training packs' },
+                { value: 'not_sure', label: "I need guidance, let Vince recommend" },
               ]} />
             </span>
           </Field>
         </section>
 
-        {/* ═══ S3 — Urgency & Context ═══ */}
+        {/* ═══ S3, Urgency & Context ═══ */}
         <section data-testid="intake-section-03">
           <SectionHeader number="03" title="Urgency & Context" subtitle="What's behind this and when you need it done." />
           <Field label="What's prompting you to reach out?" required error={errors.promptingReason}>
@@ -613,9 +613,9 @@ const ClientIntakePage = () => {
           )}
         </section>
 
-        {/* ═══ S4 — Core Safety Setup + Lane Expansions ═══ */}
+        {/* ═══ S4, Core Safety Setup + Lane Expansions ═══ */}
         <section data-testid="intake-section-04">
-          <SectionHeader number="04" title="Current Safety Setup" subtitle="Quick read on what's in place. No judgment — Vince uses this to scope, not score." />
+          <SectionHeader number="04" title="Current Safety Setup" subtitle="Quick read on what's in place. No judgment, Vince uses this to scope, not score." />
           <div className="rounded-lg overflow-hidden" style={{ background: C.deep, border: `1px solid ${C.border}` }}>
             {[
               { key: 'q_safety_program', label: 'We have a written safety program or safety policies in place.' },
@@ -656,8 +656,8 @@ const ClientIntakePage = () => {
                 <span {...wrap('docReviewApproach')}>
                   <RadioList value={f.docReviewApproach} onChange={(v) => set('docReviewApproach', v)} options={[
                     { value: 'review_existing', label: 'Review what we already have' },
-                    { value: 'start_scratch', label: "Start from scratch — we don't have much" },
-                    { value: 'not_sure', label: 'Not sure — let Vince advise' },
+                    { value: 'start_scratch', label: "Start from scratch, we don't have much" },
+                    { value: 'not_sure', label: 'Not sure, let Vince advise' },
                   ]} />
                 </span>
               </Field>
@@ -720,7 +720,7 @@ const ClientIntakePage = () => {
                 <div className="rounded-md p-4 mb-5" style={{ background: 'rgba(34,197,94,0.07)', border: '1px solid rgba(34,197,94,0.30)' }} data-testid="pricing-bundle">
                   <p className="text-xs font-bold uppercase tracking-[2px] mb-1.5" style={{ ...mono, color: '#22C55E' }}>Bundle Pricing Active</p>
                   <p className="text-sm leading-relaxed" style={{ color: C.white }}>
-                    With 3+ fixed-price programs, you qualify for the <strong>$399 bundle</strong> — all selected programs included.
+                    With 3+ fixed-price programs, you qualify for the <strong>$399 bundle</strong>, all selected programs included.
                   </p>
                 </div>
               )}
@@ -744,7 +744,7 @@ const ClientIntakePage = () => {
               <Field label="Where are you starting from?" required error={errors.docCreationApproach}>
                 <span {...wrap('docCreationApproach')}>
                   <RadioList value={f.docCreationApproach} onChange={(v) => set('docCreationApproach', v)} options={[
-                    { value: 'scratch', label: 'Starting from scratch — nothing in place yet' },
+                    { value: 'scratch', label: 'Starting from scratch, nothing in place yet' },
                     { value: 'revising', label: 'Revising / updating what we have' },
                     { value: 'mix', label: 'Mix of both' },
                   ]} />
@@ -760,7 +760,7 @@ const ClientIntakePage = () => {
               <Field label="Scope type" required error={errors.docCreationScopeType}>
                 <span {...wrap('docCreationScopeType')}>
                   <RadioList value={f.docCreationScopeType} onChange={(v) => set('docCreationScopeType', v)} options={[
-                    { value: 'review', label: 'Review only — existing materials check' },
+                    { value: 'review', label: 'Review only, existing materials check' },
                     { value: 'updates', label: 'Updates to existing programs' },
                     { value: 'full_creation', label: 'Full creation of new programs' },
                   ]} />
@@ -778,7 +778,7 @@ const ClientIntakePage = () => {
           )}
         </section>
 
-        {/* ═══ S5 — Hazards & Facility (conditional) ═══ */}
+        {/* ═══ S5, Hazards & Facility (conditional) ═══ */}
         {(f.serviceSelected === 'walkthrough' || f.serviceSelected === 'doc_creation') && (
           <section data-testid="intake-section-05">
             <SectionHeader number="05" title="Hazards & Facility Profile" subtitle="Helps Vince come prepared for the visit." />
@@ -803,7 +803,7 @@ const ClientIntakePage = () => {
           </section>
         )}
 
-        {/* ═══ S6 — Scheduling & Logistics ═══ */}
+        {/* ═══ S6, Scheduling & Logistics ═══ */}
         <section data-testid="intake-section-06">
           <SectionHeader number="06" title="Scheduling & Logistics" subtitle="So Vince can reach you and plan the visit." />
           <Field label="Preferred contact method" required error={errors.contactMethod}>
@@ -841,7 +841,7 @@ const ClientIntakePage = () => {
           <Field label="Anything preventing moving forward we should know about?" hint="Optional"><TextArea rows={2} {...setField('blockers')} placeholder="Budget approval, scheduling, etc." /></Field>
         </section>
 
-        {/* ═══ S7 — Acknowledgments ═══ */}
+        {/* ═══ S7, Acknowledgments ═══ */}
         <section data-testid="intake-section-07">
           <SectionHeader number="07" title="Acknowledgment" />
           <div className="rounded-lg p-6 md:p-7 space-y-5" style={{ background: C.deeper, border: `1px solid ${C.border}` }}>
@@ -900,7 +900,7 @@ const ClientIntakePage = () => {
               Vince Lawrence
             </h2>
             <p className="text-base md:text-lg leading-relaxed max-w-3xl mx-auto" style={{ color: 'rgba(255,255,255,0.55)' }}>
-              OSHA 30-Hour Certified safety compliance consultant &mdash; Kernersville, NC
+              OSHA 30-Hour Certified safety compliance consultant , Kernersville, NC
             </p>
           </div>
 
@@ -912,7 +912,7 @@ const ClientIntakePage = () => {
                 style={{ border: '1px solid rgba(255,255,255,0.10)', background: 'rgba(255,255,255,0.03)' }}
               >
                 <img src="/vince-founder.webp" height="1411" width="1114"
-                  alt="Vince Lawrence — Founder, GigLine Safety & Compliance"
+                  alt="Vince Lawrence, Founder, GigLine Safety & Compliance"
                   className="w-full h-auto block"
                   loading="lazy"
                   data-testid="intake-about-photo" />
@@ -960,7 +960,7 @@ Working in them.
 
 Glass and vinyl. Rubber compounding. Metals fabrication.
 
-I was on the floor — supervising crews, coordinating safety, doing Gemba walks, creating safety orientation for new hires, training people on the standards they were expected to follow, and seeing firsthand where safety systems broke down under production pressure.
+I was on the floor, supervising crews, coordinating safety, doing Gemba walks, creating safety orientation for new hires, training people on the standards they were expected to follow, and seeing firsthand where safety systems broke down under production pressure.
 
 I know what a facility looks like when safety is managed by whoever had time that week.
 

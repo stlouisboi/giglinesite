@@ -67,7 +67,7 @@ const CitationProofKitDetailPage = () => {
             {kit.outcomeHeadline}
           </h1>
 
-          {/* 1b. HERO SUPPORT LINE — role/outcome framing for conversion */}
+          {/* 1b. HERO SUPPORT LINE, role/outcome framing for conversion */}
           {kit.heroSupportLine && (
             <p
               className="text-[15.5px] md:text-[17px] leading-[1.6] max-w-3xl mb-6"
@@ -170,7 +170,7 @@ const CitationProofKitDetailPage = () => {
             <div className="flex items-center justify-center xl:justify-end" data-testid="kit-detail-hero-image">
               <img
                 src={kit.productImages.hero}
-                alt={`${kit.name} — product mockup`}
+                alt={`${kit.name}, product mockup`}
                 className="w-full h-auto max-w-[720px]"
                 style={{ display: 'block' }}
               />
@@ -178,7 +178,7 @@ const CitationProofKitDetailPage = () => {
           )}
         </div>
 
-        {/* Hero support strip + control flow — full-width below the 2-col */}
+        {/* Hero support strip + control flow, full-width below the 2-col */}
         <div className={kit.productImages?.hero ? 'max-w-7xl mx-auto mt-12 md:mt-16' : 'max-w-4xl mx-auto'}>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4" data-testid="kit-detail-hero-support">
             <HeroSupportCard label="Standard" value={kit.standard} onDark={!!kit.productImages?.hero} />
@@ -253,7 +253,7 @@ const CitationProofKitDetailPage = () => {
         </section>
       )}
 
-      {/* ═══════════ WHAT'S AT STAKE (optional — only if kit provides stakes) ═══════════ */}
+      {/* ═══════════ WHAT'S AT STAKE (optional, only if kit provides stakes) ═══════════ */}
       {kit.stakes && (
         <section
           className="px-5 md:px-8 py-16 md:py-20 border-t"
@@ -374,7 +374,7 @@ const CitationProofKitDetailPage = () => {
           <div className="max-w-6xl mx-auto">
             <img
               src={kit.productImages.whatsInside}
-              alt={`What's inside the ${kit.name} — Citation-Proof Score, Main Builder Tool, Inspector's First 10 Questions, Worked Example, Core Fillable Forms, Regulatory Basis`}
+              alt={`What's inside the ${kit.name}, Citation-Proof Score, Main Builder Tool, Inspector's First 10 Questions, Worked Example, Core Fillable Forms, Regulatory Basis`}
               className="w-full h-auto"
               style={{ display: 'block' }}
             />
@@ -403,7 +403,7 @@ const CitationProofKitDetailPage = () => {
                 Four tools. Each one does a specific job.
               </h2>
               <p className="text-base md:text-[17px] leading-relaxed" style={{ color: 'rgba(10,22,40,0.68)', ...serif }}>
-                You&rsquo;re not buying a folder of forms. You&rsquo;re buying a set of control mechanisms &mdash; each engineered to close a specific proof gap.
+                You&rsquo;re not buying a folder of forms. You&rsquo;re buying a set of control mechanisms , each engineered to close a specific proof gap.
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
@@ -505,7 +505,7 @@ const CitationProofKitDetailPage = () => {
               className="mt-6 pt-5 text-[14px] md:text-[15px] leading-[1.6] border-t"
               style={{ color: 'rgba(10,22,40,0.70)', ...serif, borderColor: 'rgba(197,160,89,0.35)' }}
             >
-              This kit is a folder of answers to that exact list &mdash; mapped to the CFR standard, ready to hand over
+              This kit is a folder of answers to that exact list , mapped to the CFR standard, ready to hand over
               on the day. That&rsquo;s the difference between <em>closeable in days</em> and <em>exposed for months</em>.
             </p>
           </div>
@@ -540,7 +540,7 @@ const CitationProofKitDetailPage = () => {
             className="text-base md:text-[17px] leading-relaxed mb-8"
             style={{ color: 'rgba(10,22,40,0.68)', ...serif }}
           >
-            When an inspector, insurer, customer, or owner asks, this is what the First-Pull Packet&trade; produces — in order.
+            When an inspector, insurer, customer, or owner asks, this is what the First-Pull Packet&trade; produces, in order.
           </p>
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {kit.keyProof.map((item, i) => (
@@ -701,7 +701,7 @@ const CitationProofKitDetailPage = () => {
             <div>
               <img
                 src={kit.productImages.physicalMockup}
-                alt={`${kit.name} — physical binder mockup`}
+                alt={`${kit.name}, physical binder mockup`}
                 className="w-full h-auto"
                 style={{ display: 'block' }}
               />

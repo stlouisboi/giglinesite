@@ -40,7 +40,7 @@ const StatusPage = () => {
 
   return (
     <div className="min-h-screen" style={{ background: C.bg }}>
-      <SEO title={`Status — ${data.company} | GigLine`} description="Track your GigLine engagement status." canonical={`/status/${clientToken}`} />
+      <SEO title={`Status, ${data.company} | GigLine`} description="Track your GigLine engagement status." canonical={`/status/${clientToken}`} />
 
       {/* Nav */}
       <nav style={{ background: C.deep, borderBottom: `1px solid ${C.border}` }}>
@@ -112,7 +112,7 @@ const StatusPage = () => {
           </div>
         )}
 
-        {/* Review prompt — only shows once engagement is complete (report delivered) */}
+        {/* Review prompt, only shows once engagement is complete (report delivered) */}
         {data.status === 'report_delivered' && (
           <div
             className="mt-6 rounded-lg p-6"
@@ -143,7 +143,7 @@ const StatusPage = () => {
               <ExternalLink size={14} />
             </a>
             <p className="text-xs mt-4" style={{ color: C.muted }}>
-              Honest feedback only — good, bad, or indifferent.
+              Honest feedback only, good, bad, or indifferent.
             </p>
           </div>
         )}

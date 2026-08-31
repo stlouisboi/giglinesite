@@ -27,16 +27,16 @@ const getAttribution = () => {
 };
 
 /**
- * KitPricingTiers — reusable 3-tier pricing card grid.
+ * KitPricingTiers, reusable 3-tier pricing card grid.
  *
  * Props:
- *   kitSlug           — string. Passed into CTA query params so lead-capture
+ *   kitSlug          , string. Passed into CTA query params so lead-capture
  *                       knows which kit the buyer wanted.
- *   ready             — bool. When false, all tier CTAs route to "Notify me"
+ *   ready            , bool. When false, all tier CTAs route to "Notify me"
  *                       intent instead of "Buy now" intent. Used for kits
  *                       whose products are still being built.
- *   showHeading       — bool. Shows the section heading + kicker.
- *   universalTiers    — bool. When true, does NOT filter the tiers per kit
+ *   showHeading      , bool. Shows the section heading + kicker.
+ *   universalTiers   , bool. When true, does NOT filter the tiers per kit
  *                       (used on catalog overview to show the pricing model
  *                       without tying to one kit).
  */
@@ -52,7 +52,7 @@ const KitPricingTiers = ({
   const kicker = kickerOverride || (universalTiers ? 'Pricing' : 'Choose Your Tier');
   const heading = headingOverride || (universalTiers ? 'Simple pricing across every kit.' : 'Three ways to run this kit.');
   const intro = introOverride || (universalTiers
-    ? 'Every kit in the Citation-Proof Series is offered in three tiers. Buy the level that matches how much of the build you want to do yourself — and how quickly you need the physical binder in the supervisor’s hands.'
+    ? 'Every kit in the Citation-Proof Series is offered in three tiers. Buy the level that matches how much of the build you want to do yourself, and how quickly you need the physical binder in the supervisor’s hands.'
     : 'Buy the tier that matches how much of the build you want to run yourself.');
 
   const stripeEnabled = ready && !universalTiers && STRIPE_ENABLED_SLUGS.has(kitSlug);
@@ -152,7 +152,7 @@ const KitPricingTiers = ({
                 className="text-[14.5px] md:text-[15.5px] leading-[1.6]"
                 style={{ color: 'rgba(10,22,40,0.75)', fontFamily: "Georgia, serif" }}
               >
-                Every tier is a folder of separate files &mdash; nothing is rewritten between tiers.
+                Every tier is a folder of separate files , nothing is rewritten between tiers.
                 Higher tiers <strong>add</strong> files; fix something once and it&rsquo;s fixed everywhere.
                 Buy the tier that matches how you&rsquo;ll actually use it, not the one that looks the most complete on the checkout page.
               </p>

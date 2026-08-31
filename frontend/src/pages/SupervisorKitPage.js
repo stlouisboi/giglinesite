@@ -23,7 +23,7 @@ const serif = { fontFamily: "Georgia, 'Times New Roman', serif" };
    DATA
    ───────────────────────────────────────────────────────────── */
 
-/* Hero — supporting lines below the subhead */
+/* Hero, supporting lines below the subhead */
 const HERO_SUPPORTING = [
   'No more guessing where the SDS records are.',
   'No more inspection notes with no follow-up.',
@@ -31,7 +31,7 @@ const HERO_SUPPORTING = [
   'No more binder that exists but does not get used.',
 ];
 
-/* Boundaries — what the system does not do */
+/* Boundaries, what the system does not do */
 const NOT_DESIGNED_TO = [
   'Guarantee OSHA compliance',
   'Replace site-specific hazard assessments',
@@ -41,7 +41,7 @@ const NOT_DESIGNED_TO = [
   'Serve as a substitute for management accountability',
 ];
 
-/* FAQ — 8 questions the user brief specified */
+/* FAQ, 8 questions the user brief specified */
 const FAQ = [
   {
     q: 'Is this an employee safety training course?',
@@ -69,7 +69,7 @@ const FAQ = [
   },
   {
     q: 'Is this for one facility or multiple locations?',
-    a: 'The standard license covers a single facility and its supervisors. Multi-site organizations may require an expanded license — contact GigLine for a scoped quote.',
+    a: 'The standard license covers a single facility and its supervisors. Multi-site organizations may require an expanded license, contact GigLine for a scoped quote.',
   },
   {
     q: 'Is this a replacement for a safety manager?',
@@ -104,19 +104,19 @@ const AFTER_LIST = [
   'You know where the record lives.',
 ];
 
-/* Rhythm — 5-step operating loop (Inspect → Assign → Verify → Document → Review) */
+/* Rhythm, 5-step operating loop (Inspect → Assign → Verify → Document → Review) */
 const RHYTHM_STEPS = ['Inspect', 'Assign', 'Verify', 'Document', 'Review'];
 
-/* Rhythm — detailed step descriptions for the solution section */
+/* Rhythm, detailed step descriptions for the solution section */
 const RHYTHM_DETAILED = [
   { name: 'Inspect', body: 'Use structured walkthroughs and checklists to identify hazards and documentation gaps.' },
   { name: 'Assign',  body: 'Record the issue, corrective action, responsible person, and expected completion date.' },
-  { name: 'Verify',  body: 'Confirm that the correction was completed — not merely discussed.' },
+  { name: 'Verify',  body: 'Confirm that the correction was completed, not merely discussed.' },
   { name: 'Document',body: 'Maintain visible records showing what was found, what changed, and who verified closure.' },
   { name: 'Review',  body: 'Use a recurring supervisor review process to keep unresolved items from disappearing.' },
 ];
 
-/* What Is Included — 10 outcome categories (sell the operational function, not the doc code) */
+/* What Is Included, 10 outcome categories (sell the operational function, not the doc code) */
 const CONTENTS_CATEGORIES = [
   { name: 'Quick-Start Implementation Guidance',    body: 'Clear instructions showing supervisors how to begin using the system and establish the first operating cycle.' },
   { name: 'Supervisor Inspection Tools',            body: 'Practical inspection sheets for identifying workplace hazards, unsafe conditions, and documentation gaps.' },
@@ -130,19 +130,19 @@ const CONTENTS_CATEGORIES = [
   { name: 'Training and Annual Review Tracking',    body: 'Tools for documenting required training, recurring reviews, and supervisor follow-through.' },
 ];
 
-/* What's Included — 17 documents (code | title | help) — kept for the deep-detail table below the categories */
+/* What's Included, 17 documents (code | title | help), kept for the deep-detail table below the categories */
 const KIT_CONTENTS = [
   { code: 'SS-01',  title: 'Start Here / How to Use This System',          help: 'Gives supervisors a clear starting point and shows how the system works.' },
   { code: 'SS-02',  title: '30-Day Action Checklist',                      help: 'Turns setup into a week-by-week plan instead of a someday project.' },
-  { code: 'SS-03A', title: 'Chemical Inventory Log — Example',             help: 'Shows what a completed chemical inventory record should look like.' },
-  { code: 'SS-03B', title: 'Chemical Inventory Log — Blank',               help: 'Helps list hazardous chemicals used or stored in the facility.' },
-  { code: 'SS-04A', title: 'SDS Index — Example',                          help: 'Shows how SDS tracking should be organized.' },
-  { code: 'SS-04B', title: 'SDS Index — Blank',                            help: 'Helps verify where Safety Data Sheets are located and accessible.' },
+  { code: 'SS-03A', title: 'Chemical Inventory Log, Example',             help: 'Shows what a completed chemical inventory record should look like.' },
+  { code: 'SS-03B', title: 'Chemical Inventory Log, Blank',               help: 'Helps list hazardous chemicals used or stored in the facility.' },
+  { code: 'SS-04A', title: 'SDS Index, Example',                          help: 'Shows how SDS tracking should be organized.' },
+  { code: 'SS-04B', title: 'SDS Index, Blank',                            help: 'Helps verify where Safety Data Sheets are located and accessible.' },
   { code: 'SS-05',  title: 'Written Hazard Communication Program',         help: 'Provides a practical written HazCom program structure for review and sign-off.' },
-  { code: 'SS-06A', title: 'Monthly Safety Inspection Checklist — Example',help: 'Shows how to document a completed safety walkthrough.' },
-  { code: 'SS-06B', title: 'Monthly Safety Inspection Checklist — Blank',  help: 'Gives supervisors a monthly inspection checklist they can use on the floor.' },
-  { code: 'SS-07A', title: 'Corrective Action Log — Example',              help: 'Shows how findings should be assigned, tracked, verified, and closed.' },
-  { code: 'SS-07B', title: 'Corrective Action Log — Blank',                help: 'Helps turn open issues into assigned corrective actions with due dates and verification.' },
+  { code: 'SS-06A', title: 'Monthly Safety Inspection Checklist, Example',help: 'Shows how to document a completed safety walkthrough.' },
+  { code: 'SS-06B', title: 'Monthly Safety Inspection Checklist, Blank',  help: 'Gives supervisors a monthly inspection checklist they can use on the floor.' },
+  { code: 'SS-07A', title: 'Corrective Action Log, Example',              help: 'Shows how findings should be assigned, tracked, verified, and closed.' },
+  { code: 'SS-07B', title: 'Corrective Action Log, Blank',                help: 'Helps turn open issues into assigned corrective actions with due dates and verification.' },
   { code: 'SS-08',  title: 'OSHA Coverage Map',                            help: 'Shows how the documents support common OSHA-aligned documentation areas.' },
   { code: 'SS-09A', title: 'Employee HazCom Toolbox Talk + Attendance',    help: 'Helps document employee HazCom communication and attendance.' },
   { code: 'SS-09B', title: 'Employee HazCom Knowledge Check',              help: 'Helps confirm employees understood the HazCom talk.' },
@@ -151,7 +151,7 @@ const KIT_CONTENTS = [
   { code: 'SS-12',  title: 'Next Step / Book a GigLine Review',            help: 'Shows how to get a second set of eyes after the system is in place.' },
 ];
 
-/* Value Framing — 4 cards */
+/* Value Framing, 4 cards */
 const VALUE_CARDS = [
   { label: 'Clarity', body: 'Know what needs to be checked, tracked, and filed.' },
   { label: 'Control', body: 'See what is open, who owns it, and what still needs follow-up.' },
@@ -188,7 +188,7 @@ const REVIEW_BULLETS = [
   'Practical next-step recommendations',
 ];
 
-/* Who This Is For — 3 cards */
+/* Who This Is For, 3 cards */
 const AUDIENCE_CARDS = [
   {
     label: 'Plant Managers & Operations Leaders',
@@ -204,7 +204,7 @@ const AUDIENCE_CARDS = [
   },
 ];
 
-/* Mailto for GigLine Implementation Review CTA (no Stripe SKU — needs scoping) */
+/* Mailto for GigLine Implementation Review CTA (no Stripe SKU, needs scoping) */
 const REVIEW_MAILTO = (
   'mailto:vince@giglinecompliance.com'
   + '?subject=' + encodeURIComponent('GigLine Implementation Review Request')
@@ -242,7 +242,7 @@ const H2 = ({ children, center = false, id }) => (
   </h2>
 );
 
-/* Pricing card — supports button (Stripe) or anchor (mailto) CTA */
+/* Pricing card, supports button (Stripe) or anchor (mailto) CTA */
 const PricingCard = ({
   label, price, subline, body, bullets, bestFor,
   ctaLabel, ctaTestId, onBuy, href, loading, featured,
@@ -286,7 +286,7 @@ const PricingCard = ({
             className="flex-shrink-0 font-bold leading-none"
             style={{ color: GOLD, ...mono, fontSize: '17px', lineHeight: '1.2' }}
             aria-hidden
-          >&mdash;</span>
+          >,</span>
           <span style={{ color: featured ? 'rgba(255,255,255,0.88)' : TEXT_MUTED }}>{b}</span>
         </li>
       ))}
@@ -365,7 +365,7 @@ const SupervisorKitPage = () => {
     <main data-testid="supervisor-kit-page" style={{ backgroundColor: BG_WARM, color: NAVY }}>
       <SEO
         title="GigLine Supervisor Safety OS | Supervisor Safety Documentation System"
-        description="Turn scattered safety paperwork into a supervisor-run system — inspect, document, assign, verify, review. From $600."
+        description="Turn scattered safety paperwork into a supervisor-run system, inspect, document, assign, verify, review. From $600."
         canonical="/supervisor-kit"
       />
 
@@ -378,7 +378,7 @@ const SupervisorKitPage = () => {
             style={{ ...sans, color: NAVY }}
             data-testid="kit-hero-headline"
           >
-            Install a Repeatable Supervisor Safety System &mdash; Without Building It From Scratch.
+            Install a Repeatable Supervisor Safety System , Without Building It From Scratch.
           </h1>
           <p
             className="text-[17px] md:text-[19px] leading-[1.65] max-w-3xl mx-auto mb-6"
@@ -392,10 +392,10 @@ const SupervisorKitPage = () => {
             style={{ color: TEXT_SUBTLE, ...serif }}
             data-testid="kit-hero-audience"
           >
-            Built for small manufacturers, warehouses, contractors, and fleet operations that need stronger safety control &mdash; but do not have a full-time safety manager.
+            Built for small manufacturers, warehouses, contractors, and fleet operations that need stronger safety control , but do not have a full-time safety manager.
           </p>
 
-          {/* Single primary CTA — anchors to pricing/edition selection */}
+          {/* Single primary CTA, anchors to pricing/edition selection */}
           <div className="flex flex-col items-center gap-3 mb-14 md:mb-16">
             <a
               href="#pricing"
@@ -415,7 +415,7 @@ const SupervisorKitPage = () => {
             </p>
           </div>
 
-          {/* Supporting "no more..." lines — moved below CTA */}
+          {/* Supporting "no more..." lines, moved below CTA */}
           <ul className="max-w-2xl mx-auto mb-14 space-y-1.5" data-testid="kit-hero-supporting">
             {HERO_SUPPORTING.map((line, i) => (
               <li
@@ -539,7 +539,7 @@ const SupervisorKitPage = () => {
               className="font-bold leading-[1.4] text-[18px] md:text-[22px]"
               style={{ ...sans, color: NAVY }}
             >
-              Safety documentation is not about having forms &mdash; it is about proving the work is being followed through.
+              Safety documentation is not about having forms , it is about proving the work is being followed through.
             </p>
           </div>
         </div>
@@ -624,7 +624,7 @@ const SupervisorKitPage = () => {
             ))}
           </div>
 
-          {/* CTA after Contents — CTA #2 per user's brief */}
+          {/* CTA after Contents, CTA #2 per user's brief */}
           <div className="text-center mb-14" data-testid="kit-contents-cta-wrap">
             <a
               href="#pricing"
@@ -640,7 +640,7 @@ const SupervisorKitPage = () => {
             </p>
           </div>
 
-          {/* Full document detail table — kept as reference below the outcome cards */}
+          {/* Full document detail table, kept as reference below the outcome cards */}
           <details className="mt-4 group" data-testid="kit-contents-detail">
             <summary
               className="cursor-pointer font-bold text-[15px] mb-4"
@@ -749,7 +749,7 @@ const SupervisorKitPage = () => {
               &ldquo;Most small operations do not fail because nobody cares. They fail because safety work is scattered, undocumented, or never verified. The Supervisor Safety OS gives your team a practical rhythm to inspect, document, assign, verify, and review.&rdquo;
             </p>
             <footer className="text-[14px] md:text-[15px] font-bold" style={{ color: TEXT_MUTED, ...sans }}>
-              &mdash; Vince Lawrence, GigLine Safety &amp; Compliance
+              , Vince Lawrence, GigLine Safety &amp; Compliance
             </footer>
           </blockquote>
         </div>
@@ -769,7 +769,7 @@ const SupervisorKitPage = () => {
               body="Use the Digital Kit to set up your supervisor safety documentation rhythm without starting from a blank page."
               bullets={DIGITAL_BULLETS}
               bestFor="Small teams that need structure now and can implement internally."
-              ctaLabel="Buy Digital Kit — $600"
+              ctaLabel="Buy Digital Kit, $600"
               ctaTestId="kit-buy-digital"
               onBuy={() => buy('digital')}
               loading={loading.digital}
@@ -781,14 +781,14 @@ const SupervisorKitPage = () => {
               body="For facilities that want a physical binder at the supervisor station, safety office, or production floor."
               bullets={PHYSICAL_BULLETS}
               bestFor="Facilities that want a physical system they can place directly into the hands of a supervisor."
-              ctaLabel="Buy Physical Binder Kit — $700"
+              ctaLabel="Buy Physical Binder Kit, $700"
               ctaTestId="kit-buy-physical"
               onBuy={() => buy('physical')}
               loading={loading.physical}
               featured
             />
             <PricingCard
-              label="GigLine Implementation Review — Optional"
+              label="GigLine Implementation Review, Optional"
               price="From $850"
               subline="For teams that want a second set of eyes after they start using the system."
               body="GigLine reviews your completed records and provides written feedback on missing documentation, open follow-up, and next steps."
@@ -956,7 +956,7 @@ const SupervisorKitPage = () => {
               style={{ background: GOLD, color: NAVY, ...sans }}
               data-testid="kit-final-cta-digital"
             >
-              {loading.digital ? 'Processing…' : 'Get the Supervisor Safety OS — Digital $600'}
+              {loading.digital ? 'Processing…' : 'Get the Supervisor Safety OS, Digital $600'}
             </button>
             <button
               type="button"
@@ -966,7 +966,7 @@ const SupervisorKitPage = () => {
               style={{ borderColor: 'rgba(255,255,255,0.5)', color: 'white', background: 'transparent', ...sans }}
               data-testid="kit-final-cta-physical"
             >
-              {loading.physical ? 'Processing…' : 'Get the Physical Binder Edition — $700 (free shipping)'}
+              {loading.physical ? 'Processing…' : 'Get the Physical Binder Edition, $700 (free shipping)'}
             </button>
           </div>
           <p className="mt-2 mb-6 text-[13px] italic" style={{ color: 'rgba(255,255,255,0.6)' }}>

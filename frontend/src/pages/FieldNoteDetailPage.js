@@ -6,7 +6,7 @@ import SEO from '../components/SEO';
 import { SUPERVISOR_KIT_ENABLED } from '../config/features';
 import FieldNotesNewsletter from '../components/FieldNotesNewsletter';
 import StickyLeadMagnetBar from '../components/StickyLeadMagnetBar';
-/* GL-WEB-026 — Field Note content is a shared database, imported once here
+/* GL-WEB-026, Field Note content is a shared database, imported once here
    and re-used by /app/frontend/scripts/generate-seo-pages.js for SSR. */
 import { NOTES } from '../data/fieldNoteContent';
 
@@ -32,7 +32,7 @@ const SERVICE_LINKS_BY_SLUG = {
   ],
   'hazcom': [
     { title: 'Document Development', body: 'Written HazCom program, container labels, SDS index, and training records for the most-cited OSHA standard.', to: '/services/document-development' },
-    { title: 'Compliance Readiness Visit', body: 'Floor + files in a single visit — confirms your HazCom system actually matches the chemicals on site.', to: '/services/compliance-readiness-visit' },
+    { title: 'Compliance Readiness Visit', body: 'Floor + files in a single visit, confirms your HazCom system actually matches the chemicals on site.', to: '/services/compliance-readiness-visit' },
   ],
   'machine-guarding': [
     { title: 'Safety Walkthrough', body: 'Every guarded point of operation checked against 1910.212 and the equipment-specific standards.', to: '/services/safety-walkthrough' },
@@ -48,7 +48,7 @@ const SERVICE_LINKS_BY_SLUG = {
     { title: 'Document Development', body: 'Written EAP, evacuation diagrams, alarm-system documentation, and drill records to satisfy 1910.38.', to: '/services/document-development' },
   ],
   'ppe-assessment': [
-    { title: 'Document Development', body: 'Written PPE hazard assessment certification — the first citation under 1910.132 when missing.', to: '/services/document-development' },
+    { title: 'Document Development', body: 'Written PPE hazard assessment certification, the first citation under 1910.132 when missing.', to: '/services/document-development' },
   ],
   'fall-protection': [
     { title: 'Safety Walkthrough', body: 'Every 4-foot+ exposure, anchor point, and elevated walking surface checked against Subpart D.', to: '/services/safety-walkthrough' },
@@ -58,7 +58,7 @@ const SERVICE_LINKS_BY_SLUG = {
     { title: 'Safety Walkthrough', body: 'Every confined space on site identified, classified, and signed per the standard.', to: '/services/safety-walkthrough' },
   ],
   'scaffolding-safety': [
-    { title: 'Safety Walkthrough', body: 'Erection, inspection, and use practices reviewed against 1926.451 — competent person verification on site.', to: '/services/safety-walkthrough' },
+    { title: 'Safety Walkthrough', body: 'Erection, inspection, and use practices reviewed against 1926.451, competent person verification on site.', to: '/services/safety-walkthrough' },
   ],
   'hearing-conservation': [
     { title: 'Document Development', body: 'Written hearing conservation program, audiogram records, and noise exposure assessments per 1910.95.', to: '/services/document-development' },
@@ -67,7 +67,7 @@ const SERVICE_LINKS_BY_SLUG = {
     { title: 'Document Development', body: 'Written exposure control plan, hepatitis B vaccination records, and training documentation per 1910.1030.', to: '/services/document-development' },
   ],
   'ai-generated-safety-programs': [
-    { title: 'Document Development', body: 'Written programs built around your equipment and chemicals — not AI templates that name a different operation.', to: '/services/document-development' },
+    { title: 'Document Development', body: 'Written programs built around your equipment and chemicals, not AI templates that name a different operation.', to: '/services/document-development' },
   ],
   'recordkeeping-300-log': [
     { title: 'Compliance Readiness Visit', body: '300 Log, 300A summary, and severe-injury reporting practice all reviewed in a single visit.', to: '/services/compliance-readiness-visit' },
@@ -88,10 +88,10 @@ const SERVICE_LINKS_BY_SLUG = {
     { title: 'Safety Walkthrough', body: 'Every grinder in the shop checked against the 1/8" work rest and 1/4" tongue-guard standards under 1910.215.', to: '/services/safety-walkthrough' },
   ],
   'ladder-safety': [
-    { title: 'Safety Walkthrough', body: 'Every portable ladder on site inspected against 1910.23 — damaged ladders tagged out before OSHA does it for you.', to: '/services/safety-walkthrough' },
+    { title: 'Safety Walkthrough', body: 'Every portable ladder on site inspected against 1910.23, damaged ladders tagged out before OSHA does it for you.', to: '/services/safety-walkthrough' },
   ],
   'eye-face-protection': [
-    { title: 'Document Development', body: 'Written PPE hazard assessment certification per 1910.132 — the first citation when missing.', to: '/services/document-development' },
+    { title: 'Document Development', body: 'Written PPE hazard assessment certification per 1910.132, the first citation when missing.', to: '/services/document-development' },
   ],
   'trenching-excavation': [
     { title: 'Safety Walkthrough', body: 'Protective systems, competent-person inspection, soil classification, and egress reviewed against Subpart P.', to: '/services/safety-walkthrough' },
@@ -101,15 +101,15 @@ const SERVICE_LINKS_BY_SLUG = {
     { title: 'Document Development', body: 'Annual inspection logs, operator training records, and rigging gear inspection procedures.', to: '/services/document-development' },
   ],
   'nc-osha-vs-federal': [
-    { title: 'Compliance Readiness Visit', body: 'Practitioner walkthrough framed against NC State Plan enforcement reality — not federal-OSHA-only theory.', to: '/services/compliance-readiness-visit' },
+    { title: 'Compliance Readiness Visit', body: 'Practitioner walkthrough framed against NC State Plan enforcement reality, not federal-OSHA-only theory.', to: '/services/compliance-readiness-visit' },
   ],
 };
 
 
-/* ── Field Note content database (shared with generate-seo-pages.js — GL-WEB-026) ── */
+/* ── Field Note content database (shared with generate-seo-pages.js, GL-WEB-026) ── */
 const FieldNoteDetailPage = () => {
   const { slug } = useParams();
-  // Alias map — additional slugs that resolve to existing notes (kept narrow on purpose).
+  // Alias map, additional slugs that resolve to existing notes (kept narrow on purpose).
   const SLUG_ALIASES = {
     'confined-space-entry-permits': 'confined-space',
   };
@@ -145,7 +145,7 @@ const FieldNoteDetailPage = () => {
     <main>
       <StickyLeadMagnetBar />
       <SEO
-        title={note.seoTitle || `${note.title} — Field Notes | GigLine Safety & Compliance`}
+        title={note.seoTitle || `${note.title}, Field Notes | GigLine Safety & Compliance`}
         description={note.seo}
         canonical={`/field-notes/${resolvedSlug}`}
         ogType="article"
@@ -196,7 +196,7 @@ const FieldNoteDetailPage = () => {
             </div>
           )}
 
-          {/* What It Is — supports multi-paragraph via blank line splits */}
+          {/* What It Is, supports multi-paragraph via blank line splits */}
           <div className="mb-12" data-testid="note-what-it-is">
             <h2 className="text-xl font-bold text-[#1C2B2B] mb-4">What It Is</h2>
             <div className="text-base text-[#1C2B2B]/70 leading-relaxed space-y-4 whitespace-pre-line">
@@ -268,7 +268,7 @@ const FieldNoteDetailPage = () => {
             </div>
           )}
 
-          {/* Newsletter capture — soft list-builder per article */}
+          {/* Newsletter capture, soft list-builder per article */}
           <FieldNotesNewsletter source={`field-note-${slug}`} />
 
           {/* Service that handles this on the floor (GL-WEB-018) */}
@@ -405,7 +405,7 @@ const FieldNoteDetailPage = () => {
         </section>
       )}
 
-      {/* Related Documents CTA — for articles that specify a kitCrossSell card set (gated by kit feature flag) */}
+      {/* Related Documents CTA, for articles that specify a kitCrossSell card set (gated by kit feature flag) */}
       {SUPERVISOR_KIT_ENABLED && note.kitCrossSell && Array.isArray(note.kitCrossSell.cards) && (
         <section
           className="py-16 md:py-20"
@@ -474,7 +474,7 @@ const FieldNoteDetailPage = () => {
                 className="text-[13.5px] italic"
                 style={{ color: 'rgba(10,22,40,0.55)', fontFamily: "Georgia, 'Times New Roman', serif" }}
               >
-                Or call <a href="tel:+13363298899" className="font-bold hover:underline" style={{ color: '#0A1628' }}>(336) 329-8899</a> to scope a Compliance Readiness Visit &mdash; the kit ships included.
+                Or call <a href="tel:+13363298899" className="font-bold hover:underline" style={{ color: '#0A1628' }}>(336) 329-8899</a> to scope a Compliance Readiness Visit , the kit ships included.
               </p>
             </div>
           </div>
@@ -485,7 +485,7 @@ const FieldNoteDetailPage = () => {
       <section className="py-16 md:py-24 bg-[#102A43]" data-testid="note-cta">
         <div className="container max-w-3xl text-center">
           <p className="text-lg text-white/60 mb-2">
-            If you're not sure how this looks in your operation —
+            If you're not sure how this looks in your operation ,
           </p>
           <p className="text-lg text-white font-medium mb-8">
             start with a walkthrough.

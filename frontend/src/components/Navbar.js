@@ -84,7 +84,7 @@ const Navbar = () => {
                 width="180"
                 height="100" />
             </Link>
-            {/* Carolina-Built credentials — Full 3-line stack at xl+ (1280px+) only. Below xl there's no room without crowding the nav. */}
+            {/* Carolina-Built credentials, Full 3-line stack at xl+ (1280px+) only. Below xl there's no room without crowding the nav. */}
             <div
               className="hidden xl:flex flex-col leading-tight pl-4"
               style={{ borderLeft: '1px solid #dde3ea' }}
@@ -111,7 +111,7 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Desktop Navigation — appears at lg (1024px+); tablet portrait gets the hamburger menu */}
+          {/* Desktop Navigation, appears at lg (1024px+); tablet portrait gets the hamburger menu */}
           <div className="hidden lg:flex items-center space-x-5 xl:space-x-7 pl-6 xl:pl-10" data-testid="desktop-nav">
             {navLinks.map((link) => (
               <Link

@@ -72,23 +72,40 @@ The fix isn't expensive. A written Heat Illness Prevention Plan, customized to y
   'forklift-safety': {
     title: 'Forklift Safety & Daily Inspections',
     subtitle: 'Beyond the Certification Card',
-    seo: 'OSHA forklift inspection requirements for small operations in NC. Daily pre-shift checklists, operator certification, and pedestrian separation — what gets cited.',
+    seo: 'OSHA forklift inspection requirements for small NC operations. Daily pre-shift checklist, operator certification, and the citations 29 CFR 1910.178 delivers. Free printable checklist.',
     cfrCitation: '29 CFR 1910.178',
     oshaChecks: [
       'Operator certification records — initial training, evaluation, and 3-year refresher',
-      'Daily pre-shift inspection documentation',
+      'Daily pre-shift inspection documentation — every truck, every shift, dated and signed',
       'Pedestrian separation — marked walkways and traffic management',
       'Seatbelt use and enforcement',
       'Load capacity charts visible on each unit',
+      'Refueling / charging area properly ventilated with fire extinguisher within reach',
+      'Modification records if attachments (side shifter, clamps, forks) have been changed',
+      'Damaged truck tagged out of service immediately, not "run until parts arrive"',
     ],
     faqSchema: [
-      { question: 'How often do forklift operators need to be recertified under OSHA?', answer: 'OSHA requires forklift operator evaluation at least every three years under 29 CFR 1910.178(l)(4)(iii). Re-evaluation is also required after an accident, near-miss, or observed unsafe operation.' },
-      { question: 'Are daily forklift inspections required by OSHA?', answer: 'Yes. 29 CFR 1910.178(q)(7) requires that industrial trucks be examined before being placed in service. Daily pre-shift inspections must be documented with a written checklist.' },
-      { question: 'What is the most common forklift violation cited by OSHA?', answer: 'The most common forklift violations involve incomplete or missing operator training documentation, lack of daily pre-shift inspection records, and failure to maintain pedestrian separation in high-traffic areas.' },
+      { question: 'What are the OSHA forklift inspection requirements?', answer: 'OSHA requires a documented pre-shift inspection of every powered industrial truck before it is placed in service under 29 CFR 1910.178(q)(7). The inspection must cover tires, forks, mast, chains, hydraulics, brakes, controls, horn, lights, seatbelt, fluid leaks, and battery/fuel condition. The written checklist must be dated, signed by the operator, and retained. There is no minimum retention period specified — GigLine recommends 12 months at minimum.' },
+      { question: 'How often do forklift operators need to be recertified under OSHA?', answer: 'OSHA requires forklift operator evaluation at least every three years under 29 CFR 1910.178(l)(4)(iii). Re-evaluation is also required after an accident, near-miss, or any observed unsafe operation — whichever comes first.' },
+      { question: 'What must a daily forklift inspection checklist include?', answer: 'At minimum: tire condition, fork straightness and cracks, mast and chain condition, hydraulic hoses and cylinders (leaks or damage), brake function, steering play, horn, lights, backup alarm, seatbelt condition, hourmeter reading, fluid levels, battery water level (electric) or fuel/gas gauge (LP/diesel), any dashboard warning lights, and general damage. The operator must sign and date the sheet.' },
+      { question: 'Are daily forklift inspections required by OSHA?', answer: 'Yes. 29 CFR 1910.178(q)(7) requires that industrial trucks be examined before being placed in service. Daily pre-shift inspections must be documented with a written checklist. An unsigned or missing inspection log is a citable condition.' },
+      { question: 'What is the most common forklift violation cited by OSHA?', answer: 'The two most common forklift violations are (1) missing or incomplete operator training documentation under 1910.178(l) and (2) missing daily pre-shift inspection records under 1910.178(q). Inadequate pedestrian separation is a distant third.' },
+      { question: 'How much can OSHA fine you for a forklift violation?', answer: 'A serious violation of any subsection of 29 CFR 1910.178 carries a maximum penalty of $16,550 in 2026. Willful or repeat violations reach $165,514. Fines are per-violation, per-truck — a fleet of 4 uncertified operators is 4 separate citations.' },
     ],
     relatedNotes: ['walking-surfaces', 'lockout-tagout', 'ppe-assessment'],
     heroImage: '/assets/field-notes/forklift-safety-inspection.webp',
     heroImageAlt: 'Forklift daily pre-shift inspection — GigLine walkthrough field photo',
+    kitCrossSell: {
+      headline: 'The forklift inspection & operator-certification system, done for you.',
+      intro: 'The GigLine Forklift / PIT Readiness Kit ships the exact daily inspection log, operator evaluation form, refresher tracker, and pedestrian-separation plan a facility needs to satisfy 29 CFR 1910.178. Digital ($150), Compliance Control System ($300), or Inspector-Ready Binder Edition ($600).',
+      ctaTo: '/citation-proof-kits/forklift-pit-readiness-kit',
+      ctaLabel: 'Explore the Forklift / PIT Readiness Kit',
+      cards: [
+        { num: '1', title: 'Daily Pre-Shift Inspection Log', body: '11-point checklist matching 1910.178(q)(7). One sheet per truck per shift. Operator-signable, supervisor-review column.' },
+        { num: '2', title: 'Operator Training & Evaluation Record', body: 'Initial training, hands-on evaluation, and 3-year refresher tracker satisfying 1910.178(l). Retention field built in.' },
+        { num: '3', title: 'Pedestrian Traffic Management Plan', body: 'Marked-aisle standard, blind-corner mirror map, and travel-speed rules — the third-most-cited PIT subsection.' },
+      ],
+    },
     sections: {
       whatItIs: `Forklift safety is more than a certification card. OSHA's standard for Powered Industrial Trucks — 29 CFR 1910.178 — covers operator training and evaluation, daily pre-shift inspections, pedestrian separation, load capacity, and refueling/charging procedures. Most operations have the laminated training card from when the operator started years ago. The daily practices that go with it have usually slipped.
 
@@ -1053,7 +1070,7 @@ Corrective action: implement a written hot work permit program based on NFPA 51B
   'abrasive-wheels': {
     title: 'Abrasive Wheels & Bench Grinders',
     subtitle: 'The Tongue Guard at 1/8 of an Inch',
-    seo: 'OSHA abrasive wheel safety requirements (29 CFR 1910.215) for bench grinders in small NC shops. Tongue guards, work rests, ring testing, and RPM limits — one of the most specific and most violated OSHA standards.',
+    seo: 'OSHA abrasive wheel safety (29 CFR 1910.215) for bench grinders in NC shops. Work rest 1/8 inch, tongue guard 1/4 inch, ring test, RPM limits — with a free daily-check log.',
     cfrCitation: '29 CFR 1910.215',
     oshaChecks: [
       'Tongue guard adjustable to within 1/4 inch of the wheel',
@@ -1064,11 +1081,25 @@ Corrective action: implement a written hot work permit program based on NFPA 51B
       'Wheel run for at least one minute before use after mounting',
     ],
     faqSchema: [
-      { question: 'How close should the tongue guard be on a bench grinder?', answer: 'OSHA 29 CFR 1910.215(b)(9) requires the tongue guard (the upper movable guard that follows the wheel as it wears) to be kept adjustable to within 1/4 inch of the wheel surface. The work rest below the wheel must be adjusted to within 1/8 inch of the wheel.' },
-      { question: 'What is a ring test on a grinding wheel?', answer: 'A ring test is performed before mounting any new abrasive wheel. The wheel is suspended on a finger or a thin rod and tapped lightly with a non-metallic object — a wood handle works. A sound wheel rings clearly. A cracked wheel produces a dull thud. The standard requires this test under 29 CFR 1910.215(d)(1) — it takes 10 seconds and is almost never done.' },
+      { question: 'How much of a gap should there be between the work rest and the face of the grinding wheel?', answer: 'The work rest on a bench grinder must be adjusted to within 1/8 inch (no more than 1/8 inch) of the face of the wheel under 29 CFR 1910.215(a)(4). As the wheel wears down, the gap opens — the standard requires you to re-adjust it. A gap wider than 1/8 inch can wedge the workpiece between the rest and the wheel and pull the operator hand into the wheel. It is one of the most frequently cited items in general industry.' },
+      { question: 'How close should the tongue guard be on a bench grinder?', answer: 'The tongue guard (the upper adjustable guard that follows the wheel down as it wears) must be adjustable to within 1/4 inch of the wheel surface under 29 CFR 1910.215(b)(9). Most tongue guards are factory-set and never adjusted — as the wheel wears, the gap opens to 1 or 2 inches, exposing the operator to wheel fragments if the wheel breaks.' },
+      { question: 'What is the OSHA standard for bench grinders?', answer: '29 CFR 1910.215 is the OSHA standard for abrasive wheel machinery. It covers guarding (peripheral, side, and tongue), work-rest adjustment (1/8 inch), tongue-guard adjustment (1/4 inch), wheel mounting (ring test before mounting), RPM matching (wheel rating equal to or greater than spindle speed), and the one-minute run-in requirement for any newly mounted wheel.' },
+      { question: 'What is a ring test on a grinding wheel?', answer: 'A ring test is performed before mounting any new abrasive wheel. The wheel is suspended on a finger or a thin rod and tapped lightly with a non-metallic object (a wood handle works). A sound wheel rings clearly. A cracked wheel produces a dull thud. The standard requires this test under 29 CFR 1910.215(d)(1) — it takes 10 seconds and is almost never done.' },
       { question: 'Why does the wheel RPM matter?', answer: 'Every abrasive wheel is rated for a maximum RPM stamped on the wheel or the blotter. If the spindle RPM of the grinder exceeds the wheel RPM, the wheel can disintegrate during operation — the centrifugal force exceeds the bond strength of the wheel. Always verify the wheel rating is equal to or greater than the spindle RPM before mounting.' },
+      { question: 'How much can OSHA fine you for a grinder violation?', answer: 'A serious violation of any subsection of 29 CFR 1910.215 carries a maximum penalty of $16,550 in 2026 — per grinder, per missing tolerance. A shop with three grinders each missing tongue-guard adjustment and work-rest adjustment is potentially six separate citations.' },
     ],
     relatedNotes: ['machine-guarding', 'eye-face-protection', 'ppe-assessment'],
+    kitCrossSell: {
+      headline: 'Adjust every grinder in the shop. Document it. Prove it.',
+      intro: 'A 10-minute daily grinder check log with pre-printed 1/8-inch and 1/4-inch tolerance callouts, plus training-verification and wheel-mounting record forms. Part of the GigLine Machine-Specific LOTO / Guarding kit series — CFR-cited and print-ready.',
+      ctaTo: '/citation-proof-kits',
+      ctaLabel: 'Explore the Citation-Proof Kit Series',
+      cards: [
+        { num: '1', title: 'Daily Grinder Check Log', body: 'One-line per grinder with pre-printed 1/8-inch work-rest and 1/4-inch tongue-guard callouts. Supervisor initial column.' },
+        { num: '2', title: 'Wheel Mounting Record', body: 'Ring test, RPM verification, one-minute run-in — signed and dated per wheel change. Retention field built in.' },
+        { num: '3', title: 'Abrasive Wheel Training Verification', body: 'Operator training on ring test, RPM matching, guard adjustment, and PPE. Signature block + retention.' },
+      ],
+    },
     sections: {
       whatItIs: `29 CFR 1910.215 is one of the most specific OSHA standards in general industry. The standard governs abrasive wheels — bench grinders, pedestal grinders, swing-frame grinders, and any wheel-type abrasive tool — and it lists exact dimensional tolerances that an inspector can measure on the spot. The most-cited subsections are 1910.215(a)(4) — work rest adjustment — and 1910.215(b)(9) — tongue guard adjustment. Both can be checked with a feeler gauge in under a minute, and both fail in the majority of small shops I walk through.
 

@@ -462,12 +462,12 @@ const FieldNoteDetailPage = () => {
             </div>
             <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
               <Link
-                to="/supervisor-kit"
+                to={note.kitCrossSell.ctaTo || "/supervisor-kit"}
                 className="inline-flex items-center justify-center gap-2 font-bold py-3.5 px-7 transition-all text-[15px]"
                 style={{ background: '#0A1628', color: 'white', fontFamily: "'Manrope', sans-serif" }}
                 data-testid="kit-cross-sell-cta"
               >
-                See the Full Kit ($600 digital)
+                {note.kitCrossSell.ctaLabel || "See the Full Kit ($600 digital)"}
                 <ArrowRight size={16} />
               </Link>
               <p

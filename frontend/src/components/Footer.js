@@ -113,7 +113,7 @@ const Footer = () => {
                     desc: 'Every downloadable guide, checklist, and tool in one place.',
                   },
                   {
-                    name: 'OSHA Inspection Guide — HR & Safety Leaders',
+                    name: 'OSHA Inspection Guide, HR & Safety Leaders',
                     path: '/osha-inspection-guide',
                     desc: 'What OSHA looks for when they walk in. Free guide for HR managers and safety coordinators.',
                   },

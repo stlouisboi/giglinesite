@@ -31,7 +31,7 @@ const config = {
     'Each energized machine: is there a written, machine-specific procedure?',
     'Authorized vs. affected vs. other-employee training records',
     'Annual LOTO audit documentation',
-    'Lockout hardware: locks, hasps, tags, lockboxes — quantity and condition',
+    'Lockout hardware: locks, hasps, tags, lockboxes, quantity and condition',
     'Group lockout / multi-employee procedures where applicable',
     'Contractor LOTO coordination if outside maintenance is used',
   ],

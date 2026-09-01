@@ -23,7 +23,7 @@ const serif = { fontFamily: "Georgia, 'Times New Roman', serif" };
  *   2. Sends the buyer confirmation email (via Resend) on first paid verify call
  *   3. Sends Vince the ACTION REQUIRED notification so he manually fulfills the kit
  *
- * Fulfillment is deliberately MANUAL in v1 — the email tells the buyer the kit will
+ * Fulfillment is deliberately MANUAL in v1, the email tells the buyer the kit will
  * arrive in a separate email from Vince, typically within 1 business day.
  */
 const CitationProofKitThankYouPage = () => {
@@ -34,7 +34,7 @@ const CitationProofKitThankYouPage = () => {
   const kit = KIT_DETAILS[slug];
   const kitName = kit?.name || 'GigLine Citation-Proof Kit';
 
-  // `verifyData` fills in from the verify endpoint on success — it authoritatively
+  // `verifyData` fills in from the verify endpoint on success, it authoritatively
   // tells us the tier, tier_label, whether a physical binder ships, and the ship window.
   const [state, setState] = useState({ loading: true, verified: false, verifyData: null });
 
@@ -137,7 +137,7 @@ const CitationProofKitThankYouPage = () => {
                   className="text-[16px] md:text-[17.5px] leading-[1.65] max-w-xl mx-auto"
                   style={{ color: 'rgba(10,22,40,0.75)', ...serif }}
                 >
-                  Thanks for purchasing the <strong style={{ ...sans, color: NAVY }}>{kitName}</strong> — {tierLabel}.
+                  Thanks for purchasing the <strong style={{ ...sans, color: NAVY }}>{kitName}</strong>, {tierLabel}.
                 </p>
               </div>
 
@@ -157,10 +157,10 @@ const CitationProofKitThankYouPage = () => {
                     Your kit is in your inbox. Your binder is on the way.
                   </h3>
                   <p className="text-[15px] leading-[1.7] mb-3" style={{ color: 'rgba(10,22,40,0.78)', ...serif }}>
-                    A confirmation email with the <strong>{kitName}</strong> Compliance Control System PDF is on its way &mdash; open it now and start using the tools. Your <strong>pre-printed, tabbed physical binder</strong> ships to the address you provided within <strong>{shipWindow}</strong>. You&rsquo;ll receive a separate email when it goes out.
+                    A confirmation email with the <strong>{kitName}</strong> Compliance Control System PDF is on its way , open it now and start using the tools. Your <strong>pre-printed, tabbed physical binder</strong> ships to the address you provided within <strong>{shipWindow}</strong>. You&rsquo;ll receive a separate email when it goes out.
                   </p>
                   <p className="text-[14px] leading-[1.65]" style={{ color: 'rgba(10,22,40,0.65)', ...serif }}>
-                    Vince will also schedule the <strong>setup call</strong> included with the Binder Edition after your binder ships &mdash; watch for a scheduling email.
+                    Vince will also schedule the <strong>setup call</strong> included with the Binder Edition after your binder ships , watch for a scheduling email.
                   </p>
                 </div>
               ) : (
@@ -179,7 +179,7 @@ const CitationProofKitThankYouPage = () => {
                     Your kit was just emailed to you.
                   </h3>
                   <p className="text-[15px] leading-[1.7] mb-3" style={{ color: 'rgba(10,22,40,0.78)', ...serif }}>
-                    A confirmation email is on its way to the address you used at checkout &mdash; with your <strong>{kitName}</strong> {tierLabel} attached as a PDF. Open the cover page first: it maps every tool inside and the order to work through them.
+                    A confirmation email is on its way to the address you used at checkout , with your <strong>{kitName}</strong> {tierLabel} attached as a PDF. Open the cover page first: it maps every tool inside and the order to work through them.
                   </p>
                   <p className="text-[14px] leading-[1.65]" style={{ color: 'rgba(10,22,40,0.65)', ...serif }}>
                     Don&rsquo;t see it in a few minutes? Check spam and quarantine for a message from <strong>vince@giglinecompliance.com</strong>. Still nothing? <Link to="/resend-my-kit" className="font-bold underline" style={{ color: NAVY }} data-testid="thank-you-resend-link">Resend my kit</Link> or call <strong>(336) 329-8899</strong>.
@@ -202,11 +202,11 @@ const CitationProofKitThankYouPage = () => {
                     </li>
                     <li className="flex gap-3">
                       <span className="font-bold" style={{ color: GOLD, ...mono, fontSize: '13px', minWidth: 22 }}>02</span>
-                      <span>Start with the <strong>Citation-Proof Score&trade; Rubric</strong> to see where you stand today &mdash; you can begin work now, before your binder arrives.</span>
+                      <span>Start with the <strong>Citation-Proof Score&trade; Rubric</strong> to see where you stand today , you can begin work now, before your binder arrives.</span>
                     </li>
                     <li className="flex gap-3">
                       <span className="font-bold" style={{ color: GOLD, ...mono, fontSize: '13px', minWidth: 22 }}>03</span>
-                      <span>Your printed binder arrives within <strong>{shipWindow}</strong>. Drop your completed forms into the tabbed sections &mdash; that&rsquo;s the artifact an inspector asks for.</span>
+                      <span>Your printed binder arrives within <strong>{shipWindow}</strong>. Drop your completed forms into the tabbed sections , that&rsquo;s the artifact an inspector asks for.</span>
                     </li>
                     <li className="flex gap-3">
                       <span className="font-bold" style={{ color: GOLD, ...mono, fontSize: '13px', minWidth: 22 }}>04</span>
@@ -221,7 +221,7 @@ const CitationProofKitThankYouPage = () => {
                     </li>
                     <li className="flex gap-3">
                       <span className="font-bold" style={{ color: GOLD, ...mono, fontSize: '13px', minWidth: 22 }}>02</span>
-                      <span>Start with the <strong>Citation-Proof Score&trade; Rubric</strong> to see where you stand today &mdash; before you build anything.</span>
+                      <span>Start with the <strong>Citation-Proof Score&trade; Rubric</strong> to see where you stand today , before you build anything.</span>
                     </li>
                     <li className="flex gap-3">
                       <span className="font-bold" style={{ color: GOLD, ...mono, fontSize: '13px', minWidth: 22 }}>03</span>

@@ -4,7 +4,7 @@ import { ArrowRight, MessageCircle } from 'lucide-react';
 const API_URL = process.env.REACT_APP_BACKEND_URL;
 
 /**
- * Low-friction 2-field micro-form — name + contact (email OR phone) + optional note.
+ * Low-friction 2-field micro-form, name + contact (email OR phone) + optional note.
  * Designed as a "Just want to talk first?" alternative to the full 7-section intake.
  */
 const QuickContactCard = ({ variant = 'light' }) => {
@@ -52,7 +52,7 @@ const QuickContactCard = ({ variant = 'light' }) => {
             Just want to talk first?
           </h3>
           <p className="text-sm mt-1" style={{ color: textMuted }}>
-            Skip the full intake. Drop your name and how to reach you &mdash; Vince will respond within 24 hours.
+            Skip the full intake. Drop your name and how to reach you , Vince will respond within 24 hours.
           </p>
         </div>
       </div>
@@ -76,7 +76,7 @@ const QuickContactCard = ({ variant = 'light' }) => {
           />
           <input
             type="text"
-            placeholder="Email or phone — whichever you prefer"
+            placeholder="Email or phone, whichever you prefer"
             required
             value={contact}
             onChange={(e) => setContact(e.target.value)}

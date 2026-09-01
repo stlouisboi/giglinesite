@@ -5,15 +5,15 @@ import SEO from '../components/SEO';
 
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
 
-/* Service data — one entry per detail route */
+/* Service data, one entry per detail route */
 const SERVICES = {
   'safety-walkthrough-report': {
     eyebrow: 'Safety Walkthrough Report',
     title: 'Safety Walkthrough Report',
     headline: 'The first step when you need exposure identified quickly.',
     price: 'From $1,300',
-    metaTitle: 'Safety Walkthrough Report — From $1,300 | GigLine',
-    metaDesc: 'On-site OSHA walkthrough — photo-documented findings, CFR citations, 48-hour report. Fixed quote. Piedmont Triad NC. From $1,300.',
+    metaTitle: 'Safety Walkthrough Report, From $1,300 | GigLine',
+    metaDesc: 'On-site OSHA walkthrough, photo-documented findings, CFR citations, 48-hour report. Fixed quote. Piedmont Triad NC. From $1,300.',
     body: 'An on-site walkthrough focused purely on physical hazards. You get a photo-documented report and a prioritized fix list within 48 hours. No retainer. No follow-up obligation. The walkthrough takes 1\u20133 hours depending on facility size; the report lands in your inbox within two business days.',
     whatsIncluded: [
       'On-site walkthrough (1\u20133 hours, scheduled at your convenience)',
@@ -39,7 +39,7 @@ const SERVICES = {
     title: 'OSHA Documentation Readiness Review',
     headline: 'Know exactly what your files say before an inspector does.',
     price: 'From $1,700',
-    metaTitle: 'OSHA Documentation Readiness Review — From $1,700 | GigLine',
+    metaTitle: 'OSHA Documentation Readiness Review, From $1,700 | GigLine',
     metaDesc: 'A structured review of your safety documentation and evidence. Baseline scope: one facility, up to five core categories, up to 25 uploaded files, one findings-review call.',
     body: 'A structured review of your safety documentation and evidence. Baseline scope covers one facility, up to five core safety program or evidence categories, up to 25 uploaded files, representative training and evidence records, prioritized findings, and one findings-review call. Additional categories, extensive historical cleanup, or program creation are separately scoped.',
     whatsIncluded: [
@@ -65,7 +65,7 @@ const SERVICES = {
     title: 'Compliance Readiness Visit',
     headline: 'Floor and files reviewed in a single engagement.',
     price: 'From $2,500',
-    metaTitle: 'Compliance Readiness Visit — From $2,500 | GigLine',
+    metaTitle: 'Compliance Readiness Visit, From $2,500 | GigLine',
     metaDesc: "GigLine's recommended combined engagement. On-site walkthrough + documentation review in a single visit. Written findings report within 48 hours. Starting at $2,500.",
     body: "The Safety Walkthrough combined with the Documentation Readiness Review in a single engagement. Baseline documentation scope covers one facility, up to five core categories, and up to 25 uploaded files. Additional documentation categories, extensive historical cleanup, or program creation are separately scoped. Written findings report delivered within 48 hours.",
     whatsIncluded: [
@@ -95,7 +95,7 @@ const SERVICES = {
     title: 'OSHA-Ready Control System',
     headline: 'Build the safety system that holds up when an inspector asks for it.',
     price: 'From $4,500',
-    metaTitle: 'OSHA-Ready Control System Buildout — From $4,500 | GigLine',
+    metaTitle: 'OSHA-Ready Control System Buildout, From $4,500 | GigLine',
     metaDesc: 'A full safety control system buildout. Four binders, digital folder architecture, training matrix, corrective action tracker, and a 90-day maintenance calendar.',
     body: 'A complete safety control system built into your operation. GigLine installs the four-binder physical system, builds your digital folder structure, populates the training matrix and SDS index, sets up the corrective action tracker, and trains your supervisors. Single engagement, multi-week build, lasting system.',
     whatsIncluded: [
@@ -125,8 +125,8 @@ const SERVICES = {
     headline: 'When OSHA shows up, when someone gets hurt, when your customer asks for your safety program \u2014 you need someone who already knows your operation.',
     price: '$12,000/year',
     priceSecondary: '$1,000/month equivalent',
-    metaTitle: 'Annual Compliance Control Partner — $12,000/year | GigLine',
-    metaDesc: 'Year-long OSHA compliance partnership — 2 walkthroughs, 4 doc reviews, quarterly calls, on-call access. $12,000/year.',
+    metaTitle: 'Annual Compliance Control Partner, $12,000/year | GigLine',
+    metaDesc: 'Year-long OSHA compliance partnership, 2 walkthroughs, 4 doc reviews, quarterly calls, on-call access. $12,000/year.',
     body: 'Two full walkthroughs per year. Quarterly documentation reviews. Training record maintenance. OSHA 300A posting reminders. Pre-inspection readiness review. Management safety review. GigLine becomes your ongoing compliance resource \u2014 available when something happens and proactive between visits.',
     whatsIncluded: [
       'Two Safety Walkthroughs per year \u2014 on-site, photographed, reported within 48 hours',

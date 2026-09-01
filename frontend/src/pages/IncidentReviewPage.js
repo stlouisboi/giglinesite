@@ -15,7 +15,7 @@ const CREAM = '#f5f4f0';
 const RED = '#dc2626';
 
 const COVERAGE = [
-  { icon: Search, title: 'Root Cause Analysis', body: 'A disciplined investigation focused on what actually caused the incident — not just what happened. Identifies contributing factors and systemic gaps, not just the immediate trigger.' },
+  { icon: Search, title: 'Root Cause Analysis', body: 'A disciplined investigation focused on what actually caused the incident, not just what happened. Identifies contributing factors and systemic gaps, not just the immediate trigger.' },
   { icon: FileWarning, title: 'Regulatory Obligation Review', body: 'What do you have to report? To whom? By when? OSHA recordkeeping and reporting requirements are specific and time-sensitive. We clarify your obligations before you act.' },
   { icon: ClipboardEdit, title: 'Documentation Guidance', body: 'What to write down, what not to write down, and how to document the investigation in a way that demonstrates good-faith corrective action without creating additional liability.' },
   { icon: Target, title: 'Corrective Action Plan', body: 'A prioritized plan to address the root causes identified. Documented corrective action is your strongest defense if OSHA opens an investigation.' },
@@ -29,16 +29,16 @@ const IncidentReviewPage = () => {
   return (
     <main data-testid="incident-review-page">
       <SEO
-        title="Incident Review — Time-Sensitive | GigLine"
+        title="Incident Review, Time-Sensitive | GigLine"
         description="Call GigLine after a workplace incident. Root cause analysis, regulatory review, documentation guidance, corrective plan. Same-day. Private engagement."
         canonical={`/services/${SLUG}`}
         schema={[
-          { '@context': 'https://schema.org', '@type': 'Service', name: 'Incident Review', provider: { '@type': 'LocalBusiness', name: 'GigLine Safety & Compliance', url: 'https://www.giglinecompliance.com', telephone: '+13363298899' }, areaServed: { '@type': 'State', name: 'North Carolina' }, offers: { '@type': 'Offer', priceCurrency: 'USD', description: 'Incident Review — fixed quote provided on the call. Same-day response.' }, description: 'Time-sensitive post-incident review covering root cause analysis, regulatory obligations, documentation guidance, and corrective action planning.' },
+          { '@context': 'https://schema.org', '@type': 'Service', name: 'Incident Review', provider: { '@type': 'LocalBusiness', name: 'GigLine Safety & Compliance', url: 'https://www.giglinecompliance.com', telephone: '+13363298899' }, areaServed: { '@type': 'State', name: 'North Carolina' }, offers: { '@type': 'Offer', priceCurrency: 'USD', description: 'Incident Review, fixed quote provided on the call. Same-day response.' }, description: 'Time-sensitive post-incident review covering root cause analysis, regulatory obligations, documentation guidance, and corrective action planning.' },
           { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.giglinecompliance.com/' }, { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://www.giglinecompliance.com/services' }, { '@type': 'ListItem', position: 3, name: 'Incident Review', item: `https://www.giglinecompliance.com/services/${SLUG}` }] },
         ]}
       />
 
-      {/* Hero — dark navy with RED urgency badge + red CTA, no pricing block */}
+      {/* Hero, dark navy with RED urgency badge + red CTA, no pricing block */}
       <section className="pt-20 md:pt-24 pb-16 md:pb-20" style={{ background: NAVY }} data-testid="ir-hero">
         <div className="container max-w-6xl">
           {/* Time-Sensitive red badge */}
@@ -56,7 +56,7 @@ const IncidentReviewPage = () => {
             <span className="block" style={{ color: GOLD }}>file anything or talk to anyone.</span>
           </h1>
           <p className="text-base md:text-lg text-white/75 leading-[1.8] mb-9 max-w-3xl">
-            When something happens on your floor — an injury, a near-miss, an equipment failure — the next 24 hours matter more than most operators realize. What you say, what you document, and what you file can all be used against you. Get a clear picture of what happened and what your obligations are before you act.
+            When something happens on your floor, an injury, a near-miss, an equipment failure, the next 24 hours matter more than most operators realize. What you say, what you document, and what you file can all be used against you. Get a clear picture of what happened and what your obligations are before you act.
           </p>
           <div className="flex flex-wrap items-center gap-x-7 gap-y-3">
             <a
@@ -75,7 +75,7 @@ const IncidentReviewPage = () => {
         </div>
       </section>
 
-      {/* What the Review Covers — 4 cards on white */}
+      {/* What the Review Covers, 4 cards on white */}
       <section className="py-20 md:py-24 bg-white" data-testid="ir-coverage">
         <div className="container max-w-6xl">
           <Eyebrow>What the Review Covers</Eyebrow>
@@ -99,7 +99,7 @@ const IncidentReviewPage = () => {
         </div>
       </section>
 
-      {/* What Most Operators Get Wrong — narrative section on cream */}
+      {/* What Most Operators Get Wrong, narrative section on cream */}
       <section className="py-20 md:py-24" style={{ background: CREAM }} data-testid="ir-wrong">
         <div className="container max-w-3xl">
           <Eyebrow color={RED}>What Most Operators Get Wrong</Eyebrow>
@@ -112,14 +112,14 @@ const IncidentReviewPage = () => {
         </div>
       </section>
 
-      {/* Act Now — red urgent closing CTA */}
+      {/* Act Now, red urgent closing CTA */}
       <RelatedFieldNotesStrip
         heading="Field Notes that pair with an Incident Review"
-        intro="What Vince pulls apart after an incident — and how to keep the same failure from repeating."
+        intro="What Vince pulls apart after an incident, and how to keep the same failure from repeating."
         notes={[
-          { slug: 'lockout-tagout', title: 'Lockout / Tagout — the failures behind most amputations', blurb: 'Where LOTO programs quietly break down between the written program and the machine.' },
-          { slug: 'recordkeeping-300-log', title: 'OSHA 300 Log — the mistakes I see most often', blurb: 'What to log, when to log it, and the classification errors that get flagged after an inspection.' },
-          { slug: 'emergency-action-plans', title: 'Emergency Action Plans — beyond the fire drill', blurb: 'Alarm chains, muster points, and the plan gaps that surface exactly when you need them not to.' },
+          { slug: 'lockout-tagout', title: 'Lockout / Tagout, the failures behind most amputations', blurb: 'Where LOTO programs quietly break down between the written program and the machine.' },
+          { slug: 'recordkeeping-300-log', title: 'OSHA 300 Log, the mistakes I see most often', blurb: 'What to log, when to log it, and the classification errors that get flagged after an inspection.' },
+          { slug: 'emergency-action-plans', title: 'Emergency Action Plans, beyond the fire drill', blurb: 'Alarm chains, muster points, and the plan gaps that surface exactly when you need them not to.' },
         ]}
       />
 
@@ -141,7 +141,7 @@ const IncidentReviewPage = () => {
               onMouseLeave={(e) => (e.currentTarget.style.background = RED)}
               data-testid="ir-bottom-cta-call"
             >
-              <Phone size={18} />Call or Text Vince Now — (336) 329-8899
+              <Phone size={18} />Call or Text Vince Now, (336) 329-8899
             </a>
           </div>
           <Link to={INTAKE_HREF} className="inline-block mt-6 text-white/60 hover:text-white text-sm transition-colors underline" data-testid="ir-bottom-form-link">

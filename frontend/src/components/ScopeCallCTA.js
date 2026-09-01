@@ -1,7 +1,7 @@
 import React from 'react';
 import { Calendar, ArrowRight } from 'lucide-react';
 
-// GL-WEB-024 Addition 2 — Calendly Scope Call CTA block.
+// GL-WEB-024 Addition 2, Calendly Scope Call CTA block.
 // Placeholder URL until Vince completes GL-WEB-022 Calendly Stage 1 setup.
 // Once live, swap CALENDLY_SCOPE_CALL_URL to the Stage 1 event-type link.
 const CALENDLY_SCOPE_CALL_URL = 'https://calendly.com/vincelaw336/15min-scope-call';

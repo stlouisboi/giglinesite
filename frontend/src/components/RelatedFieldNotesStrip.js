@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
 /**
- * RelatedFieldNotesStrip — reusable footer band for service pages that surfaces 3-4
+ * RelatedFieldNotesStrip, reusable footer band for service pages that surfaces 3-4
  * hand-picked Field Notes. Purpose: pass link equity from service pages (which
  * receive the strongest inbound links from the homepage/nav) down to the Field
  * Notes cluster so Google indexes and ranks those long-tail pages faster.
@@ -13,7 +13,7 @@ import { ArrowRight } from 'lucide-react';
  *     kicker="Recommended Reading"
  *     heading="Field Notes that pair with this service"
  *     notes={[
- *       { slug: 'recordkeeping-300-log', title: 'OSHA 300 Log — the mistakes I see', blurb: '…' },
+ *       { slug: 'recordkeeping-300-log', title: 'OSHA 300 Log, the mistakes I see', blurb: '…' },
  *     ]}
  *   />
  *
@@ -23,7 +23,7 @@ import { ArrowRight } from 'lucide-react';
 const RelatedFieldNotesStrip = ({
   kicker = 'Recommended Reading',
   heading = 'Field Notes that pair with this service',
-  intro = 'Notes from the floor — plain language, no fluff, no fear-mongering.',
+  intro = 'Notes from the floor, plain language, no fluff, no fear-mongering.',
   notes = [],
   navy = '#102A43',
   gold = '#C9A84C',

@@ -9,13 +9,14 @@ const CREAM = '#F9F8F6';
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
 
 const meta = {
-  title: 'Corrective Action Implementation — Close the Findings | GigLine',
+  title: 'Corrective Action Implementation, Close the Findings | GigLine',
   description:
     'Hands-on implementation to close safety-control findings after an assessment. Custom quote per facility, typically from $2,500.',
   canonical: '/services/corrective-action-implementation',
 };
 
-const schema = {
+const schema = [
+{
   '@context': 'https://schema.org',
   '@type': 'Service',
   name: 'Corrective Action Implementation',
@@ -34,20 +35,32 @@ const schema = {
     price: '2500',
     priceCurrency: 'USD',
     description:
-      'Corrective Action Implementation — custom quote. Most projects begin at $2,500 based on findings, complexity, and facility size.',
+      'Corrective Action Implementation, custom quote. Most projects begin at $2,500 based on findings, complexity, and facility size.',
   },
-};
+},
+{
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'What is Corrective Action Implementation?', acceptedAnswer: { '@type': 'Answer', text: 'Corrective Action Implementation is a separately scoped, hands-on engagement that closes specific safety findings identified during a Compliance Readiness Visit, Safety Walkthrough, or comparable assessment. GigLine organizes ownership, records, and evidence around the findings you want closed. It is not another assessment and not a subscription.' } },
+    { '@type': 'Question', name: 'How much does Corrective Action Implementation cost?', acceptedAnswer: { '@type': 'Answer', text: 'Corrective Action Implementation is custom-quoted per engagement. Most projects begin at $2,500. The quote varies based on the number of findings, complexity of each one, the program area (LOTO, HazCom, PIT, training, recordkeeping), facility size, and how much hands-on work is required on-site versus off-site.' } },
+    { '@type': 'Question', name: 'Do I need to do a Compliance Readiness Visit first?', acceptedAnswer: { '@type': 'Answer', text: 'Not required, but strongly recommended. Corrective Action Implementation is most effective when GigLine has an existing findings list to close. If you already have findings from another consultant, an OSHA citation letter, or an insurance audit, we can scope directly from that.' } },
+    { '@type': 'Question', name: 'Is this a retainer or subscription?', acceptedAnswer: { '@type': 'Answer', text: 'No. Corrective Action Implementation is scoped per project with a fixed quote. When the selected findings are closed and evidence is organized, the engagement ends. For ongoing support, see the Annual Compliance Control Partner at $12,000 per year.' } },
+    { '@type': 'Question', name: 'What deliverables come out of a Corrective Action engagement?', acceptedAnswer: { '@type': 'Answer', text: 'Typical deliverables include: named owners for each finding, corrective-action tracker with target dates and closure evidence, updated written programs where required, training records reconciled to job roles, and a document-control structure for the records that would be produced during an OSHA inspection.' } },
+  ],
+},
+];
 
 const EXAMPLES = [
   {
     Icon: Wrench,
     title: 'Organize PIT authorization and evaluation systems',
-    body: 'Build the operator-by-operator authorization file, evaluation cadence, and pre-shift documentation structure — matched to your actual truck fleet and shift structure.',
+    body: 'Build the operator-by-operator authorization file, evaluation cadence, and pre-shift documentation structure, matched to your actual truck fleet and shift structure.',
   },
   {
     Icon: FileCheck,
     title: 'Rebuild selected HazCom evidence structures',
-    body: 'Organize the chemical inventory, SDS accessibility, secondary container labeling audit, and training-to-inventory match — with responsible owners named.',
+    body: 'Organize the chemical inventory, SDS accessibility, secondary container labeling audit, and training-to-inventory match, with responsible owners named.',
   },
   {
     Icon: ClipboardCheck,
@@ -67,7 +80,7 @@ const EXAMPLES = [
   {
     Icon: ClipboardCheck,
     title: 'Build corrective-action tracking',
-    body: 'A single tracker for open findings, target dates, verification, and closure evidence — one that management can actually read on a Monday morning.',
+    body: 'A single tracker for open findings, target dates, verification, and closure evidence, one that management can actually read on a Monday morning.',
   },
 ];
 
@@ -106,7 +119,7 @@ const CorrectiveActionImplementationPage = () => (
             </h1>
             <p className="text-base md:text-lg text-white/75 leading-relaxed mb-6 max-w-xl">
               After an assessment identifies what needs to change, Corrective Action Implementation is
-              the hands-on engagement that closes selected findings — with ownership, records, and
+              the hands-on engagement that closes selected findings, with ownership, records, and
               evidence organized so the control actually works between visits.
             </p>
             <p className="text-sm text-white/55 leading-relaxed mb-8 max-w-xl">
@@ -152,7 +165,7 @@ const CorrectiveActionImplementationPage = () => (
           </div>
         </div>
 
-        {/* Pricing panel — spans full width beneath hero */}
+        {/* Pricing panel, spans full width beneath hero */}
         <div
           className="rounded-xl p-8 grid grid-cols-1 md:grid-cols-[minmax(260px,320px)_1fr] gap-7 md:gap-10 items-start"
           style={{
@@ -172,7 +185,7 @@ const CorrectiveActionImplementationPage = () => (
               Custom Quote
             </p>
             <p className="text-white/70 text-[15px] leading-relaxed" data-testid="cai-hero-price-support">
-              Most projects begin at <span className="font-semibold text-white" style={mono}>$2,500</span>. Fixed price before scheduling. Implementation is always separately scoped — the quote varies with findings, complexity, and facility size.
+              Most projects begin at <span className="font-semibold text-white" style={mono}>$2,500</span>. Fixed price before scheduling. Implementation is always separately scoped, the quote varies with findings, complexity, and facility size.
             </p>
           </div>
           <div>
@@ -251,7 +264,7 @@ const CorrectiveActionImplementationPage = () => (
               Best for: multiple connected safety-control areas
             </h3>
             <p className="text-[15px] leading-[1.7] text-[#1C2B2B]/75">
-              You want a broader safety infrastructure across the operation — physical command
+              You want a broader safety infrastructure across the operation, physical command
               system, digital folder architecture, training matrix, corrective-action tracker,
               supervisor handoff, and evidence system built to work together.
             </p>
@@ -328,8 +341,8 @@ const CorrectiveActionImplementationPage = () => (
           Have a list of findings you need closed?
         </h2>
         <p className="text-base md:text-lg text-white/75 leading-relaxed mb-8 max-w-2xl mx-auto">
-          Share the list — from a GigLine assessment, an insurance audit, a customer pre-qualification,
-          or an internal review — and GigLine will scope the implementation and quote it fixed before scheduling.
+          Share the list, from a GigLine assessment, an insurance audit, a customer pre-qualification,
+          or an internal review, and GigLine will scope the implementation and quote it fixed before scheduling.
         </p>
         <Link
           to="/intake?service=corrective-action-implementation"

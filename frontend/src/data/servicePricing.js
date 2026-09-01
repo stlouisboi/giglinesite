@@ -1,9 +1,9 @@
 /**
- * GigLine Safety & Compliance — canonical public pricing source of truth.
+ * GigLine Safety & Compliance, canonical public pricing source of truth.
  *
  * Every public-facing price string in the frontend should import from this
  * module so a single change here propagates cleanly. The one deliberate
- * exception is `citationProofKits.js` (kit ladder) — that file already
+ * exception is `citationProofKits.js` (kit ladder), that file already
  * feeds the SSR pipeline (`generate-seo-pages.js`) via CommonJS require
  * and drives backend Stripe checkout amounts (`backend/config.py`), so
  * kit prices remain locally owned there to avoid an awkward dual-import.
@@ -36,7 +36,7 @@ export const COMPLIANCE_READINESS_VISIT = {
 // ─── BUILD ─── implementation services ───────────────────────────────────
 export const CORRECTIVE_ACTION_IMPLEMENTATION = {
   amountFrom: 2500,
-  label: 'Custom quote — most projects begin at $2,500',
+  label: 'Custom quote, most projects begin at $2,500',
   shortLabel: 'Custom quote',
 };
 
@@ -59,7 +59,7 @@ export const ANNUAL_PARTNER = {
   shortLabel: '$12,000/year',
 };
 
-// ─── Citation-Proof Kit ladder (mirrored, not owned — see citationProofKits.js) ─
+// ─── Citation-Proof Kit ladder (mirrored, not owned, see citationProofKits.js) ─
 export const KIT_PRICES = {
   digital: 150,
   controlSystem: 300,

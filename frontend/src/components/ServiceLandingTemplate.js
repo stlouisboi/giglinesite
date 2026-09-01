@@ -25,7 +25,8 @@ const ServiceLandingTemplate = ({
   headline,
   subheadline,
   priceLine,
-  heroImage,           // optional: { src, alt } — right-column editorial photo
+  heroImage,           // optional: { src, alt }, right-column editorial photo
+  faqItems,            // optional: [{ question, answer }, ...] for FAQPage schema
   // Sections
   whoItsFor,           // { intro, bullets[] }
   theProblem,          // { intro, bullets[] }
@@ -35,9 +36,19 @@ const ServiceLandingTemplate = ({
   // Closing
   closingHeadline,
 }) => {
+  const schema = faqItems && faqItems.length ? [{
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map(f => ({
+      '@type': 'Question',
+      name: f.question,
+      acceptedAnswer: { '@type': 'Answer', text: f.answer },
+    })),
+  }] : undefined;
+
   return (
     <main className="overflow-x-hidden bg-white">
-      <SEO title={seoTitle} description={seoDescription} canonical={canonical} />
+      <SEO title={seoTitle} description={seoDescription} canonical={canonical} schema={schema} />
 
       {/* ── Hero ── */}
       <section
@@ -247,7 +258,7 @@ const ServiceLandingTemplate = ({
             </Link>
           </div>
           <p className="text-base text-[#CBD5E1]" style={mono} data-testid="svc-closing-contact">
-            Or call Vince directly — (336) 329-8899
+            Or call Vince directly, (336) 329-8899
           </p>
         </div>
       </section>

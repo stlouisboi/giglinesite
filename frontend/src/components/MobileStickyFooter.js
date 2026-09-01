@@ -22,7 +22,7 @@ const MobileStickyFooter = () => {
       data-testid="mobile-sticky-cta"
     >
       <div className="flex items-stretch gap-2 px-3 py-2.5">
-        {/* Primary — Call */}
+        {/* Primary, Call */}
         <a
           href="tel:3363298899"
           onClick={() => trackPhoneClick('mobile_sticky_bar')}
@@ -39,7 +39,7 @@ const MobileStickyFooter = () => {
           Call (336) 329-8899
         </a>
 
-        {/* Secondary — Request a Walkthrough */}
+        {/* Secondary, Request a Walkthrough */}
         <Link
           to="/services"
           className="flex-shrink-0 flex items-center justify-center rounded-lg font-semibold"

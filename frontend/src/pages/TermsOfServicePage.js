@@ -4,7 +4,7 @@ import { ArrowRight, Mail, Phone } from 'lucide-react';
 import SEO from '../components/SEO';
 
 /*
-  GL-WEB-014 — Terms of Service
+  GL-WEB-014, Terms of Service
   Plain-language B2B service-agreement framework.
   Covers acceptable use, SMS terms, IP, payment, warranties, liability,
   governing law (NC), termination, and modifications.
@@ -74,7 +74,7 @@ const TermsOfServicePage = () => {
 
         <Section title="3. Intellectual Property">
           <p>
-            All content on this website &mdash; including written text, photographs, the GigLine logo, the GigLine Safety Walkthrough Report format, the Triad OSHA Field Manual, the case study, lead-magnet PDFs, and all derivative materials &mdash; is the intellectual property of GigLine Safety &amp; Compliance.
+            All content on this website , including written text, photographs, the GigLine logo, the GigLine Safety Walkthrough Report format, the Triad OSHA Field Manual, the case study, lead-magnet PDFs, and all derivative materials , is the intellectual property of GigLine Safety &amp; Compliance.
           </p>
           <p className="mt-3">
             When you engage GigLine for a service, you receive a license to use the deliverables (reports, programs, training materials) within your operation. You may not resell, redistribute, or sublicense GigLine deliverables to third parties without written permission.
@@ -129,7 +129,7 @@ const TermsOfServicePage = () => {
             <li>You will provide accurate information on intake forms</li>
             <li>You will not represent GigLine deliverables as your own original work or as approved by OSHA</li>
             <li>You will not use GigLine reports to mislead regulators, insurers, or third parties</li>
-            <li>You acknowledge that the report Vince delivers reflects what was visible on the day of the walkthrough &mdash; not a guarantee of ongoing compliance</li>
+            <li>You acknowledge that the report Vince delivers reflects what was visible on the day of the walkthrough , not a guarantee of ongoing compliance</li>
           </ul>
         </Section>
 

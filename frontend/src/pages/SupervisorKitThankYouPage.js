@@ -124,7 +124,7 @@ const SupervisorKitThankYouPage = () => {
                   data-testid="kit-thankyou-body-digital"
                 >
                   All 17 documents are attached to the receipt email we just sent you.
-                  Start with <strong>SS-01_Welcome.pdf</strong> &mdash; it explains how the system fits together.
+                  Start with <strong>SS-01_Welcome.pdf</strong> , it explains how the system fits together.
                   If you don&rsquo;t see the email within a few minutes, check spam or call <strong>(336) 329-8899</strong>.
                 </p>
               )}
@@ -142,7 +142,7 @@ const SupervisorKitThankYouPage = () => {
                 data-testid="kit-thankyou-review-prompt"
               >
                 <p className="text-[14.5px] leading-[1.55]" style={{ color: TEXT_MUTED, ...serif }}>
-                  While you&rsquo;re here &mdash; if this saved you time, a short Google review keeps GigLine going for the next small operation.{' '}
+                  While you&rsquo;re here , if this saved you time, a short Google review keeps GigLine going for the next small operation.{' '}
                   <a
                     href="https://g.page/r/CdlAYUu_I3xpEAI/review?utm_source=kit-thank-you&utm_medium=app&utm_campaign=review-request"
                     target="_blank"
@@ -171,14 +171,14 @@ const SupervisorKitThankYouPage = () => {
                 className="font-bold leading-tight tracking-tight mb-5 text-[28px] md:text-[36px]"
                 style={{ ...sans, color: NAVY }}
               >
-                Hang tight &mdash; or give Vince a call.
+                Hang tight , or give Vince a call.
               </h1>
               <p
                 className="text-[16.5px] md:text-[17.5px] leading-[1.65] mb-8"
                 style={{ color: TEXT_MUTED, ...serif }}
               >
                 Stripe is finishing up the charge. If you got an email receipt, you&rsquo;re good
-                &mdash; Vince will be in touch. If something looks off, call{' '}
+                , Vince will be in touch. If something looks off, call{' '}
                 <strong>(336) 329-8899</strong>.
               </p>
             </>
@@ -209,7 +209,7 @@ const SupervisorKitThankYouPage = () => {
             </a>
           </div>
 
-          {/* Implementation Support Upsell — per user's brief, belongs on the confirmation page, not the main sales page */}
+          {/* Implementation Support Upsell, per user's brief, belongs on the confirmation page, not the main sales page */}
           <div
             className="mt-14 md:mt-16 rounded-md p-6 md:p-8 text-left"
             style={{ background: NAVY, color: 'white', border: `1px solid ${GOLD}` }}
@@ -231,12 +231,12 @@ const SupervisorKitThankYouPage = () => {
               GigLine implementation support helps your team:
             </p>
             <ul className="mb-6 space-y-1.5 text-[14.5px] md:text-[15.5px] leading-[1.55]" style={{ color: 'rgba(255,255,255,0.82)', ...serif }}>
-              <li>&mdash; Assign internal ownership</li>
-              <li>&mdash; Organize the system for your facility</li>
-              <li>&mdash; Establish the inspection rhythm</li>
-              <li>&mdash; Set corrective-action responsibilities</li>
-              <li>&mdash; Review documentation expectations</li>
-              <li>&mdash; Prepare the first 30-day implementation cycle</li>
+              <li>, Assign internal ownership</li>
+              <li>, Organize the system for your facility</li>
+              <li>, Establish the inspection rhythm</li>
+              <li>, Set corrective-action responsibilities</li>
+              <li>, Review documentation expectations</li>
+              <li>, Prepare the first 30-day implementation cycle</li>
             </ul>
             <a
               href="mailto:vince@giglinecompliance.com?subject=Supervisor%20Safety%20OS%20Implementation%20Support"

@@ -8,10 +8,10 @@ const API = process.env.REACT_APP_BACKEND_URL;
 
 /* ── Question data ── */
 const QUESTIONS = [
-  { id: 1, text: "Do you have a written Hazard Communication program — and can your team locate the SDS for every chemical on site without delay?", citation: "29 CFR 1910.1200", topic: "HazCom & SDS" },
-  { id: 2, text: "Are forklift operators currently certified — and are daily pre-shift inspections consistently documented?", citation: "29 CFR 1910.178", topic: "Forklift Certification" },
+  { id: 1, text: "Do you have a written Hazard Communication program, and can your team locate the SDS for every chemical on site without delay?", citation: "29 CFR 1910.1200", topic: "HazCom & SDS" },
+  { id: 2, text: "Are forklift operators currently certified, and are daily pre-shift inspections consistently documented?", citation: "29 CFR 1910.178", topic: "Forklift Certification" },
   { id: 3, text: "Do you have a written Lockout/Tagout program with documented annual inspections for each energy control procedure?", citation: "29 CFR 1910.147", topic: "Lockout-Tagout" },
-  { id: 4, text: "Are machine guards in place on all equipment — and have none been removed, bypassed, or modified?", citation: "29 CFR 1910.212", topic: "Machine Guarding" },
+  { id: 4, text: "Are machine guards in place on all equipment, and have none been removed, bypassed, or modified?", citation: "29 CFR 1910.212", topic: "Machine Guarding" },
   { id: 5, text: "Are damaged ladders removed from service and tagged before they are used again?", citation: "29 CFR 1926.1053", topic: "Ladder Safety" },
   { id: 6, text: "Are safety training records current, documented, and accessible when requested?", citation: "29 CFR 1910.132", topic: "Training Records" },
 ];
@@ -19,7 +19,7 @@ const QUESTIONS = [
 /* ── Explanations per topic ── */
 const EXPLANATIONS = {
   "HazCom & SDS": "Missing or incomplete hazard communication programs are OSHA's #1 cited violation. Every chemical on site needs a label and an accessible SDS.",
-  "Forklift Certification": "Uncertified operators and undocumented inspections put people and product at risk. OSHA requires both — and checks for them.",
+  "Forklift Certification": "Uncertified operators and undocumented inspections put people and product at risk. OSHA requires both, and checks for them.",
   "Lockout-Tagout": "Without documented LOTO procedures and annual inspections, unexpected energy release is a leading cause of serious injury.",
   "Machine Guarding": "Missing, removed, or modified guards on equipment is one of the most common and preventable citations in general industry.",
   "Ladder Safety": "Damaged ladders left in service are a citation waiting to happen. Simple to fix, often overlooked.",
@@ -56,21 +56,21 @@ const SafetyCheckPage = () => {
   // High tier: multi-control situation → CRV (combined engagement)
   const routeFromTopics = (topics) => {
     if (!topics || topics.length === 0) return null;
-    // HazCom-heavy — 1910.1200
+    // HazCom-heavy, 1910.1200
     if (topics.length === 1 && topics[0] === 'HazCom & SDS') {
       return {
         primary: { label: 'Explore the HazCom Pro Kit', to: '/citation-proof-kits/hazcom-pro-kit', testid: 'route-hazcom-kit' },
         secondary: { label: 'Or request a Documentation Readiness Review →', to: '/intake?service=documentation-readiness-review', testid: 'route-doc-review' },
       };
     }
-    // Forklift/PIT-heavy — 1910.178
+    // Forklift/PIT-heavy, 1910.178
     if (topics.length === 1 && topics[0] === 'Forklift Certification') {
       return {
         primary: { label: 'Explore the Forklift/PIT Readiness Kit', to: '/citation-proof-kits/forklift-pit-readiness-kit', testid: 'route-pit-kit' },
         secondary: { label: 'Or request a Safety Walkthrough →', to: '/intake?service=safety-walkthrough-report', testid: 'route-walkthrough' },
       };
     }
-    // LOTO or Machine Guarding-heavy — 1910.147 / 1910.212
+    // LOTO or Machine Guarding-heavy, 1910.147 / 1910.212
     if (topics.length <= 2 && topics.every(t => t === 'Lockout-Tagout' || t === 'Machine Guarding')) {
       const isLoto = topics.includes('Lockout-Tagout');
       return {
@@ -187,7 +187,7 @@ const SafetyCheckPage = () => {
           <p className="text-lg text-white/85 leading-relaxed">
             {phase === 'results'
               ? `Based on your responses, ${noCount} of 6 areas need attention.`
-              : 'Built on OSHA\'s most cited violations in general industry. Takes 90 seconds. Answer honestly — this is for your operation, not for show.'}
+              : 'Built on OSHA\'s most cited violations in general industry. Takes 90 seconds. Answer honestly, this is for your operation, not for show.'}
           </p>
         </div>
       </section>
@@ -223,7 +223,7 @@ const SafetyCheckPage = () => {
                       className={`px-6 py-2.5 rounded font-medium text-sm transition-colors ${answers[q.id] === 'yes' ? 'bg-[#102A43] text-white' : 'bg-[#F5F5F3] text-[#1C2B2B] hover:bg-[#E8E8E5]'}`}
                       data-testid={`question-${q.id}-yes`}
                     >
-                      Yes — Confirmed
+                      Yes, Confirmed
                     </button>
                     <button
                       type="button"
@@ -231,7 +231,7 @@ const SafetyCheckPage = () => {
                       className={`px-6 py-2.5 rounded font-medium text-sm transition-colors ${answers[q.id] === 'no' ? 'bg-[#8B2500] text-white' : 'bg-[#F5F5F3] text-[#1C2B2B] hover:bg-[#E8E8E5]'}`}
                       data-testid={`question-${q.id}-no`}
                     >
-                      No — Not in Place
+                      No, Not in Place
                     </button>
                   </div>
                 </div>
@@ -299,7 +299,7 @@ const SafetyCheckPage = () => {
 
       {/* ━━━ PHASE 3: RESULTS (tier-based) ━━━ */}
       {phase === 'results' && (() => {
-        const confirmed = 6 - noCount; // Number of "Yes — Confirmed"
+        const confirmed = 6 - noCount; // Number of "Yes, Confirmed"
         // Single-flag routing (Feb 2026): 1 flagged topic now unlocks the
         // medium-tier kit route instead of falling into the low-tier guide.
         //   low    = 0 flags  (all 6 confirmed)
@@ -313,7 +313,7 @@ const SafetyCheckPage = () => {
             labelClass: 'bg-emerald-500/15 text-emerald-300 border-emerald-400/30',
             scoreClass: 'text-white',
             headline: 'Your documented controls are in place.',
-            body: "You're ahead of most operations this size. Save this result and recheck quarterly — gaps open faster than most managers expect.",
+            body: "You're ahead of most operations this size. Save this result and recheck quarterly, gaps open faster than most managers expect.",
           },
           medium: {
             label: 'GAPS IDENTIFIED',
@@ -323,8 +323,8 @@ const SafetyCheckPage = () => {
               ? 'You have a documented gap in one cited area.'
               : 'You have documented gaps in at least one cited area.',
             body: noCount === 1
-              ? "Even one unconfirmed area is exactly what an OSHA inspector looks for first. The good news: it's fixable — and there's usually a matching kit or walkthrough that closes it fast."
-              : "These gaps are fixable — but they're also exactly what an OSHA inspector looks for. A walkthrough puts a written record in your hands before anyone else sees the floor.",
+              ? "Even one unconfirmed area is exactly what an OSHA inspector looks for first. The good news: it's fixable, and there's usually a matching kit or walkthrough that closes it fast."
+              : "These gaps are fixable, but they're also exactly what an OSHA inspector looks for. A walkthrough puts a written record in your hands before anyone else sees the floor.",
           },
           high: {
             label: 'HIGH EXPOSURE',
@@ -376,7 +376,7 @@ const SafetyCheckPage = () => {
                   {TIER.body}
                 </p>
 
-                {/* Flagged topics (only if medium/high — gives substance to the result) */}
+                {/* Flagged topics (only if medium/high, gives substance to the result) */}
                 {flaggedTopics.length > 0 && (
                   <div className="mb-8 pb-8 border-b border-white/10" data-testid="results-flagged-list">
                     <p className="text-xs font-semibold tracking-widest uppercase text-white/40 mb-4" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
@@ -439,7 +439,7 @@ const SafetyCheckPage = () => {
                       className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold px-7 py-3.5 rounded transition-colors text-base"
                       data-testid="results-cta-primary"
                     >
-                      Call or Text Vince Now — (336) 329-8899
+                      Call or Text Vince Now, (336) 329-8899
                     </a>
                     <Link
                       to="/intake?service=compliance-readiness-visit"
@@ -456,7 +456,7 @@ const SafetyCheckPage = () => {
                   className="mt-7 text-sm text-white/60 leading-relaxed"
                   data-testid="results-vince-review-offer"
                 >
-                  Want Vince to review your score? Reply directly —{' '}
+                  Want Vince to review your score? Reply directly ,{' '}
                   <a
                     href="mailto:vince@giglinecompliance.com?subject=Safety%20Check%20Review"
                     className="text-[#C9A84C] hover:text-white underline underline-offset-4 transition-colors"

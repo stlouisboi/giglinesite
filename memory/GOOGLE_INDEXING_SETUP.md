@@ -1,4 +1,4 @@
-# Google Indexing API — One-Time Setup
+# Google Indexing API, One-Time Setup
 
 Ships URLs directly to Google for near-instant crawling. Used by the Admin
 "SEO Indexing" tab (single-URL button + bulk push from `sitemap.xml`).
@@ -31,13 +31,13 @@ Ships URLs directly to Google for near-instant crawling. Used by the Admin
    - Description: "Submits URLs to the Google Indexing API for
      giglinecompliance.com".
    - Click **CREATE AND CONTINUE**.
-3. **Grant this service account access** step — click **CONTINUE** without
+3. **Grant this service account access** step, click **CONTINUE** without
    picking any project role (Indexing API doesn't need one).
-4. **Grant users access** step — click **DONE**.
+4. **Grant users access** step, click **DONE**.
 5. On the Service Accounts list, click the new account → **KEYS** tab →
    **ADD KEY → Create new key → JSON → CREATE**.
 6. A `.json` file downloads. Keep it somewhere safe on your computer.
-   *(You cannot re-download the same key — you'd have to make a new one.)*
+   *(You cannot re-download the same key, you'd have to make a new one.)*
 
 Also **copy the service account's email address** (looks like
 `gigline-indexing-bot@<project-id>.iam.gserviceaccount.com`). You'll need
@@ -54,7 +54,7 @@ Owner permission for the property.
 2. Pick the `giglinecompliance.com` property.
 3. **Settings → Users and permissions → ADD USER**.
 4. Paste the service-account email from step 2.
-5. Permission: **Owner** (required — Full or Restricted will 403 the API).
+5. Permission: **Owner** (required, Full or Restricted will 403 the API).
 6. Save.
 
 ---
@@ -91,17 +91,17 @@ sudo supervisorctl restart backend
 2. Open the **SEO Indexing** tab.
 3. The "Connection status" card should say **Configured** and print the
    service-account email.
-4. Test with any live URL — e.g., `https://www.giglinecompliance.com/`.
+4. Test with any live URL, e.g., `https://www.giglinecompliance.com/`.
    A successful response looks like:
    ```json
    {"urlNotificationMetadata": {"url": "...", "latestUpdate": {...}}}
    ```
 5. If you see `403 Permission denied`, the Search Console owner assignment
-   in step 3 didn't propagate — re-check the email and permission level.
+   in step 3 didn't propagate, re-check the email and permission level.
 
 ---
 
-## 6. Daily quota — what to expect
+## 6. Daily quota, what to expect
 
 - **Default quota: 200 requests / day** (roughly). Enough for a normal
   publish cadence. Google may reject with `429 RESOURCE_EXHAUSTED` if you
@@ -119,8 +119,8 @@ sudo supervisorctl restart backend
 | New Field Note published | `URL_UPDATED` |
 | Existing page significantly rewritten | `URL_UPDATED` |
 | Page removed / 410'd / redirected permanently | `URL_DELETED` |
-| Cosmetic copy tweak (no SEO value) | Don't submit — save the quota |
+| Cosmetic copy tweak (no SEO value) | Don't submit, save the quota |
 
 Google officially intends this API for `JobPosting` and `BroadcastEvent`
-structured data. Submitting other pages works but is unofficial — treat
+structured data. Submitting other pages works but is unofficial, treat
 it as a "hint" rather than a guarantee.

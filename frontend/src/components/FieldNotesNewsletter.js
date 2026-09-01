@@ -4,7 +4,7 @@ import { Mail, ArrowRight, Check } from 'lucide-react';
 const API = process.env.REACT_APP_BACKEND_URL;
 
 /**
- * Field Notes — Monthly newsletter capture.
+ * Field Notes, Monthly newsletter capture.
  * Soft list-builder (doesn't compete with /walkthrough or /request-walkthrough).
  * One promise: one topic a month, no spam, reply anytime.
  */
@@ -53,7 +53,7 @@ const FieldNotesNewsletter = ({ source = 'field-notes' }) => {
         }}
       >
         <div className="grid md:grid-cols-2 gap-0">
-          {/* LEFT — copy */}
+          {/* LEFT, copy */}
           <div className="p-8 md:p-10 flex flex-col justify-center">
             <p
               className="uppercase tracking-[3px] text-[#2A52A0] mb-3 font-bold"
@@ -65,11 +65,11 @@ const FieldNotesNewsletter = ({ source = 'field-notes' }) => {
               One topic a month.<br className="hidden md:block" /> No spam.
             </h3>
             <p className="text-white/65 text-base md:text-[15px] leading-relaxed">
-              Real safety topics from real walkthroughs &mdash; the CFR, the citation, the fix. Written by Vince. Reply anytime.
+              Real safety topics from real walkthroughs , the CFR, the citation, the fix. Written by Vince. Reply anytime.
             </p>
           </div>
 
-          {/* RIGHT — form */}
+          {/* RIGHT, form */}
           <div
             className="p-8 md:p-10 flex flex-col justify-center"
             style={{ backgroundColor: 'rgba(255,255,255,0.03)', borderLeft: '1px solid rgba(31,111,235,0.15)' }}
@@ -128,7 +128,7 @@ const FieldNotesNewsletter = ({ source = 'field-notes' }) => {
                   {!submitting && <ArrowRight size={16} />}
                 </button>
 
-                {/* Honeypot — off-screen */}
+                {/* Honeypot, off-screen */}
                 <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', width: '1px', height: '1px', overflow: 'hidden' }}>
                   <label>
                     Website

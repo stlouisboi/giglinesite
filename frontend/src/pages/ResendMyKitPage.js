@@ -6,7 +6,7 @@ import { Helmet } from 'react-helmet-async';
 const API = process.env.REACT_APP_BACKEND_URL;
 
 /*
-  /resend-my-kit — public self-serve page for buyers whose kit-delivery emails
+  /resend-my-kit, public self-serve page for buyers whose kit-delivery emails
   hit spam. Backend endpoint: POST /api/kit-orders/resend. Rate-limited to
   3 attempts / hour / email. Always returns a generic success message so email
   enumeration is impossible.
@@ -54,7 +54,7 @@ const ResendMyKitPage = () => {
   return (
     <div className="bg-[#F9F8F6] min-h-screen" data-testid="resend-my-kit-page">
       <Helmet>
-        <title>Resend My Kit — GigLine Safety &amp; Compliance</title>
+        <title>Resend My Kit, GigLine Safety &amp; Compliance</title>
         <meta name="description" content="Buy a GigLine kit but the email hit your spam folder? Enter your email and we'll re-send your paid kit PDFs instantly." />
         <meta name="robots" content="noindex, follow" />
         <link rel="canonical" href="https://www.giglinecompliance.com/resend-my-kit" />
@@ -151,7 +151,7 @@ const ResendMyKitPage = () => {
           <div className="mt-8 bg-[#F3ECDB]/60 border-l-4 border-[#C9A84C] rounded p-5 text-sm text-[#1C2B2B] leading-relaxed" data-testid="resend-help">
             <p className="font-bold mb-2">Not sure which email you used?</p>
             <ul className="list-disc list-inside space-y-1.5 text-[#1C2B2B]/85">
-              <li>Check your Stripe receipt — it will show the email attached to the purchase.</li>
+              <li>Check your Stripe receipt, it will show the email attached to the purchase.</li>
               <li>Search your inbox for &ldquo;GigLine&rdquo; or &ldquo;giglinecompliance.com&rdquo;.</li>
               <li>Still stuck? Email us the last 4 digits of the card used and we&rsquo;ll look it up manually.</li>
             </ul>

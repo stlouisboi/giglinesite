@@ -5,7 +5,7 @@ const API = process.env.REACT_APP_BACKEND_URL;
 const STORAGE_KEY = 'gl_lead_magnet_bar_dismissed';
 
 /**
- * StickyLeadMagnetBar — persistent bottom bar on Field Note pages offering the
+ * StickyLeadMagnetBar, persistent bottom bar on Field Note pages offering the
  * 10-Minute Pre-Inspection Checklist PDF in exchange for an email. Appears after
  * ~30% page scroll, dismissible (persists via localStorage for 30 days),
  * uses the same MailerLite endpoint as FieldNotesNewsletter so no new API needed.
@@ -76,14 +76,14 @@ const StickyLeadMagnetBar = () => {
               Get the 10-Minute Pre-Inspection Checklist
             </p>
             <p className="text-[12.5px] md:text-[13px] text-white/65 leading-tight mt-0.5">
-              What OSHA looks at first — free PDF, one-time email required.
+              What OSHA looks at first, free PDF, one-time email required.
             </p>
           </div>
         </div>
         {status === 'success' ? (
           <p className="flex items-center gap-2 text-[14px] font-bold" style={{ color: '#C9A84C' }} data-testid="sticky-lm-success">
             <CheckCircle2 size={16} />
-            Check your inbox — PDF is on the way.
+            Check your inbox, PDF is on the way.
           </p>
         ) : (
           <form onSubmit={submit} className="flex items-center gap-2 w-full md:w-auto">

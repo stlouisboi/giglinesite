@@ -5,7 +5,7 @@ import { ArrowRight, Camera, Phone } from 'lucide-react';
 /*
   SampleReportSection
   ──────────────────────────────────────────────────────
-  GL-WEB-012 — Sample Report Section for /services
+  GL-WEB-012, Sample Report Section for /services
   Static, document-style rendering of the actual GigLine
   walkthrough report deliverable. Not interactive.
 */
@@ -45,7 +45,7 @@ const FINDINGS = [
     n: '02',
     severity: 'Serious',
     cfr: '29 CFR 1910.212(a)(1)',
-    standard: 'Machine Guarding — General Requirements for All Machines',
+    standard: 'Machine Guarding, General Requirements for All Machines',
     label: 'Unguarded shear point of operation on roll former cut-off mechanism',
     location: 'Production floor / roll former cut-off station',
     observation:
@@ -60,7 +60,7 @@ const FINDINGS = [
     n: '03',
     severity: 'Documentation Gap',
     cfr: '29 CFR 1910.1200(g)(1)',
-    standard: 'Hazard Communication — Safety Data Sheets',
+    standard: 'Hazard Communication, Safety Data Sheets',
     label: 'SDS not on file for chemical in active use',
     location: 'Production floor / hydraulic power unit',
     observation:
@@ -107,7 +107,7 @@ const SampleReportSection = () => {
             style={{ color: TEXT_MUTED }}
             data-testid="sample-report-subtext"
           >
-            Three findings from a real engagement &mdash; sanitized. Same format, same CFR citations, same penalty ranges your inspector would reference.
+            Three findings from a real engagement , sanitized. Same format, same CFR citations, same penalty ranges your inspector would reference.
           </p>
         </div>
 
@@ -178,7 +178,7 @@ const SampleReportSection = () => {
               style={{ color: TEXT_MUTED }}
               data-testid="sample-report-exec-summary"
             >
-              Three sanitized findings from a real engagement. The two Serious citations &mdash; an unsecured propane cylinder adjacent to flammable storage and an unguarded shear point of operation &mdash; required immediate corrective action before the next production shift. The Documentation Gap covers a missing Safety Data Sheet for a hydraulic oil in active use at the production line.
+              Three sanitized findings from a real engagement. The two Serious citations , an unsecured propane cylinder adjacent to flammable storage and an unguarded shear point of operation , required immediate corrective action before the next production shift. The Documentation Gap covers a missing Safety Data Sheet for a hydraulic oil in active use at the production line.
             </p>
           </section>
 
@@ -393,10 +393,10 @@ const PhotoPlaceholder = ({ area, photoUrl }) => {
         data-testid="photo-placeholder"
       >
         <img src={photoUrl}
-          alt={`Field photo — ${area}`}
+          alt={`Field photo, ${area}`}
           className="w-full h-full object-cover"
           loading="lazy" />
-        {/* SAMPLE — ANONYMIZED badge */}
+        {/* SAMPLE, ANONYMIZED badge */}
         <span
           className="absolute uppercase font-bold"
           style={{

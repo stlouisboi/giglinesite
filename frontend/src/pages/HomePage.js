@@ -60,7 +60,7 @@ const HomePage = () => {
   return (
     <main className="overflow-x-hidden">
       <SEO
-        title="OSHA Safety Walkthrough — Piedmont Triad NC | GigLine"
+        title="OSHA Safety Walkthrough, Piedmont Triad NC | GigLine"
         description="Safety becomes the thing you'll get to. On-site OSHA walkthroughs for NC manufacturers & warehouses. 48-hour report, from $1,300."
         canonical="/"
         schema={{
@@ -131,7 +131,7 @@ const HomePage = () => {
       `}</style>
 
       {/* ═══════════════════════════════════════════════
-          S1 — ASYMMETRIC HERO  (60 image / 40 text)
+          S1, ASYMMETRIC HERO  (60 image / 40 text)
       ═══════════════════════════════════════════════ */}
       <section
         className="relative min-h-[60vh] xl:min-h-[85vh] overflow-hidden"
@@ -139,7 +139,7 @@ const HomePage = () => {
         data-testid="hero-section"
       >
         <div className="flex flex-col xl:flex-row h-full min-h-[60vh] xl:min-h-[85vh]">
-          {/* Left — Photo */}
+          {/* Left, Photo */}
           <div className="relative w-full xl:w-3/5 h-[45vh] xl:h-auto overflow-hidden">
             <img src="/vince-inspecting.webp"
               srcSet="/vince-inspecting-400w.webp 400w, /vince-inspecting-600w.webp 600w, /vince-inspecting-843w.webp 843w, /vince-inspecting.webp 1024w"
@@ -156,7 +156,7 @@ const HomePage = () => {
             <div className="xl:hidden absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#102A43] to-transparent" />
           </div>
 
-          {/* Right — Copy */}
+          {/* Right, Copy */}
           <div className="w-full xl:w-2/5 flex items-center px-6 md:px-10 lg:px-14 xl:px-20 py-12 xl:py-0 relative z-10">
             <Reveal>
               <p
@@ -278,12 +278,12 @@ const HomePage = () => {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          POST-HERO REBUILD — Reference: giglinehome-fduza8jl.manus.space
+          POST-HERO REBUILD, Reference: giglinehome-fduza8jl.manus.space
           Institutional / restrained. Inter throughout. No gradients,
           no decorative backgrounds, no Unsplash stock photos.
       ═══════════════════════════════════════════════════════════════ */}
 
-      {/* ═══ SECTION 2A — FLOOR → FINDINGS → FIXES → PROOF (buyer journey) ═══ */}
+      {/* ═══ SECTION 2A, FLOOR → FINDINGS → FIXES → PROOF (buyer journey) ═══ */}
       <section
         className="py-20 md:py-24"
         style={{ background: '#102A43', color: 'white' }}
@@ -394,7 +394,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* ═══ SECTION 2A2 — SECONDARY PRODUCT DISCOVERY STRIP (Feb 2026)
+      {/* ═══ SECTION 2A2, SECONDARY PRODUCT DISCOVERY STRIP (Feb 2026)
            Lightweight product-discovery band beneath the buyer journey.
            Intentionally quieter than the primary CRV CTA and the Citation-Proof
            Kit Series strip further down. For self-directed buyers, not a
@@ -439,7 +439,7 @@ const HomePage = () => {
                 ctaLabel: 'Explore Control Kits',
                 to: '/citation-proof-kits',
                 image: '/card-citation-proof-kits.jpg',
-                imageAlt: 'Navy hardcover safety-compliance binder with color-coded index tabs and a tablet showing a Safety Checklist on a wooden industrial workbench, with a warehouse aisle and forklift softly blurred in the background — GigLine Citation-Proof Kit Series editorial product photograph',
+                imageAlt: 'Navy hardcover safety-compliance binder with color-coded index tabs and a tablet showing a Safety Checklist on a wooden industrial workbench, with a warehouse aisle and forklift softly blurred in the background, GigLine Citation-Proof Kit Series editorial product photograph',
                 overlayEyebrow: 'Kit Series',
                 overlayName: 'Citation-Proof',
               },
@@ -451,7 +451,7 @@ const HomePage = () => {
                 ctaLabel: 'Explore Supervisor Safety OS',
                 to: '/supervisor-kit',
                 image: '/card-supervisor-safety-os.jpg',
-                imageAlt: 'Operations supervisor in a manufacturing facility holding a clipboard and tablet, performing a routine floor inspection with a forklift and machinists softly blurred in the background — GigLine Supervisor Safety OS editorial product photograph',
+                imageAlt: 'Operations supervisor in a manufacturing facility holding a clipboard and tablet, performing a routine floor inspection with a forklift and machinists softly blurred in the background, GigLine Supervisor Safety OS editorial product photograph',
                 overlayEyebrow: 'Operating System',
                 overlayName: 'Supervisor Safety',
               },
@@ -463,7 +463,7 @@ const HomePage = () => {
                 ctaLabel: 'Start With HazCom',
                 to: '/hazcom-starter-pack',
                 image: '/card-hazcom-starter-pack.jpg',
-                imageAlt: 'Yellow SDS binder with labeled chemical containers, printed Hazard Communication checklist, safety glasses, and gloves organized on an industrial shop workbench — GigLine HazCom Starter Pack editorial product photograph',
+                imageAlt: 'Yellow SDS binder with labeled chemical containers, printed Hazard Communication checklist, safety glasses, and gloves organized on an industrial shop workbench, GigLine HazCom Starter Pack editorial product photograph',
                 overlayEyebrow: 'Starter Pack',
                 overlayName: 'HazCom',
               },
@@ -559,7 +559,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* ═══ SECTION 2 — WHAT WE FIND ON THE FLOOR (GL-WEB-008) ═══ */}
+      {/* ═══ SECTION 2, WHAT WE FIND ON THE FLOOR (GL-WEB-008) ═══ */}
       <section className="py-20 md:py-24 bg-white border-t border-b" style={{ borderColor: '#dde3ea' }} data-testid="floor-findings-section">
         <div className="container max-w-6xl">
           <Reveal>
@@ -614,13 +614,13 @@ const HomePage = () => {
 
           <Reveal>
             <p className="text-sm text-[#1C2B2B]/55 italic mt-12 max-w-3xl">
-              These are findings from real walkthroughs &mdash; not a checklist from a textbook. Every facility is different.
+              These are findings from real walkthroughs , not a checklist from a textbook. Every facility is different.
             </p>
           </Reveal>
         </div>
       </section>
 
-      {/* ═══ RECENT ENGAGEMENT — compact proof block (GL-WEB-020) ═══ */}
+      {/* ═══ RECENT ENGAGEMENT, compact proof block (GL-WEB-020) ═══ */}
       <section className="py-12 md:py-16" style={{ backgroundColor: '#f5f4f0' }} data-testid="recent-engagement-section">
         <div className="container max-w-5xl">
           <Reveal>
@@ -660,7 +660,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* ═══ SECTION 2 — WHY GIGLINE ═══ */}
+      {/* ═══ SECTION 2, WHY GIGLINE ═══ */}
       <section className="py-20 md:py-24" style={{ backgroundColor: '#f5f4f0' }} data-testid="why-gigline-section">
         <div className="container max-w-6xl">
           <Reveal>
@@ -746,7 +746,7 @@ const HomePage = () => {
                 The Template Trap
               </p>
               <p className="text-[15px] md:text-base text-white/85 leading-[1.7] max-w-4xl">
-                We&apos;re seeing more written programs built with AI and templates &mdash; but without floor context, they create false confidence. A written program can come from a template or ChatGPT. Exposure still shows up on the floor.{' '}
+                We&apos;re seeing more written programs built with AI and templates , but without floor context, they create false confidence. A written program can come from a template or ChatGPT. Exposure still shows up on the floor.{' '}
                 <span className="text-white font-semibold">This is not a full audit. It is a signal.</span>
               </p>
             </div>
@@ -755,7 +755,7 @@ const HomePage = () => {
       </section>
 
 
-      {/* ═══ SECTION 4 — COST OF WAITING (GL-WEB-008) ═══ */}
+      {/* ═══ SECTION 4, COST OF WAITING (GL-WEB-008) ═══ */}
       <section className="py-20 md:py-24 bg-white border-t" style={{ borderColor: '#dde3ea' }} data-testid="cost-of-waiting-section">
         <div className="container max-w-6xl">
           <Reveal>
@@ -817,12 +817,12 @@ const HomePage = () => {
 
           <Reveal>
             <p className="text-base md:text-lg text-[#1C2B2B]/80 leading-[1.75] max-w-4xl">
-              OSHA doesn&apos;t announce inspections. They arrive after a complaint, a referral, or a fatality &mdash; or as part of a programmed inspection targeting your industry. By the time they&apos;re on your floor, the window to fix things has closed.{' '}
+              OSHA doesn&apos;t announce inspections. They arrive after a complaint, a referral, or a fatality , or as part of a programmed inspection targeting your industry. By the time they&apos;re on your floor, the window to fix things has closed.{' '}
               <span className="font-semibold text-[#1C2B2B]">The walkthrough is that window.</span>
             </p>
           </Reveal>
 
-          {/* Concrete scenario — anchored to the real Statesville case study */}
+          {/* Concrete scenario, anchored to the real Statesville case study */}
           <Reveal>
             <div
               className="mt-10 p-7 md:p-8 max-w-4xl"
@@ -841,7 +841,7 @@ const HomePage = () => {
                 What That Looks Like
               </p>
               <p className="text-[15.5px] md:text-[17px] leading-[1.7] text-white/85" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
-                A 9-person metals fabrication facility in Statesville. One combined walkthrough and documentation review. <strong className="text-white">13 findings.</strong> Seven carried serious-citation risk &mdash; up to <strong className="text-white">$16,550 per finding</strong> under the 2026 OSHA maximum penalty schedule. One inspection visit could have stacked those into <strong className="text-white">six figures of penalty exposure</strong>. The corrective action plan closed <strong className="text-white">twelve of thirteen findings inside four days</strong>.
+                A 9-person metals fabrication facility in Statesville. One combined walkthrough and documentation review. <strong className="text-white">13 findings.</strong> Seven carried serious-citation risk , up to <strong className="text-white">$16,550 per finding</strong> under the 2026 OSHA maximum penalty schedule. One inspection visit could have stacked those into <strong className="text-white">six figures of penalty exposure</strong>. The corrective action plan closed <strong className="text-white">twelve of thirteen findings inside four days</strong>.
               </p>
               <Link
                 to="/case-study/metals-fabrication-statesville"
@@ -856,7 +856,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* ═══ SECTION 5 — SERVICES SNAPSHOT (GL-WEB-008) ═══ */}
+      {/* ═══ SECTION 5, SERVICES SNAPSHOT (GL-WEB-008) ═══ */}
       <section className="py-16 md:py-24" style={{ backgroundColor: '#f5f4f0' }} data-testid="services-section">
         <div className="container max-w-6xl">
           <Reveal>
@@ -1025,7 +1025,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* ═══ SAMPLE REPORT CTA BAND — secondary download cross-sell ═══ */}
+      {/* ═══ SAMPLE REPORT CTA BAND, secondary download cross-sell ═══ */}
       <section
         className="py-12 md:py-16"
         style={{ backgroundColor: '#F9F8F6', borderTop: '1px solid rgba(28,43,43,0.08)' }}
@@ -1047,7 +1047,7 @@ const HomePage = () => {
                 Want to see what a report looks like before you schedule?
               </h2>
               <p className="text-[15px] md:text-base text-[#1C2B2B]/65 leading-relaxed max-w-2xl">
-                Download a redacted compliance report &mdash; findings, CFR citations, penalty exposure, and the prioritized fix list. Real engagement, facility name removed.
+                Download a redacted compliance report , findings, CFR citations, penalty exposure, and the prioritized fix list. Real engagement, facility name removed.
               </p>
             </div>
             <Link
@@ -1061,7 +1061,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* ═══ OSHA GUIDES BAND — pillar-content hub cross-sell ═══ */}
+      {/* ═══ OSHA GUIDES BAND, pillar-content hub cross-sell ═══ */}
       <section
         className="py-16 md:py-20 bg-white border-t"
         style={{ borderColor: '#dde3ea' }}
@@ -1103,7 +1103,7 @@ const HomePage = () => {
       {/* ═══ WHAT HAPPENS ON THE DAY OF YOUR WALKTHROUGH ═══ */}
       <WalkthroughDaySection variant="crv" surface="light" />
 
-      {/* ═══ SUPERVISOR KIT BAND — single-CTA cross-sell (gated by feature flag) ═══ */}
+      {/* ═══ SUPERVISOR KIT BAND, single-CTA cross-sell (gated by feature flag) ═══ */}
       {SUPERVISOR_KIT_ENABLED && (
       <section
         className="py-16 md:py-20"
@@ -1143,7 +1143,7 @@ const HomePage = () => {
                 }}
                 data-testid="home-kit-band-body"
               >
-                17 CFR-cited documents &mdash; written HazCom program, SDS index, training log, monthly inspection checklist, &ldquo;If OSHA Shows Up&rdquo; protocol. Use it before a walkthrough, or as the foundation after. <strong style={{ color: '#C5A059' }}>$600 digital &middot; $700 physical</strong>. Included free with every Compliance Readiness Visit.
+                17 CFR-cited documents , written HazCom program, SDS index, training log, monthly inspection checklist, &ldquo;If OSHA Shows Up&rdquo; protocol. Use it before a walkthrough, or as the foundation after. <strong style={{ color: '#C5A059' }}>$600 digital &middot; $700 physical</strong>. Included free with every Compliance Readiness Visit.
               </p>
             </div>
             <div className="flex-shrink-0 md:text-right">
@@ -1165,7 +1165,7 @@ const HomePage = () => {
       </section>
       )}
 
-      {/* ═══ CITATION-PROOF KIT SERIES STRIP — always on, front-and-center for the 5-kit lineup ═══ */}
+      {/* ═══ CITATION-PROOF KIT SERIES STRIP, always on, front-and-center for the 5-kit lineup ═══ */}
       <section
         className="py-16 md:py-20"
         style={{
@@ -1177,7 +1177,7 @@ const HomePage = () => {
       >
         <div className="container max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-14 items-center">
-            {/* LEFT — copy */}
+            {/* LEFT, copy */}
             <div>
               <p
                 className="uppercase font-bold tracking-[0.28em] mb-3 inline-flex items-center gap-2"
@@ -1208,7 +1208,7 @@ const HomePage = () => {
               >
                 Five kits. Three tiers each. One goal: paperwork that survives an inspection.
                 <strong style={{ color: '#C5A059' }}> LOTO</strong> and{' '}
-                <strong style={{ color: '#C5A059' }}>Forklift/PIT</strong> are shipping now &mdash;{' '}
+                <strong style={{ color: '#C5A059' }}>Forklift/PIT</strong> are shipping now ,{' '}
                 <strong style={{ color: 'white' }}>$150 digital &middot; $300 control system &middot; $600 pre-printed binder</strong>.
                 HazCom Pro, Incident-to-Correction, and New Hire Orientation are next.
               </p>
@@ -1248,11 +1248,11 @@ const HomePage = () => {
                 }}
                 data-testid="home-kit-series-calc-link"
               >
-                &rarr; Or estimate your OSHA exposure first &mdash; free calculator
+                &rarr; Or estimate your OSHA exposure first , free calculator
               </Link>
             </div>
 
-            {/* RIGHT — 2 shipping-now kit chips */}
+            {/* RIGHT, 2 shipping-now kit chips */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4" data-testid="home-kit-series-chips">
               {[
                 {
@@ -1319,11 +1319,11 @@ const HomePage = () => {
 
 
 
-      {/* ═══ TESTIMONIALS + CASE STUDY + TRACK RECORD (relocated per spec — between Services and How It Works) ═══ */}
+      {/* ═══ TESTIMONIALS + CASE STUDY + TRACK RECORD (relocated per spec, between Services and How It Works) ═══ */}
       <section className="py-20 md:py-28" style={{ backgroundColor: '#102A43' }} data-testid="trust-section">
         <div className="container max-w-7xl grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12">
 
-          {/* LEFT — What Clients Say */}
+          {/* LEFT, What Clients Say */}
           <div data-testid="reviews-column">
             <p className="uppercase font-bold mb-8" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.55)' }}>What Clients Say</p>
             {[
@@ -1332,12 +1332,12 @@ const HomePage = () => {
             ].map((r, i) => (
               <div key={r.name} className="p-7 mb-5" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.10)', borderRadius: '16px' }} data-testid={`review-card-${i + 1}`}>
                 <p className="mb-6" style={{ fontStyle: 'italic', fontFamily: "Georgia, 'Times New Roman', serif", fontSize: '17px', lineHeight: 1.6, color: 'rgba(255,255,255,0.92)' }}>&ldquo;{r.text}&rdquo;</p>
-                <p className="text-sm font-semibold" style={{ color: 'rgba(255,255,255,0.55)' }}>{r.name} &mdash; <span style={{ fontWeight: 400 }}>{r.role}</span></p>
+                <p className="text-sm font-semibold" style={{ color: 'rgba(255,255,255,0.55)' }}>{r.name} , <span style={{ fontWeight: 400 }}>{r.role}</span></p>
               </div>
             ))}
           </div>
 
-          {/* MIDDLE — Case Study */}
+          {/* MIDDLE, Case Study */}
           <div data-testid="case-study-column">
             <p className="uppercase font-bold mb-8" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.55)' }}>Case Study</p>
             <div className="p-8" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.10)', borderRadius: '16px' }}>
@@ -1356,7 +1356,7 @@ const HomePage = () => {
             </div>
           </div>
 
-          {/* RIGHT — Track Record */}
+          {/* RIGHT, Track Record */}
           <div data-testid="track-record-column">
             <p className="uppercase font-bold mb-8" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.55)' }}>The Track Record</p>
             {[
@@ -1379,7 +1379,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* ═══ SECTION 6 — HOW IT WORKS (connected horizontal timeline) ═══ */}
+      {/* ═══ SECTION 6, HOW IT WORKS (connected horizontal timeline) ═══ */}
       <section className="py-16 md:py-24" style={{ backgroundColor: '#f5f4f0' }} data-testid="how-it-works-section">
         <div className="container max-w-6xl">
           <Reveal>
@@ -1400,7 +1400,7 @@ const HomePage = () => {
             ];
             return (
               <div className="relative mb-14" data-testid="how-it-works-timeline">
-                {/* Connecting line — desktop only, sits behind the circles */}
+                {/* Connecting line, desktop only, sits behind the circles */}
                 <div
                   className="hidden md:block absolute"
                   style={{
@@ -1467,7 +1467,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* ═══ LATEST FROM THE FIELD — 3 recent Field Notes + Mid-Year 2026 blog ═══ */}
+      {/* ═══ LATEST FROM THE FIELD, 3 recent Field Notes + Mid-Year 2026 blog ═══ */}
       <section
         className="py-16 md:py-24 bg-white border-t"
         style={{ borderColor: '#e8e5dd' }}
@@ -1491,7 +1491,7 @@ const HomePage = () => {
               className="text-base md:text-[17px] leading-relaxed max-w-2xl mb-12"
               style={{ color: 'rgba(10,22,40,0.65)', fontFamily: "Georgia, serif" }}
             >
-              Plain-language field notes and mid-year updates &mdash; no fluff, no fear-mongering, no consultant-speak.
+              Plain-language field notes and mid-year updates , no fluff, no fear-mongering, no consultant-speak.
             </p>
           </Reveal>
 
@@ -1508,7 +1508,7 @@ const HomePage = () => {
                 type: 'Field Note',
                 to: '/field-notes/ai-generated-safety-programs',
                 title: 'AI-Generated Safety Programs',
-                blurb: 'ChatGPT can write an OSHA program that looks compliant &mdash; until an inspector arrives. What AI cannot see on your floor.',
+                blurb: 'ChatGPT can write an OSHA program that looks compliant , until an inspector arrives. What AI cannot see on your floor.',
                 testid: 'latest-field-note-ai-generated',
               },
               {
@@ -1593,12 +1593,12 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* ═══ SECTION 8 — ABOUT GIGLINE (dark navy, two-column) ═══ */}
+      {/* ═══ SECTION 8, ABOUT GIGLINE (dark navy, two-column) ═══ */}
       <section className="py-16 md:py-24" style={{ backgroundColor: '#102A43' }} data-testid="about-section">
         <div className="container max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
 
-            {/* LEFT — Vince portrait + Carolina-Built veteran badge */}
+            {/* LEFT, Vince portrait + Carolina-Built veteran badge */}
             <div className="lg:col-span-4">
               <Reveal>
                 <div
@@ -1611,7 +1611,7 @@ const HomePage = () => {
                   data-testid="about-photo-panel"
                 >
                   <img src="/vince-about.webp" height="900" width="711"
-                    alt="Vince Lawrence — Founder, GigLine Safety & Compliance"
+                    alt="Vince Lawrence, Founder, GigLine Safety & Compliance"
                     className="w-full h-auto block"
                     style={{ filter: 'brightness(0.95) contrast(1.05)' }}
                     loading="lazy" />
@@ -1643,7 +1643,7 @@ const HomePage = () => {
               </Reveal>
             </div>
 
-            {/* RIGHT — Copy (GL-WEB-008 Section 7 spec) */}
+            {/* RIGHT, Copy (GL-WEB-008 Section 7 spec) */}
             <div className="lg:col-span-8">
               <Reveal>
                 <p
@@ -1671,7 +1671,7 @@ Working in them.
 
 Glass and vinyl. Rubber compounding. Metals fabrication.
 
-I was on the floor — supervising crews, coordinating safety, doing Gemba walks, creating safety orientation for new hires, training people on the standards they were expected to follow, and seeing firsthand where safety systems broke down under production pressure.
+I was on the floor, supervising crews, coordinating safety, doing Gemba walks, creating safety orientation for new hires, training people on the standards they were expected to follow, and seeing firsthand where safety systems broke down under production pressure.
 
 I know what a facility looks like when safety is managed by whoever had time that week.
 
@@ -1733,7 +1733,7 @@ This is GigLine Safety & Compliance.`}
                       For HR &amp; Safety Coordinators
                     </p>
                     <p className="text-[14.5px] md:text-[15.5px] leading-[1.7]" style={{ color: 'rgba(255,255,255,0.85)' }}>
-                      HR managers and safety coordinators are often the first to hear from OSHA &mdash; and the first to be asked for documentation. GigLine helps you know what&rsquo;s in your files before that call comes.
+                      HR managers and safety coordinators are often the first to hear from OSHA , and the first to be asked for documentation. GigLine helps you know what&rsquo;s in your files before that call comes.
                     </p>
                   </div>
                 </Reveal>
@@ -1769,7 +1769,7 @@ This is GigLine Safety & Compliance.`}
         </div>
       </section>
 
-      {/* ═══ SECTION 8 — FINAL CTA (GL-WEB-008) ═══ */}
+      {/* ═══ SECTION 8, FINAL CTA (GL-WEB-008) ═══ */}
       <section className="py-16 md:py-20 bg-white" data-testid="bottom-cta-section">
         <div className="container max-w-4xl">
           <Reveal>

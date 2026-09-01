@@ -15,7 +15,8 @@ const meta = {
   canonical: '/services/corrective-action-implementation',
 };
 
-const schema = {
+const schema = [
+{
   '@context': 'https://schema.org',
   '@type': 'Service',
   name: 'Corrective Action Implementation',
@@ -36,7 +37,19 @@ const schema = {
     description:
       'Corrective Action Implementation, custom quote. Most projects begin at $2,500 based on findings, complexity, and facility size.',
   },
-};
+},
+{
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'What is Corrective Action Implementation?', acceptedAnswer: { '@type': 'Answer', text: 'Corrective Action Implementation is a separately scoped, hands-on engagement that closes specific safety findings identified during a Compliance Readiness Visit, Safety Walkthrough, or comparable assessment. GigLine organizes ownership, records, and evidence around the findings you want closed. It is not another assessment and not a subscription.' } },
+    { '@type': 'Question', name: 'How much does Corrective Action Implementation cost?', acceptedAnswer: { '@type': 'Answer', text: 'Corrective Action Implementation is custom-quoted per engagement. Most projects begin at $2,500. The quote varies based on the number of findings, complexity of each one, the program area (LOTO, HazCom, PIT, training, recordkeeping), facility size, and how much hands-on work is required on-site versus off-site.' } },
+    { '@type': 'Question', name: 'Do I need to do a Compliance Readiness Visit first?', acceptedAnswer: { '@type': 'Answer', text: 'Not required, but strongly recommended. Corrective Action Implementation is most effective when GigLine has an existing findings list to close. If you already have findings from another consultant, an OSHA citation letter, or an insurance audit, we can scope directly from that.' } },
+    { '@type': 'Question', name: 'Is this a retainer or subscription?', acceptedAnswer: { '@type': 'Answer', text: 'No. Corrective Action Implementation is scoped per project with a fixed quote. When the selected findings are closed and evidence is organized, the engagement ends. For ongoing support, see the Annual Compliance Control Partner at $12,000 per year.' } },
+    { '@type': 'Question', name: 'What deliverables come out of a Corrective Action engagement?', acceptedAnswer: { '@type': 'Answer', text: 'Typical deliverables include: named owners for each finding, corrective-action tracker with target dates and closure evidence, updated written programs where required, training records reconciled to job roles, and a document-control structure for the records that would be produced during an OSHA inspection.' } },
+  ],
+},
+];
 
 const EXAMPLES = [
   {

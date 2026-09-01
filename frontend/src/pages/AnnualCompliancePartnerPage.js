@@ -99,6 +99,13 @@ const AnnualCompliancePartnerPage = () => {
         description="Year-long OSHA support, 4 quarterly visits, annual doc audit, on-call, incident review. $12,000/year. Limited availability."
         canonical={`/services/${SLUG}`}
         schema={[
+          { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: [
+            { '@type': 'Question', name: 'What is the Annual Compliance Control Partner?', acceptedAnswer: { '@type': 'Answer', text: 'The Annual Compliance Control Partner is a year-long safety partnership for small manufacturers, warehouses, and contractors in North Carolina. It includes two on-site walkthroughs per year, four documentation reviews per year, quarterly review calls, OSHA 300A posting reminders, pre-inspection readiness review, and direct on-call access between visits.' } },
+            { '@type': 'Question', name: 'How much does the Annual Compliance Partner cost?', acceptedAnswer: { '@type': 'Answer', text: 'The Annual Compliance Control Partner is $12,000 per year, roughly $1,000 per month equivalent. Payment terms are annual or quarterly (four $3,000 installments). The engagement is scoped for the year with a fixed cost so budgeting is predictable.' } },
+            { '@type': 'Question', name: 'Is there a shorter commitment option?', acceptedAnswer: { '@type': 'Answer', text: 'For quarterly-only support without a full-year commitment, see the Quarterly Compliance Maintenance option starting at $950 per quarter. It includes a quarterly walkthrough and prioritized findings review, without the full documentation review cadence.' } },
+            { '@type': 'Question', name: 'What happens if I get an OSHA inspection during the year?', acceptedAnswer: { '@type': 'Answer', text: 'Annual Partners get priority same-day response during an inspection or citation window. GigLine can be on-site within 24 hours in most cases to advise on inspection response, help draft OSHA-response documentation, and support the 15-day contest window if a citation is issued.' } },
+            { '@type': 'Question', name: 'Is availability limited?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. GigLine limits Annual Compliance Control Partner engagements to a small number per year to preserve response quality. When capacity is full, new partners are added to a waitlist and offered Quarterly Compliance Maintenance or single-engagement services in the meantime.' } },
+          ] },
           {
             '@context': 'https://schema.org',
             '@type': 'Service',

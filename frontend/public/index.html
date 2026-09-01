@@ -27,6 +27,9 @@
          completes in parallel with page paint rather than blocking after load. -->
     <link rel="preconnect" href="https://www.googletagmanager.com" />
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
+    <!-- LCP preload: Navbar logo (appears on every page, above the fold) -->
+    <link rel="preload" as="image" href="/gigline-logo-3d.png?v=9" fetchpriority="high" />
     
     <!-- JetBrains Mono, non-blocking font load. Preload + async swap so the stylesheet
          request does not block first paint. Dropped weight 500 (unused). -->

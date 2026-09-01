@@ -60,3 +60,4 @@ User-agent: Meta-ExternalFetcher
 Allow: /
 
 Sitemap: https://www.giglinecompliance.com/sitemap.xml
+Sitemap: https://www.giglinecompliance.com/image-sitemap.xml

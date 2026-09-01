@@ -179,6 +179,13 @@ const FieldNoteDetailPage = () => {
             {note.title}
           </h1>
           <p className="text-lg text-white/50">{note.subtitle}</p>
+          <p
+            className="text-xs text-white/40 mt-4"
+            style={{ fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.06em' }}
+            data-testid="note-last-updated"
+          >
+            Last updated: February 28, 2026 · Written by Vince Lawrence, GigLine Safety &amp; Compliance
+          </p>
         </div>
       </section>
 

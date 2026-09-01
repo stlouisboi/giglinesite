@@ -144,16 +144,6 @@ const Navbar = () => {
                 /
               </kbd>
             </button>
-            <a
-              href="tel:3363298899"
-              onClick={() => trackPhoneClick('navbar_desktop')}
-              className="flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap"
-              style={{ color: '#1C2B2B' }}
-              data-testid="nav-phone"
-            >
-              <Phone size={14} />
-              (336) 329-8899
-            </a>
             <Link
               to="/intake?service=compliance-readiness-visit"
               className="text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors whitespace-nowrap"

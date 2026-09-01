@@ -6,7 +6,7 @@ import ScrollToTop from './components/ScrollToTop';
 import { SUPERVISOR_KIT_ENABLED } from './config/features';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import MobileStickyFooter from './components/MobileStickyFooter';
+import StickyContactRail from './components/StickyContactRail';
 
 // Eager: renders instantly on every landing, the LCP path
 import HomePage from './pages/HomePage';
@@ -212,7 +212,7 @@ function App() {
                   </Routes>
                 </div>
                 <Footer />
-                <MobileStickyFooter />
+                <StickyContactRail />
               </div>
             } />
           </Routes>

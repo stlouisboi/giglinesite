@@ -248,6 +248,60 @@ const ComplianceReadinessVisitPage = () => {
               },
             ],
           },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: 'What is a Compliance Readiness Visit?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'A Compliance Readiness Visit is a combined on-site safety walkthrough and full OSHA documentation review delivered as a single CFR-cited field audit report within 48 hours. It is the most complete way for a small manufacturer, warehouse, or contractor to know where they stand before an OSHA inspection, insurance audit, or corporate compliance review.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'How much does a Compliance Readiness Visit cost?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'The Compliance Readiness Visit starts at $2,500 with a fixed quote issued before scheduling. That single fee covers the on-site walkthrough, the full documentation review, the written 18-page CFR-cited report, and a 30-day corrective-action review call. It replaces two separate engagements (Safety Walkthrough at $1,300 and Documentation Readiness Review at $1,700) at a $500 combined savings.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'How fast is the report delivered?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'The written field audit report is delivered within 48 hours of the on-site visit. The report includes photo-documented findings, CFR citations, estimated penalty exposure, and a prioritized 30-day corrective-action roadmap.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'Who is the Compliance Readiness Visit for?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Small manufacturers, warehouses, contractors, and fleet operations across North Carolina — typically 5 to 100 employees. It is most often used by facilities preparing for an OSHA inspection, an insurance carrier audit, a corporate customer compliance review, or leadership succession where the incoming safety owner needs a clean baseline.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'Do you offer follow-up support after the report?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Yes. A 30-day findings review call is included in the Compliance Readiness Visit price. For hands-on implementation of specific findings, GigLine offers a separately scoped Corrective Action Implementation engagement, typically starting at $2,500 depending on scope and findings complexity.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'What areas of North Carolina do you serve?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'GigLine serves 13 cities across the Piedmont Triad and surrounding regions, including Kernersville, Winston-Salem, Greensboro, High Point, Clemmons, Thomasville, Lexington, Mocksville, Burlington, Asheboro, Salisbury, Charlotte, and Raleigh.',
+                },
+              },
+            ],
+          },
         ]}
       />
 

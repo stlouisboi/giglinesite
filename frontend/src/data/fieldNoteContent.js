@@ -1089,6 +1089,11 @@ Corrective action: implement a written hot work permit program based on NFPA 51B
       { question: 'How much can OSHA fine you for a grinder violation?', answer: 'A serious violation of any subsection of 29 CFR 1910.215 carries a maximum penalty of $16,550 in 2026, per grinder, per missing tolerance. A shop with three grinders each missing tongue-guard adjustment and work-rest adjustment is potentially six separate citations.' },
     ],
     relatedNotes: ['machine-guarding', 'eye-face-protection', 'ppe-assessment'],
+    heroImage: '/assets/field-notes/bench-grinder-hero.jpg',
+    heroImageAlt: 'Navy twin-wheel bench grinder with yellow tongue guards on a shop workbench, safety glasses and gloves beside it, GigLine editorial field photograph',
+    figureImage: '/assets/field-notes/bench-grinder-tolerance-diagram.png',
+    figureImageAlt: 'OSHA 29 CFR 1910.215 bench grinder tolerance diagram: tongue guard 1/4 inch maximum gap, work rest 1/8 inch maximum gap',
+    figureCaption: 'OSHA 29 CFR 1910.215 tolerances. Tongue guard adjustable to within 1/4 inch of the wheel. Work rest adjusted to within 1/8 inch of the wheel. As the wheel wears, both must be re-adjusted.',
     kitCrossSell: {
       headline: 'Adjust every grinder in the shop. Document it. Prove it.',
       intro: 'A 10-minute daily grinder check log with pre-printed 1/8-inch and 1/4-inch tolerance callouts, plus training-verification and wheel-mounting record forms. Part of the GigLine Machine-Specific LOTO / Guarding kit series, CFR-cited and print-ready.',

@@ -26,6 +26,7 @@ const ServiceLandingTemplate = ({
   subheadline,
   priceLine,
   heroImage,           // optional: { src, alt }, right-column editorial photo
+  faqItems,            // optional: [{ question, answer }, ...] for FAQPage schema
   // Sections
   whoItsFor,           // { intro, bullets[] }
   theProblem,          // { intro, bullets[] }
@@ -35,9 +36,19 @@ const ServiceLandingTemplate = ({
   // Closing
   closingHeadline,
 }) => {
+  const schema = faqItems && faqItems.length ? [{
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map(f => ({
+      '@type': 'Question',
+      name: f.question,
+      acceptedAnswer: { '@type': 'Answer', text: f.answer },
+    })),
+  }] : undefined;
+
   return (
     <main className="overflow-x-hidden bg-white">
-      <SEO title={seoTitle} description={seoDescription} canonical={canonical} />
+      <SEO title={seoTitle} description={seoDescription} canonical={canonical} schema={schema} />
 
       {/* ── Hero ── */}
       <section

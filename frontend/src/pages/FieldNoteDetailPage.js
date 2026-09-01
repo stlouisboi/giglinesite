@@ -206,6 +206,32 @@ const FieldNoteDetailPage = () => {
             </div>
           </div>
 
+          {/* Optional figure/diagram (visual explainer between prose sections) */}
+          {note.figureImage && (
+            <figure className="mb-12" data-testid="note-figure">
+              <div
+                className="rounded-xl overflow-hidden"
+                style={{ border: '1px solid #dde3ea', background: 'white' }}
+              >
+                <img
+                  src={note.figureImage}
+                  alt={note.figureImageAlt || ''}
+                  loading="lazy"
+                  className="w-full h-auto block"
+                  data-testid="note-figure-image"
+                />
+              </div>
+              {note.figureCaption && (
+                <figcaption
+                  className="mt-3 text-sm italic text-[#1C2B2B]/60 leading-relaxed"
+                  data-testid="note-figure-caption"
+                >
+                  {note.figureCaption}
+                </figcaption>
+              )}
+            </figure>
+          )}
+
           {/* What OSHA Checks (if available) */}
           {note.oshaChecks && (
             <div className="mb-12" data-testid="note-osha-checks">

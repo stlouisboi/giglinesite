@@ -95,6 +95,9 @@ The fix isn't expensive. A written Heat Illness Prevention Plan, customized to y
     relatedNotes: ['walking-surfaces', 'lockout-tagout', 'ppe-assessment'],
     heroImage: '/assets/field-notes/forklift-safety-inspection.webp',
     heroImageAlt: 'Forklift daily pre-shift inspection, GigLine walkthrough field photo',
+    figureImage: '/assets/field-notes/forklift-inspection-points-diagram.png',
+    figureImageAlt: 'OSHA 29 CFR 1910.178(q)(7) daily pre-shift forklift inspection diagram: tires, forks, mast chains, hydraulic hoses, seatbelt, horn, data plate',
+    figureCaption: 'The 7 daily pre-shift inspection points required under 29 CFR 1910.178(q)(7). A missing or unsigned checklist is a citable condition on inspection day.',
     kitCrossSell: {
       headline: 'The forklift inspection & operator-certification system, done for you.',
       intro: 'The GigLine Forklift / PIT Readiness Kit ships the exact daily inspection log, operator evaluation form, refresher tracker, and pedestrian-separation plan a facility needs to satisfy 29 CFR 1910.178. Digital ($150), Compliance Control System ($300), or Inspector-Ready Binder Edition ($600).',
@@ -275,6 +278,9 @@ Corrective action: buy a label-maker and a set of GHS pictogram stickers ($60 to
     relatedNotes: ['lockout-tagout', 'electrical-safety', 'ppe-assessment'],
     heroImage: '/assets/field-notes/machine-guarding-shear.webp',
     heroImageAlt: 'Unguarded shear point of operation on roll former cut-off, 29 CFR 1910.212',
+    figureImage: '/assets/field-notes/machine-guarding-safe-distance-diagram.png',
+    figureImageAlt: 'OSHA machine guarding safe distance diagram, Table O-10 opening size versus safe distance from hazard, 29 CFR 1910.212',
+    figureCaption: 'Safe distance from a hazard scales with the size of the guard opening. The smaller the opening, the closer the guard can be. From OSHA Table O-10, referenced under 29 CFR 1910.212.',
     sections: {
       whatItIs: `Machine guarding is governed primarily by 29 CFR 1910.212 (general requirements for all machines) and 29 CFR 1910.219 (mechanical power transmission apparatus). The standard's intent is straightforward: any machine part, function, or process that could injure a worker must be guarded. In practice, the citation rate sits in OSHA's top 10 every year, and machine guarding is the standard most frequently associated with amputations under OSHA's National Emphasis Program on Amputations in Manufacturing Industries.
 
@@ -398,6 +404,9 @@ Corrective action: buy a 5-gallon bucket of safety yellow paint and re-mark ever
     relatedNotes: ['machine-guarding', 'electrical-safety', 'confined-space'],
     heroImage: '/assets/field-notes/lockout-tagout-lock.webp',
     heroImageAlt: 'Energy-isolation padlock applied during lockout/tagout, GigLine field photo',
+    figureImage: '/assets/field-notes/loto-isolation-points-diagram.png',
+    figureImageAlt: 'OSHA machine-specific lockout/tagout diagram: electrical disconnect, pneumatic air valve, hydraulic shut-off with red padlocks and yellow DANGER tags, 29 CFR 1910.147',
+    figureCaption: 'A machine-specific LOTO procedure identifies every energy source on the equipment (electrical, pneumatic, hydraulic) and requires each to be locked and tagged before service. Missing any one is a citable condition under 29 CFR 1910.147(c)(4).',
     sections: {
       whatItIs: `Lockout/Tagout, 29 CFR 1910.147, is the OSHA standard that governs the control of hazardous energy during equipment servicing and maintenance. It is consistently in OSHA's top 5 most-cited general industry standards, and it shows up in fatality reports more often than any other maintenance-related standard. The rule is straightforward: before anyone services equipment that could start up unexpectedly or release stored energy, every energy source must be isolated, locked out, and verified. The execution is where it falls apart.
 
@@ -568,6 +577,9 @@ Corrective action: walk every work area in your facility with a printed PPE haza
       { question: 'Is fall protection training required by OSHA?', answer: 'Yes. Under 29 CFR 1910.30, every employee exposed to a fall hazard must be trained on the nature of the hazards, the procedures for protecting them, and the proper use, inspection, and maintenance of any fall protection equipment used. Training must be documented in writing, and retraining is required when an employee shows inadequate knowledge or when conditions change.' },
     ],
     relatedNotes: ['walking-surfaces', 'scaffolding-safety', 'ladder-safety'],
+    figureImage: '/assets/field-notes/fall-protection-anchor-diagram.png',
+    figureImageAlt: 'OSHA fall protection system diagram: full-body harness with D-ring, shock-absorbing lanyard, and 5,000 lb anchor point, 29 CFR 1926.502',
+    figureCaption: 'The three required elements of a personal fall arrest system: a rated anchor point (5,000 lb minimum), a shock-absorbing lanyard, and a full-body harness with the D-ring between the shoulder blades. Miss any one and the system fails.',
     sections: {
       whatItIs: `Fall protection in general industry is governed by 29 CFR 1910 Subpart D, primarily 1910.28 (duty to have fall protection), 1910.29 (fall protection systems and criteria), and 1910.30 (training). The standards were significantly updated in 2017 and now mirror many of the construction-industry rules under Subpart M of 29 CFR 1926. The 2017 update closed loopholes that had allowed older general-industry operations to use less-protective measures than construction sites, and it made the 4-foot trigger height explicit across nearly every walking-working surface.
 
@@ -624,6 +636,9 @@ Corrective action: walk every elevated surface in your facility with a tape meas
       { question: 'What is the most common confined space violation?', answer: 'The most common citation is failure to have a written permit-required confined space program. Many small operations have spaces that qualify but have never been formally identified or assessed.' },
     ],
     relatedNotes: ['lockout-tagout', 'ppe-assessment', 'emergency-action-plans'],
+    figureImage: '/assets/field-notes/confined-space-entry-diagram.png',
+    figureImageAlt: 'OSHA permit-required confined space entry diagram: entrant with retrieval line, attendant, tripod, atmospheric test meter, ventilation duct, and entry permit, 29 CFR 1910.146',
+    figureCaption: 'A compliant permit-required confined space entry requires an attendant, a retrieval system, atmospheric testing before and during entry, ventilation, and a completed entry permit. Missing any of these is a citable condition under 29 CFR 1910.146.',
     sections: {
       whatItIs: 'A permit-required confined space has limited entry, is large enough for a worker to enter, is not designed for continuous occupancy, and contains a recognized hazard. Tanks, vats, pits, silos, storage bins, and some mechanical enclosures all qualify. OSHA 29 CFR 1910.146 requires a written program, atmospheric testing, entry permits, trained attendants, and rescue procedures. Most small operations either don\'t know they have confined spaces or haven\'t built the program.',
       whatGetsMissed: [

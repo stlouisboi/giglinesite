@@ -1,10 +1,16 @@
-"""Client Status Page & Report Delivery routes — GL-PORT-001 Section B."""
+"""Client Status Page & Report Delivery routes — GL-PORT-001 Section B.
+
+Report PDFs are stored inline in the intake document (`reportPdfBase64`) so
+this backend stays stateless. Pod-local disk was retired because the deploy
+target (Vercel serverless) provides only an ephemeral, per-invocation
+filesystem, uploaded files vanish on the next cold start.
+"""
 
 from fastapi import APIRouter, HTTPException, UploadFile, File
-from fastapi.responses import FileResponse
+from fastapi.responses import Response
 from datetime import datetime, timezone
 import asyncio
-import os
+import base64
 import logging
 
 import resend
@@ -14,10 +20,10 @@ from integrations.mailerlite import move_to_past_client
 router = APIRouter()
 logger = logging.getLogger('gigline')
 
-REPORT_DIR = "/app/backend/client_reports"
-AGREEMENT_DIR = "/app/backend/agreements"
-os.makedirs(REPORT_DIR, exist_ok=True)
-os.makedirs(AGREEMENT_DIR, exist_ok=True)
+# Reports are stored inline in Mongo (base64) rather than on the pod's
+# ephemeral filesystem. Cap uploads at 15 MB so we stay comfortably under
+# Mongo's 16 MB document limit after base64 overhead.
+MAX_REPORT_BYTES = 15 * 1024 * 1024
 
 STATUS_STAGES = {
     "intake_received": {
@@ -119,19 +125,25 @@ async def get_report_page(client_token: str):
 
 @router.get("/report/{client_token}/download")
 async def download_report(client_token: str):
-    """Serve the actual PDF file."""
+    """Serve the report PDF (stored inline in Mongo as base64)."""
     record = await db.gl_intake_submissions.find_one(
         {"clientToken": client_token}, {"_id": 0}
     )
-    if not record or not record.get("reportUrl"):
+    if not record or not record.get("reportUrl") or not record.get("reportPdfBase64"):
         raise HTTPException(status_code=404, detail="Report not found")
 
-    filepath = os.path.join(REPORT_DIR, f"{client_token}.pdf")
-    if not os.path.exists(filepath):
-        raise HTTPException(status_code=404, detail="Report file not found")
+    try:
+        pdf_bytes = base64.b64decode(record["reportPdfBase64"])
+    except (ValueError, TypeError):
+        raise HTTPException(status_code=500, detail="Report file could not be decoded")
 
     company = record.get("company", "Report").replace(" ", "-")
-    return FileResponse(filepath, media_type="application/pdf", filename=f"GigLine-SafetyCheck-{company}.pdf")
+    filename = f"GigLine-SafetyCheck-{company}.pdf"
+    return Response(
+        content=pdf_bytes,
+        media_type="application/pdf",
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+    )
 
 
 # ── Admin: Status Update ──
@@ -179,12 +191,10 @@ async def upload_report(client_token: str, token: str = "", file: UploadFile = F
         raise HTTPException(status_code=400, detail="PDF files only")
 
     content = await file.read()
-    if len(content) > 20 * 1024 * 1024:
-        raise HTTPException(status_code=400, detail="File too large (20MB max)")
+    if len(content) > MAX_REPORT_BYTES:
+        raise HTTPException(status_code=400, detail="File too large (15MB max)")
 
-    filepath = os.path.join(REPORT_DIR, f"{client_token}.pdf")
-    with open(filepath, "wb") as f:
-        f.write(content)
+    pdf_b64 = base64.b64encode(content).decode("ascii")
 
     now = datetime.now(timezone.utc).isoformat()
     report_url = f"/api/report/{client_token}/download"
@@ -193,6 +203,7 @@ async def upload_report(client_token: str, token: str = "", file: UploadFile = F
         {"clientToken": client_token},
         {"$set": {
             "reportUrl": report_url,
+            "reportPdfBase64": pdf_b64,
             "reportDeliveredAt": now,
             "status": "report_delivered",
             "statusUpdatedAt": now,

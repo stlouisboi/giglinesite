@@ -493,6 +493,7 @@ const ServicesPage = () => {
                 title: 'Products & ongoing support',
                 body: 'Keep the control organized. Records, ownership, and evidence retrievable.',
                 items: [
+                  { name: 'Ongoing Safety Support', href: '/ongoing-safety-support', price: 'From $1,650/month', badge: 'NEW' },
                   { name: 'Citation-Proof Kit Series', href: '/citation-proof-kits', price: '$150 / $300 / $600' },
                   { name: 'Supervisor Safety OS', href: '/supervisor-kit', price: 'From $600' },
                   { name: 'HazCom Starter Pack', href: '/hazcom-starter-pack', price: '$29' },

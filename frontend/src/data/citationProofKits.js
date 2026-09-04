@@ -167,9 +167,9 @@ const KIT_CATALOG = [
     controlTool: 'Correction Closure Index™ and Root Cause Ladder™',
     startingAt: 150,
     startingAtLabel: 'Starting at $150',
-    ready: false,
-    cardImage: null,
-    placeholder: ['Incident-to-Correction', 'Kit'],
+    ready: true,
+    cardImage: '/assets/kits/incident/incident-editorial-hero.jpg',
+    placeholder: null,
   },
   {
     slug: 'new-hire-orientation-kit',
@@ -179,9 +179,9 @@ const KIT_CATALOG = [
     controlTool: 'Day-One Readiness Index™ and Restricted Until Released™ Matrix',
     startingAt: 150,
     startingAtLabel: 'Starting at $150',
-    ready: false,
-    cardImage: null,
-    placeholder: ['New Hire Safety', 'Orientation Kit'],
+    ready: true,
+    cardImage: '/assets/kits/new-hire/new-hire-editorial-hero.jpg',
+    placeholder: null,
   },
   {
     // Lead-magnet ramp, rendered as a SEPARATE strip below the 5-kit grid
@@ -477,7 +477,7 @@ const KIT_DETAILS = {
     subtitle: 'Incident, Near-Miss & Corrective Action Control',
     system: 'Incident, Near-Miss & Corrective Action Control System',
     standard: 'OSHA recordkeeping and corrective-action program support (general)',
-    ready: false,
+    ready: true,
     ctaShortName: 'Incident',
     heroSupportLine: 'Built for facilities that need incident, near-miss, and corrective-action records they can produce the moment leadership, an insurer, or OSHA asks for them.',
     builtFor: [
@@ -485,6 +485,9 @@ const KIT_DETAILS = {
       { role: 'HR / Safety Coordinators', description: 'Keep the corrective-action loop moving, no reports sitting open for months.' },
       { role: 'Small Business Owners', description: 'Have an incident and closure record you can produce during an insurance claim or audit.' },
     ],
+    productImages: {
+      hero: '/assets/kits/incident/incident-editorial-hero.jpg',
+    },
     outcomeHeadline: 'Close the loop on every incident, near miss, and hazard report, with proof it actually got fixed.',
     problemStatement: 'Most facilities are decent at writing the incident report. Almost none can show what changed as a result. The corrective action is either verbal, undocumented, or "in progress" for six months. That gap is what turns a near miss into the next injury.',
     proofPromise: 'This kit takes the reporting-to-closure loop and turns it into a controlled sequence: report, investigate, correct, verify, communicate, and prevent repeat. No item stays open without an owner and a due date.',
@@ -520,7 +523,7 @@ const KIT_DETAILS = {
     subtitle: 'Day-One Safety Readiness & Authorization Control',
     system: 'Day-One Safety Readiness & Authorization Control System',
     standard: 'OSHA training and orientation proof support (general)',
-    ready: false,
+    ready: true,
     ctaShortName: 'New Hire',
     heroSupportLine: 'Built for facilities that need new-hire safety training records they can produce the moment an inspector or a workers-compensation adjuster asks for them.',
     builtFor: [
@@ -528,6 +531,9 @@ const KIT_DETAILS = {
       { role: 'HR / Onboarding Coordinators', description: 'Have one repeatable path, no matter who runs orientation.' },
       { role: 'Small Business Owners', description: 'Have proof of initial safety training for every employee on payroll.' },
     ],
+    productImages: {
+      hero: '/assets/kits/new-hire/new-hire-editorial-hero.jpg',
+    },
     outcomeHeadline: 'Prove every new hire was oriented, restricted, equipped, and released, before they touched a machine.',
     problemStatement: 'Most facilities orient new hires. Very few can prove it in the level of detail an inspector, insurer, or defense attorney will want. And almost none document the equipment or task restrictions in place until training and evaluation are complete.',
     proofPromise: 'This kit runs the new hire through a defined sequence, orient, restrict, equip, train, release, follow up, with a paper trail at each step. The restrictions are explicit, the release is documented, and the follow-up is scheduled.',

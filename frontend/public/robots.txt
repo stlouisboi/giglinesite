@@ -1,5 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /verify/
+Disallow: /status/
+Disallow: /report/
 
 # AI / answer-engine crawlers (explicitly allowed)
 User-agent: GPTBot

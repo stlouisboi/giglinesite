@@ -198,3 +198,20 @@ See `/app/memory/test_credentials.md`.
 
 ## Test Credentials
 See `/app/memory/test_credentials.md`.
+
+- **2026-09-04, batch: hero photos + QR Evidence Hub + sitemap lastmods + kit lineup completion**:
+  - **3 editorial 16:9 hero photos generated via Nano Banana** and wired in: `/public/ongoing-support-hero.jpg` (plant manager + tablet on shop floor), `/public/assets/kits/incident/incident-editorial-hero.jpg` (two hands on Corrective Action Tracker on workbench), `/public/assets/kits/new-hire/new-hire-editorial-hero.jpg` (supervisor + new hire with Orientation Checklist). Generation script: `/app/scripts/gen_hero_batch.py`.
+  - **Ongoing Support page hero swapped** from CRV placeholder to purpose-built photo. Ties visual to page copy exactly.
+  - **5-kit lineup complete**: Incident-to-Correction + New Hire kits flipped `ready: true`, `cardImage` set to new hero photos, `productImages.hero` populated in KIT_DETAILS. Catalog + detail pages now render both fully. Copy was already complete in KIT_DETAILS from a prior session; this session only added the missing photos + flag.
+  - **QR Evidence Hub built and live**:
+    * New Mongo collection `gl_kit_qr_records` (`token`, `session_id`, `kit_slug`, `kit_name`, `tier`, `tier_name`, `customer_email`, `customer_name`, `amount_total_cents`, `minted_at`, `verified_count`, `last_verified_at`).
+    * New module `/backend/lib/kit_qr.py` mints URL-safe 128-bit tokens (`secrets.token_urlsafe(16)`), generates QR PNGs via `qrcode` (navy on white) rendered lazily on demand as base64.
+    * New routes `/backend/routes/kit_qr.py`: public `GET /api/verify/{token}` (returns kit metadata, no PII, increments `verified_count`); admin `GET /api/admin/kit-qr/list` and `POST /api/admin/kit-qr/mint` (backfill).
+    * Auto-mint hook wired into `routes/citation_proof_kits.py::verify_payment` — every first-time paid confirmation now mints a QR record and stamps `qr_token`, `qr_verify_url`, `qr_minted_at` back onto the order.
+    * Public React page `/verify/:token` (`KitVerifyPage.js`) with three states (loading/error/success), shows kit name, tier, purchase date, token, scan count, and a "View kit page" CTA. Disclaimer clarifies verification does not certify OSHA compliance.
+    * Env: `PUBLIC_SITE_URL` (optional, defaults to `https://www.giglinecompliance.com`).
+    * `robots.txt` updated to `Disallow: /verify/`, `/status/`, `/report/` so private token URLs don't get indexed.
+    * Backend tests passed: mint returns token + 3-KB QR base64; public verify returns full payload and increments scan count; bad token returns 404; frontend page renders success card with all fields populated.
+  - **Sitemap `<lastmod>` stamped on all 87 URLs**: Script at `/app/scripts/add_sitemap_lastmods.py`. Field-note dates are parsed from `fieldNoteContent.js` when the slug matches (currently none in this repo layout, all URLs default to today's date). Enables `days=N` filter on both Google Indexing API and Bing IndexNow bulk-submit calls.
+  - **Backend footprint summary now includes**: kit_qr_router registered in server.py, mint hook in citation_proof_kits.py, robots.txt updated. Total new/changed files this batch: 5 (kit_qr.py x2, KitVerifyPage.js, gen_hero_batch.py, add_sitemap_lastmods.py) + 5 edited (server.py, App.js, citation_proof_kits.py, citationProofKits.js data, OngoingSafetySupportPage.js, robots.txt, sitemap.xml).
+

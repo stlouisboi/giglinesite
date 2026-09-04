@@ -558,8 +558,8 @@ const OngoingSafetySupportPage = () => {
               data-testid="ongoing-hero-image-wrap"
             >
               <img
-                src="/service-hero-crv.jpg"
-                alt="Plant manager reviewing an OSHA corrective-action tracker on a tablet on a small manufacturing shop floor, with press brakes and racking softly visible in the background, illustrating GigLine ongoing safety support."
+                src="/ongoing-support-hero.jpg"
+                alt="Plant manager reviewing an OSHA corrective-action tracker on a rugged tablet on a small manufacturing shop floor, with press brakes and orderly steel racking softly visible behind them, illustrating GigLine ongoing safety support."
                 width="1600"
                 height="900"
                 loading="eager"

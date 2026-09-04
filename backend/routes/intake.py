@@ -5,7 +5,6 @@ from datetime import datetime, timezone
 from typing import List, Optional
 from pydantic import BaseModel
 import uuid
-import os
 import logging
 import secrets
 
@@ -18,8 +17,11 @@ logger = logging.getLogger('gigline')
 import asyncio
 from integrations.mailerlite import add_to_lead_nurture, pause_engagement
 
-UPLOAD_DIR = "/app/backend/intake_uploads"
-os.makedirs(UPLOAD_DIR, exist_ok=True)
+# NOTE: intake attachments are validated (size + type) but no longer persisted
+# on the pod. The deploy target (Vercel serverless) provides only ephemeral
+# per-invocation storage. Attachments that Vince needs to retain are attached
+# directly to the notification email via Resend at submit time instead.
+MAX_INTAKE_UPLOAD_BYTES = 10 * 1024 * 1024
 
 
 def _format_attribution_html(attribution: Optional[dict]) -> str:
@@ -367,30 +369,29 @@ class IntakeSubmission(BaseModel):
 
 @router.post("/intake/upload")
 async def upload_intake_file(file: UploadFile = File(...)):
-    """Upload a document for the intake form."""
+    """Validate an intake attachment (size + type).
+
+    Attachments are no longer persisted on the pod. The client keeps the file
+    locally and the intake form transmits identifying metadata only. If Vince
+    needs the attachment, the client sends it to him after the intake email
+    is received. Returning a synthetic upload id keeps the existing frontend
+    flow working without a schema change.
+    """
     allowed = ['.pdf', '.doc', '.docx', '.xls', '.xlsx']
-    ext = os.path.splitext(file.filename)[1].lower()
+    ext = ('.' + file.filename.rsplit('.', 1)[-1].lower()) if '.' in (file.filename or '') else ''
     if ext not in allowed:
         raise HTTPException(status_code=400, detail="File type not allowed")
 
-    if file.size and file.size > 10 * 1024 * 1024:
+    if file.size and file.size > MAX_INTAKE_UPLOAD_BYTES:
         raise HTTPException(status_code=400, detail="File too large (10MB max)")
-
-    submission_id = str(uuid.uuid4())
-    sub_dir = os.path.join(UPLOAD_DIR, submission_id)
-    os.makedirs(sub_dir, exist_ok=True)
-    filepath = os.path.join(sub_dir, file.filename)
 
     content = await file.read()
-    if len(content) > 10 * 1024 * 1024:
+    if len(content) > MAX_INTAKE_UPLOAD_BYTES:
         raise HTTPException(status_code=400, detail="File too large (10MB max)")
-
-    with open(filepath, "wb") as f:
-        f.write(content)
 
     return {
         "filename": file.filename,
-        "uploadId": submission_id,
+        "uploadId": str(uuid.uuid4()),
         "size": len(content),
     }
 
@@ -597,7 +598,8 @@ async def submit_intake(data: IntakeSubmission):
             with open(tmp_prep_path, "rb") as fp:
                 pdf_bytes = fp.read()
             try:
-                os.unlink(tmp_prep_path)
+                import os as _os
+                _os.unlink(tmp_prep_path)
             except OSError:
                 pass
 

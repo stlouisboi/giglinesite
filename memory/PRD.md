@@ -181,3 +181,20 @@ React 18 (CRA), Tailwind, FastAPI, MongoDB (motor), Stripe LIVE, Resend LIVE, Ma
 
 ## Test Credentials
 See `/app/memory/test_credentials.md`.
+
+- **2026-09-01, Google Indexing API activated + Bing IndexNow launched**:
+  - Google Indexing API: base64-encoded service account JSON (`gigline-indexer@gigline-indexing-api.iam.gserviceaccount.com`) stored in `backend/.env` as `GOOGLE_INDEXING_SA_JSON_BASE64`. SA granted Owner on the Search Console property. Verified `POST /api/admin/google-index/submit-url` returns `200/success`. Bulk-pushed the full 86-URL sitemap via `POST /api/admin/google-index/submit-sitemap` (all 86 submitted, 0 failures).
+  - Bing IndexNow: new `integrations/bing_indexnow.py` + `routes/bing_indexnow.py` (mirrors Google pattern). Key `0083c8d4c8c82358227a817111e5552a` generated, stored in `backend/.env`, and hosted at `/frontend/public/0083c8d4c8c82358227a817111e5552a.txt` (Vercel-served, verified live). Bing Webmaster property verified, both `sitemap.xml` and `image-sitemap.xml` submitted. Bulk-pushed the 86-URL sitemap via IndexNow → HTTP 202 accepted. Env vars: `INDEXNOW_KEY`, `INDEXNOW_KEY_LOCATION`, `INDEXNOW_HOST`. Admin endpoints: `/api/admin/bing-index/status | submit-url | submit-sitemap | log`.
+
+- **2026-09-01, Ongoing Safety Support (MAINTAIN anchor) shipped**:
+  - Route: `/ongoing-safety-support` (`OngoingSafetySupportPage.js`, lazy-loaded, ~700 lines). Full v2.1 copy verbatim (owner-approved). Sections: Hero, The problem, What the service does, How it works (4 steps), Best fit, Starting investment (with $2,500 / $4,950 / $7,450 combined-initial grid), Scope boundaries (keyboard-accessible expandable via `<button aria-expanded aria-controls>`), Why GigLine (FLOOR → FINDINGS → FIXES → PROOF strip), Fit Call form, 10-question FAQ (native `<details>`), Final CTA.
+  - Schemas injected via `<SEO>` on the React page **and** pre-rendered in `generate-seo-pages.js` for crawler/AI parity: `Service` (with `UnitPriceSpecification` $1,650/MON), `FAQPage` (10 Qs), `BreadcrumbList`.
+  - **Backend**: new `/api/ongoing-support/fit-call` (`routes/ongoing_support.py`). 14-field validated payload, honeypot (`website`), per-IP sliding-window rate limit (5/hour), min-time-to-submit bot filter (4s), Pydantic v2 validators, both consents gated, MongoDB `gl_ongoing_support_fit_calls` collection, MailerLite tagging via `add_to_intake_lane(lane="ongoing_support")`, Resend confirmation to Vince (mono block) + client (explicit "does not create a consulting relationship" language). Every lead auto-tagged: `source="ongoing-support" · offer="ongoing-safety-support" · intent="fit-call"`.
+  - **Nav / discovery**: MAINTAIN column in the ServicesPage FBM grid gains "Ongoing Safety Support" as the top entry with `NEW` badge and `From $1,650/month` price. Sitemap now 87 URLs (added `/ongoing-safety-support` at priority 0.90, monthly). Not added as a top-level nav link to keep the 6-item nav uncluttered.
+  - **Analytics (GA4)** wired: `ongoing_support_page_view`, `ongoing_support_primary_cta_click`, `ongoing_support_secondary_cta_click`, `ongoing_support_scope_toggle`, `ongoing_support_form_start`, `ongoing_support_form_success`, `ongoing_support_form_error`. Also fires `trackServiceBooking('Ongoing Safety Support Fit Call')` on success.
+  - **Copy safeguards baked in**: no em/en dashes, "up to 2.5 hours on-site" phrasing, no "fractional safety manager" or "OSHA approved" claims, employer-responsibility statement kept visible in main flow, longer exclusions live in the expandable `Review full scope boundaries` section only.
+  - **Backend tests passed**: consents missing → 400; bad payload → 422 with field-level errors; honeypot triggered → 200 + `id:"0"` (silent drop); valid → 200 with UUID id.
+  - **Hero photo TODO**: currently reuses `/service-hero-crv.jpg` (visually close, features tablet + facility supervisor). Purpose-generated "plant manager with tablet reviewing corrective actions" editorial photo queued as a small follow-up.
+
+## Test Credentials
+See `/app/memory/test_credentials.md`.

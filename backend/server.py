@@ -28,6 +28,7 @@ from routes.contact_message import router as contact_message_router
 from routes.osha_inspection_guide import router as osha_inspection_guide_router
 from routes.google_indexing import router as google_indexing_router
 from routes.bing_indexnow import router as bing_indexnow_router
+from routes.ongoing_support import router as ongoing_support_router
 from routes.kit_resend import router as kit_resend_router
 
 app = FastAPI()
@@ -54,6 +55,7 @@ api_router.include_router(contact_message_router)
 api_router.include_router(osha_inspection_guide_router)
 api_router.include_router(google_indexing_router)
 api_router.include_router(bing_indexnow_router)
+api_router.include_router(ongoing_support_router)
 api_router.include_router(kit_resend_router)
 
 app.include_router(api_router)

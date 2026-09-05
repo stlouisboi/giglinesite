@@ -459,7 +459,7 @@ const ServicesPage = () => {
               Find. Build. Maintain.
             </h2>
             <div className="mb-8" style={{ width: '56px', height: '3px', background: '#C9A84C', borderRadius: '2px' }} />
-            <p className="text-base md:text-lg text-[#1C2B2B]/70 leading-[1.8] max-w-3xl mb-10">
+            <p className="text-[17px] md:text-lg text-[#1C2B2B]/85 md:text-[#1C2B2B]/70 font-medium md:font-normal leading-[1.8] max-w-3xl mb-10">
               Three simple categories. Every GigLine engagement fits inside one of them.
             </p>
           </Reveal>
@@ -517,18 +517,18 @@ const ServicesPage = () => {
                 >
                   {cat.label}
                 </p>
-                <h3 className="text-lg font-bold mb-2 leading-snug" style={{ color: '#102A43', fontFamily: "Georgia, serif" }}>
+                <h3 className="text-xl sm:text-lg font-bold mb-2 leading-snug" style={{ color: '#102A43', fontFamily: "Georgia, serif" }}>
                   {cat.title}
                 </h3>
-                <p className="text-[14.5px] leading-[1.65] text-[#1C2B2B]/70 mb-5">{cat.body}</p>
-                <ul className="space-y-2.5 mt-auto">
+                <p className="text-[16px] sm:text-[14.5px] leading-[1.65] text-[#1C2B2B]/80 sm:text-[#1C2B2B]/70 font-medium sm:font-normal mb-5">{cat.body}</p>
+                <ul className="space-y-3 sm:space-y-2.5 mt-auto">
                   {cat.items.map((it) => {
                     const isAnchor = it.href.startsWith('#');
-                    const cls = 'group flex items-start justify-between gap-3 py-1 text-[14px] hover:text-[#2A52A0] transition-colors';
+                    const cls = 'group flex items-start justify-between gap-3 py-1 text-[15.5px] sm:text-[14px] hover:text-[#2A52A0] transition-colors';
                     const inner = (
                       <>
                         <span className="flex-1">
-                          <span className="font-semibold text-[#1C2B2B] group-hover:text-[#2A52A0]">{it.name}</span>
+                          <span className="font-bold sm:font-semibold text-[#1C2B2B] group-hover:text-[#2A52A0]">{it.name}</span>
                           {it.badge && (
                             <span
                               className="ml-2 uppercase font-bold rounded-full px-1.5 py-0.5"
@@ -538,7 +538,7 @@ const ServicesPage = () => {
                             </span>
                           )}
                         </span>
-                        <span className="text-[13px] text-[#1C2B2B]/60 flex-shrink-0" style={mono}>{it.price}</span>
+                        <span className="text-[14px] sm:text-[13px] font-semibold sm:font-normal text-[#1C2B2B]/75 sm:text-[#1C2B2B]/60 flex-shrink-0" style={mono}>{it.price}</span>
                       </>
                     );
                     return isAnchor ? (
@@ -562,7 +562,7 @@ const ServicesPage = () => {
 
           <Reveal delay={200}>
             <p
-              className="italic text-sm md:text-[15px] text-[#1C2B2B]/60 mt-8 max-w-3xl leading-relaxed"
+              className="italic text-[15px] md:text-[15px] text-[#1C2B2B]/75 md:text-[#1C2B2B]/60 font-medium md:font-normal mt-8 max-w-3xl leading-relaxed"
               data-testid="fbm-savings-note"
             >
               At the standard starting scope, the Safety Walkthrough and Documentation Readiness Review total $3,000 when purchased separately. The combined Compliance Readiness Visit starts at $2,500, a $500 combined-service savings.
@@ -627,7 +627,7 @@ const ServicesPage = () => {
               Built for the operations OSHA inspects the most.
             </h2>
             <div className="mb-8" style={{ width: '56px', height: '3px', background: '#C9A84C', borderRadius: '2px' }} />
-            <p className="text-base md:text-lg text-[#1C2B2B]/65 leading-[1.85] mb-16 max-w-3xl">
+            <p className="text-[17px] md:text-lg text-[#1C2B2B]/80 md:text-[#1C2B2B]/65 font-medium md:font-normal leading-[1.85] mb-16 max-w-3xl">
               GigLine focuses on the four operation types most likely to receive an OSHA inspection,
               <br className="hidden md:block" />
               an insurance review, or a customer-audit request in the Piedmont Triad.
@@ -653,8 +653,8 @@ const ServicesPage = () => {
                   >
                     <Icon size={24} strokeWidth={1.9} className="text-[#2A52A0]" />
                   </div>
-                  <h3 className="text-[17px] font-bold text-[#1C2B2B] mb-5 leading-tight">{title}</h3>
-                  <p className="text-[14.5px] text-[#1C2B2B]/65 leading-[1.85]">{desc}</p>
+                  <h3 className="text-[19px] sm:text-[17px] font-bold text-[#1C2B2B] mb-5 leading-tight">{title}</h3>
+                  <p className="text-[16px] sm:text-[14.5px] text-[#1C2B2B]/80 sm:text-[#1C2B2B]/65 font-medium sm:font-normal leading-[1.85]">{desc}</p>
                 </div>
               </Reveal>
             ))}

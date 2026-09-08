@@ -210,10 +210,8 @@ async def verify_citation_proof_kit_session(session_id: str):
         )
 
         if not existing_paid and customer_email:
-            pdf_delivered = await _send_buyer_confirmation(
-                slug, tier, product, customer_email, customer_name
-            )
-            # ── QR Evidence Hub, mint an authenticity token for this kit purchase.
+            # ── QR Evidence Hub: mint FIRST so we can embed the QR in the buyer email.
+            qr_result = None
             try:
                 from lib.kit_qr import mint_kit_qr
                 qr_result = await mint_kit_qr(
@@ -236,6 +234,10 @@ async def verify_citation_proof_kit_session(session_id: str):
                 )
             except Exception as e:
                 logger.warning(f"QR mint skipped for session {session_id}: {e}")
+
+            pdf_delivered = await _send_buyer_confirmation(
+                slug, tier, product, customer_email, customer_name, qr_result,
+            )
             await _send_vince_notification(
                 slug, tier, product, customer_email, customer_name, customer_phone,
                 metadata, result.get("amount_total"), shipping_details,
@@ -282,6 +284,7 @@ async def verify_citation_proof_kit_session(session_id: str):
 
 async def _send_buyer_confirmation(
     slug: str, tier: str, product: dict, email: str, customer_name: str,
+    qr_result: Optional[dict] = None,
 ) -> bool:
     """Buyer confirmation. Attaches branded PDF. Copy branches by tier.
 
@@ -369,6 +372,41 @@ async def _send_buyer_confirmation(
         for item in next_items
     )
 
+    # Build the QR authenticity block if minting succeeded.
+    qr_block = ""
+    if qr_result and qr_result.get("qr_png_b64") and qr_result.get("verify_url"):
+        verify_url = qr_result["verify_url"]
+        qr_data_uri = f"data:image/png;base64,{qr_result['qr_png_b64']}"
+        qr_block = (
+            '<div style="margin: 26px 0 8px 0; padding: 20px; border: 1.5px solid #C9A84C; '
+            'border-radius: 8px; background: #FDFBF4;">'
+            '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">'
+            '<tr>'
+            f'<td style="width:120px; vertical-align: top; padding-right: 18px;">'
+            f'<img src="{qr_data_uri}" width="120" height="120" alt="GigLine kit authenticity QR code" '
+            'style="display:block;width:120px;height:120px;border:0;" />'
+            '</td>'
+            '<td style="vertical-align: top;">'
+            '<p style="margin: 0 0 4px 0; font-family: \'Manrope\', sans-serif; font-size: 10.5px; '
+            'letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; color: #8B6F1F;">'
+            'GigLine Authenticity Token'
+            '</p>'
+            '<p style="margin: 0 0 8px 0; font-family: \'Manrope\', sans-serif; font-weight: 700; '
+            'color: #102A43; font-size: 15px;">Scan to verify this kit is authentic.</p>'
+            '<p style="margin: 0 0 8px 0; font-size: 13.5px; color: #102A43; line-height: 1.55;">'
+            'Every paid GigLine kit gets a unique verification token. Point a phone camera '
+            'at the QR code, or open the link below, to confirm this kit was purchased and '
+            'when. Print this on the inside of your binder cover.'
+            '</p>'
+            f'<p style="margin: 0; font-size: 12px; word-break: break-all;">'
+            f'<a href="{verify_url}" style="color: #2A52A0; text-decoration: none; font-weight: 700;">{verify_url}</a>'
+            '</p>'
+            '</td>'
+            '</tr>'
+            '</table>'
+            '</div>'
+        )
+
     body_html = f"""
         <div style="font-family: Georgia, serif; max-width: 620px; margin: 0 auto; color: #102A43; line-height: 1.65;">
             <p style="text-transform: uppercase; letter-spacing: 0.28em; font-size: 11px; color: #C9A84C; font-family: 'JetBrains Mono', monospace; margin-bottom: 10px;">
@@ -396,6 +434,7 @@ async def _send_buyer_confirmation(
             <ol style="padding-left: 20px; margin: 0 0 16px 0; color: #102A43;">
                 {next_html}
             </ol>
+            {qr_block}
             <p style="margin: 22px 0 0 0; padding: 12px 14px; background: #FAF7F1; border-left: 3px solid #C9A84C; font-size: 13.5px; color: #102A43;">
                 <strong>Important:</strong> This kit supports documentation and self-audit. It does not guarantee OSHA compliance, prevent citations, eliminate hazards, or replace the employer&rsquo;s responsibility to maintain a safe workplace. Employers remain responsible for identifying applicable standards, correcting recognized hazards, training employees, and maintaining accurate records.
             </p>

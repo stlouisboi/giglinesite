@@ -1,6 +1,8 @@
 """GigLine Safety & Compliance — FastAPI application entry point."""
 
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI, APIRouter, Request
+from fastapi.responses import Response
+from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.middleware.cors import CORSMiddleware
 import asyncio
 import os
@@ -74,6 +76,39 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+# ── Security headers ──
+# HSTS + strict CSP on API responses (defense-in-depth; Mozilla Observatory grades
+# the frontend origin on Vercel, which carries its own headers in vercel.json).
+# API responses are JSON, so a very restrictive CSP is safe here.
+class SecurityHeadersMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next):
+        response: Response = await call_next(request)
+        headers = response.headers
+        # 2 years, includeSubDomains + preload-ready
+        headers.setdefault(
+            "Strict-Transport-Security",
+            "max-age=63072000; includeSubDomains; preload",
+        )
+        # Lock down: API returns JSON/PDF only, never executes scripts in a browser
+        headers.setdefault(
+            "Content-Security-Policy",
+            "default-src 'none'; frame-ancestors 'none'; base-uri 'none'; "
+            "form-action 'none'; upgrade-insecure-requests",
+        )
+        headers.setdefault("X-Content-Type-Options", "nosniff")
+        headers.setdefault("X-Frame-Options", "DENY")
+        headers.setdefault("Referrer-Policy", "strict-origin-when-cross-origin")
+        headers.setdefault(
+            "Permissions-Policy",
+            "camera=(), microphone=(), geolocation=(), interest-cohort=(), payment=(), usb=()",
+        )
+        headers.setdefault("Cross-Origin-Resource-Policy", "cross-origin")
+        return response
+
+
+app.add_middleware(SecurityHeadersMiddleware)
 
 
 # ── Background schedulers ──

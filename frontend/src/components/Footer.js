@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, Linkedin } from 'lucide-react';
+import { Mail, Phone, Linkedin, ShieldCheck } from 'lucide-react';
 import { SUPERVISOR_KIT_ENABLED } from '../config/features';
 
 const Footer = () => {
@@ -39,10 +39,23 @@ const Footer = () => {
               width="140"
               height="90"
               loading="lazy"
-              className="mb-5 rounded-sm"
+              className="mb-3 rounded-sm"
               style={{ maxWidth: '140px', height: 'auto' }}
               data-testid="footer-veteran-badge"
             />
+            <a
+              href="https://observatory.mozilla.org/analyze/www.giglinecompliance.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 mb-5 px-2.5 py-1 rounded-full text-[11px] font-semibold tracking-wide border transition-colors"
+              style={{ borderColor: 'rgba(201, 168, 76, 0.4)', color: '#C9A84C', background: 'rgba(201, 168, 76, 0.08)' }}
+              title="Verified by Mozilla Observatory. Click to view live scan."
+              data-testid="footer-security-badge"
+              aria-label="A+ Security rating, HSTS Preloaded. Verified by Mozilla Observatory."
+            >
+              <ShieldCheck size={12} strokeWidth={2.5} aria-hidden="true" />
+              <span>A+ Security · HSTS Preloaded</span>
+            </a>
             <div className="space-y-2">
               <a
                 href="mailto:vince@giglinecompliance.com"

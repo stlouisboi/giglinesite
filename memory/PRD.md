@@ -223,3 +223,11 @@ See `/app/memory/test_credentials.md`.
   - Deployment agent scan: PASS (only unrelated warn = no `.gitignore` in pod root; the GitHub repo has its own).
   - **User action needed**: push `requirements.txt` to GitHub to trigger a fresh Railway build.
 
+
+- **2026-02 (fork), Security headers for A+ Mozilla Observatory**:
+  - **Frontend (`/app/frontend/vercel.json`)**: added Strict-Transport-Security (2 years + includeSubDomains + preload), a strict allow-listed Content-Security-Policy, Referrer-Policy `strict-origin-when-cross-origin`, Permissions-Policy locking down camera/mic/geo/FLoC/payment/USB, and Cross-Origin-Opener-Policy `same-origin-allow-popups` (preserves Calendly `window.open`).
+  - **CSP allow-list** (frontend): script-src allows GTM, google-analytics, *.clarity.ms, plus `'unsafe-inline'` for the inline GA4 bootstrap, Clarity snippet, and JSON-LD in `index.html`. style-src allows Google Fonts stylesheet + inline (Tailwind). connect-src allows GA endpoints, GTM, Clarity, the Railway prod API (`giglinesite-production.up.railway.app`), `*.up.railway.app`, `*.preview.emergentagent.com`, and Formspree. img-src is permissive (`data: blob: https:`) to keep Unsplash and QR-code data URIs working. Stripe is not in CSP because it is a full-page `window.location` redirect (not iframe / form-action). Calendly is a `window.open` new tab (not iframe), so no frame-src entry needed.
+  - **Backend (`/app/backend/server.py`)**: added `SecurityHeadersMiddleware` (Starlette BaseHTTPMiddleware). Ships HSTS, CSP `default-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests` (safe because API returns JSON/PDF, never executable HTML), X-Content-Type-Options `nosniff`, X-Frame-Options `DENY`, Referrer-Policy, Permissions-Policy, Cross-Origin-Resource-Policy `cross-origin`.
+  - **Verified end-to-end via ingress**: all 7 headers land on `https://z-project-9.preview.emergentagent.com/api/`. Homepage smoke-tested with Playwright: `pageerrors=0`, title/H1 render correctly, LCP hero and clipboard still paint.
+  - Expected Mozilla Observatory grade: A/A+ (script-src carries `'unsafe-inline'` which caps some points; purist mode would require refactoring inline GA/Clarity/JSON-LD into external scripts).
+

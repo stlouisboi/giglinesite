@@ -4,6 +4,7 @@ Disallow: /verify/
 Disallow: /status/
 Disallow: /report/
 Disallow: /admin/
+Disallow: /private/
 
 # AI / answer-engine crawlers (explicitly allowed)
 User-agent: GPTBot

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Lock, Download, FileText, Package, ShieldCheck, AlertTriangle, Loader2 } from 'lucide-react';
+import { Lock, Download, FileText, Package, ShieldCheck, AlertTriangle, Loader2, FileCode2 } from 'lucide-react';
 import SEO from '../components/SEO';
 
 const NAVY = '#0A1628';
@@ -9,14 +9,14 @@ const CREAM = '#F5F4F0';
 const INK = '#1C2B2B';
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
 
-const API = process.env.REACT_APP_BACKEND_URL;
 const STORAGE_KEY = 'gigline_admin_token';
-const DEFAULT_BUCKET = 'ongoing-support';
+const ADMIN_PASSWORD = 'gigline2026';       // client-side deterrent, files are static
+const BUCKET = 'ongoing-support';
+const BASE_PATH = `/private/${BUCKET}`;
 
 const AdminDownloadsPage = () => {
   const [token, setToken] = useState('');
   const [savedToken, setSavedToken] = useState('');
-  const [bucket] = useState(DEFAULT_BUCKET);
   const [state, setState] = useState({ loading: false, error: null, data: null });
 
   useEffect(() => {
@@ -33,33 +33,31 @@ const AdminDownloadsPage = () => {
     (async () => {
       setState({ loading: true, error: null, data: null });
       try {
-        const resp = await fetch(`${API}/api/admin/downloads/${bucket}?token=${encodeURIComponent(savedToken)}`);
+        const resp = await fetch(`${BASE_PATH}/manifest.json`, { cache: 'no-cache' });
         if (cancel) return;
-        if (resp.status === 401) {
-          setState({ loading: false, error: 'Invalid password.', data: null });
-          window.sessionStorage.removeItem(STORAGE_KEY);
-          setSavedToken('');
-          return;
-        }
         if (!resp.ok) {
-          const body = await resp.json().catch(() => ({}));
-          setState({ loading: false, error: body.detail || `Error ${resp.status}`, data: null });
+          setState({ loading: false, error: `Manifest error ${resp.status}`, data: null });
           return;
         }
         const data = await resp.json();
         setState({ loading: false, error: null, data });
       } catch {
-        if (!cancel) setState({ loading: false, error: 'Network error.', data: null });
+        if (!cancel) setState({ loading: false, error: 'Network error loading manifest.', data: null });
       }
     })();
     return () => { cancel = true; };
-  }, [savedToken, bucket]);
+  }, [savedToken]);
 
   const onUnlock = (e) => {
     e.preventDefault();
-    if (!token.trim()) return;
-    window.sessionStorage.setItem(STORAGE_KEY, token.trim());
-    setSavedToken(token.trim());
+    const t = token.trim();
+    if (!t) return;
+    if (t !== ADMIN_PASSWORD) {
+      setState({ loading: false, error: 'Invalid password.', data: null });
+      return;
+    }
+    window.sessionStorage.setItem(STORAGE_KEY, t);
+    setSavedToken(t);
   };
 
   const onSignOut = () => {
@@ -69,15 +67,13 @@ const AdminDownloadsPage = () => {
     setState({ loading: false, error: null, data: null });
   };
 
-  const downloadHref = (filename) =>
-    `${API}/api/admin/downloads/${bucket}/${encodeURIComponent(filename)}?token=${encodeURIComponent(savedToken)}`;
+  const downloadHref = (filename) => `${BASE_PATH}/${encodeURIComponent(filename)}`;
 
-  const humanLabel = (filename) => {
-    const stem = filename.replace(/^[0-9]{2}-/, '').replace(/\.(pdf|zip)$/i, '').replace(/-/g, ' ');
-    return stem.charAt(0).toUpperCase() + stem.slice(1);
+  const iconFor = (kind) => {
+    if (kind === 'zip') return Package;
+    if (kind === 'md') return FileCode2;
+    return FileText;
   };
-
-  const iconFor = (kind) => (kind === 'zip' ? Package : FileText);
 
   return (
     <main className="min-h-screen py-16 md:py-20" style={{ background: CREAM }} data-testid="admin-downloads-page">
@@ -172,17 +168,17 @@ const AdminDownloadsPage = () => {
                   </p>
                   <h2 className="text-xl md:text-2xl font-extrabold mb-2 tracking-tight" style={{ color: NAVY }}>{state.data.title}</h2>
                   <p className="text-[13.5px] leading-[1.65]" style={{ color: '#6b7280' }}>{state.data.description}</p>
-                  <p className="mt-3 text-[13px]" style={{ ...mono, color: '#6b7280' }}>{state.data.count} file(s)</p>
+                  <p className="mt-3 text-[13px]" style={{ ...mono, color: '#6b7280' }}>Generated {state.data.generated_at} · {state.data.items.length} file(s)</p>
                 </div>
 
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3" data-testid="admin-file-list">
                   {state.data.items.map((f) => {
                     const Icon = iconFor(f.kind);
-                    const highlight = f.kind === 'zip';
+                    const highlight = f.featured;
                     return (
                       <li
                         key={f.filename}
-                        className="rounded-xl bg-white p-4 md:p-5 flex items-start gap-3 transition-shadow hover:shadow-[0_10px_24px_-14px_rgba(16,42,67,0.18)]"
+                        className={`rounded-xl p-4 md:p-5 flex items-start gap-3 transition-shadow hover:shadow-[0_10px_24px_-14px_rgba(16,42,67,0.18)] ${highlight ? 'sm:col-span-2' : ''}`}
                         style={{ border: highlight ? `1.5px solid ${GOLD}` : '1px solid #dde3ea', background: highlight ? 'rgba(201,168,76,0.06)' : '#ffffff' }}
                         data-testid={`admin-file-${f.filename}`}
                       >
@@ -193,10 +189,11 @@ const AdminDownloadsPage = () => {
                           <Icon size={18} strokeWidth={2.2} />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="font-bold text-[14.5px] leading-snug break-words" style={{ color: NAVY }}>{humanLabel(f.filename)}</p>
-                          <p className="text-[11.5px] mt-1 truncate" style={{ ...mono, color: '#6b7280' }}>{f.filename} · {f.size_kb} KB</p>
+                          <p className="font-bold text-[14.5px] leading-snug break-words" style={{ color: NAVY }}>{f.label}</p>
+                          <p className="text-[11.5px] mt-1 truncate" style={{ ...mono, color: '#6b7280' }}>{f.filename} · {f.size_kb} KB · {f.kind.toUpperCase()}</p>
                           <a
                             href={downloadHref(f.filename)}
+                            download={f.filename}
                             className="inline-flex items-center gap-1.5 font-bold text-[13px] mt-2 transition-colors"
                             style={{ color: BLUE }}
                             onMouseEnter={(e) => (e.currentTarget.style.color = '#1F3F80')}

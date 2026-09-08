@@ -255,3 +255,10 @@ See `/app/memory/test_credentials.md`.
   - **Env vars used**: `EMERGENT_LLM_KEY` (already set), `INTEGRATION_PROXY_URL` (optional, defaults to public proxy).
   - **Push required**: `/app/backend/lib/object_storage.py` (NEW), `routes/intake.py`, `routes/portal.py`, `server.py`. Railway will pick them up on GitHub push.
 
+
+- **2026-02 (fork), Observatory retest confirms A+**:
+  - After Vercel picked up the CSP fix (`'unsafe-inline'` removed from script-src, GA4/Clarity moved to `/gigline-init.js`), fresh Mozilla Observatory scan: **A+, 115/100, 11/12 tests passed** (against the earlier B/75 baseline, a jump of +40 points).
+  - Net bonus math: 100 base + 5 Referrer-Policy + 10 COOP + 5 XFO-via-CSP = 115. Only failing test is SRI on gtag.js which is unfixable (GTM URLs are non-deterministic) and no longer penalizes because bonus points more than cover the -5.
+  - Screenshots for sales-page trust bars saved to `/app/frontend/public/assets/mozilla-observatory-a-plus.jpg` (full report, 85 KB) and `/app/frontend/public/assets/mozilla-observatory-a-plus-badge.jpg` (cropped A+ summary, 6.6 KB).
+  - The footer trust chip copy ("A+ Security · HSTS Preloaded") is now technically accurate on the "A+" side. The "HSTS Preloaded" claim is still preload-eligible-but-not-yet-submitted until the domain is accepted at hstspreload.org.
+

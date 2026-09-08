@@ -58,6 +58,8 @@ const CorrectiveActionImplementationPage = lazy(() => import('./pages/Corrective
 const DocumentationGapCheckPage       = lazy(() => import('./pages/DocumentationGapCheckPage'));
 const OshaComplianceGapCheckPage      = lazy(() => import('./pages/OshaComplianceGapCheckPage'));
 const OngoingSafetySupportPage        = lazy(() => import('./pages/OngoingSafetySupportPage'));
+const KitVerifyPage                   = lazy(() => import('./pages/KitVerifyPage'));
+const AdminDownloadsPage              = lazy(() => import('./pages/AdminDownloadsPage'));
 
 // Content marketing / pillar blog posts (Nov 2025 launch batch)
 const BlogHubPage                     = lazy(() => import('./pages/BlogHubPage'));
@@ -181,6 +183,8 @@ function App() {
                     <Route path="/documentation-gap-check" element={<DocumentationGapCheckPage />} />
                     <Route path="/osha-compliance-gap-check" element={<OshaComplianceGapCheckPage />} />
                     <Route path="/ongoing-safety-support" element={<OngoingSafetySupportPage />} />
+                    <Route path="/verify/:token" element={<KitVerifyPage />} />
+                    <Route path="/admin/downloads" element={<AdminDownloadsPage />} />
                     <Route path="/safety-walkthrough/:city" element={<CityLandingPage />} />
                     <Route path="/faq" element={<FAQPage />} />
                     <Route path="/service-areas" element={<ServiceAreasPage />} />

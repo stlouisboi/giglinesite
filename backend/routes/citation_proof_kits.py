@@ -213,6 +213,29 @@ async def verify_citation_proof_kit_session(session_id: str):
             pdf_delivered = await _send_buyer_confirmation(
                 slug, tier, product, customer_email, customer_name
             )
+            # ── QR Evidence Hub, mint an authenticity token for this kit purchase.
+            try:
+                from lib.kit_qr import mint_kit_qr
+                qr_result = await mint_kit_qr(
+                    session_id=session_id,
+                    kit_slug=slug,
+                    kit_name=product.get("kit_name", slug),
+                    tier=tier,
+                    tier_name=product.get("tier_name", tier),
+                    customer_email=customer_email,
+                    customer_name=customer_name,
+                    amount_total_cents=result.get("amount_total"),
+                )
+                await db.gl_citation_proof_kit_orders.update_one(
+                    {"session_id": session_id},
+                    {"$set": {
+                        "qr_token": qr_result["token"],
+                        "qr_verify_url": qr_result["verify_url"],
+                        "qr_minted_at": qr_result["minted_at"],
+                    }},
+                )
+            except Exception as e:
+                logger.warning(f"QR mint skipped for session {session_id}: {e}")
             await _send_vince_notification(
                 slug, tier, product, customer_email, customer_name, customer_phone,
                 metadata, result.get("amount_total"), shipping_details,

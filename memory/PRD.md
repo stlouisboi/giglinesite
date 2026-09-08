@@ -280,3 +280,25 @@ See `/app/memory/test_credentials.md`.
     6. Wait 6-12 weeks for the domain to appear in the next Chrome release bundle. Firefox and Edge sync from Chrome's list roughly weekly to monthly after that.
   - **Files changed this batch (need push)**: `frontend/vercel.json`, `frontend/src/pages/HomePage.js`, `frontend/src/pages/ServicesPage.js`.
 
+
+- **2026-02 (fork), LinkedIn OG card fix (A + C)**:
+  - **Root cause**: LinkedIn's image proxy downsamples og-images to 480px wide (vs Facebook's 1200px). The old `og-image.png` was intentionally dark (`#091526`) with subtle gold text and a small shield graphic. At 480px, the whole card crushed to near-black and the headline became unreadable, while Facebook rendered it fine.
+  - **A: New og-image.png generated via Pillow** (not Nano Banana, because it fumbles text): typographic 1200×630 card, navy gradient background, gold left-edge accent bar, gold pinstripe under eyebrow, "GIGLINE SAFETY & COMPLIANCE" mono eyebrow, big two-line headline "Find the gaps / before OSHA does." in Liberation Serif Bold 92pt (Georgia clone), "OSHA WALKTHROUGHS · DOCUMENTATION REVIEWS · PIEDMONT TRIAD NC" service line, "FIXED QUOTE · 48-HOUR WRITTEN REPORT · FROM $1,300" footer, gold shield-with-checkmark top-right, `giglinecompliance.com` watermark bottom-right. Verified at 1200×630 AND simulated 480×252 LinkedIn downsample: all copy stays crisply readable. File size 43 KB (down from 57 KB).
+  - **Script**: `/app/scripts/gen_og_image.py`, re-runnable for future revisions.
+  - **C: Removed `<meta name="author">` from index.html** so LinkedIn stops misclassifying the homepage as Type=Article (which triggered the red "No publication date found" warning in Post Inspector).
+  - **Cache-buster**: appended `?v=2` to `og:image` and `twitter:image` URLs so LinkedIn's proxy fetches the new asset instead of serving its cached black thumbnail. Only affects social-scraper URLs, not the underlying static file.
+  - **og:image:alt** updated from "Find it before OSHA does." to "Find the gaps before OSHA does." to match the new headline.
+  - **Files changed this batch** (need push to Vercel): `frontend/public/og-image.png`, `frontend/public/index.html`, `scripts/gen_og_image.py` (NEW).
+  - **After push**: user should hit LinkedIn Post Inspector's "Inspect" button and Facebook Sharing Debugger's "Scrape Again" to force a fresh scrape and confirm the new preview shows.
+
+
+- **2026-02 (fork), OG image v3 - premium editorial rebuild**:
+  - **Why**: First rebuild (gold-on-navy typographic card with shield glyph) still read as "AI-designed template" - symmetrical grid, stylized clip-art checkmark, five text lines competing, high-saturation colors. User asked for premium, editorial feel.
+  - **New design**: 60/40 asymmetric split. Left panel is a real cropped photograph of Vince inspecting a LOTO Compliance Review clipboard on the shop floor (uses existing `/vince-inspecting.webp`). Right panel is a solid navy ink block with a tiny mono kicker, a 42px hairline gold rule, and an editorial italic serif headline "Find the gaps / before OSHA / does." in warm cream (not pure white, not saturated gold). Bottom of panel carries a locale line "PIEDMONT TRIAD · NORTH CAROLINA" and the domain in aged gold. Subtle vertical vignette blends photo into ink panel. 5% film-grain overlay across the whole image for print-editorial feel.
+  - **Palette shifted premium**: aged gold `#B08F44` instead of saturated `#C9A84C`, warm cream `#EEE8DB` instead of pure white, navy ink `#102037`. Less digital, more magazine.
+  - **Verified**: 1200×630 full = magazine-cover strong. LinkedIn's 480×252 downsample = every text line stays crisp, Vince is instantly recognizable as a human, no rendering artifacts. Clipboard, DANGER HIGH VOLTAGE sign, and industrial background all survive the compression, which is what shatters the "AI graphic" pattern.
+  - **File**: 647 KB PNG (photo-driven, so PNG size is larger than the typographic v2's 44 KB, but still well under social platform limits and hits CDN cache after first fetch).
+  - **Script**: `/app/scripts/gen_og_image.py` rewritten. Re-runnable if headline copy or photo ever changes.
+  - **Cache-buster `?v=2` already in place** from the previous batch, so on push LinkedIn's proxy re-fetches instead of serving the black card.
+  - **Files changed this batch (need push to Vercel)**: `frontend/public/og-image.png`, `scripts/gen_og_image.py`.
+

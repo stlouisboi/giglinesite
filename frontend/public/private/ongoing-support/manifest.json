@@ -18,6 +18,8 @@
     { "filename": "07-Change-Order.pdf",                       "label": "Change Order", "size_kb": 35, "kind": "pdf" },
     { "filename": "08-Termination-Transition.pdf",             "label": "Termination Transition", "size_kb": 38, "kind": "pdf" },
     { "filename": "09-Quarterly-Internal-Audit.pdf",           "label": "Quarterly Internal Audit", "size_kb": 36, "kind": "pdf" },
-    { "filename": "10-Annual-Review.pdf",                      "label": "Annual Review Deliverable", "size_kb": 39, "kind": "pdf" }
+    { "filename": "10-Annual-Review.pdf",                      "label": "Annual Review Deliverable", "size_kb": 39, "kind": "pdf" },
+    { "filename": "11-External-Vetting-Prompts.pdf",           "label": "External Vetting Prompts (Perplexity + Claude)", "size_kb": 45, "kind": "pdf" },
+    { "filename": "11-External-Vetting-Prompts.md",            "label": "External Vetting Prompts Source (Markdown, copy-paste ready)", "size_kb": 8, "kind": "md" }
   ]
 }

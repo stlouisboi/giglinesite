@@ -41,10 +41,10 @@ const WHAT_INCLUDED = [
   'Monthly facility safety walkthrough',
   'Corrective-action tracker review and updates',
   'Review of selected training, inspection, and program records',
-  'One toolbox talk or short safety-meeting resource',
+  'One safety-meeting resource for the client to deliver (this is a meeting starter, not required OSHA training)',
   'Monthly management review',
   'Concise leadership summary showing what changed, what closed, and what needs a decision',
-  'Up to 45 minutes per month of non-emergency remote support by email or scheduled phone/video consultation. Limited incident next-step guidance, when provided, uses this same allowance and excludes investigation, on-site response, regulator contact, and after-hours availability.',
+  'Up to 45 minutes per month of non-emergency remote support by email or scheduled phone/video consultation. Non-emergency only. Excludes on-site incident response, investigation, regulator contact, and after-hours availability. See the Urgent Event Protocol.',
 ];
 
 const HOW_IT_WORKS = [
@@ -81,8 +81,24 @@ const FAQS = [
     a: 'No. It provides defined, recurring professional support at a lower commitment than a full-time employee. The client continues to manage daily operations, supervise employees, approve spending, and complete corrective actions.',
   },
   {
+    q: 'How is this different from the free North Carolina OSH consultation?',
+    a: 'The state program is a no-cost, confidential, one-time consultation that identifies hazards and is separate from OSHA enforcement. It is an excellent resource, and GigLine does not replace it. GigLine is different in cadence: a recurring monthly operating rhythm with an owned corrective-action tracker, a management-facing summary, and scheduled local follow-through. Many small employers use the free state program for the baseline and GigLine for the recurring accountability.',
+  },
+  {
     q: 'Why is an initial Compliance Readiness Visit required?',
-    a: 'GigLine should not agree to support a program it has not evaluated. The initial visit establishes the condition of the floor, documents, and open risks so the recurring scope and price are responsible.',
+    a: 'GigLine should not agree to support a program it has not evaluated. The initial visit establishes the condition of the floor, documents, and open risks so the recurring scope and price are responsible. A recent equivalent assessment may be accepted in lieu of the CRV when GigLine determines it provides a reliable baseline, ask about the written waiver.',
+  },
+  {
+    q: 'What happens when a finding needs a real fix (equipment, engineering, program development)?',
+    a: 'The monthly service tracks, verifies, and reports. It does not perform physical corrections, engineering, complete program development, or specialized training. When a tracked finding needs that kind of work, GigLine will scope it as a separate written project (Corrective Action package, Compliance Control System, or refer to an engineer, industrial hygienist, or trainer). This is a clean handoff, not extra billing for work already promised.',
+  },
+  {
+    q: 'What if my records are missing or in bad shape?',
+    a: 'The monthly service reviews selected records on a rotating focus. It does not include historical record reconstruction from scratch. If a program area needs a rebuild, GigLine will quote it separately so it does not consume the monthly capacity meant for ongoing follow-through.',
+  },
+  {
+    q: 'What happens to my records and files if I terminate the engagement?',
+    a: 'On termination, GigLine delivers a written engagement transition document listing every open corrective action, its status, and next steps. Records held off-site are either returned to the client or securely destroyed based on the client\u2019s written preference. GigLine retains its own summaries and internal ledgers for six years per the client agreement.',
   },
   {
     q: 'Is every company under 50 employees charged $1,650?',
@@ -507,15 +523,14 @@ const OngoingSafetySupportPage = () => {
             <div>
               <Eyebrow color={GOLD}>Ongoing Safety Support · MAINTAIN</Eyebrow>
               <h1 className="text-3xl md:text-4xl lg:text-[52px] font-extrabold leading-[1.08] mb-7 tracking-tight text-white max-w-4xl">
-                <span className="block">Findings stay open.</span>
-                <span className="block">Records go missing.</span>
-                <span className="block italic" style={{ color: GOLD }}>The same hazards return.</span>
+                <span className="block">Find the gaps</span>
+                <span className="block italic" style={{ color: GOLD }}>before OSHA does.</span>
               </h1>
-              <p className="text-base md:text-lg text-white/80 leading-[1.85] mb-4 max-w-3xl">
+              <p className="text-base md:text-lg text-white/85 leading-[1.85] mb-4 max-w-3xl">
                 Ongoing safety support for small employers that need consistent follow-through but are not ready for a full-time safety manager.
               </p>
               <p className="text-base md:text-lg text-white/70 leading-[1.85] mb-8 max-w-3xl">
-                GigLine helps keep inspections, corrective actions, selected safety records, and management follow-up moving month after month.
+                GigLine keeps selected inspections, corrective actions, safety records, and management follow-up visible and tracked month after month. The employer performs the fixes; GigLine verifies and documents that they happened.
               </p>
               <p className="text-[15px] md:text-base text-white/90 font-semibold mb-9 max-w-3xl" style={mono}>
                 Plans start at $1,650 per month following an initial Compliance Readiness Visit.
@@ -720,18 +735,25 @@ const OngoingSafetySupportPage = () => {
             New recurring clients begin with a paid Compliance Readiness Visit so GigLine can see the actual operation before agreeing to maintain the work. A recent equivalent assessment may be accepted only when GigLine determines that it provides a reliable baseline.
           </p>
 
-          <button
-            type="button"
-            onClick={scrollToForm}
-            className="mt-4 inline-flex items-center gap-2 font-bold px-6 py-3.5 rounded-lg text-[15px] transition-colors"
-            style={{ background: NAVY, color: '#ffffff' }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = '#1c2e44')}
-            onMouseLeave={(e) => (e.currentTarget.style.background = NAVY)}
-            data-testid="ongoing-investment-cta"
-          >
-            Request a Fit Call
-            <ArrowRight size={16} />
-          </button>
+          <div className="mt-4 rounded-xl p-5 md:p-6 flex flex-wrap items-center justify-between gap-4" style={{ background: NAVY }} data-testid="ongoing-investment-cta-row">
+            <div>
+              <p className="uppercase font-bold mb-1" style={{ ...mono, fontSize: '10px', letterSpacing: '0.18em', color: GOLD }}>Combined Initial Investment</p>
+              <p className="text-2xl md:text-3xl font-extrabold text-white" style={mono}>$7,450</p>
+              <p className="text-white/65 text-[13px] mt-1">Compliance Readiness Visit + 90-day initial term</p>
+            </div>
+            <button
+              type="button"
+              onClick={scrollToForm}
+              className="inline-flex items-center gap-2 font-bold px-6 py-3.5 rounded-lg text-[15px] transition-colors"
+              style={{ background: GOLD, color: NAVY }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = '#c8922a')}
+              onMouseLeave={(e) => (e.currentTarget.style.background = GOLD)}
+              data-testid="ongoing-investment-cta"
+            >
+              Request a Fit Call
+              <ArrowRight size={16} />
+            </button>
+          </div>
         </div>
       </section>
 
@@ -743,10 +765,7 @@ const OngoingSafetySupportPage = () => {
             Consistent support without pretending a consultant replaces management.
           </h2>
           <p className="text-base text-[#1C2B2B]/80 leading-[1.85] mb-5 max-w-4xl">
-            GigLine provides safety assessment, documentation review, corrective-action tracking, coordination, and management reporting within the agreed scope.
-          </p>
-          <p className="text-base font-semibold text-[#1C2B2B] leading-[1.85] mb-6 max-w-4xl">
-            The employer retains authority and responsibility for its workplace, employees, equipment, supervision, corrective actions, and compliance obligations. GigLine does not guarantee that every hazard will be identified, that every incident will be prevented, or that a client will avoid citations.
+            GigLine provides safety assessment, documentation review, corrective-action tracking, coordination, and management reporting within the agreed scope. The employer retains authority and responsibility for its workplace, employees, equipment, supervision, corrective actions, and compliance obligations. GigLine does not guarantee that every hazard will be identified, that every incident will be prevented, or that a client will avoid citations.
           </p>
 
           <button
@@ -801,11 +820,11 @@ const OngoingSafetySupportPage = () => {
           </p>
           <p className="text-white/70 text-[14.5px] mb-6" style={mono}>GigLine connects four things:</p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 md:gap-4 mb-8" data-testid="ongoing-ffp">
+          <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 md:gap-4 mb-4" data-testid="ongoing-ffp">
             {[
               { label: 'FLOOR', icon: Users },
               { label: 'FINDINGS', icon: ClipboardCheck },
-              { label: 'FIXES', icon: CalendarClock },
+              { label: 'TRACKING', icon: CalendarClock },
               { label: 'PROOF', icon: FileBarChart2 },
             ].map((s, i, arr) => {
               const Icon = s.icon;
@@ -832,8 +851,11 @@ const OngoingSafetySupportPage = () => {
             })}
           </div>
 
+          <p className="text-[13.5px] text-white/60 italic leading-[1.75] max-w-3xl mb-6" data-testid="ongoing-ffp-note">
+            The employer performs the fixes. GigLine observes, documents, tracks, verifies, and preserves the evidence.
+          </p>
           <p className="text-[15px] text-white/75 leading-[1.85] max-w-4xl">
-            That means observing what is happening, documenting what needs attention, helping management keep the correction moving, and preserving evidence of the work.
+            That means observing what is happening, documenting what needs attention, holding management accountable to the correction cadence they authorize, and preserving evidence of the work.
           </p>
         </div>
       </section>

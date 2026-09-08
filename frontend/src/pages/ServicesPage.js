@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Phone, Check, Factory, Truck, Warehouse, HardHat, ShieldCheck, Zap, FileText, Users, Wrench, BookOpen, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Phone, Check, Factory, Truck, Warehouse, HardHat, ShieldCheck, Zap, FileText, Users, Wrench, BookOpen, CheckCircle2, Lock, Anchor } from 'lucide-react';
 import { trackServiceBooking, trackPhoneClick, trackEvent } from '../utils/analytics';
 import SEO from '../components/SEO';
 import { SUPERVISOR_KIT_ENABLED } from '../config/features';
@@ -1906,6 +1906,54 @@ const ServicesPage = () => {
                 <p className="text-base text-[#CBD5E1] leading-relaxed mb-5 max-w-2xl">
                   GigLine is a private engagement. Nothing leaves your facility except the report I hand you.
                 </p>
+                {/* Credentials strip: OSHA-30 alongside third-party-verified A+ security. */}
+                <div
+                  className="flex flex-wrap gap-x-5 gap-y-2 mb-6"
+                  data-testid="services-founder-credentials"
+                  role="list"
+                  aria-label="Consultant credentials and third-party verifications"
+                >
+                  {[
+                    { Icon: ShieldCheck, label: 'OSHA 30-Hour Certified' },
+                    { Icon: Anchor, label: 'U.S. Navy Veteran' },
+                    {
+                      Icon: Lock,
+                      label: 'A+ Security Rating',
+                      href: 'https://developer.mozilla.org/en-US/observatory/analyze?host=www.giglinecompliance.com',
+                      title: 'Verified A+ by Mozilla Observatory. Click to view live scan.',
+                    },
+                  ].map((b, i) => {
+                    const inner = (
+                      <>
+                        <b.Icon size={15} className="text-[#C9A84C] flex-shrink-0" strokeWidth={1.8} />
+                        <span className="font-medium">{b.label}</span>
+                      </>
+                    );
+                    return b.href ? (
+                      <a
+                        key={i}
+                        role="listitem"
+                        href={b.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title={b.title}
+                        className="flex items-center gap-2 text-[13px] text-[#CBD5E1] hover:text-white transition-colors"
+                        data-testid={`services-founder-credential-${i}`}
+                      >
+                        {inner}
+                      </a>
+                    ) : (
+                      <div
+                        key={i}
+                        role="listitem"
+                        className="flex items-center gap-2 text-[13px] text-[#CBD5E1]"
+                        data-testid={`services-founder-credential-${i}`}
+                      >
+                        {inner}
+                      </div>
+                    );
+                  })}
+                </div>
                 <Link
                   to="/about"
                   className="inline-flex items-center gap-2 text-[#2A52A0] hover:text-white font-bold underline decoration-[#2A52A0]/40 hover:decoration-white"

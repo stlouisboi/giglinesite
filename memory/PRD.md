@@ -262,3 +262,21 @@ See `/app/memory/test_credentials.md`.
   - Screenshots for sales-page trust bars saved to `/app/frontend/public/assets/mozilla-observatory-a-plus.jpg` (full report, 85 KB) and `/app/frontend/public/assets/mozilla-observatory-a-plus-badge.jpg` (cropped A+ summary, 6.6 KB).
   - The footer trust chip copy ("A+ Security · HSTS Preloaded") is now technically accurate on the "A+" side. The "HSTS Preloaded" claim is still preload-eligible-but-not-yet-submitted until the domain is accepted at hstspreload.org.
 
+
+- **2026-02 (fork), A+ badge wire-in + HSTS preload prep**:
+  - **Trust badges added to two hero placements**:
+    - `HomePage.js` hero: added a 4th badge `A+ Security Rating` (lucide `Lock` icon) to the existing OSHA-30 / Navy Vet / 25+ Years strip. Layout switched from `flex-col sm:flex-row` to `flex-wrap` so 4 badges break clean on all viewports. Verified: desktop 1920 no overflow; mobile 390 wraps 2+2, no overflow.
+    - `ServicesPage.js` Founder section: added a `services-founder-credentials` strip below Vince's bio paragraph with 3 badges (OSHA 30-Hour Certified, U.S. Navy Veteran, A+ Security Rating). Verified: desktop and mobile 390 both clean.
+    - Both A+ badges link out to `https://developer.mozilla.org/en-US/observatory/analyze?host=www.giglinecompliance.com` (target=_blank, rel=noopener) so buyers can independently verify.
+    - lucide imports extended: `Lock` added to HomePage, `Lock` + `Anchor` added to ServicesPage.
+  - **HSTS preload BLOCKED on Vercel setup**: hstspreload.org's own API rejects the domain right now, root-cause is the apex `giglinecompliance.com` responds with only `max-age=63072000` (no `includeSubDomains`, no `preload`). Vercel is answering the apex→www redirect at the edge with its default HSTS, bypassing our vercel.json headers because the apex is currently configured as a Vercel Dashboard "Redirect Domain" (not attached to the project).
+  - **Fix pushed (needs one Dashboard toggle from user)**: `vercel.json` now has an explicit `redirects` entry keyed on `has: host = giglinecompliance.com` that fires apex→www at the project level, which will bring our full HSTS + CSP + everything to the apex response, but ONLY if the apex is attached to the project as a real Domain rather than a Redirect Domain. If Vercel Dashboard still has apex as a redirect domain, the vercel.json rule never fires.
+  - **User action required to close this**:
+    1. In Vercel Dashboard → Project → Settings → Domains: if `giglinecompliance.com` (apex) currently shows "Redirect to www.giglinecompliance.com", **change it to a regular production domain** (same project, no redirect assigned). The vercel.json redirect will then take over.
+    2. Push the vercel.json change to GitHub.
+    3. Wait ~60s for Vercel to redeploy.
+    4. Curl-verify the apex now returns full HSTS: `curl -sI https://giglinecompliance.com/ | grep strict-transport-security` should show `max-age=63072000; includeSubDomains; preload`.
+    5. Go to https://hstspreload.org, enter `giglinecompliance.com`, click Check status. If green, click Submit.
+    6. Wait 6-12 weeks for the domain to appear in the next Chrome release bundle. Firefox and Edge sync from Chrome's list roughly weekly to monthly after that.
+  - **Files changed this batch (need push)**: `frontend/vercel.json`, `frontend/src/pages/HomePage.js`, `frontend/src/pages/ServicesPage.js`.
+

@@ -241,3 +241,17 @@ See `/app/memory/test_credentials.md`.
   - **Copy accuracy caveat**: chip claims "A+" and "HSTS Preloaded". Real live grade will be A (not A+) until GTM/GA4 is either self-hosted or fully removed; HSTS is preload-eligible but the domain must be submitted to https://hstspreload.org and accepted before it is truly preloaded in browsers. User is aware and requested this exact copy; recommended follow-ups: submit to hstspreload.org, and consider a lightweight self-hosted analytics alternative to unlock A+.
   - **Files changed this batch** (need push to Vercel): `frontend/public/gigline-init.js` (NEW), `frontend/public/index.html`, `frontend/vercel.json`, `frontend/src/components/Footer.js`.
 
+
+- **2026-02 (fork), Emergent Object Storage migration for intake + report uploads**:
+  - **What was broken**: `/api/intake/upload` was a validation stub that returned a synthetic UUID and discarded the file bytes; client submissions were silently dropped on production. `/api/admin/intake/{token}/report` was inlining PDFs as base64 into the Mongo intake doc, capped at 15 MB and bloating dashboard queries.
+  - **Fix**: added `/app/backend/lib/object_storage.py` (init_storage / put_object / get_object; module-level cached `_storage_key` per playbook; auto-retry with `force=True` on 404). Wired startup init in `server.py` — logs `Object storage initialised (key len=35)` on boot.
+  - **Intake side** (`routes/intake.py`): `/intake/upload` now streams to `gigline/intake/pending/{uuid}.{ext}`, writes a tracking record to `gl_intake_uploads` (uploadId, originalFilename, contentType, size, storagePath, submissionId=null, clientToken=null, uploadedAt, isDeleted). On `/intake/submit`, all uploadIds in `data.uploadedFileUrls` get their gl_intake_uploads record stamped with the new submissionId + clientToken via `update_many`. New admin endpoints: `GET /api/admin/intake/attachment/{uploadId}?token=` (passthrough download, gated by ADMIN_PASSWORD) and `GET /api/admin/intake/{clientToken}/attachments?token=` (list files for a submission).
+  - **Report side** (`routes/portal.py`): `/admin/intake/{token}/report` now writes the PDF to `gigline/reports/{clientToken}/{uuid}.pdf`, stores `reportStoragePath` on the intake doc, and `$unset`s the legacy `reportPdfBase64`. `/report/{clientToken}/download` prefers the storage path, falls back to base64 for pre-migration records so no historical report breaks.
+  - **End-to-end tests (all pass locally)**:
+    - Intake upload → download roundtrip: 562-byte PDF written to storage, retrieved via admin passthrough, byte-perfect match (`bytes match: True`)
+    - Auth: `?token=wrong` → 401; unknown uploadId → 404
+    - Report upload → download roundtrip: 10024-byte PDF, Mongo doc has `reportStoragePath` and `reportPdfBase64` is unset, public client-token download returns identical bytes
+  - **New DB collection**: `gl_intake_uploads` (uploadId, originalFilename, contentType, size, storagePath, submissionId, clientToken, uploadedAt, linkedAt, isDeleted). No delete API on storage per playbook, so soft-delete only.
+  - **Env vars used**: `EMERGENT_LLM_KEY` (already set), `INTEGRATION_PROXY_URL` (optional, defaults to public proxy).
+  - **Push required**: `/app/backend/lib/object_storage.py` (NEW), `routes/intake.py`, `routes/portal.py`, `server.py`. Railway will pick them up on GitHub push.
+

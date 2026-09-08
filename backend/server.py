@@ -163,6 +163,16 @@ async def anniversary_followup_scheduler():
 
 @app.on_event("startup")
 async def startup_event():
+    # Object storage: mint the session-scoped storage key once so first upload is fast.
+    # A failure here is not fatal — individual upload endpoints will retry init lazily
+    # and surface a clear 5xx if the key really cannot be minted.
+    try:
+        from lib.object_storage import init_storage
+        init_storage()
+        logger.info("Object storage initialised at startup")
+    except Exception as e:
+        logger.warning(f"Object storage startup init failed (will retry lazily): {e}")
+
     asyncio.create_task(drip_scheduler())
     asyncio.create_task(weekly_summary_scheduler())
     asyncio.create_task(anniversary_followup_scheduler())

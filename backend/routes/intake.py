@@ -1,6 +1,7 @@
 """Client Safety Intake Form routes — GL-PORT-001."""
 
-from fastapi import APIRouter, HTTPException, UploadFile, File
+from fastapi import APIRouter, HTTPException, UploadFile, File, Query
+from fastapi.responses import Response
 from datetime import datetime, timezone
 from typing import List, Optional
 from pydantic import BaseModel
@@ -9,7 +10,8 @@ import logging
 import secrets
 
 import resend
-from config import db, SENDER_EMAIL, VINCE_EMAIL
+from config import db, SENDER_EMAIL, VINCE_EMAIL, ADMIN_PASSWORD
+from lib.object_storage import put_object, get_object, APP_NAME, MIME_TYPES, StorageError
 
 router = APIRouter()
 logger = logging.getLogger('gigline')
@@ -17,11 +19,13 @@ logger = logging.getLogger('gigline')
 import asyncio
 from integrations.mailerlite import add_to_lead_nurture, pause_engagement
 
-# NOTE: intake attachments are validated (size + type) but no longer persisted
-# on the pod. The deploy target (Vercel serverless) provides only ephemeral
-# per-invocation storage. Attachments that Vince needs to retain are attached
-# directly to the notification email via Resend at submit time instead.
+# Intake attachments are persisted in Emergent Object Storage (not the pod's
+# ephemeral disk). Each upload gets a UUID-based path, a Mongo record in
+# gl_intake_uploads, and a passthrough download URL that admin fetches with
+# ADMIN_PASSWORD. On /intake/submit we link the collected uploadIds to the
+# submission document.
 MAX_INTAKE_UPLOAD_BYTES = 10 * 1024 * 1024
+ALLOWED_INTAKE_EXTS = {'.pdf', '.doc', '.docx', '.xls', '.xlsx'}
 
 
 def _format_attribution_html(attribution: Optional[dict]) -> str:
@@ -369,17 +373,15 @@ class IntakeSubmission(BaseModel):
 
 @router.post("/intake/upload")
 async def upload_intake_file(file: UploadFile = File(...)):
-    """Validate an intake attachment (size + type).
+    """Persist an intake attachment to Emergent Object Storage.
 
-    Attachments are no longer persisted on the pod. The client keeps the file
-    locally and the intake form transmits identifying metadata only. If Vince
-    needs the attachment, the client sends it to him after the intake email
-    is received. Returning a synthetic upload id keeps the existing frontend
-    flow working without a schema change.
+    Files are validated (size + allow-listed type), streamed to Object Storage
+    under a UUID-based path, and tracked in `gl_intake_uploads`. The returned
+    `uploadId` is echoed back by the frontend inside `uploadedFileUrls` on
+    `/intake/submit` so the submission doc can be linked to its attachments.
     """
-    allowed = ['.pdf', '.doc', '.docx', '.xls', '.xlsx']
     ext = ('.' + file.filename.rsplit('.', 1)[-1].lower()) if '.' in (file.filename or '') else ''
-    if ext not in allowed:
+    if ext not in ALLOWED_INTAKE_EXTS:
         raise HTTPException(status_code=400, detail="File type not allowed")
 
     if file.size and file.size > MAX_INTAKE_UPLOAD_BYTES:
@@ -389,11 +391,79 @@ async def upload_intake_file(file: UploadFile = File(...)):
     if len(content) > MAX_INTAKE_UPLOAD_BYTES:
         raise HTTPException(status_code=400, detail="File too large (10MB max)")
 
+    upload_id = str(uuid.uuid4())
+    ext_key = ext.lstrip('.')
+    content_type = MIME_TYPES.get(ext_key, file.content_type or "application/octet-stream")
+    # Attachments are uploaded before submit (no submissionId yet), so we bucket
+    # them under a `pending` prefix and link them to the submission on submit.
+    storage_path = f"{APP_NAME}/intake/pending/{upload_id}{ext}"
+
+    try:
+        result = put_object(storage_path, content, content_type)
+    except (StorageError, Exception) as e:
+        logger.error(f"Intake upload to object storage failed: {e}")
+        raise HTTPException(status_code=502, detail="Upload failed. Please try again.")
+
+    now = datetime.now(timezone.utc).isoformat()
+    await db.gl_intake_uploads.insert_one({
+        "uploadId": upload_id,
+        "originalFilename": file.filename,
+        "contentType": content_type,
+        "size": result.get("size", len(content)),
+        "storagePath": result["path"],
+        "submissionId": None,       # linked on /intake/submit
+        "clientToken": None,        # linked on /intake/submit
+        "uploadedAt": now,
+        "isDeleted": False,
+    })
+
     return {
         "filename": file.filename,
-        "uploadId": str(uuid.uuid4()),
-        "size": len(content),
+        "uploadId": upload_id,
+        "size": result.get("size", len(content)),
     }
+
+
+@router.get("/admin/intake/attachment/{upload_id}")
+async def download_intake_attachment(upload_id: str, token: str = Query("")):
+    """Admin-gated passthrough download for an intake attachment.
+
+    Frontend admin dashboard passes `?token=ADMIN_PASSWORD`. Object Storage
+    has no presigned URLs, so every fetch goes through the backend.
+    """
+    if token != ADMIN_PASSWORD:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+    record = await db.gl_intake_uploads.find_one(
+        {"uploadId": upload_id, "isDeleted": False}, {"_id": 0}
+    )
+    if not record:
+        raise HTTPException(status_code=404, detail="Attachment not found")
+
+    try:
+        data, content_type = get_object(record["storagePath"])
+    except Exception as e:
+        logger.error(f"Intake attachment download failed for {upload_id}: {e}")
+        raise HTTPException(status_code=502, detail="Attachment fetch failed")
+
+    filename = record.get("originalFilename") or f"{upload_id}.bin"
+    return Response(
+        content=data,
+        media_type=record.get("contentType") or content_type,
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+    )
+
+
+@router.get("/admin/intake/{client_token}/attachments")
+async def list_intake_attachments(client_token: str, token: str = Query("")):
+    """Admin: list attachments linked to a given intake submission."""
+    if token != ADMIN_PASSWORD:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+    records = await db.gl_intake_uploads.find(
+        {"clientToken": client_token, "isDeleted": False}, {"_id": 0}
+    ).sort("uploadedAt", 1).to_list(50)
+    return {"attachments": records}
 
 
 @router.post("/intake/submit")
@@ -423,6 +493,29 @@ async def submit_intake(data: IntakeSubmission):
         **data.model_dump(),
     }
     await db.gl_intake_submissions.insert_one(doc)
+
+    # Link previously-uploaded intake attachments to this submission. Frontend
+    # sends `uploadedFileUrls` as a list of {filename, uploadId, size} objects
+    # collected from /intake/upload. We stamp each matching gl_intake_uploads
+    # record with the new submissionId + clientToken so admin can pull them.
+    upload_ids = []
+    for item in (data.uploadedFileUrls or []):
+        if isinstance(item, dict) and item.get("uploadId"):
+            upload_ids.append(item["uploadId"])
+        elif isinstance(item, str) and item:
+            upload_ids.append(item)
+    if upload_ids:
+        try:
+            await db.gl_intake_uploads.update_many(
+                {"uploadId": {"$in": upload_ids}, "submissionId": None},
+                {"$set": {
+                    "submissionId": submission_id,
+                    "clientToken": client_token,
+                    "linkedAt": timestamp.isoformat(),
+                }},
+            )
+        except Exception as e:
+            logger.error(f"Failed to link intake uploads to {submission_id}: {e}")
 
     # ─── Determine priority flags for MailerLite ───
     priority_flags = []

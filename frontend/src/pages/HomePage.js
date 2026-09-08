@@ -5,6 +5,7 @@ import SEO from '../components/SEO';
 import CaseStudyTeaser from '../components/CaseStudyTeaser';
 import FieldManualBand from '../components/FieldManualBand';
 import WalkthroughDaySection from '../components/WalkthroughDaySection';
+import FindBuildMaintainJourney from '../components/FindBuildMaintainJourney';
 import { trackPhoneClick, trackReviewClick, trackEvent } from '../utils/analytics';
 import { SUPERVISOR_KIT_ENABLED } from '../config/features';
 
@@ -584,6 +585,9 @@ const HomePage = () => {
           </Reveal>
         </div>
       </section>
+
+      {/* ═══ FIND → PRIORITIZE → BUILD → MAINTAIN journey ═══ */}
+      <FindBuildMaintainJourney variant="light" />
 
       {/* ═══ SECTION 2, WHAT WE FIND ON THE FLOOR (GL-WEB-008) ═══ */}
       <section className="py-20 md:py-24 bg-white border-t border-b" style={{ borderColor: '#dde3ea' }} data-testid="floor-findings-section">

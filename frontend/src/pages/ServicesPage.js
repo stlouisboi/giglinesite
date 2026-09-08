@@ -7,6 +7,7 @@ import { SUPERVISOR_KIT_ENABLED } from '../config/features';
 import CaseStudyTeaser from '../components/CaseStudyTeaser';
 import SampleReportSection from '../components/SampleReportSection';
 import WalkthroughDaySection from '../components/WalkthroughDaySection';
+import FindBuildMaintainJourney from '../components/FindBuildMaintainJourney';
 
 /* ── Owner-approved final public pricing (Aug 2026 refactor).
    REACT_APP_GL_WEB_008_ENABLED retired, refactor supersedes the flag. ── */
@@ -422,6 +423,9 @@ const ServicesPage = () => {
           </div>
         </div>
       </nav>
+
+      {/* ═══ FIND → PRIORITIZE → BUILD → MAINTAIN journey (navigator) ═══ */}
+      <FindBuildMaintainJourney variant="light" />
 
       {/* ═══ 2. AUTHORITY STATEMENT ═══ */}
       <section className="py-10 md:py-14 bg-white" data-testid="services-authority-band">

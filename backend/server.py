@@ -30,6 +30,7 @@ from routes.contact_message import router as contact_message_router
 from routes.osha_inspection_guide import router as osha_inspection_guide_router
 from routes.google_indexing import router as google_indexing_router
 from routes.bing_indexnow import router as bing_indexnow_router
+from routes.fit_call import router as fit_call_router
 from routes.ongoing_support import router as ongoing_support_router
 from routes.kit_qr import router as kit_qr_router
 from routes.admin_downloads import router as admin_downloads_router
@@ -60,6 +61,7 @@ api_router.include_router(contact_message_router)
 api_router.include_router(osha_inspection_guide_router)
 api_router.include_router(google_indexing_router)
 api_router.include_router(bing_indexnow_router)
+api_router.include_router(fit_call_router)
 api_router.include_router(ongoing_support_router)
 api_router.include_router(kit_qr_router)
 api_router.include_router(admin_downloads_router)

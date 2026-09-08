@@ -315,3 +315,31 @@ See `/app/memory/test_credentials.md`.
   - **Homepage copy updated** (line 1235-1240): "LOTO, Forklift/PIT, and HazCom Pro are shipping now… Incident-to-Correction and New Hire Orientation are next." Old copy hid HazCom Pro as "next" while the checkout endpoint was live.
   - **Files changed (need push)**: `backend/config.py`, `frontend/src/pages/HomePage.js`, plus binary artifacts `backend/kit_files/GigLine_HazCom_Pro_Digital_Compliance_Kit_150.zip` and `..._Control_System_300.zip`.
 
+
+- **2026-02 (fork), OSHA-Ready Control System pivot to digital-first + 4-stage journey**:
+  - **Direction**: keep existing service AT $4,500 but pivot from physical-4-binder-primary to Digital Safety Control System primary (built inside client's Google Drive / SharePoint / OneDrive). Physical binder becomes an optional add-on, quoted separately. Introduce Find → Prioritize → Build → Maintain journey without collapsing the three existing FIND diagnostics (Safety Walkthrough, Documentation Readiness Review, Compliance Readiness Visit remain separate).
+  - **BATCH 1 – Backend Fit Call endpoint** (`backend/routes/fit_call.py`, registered in `server.py`):
+    - `POST /api/fit-call-request` accepts 13-field `FitCallRequest` Pydantic model + honeypot `website` field.
+    - Persists to new `gl_fit_call_requests` collection with source_ip + user_agent capture. Fires Resend notification to Vince + confirmation email to prospect (both best-effort, never fail the request).
+    - Verified: 400 on missing required fields · 400 on bad email · silent 200 on honeypot fill · valid submit persists correctly.
+    - Included boundary language constant reused across service page, form ack, and prospect confirmation email.
+  - **BATCH 2 – OSHA-Ready Control System page rewrite** (`frontend/src/pages/OshaReadyControlSystemPage.js`, full overwrite): hero with "Your safety documents should work together." + Request a Fit Call / See What's Included CTAs, "Scattered documents are not a safety system" problem section (6 cards), "Your Digital Safety Control System" (6 components: Written Program Control, SDS/Chemical, Training Proof, Inspections & Corrections, Incident Management, Document Governance), responsive semantic folder-tree diagram (11 folders, `<ol>` structure, screen-reader accessible), Optional Physical Access Binder add-on section, 7-step implementation process, "Starting scope" (12 included / 10 quoted separately), Readiness Kits vs Control System comparison table, boundary language section, closing CTA.
+  - **BATCH 3 – Fit Call form page** (`frontend/src/pages/FitCallRequestPage.js`, route `/services/osha-ready-control-system/request`, added to App.js): 13-field form matching backend schema exactly (contact ×2, company ×3, scale ×2, systems ×3, problem/timing ×3), hidden honeypot, multi-select programs with "None yet" exclusivity, 1000-char count for problem field, aria-live announcements, error/success/submitting states, no back-nav protection but disables submit while in-flight and while success state is shown to prevent duplicate submissions, boundary language on acknowledgment, `noindex` SEO on this route.
+  - **BATCH 4 – Journey navigator** (new shared `frontend/src/components/FindBuildMaintainJourney.js`): 4-stage grid card with FIND=Compliance Readiness Visit → PRIORITIZE=Corrective Action Implementation → BUILD=OSHA-Ready Control System (highlighted with gold border, the featured stage) → MAINTAIN=Ongoing Safety Support. Inserted into HomePage after hero and into ServicesPage after the top nav.
+  - **BATCH 5 – Cross-links** (new shared `frontend/src/components/ControlSystemUpsell.js`): "Need this implemented across your operation?" band. Dropped into `CitationProofKitDetailPage.js` which is the single shared component behind all 5 kit slugs, so the change lands on all 5 kits in one edit (per user's "identify shared component" instruction). Ongoing Safety Support page gets a "What Ongoing Support Maintains" section linking back to Control System.
+  - **End-to-end Playwright verification** (all pass):
+    - OSHA-Ready page: 11 sections render on 1920×800 · 6 problems · 6 components · 11 folder items · 7 process steps · 12 scope-included · 5 compare rows · hero CTA routes to `/request`.
+    - Fit Call form: fills 13 fields cleanly · submits · success state renders with email echo · boundary language visible.
+    - Homepage: journey renders with all 4 stages.
+    - Services page: journey renders after nav.
+    - LOTO kit page: upsell block present, CTA routes correctly (proves upsell reaches all 5 kits via shared component).
+    - Ongoing Safety Support: "Maintain the Control System" cross-link present.
+    - Existing /intake route still loads (no regression).
+  - **URLs preserved**: no rewrites of Safety Walkthrough, Documentation Readiness Review, existing intake, or existing kit routes. Only new route added: `/services/osha-ready-control-system/request`.
+  - **Files changed** (need push, logically grouped for per-batch review):
+    - Batch 1: `backend/routes/fit_call.py` (NEW), `backend/server.py`
+    - Batch 2: `frontend/src/pages/OshaReadyControlSystemPage.js` (rewritten)
+    - Batch 3: `frontend/src/pages/FitCallRequestPage.js` (NEW), `frontend/src/App.js`
+    - Batch 4: `frontend/src/components/FindBuildMaintainJourney.js` (NEW), `frontend/src/pages/HomePage.js`, `frontend/src/pages/ServicesPage.js`
+    - Batch 5: `frontend/src/components/ControlSystemUpsell.js` (NEW), `frontend/src/pages/CitationProofKitDetailPage.js`, `frontend/src/pages/OngoingSafetySupportPage.js`
+

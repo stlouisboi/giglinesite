@@ -33,11 +33,11 @@ Ongoing Safety Support is a monthly, retainer-style engagement for small employe
 
 At the starting scope, GigLine provides the following per calendar month:
 
-1. One scheduled on-site visit, up to 2.5 hours on-site.
+1. One scheduled on-site visit, up to 2.5 hours on-site, plus local travel included in the monthly 8-hour capacity. "Local" means within a 45-minute drive of Kernersville under normal conditions; longer travel is quoted separately.
 2. One facility safety walkthrough during the on-site visit.
 3. Corrective-action tracker review and updates.
-4. Review of selected training, inspection, and program records.
-5. One toolbox talk or short safety-meeting resource.
+4. Review of selected training, inspection, and program records, capped at one program area OR up to 40 document pages per month.
+5. One safety-meeting resource (not a training deliverable, see §6.6).
 6. One monthly management review meeting (phone, video, or in-person, at Vince's discretion based on distance and urgency).
 7. One concise leadership summary document delivered to the client contact.
 8. Up to 45 minutes per month of non-emergency remote support, by email or scheduled phone/video consultation. Limited incident next-step guidance, when provided, uses this same allowance and excludes investigation, on-site response, regulator contact, and after-hours availability.
@@ -56,6 +56,11 @@ The following are separate services or require an appropriate specialist. They a
 - Equipment corrections, purchases, or installations
 - Complete written program development from a blank slate
 - Historical record reconstruction
+- Machine-specific energy-control (LOTO) procedure development or validation, authorized-employee LOTO training, and annual periodic inspections
+- Machine-guard design, engineering validation, modification, or certification (base service is a visual screening only)
+- Serving as the client's OSHA competent person, qualified person, or authorized employee for any regulation
+- Industrial hygiene sampling and exposure-control design
+- Environmental compliance (RCRA, air, stormwater, DOT/hazmat)
 - Contractor prequalification portal management (ISNetworld, Avetta, Veriforce, etc.)
 - Specialized training delivery (forklift operator certification classes, respirator fit testing, first-aid/CPR)
 - Legal representation or interpretation
@@ -207,7 +212,7 @@ For each reviewed record set, Vince notes:
 
 ### 4.7 Corrective-action tracker standard
 
-Every finding gets one row with the following fields:
+The tracker is the single source of truth for GigLine's documented observations and the corrective actions the client has agreed to track. It is not a certification that every hazard has been identified, nor a substitute for the employer's compliance program. Every finding gets one row with the following fields:
 
 | Field | Description |
 |---|---|
@@ -352,7 +357,20 @@ Vince never contacts OSHA on the client's behalf under the standard monthly serv
 
 If the client reports an active or imminent OSHA inspection, Vince informs the client in writing that on-site inspection representation is out of scope, offers to help the client find qualified representation (legal counsel or an EHS specialist with inspection-representation experience), and offers to provide any records GigLine has on file to the client for their use during the inspection.
 
-### 6.4 Scope creep management
+### 6.5 Urgent Event Protocol (client-facing)
+
+If the client experiences a workplace incident, they must act on statutory reporting duties independently of GigLine. Federal OSHA requires the employer to report:
+
+- A **work-related fatality within 8 hours** to OSHA (1-800-321-OSHA or the local Area Office).
+- A **work-related in-patient hospitalization, amputation, or loss of an eye within 24 hours**.
+
+**GigLine has no after-hours duty, no duty to calculate reporting deadlines on behalf of the employer, and no duty to notify regulators unless separately retained in writing.** The 45-minute monthly remote allowance applies only to non-emergency next-step guidance. On-site incident response, investigation, regulator contact, and after-hours availability are excluded from the standard monthly service and require a separate written scope. See also Template 06, Incident Escalation Response Script.
+
+### 6.6 Safety-meeting resources are not required training
+
+The one safety-meeting resource included each month is a starter for a client-led safety meeting. It is not, and does not satisfy, OSHA standard-specific training requirements. The employer remains responsible for training applicability, delivery, competency verification, language accessibility, and training records.
+
+
 
 Every month Vince asks: "Did I do work this month that was not in the agreement, and did the client know I was doing extra?"
 

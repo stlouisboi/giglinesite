@@ -231,3 +231,13 @@ See `/app/memory/test_credentials.md`.
   - **Verified end-to-end via ingress**: all 7 headers land on `https://z-project-9.preview.emergentagent.com/api/`. Homepage smoke-tested with Playwright: `pageerrors=0`, title/H1 render correctly, LCP hero and clipboard still paint.
   - Expected Mozilla Observatory grade: A/A+ (script-src carries `'unsafe-inline'` which caps some points; purist mode would require refactoring inline GA/Clarity/JSON-LD into external scripts).
 
+
+- **2026-02 (fork), CSP hardening + Observatory trust chip**:
+  - **First Observatory scan** after initial header ship: **B, 75/100**. Losses: CSP `-20` for `'unsafe-inline'` in `script-src` (from inline GA4 + Clarity in `index.html`), SRI `-5` for missing integrity on gtag.js (unfixable — GTM URLs are non-deterministic).
+  - **Fix (pending push)**: extracted inline GA4 dataLayer/gtag config + Clarity bootstrap from `index.html` into `/app/frontend/public/gigline-init.js` (same-origin). Clarity ID is passed via `data-clarity-id="%REACT_APP_MS_CLARITY_ID%"` on the script tag so build-time env interpolation still works. Removed `'unsafe-inline'` from CSP script-src in `vercel.json`. JSON-LD is safe: `<script type="application/ld+json">` is a data block per HTML spec and not enforced by script-src.
+  - **Smoke test on preview**: `dataLayer` populated with GA4 events (`js`, `config G-FNX42NP1QT`, `gtm.dom`, `gtm.scrollDepth`), `gtag` defined, JSON-LD script tag present, 0 page errors, 0 CSP violations.
+  - **Expected grade after push**: **A, 95/100** (only remaining loss is the -5 GTM SRI, hard-capped).
+  - **Trust chip added to footer**: `Footer.js` gains a gold pill next to the Veteran-Owned badge reading `A+ Security · HSTS Preloaded` with a `ShieldCheck` icon, linking to the live Mozilla Observatory scan for independent verification. `data-testid="footer-security-badge"`. Verified on 1920x800 and 390x844, no overflow.
+  - **Copy accuracy caveat**: chip claims "A+" and "HSTS Preloaded". Real live grade will be A (not A+) until GTM/GA4 is either self-hosted or fully removed; HSTS is preload-eligible but the domain must be submitted to https://hstspreload.org and accepted before it is truly preloaded in browsers. User is aware and requested this exact copy; recommended follow-ups: submit to hstspreload.org, and consider a lightweight self-hosted analytics alternative to unlock A+.
+  - **Files changed this batch** (need push to Vercel): `frontend/public/gigline-init.js` (NEW), `frontend/public/index.html`, `frontend/vercel.json`, `frontend/src/components/Footer.js`.
+

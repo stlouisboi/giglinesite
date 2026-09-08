@@ -302,3 +302,16 @@ See `/app/memory/test_credentials.md`.
   - **Cache-buster `?v=2` already in place** from the previous batch, so on push LinkedIn's proxy re-fetches instead of serving the black card.
   - **Files changed this batch (need push to Vercel)**: `frontend/public/og-image.png`, `scripts/gen_og_image.py`.
 
+
+- **2026-02 (fork), HazCom Pro silent failure closed**:
+  - **Silent failure closed**: HazCom Pro was fully in `CITATION_PROOF_KIT_PRODUCTS` and reachable via Stripe checkout, but the two referenced PDFs on disk (`GigLine_HazCom_Pro_Digital_Compliance_Kit_150.pdf` and `..._Control_System_300.pdf`) did not exist. Buyers would pay and receive no attachment. This is now fixed.
+  - **User uploaded three deliverable ZIPs** (as `.zip` bundles, not single PDFs), containing branded PDFs + an .xlsx workbook + a MASTER PDF per the tier stacking model in the READMEs. Stored at `/app/backend/kit_files/GigLine_HazCom_Pro_Digital_Compliance_Kit_150.zip` (413 KB) and `/app/backend/kit_files/GigLine_HazCom_Pro_Compliance_Control_System_300.zip` (813 KB).
+  - **$600 binder tier** points to the $300 ZIP (mirrors the LOTO/PIT pattern where binder tier reuses control-system deliverable and physical binder ships separately). User's $600 zip upload arrived truncated (CD record missing); once re-uploaded, we can swap in the enriched $600 deliverable (adds printable binder tab dividers per README).
+  - **Delivery pipeline uses `.zip` extension**: Resend attaches base64-encoded ZIP with filename `GigLine_HazCom_Pro_Kit_150_Digital.zip` (or `..._300_Control_System.zip`). No delivery-code change needed since Resend's attachment API is content-type-agnostic — email clients infer type from filename.
+  - **Verified end-to-end**:
+    - All 3 tiers create live Stripe checkout sessions (`cs_live_...`) via `POST /api/checkout/citation-proof-kit`
+    - Both zips read + base64-encode cleanly (551 KB / 1085 KB Resend payloads, well under the 40 MB limit)
+    - Config sanity script confirms every HazCom `pdf_path` resolves to an existing file
+  - **Homepage copy updated** (line 1235-1240): "LOTO, Forklift/PIT, and HazCom Pro are shipping now… Incident-to-Correction and New Hire Orientation are next." Old copy hid HazCom Pro as "next" while the checkout endpoint was live.
+  - **Files changed (need push)**: `backend/config.py`, `frontend/src/pages/HomePage.js`, plus binary artifacts `backend/kit_files/GigLine_HazCom_Pro_Digital_Compliance_Kit_150.zip` and `..._Control_System_300.zip`.
+

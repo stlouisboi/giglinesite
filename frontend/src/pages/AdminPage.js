@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { X, Upload, ChevronRight, Eye, RefreshCw, FileText, Users, Briefcase, DollarSign, Clock, Trash2, Search, Package, Truck } from 'lucide-react';
+import { X, Upload, ChevronRight, Eye, RefreshCw, FileText, Users, Briefcase, DollarSign, Clock, Trash2, Search, Package, Truck, Paperclip, Download } from 'lucide-react';
 import SEO from '../components/SEO';
 import WalkthroughLeadsCRM from '../components/WalkthroughLeadsCRM';
 import { SUPERVISOR_KIT_ENABLED } from '../config/features';
@@ -54,6 +54,91 @@ const SourceCell = ({ attribution, referralSource }) => {
   }
   if (referralSource) return <span className="text-[11px] text-gray-500">{referralSource}</span>;
   return <span className="text-[10px] text-gray-300">Direct</span>;
+};
+
+/* ── Bytes formatter ── */
+const formatBytes = (bytes) => {
+  if (!bytes && bytes !== 0) return '';
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+};
+
+/* ── Intake attachments panel (fetched on demand for the View drawer) ── */
+const IntakeAttachments = ({ clientToken, token, apiBase }) => {
+  const [state, setState] = useState({ loading: true, error: null, items: [] });
+
+  useEffect(() => {
+    if (!clientToken || !token) {
+      setState({ loading: false, error: null, items: [] });
+      return;
+    }
+    let alive = true;
+    (async () => {
+      setState({ loading: true, error: null, items: [] });
+      try {
+        const res = await fetch(
+          `${apiBase}/api/admin/intake/${encodeURIComponent(clientToken)}/attachments?token=${encodeURIComponent(token)}`
+        );
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        if (alive) setState({ loading: false, error: null, items: data.attachments || [] });
+      } catch (err) {
+        if (alive) setState({ loading: false, error: err.message || 'Fetch failed', items: [] });
+      }
+    })();
+    return () => { alive = false; };
+  }, [clientToken, token, apiBase]);
+
+  return (
+    <div className="rounded-lg border border-[#2A52A0]/20 bg-[#2A52A0]/5 p-4" data-testid="intake-attachments-panel">
+      <div className="flex items-center gap-2 mb-3">
+        <Paperclip size={12} className="text-[#2A52A0]" />
+        <p className="text-[10px] uppercase tracking-wider text-[#2A52A0] font-bold">
+          Attachments{state.items.length > 0 ? ` · ${state.items.length}` : ''}
+        </p>
+      </div>
+      {state.loading && (
+        <p className="text-xs text-gray-400" data-testid="intake-attachments-loading">Loading attachments,</p>
+      )}
+      {!state.loading && state.error && (
+        <p className="text-xs text-red-500" data-testid="intake-attachments-error">Could not load attachments ({state.error}).</p>
+      )}
+      {!state.loading && !state.error && state.items.length === 0 && (
+        <p className="text-xs text-gray-400" data-testid="intake-attachments-empty">No files uploaded with this intake.</p>
+      )}
+      {!state.loading && !state.error && state.items.length > 0 && (
+        <ul className="space-y-2" data-testid="intake-attachments-list">
+          {state.items.map((att, i) => {
+            const downloadUrl = `${apiBase}/api/admin/intake/attachment/${encodeURIComponent(att.uploadId)}?token=${encodeURIComponent(token)}`;
+            const uploaded = att.uploadedAt ? new Date(att.uploadedAt).toLocaleDateString() : '';
+            return (
+              <li key={att.uploadId || i} data-testid={`intake-attachment-${i}`}>
+                <a
+                  href={downloadUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download={att.originalFilename || ''}
+                  className="flex items-center justify-between gap-3 rounded-md bg-white border border-gray-200 hover:border-[#2A52A0] hover:bg-[#2A52A0]/5 px-3 py-2 transition-colors"
+                  data-testid={`intake-attachment-link-${i}`}
+                >
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs font-semibold text-[#1C2B2B] truncate" title={att.originalFilename}>
+                      {att.originalFilename || att.uploadId}
+                    </p>
+                    <p className="text-[10px] text-gray-400 mt-0.5">
+                      {formatBytes(att.size)}{uploaded ? ` · uploaded ${uploaded}` : ''}
+                    </p>
+                  </div>
+                  <Download size={14} className="text-[#2A52A0] flex-shrink-0" />
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </div>
+  );
 };
 
 const AdminPage = () => {

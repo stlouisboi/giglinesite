@@ -1,6 +1,8 @@
 """GigLine Safety & Compliance — FastAPI application entry point."""
 
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI, APIRouter, Request
+from fastapi.responses import Response
+from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.middleware.cors import CORSMiddleware
 import asyncio
 import os
@@ -21,11 +23,18 @@ from routes.newsletter import router as newsletter_router
 from routes.intake import router as intake_router
 from routes.portal import router as portal_router
 from routes.supervisor_kit import router as supervisor_kit_router
+from routes.citation_proof_kits import router as citation_proof_kits_router
 from routes.sample_report import router as sample_report_router
 from routes.quick_contact import router as quick_contact_router
 from routes.contact_message import router as contact_message_router
 from routes.osha_inspection_guide import router as osha_inspection_guide_router
 from routes.google_indexing import router as google_indexing_router
+from routes.bing_indexnow import router as bing_indexnow_router
+from routes.ongoing_support import router as ongoing_support_router
+from routes.kit_qr import router as kit_qr_router
+from routes.admin_downloads import router as admin_downloads_router
+from routes.pilot import router as pilot_router
+from routes.kit_resend import router as kit_resend_router
 
 app = FastAPI()
 
@@ -44,11 +53,18 @@ api_router.include_router(newsletter_router)
 api_router.include_router(intake_router)
 api_router.include_router(portal_router)
 api_router.include_router(supervisor_kit_router)
+api_router.include_router(citation_proof_kits_router)
 api_router.include_router(sample_report_router)
 api_router.include_router(quick_contact_router)
 api_router.include_router(contact_message_router)
 api_router.include_router(osha_inspection_guide_router)
 api_router.include_router(google_indexing_router)
+api_router.include_router(bing_indexnow_router)
+api_router.include_router(ongoing_support_router)
+api_router.include_router(kit_qr_router)
+api_router.include_router(admin_downloads_router)
+api_router.include_router(pilot_router)
+api_router.include_router(kit_resend_router)
 
 app.include_router(api_router)
 
@@ -60,6 +76,39 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+# ── Security headers ──
+# HSTS + strict CSP on API responses (defense-in-depth; Mozilla Observatory grades
+# the frontend origin on Vercel, which carries its own headers in vercel.json).
+# API responses are JSON, so a very restrictive CSP is safe here.
+class SecurityHeadersMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next):
+        response: Response = await call_next(request)
+        headers = response.headers
+        # 2 years, includeSubDomains + preload-ready
+        headers.setdefault(
+            "Strict-Transport-Security",
+            "max-age=63072000; includeSubDomains; preload",
+        )
+        # Lock down: API returns JSON/PDF only, never executes scripts in a browser
+        headers.setdefault(
+            "Content-Security-Policy",
+            "default-src 'none'; frame-ancestors 'none'; base-uri 'none'; "
+            "form-action 'none'; upgrade-insecure-requests",
+        )
+        headers.setdefault("X-Content-Type-Options", "nosniff")
+        headers.setdefault("X-Frame-Options", "DENY")
+        headers.setdefault("Referrer-Policy", "strict-origin-when-cross-origin")
+        headers.setdefault(
+            "Permissions-Policy",
+            "camera=(), microphone=(), geolocation=(), interest-cohort=(), payment=(), usb=()",
+        )
+        headers.setdefault("Cross-Origin-Resource-Policy", "cross-origin")
+        return response
+
+
+app.add_middleware(SecurityHeadersMiddleware)
 
 
 # ── Background schedulers ──
@@ -85,12 +134,51 @@ async def weekly_summary_scheduler():
         await asyncio.sleep(1800)
 
 
+async def anniversary_followup_scheduler():
+    """Run once per day at ~14:00 UTC (~9 AM EST) to send 90-day follow-ups.
+
+    Delegates to lib.kit_lifecycle_emails.process_anniversary_followups which
+    is idempotent via anniversary_followup_sent_at — so if the container
+    restarts and the loop runs the same day, nobody gets duplicate emails.
+    """
+    from lib.kit_lifecycle_emails import process_anniversary_followups
+    from datetime import datetime, timezone
+    # Small startup delay so migrations / other tasks settle first.
+    await asyncio.sleep(60)
+    last_run_date = None
+    while True:
+        now = datetime.now(timezone.utc)
+        # Fire once per calendar day, on the first tick at/after 14:00 UTC.
+        if now.hour >= 14 and last_run_date != now.date():
+            try:
+                summary = await process_anniversary_followups()
+                total = summary["cp_sent"] + summary["sk_sent"]
+                if total:
+                    logger.info(f"Anniversary scheduler: sent {total} follow-up(s) — {summary}")
+                last_run_date = now.date()
+            except Exception as e:
+                logger.error(f"Anniversary scheduler error: {str(e)}")
+        await asyncio.sleep(3600)  # check hourly
+
+
 @app.on_event("startup")
 async def startup_event():
+    # Object storage: mint the session-scoped storage key once so first upload is fast.
+    # A failure here is not fatal — individual upload endpoints will retry init lazily
+    # and surface a clear 5xx if the key really cannot be minted.
+    try:
+        from lib.object_storage import init_storage
+        init_storage()
+        logger.info("Object storage initialised at startup")
+    except Exception as e:
+        logger.warning(f"Object storage startup init failed (will retry lazily): {e}")
+
     asyncio.create_task(drip_scheduler())
     asyncio.create_task(weekly_summary_scheduler())
+    asyncio.create_task(anniversary_followup_scheduler())
     logger.info("Drip email scheduler started (runs every 30 minutes)")
     logger.info("Weekly summary scheduler started (runs Monday 8 AM EST)")
+    logger.info("Anniversary follow-up scheduler started (runs daily ~9 AM EST)")
 
 
 @app.on_event("shutdown")

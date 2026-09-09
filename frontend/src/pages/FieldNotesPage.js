@@ -7,30 +7,30 @@ import FieldNotesNewsletter from '../components/FieldNotesNewsletter';
 // CFR subpart label for each field note. Lives alongside FIELD_NOTES so the
 // filter dropdown can derive options from a single source of truth.
 const CFR_BY_SLUG = {
-  'ai-generated-safety-programs': '29 CFR 1910 — General Industry',
+  'ai-generated-safety-programs': '29 CFR 1910, General Industry',
   'heat-stress': 'OSHA General Duty Clause',
-  'forklift-safety': '29 CFR 1910.178 — Forklifts',
-  'electrical-safety': '29 CFR 1910 Subpart S — Electrical',
-  'hazcom': '29 CFR 1910.1200 — HazCom',
-  'machine-guarding': '29 CFR 1910.212 — Machine Guarding',
-  'walking-surfaces': '29 CFR 1910 Subpart D — Walking-Working Surfaces',
-  'lockout-tagout': '29 CFR 1910.147 — LOTO',
-  'emergency-action-plans': '29 CFR 1910.38 — Emergency Action Plans',
-  'ppe-assessment': '29 CFR 1910 Subpart I — PPE',
-  'fall-protection': '29 CFR 1910 Subpart D — Fall Protection',
-  'confined-space': '29 CFR 1910.146 — Confined Space',
-  'scaffolding-safety': '29 CFR 1926.451 — Scaffolding',
-  'hearing-conservation': '29 CFR 1910.95 — Hearing Conservation',
-  'bloodborne-pathogens': '29 CFR 1910.1030 — Bloodborne Pathogens',
-  'recordkeeping-300-log': '29 CFR Part 1904 — Recordkeeping',
-  'respiratory-protection': '29 CFR 1910.134 — Respiratory Protection',
-  'silica-respirable-crystalline': '29 CFR 1910.1053 — Silica',
-  'hot-work-welding': '29 CFR 1910 Subpart Q — Welding',
-  'abrasive-wheels': '29 CFR 1910.215 — Abrasive Wheels',
-  'ladder-safety': '29 CFR 1910.23 — Ladders',
-  'eye-face-protection': '29 CFR 1910.133 — Eye & Face PPE',
-  'trenching-excavation': '29 CFR 1926.651 — Trenching',
-  'cranes-rigging': '29 CFR 1910.179 — Cranes',
+  'forklift-safety': '29 CFR 1910.178, Forklifts',
+  'electrical-safety': '29 CFR 1910 Subpart S, Electrical',
+  'hazcom': '29 CFR 1910.1200, HazCom',
+  'machine-guarding': '29 CFR 1910.212, Machine Guarding',
+  'walking-surfaces': '29 CFR 1910 Subpart D, Walking-Working Surfaces',
+  'lockout-tagout': '29 CFR 1910.147, LOTO',
+  'emergency-action-plans': '29 CFR 1910.38, Emergency Action Plans',
+  'ppe-assessment': '29 CFR 1910 Subpart I, PPE',
+  'fall-protection': '29 CFR 1910 Subpart D, Fall Protection',
+  'confined-space': '29 CFR 1910.146, Confined Space',
+  'scaffolding-safety': '29 CFR 1926.451, Scaffolding',
+  'hearing-conservation': '29 CFR 1910.95, Hearing Conservation',
+  'bloodborne-pathogens': '29 CFR 1910.1030, Bloodborne Pathogens',
+  'recordkeeping-300-log': '29 CFR Part 1904, Recordkeeping',
+  'respiratory-protection': '29 CFR 1910.134, Respiratory Protection',
+  'silica-respirable-crystalline': '29 CFR 1910.1053, Silica',
+  'hot-work-welding': '29 CFR 1910 Subpart Q, Welding',
+  'abrasive-wheels': '29 CFR 1910.215, Abrasive Wheels',
+  'ladder-safety': '29 CFR 1910.23, Ladders',
+  'eye-face-protection': '29 CFR 1910.133, Eye & Face PPE',
+  'trenching-excavation': '29 CFR 1926.651, Trenching',
+  'cranes-rigging': '29 CFR 1910.179, Cranes',
   'nc-osha-vs-federal': 'NC State Plan',
 };
 
@@ -39,7 +39,7 @@ const FIELD_NOTES = [
     slug: 'ai-generated-safety-programs',
     title: 'AI-Generated Safety Programs',
     subtitle: "What ChatGPT Can't See on Your Floor",
-    description: 'Operators are using AI to write OSHA programs. The output looks compliant — until an inspector arrives. Here\'s why AI-generated programs fail at the floor level, and what a walkthrough surfaces that AI cannot.',
+    description: 'Operators are using AI to write OSHA programs. The output looks compliant, until an inspector arrives. Here\'s why AI-generated programs fail at the floor level, and what a walkthrough surfaces that AI cannot.',
     topics: ['AI documentation gaps', 'paperwork vs. floor reality', 'inspection readiness'],
   },
   {
@@ -144,70 +144,70 @@ const FIELD_NOTES = [
     slug: 'recordkeeping-300-log',
     title: 'OSHA Recordkeeping & the 300 Log',
     subtitle: 'The Form Nobody Fills Out Until It Is Too Late',
-    description: '29 CFR Part 1904. Recordable injuries, the 300A summary that has to be posted every Feb 1, and the severe injury reports OSHA expects within 8 or 24 hours of an event.',
+    description: 'OSHA recordkeeping (29 CFR 1904), recordable injuries, 300A summary posted Feb 1, severe injury reports within 8/24 hours.',
     topics: ['300 log', '300A summary', 'severe injury reporting'],
   },
   {
     slug: 'respiratory-protection',
     title: 'Respiratory Protection',
     subtitle: 'The Fit Test Nobody Did',
-    description: 'Dust masks, half-face respirators, written program, medical evaluation, fit testing, and training. The five pieces that almost every small operation is missing at least one of.',
+    description: 'Respiratory protection, written program, medical evaluation, fit testing, training. Five pieces small operations often miss.',
     topics: ['written program', 'medical evaluation', 'fit testing'],
   },
   {
     slug: 'silica-respirable-crystalline',
     title: 'Respirable Crystalline Silica',
     subtitle: 'The 50 µg/m³ Limit Nobody Measured',
-    description: 'Concrete cutting, sandblasting, foundry work, stone fabrication. The OSHA silica standard requires exposure assessment, controls, medical surveillance, and a written exposure control plan. Most small operations have none of it.',
+    description: 'OSHA silica standard for cutting, sandblasting, foundry & fabrication, exposure assessment, controls, medical surveillance & plan.',
     topics: ['exposure assessment', 'engineering controls', 'medical surveillance'],
   },
   {
     slug: 'hot-work-welding',
     title: 'Hot Work, Welding & Cutting',
     subtitle: 'The Fire Watch That Walked Off',
-    description: 'Welding, cutting, brazing, grinding. Subpart Q covers fire prevention, ventilation, eye protection, and compressed gas safety. Hot work permits, fire watches, and combustible material removal — the three most cited.',
+    description: 'Hot work & welding compliance, Subpart Q fire prevention, ventilation, eye protection, compressed gas, permits & fire watches.',
     topics: ['hot work permits', 'fire watch', 'compressed gas cylinders'],
   },
   {
     slug: 'abrasive-wheels',
     title: 'Abrasive Wheels & Bench Grinders',
     subtitle: 'The Tongue Guard at 1/8 of an Inch',
-    description: 'Tongue guards, work rests, ring tests, RPM limits. 29 CFR 1910.215 is one of the most specific and most violated standards in general industry. Bench grinders are everywhere — and they almost always fail inspection.',
+    description: 'Bench grinder compliance, tongue guards, work rests, ring tests, RPM limits. 29 CFR 1910.215. One of OSHA\'s most-cited standards.',
     topics: ['tongue guards', 'work rests', 'ring testing'],
   },
   {
     slug: 'ladder-safety',
     title: 'Portable Ladder Safety',
     subtitle: 'The 4-to-1 Rule Nobody Remembers',
-    description: 'Extension ladders, step ladders, fixed ladders. Inspection requirements, the 4-to-1 angle, three-point contact, and what disqualifies a ladder from service. A top OSHA citation in small operations.',
+    description: 'Ladder safety compliance, inspection requirements, 4-to-1 angle, three-point contact, disqualification criteria. Top OSHA citation.',
     topics: ['ladder inspection', '4-to-1 angle', 'three-point contact'],
   },
   {
     slug: 'eye-face-protection',
     title: 'Eye & Face Protection',
     subtitle: 'Safety Glasses Are Not a PPE Program',
-    description: 'Z87.1 compliance, side shields, face shields for grinding and chemical work, and the hazard assessment that has to come first. Buying glasses is not the program — the documented assessment and training are.',
+    description: 'Eye/face protection, Z87.1, side shields, face shields for grinding/chemical work. Hazard assessment + training is the program.',
     topics: ['Z87.1 markings', 'face shields', 'hazard assessment'],
   },
   {
     slug: 'trenching-excavation',
     title: 'Trenching & Excavation',
     subtitle: 'The 5-Foot Rule That Buries People',
-    description: 'Protective systems, competent person inspections, soil classification, and ladders within 25 feet. Trench collapses kill an average of 22 workers a year. The Triad has been a recent trench-fatality flashpoint.',
+    description: 'Trenching & excavation, protective systems, competent person inspections, soil classification, ladders within 25 feet.',
     topics: ['protective systems', 'competent person', 'soil classification'],
   },
   {
     slug: 'cranes-rigging',
     title: 'Overhead Cranes & Rigging',
     subtitle: 'The Sling That Should Have Been Retired',
-    description: 'Daily inspections, annual inspections, sling condition, rated capacity, and operator training. 29 CFR 1910.179 plus the 1926 construction provisions. Most fab and metals shops have at least one nonconforming sling on a hook right now.',
+    description: 'Cranes & rigging, daily/annual inspections, sling condition, rated capacity, operator training. 29 CFR 1910.179 + 1926.',
     topics: ['sling inspection', 'annual inspection', 'operator training'],
   },
   {
     slug: 'nc-osha-vs-federal',
     title: 'NC State Plan vs. Federal OSHA',
     subtitle: 'What North Carolina Does Differently',
-    description: 'NC operates an approved State Plan. Compliance officers come from the NC Department of Labor, not federal OSHA. The standards mirror federal — but enforcement, penalty schedules, and consultation services differ in ways that matter to Triad operations.',
+    description: 'NC operates an approved State Plan. Compliance officers come from NC DOL, not federal OSHA. Here\'s what applies to Triad operations.',
     topics: ['NC State Plan', 'NCDOL inspections', 'consultation services'],
   },
 ];
@@ -217,7 +217,7 @@ const FieldNotesPage = () => {
   const [cfrFilter, setCfrFilter] = useState('');
 
   // Unique CFR subpart options, sorted alphabetically. Derived from the
-  // CFR_BY_SLUG map — no hardcoded option lists.
+  // CFR_BY_SLUG map, no hardcoded option lists.
   const cfrOptions = useMemo(
     () =>
       Array.from(new Set(Object.values(CFR_BY_SLUG))).sort((a, b) =>
@@ -273,15 +273,22 @@ const FieldNotesPage = () => {
           backgroundColor: '#102A43',
           backgroundImage: 'linear-gradient(rgba(28,43,43,0.55), rgba(28,43,43,0.72)), url(/assets/field-notes-header.webp)',
           backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundPosition: '50% 20%',
           backgroundRepeat: 'no-repeat',
         }}
         data-testid="field-notes-header"
       >
         <div className="container max-w-4xl">
           <p
-            className="uppercase tracking-[3px] text-[#2A52A0] mb-4"
-            style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }}
+            className="uppercase tracking-[3px] mb-4"
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: '11px',
+              color: '#C9A84C',
+              fontWeight: 700,
+              letterSpacing: '0.28em',
+            }}
+            data-testid="field-notes-kicker"
           >
             Field Notes
           </p>
@@ -307,7 +314,7 @@ const FieldNotesPage = () => {
           </blockquote>
 
           <p className="text-lg text-white/70 max-w-2xl leading-relaxed">
-            Practical breakdowns of the safety topics that come up most in small operations. Not theory &mdash; what we actually find on the floor.
+            Practical breakdowns of the safety topics that come up most in small operations. Not theory , what we actually find on the floor.
           </p>
         </div>
       </section>
@@ -439,7 +446,7 @@ const FieldNotesPage = () => {
             New topics added monthly based on what we're seeing in the field.
           </p>
 
-          {/* Newsletter capture — soft list-builder */}
+          {/* Newsletter capture, soft list-builder */}
           <div className="max-w-4xl mx-auto">
             <FieldNotesNewsletter source="field-notes-index" />
           </div>
@@ -453,7 +460,7 @@ const FieldNotesPage = () => {
             What you just read is what we look for on the floor.
           </h2>
           <p className="text-base md:text-lg text-white/70 leading-relaxed mb-8 max-w-2xl mx-auto">
-            If any of these gaps exist in your operation, a Safety Walkthrough will find them — before OSHA does.
+            If any of these gaps exist in your operation, a Safety Walkthrough will find them, before OSHA does.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <Link

@@ -4,7 +4,7 @@ import { ArrowRight, Mail, Phone } from 'lucide-react';
 import SEO from '../components/SEO';
 
 /*
-  GL-WEB-PRIVACY-001 — Privacy Policy
+  GL-WEB-PRIVACY-001, Privacy Policy
   Plain-language single-page disclosure.
   Covers intake form data, MailerLite email use, subprocessors, user rights.
 */
@@ -65,7 +65,7 @@ const PrivacyPolicyPage = () => {
           <ul className="list-disc pl-6 space-y-1.5 mt-3">
             <li>Contact you about your safety request and confirm a quote</li>
             <li>Deliver agreed-upon services (walkthroughs, documentation reviews, incident response)</li>
-            <li>Send periodic emails relevant to your industry &mdash; Field Notes, OSHA updates, the annual Triad Field Manual</li>
+            <li>Send periodic emails relevant to your industry , Field Notes, OSHA updates, the annual Triad Field Manual</li>
             <li>Improve the GigLine website by reviewing aggregated traffic patterns (page views, form completions)</li>
           </ul>
           <p className="mt-3">
@@ -76,18 +76,18 @@ const PrivacyPolicyPage = () => {
         <Section title="3. Subprocessors">
           <p>To run the GigLine website and operations, the following third-party services have access to portions of your data:</p>
           <ul className="list-disc pl-6 space-y-1.5 mt-3">
-            <li><strong>Resend</strong> &mdash; transactional email delivery (confirmation emails, scope quotes, report delivery notifications)</li>
-            <li><strong>MailerLite</strong> &mdash; email marketing and automation</li>
-            <li><strong>MailerSend</strong> &mdash; transactional email delivery</li>
-            <li><strong>RingCentral</strong> &mdash; SMS and voice communications. Your phone number may be used to send SMS messages per your opt-in consent. Governed by{' '}
+            <li><strong>Resend</strong> , transactional email delivery (confirmation emails, scope quotes, report delivery notifications)</li>
+            <li><strong>MailerLite</strong> , email marketing and automation</li>
+            <li><strong>MailerSend</strong> , transactional email delivery</li>
+            <li><strong>RingCentral</strong> , SMS and voice communications. Your phone number may be used to send SMS messages per your opt-in consent. Governed by{' '}
               <a href="https://www.ringcentral.com/legal/privacy-notice.html" target="_blank" rel="noopener noreferrer" className="font-bold underline" style={{ color: '#2A52A0' }}>
                 RingCentral&rsquo;s Privacy Policy
               </a>.
             </li>
-            <li><strong>MongoDB Atlas</strong> &mdash; database storage for intake submissions and engagement records</li>
-            <li><strong>Vercel</strong> &mdash; website hosting and static asset delivery</li>
-            <li><strong>Railway</strong> &mdash; backend API hosting</li>
-            <li><strong>Stripe</strong> &mdash; payment processing (only if you purchase a downloadable document or service)</li>
+            <li><strong>MongoDB Atlas</strong> , database storage for intake submissions and engagement records</li>
+            <li><strong>Vercel</strong> , website hosting and static asset delivery</li>
+            <li><strong>Railway</strong> , backend API hosting</li>
+            <li><strong>Stripe</strong> , payment processing (only if you purchase a downloadable document or service)</li>
           </ul>
           <p className="mt-3">
             Each of these subprocessors has its own privacy and security policy. GigLine selects vendors with reputable security postures (SOC 2 / ISO 27001 where applicable) and the principle of least access.

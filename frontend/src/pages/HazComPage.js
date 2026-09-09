@@ -36,7 +36,7 @@ const HazComPage = () => {
         schema={{
           "@context": "https://schema.org",
           "@type": "Product",
-          "name": "HazCom Starter Pack — Small Shop Edition",
+          "name": "HazCom Starter Pack, Small Shop Edition",
           "description": "Written HazCom program, SDS binder checklist + index, and training verification log. 11 pages total. 29 CFR 1910.1200(e) compliant.",
           "brand": { "@type": "Brand", "name": "GigLine Safety & Compliance" },
           "offers": {
@@ -51,31 +51,55 @@ const HazComPage = () => {
 
       {/* Hero */}
       <section className="bg-[#102A43] text-white py-16 md:py-24">
-        <div className="container max-w-3xl">
-          <p
-            className="text-xs font-semibold tracking-widest text-[#C9A84C] uppercase mb-4"
-            style={{ fontFamily: "'JetBrains Mono', monospace" }}
-            data-testid="hazcom-label"
-          >
-            DIGITAL DOWNLOAD · $29 STARTER PACK
-          </p>
-          <h1
-            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3"
-            style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
-            data-testid="hazcom-headline"
-          >
-            HazCom Starter Pack
-          </h1>
-          <p className="text-xl md:text-2xl text-white/80 mb-8">
-            Small Shop Edition — <span className="text-[#C9A84C] font-bold">$29</span>
-          </p>
-          <div className="border-l-2 border-[#C9A84C] pl-6">
-            <p className="text-lg text-white/90 font-medium mb-2">
-              #1 OSHA citation in general industry.
-            </p>
-            <p className="text-white/60">
-              Every shop has chemicals. Most don't have the paperwork.
-            </p>
+        <div className="container max-w-6xl">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-14 items-center">
+            <div>
+              <p
+                className="text-xs font-semibold tracking-widest text-[#C9A84C] uppercase mb-4"
+                style={{ fontFamily: "'JetBrains Mono', monospace" }}
+                data-testid="hazcom-label"
+              >
+                DIGITAL DOWNLOAD · $29 STARTER PACK
+              </p>
+              <h1
+                className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3"
+                style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+                data-testid="hazcom-headline"
+              >
+                HazCom Starter Pack
+              </h1>
+              <p className="text-xl md:text-2xl text-white/80 mb-8">
+                Small Shop Edition, <span className="text-[#C9A84C] font-bold">$29</span>
+              </p>
+              <div className="border-l-2 border-[#C9A84C] pl-6">
+                <p className="text-lg text-white/90 font-medium mb-2">
+                  #1 OSHA citation in general industry.
+                </p>
+                <p className="text-white/60">
+                  Every shop has chemicals. Most don't have the paperwork.
+                </p>
+              </div>
+            </div>
+            <div className="relative" data-testid="hazcom-hero-image-wrap">
+              <div
+                className="rounded-xl overflow-hidden"
+                style={{
+                  border: '1px solid rgba(201,168,76,0.35)',
+                  boxShadow: '0 20px 60px -20px rgba(0,0,0,0.55)',
+                }}
+              >
+                <img
+                  src="/hazcom-starter-pack-hero.png"
+                  alt="GigLine HazCom Starter Pack shown on a stainless-steel workbench: a yellow Hazardous Chemicals SDS Binder next to three printed OSHA-compliant forms, Written HazCom Program, SDS Binder Checklist + Index, and Training Verification Log, with safety glasses and cut-resistant work gloves, in front of a warehouse wall marked with GHS hazard pictograms and a Safety Is Everyone's Job sign"
+                  className="w-full h-auto block"
+                  loading="eager"
+                  fetchPriority="high"
+                  width="1200"
+                  height="900"
+                  data-testid="hazcom-hero-image"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -117,7 +141,7 @@ const HazComPage = () => {
             What's Included
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {[
               {
                 id: 'GL-HAZCOM-001',
@@ -180,10 +204,10 @@ const HazComPage = () => {
           <button
             onClick={handleCheckout}
             disabled={isLoading}
-            className="bg-[#102A43] hover:bg-[#1F3F80] text-[#1C2B2B] font-bold text-lg px-10 py-4 rounded transition-colors disabled:opacity-50 inline-flex items-center gap-2"
+            className="bg-[#C9A84C] hover:bg-[#B8972C] text-[#102A43] font-bold text-lg px-10 py-4 rounded transition-colors disabled:opacity-50 inline-flex items-center gap-2"
             data-testid="hazcom-buy-button"
           >
-            {isLoading ? 'Redirecting...' : 'Buy Now — $29'}
+            {isLoading ? 'Redirecting...' : 'Buy Now, $29'}
             {!isLoading && <ArrowRight size={20} />}
           </button>
           <p className="text-white/50 text-sm mt-4">
@@ -193,7 +217,7 @@ const HazComPage = () => {
         </div>
       </section>
 
-      {/* Upgrade to HazCom Pro Kit — lead-magnet → full control system CTA */}
+      {/* Upgrade to HazCom Pro Kit, lead-magnet → full control system CTA */}
       <section className="py-14 md:py-20 bg-[#102A43] text-white" data-testid="hazcom-upgrade-cta">
         <div className="container max-w-3xl text-center">
           <p
@@ -214,7 +238,7 @@ const HazComPage = () => {
             className="text-[15.5px] md:text-[17px] leading-[1.7] max-w-2xl mx-auto mb-8"
             style={{ color: 'rgba(255,255,255,0.78)', fontFamily: "Georgia, serif" }}
           >
-            SDS management, chemical inventory approval workflow, container label audit, training records tied to your actual chemicals, and audit-ready documentation &mdash; all built out.
+            SDS management, chemical inventory approval workflow, container label audit, training records tied to your actual chemicals, and audit-ready documentation , all built out.
             Includes the Chemical Control Index&trade; and SDS Gap Severity Grid&trade;.
           </p>
           <Link
@@ -243,7 +267,7 @@ const HazComPage = () => {
         <div className="container max-w-2xl">
           <div className="border border-[#102A43]/20 bg-white rounded-lg p-6 md:p-8 text-center" data-testid="hazcom-walkthrough-callout">
             <p className="text-lg font-bold text-[#1C2B2B] mb-2">Not sure if these violations exist in your shop?</p>
-            <p className="text-sm text-[#1C2B2B]/60 mb-5">A GigLine Safety Walkthrough will flag them with photos and a prioritized fix list — usually within 48 hours.</p>
+            <p className="text-sm text-[#1C2B2B]/60 mb-5">A GigLine Safety Walkthrough will flag them with photos and a prioritized fix list, usually within 48 hours.</p>
             <Link to="/intake" className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-6 py-3 rounded transition-colors">
               Request a Safety Walkthrough <ArrowRight size={16} />
             </Link>

@@ -5,7 +5,7 @@ import SEO from '../components/SEO';
 
 const defined = {
   headline: "Top 5 OSHA Violations in Small Manufacturing",
-  description: "The five most-cited OSHA violations in small manufacturing: Hazard Communication, Lockout/Tagout, Machine Guarding, Powered Industrial Trucks, and Walking-Working Surfaces. Includes CFR references, penalty amounts, and compliance requirements.",
+  description: "5 most-cited OSHA violations in small manufacturing, HazCom, LOTO, machine guarding, PIT, walking surfaces. CFR + penalty exposure.",
   canonical: "/blog/top-5-osha-violations-small-manufacturing",
   datePublished: "2026-04-07",
   dateModified: "2026-04-07",
@@ -118,7 +118,7 @@ const violations = [
     title: "Machine Guarding",
     cfr: "29 CFR 1910.212",
     tagline: "Guards removed for maintenance and not replaced is the most common finding.",
-    cta: { text: "Request a safety walkthrough — includes machine guarding audit", to: "/services" },
+    cta: { text: "Request a safety walkthrough, includes machine guarding audit", to: "/services" },
     why: [
       "Missing guards on grinders, lathes, presses, and saws",
       "Guards removed for maintenance and not replaced",
@@ -209,7 +209,7 @@ const BlogOSHAViolations = () => {
             {defined.headline}
           </h1>
           <p className="text-white/70 text-base leading-relaxed mb-6">
-            The five most-cited OSHA violations in small manufacturing are Hazard Communication (1910.1200), Lockout/Tagout (1910.147), Machine Guarding (1910.212), Powered Industrial Trucks (1910.178), and Walking-Working Surfaces (1910.22). Each carries penalties up to $16,550 per serious violation or $165,514 for willful violations. Most citations occur because documentation is missing — not because the hazard was unknown.
+            The five most-cited OSHA violations in small manufacturing are Hazard Communication (1910.1200), Lockout/Tagout (1910.147), Machine Guarding (1910.212), Powered Industrial Trucks (1910.178), and Walking-Working Surfaces (1910.22). Each carries penalties up to $16,550 per serious violation or $165,514 for willful violations. Most citations occur because documentation is missing, not because the hazard was unknown.
           </p>
           <div className="flex items-center gap-4 text-sm text-white/50">
             <span>Vince Lawrence</span>
@@ -230,7 +230,7 @@ const BlogOSHAViolations = () => {
               {violations.map((v) => (
                 <li key={v.num} className="flex items-start gap-3 text-sm text-[#1C2B2B]/70">
                   <span className="font-bold text-[#2A52A0] flex-shrink-0">{v.num}.</span>
-                  <span><strong className="text-[#1C2B2B]">{v.title}</strong> — <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px' }}>{v.cfr}</span></span>
+                  <span><strong className="text-[#1C2B2B]">{v.title}</strong>, <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px' }}>{v.cfr}</span></span>
                 </li>
               ))}
             </ol>
@@ -267,7 +267,7 @@ const BlogOSHAViolations = () => {
             </table>
           </div>
           <p className="text-xs text-[#1C2B2B]/50 mt-4">
-            Multiple violations can be cited separately — a single inspection can result in tens of thousands of dollars in fines.
+            Multiple violations can be cited separately, a single inspection can result in tens of thousands of dollars in fines.
           </p>
         </div>
       </section>
@@ -443,7 +443,7 @@ const BlogOSHAViolations = () => {
             >
               <div>
                 <p className="font-medium text-white group-hover:text-[#2A52A0] transition-colors text-sm">Request a Safety Walkthrough</p>
-                <p className="text-xs text-white/50 mt-1">On-site review starting at $1,200</p>
+                <p className="text-xs text-white/50 mt-1">On-site review starting at $1,300</p>
               </div>
               <ArrowRight size={18} className="text-white/30 group-hover:text-[#2A52A0] transition-colors flex-shrink-0" />
             </Link>
@@ -454,7 +454,7 @@ const BlogOSHAViolations = () => {
             >
               <div>
                 <p className="font-medium text-white group-hover:text-[#2A52A0] transition-colors text-sm">HazCom Starter Pack</p>
-                <p className="text-xs text-white/50 mt-1">Written program, SDS checklist, training log — $29</p>
+                <p className="text-xs text-white/50 mt-1">Written program, SDS checklist, training log, $29</p>
               </div>
               <ArrowRight size={18} className="text-white/30 group-hover:text-[#2A52A0] transition-colors flex-shrink-0" />
             </Link>
@@ -467,7 +467,7 @@ const BlogOSHAViolations = () => {
         <div className="container max-w-3xl">
           <div className="border border-[#2A52A0]/20 bg-white rounded-lg p-6 md:p-8 text-center" data-testid="blog-walkthrough-callout">
             <p className="text-lg font-bold text-[#1C2B2B] mb-2">Not sure if these violations exist in your shop?</p>
-            <p className="text-sm text-[#1C2B2B]/60 mb-5">A GigLine Safety Walkthrough will flag them with photos and a prioritized fix list — usually within 48 hours.</p>
+            <p className="text-sm text-[#1C2B2B]/60 mb-5">A GigLine Safety Walkthrough will flag them with photos and a prioritized fix list, usually within 48 hours.</p>
             <Link to="/intake" className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-6 py-3 rounded transition-colors">
               Request a Safety Walkthrough <ArrowRight size={16} />
             </Link>
@@ -486,7 +486,7 @@ const BlogOSHAViolations = () => {
               <p className="font-semibold text-[#1C2B2B] text-sm">Vince Lawrence</p>
               <p className="text-xs text-[#1C2B2B]/50 mb-2">Safety Consultant, OSHA 30-Hour Certified, U.S. Navy Veteran</p>
               <p className="text-xs text-[#1C2B2B]/50">
-                GigLine Safety & Compliance — Kernersville, NC{' '}
+                GigLine Safety & Compliance, Kernersville, NC{' '}
                 <span className="text-[#1C2B2B]/30 mx-1">|</span>
                 <a href="tel:3363298899" className="text-[#1F3F80] hover:underline">(336) 329-8899</a>
                 <span className="text-[#1C2B2B]/30 mx-1">|</span>

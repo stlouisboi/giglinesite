@@ -42,7 +42,7 @@ const ReportPage = () => {
 
   return (
     <div className="min-h-screen" style={{ background: C.bg }}>
-      <SEO title={`Safety Check Report — ${data.company} | GigLine`} description="View your GigLine Safety Check report." canonical={`/report/${clientToken}`} />
+      <SEO title={`Safety Check Report, ${data.company} | GigLine`} description="View your GigLine Safety Check report." canonical={`/report/${clientToken}`} />
 
       {/* Nav */}
       <nav style={{ background: C.deep, borderBottom: `1px solid ${C.border}` }}>
@@ -77,7 +77,7 @@ const ReportPage = () => {
           </p>
         </div>
 
-        {/* Review prompt — highest-intent moment (after reading the report) */}
+        {/* Review prompt, highest-intent moment (after reading the report) */}
         <div
           className="mt-8 rounded-lg p-6"
           style={{ background: C.surface, border: `1px solid ${C.border}` }}
@@ -107,7 +107,7 @@ const ReportPage = () => {
             <ExternalLink size={14} />
           </a>
           <p className="text-xs mt-4" style={{ color: C.muted }}>
-            Honest feedback only — good, bad, or indifferent.
+            Honest feedback only, good, bad, or indifferent.
           </p>
         </div>
       </div>

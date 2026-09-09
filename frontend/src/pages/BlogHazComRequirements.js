@@ -5,7 +5,7 @@ import SEO from '../components/SEO';
 
 const defined = {
   headline: "HazCom Requirements for Small Businesses",
-  description: "Complete guide to OSHA Hazard Communication requirements for small businesses. Covers written programs, Safety Data Sheets, labeling, training, and penalties under 29 CFR 1910.1200.",
+  description: "Guide to OSHA HazCom for small businesses, written programs, SDS, labeling, training & penalties under 29 CFR 1910.1200.",
   canonical: "/blog/hazcom-requirements-small-business",
   datePublished: "2026-04-07",
   dateModified: "2026-04-07",
@@ -85,7 +85,7 @@ const fourRequirements = [
     ],
     exception: {
       title: "Immediate Use Exception",
-      text: "Secondary containers do not require labels if the chemical is transferred and used immediately by the employee who made the transfer, within the same work shift, and the employee maintains exclusive control of the container. Once the container is set down, stored, or left unattended — even briefly — it must be labeled. This exception is narrow and commonly misapplied."
+      text: "Secondary containers do not require labels if the chemical is transferred and used immediately by the employee who made the transfer, within the same work shift, and the employee maintains exclusive control of the container. Once the container is set down, stored, or left unattended, even briefly, it must be labeled. This exception is narrow and commonly misapplied."
     },
   },
   {
@@ -137,7 +137,7 @@ const BlogHazComRequirements = () => {
             {defined.headline}
           </h1>
           <p className="text-white/70 text-base leading-relaxed mb-6">
-            If your business uses any hazardous chemicals — cleaners, solvents, paints, lubricants, welding gases — you need a Hazard Communication program. OSHA 29 CFR 1910.1200 requires four things: a written program, Safety Data Sheets for every chemical, proper container labels, and documented employee training. There is no exemption for small businesses. Penalties can reach up to $16,550 per violation.
+            If your business uses any hazardous chemicals, cleaners, solvents, paints, lubricants, welding gases, you need a Hazard Communication program. OSHA 29 CFR 1910.1200 requires four things: a written program, Safety Data Sheets for every chemical, proper container labels, and documented employee training. There is no exemption for small businesses. Penalties can reach up to $16,550 per violation.
           </p>
           <div className="flex items-center gap-4 text-sm text-white/50">
             <span>Vince Lawrence</span>
@@ -189,7 +189,7 @@ const BlogHazComRequirements = () => {
             <strong className="text-[#1C2B2B]">Yes.</strong> Any business that uses, stores, or handles hazardous chemicals must comply with OSHA's Hazard Communication Standard (29 CFR 1910.1200). There is no small business exemption.
           </p>
           <p className="text-[#1C2B2B]/70 leading-relaxed mb-6">
-            If your employees are exposed to chemicals at work — even common products like cleaning supplies, paints, adhesives, or lubricants — you are required to have:
+            If your employees are exposed to chemicals at work, even common products like cleaning supplies, paints, adhesives, or lubricants, you are required to have:
           </p>
           <ol className="space-y-2 mb-6">
             {["A written Hazard Communication program", "Safety Data Sheets (SDS) for every hazardous chemical", "Proper labels on all chemical containers", "Documented employee training"].map((item, i) => (
@@ -325,7 +325,7 @@ const BlogHazComRequirements = () => {
                 <span className="bg-[#102A43] text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">{i + 1}</span>
                 <div>
                   <span className="font-semibold text-[#1C2B2B] text-sm">{item.title}</span>
-                  <span className="text-[#1C2B2B]/60 text-sm"> — {item.desc}</span>
+                  <span className="text-[#1C2B2B]/60 text-sm">, {item.desc}</span>
                 </div>
               </li>
             ))}
@@ -334,7 +334,7 @@ const BlogHazComRequirements = () => {
             The written program must be available to employees upon request and must be reviewed and updated when chemicals or processes change.
           </p>
           <Link to="/hazcom-starter-pack" className="inline-flex items-center gap-2 text-sm text-[#1F3F80] font-medium hover:underline">
-            Get a ready-made written HazCom program — $29 <ArrowRight size={14} />
+            Get a ready-made written HazCom program, $29 <ArrowRight size={14} />
           </Link>
         </div>
       </section>
@@ -356,7 +356,7 @@ const BlogHazComRequirements = () => {
           <ul className="space-y-2 mb-4">
             {["Front office or reception area", "Shop floor near chemical storage", "Break room or common area", "Digital access via computer or tablet"].map((item, i) => (
               <li key={i} className="flex items-start gap-2 text-sm text-[#1C2B2B]/60">
-                <span className="text-[#1C2B2B]/30">—</span>{item}
+                <span className="text-[#1C2B2B]/30">,</span>{item}
               </li>
             ))}
           </ul>
@@ -438,7 +438,7 @@ const BlogHazComRequirements = () => {
             It depends on how the products are used. OSHA provides a <strong className="text-[#1C2B2B]">consumer product exemption</strong> for products used in the same manner and duration as normal consumer use.
           </p>
           <p className="text-[#1C2B2B]/70 mb-4 text-sm">
-            If employees use cleaning products more frequently or in greater quantities than a typical consumer — which is common in commercial settings — the exemption does not apply and an SDS is required.
+            If employees use cleaning products more frequently or in greater quantities than a typical consumer, which is common in commercial settings, the exemption does not apply and an SDS is required.
           </p>
           <p className="text-[#1C2B2B]/80 font-medium text-sm">
             When in doubt, obtain the SDS and include the product in your program.
@@ -510,7 +510,7 @@ const BlogHazComRequirements = () => {
           <div className="space-y-4 mb-10">
             <Link to="/hazcom-starter-pack" className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#2A52A0]/40 transition-colors group" data-testid="hazcom-blog-cta-pack">
               <div>
-                <p className="font-medium text-white group-hover:text-[#2A52A0] transition-colors text-sm">HazCom Starter Pack — $29</p>
+                <p className="font-medium text-white group-hover:text-[#2A52A0] transition-colors text-sm">HazCom Starter Pack, $29</p>
                 <p className="text-xs text-white/50 mt-1">Written program, SDS checklist, training log. Fill in your company name and print.</p>
               </div>
               <ArrowRight size={18} className="text-white/30 group-hover:text-[#2A52A0] transition-colors flex-shrink-0" />
@@ -525,7 +525,7 @@ const BlogHazComRequirements = () => {
             <Link to="/contact" className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#2A52A0]/40 transition-colors group">
               <div>
                 <p className="font-medium text-white group-hover:text-[#2A52A0] transition-colors text-sm">Request a Walkthrough</p>
-                <p className="text-xs text-white/50 mt-1">On-site review starting at $1,200</p>
+                <p className="text-xs text-white/50 mt-1">On-site review starting at $1,300</p>
               </div>
               <ArrowRight size={18} className="text-white/30 group-hover:text-[#2A52A0] transition-colors flex-shrink-0" />
             </Link>
@@ -538,7 +538,7 @@ const BlogHazComRequirements = () => {
         <div className="container max-w-3xl">
           <div className="border border-[#2A52A0]/20 bg-white rounded-lg p-6 md:p-8 text-center" data-testid="blog-walkthrough-callout">
             <p className="text-lg font-bold text-[#1C2B2B] mb-2">Not sure if these violations exist in your shop?</p>
-            <p className="text-sm text-[#1C2B2B]/60 mb-5">A GigLine Safety Walkthrough will flag them with photos and a prioritized fix list — usually within 48 hours.</p>
+            <p className="text-sm text-[#1C2B2B]/60 mb-5">A GigLine Safety Walkthrough will flag them with photos and a prioritized fix list, usually within 48 hours.</p>
             <Link to="/intake" className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-6 py-3 rounded transition-colors">
               Request a Safety Walkthrough <ArrowRight size={16} />
             </Link>
@@ -557,7 +557,7 @@ const BlogHazComRequirements = () => {
               <p className="font-semibold text-[#1C2B2B] text-sm">Vince Lawrence</p>
               <p className="text-xs text-[#1C2B2B]/50 mb-2">Safety Consultant, OSHA 30-Hour Certified, U.S. Navy Veteran</p>
               <p className="text-xs text-[#1C2B2B]/50">
-                GigLine Safety & Compliance — Kernersville, NC{' '}
+                GigLine Safety & Compliance, Kernersville, NC{' '}
                 <span className="text-[#1C2B2B]/30 mx-1">|</span>
                 <a href="tel:3363298899" className="text-[#1F3F80] hover:underline">(336) 329-8899</a>
                 <span className="text-[#1C2B2B]/30 mx-1">|</span>

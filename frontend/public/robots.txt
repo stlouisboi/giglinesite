@@ -1,5 +1,10 @@
 User-agent: *
 Allow: /
+Disallow: /verify/
+Disallow: /status/
+Disallow: /report/
+Disallow: /admin/
+Disallow: /private/
 
 # AI / answer-engine crawlers (explicitly allowed)
 User-agent: GPTBot
@@ -60,3 +65,4 @@ User-agent: Meta-ExternalFetcher
 Allow: /
 
 Sitemap: https://www.giglinecompliance.com/sitemap.xml
+Sitemap: https://www.giglinecompliance.com/image-sitemap.xml

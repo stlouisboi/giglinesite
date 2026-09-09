@@ -23,7 +23,7 @@ const CaseStudyTeaser = ({ source = 'homepage' }) => {
     >
       <div className="container max-w-6xl px-5 md:px-8">
         <div className="grid md:grid-cols-12 gap-10 md:gap-14 items-center">
-          {/* Left — label + headline + summary */}
+          {/* Left, label + headline + summary */}
           <div className="md:col-span-7">
             <p
               className="uppercase font-bold tracking-[0.28em] mb-5"
@@ -48,7 +48,7 @@ const CaseStudyTeaser = ({ source = 'homepage' }) => {
             </p>
           </div>
 
-          {/* Right — stat chips + CTA */}
+          {/* Right, stat chips + CTA */}
           <div className="md:col-span-5">
             <div className="grid grid-cols-3 gap-3 md:gap-4 mb-7" data-testid="case-teaser-stats">
               <Stat icon={<Users size={14} />} label="Headcount" value="9 employees" />

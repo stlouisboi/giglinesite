@@ -28,11 +28,11 @@ const CLUSTERS = [
     blurb:
       'Hazard Communication is the #1 most-cited OSHA standard in general industry. The exposure programs below are where the documentation almost always lags behind the floor.',
     notes: [
-      { slug: 'hazcom', title: 'HazCom & SDS', note: '#1 OSHA citation — 29 CFR 1910.1200' },
-      { slug: 'respiratory-protection', title: 'Respiratory Protection', note: 'Written program, medical eval, fit test — 1910.134' },
-      { slug: 'silica-respirable-crystalline', title: 'Respirable Crystalline Silica', note: 'Stone fab, concrete, foundries — 1910.1053' },
-      { slug: 'hearing-conservation', title: 'Hearing Conservation', note: 'Noise monitoring + audiometric testing — 1910.95' },
-      { slug: 'bloodborne-pathogens', title: 'Bloodborne Pathogens', note: 'Exposure control plan + Hep B — 1910.1030' },
+      { slug: 'hazcom', title: 'HazCom & SDS', note: '#1 OSHA citation, 29 CFR 1910.1200' },
+      { slug: 'respiratory-protection', title: 'Respiratory Protection', note: 'Written program, medical eval, fit test, 1910.134' },
+      { slug: 'silica-respirable-crystalline', title: 'Respirable Crystalline Silica', note: 'Stone fab, concrete, foundries, 1910.1053' },
+      { slug: 'hearing-conservation', title: 'Hearing Conservation', note: 'Noise monitoring + audiometric testing, 1910.95' },
+      { slug: 'bloodborne-pathogens', title: 'Bloodborne Pathogens', note: 'Exposure control plan + Hep B, 1910.1030' },
     ],
   },
   {
@@ -43,12 +43,12 @@ const CLUSTERS = [
     blurb:
       "Machinery, electrical, and hot work. The standards in this cluster cause more of OSHA's serious citations and fatality reports than any other group in general industry.",
     notes: [
-      { slug: 'machine-guarding', title: 'Machine Guarding', note: 'Point-of-operation guards — 1910.212' },
-      { slug: 'lockout-tagout', title: 'Lockout/Tagout (LOTO)', note: 'Control of hazardous energy — 1910.147' },
-      { slug: 'electrical-safety', title: 'Electrical Access', note: 'Panel clearance, arc flash — 1910.303' },
-      { slug: 'abrasive-wheels', title: 'Abrasive Wheels & Bench Grinders', note: 'Tongue guards, ring test — 1910.215' },
-      { slug: 'cranes-rigging', title: 'Overhead Cranes & Rigging', note: 'Inspections, sling capacity — 1910.179 / 1910.184' },
-      { slug: 'hot-work-welding', title: 'Hot Work, Welding & Cutting', note: 'Permits, fire watch — Subpart Q' },
+      { slug: 'machine-guarding', title: 'Machine Guarding', note: 'Point-of-operation guards, 1910.212' },
+      { slug: 'lockout-tagout', title: 'Lockout/Tagout (LOTO)', note: 'Control of hazardous energy, 1910.147' },
+      { slug: 'electrical-safety', title: 'Electrical Access', note: 'Panel clearance, arc flash, 1910.303' },
+      { slug: 'abrasive-wheels', title: 'Abrasive Wheels & Bench Grinders', note: 'Tongue guards, ring test, 1910.215' },
+      { slug: 'cranes-rigging', title: 'Overhead Cranes & Rigging', note: 'Inspections, sling capacity, 1910.179 / 1910.184' },
+      { slug: 'hot-work-welding', title: 'Hot Work, Welding & Cutting', note: 'Permits, fire watch, Subpart Q' },
     ],
   },
   {
@@ -57,12 +57,12 @@ const CLUSTERS = [
     eyebrow: 'Cluster 03',
     title: 'Fall & Height Work',
     blurb:
-      'The 4-foot rule, ladder geometry, scaffold competence. Falls remain among the most-cited OSHA standards every year — and the most preventable.',
+      'The 4-foot rule, ladder geometry, scaffold competence. Falls remain among the most-cited OSHA standards every year, and the most preventable.',
     notes: [
-      { slug: 'fall-protection', title: 'Fall Protection', note: 'Mezzanines, docks, the 4-foot rule — 1910.28' },
-      { slug: 'ladder-safety', title: 'Portable Ladder Safety', note: '4-to-1 angle, three-point contact — 1910.23' },
-      { slug: 'scaffolding-safety', title: 'Scaffolding Safety', note: 'Competent person, guardrails — 1910.27' },
-      { slug: 'walking-surfaces', title: 'Walking Surfaces', note: 'Aisles, edges, housekeeping — 1910.22' },
+      { slug: 'fall-protection', title: 'Fall Protection', note: 'Mezzanines, docks, the 4-foot rule, 1910.28' },
+      { slug: 'ladder-safety', title: 'Portable Ladder Safety', note: '4-to-1 angle, three-point contact, 1910.23' },
+      { slug: 'scaffolding-safety', title: 'Scaffolding Safety', note: 'Competent person, guardrails, 1910.27' },
+      { slug: 'walking-surfaces', title: 'Walking Surfaces', note: 'Aisles, edges, housekeeping, 1910.22' },
     ],
   },
   {
@@ -73,8 +73,8 @@ const CLUSTERS = [
     blurb:
       'PPE without a written hazard assessment is a citation waiting to happen. These two notes anchor the standard for every other exposure type on this page.',
     notes: [
-      { slug: 'ppe-assessment', title: 'PPE Assessment & Use', note: 'Written hazard assessment + selection — 1910.132' },
-      { slug: 'eye-face-protection', title: 'Eye & Face Protection', note: 'Z87.1, side shields, face shields — 1910.133' },
+      { slug: 'ppe-assessment', title: 'PPE Assessment & Use', note: 'Written hazard assessment + selection, 1910.132' },
+      { slug: 'eye-face-protection', title: 'Eye & Face Protection', note: 'Z87.1, side shields, face shields, 1910.133' },
     ],
   },
   {
@@ -85,8 +85,8 @@ const CLUSTERS = [
     blurb:
       'The paperwork OSHA asks for first. If the 300 log is missing or the EAP cannot be produced, the inspection narrative is already written before the floor walk begins.',
     notes: [
-      { slug: 'recordkeeping-300-log', title: 'OSHA Recordkeeping & the 300 Log', note: 'Recordables, 300A, severe injury reports — Part 1904' },
-      { slug: 'emergency-action-plans', title: 'Emergency Action Plans', note: 'Evacuation, alarm, training — 1910.38' },
+      { slug: 'recordkeeping-300-log', title: 'OSHA Recordkeeping & the 300 Log', note: 'Recordables, 300A, severe injury reports, Part 1904' },
+      { slug: 'emergency-action-plans', title: 'Emergency Action Plans', note: 'Evacuation, alarm, training, 1910.38' },
       { slug: 'nc-osha-vs-federal', title: 'NC State Plan vs. Federal OSHA', note: 'NCDOL inspections, BETS consultation' },
       { slug: 'ai-generated-safety-programs', title: 'AI-Generated Safety Programs', note: 'What ChatGPT cannot see on your floor' },
     ],
@@ -97,11 +97,11 @@ const CLUSTERS = [
     eyebrow: 'Cluster 06',
     title: 'Operations, Movement & Environment',
     blurb:
-      'Vehicles, confined spaces, trenches, heat. Hazards that change with the day, the season, and the task — and that an inspector asks the floor supervisor to describe from memory.',
+      'Vehicles, confined spaces, trenches, heat. Hazards that change with the day, the season, and the task, and that an inspector asks the floor supervisor to describe from memory.',
     notes: [
-      { slug: 'forklift-safety', title: 'Forklift Safety', note: 'Daily inspections, certification — 1910.178' },
-      { slug: 'confined-space', title: 'Confined Space Entry', note: 'Permits, testing, rescue — 1910.146' },
-      { slug: 'trenching-excavation', title: 'Trenching & Excavation', note: 'Protective systems, competent person — 1926.651' },
+      { slug: 'forklift-safety', title: 'Forklift Safety', note: 'Daily inspections, certification, 1910.178' },
+      { slug: 'confined-space', title: 'Confined Space Entry', note: 'Permits, testing, rescue, 1910.146' },
+      { slug: 'trenching-excavation', title: 'Trenching & Excavation', note: 'Protective systems, competent person, 1926.651' },
       { slug: 'heat-stress', title: 'Heat Stress', note: 'General Duty Clause + NEP CPL 03-00-024' },
     ],
   },
@@ -115,7 +115,7 @@ const OshaComplianceGuidePage = () => {
     '@type': 'WebPage',
     name: 'The OSHA Compliance Guide for Small Manufacturing & Warehouse Operations',
     description:
-      'A complete index of 25 OSHA compliance topics for NC manufacturing, warehouse, and contractor operations — organized by hazard cluster, CFR-cited, written by Vince Lawrence.',
+      '25 CFR-cited OSHA compliance topics for NC manufacturers, warehouses & contractors, organized by hazard cluster.',
     url: 'https://www.giglinecompliance.com/osha-compliance-guide',
     inLanguage: 'en-US',
   };
@@ -123,7 +123,7 @@ const OshaComplianceGuidePage = () => {
   const collectionSchema = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'OSHA Compliance Field Notes — Topical Index',
+    name: 'OSHA Compliance Field Notes, Topical Index',
     url: 'https://www.giglinecompliance.com/osha-compliance-guide',
     hasPart: CLUSTERS.flatMap((c) =>
       c.notes.map((n) => ({
@@ -137,8 +137,8 @@ const OshaComplianceGuidePage = () => {
   return (
     <main data-testid="osha-compliance-guide-page">
       <SEO
-        title="The OSHA Compliance Guide — All 25 Topics, Organized by Hazard | GigLine"
-        description="The complete OSHA compliance reference for NC small manufacturing and warehouse operations. 25 CFR-cited field notes organized into six hazard clusters — written by Vince Lawrence, GigLine Safety & Compliance."
+        title="The OSHA Compliance Guide, All 25 Topics, Organized by Hazard | GigLine"
+        description="OSHA compliance reference for NC small manufacturing, 25 CFR-cited field notes across 6 hazard clusters. By Vince Lawrence."
         canonical="/osha-compliance-guide"
         schema={[pageSchema, collectionSchema]}
       />
@@ -161,7 +161,7 @@ const OshaComplianceGuidePage = () => {
             <span className="block" style={{ color: GOLD }}>a small operation actually sees.</span>
           </h1>
           <p className="text-base md:text-lg text-white/75 leading-[1.8] mb-8 max-w-3xl">
-            {totalNotes} CFR-cited field notes — organized into six hazard clusters. Hazard Communication. Machine guarding and energy control. Fall and height work. PPE. Recordkeeping and enforcement. Operations and environment. Each note is written from the floor, not the binder.
+            {totalNotes} CFR-cited field notes, organized into six hazard clusters. Hazard Communication. Machine guarding and energy control. Fall and height work. PPE. Recordkeeping and enforcement. Operations and environment. Each note is written from the floor, not the binder.
           </p>
           <div className="flex flex-wrap items-center gap-x-7 gap-y-3" style={mono}>
             <span className="text-white/55 text-xs uppercase tracking-[0.18em]">By Vince Lawrence</span>
@@ -265,7 +265,7 @@ const OshaComplianceGuidePage = () => {
       {/* Closing CTA */}
       <section className="py-14 md:py-20 border-t border-[#2A52A0]/10" style={{ background: CREAM }} data-testid="osha-guide-cta">
         <div className="container max-w-3xl">
-          {/* Trust strip — anchors the closing CTA in real numbers (GL-WEB-022) */}
+          {/* Trust strip, anchors the closing CTA in real numbers (GL-WEB-022) */}
           <div
             className="grid grid-cols-1 sm:grid-cols-3 gap-0 rounded mb-10 overflow-hidden"
             style={{ background: NAVY }}
@@ -323,7 +323,7 @@ const OshaComplianceGuidePage = () => {
               <ArrowRight size={18} />
             </Link>
             <p className="text-xs text-[#1C2B2B]/45 mt-5" style={mono}>
-              From $1,200 · Findings in 48 hours · NC Piedmont Triad
+              From $1,300 · Findings in 48 hours · NC Piedmont Triad
             </p>
           </div>
         </div>

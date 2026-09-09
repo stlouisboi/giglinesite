@@ -1,0 +1,5 @@
+email,name,company,phone,first_seen_at,last_seen_at,sources,utm_source,utm_medium,utm_campaign,paid_customer,lifetime_value_cents,stripe_customer_ids,stripe_session_ids,tags
+r@t.com,RefTest,RC,555,2026-04-15T14:17:14.758736+00:00,2026-04-15T14:17:14.758736+00:00,safety-check,,,,no,0,,,safety-check:medium
+linda@buildprosteel.com,Linda Cook,Amero Steel Supply,910-558-0345,2026-05-27T16:40:25.660174+00:00,2026-05-27T16:40:25.660174+00:00,walkthrough,,,,no,0,,,service:Safety Walkthrough
+stephlaw336@gmail.com,Stephanie Lawrence,She Warriors,3368292435,2026-06-05T21:30:17.798424+00:00,2026-06-29T23:45:33.570031+00:00,walkthrough; osha-inspection-gd; newsletter,,,,no,0,,,service:Documentation Review
+kstutts@buildprosteel.com,Kevin Stutts,Amero Steel Supply,9102217301,2026-06-11T15:13:17.651356+00:00,2026-06-11T15:13:17.651356+00:00,intake,link.edgepilot.com,referral,,no,0,,,

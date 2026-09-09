@@ -28,12 +28,12 @@ const CREAM = '#f5f4f0';
 const ORANGE = '#e07a3d';
 
 const COMPONENTS = [
-  { icon: FolderArchive, title: 'Four-Binder Physical Command System', body: 'Hazard programs, training records, inspection & maintenance logs, and incident & corrective action — each in a dedicated binder, tabbed and ready for an OSHA compliance officer.', cfr: '29 CFR 1910.1 — General Industry Standards' },
+  { icon: FolderArchive, title: 'Four-Binder Physical Command System', body: 'Hazard programs, training records, inspection & maintenance logs, and incident & corrective action, each in a dedicated binder, tabbed and ready for an OSHA compliance officer.', cfr: '29 CFR 1910.1, General Industry Standards' },
   { icon: Cloud, title: 'Digital Folder Architecture', body: 'Master document index mirrored to your cloud drive. Naming conventions, version control, and supervisor access permissions configured so your team can maintain it without GigLine.', cfr: 'Mirrors physical binder structure' },
-  { icon: Users, title: 'Training Matrix + SDS Organization', body: 'Employee training matrix built by role. SDS inventory current and indexed against your chemical list. Annual refresher calendar built in so nothing lapses.', cfr: '29 CFR 1910.1200 — HazCom Standard' },
-  { icon: Wrench, title: 'Written Safety Programs — Built to Your Operation', body: 'LOTO, HazCom, PPE, emergency action, and any additional programs required by your specific operations. Written from scratch against your actual equipment and processes — not downloaded templates.', cfr: '29 CFR 1910.147, 1910.1200, 1910.132' },
+  { icon: Users, title: 'Training Matrix + SDS Organization', body: 'Employee training matrix built by role. SDS inventory current and indexed against your chemical list. Annual refresher calendar built in so nothing lapses.', cfr: '29 CFR 1910.1200, HazCom Standard' },
+  { icon: Wrench, title: 'Written Safety Programs, Built to Your Operation', body: 'LOTO, HazCom, PPE, emergency action, and any additional programs required by your specific operations. Written from scratch against your actual equipment and processes, not downloaded templates.', cfr: '29 CFR 1910.147, 1910.1200, 1910.132' },
   { icon: ClipboardList, title: 'Inspection & Maintenance Log Templates', body: 'Pre-built log templates for forklift pre-shift inspections, fire extinguisher checks, eyewash station tests, and any other recurring inspection your operation requires.', cfr: '29 CFR 1910.178, 1910.157, 1910.151' },
-  { icon: Handshake, title: 'Supervisor Handoff + Walk-Through', body: 'Final on-site session with your supervisor or safety lead. Every binder, every folder, every log — walked through in person so your team owns the system from day one.', cfr: 'Included in engagement scope' },
+  { icon: Handshake, title: 'Supervisor Handoff + Walk-Through', body: 'Final on-site session with your supervisor or safety lead. Every binder, every folder, every log, walked through in person so your team owns the system from day one.', cfr: 'Included in engagement scope' },
 ];
 
 const STEPS = [
@@ -46,7 +46,7 @@ const STEPS = [
 const WHEN_CARDS = [
   { title: "You've never had a written safety program", body: 'Your operation has been running on institutional knowledge and verbal procedures. The Control System builds the documented foundation that should have been there from the start.' },
   { title: 'You failed a customer safety audit', body: 'Customer audits increasingly require written programs, training records, and inspection logs. The Control System produces exactly what auditors ask to see.' },
-  { title: "You're preparing for a programmed OSHA inspection", body: "If your industry is on OSHA's programmed inspection list, the question isn't whether they'll show up — it's whether your documentation is ready when they do." },
+  { title: "You're preparing for a programmed OSHA inspection", body: "If your industry is on OSHA's programmed inspection list, the question isn't whether they'll show up, it's whether your documentation is ready when they do." },
   { title: 'A new safety manager is starting', body: 'Give an incoming safety manager a system to inherit instead of a blank slate. The Control System is the foundation they build on, not the project they spend their first year creating.' },
 ];
 
@@ -56,7 +56,7 @@ const REPLACES = [
   { title: "SDS binder that hasn't been touched in two years", sub: 'Missing chemicals, outdated sheets, no inventory cross-reference.' },
   { title: "Inspection logs that exist but aren't being used", sub: 'No accountability structure, no supervisor review process.' },
   { title: "Safety programs that live on one person's computer", sub: 'No version control, no backup, no supervisor access.' },
-  { title: 'Verbal procedures for critical safety tasks', sub: 'LOTO, confined space, hot work — undocumented and unverifiable.' },
+  { title: 'Verbal procedures for critical safety tasks', sub: 'LOTO, confined space, hot work, undocumented and unverifiable.' },
 ];
 
 const Eyebrow = ({ children, color = BLUE, className = '' }) => (
@@ -67,12 +67,19 @@ const OshaReadyControlSystemPage = () => {
   return (
     <main data-testid="osha-ready-control-system-page">
       <SEO
-        title="OSHA-Ready Control System — From $4,500 | GigLine"
-        description="Complete physical and digital safety infrastructure built to your operation. Four-binder command system, digital folder architecture, training matrix + SDS, written programs, log templates, and supervisor handoff. From $4,500."
+        title="OSHA-Ready Control System, From $4,500 | GigLine"
+        description="Complete physical + digital OSHA infrastructure, 4-binder system, digital folders, training matrix, SDS, programs. From $4,500."
         canonical={`/services/${SLUG}`}
         schema={[
-          { '@context': 'https://schema.org', '@type': 'Service', name: 'OSHA-Ready Control System', provider: { '@type': 'LocalBusiness', name: 'GigLine Safety & Compliance', url: 'https://www.giglinecompliance.com', telephone: '+13363298899' }, areaServed: { '@type': 'State', name: 'North Carolina' }, offers: { '@type': 'Offer', price: '4500', priceCurrency: 'USD', description: 'OSHA-Ready Control System from $4,500 — complete safety infrastructure buildout.' }, description: 'Complete physical and digital safety infrastructure buildout: four-binder system, digital folder architecture, training matrix and SDS organization, written programs built to your operation, log templates, and supervisor handoff session.' },
+          { '@context': 'https://schema.org', '@type': 'Service', name: 'OSHA-Ready Control System', provider: { '@type': 'LocalBusiness', name: 'GigLine Safety & Compliance', url: 'https://www.giglinecompliance.com', telephone: '+13363298899' }, areaServed: { '@type': 'State', name: 'North Carolina' }, offers: { '@type': 'Offer', price: '4500', priceCurrency: 'USD', description: 'OSHA-Ready Control System from $4,500, complete safety infrastructure buildout.' }, description: 'Complete physical + digital OSHA infrastructure: 4-binder system, digital folders, training matrix, SDS, programs. From $4,500.' },
           { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.giglinecompliance.com/' }, { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://www.giglinecompliance.com/services' }, { '@type': 'ListItem', position: 3, name: 'OSHA-Ready Control System', item: `https://www.giglinecompliance.com/services/${SLUG}` }] },
+          { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: [
+            { '@type': 'Question', name: 'What is the OSHA-Ready Control System?', acceptedAnswer: { '@type': 'Answer', text: 'The OSHA-Ready Control System is the complete physical and digital safety infrastructure GigLine builds for a small manufacturing, warehouse, or contractor operation. It includes a four-binder command system, digital folder architecture, training matrix, SDS organization, custom-written safety programs, log templates, and a supervisor walkthrough at handoff. It is the highest-scope engagement GigLine offers.' } },
+            { '@type': 'Question', name: 'How much does the OSHA-Ready Control System cost?', acceptedAnswer: { '@type': 'Answer', text: 'The OSHA-Ready Control System starts at $4,500. The final quote is fixed after a site assessment (included in the engagement) and depends on facility size, existing document maturity, number of program areas needing buildout, and integration with existing systems.' } },
+            { '@type': 'Question', name: 'How is this different from Corrective Action Implementation?', acceptedAnswer: { '@type': 'Answer', text: 'Corrective Action Implementation closes specific findings from an assessment. The OSHA-Ready Control System builds the complete safety infrastructure from the ground up: physical binders, digital architecture, programs, matrices, and templates. Use it when you are starting from scratch or replacing scattered documents with a single organized system.' } },
+            { '@type': 'Question', name: 'How long does the buildout take?', acceptedAnswer: { '@type': 'Answer', text: 'Most buildouts run 4 to 8 weeks from signed agreement to handoff, depending on facility size and program complexity. GigLine works in phases: assessment first (documented), then program development, then physical infrastructure buildout, then supervisor walkthrough and training at handoff.' } },
+            { '@type': 'Question', name: 'What comes with the four-binder system?', acceptedAnswer: { '@type': 'Answer', text: 'The four binders are: Written Programs, Training Records, Recordkeeping (300 logs, SDS index, corrective actions), and Emergency Preparedness. Each binder has color-coded tabs, printed programs specific to your facility, and a supervisor-usable index. Every binder is inspection-ready on day one.' } },
+          ] },
         ]}
       />
 
@@ -85,7 +92,7 @@ const OshaReadyControlSystemPage = () => {
             <span className="block" style={{ color: GOLD }}>Complete safety infrastructure.</span>
           </h1>
           <p className="text-base md:text-lg text-white/75 leading-[1.8] mb-5 max-w-3xl">
-            GigLine constructs the complete physical and digital safety infrastructure your operation needs to pass any OSHA inspection, customer audit, or insurance review — and hands it back to your team with a system they can actually maintain.
+            GigLine constructs the complete physical and digital safety infrastructure your operation needs to pass any OSHA inspection, customer audit, or insurance review, and hands it back to your team with a system they can actually maintain.
           </p>
           <p className="italic font-semibold mb-9 max-w-3xl text-[15px]" style={{ color: ORANGE }}>
             This is not a report. This is the system.
@@ -107,7 +114,7 @@ const OshaReadyControlSystemPage = () => {
             </div>
             <div className="md:px-2">
               <p className="text-[14.5px] text-white/80 leading-[1.75]">
-                The Control System is scoped after a site assessment — every operation is different. The assessment is included in the engagement. You&apos;ll have a fixed quote before any buildout work begins.
+                The Control System is scoped after a site assessment, every operation is different. The assessment is included in the engagement. You&apos;ll have a fixed quote before any buildout work begins.
               </p>
             </div>
             <div className="rounded-lg p-5" style={{ background: 'rgba(201,168,76,0.06)', border: '1px solid rgba(201,168,76,0.30)' }}>
@@ -120,13 +127,13 @@ const OshaReadyControlSystemPage = () => {
         </div>
       </section>
 
-      {/* What's Included — 6 cards in 3-col grid */}
+      {/* What's Included, 6 cards in 3-col grid */}
       <section className="py-20 md:py-24 bg-white" data-testid="ocs-components">
         <div className="container max-w-6xl">
           <Eyebrow>What&apos;s Included</Eyebrow>
           <h2 className="text-3xl md:text-4xl font-extrabold leading-[1.15] mb-4 tracking-tight max-w-3xl" style={{ color: NAVY }}>Six components. One complete system.</h2>
           <p className="text-base text-[#1C2B2B]/65 leading-[1.75] mb-12 max-w-3xl">
-            Every component is built to your operation — not downloaded from a template library. The result is a system your team can maintain without outside help.
+            Every component is built to your operation, not downloaded from a template library. The result is a system your team can maintain without outside help.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {COMPONENTS.map((c, i) => {
@@ -146,7 +153,7 @@ const OshaReadyControlSystemPage = () => {
         </div>
       </section>
 
-      {/* How It Works — 4-col horizontal */}
+      {/* How It Works, 4-col horizontal */}
       <section className="py-20 md:py-24" style={{ background: CREAM }} data-testid="ocs-process">
         <div className="container max-w-6xl">
           <Eyebrow>How It Works</Eyebrow>
@@ -163,18 +170,18 @@ const OshaReadyControlSystemPage = () => {
         </div>
       </section>
 
-      {/* When to Book + What This Replaces — side-by-side */}
+      {/* When to Book + What This Replaces, side-by-side */}
       <section className="py-20 md:py-24 bg-white" data-testid="ocs-when-replaces">
         <div className="container max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-            {/* LEFT — When to Book This */}
+            {/* LEFT, When to Book This */}
             <div data-testid="ocs-when">
               <Eyebrow>When to Book This</Eyebrow>
               <h2 className="text-2xl md:text-3xl font-extrabold leading-[1.2] mb-4 tracking-tight" style={{ color: NAVY }}>
                 This is the right engagement when the foundation doesn&apos;t exist yet.
               </h2>
               <p className="text-[15px] text-[#1C2B2B]/70 leading-[1.75] mb-7">
-                Most small operations have some safety activity — a binder somewhere, some training that happened, some programs that were downloaded. The Control System replaces that patchwork with a complete, defensible infrastructure.
+                Most small operations have some safety activity, a binder somewhere, some training that happened, some programs that were downloaded. The Control System replaces that patchwork with a complete, defensible infrastructure.
               </p>
               <div className="space-y-3.5">
                 {WHEN_CARDS.map((card, i) => (
@@ -188,14 +195,14 @@ const OshaReadyControlSystemPage = () => {
                 ))}
               </div>
             </div>
-            {/* RIGHT — What This Replaces (warning list) */}
+            {/* RIGHT, What This Replaces (warning list) */}
             <div data-testid="ocs-replaces">
               <Eyebrow>What This Replaces</Eyebrow>
               <h2 className="text-2xl md:text-3xl font-extrabold leading-[1.2] mb-4 tracking-tight" style={{ color: NAVY }}>
                 The patchwork most operations are running on.
               </h2>
               <p className="text-[15px] text-[#1C2B2B]/70 leading-[1.75] mb-7">
-                The Control System is designed to replace these specific failure modes — not augment them, replace them.
+                The Control System is designed to replace these specific failure modes, not augment them, replace them.
               </p>
               <ul className="space-y-4">
                 {REPLACES.map((r, i) => (
@@ -213,14 +220,14 @@ const OshaReadyControlSystemPage = () => {
         </div>
       </section>
 
-      {/* What Comes After — dark navy section with inline CTA bar + 2 cards */}
+      {/* What Comes After, dark navy section with inline CTA bar + 2 cards */}
       <section style={{ background: NAVY }}>
         {/* CTA bar */}
         <div className="py-5" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }} data-testid="ocs-cta-bar">
           <div className="container max-w-6xl">
             <div className="flex flex-col md:flex-row items-center md:justify-between gap-4">
               <div className="flex items-center gap-2.5">
-                <img src="/gigline-logo-dark-bg.png?v=7" loading="lazy" alt="" className="h-7 w-auto" />
+                <img src="/gigline-logo-dark-bg.png?v=9" loading="lazy" alt="" className="h-7 w-auto" />
                 <span className="uppercase font-bold" style={{ ...mono, fontSize: '10px', letterSpacing: '0.20em', color: 'rgba(255,255,255,0.55)' }}>Safety &amp; Compliance</span>
               </div>
               <div className="flex items-center gap-5">
@@ -279,7 +286,7 @@ const OshaReadyControlSystemPage = () => {
             Request the OSHA-Ready Control System.
           </h2>
           <p className="text-base md:text-lg text-[#1C2B2B]/75 leading-[1.85] mb-10 max-w-3xl mx-auto">
-            The engagement starts with a site assessment. You&apos;ll have a fixed quote before any buildout work begins. Private engagement — nothing leaves your facility except the system GigLine hands you.
+            The engagement starts with a site assessment. You&apos;ll have a fixed quote before any buildout work begins. Private engagement, nothing leaves your facility except the system GigLine hands you.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link to={INTAKE_HREF} className="inline-flex items-center gap-2 font-bold px-7 py-4 rounded-lg text-base transition-colors" style={{ background: GOLD, color: NAVY }} onMouseEnter={(e) => (e.currentTarget.style.background = '#c8922a')} onMouseLeave={(e) => (e.currentTarget.style.background = GOLD)} data-testid="ocs-bottom-cta-request">
@@ -290,7 +297,7 @@ const OshaReadyControlSystemPage = () => {
             </Link>
           </div>
           <a href="tel:3363298899" className="inline-flex items-center gap-2 text-[#1C2B2B]/60 hover:text-[#1C2B2B] text-sm mt-8 transition-colors" data-testid="ocs-cta-phone">
-            <Phone size={14} />Questions? Call or text Vince directly — (336) 329-8899
+            <Phone size={14} />Questions? Call or text Vince directly, (336) 329-8899
           </a>
         </div>
       </section>

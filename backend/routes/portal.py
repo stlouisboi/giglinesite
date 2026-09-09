@@ -1,23 +1,30 @@
-"""Client Status Page & Report Delivery routes — GL-PORT-001 Section B."""
+"""Client Status Page & Report Delivery routes — GL-PORT-001 Section B.
+
+Report PDFs live in Emergent Object Storage; the intake document only carries
+`reportStoragePath` + `reportUrl`. Legacy records that still have
+`reportPdfBase64` remain readable for backwards compatibility.
+"""
 
 from fastapi import APIRouter, HTTPException, UploadFile, File
-from fastapi.responses import FileResponse
+from fastapi.responses import Response
 from datetime import datetime, timezone
 import asyncio
-import os
+import base64
 import logging
+import uuid
 
 import resend
 from config import db, SENDER_EMAIL, VINCE_EMAIL, ADMIN_PASSWORD, is_admin
 from integrations.mailerlite import move_to_past_client
+from lib.object_storage import put_object, get_object, APP_NAME, StorageError
 
 router = APIRouter()
 logger = logging.getLogger('gigline')
 
-REPORT_DIR = "/app/backend/client_reports"
-AGREEMENT_DIR = "/app/backend/agreements"
-os.makedirs(REPORT_DIR, exist_ok=True)
-os.makedirs(AGREEMENT_DIR, exist_ok=True)
+# Reports are pushed to Object Storage instead of being base64-inlined in Mongo.
+# Cap uploads at 15 MB (unchanged) to keep memory bounded on the backend and
+# match the legacy client expectation.
+MAX_REPORT_BYTES = 15 * 1024 * 1024
 
 STATUS_STAGES = {
     "intake_received": {
@@ -119,19 +126,38 @@ async def get_report_page(client_token: str):
 
 @router.get("/report/{client_token}/download")
 async def download_report(client_token: str):
-    """Serve the actual PDF file."""
+    """Serve the report PDF. Prefers Object Storage; falls back to inline base64
+    on legacy records that pre-date the migration."""
     record = await db.gl_intake_submissions.find_one(
         {"clientToken": client_token}, {"_id": 0}
     )
     if not record or not record.get("reportUrl"):
         raise HTTPException(status_code=404, detail="Report not found")
 
-    filepath = os.path.join(REPORT_DIR, f"{client_token}.pdf")
-    if not os.path.exists(filepath):
-        raise HTTPException(status_code=404, detail="Report file not found")
+    storage_path = record.get("reportStoragePath")
+    if storage_path:
+        try:
+            pdf_bytes, _ = get_object(storage_path)
+        except Exception as e:
+            logger.error(f"Report fetch from object storage failed for {client_token}: {e}")
+            raise HTTPException(status_code=502, detail="Report fetch failed")
+    else:
+        # Legacy path — pre-migration reports were stored inline in Mongo.
+        legacy = record.get("reportPdfBase64")
+        if not legacy:
+            raise HTTPException(status_code=404, detail="Report not found")
+        try:
+            pdf_bytes = base64.b64decode(legacy)
+        except (ValueError, TypeError):
+            raise HTTPException(status_code=500, detail="Report file could not be decoded")
 
     company = record.get("company", "Report").replace(" ", "-")
-    return FileResponse(filepath, media_type="application/pdf", filename=f"GigLine-SafetyCheck-{company}.pdf")
+    filename = f"GigLine-SafetyCheck-{company}.pdf"
+    return Response(
+        content=pdf_bytes,
+        media_type="application/pdf",
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+    )
 
 
 # ── Admin: Status Update ──
@@ -179,12 +205,18 @@ async def upload_report(client_token: str, token: str = "", file: UploadFile = F
         raise HTTPException(status_code=400, detail="PDF files only")
 
     content = await file.read()
-    if len(content) > 20 * 1024 * 1024:
-        raise HTTPException(status_code=400, detail="File too large (20MB max)")
+    if len(content) > MAX_REPORT_BYTES:
+        raise HTTPException(status_code=400, detail="File too large (15MB max)")
 
-    filepath = os.path.join(REPORT_DIR, f"{client_token}.pdf")
-    with open(filepath, "wb") as f:
-        f.write(content)
+    # Push the PDF to Object Storage. Legacy `reportPdfBase64` field is left
+    # untouched on the intake doc so old records keep working, but new uploads
+    # go through the storage bucket.
+    storage_path = f"{APP_NAME}/reports/{client_token}/{uuid.uuid4()}.pdf"
+    try:
+        put_object(storage_path, content, "application/pdf")
+    except (StorageError, Exception) as e:
+        logger.error(f"Report upload to object storage failed for {client_token}: {e}")
+        raise HTTPException(status_code=502, detail="Report upload failed")
 
     now = datetime.now(timezone.utc).isoformat()
     report_url = f"/api/report/{client_token}/download"
@@ -193,10 +225,12 @@ async def upload_report(client_token: str, token: str = "", file: UploadFile = F
         {"clientToken": client_token},
         {"$set": {
             "reportUrl": report_url,
+            "reportStoragePath": storage_path,
             "reportDeliveredAt": now,
             "status": "report_delivered",
             "statusUpdatedAt": now,
-        }},
+        },
+         "$unset": {"reportPdfBase64": ""}},
     )
 
     # Send report delivery email to client

@@ -1,0 +1,303 @@
+[
+  {
+    "_id": "6a3ed2d66178a7885a7102d8",
+    "order_token": "5EELmTvXegg",
+    "variant": "digital",
+    "sku": "supervisor-kit-digital",
+    "amount_cents": 60000,
+    "label": "Digital Kit",
+    "email": "test@example.com",
+    "company_name": "Test Co",
+    "phone": null,
+    "shipping_address": null,
+    "attribution": null,
+    "status": "pending_payment",
+    "created_at": "2026-06-26T19:28:22.671029+00:00"
+  },
+  {
+    "_id": "6a3ed2d66178a7885a7102d9",
+    "order_token": "jz2QZ9AE-tM",
+    "variant": "physical",
+    "sku": "supervisor-kit-physical",
+    "amount_cents": 67500,
+    "label": "Physical Kit",
+    "email": "test@example.com",
+    "company_name": "Test Co",
+    "phone": null,
+    "shipping_address": null,
+    "attribution": null,
+    "status": "pending_payment",
+    "created_at": "2026-06-26T19:28:22.870220+00:00"
+  },
+  {
+    "_id": "6a3ed2e66178a7885a7102da",
+    "order_token": "mq3dIIOSKLM",
+    "variant": "digital",
+    "sku": "supervisor-kit-digital",
+    "amount_cents": 60000,
+    "label": "Digital Kit",
+    "email": null,
+    "company_name": null,
+    "phone": null,
+    "shipping_address": null,
+    "attribution": null,
+    "status": "pending_payment",
+    "created_at": "2026-06-26T19:28:38.861643+00:00"
+  },
+  {
+    "_id": "6a3f07da5791555c4359ee91",
+    "session_id": "cs_live_a1ZdViZGQFw4243jujr5oUykA9zY4SRQrSaerryqJkYzh9x4ENOGCrhnHW",
+    "variant": "digital",
+    "sku": "supervisor-kit-digital",
+    "amount_cents": 60000,
+    "label": "Supervisor Safety Starter System — Digital Kit",
+    "email": "test@example.com",
+    "company_name": "Test Co",
+    "attribution": null,
+    "status": "pending_payment",
+    "created_at": "2026-06-26T23:14:34.748903+00:00"
+  },
+  {
+    "_id": "6a3f07db5791555c4359ee92",
+    "session_id": "cs_live_a1S0MbqYgBAChV5ga7M1RvFdsrS3EhiQj52xCfNy7MPwJZoRio2MjsizBe",
+    "variant": "physical",
+    "sku": "supervisor-kit-physical",
+    "amount_cents": 67500,
+    "label": "Supervisor Safety Starter System — Physical Kit",
+    "email": "test@example.com",
+    "company_name": "Test Co",
+    "attribution": null,
+    "status": "pending_payment",
+    "created_at": "2026-06-26T23:14:35.227714+00:00"
+  },
+  {
+    "_id": "6a3f1e96034d2e034ee94cf3",
+    "session_id": "cs_live_a1of2HJTEYHYBYVRxmZWdE61ztDp9UfpMBsnhyxrhTRODulGqcMkYuFFHL",
+    "variant": "digital",
+    "sku": "supervisor-kit-digital",
+    "amount_cents": 60000,
+    "label": "Supervisor Safety Starter System — Digital Kit",
+    "email": "smoke@example.com",
+    "company_name": null,
+    "attribution": null,
+    "status": "pending_payment",
+    "created_at": "2026-06-27T00:51:34.680321+00:00"
+  },
+  {
+    "_id": "6a481b378054fb38047b16a6",
+    "session_id": "cs_live_a13EAYElXkg2MWatqtnXIYxw61b5VQM0PT0Vf1E9JLfxIgREdwLoCCUwlx",
+    "variant": "digital",
+    "sku": "supervisor-kit-digital",
+    "amount_cents": 60000,
+    "label": "Supervisor Safety Starter System — Digital Kit",
+    "email": "buyer-not-real@example.com",
+    "company_name": "Acme Test",
+    "attribution": null,
+    "status": "pending_payment",
+    "created_at": "2026-07-03T20:27:35.978134+00:00"
+  },
+  {
+    "_id": "6a481b388054fb38047b16a7",
+    "session_id": "cs_live_a15DCmcNYnem1IWDx2LP9FRGmDlqeiXDcN3QnSjIqlNXIgJPRGvwB4Bzjq",
+    "variant": "physical",
+    "sku": "supervisor-kit-physical",
+    "amount_cents": 67500,
+    "label": "Supervisor Safety Starter System — Physical Kit",
+    "email": "buyer-not-real@example.com",
+    "company_name": "Acme Test",
+    "attribution": null,
+    "status": "pending_payment",
+    "created_at": "2026-07-03T20:27:36.498626+00:00"
+  },
+  {
+    "_id": "6a482b5c27e40c9d79202886",
+    "session_id": "cs_live_a1rNyHIvaOFgjpCFgWYNTsairGA4X5GOtM4c6KjRCZNJ9A19pftCWkzNtp",
+    "variant": "digital",
+    "sku": "supervisor-kit-digital",
+    "amount_cents": 60000,
+    "label": "Supervisor Safety Starter System — Digital Kit",
+    "email": null,
+    "company_name": null,
+    "attribution": {
+      "firstTouch": {
+        "utm_source": "app.emergent.sh",
+        "utm_medium": "referral",
+        "first_landing_path": "/",
+        "captured_at": "2026-04-18T18:29:36.954Z"
+      },
+      "lastTouch": {
+        "utm_source": "app.emergent.sh",
+        "utm_medium": "referral",
+        "first_landing_path": "/",
+        "captured_at": "2026-07-03T21:35:45.818Z"
+      }
+    },
+    "status": "pending_payment",
+    "created_at": "2026-07-03T21:36:28.779111+00:00"
+  },
+  {
+    "_id": "6a4e92c7378f5994315b7580",
+    "session_id": "cs_live_a18kpP9ksL1tblgDmItvwp7gkQzKwpOnUzQIgLMC5XSEw7zMyWyVPZOgme",
+    "variant": "physical",
+    "sku": "supervisor-kit-physical",
+    "amount_cents": 70000,
+    "label": "GigLine Supervisor Safety OS — Physical Kit",
+    "email": "test-os-rebrand@example.com",
+    "company_name": null,
+    "attribution": {},
+    "status": "pending_payment",
+    "created_at": "2026-07-08T18:11:19.007314+00:00"
+  },
+  {
+    "_id": "6a4e9abff13039b2749396c1",
+    "session_id": "cs_live_a1T4p6lgCyY5aUXRsCrwNWKg2RP4YwiW7PpunMIKDq2sxQ4foI6FuHbAOR",
+    "variant": "digital",
+    "sku": "supervisor-kit-digital",
+    "amount_cents": 60000,
+    "label": "GigLine Supervisor Safety OS — Digital Kit",
+    "email": "test-golive@example.com",
+    "company_name": null,
+    "attribution": {},
+    "status": "pending_payment",
+    "created_at": "2026-07-08T18:45:19.994451+00:00"
+  },
+  {
+    "_id": "6a4e9ac0f13039b2749396c2",
+    "session_id": "cs_live_a11xzedDOEu2aKu0B1LosqsXtZKm25LpsCRVE6u6pwOsFUNkhR1SjjMcA6",
+    "variant": "physical",
+    "sku": "supervisor-kit-physical",
+    "amount_cents": 70000,
+    "label": "GigLine Supervisor Safety OS — Physical Kit",
+    "email": "test-golive@example.com",
+    "company_name": null,
+    "attribution": {},
+    "status": "pending_payment",
+    "created_at": "2026-07-08T18:45:20.455828+00:00"
+  },
+  {
+    "_id": "6a4e9b92f13039b2749396c3",
+    "session_id": "cs_live_a1zQvNE65iNGOULETOXIUuCeeRr0WuUs93WawG6U5YugF55v7R4nHmHN7N",
+    "variant": "digital",
+    "sku": "supervisor-kit-digital",
+    "amount_cents": 60000,
+    "label": "GigLine Supervisor Safety OS — Digital Kit",
+    "email": null,
+    "company_name": null,
+    "attribution": {
+      "firstTouch": {
+        "utm_source": "app.emergent.sh",
+        "utm_medium": "referral",
+        "first_landing_path": "/",
+        "captured_at": "2026-04-18T16:24:29.546Z"
+      },
+      "lastTouch": {
+        "utm_source": "app.emergent.sh",
+        "utm_medium": "referral",
+        "first_landing_path": "/",
+        "captured_at": "2026-07-06T18:47:45.330Z"
+      }
+    },
+    "status": "pending_payment",
+    "created_at": "2026-07-08T18:48:50.574199+00:00"
+  },
+  {
+    "_id": "6a4e9ba1f13039b2749396c4",
+    "session_id": "cs_live_a1vu1fbD2KQIVh9zY5IuLgHNSCWp8WQ11AxF7wDLswLjNLHNVi4LAW5ulw",
+    "variant": "physical",
+    "sku": "supervisor-kit-physical",
+    "amount_cents": 70000,
+    "label": "GigLine Supervisor Safety OS — Physical Kit",
+    "email": null,
+    "company_name": null,
+    "attribution": {
+      "firstTouch": {
+        "utm_source": "app.emergent.sh",
+        "utm_medium": "referral",
+        "first_landing_path": "/",
+        "captured_at": "2026-04-18T16:24:29.546Z"
+      },
+      "lastTouch": {
+        "utm_source": "app.emergent.sh",
+        "utm_medium": "referral",
+        "first_landing_path": "/",
+        "captured_at": "2026-07-06T18:47:45.330Z"
+      }
+    },
+    "status": "pending_payment",
+    "created_at": "2026-07-08T18:49:05.744279+00:00"
+  },
+  {
+    "_id": "6a4ea09f5ff28ea58efdb9fc",
+    "session_id": "cs_live_a1ncLgSIkoqNvEu2tArvf7juQYCvD4WZAGMmniFhL758fuMSmUFDPm16Lm",
+    "variant": "physical",
+    "sku": "supervisor-kit-physical",
+    "amount_cents": 70000,
+    "label": "GigLine Supervisor Safety OS — Physical Binder Kit",
+    "email": null,
+    "company_name": null,
+    "attribution": {
+      "firstTouch": {
+        "utm_source": "app.emergent.sh",
+        "utm_medium": "referral",
+        "first_landing_path": "/",
+        "captured_at": "2026-04-18T16:24:29.546Z"
+      },
+      "lastTouch": {
+        "utm_source": "app.emergent.sh",
+        "utm_medium": "referral",
+        "first_landing_path": "/",
+        "captured_at": "2026-07-08T19:09:23.007Z"
+      }
+    },
+    "status": "pending_payment",
+    "created_at": "2026-07-08T19:10:23.309036+00:00"
+  },
+  {
+    "_id": "6a4ea2a4e44d8dec43d9b902",
+    "session_id": "cs_live_a1FOFvf1fhXSnkiqb1rmyrV9Fbql1izupGUhGj0azT2SJ5bNjG7lnZ0UD5",
+    "variant": "digital",
+    "sku": "supervisor-kit-digital",
+    "amount_cents": 100,
+    "label": "GigLine Supervisor Safety OS — Digital Kit ($1 TEST)",
+    "email": "vince@giglinecompliance.com",
+    "company_name": "",
+    "attribution": {
+      "test_order": true
+    },
+    "status": "paid",
+    "created_at": "2026-07-08T19:19:00.672367+00:00",
+    "amount_total_cents": 100,
+    "customer_email": "vince@giglinecompliance.com",
+    "customer_name": "vince lawrence",
+    "customer_phone": null,
+    "paid_at": "2026-07-08T19:35:05.558847+00:00",
+    "payment_status": "paid",
+    "shipping_details": null
+  },
+  {
+    "_id": "6a5d351f1f5b1b8a81371bf4",
+    "session_id": "cs_live_a1mGwloMHwUUBOyJN2i8dnCIVcLaMpDtGNToutifo3rGb0YaJWBkvSbIVk",
+    "variant": "digital",
+    "sku": "supervisor-kit-digital",
+    "amount_cents": 60000,
+    "label": "GigLine Supervisor Safety OS — Digital Kit",
+    "email": "test@example.com",
+    "company_name": null,
+    "attribution": null,
+    "status": "pending_payment",
+    "created_at": "2026-07-19T20:35:43.297861+00:00"
+  },
+  {
+    "_id": "6a5d35201f5b1b8a81371bf5",
+    "session_id": "cs_live_a1T8e5iZZfPelbcJnDM0usY9pgU5kPDjukmP2IdRxofELjxYBmIv1vVCKJ",
+    "variant": "physical",
+    "sku": "supervisor-kit-physical",
+    "amount_cents": 70000,
+    "label": "GigLine Supervisor Safety OS — Physical Binder Kit",
+    "email": "test@example.com",
+    "company_name": null,
+    "attribution": null,
+    "status": "pending_payment",
+    "created_at": "2026-07-19T20:35:44.182124+00:00"
+  }
+]

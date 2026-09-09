@@ -63,7 +63,7 @@ const PROGRAMS = [
     name: 'Full Written Program Suite',
     cfr: 'Multiple standards',
     body:
-      'Five or more written programs developed together — LOTO, HazCom, PPE, EAP, and any additional programs identified in the documentation review. Delivered as a complete, organized package.',
+      'Five or more written programs developed together, LOTO, HazCom, PPE, EAP, and any additional programs identified in the documentation review. Delivered as a complete, organized package.',
     price: 'From $2,000',
   },
 ];
@@ -73,7 +73,7 @@ const WHY_CARDS = [
     icon: AlertTriangle,
     title: 'OSHA Cites the Absence',
     body:
-      "An OSHA compliance officer doesn't ask whether your employees follow safe procedures. They ask to see the written program. No document means an automatic citation — regardless of actual practice.",
+      "An OSHA compliance officer doesn't ask whether your employees follow safe procedures. They ask to see the written program. No document means an automatic citation, regardless of actual practice.",
   },
   {
     icon: ClipboardCheck,
@@ -85,7 +85,7 @@ const WHY_CARDS = [
     icon: FileText,
     title: "Templates Don't Hold Up",
     body:
-      "Generic LOTO templates that don't list your specific equipment fail OSHA review. Programs must reflect your actual operation — your machines, your chemicals, your job classifications.",
+      "Generic LOTO templates that don't list your specific equipment fail OSHA review. Programs must reflect your actual operation, your machines, your chemicals, your job classifications.",
   },
 ];
 
@@ -98,7 +98,7 @@ const WHEN_CARDS = [
   {
     title: "You're preparing for an OSHA inspection or customer audit",
     body:
-      "Auditors and compliance officers look for written programs first. If the document doesn't exist, the program doesn't exist — regardless of what your team actually does.",
+      "Auditors and compliance officers look for written programs first. If the document doesn't exist, the program doesn't exist, regardless of what your team actually does.",
   },
   {
     title: 'A new safety manager inherited an incomplete system',
@@ -116,7 +116,7 @@ const PROCESS_STEPS = [
   {
     title: 'Documentation Review First',
     body:
-      'The OSHA Documentation Readiness Review identifies exactly which programs are missing or non-compliant. This is the starting point — not a sales step, a diagnostic one.',
+      'The OSHA Documentation Readiness Review identifies exactly which programs are missing or non-compliant. This is the starting point, not a sales step, a diagnostic one.',
   },
   {
     title: 'Scoped and Quoted',
@@ -126,7 +126,7 @@ const PROCESS_STEPS = [
   {
     title: 'Written for Your Floor',
     body:
-      'Every program is written to your specific operation — your machines, your chemicals, your job classifications. Delivered as a complete, organized package ready for implementation.',
+      'Every program is written to your specific operation, your machines, your chemicals, your job classifications. Delivered as a complete, organized package ready for implementation.',
   },
 ];
 
@@ -138,7 +138,7 @@ const PRICING_TABLE = [
 ];
 
 const INCLUDED = [
-  'Written to your specific operation — not a generic template',
+  'Written to your specific operation, not a generic template',
   'Applicable CFR standard cited throughout',
   'Formatted for OSHA review and customer audit',
   'Employee acknowledgment forms included',
@@ -159,8 +159,8 @@ const DocumentDevelopmentPage = () => {
   return (
     <main data-testid="document-development-page">
       <SEO
-        title="Document Development — Written OSHA Programs from $350 | GigLine"
-        description="GigLine writes the safety programs your operation needs — LOTO, HazCom, PPE, EAP, and full suites — scoped to your specific equipment, chemicals, and job classifications. Fixed price after a documentation review."
+        title="Document Development, Written OSHA Programs from $350 | GigLine"
+        description="GigLine writes custom OSHA programs, LOTO, HazCom, PPE, EAP, scoped to your equipment, chemicals & job classifications."
         canonical={`/services/${SLUG}`}
         schema={[
           {
@@ -182,7 +182,7 @@ const DocumentDevelopmentPage = () => {
                 'Single written OSHA program from $350; full suite from $2,000.',
             },
             description:
-              'Written OSHA programs — LOTO, HazCom, PPE, EAP, and full suites — scoped to your operation and quoted after a documentation review.',
+              'Written OSHA programs, LOTO, HazCom, PPE, EAP, and full suites, scoped to your operation and quoted after a documentation review.',
           },
           {
             '@context': 'https://schema.org',
@@ -206,13 +206,13 @@ const DocumentDevelopmentPage = () => {
         <div className="container max-w-6xl">
           <Eyebrow>Document Development</Eyebrow>
           <h1 className="text-3xl md:text-4xl lg:text-[52px] font-extrabold leading-[1.08] mb-7 tracking-tight max-w-4xl">
-            <span className="block">The programs you&apos;re missing —</span>
+            <span className="block">The programs you&apos;re missing ,</span>
             <span className="block italic" style={{ color: '#C9A84C', fontStyle: 'italic' }}>
               written for your floor.
             </span>
           </h1>
           <p className="text-base md:text-lg text-white/75 leading-[1.8] mb-9 max-w-3xl">
-            GigLine writes the safety programs your operation needs — scoped to your specific equipment, chemicals,
+            GigLine writes the safety programs your operation needs, scoped to your specific equipment, chemicals,
             and job classifications. Not templates. Not generic documents. Programs that match what actually happens
             in your facility.
           </p>
@@ -237,7 +237,7 @@ const DocumentDevelopmentPage = () => {
             </span>
           </div>
 
-          {/* Pricing Callout — embedded in hero */}
+          {/* Pricing Callout, embedded in hero */}
           <div
             className="rounded-xl p-7 md:p-8 grid grid-cols-1 md:grid-cols-[minmax(280px,360px)_1fr] gap-7 md:gap-10"
             style={{
@@ -284,7 +284,7 @@ const DocumentDevelopmentPage = () => {
           <h2 className="text-3xl md:text-4xl font-extrabold text-[#1C2B2B] leading-[1.15] mb-12 tracking-tight max-w-3xl">
             If the document doesn&apos;t exist, the program doesn&apos;t exist.
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {WHY_CARDS.map((card, i) => {
               const Icon = card.icon;
               return (
@@ -320,7 +320,7 @@ const DocumentDevelopmentPage = () => {
         </div>
       </section>
 
-      {/* ═══ Programs GigLine Writes — 5 stacked full-width horizontal cards ═══ */}
+      {/* ═══ Programs GigLine Writes, 5 stacked full-width horizontal cards ═══ */}
       <section className="py-20 md:py-24" style={{ background: '#f5f4f0' }} data-testid="dd-programs">
         <div className="container max-w-6xl">
           <Eyebrow>Programs GigLine Writes</Eyebrow>
@@ -386,7 +386,7 @@ const DocumentDevelopmentPage = () => {
         </div>
       </section>
 
-      {/* ═══ Floor Pricing Reference + When to Book This — side-by-side 2-col ═══ */}
+      {/* ═══ Floor Pricing Reference + When to Book This, side-by-side 2-col ═══ */}
       <section className="py-20 md:py-24 bg-white" data-testid="dd-pricing-and-when">
         <div className="container max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
@@ -399,7 +399,7 @@ const DocumentDevelopmentPage = () => {
               <p className="text-[15px] text-[#1C2B2B]/75 leading-[1.75] mb-7">
                 These are reference prices for common scopes. Every engagement is quoted individually after the
                 documentation review identifies your specific gaps. You&apos;ll have a fixed price before any writing
-                starts — no open-ended billing.
+                starts, no open-ended billing.
               </p>
               <div
                 className="rounded-xl overflow-hidden"
@@ -479,14 +479,14 @@ const DocumentDevelopmentPage = () => {
         </div>
       </section>
 
-      {/* ═══ How It Works — 3 col horizontal ═══ */}
+      {/* ═══ How It Works, 3 col horizontal ═══ */}
       <section className="py-20 md:py-24" style={{ background: '#f5f4f0' }} data-testid="dd-process">
         <div className="container max-w-6xl">
           <Eyebrow>How It Works</Eyebrow>
           <h2 className="text-3xl md:text-4xl font-extrabold text-[#1C2B2B] leading-[1.15] mb-12 tracking-tight max-w-3xl">
             Three steps from gap to compliant document.
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
             {PROCESS_STEPS.map((step, i) => (
               <div
                 key={i}
@@ -519,7 +519,7 @@ const DocumentDevelopmentPage = () => {
         <div className="container max-w-6xl">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2.5">
-              <img src="/gigline-logo-dark-bg.png?v=7" loading="lazy" alt="" className="h-7 w-auto" />
+              <img src="/gigline-logo-dark-bg.png?v=9" loading="lazy" alt="" className="h-7 w-auto" />
               <span
                 className="uppercase font-bold"
                 style={{ ...mono, fontSize: '10px', letterSpacing: '0.20em', color: 'rgba(255,255,255,0.55)' }}
@@ -549,7 +549,7 @@ const DocumentDevelopmentPage = () => {
         </div>
       </section>
 
-      {/* ═══ What's Included — 3-col grid ═══ */}
+      {/* ═══ What's Included, 3-col grid ═══ */}
       <section className="py-20 md:py-24 bg-white" data-testid="dd-included">
         <div className="container max-w-6xl">
           <Eyebrow>What&apos;s Included in Every Document</Eyebrow>
@@ -580,11 +580,11 @@ const DocumentDevelopmentPage = () => {
       {/* ═══ Closing CTA ═══ */}
       <RelatedFieldNotesStrip
         heading="Field Notes that pair with Document Development"
-        intro="Real examples of what a working written program looks like — and where teams typically leave gaps."
+        intro="Real examples of what a working written program looks like, and where teams typically leave gaps."
         notes={[
-          { slug: 'hazcom', title: 'Written HazCom Program — what a working one looks like', blurb: 'Beyond the SDS binder: what OSHA expects your written HazCom program to actually cover.' },
-          { slug: 'recordkeeping-300-log', title: 'OSHA 300 Log — the mistakes I see most often', blurb: 'Recordkeeping errors that turn a routine inspection into a citation.' },
-          { slug: 'respiratory-protection', title: 'Respiratory Protection — the written program most sites are missing', blurb: 'Fit-test docs, medical evals, cartridge change-out — the written pieces OSHA asks for first.' },
+          { slug: 'hazcom', title: 'Written HazCom Program, what a working one looks like', blurb: 'Beyond the SDS binder: what OSHA expects your written HazCom program to actually cover.' },
+          { slug: 'recordkeeping-300-log', title: 'OSHA 300 Log, the mistakes I see most often', blurb: 'Recordkeeping errors that turn a routine inspection into a citation.' },
+          { slug: 'respiratory-protection', title: 'Respiratory Protection, the written program most sites are missing', blurb: 'Fit-test docs, medical evals, cartridge change-out, the written pieces OSHA asks for first.' },
         ]}
       />
 
@@ -596,7 +596,7 @@ const DocumentDevelopmentPage = () => {
           </h2>
           <p className="text-base md:text-lg text-white/70 leading-[1.85] mb-10 max-w-2xl mx-auto">
             The OSHA Documentation Readiness Review identifies exactly which programs are missing. Document Development
-            is scoped and quoted from those findings — so you only pay for what your operation actually needs.
+            is scoped and quoted from those findings, so you only pay for what your operation actually needs.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
@@ -621,7 +621,7 @@ const DocumentDevelopmentPage = () => {
             data-testid="dd-cta-phone"
           >
             <Phone size={14} />
-            Questions? Call or text Vince directly — (336) 329-8899
+            Questions? Call or text Vince directly, (336) 329-8899
           </a>
         </div>
       </section>

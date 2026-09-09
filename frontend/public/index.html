@@ -2,21 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/x-icon" href="%PUBLIC_URL%/favicon.ico?v=9" />
+    <link rel="icon" type="image/x-icon" href="%PUBLIC_URL%/favicon.ico?v=10" />
     <!-- Theme-aware favicons: dark-body icon for light browser tabs, light-body icon for dark browser tabs -->
-    <link rel="icon" type="image/png" sizes="32x32" media="(prefers-color-scheme: light)" href="%PUBLIC_URL%/favicon-dark-icon-32.png?v=9" />
-    <link rel="icon" type="image/png" sizes="16x16" media="(prefers-color-scheme: light)" href="%PUBLIC_URL%/favicon-dark-icon-16.png?v=9" />
-    <link rel="icon" type="image/png" sizes="32x32" media="(prefers-color-scheme: dark)" href="%PUBLIC_URL%/favicon-light-icon-32.png?v=9" />
-    <link rel="icon" type="image/png" sizes="16x16" media="(prefers-color-scheme: dark)" href="%PUBLIC_URL%/favicon-light-icon-16.png?v=9" />
+    <link rel="icon" type="image/png" sizes="32x32" media="(prefers-color-scheme: light)" href="%PUBLIC_URL%/favicon-dark-icon-32.png?v=10" />
+    <link rel="icon" type="image/png" sizes="16x16" media="(prefers-color-scheme: light)" href="%PUBLIC_URL%/favicon-dark-icon-16.png?v=10" />
+    <link rel="icon" type="image/png" sizes="32x32" media="(prefers-color-scheme: dark)" href="%PUBLIC_URL%/favicon-light-icon-32.png?v=10" />
+    <link rel="icon" type="image/png" sizes="16x16" media="(prefers-color-scheme: dark)" href="%PUBLIC_URL%/favicon-light-icon-16.png?v=10" />
     <!-- Fallback for browsers that don't support prefers-color-scheme media on link -->
-    <link rel="icon" type="image/png" sizes="48x48" href="%PUBLIC_URL%/favicon-48.png?v=9" />
-    <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/favicon-dark-icon-180.png?v=9" />
-    <link rel="icon" type="image/png" sizes="192x192" href="%PUBLIC_URL%/android-chrome-192.png?v=5" />
-    <link rel="icon" type="image/png" sizes="512x512" href="%PUBLIC_URL%/android-chrome-512.png?v=5" />
+    <link rel="icon" type="image/png" sizes="48x48" href="%PUBLIC_URL%/favicon-48.png?v=10" />
+    <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/favicon-dark-icon-180.png?v=10" />
+    <link rel="icon" type="image/png" sizes="192x192" href="%PUBLIC_URL%/android-chrome-192.png?v=10" />
+    <link rel="icon" type="image/png" sizes="512x512" href="%PUBLIC_URL%/android-chrome-512.png?v=10" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#2A52A0" />
     
-    <!-- LCP hero preload — responsive: browser fetches the right size for the viewport
+    <!-- LCP hero preload, responsive: browser fetches the right size for the viewport
          (400w mobile, 600w tablet, 843w or original for desktop). Massive mobile LCP win. -->
     <link rel="preload" as="image"
           imagesrcset="/vince-inspecting-400w.webp 400w, /vince-inspecting-600w.webp 600w, /vince-inspecting-843w.webp 843w, /vince-inspecting.webp 1024w"
@@ -27,8 +27,11 @@
          completes in parallel with page paint rather than blocking after load. -->
     <link rel="preconnect" href="https://www.googletagmanager.com" />
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
+    <!-- LCP preload: Navbar logo (appears on every page, above the fold) -->
+    <link rel="preload" as="image" href="/gigline-logo-3d.png?v=9" fetchpriority="high" />
     
-    <!-- JetBrains Mono — non-blocking font load. Preload + async swap so the stylesheet
+    <!-- JetBrains Mono, non-blocking font load. Preload + async swap so the stylesheet
          request does not block first paint. Dropped weight 500 (unused). -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -48,13 +51,13 @@
     <meta property="og:image" content="https://www.giglinecompliance.com/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="GigLine Safety & Compliance — Find it before OSHA does." />
+    <meta property="og:image:alt" content="GigLine Safety & Compliance, Find it before OSHA does." />
 
     <!-- Pinterest (vertical 1000x1500 variant for portrait pin previews) -->
     <meta property="og:image" content="https://www.giglinecompliance.com/og-image-pinterest.png" />
     <meta property="og:image:width" content="1000" />
     <meta property="og:image:height" content="1500" />
-    <meta property="og:image:alt" content="GigLine Safety & Compliance — Find it before OSHA does." />
+    <meta property="og:image:alt" content="GigLine Safety & Compliance, Find it before OSHA does." />
     <link rel="image_src" href="https://www.giglinecompliance.com/og-image-pinterest.png" />
     
     <!-- Twitter (constant tags; twitter:title/description set per-page) -->
@@ -63,14 +66,13 @@
     
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     
-    <!-- Google Analytics (GA4) -->
+    <!-- Google Analytics (GA4) — loader stays external; init logic lives in /gigline-init.js
+         so we can drop 'unsafe-inline' from CSP script-src -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FNX42NP1QT"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-FNX42NP1QT', { send_page_view: false });
-    </script>
+
+    <!-- Site init: GA4 dataLayer/gtag config + Microsoft Clarity bootstrap.
+         Clarity ID passed via data attribute so %REACT_APP_MS_CLARITY_ID% interpolation still works. -->
+    <script src="%PUBLIC_URL%/gigline-init.js?v=1" data-clarity-id="%REACT_APP_MS_CLARITY_ID%" defer></script>
     
     <title>GigLine Safety & Compliance | Safety Walkthroughs & Documentation Readiness Reviews for Small Operations</title>
     

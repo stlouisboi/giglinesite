@@ -39,7 +39,7 @@ const StickyTOC = ({ items = [] }) => {
       const docH = document.documentElement.scrollHeight - window.innerHeight;
       setProgress(docH > 0 ? Math.min(100, (scrollY / docH) * 100) : 0);
 
-      // ScrollSpy — pick the section whose top is closest to the top of the viewport
+      // ScrollSpy, pick the section whose top is closest to the top of the viewport
       let currentId = null;
       let closestDelta = Infinity;
       for (const item of items) {

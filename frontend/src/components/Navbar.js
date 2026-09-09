@@ -75,16 +75,16 @@ const Navbar = () => {
               className="flex items-center"
               data-testid="navbar-logo"
             >
-              <img src="/gigline-logo-3d.png?v=7"
+              <img src="/gigline-logo-3d.png?v=9"
                 alt="GigLine Safety & Compliance"
-                className="h-16 md:h-20 lg:h-24 xl:h-24 2xl:h-28 w-auto"
+                className="h-20 md:h-24 lg:h-28 xl:h-32 2xl:h-36 w-auto"
                 style={{ filter: 'drop-shadow(0 2px 8px rgba(28,43,43,0.10))' }}
                 loading="eager"
                 fetchPriority="high"
-                width="209"
+                width="180"
                 height="100" />
             </Link>
-            {/* Carolina-Built credentials — Full 3-line stack at xl+ (1280px+) only. Below xl there's no room without crowding the nav. */}
+            {/* Carolina-Built credentials, Full 3-line stack at xl+ (1280px+) only. Below xl there's no room without crowding the nav. */}
             <div
               className="hidden xl:flex flex-col leading-tight pl-4"
               style={{ borderLeft: '1px solid #dde3ea' }}
@@ -111,7 +111,7 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Desktop Navigation — appears at lg (1024px+); tablet portrait gets the hamburger menu */}
+          {/* Desktop Navigation, appears at lg (1024px+); tablet portrait gets the hamburger menu */}
           <div className="hidden lg:flex items-center space-x-5 xl:space-x-7 pl-6 xl:pl-10" data-testid="desktop-nav">
             {navLinks.map((link) => (
               <Link
@@ -144,16 +144,6 @@ const Navbar = () => {
                 /
               </kbd>
             </button>
-            <a
-              href="tel:3363298899"
-              onClick={() => trackPhoneClick('navbar_desktop')}
-              className="flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap"
-              style={{ color: '#1C2B2B' }}
-              data-testid="nav-phone"
-            >
-              <Phone size={14} />
-              (336) 329-8899
-            </a>
             <Link
               to="/intake?service=compliance-readiness-visit"
               className="text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors whitespace-nowrap"

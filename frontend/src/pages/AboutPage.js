@@ -122,7 +122,7 @@ const AboutPage = () => {
   return (
     <main data-testid="about-page">
       <SEO
-        title="Safety Consultant Kernersville NC — Vince Lawrence | GigLine"
+        title="Safety Consultant Kernersville NC, Vince Lawrence | GigLine"
         description="25+ years on the floor. OSHA 30-Hour certified. Navy veteran. An OSHA-informed floor review before an inspector shows up. (336) 329-8899."
         canonical="/about"
         schema={[
@@ -142,7 +142,7 @@ const AboutPage = () => {
             "email": "vince@giglinecompliance.com",
             "url": "https://www.giglinecompliance.com/about",
             "image": "https://www.giglinecompliance.com/vince-portrait.webp",
-            "description": "Vince Lawrence is a safety consultant with 25+ years of experience in manufacturing, fleet, and warehouse operations. OSHA 30-Hour Certified in General Industry. U.S. Navy veteran. Founder of GigLine Safety & Compliance in Kernersville, NC.",
+            "description": "Vince Lawrence, 25+ years in manufacturing/fleet/warehouse safety. OSHA 30-Hour Certified. Navy veteran. Founder of GigLine.",
             "sameAs": [
               "https://www.giglinecompliance.com",
               "https://www.giglinecompliance.com/about",
@@ -179,7 +179,7 @@ const AboutPage = () => {
               className="text-base md:text-lg text-white/55 leading-relaxed max-w-3xl mx-auto"
               data-testid="about-credential-line"
             >
-              OSHA 30-Hour Certified safety compliance consultant &mdash; Kernersville, NC
+              OSHA 30-Hour Certified safety compliance consultant , Kernersville, NC
             </p>
           </Reveal>
         </div>
@@ -195,7 +195,7 @@ const AboutPage = () => {
                 data-testid="about-founder-photo-wrap"
               >
                 <img src="/vince-founder.webp" height="1411" width="1114"
-                  alt="Vince Lawrence — Founder, GigLine Safety & Compliance"
+                  alt="Vince Lawrence, Founder, GigLine Safety & Compliance"
                   className="w-full h-auto block"
                   loading="eager"
                   data-testid="about-founder-photo" />
@@ -239,7 +239,7 @@ Working in them.
 
 Glass and vinyl. Rubber compounding. Metals fabrication.
 
-I was on the floor — supervising crews, coordinating safety, doing Gemba walks, creating safety orientation for new hires, training people on the standards they were expected to follow, and seeing firsthand where safety systems broke down under production pressure.
+I was on the floor, supervising crews, coordinating safety, doing Gemba walks, creating safety orientation for new hires, training people on the standards they were expected to follow, and seeing firsthand where safety systems broke down under production pressure.
 
 I know what a facility looks like when safety is managed by whoever had time that week.
 
@@ -322,9 +322,11 @@ This is GigLine Safety & Compliance.`}
               <p>
                 In the military, your <strong className="text-[#1C2B2B]">gig line</strong> is the straight line formed by your shirt, your belt buckle, and your trouser fly.
               </p>
-              <p>If it is off &mdash; even slightly &mdash; you are out of standard.</p>
               <p>
-                It is a small detail. But it represents something larger: attention to alignment, discipline in execution, and the understanding that inspectors notice what others ignore.
+                If your gig line was out of alignment, it could earn an <span className="font-bold uppercase">unsat</span> , unsatisfactory , during inspection.
+              </p>
+              <p>
+                It was a small detail, but it represented something larger: attention to standards, discipline in execution, and the understanding that inspectors notice what others overlook.
               </p>
             </div>
           </Reveal>
@@ -414,13 +416,13 @@ This is GigLine Safety & Compliance.`}
           <Reveal delay={120}>
             <div className="space-y-5 text-[15.5px] md:text-base text-[#1C2B2B]/75 leading-[1.75]">
               <p>
-                A plant manager at a 30-person fabrication shop is responsible for production, quality, HR, and safety &mdash; simultaneously. There&rsquo;s no budget for a full-time safety coordinator. There&rsquo;s no time to read 29 CFR 1910 cover to cover. And there&rsquo;s no one to call when an inspector shows up.
+                A plant manager at a 30-person fabrication shop is responsible for production, quality, HR, and safety , simultaneously. There&rsquo;s no budget for a full-time safety coordinator. There&rsquo;s no time to read 29 CFR 1910 cover to cover. And there&rsquo;s no one to call when an inspector shows up.
               </p>
               <p>
                 Generic training courses teach concepts. Software platforms track inputs. Neither one walks your floor, looks at the pallet blocking your electrical panel, or notices the unlabeled spray bottle next to the grinder.
               </p>
               <p>
-                GigLine exists to give small and mid-size operations the same floor-level safety intelligence that larger companies pay a full-time coordinator to provide &mdash; without the retainer, without the overhead, and without the generic checklist.
+                GigLine exists to give small and mid-size operations the same floor-level safety intelligence that larger companies pay a full-time coordinator to provide , without the retainer, without the overhead, and without the generic checklist.
               </p>
               <p className="font-semibold text-[#1C2B2B]">
                 One visit. One report. A clear picture of where you stand and what to fix first.
@@ -455,7 +457,7 @@ This is GigLine Safety & Compliance.`}
                   U.S. Navy Veteran
                 </p>
                 <p className="text-[15px] md:text-base text-white/85 leading-[1.75]">
-                  I served in the U.S. Navy before moving into manufacturing safety. The discipline, the attention to detail, and the understanding that procedures exist to protect people &mdash; not to fill binders &mdash; came from that experience. It&rsquo;s the same standard I bring to every engagement.
+                  I served in the U.S. Navy before moving into manufacturing safety. The discipline, the attention to detail, and the understanding that procedures exist to protect people , not to fill binders , came from that experience. It&rsquo;s the same standard I bring to every engagement.
                 </p>
               </div>
             </div>
@@ -480,7 +482,7 @@ This is GigLine Safety & Compliance.`}
                 Small operations where safety is handled by whoever has time.
               </h2>
               <p className="text-base md:text-[17px] leading-[1.75] text-[#1C2B2B]/75 max-w-3xl mb-5">
-                GigLine works with small and mid-size manufacturers, warehouses, contractors, and fleet operations in the Piedmont Triad &mdash; typically 5 to 150 employees, no full-time safety manager, and a plant manager or owner who knows safety matters but is also expected to run production at the same time.
+                GigLine works with small and mid-size manufacturers, warehouses, contractors, and fleet operations in the Piedmont Triad , typically 5 to 150 employees, no full-time safety manager, and a plant manager or owner who knows safety matters but is also expected to run production at the same time.
               </p>
               <p className="text-base md:text-[17px] leading-[1.75] text-[#1C2B2B]/75 max-w-3xl">
                 <em>I do not show up to impress your team with theory. I show up to look at the same floor your people walk every day and identify what has become normal, overlooked, or undocumented.</em>
@@ -561,7 +563,7 @@ This is GigLine Safety & Compliance.`}
         </div>
       </section>
 
-      {/* ═══ EDITORIAL / PRESS BIO — copy-paste-ready credentials for editors ═══ */}
+      {/* ═══ EDITORIAL / PRESS BIO, copy-paste-ready credentials for editors ═══ */}
       <section className="py-16 md:py-20 bg-white" style={{ borderTop: '1px solid rgba(28,43,43,0.08)' }} data-testid="about-press-bio-section">
         <div className="container max-w-3xl">
           <Reveal>
@@ -575,10 +577,10 @@ This is GigLine Safety & Compliance.`}
               className="text-2xl md:text-3xl font-bold mb-5 leading-tight tracking-tight"
               style={{ color: '#1C2B2B', fontFamily: "Georgia, 'Times New Roman', serif" }}
             >
-              Credentials &amp; bio — ready to publish.
+              Credentials &amp; bio, ready to publish.
             </h2>
             <p className="text-base text-[#1C2B2B]/65 mb-9 leading-[1.7]">
-              For guest articles, op-eds, podcast bookings, and quoted commentary on OSHA compliance and manufacturing safety. Copy any block below — all text is pre-approved and factually verified.
+              For guest articles, op-eds, podcast bookings, and quoted commentary on OSHA compliance and manufacturing safety. Copy any block below, all text is pre-approved and factually verified.
             </p>
 
             {/* Credential pills */}
@@ -608,17 +610,17 @@ This is GigLine Safety & Compliance.`}
 
             <PressCopyBlock
               label="One-Liner (for contributor footnotes)"
-              text="Vince Lawrence — Founder, GigLine Safety & Compliance · 25+ years manufacturing operations · OSHA 30-Hour Certified · U.S. Navy Veteran · Kernersville, NC."
+              text="Vince Lawrence, Founder, GigLine Safety & Compliance · 25+ years manufacturing operations · OSHA 30-Hour Certified · U.S. Navy Veteran · Kernersville, NC."
               testid="copy-one-liner"
             />
             <PressCopyBlock
               label="Short Bio (~90 words)"
-              text="Vince Lawrence is the founder of GigLine Safety & Compliance, an OSHA compliance consultancy based in Kernersville, NC, serving small manufacturers, warehouses, contractors, and fleet operations across the Piedmont Triad. With 25+ years of manufacturing operations experience and OSHA 30-Hour General Industry certification, he walks the floor before the inspector does — finding what most safety programs miss and what most software cannot see. He is a U.S. Navy veteran and the author of 25+ OSHA compliance field notes published at giglinecompliance.com."
+              text="Vince Lawrence is the founder of GigLine Safety & Compliance, an OSHA compliance consultancy based in Kernersville, NC, serving small manufacturers, warehouses, contractors, and fleet operations across the Piedmont Triad. With 25+ years of manufacturing operations experience and OSHA 30-Hour General Industry certification, he walks the floor before the inspector does, finding what most safety programs miss and what most software cannot see. He is a U.S. Navy veteran and the author of 25+ OSHA compliance field notes published at giglinecompliance.com."
               testid="copy-short-bio"
             />
             <PressCopyBlock
               label="Direct Contact (for editor contact lines)"
-              text="Vince Lawrence — Founder, GigLine Safety & Compliance — (336) 329-8899 — vince@giglinecompliance.com — Kernersville, NC."
+              text="Vince Lawrence, Founder, GigLine Safety & Compliance, (336) 329-8899, vince@giglinecompliance.com, Kernersville, NC."
               testid="copy-direct-contact"
             />
 
@@ -627,7 +629,7 @@ This is GigLine Safety & Compliance.`}
               <a href="mailto:vince@giglinecompliance.com?subject=Press%20Inquiry%20-%20GigLine" className="font-semibold text-[#2A52A0] hover:text-[#1C2B2B] underline underline-offset-4">
                 vince@giglinecompliance.com
               </a>{' '}
-              — replies within one business day.
+             , replies within one business day.
             </p>
           </Reveal>
         </div>

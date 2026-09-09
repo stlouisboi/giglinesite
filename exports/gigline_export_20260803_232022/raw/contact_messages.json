@@ -1,0 +1,20 @@
+[
+  {
+    "_id": "6a4593f955ece5177f516960",
+    "name": "Test Prospect",
+    "email": "test-not-real@example.com",
+    "phone": "",
+    "message": "Just testing GL-WEB-024 contact form.",
+    "source": "contact-page-simple-form",
+    "created_at": "2026-07-01T22:26:01.816807+00:00"
+  },
+  {
+    "_id": "6a45945555ece5177f516961",
+    "name": "E2E Test",
+    "email": "e2e-noreach@example.com",
+    "phone": "3365551234",
+    "message": "E2E test message for GL-WEB-024.",
+    "source": "contact-page-simple-form",
+    "created_at": "2026-07-01T22:27:33.563839+00:00"
+  }
+]

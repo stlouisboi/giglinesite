@@ -6,9 +6,9 @@ import ScrollToTop from './components/ScrollToTop';
 import { SUPERVISOR_KIT_ENABLED } from './config/features';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import MobileStickyFooter from './components/MobileStickyFooter';
+import StickyContactRail from './components/StickyContactRail';
 
-// Eager: renders instantly on every landing — the LCP path
+// Eager: renders instantly on every landing, the LCP path
 import HomePage from './pages/HomePage';
 
 // Lazy: 43 secondary pages split into per-route chunks.
@@ -54,8 +54,13 @@ const TermsOfServicePage              = lazy(() => import('./pages/TermsOfServic
 const SafetyWalkthroughPage           = lazy(() => import('./pages/SafetyWalkthroughPage'));
 const IncidentReviewPage              = lazy(() => import('./pages/IncidentReviewPage'));
 const OshaReadyControlSystemPage      = lazy(() => import('./pages/OshaReadyControlSystemPage'));
+const CorrectiveActionImplementationPage = lazy(() => import('./pages/CorrectiveActionImplementationPage'));
 const DocumentationGapCheckPage       = lazy(() => import('./pages/DocumentationGapCheckPage'));
 const OshaComplianceGapCheckPage      = lazy(() => import('./pages/OshaComplianceGapCheckPage'));
+const OngoingSafetySupportPage        = lazy(() => import('./pages/OngoingSafetySupportPage'));
+const KitVerifyPage                   = lazy(() => import('./pages/KitVerifyPage'));
+const AdminDownloadsPage              = lazy(() => import('./pages/AdminDownloadsPage'));
+const AdminPilotPage                  = lazy(() => import('./pages/AdminPilotPage'));
 
 // Content marketing / pillar blog posts (Nov 2025 launch batch)
 const BlogHubPage                     = lazy(() => import('./pages/BlogHubPage'));
@@ -65,10 +70,18 @@ const BlogForkliftCompliance          = lazy(() => import('./pages/BlogForkliftC
 const BlogHazComPreInspection         = lazy(() => import('./pages/BlogHazComPreInspection'));
 const BlogOSHA300LogMistakes          = lazy(() => import('./pages/BlogOSHA300LogMistakes'));
 const BlogMidYear2026OshaUpdate       = lazy(() => import('./pages/BlogMidYear2026OshaUpdate'));
+const BlogOSHAPenaltyNC2026           = lazy(() => import('./pages/BlogOSHAPenaltyNC2026'));
 
 // Citation-Proof Kit Series
 const CitationProofKitsPage           = lazy(() => import('./pages/CitationProofKitsPage'));
 const CitationProofKitDetailPage      = lazy(() => import('./pages/CitationProofKitDetailPage'));
+const CitationProofKitThankYouPage    = lazy(() => import('./pages/CitationProofKitThankYouPage'));
+
+// Kit delivery recovery (self-serve resend for spam-blocked emails)
+const ResendMyKitPage                 = lazy(() => import('./pages/ResendMyKitPage'));
+
+// Citation Cost Calculator, free interactive lead-magnet
+const CitationCostCalculatorPage      = lazy(() => import('./pages/CitationCostCalculatorPage'));
 
 import './App.css';
 
@@ -107,7 +120,7 @@ function App() {
         <ScrollToTop />
         <Suspense fallback={<PageFallback />}>
           <Routes>
-            {/* Standalone portal pages — own nav, no global Navbar/Footer */}
+            {/* Standalone portal pages, own nav, no global Navbar/Footer */}
             <Route path="/walkthrough" element={<WalkthroughLandingPage />} />
             <Route path="/intake" element={<ClientIntakePage />} />
             {/* /onboarding portal retired (legacy pricing). Forward old links to /intake. */}
@@ -133,6 +146,7 @@ function App() {
                     <Route path="/services/safety-walkthrough-report" element={<Navigate to="/safety-walkthrough" replace />} />
                     <Route path="/services/incident-review" element={<IncidentReviewPage />} />
                     <Route path="/services/osha-ready-control-system" element={<OshaReadyControlSystemPage />} />
+                    <Route path="/services/corrective-action-implementation" element={<CorrectiveActionImplementationPage />} />
                     <Route path="/services/:slug" element={<ServiceDetailPage />} />
                     <Route path="/about" element={<AboutPage />} />
                     <Route path="/contact" element={<ContactPage />} />
@@ -151,6 +165,7 @@ function App() {
                     <Route path="/blog/written-hazcom-program-before-osha-inspection" element={<BlogHazComPreInspection />} />
                     <Route path="/blog/osha-300-log-common-mistakes-citations" element={<BlogOSHA300LogMistakes />} />
                     <Route path="/blog/mid-year-2026-osha-update-nc-manufacturers" element={<BlogMidYear2026OshaUpdate />} />
+                    <Route path="/blog/osha-penalty-north-carolina-2026" element={<BlogOSHAPenaltyNC2026 />} />
                     <Route path="/heat-guide" element={<HeatGuidePage />} />
                     <Route path="/sample-report" element={<SampleReportPage />} />
                     <Route path="/resources" element={<ResourcesPage />} />
@@ -163,11 +178,15 @@ function App() {
                     <Route path="/admin" element={<AdminPage />} />
                     <Route path="/field-notes" element={<FieldNotesPage />} />
                     <Route path="/field-notes/:slug" element={<FieldNoteDetailPage />} />
-                    {/* Buyer-intent service landing pages (Findability Framework) — must be defined
+                    {/* Buyer-intent service landing pages (Findability Framework), must be defined
                         before the dynamic /safety-walkthrough/:city route below. */}
                     <Route path="/safety-walkthrough" element={<SafetyWalkthroughPage />} />
                     <Route path="/documentation-gap-check" element={<DocumentationGapCheckPage />} />
                     <Route path="/osha-compliance-gap-check" element={<OshaComplianceGapCheckPage />} />
+                    <Route path="/ongoing-safety-support" element={<OngoingSafetySupportPage />} />
+                    <Route path="/verify/:token" element={<KitVerifyPage />} />
+                    <Route path="/admin/downloads" element={<AdminDownloadsPage />} />
+                    <Route path="/admin/pilot" element={<AdminPilotPage />} />
                     <Route path="/safety-walkthrough/:city" element={<CityLandingPage />} />
                     <Route path="/faq" element={<FAQPage />} />
                     <Route path="/service-areas" element={<ServiceAreasPage />} />
@@ -175,6 +194,7 @@ function App() {
                     <Route path="/case-studies/mocksville-plastics-osha-inspection" element={<Navigate to="/case-study/metals-fabrication-statesville" replace />} />
                     {/* Citation-Proof Kit Series */}
                     <Route path="/citation-proof-kits" element={<CitationProofKitsPage />} />
+                    <Route path="/citation-proof-kits/:slug/thank-you" element={<CitationProofKitThankYouPage />} />
                     <Route path="/citation-proof-kits/:slug" element={<CitationProofKitDetailPage />} />
                     <Route path="/kits" element={<Navigate to="/citation-proof-kits" replace />} />
                     <Route path="/kits/*" element={<Navigate to="/citation-proof-kits" replace />} />
@@ -193,11 +213,14 @@ function App() {
                     <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
                     <Route path="/terms" element={<Navigate to="/terms-of-service" replace />} />
                     <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+                    <Route path="/resend-my-kit" element={<ResendMyKitPage />} />
+                    <Route path="/citation-cost-calculator" element={<CitationCostCalculatorPage />} />
+                    <Route path="/osha-citation-calculator" element={<Navigate to="/citation-cost-calculator" replace />} />
                     <Route path="*" element={<NotFoundPage />} />
                   </Routes>
                 </div>
                 <Footer />
-                <MobileStickyFooter />
+                <StickyContactRail />
               </div>
             } />
           </Routes>

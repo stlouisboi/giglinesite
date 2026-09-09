@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, Linkedin } from 'lucide-react';
+import { Mail, Phone, Linkedin, ShieldCheck } from 'lucide-react';
 import { SUPERVISOR_KIT_ENABLED } from '../config/features';
 
 const Footer = () => {
@@ -13,7 +13,7 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <div className="mb-4">
-              <img src="/gigline-logo-dark-bg.png?v=7"
+              <img src="/gigline-logo-dark-bg.png?v=9"
                 alt="GigLine Safety & Compliance"
                 className="h-16 w-auto"
                 loading="lazy"
@@ -39,10 +39,23 @@ const Footer = () => {
               width="140"
               height="90"
               loading="lazy"
-              className="mb-5 rounded-sm"
+              className="mb-3 rounded-sm"
               style={{ maxWidth: '140px', height: 'auto' }}
               data-testid="footer-veteran-badge"
             />
+            <a
+              href="https://observatory.mozilla.org/analyze/www.giglinecompliance.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 mb-5 px-2.5 py-1 rounded-full text-[11px] font-semibold tracking-wide border transition-colors"
+              style={{ borderColor: 'rgba(201, 168, 76, 0.4)', color: '#C9A84C', background: 'rgba(201, 168, 76, 0.08)' }}
+              title="Verified by Mozilla Observatory. Click to view live scan."
+              data-testid="footer-security-badge"
+              aria-label="A+ Security rating, HSTS Preloaded. Verified by Mozilla Observatory."
+            >
+              <ShieldCheck size={12} strokeWidth={2.5} aria-hidden="true" />
+              <span>A+ Security · HSTS Preloaded</span>
+            </a>
             <div className="space-y-2">
               <a
                 href="mailto:vince@giglinecompliance.com"
@@ -102,7 +115,7 @@ const Footer = () => {
           </div>
 
           {/* Resources */}
-          <div>
+          <div className="sm:col-span-2 lg:col-span-1">
             <h4 className="text-base font-semibold mb-4 text-white/90">Resources</h4>
             <nav aria-label="Footer resources">
               <ul className="space-y-4">
@@ -113,7 +126,7 @@ const Footer = () => {
                     desc: 'Every downloadable guide, checklist, and tool in one place.',
                   },
                   {
-                    name: 'OSHA Inspection Guide — HR & Safety Leaders',
+                    name: 'OSHA Inspection Guide, HR & Safety Leaders',
                     path: '/osha-inspection-guide',
                     desc: 'What OSHA looks for when they walk in. Free guide for HR managers and safety coordinators.',
                   },
@@ -178,7 +191,7 @@ const Footer = () => {
         <div className="mt-12 pt-8 border-t border-white/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/40">
             <p data-testid="footer-copyright">
-              &copy; {currentYear} GigLine Safety & Compliance. All rights reserved.
+              &copy; {currentYear} GigLine Safety & Compliance. All rights reserved. &middot; Piedmont Triad, NC
             </p>
             <nav className="flex items-center gap-4 flex-wrap justify-center" data-testid="footer-legal-links">
               <Link to="/privacy-policy" className="hover:text-white transition-colors" data-testid="footer-privacy-link">
@@ -187,6 +200,10 @@ const Footer = () => {
               <span className="text-white/20">&middot;</span>
               <Link to="/terms-of-service" className="hover:text-white transition-colors" data-testid="footer-terms-link">
                 Terms of Service
+              </Link>
+              <span className="text-white/20">&middot;</span>
+              <Link to="/resend-my-kit" className="hover:text-white transition-colors" data-testid="footer-resend-link">
+                Resend My Kit
               </Link>
               <span className="text-white/20">&middot;</span>
               <a

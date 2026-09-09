@@ -13,8 +13,8 @@ const STATUSES = [
 ];
 const statusMeta = (id) => STATUSES.find((s) => s.id === id) || STATUSES[0];
 
-const fmtDate = (iso) => (iso ? new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '—');
-const fmtDateTime = (iso) => (iso ? new Date(iso).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : '—');
+const fmtDate = (iso) => (iso ? new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : ',');
+const fmtDateTime = (iso) => (iso ? new Date(iso).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : ',');
 
 const StatusPill = ({ status, onChange }) => {
   const [open, setOpen] = useState(false);
@@ -237,8 +237,8 @@ const WalkthroughLeadsCRM = ({ token, externalQuery = '' }) => {
               {filtered.map((lead) => (
                 <tr key={lead.id} className="border-b border-gray-100 hover:bg-gray-50 cursor-pointer" onClick={() => { setDrawer(lead); setEditForm({}); setEditOpen(false); }} data-testid={`lead-row-${lead.id}`}>
                   <td className="px-3 py-3 text-xs text-gray-400 whitespace-nowrap">{fmtDate(lead.timestamp)}</td>
-                  <td className="px-3 py-3 font-medium text-[#1C2B2B]">{lead.name || '—'}</td>
-                  <td className="px-3 py-3 text-gray-600">{lead.company || lead.business || '—'}</td>
+                  <td className="px-3 py-3 font-medium text-[#1C2B2B]">{lead.name || ','}</td>
+                  <td className="px-3 py-3 text-gray-600">{lead.company || lead.business || ','}</td>
                   <td className="px-3 py-3">
                     {lead.phone && <a href={`tel:${lead.phone}`} onClick={(e) => e.stopPropagation()} className="block text-xs text-gray-600 hover:text-[#2A52A0]"><Phone size={11} className="inline mr-1" />{lead.phone}</a>}
                     {lead.email && <a href={`mailto:${lead.email}`} onClick={(e) => e.stopPropagation()} className="block text-xs text-gray-500 hover:text-[#2A52A0] mt-0.5"><Mail size={11} className="inline mr-1" />{lead.email.toLowerCase()}</a>}
@@ -295,7 +295,7 @@ const WalkthroughLeadsCRM = ({ token, externalQuery = '' }) => {
                 </div>
               </div>
 
-              {/* Lead fields — view or edit mode */}
+              {/* Lead fields, view or edit mode */}
               {editOpen ? (
                 <div className="space-y-3 border border-[#2A52A0]/30 rounded-lg p-4 bg-blue-50/30">
                   <p className="text-xs uppercase tracking-wide text-[#2A52A0] font-bold mb-1">Editing</p>
@@ -320,9 +320,9 @@ const WalkthroughLeadsCRM = ({ token, externalQuery = '' }) => {
                 </div>
               ) : (
                 <div className="space-y-1 text-sm">
-                  <p><span className="text-gray-400 text-xs uppercase tracking-wide mr-2">Service:</span>{drawer.service || '—'}</p>
-                  <p><span className="text-gray-400 text-xs uppercase tracking-wide mr-2">Phone:</span>{drawer.phone || '—'}</p>
-                  <p className="break-all"><span className="text-gray-400 text-xs uppercase tracking-wide mr-2">Email:</span>{drawer.email || '—'}</p>
+                  <p><span className="text-gray-400 text-xs uppercase tracking-wide mr-2">Service:</span>{drawer.service || ','}</p>
+                  <p><span className="text-gray-400 text-xs uppercase tracking-wide mr-2">Phone:</span>{drawer.phone || ','}</p>
+                  <p className="break-all"><span className="text-gray-400 text-xs uppercase tracking-wide mr-2">Email:</span>{drawer.email || ','}</p>
                   <p><span className="text-gray-400 text-xs uppercase tracking-wide mr-2">Submitted:</span>{fmtDateTime(drawer.timestamp)}</p>
                   {drawer.utm_source && <p><span className="text-gray-400 text-xs uppercase tracking-wide mr-2">Source:</span>{drawer.utm_source}{drawer.utm_medium ? ` / ${drawer.utm_medium}` : ''}</p>}
                   <button onClick={() => { setEditOpen(true); setEditForm({ name: drawer.name, company: drawer.company || '', phone: drawer.phone || '', email: drawer.email || '', service: drawer.service || '' }); }} className="text-xs text-[#2A52A0] hover:underline inline-flex items-center gap-1 mt-2"><Pencil size={11} /> Edit fields</button>

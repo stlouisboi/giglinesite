@@ -47,7 +47,7 @@ const DELIVERABLES = [
     icon: FileBarChart2,
     title: '18-Page CFR-Cited Field Audit Report',
     body:
-      'Delivered within 48 hours. Compliance score, at-a-glance dashboard, executive summary, and a prioritized remediation sequence — not just a list of violations.',
+      'Delivered within 48 hours. Compliance score, at-a-glance dashboard, executive summary, and a prioritized remediation sequence, not just a list of violations.',
     highlight: true,
     fullWidth: true,
   },
@@ -92,7 +92,7 @@ const CATEGORIES = [
   },
   {
     title: 'Training Records',
-    body: 'No evidence of required training — LOTO, HazCom, forklift, BBP.',
+    body: 'No evidence of required training, LOTO, HazCom, forklift, BBP.',
   },
   {
     title: 'Administrative Controls',
@@ -113,7 +113,7 @@ const WHO_CARDS = [
   {
     title: "You've never had an outside safety review",
     body:
-      'Most operations that have never been reviewed have more exposure than they realize. The CRV tells you exactly where you stand — without the penalty.',
+      'Most operations that have never been reviewed have more exposure than they realize. The CRV tells you exactly where you stand, without the penalty.',
   },
   {
     title: 'Your documentation is incomplete or outdated',
@@ -168,7 +168,7 @@ const CTABar = () => (
     <div className="container max-w-6xl">
       <div className="flex flex-col md:flex-row items-center md:justify-between gap-4">
         <div className="flex items-center gap-2.5">
-          <img src="/gigline-logo-dark-bg.png?v=7" loading="lazy" alt="" className="h-7 w-auto" />
+          <img src="/gigline-logo-dark-bg.png?v=9" loading="lazy" alt="" className="h-7 w-auto" />
           <span
             className="uppercase font-bold"
             style={{
@@ -210,8 +210,8 @@ const ComplianceReadinessVisitPage = () => {
   return (
     <main data-testid="compliance-readiness-visit-page">
       <SEO
-        title="Compliance Readiness Visit — From $2,000 | GigLine"
-        description="The floor and the files reviewed in a single engagement. 18-page CFR-cited field audit report delivered within 48 hours. 90-day remediation tracker, OSHA guidance sheet, and 30-day check-in call included. From $2,000."
+        title="Compliance Readiness Visit, From $2,500 | GigLine"
+        description="The floor + the files in one visit. CFR-cited 48-hour report, 30-day corrective-action roadmap, findings-review call. From $2,500."
         canonical={`/services/${SLUG}`}
         schema={[
           {
@@ -229,7 +229,7 @@ const ComplianceReadinessVisitPage = () => {
               '@type': 'Offer',
               price: '2000',
               priceCurrency: 'USD',
-              description: 'Compliance Readiness Visit from $2,000 — combined walkthrough + documentation review.',
+              description: 'Compliance Readiness Visit from $2,500, combined walkthrough + documentation review.',
             },
             description:
               'On-site walkthrough plus full documentation review delivered as a single 18-page CFR-cited field audit report within 48 hours.',
@@ -248,48 +248,122 @@ const ComplianceReadinessVisitPage = () => {
               },
             ],
           },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: 'What is a Compliance Readiness Visit?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'A Compliance Readiness Visit is a combined on-site safety walkthrough and full OSHA documentation review delivered as a single CFR-cited field audit report within 48 hours. It is the most complete way for a small manufacturer, warehouse, or contractor to know where they stand before an OSHA inspection, insurance audit, or corporate compliance review.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'How much does a Compliance Readiness Visit cost?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'The Compliance Readiness Visit starts at $2,500 with a fixed quote issued before scheduling. That single fee covers the on-site walkthrough, the full documentation review, the written 18-page CFR-cited report, and a 30-day corrective-action review call. It replaces two separate engagements (Safety Walkthrough at $1,300 and Documentation Readiness Review at $1,700) at a $500 combined savings.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'How fast is the report delivered?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'The written field audit report is delivered within 48 hours of the on-site visit. The report includes photo-documented findings, CFR citations, estimated penalty exposure, and a prioritized 30-day corrective-action roadmap.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'Who is the Compliance Readiness Visit for?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Small manufacturers, warehouses, contractors, and fleet operations across North Carolina — typically 5 to 100 employees. It is most often used by facilities preparing for an OSHA inspection, an insurance carrier audit, a corporate customer compliance review, or leadership succession where the incoming safety owner needs a clean baseline.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'Do you offer follow-up support after the report?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Yes. A 30-day findings review call is included in the Compliance Readiness Visit price. For hands-on implementation of specific findings, GigLine offers a separately scoped Corrective Action Implementation engagement, typically starting at $2,500 depending on scope and findings complexity.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'What areas of North Carolina do you serve?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'GigLine serves 13 cities across the Piedmont Triad and surrounding regions, including Kernersville, Winston-Salem, Greensboro, High Point, Clemmons, Thomasville, Lexington, Mocksville, Burlington, Asheboro, Salisbury, Charlotte, and Raleigh.',
+                },
+              },
+            ],
+          },
         ]}
       />
 
       {/* ═══ Hero + Fixed Price 3-col block (dark navy) ═══ */}
       <section className="pt-20 md:pt-24 pb-16 md:pb-20" style={{ background: NAVY }} data-testid="crv-hero">
         <div className="container max-w-6xl">
-          <Eyebrow color={GOLD}>Compliance Readiness Visit</Eyebrow>
-          <h1 className="text-3xl md:text-4xl lg:text-[52px] font-extrabold leading-[1.08] mb-7 tracking-tight text-white max-w-5xl">
-            <span className="block">The floor and the files.</span>
-            <span className="block italic" style={{ color: GOLD, fontStyle: 'italic' }}>
-              One visit. One report.
-            </span>
-          </h1>
-          <p className="text-base md:text-lg text-white/75 leading-[1.8] mb-9 max-w-3xl">
-            The most complete picture of where your operation stands before OSHA shows up. Physical walkthrough plus
-            full documentation review — delivered as a single, CFR-cited field audit report within 48 hours.
-          </p>
+          <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-14 items-center mb-12">
+            <div>
+              <Eyebrow color={GOLD}>Compliance Readiness Visit</Eyebrow>
+              <h1 className="text-3xl md:text-4xl lg:text-[52px] font-extrabold leading-[1.08] mb-7 tracking-tight text-white max-w-5xl">
+                <span className="block">The floor and the files.</span>
+                <span className="block italic" style={{ color: GOLD, fontStyle: 'italic' }}>
+                  One visit. One report.
+                </span>
+              </h1>
+              <p className="text-base md:text-lg text-white/75 leading-[1.8] mb-9 max-w-3xl">
+                The most complete picture of where your operation stands before OSHA shows up. Physical walkthrough plus
+                full documentation review, delivered as a single, CFR-cited field audit report within 48 hours.
+              </p>
 
-          {/* CTA row — GOLD button for the recommended starting engagement */}
-          <div className="flex flex-wrap items-center gap-x-7 gap-y-3 mb-12">
-            <Link
-              to={INTAKE_HREF}
-              className="inline-flex items-center justify-center gap-2 font-bold px-6 py-3.5 rounded-lg text-[15px] transition-colors"
-              style={{ background: GOLD, color: NAVY }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = '#c8922a')}
-              onMouseLeave={(e) => (e.currentTarget.style.background = GOLD)}
-              data-testid="crv-cta-hero"
+              {/* CTA row, GOLD button for the recommended starting engagement */}
+              <div className="flex flex-wrap items-center gap-x-7 gap-y-3">
+                <Link
+                  to={INTAKE_HREF}
+                  className="inline-flex items-center justify-center gap-2 font-bold px-6 py-3.5 rounded-lg text-[15px] transition-colors"
+                  style={{ background: GOLD, color: NAVY }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = '#c8922a')}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = GOLD)}
+                  data-testid="crv-cta-hero"
+                >
+                  Schedule a Compliance Readiness Visit
+                  <ArrowRight size={17} />
+                </Link>
+                <span className="inline-flex items-center gap-2 text-white/55 text-sm" style={mono}>
+                  <Clock size={14} />
+                  Report delivered within 48 hours
+                </span>
+                <span className="inline-flex items-center gap-2 text-white/55 text-sm" style={mono}>
+                  <Lock size={14} />
+                  Private engagement
+                </span>
+              </div>
+            </div>
+            <div
+              className="rounded-xl overflow-hidden"
+              style={{ border: '1px solid rgba(201,168,76,0.30)', boxShadow: '0 20px 60px -20px rgba(0,0,0,0.55)' }}
+              data-testid="crv-hero-image-wrap"
             >
-              Schedule a Compliance Readiness Visit
-              <ArrowRight size={17} />
-            </Link>
-            <span className="inline-flex items-center gap-2 text-white/55 text-sm" style={mono}>
-              <Clock size={14} />
-              Report delivered within 48 hours
-            </span>
-            <span className="inline-flex items-center gap-2 text-white/55 text-sm" style={mono}>
-              <Lock size={14} />
-              Private engagement
-            </span>
+              <img
+                src="/service-hero-crv.jpg"
+                alt="GigLine consultant and facility supervisor walking a manufacturing floor together during a compliance readiness visit, tablet in hand, forklift and machinery in the background"
+                width="1600"
+                height="900"
+                loading="eager"
+                fetchPriority="high"
+                className="w-full h-auto block"
+                data-testid="crv-hero-image"
+              />
+            </div>
           </div>
 
-          {/* Fixed Price 3-column block — embedded in hero */}
+          {/* Fixed Price 3-column block, embedded in hero */}
           <div
             className="rounded-xl p-7 md:p-8 grid grid-cols-1 md:grid-cols-[minmax(240px,300px)_1fr_minmax(240px,300px)] gap-7 md:gap-8 items-start"
             style={{
@@ -298,14 +372,14 @@ const ComplianceReadinessVisitPage = () => {
             }}
             data-testid="crv-price-block"
           >
-            {/* LEFT: From $2,000 */}
+            {/* LEFT: From $2,500 */}
             <div>
               <Eyebrow color={GOLD}>Fixed Price</Eyebrow>
               <p
                 className="text-3xl md:text-[34px] font-extrabold text-white leading-none mb-3 tracking-tight"
                 style={mono}
               >
-                From $2,000
+                From $2,500
               </p>
               <p className="text-[13px] text-white/55 leading-[1.65]">
                 Varies by facility size and employee count. Fixed quote provided before scheduling.
@@ -314,8 +388,8 @@ const ComplianceReadinessVisitPage = () => {
             {/* CENTER: Value comparison */}
             <div className="md:px-2">
               <p className="text-[14.5px] text-white/80 leading-[1.75]">
-                Booked separately, the Safety Walkthrough and Documentation Review start at <span className="font-bold text-white" style={mono}>$2,500</span>. The
-                Compliance Readiness Visit covers both in a single visit.
+                Booked separately, the Safety Walkthrough and Documentation Readiness Review total <span className="font-bold text-white" style={mono}>$3,000</span>. The
+                Compliance Readiness Visit covers both in a single visit , a <span className="font-bold text-white" style={mono}>$500</span> combined-service savings.
               </p>
             </div>
             {/* RIGHT: $16,550 penalty callout */}
@@ -336,7 +410,7 @@ const ComplianceReadinessVisitPage = () => {
         </div>
       </section>
 
-      {/* ═══ Social proof — real outcome graphic (full-width strip) ═══ */}
+      {/* ═══ Social proof, real outcome graphic (full-width strip) ═══ */}
       <section
         className="py-14 md:py-16"
         style={{ background: CREAM, borderBottom: '1px solid #e8e5dd' }}
@@ -358,7 +432,7 @@ const ComplianceReadinessVisitPage = () => {
             >
               <img
                 src="/assets/case-study-statesville-12-of-13.webp"
-                alt="12 of 13 corrective actions closed in 7 days — outcome of a GigLine Compliance Readiness Visit at a metals fabrication facility in Statesville, NC."
+                alt="12 of 13 corrective actions closed in 7 days, outcome of a GigLine Compliance Readiness Visit at a metals fabrication facility in Statesville, NC."
                 loading="lazy"
                 className="w-full h-auto block"
                 data-testid="crv-social-proof-image"
@@ -369,7 +443,7 @@ const ComplianceReadinessVisitPage = () => {
               style={{ color: 'rgba(28,43,43,0.65)' }}
             >
               <span className="italic">
-                Real outcome from a 2026 Compliance Readiness Visit — Statesville, NC.
+                Real outcome from a 2026 Compliance Readiness Visit, Statesville, NC.
               </span>
               <Link
                 to="/case-study/metals-fabrication-statesville"
@@ -387,7 +461,7 @@ const ComplianceReadinessVisitPage = () => {
         </div>
       </section>
 
-      {/* ═══ What You Get — 7 deliverables with 18-page report highlighted ═══ */}
+      {/* ═══ What You Get, 7 deliverables with 18-page report highlighted ═══ */}
       <section className="py-20 md:py-24 bg-white" data-testid="crv-deliverables">
         <div className="container max-w-6xl">
           <Eyebrow>What You Get</Eyebrow>
@@ -396,7 +470,7 @@ const ComplianceReadinessVisitPage = () => {
           </h2>
           <p className="text-base text-[#1C2B2B]/65 leading-[1.75] mb-12 max-w-3xl">
             Most operations only need this once to understand exactly where they stand. Everything below is included at
-            the fixed price — no add-ons, no upsells.
+            the fixed price, no add-ons, no upsells.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {DELIVERABLES.map((d, i) => {
@@ -441,7 +515,7 @@ const ComplianceReadinessVisitPage = () => {
       <section className="py-20 md:py-24" style={{ background: CREAM }} data-testid="crv-categories-report">
         <div className="container max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-            {/* LEFT: What We Look For — 5 numbered categories */}
+            {/* LEFT: What We Look For, 5 numbered categories */}
             <div data-testid="crv-categories">
               <Eyebrow>What We Look For</Eyebrow>
               <h2 className="text-2xl md:text-3xl font-extrabold leading-[1.2] mb-4 tracking-tight" style={{ color: NAVY }}>
@@ -449,7 +523,7 @@ const ComplianceReadinessVisitPage = () => {
               </h2>
               <p className="text-[15px] text-[#1C2B2B]/75 leading-[1.75] mb-7">
                 The Compliance Readiness Visit covers both the physical floor and the paper trail. Most operations have
-                gaps in both. The report tells you exactly where — and in what order to fix them.
+                gaps in both. The report tells you exactly where, and in what order to fix them.
               </p>
               <ol className="space-y-5">
                 {CATEGORIES.map((cat, i) => (
@@ -483,7 +557,7 @@ const ComplianceReadinessVisitPage = () => {
               </ol>
             </div>
 
-            {/* RIGHT: The Report — sample images */}
+            {/* RIGHT: The Report, sample images */}
             <div data-testid="crv-report-sample">
               <Eyebrow>The Report</Eyebrow>
               <h2 className="text-2xl md:text-3xl font-extrabold leading-[1.2] mb-4 tracking-tight" style={{ color: NAVY }}>
@@ -494,7 +568,7 @@ const ComplianceReadinessVisitPage = () => {
                 summary, and prioritized remediation sequence. Not a checklist. Not a template. A document specific to
                 your operation.
               </p>
-              {/* Sample report cards — placeholder pages */}
+              {/* Sample report cards, placeholder pages */}
               <div
                 className="grid grid-cols-2 gap-3 p-4 rounded-xl max-w-md mx-auto lg:max-w-none lg:mx-0"
                 style={{ background: '#ffffff', border: '1px solid #e8e5dd' }}
@@ -594,7 +668,7 @@ const ComplianceReadinessVisitPage = () => {
           <h2 className="text-3xl md:text-4xl font-extrabold leading-[1.15] mb-12 tracking-tight text-white text-center">
             Book a Compliance Readiness Visit when:
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
             {WHO_CARDS.map((card, i) => (
               <div
                 key={i}
@@ -625,7 +699,7 @@ const ComplianceReadinessVisitPage = () => {
         </div>
       </section>
 
-      {/* ═══ How It Works — 5 stacked steps, with inline CTA bar between steps 2-3 ═══ */}
+      {/* ═══ How It Works, 5 stacked steps, with inline CTA bar between steps 2-3 ═══ */}
       <section className="bg-white" data-testid="crv-process">
         <div className="py-20 md:py-24">
           <div className="container max-w-4xl">
@@ -663,11 +737,11 @@ const ComplianceReadinessVisitPage = () => {
         <CTABar />
       </section>
 
-      {/* ═══ OS vs CRV differentiator — for supervisors who already have the Supervisor Safety OS ═══ */}
+      {/* ═══ OS vs CRV differentiator, for supervisors who already have the Supervisor Safety OS ═══ */}
       <section className="py-20 md:py-24 bg-white" data-testid="crv-vs-os" style={{ borderTop: `1px solid #e8e5dd` }}>
         <div className="container max-w-5xl">
           <div className="text-center mb-12">
-            <Eyebrow>OS vs CRV — What&rsquo;s the Difference?</Eyebrow>
+            <Eyebrow>OS vs CRV, What&rsquo;s the Difference?</Eyebrow>
             <h2 className="text-3xl md:text-4xl font-extrabold leading-[1.15] tracking-tight" style={{ color: NAVY }}>
               The OS is documentation-only. The CRV is site-specific.
             </h2>
@@ -684,7 +758,7 @@ const ComplianceReadinessVisitPage = () => {
               data-testid="crv-vs-os-card-os"
             >
               <p className="uppercase font-bold tracking-[0.22em] mb-3" style={{ color: 'rgba(10,22,40,0.55)', ...mono, fontSize: '11px' }}>
-                Supervisor Safety OS — from $600
+                Supervisor Safety OS, from $600
               </p>
               <p className="text-lg md:text-xl font-bold mb-4 leading-tight" style={{ color: NAVY }}>
                 A documentation system your supervisors run themselves.
@@ -713,7 +787,7 @@ const ComplianceReadinessVisitPage = () => {
                 Site-Specific
               </span>
               <p className="uppercase font-bold tracking-[0.22em] mb-3" style={{ color: GOLD, ...mono, fontSize: '11px' }}>
-                Compliance Readiness Visit — from $2,000
+                Compliance Readiness Visit, from $2,500
               </p>
               <p className="text-lg md:text-xl font-bold mb-4 leading-tight">
                 Vince walks your floor and reviews your binder.
@@ -732,19 +806,19 @@ const ComplianceReadinessVisitPage = () => {
           </div>
 
           <p className="text-center text-[14px] md:text-[15px] italic mt-10 max-w-3xl mx-auto text-[#1C2B2B]/60 leading-relaxed">
-            Already own the Supervisor Safety OS? The CRV cost is <strong className="not-italic" style={{ color: NAVY }}>reduced by your OS purchase price</strong> — mention your order at booking.
+            Already own the Supervisor Safety OS? The CRV cost is <strong className="not-italic" style={{ color: NAVY }}>reduced by your OS purchase price</strong>, mention your order at booking.
           </p>
         </div>
       </section>
 
-      {/* ═══ Related Field Notes — internal linking to boost long-tail indexing ═══ */}
+      {/* ═══ Related Field Notes, internal linking to boost long-tail indexing ═══ */}
       <RelatedFieldNotesStrip
         heading="Field Notes that pair with the Compliance Readiness Visit"
-        intro="During a CRV, these are the topics that come up most often on the floor and in the binder. Read them before your visit — they'll help you know what Vince is looking for."
+        intro="During a CRV, these are the topics that come up most often on the floor and in the binder. Read them before your visit, they'll help you know what Vince is looking for."
         notes={[
-          { slug: 'recordkeeping-300-log', title: 'OSHA 300 Log — the mistakes I see most often', blurb: 'Common recordkeeping errors that turn a routine inspection into a citation.' },
-          { slug: 'hazcom', title: 'Written HazCom Program — what a working one looks like', blurb: 'Beyond the SDS binder: what OSHA expects your written HazCom program to actually cover.' },
-          { slug: 'machine-guarding', title: 'Machine Guarding — the #1 general-industry citation', blurb: 'Point-of-operation, power-transmission, and the everyday oversights that trigger 1910.212.' },
+          { slug: 'recordkeeping-300-log', title: 'OSHA 300 Log, the mistakes I see most often', blurb: 'Common recordkeeping errors that turn a routine inspection into a citation.' },
+          { slug: 'hazcom', title: 'Written HazCom Program, what a working one looks like', blurb: 'Beyond the SDS binder: what OSHA expects your written HazCom program to actually cover.' },
+          { slug: 'machine-guarding', title: 'Machine Guarding, the #1 general-industry citation', blurb: 'Point-of-operation, power-transmission, and the everyday oversights that trigger 1910.212.' },
         ]}
       />
 
@@ -794,7 +868,7 @@ const ComplianceReadinessVisitPage = () => {
             data-testid="crv-cta-phone"
           >
             <Phone size={14} />
-            Questions? Call or text Vince directly — (336) 329-8899
+            Questions? Call or text Vince directly, (336) 329-8899
           </a>
         </div>
       </section>

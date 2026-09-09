@@ -10,7 +10,7 @@ const ContactPage = () => {
     <main data-testid="contact-page">
       <SEO 
         title="Contact"
-        description="Contact GigLine Safety & Compliance. Request a walkthrough, documentation review, or incident response support. Vince Lawrence — (336) 329-8899."
+        description="Contact GigLine Safety & Compliance. Request a walkthrough, documentation review, or incident response support. Vince Lawrence, (336) 329-8899."
         canonical="/contact"
         schema={{
           "@context": "https://schema.org",
@@ -37,7 +37,7 @@ const ContactPage = () => {
               "name": "What if I'm not sure which service I need?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Describe your situation and Vince will recommend the right approach. No pressure, no sales pitch — just honest guidance."
+                "text": "Describe your situation and Vince will recommend the right approach. No pressure, no sales pitch, just honest guidance."
               }
             }
           ]
@@ -67,7 +67,7 @@ const ContactPage = () => {
             <strong className="text-[#1C2B2B]">Request a walkthrough or ask a question first.</strong>
           </p>
           <p className="text-sm md:text-base leading-[1.7] text-[#1C2B2B]/65 mb-7 max-w-3xl">
-            GigLine serves small manufacturers, warehouses, contractors, and fleet operations within roughly 60 miles of Winston-Salem. Most walkthroughs are scheduled during normal business hours. Reports delivered within 24&ndash;48 hours.
+            GigLine serves small manufacturers, warehouses, contractors, and fleet operations within roughly 60 miles of Winston-Salem. Most walkthroughs are scheduled during normal business hours. Reports delivered within 24-48 hours.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
             <a
@@ -104,7 +104,7 @@ const ContactPage = () => {
         </div>
       </section>
 
-      {/* What happens after you send this — 3-step process */}
+      {/* What happens after you send this, 3-step process */}
       <section className="py-12 md:py-16 bg-secondary" data-testid="contact-process-block">
         <div className="container max-w-5xl">
           <p
@@ -255,7 +255,7 @@ const ContactPage = () => {
               </div>
             </div>
 
-            {/* GL-WEB-024 — Simple Contact Form + Calendly Scope Call CTA, stacked. */}
+            {/* GL-WEB-024, Simple Contact Form + Calendly Scope Call CTA, stacked. */}
             <div className="lg:col-span-2 space-y-6">
               <ContactMessageForm />
 
@@ -308,7 +308,7 @@ const ContactPage = () => {
               </h3>
               <p className="text-muted-foreground">
                 No problem. Describe your situation in the form and I'll recommend the right approach. 
-                No pressure, no sales pitch — just honest guidance.
+                No pressure, no sales pitch, just honest guidance.
               </p>
             </div>
           </div>

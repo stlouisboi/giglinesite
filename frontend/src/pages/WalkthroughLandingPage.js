@@ -4,7 +4,7 @@ import SEO from '../components/SEO';
 
 const NAVY = '#0A1628';
 const GOLD = '#C5A059';
-const BG_WARM = '#FAF7F1';     // page background — warm off-white
+const BG_WARM = '#FAF7F1';     // page background, warm off-white
 const BG_CARD = '#FFFFFF';     // form / next-steps cards
 const BG_SOFT = '#F2EDE3';     // soft cream for section variation
 const BORDER = '#E5DDCD';      // subtle warm border
@@ -76,12 +76,12 @@ const WalkthroughLandingPage = () => {
     >
       <SEO
         title="Request a Safety Walkthrough | GigLine Safety & Compliance"
-        description="Schedule an on-site safety walkthrough with Vince Lawrence. GigLine identifies your top OSHA exposure points and delivers a written report ranked by risk. One visit. No retainer. Serving the Piedmont Triad, NC."
+        description="Schedule an on-site safety walkthrough with Vince Lawrence. Top OSHA exposures + risk-ranked report. Piedmont Triad NC."
         canonical="/walkthrough"
       />
 
       {/* ─────────────────────────────────────────────
-          SECTION 1 — MINIMAL HEADER (no nav)
+          SECTION 1, MINIMAL HEADER (no nav)
       ───────────────────────────────────────────── */}
       <header
         className="px-5 md:px-8 py-4 flex items-center justify-between"
@@ -89,7 +89,7 @@ const WalkthroughLandingPage = () => {
         data-testid="wt-header"
       >
         <a href="https://www.giglinecompliance.com" className="flex items-center">
-          <img src="/gigline-logo-3d.png?v=7" loading="lazy"
+          <img src="/gigline-logo-3d.png?v=9" loading="lazy"
             alt="GigLine Safety & Compliance"
             className="h-9 md:h-11 w-auto"
             width="244"
@@ -108,7 +108,7 @@ const WalkthroughLandingPage = () => {
       </header>
 
       {/* ─────────────────────────────────────────────
-          SECTION 2 — HERO  (light, type-driven)
+          SECTION 2, HERO  (light, type-driven)
       ───────────────────────────────────────────── */}
       <section className="px-5 md:px-8 pt-12 pb-10 md:pt-20 md:pb-14" data-testid="wt-hero">
         <div className="max-w-3xl mx-auto text-center">
@@ -129,7 +129,7 @@ const WalkthroughLandingPage = () => {
             Request a Safety Walkthrough
           </h1>
           <p className="text-lg md:text-xl leading-relaxed mb-5 max-w-2xl mx-auto" style={{ color: TEXT_MUTED }}>
-            Vince will walk your floor, identify your top exposure points, and give you a written report &mdash; ranked by risk. One visit. No retainer.
+            Vince will walk your floor, identify your top exposure points, and give you a written report , ranked by risk. One visit. No retainer.
           </p>
           <p className="text-base md:text-lg leading-relaxed max-w-2xl mx-auto" style={{ color: TEXT_MUTED }}>
             Most facilities have gaps they don&rsquo;t know about. This is how you{' '}
@@ -141,7 +141,7 @@ const WalkthroughLandingPage = () => {
       </section>
 
       {/* ─────────────────────────────────────────────
-          SECTION 3 — WHAT HAPPENS AFTER YOU SUBMIT
+          SECTION 3, WHAT HAPPENS AFTER YOU SUBMIT
           Soft cream backdrop with white cards
       ───────────────────────────────────────────── */}
       <section className="px-5 md:px-8 py-12 md:py-16" style={{ backgroundColor: BG_SOFT }} data-testid="wt-next-steps">
@@ -188,7 +188,7 @@ const WalkthroughLandingPage = () => {
       </section>
 
       {/* ─────────────────────────────────────────────
-          SECTION 3.5 — SOCIAL PROOF STAT CARD
+          SECTION 3.5, SOCIAL PROOF STAT CARD
           Inline outcome card linking to the CRV case study
       ───────────────────────────────────────────── */}
       <section
@@ -209,7 +209,7 @@ const WalkthroughLandingPage = () => {
           >
             <img
               src="/assets/case-study-statesville-12-of-13.webp"
-              alt="12 of 13 corrective actions closed in 7 days — GigLine walkthrough + documentation review at a metals fabrication facility in Statesville, NC."
+              alt="12 of 13 corrective actions closed in 7 days, GigLine walkthrough + documentation review at a metals fabrication facility in Statesville, NC."
               loading="lazy"
               className="w-full h-auto block"
               style={{ border: `1px solid ${BORDER}` }}
@@ -229,7 +229,7 @@ const WalkthroughLandingPage = () => {
                 12 of 13 corrective actions closed in 7 days.
               </p>
               <p className="text-[14px] md:text-[15px] leading-[1.6] mb-4" style={{ color: TEXT_MUTED }}>
-                From a Compliance Readiness Visit (walkthrough + doc review combined) — Statesville, NC.
+                From a Compliance Readiness Visit (walkthrough + doc review combined), Statesville, NC.
               </p>
               <span
                 className="inline-flex items-center gap-1.5 font-bold text-[13px] md:text-[14px]"
@@ -245,7 +245,7 @@ const WalkthroughLandingPage = () => {
       </section>
 
       {/* ─────────────────────────────────────────────
-          SECTION 4 — THE FORM (primary conversion)
+          SECTION 4, THE FORM (primary conversion)
       ───────────────────────────────────────────── */}
       <section
         className="px-5 md:px-8 py-12 md:py-16"
@@ -303,7 +303,7 @@ const WalkthroughLandingPage = () => {
               </p>
 
               <form onSubmit={submit} className="space-y-4" noValidate data-testid="wt-form">
-                {/* Honeypot — visually hidden, off-screen */}
+                {/* Honeypot, visually hidden, off-screen */}
                 <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', top: 'auto', width: '1px', height: '1px', overflow: 'hidden' }}>
                   <label>
                     Website
@@ -456,7 +456,7 @@ const WalkthroughLandingPage = () => {
       </section>
 
       {/* ─────────────────────────────────────────────
-          SECTION 5 — TESTIMONIAL  (single dark anchor)
+          SECTION 5, TESTIMONIAL  (single dark anchor)
       ───────────────────────────────────────────── */}
       <section className="px-5 md:px-8 py-12 md:py-16" style={{ backgroundColor: BG_SOFT }} data-testid="wt-testimonial-section">
         <div className="max-w-3xl mx-auto">
@@ -486,14 +486,14 @@ const WalkthroughLandingPage = () => {
               className="text-sm md:text-base font-bold tracking-wide"
               style={{ color: GOLD }}
             >
-              &mdash; David R., Plant Manager
+              , David R., Plant Manager
             </p>
             <p className="text-xs md:text-sm mt-1 text-white/55">
               Small Manufacturer, Piedmont Triad NC
             </p>
           </div>
 
-          {/* Google rating badge — light variant */}
+          {/* Google rating badge, light variant */}
           <a
             href="https://g.page/r/CdlAYUu_I3xpEAI/review?utm_source=walkthrough-landing&utm_medium=qr&utm_campaign=review-request"
             target="_blank"
@@ -519,7 +519,7 @@ const WalkthroughLandingPage = () => {
       </section>
 
       {/* ─────────────────────────────────────────────
-          SECTION 6 — MINIMAL FOOTER (light)
+          SECTION 6, MINIMAL FOOTER (light)
       ───────────────────────────────────────────── */}
       <footer
         className="px-5 md:px-8 py-10 md:py-12"
@@ -528,7 +528,7 @@ const WalkthroughLandingPage = () => {
       >
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <a href="https://www.giglinecompliance.com" className="block">
-            <img src="/gigline-logo-3d.png?v=7" loading="lazy"
+            <img src="/gigline-logo-3d.png?v=9" loading="lazy"
               alt="GigLine Safety & Compliance"
               className="h-9 md:h-10 w-auto"
               width="244"

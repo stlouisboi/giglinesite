@@ -1,0 +1,25 @@
+{
+  "bucket": "ongoing-support",
+  "title": "Ongoing Safety Support",
+  "description": "SOP plus web page copy plus 10 delivery templates. Bundle contains everything, ready to attach to Perplexity or Claude for external vetting.",
+  "generated_at": "2026-09-08",
+  "items": [
+    { "filename": "GigLine-Ongoing-Support-Documents.zip", "label": "Complete Bundle (all PDFs)", "size_kb": 506, "kind": "zip", "featured": true },
+    { "filename": "00-GigLine-Ongoing-Safety-Support-SOP.pdf", "label": "Ongoing Safety Support SOP (Master)", "size_kb": 77, "kind": "pdf" },
+    { "filename": "00-GigLine-Ongoing-Safety-Support-SOP.md",  "label": "SOP Source (Markdown, for AI review)", "size_kb": 22, "kind": "md" },
+    { "filename": "00b-Ongoing-Safety-Support-Web-Page.pdf",   "label": "Web Page Copy v2.1", "size_kb": 48, "kind": "pdf" },
+    { "filename": "00b-Ongoing-Safety-Support-Web-Page.md",    "label": "Web Page Source (Markdown, for AI review)", "size_kb": 11, "kind": "md" },
+    { "filename": "01-Client-Services-Agreement.pdf",          "label": "Client Services Agreement (attorney review)", "size_kb": 46, "kind": "pdf" },
+    { "filename": "02-CRV-Report-Template.pdf",                "label": "CRV Report Template", "size_kb": 37, "kind": "pdf" },
+    { "filename": "03-Corrective-Action-Tracker.pdf",          "label": "Corrective Action Tracker", "size_kb": 41, "kind": "pdf" },
+    { "filename": "04-Monthly-Management-Summary.pdf",         "label": "Monthly Management Summary", "size_kb": 39, "kind": "pdf" },
+    { "filename": "05-Capacity-Ledger.pdf",                    "label": "Capacity Ledger", "size_kb": 36, "kind": "pdf" },
+    { "filename": "06-Incident-Escalation-Script.pdf",         "label": "Incident Escalation Script", "size_kb": 44, "kind": "pdf" },
+    { "filename": "07-Change-Order.pdf",                       "label": "Change Order", "size_kb": 35, "kind": "pdf" },
+    { "filename": "08-Termination-Transition.pdf",             "label": "Termination Transition", "size_kb": 38, "kind": "pdf" },
+    { "filename": "09-Quarterly-Internal-Audit.pdf",           "label": "Quarterly Internal Audit", "size_kb": 36, "kind": "pdf" },
+    { "filename": "10-Annual-Review.pdf",                      "label": "Annual Review Deliverable", "size_kb": 39, "kind": "pdf" },
+    { "filename": "11-External-Vetting-Prompts.pdf",           "label": "External Vetting Prompts (Perplexity + Claude)", "size_kb": 45, "kind": "pdf" },
+    { "filename": "11-External-Vetting-Prompts.md",            "label": "External Vetting Prompts Source (Markdown, copy-paste ready)", "size_kb": 8, "kind": "md" }
+  ]
+}

@@ -4,7 +4,7 @@ import { Check, Download, ArrowRight, Phone, Mail } from 'lucide-react';
 import SEO from '../components/SEO';
 
 /*
-  GL-WEB-013 — Thank You / Intake Confirmation Page
+  GL-WEB-013, Thank You / Intake Confirmation Page
   Bookmarkable post-submit destination. Replaces the in-page confirmation
   pattern with a real URL so visitors can share / save the engagement link.
 */
@@ -51,7 +51,7 @@ const ThankYouIntakePage = () => {
             We&rsquo;ve got it. Vince is on it.
           </h1>
           <p className="text-base md:text-lg leading-relaxed max-w-xl mx-auto" style={{ color: 'rgba(255,255,255,0.72)' }}>
-            Your intake has been received. A confirmation has been sent to your inbox &mdash;
+            Your intake has been received. A confirmation has been sent to your inbox ,
             check there for the 2026 Triad OSHA Field Manual and a link to your private engagement status page.
           </p>
         </div>
@@ -88,7 +88,7 @@ const ThankYouIntakePage = () => {
             />
           </div>
 
-          {/* Mindset-shift pull quote — mirrors the /supervisor-kit "visibility problem" framing */}
+          {/* Mindset-shift pull quote, mirrors the /supervisor-kit "visibility problem" framing */}
           <div
             className="mt-12 md:mt-14 border-l-4 pl-5 md:pl-6 py-2"
             style={{ borderColor: GOLD }}
@@ -176,7 +176,7 @@ const ThankYouIntakePage = () => {
         </div>
       </section>
 
-      {/* Review request — soft ask, only for repeat clients who land here from intake */}
+      {/* Review request, soft ask, only for repeat clients who land here from intake */}
       <section className="pb-12 md:pb-16">
         <div className="container max-w-3xl mx-auto px-5 md:px-8">
           <div

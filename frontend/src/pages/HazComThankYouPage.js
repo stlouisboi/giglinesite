@@ -70,9 +70,9 @@ const HazComThankYouPage = () => {
   }
 
   const files = [
-    { filename: 'GL-HAZCOM-001_Written_Program.pdf', label: 'GL-HAZCOM-001 — Written HazCom Program', desc: '5 pages' },
-    { filename: 'GL-HAZCOM-002_SDS_Binder_Checklist.pdf', label: 'GL-HAZCOM-002 — SDS Binder Checklist + Index', desc: '4 pages' },
-    { filename: 'GL-HAZCOM-003_Training_Log.pdf', label: 'GL-HAZCOM-003 — Training Verification Log', desc: '2 pages' },
+    { filename: 'GL-HAZCOM-001_Written_Program.pdf', label: 'GL-HAZCOM-001, Written HazCom Program', desc: '5 pages' },
+    { filename: 'GL-HAZCOM-002_SDS_Binder_Checklist.pdf', label: 'GL-HAZCOM-002, SDS Binder Checklist + Index', desc: '4 pages' },
+    { filename: 'GL-HAZCOM-003_Training_Log.pdf', label: 'GL-HAZCOM-003, Training Verification Log', desc: '2 pages' },
   ];
 
   return (
@@ -123,7 +123,7 @@ const HazComThankYouPage = () => {
                   <p className="font-medium text-[#1C2B2B] text-sm group-hover:text-[#102A43] transition-colors">
                     {file.label}
                   </p>
-                  <p className="text-xs text-[#1C2B2B]/50 mt-1">{file.desc} — PDF</p>
+                  <p className="text-xs text-[#1C2B2B]/50 mt-1">{file.desc}, PDF</p>
                 </div>
                 <Download size={20} className="text-[#1C2B2B]/40 group-hover:text-[#102A43] transition-colors flex-shrink-0" />
               </a>
@@ -176,7 +176,7 @@ const HazComThankYouPage = () => {
                 className="inline-flex items-center justify-center gap-2 bg-[#102A43] hover:bg-[#2A3D3D] text-white font-medium px-5 py-3 rounded transition-colors text-sm"
                 data-testid="thankyou-cta-walkthrough"
               >
-                Request a Walkthrough — $1,200+
+                Request a Walkthrough, $1,300+
                 <ArrowRight size={16} />
               </Link>
               <Link
@@ -184,7 +184,7 @@ const HazComThankYouPage = () => {
                 className="inline-flex items-center justify-center gap-2 border-2 border-[#102A43]/20 hover:border-[#102A43]/40 text-[#1C2B2B] font-medium px-5 py-3 rounded transition-colors text-sm"
                 data-testid="thankyou-cta-safety-check"
               >
-                Run the Safety Check — Free
+                Run the Safety Check, Free
               </Link>
             </div>
           </div>

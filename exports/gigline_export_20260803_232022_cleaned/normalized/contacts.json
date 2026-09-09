@@ -1,0 +1,82 @@
+[
+  {
+    "email": "r@t.com",
+    "phone": "555",
+    "name": "RefTest",
+    "company": "RC",
+    "first_seen_at": "2026-04-15T14:17:14.758736+00:00",
+    "last_seen_at": "2026-04-15T14:17:14.758736+00:00",
+    "sources": [
+      "safety-check"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": [
+      "safety-check:medium"
+    ]
+  },
+  {
+    "email": "linda@buildprosteel.com",
+    "phone": "910-558-0345",
+    "name": "Linda Cook",
+    "company": "Amero Steel Supply",
+    "first_seen_at": "2026-05-27T16:40:25.660174+00:00",
+    "last_seen_at": "2026-05-27T16:40:25.660174+00:00",
+    "sources": [
+      "walkthrough"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": [
+      "service:Safety Walkthrough"
+    ]
+  },
+  {
+    "email": "stephlaw336@gmail.com",
+    "phone": "3368292435",
+    "name": "Stephanie Lawrence",
+    "company": "She Warriors",
+    "first_seen_at": "2026-06-05T21:30:17.798424+00:00",
+    "last_seen_at": "2026-06-29T23:45:33.570031+00:00",
+    "sources": [
+      "walkthrough",
+      "osha-inspection-gd",
+      "newsletter"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": [
+      "service:Documentation Review"
+    ]
+  },
+  {
+    "email": "kstutts@buildprosteel.com",
+    "phone": "9102217301",
+    "name": "Kevin Stutts",
+    "company": "Amero Steel Supply",
+    "first_seen_at": "2026-06-11T15:13:17.651356+00:00",
+    "last_seen_at": "2026-06-11T15:13:17.651356+00:00",
+    "sources": [
+      "intake"
+    ],
+    "utm_source": "link.edgepilot.com",
+    "utm_medium": "referral",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": []
+  }
+]

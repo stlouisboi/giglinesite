@@ -1,4 +1,4 @@
-# MailerLite Setup — Retention 4-Touch Sequence
+# MailerLite Setup, Retention 4-Touch Sequence
 **Spec:** GL-WEB-RET-001
 **Authored:** Feb 2026
 
@@ -20,22 +20,22 @@ Past-client retention sequence. Four emails over six months, triggered when a bo
 
 ---
 
-## Touch 1 — Day 30
+## Touch 1, Day 30
 
 **Delay from enrollment:** 30 days
 
-**Subject:** `30 days out — how are the corrective actions coming?`
+**Subject:** `30 days out, how are the corrective actions coming?`
 
 **Body (plaintext):**
-> It's been about a month since the walkthrough. Wanted to check in — not to sell you anything, just to see how the corrective action log is moving.
+> It's been about a month since the walkthrough. Wanted to check in, not to sell you anything, just to see how the corrective action log is moving.
 >
 > If you've hit a finding you're not sure how to close, call or text (336) 329-8899. That conversation doesn't cost anything.
 >
-> — Vince
+>, Vince
 
 ---
 
-## Touch 2 — Day 60
+## Touch 2, Day 60
 
 **Delay from enrollment:** 60 days
 
@@ -44,19 +44,19 @@ Past-client retention sequence. Four emails over six months, triggered when a bo
 **Body (plaintext):**
 > Quick note from the field.
 >
-> One of the most common gaps I see at the 60-day mark is chemical inventory drift — new products come in, the SDS library doesn't get updated. Worth a 10-minute sweep before it becomes a finding.
+> One of the most common gaps I see at the 60-day mark is chemical inventory drift, new products come in, the SDS library doesn't get updated. Worth a 10-minute sweep before it becomes a finding.
 >
 > If you want a fresh set of eyes before that happens, you know where to reach me.
 >
-> — Vince, GigLine Safety & Compliance, (336) 329-8899
+>, Vince, GigLine Safety & Compliance, (336) 329-8899
 
 ---
 
-## Touch 3 — Day 90
+## Touch 3, Day 90
 
 **Delay from enrollment:** 90 days
 
-**Subject:** `90 days — your corrective action window`
+**Subject:** `90 days, your corrective action window`
 
 **Body (plaintext):**
 > Three months out from your walkthrough.
@@ -65,22 +65,22 @@ Past-client retention sequence. Four emails over six months, triggered when a bo
 >
 > (336) 329-8899.
 >
-> — Vince
+>, Vince
 
 ---
 
-## Touch 4 — Day 180
+## Touch 4, Day 180
 
 **Delay from enrollment:** 180 days
 
-**Subject:** `Six months out — worth a second look`
+**Subject:** `Six months out, worth a second look`
 
 **Body (plaintext):**
-> Six months is a reasonable interval for a follow-up walkthrough — especially if you've added equipment, changed your chemical inventory, brought on new employees, or moved locations. Things change faster than most operations track.
+> Six months is a reasonable interval for a follow-up walkthrough, especially if you've added equipment, changed your chemical inventory, brought on new employees, or moved locations. Things change faster than most operations track.
 >
 > A second walkthrough starts at $1,200. Fixed quote before scheduling. Everything stays private.
 >
-> — Vince Lawrence
+>, Vince Lawrence
 > GigLine Safety & Compliance
 > (336) 329-8899
 > giglinecompliance.com

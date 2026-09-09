@@ -1,23 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Check, ArrowRight, Lock } from 'lucide-react';
+import { Check, ArrowRight, Lock, Loader2 } from 'lucide-react';
 import { KIT_TIERS } from '../data/citationProofKits';
 
 const NAVY = '#102A43';
 const GOLD = '#C9A84C';
 const PANEL = '#F3ECDB';
 
+const API = process.env.REACT_APP_BACKEND_URL;
+
+// Kits whose ALL THREE tiers are wired to live Stripe checkout.
+// Every other kit / tier still routes through the /contact lead-capture flow.
+const STRIPE_ENABLED_SLUGS = new Set([
+  'loto-readiness-kit',
+  'forklift-pit-readiness-kit',
+  'hazcom-pro-kit',
+]);
+
+const getAttribution = () => {
+  try {
+    const raw = localStorage.getItem('gl_attribution');
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+};
+
 /**
- * KitPricingTiers — reusable 3-tier pricing card grid.
+ * KitPricingTiers, reusable 3-tier pricing card grid.
  *
  * Props:
- *   kitSlug           — string. Passed into CTA query params so lead-capture
+ *   kitSlug          , string. Passed into CTA query params so lead-capture
  *                       knows which kit the buyer wanted.
- *   ready             — bool. When false, all tier CTAs route to "Notify me"
+ *   ready            , bool. When false, all tier CTAs route to "Notify me"
  *                       intent instead of "Buy now" intent. Used for kits
  *                       whose products are still being built.
- *   showHeading       — bool. Shows the section heading + kicker.
- *   universalTiers    — bool. When true, does NOT filter the tiers per kit
+ *   showHeading      , bool. Shows the section heading + kicker.
+ *   universalTiers   , bool. When true, does NOT filter the tiers per kit
  *                       (used on catalog overview to show the pricing model
  *                       without tying to one kit).
  */
@@ -33,8 +52,38 @@ const KitPricingTiers = ({
   const kicker = kickerOverride || (universalTiers ? 'Pricing' : 'Choose Your Tier');
   const heading = headingOverride || (universalTiers ? 'Simple pricing across every kit.' : 'Three ways to run this kit.');
   const intro = introOverride || (universalTiers
-    ? 'Every kit in the Citation-Proof Series is offered in three tiers. Buy the level that matches how much of the build you want to do yourself — and how quickly you need the physical binder in the supervisor’s hands.'
+    ? 'Every kit in the Citation-Proof Series is offered in three tiers. Buy the level that matches how much of the build you want to do yourself, and how quickly you need the physical binder in the supervisor’s hands.'
     : 'Buy the tier that matches how much of the build you want to run yourself.');
+
+  const stripeEnabled = ready && !universalTiers && STRIPE_ENABLED_SLUGS.has(kitSlug);
+  const [checkoutLoadingTier, setCheckoutLoadingTier] = useState(null);
+  const [checkoutError, setCheckoutError] = useState(null);
+
+  const startTierCheckout = async (tierId) => {
+    setCheckoutError(null);
+    setCheckoutLoadingTier(tierId);
+    try {
+      const res = await fetch(`${API}/api/checkout/citation-proof-kit`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          slug: kitSlug,
+          tier: tierId,
+          origin_url: window.location.origin,
+          attribution: getAttribution(),
+        }),
+      });
+      const data = await res.json();
+      if (res.ok && data.url) {
+        window.location.href = data.url;
+        return;
+      }
+      setCheckoutError('Could not start checkout. Please call (336) 329-8899.');
+    } catch {
+      setCheckoutError('Network error. Please call (336) 329-8899.');
+    }
+    setCheckoutLoadingTier(null);
+  };
 
   const buildCtaHref = (tier) => {
     if (universalTiers) {
@@ -53,6 +102,11 @@ const KitPricingTiers = ({
   const ctaLabel = (tier) => {
     if (universalTiers) return 'View the Kits';
     if (!ready) return 'Notify Me When Available';
+    if (stripeEnabled) {
+      if (checkoutLoadingTier === tier.id) return 'Starting checkout…';
+      // Preserve the tier-specific label from KIT_TIERS.
+      return tier.ctaLabel;
+    }
     return tier.ctaLabel;
   };
 
@@ -83,11 +137,31 @@ const KitPricingTiers = ({
             >
               {intro}
             </p>
+            <div
+              className="mt-6 pt-5 border-t"
+              style={{ borderColor: 'rgba(16,42,67,0.12)' }}
+              data-testid="kit-tier-logic-note"
+            >
+              <p
+                className="uppercase font-bold tracking-[0.14em] mb-1.5"
+                style={{ color: GOLD, fontFamily: "'JetBrains Mono', monospace", fontSize: '10px' }}
+              >
+                Why three tiers
+              </p>
+              <p
+                className="text-[14.5px] md:text-[15.5px] leading-[1.6]"
+                style={{ color: 'rgba(10,22,40,0.75)', fontFamily: "Georgia, serif" }}
+              >
+                Every tier is a folder of separate files , nothing is rewritten between tiers.
+                Higher tiers <strong>add</strong> files; fix something once and it&rsquo;s fixed everywhere.
+                Buy the tier that matches how you&rsquo;ll actually use it, not the one that looks the most complete on the checkout page.
+              </p>
+            </div>
           </div>
         )}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 md:gap-6 items-stretch">
           {KIT_TIERS.map((tier) => {
-            const isFeatured = tier.badge === 'Most Popular';
+            const isFeatured = tier.id === 'control-system';
             return (
               <div
                 key={tier.id}
@@ -102,12 +176,12 @@ const KitPricingTiers = ({
               >
                 {isFeatured && (
                   <div
-                    className="absolute -top-3 left-6 uppercase font-bold tracking-[0.2em] px-3 py-1 rounded-sm"
+                    className="absolute -top-3 left-6 uppercase font-bold tracking-[0.1em] px-3 py-1 rounded-sm whitespace-nowrap"
                     style={{
                       background: GOLD,
                       color: NAVY,
                       fontFamily: "'JetBrains Mono', monospace",
-                      fontSize: '10.5px',
+                      fontSize: '9.5px',
                     }}
                     data-testid={`kit-tier-${tier.id}-badge`}
                   >
@@ -179,27 +253,62 @@ const KitPricingTiers = ({
                       </li>
                     ))}
                   </ul>
-                  <Link
-                    to={buildCtaHref(tier)}
-                    className="inline-flex items-center justify-center gap-2 font-bold py-3 px-5 rounded transition-all text-[14px] w-full"
-                    style={{
-                      background: isFeatured ? GOLD : NAVY,
-                      color: isFeatured ? NAVY : 'white',
-                      fontFamily: "'Manrope', sans-serif",
-                    }}
-                    onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.9')}
-                    onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
-                    data-testid={`kit-tier-${tier.id}-cta`}
-                  >
-                    {!ready && <Lock size={13} />}
-                    {ctaLabel(tier)}
-                    {ready && <ArrowRight size={14} />}
-                  </Link>
+                  {stripeEnabled ? (
+                    <button
+                      type="button"
+                      onClick={() => startTierCheckout(tier.id)}
+                      disabled={checkoutLoadingTier !== null}
+                      className="inline-flex items-center justify-center gap-2 font-bold py-3 px-5 rounded transition-all text-[14px] w-full disabled:opacity-70"
+                      style={{
+                        background: isFeatured ? GOLD : NAVY,
+                        color: isFeatured ? NAVY : 'white',
+                        fontFamily: "'Manrope', sans-serif",
+                      }}
+                      onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.9')}
+                      onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+                      data-testid={`kit-tier-${tier.id}-cta`}
+                    >
+                      {checkoutLoadingTier === tier.id ? <Loader2 size={14} className="animate-spin" /> : null}
+                      {ctaLabel(tier)}
+                      {checkoutLoadingTier !== tier.id && <ArrowRight size={14} />}
+                    </button>
+                  ) : (
+                    <Link
+                      to={buildCtaHref(tier)}
+                      className="inline-flex items-center justify-center gap-2 font-bold py-3 px-5 rounded transition-all text-[14px] w-full"
+                      style={{
+                        background: isFeatured ? GOLD : NAVY,
+                        color: isFeatured ? NAVY : 'white',
+                        fontFamily: "'Manrope', sans-serif",
+                      }}
+                      onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.9')}
+                      onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+                      data-testid={`kit-tier-${tier.id}-cta`}
+                    >
+                      {!ready && <Lock size={13} />}
+                      {ctaLabel(tier)}
+                      {ready && <ArrowRight size={14} />}
+                    </Link>
+                  )}
                 </div>
               </div>
             );
           })}
         </div>
+        {checkoutError && (
+          <div
+            className="mt-6 p-4 rounded-md text-[14px] leading-[1.55]"
+            style={{
+              background: '#fef2f2',
+              border: '1px solid #fecaca',
+              color: '#991b1b',
+              fontFamily: "Georgia, serif",
+            }}
+            data-testid="kit-pricing-checkout-error"
+          >
+            {checkoutError}
+          </div>
+        )}
         {universalTiers && (
           <div className="mt-10 text-center">
             <Link

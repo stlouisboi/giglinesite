@@ -28,7 +28,7 @@ const SampleReportPage = () => {
       });
       const data = await res.json();
       if (data && data.success) {
-        // Open PDF in a new tab immediately (GL-WEB-020) — email/MailerLite still delivers as backup
+        // Open PDF in a new tab immediately (GL-WEB-020), email/MailerLite still delivers as backup
         if (data.download_url) {
           window.open(`${API_URL}${data.download_url}`, '_blank', 'noopener,noreferrer');
         }
@@ -45,7 +45,7 @@ const SampleReportPage = () => {
     <main data-testid="sample-report-page">
       <SEO
         title="Sample Compliance Report | GigLine Safety & Compliance"
-        description="See exactly what you get. A real GigLine compliance report — facility name redacted. Findings, CFR citations, penalty exposure, and the prioritized fix list. Download free."
+        description="See exactly what you get, a real GigLine compliance report. Findings, CFR citations, penalty exposure, fix list. Download free."
         canonical="/sample-report"
       />
 
@@ -56,7 +56,7 @@ const SampleReportPage = () => {
             className="uppercase font-bold mb-4"
             style={{ ...mono, fontSize: '11px', letterSpacing: '0.2em', color: '#c8922a' }}
           >
-            Free Download — Sample Report
+            Free Download, Sample Report
           </p>
           <h1
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight"
@@ -66,7 +66,7 @@ const SampleReportPage = () => {
             See exactly what you get.
           </h1>
           <p className="text-lg md:text-xl text-white/70 leading-relaxed">
-            A real compliance report &mdash; facility name redacted. This is what your team receives within 48 hours of the walkthrough.
+            A real compliance report , facility name redacted. This is what your team receives within 48 hours of the walkthrough.
           </p>
         </div>
       </section>
@@ -227,15 +227,15 @@ const SampleReportPage = () => {
             {[
               {
                 t: 'Photo-documented findings',
-                d: 'Every observation captured on the floor — the angle, the equipment, the condition.',
+                d: 'Every observation captured on the floor, the angle, the equipment, the condition.',
               },
               {
                 t: 'CFR citation per finding',
-                d: 'Specific regulation referenced — 1910.147, 1910.178, 1910.1200, etc. — not generic "safety concern" language.',
+                d: 'Specific regulation referenced, 1910.147, 1910.178, 1910.1200, etc., not generic "safety concern" language.',
               },
               {
                 t: 'estimated penalty exposure based on OSHA published maximums',
-                d: 'Dollar exposure per finding using current OSHA penalty tables — $16,550 serious / $165,514 willful.',
+                d: 'Dollar exposure per finding using current OSHA penalty tables, $16,550 serious / $165,514 willful.',
               },
               {
                 t: 'RED / AMBER / GREEN priority',
@@ -243,7 +243,7 @@ const SampleReportPage = () => {
               },
               {
                 t: '30 / 60 / 90-day corrective action plan',
-                d: 'A realistic remediation schedule with owners and target dates — not a wish list.',
+                d: 'A realistic remediation schedule with owners and target dates, not a wish list.',
               },
             ].map((item) => (
               <li key={item.t} className="flex items-start gap-3">
@@ -274,7 +274,7 @@ const SampleReportPage = () => {
             <ArrowRight size={18} />
           </Link>
           <p className="text-sm text-white/40 mt-5">
-            Starting at $1,200. Written report within 48 hours.
+            Starting at $1,300. Written report within 48 hours.
           </p>
         </div>
       </section>

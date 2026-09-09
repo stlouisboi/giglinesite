@@ -5,14 +5,14 @@ const NAVY = '#102A43';
 const GOLD = '#C9A84C';
 
 /**
- * ProofGapEngineSteps — reusable 4-step Score / Sort / Fix / Pull grid.
+ * ProofGapEngineSteps, reusable 4-step Score / Sort / Fix / Pull grid.
  * Used on the catalog page (with intro copy) and on each individual kit page
  * (without intro, as the "How the Kit Works" band).
  */
 const ProofGapEngineSteps = ({
   kicker = 'The Proof Gap Engine™',
   heading = 'Four steps. One control loop.',
-  intro = 'Every kit in the Citation-Proof Series runs on the same four-step method. It doesn’t matter which control area you’re fixing — the sequence is always the same.',
+  intro = 'Every kit in the Citation-Proof Series runs on the same four-step method. It doesn’t matter which control area you’re fixing, the sequence is always the same.',
   showIntro = true,
   bg = 'white',
   compact = false,

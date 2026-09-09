@@ -1,0 +1,35 @@
+{
+  "source_bundle": "/app/exports/gigline_export_20260803_232022",
+  "filtered_contacts": 4,
+  "kept_emails": [
+    "kstutts@buildprosteel.com",
+    "linda@buildprosteel.com",
+    "r@t.com",
+    "stephlaw336@gmail.com"
+  ],
+  "raw_docs_by_collection": {
+    "sample_report_leads": 0,
+    "quick_contact_leads": 0,
+    "contact_messages": 0,
+    "gl_citation_proof_kit_orders": 0,
+    "gl_intake_submissions": 1,
+    "heat_guide_leads": 0,
+    "newsletter_subscribers": 1,
+    "gl_bookings": 0,
+    "payment_transactions": 0,
+    "gl_supervisor_kit_orders": 0,
+    "walkthrough_requests": 3,
+    "osha_inspection_guide_leads": 1,
+    "safety_check_submissions": 1
+  },
+  "raw_docs_total": 7,
+  "filter_rules": {
+    "kept": "real (external, non-test, non-internal)",
+    "dropped": [
+      "test",
+      "internal",
+      "plus-alias-test",
+      "no-email"
+    ]
+  }
+}

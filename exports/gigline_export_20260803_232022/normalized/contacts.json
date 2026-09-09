@@ -1,0 +1,1273 @@
+[
+  {
+    "email": "vincelawrence336@gmail.com",
+    "phone": "13366714967",
+    "name": "Vincent Lawrence",
+    "company": "Lawrence Logistix LLC",
+    "first_seen_at": "2026-04-14T22:45:04.397086+00:00",
+    "last_seen_at": "2026-06-30T21:36:23.977920+00:00",
+    "sources": [
+      "walkthrough",
+      "safety-check",
+      "osha-inspection-gd",
+      "payment-transaction"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": true,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [
+      "cs_live_a1SvOjkt6dgy62AQSRErsS9apzSBIuOBBQaNPJlto8cyUMxI8ZHrpOh80l"
+    ],
+    "tags": [
+      "service:Safety Walkthrough",
+      "safety-check:low",
+      "safety-check:medium"
+    ]
+  },
+  {
+    "email": "vince@giglinecompliance.com",
+    "phone": "",
+    "name": "vince lawrence",
+    "company": "",
+    "first_seen_at": "2026-07-08T19:35:05.558847+00:00",
+    "last_seen_at": "2026-07-08T19:35:05.558847+00:00",
+    "sources": [
+      "supervisor-kit"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": true,
+    "lifetime_value_cents": 100,
+    "stripe_session_ids": [
+      "cs_live_a1FOFvf1fhXSnkiqb1rmyrV9Fbql1izupGUhGj0azT2SJ5bNjG7lnZ0UD5"
+    ],
+    "tags": [
+      "sku:supervisor-kit-digital"
+    ]
+  },
+  {
+    "email": "vincelaw336@gmail.com",
+    "phone": "3366714988",
+    "name": "",
+    "company": "LaunchPath Education LLC",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sources": [
+      "booking"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": []
+  },
+  {
+    "email": "vincelaw336+mltest@gmail.com",
+    "phone": "",
+    "name": "",
+    "company": "",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sources": [
+      "newsletter"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": []
+  },
+  {
+    "email": "test@test.com",
+    "phone": "",
+    "name": "Test",
+    "company": "",
+    "first_seen_at": "2026-04-14T22:33:54.446878+00:00",
+    "last_seen_at": "2026-04-14T22:48:58.906171+00:00",
+    "sources": [
+      "payment-transaction"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [
+      "cs_live_a1t48gQ8o3ppPpDjRpBL8PuU0tWS3trjy5ePreVKmfx9LKK1QG4GLXq66N",
+      "cs_live_a16lhLZcRPLZ3QmWdoalbqo7C4nPybuemLD8Y69vMVCHvpyLQax3hqrpDR",
+      "cs_live_a11Tq85krIViiP619yNFnwI2IKqIbRMXb48lCM0RMeC4Mftvu5khEFpfhf"
+    ],
+    "tags": []
+  },
+  {
+    "email": "test@example.com",
+    "phone": "3365551234",
+    "name": "Test Lead",
+    "company": "Safety Corp",
+    "first_seen_at": "2026-04-15T14:13:25.989436+00:00",
+    "last_seen_at": "2026-07-19T20:35:44.182124+00:00",
+    "sources": [
+      "safety-check",
+      "citation-proof-kit",
+      "supervisor-kit",
+      "payment-transaction"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [
+      "cs_live_a1U9GS6Ojqj52yYsSxeiSKFGheH9DFqKyqNtGiYaTo0JSs1L07V1qinh9b",
+      "cs_live_a1zG2eb7wTKPFBkZMpW4R1bJDTyqWGFPZAKwT0AU7H5oYqA4zWoNxIbqid",
+      "cs_live_a1DX53HksJniNzYi385lTRHytShDbIBDCuLNWbu29MKrZxCtUd4jRk4kaX",
+      "cs_live_a1yivsSiTfZ9sTCfDhGkvSxXnOfmjeHtuhq7lQwJd2BwmBUpw25byVqJz9",
+      "cs_live_a1rUhuc3uxjSNluOXmJxnICOCsvh9G6Sxc2lWiBQZN2NizuTd8NccAWHGk",
+      "cs_live_a13znyLqaJO8td7FtLkwUsNIEoKREtkBs6mN0MJB01oeeRNuQwM98gKhG0",
+      "cs_live_a1jXjGbfplixzV80cd8sN1nSSwHFipDOINcdxHKvPSoHlNPT1v7q84RY7i",
+      "cs_live_a1ZAjtXhcm7PzzfZcPWZd1DJMiksvncTfVjML3QMU6S35ZmGjv4sR19Exl",
+      "cs_live_a17Tzm455YZ6sjecgij6eQPYPpqZcako4IzlFhL7QjHWSk4TRS7I2f7ZLJ",
+      "cs_live_a1TQO4KaAu3cmRBy89X5RmmMTjfsAl71Kt7wYdGzJ2zBXLuK6qFj5n957N",
+      "cs_live_a1pRT3887Au41H8q01S5cDtEWiek4FhOORFwNTi8wplLtTyUaKByMmQwGS",
+      "cs_live_a1H8Wee3XhkiONRnG7PQvEdwJEONUakbA69lCMrCGMUhfnBcwWD6YjanTI",
+      "cs_live_a1rneKr1OSbcQWwko3ISMoQL17cxpjDfVnLzYD6VKPUdKLaVqsTEjz0VLc",
+      "cs_live_a1qW9ImqPMM5feGf3G7ohf8VxVNlAzEtkkAxq2JrPRpacpc4AOvFuIe6QJ",
+      "cs_live_a1nZptIGl8sfLrRwUcRilRdZ2Q4LnDcrYmTI0tQxXL1l5L4KOCqtq4Upak",
+      "cs_live_a1yuCH9jDeAjRNv1iSJbRlnJRJR8NJFooxqEB38z0mYULXYEbwtk5ALmKp",
+      "cs_live_a1ZdViZGQFw4243jujr5oUykA9zY4SRQrSaerryqJkYzh9x4ENOGCrhnHW",
+      "cs_live_a1S0MbqYgBAChV5ga7M1RvFdsrS3EhiQj52xCfNy7MPwJZoRio2MjsizBe",
+      "cs_live_a1mGwloMHwUUBOyJN2i8dnCIVcLaMpDtGNToutifo3rGb0YaJWBkvSbIVk",
+      "cs_live_a1T8e5iZZfPelbcJnDM0usY9pgU5kPDjukmP2IdRxofELjxYBmIv1vVCKJ",
+      "cs_live_a1f3yXfzWonc8OE8S3lzJKzgxq3sfDrAergsrRjv4xzNAIqWM0MVGZPksr",
+      "cs_live_a1ZkEgbmVeSv0KjFvbLQEoovv2rfwMCfN9KbVmr7UBivJoUFgVgv6dHgSW"
+    ],
+    "tags": [
+      "safety-check:high",
+      "sku:citation-proof-loto-digital",
+      "kit:loto-readiness-kit",
+      "sku:citation-proof-pit-digital",
+      "kit:forklift-pit-readiness-kit",
+      "sku:citation-proof-loto-control-system",
+      "sku:citation-proof-loto-binder",
+      "sku:citation-proof-pit-control-system",
+      "sku:citation-proof-pit-binder",
+      "sku:supervisor-kit-digital",
+      "sku:supervisor-kit-physical"
+    ]
+  },
+  {
+    "email": "r@t.com",
+    "phone": "555",
+    "name": "RefTest",
+    "company": "RC",
+    "first_seen_at": "2026-04-15T14:17:14.758736+00:00",
+    "last_seen_at": "2026-04-15T14:17:14.758736+00:00",
+    "sources": [
+      "safety-check"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": [
+      "safety-check:medium"
+    ]
+  },
+  {
+    "email": "test_937f701b@example.com",
+    "phone": "336-555-1234",
+    "name": "TEST_SafetyCheck_937f701b",
+    "company": "TEST_Company_937f701b",
+    "first_seen_at": "2026-04-15T14:19:14.499375+00:00",
+    "last_seen_at": "2026-04-15T14:19:14.499375+00:00",
+    "sources": [
+      "safety-check"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": [
+      "safety-check:high"
+    ]
+  },
+  {
+    "email": "test_2587f5af@example.com",
+    "phone": "",
+    "name": "TEST_SafetyCheck_2587f5af",
+    "company": "TEST_Company_2587f5af",
+    "first_seen_at": "2026-04-15T14:19:15.337956+00:00",
+    "last_seen_at": "2026-04-15T14:19:15.337956+00:00",
+    "sources": [
+      "safety-check"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": [
+      "safety-check:medium"
+    ]
+  },
+  {
+    "email": "test_3de593c2@example.com",
+    "phone": "",
+    "name": "TEST_SafetyCheck_3de593c2",
+    "company": "TEST_Company_3de593c2",
+    "first_seen_at": "2026-04-15T14:19:16.051784+00:00",
+    "last_seen_at": "2026-04-15T14:19:16.051784+00:00",
+    "sources": [
+      "safety-check"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": [
+      "safety-check:low"
+    ]
+  },
+  {
+    "email": "playwright_test@example.com",
+    "phone": "336-555-1234",
+    "name": "Test User Playwright",
+    "company": "Test Company Playwright",
+    "first_seen_at": "2026-04-15T14:20:49.946368+00:00",
+    "last_seen_at": "2026-04-15T14:20:49.946368+00:00",
+    "sources": [
+      "safety-check"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": [
+      "safety-check:high"
+    ]
+  },
+  {
+    "email": "linda@buildprosteel.com",
+    "phone": "910-558-0345",
+    "name": "Linda Cook",
+    "company": "Amero Steel Supply",
+    "first_seen_at": "2026-05-27T16:40:25.660174+00:00",
+    "last_seen_at": "2026-05-27T16:40:25.660174+00:00",
+    "sources": [
+      "walkthrough"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": [
+      "service:Safety Walkthrough"
+    ]
+  },
+  {
+    "email": "stephlaw336@gmail.com",
+    "phone": "3368292435",
+    "name": "Stephanie Lawrence",
+    "company": "She Warriors",
+    "first_seen_at": "2026-06-05T21:30:17.798424+00:00",
+    "last_seen_at": "2026-06-29T23:45:33.570031+00:00",
+    "sources": [
+      "walkthrough",
+      "osha-inspection-gd",
+      "newsletter"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": [
+      "service:Documentation Review"
+    ]
+  },
+  {
+    "email": "stephanielawrence918@gmail.com",
+    "phone": "3368292435",
+    "name": "Steph Law",
+    "company": "She Warriors",
+    "first_seen_at": "2026-06-06T01:38:58.989496+00:00",
+    "last_seen_at": "2026-06-06T03:52:13.342028+00:00",
+    "sources": [
+      "walkthrough"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": [
+      "service:Not sure"
+    ]
+  },
+  {
+    "email": "formtest@example.com",
+    "phone": "3365551234",
+    "name": "Form Test",
+    "company": "Form Test Co",
+    "first_seen_at": "2026-06-06T23:11:16.347293+00:00",
+    "last_seen_at": "2026-06-06T23:11:16.347293+00:00",
+    "sources": [
+      "walkthrough"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": [
+      "service:Safety Walkthrough"
+    ]
+  },
+  {
+    "email": "kstutts@buildprosteel.com",
+    "phone": "9102217301",
+    "name": "Kevin Stutts",
+    "company": "Amero Steel Supply",
+    "first_seen_at": "2026-06-11T15:13:17.651356+00:00",
+    "last_seen_at": "2026-06-11T15:13:17.651356+00:00",
+    "sources": [
+      "intake"
+    ],
+    "utm_source": "link.edgepilot.com",
+    "utm_medium": "referral",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": []
+  },
+  {
+    "email": "smoke@example.com",
+    "phone": "",
+    "name": "Smoke Test",
+    "company": "",
+    "first_seen_at": "2026-06-27T00:51:34.680321+00:00",
+    "last_seen_at": "2026-06-29T03:24:44.174471+00:00",
+    "sources": [
+      "quick-contact",
+      "supervisor-kit"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [
+      "cs_live_a1of2HJTEYHYBYVRxmZWdE61ztDp9UfpMBsnhyxrhTRODulGqcMkYuFFHL"
+    ],
+    "tags": [
+      "sku:supervisor-kit-digital"
+    ]
+  },
+  {
+    "email": "e1-smoke@example.com",
+    "phone": "",
+    "name": "Test",
+    "company": "Smoke Test Co",
+    "first_seen_at": "2026-06-29T02:51:38.438858+00:00",
+    "last_seen_at": "2026-06-29T02:51:38.438858+00:00",
+    "sources": [
+      "sample-report"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": []
+  },
+  {
+    "email": "e1-qa@example.com",
+    "phone": "",
+    "name": "E1QA",
+    "company": "QA Test Co",
+    "first_seen_at": "2026-06-29T02:58:00.962456+00:00",
+    "last_seen_at": "2026-08-03T23:08:30.802105+00:00",
+    "sources": [
+      "sample-report"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": []
+  },
+  {
+    "email": "e1-qa-2@example.com",
+    "phone": "",
+    "name": "E1QA2",
+    "company": "",
+    "first_seen_at": "2026-06-29T02:58:01.698139+00:00",
+    "last_seen_at": "2026-08-03T23:08:31.531760+00:00",
+    "sources": [
+      "sample-report"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": []
+  },
+  {
+    "email": "qc-test@example.com",
+    "phone": "",
+    "name": "TEST_QC Vince",
+    "company": "",
+    "first_seen_at": "2026-06-29T03:30:08.151535+00:00",
+    "last_seen_at": "2026-08-03T23:08:32.502071+00:00",
+    "sources": [
+      "quick-contact"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": []
+  },
+  {
+    "email": "",
+    "phone": "336-555-0101",
+    "name": "TEST_QC NoMsg",
+    "company": "",
+    "first_seen_at": "2026-06-29T03:30:08.605749+00:00",
+    "last_seen_at": "2026-08-03T23:08:32.823225+00:00",
+    "sources": [
+      "quick-contact"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": []
+  },
+  {
+    "email": "",
+    "phone": "(336) 329-8899",
+    "name": "TEST_QC Phone",
+    "company": "",
+    "first_seen_at": "2026-06-29T03:30:08.909286+00:00",
+    "last_seen_at": "2026-08-03T23:08:33.130242+00:00",
+    "sources": [
+      "quick-contact"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": []
+  },
+  {
+    "email": "ui-qc@example.com",
+    "phone": "",
+    "name": "TEST_UI QC",
+    "company": "",
+    "first_seen_at": "2026-06-29T03:30:54.693448+00:00",
+    "last_seen_at": "2026-06-29T03:30:54.693448+00:00",
+    "sources": [
+      "quick-contact"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": []
+  },
+  {
+    "email": "pdf-swap-test@example.com",
+    "phone": "",
+    "name": "E1 PDF Check",
+    "company": "Swap Verify",
+    "first_seen_at": "2026-06-29T12:26:38.886065+00:00",
+    "last_seen_at": "2026-06-29T12:26:38.886065+00:00",
+    "sources": [
+      "sample-report"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": []
+  },
+  {
+    "email": "oig-smoke@example.com",
+    "phone": "",
+    "name": "Smoke",
+    "company": "Test",
+    "first_seen_at": "2026-06-29T13:00:13.626448+00:00",
+    "last_seen_at": "2026-06-29T13:00:13.626448+00:00",
+    "sources": [
+      "osha-inspection-gd"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": []
+  },
+  {
+    "email": "test_oig_full@example.com",
+    "phone": "",
+    "name": "Vince",
+    "company": "TEST_OIG_Co",
+    "first_seen_at": "2026-06-29T13:07:14.878179+00:00",
+    "last_seen_at": "2026-08-03T23:08:35.115093+00:00",
+    "sources": [
+      "osha-inspection-gd"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": []
+  },
+  {
+    "email": "test_oig_emailonly@example.com",
+    "phone": "",
+    "name": "",
+    "company": "",
+    "first_seen_at": "2026-06-29T13:07:15.246200+00:00",
+    "last_seen_at": "2026-08-03T23:08:35.727853+00:00",
+    "sources": [
+      "osha-inspection-gd"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": []
+  },
+  {
+    "email": "test_oig_blanks@example.com",
+    "phone": "",
+    "name": "",
+    "company": "",
+    "first_seen_at": "2026-06-29T13:07:15.610017+00:00",
+    "last_seen_at": "2026-08-03T23:08:39.119111+00:00",
+    "sources": [
+      "osha-inspection-gd"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": []
+  },
+  {
+    "email": "test_oig_ui@example.com",
+    "phone": "",
+    "name": "TEST_UI",
+    "company": "TEST_UI_Co",
+    "first_seen_at": "2026-06-29T13:07:57.871449+00:00",
+    "last_seen_at": "2026-06-29T13:07:57.871449+00:00",
+    "sources": [
+      "osha-inspection-gd"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": []
+  },
+  {
+    "email": "oig-fallback@example.com",
+    "phone": "",
+    "name": "Fallback",
+    "company": "Test Co",
+    "first_seen_at": "2026-06-29T13:30:18.027544+00:00",
+    "last_seen_at": "2026-06-29T13:30:18.027544+00:00",
+    "sources": [
+      "osha-inspection-gd"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": []
+  },
+  {
+    "email": "heat-dl@example.com",
+    "phone": "",
+    "name": "",
+    "company": "",
+    "first_seen_at": "2026-06-29T13:35:59.229637+00:00",
+    "last_seen_at": "2026-06-29T13:35:59.229637+00:00",
+    "sources": [
+      "heat-guide"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": []
+  },
+  {
+    "email": "sr-dl@example.com",
+    "phone": "",
+    "name": "X",
+    "company": "",
+    "first_seen_at": "2026-06-29T13:36:00.011394+00:00",
+    "last_seen_at": "2026-06-29T13:36:00.011394+00:00",
+    "sources": [
+      "sample-report"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": []
+  },
+  {
+    "email": "oig-dl@example.com",
+    "phone": "",
+    "name": "",
+    "company": "",
+    "first_seen_at": "2026-06-29T13:36:00.903277+00:00",
+    "last_seen_at": "2026-06-29T13:36:00.903277+00:00",
+    "sources": [
+      "osha-inspection-gd"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": []
+  },
+  {
+    "email": "auto-open@example.com",
+    "phone": "",
+    "name": "Test",
+    "company": "",
+    "first_seen_at": "2026-06-29T13:36:49.301405+00:00",
+    "last_seen_at": "2026-06-29T13:36:49.301405+00:00",
+    "sources": [
+      "sample-report"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": []
+  },
+  {
+    "email": "vinceandsteph918@gmail.com",
+    "phone": "",
+    "name": "",
+    "company": "",
+    "first_seen_at": "2026-06-29T17:57:00.673760+00:00",
+    "last_seen_at": "2026-06-29T17:57:00.673760+00:00",
+    "sources": [
+      "heat-guide"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": []
+  },
+  {
+    "email": "test-not-real@example.com",
+    "phone": "",
+    "name": "Test Prospect",
+    "company": "",
+    "first_seen_at": "2026-07-01T22:26:01.816807+00:00",
+    "last_seen_at": "2026-07-03T20:21:33.405290+00:00",
+    "sources": [
+      "contact-form",
+      "sample-report"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": []
+  },
+  {
+    "email": "e2e-noreach@example.com",
+    "phone": "3365551234",
+    "name": "E2E Test",
+    "company": "",
+    "first_seen_at": "2026-07-01T22:27:33.563839+00:00",
+    "last_seen_at": "2026-07-01T22:27:33.563839+00:00",
+    "sources": [
+      "contact-form"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": []
+  },
+  {
+    "email": "buyer-not-real@example.com",
+    "phone": "",
+    "name": "",
+    "company": "Acme Test",
+    "first_seen_at": "2026-07-03T20:27:35.978134+00:00",
+    "last_seen_at": "2026-07-03T20:27:36.498626+00:00",
+    "sources": [
+      "supervisor-kit"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [
+      "cs_live_a13EAYElXkg2MWatqtnXIYxw61b5VQM0PT0Vf1E9JLfxIgREdwLoCCUwlx",
+      "cs_live_a15DCmcNYnem1IWDx2LP9FRGmDlqeiXDcN3QnSjIqlNXIgJPRGvwB4Bzjq"
+    ],
+    "tags": [
+      "sku:supervisor-kit-digital",
+      "sku:supervisor-kit-physical"
+    ]
+  },
+  {
+    "email": "noreply-test-intake@example.com",
+    "phone": "336-555-0100",
+    "name": "Jane Doe",
+    "company": "Test Personalization LLC",
+    "first_seen_at": "2026-07-07T21:12:27.971819+00:00",
+    "last_seen_at": "2026-07-07T21:12:27.971819+00:00",
+    "sources": [
+      "intake"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [],
+    "tags": []
+  },
+  {
+    "email": "test-os-rebrand@example.com",
+    "phone": "",
+    "name": "",
+    "company": "",
+    "first_seen_at": "2026-07-08T18:11:19.007314+00:00",
+    "last_seen_at": "2026-07-08T18:11:19.007314+00:00",
+    "sources": [
+      "supervisor-kit"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [
+      "cs_live_a18kpP9ksL1tblgDmItvwp7gkQzKwpOnUzQIgLMC5XSEw7zMyWyVPZOgme"
+    ],
+    "tags": [
+      "sku:supervisor-kit-physical"
+    ]
+  },
+  {
+    "email": "test-golive@example.com",
+    "phone": "",
+    "name": "",
+    "company": "",
+    "first_seen_at": "2026-07-08T18:45:19.994451+00:00",
+    "last_seen_at": "2026-07-08T18:45:20.455828+00:00",
+    "sources": [
+      "supervisor-kit"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [
+      "cs_live_a1T4p6lgCyY5aUXRsCrwNWKg2RP4YwiW7PpunMIKDq2sxQ4foI6FuHbAOR",
+      "cs_live_a11xzedDOEu2aKu0B1LosqsXtZKm25LpsCRVE6u6pwOsFUNkhR1SjjMcA6"
+    ],
+    "tags": [
+      "sku:supervisor-kit-digital",
+      "sku:supervisor-kit-physical"
+    ]
+  },
+  {
+    "email": "unpaid-test@example.com",
+    "phone": "",
+    "name": "",
+    "company": "",
+    "first_seen_at": "2026-07-13T19:29:55.800777+00:00",
+    "last_seen_at": "2026-07-13T19:29:55.800777+00:00",
+    "sources": [
+      "citation-proof-kit"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [
+      "cs_live_a1Y1CQwgo0ymzLc38ITqaHmjLOIoFFlBFVHqeAeGueFdqwxcO7rkW5lDpE"
+    ],
+    "tags": [
+      "sku:citation-proof-loto-digital",
+      "kit:loto-readiness-kit"
+    ]
+  },
+  {
+    "email": "loto-checkout-test@example.com",
+    "phone": "",
+    "name": "",
+    "company": "",
+    "first_seen_at": "2026-07-13T19:32:09.794835+00:00",
+    "last_seen_at": "2026-07-13T20:32:33.324921+00:00",
+    "sources": [
+      "citation-proof-kit"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [
+      "cs_live_a1TbS9ndyGhRwyl3HvcjUUwErn7PJL3rD2omwqvnh3AKuYfxC2JZ1TA270",
+      "cs_live_a1qobf9sia4KYbI4MBeKhdRM7qPWbdlkoH4bdDTgebDuhy2cnqEV5s6fng",
+      "cs_live_a16LWrc5a1IJY8XGRxTAAdgTIFrjhEHLjJIBZlLSK2eFiWljWCIxZGvuzG",
+      "cs_live_a1KoWXehEbfWJxkGQRljhwohGgURu0YuEmCwLpevHvAYPUXxBtzSBU0wpL"
+    ],
+    "tags": [
+      "sku:citation-proof-loto-digital",
+      "kit:loto-readiness-kit"
+    ]
+  },
+  {
+    "email": "pit-checkout-test@example.com",
+    "phone": "",
+    "name": "",
+    "company": "",
+    "first_seen_at": "2026-07-13T19:32:10.246775+00:00",
+    "last_seen_at": "2026-07-13T20:32:33.756263+00:00",
+    "sources": [
+      "citation-proof-kit"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [
+      "cs_live_a14LWNiixxRrwMqrwxdK08XPnjsVsMAfObGHVchzXVX0s2mZqoJOlvya5W",
+      "cs_live_a19zcrqHMQgaHwkhT36qAR0NQCva3nJkeYlYM6hmCc5LcwJSAGX090DIcb",
+      "cs_live_a1MJYRpHipiXhJ8XdIDTvyiaOOHxaOEX4edGTFDnqwJ1VMZ1XSF9hoB5Uu",
+      "cs_live_a12TZScrxN5SJJbVzn5vuz9KhqnRqQILErp5sRQUGTFACdAnYl1sni5qKK"
+    ],
+    "tags": [
+      "sku:citation-proof-pit-digital",
+      "kit:forklift-pit-readiness-kit"
+    ]
+  },
+  {
+    "email": "verify-unpaid-test@example.com",
+    "phone": "",
+    "name": "",
+    "company": "",
+    "first_seen_at": "2026-07-13T19:32:11.063675+00:00",
+    "last_seen_at": "2026-07-13T20:32:34.578757+00:00",
+    "sources": [
+      "citation-proof-kit"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [
+      "cs_live_a1w7DL0OnXYclRkBTuslj1w10uhVeKWkDkbvCkUH1WtHDIo3PRuxs9Bsbt",
+      "cs_live_a1T9P20N0fdGwFWqQfPnTufDgDL3fdCc051NsJtEFclFYSj1GjTitlEcTz",
+      "cs_live_a1KYXHDvbiVHPfJyRTcKnf8SaktcrhzMGFRAxY3ZB5jodS7dJ1OXwW0ek9",
+      "cs_live_a1Kt8Yd4pCtkNGL1R7brS1Z9EmliWJQ78F2prvhrTiW0qw0P9rUGvsav1q"
+    ],
+    "tags": [
+      "sku:citation-proof-loto-digital",
+      "kit:loto-readiness-kit"
+    ]
+  },
+  {
+    "email": "test-digital@example.com",
+    "phone": "",
+    "name": "",
+    "company": "",
+    "first_seen_at": "2026-07-13T21:05:15.844943+00:00",
+    "last_seen_at": "2026-08-03T23:10:09.685122+00:00",
+    "sources": [
+      "citation-proof-kit"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [
+      "cs_live_a1uu3HeVQWz12k4kBTNYF9TOk1OTv99YZvGMj6crttGwIqJYkSENEjJuV0",
+      "cs_live_a17LoshgEx91bxBeB8WLrIWLFEPjxfLr8pcum1EJODAgTAT4UviaHL9TzZ",
+      "cs_live_a1BJav44mqSRxQxyn9NtiiObwpLe7uPIzeX5a64xiON7q7YzI53KFq20UC",
+      "cs_live_a1v4OXZKVzTkesZzbwfIMpAKKQJ8KUTicE0hxclFhl6LlGt0EKKCOLLF9X",
+      "cs_live_a1XmQDMPDytguFEcqshrodyKIOFwa2yY4dTTCvxHi5CCuD8KBnMEStSVVd",
+      "cs_live_a1yOquKBWv8BijB0WmJ9gTz1rkzDihrhbwCMAjVDSwmRt0cswe1GOsTwhG",
+      "cs_live_a19VpS0J7fqV9oWFg1HE9wmvbSsrDzcfr942nIdOM4E8vaaMTTyS8OPyUl",
+      "cs_live_a1lOkeWmWjBy3aR3mxKKE8TOsHHGcPP15ZQS0MWRO0KFqkUsHDzd6rCq23",
+      "cs_live_a1cMC3Fk2ieNrbkiOLbsvJh1Z7ovDylPZ1inRY9rLL9A4dpkbVgfjLgsE8",
+      "cs_live_a1njkHjZb4UDKFcxQew0Fr5qIoinWFvasu1M8Fuv0l1vC1NLRjh0n3Kw5H",
+      "cs_live_a197dLNZKiOSM9dIyFRlnSXTVq9qdj5ZirPeHXsfebWnhoCv343EwCG3vj",
+      "cs_live_a1p5XcDj6pArF00Go2MyenEZV7rQJbDxT3U0ssXBEHz6p7YSVJKAN61eo2",
+      "cs_live_a1iibZCHznJOHKQ56qQHyOJlifSNWa4jjYjI8rLot8rSvVHc0I62goyj5K",
+      "cs_live_a1XLhIEpkUeFf9Jf59oHcnhHZwmebxiKh1lghbBVoGXkUjkam9G5NWUnIH"
+    ],
+    "tags": [
+      "sku:citation-proof-loto-digital",
+      "kit:loto-readiness-kit",
+      "sku:citation-proof-pit-digital",
+      "kit:forklift-pit-readiness-kit"
+    ]
+  },
+  {
+    "email": "test-control-system@example.com",
+    "phone": "",
+    "name": "",
+    "company": "",
+    "first_seen_at": "2026-07-13T21:05:16.710413+00:00",
+    "last_seen_at": "2026-08-03T23:10:10.667563+00:00",
+    "sources": [
+      "citation-proof-kit"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [
+      "cs_live_a143t8zDKrNxdm3xH3N7HD2kYq3RjGLhNwpI5YgPL1RumMaMiPapkM04pq",
+      "cs_live_a1lehFXwByrwNUqSQXL5dF1CWxcAKeO9K7fDoeq8oOVswKRmoHToCc8Vtu",
+      "cs_live_a1JfEMsW1QixOn7artxchXQtgBITWfeN3dlvM7TZfepfhlbkle3mLIFbQb",
+      "cs_live_a1DseKCxSXxZ8qgvgez9MvOi6MvtlvBaZ7dPj93IYLgY9ZQhedKf1PdCMZ",
+      "cs_live_a1TXYWCGrnyrXNmPcO2eBl6RvFqmrcbDPTb9i03KpEabO82HG7yqxKCB0A",
+      "cs_live_a1zHbXzysRN3jGttQXYTpk7qbcLSxGs8WGmMmnUxbhJocp5xd6rUbwuAiU",
+      "cs_live_a1jee1snQPGESRpPNSN69JL76hr0hWFP1vFVvrQuOjfUd3mlWgQ2f33wGr",
+      "cs_live_a1UhoNssUoQpelP7d58SfXHBobh5ynJe126nFKy7rKFqK6FckOlNAp6aoC",
+      "cs_live_a1TR5kdqWRr1BjX59RnjmQKzT4zKN8JqIAx00pBHYSkEAJybq2GxJg93q3",
+      "cs_live_a1SOJZuE9MKW74mFE0ojS5mzPdX9aetOaLwqMHXDR6fPejyeTAPGqJeb5U",
+      "cs_live_a116B624NuqaVYjmYHXmmFz2QWkcDO3SjPWAwvmtgr0eGcVUeS3VyCkFjF",
+      "cs_live_a1UwIlBwzgzXM6Q92adHl4Vey6OPD3OlslRP8pS2RL86mJs6hVM7vChv1o",
+      "cs_live_a1zGggl5K52WzCneWpSmWV2nCGRi277w1aXMlpYQwMN4DCGKWtWk9usmbW",
+      "cs_live_a10BOtCUJsbcaMRv2aPLxokmpH4zCVVgyw7j3ryeWxczQsa53DlCnNVABm"
+    ],
+    "tags": [
+      "sku:citation-proof-loto-control-system",
+      "kit:loto-readiness-kit",
+      "sku:citation-proof-pit-control-system",
+      "kit:forklift-pit-readiness-kit"
+    ]
+  },
+  {
+    "email": "test-binder@example.com",
+    "phone": "",
+    "name": "",
+    "company": "",
+    "first_seen_at": "2026-07-13T21:05:17.718477+00:00",
+    "last_seen_at": "2026-08-03T23:10:11.625027+00:00",
+    "sources": [
+      "citation-proof-kit"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [
+      "cs_live_a1IPdPET8BtEnVUfB17HyDVIYzNhCF9HHhRPgttf5uQmGwBRORkIkM4fgy",
+      "cs_live_a1eeOIrwLqO4IMByFbrW6nvLsH72EXUf7LVwcUxA7EiJvDmMniVAJOOEUw",
+      "cs_live_a1IvFPtswGoq4Sj6ok4O0S2uhhmcNWOrKkpqaT0NILrRIfvLhRLpGX0xXb",
+      "cs_live_a1E42xoeIxfChPIrXWruRWLwodkuAXxnIuhPFaZbWSoPhIjthL4Yu7HOoY",
+      "cs_live_a1O12mVa0fqInzG3w3ggMEzCJJPoqh78FRuSzpMEAhWRHWKwYoh0st9Rok",
+      "cs_live_a1lQXmoYCin4v6cPk39Kz9faViNDVvQ4uf2eWcoEKXvFzFklxjPTdi7McO",
+      "cs_live_a1ELdKgCbEc98TYv9fSlEV6TqUVmS5OA8XJkUXnOhUkkoYOW9XpxIZDa9l",
+      "cs_live_a1lU8GBxRV37cxZgHEqZiRrWFOo347b6rkRMJmdi84UYgQt5vNDThRhFDs",
+      "cs_live_a1OlLDSas5YMmypR89cFVpUWZ8j75dUX33h5qKxaTfeSvucTpcFSQ3LeaZ",
+      "cs_live_a1LlTBXCus2VglOegWeugp4nf1eqyD3v5gdQEn7Nha9BSJ4szP1aoP5IfS",
+      "cs_live_a1NVj1FLCWfUFovlERRQ0N96zLc3xpNWeOhIXiAtOFxq5Tu2qkPrHbBnwQ",
+      "cs_live_a1KCNnWYCZiq0Pdqz5NMwkULGpd2k7qKMETSuHMyfVS8K5tobGJD6P8yhH",
+      "cs_live_a17P9vJTOMsOCqFbf6ctDk1MnEGSogiL8ya0loZ16umINn4P31eIqdJ78u",
+      "cs_live_a1qEnyBCGGMReXNmOPkokXvzMCPHJ06FcyfSpw2pNB4tLedWO1bmKwqtTv"
+    ],
+    "tags": [
+      "sku:citation-proof-loto-binder",
+      "kit:loto-readiness-kit",
+      "sku:citation-proof-pit-binder",
+      "kit:forklift-pit-readiness-kit"
+    ]
+  },
+  {
+    "email": "verify-digital@example.com",
+    "phone": "",
+    "name": "",
+    "company": "",
+    "first_seen_at": "2026-07-13T21:05:18.716935+00:00",
+    "last_seen_at": "2026-08-03T23:10:12.721231+00:00",
+    "sources": [
+      "citation-proof-kit"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [
+      "cs_live_a1sTWAM0G5CDDsPSSjUOskMVvtKtybiS99whohZsSEx4xoLFAzm1zzsso9",
+      "cs_live_a1nrVvZ44sBibgGdxutXM0bNpHxp3sfILf5jH66uh2csK44KH53SF6jmUM",
+      "cs_live_a1oaD5taCdzAnp4ygOhRqLN3qoPJxRbUoVWYDMQuPkMEDGtbr4RO865Fsr",
+      "cs_live_a1aagKyXa6FcjHywofPFGJKtTgcMg1ovMnCScn3bjbyfXSj6T6Q0QWFgNl",
+      "cs_live_a1klpnpnJGaPPtdGaJl0pfV2PsOZTvjsA2IMPTx5BVJa0HvZrp8m1Zt1KR",
+      "cs_live_a13mdZgFR9YvF2ypVjyHNQO8dg0WCoHbit1GjUSGX7Ba2lNs5UkQLMZVJM",
+      "cs_live_a16dUgVWTfxGAvaiayPI2yCdBmBeQXwrqJr82dnahd8KMctPnPIlg9rF3Y",
+      "cs_live_a1KGu49oWzkwlOzZqGYpK7b1OdfKlx5knBpvtdxUAJEfsesmhPrTqnSHgT",
+      "cs_live_a1oIBFWB0SnquF182bDnHBuy97H8rHQGyCgG3o76nDukAN1dylQHeG3xVp",
+      "cs_live_a1hhhXYKotuKMhNiADYWRRJxgFYliRtpEhaheIFg7UDQk3ZJ2lYfx038sk",
+      "cs_live_a1zfqkEWYxAqC0EsQcUElglD2fBrwbPbqQE8mU53CS3nCveBggFIUKtzcN",
+      "cs_live_a1mWqbDpIfRYdpBJ4ACJGTUlo7lwedkSVosl6UyIfE8CjObfKsDoo8dFgk",
+      "cs_live_a1C0KNLCMOcq2dFWOot6gktrOZnac48NxG7o3jrYZG1AgtIbg55dY2p7PC",
+      "cs_live_a12SBAeHIvlNLFFua1OW86assGHAZPiwZZ4HvxTmKNTbj0eGI8KXHemBnR"
+    ],
+    "tags": [
+      "sku:citation-proof-loto-digital",
+      "kit:loto-readiness-kit",
+      "sku:citation-proof-pit-digital",
+      "kit:forklift-pit-readiness-kit"
+    ]
+  },
+  {
+    "email": "verify-control-system@example.com",
+    "phone": "",
+    "name": "",
+    "company": "",
+    "first_seen_at": "2026-07-13T21:05:20.055354+00:00",
+    "last_seen_at": "2026-08-03T23:10:13.856314+00:00",
+    "sources": [
+      "citation-proof-kit"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [
+      "cs_live_a16KpDHDCAzjqoNntibVIWl6RuB3XhrMNdrMNd8aVOREnSvvSMjGbEwAxw",
+      "cs_live_a1DnEESSw4FJP7DNx5keYyYC1c8FJCg02HCeSpudnonsCaI0YemUvySwVU",
+      "cs_live_a1ag6ixFtsJJnlAJz8f5d1Cu7kRETOdNerjQPod88UI1oM3sFF30geidga",
+      "cs_live_a1apRBgFaFn91KhRvY6SpC5jwaOy8v0NrB8E0ODmekv0McEDhFKOc8vUoM",
+      "cs_live_a1VVhelv8tDIsAUAiASukIgH2R6IFNmIuuTixVZMkdtffkSWZbnjpdCFgx",
+      "cs_live_a1i6xMHuTRIYvq4aLwC1aJJvebwMAf0Q211hEnE7ytbssNxTtYeBgEjYBQ",
+      "cs_live_a1swHP7ZZg2F3d0we0i1SW1sGHrXCdEkXWz1ulGWes60p430C7DGzX8idz",
+      "cs_live_a1VUEocO6DdYUL89FkdZC5qg2staHZRrJSsRAJpVJFH6nRYEXDea2Yf2FN",
+      "cs_live_a1r8fvh02DebOP79oZC0DHDr77nAARPyP5glh1AxKA81p94e5LgUBF80z8",
+      "cs_live_a1mdkQUDgJAJyPgm3pm7QUGAi0TH8Dr41NzI2N2Keh4NIxCYF7pzSTPMSc",
+      "cs_live_a12v1ejhZ3MwaMYSa10CCnwCUwjDiO0sAn5PokpBq20pJIiDcyKuV6F5RA",
+      "cs_live_a1Nkc2WkPg09vef88oNJMzKxrAE3UAOVZesBNXFmmVCambzUAniB9AGdCI",
+      "cs_live_a1ZEEAgAcKdZiYzjnBtUOjLR6xhVCOdHkZTlifDnTYXSMnEyuAq3RVXJJx",
+      "cs_live_a1VZvIkmrAaEU970jLWQAjz5uREH3BRFH25wtB5MYDtjUez3RAF2JW8YQL"
+    ],
+    "tags": [
+      "sku:citation-proof-loto-control-system",
+      "kit:loto-readiness-kit",
+      "sku:citation-proof-pit-control-system",
+      "kit:forklift-pit-readiness-kit"
+    ]
+  },
+  {
+    "email": "verify-binder@example.com",
+    "phone": "",
+    "name": "",
+    "company": "",
+    "first_seen_at": "2026-07-13T21:05:22.205791+00:00",
+    "last_seen_at": "2026-08-03T23:10:15.066032+00:00",
+    "sources": [
+      "citation-proof-kit"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [
+      "cs_live_a189rcFFMmj3zsqJiQe3bMyS5n5Jd4yUF0YwAxMOyZjoZGemtw058rdBbx",
+      "cs_live_a14UICQjd1B50gc8xKPLBKqkw6HkczHLTHlEHMAvAOMqK5HFQHN7RiOTWY",
+      "cs_live_a1JQIKbXE5NZsibZcrLgmfgGmJGwVPNDIhfHGWiW81WybP8LvMYYSoIRaI",
+      "cs_live_a1I3eLb2MxyitWFvVFFhslc2vpckoiPqo89wCHi8oB8IFFoV8zd1b3rBGr",
+      "cs_live_a1AHhioFKQE9uQ7j89eEtqteEuuXryqaz9YQXZHRB0Yrtew7xNpfYwZYE2",
+      "cs_live_a1aLJqyEHurhhdmwwBNOiFQYvBl7ecXFrAPyU3xnnHoTLnZOOOgMVhyEzH",
+      "cs_live_a1Dimw3MhqL4OCJM6ZTFB3U4uo3SwOHKCnrxObOeEoo85Qr3uVFN9FgSko",
+      "cs_live_a1E8zAbZGPaeRxqN2jWT6tgtzBx8nYQnaIUnZFdxSHYsuqlgnIftuxT0WD",
+      "cs_live_a14jmEAx4c2ebATCkb6AGdGZaH5agj3VyJNp1zrTuirzAbCfm98ngIHo6W",
+      "cs_live_a1gmCwj8kmL2eBovqbNl7WjPSG5QSdtmLiSlMfwYOZqLw1SqJhAjksqhXl",
+      "cs_live_a1Ggkkn86MkdeLoknwE2zv9hdJa1RGXOtK9gNWRlwPZL6sOJ6gxugBObru",
+      "cs_live_a16XOH1UMEOC1jEFm1Fqzy4Xsk9RPyEJDfVlKj4TA5bI1nZl2aPm9sYG58",
+      "cs_live_a1yNNc9y15XInW7E8qNwQOJV6PkrnmOkLmbZUIXPENgyrW4y5SFayn9VYK",
+      "cs_live_a1o8FrtjuUPLigxwCyZiBMuPX7GLWjb5G6HK2PWtjKIWJmZPRv2jMb21VC"
+    ],
+    "tags": [
+      "sku:citation-proof-loto-binder",
+      "kit:loto-readiness-kit",
+      "sku:citation-proof-pit-binder",
+      "kit:forklift-pit-readiness-kit"
+    ]
+  },
+  {
+    "email": "backcompat@example.com",
+    "phone": "",
+    "name": "",
+    "company": "",
+    "first_seen_at": "2026-07-13T21:05:24.202203+00:00",
+    "last_seen_at": "2026-08-03T23:10:16.206033+00:00",
+    "sources": [
+      "citation-proof-kit"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [
+      "cs_live_a1pS2AOQ8bbTKgW81MWHmxylqTI3GgBRdn0KCttAjOq8fY48t59RAJaML4",
+      "cs_live_a11c9nqmUhVBDUBWbqgGNG4eD50f3w5Qw2fBwPZ1wVQCGNMAMUYFRC1w8N",
+      "cs_live_a15x2n0ZmFo5FiAVVX0bzjDVJmhErjIIasLjOBP6szcJU6OKVLsHWlAG5h",
+      "cs_live_a1PnNERRNcfGtdpoZZQVYeB1uZGJVZT13gMqiBxUtR3gDnVLJHobk4Caor",
+      "cs_live_a1zJ059FbvmoQfIjh7I5sUwXBrbk6k5idLSTFxPBTSNLoho84zp6TSxe1F",
+      "cs_live_a1BGkztfBu4XNjDZZXt6US4ePeqhNqXNXbKtyBCy1t7VyNBLa0d6hEHFWG",
+      "cs_live_a1vVQ7XN56PDBoZlj9scYG3F9L0itspvvDuPqEhIX5Nxr18GMCNaV9yCxP"
+    ],
+    "tags": [
+      "sku:citation-proof-loto-digital",
+      "kit:loto-readiness-kit"
+    ]
+  },
+  {
+    "email": "shipping-check@example.com",
+    "phone": "",
+    "name": "",
+    "company": "",
+    "first_seen_at": "2026-07-13T21:05:24.663790+00:00",
+    "last_seen_at": "2026-08-03T23:10:16.630594+00:00",
+    "sources": [
+      "citation-proof-kit"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [
+      "cs_live_a1OgAlJkEL8sWeSZMaAHiJTDpPWTjkKLewSQMaMwuuVehkNA7a3Tx9vnqx",
+      "cs_live_a1pw3IPJqgHFKXQz8C1O1hei30C6vPYLfKbRtfPSNxFmMeRdrWYU8Loo8v",
+      "cs_live_a1MmevUSYX1xGOipB7uDQ2HVH2NAT55YTEVXX50jW3Qv9ygvD2b3CnvhyN",
+      "cs_live_a1JCCD9fBQ9W7ctMygX4Hy4hVSFedHEHqk5oXnPXavpynpVS1zpkc0uRy9",
+      "cs_live_a1kJgLMk0xYTYPgUjh07ZtVo8Az9ZhCaJRqsfdt4hY6J1O2Nq7WRKuu59d",
+      "cs_live_a1vrDMCf25zB8BsUabTLJSvHbo4HimOjJmbdaiWUBESG0uDOjQ3NrW9uhm",
+      "cs_live_a16iYgKWc6as0e98P5VTeJ3khFT3mrqYlzs879Gf5PXLvD3KDzJBdrMEmJ",
+      "cs_live_a1nVw9zk6y1IUh0FSd8O7KFsKhZY0x0vXUVXR93pQRg1HgcHKJDDowGtnf"
+    ],
+    "tags": [
+      "sku:citation-proof-loto-binder",
+      "kit:loto-readiness-kit"
+    ]
+  },
+  {
+    "email": "no-shipping-check@example.com",
+    "phone": "",
+    "name": "",
+    "company": "",
+    "first_seen_at": "2026-07-13T21:05:25.427414+00:00",
+    "last_seen_at": "2026-08-03T23:10:17.401969+00:00",
+    "sources": [
+      "citation-proof-kit"
+    ],
+    "utm_source": "",
+    "utm_medium": "",
+    "utm_campaign": "",
+    "paid_customer": false,
+    "lifetime_value_cents": 0,
+    "stripe_session_ids": [
+      "cs_live_a1hyWujBXSyoagYn8tT2iZ6aPD2nyynerwMJ147UfbDLHWJzTaKJHnxhlZ",
+      "cs_live_a11M5KRQsywpLNqqcGyDo8va2WNcCBA64r7jV0jpv4zn3vkjNl5evexF01",
+      "cs_live_a1SrxaffaditpH7FxufXnaLHDGS7fiC3DrmIB7eAd8vxgum35zaJGQQax6",
+      "cs_live_a1Ry07gEi02a6eXW0X6KcVqLnwhlRzHhatWokvAoJPrfhicnBClHwV9bBe",
+      "cs_live_a1jwkxluohJJNYWwbUbdqsRgmgyDypsUAbQVaFZRa8tzcMuqbVfDppw5FK",
+      "cs_live_a1dvTcDmBf1SV9qh3mC5AMCaiKnbI6BNLoqgIAdLV8Md8LtFBnrvMtBVgl",
+      "cs_live_a1oT3pqX0pWKgZeCqqCnSqAXXT1dy94QxRBgbfsabcgSrSnRZfiFpGs0hh",
+      "cs_live_a1s4hgJvM5cAFgrjDl5rfTy8FQrjqMOEIHpT5kQGliIKxqPqKyvlfRWSs5"
+    ],
+    "tags": [
+      "sku:citation-proof-loto-digital",
+      "kit:loto-readiness-kit"
+    ]
+  }
+]

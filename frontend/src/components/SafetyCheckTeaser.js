@@ -15,7 +15,7 @@ const SafetyCheckTeaser = () => {
         </h2>
         
         <p className="text-muted-foreground mb-8">
-          These are the violations OSHA cites most often in small operations. Answer honestly — this is for your operation, not for show.
+          These are the violations OSHA cites most often in small operations. Answer honestly, this is for your operation, not for show.
         </p>
 
         {/* Preview Questions */}

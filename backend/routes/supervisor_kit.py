@@ -68,6 +68,12 @@ async def _create_kit_session(variant: str, payload: KitCheckoutRequest, http_re
             metadata["first_touch_campaign"] = first.get("utm_campaign", "")[:100]
 
     try:
+        # Build a public HTTPS URL for the Stripe checkout thumbnail.
+        product_images = None
+        image_path = product.get("image_path")
+        if image_path and payload.origin_url.startswith("https://"):
+            product_images = [f"{payload.origin_url.rstrip('/')}{image_path}"]
+
         if USE_NATIVE_STRIPE:
             from stripe_native import create_checkout
             result = await create_checkout(
@@ -79,6 +85,7 @@ async def _create_kit_session(variant: str, payload: KitCheckoutRequest, http_re
                 customer_email=payload.email,
                 collect_shipping=product["needs_shipping"],
                 product_name=product["name"],
+                product_images=product_images,
             )
         else:
             # emergentintegrations Stripe path (does not natively support shipping in our
@@ -93,6 +100,7 @@ async def _create_kit_session(variant: str, payload: KitCheckoutRequest, http_re
                 customer_email=payload.email,
                 collect_shipping=product["needs_shipping"],
                 product_name=product["name"],
+                product_images=product_images,
             )
 
         await db.gl_supervisor_kit_orders.insert_one({

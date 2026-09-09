@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { X, Upload, ChevronRight, Eye, RefreshCw, FileText, Users, Briefcase, DollarSign, Clock, Trash2, Search } from 'lucide-react';
+import { X, Upload, ChevronRight, Eye, RefreshCw, FileText, Users, Briefcase, DollarSign, Clock, Trash2, Search, Package, Truck } from 'lucide-react';
 import SEO from '../components/SEO';
 import WalkthroughLeadsCRM from '../components/WalkthroughLeadsCRM';
 import { SUPERVISOR_KIT_ENABLED } from '../config/features';
@@ -208,10 +208,10 @@ const AdminPage = () => {
 
   // Inline per-row delete: archives the lead by default (recoverable). Hold Shift while clicking for hard delete.
   const deleteRowInline = async (kind, docId, label, e) => {
-    if (!docId) { setToolbarMessage('Cannot delete — missing identifier'); return; }
+    if (!docId) { setToolbarMessage('Cannot delete, missing identifier'); return; }
     const isHard = e?.shiftKey === true;
     const verb = isHard ? 'PERMANENTLY DELETE' : 'Archive';
-    if (!window.confirm(`${verb} this lead?\n\n${label}\n\n${isHard ? '⚠ Permanent — cannot be undone.' : 'Recoverable from the archive collection if needed.'}`)) return;
+    if (!window.confirm(`${verb} this lead?\n\n${label}\n\n${isHard ? '⚠ Permanent, cannot be undone.' : 'Recoverable from the archive collection if needed.'}`)) return;
     try {
       const res = await fetch(
         `${API}/api/admin/lead/${kind}/${encodeURIComponent(docId)}?token=${token}${isHard ? '&hard=true' : ''}`,
@@ -291,10 +291,11 @@ const AdminPage = () => {
     { id: 'intakes', label: 'Intake Submissions', icon: <FileText size={14} /> },
     { id: 'bookings', label: 'Bookings', icon: <DollarSign size={14} /> },
     { id: 'leads', label: 'Leads', icon: <Users size={14} /> },
+    { id: 'kit-orders', label: 'Kit Orders', icon: <Package size={14} /> },
     { id: 'downloads', label: 'Downloads', icon: <Clock size={14} /> },
     { id: 'personalize', label: 'Personalize PDF', icon: <FileText size={14} /> },
     { id: 'indexing', label: 'SEO Indexing', icon: <Search size={14} /> },
-    ...(SUPERVISOR_KIT_ENABLED ? [{ id: 'kit-pdfs', label: 'Kit PDFs', icon: <FileText size={14} /> }] : []),
+    { id: 'pdf-library', label: 'PDF Library', icon: <FileText size={14} /> },
   ];
 
   /* ── Dashboard ── */
@@ -339,7 +340,7 @@ const AdminPage = () => {
         </div>
       )}
 
-      {/* Admin Toolbar — Search / Export CSV / Add Revenue / Delete Lead */}
+      {/* Admin Toolbar, Search / Export CSV / Add Revenue / Delete Lead */}
       <div className="border-b bg-white" style={{ borderColor: '#e5e5e5' }}>
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 flex items-center gap-3 flex-wrap" data-testid="admin-toolbar">
           {/* Global search */}
@@ -497,7 +498,7 @@ const AdminPage = () => {
               </div>
               <label className="flex items-center gap-2 text-xs text-red-600 font-semibold cursor-pointer">
                 <input type="checkbox" checked={deleteForm.hard} onChange={(e) => setDeleteForm({ ...deleteForm, hard: e.target.checked })} data-testid="delete-hard" />
-                Permanent delete (skip archive — irreversible)
+                Permanent delete (skip archive, irreversible)
               </label>
             </div>
             <div className="flex items-center gap-2 mt-5">
@@ -627,7 +628,7 @@ const AdminPage = () => {
                     </div>
                   </div>
                   <p className="text-[11px] text-gray-400 mt-3 leading-snug">
-                    Conversion = sample report download email later matched in a full intake or walkthrough request. High-intent leads — expect a higher conversion rate here than other email magnets.
+                    Conversion = sample report download email later matched in a full intake or walkthrough request. High-intent leads, expect a higher conversion rate here than other email magnets.
                   </p>
                 </div>
               )}
@@ -639,7 +640,7 @@ const AdminPage = () => {
                   data-testid="hr-osha-guide-tile"
                 >
                   <div className="flex items-baseline justify-between mb-3">
-                    <h2 className="text-base font-bold text-[#1C2B2B]">OSHA Inspection Guide — HR &amp; Safety Leaders</h2>
+                    <h2 className="text-base font-bold text-[#1C2B2B]">OSHA Inspection Guide, HR &amp; Safety Leaders</h2>
                     <span className="text-[10px] uppercase tracking-wider text-gray-400 font-mono">
                       HR-targeted lead magnet
                     </span>
@@ -669,7 +670,7 @@ const AdminPage = () => {
                     </div>
                   </div>
                   <p className="text-[11px] text-gray-400 mt-3 leading-snug">
-                    Conversion = HR Inspection Guide download email later matched in a full intake or walkthrough request. The HR / safety-coordinator audience tends to be the early-warning channel into a buying org — watch for converters here moving up the decision chain.
+                    Conversion = HR Inspection Guide download email later matched in a full intake or walkthrough request. The HR / safety-coordinator audience tends to be the early-warning channel into a buying org, watch for converters here moving up the decision chain.
                   </p>
                 </div>
               )}
@@ -692,7 +693,7 @@ const AdminPage = () => {
               {stats.lead_sources_30d && stats.lead_sources_30d.length > 0 && (
                 <div className="mt-10" data-testid="lead-sources-30d">
                   <div className="flex items-baseline justify-between mb-3">
-                    <h2 className="text-lg font-bold text-[#1C2B2B]">Sources — Last 30 Days</h2>
+                    <h2 className="text-lg font-bold text-[#1C2B2B]">Sources, Last 30 Days</h2>
                     <p className="text-xs text-gray-400">{stats.lead_sources_30d.reduce((sum, s) => sum + s.count, 0)} leads</p>
                   </div>
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5">
@@ -728,7 +729,7 @@ const AdminPage = () => {
               {sourcesData && sourcesData.sources && sourcesData.sources.length > 0 && (
                 <div className="mt-10" data-testid="leads-by-source">
                   <div className="flex items-baseline justify-between mb-3">
-                    <h2 className="text-lg font-bold text-[#1C2B2B]">Conversions by Source — All Time</h2>
+                    <h2 className="text-lg font-bold text-[#1C2B2B]">Conversions by Source, All Time</h2>
                     <p className="text-xs text-gray-400">
                       {sourcesData.totals.total_leads} leads · {sourcesData.totals.total_reports_delivered} converted · ${(sourcesData.totals.total_revenue || 0).toLocaleString()} revenue
                     </p>
@@ -807,9 +808,9 @@ const AdminPage = () => {
                       const flags = getFlags(item);
                       return (
                         <tr key={i} className="border-b border-gray-100 hover:bg-gray-50" data-testid={`intake-row-${i}`}>
-                          <td className="px-3 py-3 text-xs text-gray-400">{item.submittedAt ? new Date(item.submittedAt).toLocaleDateString() : '—'}</td>
-                          <td className="px-3 py-3 font-medium text-[#1C2B2B]">{item.company || '—'}</td>
-                          <td className="px-3 py-3 text-gray-500">{item.contactName || '—'}</td>
+                          <td className="px-3 py-3 text-xs text-gray-400">{item.submittedAt ? new Date(item.submittedAt).toLocaleDateString() : ','}</td>
+                          <td className="px-3 py-3 font-medium text-[#1C2B2B]">{item.company || ','}</td>
+                          <td className="px-3 py-3 text-gray-500">{item.contactName || ','}</td>
                           <td className="px-3 py-3 text-xs">
                             <SourceCell attribution={item.attribution} referralSource={item.referralSource} />
                           </td>
@@ -845,7 +846,7 @@ const AdminPage = () => {
                               {item.reportUrl && <Badge color="bg-emerald-100 text-emerald-700">Delivered</Badge>}
                               {(item.clientToken || item.id) && (
                                 <button
-                                  onClick={(e) => deleteRowInline('intake', item.clientToken || item.id, `${item.company || 'Unknown'} — ${item.contactName || item.email || item.clientToken || item.id}`, e)}
+                                  onClick={(e) => deleteRowInline('intake', item.clientToken || item.id, `${item.company || 'Unknown'}, ${item.contactName || item.email || item.clientToken || item.id}`, e)}
                                   className="text-[10px] font-medium px-2 py-1 rounded border border-red-200 text-red-500 hover:bg-red-50 hover:border-red-400 transition-colors flex items-center gap-1"
                                   title="Click to archive · Shift+Click to permanently delete"
                                   data-testid={`delete-intake-${i}`}
@@ -886,8 +887,8 @@ const AdminPage = () => {
                   <tbody>
                     {(bookings || []).filter(item => matchesSearch(item, searchQuery, ['company', 'contactName', 'email', 'phone', 'clientToken', 'service'])).map((item, i) => (
                       <tr key={i} className="border-b border-gray-100 hover:bg-gray-50" data-testid={`booking-row-${i}`}>
-                        <td className="px-3 py-3 text-xs text-gray-400">{item.createdAt ? new Date(item.createdAt).toLocaleDateString() : '—'}</td>
-                        <td className="px-3 py-3 font-medium text-[#1C2B2B]">{item.company || '—'}</td>
+                        <td className="px-3 py-3 text-xs text-gray-400">{item.createdAt ? new Date(item.createdAt).toLocaleDateString() : ','}</td>
+                        <td className="px-3 py-3 font-medium text-[#1C2B2B]">{item.company || ','}</td>
                         <td className="px-3 py-3 text-xs">{(item.tier || '').charAt(0).toUpperCase() + (item.tier || '').slice(1)}{item.addRetainer ? ' + Retainer' : ''}</td>
                         <td className="px-3 py-3 font-bold text-[#B8972C]">${item.totalCharged || 0}</td>
                         <td className="px-3 py-3">
@@ -895,7 +896,7 @@ const AdminPage = () => {
                             {item.paymentStatus === 'paid' ? 'Confirmed' : 'Pending'}
                           </Badge>
                         </td>
-                        <td className="px-3 py-3 text-xs text-gray-500">{item.preferredDate || '—'}</td>
+                        <td className="px-3 py-3 text-xs text-gray-500">{item.preferredDate || ','}</td>
                         <td className="px-3 py-3">
                           <button onClick={() => setViewItem(item)} className="text-[10px] font-medium px-2 py-1 rounded border border-gray-200 hover:bg-gray-50 transition-colors flex items-center gap-1" data-testid={`view-booking-${i}`}>
                             <Eye size={10} /> View
@@ -924,7 +925,7 @@ const AdminPage = () => {
                       <tbody>
                         {leads.safety_checks.filter(l => matchesSearch(l, searchQuery, ['name', 'email', 'company'])).map((l, i) => (
                           <tr key={i} className="border-b border-gray-100 hover:bg-gray-50">
-                            <td className="px-3 py-3 text-xs text-gray-400">{l.timestamp ? new Date(l.timestamp).toLocaleDateString() : '—'}</td>
+                            <td className="px-3 py-3 text-xs text-gray-400">{l.timestamp ? new Date(l.timestamp).toLocaleDateString() : ','}</td>
                             <td className="px-3 py-3 font-medium">{l.name}</td>
                             <td className="px-3 py-3">{l.company}</td>
                             <td className="px-3 py-3"><a href={`mailto:${l.email}`} className="text-[#B8972C] hover:underline">{l.email}</a></td>
@@ -933,7 +934,7 @@ const AdminPage = () => {
                             <td className="px-3 py-3 text-center">
                               {l.id && (
                                 <button
-                                  onClick={(e) => deleteRowInline('safety_check', l.id, `${l.name || 'Unknown'} — ${l.email || l.id}`, e)}
+                                  onClick={(e) => deleteRowInline('safety_check', l.id, `${l.name || 'Unknown'}, ${l.email || l.id}`, e)}
                                   className="text-[10px] font-medium px-2 py-1 rounded border border-red-200 text-red-500 hover:bg-red-50 hover:border-red-400 transition-colors inline-flex items-center gap-1"
                                   title="Click to archive · Shift+Click to permanently delete"
                                   data-testid={`delete-safety-check-${i}`}
@@ -957,8 +958,14 @@ const AdminPage = () => {
           {/* ── DOWNLOADS ── */}
           {tab === 'downloads' && <DownloadsTab token={token} />}
 
+          {/* Kit Orders, unified view of paid Citation-Proof + Supervisor Kit orders */}
+          {tab === 'kit-orders' && <KitOrdersTab token={token} />}
+
           {/* ── KIT PDFs ── (feature-flagged) */}
           {SUPERVISOR_KIT_ENABLED && tab === 'kit-pdfs' && <KitFilesTab token={token} />}
+
+          {/* PDF Library, view/download every kit PDF being sold online (all 3 product families) */}
+          {tab === 'pdf-library' && <PdfLibraryTab token={token} />}
 
           {/* ── PERSONALIZE PDF ── */}
           {tab === 'personalize' && <PersonalizePdfTab token={token} />}
@@ -1048,7 +1055,7 @@ const AdminPage = () => {
           <div className="absolute inset-0 bg-black/40" />
           <div className="relative bg-white rounded-xl p-6 w-full max-w-sm shadow-2xl" onClick={e => e.stopPropagation()} data-testid="upload-modal">
             <h3 className="text-base font-bold text-[#1C2B2B] mb-1">Upload Report</h3>
-            <p className="text-xs text-gray-400 mb-4">{uploadModal.company} — {uploadModal.clientToken}</p>
+            <p className="text-xs text-gray-400 mb-4">{uploadModal.company}, {uploadModal.clientToken}</p>
             <label className="block cursor-pointer rounded-lg border-2 border-dashed border-gray-200 p-6 text-center hover:border-[#C9A84C] transition-colors">
               <Upload size={24} className="mx-auto text-gray-300 mb-2" />
               <p className="text-sm text-gray-500">{uploading ? 'Uploading...' : 'Click to select PDF (max 20MB)'}</p>
@@ -1084,7 +1091,7 @@ const DownloadsTab = ({ token }) => {
             <tr key={i} className="border-b border-gray-100 hover:bg-gray-50">
               <td className="px-3 py-3 text-xs text-gray-400">{new Date(ev.timestamp).toLocaleString()}</td>
               <td className="px-3 py-3"><Badge color="bg-gray-100 text-gray-600">{typeLabel(ev.type)}</Badge></td>
-              <td className="px-3 py-3 text-gray-500 text-xs">{ev.email || ev.submission_id || ev.filename || '—'}</td>
+              <td className="px-3 py-3 text-gray-500 text-xs">{ev.email || ev.submission_id || ev.filename || ','}</td>
             </tr>
           ))}
         </tbody>
@@ -1094,7 +1101,316 @@ const DownloadsTab = ({ token }) => {
   );
 };
 
-/* ── Kit PDFs sub-tab (GL-WEB-024b) — admin access to the 11 SS-* files ── */
+/* ── Kit Orders sub-tab, unified paid orders across Citation-Proof + Supervisor kits ── */
+const KitOrdersTab = ({ token }) => {
+  const [data, setData] = useState(null);
+  const [err, setErr] = useState('');
+  const [filter, setFilter] = useState('all');
+  const [refreshing, setRefreshing] = useState(false);
+  const [shippingModal, setShippingModal] = useState(null);
+  const [trackingNumber, setTrackingNumber] = useState('');
+  const [carrier, setCarrier] = useState('USPS');
+  const [savingShip, setSavingShip] = useState(false);
+  const [savingError, setSavingError] = useState('');
+
+  const load = useCallback(async () => {
+    setErr('');
+    setRefreshing(true);
+    try {
+      const res = await fetch(`${API}/api/admin/kit-orders?token=${token}&filter=${filter}`);
+      if (!res.ok) { setErr(`HTTP ${res.status}`); return; }
+      setData(await res.json());
+    } catch (e) {
+      setErr(String(e));
+    } finally {
+      setRefreshing(false);
+    }
+  }, [token, filter]);
+
+  useEffect(() => { load(); }, [load]);
+
+  const handleMarkShipped = async () => {
+    if (!shippingModal) return;
+    setSavingError('');
+    setSavingShip(true);
+    try {
+      const res = await fetch(`${API}/api/admin/kit-orders/${encodeURIComponent(shippingModal.session_id)}/mark-shipped`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token, tracking_number: trackingNumber.trim(), carrier }),
+      });
+      if (!res.ok) {
+        const detail = await res.json().catch(() => ({}));
+        setSavingError(detail.detail || `HTTP ${res.status}`);
+        return;
+      }
+      setShippingModal(null);
+      setTrackingNumber('');
+      setCarrier('USPS');
+      await load();
+    } catch (e) {
+      setSavingError(String(e));
+    } finally {
+      setSavingShip(false);
+    }
+  };
+
+  const money = (cents) => cents == null ? ',' : `$${(cents / 100).toFixed(2)}`;
+  const formatAddr = (s) => {
+    if (!s || !s.address) return '';
+    const a = s.address;
+    const line1 = [a.line1, a.line2].filter(Boolean).join(', ');
+    const line2 = [a.city, a.state, a.postal_code].filter(Boolean).join(', ');
+    return [s.name, line1, line2, a.country].filter(Boolean).join(' · ');
+  };
+  const statusBadge = (status) => {
+    const map = {
+      auto_delivered: { color: 'bg-green-100 text-green-700', label: 'Auto-Delivered' },
+      pdf_delivered_awaiting_ship: { color: 'bg-orange-100 text-orange-700', label: 'PDF Sent · Needs Ship' },
+      pending_manual: { color: 'bg-yellow-100 text-yellow-700', label: 'Pending Manual' },
+      pending_delivery: { color: 'bg-gray-100 text-gray-600', label: 'Pending Delivery' },
+      pending_ship: { color: 'bg-orange-100 text-orange-700', label: 'Needs Ship' },
+      shipped: { color: 'bg-blue-100 text-blue-700', label: 'Shipped' },
+      unknown: { color: 'bg-gray-100 text-gray-500', label: ',' },
+    };
+    const s = map[status] || { color: 'bg-gray-100 text-gray-500', label: status };
+    return <span className={`inline-block text-[10px] font-bold px-2 py-1 rounded ${s.color}`}>{s.label}</span>;
+  };
+
+  const FILTER_CHIPS = [
+    { id: 'all', label: 'All Paid' },
+    { id: 'needs_shipping', label: 'Needs Shipping', highlight: true },
+    { id: 'auto_delivered', label: 'Auto-Delivered' },
+    { id: 'pending_manual', label: 'Pending Manual' },
+    { id: 'shipped', label: 'Shipped' },
+  ];
+
+  if (err) return <p className="text-red-500 text-sm" data-testid="kit-orders-error">Failed to load: {err}</p>;
+  if (!data) return <p className="text-gray-400">Loading...</p>;
+
+  return (
+    <div data-testid="kit-orders-tab">
+      {/* Header + counts */}
+      <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-4">
+        <div>
+          <h2 className="text-lg font-bold text-[#1C2B2B]">Kit Orders</h2>
+          <p className="text-xs text-gray-500 mt-1 leading-relaxed max-w-2xl">
+            Paid orders across the Citation-Proof Kit Series and the Supervisor Safety OS. Use{' '}
+            <strong>Needs Shipping</strong> to see $600 binders and $700 physical kits awaiting a printed drop.
+          </p>
+        </div>
+        <button
+          onClick={load}
+          disabled={refreshing}
+          className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded border border-gray-300 text-gray-600 hover:bg-gray-50 disabled:opacity-50"
+          data-testid="kit-orders-refresh"
+        >
+          <RefreshCw size={12} className={refreshing ? 'animate-spin' : ''} /> Refresh
+        </button>
+      </div>
+
+      {/* Summary counts */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5" data-testid="kit-orders-counts">
+        <div className="bg-white border border-gray-200 rounded-lg p-3">
+          <p className="text-[10px] uppercase tracking-wider text-gray-500 font-semibold">Total Paid</p>
+          <p className="text-2xl font-bold text-[#102A43] mt-1">{data.counts.total_paid}</p>
+        </div>
+        <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
+          <p className="text-[10px] uppercase tracking-wider text-orange-700 font-semibold">Needs Shipping</p>
+          <p className="text-2xl font-bold text-orange-700 mt-1" data-testid="kit-orders-needs-shipping-count">{data.counts.needs_shipping}</p>
+        </div>
+        <div className="bg-white border border-gray-200 rounded-lg p-3">
+          <p className="text-[10px] uppercase tracking-wider text-gray-500 font-semibold">Citation-Proof</p>
+          <p className="text-2xl font-bold text-[#102A43] mt-1">{data.counts.citation_proof_kit_paid}</p>
+        </div>
+        <div className="bg-white border border-gray-200 rounded-lg p-3">
+          <p className="text-[10px] uppercase tracking-wider text-gray-500 font-semibold">Supervisor Kit</p>
+          <p className="text-2xl font-bold text-[#102A43] mt-1">{data.counts.supervisor_kit_paid}</p>
+        </div>
+      </div>
+
+      {/* Filter chips */}
+      <div className="flex flex-wrap gap-2 mb-4" data-testid="kit-orders-filters">
+        {FILTER_CHIPS.map((chip) => {
+          const active = filter === chip.id;
+          const base = 'text-xs font-semibold px-3 py-1.5 rounded-full border transition-colors';
+          const activeCls = chip.highlight
+            ? 'bg-orange-600 border-orange-600 text-white'
+            : 'bg-[#102A43] border-[#102A43] text-white';
+          const idle = 'bg-white border-gray-300 text-gray-600 hover:border-gray-400';
+          return (
+            <button
+              key={chip.id}
+              onClick={() => setFilter(chip.id)}
+              className={`${base} ${active ? activeCls : idle}`}
+              data-testid={`kit-orders-filter-${chip.id}`}
+            >
+              {chip.label}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Table */}
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm min-w-[900px]" data-testid="kit-orders-table">
+          <thead>
+            <tr className="bg-[#2A52A0] text-white text-left">
+              <th className="px-3 py-2.5 text-xs">Paid</th>
+              <th className="px-3 py-2.5 text-xs">Product</th>
+              <th className="px-3 py-2.5 text-xs">Tier</th>
+              <th className="px-3 py-2.5 text-xs text-right">Amount</th>
+              <th className="px-3 py-2.5 text-xs">Customer</th>
+              <th className="px-3 py-2.5 text-xs">Shipping</th>
+              <th className="px-3 py-2.5 text-xs">Status</th>
+              <th className="px-3 py-2.5 text-xs text-right">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.orders.map((o, i) => {
+              const needsShipping = o.physical && o.fulfillment_status !== 'shipped';
+              return (
+                <tr key={o.session_id || i} className="border-b border-gray-100 hover:bg-gray-50 align-top" data-testid={`kit-order-row-${i}`}>
+                  <td className="px-3 py-3 text-xs text-gray-500 whitespace-nowrap">
+                    {o.paid_at ? new Date(o.paid_at).toLocaleDateString() : ','}
+                    <br />
+                    <span className="text-[10px] text-gray-400">
+                      {o.paid_at ? new Date(o.paid_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : ''}
+                    </span>
+                  </td>
+                  <td className="px-3 py-3 text-[12.5px] text-[#1C2B2B]">
+                    <div className="font-semibold">{o.label || o.product_slug}</div>
+                    <div className="text-[10px] text-gray-400 font-mono mt-0.5">{o.product_slug}</div>
+                  </td>
+                  <td className="px-3 py-3 text-xs text-gray-600 capitalize">{o.tier || ','}</td>
+                  <td className="px-3 py-3 text-xs text-right font-semibold text-[#102A43] whitespace-nowrap">{money(o.amount_cents)}</td>
+                  <td className="px-3 py-3 text-xs text-gray-600">
+                    <div className="font-semibold text-[#1C2B2B]">{o.customer_name || ','}</div>
+                    <div>{o.customer_email || ','}</div>
+                    {o.customer_phone && <div className="text-[10px] text-gray-400 mt-0.5">{o.customer_phone}</div>}
+                    {o.company_name && <div className="text-[10px] text-gray-400 mt-0.5 italic">{o.company_name}</div>}
+                  </td>
+                  <td className="px-3 py-3 text-[11px] text-gray-600 max-w-[220px]">
+                    {o.physical ? (formatAddr(o.shipping_details) || <span className="text-red-500 italic">Missing address</span>) : <span className="text-gray-400">Digital</span>}
+                    {o.tracking_number && (
+                      <div className="mt-1 text-[10px] font-mono text-blue-700">Tracking: {o.tracking_number}</div>
+                    )}
+                  </td>
+                  <td className="px-3 py-3 whitespace-nowrap">
+                    {statusBadge(o.fulfillment_status)}
+                    {o.shipped_at && (
+                      <div className="text-[10px] text-gray-400 mt-1">
+                        Shipped {new Date(o.shipped_at).toLocaleDateString()}
+                      </div>
+                    )}
+                  </td>
+                  <td className="px-3 py-3 text-right">
+                    {needsShipping ? (
+                      <button
+                        onClick={() => { setShippingModal(o); setTrackingNumber(''); setSavingError(''); }}
+                        className="inline-flex items-center gap-1 text-[11px] font-bold px-3 py-1.5 rounded bg-[#C9A84C] text-[#102A43] hover:bg-[#B8972C] transition-colors"
+                        data-testid={`kit-order-mark-shipped-${i}`}
+                      >
+                        <Truck size={12} /> Mark Shipped
+                      </button>
+                    ) : (
+                      <span className="text-[10px] text-gray-300">,</span>
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+        {data.orders.length === 0 && (
+          <p className="py-10 text-center text-gray-300 text-sm" data-testid="kit-orders-empty">
+            No orders match this filter yet.
+          </p>
+        )}
+      </div>
+
+      {/* Mark-Shipped modal */}
+      {shippingModal && (
+        <div
+          className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4"
+          data-testid="mark-shipped-modal"
+          onClick={(e) => { if (e.target === e.currentTarget) setShippingModal(null); }}
+        >
+          <div className="bg-white rounded-lg max-w-md w-full p-6 shadow-2xl">
+            <div className="flex items-start justify-between mb-4">
+              <div>
+                <h3 className="text-lg font-bold text-[#1C2B2B]">Mark as Shipped</h3>
+                <p className="text-xs text-gray-500 mt-1">{shippingModal.label}</p>
+                <p className="text-xs text-gray-400 mt-0.5">{shippingModal.customer_email}</p>
+              </div>
+              <button
+                onClick={() => setShippingModal(null)}
+                className="text-gray-400 hover:text-gray-600"
+                data-testid="mark-shipped-close"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            <div className="space-y-3">
+              <div>
+                <label className="block text-[11px] font-semibold text-gray-600 uppercase tracking-wider mb-1">Carrier</label>
+                <select
+                  value={carrier}
+                  onChange={(e) => setCarrier(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-[#C9A84C]"
+                  data-testid="mark-shipped-carrier"
+                >
+                  <option value="USPS">USPS</option>
+                  <option value="UPS">UPS</option>
+                  <option value="FedEx">FedEx</option>
+                  <option value="DHL">DHL</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-[11px] font-semibold text-gray-600 uppercase tracking-wider mb-1">Tracking Number <span className="text-gray-400 font-normal normal-case">(optional)</span></label>
+                <input
+                  type="text"
+                  value={trackingNumber}
+                  onChange={(e) => setTrackingNumber(e.target.value)}
+                  placeholder="e.g. 9400 1000 0000 0000 0000 00"
+                  className="w-full px-3 py-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-[#C9A84C] font-mono"
+                  data-testid="mark-shipped-tracking"
+                />
+              </div>
+              {savingError && (
+                <p className="text-xs text-red-600" data-testid="mark-shipped-error">{savingError}</p>
+              )}
+            </div>
+
+            <div className="flex gap-2 mt-5">
+              <button
+                onClick={() => setShippingModal(null)}
+                className="flex-1 text-sm py-2 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-50"
+                data-testid="mark-shipped-cancel"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleMarkShipped}
+                disabled={savingShip}
+                className="flex-1 text-sm py-2 rounded-lg bg-[#C9A84C] text-[#102A43] font-bold hover:bg-[#B8972C] transition-colors disabled:opacity-50"
+                data-testid="mark-shipped-confirm"
+              >
+                {savingShip ? 'Saving...' : 'Confirm Shipped'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+
+
+/* ── Kit PDFs sub-tab (GL-WEB-024b), admin access to the 11 SS-* files ── */
 const KitFilesTab = ({ token }) => {
   const [data, setData] = useState(null);
   const [err, setErr] = useState('');
@@ -1114,7 +1430,7 @@ const KitFilesTab = ({ token }) => {
   return (
     <div data-testid="kit-pdfs-tab">
       <div className="flex items-baseline justify-between mb-4">
-        <h2 className="text-lg font-bold text-[#1C2B2B]">GigLine Supervisor Safety OS — Kit PDFs</h2>
+        <h2 className="text-lg font-bold text-[#1C2B2B]">GigLine Supervisor Safety OS, Kit PDFs</h2>
         <p className="text-xs text-gray-400">{data.count}/{data.expected ?? data.files.length} on disk</p>
       </div>
       <p className="text-xs text-gray-500 mb-5 leading-relaxed">
@@ -1136,8 +1452,8 @@ const KitFilesTab = ({ token }) => {
             <tr key={f.filename} className="border-b border-gray-100 hover:bg-gray-50" data-testid={`kit-pdf-row-${i}`}>
               <td className="px-3 py-3 text-xs text-gray-400">{String(i + 1).padStart(2, '0')}</td>
               <td className="px-3 py-3 text-[13px] text-[#1C2B2B] font-mono">{f.filename}</td>
-              <td className="px-3 py-3 text-xs text-gray-500">{f.on_disk === false ? '—' : `${f.size_kb} KB`}</td>
-              <td className="px-3 py-3 text-xs text-gray-400">{f.modified ? new Date(f.modified).toLocaleDateString() : '—'}</td>
+              <td className="px-3 py-3 text-xs text-gray-500">{f.on_disk === false ? ',' : `${f.size_kb} KB`}</td>
+              <td className="px-3 py-3 text-xs text-gray-400">{f.modified ? new Date(f.modified).toLocaleDateString() : ','}</td>
               <td className="px-3 py-3 text-right">
                 {f.on_disk === false ? (
                   <span className="inline-block text-[10px] font-bold px-2 py-1 rounded bg-red-50 text-red-600" data-testid={`kit-pdf-missing-${i}`}>Missing on server</span>
@@ -1162,7 +1478,163 @@ const KitFilesTab = ({ token }) => {
   );
 };
 
-/* ── Personalize PDF sub-tab (GL-WEB-018f) — client-name → PDF cover slug ── */
+/* ── PDF Library sub-tab, unified view/download of every kit PDF sold online ── */
+const PDF_GROUPS = [
+  { id: 'citation_proof_kit', label: 'Citation-Proof Kit Series', hint: 'LOTO + Forklift/PIT digital & control-system PDFs. Auto-generated from DOCX by build_citation_proof_kit_pdfs.py, rerun that script to refresh from source.' },
+  { id: 'hazcom',             label: 'HazCom Starter Pack',       hint: 'Written Program, SDS Binder Checklist, and Training Verification Log, attached to every $29 HazCom Starter Pack purchase.' },
+  { id: 'supervisor_kit',     label: 'GigLine Supervisor Safety OS', hint: 'The 11 print-ready PDFs auto-attached to every $600 Supervisor Safety OS digital-kit purchase.' },
+];
+
+const PdfLibraryTab = ({ token }) => {
+  const [groups, setGroups] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [err, setErr] = useState('');
+  const [openGroup, setOpenGroup] = useState('citation_proof_kit');
+
+  useEffect(() => {
+    (async () => {
+      setLoading(true);
+      setErr('');
+      try {
+        const results = await Promise.all(
+          PDF_GROUPS.map(async (g) => {
+            const res = await fetch(`${API}/api/admin/kit-files?token=${token}&group=${g.id}`);
+            if (!res.ok) throw new Error(`${g.label}: HTTP ${res.status}`);
+            return [g.id, await res.json()];
+          })
+        );
+        const merged = {};
+        results.forEach(([id, data]) => { merged[id] = data; });
+        setGroups(merged);
+      } catch (e) {
+        setErr(String(e.message || e));
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, [token]);
+
+  if (err) return <p className="text-red-500 text-sm" data-testid="pdf-library-error">Failed to load: {err}</p>;
+  if (loading) return <p className="text-gray-400">Loading PDF library...</p>;
+
+  return (
+    <div data-testid="pdf-library-tab">
+      <div className="mb-5">
+        <h2 className="text-lg font-bold text-[#1C2B2B]">PDF Library</h2>
+        <p className="text-xs text-gray-500 mt-1 leading-relaxed max-w-3xl">
+          Every branded PDF being sold on giglinecompliance.com in one place. Click a section to expand,
+          then preview or download any file. These are the exact bytes attached to buyer confirmation emails.
+        </p>
+      </div>
+
+      <div className="space-y-3">
+        {PDF_GROUPS.map((g) => {
+          const data = groups[g.id];
+          if (!data) return null;
+          const isOpen = openGroup === g.id;
+          return (
+            <div
+              key={g.id}
+              className="border border-gray-200 rounded-lg overflow-hidden bg-white"
+              data-testid={`pdf-library-group-${g.id}`}
+            >
+              {/* Header row (click to expand/collapse) */}
+              <button
+                type="button"
+                onClick={() => setOpenGroup(isOpen ? null : g.id)}
+                className={`w-full flex items-center justify-between px-4 py-3 text-left transition-colors ${isOpen ? 'bg-[#102A43] text-white' : 'bg-gray-50 hover:bg-gray-100 text-[#1C2B2B]'}`}
+                data-testid={`pdf-library-toggle-${g.id}`}
+              >
+                <div className="flex items-center gap-3">
+                  <FileText size={16} className={isOpen ? 'text-[#C9A84C]' : 'text-gray-400'} />
+                  <div>
+                    <span className="font-bold text-[13.5px]">{g.label}</span>
+                    <span className={`ml-3 text-[11px] font-mono ${isOpen ? 'text-white/70' : 'text-gray-500'}`}>
+                      {data.count}/{data.expected} on disk
+                    </span>
+                  </div>
+                </div>
+                <ChevronRight
+                  size={16}
+                  className={`transition-transform ${isOpen ? 'rotate-90' : ''} ${isOpen ? 'text-white/60' : 'text-gray-400'}`}
+                />
+              </button>
+
+              {/* Body */}
+              {isOpen && (
+                <div className="p-4">
+                  <p className="text-[11.5px] text-gray-500 leading-relaxed mb-3 italic">{g.hint}</p>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-sm" data-testid={`pdf-library-table-${g.id}`}>
+                      <thead>
+                        <tr className="bg-[#2A52A0] text-white text-left">
+                          <th className="px-3 py-2 text-xs">#</th>
+                          <th className="px-3 py-2 text-xs">Filename</th>
+                          <th className="px-3 py-2 text-xs text-right">Size</th>
+                          <th className="px-3 py-2 text-xs">Modified</th>
+                          <th className="px-3 py-2 text-xs text-right">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {data.files.map((f, i) => {
+                          const url = `${API}/api/admin/kit-files/${encodeURIComponent(f.filename)}?token=${encodeURIComponent(token)}&group=${g.id}`;
+                          return (
+                            <tr key={f.filename} className="border-b border-gray-100 hover:bg-gray-50" data-testid={`pdf-library-row-${g.id}-${i}`}>
+                              <td className="px-3 py-2.5 text-xs text-gray-400">{String(i + 1).padStart(2, '0')}</td>
+                              <td className="px-3 py-2.5 text-[12.5px] text-[#1C2B2B] font-mono break-all">{f.filename}</td>
+                              <td className="px-3 py-2.5 text-xs text-gray-500 text-right whitespace-nowrap">{f.on_disk ? `${f.size_kb} KB` : ','}</td>
+                              <td className="px-3 py-2.5 text-xs text-gray-400 whitespace-nowrap">{f.modified ? new Date(f.modified).toLocaleDateString() : ','}</td>
+                              <td className="px-3 py-2.5 text-right whitespace-nowrap">
+                                {!f.on_disk ? (
+                                  <span className="inline-block text-[10px] font-bold px-2 py-1 rounded bg-red-50 text-red-600" data-testid={`pdf-library-missing-${g.id}-${i}`}>Missing on server</span>
+                                ) : (
+                                  <div className="inline-flex items-center gap-2">
+                                    <a
+                                      href={url}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1.5 rounded border border-gray-300 text-gray-600 hover:bg-gray-100 transition-colors"
+                                      data-testid={`pdf-library-preview-${g.id}-${i}`}
+                                    >
+                                      <Eye size={11} /> Preview
+                                    </a>
+                                    <a
+                                      href={url}
+                                      download={f.filename}
+                                      className="inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-1.5 rounded bg-[#C9A84C] text-[#102A43] hover:bg-[#B8972C] transition-colors"
+                                      data-testid={`pdf-library-download-${g.id}-${i}`}
+                                    >
+                                      Download
+                                    </a>
+                                  </div>
+                                )}
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      <p className="text-[10.5px] text-gray-400 mt-6 leading-relaxed">
+        Need to replace a PDF? Upload the new file via git/SSH to the same path on the server, then rerun
+        <code className="mx-1 px-1.5 py-0.5 bg-gray-100 rounded font-mono text-[10px]">scripts/build_citation_proof_kit_pdfs.py</code>
+        for the Citation-Proof Kit set (DOCX &rarr; PDF conversion). New buyers get the fresh version on their next
+        purchase; buyers who already received the old copy can request a re-send from the <strong>/resend-my-kit</strong> page.
+      </p>
+    </div>
+  );
+};
+
+
+
+/* ── Personalize PDF sub-tab (GL-WEB-018f), client-name → PDF cover slug ── */
 const PersonalizePdfTab = ({ token }) => {
   const [pdfs, setPdfs] = useState(null);
   const [selected, setSelected] = useState('');
@@ -1193,7 +1665,7 @@ const PersonalizePdfTab = ({ token }) => {
       <h2 className="text-lg font-bold text-[#1C2B2B] mb-1">Personalize a collateral PDF</h2>
       <p className="text-xs text-gray-500 mb-5 leading-relaxed max-w-2xl">
         Generate a copy of any collateral PDF with the client&rsquo;s company name printed in the cover&rsquo;s
-        <em> &ldquo;PREPARED FOR&hellip;&rdquo; </em> header slug. Nothing is written to the public assets folder &mdash;
+        <em> &ldquo;PREPARED FOR&hellip;&rdquo; </em> header slug. Nothing is written to the public assets folder ,
         the personalized copy streams directly to your download.
       </p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
@@ -1252,7 +1724,7 @@ const PersonalizePdfTab = ({ token }) => {
   );
 };
 
-/* ── Google Indexing sub-tab — submit URLs to the Google Indexing API ── */
+/* ── Google Indexing sub-tab, submit URLs to the Google Indexing API ── */
 const GoogleIndexingTab = ({ token }) => {
   const [status, setStatus] = useState(null);
   const [singleUrl, setSingleUrl] = useState('');
@@ -1465,8 +1937,8 @@ const GoogleIndexingTab = ({ token }) => {
             data-testid="google-indexing-bulk-result"
           >
             <div className="grid grid-cols-4 gap-3 mb-2 text-center">
-              <div><p className="text-[10px] text-gray-500 uppercase">Matched</p><p className="text-sm font-bold">{bulkResult.data.total_matched ?? '—'}</p></div>
-              <div><p className="text-[10px] text-gray-500 uppercase">Limit</p><p className="text-sm font-bold">{bulkResult.data.limit_applied ?? '—'}</p></div>
+              <div><p className="text-[10px] text-gray-500 uppercase">Matched</p><p className="text-sm font-bold">{bulkResult.data.total_matched ?? ','}</p></div>
+              <div><p className="text-[10px] text-gray-500 uppercase">Limit</p><p className="text-sm font-bold">{bulkResult.data.limit_applied ?? ','}</p></div>
               <div><p className="text-[10px] text-gray-500 uppercase">Submitted</p><p className="text-sm font-bold text-green-700">{bulkResult.data.submitted ?? 0}</p></div>
               <div><p className="text-[10px] text-gray-500 uppercase">Failed</p><p className="text-sm font-bold text-red-700">{bulkResult.data.failed ?? 0}</p></div>
             </div>

@@ -18,7 +18,7 @@ const tocItems = [
 
 const defined = {
   headline: "OSHA Forklift Compliance: What Inspectors Actually Check",
-  description: "The forklift-related items OSHA inspectors ask for first — operator certifications, daily inspection logs, traffic controls — with the CFR sections and 2026 penalty exposures. From a consultant walking Piedmont Triad warehouse floors weekly.",
+  description: "OSHA forklift compliance, operator certifications, daily inspections, traffic controls. CFR + 2026 penalty exposure.",
   canonical: "/blog/osha-forklift-compliance-inspector-checklist",
   datePublished: "2025-11-11",
   dateModified: "2025-11-11",
@@ -37,7 +37,7 @@ const faqSchema = {
   "@context": "https://schema.org", "@type": "FAQPage",
   "mainEntity": [
     { "@type": "Question", "name": "How often does forklift operator certification need to be renewed?", "acceptedAnswer": { "@type": "Answer", "text": "Every three years per OSHA 29 CFR 1910.178(l)(4)(iii). Evaluation of each operator's performance must be conducted at least once every three years, or sooner if the operator is involved in an accident, near-miss, has an unsafe operation observation, is assigned a different type of truck, or if workplace conditions change." } },
-    { "@type": "Question", "name": "What is required in an OSHA forklift inspection log?", "acceptedAnswer": { "@type": "Answer", "text": "1910.178(q)(7) requires inspection before use — at least daily, and before each shift if used around the clock. The log should identify the truck, the date, the operator, and defects found. If a defect makes the truck unsafe, it must be removed from service until repaired. Written records are best practice; some OSHA regions accept verbal reports if documented." } },
+    { "@type": "Question", "name": "What is required in an OSHA forklift inspection log?", "acceptedAnswer": { "@type": "Answer", "text": "1910.178(q)(7) requires inspection before use, at least daily, and before each shift if used around the clock. The log should identify the truck, the date, the operator, and defects found. If a defect makes the truck unsafe, it must be removed from service until repaired. Written records are best practice; some OSHA regions accept verbal reports if documented." } },
     { "@type": "Question", "name": "What is the maximum OSHA penalty for forklift violations in 2026?", "acceptedAnswer": { "@type": "Answer", "text": "Serious forklift violations carry up to $16,550 per violation under OSHA's 2026 penalty schedule (29 CFR 1903.15). Willful or repeat violations reach $165,514. Multi-employee training or certification failures can result in one citation per employee, multiplying exposure." } },
     { "@type": "Question", "name": "Do I need separate certifications for different types of forklifts?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. OSHA classifies powered industrial trucks into seven classes (electric riders, electric narrow aisle, motorized hand trucks, internal combustion cushion tire, internal combustion pneumatic tire, electric stand-up, and rough terrain). Operators must be certified for each class of truck they operate. A Class 4 certification does not authorize operation of a Class 7 rough-terrain truck." } },
     { "@type": "Question", "name": "Are pedestrian traffic controls required around forklifts?", "acceptedAnswer": { "@type": "Answer", "text": "OSHA does not prescribe specific pedestrian controls, but 1910.176(a) and the general duty clause require separation of pedestrians and powered industrial trucks. Best-practice controls include painted pedestrian lanes, blue safety lights, convex mirrors at intersections, defined loading zones, and 'no phone' rules for operators." } },
@@ -49,15 +49,15 @@ const combinedSchema = [articleSchema, faqSchema];
 
 const inspectorChecks = [
   { icon: Award, cfr: "1910.178(l)(4)(iii)", title: "Operator certifications", desc: "Certificates on file for every operator, dated within three years, listing the specific truck classes each is authorized to operate. Missing dates, missing signatures, or expired evaluations are the most common finding." },
-  { icon: ClipboardCheck, cfr: "1910.178(q)(7)", title: "Daily inspection logs", desc: "A written pre-shift inspection log for every truck. Missing dates, unsigned entries, or a defect noted with no follow-up abatement — all citation triggers." },
+  { icon: ClipboardCheck, cfr: "1910.178(q)(7)", title: "Daily inspection logs", desc: "A written pre-shift inspection log for every truck. Missing dates, unsigned entries, or a defect noted with no follow-up abatement, all citation triggers." },
   { icon: Truck, cfr: "1910.178(l)(6)", title: "Refresher training records", desc: "Evidence that any operator involved in an accident, near-miss, or unsafe-operation observation was retrained. If your incident log shows an event and your training records don't show follow-up, that's a finding." },
   { icon: AlertTriangle, cfr: "1910.178(m)(14)", title: "Fueling and battery-charging areas", desc: "Designated location, ventilation, no smoking signs, fire extinguisher, eye-wash if lead-acid batteries. Battery-charging area is a favorite inspector stop." },
   { icon: Users, cfr: "1910.178(m)(10)", title: "Pedestrian-truck separation", desc: "Painted lanes, mirrors at blind corners, signage. Not required by rule name, but OSHA cites under the general duty clause when the traffic pattern creates struck-by hazards." },
-  { icon: FileText, cfr: "1910.178(n)(1)", title: "Load-handling documentation", desc: "The data plate on every truck is legible and matches the operator's training. Attachments (side-shifters, roll clamps, drum handlers) modify capacity — the modified plate must be posted." },
+  { icon: FileText, cfr: "1910.178(n)(1)", title: "Load-handling documentation", desc: "The data plate on every truck is legible and matches the operator's training. Attachments (side-shifters, roll clamps, drum handlers) modify capacity, the modified plate must be posted." },
 ];
 
 const dailyChecklist = [
-  { area: "Pre-start (engine off)", items: ["Tires — inflated, no cuts, correct pressure","Forks — no cracks, aligned, retention pin secure","Chains — no broken links, lubricated, correct tension","Hoses and lines — no leaks or damage","Overhead guard — no damage, all bolts present","Data plate legible with capacity and lift height","Fluid levels — oil, hydraulic, coolant, battery","Fire extinguisher — pressure OK, tagged current"] },
+  { area: "Pre-start (engine off)", items: ["Tires, inflated, no cuts, correct pressure","Forks, no cracks, aligned, retention pin secure","Chains, no broken links, lubricated, correct tension","Hoses and lines, no leaks or damage","Overhead guard, no damage, all bolts present","Data plate legible with capacity and lift height","Fluid levels, oil, hydraulic, coolant, battery","Fire extinguisher, pressure OK, tagged current"] },
   { area: "Start-up & running (engine on)", items: ["Horn functions","Backup alarm functions","Headlights, taillights, and strobes","Steering has no excessive play","Brakes hold on incline","Parking brake holds","Lift and lower controls smooth","Tilt controls smooth in both directions","No unusual noises or smells"] },
 ];
 
@@ -101,7 +101,7 @@ const BlogForkliftCompliance = () => {
       <section className="py-12 md:py-16 border-b border-[#2A52A0]/10" id="what-standard">
         <div className="container max-w-3xl">
           <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>What OSHA 1910.178 covers</h2>
-          <p className="text-[#1C2B2B]/70 leading-relaxed mb-4">The powered industrial truck standard — <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '13px' }}>29 CFR 1910.178</span> — is one of OSHA's most cited standards year after year. It applies to any high-lift trucks, lift trucks, tractors, platform trucks, motorized hand trucks, and other specialized industrial vehicles powered by electric motors or internal combustion engines.</p>
+          <p className="text-[#1C2B2B]/70 leading-relaxed mb-4">The powered industrial truck standard, <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '13px' }}>29 CFR 1910.178</span>, is one of OSHA's most cited standards year after year. It applies to any high-lift trucks, lift trucks, tractors, platform trucks, motorized hand trucks, and other specialized industrial vehicles powered by electric motors or internal combustion engines.</p>
           <p className="text-[#1C2B2B]/70 leading-relaxed mb-4">The standard breaks down into a handful of program areas:</p>
           <ul className="space-y-2 mb-6">
             {["Truck design and modifications (1910.178(a))","Truck operations (1910.178(m))","Loading (1910.178(o))","Battery charging installations (1910.178(g))","Maintenance and inspection (1910.178(q))","Operator training and certification (1910.178(l))"].map((item, i) => (
@@ -134,12 +134,12 @@ const BlogForkliftCompliance = () => {
 
       <section className="py-12 md:py-16 border-b border-[#2A52A0]/10" id="certifications">
         <div className="container max-w-3xl">
-          <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>Operator certification — what it actually requires</h2>
+          <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>Operator certification, what it actually requires</h2>
           <p className="text-[#1C2B2B]/70 leading-relaxed mb-4">OSHA does not license forklift operators. The employer certifies them. That certification must include three parts:</p>
           <ol className="space-y-4 mb-6">
-            <li className="flex items-start gap-3 text-sm text-[#1C2B2B]/70"><span className="font-bold text-[#2A52A0] flex-shrink-0">1.</span><span><strong className="text-[#1C2B2B]">Formal instruction</strong> — classroom or video training covering the topics in 1910.178(l)(3)(i).</span></li>
-            <li className="flex items-start gap-3 text-sm text-[#1C2B2B]/70"><span className="font-bold text-[#2A52A0] flex-shrink-0">2.</span><span><strong className="text-[#1C2B2B]">Practical training</strong> — hands-on driving and load-handling exercises specific to the truck type and workplace.</span></li>
-            <li className="flex items-start gap-3 text-sm text-[#1C2B2B]/70"><span className="font-bold text-[#2A52A0] flex-shrink-0">3.</span><span><strong className="text-[#1C2B2B]">Evaluation of performance</strong> — an observed evaluation of the operator actually driving the truck in the workplace. This is the piece most facilities skip or document poorly.</span></li>
+            <li className="flex items-start gap-3 text-sm text-[#1C2B2B]/70"><span className="font-bold text-[#2A52A0] flex-shrink-0">1.</span><span><strong className="text-[#1C2B2B]">Formal instruction</strong>, classroom or video training covering the topics in 1910.178(l)(3)(i).</span></li>
+            <li className="flex items-start gap-3 text-sm text-[#1C2B2B]/70"><span className="font-bold text-[#2A52A0] flex-shrink-0">2.</span><span><strong className="text-[#1C2B2B]">Practical training</strong>, hands-on driving and load-handling exercises specific to the truck type and workplace.</span></li>
+            <li className="flex items-start gap-3 text-sm text-[#1C2B2B]/70"><span className="font-bold text-[#2A52A0] flex-shrink-0">3.</span><span><strong className="text-[#1C2B2B]">Evaluation of performance</strong>, an observed evaluation of the operator actually driving the truck in the workplace. This is the piece most facilities skip or document poorly.</span></li>
           </ol>
           <p className="text-[#1C2B2B]/70 leading-relaxed mb-4">The certificate itself must list:</p>
           <ul className="space-y-2 mb-6">
@@ -153,7 +153,7 @@ const BlogForkliftCompliance = () => {
 
       <section className="py-12 md:py-16 bg-[#F9F8F6]" id="daily-log">
         <div className="container max-w-3xl">
-          <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-8" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>The daily inspection log — what to include</h2>
+          <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-8" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>The daily inspection log, what to include</h2>
           <p className="text-[#1C2B2B]/60 text-sm mb-8">Split into two phases. Every operator, every truck, every shift.</p>
           <div className="space-y-8">
             {dailyChecklist.map((c, i) => (
@@ -172,7 +172,7 @@ const BlogForkliftCompliance = () => {
 
       <section className="py-12 md:py-16 border-b border-[#2A52A0]/10" id="traffic">
         <div className="container max-w-3xl">
-          <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>Traffic controls — what OSHA looks for</h2>
+          <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>Traffic controls, what OSHA looks for</h2>
           <p className="text-[#1C2B2B]/70 leading-relaxed mb-4">Struck-by-forklift is one of the top mechanisms of fatality in warehouse operations. OSHA does not prescribe specific engineering controls, but during any inspection with forklift activity the officer will note the traffic separation between pedestrians and trucks.</p>
           <p className="text-[#1C2B2B]/70 leading-relaxed mb-4">A well-controlled facility typically has:</p>
           <ul className="space-y-2 mb-6">
@@ -188,11 +188,11 @@ const BlogForkliftCompliance = () => {
           <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-6" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>The five forklift citations that hit small warehouses</h2>
           <ol className="space-y-4">
             {[
-              { t: "Expired operator evaluations — 1910.178(l)(4)(iii)", d: "The three-year clock runs on the evaluation, not the classroom training. A facility that hasn't documented a walking-around observation in three years is out of compliance even if all operators completed initial training." },
-              { t: "Missing daily inspection log — 1910.178(q)(7)", d: "Inspections are performed but there is no written record. Or logs exist for the front two trucks but not the back forklift used weekly in the drum-storage area." },
-              { t: "Damaged or missing data plate — 1910.178(a)(6)", d: "The nameplate is scraped off, unreadable, or the truck was modified with an attachment and the new capacity plate was never obtained from the manufacturer." },
-              { t: "Attachment used without capacity plate — 1910.178(a)(4)", d: "Side-shifters, roll clamps, and drum-handling attachments change lifting capacity. When the truck runs with the attachment, the modified capacity plate must be posted." },
-              { t: "No signal alarm on truck operating in an area with obstructed vision — 1910.178(l)(3)(ii)", d: "OSHA increasingly cites when facilities operate trucks in areas where visibility is limited and there is no backup alarm, spotter, or convex mirror system in place." },
+              { t: "Expired operator evaluations, 1910.178(l)(4)(iii)", d: "The three-year clock runs on the evaluation, not the classroom training. A facility that hasn't documented a walking-around observation in three years is out of compliance even if all operators completed initial training." },
+              { t: "Missing daily inspection log, 1910.178(q)(7)", d: "Inspections are performed but there is no written record. Or logs exist for the front two trucks but not the back forklift used weekly in the drum-storage area." },
+              { t: "Damaged or missing data plate, 1910.178(a)(6)", d: "The nameplate is scraped off, unreadable, or the truck was modified with an attachment and the new capacity plate was never obtained from the manufacturer." },
+              { t: "Attachment used without capacity plate, 1910.178(a)(4)", d: "Side-shifters, roll clamps, and drum-handling attachments change lifting capacity. When the truck runs with the attachment, the modified capacity plate must be posted." },
+              { t: "No signal alarm on truck operating in an area with obstructed vision, 1910.178(l)(3)(ii)", d: "OSHA increasingly cites when facilities operate trucks in areas where visibility is limited and there is no backup alarm, spotter, or convex mirror system in place." },
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-4">
                 <span className="bg-[#102A43] text-white text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">{i + 1}</span>
@@ -228,9 +228,9 @@ const BlogForkliftCompliance = () => {
           <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-8" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>30-day forklift cleanup plan</h2>
           <ol className="space-y-6">
             {[
-              { title: "Week 1: Certification audit", desc: "Pull every operator file. Verify formal training, practical training, and evaluation dates. Anyone with an evaluation older than 3 years — schedule a re-evaluation." },
+              { title: "Week 1: Certification audit", desc: "Pull every operator file. Verify formal training, practical training, and evaluation dates. Anyone with an evaluation older than 3 years, schedule a re-evaluation." },
               { title: "Week 2: Inspection log recovery", desc: "Print a standardized pre-shift checklist for every truck. Attach a clipboard to each truck's overhead guard. Track completion daily for the first two weeks." },
-              { title: "Week 3: Data plates and attachments", desc: "Photograph every data plate. Any missing or illegible one — order a replacement from the manufacturer. Confirm each attachment has its modified capacity plate posted." },
+              { title: "Week 3: Data plates and attachments", desc: "Photograph every data plate. Any missing or illegible one, order a replacement from the manufacturer. Confirm each attachment has its modified capacity plate posted." },
               { title: "Week 4: Traffic and training", desc: "Paint pedestrian lanes. Install convex mirrors. Post speed limit signs at aisle entrances. Update the operator training curriculum to include the site-specific traffic plan." },
             ].map((step, i) => (
               <li key={i} className="flex items-start gap-4">
@@ -247,12 +247,12 @@ const BlogForkliftCompliance = () => {
           <h2 className="text-xl md:text-2xl font-bold mb-8" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>Related Resources</h2>
           <div className="space-y-4 mb-10">
             <Link to="/safety-walkthrough" className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#2A52A0]/40 transition-colors group">
-              <div><p className="font-medium text-white group-hover:text-[#2A52A0] transition-colors text-sm">Safety Walkthrough — $1,200</p><p className="text-xs text-white/50 mt-1">Warehouse floor review including forklift program, traffic controls, and pedestrian separation.</p></div>
+              <div><p className="font-medium text-white group-hover:text-[#2A52A0] transition-colors text-sm">Safety Walkthrough, $1,300</p><p className="text-xs text-white/50 mt-1">Warehouse floor review including forklift program, traffic controls, and pedestrian separation.</p></div>
               <ArrowRight size={18} className="text-white/30 group-hover:text-[#2A52A0] transition-colors flex-shrink-0" />
             </Link>
             {SUPERVISOR_KIT_ENABLED && (
             <Link to="/supervisor-kit" className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded hover:border-[#2A52A0]/40 transition-colors group">
-              <div><p className="font-medium text-white group-hover:text-[#2A52A0] transition-colors text-sm">GigLine Supervisor Safety OS — $600</p><p className="text-xs text-white/50 mt-1">11 print-ready documents including forklift inspection log and operator certification template.</p></div>
+              <div><p className="font-medium text-white group-hover:text-[#2A52A0] transition-colors text-sm">GigLine Supervisor Safety OS, $600</p><p className="text-xs text-white/50 mt-1">11 print-ready documents including forklift inspection log and operator certification template.</p></div>
               <ArrowRight size={18} className="text-white/30 group-hover:text-[#2A52A0] transition-colors flex-shrink-0" />
             </Link>
             )}
@@ -277,7 +277,7 @@ const BlogForkliftCompliance = () => {
         <div className="container max-w-3xl">
           <div className="border border-[#2A52A0]/20 bg-white rounded-lg p-6 md:p-8 text-center">
             <p className="text-lg font-bold text-[#1C2B2B] mb-2">Not sure your forklift program would survive an inspection?</p>
-            <p className="text-sm text-[#1C2B2B]/60 mb-5">A Safety Walkthrough documents the state of your certifications, inspection logs, and traffic controls before OSHA does — with photos and a fix list in 48 hours.</p>
+            <p className="text-sm text-[#1C2B2B]/60 mb-5">A Safety Walkthrough documents the state of your certifications, inspection logs, and traffic controls before OSHA does, with photos and a fix list in 48 hours.</p>
             <Link to="/intake" className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-6 py-3 rounded transition-colors">Request a Safety Walkthrough <ArrowRight size={16} /></Link>
           </div>
         </div>
@@ -290,7 +290,7 @@ const BlogForkliftCompliance = () => {
             <div>
               <p className="font-semibold text-[#1C2B2B] text-sm">Vince Lawrence</p>
               <p className="text-xs text-[#1C2B2B]/50 mb-2">Safety Consultant, OSHA 30-Hour Certified, U.S. Navy Veteran</p>
-              <p className="text-xs text-[#1C2B2B]/50">GigLine Safety & Compliance — Kernersville, NC <span className="text-[#1C2B2B]/30 mx-1">|</span> <a href="tel:3363298899" className="text-[#1F3F80] hover:underline">(336) 329-8899</a> <span className="text-[#1C2B2B]/30 mx-1">|</span> <a href="mailto:vince@giglinecompliance.com" className="text-[#1F3F80] hover:underline">vince@giglinecompliance.com</a></p>
+              <p className="text-xs text-[#1C2B2B]/50">GigLine Safety & Compliance, Kernersville, NC <span className="text-[#1C2B2B]/30 mx-1">|</span> <a href="tel:3363298899" className="text-[#1F3F80] hover:underline">(336) 329-8899</a> <span className="text-[#1C2B2B]/30 mx-1">|</span> <a href="mailto:vince@giglinecompliance.com" className="text-[#1F3F80] hover:underline">vince@giglinecompliance.com</a></p>
               <p className="text-xs text-[#1C2B2B]/40 mt-2 italic">Penalty amounts reflect OSHA&rsquo;s 2026 maximum penalty adjustments effective after January 15, 2026. Actual penalties depend on classification, employer size, gravity, history, and good-faith factors.</p>
             </div>
           </div>

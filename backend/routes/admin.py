@@ -11,7 +11,10 @@ import uuid
 import logging
 
 import resend
-from config import db, ADMIN_PASSWORD, is_admin, SENDER_EMAIL, VINCE_EMAIL, SUPERVISOR_KIT_FILES
+from config import (
+    db, ADMIN_PASSWORD, is_admin, SENDER_EMAIL, VINCE_EMAIL,
+    SUPERVISOR_KIT_FILES, HAZCOM_FILES, CITATION_PROOF_KIT_PRODUCTS,
+)
 
 router = APIRouter()
 logger = logging.getLogger('gigline')
@@ -24,17 +27,58 @@ _BACKEND_ROOT = Path(__file__).resolve().parent.parent
 KIT_FILES_DIR = str(_BACKEND_ROOT / "kit_files")
 
 
-@router.get("/admin/kit-files")
-async def list_kit_files(token: str = ""):
-    """Admin-only: list the 11 GigLine Supervisor Safety OS PDFs on disk.
+# ── PDF Library groups ────────────────────────────────────────────────────────
+# Unified manifest of every PDF being sold online + auto-attached to buyer emails.
+# Used by the /admin/kit-files endpoints so the admin UI can view/download the
+# actual files across all product families in one place.
+def _citation_proof_kit_manifest() -> dict:
+    """De-dupe the citation-proof PDF paths (binder tier shares its PDF with
+    control-system tier, so 6 SKUs collapse to 4 unique files)."""
+    seen: dict[str, str] = {}
+    for cfg in CITATION_PROOF_KIT_PRODUCTS.values():
+        path = cfg.get("pdf_path")
+        if not path:
+            continue
+        name = os.path.basename(path)
+        seen[name] = path
+    return seen
 
-    Uses SUPERVISOR_KIT_FILES from config so the list always matches the
-    manifest used by the buyer-email attachment code.
+
+def _pdf_groups() -> dict:
+    return {
+        "citation_proof_kit": _citation_proof_kit_manifest(),
+        "hazcom": {name: str(p) for name, p in HAZCOM_FILES.items()},
+        "supervisor_kit": {name: str(p) for name, p in SUPERVISOR_KIT_FILES.items()},
+    }
+
+
+PDF_GROUP_LABELS = {
+    "citation_proof_kit": "Citation-Proof Kit Series",
+    "hazcom":             "HazCom Starter Pack",
+    "supervisor_kit":     "GigLine Supervisor Safety OS",
+}
+
+
+@router.get("/admin/kit-files")
+async def list_kit_files(token: str = "", group: str = "supervisor_kit"):
+    """Admin-only: list PDFs on disk for a given product group.
+
+    Query params:
+        token — admin password
+        group — "citation_proof_kit" | "hazcom" | "supervisor_kit" (default: supervisor_kit for back-compat)
+
+    Uses the same source-of-truth manifests the buyer-email attachment code
+    reads from, so the admin sees exactly what customers receive.
     """
     if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
+    groups = _pdf_groups()
+    if group not in groups:
+        raise HTTPException(status_code=400, detail=f"Unknown group. Valid: {sorted(groups.keys())}")
+
+    manifest = groups[group]
     files = []
-    for name, path in SUPERVISOR_KIT_FILES.items():
+    for name, path in manifest.items():
         p = Path(path)
         if p.is_file():
             st = p.stat()
@@ -52,19 +96,29 @@ async def list_kit_files(token: str = ""):
                 "on_disk": False,
             })
     files.sort(key=lambda f: f["filename"])
-    return {"files": files, "count": sum(1 for f in files if f["on_disk"]), "expected": len(SUPERVISOR_KIT_FILES)}
+    return {
+        "group": group,
+        "group_label": PDF_GROUP_LABELS.get(group, group),
+        "files": files,
+        "count": sum(1 for f in files if f["on_disk"]),
+        "expected": len(manifest),
+    }
 
 
 @router.get("/admin/kit-files/{filename}")
-async def download_kit_file(filename: str, token: str = ""):
-    """Admin-only: download a GigLine Supervisor Safety OS PDF."""
+async def download_kit_file(filename: str, token: str = "", group: str = "supervisor_kit"):
+    """Admin-only: download a PDF from the given product group."""
     if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
+    groups = _pdf_groups()
+    if group not in groups:
+        raise HTTPException(status_code=400, detail=f"Unknown group. Valid: {sorted(groups.keys())}")
+
     safe_name = os.path.basename(filename)
-    # Must be in the SUPERVISOR_KIT_FILES manifest (prevents arbitrary reads)
-    if safe_name not in SUPERVISOR_KIT_FILES:
-        raise HTTPException(status_code=404, detail="Kit file not found")
-    filepath = SUPERVISOR_KIT_FILES[safe_name]
+    manifest = groups[group]
+    if safe_name not in manifest:
+        raise HTTPException(status_code=404, detail="Kit file not found in this group")
+    filepath = manifest[safe_name]
     if not Path(filepath).is_file():
         raise HTTPException(status_code=404, detail="Kit file not on disk in this environment")
     return FileResponse(str(filepath), media_type="application/pdf", filename=safe_name)
@@ -546,3 +600,202 @@ async def export_csv(kind: str, token: str = ""):
     if not rows:
         rows = await db[coll_name].find({}, {"_id": 0}).to_list(5000)
     return _rows_to_csv(rows, f"gigline-{kind}-{today}.csv")
+
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Kit Orders — unified view of paid Citation-Proof Kit + Supervisor Kit orders.
+# Purpose: give Vince a single dashboard to spot $600 binder / $700 physical
+# orders that still need to be shipped, plus a "Mark Shipped" action.
+# ═══════════════════════════════════════════════════════════════════════════════
+
+@router.get("/admin/kit-orders")
+async def admin_kit_orders(token: str = "", filter: str = "all"):
+    """List paid kit orders across Citation-Proof Kits + Supervisor Kit.
+
+    Query params:
+        token   — admin password
+        filter  — "all" (default) | "needs_shipping" | "auto_delivered" | "pending_manual"
+
+    "needs_shipping" surfaces the physical/binder orders whose PDFs have been
+    auto-delivered but that still need a printed binder mailed out.
+    """
+    if not is_admin(token):
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+    valid_filters = {"all", "needs_shipping", "auto_delivered", "pending_manual", "shipped"}
+    if filter not in valid_filters:
+        raise HTTPException(status_code=400, detail=f"Invalid filter. Valid: {sorted(valid_filters)}")
+
+    # ── Citation-Proof Kit orders ──────────────────────────────────────────
+    cp_query = {"status": "paid"}
+    if filter == "needs_shipping":
+        cp_query["fulfillment_status"] = "pdf_delivered_awaiting_ship"
+    elif filter == "auto_delivered":
+        cp_query["fulfillment_status"] = "auto_delivered"
+    elif filter == "pending_manual":
+        cp_query["fulfillment_status"] = "pending_manual"
+    elif filter == "shipped":
+        cp_query["fulfillment_status"] = "shipped"
+
+    cp_orders = await db.gl_citation_proof_kit_orders.find(
+        cp_query, {"_id": 0}
+    ).sort("paid_at", -1).to_list(500)
+
+    # ── Supervisor Kit orders ──────────────────────────────────────────────
+    # Supervisor kit uses variant="physical" for the shippable one; if the filter
+    # is "needs_shipping" we only include physical variant that hasn't been shipped.
+    sk_query = {"status": "paid"}
+    if filter == "needs_shipping":
+        sk_query["variant"] = "physical"
+        sk_query["fulfillment_status"] = {"$ne": "shipped"}
+    elif filter == "shipped":
+        sk_query["fulfillment_status"] = "shipped"
+    elif filter == "auto_delivered":
+        # Supervisor kit digital variant is always auto-delivered
+        sk_query["variant"] = "digital"
+    elif filter == "pending_manual":
+        # Not applicable to supervisor kit; skip
+        sk_query = None
+
+    sk_orders = []
+    if sk_query is not None:
+        sk_orders = await db.gl_supervisor_kit_orders.find(
+            sk_query, {"_id": 0}
+        ).sort("paid_at", -1).to_list(500)
+
+    # ── Normalize both sources into a shared shape ─────────────────────────
+    def _norm_cp(o):
+        return {
+            "source": "citation_proof_kit",
+            "session_id": o.get("session_id"),
+            "product_slug": o.get("kit_slug"),
+            "tier": o.get("tier"),
+            "label": o.get("label"),
+            "amount_cents": o.get("amount_total_cents") or o.get("amount_cents"),
+            "physical": bool(o.get("physical_binder")),
+            "customer_email": o.get("customer_email") or o.get("email"),
+            "customer_name": o.get("customer_name"),
+            "customer_phone": o.get("customer_phone"),
+            "company_name": o.get("company_name"),
+            "shipping_details": o.get("shipping_details"),
+            "fulfillment_status": o.get("fulfillment_status") or "unknown",
+            "tracking_number": o.get("tracking_number"),
+            "shipped_at": o.get("shipped_at"),
+            "paid_at": o.get("paid_at"),
+            "created_at": o.get("created_at"),
+        }
+
+    def _norm_sk(o):
+        variant = o.get("variant") or ""
+        return {
+            "source": "supervisor_kit",
+            "session_id": o.get("session_id"),
+            "product_slug": "supervisor-safety-os",
+            "tier": variant,  # "digital" or "physical"
+            "label": o.get("label"),
+            "amount_cents": o.get("amount_total_cents") or o.get("amount_cents"),
+            "physical": variant == "physical",
+            "customer_email": o.get("customer_email") or o.get("email"),
+            "customer_name": o.get("customer_name"),
+            "customer_phone": o.get("customer_phone"),
+            "company_name": o.get("company_name"),
+            "shipping_details": o.get("shipping_details"),
+            "fulfillment_status": o.get("fulfillment_status") or ("auto_delivered" if variant == "digital" else "pending_ship"),
+            "tracking_number": o.get("tracking_number"),
+            "shipped_at": o.get("shipped_at"),
+            "paid_at": o.get("paid_at"),
+            "created_at": o.get("created_at"),
+        }
+
+    orders = [_norm_cp(o) for o in cp_orders] + [_norm_sk(o) for o in sk_orders]
+    # Sort combined list by paid_at DESC (fallback created_at)
+    orders.sort(key=lambda x: x.get("paid_at") or x.get("created_at") or "", reverse=True)
+
+    # ── Summary counts (always over full paid set, ignoring filter) ────────
+    total_paid_cp = await db.gl_citation_proof_kit_orders.count_documents({"status": "paid"})
+    total_paid_sk = await db.gl_supervisor_kit_orders.count_documents({"status": "paid"})
+    needs_ship_cp = await db.gl_citation_proof_kit_orders.count_documents(
+        {"status": "paid", "fulfillment_status": "pdf_delivered_awaiting_ship"}
+    )
+    needs_ship_sk = await db.gl_supervisor_kit_orders.count_documents(
+        {"status": "paid", "variant": "physical", "fulfillment_status": {"$ne": "shipped"}}
+    )
+
+    return {
+        "orders": orders,
+        "counts": {
+            "total_paid": total_paid_cp + total_paid_sk,
+            "needs_shipping": needs_ship_cp + needs_ship_sk,
+            "citation_proof_kit_paid": total_paid_cp,
+            "supervisor_kit_paid": total_paid_sk,
+        },
+        "filter": filter,
+    }
+
+
+@router.post("/admin/kit-orders/{session_id}/mark-shipped")
+async def admin_mark_kit_shipped(session_id: str, body: dict):
+    """Mark a paid physical/binder order as shipped, with optional tracking number.
+
+    Side effect: fires a Resend "your kit is on its way" email to the buyer.
+    """
+    token = body.get("token", "")
+    if not is_admin(token):
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+    tracking_number = (body.get("tracking_number") or "").strip()
+    carrier = (body.get("carrier") or "").strip()
+    now_iso = datetime.now(timezone.utc).isoformat()
+
+    update = {
+        "fulfillment_status": "shipped",
+        "shipped_at": now_iso,
+    }
+    if tracking_number:
+        update["tracking_number"] = tracking_number
+    if carrier:
+        update["shipping_carrier"] = carrier
+
+    # Try citation-proof-kit collection first
+    res_cp = await db.gl_citation_proof_kit_orders.update_one(
+        {"session_id": session_id, "status": "paid"},
+        {"$set": update},
+    )
+    order_doc = None
+    source = None
+    if res_cp.matched_count:
+        source = "citation_proof_kit"
+        order_doc = await db.gl_citation_proof_kit_orders.find_one({"session_id": session_id})
+    else:
+        # Fall back to supervisor kit
+        res_sk = await db.gl_supervisor_kit_orders.update_one(
+            {"session_id": session_id, "status": "paid"},
+            {"$set": update},
+        )
+        if res_sk.matched_count:
+            source = "supervisor_kit"
+            order_doc = await db.gl_supervisor_kit_orders.find_one({"session_id": session_id})
+
+    if not source:
+        raise HTTPException(status_code=404, detail="Paid order not found for session_id")
+
+    # Fire the shipped-confirmation email (best-effort — never blocks the mutation)
+    email_sent = False
+    if order_doc:
+        try:
+            from lib.kit_lifecycle_emails import send_shipped_confirmation
+            email_sent = await send_shipped_confirmation(order_doc, tracking_number, carrier)
+        except Exception:
+            # Deliberately swallow — DB was already updated, buyer will get anniversary
+            # follow-up regardless, and admin can manually resend from the UI later.
+            import logging
+            logging.getLogger("gigline").exception("shipped-confirmation dispatch failed")
+
+    return {
+        "ok": True,
+        "source": source,
+        "session_id": session_id,
+        "shipped_at": now_iso,
+        "email_sent": email_sent,
+    }

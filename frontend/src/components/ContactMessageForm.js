@@ -4,7 +4,7 @@ import { Send } from 'lucide-react';
 const API_URL = process.env.REACT_APP_BACKEND_URL;
 
 /**
- * GL-WEB-024 — Simple Contact Form.
+ * GL-WEB-024, Simple Contact Form.
  * Fields: name (req), email (req), phone (opt), message (req) + honeypot.
  * Style: matches the intake form's field treatment adapted for a light section.
  * On submit: Resend confirmation to prospect + notification to Vince.
@@ -84,7 +84,7 @@ const ContactMessageForm = () => {
       </p>
 
       <form className="space-y-5" onSubmit={handleSubmit} noValidate>
-        {/* Honeypot — hidden from users, visible to bots */}
+        {/* Honeypot, hidden from users, visible to bots */}
         <div
           aria-hidden="true"
           style={{ position: 'absolute', left: '-9999px', top: 'auto', width: '1px', height: '1px', overflow: 'hidden' }}
@@ -156,7 +156,7 @@ const ContactMessageForm = () => {
             rows={5}
             value={form.message}
             onChange={set('message')}
-            placeholder="Tell Vince what you're dealing with — a question, a concern, an upcoming audit, an incident, whatever it is."
+            placeholder="Tell Vince what you're dealing with, a question, a concern, an upcoming audit, an incident, whatever it is."
             className={`${input} resize-none`}
             style={fieldStyle}
             data-testid="contact-form-message"

@@ -129,7 +129,7 @@ export const ServiceLandingPage = ({ config }) => {
         </div>
       </section>
 
-      {/* What GigLine reviews + Report contents — two-column */}
+      {/* What GigLine reviews + Report contents, two-column */}
       <section className="py-14 md:py-20 bg-white" data-testid={`${slug}-deliverables`}>
         <div className="container max-w-5xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
@@ -185,7 +185,7 @@ export const ServiceLandingPage = ({ config }) => {
         <div className="container max-w-3xl text-center">
           <p className="text-sm leading-relaxed" style={{ color: '#1C2B2B', ...mono }}>
             <MapPin size={14} className="inline-block mr-1.5 -mt-0.5" />
-            Serving NC Piedmont Triad &mdash; Kernersville, Winston-Salem, Greensboro, High Point, Burlington, Lexington, Thomasville, Salisbury, Statesville, Asheboro, and surrounding.
+            Serving NC Piedmont Triad , Kernersville, Winston-Salem, Greensboro, High Point, Burlington, Lexington, Thomasville, Salisbury, Statesville, Asheboro, and surrounding.
           </p>
         </div>
       </section>

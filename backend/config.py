@@ -56,8 +56,10 @@ logger = logging.getLogger('gigline')
 
 HAZCOM_PRODUCT = {
     "name": "HazCom Starter Pack — Small Shop Edition",
+    "sku": "hazcom-starter-pack",
     "amount": 29.00,
     "description": "Written HazCom Program, SDS Binder Checklist + Index, Training Verification Log (11 pages total)",
+    "image_path": "/assets/field-notes/hazcom-sds-binder.webp",
 }
 
 HAZCOM_FILES = {
@@ -83,12 +85,14 @@ SUPERVISOR_KIT_PRODUCTS = {
         "amount_cents": 60000,  # $600
         "sku": "supervisor-kit-digital",
         "needs_shipping": False,
+        "image_path": "/assets/gl-fm-2026-cover.webp",
     },
     "physical": {
         "name": "GigLine Supervisor Safety OS — Physical Binder Kit",
         "amount_cents": 70000,  # $700 (includes free USPS Priority shipping)
         "sku": "supervisor-kit-physical",
         "needs_shipping": True,
+        "image_path": "/assets/gl-fm-2026-cover.webp",
     },
 }
 
@@ -137,3 +141,129 @@ GIGLINE_GOOGLE_REVIEW_URL = os.environ.get(
 # UI tiles/links are hidden across the site. /verify keeps working so existing
 # paid orders can still be confirmed. Flip via SUPERVISOR_KIT_ENABLED=true in .env.
 SUPERVISOR_KIT_ENABLED = os.environ.get('SUPERVISOR_KIT_ENABLED', 'false').lower() == 'true'
+
+# ── Citation-Proof Kit Series (Feb 2026) ──
+# 6 product/tier combinations across 2 kits — 3 tiers each.
+# All ship via Stripe Checkout. Digital + Control System are electronic-only
+# (auto-attach PDF). Binder Edition attaches the SAME PDF as Control System
+# and also physically ships a pre-printed, tabbed binder — Stripe collects
+# the ship-to address inline during checkout, Vince receives an ACTION
+# REQUIRED "SHIP THIS BINDER" email with the address block.
+CITATION_PROOF_KIT_PRODUCTS = {
+    ("loto-readiness-kit", "digital"): {
+        "name": "Machine-Specific LOTO Readiness Kit — Digital Compliance Kit",
+        "short_name": "Machine-Specific LOTO Readiness Kit",
+        "tier_label": "Digital Compliance Kit",
+        "amount_cents": 15000,
+        "sku": "citation-proof-loto-digital",
+        "pdf_path": "/app/backend/kit_files/GigLine_LOTO_Digital_Compliance_Kit_150.pdf",
+        "pdf_filename": "GigLine_LOTO_Digital_Compliance_Kit.pdf",
+        "physical_binder": False,
+        "collect_shipping": False,
+        "image_path": "/assets/kits/loto/loto-hero.png",
+    },
+    ("loto-readiness-kit", "control-system"): {
+        "name": "Machine-Specific LOTO Readiness Kit — Compliance Control System",
+        "short_name": "Machine-Specific LOTO Readiness Kit",
+        "tier_label": "Compliance Control System",
+        "amount_cents": 30000,
+        "sku": "citation-proof-loto-control-system",
+        "pdf_path": "/app/backend/kit_files/GigLine_LOTO_Compliance_Control_System_300.pdf",
+        "pdf_filename": "GigLine_LOTO_Compliance_Control_System.pdf",
+        "physical_binder": False,
+        "collect_shipping": False,
+        "image_path": "/assets/kits/loto/loto-hero.png",
+    },
+    ("loto-readiness-kit", "binder"): {
+        "name": "Machine-Specific LOTO Readiness Kit — Inspector-Ready Binder Edition",
+        "short_name": "Machine-Specific LOTO Readiness Kit",
+        "tier_label": "Inspector-Ready Binder Edition",
+        "amount_cents": 60000,
+        "sku": "citation-proof-loto-binder",
+        "pdf_path": "/app/backend/kit_files/GigLine_LOTO_Compliance_Control_System_300.pdf",
+        "pdf_filename": "GigLine_LOTO_Compliance_Control_System.pdf",
+        "physical_binder": True,
+        "collect_shipping": True,
+        "image_path": "/assets/kits/loto/loto-physical-mockup.png",
+    },
+    ("forklift-pit-readiness-kit", "digital"): {
+        "name": "Forklift / PIT Readiness Kit — Digital Compliance Kit",
+        "short_name": "Forklift / PIT Readiness Kit",
+        "tier_label": "Digital Compliance Kit",
+        "amount_cents": 15000,
+        "sku": "citation-proof-pit-digital",
+        "pdf_path": "/app/backend/kit_files/GigLine_PIT_Digital_Compliance_Kit_150.pdf",
+        "pdf_filename": "GigLine_PIT_Digital_Compliance_Kit.pdf",
+        "physical_binder": False,
+        "collect_shipping": False,
+        "image_path": "/assets/kits/pit/pit-hero.png",
+    },
+    ("forklift-pit-readiness-kit", "control-system"): {
+        "name": "Forklift / PIT Readiness Kit — Compliance Control System",
+        "short_name": "Forklift / PIT Readiness Kit",
+        "tier_label": "Compliance Control System",
+        "amount_cents": 30000,
+        "sku": "citation-proof-pit-control-system",
+        "pdf_path": "/app/backend/kit_files/GigLine_PIT_Compliance_Control_System_300.pdf",
+        "pdf_filename": "GigLine_PIT_Compliance_Control_System.pdf",
+        "physical_binder": False,
+        "collect_shipping": False,
+        "image_path": "/assets/kits/pit/pit-hero.png",
+    },
+    ("forklift-pit-readiness-kit", "binder"): {
+        "name": "Forklift / PIT Readiness Kit — Inspector-Ready Binder Edition",
+        "short_name": "Forklift / PIT Readiness Kit",
+        "tier_label": "Inspector-Ready Binder Edition",
+        "amount_cents": 60000,
+        "sku": "citation-proof-pit-binder",
+        "pdf_path": "/app/backend/kit_files/GigLine_PIT_Compliance_Control_System_300.pdf",
+        "pdf_filename": "GigLine_PIT_Compliance_Control_System.pdf",
+        "physical_binder": True,
+        "collect_shipping": True,
+        "image_path": "/assets/kits/pit/pit-physical-mockup.png",
+    },
+    ("hazcom-pro-kit", "digital"): {
+        "name": "HazCom Pro Kit — Digital Compliance Kit",
+        "short_name": "HazCom Pro Kit",
+        "tier_label": "Digital Compliance Kit",
+        "amount_cents": 15000,
+        "sku": "citation-proof-hazcom-pro-digital",
+        "pdf_path": "/app/backend/kit_files/GigLine_HazCom_Pro_Digital_Compliance_Kit_150.pdf",
+        "pdf_filename": "GigLine_HazCom_Pro_Digital_Compliance_Kit.pdf",
+        "physical_binder": False,
+        "collect_shipping": False,
+        "image_path": "/assets/kits/hazcom-pro/hazcom-digital-150-sq.png",
+    },
+    ("hazcom-pro-kit", "control-system"): {
+        "name": "HazCom Pro Kit — Compliance Control System",
+        "short_name": "HazCom Pro Kit",
+        "tier_label": "Compliance Control System",
+        "amount_cents": 30000,
+        "sku": "citation-proof-hazcom-pro-control-system",
+        "pdf_path": "/app/backend/kit_files/GigLine_HazCom_Pro_Compliance_Control_System_300.pdf",
+        "pdf_filename": "GigLine_HazCom_Pro_Compliance_Control_System.pdf",
+        "physical_binder": False,
+        "collect_shipping": False,
+        "image_path": "/assets/kits/hazcom-pro/hazcom-control-300-sq.png",
+    },
+    ("hazcom-pro-kit", "binder"): {
+        "name": "HazCom Pro Kit — Inspector-Ready Binder Edition",
+        "short_name": "HazCom Pro Kit",
+        "tier_label": "Inspector-Ready Binder Edition",
+        "amount_cents": 60000,
+        "sku": "citation-proof-hazcom-pro-binder",
+        "pdf_path": "/app/backend/kit_files/GigLine_HazCom_Pro_Compliance_Control_System_300.pdf",
+        "pdf_filename": "GigLine_HazCom_Pro_Compliance_Control_System.pdf",
+        "physical_binder": True,
+        "collect_shipping": True,
+        "image_path": "/assets/kits/hazcom-pro/hazcom-binder-600-sq.png",
+    },
+}
+
+# Backwards-compat alias — old endpoint / old code paths still expect only the
+# $150 digital entries under this name. Keep in sync with the digital entries above.
+CITATION_PROOF_KIT_DIGITAL_PRODUCTS = {
+    slug: {**cfg, "slug": slug}
+    for (slug, tier), cfg in CITATION_PROOF_KIT_PRODUCTS.items()
+    if tier == "digital"
+}

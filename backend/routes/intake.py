@@ -10,7 +10,7 @@ import logging
 import secrets
 
 import resend
-from config import db, SENDER_EMAIL, VINCE_EMAIL, ADMIN_PASSWORD
+from config import db, SENDER_EMAIL, VINCE_EMAIL, ADMIN_PASSWORD, is_admin
 from lib.object_storage import put_object, get_object, APP_NAME, MIME_TYPES, StorageError
 
 router = APIRouter()
@@ -433,7 +433,7 @@ async def download_intake_attachment(upload_id: str, token: str = Query("")):
     Frontend admin dashboard passes `?token=ADMIN_PASSWORD`. Object Storage
     has no presigned URLs, so every fetch goes through the backend.
     """
-    if token != ADMIN_PASSWORD:
+    if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
 
     record = await db.gl_intake_uploads.find_one(
@@ -459,7 +459,7 @@ async def download_intake_attachment(upload_id: str, token: str = Query("")):
 @router.get("/admin/intake/{client_token}/attachments")
 async def list_intake_attachments(client_token: str, token: str = Query("")):
     """Admin: list attachments linked to a given intake submission."""
-    if token != ADMIN_PASSWORD:
+    if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
 
     records = await db.gl_intake_uploads.find(

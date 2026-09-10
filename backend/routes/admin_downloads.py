@@ -20,7 +20,7 @@ from pathlib import Path
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import FileResponse
 
-from config import ADMIN_PASSWORD
+from config import ADMIN_PASSWORD, is_admin
 
 router = APIRouter()
 logger = logging.getLogger("gigline")
@@ -37,7 +37,7 @@ BUCKET_LABELS = {
 
 
 def _require_admin(token: str) -> None:
-    if token != ADMIN_PASSWORD:
+    if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
 
 

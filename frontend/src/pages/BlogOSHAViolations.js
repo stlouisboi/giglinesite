@@ -77,8 +77,8 @@ const violations = [
     icon: AlertTriangle,
     title: "Hazard Communication",
     cfr: "29 CFR 1910.1200",
-    tagline: "#1 OSHA citation in general industry, multiple consecutive years.",
-    cta: { text: "Fix HazCom paperwork now, $29", to: "/hazcom" },
+    tagline: "#1 OSHA citation in general industry — multiple consecutive years.",
+    cta: { text: "Fix HazCom paperwork now — $29", to: "/hazcom-starter-pack" },
     deepLink: { text: "Read the full HazCom compliance guide →", to: "/blog/hazcom-requirements-small-business" },
     why: [
       "Written HazCom program is missing or incomplete",

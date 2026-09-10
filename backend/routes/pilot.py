@@ -16,7 +16,7 @@ from typing import List, Optional
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 
-from config import ADMIN_PASSWORD, db
+from config import ADMIN_PASSWORD, db, is_admin
 
 router = APIRouter()
 logger = logging.getLogger("gigline")
@@ -27,7 +27,7 @@ BUDGET_HOURS = 8.0
 
 
 def _require_admin(token: str) -> None:
-    if token != ADMIN_PASSWORD:
+    if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
 
 

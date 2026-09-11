@@ -108,7 +108,7 @@ const CorrectiveActionImplementationPage = () => (
               style={{ ...mono, fontSize: '11px', color: GOLD }}
               data-testid="corrective-action-eyebrow"
             >
-              BUILD · Corrective Action Implementation
+              PRIORITIZE · Corrective Action Implementation
             </p>
             <h1
               className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"

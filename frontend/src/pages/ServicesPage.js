@@ -294,7 +294,7 @@ const PRICING_REF = [
   { name: 'OSHA Documentation Readiness Review', price: DOC_REVIEW_PRICING_REF_PRICE, category: 'FIND' },
   { name: 'Compliance Readiness Visit', price: 'Starting at $2,500', category: 'FIND', badge: 'BEST VALUE' },
   { name: 'Incident Review & Corrective Action', price: 'Starting at $1,500', category: 'FIND' },
-  { name: 'Corrective Action Implementation', price: 'Custom quote', category: 'BUILD' },
+  { name: 'Corrective Action Implementation', price: 'Custom quote', category: 'PRIORITIZE' },
   { name: 'OSHA-Ready Control System', price: 'Starting at $4,500', category: 'BUILD' },
   { name: 'Quarterly Compliance Maintenance', price: 'Starting at $950/quarter', category: 'MAINTAIN' },
   { name: 'Annual Compliance Control Partner', price: '$12,000/year', category: 'MAINTAIN' },

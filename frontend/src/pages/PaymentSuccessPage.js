@@ -129,8 +129,8 @@ const PaymentSuccessPage = () => {
               <div className="bg-secondary rounded-lg p-4 mb-6">
                 <p className="text-sm font-semibold text-primary mb-2">Need help?</p>
                 <div className="flex flex-col gap-2">
-                  <a href="tel:336-329-8899" className="flex items-center gap-2 text-accent hover:underline justify-center">
-                    <Phone size={16} /> 336-329-8899
+                  <a href="tel:+13363298899" className="flex items-center gap-2 text-accent hover:underline justify-center">
+                    <Phone size={16} /> (336) 329-8899
                   </a>
                   <a href="mailto:vince@giglinecompliance.com" className="flex items-center gap-2 text-accent hover:underline justify-center">
                     <Mail size={16} /> vince@giglinecompliance.com

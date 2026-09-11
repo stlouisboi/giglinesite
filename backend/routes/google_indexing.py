@@ -19,7 +19,7 @@ from typing import Literal, Optional
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
-from config import db, ADMIN_PASSWORD
+from config import db, ADMIN_PASSWORD, is_admin
 from integrations.google_indexing import (
     IndexingApiError,
     IndexingConfigError,
@@ -40,7 +40,7 @@ NotificationType = Literal["URL_UPDATED", "URL_DELETED"]
 
 
 def _require_admin(token: str) -> None:
-    if token != ADMIN_PASSWORD:
+    if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
 
 

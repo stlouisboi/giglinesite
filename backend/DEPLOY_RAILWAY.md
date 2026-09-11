@@ -26,6 +26,7 @@
 MONGO_URL=mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/gigline?retryWrites=true&w=majority
 DB_NAME=gigline
 STRIPE_API_KEY=sk_live_your_stripe_key_here
+STRIPE_WEBHOOK_SECRET=whsec_your_webhook_signing_secret_here
 RESEND_API_KEY=re_your_resend_key_here
 SENDER_EMAIL=vince@giglinecompliance.com
 VINCE_EMAIL=vince@giglinecompliance.com
@@ -34,6 +35,12 @@ CORS_ORIGINS=https://www.giglinecompliance.com,https://giglinecompliance.com
 ```
 
 6. Railway will auto-deploy. You'll get a URL like: `https://gigline-backend-production.up.railway.app`
+
+   Once you have this URL, go to **Stripe Dashboard → Developers → Webhooks → Add endpoint**, set the
+   endpoint URL to `https://your-railway-url.up.railway.app/api/webhook/stripe`, and select the
+   `checkout.session.completed` event. Stripe will give you a signing secret (`whsec_...`) — copy it
+   into the `STRIPE_WEBHOOK_SECRET` Railway variable above. Without this, incoming webhooks are
+   rejected (the endpoint refuses to trust unsigned payloads).
 
 ## Step 3: Generate a Public Domain (Optional)
 
@@ -61,6 +68,7 @@ After deploy, test:
 | MONGO_URL | MongoDB Atlas → Connect → Drivers |
 | DB_NAME | `gigline` (your database name) |
 | STRIPE_API_KEY | Stripe Dashboard → API Keys |
+| STRIPE_WEBHOOK_SECRET | Stripe Dashboard → Developers → Webhooks → your endpoint → Signing secret |
 | RESEND_API_KEY | Resend Dashboard → API Keys |
 | SENDER_EMAIL | Your verified Resend domain email |
 | VINCE_EMAIL | Where lead notifications go |

@@ -25,16 +25,16 @@ const FindBuildMaintainJourney = ({ variant = 'light' }) => {
   const stroke = isDark ? 'rgba(201,168,76,0.55)' : 'rgba(10,22,40,0.35)';
 
   return (
-    <section className="py-20 md:py-28" style={{ background: bg }} data-testid="find-build-maintain-journey">
+    <section className="py-16 md:py-24 lg:py-28" style={{ background: bg }} data-testid="find-build-maintain-journey">
       <div className="container">
-        <div className="max-w-4xl mb-14 md:mb-20">
+        <div className="max-w-4xl mb-12 md:mb-16 lg:mb-20">
           <p className="uppercase font-bold mb-3" style={{ ...MONO, fontSize: '10.5px', letterSpacing: '0.22em', color: GOLD }}>
             The GigLine Journey
           </p>
-          <h2 className="text-3xl md:text-5xl leading-[1.05] mb-4 italic" style={{ ...SERIF, color: ink, letterSpacing: '-0.015em' }}>
+          <h2 className="text-[32px] sm:text-4xl md:text-5xl leading-[1.05] mb-4 italic" style={{ ...SERIF, color: ink, letterSpacing: '-0.015em' }}>
             Find. Prioritize. Build. Maintain.
           </h2>
-          <p className="text-base md:text-lg leading-[1.65] max-w-2xl" style={{ color: inkMuted }}>
+          <p className="text-[15px] md:text-lg leading-[1.65] max-w-2xl" style={{ color: inkMuted }}>
             One path from what is happening on the floor to organized, retrievable evidence the next inspection can read.
           </p>
         </div>
@@ -45,7 +45,7 @@ const FindBuildMaintainJourney = ({ variant = 'light' }) => {
             style={{ top: '56px', background: 'linear-gradient(90deg, transparent 0%, ' + rule + ' 6%, ' + rule + ' 94%, transparent 100%)' }}
             aria-hidden="true"
           />
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-10 gap-y-14">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 md:gap-x-10 gap-y-12 sm:gap-y-14">
             {STAGES.map((s, i) => (
               <article key={s.num} className="relative" data-testid={'journey-stage-' + s.stage.toLowerCase()}>
                 <div
@@ -53,7 +53,7 @@ const FindBuildMaintainJourney = ({ variant = 'light' }) => {
                   className="select-none leading-none mb-3"
                   style={{
                     ...SERIF,
-                    fontSize: '108px',
+                    fontSize: 'clamp(72px, 11vw, 108px)',
                     fontWeight: 700,
                     color: s.featured ? GOLD : 'transparent',
                     WebkitTextStroke: s.featured ? '0' : '1.5px ' + stroke,
@@ -70,10 +70,10 @@ const FindBuildMaintainJourney = ({ variant = 'light' }) => {
                 <p className="uppercase font-bold mb-2" style={{ ...MONO, fontSize: '10px', letterSpacing: '0.20em', color: GOLD }}>
                   {s.stage}
                 </p>
-                <h3 className="text-[26px] md:text-[30px] leading-[1.08] mb-2 italic" style={{ ...SERIF, color: ink, letterSpacing: '-0.005em' }}>
+                <h3 className="text-[24px] sm:text-[26px] md:text-[28px] lg:text-[28px] xl:text-[30px] leading-[1.08] mb-2 italic" style={{ ...SERIF, color: ink, letterSpacing: '-0.005em' }}>
                   {s.name}.
                 </h3>
-                <p className="text-[14px] leading-[1.75] mb-4 max-w-[28ch]" style={{ color: inkSoft }}>
+                <p className="text-[14px] leading-[1.75] mb-4 max-w-[32ch] sm:max-w-[28ch]" style={{ color: inkSoft }}>
                   {s.body}
                 </p>
                 <Link
@@ -89,7 +89,7 @@ const FindBuildMaintainJourney = ({ variant = 'light' }) => {
           </div>
         </div>
 
-        <p className="text-[13px] md:text-sm italic mt-14 max-w-3xl leading-[1.7]" style={{ ...SERIF, color: inkMuted }}>
+        <p className="text-[13px] md:text-sm italic mt-10 md:mt-14 max-w-3xl leading-[1.7]" style={{ ...SERIF, color: inkMuted }}>
           Each stage is a separate engagement. The order is Find, Prioritize, Build, Maintain.
         </p>
       </div>

@@ -8,6 +8,11 @@ import asyncio
 import os
 
 from config import client, logger
+from lib.log_sanitizer import install_access_log_redaction
+
+# SEC-002 defense-in-depth: redact `?token=...` from every uvicorn access log
+# line so admin passwords never leak into Railway or Vercel log storage.
+install_access_log_redaction()
 
 # Route modules
 from routes.health import router as health_router

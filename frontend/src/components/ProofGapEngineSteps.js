@@ -21,20 +21,20 @@ const ProofGapEngineSteps = ({
 }) => {
   return (
     <section
-      className={compact ? 'py-14 md:py-20' : 'py-20 md:py-28'}
+      className={compact ? 'py-12 md:py-20' : 'py-16 md:py-24 lg:py-28'}
       style={{ background: bg }}
       data-testid="proof-gap-engine"
     >
       <div className="container max-w-6xl mx-auto px-5 md:px-8">
         {showIntro && (
-          <div className="mb-14 md:mb-20 max-w-3xl">
+          <div className="mb-12 md:mb-16 lg:mb-20 max-w-3xl">
             <p className="uppercase font-bold mb-3" style={{ ...MONO, fontSize: '10.5px', letterSpacing: '0.22em', color: GOLD }}>
               {kicker}
             </p>
-            <h2 className="text-3xl md:text-5xl leading-[1.05] mb-4 italic" style={{ ...SERIF, color: NAVY, letterSpacing: '-0.015em' }}>
+            <h2 className="text-[32px] sm:text-4xl md:text-5xl leading-[1.05] mb-4 italic" style={{ ...SERIF, color: NAVY, letterSpacing: '-0.015em' }}>
               {heading}
             </h2>
-            <p className="text-base md:text-lg leading-[1.65]" style={{ color: 'rgba(10,22,40,0.60)' }}>
+            <p className="text-[15px] md:text-lg leading-[1.65]" style={{ color: 'rgba(10,22,40,0.60)' }}>
               {intro}
             </p>
           </div>
@@ -46,7 +46,7 @@ const ProofGapEngineSteps = ({
             style={{ top: '56px', background: 'linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.45) 6%, rgba(201,168,76,0.45) 94%, transparent 100%)' }}
             aria-hidden="true"
           />
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-10 gap-y-14">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 md:gap-x-10 gap-y-12 sm:gap-y-14">
             {PROOF_GAP_ENGINE.map((step, i) => {
               const num = String(step.step).padStart(2, '0');
               return (
@@ -56,7 +56,7 @@ const ProofGapEngineSteps = ({
                     className="select-none leading-none mb-3"
                     style={{
                       ...SERIF,
-                      fontSize: '108px',
+                      fontSize: 'clamp(72px, 11vw, 108px)',
                       fontWeight: 700,
                       color: 'transparent',
                       WebkitTextStroke: '1.5px rgba(10,22,40,0.35)',
@@ -73,10 +73,10 @@ const ProofGapEngineSteps = ({
                   <p className="uppercase font-bold mb-2" style={{ ...MONO, fontSize: '10px', letterSpacing: '0.20em', color: GOLD }}>
                     Stage {num}
                   </p>
-                  <h3 className="text-[28px] md:text-[32px] leading-[1.05] mb-3 italic" style={{ ...SERIF, color: NAVY, letterSpacing: '-0.005em' }}>
+                  <h3 className="text-[26px] sm:text-[28px] md:text-[30px] lg:text-[28px] xl:text-[32px] leading-[1.05] mb-3 italic" style={{ ...SERIF, color: NAVY, letterSpacing: '-0.005em' }}>
                     {step.name}.
                   </h3>
-                  <p className="text-[14px] leading-[1.75] max-w-[28ch]" style={{ color: 'rgba(10,22,40,0.65)' }}>
+                  <p className="text-[14px] leading-[1.75] max-w-[32ch] sm:max-w-[28ch]" style={{ color: 'rgba(10,22,40,0.65)' }}>
                     {step.body}
                   </p>
                 </article>

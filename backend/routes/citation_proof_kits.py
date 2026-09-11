@@ -30,6 +30,7 @@ from config import (
     SENDER_EMAIL, VINCE_EMAIL,
 )
 from integrations.mailerlite import add_to_lead_nurture
+from lib.html_safe import esc, esc_default
 
 router = APIRouter()
 logger = logging.getLogger('gigline')
@@ -295,7 +296,7 @@ async def _send_buyer_confirmation(
     physical = product["physical_binder"]
 
     first_name = customer_name.split(" ")[0].strip() if customer_name else ""
-    greeting = f"Hi {first_name}," if first_name else "Hi,"
+    greeting = f"Hi {esc(first_name)}," if first_name else "Hi,"
 
     subject = f"Your {short_name} — {tier_label} (attached)"
 
@@ -499,20 +500,20 @@ def _format_shipping_block(shipping_details: Optional[dict]) -> str:
         )
     name = shipping_details.get("name") or "(no name)"
     addr = shipping_details.get("address") or {}
-    lines = [name]
+    lines = [esc(name)]
     for key in ("line1", "line2"):
         v = addr.get(key)
         if v:
-            lines.append(v)
+            lines.append(esc(v))
     city_state = ", ".join(
         [p for p in (addr.get("city"), addr.get("state")) if p]
     )
     postal = addr.get("postal_code") or ""
     city_line = " ".join([p for p in (city_state, postal) if p]).strip()
     if city_line:
-        lines.append(city_line)
+        lines.append(esc(city_line))
     if addr.get("country") and addr.get("country") != "US":
-        lines.append(addr["country"])
+        lines.append(esc(addr["country"]))
     return (
         '<div style="margin: 10px 0 0 0; padding: 12px 14px; background: #FEF2F2; '
         'border-left: 4px solid #B91C1C; font-family: Menlo, Consolas, monospace; '
@@ -537,14 +538,14 @@ async def _send_vince_notification(
     tier_label = product["tier_label"]
     physical = product["physical_binder"]
     company = metadata.get("company_name", "") if metadata else ""
-    phone_row = f'<p style="margin: 0;"><strong>Buyer phone:</strong> {phone}</p>' if phone else ''
+    phone_row = f'<p style="margin: 0;"><strong>Buyer phone:</strong> {esc(phone)}</p>' if phone else ''
     first_touch_source = metadata.get("first_touch_source", "") if metadata else ""
     first_touch_campaign = metadata.get("first_touch_campaign", "") if metadata else ""
     attrib_block = ""
     if first_touch_source or first_touch_campaign:
         attrib_block = f"""
             <p style="margin: 6px 0 0 0; font-size: 13px; color: #6b7280;">
-                <strong>Attribution:</strong> {first_touch_source or '(no source)'} / {first_touch_campaign or '(no campaign)'}
+                <strong>Attribution:</strong> {esc(first_touch_source) or '(no source)'} / {esc(first_touch_campaign) or '(no campaign)'}
             </p>
         """
 
@@ -554,7 +555,7 @@ async def _send_vince_notification(
             '<p style="margin: 0 0 12px 0; padding: 10px 14px; background: #FEE2E2; '
             'border-left: 4px solid #B91C1C; font-size: 14.5px; color: #991B1B;">'
             f'<strong>ACTION REQUIRED &mdash; SHIP THIS BINDER within {BINDER_SHIP_WINDOW}.</strong><br/>'
-            f'Buyer received the {tier_label} PDF as an attachment '
+            f'Buyer received the {esc(tier_label)} PDF as an attachment '
             '(they can start using it now). You still need to package and ship the '
             'pre-printed, tabbed physical binder. After shipping, follow up to schedule '
             'the setup call included with this tier.'
@@ -582,7 +583,7 @@ async def _send_vince_notification(
             '<p style="margin: 0 0 12px 0; padding: 8px 12px; background: #FFF3D6; '
             'border-left: 3px solid #C9A84C; font-size: 14px;">'
             '<strong>ACTION REQUIRED &mdash; auto-delivery failed.</strong> Send the '
-            f'{short_name} {tier_label} PDF to the buyer directly (the confirmation email '
+            f'{esc(short_name)} {esc(tier_label)} PDF to the buyer directly (the confirmation email '
             'used the fallback copy). Do NOT attach raw DOCX; use the packaged deliverable.'
             '</p>'
         )
@@ -597,14 +598,14 @@ async def _send_vince_notification(
                 <div style="font-family: Arial, sans-serif; max-width: 640px; color: #102A43;">
                     <h2 style="margin: 0 0 8px 0;">Citation-Proof Kit &mdash; new order</h2>
                     {callout_html}
-                    <p style="margin: 0;"><strong>Kit:</strong> {label}</p>
-                    <p style="margin: 0;"><strong>Slug:</strong> {slug}</p>
-                    <p style="margin: 0;"><strong>Tier:</strong> {tier} ({tier_label})</p>
-                    <p style="margin: 0;"><strong>Amount:</strong> {amount_str}</p>
-                    <p style="margin: 0;"><strong>Buyer email:</strong> {email}</p>
-                    <p style="margin: 0;"><strong>Buyer name:</strong> {name or '(not provided)'}</p>
+                    <p style="margin: 0;"><strong>Kit:</strong> {esc(label)}</p>
+                    <p style="margin: 0;"><strong>Slug:</strong> {esc(slug)}</p>
+                    <p style="margin: 0;"><strong>Tier:</strong> {esc(tier)} ({esc(tier_label)})</p>
+                    <p style="margin: 0;"><strong>Amount:</strong> {esc(amount_str)}</p>
+                    <p style="margin: 0;"><strong>Buyer email:</strong> {esc(email)}</p>
+                    <p style="margin: 0;"><strong>Buyer name:</strong> {esc(name) or '(not provided)'}</p>
                     {phone_row}
-                    {f'<p style="margin: 0;"><strong>Company:</strong> {company}</p>' if company else ''}
+                    {f'<p style="margin: 0;"><strong>Company:</strong> {esc(company)}</p>' if company else ''}
                     {attrib_block}
                     {shipping_html}
                     <hr style="margin: 16px 0; border: none; border-top: 1px solid #e8e5dd;" />

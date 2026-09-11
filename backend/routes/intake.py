@@ -11,6 +11,7 @@ import secrets
 
 import resend
 from config import db, SENDER_EMAIL, VINCE_EMAIL, ADMIN_PASSWORD
+from lib.html_safe import esc, esc_default
 from lib.object_storage import put_object, get_object, APP_NAME, MIME_TYPES, StorageError
 
 router = APIRouter()
@@ -42,7 +43,7 @@ def _format_attribution_html(attribution: Optional[dict]) -> str:
             return ""
         return (
             f"<tr><td style='padding:3px 8px;color:#999;font-size:12px;'>{label}</td>"
-            f"<td style='padding:3px 8px;color:#E8B84B;font-size:12px;font-weight:bold;'>{value}</td></tr>"
+            f"<td style='padding:3px 8px;color:#E8B84B;font-size:12px;font-weight:bold;'>{esc(value)}</td></tr>"
         )
 
     first_rows = (
@@ -200,7 +201,7 @@ def build_pricing_block_html(scope):
     else:
         adj_rows = ""
         for a in scope["adjustments"]:
-            adj_rows += f'<tr><td style="padding:3px 0;color:#ccc;">+ {a["reason"]}</td><td style="padding:3px 0;color:#E8B84B;text-align:right;font-weight:bold;">+${a["amount"]:,}</td></tr>'
+            adj_rows += f'<tr><td style="padding:3px 0;color:#ccc;">+ {esc(a["reason"])}</td><td style="padding:3px 0;color:#E8B84B;text-align:right;font-weight:bold;">+${a["amount"]:,}</td></tr>'
 
         price_line = f"""
         <table style="width:100%;margin:8px 0;border-collapse:collapse;">
@@ -217,27 +218,27 @@ def build_pricing_block_html(scope):
     if scope["flags"]:
         flags_html = '<div style="margin:12px 0;">'
         for fl in scope["flags"]:
-            flags_html += f'<p style="color:#E8B84B;margin:2px 0;font-size:13px;">&#9888; {fl}</p>'
+            flags_html += f'<p style="color:#E8B84B;margin:2px 0;font-size:13px;">&#9888; {esc(fl)}</p>'
         flags_html += '</div>'
 
     gaps3_html = ""
     if scope["section3Gaps"]:
         gaps3_html = '<div style="margin:10px 0;"><p style="color:#E8B84B;font-size:12px;font-weight:bold;margin:0 0 4px;">Section 3 gaps (programs marked No or Not sure):</p>'
         for g in scope["section3Gaps"]:
-            gaps3_html += f'<p style="color:#ccc;font-size:12px;margin:1px 0 1px 8px;">&middot; {g}</p>'
+            gaps3_html += f'<p style="color:#ccc;font-size:12px;margin:1px 0 1px 8px;">&middot; {esc(g)}</p>'
         gaps3_html += '</div>'
 
     gaps4_html = ""
     if scope["section4Gaps"]:
         gaps4_html = '<div style="margin:10px 0;"><p style="color:#E8B84B;font-size:12px;font-weight:bold;margin:0 0 4px;">Section 4 gaps (docs marked No or Not sure):</p>'
         for g in scope["section4Gaps"]:
-            gaps4_html += f'<p style="color:#ccc;font-size:12px;margin:1px 0 1px 8px;">&middot; {g}</p>'
+            gaps4_html += f'<p style="color:#ccc;font-size:12px;margin:1px 0 1px 8px;">&middot; {esc(g)}</p>'
         gaps4_html += '</div>'
 
     return f"""
     <div style="background:#111;border:2px solid #E8B84B;border-radius:8px;padding:20px;margin-bottom:24px;">
       <p style="color:#E8B84B;font-size:11px;font-weight:bold;letter-spacing:2px;margin:0 0 12px;">PROPOSED SCOPE &amp; STARTING PRICE</p>
-      <p style="color:#fff;margin:4px 0;"><strong>Tier:</strong> {scope["tier"]} ({scope["employeeCount"]} employees)</p>
+      <p style="color:#fff;margin:4px 0;"><strong>Tier:</strong> {esc(scope["tier"])} ({esc(scope["employeeCount"])} employees)</p>
       {price_line}
       {flags_html}
       {gaps3_html}
@@ -600,7 +601,7 @@ async def submit_intake(data: IntakeSubmission):
 
     client_html = f"""
 <div style="font-family:Georgia,'Times New Roman',serif;max-width:600px;margin:0 auto;color:#1C2B2B;line-height:1.55;padding:0 18px;">
-  <p style="font-size:15px;">Hi {first_name or 'there'},</p>
+  <p style="font-size:15px;">Hi {esc(first_name) or 'there'},</p>
   <p style="font-size:15px;">{lane_opener}</p>
   <p style="font-size:15px;">Here&rsquo;s what happens next:</p>
   <ol style="font-size:15px;padding-left:22px;margin:8px 0 18px;">
@@ -866,7 +867,7 @@ CALL:        {data.phone}
     vince_html = (
         f"<pre style=\"font-family:'JetBrains Mono','Courier New',monospace;"
         f"font-size:12.5px;line-height:1.5;color:#1C2B2B;white-space:pre-wrap;"
-        f"margin:0;padding:18px;\">{vince_plaintext}</pre>"
+        f"margin:0;padding:18px;\">{esc(vince_plaintext)}</pre>"
     )
 
     try:

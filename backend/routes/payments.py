@@ -1,166 +1,124 @@
-"""Stripe payment routes (checkout, status, webhook)."""
+"""Stripe webhook receiver.
 
-from fastapi import APIRouter, Request, HTTPException
+Historical checkout routes (`/api/payments/checkout`, `/api/services`,
+`/api/payments/status/{id}`) were removed in Feb 2026 alongside the stale
+SERVICE_PACKAGES dictionary. Active checkout flows now live under
+`/api/checkout/*` (Citation-Proof Kits, Supervisor Kit, HazCom, etc.).
+
+This module now exposes only `POST /api/webhook/stripe` and hardens it with:
+
+  1. Stripe signature verification via ``stripe.Webhook.construct_event``.
+     Missing header, malformed body, wrong signature, or wrong secret all
+     produce 400 with no side effects.
+  2. Idempotency on Stripe event id via a MongoDB unique index. Duplicate
+     replays return 200 without re-touching payment_transactions.
+"""
+
 from datetime import datetime, timezone
 import logging
-import traceback
 
-from config import (
-    db, USE_NATIVE_STRIPE, stripe_api_key, SERVICE_PACKAGES,
-)
-from models import PaymentTransaction, CheckoutRequest
+from fastapi import APIRouter, Request, HTTPException
+import stripe as stripe_lib
+from pymongo.errors import DuplicateKeyError
+
+from config import db, STRIPE_WEBHOOK_SECRET, stripe_api_key
 
 router = APIRouter()
 logger = logging.getLogger('gigline')
 
+# One-time unique index on the Stripe event id so a duplicate delivery cannot
+# double-fulfill. `create_index` is idempotent so it is safe to call at import.
+_WEBHOOK_EVENTS_COLL = "gl_stripe_webhook_events"
 
-@router.get("/services")
-async def get_services():
-    """Return available service packages with pricing."""
-    return SERVICE_PACKAGES
+_INDEX_INITIALIZED = False
 
 
-@router.post("/payments/checkout")
-async def create_checkout_session(request: CheckoutRequest, http_request: Request):
-    """Create a Stripe checkout session for a service."""
-    if request.service_type not in SERVICE_PACKAGES:
-        raise HTTPException(status_code=400, detail=f"Invalid service type: {request.service_type}")
-
-    service = SERVICE_PACKAGES[request.service_type]
-    success_url = f"{request.origin_url}/payment-success?session_id={{CHECKOUT_SESSION_ID}}"
-    cancel_url = f"{request.origin_url}/services"
-
+async def _ensure_index() -> None:
+    global _INDEX_INITIALIZED
+    if _INDEX_INITIALIZED:
+        return
     try:
-        if USE_NATIVE_STRIPE:
-            from stripe_native import create_checkout
-            result = await create_checkout(
-                amount_cents=service["amount"],
-                currency="usd",
-                success_url=success_url,
-                cancel_url=cancel_url,
-                metadata={
-                    "service_type": request.service_type,
-                    "service_name": service["name"],
-                    "customer_email": request.customer_email or "",
-                    "customer_name": request.customer_name or "",
-                },
-            )
-            session_url = result['url']
-            session_id = result['session_id']
-        else:
-            from config import StripeCheckout, CheckoutSessionRequest, CheckoutSessionResponse
-            host_url = str(http_request.base_url).rstrip('/')
-            webhook_url = f"{host_url}/api/webhook/stripe"
-            stripe_checkout = StripeCheckout(api_key=stripe_api_key, webhook_url=webhook_url)
-            checkout_request = CheckoutSessionRequest(
-                amount=service["amount"],
-                currency="usd",
-                success_url=success_url,
-                cancel_url=cancel_url,
-                metadata={
-                    "service_type": request.service_type,
-                    "service_name": service["name"],
-                    "customer_email": request.customer_email or "",
-                    "customer_name": request.customer_name or "",
-                },
-            )
-            session = await stripe_checkout.create_checkout_session(checkout_request)
-            session_url = session.url
-            session_id = session.session_id
-
-        transaction = PaymentTransaction(
-            session_id=session_id,
-            service_type=request.service_type,
-            service_name=service["name"],
-            amount=service["amount"],
-            currency="usd",
-            payment_status="pending",
-            customer_email=request.customer_email,
-            customer_name=request.customer_name,
-            metadata={"service_type": request.service_type, "origin_url": request.origin_url},
-        )
-        doc = transaction.model_dump()
-        doc['created_at'] = doc['created_at'].isoformat()
-        doc['updated_at'] = doc['updated_at'].isoformat()
-        await db.payment_transactions.insert_one(doc)
-
-        return {"url": session_url, "session_id": session_id}
-
+        await db[_WEBHOOK_EVENTS_COLL].create_index("event_id", unique=True)
+        _INDEX_INITIALIZED = True
     except Exception as e:
-        logger.error(f"Stripe checkout error: {str(e)}\n{traceback.format_exc()}")
-        raise HTTPException(status_code=500, detail=f"Failed to create checkout session: {str(e)}")
-
-
-@router.get("/payments/status/{session_id}")
-async def get_payment_status(session_id: str, http_request: Request):
-    """Check the status of a payment session."""
-    try:
-        if USE_NATIVE_STRIPE:
-            from stripe_native import get_checkout_status
-            result = await get_checkout_status(session_id)
-            status_val = result['status']
-            payment_status = result['payment_status']
-            amount_total = result['amount_total']
-            currency = result['currency']
-            metadata = result['metadata']
-        else:
-            from config import StripeCheckout, CheckoutStatusResponse
-            host_url = str(http_request.base_url).rstrip('/')
-            webhook_url = f"{host_url}/api/webhook/stripe"
-            stripe_checkout = StripeCheckout(api_key=stripe_api_key, webhook_url=webhook_url)
-            status = await stripe_checkout.get_checkout_status(session_id)
-            status_val = status.status
-            payment_status = status.payment_status
-            amount_total = status.amount_total
-            currency = status.currency
-            metadata = status.metadata
-
-        await db.payment_transactions.update_one(
-            {"session_id": session_id},
-            {"$set": {"payment_status": payment_status, "updated_at": datetime.now(timezone.utc).isoformat()}},
-        )
-
-        return {
-            "status": status_val,
-            "payment_status": payment_status,
-            "amount_total": amount_total,
-            "currency": currency,
-            "metadata": metadata,
-        }
-    except Exception as e:
-        logger.error(f"Payment status check error: {str(e)}")
-        raise HTTPException(status_code=500, detail="Failed to check payment status")
+        # Not fatal — DuplicateKeyError on insert will still guard idempotency.
+        logger.warning(f"Could not ensure webhook events index: {e}")
 
 
 @router.post("/webhook/stripe")
 async def stripe_webhook(request: Request):
-    """Handle Stripe webhook events."""
-    try:
-        body = await request.body()
-        if USE_NATIVE_STRIPE:
-            import json as _json
-            event_data = _json.loads(body)
-            event_type = event_data.get('type', '')
-            session_data = event_data.get('data', {}).get('object', {})
-            session_id = session_data.get('id')
-            payment_status = session_data.get('payment_status', 'unknown')
-        else:
-            from config import StripeCheckout
-            signature = request.headers.get("Stripe-Signature")
-            host_url = str(request.base_url).rstrip('/')
-            webhook_url = f"{host_url}/api/webhook/stripe"
-            stripe_checkout = StripeCheckout(api_key=stripe_api_key, webhook_url=webhook_url)
-            webhook_response = await stripe_checkout.handle_webhook(body, signature)
-            session_id = webhook_response.session_id
-            payment_status = webhook_response.payment_status
+    """Receive and verify a Stripe webhook.
 
-        if session_id:
+    Fail-closed rules:
+      * ``STRIPE_WEBHOOK_SECRET`` must be configured; otherwise every request
+        is rejected with 400 so an attacker cannot forge fulfillment while the
+        env var is missing.
+      * ``Stripe-Signature`` header must be present.
+      * Signature must verify against the raw body and the configured secret.
+    """
+    if not STRIPE_WEBHOOK_SECRET:
+        logger.error("Stripe webhook received but STRIPE_WEBHOOK_SECRET is not configured")
+        raise HTTPException(status_code=400, detail="Webhook secret not configured")
+
+    signature = request.headers.get("stripe-signature") or request.headers.get("Stripe-Signature")
+    if not signature:
+        logger.warning("Stripe webhook rejected: missing signature header")
+        raise HTTPException(status_code=400, detail="Missing signature")
+
+    raw_body = await request.body()
+
+    stripe_lib.api_key = stripe_api_key
+
+    try:
+        event = stripe_lib.Webhook.construct_event(
+            payload=raw_body,
+            sig_header=signature,
+            secret=STRIPE_WEBHOOK_SECRET,
+        )
+    except stripe_lib.error.SignatureVerificationError as e:
+        logger.warning(f"Stripe webhook rejected: signature verification failed ({e})")
+        raise HTTPException(status_code=400, detail="Invalid signature")
+    except ValueError as e:
+        logger.warning(f"Stripe webhook rejected: malformed payload ({e})")
+        raise HTTPException(status_code=400, detail="Malformed payload")
+    except Exception as e:  # pragma: no cover — defensive
+        logger.error(f"Stripe webhook verification error: {e}")
+        raise HTTPException(status_code=400, detail="Verification failed")
+
+    event_id = event.get("id")
+    event_type = event.get("type", "")
+    if not event_id:
+        raise HTTPException(status_code=400, detail="Event missing id")
+
+    # Idempotency guard — record the event id atomically. Duplicate → 200 no-op.
+    await _ensure_index()
+    now_iso = datetime.now(timezone.utc).isoformat()
+    try:
+        await db[_WEBHOOK_EVENTS_COLL].insert_one({
+            "event_id": event_id,
+            "event_type": event_type,
+            "received_at": now_iso,
+        })
+    except DuplicateKeyError:
+        logger.info(f"Stripe webhook duplicate ignored: id={event_id} type={event_type}")
+        return {"status": "duplicate"}
+
+    # Update payment status when the event carries a checkout session object.
+    session_data = (event.get("data") or {}).get("object") or {}
+    session_id = session_data.get("id")
+    payment_status = session_data.get("payment_status") or session_data.get("status") or "unknown"
+
+    if session_id:
+        try:
             await db.payment_transactions.update_one(
                 {"session_id": session_id},
-                {"$set": {"payment_status": payment_status, "updated_at": datetime.now(timezone.utc).isoformat()}},
+                {"$set": {
+                    "payment_status": payment_status,
+                    "updated_at": now_iso,
+                }},
             )
+        except Exception as e:
+            logger.error(f"Payment status update failed for session={session_id}: {e}")
 
-        return {"status": "received"}
-    except Exception as e:
-        logger.error(f"Webhook error: {str(e)}")
-        raise HTTPException(status_code=400, detail="Webhook processing failed")
+    logger.info(f"Stripe webhook processed: id={event_id} type={event_type} session={session_id}")
+    return {"status": "received", "event_id": event_id}

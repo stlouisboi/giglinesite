@@ -5,6 +5,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 import os
 import logging
+import secrets
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -30,6 +31,12 @@ import stripe as stripe_lib
 
 stripe_api_key = os.environ.get('STRIPE_API_KEY', 'sk_test_emergent')
 
+# Stripe webhook signing secret. When set, incoming webhook requests must present
+# a valid Stripe-Signature header signed with this secret. When missing, the
+# webhook endpoint rejects every request (fail closed) so unsigned payloads can
+# never forge fulfillment.
+STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET', '')
+
 # Resend
 import resend
 
@@ -38,7 +45,21 @@ SENDER_EMAIL = os.environ.get('SENDER_EMAIL', 'onboarding@resend.dev')
 VINCE_EMAIL = os.environ.get('VINCE_EMAIL', 'vince@giglinecompliance.com')
 
 # Admin
-ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'gigline2026')
+# SEC-001: No hardcoded fallback. If ADMIN_PASSWORD is unset we generate a random
+# per-process secret so no request can ever match, and every admin route fails
+# closed. A CRITICAL log line surfaces the misconfiguration in Railway logs so
+# ops can rotate the env var without the site going dark for public visitors.
+_admin_password_env = os.environ.get('ADMIN_PASSWORD', '').strip()
+if not _admin_password_env:
+    ADMIN_PASSWORD = secrets.token_hex(32)
+    ADMIN_PASSWORD_CONFIGURED = False
+    logging.getLogger('gigline').critical(
+        "SECURITY: ADMIN_PASSWORD environment variable is not set. Admin access "
+        "is disabled until it is configured. Public routes continue to serve."
+    )
+else:
+    ADMIN_PASSWORD = _admin_password_env
+    ADMIN_PASSWORD_CONFIGURED = True
 
 # Logging
 logging.basicConfig(
@@ -48,60 +69,11 @@ logging.basicConfig(
 logger = logging.getLogger('gigline')
 
 # ── SERVICE PACKAGES ──
-
-SERVICE_PACKAGES = {
-    "walkthrough_small": {
-        "name": "Safety Walkthrough & Top 10 Fixes Report (Small Site)",
-        "amount": 650.00,
-        "description": "Local small site - single building, 1 shift",
-    },
-    "walkthrough_standard": {
-        "name": "Safety Walkthrough & Top 10 Fixes Report (Standard)",
-        "amount": 750.00,
-        "description": "Standard site walkthrough with full report",
-    },
-    "documentation_remote": {
-        "name": "OSHA Documentation Readiness Review (Remote)",
-        "amount": 550.00,
-        "description": "Remote review - send PDFs/scans for analysis",
-    },
-    "documentation_onsite": {
-        "name": "OSHA Documentation Readiness Review (On-site)",
-        "amount": 750.00,
-        "description": "On-site document review with follow-up",
-    },
-    "incident_standard": {
-        "name": "Incident Review & Corrective Action Support (Standard)",
-        "amount": 900.00,
-        "description": "Non-emergency incident review, single incident",
-    },
-    "incident_urgent": {
-        "name": "Incident Review & Corrective Action Support (Urgent)",
-        "amount": 1200.00,
-        "description": "High-urgency or complex incident support",
-    },
-    "deposit_walkthrough": {
-        "name": "Deposit - Safety Walkthrough (Balance due before visit)",
-        "amount": 200.00,
-        "description": "Reserve your walkthrough date. Remaining balance due before on-site visit.",
-        "is_deposit": True,
-        "deposit_for": "walkthrough",
-    },
-    "deposit_documentation": {
-        "name": "Deposit - Documentation Review (Balance due before delivery)",
-        "amount": 150.00,
-        "description": "Reserve your review slot. Remaining balance due before report delivery.",
-        "is_deposit": True,
-        "deposit_for": "documentation",
-    },
-    "deposit_incident": {
-        "name": "Deposit - Incident Review (Balance due before engagement)",
-        "amount": 300.00,
-        "description": "Secure immediate support. Remaining balance due before engagement begins.",
-        "is_deposit": True,
-        "deposit_for": "incident",
-    },
-}
+# Removed Feb 2026. The legacy /api/services and /api/payments/checkout routes
+# were driven by this dict but are no longer wired to any frontend surface —
+# active checkout flows go through the tier-specific endpoints (Citation-Proof
+# Kits, Supervisor Kit, HazCom, etc.). Retaining stale pricing here risked
+# offering a $650 walkthrough that no longer exists in the ladder.
 
 HAZCOM_PRODUCT = {
     "name": "HazCom Starter Pack — Small Shop Edition",

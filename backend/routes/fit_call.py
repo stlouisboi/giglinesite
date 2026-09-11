@@ -16,6 +16,7 @@ from pydantic import BaseModel, EmailStr
 import resend
 
 from config import db, SENDER_EMAIL, VINCE_EMAIL
+from lib.html_safe import esc, esc_default, esc_join
 
 router = APIRouter()
 logger = logging.getLogger("gigline")
@@ -73,44 +74,45 @@ def _label(value: str, default: str = "—") -> str:
 
 
 def _render_notification_html(data: FitCallRequest, request_id: str) -> str:
-    programs = ", ".join(data.existingPrograms) if data.existingPrograms else "—"
+    programs_html = esc_join(data.existingPrograms, sep=", ", default="&mdash;")
     lines = [
-        f"<h2 style='margin:0 0 8px 0;'>Safety Control System Buildout — Fit Call Request</h2>",
-        f"<p style='color:#555;font-size:12px;margin:0 0 20px;'>Request ID: {request_id}</p>",
+        f"<h2 style='margin:0 0 8px 0;'>Safety Control System Buildout &mdash; Fit Call Request</h2>",
+        f"<p style='color:#555;font-size:12px;margin:0 0 20px;'>Request ID: {esc(request_id)}</p>",
         "<table cellpadding='6' style='border-collapse:collapse;font-family:Arial,sans-serif;font-size:14px;'>",
-        f"<tr><td><b>Contact</b></td><td>{_label(data.contactName)} &lt;{_label(data.email)}&gt;</td></tr>",
-        f"<tr><td><b>Company</b></td><td>{_label(data.companyName)}</td></tr>",
-        f"<tr><td><b>Industry</b></td><td>{_label(data.industry)}</td></tr>",
-        f"<tr><td><b>Location</b></td><td>{_label(data.locationCityState)}</td></tr>",
-        f"<tr><td><b>Employees</b></td><td>{_label(data.employeeCount)}</td></tr>",
-        f"<tr><td><b>Facilities</b></td><td>{_label(data.facilityCount)}</td></tr>",
-        f"<tr><td><b>Storage Platform</b></td><td>{_label(data.storagePlatform)}</td></tr>",
-        f"<tr><td><b>Existing Programs</b></td><td>{programs}</td></tr>",
-        f"<tr><td><b>SDS Count</b></td><td>{_label(data.sdsCount)}</td></tr>",
-        f"<tr><td><b>Desired Completion</b></td><td>{_label(data.desiredCompletion)}</td></tr>",
-        f"<tr><td><b>On-site Review</b></td><td>{_label(data.onsiteReviewNeeded)}</td></tr>",
+        f"<tr><td><b>Contact</b></td><td>{esc_default(data.contactName)} &lt;{esc_default(data.email)}&gt;</td></tr>",
+        f"<tr><td><b>Company</b></td><td>{esc_default(data.companyName)}</td></tr>",
+        f"<tr><td><b>Industry</b></td><td>{esc_default(data.industry)}</td></tr>",
+        f"<tr><td><b>Location</b></td><td>{esc_default(data.locationCityState)}</td></tr>",
+        f"<tr><td><b>Employees</b></td><td>{esc_default(data.employeeCount)}</td></tr>",
+        f"<tr><td><b>Facilities</b></td><td>{esc_default(data.facilityCount)}</td></tr>",
+        f"<tr><td><b>Storage Platform</b></td><td>{esc_default(data.storagePlatform)}</td></tr>",
+        f"<tr><td><b>Existing Programs</b></td><td>{programs_html}</td></tr>",
+        f"<tr><td><b>SDS Count</b></td><td>{esc_default(data.sdsCount)}</td></tr>",
+        f"<tr><td><b>Desired Completion</b></td><td>{esc_default(data.desiredCompletion)}</td></tr>",
+        f"<tr><td><b>On-site Review</b></td><td>{esc_default(data.onsiteReviewNeeded)}</td></tr>",
         "</table>",
         "<h3 style='margin:22px 0 6px;'>Primary problem</h3>",
-        f"<p style='font-family:Arial,sans-serif;font-size:14px;line-height:1.55;color:#222;'>{_label(data.primaryProblem)}</p>",
+        f"<p style='font-family:Arial,sans-serif;font-size:14px;line-height:1.55;color:#222;white-space:pre-wrap;'>{esc_default(data.primaryProblem)}</p>",
     ]
     return "".join(lines)
 
 
 def _render_prospect_confirmation_html(data: FitCallRequest) -> str:
+    greeting = esc_default(data.contactName, default="Hello")
     return f"""
     <div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.65;color:#1c2b2b;max-width:560px;">
-      <p>{_label(data.contactName, 'Hello')},</p>
+      <p>{greeting},</p>
       <p>Thanks for the request. Vince will review your Fit Call inputs and reach out within one business day to schedule a short call.</p>
       <p>The Fit Call determines whether the Safety Control System Buildout is the right shape for your operation, and what the fixed scope and price look like once the work is defined.</p>
       <p style="margin:22px 0 8px;font-size:13px;color:#555;"><b>What you submitted</b></p>
       <ul style="font-size:13px;color:#333;margin:0 0 22px;padding-left:18px;">
-        <li>Company: {_label(data.companyName)}</li>
-        <li>Location: {_label(data.locationCityState)}</li>
-        <li>Employees: {_label(data.employeeCount)}</li>
-        <li>Storage platform: {_label(data.storagePlatform)}</li>
+        <li>Company: {esc_default(data.companyName)}</li>
+        <li>Location: {esc_default(data.locationCityState)}</li>
+        <li>Employees: {esc_default(data.employeeCount)}</li>
+        <li>Storage platform: {esc_default(data.storagePlatform)}</li>
       </ul>
       <p style="font-size:12px;color:#666;line-height:1.5;border-top:1px solid #eee;padding-top:14px;">{BOUNDARY_LANGUAGE}</p>
-      <p style="font-size:13px;color:#666;">— Vince Lawrence, GigLine Safety &amp; Compliance</p>
+      <p style="font-size:13px;color:#666;">&mdash; Vince Lawrence, GigLine Safety &amp; Compliance</p>
     </div>
     """
 

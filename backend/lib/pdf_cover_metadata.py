@@ -56,7 +56,7 @@ COVERS = {
             'Safety Walkthrough — From $1,200',
             'Documentation Readiness Review — From $1,700',
             'Compliance Readiness Visit — From $2,000',
-            'OSHA-Ready Control System — From $4,500',
+            'Safety Control System Buildout — From $4,500',
             'Annual Compliance Control Partner',
             'Quarterly Support Retainer',
             'Incident-Response Emergency Visits',

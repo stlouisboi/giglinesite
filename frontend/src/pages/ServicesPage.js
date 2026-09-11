@@ -284,7 +284,7 @@ const READINESS_PATH = [
   { stage: 'Find the issues', need: 'What would OSHA see on our floor?', offer: 'Safety Walkthrough', priceFrom: '$1,300', link: intakeLink('safety-walkthrough-report') },
   { stage: 'Check the files', need: 'Are our documents inspection-ready?', offer: 'OSHA Documentation Readiness Review', priceFrom: '$1,700', link: intakeLink('documentation-readiness-review') },
   { stage: 'Review both', need: 'We need the floor and files checked.', offer: 'Compliance Readiness Visit', priceFrom: '$2,500', link: intakeLink('compliance-readiness-visit') },
-  { stage: 'Build the system', need: 'We need this organized and defensible.', offer: 'OSHA-Ready Control System', priceFrom: '$4,500', link: intakeLink('osha-ready-control-system') },
+  { stage: 'Build the system', need: 'We need this organized and defensible.', offer: 'Safety Control System Buildout', priceFrom: '$4,500', link: intakeLink('osha-ready-control-system') },
   { stage: 'Keep it current', need: 'We need ongoing accountability.', offer: 'Quarterly / Annual Partner', priceFrom: '$950/qtr', link: intakeLink('annual-compliance-partner') },
 ];
 
@@ -295,7 +295,7 @@ const PRICING_REF = [
   { name: 'Compliance Readiness Visit', price: 'Starting at $2,500', category: 'FIND', badge: 'BEST VALUE' },
   { name: 'Incident Review & Corrective Action', price: 'Starting at $1,500', category: 'FIND' },
   { name: 'Corrective Action Implementation', price: 'Custom quote', category: 'PRIORITIZE' },
-  { name: 'OSHA-Ready Control System', price: 'Starting at $4,500', category: 'BUILD' },
+  { name: 'Safety Control System Buildout', price: 'Starting at $4,500', category: 'BUILD' },
   { name: 'Quarterly Compliance Maintenance', price: 'Starting at $950/quarter', category: 'MAINTAIN' },
   { name: 'Annual Compliance Control Partner', price: '$12,000/year', category: 'MAINTAIN' },
 ];
@@ -406,7 +406,7 @@ const ServicesPage = () => {
               { label: 'Compliance Readiness Visit', href: '#crv' },
               { label: 'Incident Review', href: '#incident' },
               { label: 'Corrective Action', href: '/services/corrective-action-implementation' },
-              { label: 'OSHA-Ready Control System', href: '#control-system' },
+              { label: 'Safety Control System Buildout', href: '#control-system' },
               { label: 'Compare', href: '#compare' },
               { label: 'Annual Partner', href: '#annual' },
             ].map((l) => (
@@ -488,7 +488,7 @@ const ServicesPage = () => {
                 body: 'Close the priority gaps. Or build broader connected safety infrastructure.',
                 items: [
                   { name: 'Corrective Action Implementation', href: '/services/corrective-action-implementation', price: 'Custom quote' },
-                  { name: 'OSHA-Ready Control System', href: '#control-system', price: 'From $4,500' },
+                  { name: 'Safety Control System Buildout', href: '#control-system', price: 'From $4,500' },
                 ],
               },
               {
@@ -1111,7 +1111,7 @@ const ServicesPage = () => {
               </div>
             </Reveal>
 
-            {/* CARD B, OSHA-Ready Control System */}
+            {/* CARD B, Safety Control System Buildout */}
             <Reveal delay={100}>
               <div
                 className="h-full flex flex-col rounded-xl bg-white p-7 md:p-9"
@@ -1122,7 +1122,7 @@ const ServicesPage = () => {
                   className="uppercase font-bold mb-2"
                   style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.16em', color: '#2A52A0' }}
                 >
-                  OSHA-Ready Control System
+                  Safety Control System Buildout
                 </p>
                 <h3
                   className="text-2xl md:text-[26px] font-bold mb-3 leading-tight"
@@ -1147,7 +1147,7 @@ const ServicesPage = () => {
                     <ArrowRight size={14} />
                   </a>
                   <Link
-                    to="/services/osha-ready-control-system"
+                    to="/services/safety-control-system-buildout"
                     className="inline-flex items-center gap-1 text-[#2A52A0] hover:text-[#1F3F80] font-semibold text-[13.5px] self-center"
                     data-testid="build-card-orcs-learn"
                   >
@@ -1165,7 +1165,7 @@ const ServicesPage = () => {
             >
               <span className="font-semibold text-[#1C2B2B]">Need selected findings fixed?</span> Corrective Action Implementation.
               <br className="hidden md:block" />
-              <span className="font-semibold text-[#1C2B2B]">Need broader safety infrastructure built?</span> OSHA-Ready Control System.
+              <span className="font-semibold text-[#1C2B2B]">Need broader safety infrastructure built?</span> Safety Control System Buildout.
             </p>
           </Reveal>
         </div>
@@ -1200,7 +1200,7 @@ const ServicesPage = () => {
                 style={{ ...mono, fontSize: '11px', letterSpacing: '0.18em', color: '#2A52A0' }}
                 data-testid="control-system-kicker"
               >
-                OSHA-Ready Control System
+                Safety Control System Buildout
               </p>
 
               <h2
@@ -1245,7 +1245,7 @@ const ServicesPage = () => {
                   to={intakeLink('osha-ready-control-system')}
                   onClick={() => {
                     fireServicesCtaClick('Request Buildout', intakeLink('osha-ready-control-system'));
-                    trackServiceBooking && trackServiceBooking('GigLine OSHA-Ready Control System');
+                    trackServiceBooking && trackServiceBooking('GigLine Safety Control System Buildout');
                   }}
                   className="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#B58F2E] text-[#1C2B2B] font-bold px-7 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#C9A84C]/25"
                   data-testid="control-system-cta"
@@ -1254,7 +1254,7 @@ const ServicesPage = () => {
                   <ArrowRight size={18} />
                 </Link>
                 <Link
-                  to="/services/osha-ready-control-system"
+                  to="/services/safety-control-system-buildout"
                   className="inline-flex items-center gap-2 text-white/70 hover:text-white font-bold px-5 py-4 rounded-lg text-[14px] transition-colors border border-white/20 hover:border-white/40"
                   data-testid="control-system-learn-more"
                 >
@@ -1558,7 +1558,7 @@ const ServicesPage = () => {
                         { key: 'walkthrough', label: 'Safety Walkthrough', price: 'From $1,300', anchor: '#walkthrough', service: 'safety-walkthrough-report' },
                         { key: 'docs', label: 'Documentation Review', price: 'From $1,700', anchor: '#docs-review', service: 'documentation-readiness-review' },
                         { key: 'crv', label: 'Compliance Readiness Visit', price: 'From $2,500', anchor: '#crv', service: 'compliance-readiness-visit', highlight: true },
-                        { key: 'control', label: 'OSHA-Ready Control System', price: 'From $4,500', anchor: '#control-system', service: 'osha-ready-control-system' },
+                        { key: 'control', label: 'Safety Control System Buildout', price: 'From $4,500', anchor: '#control-system', service: 'osha-ready-control-system' },
                       ].map((col) => (
                         <th
                           key={col.key}

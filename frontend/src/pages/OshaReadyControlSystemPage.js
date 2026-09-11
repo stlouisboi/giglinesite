@@ -109,19 +109,19 @@ const OshaReadyControlSystemPage = () => {
   return (
     <main data-testid="osha-ready-control-system-page">
       <SEO
-        title="OSHA-Ready Control System, Starting at $4,500 | GigLine"
+        title="Safety Control System Buildout, Starting at $4,500 | GigLine"
         description="GigLine builds a site-specific Digital Safety Control System that connects written programs, SDS access, training records, inspections, corrective actions, and compliance documentation in one organized location. Starting at $4,500."
         canonical={`/services/${SLUG}`}
         schema={[
-          { '@context': 'https://schema.org', '@type': 'Service', name: 'OSHA-Ready Control System', provider: { '@type': 'LocalBusiness', name: 'GigLine Safety & Compliance', url: 'https://www.giglinecompliance.com', telephone: '+13363298899' }, areaServed: { '@type': 'State', name: 'North Carolina' }, offers: { '@type': 'Offer', price: '4500', priceCurrency: 'USD', description: 'OSHA-Ready Control System starting at $4,500. Site-specific Digital Safety Control System.' }, description: 'GigLine builds a site-specific Digital Safety Control System that connects written programs, SDS access, training records, inspections, corrective actions, and compliance documentation.' },
-          { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.giglinecompliance.com/' }, { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://www.giglinecompliance.com/services' }, { '@type': 'ListItem', position: 3, name: 'OSHA-Ready Control System', item: `https://www.giglinecompliance.com/services/${SLUG}` }] },
+          { '@context': 'https://schema.org', '@type': 'Service', name: 'Safety Control System Buildout', provider: { '@type': 'LocalBusiness', name: 'GigLine Safety & Compliance', url: 'https://www.giglinecompliance.com', telephone: '+13363298899' }, areaServed: { '@type': 'State', name: 'North Carolina' }, offers: { '@type': 'Offer', price: '4500', priceCurrency: 'USD', description: 'Safety Control System Buildout starting at $4,500. Site-specific Digital Safety Control System.' }, description: 'GigLine builds a site-specific Digital Safety Control System that connects written programs, SDS access, training records, inspections, corrective actions, and compliance documentation.' },
+          { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.giglinecompliance.com/' }, { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://www.giglinecompliance.com/services' }, { '@type': 'ListItem', position: 3, name: 'Safety Control System Buildout', item: `https://www.giglinecompliance.com/services/${SLUG}` }] },
         ]}
       />
 
       {/* ═══════ Hero ═══════ */}
       <section className="pt-20 md:pt-24 pb-16 md:pb-20" style={{ background: NAVY }} data-testid="ocs-hero">
         <div className="container max-w-6xl">
-          <Eyebrow color={GOLD}>OSHA-Ready Control System</Eyebrow>
+          <Eyebrow color={GOLD}>Safety Control System Buildout</Eyebrow>
           <h1 className="text-3xl md:text-4xl lg:text-[52px] font-extrabold leading-[1.08] mb-7 tracking-tight text-white max-w-5xl">
             <span className="block">Your safety documents</span>
             <span className="block" style={{ color: GOLD }}>should work together.</span>

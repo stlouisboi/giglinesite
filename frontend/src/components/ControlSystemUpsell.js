@@ -9,7 +9,7 @@ const GOLD = '#C9A84C';
 
 /**
  * Cross-sell block rendered at the bottom of every Citation-Proof Kit detail page.
- * Routes qualified buyers toward the OSHA-Ready Control System without displacing the kit sale.
+ * Routes qualified buyers toward the Safety Control System Buildout without displacing the kit sale.
  */
 const ControlSystemUpsell = ({ className = '' }) => {
   return (
@@ -32,14 +32,14 @@ const ControlSystemUpsell = ({ className = '' }) => {
           </div>
           <div className="flex-shrink-0">
             <Link
-              to="/services/osha-ready-control-system"
+              to="/services/safety-control-system-buildout"
               className="inline-flex items-center gap-2 font-bold px-6 py-3.5 rounded-lg text-[15px] whitespace-nowrap transition-colors"
               style={{ background: GOLD, color: NAVY }}
               onMouseEnter={(e) => (e.currentTarget.style.background = '#c8922a')}
               onMouseLeave={(e) => (e.currentTarget.style.background = GOLD)}
               data-testid="control-system-upsell-cta"
             >
-              Explore the OSHA-Ready Control System <ArrowRight size={16} />
+              Explore the Safety Control System Buildout <ArrowRight size={16} />
             </Link>
           </div>
         </div>

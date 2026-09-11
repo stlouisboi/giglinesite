@@ -158,9 +158,9 @@ const FitCallRequestPage = () => {
 
   const SEOBlock = (
     <SEO
-      title="Request a Fit Call, OSHA-Ready Control System | GigLine"
-      description="Short qualifying questions to determine whether the OSHA-Ready Control System is the right fit for your operation. Vince responds within one business day."
-      canonical="/services/osha-ready-control-system/request"
+      title="Request a Fit Call, Safety Control System Buildout | GigLine"
+      description="Short qualifying questions to determine whether the Safety Control System Buildout is the right fit for your operation. Vince responds within one business day."
+      canonical="/services/safety-control-system-buildout/request"
       noindex={true}
     />
   );
@@ -184,7 +184,7 @@ const FitCallRequestPage = () => {
               You will also receive a confirmation email at <span className="font-bold text-white">{form.email}</span> shortly. The Fit Call is a short conversation that determines whether the Control System is the right shape for your operation, and what the fixed scope and price look like once the work is defined.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <Link to="/services/osha-ready-control-system" className="inline-flex items-center gap-2 font-bold px-6 py-3.5 rounded-lg text-[15px] transition-colors" style={{ background: GOLD, color: NAVY }} data-testid="fit-call-success-back-service">
+              <Link to="/services/safety-control-system-buildout" className="inline-flex items-center gap-2 font-bold px-6 py-3.5 rounded-lg text-[15px] transition-colors" style={{ background: GOLD, color: NAVY }} data-testid="fit-call-success-back-service">
                 <ArrowLeft size={16} /> Back to the Control System page
               </Link>
               <Link to="/" className="inline-flex items-center gap-2 font-bold px-6 py-3.5 rounded-lg text-[15px] border border-white/40 text-white/85 hover:text-white hover:border-white transition-colors" data-testid="fit-call-success-home">
@@ -212,7 +212,7 @@ const FitCallRequestPage = () => {
           <p className="text-base text-white/75 leading-[1.8] mb-2">
             A short set of questions so Vince can prepare for the Fit Call. Fifteen to twenty minutes on the phone determines fit, scope, and fixed price. No obligation.
           </p>
-          <Link to="/services/osha-ready-control-system" className="inline-flex items-center gap-1.5 mt-4 text-[13.5px] text-white/60 hover:text-white transition-colors" data-testid="fit-call-back-link">
+          <Link to="/services/safety-control-system-buildout" className="inline-flex items-center gap-1.5 mt-4 text-[13.5px] text-white/60 hover:text-white transition-colors" data-testid="fit-call-back-link">
             <ArrowLeft size={14} /> Back to the service page
           </Link>
         </div>

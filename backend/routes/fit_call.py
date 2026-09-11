@@ -1,4 +1,4 @@
-"""OSHA-Ready Control System — Fit Call qualification form.
+"""Safety Control System Buildout — Fit Call qualification form.
 
 Backend endpoint for the /services/osha-ready-control-system/request form.
 Follows existing intake.py conventions: BaseModel with default-empty fields,
@@ -75,7 +75,7 @@ def _label(value: str, default: str = "—") -> str:
 def _render_notification_html(data: FitCallRequest, request_id: str) -> str:
     programs = ", ".join(data.existingPrograms) if data.existingPrograms else "—"
     lines = [
-        f"<h2 style='margin:0 0 8px 0;'>OSHA-Ready Control System — Fit Call Request</h2>",
+        f"<h2 style='margin:0 0 8px 0;'>Safety Control System Buildout — Fit Call Request</h2>",
         f"<p style='color:#555;font-size:12px;margin:0 0 20px;'>Request ID: {request_id}</p>",
         "<table cellpadding='6' style='border-collapse:collapse;font-family:Arial,sans-serif;font-size:14px;'>",
         f"<tr><td><b>Contact</b></td><td>{_label(data.contactName)} &lt;{_label(data.email)}&gt;</td></tr>",
@@ -101,7 +101,7 @@ def _render_prospect_confirmation_html(data: FitCallRequest) -> str:
     <div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.65;color:#1c2b2b;max-width:560px;">
       <p>{_label(data.contactName, 'Hello')},</p>
       <p>Thanks for the request. Vince will review your Fit Call inputs and reach out within one business day to schedule a short call.</p>
-      <p>The Fit Call determines whether the OSHA-Ready Control System is the right shape for your operation, and what the fixed scope and price look like once the work is defined.</p>
+      <p>The Fit Call determines whether the Safety Control System Buildout is the right shape for your operation, and what the fixed scope and price look like once the work is defined.</p>
       <p style="margin:22px 0 8px;font-size:13px;color:#555;"><b>What you submitted</b></p>
       <ul style="font-size:13px;color:#333;margin:0 0 22px;padding-left:18px;">
         <li>Company: {_label(data.companyName)}</li>
@@ -167,7 +167,7 @@ async def submit_fit_call_request(data: FitCallRequest, request: Request):
             "from": f"Vince Lawrence <{SENDER_EMAIL}>",
             "to": [data.email],
             "reply_to": VINCE_EMAIL,
-            "subject": "Your OSHA-Ready Control System Fit Call request",
+            "subject": "Your Safety Control System Buildout Fit Call request",
             "html": _render_prospect_confirmation_html(data),
         })
     except Exception as e:

@@ -91,11 +91,11 @@ const SERVICES = {
     badge: 'Most Requested',
   },
   'osha-ready-control-system': {
-    eyebrow: 'OSHA-Ready Control System',
-    title: 'OSHA-Ready Control System',
+    eyebrow: 'Safety Control System Buildout',
+    title: 'Safety Control System Buildout',
     headline: 'Build the safety system that holds up when an inspector asks for it.',
     price: 'From $4,500',
-    metaTitle: 'OSHA-Ready Control System Buildout, From $4,500 | GigLine',
+    metaTitle: 'Safety Control System Buildout Buildout, From $4,500 | GigLine',
     metaDesc: 'A full safety control system buildout. Four binders, digital folder architecture, training matrix, corrective action tracker, and a 90-day maintenance calendar.',
     body: 'A complete safety control system built into your operation. GigLine installs the four-binder physical system, builds your digital folder structure, populates the training matrix and SDS index, sets up the corrective action tracker, and trains your supervisors. Single engagement, multi-week build, lasting system.',
     whatsIncluded: [

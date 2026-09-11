@@ -322,7 +322,7 @@ const routes = [
           { '@type': 'ListItem', position: 2, item: { '@type': 'Service', name: 'Safety Walkthrough & Top 10 Fixes Report', description: 'A structured on-site review of common OSHA exposure areas with a Top 10 priority report.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '1200', priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 3, item: { '@type': 'Service', name: 'OSHA Documentation Readiness Review', description: DOC_REVIEW_DESCRIPTION, provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: DOC_REVIEW_PRICE_NUM, priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 4, item: { '@type': 'Service', name: 'Incident Review & Corrective Action Support', description: 'Post-incident review, OSHA recordability determination, and corrective action documentation.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '1500', priceCurrency: 'USD' } } },
-          { '@type': 'ListItem', position: 5, item: { '@type': 'Service', name: 'GigLine OSHA-Ready Control System', description: 'Four-binder command system + digital folder architecture, training matrix, SDS organization & corrective action tracker. From $4,500.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '4500', priceCurrency: 'USD' } } },
+          { '@type': 'ListItem', position: 5, item: { '@type': 'Service', name: 'GigLine Safety Control System Buildout', description: 'Four-binder command system + digital folder architecture, training matrix, SDS organization & corrective action tracker. From $4,500.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '4500', priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 6, item: { '@type': 'Service', name: 'Quarterly Compliance Maintenance', description: 'Ongoing quarterly documentation review, training record audit, and corrective action tracker review.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '950', priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 7, item: { '@type': 'Service', name: 'Annual Compliance Control Partner', description: '2 walkthroughs, 4 doc reviews, quarterly calls, 300A reminders, on-call access. Full-year OSHA compliance partnership. $12,000/year.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '12000', priceCurrency: 'USD' } } },
         ],
@@ -355,12 +355,12 @@ const routes = [
       <p>Post-injury or post-near-miss response. Root cause analysis. OSHA recordability determination. OSHA 301 completion. Corrective action plan.</p>
       <h3>Document Development, From $350</h3>
       <p>GigLine writes the programs you are missing. LOTO, HazCom, PPE hazard assessment, Emergency Action Plan, machine-specific procedures. Floor pricing: single program from $350, LOTO + 5 machines from $650, LOTO + 6–15 machines from $1,200, full suite (5+ programs) from $2,000. Scoped and quoted after a Documentation Readiness Review.</p>
-      <h2>GigLine OSHA-Ready Control System, Starting at $4,500</h2>
+      <h2>GigLine Safety Control System Buildout, Starting at $4,500</h2>
       <p>Premium engagement. Four-binder physical command system, digital folder architecture, training matrix + SDS organization, corrective action tracker, 90-day maintenance calendar, supervisor walkthrough at handoff.</p>
       <h2>The Natural Next Step, Quarterly and Annual Support</h2>
       <p>Quarterly Compliance Maintenance, Starting at $950/quarter. Annual Compliance Control Partner, $12,000/year ($1,000/month equivalent).</p>
       <h2>The GigLine Readiness Path</h2>
-      <p>Find the issues, Safety Walkthrough from $1,300. Check the files, OSHA Documentation Readiness Review from ${DOC_REVIEW_PRICE_LABEL}. Review both, Compliance Readiness Visit from $2,500. Build the system, OSHA-Ready Control System from $4,500. Keep it current, Quarterly Maintenance from $950/quarter.</p>
+      <p>Find the issues, Safety Walkthrough from $1,300. Check the files, OSHA Documentation Readiness Review from ${DOC_REVIEW_PRICE_LABEL}. Review both, Compliance Readiness Visit from $2,500. Build the system, Safety Control System Buildout from $4,500. Keep it current, Quarterly Maintenance from $950/quarter.</p>
       <h2>Recent Engagement , Case Study</h2>
       <p><a href="/case-study/metals-fabrication-statesville">What a Safety Walkthrough Actually Finds</a>.</p>
       <p>After payment, you'll receive a scheduling confirmation within one business day.</p>
@@ -1676,12 +1676,12 @@ const SERVICE_DETAIL_ROUTES = [
   },
   {
     slug: 'osha-ready-control-system',
-    title: 'OSHA-Ready Control System, Premium Engagement | GigLine',
+    title: 'Safety Control System Buildout, Premium Engagement | GigLine',
     description: 'Complete OSHA control system for small NC manufacturers, written programs, training, recordkeeping, audit-ready docs. From $4,500.',
     h1: 'A complete OSHA control system built around your operation.',
     summary: 'A premium engagement for small manufacturers ready to operate at full OSHA-ready status. Written programs, training, recordkeeping, and audit-ready documentation built and maintained by GigLine.',
     price: '4500',
-    breadcrumbName: 'OSHA-Ready Control System',
+    breadcrumbName: 'Safety Control System Buildout',
   },
   {
     slug: 'corrective-action-implementation',

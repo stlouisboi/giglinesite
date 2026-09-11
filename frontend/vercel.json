@@ -8,6 +8,8 @@
     { "source": "/onboarding", "destination": "/intake", "permanent": true },
     { "source": "/onboarding/confirmed", "destination": "/intake", "permanent": true },
     { "source": "/case-studies/mocksville-plastics-osha-inspection", "destination": "/case-study/metals-fabrication-statesville", "permanent": true },
+    { "source": "/services/osha-ready-control-system", "destination": "/services/safety-control-system-buildout", "permanent": true },
+    { "source": "/services/osha-ready-control-system/request", "destination": "/services/safety-control-system-buildout/request", "permanent": true },
     {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "giglinecompliance.com" }],

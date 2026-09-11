@@ -5,7 +5,6 @@ import SEO from '../components/SEO';
 import ProofGapEngineSteps from '../components/ProofGapEngineSteps';
 import KitPricingTiers from '../components/KitPricingTiers';
 import ControlSystemUpsell from '../components/ControlSystemUpsell';
-import KitCreditRule from '../components/KitCreditRule';
 import { KIT_DETAILS, KIT_CATALOG } from '../data/citationProofKits';
 
 const NAVY = '#102A43';
@@ -878,7 +877,6 @@ const CitationProofKitDetailPage = () => {
           </div>
         </div>
       </section>
-      <KitCreditRule variant="buyer" />
       <ControlSystemUpsell />
     </main>
   );

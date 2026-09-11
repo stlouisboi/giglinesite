@@ -252,6 +252,34 @@ const KitPricingTiers = ({
                         </span>
                       </li>
                     ))}
+                    {tier.notIncluded && tier.notIncluded.length > 0 && (
+                      <li className="pt-3 mt-2" style={{ borderTop: isFeatured ? '1px solid rgba(255,255,255,0.15)' : '1px solid rgba(10,22,40,0.10)' }}>
+                        <p
+                          className="uppercase font-bold mb-2"
+                          style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9.5px', letterSpacing: '0.18em', color: isFeatured ? 'rgba(255,255,255,0.55)' : 'rgba(10,22,40,0.55)' }}
+                          data-testid={`kit-tier-${tier.id}-not-included-label`}
+                        >
+                          Not Included
+                        </p>
+                        <ul className="space-y-1.5">
+                          {tier.notIncluded.map((item, i) => (
+                            <li key={i} className="flex items-start gap-2.5 text-[13px] leading-[1.5]" data-testid={`kit-tier-${tier.id}-not-included-${i}`}>
+                              <span style={{ color: isFeatured ? 'rgba(255,255,255,0.35)' : 'rgba(10,22,40,0.35)', flexShrink: 0, marginTop: 2 }}>—</span>
+                              <span style={{ color: isFeatured ? 'rgba(255,255,255,0.60)' : 'rgba(10,22,40,0.55)' }}>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        {tier.limitations && (
+                          <p
+                            className="text-[12px] italic mt-3 leading-[1.55]"
+                            style={{ color: isFeatured ? 'rgba(255,255,255,0.55)' : 'rgba(10,22,40,0.55)' }}
+                            data-testid={`kit-tier-${tier.id}-limitations`}
+                          >
+                            {tier.limitations}
+                          </p>
+                        )}
+                      </li>
+                    )}
                   </ul>
                   {stripeEnabled ? (
                     <button

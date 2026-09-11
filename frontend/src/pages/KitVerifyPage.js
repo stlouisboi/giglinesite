@@ -14,7 +14,7 @@ const API = process.env.REACT_APP_BACKEND_URL;
 const TIER_LABELS = {
   digital: 'Digital Compliance Kit',
   'control-system': 'Compliance Control System',
-  binder: 'Inspector-Ready Binder Edition',
+  binder: 'Compliance Binder Edition',
 };
 
 const KitVerifyPage = () => {

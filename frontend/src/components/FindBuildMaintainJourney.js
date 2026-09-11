@@ -26,9 +26,9 @@ const STAGES = [
   {
     code: 'BUILD',
     icon: LayoutTemplate,
-    service: 'OSHA-Ready Control System',
+    service: 'Safety Control System Buildout',
     outcome: "Build the company's digital safety system.",
-    href: '/services/osha-ready-control-system',
+    href: '/services/safety-control-system-buildout',
     highlight: true,
   },
   {

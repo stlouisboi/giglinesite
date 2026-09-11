@@ -1013,18 +1013,18 @@ const OngoingSafetySupportPage = () => {
             What Ongoing Support Maintains
           </p>
           <h2 className="text-2xl md:text-3xl font-extrabold leading-[1.2] mb-4 tracking-tight" style={{ color: '#102A43' }}>
-            Ongoing Safety Support is the maintenance layer for the OSHA-Ready Control System.
+            Ongoing Safety Support is the maintenance layer for the Safety Control System Buildout.
           </h2>
           <p className="text-[15px] leading-[1.8] mb-6 max-w-2xl mx-auto" style={{ color: 'rgba(28,43,43,0.72)' }}>
             If you have not yet built the Control System, the monthly service can still maintain what you have. If you are ready to build a system worth maintaining, start there.
           </p>
           <Link
-            to="/services/osha-ready-control-system"
+            to="/services/safety-control-system-buildout"
             className="inline-flex items-center gap-2 font-bold px-6 py-3 rounded-lg text-[14px] transition-colors"
             style={{ background: '#102A43', color: '#ffffff' }}
             data-testid="ongoing-to-control-system-cta"
           >
-            See the OSHA-Ready Control System →
+            See the Safety Control System Buildout →
           </Link>
         </div>
       </section>

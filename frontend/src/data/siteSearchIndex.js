@@ -22,7 +22,7 @@ export const SITE_SEARCH_INDEX = [
   { title: 'Document Development', path: '/services/document-development', type: 'Service', keywords: 'document program development written iipp hazcom loto bloodborne ergo respiratory' },
   { title: 'Incident Review', path: '/services/incident-review', type: 'Service', keywords: 'incident investigation review post-accident root cause corrective action' },
   { title: 'Annual Compliance Partner', path: '/services/annual-compliance-partner', type: 'Service', keywords: 'annual retainer ongoing partner monthly support recurring' },
-  { title: 'OSHA-Ready Control System', path: '/services/osha-ready-control-system', type: 'Service', keywords: 'control system kit pack starter supervisor' },
+  { title: 'Safety Control System Buildout', path: '/services/safety-control-system-buildout', type: 'Service', keywords: 'control system kit pack starter supervisor' },
 
   // ── Service-area landing pages (P1) ────────────────────
   { title: 'Forklift Compliance Review (NC)', path: '/forklift-compliance-review-nc', type: 'Service', keywords: 'forklift powered industrial truck pit 1910.178 training certification operator' },

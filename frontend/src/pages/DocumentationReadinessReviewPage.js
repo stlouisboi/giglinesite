@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Phone, FileCheck, FolderOpen, ClipboardList, ListChecks, Check, X } from 'lucide-react';
+import { ArrowRight, Phone, FileCheck, FolderOpen, ClipboardList, ListChecks, Check, X, FileSearch, AlertCircle, GitCompare, FileWarning, TrendingUp, ArrowRightCircle } from 'lucide-react';
 import SEO from '../components/SEO';
 import DiagnosticComparisonCard from '../components/DiagnosticComparisonCard';
 
@@ -41,6 +41,15 @@ const NOT_INCLUDED = [
   'Employee training delivery',
   'Legal advice or regulatory representation',
   'A compliance certification or guarantee',
+];
+
+const REVIEW_PRODUCES = [
+  { Icon: FileSearch, title: 'Documents reviewed', body: 'A named list of every written program, record type, and supporting document assessed during the review, with source and version noted where available.' },
+  { Icon: AlertCircle, title: 'Missing or incomplete required elements', body: 'Each program measured against OSHA content and completeness requirements. Missing sections, unnamed responsibilities, or incomplete elements are documented against the specific citation.' },
+  { Icon: GitCompare, title: 'Conflicting dates, responsibilities, or procedures', body: 'Where written programs contradict each other, contradict posted procedures, or name responsibilities that do not match the current organizational chart, the conflict is flagged with both sources.' },
+  { Icon: FileWarning, title: 'Records that cannot be readily produced', body: 'Records that are missing, misfiled, unlabeled, unsigned, or cannot be retrieved within an inspection-response timeframe are documented as retrieval failures, not paperwork failures.' },
+  { Icon: TrendingUp, title: 'Priority level for each finding', body: 'Every finding is assigned a priority using a fixed three-tier scale so leadership can decide what to close first without re-reading the whole report.' },
+  { Icon: ArrowRightCircle, title: 'Recommended next action', body: 'Each finding carries a specific recommended next action, written as something a named owner at the facility could execute. GigLine does not implement.' },
 ];
 
 const DocumentationReadinessReviewPage = () => (
@@ -101,6 +110,65 @@ const DocumentationReadinessReviewPage = () => (
               </div>
             );
           })}
+        </div>
+      </div>
+    </section>
+
+    <section className="py-20 md:py-24" style={{ background: '#FBFAF7' }} data-testid="drr-produces">
+      <div className="container max-w-5xl">
+        <p className="uppercase font-bold mb-3" style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.20em', color: '#5B6B7A' }}>What Your Review Produces</p>
+        <h2 className="text-3xl md:text-4xl font-extrabold leading-[1.15] mb-4 tracking-tight" style={{ color: NAVY }}>
+          What lands in your inbox at the end.
+        </h2>
+        <p className="text-[15px] leading-[1.75] mb-10 max-w-2xl" style={{ color: 'rgba(28,43,43,0.72)' }}>
+          The written report structures every finding the same way, so leadership can act on it Monday morning without re-reading the whole document.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
+          {REVIEW_PRODUCES.map((d, i) => {
+            const Icon = d.Icon;
+            return (
+              <div key={i} className="rounded-xl p-6" style={{ background: '#ffffff', border: '1px solid #e8e5dd' }} data-testid={`drr-produces-${i}`}>
+                <div className="flex items-center justify-center mb-4" style={{ width: 36, height: 36, borderRadius: 8, background: 'rgba(42,82,160,0.10)', color: BLUE }}>
+                  <Icon size={18} strokeWidth={2} />
+                </div>
+                <h3 className="text-[16px] font-bold mb-2" style={{ color: NAVY }}>{d.title}</h3>
+                <p className="text-[14px] text-[#1C2B2B]/70 leading-[1.7]">{d.body}</p>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Illustrative sample finding (NOT a client quote or testimonial) */}
+        <div
+          className="rounded-xl p-6 md:p-7 mb-10"
+          style={{ background: 'rgba(201,168,76,0.08)', border: '1px solid rgba(201,168,76,0.35)' }}
+          data-testid="drr-produces-example"
+        >
+          <p className="uppercase font-bold mb-3" style={{ ...mono, fontSize: '10px', letterSpacing: '0.20em', color: '#8B6F1F' }}>
+            Illustrative Sample Finding
+          </p>
+          <p className="text-[13px] italic mb-3" style={{ color: 'rgba(28,43,43,0.55)' }}>
+            The paragraph below is a written example of how a typical finding is documented. It is not a client engagement, testimonial, or case study.
+          </p>
+          <p className="text-[15px] leading-[1.8]" style={{ color: NAVY }}>
+            <span className="font-bold">Example:</span> The written HazCom program named a paper SDS binder as the employee access method, but the binder location had changed and second-shift employees could not identify the backup-access process. The review would document the conflict, assign its priority, and identify the corrective action needed.
+          </p>
+        </div>
+
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+          <Link
+            to="/intake?service=documentation-readiness-review"
+            className="inline-flex items-center gap-2 font-bold px-6 py-3 rounded-lg text-[14px] transition-colors"
+            style={{ background: NAVY, color: '#ffffff' }}
+            data-testid="drr-produces-cta"
+          >
+            Request a Documentation Readiness Review
+            <ArrowRight size={16} />
+          </Link>
+          <a href="tel:3363298899" className="inline-flex items-center gap-2 text-[13px] font-semibold" style={{ color: NAVY }} data-testid="drr-produces-phone">
+            <Phone size={14} />(336) 329-8899
+          </a>
         </div>
       </div>
     </section>

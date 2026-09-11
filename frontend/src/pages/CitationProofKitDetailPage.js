@@ -4,6 +4,7 @@ import { ArrowRight, ArrowLeft, Check, ShieldCheck, ClipboardList, Lock, AlertTr
 import SEO from '../components/SEO';
 import ProofGapEngineSteps from '../components/ProofGapEngineSteps';
 import KitPricingTiers from '../components/KitPricingTiers';
+import ControlSystemUpsell from '../components/ControlSystemUpsell';
 import { KIT_DETAILS, KIT_CATALOG } from '../data/citationProofKits';
 
 const NAVY = '#102A43';
@@ -876,6 +877,7 @@ const CitationProofKitDetailPage = () => {
           </div>
         </div>
       </section>
+      <ControlSystemUpsell />
     </main>
   );
 };

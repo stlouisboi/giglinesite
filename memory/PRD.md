@@ -255,3 +255,117 @@ See `/app/memory/test_credentials.md`.
   - **Env vars used**: `EMERGENT_LLM_KEY` (already set), `INTEGRATION_PROXY_URL` (optional, defaults to public proxy).
   - **Push required**: `/app/backend/lib/object_storage.py` (NEW), `routes/intake.py`, `routes/portal.py`, `server.py`. Railway will pick them up on GitHub push.
 
+
+- **2026-02 (fork), Observatory retest confirms A+**:
+  - After Vercel picked up the CSP fix (`'unsafe-inline'` removed from script-src, GA4/Clarity moved to `/gigline-init.js`), fresh Mozilla Observatory scan: **A+, 115/100, 11/12 tests passed** (against the earlier B/75 baseline, a jump of +40 points).
+  - Net bonus math: 100 base + 5 Referrer-Policy + 10 COOP + 5 XFO-via-CSP = 115. Only failing test is SRI on gtag.js which is unfixable (GTM URLs are non-deterministic) and no longer penalizes because bonus points more than cover the -5.
+  - Screenshots for sales-page trust bars saved to `/app/frontend/public/assets/mozilla-observatory-a-plus.jpg` (full report, 85 KB) and `/app/frontend/public/assets/mozilla-observatory-a-plus-badge.jpg` (cropped A+ summary, 6.6 KB).
+  - The footer trust chip copy ("A+ Security · HSTS Preloaded") is now technically accurate on the "A+" side. The "HSTS Preloaded" claim is still preload-eligible-but-not-yet-submitted until the domain is accepted at hstspreload.org.
+
+
+- **2026-02 (fork), A+ badge wire-in + HSTS preload prep**:
+  - **Trust badges added to two hero placements**:
+    - `HomePage.js` hero: added a 4th badge `A+ Security Rating` (lucide `Lock` icon) to the existing OSHA-30 / Navy Vet / 25+ Years strip. Layout switched from `flex-col sm:flex-row` to `flex-wrap` so 4 badges break clean on all viewports. Verified: desktop 1920 no overflow; mobile 390 wraps 2+2, no overflow.
+    - `ServicesPage.js` Founder section: added a `services-founder-credentials` strip below Vince's bio paragraph with 3 badges (OSHA 30-Hour Certified, U.S. Navy Veteran, A+ Security Rating). Verified: desktop and mobile 390 both clean.
+    - Both A+ badges link out to `https://developer.mozilla.org/en-US/observatory/analyze?host=www.giglinecompliance.com` (target=_blank, rel=noopener) so buyers can independently verify.
+    - lucide imports extended: `Lock` added to HomePage, `Lock` + `Anchor` added to ServicesPage.
+  - **HSTS preload BLOCKED on Vercel setup**: hstspreload.org's own API rejects the domain right now, root-cause is the apex `giglinecompliance.com` responds with only `max-age=63072000` (no `includeSubDomains`, no `preload`). Vercel is answering the apex→www redirect at the edge with its default HSTS, bypassing our vercel.json headers because the apex is currently configured as a Vercel Dashboard "Redirect Domain" (not attached to the project).
+  - **Fix pushed (needs one Dashboard toggle from user)**: `vercel.json` now has an explicit `redirects` entry keyed on `has: host = giglinecompliance.com` that fires apex→www at the project level, which will bring our full HSTS + CSP + everything to the apex response, but ONLY if the apex is attached to the project as a real Domain rather than a Redirect Domain. If Vercel Dashboard still has apex as a redirect domain, the vercel.json rule never fires.
+  - **User action required to close this**:
+    1. In Vercel Dashboard → Project → Settings → Domains: if `giglinecompliance.com` (apex) currently shows "Redirect to www.giglinecompliance.com", **change it to a regular production domain** (same project, no redirect assigned). The vercel.json redirect will then take over.
+    2. Push the vercel.json change to GitHub.
+    3. Wait ~60s for Vercel to redeploy.
+    4. Curl-verify the apex now returns full HSTS: `curl -sI https://giglinecompliance.com/ | grep strict-transport-security` should show `max-age=63072000; includeSubDomains; preload`.
+    5. Go to https://hstspreload.org, enter `giglinecompliance.com`, click Check status. If green, click Submit.
+    6. Wait 6-12 weeks for the domain to appear in the next Chrome release bundle. Firefox and Edge sync from Chrome's list roughly weekly to monthly after that.
+  - **Files changed this batch (need push)**: `frontend/vercel.json`, `frontend/src/pages/HomePage.js`, `frontend/src/pages/ServicesPage.js`.
+
+
+- **2026-02 (fork), LinkedIn OG card fix (A + C)**:
+  - **Root cause**: LinkedIn's image proxy downsamples og-images to 480px wide (vs Facebook's 1200px). The old `og-image.png` was intentionally dark (`#091526`) with subtle gold text and a small shield graphic. At 480px, the whole card crushed to near-black and the headline became unreadable, while Facebook rendered it fine.
+  - **A: New og-image.png generated via Pillow** (not Nano Banana, because it fumbles text): typographic 1200×630 card, navy gradient background, gold left-edge accent bar, gold pinstripe under eyebrow, "GIGLINE SAFETY & COMPLIANCE" mono eyebrow, big two-line headline "Find the gaps / before OSHA does." in Liberation Serif Bold 92pt (Georgia clone), "OSHA WALKTHROUGHS · DOCUMENTATION REVIEWS · PIEDMONT TRIAD NC" service line, "FIXED QUOTE · 48-HOUR WRITTEN REPORT · FROM $1,300" footer, gold shield-with-checkmark top-right, `giglinecompliance.com` watermark bottom-right. Verified at 1200×630 AND simulated 480×252 LinkedIn downsample: all copy stays crisply readable. File size 43 KB (down from 57 KB).
+  - **Script**: `/app/scripts/gen_og_image.py`, re-runnable for future revisions.
+  - **C: Removed `<meta name="author">` from index.html** so LinkedIn stops misclassifying the homepage as Type=Article (which triggered the red "No publication date found" warning in Post Inspector).
+  - **Cache-buster**: appended `?v=2` to `og:image` and `twitter:image` URLs so LinkedIn's proxy fetches the new asset instead of serving its cached black thumbnail. Only affects social-scraper URLs, not the underlying static file.
+  - **og:image:alt** updated from "Find it before OSHA does." to "Find the gaps before OSHA does." to match the new headline.
+  - **Files changed this batch** (need push to Vercel): `frontend/public/og-image.png`, `frontend/public/index.html`, `scripts/gen_og_image.py` (NEW).
+  - **After push**: user should hit LinkedIn Post Inspector's "Inspect" button and Facebook Sharing Debugger's "Scrape Again" to force a fresh scrape and confirm the new preview shows.
+
+
+- **2026-02 (fork), OG image v3 - premium editorial rebuild**:
+  - **Why**: First rebuild (gold-on-navy typographic card with shield glyph) still read as "AI-designed template" - symmetrical grid, stylized clip-art checkmark, five text lines competing, high-saturation colors. User asked for premium, editorial feel.
+  - **New design**: 60/40 asymmetric split. Left panel is a real cropped photograph of Vince inspecting a LOTO Compliance Review clipboard on the shop floor (uses existing `/vince-inspecting.webp`). Right panel is a solid navy ink block with a tiny mono kicker, a 42px hairline gold rule, and an editorial italic serif headline "Find the gaps / before OSHA / does." in warm cream (not pure white, not saturated gold). Bottom of panel carries a locale line "PIEDMONT TRIAD · NORTH CAROLINA" and the domain in aged gold. Subtle vertical vignette blends photo into ink panel. 5% film-grain overlay across the whole image for print-editorial feel.
+  - **Palette shifted premium**: aged gold `#B08F44` instead of saturated `#C9A84C`, warm cream `#EEE8DB` instead of pure white, navy ink `#102037`. Less digital, more magazine.
+  - **Verified**: 1200×630 full = magazine-cover strong. LinkedIn's 480×252 downsample = every text line stays crisp, Vince is instantly recognizable as a human, no rendering artifacts. Clipboard, DANGER HIGH VOLTAGE sign, and industrial background all survive the compression, which is what shatters the "AI graphic" pattern.
+  - **File**: 647 KB PNG (photo-driven, so PNG size is larger than the typographic v2's 44 KB, but still well under social platform limits and hits CDN cache after first fetch).
+  - **Script**: `/app/scripts/gen_og_image.py` rewritten. Re-runnable if headline copy or photo ever changes.
+  - **Cache-buster `?v=2` already in place** from the previous batch, so on push LinkedIn's proxy re-fetches instead of serving the black card.
+  - **Files changed this batch (need push to Vercel)**: `frontend/public/og-image.png`, `scripts/gen_og_image.py`.
+
+
+- **2026-02 (fork), HazCom Pro silent failure closed**:
+  - **Silent failure closed**: HazCom Pro was fully in `CITATION_PROOF_KIT_PRODUCTS` and reachable via Stripe checkout, but the two referenced PDFs on disk (`GigLine_HazCom_Pro_Digital_Compliance_Kit_150.pdf` and `..._Control_System_300.pdf`) did not exist. Buyers would pay and receive no attachment. This is now fixed.
+  - **User uploaded three deliverable ZIPs** (as `.zip` bundles, not single PDFs), containing branded PDFs + an .xlsx workbook + a MASTER PDF per the tier stacking model in the READMEs. Stored at `/app/backend/kit_files/GigLine_HazCom_Pro_Digital_Compliance_Kit_150.zip` (413 KB) and `/app/backend/kit_files/GigLine_HazCom_Pro_Compliance_Control_System_300.zip` (813 KB).
+  - **$600 binder tier** points to the $300 ZIP (mirrors the LOTO/PIT pattern where binder tier reuses control-system deliverable and physical binder ships separately). User's $600 zip upload arrived truncated (CD record missing); once re-uploaded, we can swap in the enriched $600 deliverable (adds printable binder tab dividers per README).
+  - **Delivery pipeline uses `.zip` extension**: Resend attaches base64-encoded ZIP with filename `GigLine_HazCom_Pro_Kit_150_Digital.zip` (or `..._300_Control_System.zip`). No delivery-code change needed since Resend's attachment API is content-type-agnostic — email clients infer type from filename.
+  - **Verified end-to-end**:
+    - All 3 tiers create live Stripe checkout sessions (`cs_live_...`) via `POST /api/checkout/citation-proof-kit`
+    - Both zips read + base64-encode cleanly (551 KB / 1085 KB Resend payloads, well under the 40 MB limit)
+    - Config sanity script confirms every HazCom `pdf_path` resolves to an existing file
+  - **Homepage copy updated** (line 1235-1240): "LOTO, Forklift/PIT, and HazCom Pro are shipping now… Incident-to-Correction and New Hire Orientation are next." Old copy hid HazCom Pro as "next" while the checkout endpoint was live.
+  - **Files changed (need push)**: `backend/config.py`, `frontend/src/pages/HomePage.js`, plus binary artifacts `backend/kit_files/GigLine_HazCom_Pro_Digital_Compliance_Kit_150.zip` and `..._Control_System_300.zip`.
+
+
+- **2026-02 (fork), OSHA-Ready Control System pivot to digital-first + 4-stage journey**:
+  - **Direction**: keep existing service AT $4,500 but pivot from physical-4-binder-primary to Digital Safety Control System primary (built inside client's Google Drive / SharePoint / OneDrive). Physical binder becomes an optional add-on, quoted separately. Introduce Find → Prioritize → Build → Maintain journey without collapsing the three existing FIND diagnostics (Safety Walkthrough, Documentation Readiness Review, Compliance Readiness Visit remain separate).
+  - **BATCH 1 – Backend Fit Call endpoint** (`backend/routes/fit_call.py`, registered in `server.py`):
+    - `POST /api/fit-call-request` accepts 13-field `FitCallRequest` Pydantic model + honeypot `website` field.
+    - Persists to new `gl_fit_call_requests` collection with source_ip + user_agent capture. Fires Resend notification to Vince + confirmation email to prospect (both best-effort, never fail the request).
+    - Verified: 400 on missing required fields · 400 on bad email · silent 200 on honeypot fill · valid submit persists correctly.
+    - Included boundary language constant reused across service page, form ack, and prospect confirmation email.
+  - **BATCH 2 – OSHA-Ready Control System page rewrite** (`frontend/src/pages/OshaReadyControlSystemPage.js`, full overwrite): hero with "Your safety documents should work together." + Request a Fit Call / See What's Included CTAs, "Scattered documents are not a safety system" problem section (6 cards), "Your Digital Safety Control System" (6 components: Written Program Control, SDS/Chemical, Training Proof, Inspections & Corrections, Incident Management, Document Governance), responsive semantic folder-tree diagram (11 folders, `<ol>` structure, screen-reader accessible), Optional Physical Access Binder add-on section, 7-step implementation process, "Starting scope" (12 included / 10 quoted separately), Readiness Kits vs Control System comparison table, boundary language section, closing CTA.
+  - **BATCH 3 – Fit Call form page** (`frontend/src/pages/FitCallRequestPage.js`, route `/services/osha-ready-control-system/request`, added to App.js): 13-field form matching backend schema exactly (contact ×2, company ×3, scale ×2, systems ×3, problem/timing ×3), hidden honeypot, multi-select programs with "None yet" exclusivity, 1000-char count for problem field, aria-live announcements, error/success/submitting states, no back-nav protection but disables submit while in-flight and while success state is shown to prevent duplicate submissions, boundary language on acknowledgment, `noindex` SEO on this route.
+  - **BATCH 4 – Journey navigator** (new shared `frontend/src/components/FindBuildMaintainJourney.js`): 4-stage grid card with FIND=Compliance Readiness Visit → PRIORITIZE=Corrective Action Implementation → BUILD=OSHA-Ready Control System (highlighted with gold border, the featured stage) → MAINTAIN=Ongoing Safety Support. Inserted into HomePage after hero and into ServicesPage after the top nav.
+  - **BATCH 5 – Cross-links** (new shared `frontend/src/components/ControlSystemUpsell.js`): "Need this implemented across your operation?" band. Dropped into `CitationProofKitDetailPage.js` which is the single shared component behind all 5 kit slugs, so the change lands on all 5 kits in one edit (per user's "identify shared component" instruction). Ongoing Safety Support page gets a "What Ongoing Support Maintains" section linking back to Control System.
+  - **End-to-end Playwright verification** (all pass):
+    - OSHA-Ready page: 11 sections render on 1920×800 · 6 problems · 6 components · 11 folder items · 7 process steps · 12 scope-included · 5 compare rows · hero CTA routes to `/request`.
+    - Fit Call form: fills 13 fields cleanly · submits · success state renders with email echo · boundary language visible.
+    - Homepage: journey renders with all 4 stages.
+    - Services page: journey renders after nav.
+    - LOTO kit page: upsell block present, CTA routes correctly (proves upsell reaches all 5 kits via shared component).
+    - Ongoing Safety Support: "Maintain the Control System" cross-link present.
+    - Existing /intake route still loads (no regression).
+  - **URLs preserved**: no rewrites of Safety Walkthrough, Documentation Readiness Review, existing intake, or existing kit routes. Only new route added: `/services/osha-ready-control-system/request`.
+  - **Files changed** (need push, logically grouped for per-batch review):
+    - Batch 1: `backend/routes/fit_call.py` (NEW), `backend/server.py`
+    - Batch 2: `frontend/src/pages/OshaReadyControlSystemPage.js` (rewritten)
+    - Batch 3: `frontend/src/pages/FitCallRequestPage.js` (NEW), `frontend/src/App.js`
+    - Batch 4: `frontend/src/components/FindBuildMaintainJourney.js` (NEW), `frontend/src/pages/HomePage.js`, `frontend/src/pages/ServicesPage.js`
+    - Batch 5: `frontend/src/components/ControlSystemUpsell.js` (NEW), `frontend/src/pages/CitationProofKitDetailPage.js`, `frontend/src/pages/OngoingSafetySupportPage.js`
+
+
+- **2026-02 (fork), Ladder gap fixes (4 approved items)**:
+  - **Item 1 – Diagnostic comparison card** (`components/DiagnosticComparisonCard.js`, NEW, 181 lines): 3-column table Walkthrough $1,300 / Doc Review $1,700 / CRV $2,500. Rows: floor conditions, docs, prioritized findings, combined picture, 30-day review, best for. Highlighted column changes by page. Includes gold "Combined Value: separately $3,000 / CRV $2,500 / Save $500" block. Placed on CRV page (highlight=crv, no CTA) and Safety Walkthrough page (highlight=walkthrough, with CTA).
+  - **Item 2 – Kit-to-CRV credit** (`components/KitCreditRule.js`, NEW, 121 lines): buyer variant (on kit detail page) sells the credit upfront; redemption variant (on CRV page) explains how to invoke it. Rules table: Tier I $150 → up to $150 credit, Tier II $300 → up to $300, Tier III $600 → max $300 (fulfillment costs excluded). One credit per facility, 30-day window, not combinable, applies to CRV only. Vince applies credit manually at fixed-quote stage; buyers reference kit order number.
+  - **Item 3 – Retainer diagnostic gate strengthened** (`OngoingSafetySupportPage.js`): existing "following an initial Compliance Readiness Visit" copy expanded to a bold "Baseline required" paragraph making explicit that Ongoing Safety Support does NOT inherit undocumented hazards under a monthly agreement.
+  - **Item 4 – Annual prepay option** (`OngoingSafetySupportPage.js`): new pricing card between the 3-column initial-investment grid and the explanation paragraphs. Shows monthly-times-12 = $19,800 (strikethrough) vs annual prepay = $18,150 (save $1,650, one month free). CTA is `mailto:` because annual terms require scoped scope + renewal + cancellation language before signature, no self-checkout. Available after 90-day initial term.
+  - **Verified**: 1920×800 desktop + 390×844 mobile, zero overflow (excluding intentional table scrollers), all data-testids resolve, annual prepay price renders correctly at $18,150, gate copy present in body.
+  - **Discovered while shipping**: no dedicated `DocumentationReadinessReviewPage.js` exists. Doc Review ($1,700) is referenced in CRV FAQ, service catalog, and comparison card but has no landing page. Comparison card links to `/services/documentation-readiness-review` which currently 404s. Flag for next-batch decision.
+  - **Explicitly NOT shipped this batch** (per user's "The right move" list not including them): Kit Activation Session $399, "Inspector-Ready" → "Compliance Binder Edition" rename, "OSHA-Ready" → "Safety Control System Buildout" rename, defining $600 tier inclusions, multi-facility license price, "Keep My Kit Current" $129/year, expedited/shipping/branding/replacement pricing, $800-$1,000 coaching rung (explicitly rejected).
+  - **Files changed (need push)**: `frontend/src/components/DiagnosticComparisonCard.js` (NEW), `frontend/src/components/KitCreditRule.js` (NEW), `frontend/src/pages/ComplianceReadinessVisitPage.js`, `frontend/src/pages/SafetyWalkthroughPage.js`, `frontend/src/pages/CitationProofKitDetailPage.js`, `frontend/src/pages/OngoingSafetySupportPage.js`.
+
+
+- **2026-02 (fork), 3 approved enhancements + kit credit revert**:
+  - **Revert first** (per current spec's "do not add kit-to-service conversion credit yet"): removed `KitCreditRule.js` component and both call sites in `CitationProofKitDetailPage.js` and `ComplianceReadinessVisitPage.js`. Zero code references remain. The previous batch's Item 2 is fully unshipped.
+  - **1. Documentation Readiness Review page** (`pages/DocumentationReadinessReviewPage.js` NEW, 141 lines, route `/services/documentation-readiness-review`): FIND-stage eyebrow, editorial serif headline, fixed $1,700 price block with CRV upsell math ($2,500, save $500), 4 included deliverables cards (written program review, records, training documentation, inspection-readiness organization), 7 explicit exclusions (floor inspection, custom writing, implementation, employee training, legal advice, compliance guarantee, plus one more), embedded DiagnosticComparisonCard highlighting the "doc" column, closing CTA. Registered in `App.js` + added to `public/sitemap.xml`. Service schema.org markup with $1,700 offer price and areaServed=NC.
+  - **2. Naming changes** (74 occurrences across 22 files, bulk sed sweep with post-verification): "Inspector-Ready Binder Edition" → "Compliance Binder Edition" (tier name only, kit slug unchanged); "OSHA-Ready Control System" → "Safety Control System Buildout" (display AND route); "Inspector-Ready" → "Compliance" wherever it appeared as a standalone modifier. Post-sweep verification: 0 occurrences of either old name remain in visible copy, metadata, structured data, or sitemap; 2 occurrences of old route path remain, both intentionally in `vercel.json` redirects.
+  - **3. $600 Compliance Binder Edition scope** (`data/citationProofKits.js` + `components/KitPricingTiers.js`): rewrote positioning, bestFor, and 9-item `includes` array to match spec verbatim (3-inch D-ring, HazCom docs, full-color cover + dividers, 10 sections, digital files, one-facility license, standard continental US shipping, 7-10 business day production, damaged-in-transit replacement). Added new `notIncluded` array (7 items) and `limitations` string. Extended `KitPricingTiers` component to render the "Not Included" list with em-dash bullets and the limitations paragraph as italic below the tier CTA, styled to match the tier card variant (featured vs default).
+  - **Explicitly NOT shipped this batch** (per user): `$399 Kit Activation Session` (no page, no product, no card, no nav link, no checkout); kit-to-CRV credit (reverted from previous batch; awaits separate checkout-rules approval).
+  - **New route**: `/services/documentation-readiness-review` (200)
+  - **Changed route**: `/services/osha-ready-control-system` → `/services/safety-control-system-buildout` (301, and `/request` sub-route too)
+  - **Redirect map** (`frontend/vercel.json`):
+    - `301: /services/osha-ready-control-system` → `/services/safety-control-system-buildout`
+    - `301: /services/osha-ready-control-system/request` → `/services/safety-control-system-buildout/request`
+  - **Verified**: 1920 + 390 viewports; new page renders, price + not-included copy visible; kit binder tier now shows the not-included section + limitations; homepage references new Control System name; zero old-name occurrences anywhere in visible surfaces.
+  - **Files changed (need push)**: `frontend/src/pages/DocumentationReadinessReviewPage.js` (NEW), `frontend/src/App.js`, `frontend/vercel.json`, `frontend/public/sitemap.xml`, `frontend/public/llms.txt`, `frontend/src/data/citationProofKits.js`, `frontend/src/data/siteSearchIndex.js`, `frontend/src/data/fieldNoteContent.js`, `frontend/src/components/KitPricingTiers.js`, `frontend/src/components/FindBuildMaintainJourney.js`, `frontend/src/components/ControlSystemUpsell.js`, plus 7 pages touched by rename sweep (CorrectiveActionImplementationPage, ClientIntakePage, FAQPage, FitCallRequestPage, ServicesPage, KitVerifyPage, ServiceDetailPage, CitationProofKitThankYouPage, OngoingSafetySupportPage, OshaReadyControlSystemPage). File paths kept unchanged; only their internal display copy changed. `frontend/scripts/generate-seo-pages.js` and `backend/config.py`, `backend/routes/fit_call.py`, `backend/lib/pdf_cover_metadata.py` also swept for old names.
+

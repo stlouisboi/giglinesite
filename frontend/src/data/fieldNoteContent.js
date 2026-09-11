@@ -100,7 +100,7 @@ The fix isn't expensive. A written Heat Illness Prevention Plan, customized to y
     figureCaption: 'The 7 daily pre-shift inspection points required under 29 CFR 1910.178(q)(7). A missing or unsigned checklist is a citable condition on inspection day.',
     kitCrossSell: {
       headline: 'The forklift inspection & operator-certification system, done for you.',
-      intro: 'The GigLine Forklift / PIT Readiness Kit ships the exact daily inspection log, operator evaluation form, refresher tracker, and pedestrian-separation plan a facility needs to satisfy 29 CFR 1910.178. Digital ($150), Compliance Control System ($300), or Inspector-Ready Binder Edition ($600).',
+      intro: 'The GigLine Forklift / PIT Readiness Kit ships the exact daily inspection log, operator evaluation form, refresher tracker, and pedestrian-separation plan a facility needs to satisfy 29 CFR 1910.178. Digital ($150), Compliance Control System ($300), or Compliance Binder Edition ($600).',
       ctaTo: '/citation-proof-kits/forklift-pit-readiness-kit',
       ctaLabel: 'Explore the Forklift / PIT Readiness Kit',
       cards: [

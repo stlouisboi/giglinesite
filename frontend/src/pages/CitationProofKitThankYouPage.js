@@ -41,7 +41,7 @@ const CitationProofKitThankYouPage = () => {
   const isBinderTier = state.verifyData?.physical_binder || tierFromUrl === 'binder';
   const tierLabel =
     state.verifyData?.tier_label ||
-    (tierFromUrl === 'binder' ? 'Inspector-Ready Binder Edition' :
+    (tierFromUrl === 'binder' ? 'Compliance Binder Edition' :
      tierFromUrl === 'control-system' ? 'Compliance Control System' :
      'Digital Compliance Kit');
   const shipWindow = state.verifyData?.ship_window || '3–5 business days';

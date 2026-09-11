@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, BookOpen, Monitor, FileText, Bot, Zap, ShieldCheck, Star, Anchor, Factory, MapPin, ClipboardList, Shield, CheckCircle2, FileImage } from 'lucide-react';
+import { ArrowRight, Check, BookOpen, Monitor, FileText, Bot, Zap, ShieldCheck, Star, Anchor, Factory, MapPin, ClipboardList, Shield, CheckCircle2, FileImage, Lock } from 'lucide-react';
 import SEO from '../components/SEO';
 import CaseStudyTeaser from '../components/CaseStudyTeaser';
 import FieldManualBand from '../components/FieldManualBand';
 import WalkthroughDaySection from '../components/WalkthroughDaySection';
+import FindBuildMaintainJourney from '../components/FindBuildMaintainJourney';
 import { trackPhoneClick, trackReviewClick, trackEvent } from '../utils/analytics';
 import { SUPERVISOR_KIT_ENABLED } from '../config/features';
 
@@ -206,7 +207,7 @@ const HomePage = () => {
 
               {/* ═══ GL-WEB-023: Trust badges above the fold ═══ */}
               <div
-                className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 mb-6"
+                className="flex flex-wrap gap-x-6 gap-y-3 mb-6"
                 data-testid="hero-trust-badges"
                 role="list"
                 aria-label="Consultant credentials"
@@ -215,17 +216,43 @@ const HomePage = () => {
                   { Icon: ShieldCheck, label: 'OSHA 30-Hour Certified' },
                   { Icon: Anchor, label: 'U.S. Navy Veteran' },
                   { Icon: Factory, label: '25+ Years Floor-Level Experience' },
-                ].map((b, i) => (
-                  <div
-                    key={i}
-                    role="listitem"
-                    className="flex items-center gap-2 text-[13px] text-[#CBD5E1]"
-                    data-testid={`hero-trust-badge-${i}`}
-                  >
-                    <b.Icon size={16} className="text-[#C9A84C] flex-shrink-0" strokeWidth={1.8} />
-                    <span className="font-medium">{b.label}</span>
-                  </div>
-                ))}
+                  {
+                    Icon: Lock,
+                    label: 'A+ Security Rating',
+                    href: 'https://developer.mozilla.org/en-US/observatory/analyze?host=www.giglinecompliance.com',
+                    title: 'Verified A+ by Mozilla Observatory. Click to view live scan.',
+                  },
+                ].map((b, i) => {
+                  const inner = (
+                    <>
+                      <b.Icon size={16} className="text-[#C9A84C] flex-shrink-0" strokeWidth={1.8} />
+                      <span className="font-medium">{b.label}</span>
+                    </>
+                  );
+                  return b.href ? (
+                    <a
+                      key={i}
+                      role="listitem"
+                      href={b.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={b.title}
+                      className="flex items-center gap-2 text-[13px] text-[#CBD5E1] hover:text-white transition-colors"
+                      data-testid={`hero-trust-badge-${i}`}
+                    >
+                      {inner}
+                    </a>
+                  ) : (
+                    <div
+                      key={i}
+                      role="listitem"
+                      className="flex items-center gap-2 text-[13px] text-[#CBD5E1]"
+                      data-testid={`hero-trust-badge-${i}`}
+                    >
+                      {inner}
+                    </div>
+                  );
+                })}
               </div>
 
               <div className="flex flex-col items-start gap-3 mb-5" data-testid="hero-ctas">
@@ -558,6 +585,9 @@ const HomePage = () => {
           </Reveal>
         </div>
       </section>
+
+      {/* ═══ FIND → PRIORITIZE → BUILD → MAINTAIN journey ═══ */}
+      <FindBuildMaintainJourney variant="light" />
 
       {/* ═══ SECTION 2, WHAT WE FIND ON THE FLOOR (GL-WEB-008) ═══ */}
       <section className="py-20 md:py-24 bg-white border-t border-b" style={{ borderColor: '#dde3ea' }} data-testid="floor-findings-section">
@@ -1207,10 +1237,11 @@ const HomePage = () => {
                 data-testid="home-kit-series-body"
               >
                 Five kits. Three tiers each. One goal: paperwork that survives an inspection.
-                <strong style={{ color: '#C5A059' }}> LOTO</strong> and{' '}
-                <strong style={{ color: '#C5A059' }}>Forklift/PIT</strong> are shipping now ,{' '}
+                <strong style={{ color: '#C5A059' }}> LOTO</strong>,{' '}
+                <strong style={{ color: '#C5A059' }}>Forklift/PIT</strong>, and{' '}
+                <strong style={{ color: '#C5A059' }}>HazCom Pro</strong> are shipping now,{' '}
                 <strong style={{ color: 'white' }}>$150 digital &middot; $300 control system &middot; $600 pre-printed binder</strong>.
-                HazCom Pro, Incident-to-Correction, and New Hire Orientation are next.
+                Incident-to-Correction and New Hire Orientation are next.
               </p>
               <div className="flex flex-wrap gap-3 items-center">
                 <Link

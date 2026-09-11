@@ -111,7 +111,7 @@ export const FAQS = [
   },
   {
     q: 'How does Quarterly Compliance Maintenance work?',
-    a: "Quarterly Compliance Maintenance ($950/quarter) keeps the safety system current between annual walkthroughs. Each quarter GigLine performs a documentation review (training records, OSHA 300 log, written program review, SDS inventory check), a corrective action tracker review, and a brief site visit if any changes warrant one. The quarterly cadence keeps small documentation gaps from becoming citation-level exposures and ensures the system you paid to build does not decay between Annual Partner visits. It is the natural next step after the OSHA-Ready Control System buildout for operations that want ongoing accountability without the full Annual Partner commitment.",
+    a: "Quarterly Compliance Maintenance ($950/quarter) keeps the safety system current between annual walkthroughs. Each quarter GigLine performs a documentation review (training records, OSHA 300 log, written program review, SDS inventory check), a corrective action tracker review, and a brief site visit if any changes warrant one. The quarterly cadence keeps small documentation gaps from becoming citation-level exposures and ensures the system you paid to build does not decay between Annual Partner visits. It is the natural next step after the Safety Control System Buildout buildout for operations that want ongoing accountability without the full Annual Partner commitment.",
   },
   // ─── Added Feb 2026 audit ───
   {

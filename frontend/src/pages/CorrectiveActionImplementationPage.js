@@ -108,7 +108,7 @@ const CorrectiveActionImplementationPage = () => (
               style={{ ...mono, fontSize: '11px', color: GOLD }}
               data-testid="corrective-action-eyebrow"
             >
-              BUILD · Corrective Action Implementation
+              PRIORITIZE · Corrective Action Implementation
             </p>
             <h1
               className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
@@ -221,7 +221,7 @@ const CorrectiveActionImplementationPage = () => (
           className="text-2xl md:text-4xl font-bold mb-6 leading-tight"
           style={{ fontFamily: "Georgia, serif", color: NAVY }}
         >
-          Corrective Action Implementation vs. OSHA-Ready Control System
+          Corrective Action Implementation vs. Safety Control System Buildout
         </h2>
         <p className="text-base md:text-lg text-[#1C2B2B]/75 leading-relaxed mb-8">
           The two BUILD engagements sound similar. They are not. One closes a specific list of
@@ -258,7 +258,7 @@ const CorrectiveActionImplementationPage = () => (
               className="uppercase font-bold mb-2"
               style={{ ...mono, fontSize: '10.5px', letterSpacing: '0.14em', color: '#2A52A0' }}
             >
-              OSHA-Ready Control System
+              Safety Control System Buildout
             </p>
             <h3 className="text-xl font-bold mb-3" style={{ color: NAVY, fontFamily: "Georgia, serif" }}>
               Best for: multiple connected safety-control areas
@@ -269,11 +269,11 @@ const CorrectiveActionImplementationPage = () => (
               supervisor handoff, and evidence system built to work together.
             </p>
             <Link
-              to="/services/osha-ready-control-system"
+              to="/services/safety-control-system-buildout"
               className="inline-flex items-center gap-1 text-[#2A52A0] hover:text-[#1F3F80] font-semibold text-sm mt-4"
               data-testid="cai-see-orcs-link"
             >
-              See OSHA-Ready Control System
+              See Safety Control System Buildout
               <ArrowRight size={14} />
             </Link>
           </div>

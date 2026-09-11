@@ -337,77 +337,87 @@ const HomePage = () => {
             </p>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8" data-testid="buyer-journey-steps">
-            {[
-              {
-                num: '01',
-                title: 'Floor',
-                headline: 'See what is actually happening.',
-                body: 'GigLine reviews the work environment, equipment, work practices, and observable safety-control conditions.',
-              },
-              {
-                num: '02',
-                title: 'Findings',
-                headline: 'Know what matters most.',
-                body: 'GigLine documents findings, photographs conditions where appropriate, prioritizes issues, and identifies documentation or evidence weaknesses.',
-              },
-              {
-                num: '03',
-                title: 'Fixes',
-                headline: 'Close the priority gaps.',
-                body: 'Use your internal team, or engage GigLine for hands-on Corrective Action Implementation around selected findings.',
-                cta: { label: 'Learn About Corrective Action Support \u2192', to: '/services/corrective-action-implementation' },
-              },
-              {
-                num: '04',
-                title: 'Proof',
-                headline: 'Keep the control organized.',
-                body: 'Citation-Proof Kits and ongoing support help management maintain records, ownership, corrective actions, and retrievable evidence.',
-              },
-            ].map((step, i) => (
-              <Reveal key={step.num} delay={i * 100}>
-                <div
-                  className="h-full flex flex-col"
-                  style={{
-                    background: 'rgba(255,255,255,0.03)',
-                    border: '1px solid rgba(255,255,255,0.08)',
-                    borderTop: '3px solid #C9A84C',
-                    borderRadius: '12px',
-                    padding: '28px 24px',
-                  }}
-                  data-testid={`buyer-journey-step-${step.num}`}
-                >
-                  <p
-                    className="font-bold mb-3"
-                    style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '13px', color: '#C9A84C', letterSpacing: '0.12em' }}
-                  >
-                    {step.num}
-                  </p>
-                  <h3
-                    className="text-2xl font-bold mb-2"
-                    style={{ fontFamily: "Georgia, serif", color: 'white' }}
-                  >
-                    {step.title}
-                  </h3>
-                  <p className="text-[15px] font-semibold text-white/90 mb-3 leading-snug">
-                    {step.headline}
-                  </p>
-                  <p className="text-[14px] text-white/65 leading-relaxed">
-                    {step.body}
-                  </p>
-                  {step.cta && (
-                    <Link
-                      to={step.cta.to}
-                      className="inline-flex items-center gap-1 mt-4 text-[13px] font-semibold self-start hover:text-white transition-colors"
-                      style={{ color: '#C9A84C' }}
-                      data-testid={`buyer-journey-step-${step.num}-cta`}
+          <div className="relative" data-testid="buyer-journey-steps">
+            {/* Connecting hairline: horizontal on desktop, vertical on mobile */}
+            <div
+              className="hidden lg:block absolute top-[52px] left-0 right-0 h-px"
+              style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.35) 8%, rgba(201,168,76,0.35) 92%, transparent 100%)' }}
+              aria-hidden="true"
+            />
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-10 gap-y-14">
+              {[
+                {
+                  num: '01', title: 'Floor',
+                  headline: 'See what is actually happening.',
+                  body: 'The work environment, the equipment, the work practices, and the observable safety-control conditions. Read as they are, not as they were written to be.',
+                },
+                {
+                  num: '02', title: 'Findings',
+                  headline: 'Know what matters most.',
+                  body: 'Documented and, where appropriate, photographed. Prioritized by consequence, not sequence. Documentation and evidence weaknesses named alongside physical conditions.',
+                },
+                {
+                  num: '03', title: 'Fixes',
+                  headline: 'Close the priority gaps.',
+                  body: 'Your internal team, or GigLine engaged for hands-on Corrective Action Implementation against a defined subset of findings.',
+                  cta: { label: 'Corrective Action Implementation', to: '/services/corrective-action-implementation' },
+                },
+                {
+                  num: '04', title: 'Proof',
+                  headline: 'Keep the control organized.',
+                  body: 'Citation-Proof Kits and ongoing support so records, ownership, corrective actions, and retrievable evidence stay where they can be retrieved.',
+                },
+              ].map((step, i) => (
+                <Reveal key={step.num} delay={i * 120}>
+                  <article className="relative" data-testid={`buyer-journey-step-${step.num}`}>
+                    {/* Huge outline numeral — the editorial anchor */}
+                    <div
+                      aria-hidden="true"
+                      className="select-none leading-none mb-4"
+                      style={{
+                        fontFamily: "Georgia, 'Times New Roman', serif",
+                        fontSize: '96px',
+                        fontWeight: 700,
+                        color: 'transparent',
+                        WebkitTextStroke: '1.5px rgba(201,168,76,0.55)',
+                        letterSpacing: '-0.03em',
+                      }}
                     >
-                      {step.cta.label}
-                    </Link>
-                  )}
-                </div>
-              </Reveal>
-            ))}
+                      {step.num}
+                    </div>
+                    {/* Milestone dot on the connecting line (desktop only) */}
+                    <span
+                      aria-hidden="true"
+                      className="hidden lg:block absolute"
+                      style={{ top: '46px', left: '-2px', width: '14px', height: '14px', borderRadius: '50%', background: '#0A1628', border: '2px solid #C9A84C' }}
+                    />
+                    <h3
+                      className="text-[28px] md:text-[32px] font-bold leading-[1.05] mb-2 italic"
+                      style={{ fontFamily: "Georgia, 'Times New Roman', serif", color: 'white', letterSpacing: '-0.01em' }}
+                    >
+                      {step.title}.
+                    </h3>
+                    <p className="text-[15px] md:text-base text-white/85 mb-3 leading-[1.45] font-medium" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+                      {step.headline}
+                    </p>
+                    <p className="text-[13.5px] text-white/60 leading-[1.75] max-w-[26ch]">
+                      {step.body}
+                    </p>
+                    {step.cta && (
+                      <Link
+                        to={step.cta.to}
+                        className="inline-flex items-center gap-2 mt-4 text-[12px] font-semibold uppercase tracking-[0.16em] hover:text-white transition-colors pb-1"
+                        style={{ color: '#C9A84C', fontFamily: "'JetBrains Mono', monospace", borderBottom: '1px solid rgba(201,168,76,0.35)' }}
+                        data-testid={`buyer-journey-step-${step.num}-cta`}
+                      >
+                        {step.cta.label}
+                        <ArrowRight size={12} />
+                      </Link>
+                    )}
+                  </article>
+                </Reveal>
+              ))}
+            </div>
           </div>
 
           <Reveal delay={400}>

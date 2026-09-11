@@ -728,11 +728,56 @@ const OngoingSafetySupportPage = () => {
             </div>
           </div>
 
+          {/* Annual prepay option, one month free */}
+          <div
+            className="rounded-xl p-6 md:p-8 mb-6 grid grid-cols-1 md:grid-cols-[1fr_1fr_auto] gap-6 items-center"
+            style={{ background: '#ffffff', border: '1px solid #dde3ea' }}
+            data-testid="ongoing-annual-prepay"
+          >
+            <div>
+              <p className="uppercase font-bold mb-2" style={{ ...mono, fontSize: '10px', letterSpacing: '0.18em', color: '#5B6B7A' }}>
+                Annual Prepay Option
+              </p>
+              <p className="text-[15px] text-[#1C2B2B]/75 leading-[1.6]">
+                Prepay 12 months of Ongoing Safety Support in one invoice and receive the twelfth month at no additional charge. Available after the 90-day initial term and requires a defined scope, renewal terms, and cancellation language documented before signature.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <p className="uppercase font-bold mb-1" style={{ ...mono, fontSize: '10px', letterSpacing: '0.18em', color: '#5B6B7A' }}>
+                  Monthly &times; 12
+                </p>
+                <p className="text-xl font-extrabold" style={{ color: '#5B6B7A', ...mono, textDecoration: 'line-through' }} data-testid="ongoing-annual-monthly-total">
+                  $19,800
+                </p>
+              </div>
+              <div>
+                <p className="uppercase font-bold mb-1" style={{ ...mono, fontSize: '10px', letterSpacing: '0.18em', color: '#8B6F1F' }}>
+                  Annual Prepay
+                </p>
+                <p className="text-2xl font-extrabold" style={{ color: NAVY, ...mono }} data-testid="ongoing-annual-prepay-price">
+                  $18,150
+                </p>
+                <p className="text-[11px] text-[#1C2B2B]/60 mt-0.5" style={mono}>
+                  Save $1,650
+                </p>
+              </div>
+            </div>
+            <a
+              href="mailto:vince@giglinecompliance.com?subject=Annual%20Prepay%20-%20Ongoing%20Safety%20Support"
+              className="inline-flex items-center gap-2 font-bold px-5 py-3 rounded-lg text-[13px] transition-colors whitespace-nowrap"
+              style={{ background: NAVY, color: '#ffffff' }}
+              data-testid="ongoing-annual-prepay-cta"
+            >
+              Request Annual Terms
+            </a>
+          </div>
+
           <p className="text-[14.5px] text-[#1C2B2B]/75 leading-[1.8] mb-4 max-w-4xl">
             The starting plan is designed for one location, one primary shift, and up to eight total hours of monthly service. Base pricing normally applies to facilities within 45 minutes of Kernersville under normal driving conditions. Higher-hazard operations, longer travel, additional shifts, multiple locations, major incidents, new program development, and specialized services are quoted separately.
           </p>
           <p className="text-[14.5px] text-[#1C2B2B]/75 leading-[1.8] mb-4 max-w-4xl">
-            New recurring clients begin with a paid Compliance Readiness Visit so GigLine can see the actual operation before agreeing to maintain the work. A recent equivalent assessment may be accepted only when GigLine determines that it provides a reliable baseline.
+            <strong style={{ color: NAVY }}>Baseline required.</strong> Ongoing Safety Support begins only after a completed Compliance Readiness Visit or an approved equivalent baseline assessment. GigLine does not inherit undocumented hazards or unresolved conditions under a monthly maintenance agreement. A recent equivalent assessment may be accepted only when GigLine determines it provides a reliable baseline.
           </p>
 
           <div className="mt-4 rounded-xl p-5 md:p-6 flex flex-wrap items-center justify-between gap-4" style={{ background: NAVY }} data-testid="ongoing-investment-cta-row">

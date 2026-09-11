@@ -15,6 +15,8 @@ import {
   ChevronRight,
 } from 'lucide-react';
 import SEO from '../components/SEO';
+import DiagnosticComparisonCard from '../components/DiagnosticComparisonCard';
+import KitCreditRule from '../components/KitCreditRule';
 import RelatedFieldNotesStrip from '../components/RelatedFieldNotesStrip';
 
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
@@ -872,6 +874,9 @@ const ComplianceReadinessVisitPage = () => {
           </a>
         </div>
       </section>
+
+      <KitCreditRule variant="redemption" />
+      <DiagnosticComparisonCard highlightSlug="crv" showCombinedSavings={true} showCta={false} />
     </main>
   );
 };

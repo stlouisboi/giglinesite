@@ -11,6 +11,7 @@ import {
   ChevronRight,
 } from 'lucide-react';
 import SEO from '../components/SEO';
+import DiagnosticComparisonCard from '../components/DiagnosticComparisonCard';
 import RelatedFieldNotesStrip from '../components/RelatedFieldNotesStrip';
 
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
@@ -343,6 +344,8 @@ const SafetyWalkthroughPage = () => {
           </a>
         </div>
       </section>
+
+      <DiagnosticComparisonCard highlightSlug="walkthrough" showCombinedSavings={true} showCta={true} />
     </main>
   );
 };

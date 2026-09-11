@@ -1596,7 +1596,7 @@ const routes = [
       <h2>Three things that reliably reduce a proposed penalty</h2>
       <ol>
         <li><strong>Written programs the CSHO can see.</strong> Not a binder title , the actual document, dated, signed, with a review cadence and named responsible person. This is where the 25% good-faith reduction lives.</li>
-        <li><strong>Records of corrective action follow-through.</strong> Every past incident, near miss, or hazard observation with documented owner, due date, and closure verification. See the <a href="/citation-proof-kits/incident-to-correction-kit">Incident-to-Correction Kit</a> for the exact structure.</li>
+        <li><strong>Records of corrective action follow-through.</strong> Every past incident, near miss, or hazard observation with documented owner, due date, and closure verification. See the <a href="/citation-proof-kits">Citation-Proof Kit Series</a> for the exact structure.</li>
         <li><strong>An informal conference done well.</strong> Show up with a written abatement plan for every citation, evidence of programs already in place, and specific per-item adjustments requested.</li>
       </ol>
 
@@ -2131,14 +2131,14 @@ function generateRouteHTML(templateHTML, route) {
 const KIT_SERIES_DISCLAIMER =
   'Citation-Proof Kit Series and Citation-Proof Score are GigLine trade names, not OSHA certifications. These kits support documentation and self-audit. They do not guarantee OSHA compliance, prevent citations, eliminate hazards, or replace the employer\u2019s responsibility to maintain a safe workplace. Employers remain responsible for identifying applicable standards, correcting recognized hazards, training employees, and maintaining accurate records.';
 
-// Only the 5 Citation-Proof Kits get SSR here. `hazcom-starter-pack` lives at
-// its own /hazcom-starter-pack route (already covered elsewhere in this file).
+// SSR only covers the 3 publicly-available Citation-Proof Kits. The other
+// two slugs (incident-to-correction-kit, new-hire-orientation-kit) are kept
+// in the data source for later activation but must NOT be crawled or linked
+// while their deliverables are incomplete. See PRD 2026-02-11 batch notes.
 const CITATION_PROOF_KIT_SLUGS = [
   'loto-readiness-kit',
   'forklift-pit-readiness-kit',
   'hazcom-pro-kit',
-  'incident-to-correction-kit',
-  'new-hire-orientation-kit',
 ];
 
 function renderTierGrid() {
@@ -2333,7 +2333,7 @@ routes.push({
     <p>This calculator sizes the exposure. The next step is closing it. GigLine offers two direct paths, depending on how ready you are today:</p>
     <ul>
       <li><a href="/safety-walkthrough">Book an on-site Safety Walkthrough</a> , a written findings report within 48 hours mapped to the CFR standard OSHA cites for each finding. Priced from $1,300.</li>
-      <li><a href="/citation-proof-kits">Start with a Citation-Proof Kit</a> , self-build documentation systems for LOTO, Forklift/PIT, HazCom, Incident-to-Correction, and New Hire Orientation. Digital tier starts at $150.</li>
+      <li><a href="/citation-proof-kits">Start with a Citation-Proof Kit</a> , self-build documentation systems for LOTO, Forklift/PIT, and HazCom Pro. Digital tier starts at $150.</li>
     </ul>
 
     <p><strong>Legal Notice:</strong> The Citation Cost Calculator is a planning benchmark, not a legal quote. Actual OSHA-assessed penalties are determined by OSHA area office review of gravity, good faith, employer size, and history factors under 29 CFR 1903.15. Only OSHA determines final penalty amounts. GigLine Safety &amp; Compliance is not a law firm and does not provide legal advice. Consult a qualified attorney for citation defense.</p>
@@ -2345,7 +2345,7 @@ routes.push({
 routes.push({
   path: '/citation-proof-kits',
   title: 'Citation-Proof Kit Series | GigLine Safety & Compliance',
-  description: '5 compliance-control kits, LOTO, Forklift/PIT, HazCom, Incident, New Hire. Digital, Control System, or Binder Edition. From $150.',
+  description: '3 compliance-control kits, LOTO, Forklift/PIT, HazCom Pro. Digital, Control System, or Binder Edition. From $150.',
   canonical: '/citation-proof-kits',
   schemas: [
     LOCAL_BUSINESS,

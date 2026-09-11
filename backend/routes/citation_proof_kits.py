@@ -37,6 +37,16 @@ logger = logging.getLogger('gigline')
 
 BINDER_SHIP_WINDOW = "3–5 business days"
 
+# Kits whose product configuration exists internally (e.g. in KIT_DETAILS on
+# the frontend) but whose deliverables and automated fulfillment pipeline are
+# NOT yet complete + validated. Any checkout attempt against these slugs is
+# refused with 410 Gone regardless of tier so a manually crafted POST cannot
+# take payment for something GigLine cannot deliver automatically.
+UNAVAILABLE_KIT_SLUGS = {
+    "incident-to-correction-kit",
+    "new-hire-orientation-kit",
+}
+
 
 class KitCheckoutRequest(BaseModel):
     slug: str
@@ -64,6 +74,18 @@ async def _create_kit_checkout(
     company_name: Optional[str],
     attribution: Optional[dict],
 ):
+    # Fail closed on kits that are not yet released. Their entries are
+    # deliberately absent from CITATION_PROOF_KIT_PRODUCTS, but a direct 400
+    # from that lookup would look like a generic bad slug. 410 Gone here
+    # gives ops a clear audit signal that someone tried to buy an
+    # unreleased kit.
+    if slug in UNAVAILABLE_KIT_SLUGS:
+        logger.warning(f"Rejected checkout for unreleased kit: slug={slug} tier={tier}")
+        raise HTTPException(
+            status_code=410,
+            detail="This kit is not currently available for purchase.",
+        )
+
     key = (slug, tier)
     if key not in CITATION_PROOF_KIT_PRODUCTS:
         raise HTTPException(

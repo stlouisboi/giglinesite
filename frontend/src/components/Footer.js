@@ -138,7 +138,7 @@ const Footer = () => {
                   {
                     name: 'Citation-Proof Kit Series',
                     path: '/citation-proof-kits',
-                    desc: 'Five compliance-control kits: LOTO, Forklift/PIT, HazCom, Incident-to-Correction, and New Hire. Starting at $150.',
+                    desc: 'Three compliance-control kits: LOTO, Forklift/PIT, and HazCom Pro. Starting at $150.',
                   },
                   {
                     name: 'Sample Compliance Report',

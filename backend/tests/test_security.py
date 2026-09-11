@@ -196,6 +196,58 @@ def test_sec002_admin_auth_dep_accepts_bearer():
     assert r2.json().get("token") == ADMIN_PASSWORD
 
 
+# ─────────────────── Unreleased kits fail-closed ───────────────────
+
+UNAVAILABLE_KITS = ("incident-to-correction-kit", "new-hire-orientation-kit")
+
+
+@pytest.mark.parametrize("slug", UNAVAILABLE_KITS)
+def test_unreleased_kit_checkout_rejected_tier_aware(slug):
+    """The tier-aware endpoint must refuse checkout for any unreleased kit
+    slug at every tier, regardless of what the caller submits."""
+    for tier in ("digital", "control-system", "binder"):
+        r = httpx.post(
+            f"{API_BASE}/checkout/citation-proof-kit",
+            json={
+                "slug": slug,
+                "tier": tier,
+                "origin_url": "https://example.com",
+                "email": "smoke@test.com",
+            },
+            timeout=5,
+        )
+        assert r.status_code == 410, (
+            f"Expected 410 Gone for {slug}/{tier}, got {r.status_code}: {r.text}"
+        )
+
+
+@pytest.mark.parametrize("slug", UNAVAILABLE_KITS)
+def test_unreleased_kit_digital_alias_also_rejected(slug):
+    """The back-compat `/citation-proof-kit-digital` alias must also reject."""
+    r = httpx.post(
+        f"{API_BASE}/checkout/citation-proof-kit-digital",
+        json={"slug": slug, "origin_url": "https://example.com", "email": "smoke@test.com"},
+        timeout=5,
+    )
+    assert r.status_code == 410
+
+
+def test_released_kit_still_creates_checkout():
+    """Regression guard: the fail-closed check must NOT affect LOTO/PIT/HazCom."""
+    r = httpx.post(
+        f"{API_BASE}/checkout/citation-proof-kit",
+        json={
+            "slug": "loto-readiness-kit",
+            "tier": "digital",
+            "origin_url": "https://example.com",
+        },
+        timeout=10,
+    )
+    assert r.status_code == 200, r.text
+    body = r.json()
+    assert "url" in body and body["url"].startswith("https://checkout.stripe.com")
+
+
 # ─────────────────── Stripe webhook ───────────────────
 
 def test_webhook_rejects_missing_signature():

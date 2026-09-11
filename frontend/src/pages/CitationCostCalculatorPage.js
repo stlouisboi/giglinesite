@@ -66,7 +66,7 @@ const STANDARDS = [
     cfr: '29 CFR 1904',
     name: 'Recordkeeping (OSHA 300 / 300A / 301)',
     hook: 'Injury/illness logs, annual summary, incident reports',
-    kit: { slug: 'incident-to-correction-kit', name: 'Incident-to-Correction Kit', href: '/citation-proof-kits', ready: false },
+    kit: null,
   },
 ];
 

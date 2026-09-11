@@ -1246,12 +1246,11 @@ const HomePage = () => {
                 }}
                 data-testid="home-kit-series-body"
               >
-                Five kits. Three tiers each. One goal: paperwork that survives an inspection.
+                Three kits. Three tiers each. One goal: paperwork that survives an inspection.
                 <strong style={{ color: '#C5A059' }}> LOTO</strong>,{' '}
                 <strong style={{ color: '#C5A059' }}>Forklift/PIT</strong>, and{' '}
                 <strong style={{ color: '#C5A059' }}>HazCom Pro</strong> are shipping now,{' '}
                 <strong style={{ color: 'white' }}>$150 digital &middot; $300 control system &middot; $600 pre-printed binder</strong>.
-                Incident-to-Correction and New Hire Orientation are next.
               </p>
               <div className="flex flex-wrap gap-3 items-center">
                 <Link

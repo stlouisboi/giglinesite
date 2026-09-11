@@ -179,7 +179,12 @@ const KIT_CATALOG = [
     controlTool: 'Correction Closure Index™ and Root Cause Ladder™',
     startingAt: 150,
     startingAtLabel: 'Starting at $150',
-    ready: true,
+    // Deliverables not yet complete + validated. Preserved internally so the
+    // kit can be re-enabled by flipping ready + hiddenFromCatalog when files
+    // and automated fulfillment are ready. Do NOT list on any public grid,
+    // sitemap, search index, or footer until then.
+    ready: false,
+    hiddenFromCatalog: true,
     cardImage: '/assets/kits/incident/incident-editorial-hero.jpg',
     placeholder: null,
   },
@@ -191,7 +196,12 @@ const KIT_CATALOG = [
     controlTool: 'Day-One Readiness Index™ and Restricted Until Released™ Matrix',
     startingAt: 150,
     startingAtLabel: 'Starting at $150',
-    ready: true,
+    // Deliverables not yet complete + validated. Preserved internally so the
+    // kit can be re-enabled by flipping ready + hiddenFromCatalog when files
+    // and automated fulfillment are ready. Do NOT list on any public grid,
+    // sitemap, search index, or footer until then.
+    ready: false,
+    hiddenFromCatalog: true,
     cardImage: '/assets/kits/new-hire/new-hire-editorial-hero.jpg',
     placeholder: null,
   },
@@ -489,7 +499,8 @@ const KIT_DETAILS = {
     subtitle: 'Incident, Near-Miss & Corrective Action Control',
     system: 'Incident, Near-Miss & Corrective Action Control System',
     standard: 'OSHA recordkeeping and corrective-action program support (general)',
-    ready: true,
+    ready: false,
+    hiddenFromCatalog: true,
     ctaShortName: 'Incident',
     heroSupportLine: 'Built for facilities that need incident, near-miss, and corrective-action records they can produce the moment leadership, an insurer, or OSHA asks for them.',
     builtFor: [
@@ -535,7 +546,8 @@ const KIT_DETAILS = {
     subtitle: 'Day-One Safety Readiness & Authorization Control',
     system: 'Day-One Safety Readiness & Authorization Control System',
     standard: 'OSHA training and orientation proof support (general)',
-    ready: true,
+    ready: false,
+    hiddenFromCatalog: true,
     ctaShortName: 'New Hire',
     heroSupportLine: 'Built for facilities that need new-hire safety training records they can produce the moment an inspector or a workers-compensation adjuster asks for them.',
     builtFor: [

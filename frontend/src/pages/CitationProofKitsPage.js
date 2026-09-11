@@ -58,7 +58,7 @@ const CitationProofKitsPage = () => {
             style={{ ...sans, color: NAVY }}
             data-testid="kits-hero-headline"
           >
-            Five kits that turn scattered safety activity into inspection-ready proof.
+            Three kits that turn scattered safety activity into inspection-ready proof.
           </h1>
           <p
             className="text-[17px] md:text-[19px] leading-[1.65] max-w-3xl mx-auto mb-6"
@@ -138,7 +138,7 @@ const CitationProofKitsPage = () => {
             </p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-6">
-            {KIT_CATALOG.filter((k) => !k.starterVariant).map((kit) => (
+            {KIT_CATALOG.filter((k) => !k.starterVariant && !k.hiddenFromCatalog).map((kit) => (
               <Link
                 key={kit.slug}
                 to={kit.externalHref || `/citation-proof-kits/${kit.slug}`}
@@ -471,10 +471,9 @@ const CitationProofKitsPage = () => {
           </p>
           <ul className="space-y-2 mb-8" data-testid="kits-bundle-list">
             {[
-              { name: 'Starter Compliance Bundle', kits: 'New Hire + HazCom' },
-              { name: 'Warehouse Readiness Bundle', kits: 'PIT + HazCom + New Hire' },
-              { name: 'Machine Shop Control Bundle', kits: 'LOTO + HazCom + Incident' },
-              { name: 'Full GigLine Control Stack', kits: 'All 5 kits' },
+              { name: 'Warehouse Readiness Bundle', kits: 'PIT + HazCom Pro' },
+              { name: 'Machine Shop Control Bundle', kits: 'LOTO + HazCom Pro' },
+              { name: 'Full GigLine Control Stack', kits: 'All 3 kits' },
             ].map((b) => (
               <li key={b.name} className="flex items-start gap-3 text-[15px] leading-[1.6]">
                 <span

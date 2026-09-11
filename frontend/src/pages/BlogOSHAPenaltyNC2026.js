@@ -215,7 +215,7 @@ const BlogOSHAPenaltyNC2026 = () => (
             <strong>Written programs the CSHO can see.</strong> Not a binder title , the actual document, dated, signed, with a review cadence and named responsible person. This is where the 25% good-faith reduction lives. If your written HazCom program is a two-paragraph company handbook line, you don&rsquo;t get the reduction.
           </li>
           <li>
-            <strong>Records of corrective action follow-through.</strong> Every past incident, near miss, or hazard observation with a documented owner, due date, and closure verification. This is how the "history" factor stops working against you. See our <Link to="/citation-proof-kits/incident-to-correction-kit" className="text-[#2A52A0] hover:underline font-semibold">Incident-to-Correction Kit</Link> for the exact structure.
+            <strong>Records of corrective action follow-through.</strong> Every past incident, near miss, or hazard observation with a documented owner, due date, and closure verification. This is how the "history" factor stops working against you. See the <Link to="/citation-proof-kits" className="text-[#2A52A0] hover:underline font-semibold">Citation-Proof Kit Series</Link> for the exact structure.
           </li>
           <li>
             <strong>An informal conference done well.</strong> Show up with a written abatement plan for every citation, evidence of programs already in place, and specific per-item adjustments requested. Most citations that survive an informal conference weren&rsquo;t defensible in the first place. Most that get reduced were defended by the employer bringing the paperwork.

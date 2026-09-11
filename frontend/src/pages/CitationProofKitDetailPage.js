@@ -5,6 +5,7 @@ import SEO from '../components/SEO';
 import ProofGapEngineSteps from '../components/ProofGapEngineSteps';
 import KitPricingTiers from '../components/KitPricingTiers';
 import ControlSystemUpsell from '../components/ControlSystemUpsell';
+import KitComingSoon from '../components/KitComingSoon';
 import { KIT_DETAILS, KIT_CATALOG } from '../data/citationProofKits';
 
 const NAVY = '#102A43';
@@ -30,81 +31,7 @@ const CitationProofKitDetailPage = () => {
   // existing /contact secure form. Preserved so activation later is a simple
   // flag flip in citationProofKits.js.
   if (kit.hiddenFromCatalog) {
-    return (
-      <main
-        data-testid={`kit-detail-coming-soon-${slug}`}
-        style={{ backgroundColor: BG_WARM, color: NAVY, minHeight: '70vh' }}
-      >
-        <SEO
-          title={`${kit.name} | Coming Soon | GigLine Safety & Compliance`}
-          description={`${kit.name} is in build. Sign up to be notified when it is released.`}
-          canonical={`/citation-proof-kits/${slug}`}
-          noindex
-        />
-        <section className="px-5 md:px-8 pt-16 md:pt-24 pb-20 md:pb-28">
-          <div className="max-w-3xl mx-auto">
-            <Link
-              to="/citation-proof-kits"
-              className="inline-flex items-center gap-2 text-[13px] font-bold mb-8 hover:underline"
-              style={{ color: 'rgba(10,22,40,0.62)', ...mono }}
-              data-testid="kit-detail-coming-soon-back"
-            >
-              <ArrowLeft size={13} />
-              Back to Citation-Proof Kits
-            </Link>
-
-            <p
-              className="uppercase font-bold tracking-[0.28em] mb-3"
-              style={{ color: GOLD, ...mono, fontSize: '11px' }}
-            >
-              In Build
-            </p>
-            <h1
-              className="text-[36px] sm:text-4xl md:text-5xl leading-[1.05] mb-6 italic"
-              style={{ ...serif, color: NAVY, letterSpacing: '-0.015em' }}
-              data-testid="kit-detail-coming-soon-heading"
-            >
-              {kit.name} is not yet released.
-            </h1>
-            <p
-              className="text-[15px] md:text-[17px] leading-[1.75] max-w-2xl mb-6"
-              style={{ color: 'rgba(10,22,40,0.72)' }}
-            >
-              We do not collect payment for a kit until its deliverables are
-              complete and the automated fulfillment path has been tested end to
-              end. Once this kit is validated, it will appear back on the main
-              Citation-Proof Kit page with live pricing and checkout.
-            </p>
-            <p
-              className="text-[14px] italic leading-[1.75] max-w-2xl mb-10"
-              style={{ ...serif, color: 'rgba(10,22,40,0.60)' }}
-            >
-              In the meantime, the three shipping kits, LOTO, Forklift/PIT, and
-              HazCom Pro, use the same four-step Proof Gap Engine method.
-            </p>
-
-            <div className="flex flex-wrap items-center gap-3">
-              <Link
-                to="/citation-proof-kits"
-                className="inline-flex items-center gap-2 font-bold px-6 py-3.5 rounded-lg text-[15px] transition-colors"
-                style={{ background: GOLD, color: NAVY }}
-                data-testid="kit-detail-coming-soon-cta-browse"
-              >
-                Browse the released kits <ArrowRight size={17} />
-              </Link>
-              <Link
-                to={`/contact?subject=${encodeURIComponent(`Notify me when ${kit.name} is released`)}`}
-                className="inline-flex items-center gap-2 font-bold px-6 py-3.5 rounded-lg text-[15px] transition-colors"
-                style={{ border: `1px solid ${NAVY}`, color: NAVY }}
-                data-testid="kit-detail-coming-soon-cta-notify"
-              >
-                Ask to be notified
-              </Link>
-            </div>
-          </div>
-        </section>
-      </main>
-    );
+    return <KitComingSoon slug={slug} kit={kit} />;
   }
 
   return (

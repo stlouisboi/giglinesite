@@ -41,6 +41,7 @@ from routes.kit_qr import router as kit_qr_router
 from routes.admin_downloads import router as admin_downloads_router
 from routes.pilot import router as pilot_router
 from routes.kit_resend import router as kit_resend_router
+from routes.kit_waitlist import router as kit_waitlist_router
 
 app = FastAPI()
 
@@ -72,6 +73,7 @@ api_router.include_router(kit_qr_router)
 api_router.include_router(admin_downloads_router)
 api_router.include_router(pilot_router)
 api_router.include_router(kit_resend_router)
+api_router.include_router(kit_waitlist_router)
 
 app.include_router(api_router)
 
@@ -116,6 +118,39 @@ class SecurityHeadersMiddleware(BaseHTTPMiddleware):
 
 
 app.add_middleware(SecurityHeadersMiddleware)
+
+
+# ── Admin Bearer -> query-token bridge (SEC-002 migration) ──
+# Existing admin endpoints read `token: str = Query("")` and compare it to
+# ADMIN_PASSWORD. To migrate the frontend to `Authorization: Bearer <token>`
+# without touching 45 endpoint signatures at once, this middleware inspects
+# every request. When a Bearer header is present and no `?token=` is on the
+# URL, we splice the Bearer value into the scope's query_string so the
+# downstream endpoint receives it via its normal Query parameter. Requests
+# that already use `?token=` are left alone (with the log-sanitizer keeping
+# the raw value out of persisted logs).
+from urllib.parse import parse_qsl, urlencode
+
+
+class BearerToQueryMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next):
+        auth = request.headers.get("authorization", "")
+        if auth.lower().startswith("bearer "):
+            bearer = auth.split(None, 1)[1].strip()
+            if bearer:
+                # Only splice when the URL didn't already carry a token.
+                raw_qs = request.scope.get("query_string", b"").decode("latin-1")
+                params = dict(parse_qsl(raw_qs, keep_blank_values=True))
+                if "token" not in params:
+                    params["token"] = bearer
+                    new_qs = urlencode(params).encode("latin-1")
+                    # Mutate the ASGI scope in place so both the endpoint's
+                    # Query(...) resolution AND request.query_params see it.
+                    request.scope["query_string"] = new_qs
+        return await call_next(request)
+
+
+app.add_middleware(BearerToQueryMiddleware)
 
 
 # ── Background schedulers ──

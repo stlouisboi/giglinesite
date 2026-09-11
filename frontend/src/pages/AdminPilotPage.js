@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Lock, ShieldCheck, CheckCircle2, XCircle, TrendingDown, TrendingUp, Minus, AlertTriangle, Plus, RefreshCw } from 'lucide-react';
 import SEO from '../components/SEO';
+import { authFetch } from '../lib/adminApi';
 
 const NAVY = '#0A1628';
 const GOLD = '#C9A84C';
@@ -59,8 +60,8 @@ const AdminPilotPage = () => {
     setLoading(true);
     try {
       const [sc, ms] = await Promise.all([
-        fetch(`${API}/api/admin/pilot/scorecard?token=${encodeURIComponent(savedToken)}`).then((r) => r.json()),
-        fetch(`${API}/api/admin/pilot/months?token=${encodeURIComponent(savedToken)}`).then((r) => r.json()),
+        authFetch(savedToken, `/api/admin/pilot/scorecard`).then((r) => r.json()),
+        authFetch(savedToken, `/api/admin/pilot/months`).then((r) => r.json()),
       ]);
       setScorecard(sc);
       setMonths(ms.items || []);

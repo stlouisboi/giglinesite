@@ -294,15 +294,6 @@ const HomePage = () => {
                   </Link>
                 </p>
               </div>
-
-              {/* Credentials block */}
-              <p
-                className="text-sm text-[#CBD5E1] leading-relaxed"
-                style={mono}
-                data-testid="hero-credentials"
-              >
-                OSHA 30-Hour Outreach Trained · 25+ Years Experience · U.S. Navy Veteran · Serving the Triad
-              </p>
             </Reveal>
           </div>
         </div>

@@ -42,6 +42,19 @@ export const FIRST_PULL_CHECKLISTS_ENABLED = false;
 
 export const OSHA_TWELVE_QUESTIONS_ENABLED = false;
 
+/**
+ * CASE_STUDY_PUBLIC
+ *   Phase 2 Batch 2A.2 (Sep 2026). Owner decision: withhold the anonymized
+ *   case study from public indexing and production promotion until written
+ *   client permission is documented. When `false`:
+ *     - Case study route emits noindex, nofollow and only renders behind
+ *       ?preview=1 on the preview environment (production refuses).
+ *     - Case study is excluded from the sitemap, public search index, home
+ *       page teaser, and any internal promotional link.
+ *   Flip to `true` only after written client permission is on file.
+ */
+export const CASE_STUDY_PUBLIC = false;
+
 // Legacy helper used by CitationProofKits routing. Ghost / waitlisted kits
 // return false so their pages route to the waitlist rather than checkout.
 export function isKitLive(slug) {

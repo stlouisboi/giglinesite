@@ -101,7 +101,7 @@ const BlogForkliftCompliance = () => {
       <section className="py-12 md:py-16 border-b border-[#2A52A0]/10" id="what-standard">
         <div className="container max-w-3xl">
           <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>What OSHA 1910.178 covers</h2>
-          <p className="text-[#1C2B2B]/70 leading-relaxed mb-4">The powered industrial truck standard, <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '13px' }}>29 CFR 1910.178</span>, is one of OSHA's most cited standards year after year. It applies to any high-lift trucks, lift trucks, tractors, platform trucks, motorized hand trucks, and other specialized industrial vehicles powered by electric motors or internal combustion engines.</p>
+          <p className="text-[#1C2B2B]/70 leading-relaxed mb-4">The powered industrial truck standard, <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '13px' }}>29 CFR 1910.178</span>, is one of OSHA\u2019s most cited standards year after year. It applies to any high-lift trucks, lift trucks, tractors, platform trucks, motorized hand trucks, and other specialized industrial vehicles powered by electric motors or internal combustion engines.</p>
           <p className="text-[#1C2B2B]/70 leading-relaxed mb-4">The standard breaks down into a handful of program areas:</p>
           <ul className="space-y-2 mb-6">
             {["Truck design and modifications (1910.178(a))","Truck operations (1910.178(m))","Loading (1910.178(o))","Battery charging installations (1910.178(g))","Maintenance and inspection (1910.178(q))","Operator training and certification (1910.178(l))"].map((item, i) => (

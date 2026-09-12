@@ -204,7 +204,7 @@ function App() {
                     <Route path="/service-areas" element={<ServiceAreasPage />} />
                     <Route path="/case-study/metal-fabrication-readiness" element={<CaseStudyMetalsFabricationPage />} />
                     {/* Legacy anonymized route, city-based URL kept only as permanent redirect (Phase 2A.1). */}
-                    <Route path="/case-study/metal-fabrication-readiness" element={<Navigate to="/case-study/metal-fabrication-readiness" replace />} />
+                    <Route path="/case-study/metals-fabrication-statesville" element={<Navigate to="/case-study/metal-fabrication-readiness" replace />} />
                     <Route path="/case-studies/mocksville-plastics-osha-inspection" element={<Navigate to="/case-study/metal-fabrication-readiness" replace />} />
                     {/* Citation-Proof Kit Series */}
                     <Route path="/citation-proof-kits" element={<CitationProofKitsPage />} />

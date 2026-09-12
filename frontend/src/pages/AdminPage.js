@@ -1751,8 +1751,7 @@ const PersonalizePdfTab = ({ token }) => {
       <h2 className="text-lg font-bold text-[#1C2B2B] mb-1">Personalize a collateral PDF</h2>
       <p className="text-xs text-gray-500 mb-5 leading-relaxed max-w-2xl">
         Generate a copy of any collateral PDF with the client&rsquo;s company name printed in the cover&rsquo;s
-        <em> &ldquo;PREPARED FOR&hellip;&rdquo; </em> header slug. Nothing is written to the public assets folder ,
-        the personalized copy streams directly to your download.
+        <em> &ldquo;PREPARED FOR&hellip;&rdquo; </em> header slug. Nothing is written to the public assets folder,         the personalized copy streams directly to your download.
       </p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
         <div>

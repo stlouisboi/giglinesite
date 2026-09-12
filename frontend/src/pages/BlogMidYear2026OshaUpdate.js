@@ -25,7 +25,7 @@ const updates = [
   {
     icon: Sun, num: 1,
     title: "Heat Illness NEP renewed through summer 2026",
-    body: "The Heat National Emphasis Program (CPL 03-00-024) is active for a third summer with the same trigger threshold, 80°F heat index. In NC's Piedmont, that's basically every day from mid-May through mid-September. If you don't have a written heat illness prevention plan, water/rest/shade schedule, and acclimatization protocol for new employees, you're one complaint away from a programmed inspection. The NEP explicitly directs Compliance Officers to open programmed inspections at random qualifying employers, not just complaint-driven ones."
+    body: "The Heat National Emphasis Program (CPL 03-00-024) is active for a third summer with the same trigger threshold, 80°F heat index. In NC\u2019s Piedmont, that\u2019s basically every day from mid-May through mid-September. If you don\u2019t have a written heat illness prevention plan, water/rest/shade schedule, and acclimatization protocol for new employees, you\u2019re one complaint away from a programmed inspection. The NEP explicitly directs Compliance Officers to open programmed inspections at random qualifying employers, not just complaint-driven ones."
   },
   {
     icon: TrendingUp, num: 2,
@@ -35,7 +35,7 @@ const updates = [
   {
     icon: ClipboardList, num: 3,
     title: "300A posting compliance is being spot-checked",
-    body: "NC OSH has been asking for the 300A during unrelated inspections through May and June, even at facilities that were originally opened for a different reason (electrical, machine guarding, complaint). The 300A must be posted February 1 through April 30. If yours came down May 1 like clockwork but wasn't in fact posted for the full window, you're still exposed on the retention side. Keep a dated photo of the posted 300A on file, it's the single easiest recordkeeping-defense document."
+    body: "NC OSH has been asking for the 300A during unrelated inspections through May and June, even at facilities that were originally opened for a different reason (electrical, machine guarding, complaint). The 300A must be posted February 1 through April 30. If yours came down May 1 like clockwork but wasn\u2019t in fact posted for the full window, you\u2019re still exposed on the retention side. Keep a dated photo of the posted 300A on file, it\u2019s the single easiest recordkeeping-defense document."
   },
   {
     icon: AlertTriangle, num: 4,

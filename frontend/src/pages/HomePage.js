@@ -650,7 +650,7 @@ const HomePage = () => {
 
           <Reveal>
             <p className="text-sm text-[#1C2B2B]/55 italic mt-12 max-w-3xl">
-              These are findings from real walkthroughs , not a checklist from a textbook. Every facility is different.
+              These are findings from real walkthroughs, not a checklist from a textbook. Every facility is different.
             </p>
           </Reveal>
         </div>
@@ -720,7 +720,7 @@ const HomePage = () => {
                 kicker: 'Confidentiality',
                 Icon: Shield,
                 title: 'Private by Default.',
-                body: 'Your findings stay between us. GigLine does not share, publish, or reference client facility data. What we find on your floor is yours \u2014 not a case study, not a portfolio piece.',
+                body: 'Client information is handled confidentially. GigLine does not publicly identify clients or publish site-specific materials without permission. Any approved examples are anonymized.',
                 featured: true,
               },
               {
@@ -782,7 +782,7 @@ const HomePage = () => {
                 The Template Trap
               </p>
               <p className="text-[15px] md:text-base text-white/85 leading-[1.7] max-w-4xl">
-                We&apos;re seeing more written programs built with AI and templates , but without floor context, they create false confidence. A written program can come from a template or ChatGPT. Exposure still shows up on the floor.{' '}
+                We&apos;re seeing more written programs built with AI and templates, but without floor context, they create false confidence. A written program can come from a template or ChatGPT. Exposure still shows up on the floor.{' '}
                 <span className="text-white font-semibold">This is not a full audit. It is a signal.</span>
               </p>
             </div>
@@ -853,7 +853,7 @@ const HomePage = () => {
 
           <Reveal>
             <p className="text-base md:text-lg text-[#1C2B2B]/80 leading-[1.75] max-w-4xl">
-              OSHA doesn&apos;t announce inspections. They arrive after a complaint, a referral, or a fatality , or as part of a programmed inspection targeting your industry. By the time they&apos;re on your floor, the window to fix things has closed.{' '}
+              OSHA doesn&apos;t announce inspections. They arrive after a complaint, a referral, or a fatality, or as part of a programmed inspection targeting your industry. By the time they&apos;re on your floor, the window to fix things has closed.{' '}
               <span className="font-semibold text-[#1C2B2B]">The walkthrough is that window.</span>
             </p>
           </Reveal>
@@ -877,7 +877,7 @@ const HomePage = () => {
                 What That Looks Like
               </p>
               <p className="text-[15.5px] md:text-[17px] leading-[1.7] text-white/85" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
-                A small metal fabrication operation in North Carolina. One combined walkthrough and documentation review. <strong className="text-white">13 findings identified.</strong> Seven carried serious-citation risk , up to <strong className="text-white">$16,550 per finding</strong> under the 2026 OSHA maximum penalty schedule. One inspection visit could have stacked those into <strong className="text-white">six figures of penalty exposure</strong>. The corrective action plan closed <strong className="text-white">twelve of thirteen findings inside four days</strong>. One remained open at the reporting point.
+                A small metal fabrication operation in North Carolina. One combined walkthrough and documentation review. <strong className="text-white">13 findings identified.</strong> Seven carried serious-citation risk, up to <strong className="text-white">$16,550 per finding</strong> under the 2026 OSHA maximum penalty schedule. One inspection visit could have stacked those into <strong className="text-white">six figures of penalty exposure</strong>. The corrective action plan closed <strong className="text-white">twelve of thirteen findings inside four days</strong>. One remained open at the reporting point.
               </p>
               <Link
                 to="/case-study/metal-fabrication-readiness"
@@ -1106,7 +1106,7 @@ const HomePage = () => {
                 Want to see what a report looks like before you schedule?
               </h2>
               <p className="text-[15px] md:text-base text-[#1C2B2B]/65 leading-relaxed max-w-2xl">
-                Download a redacted compliance report , findings, CFR citations, penalty exposure, and the prioritized fix list. Real engagement, facility name removed.
+                Download a redacted compliance report, findings, CFR citations, penalty exposure, and the prioritized fix list. Real engagement, facility name removed.
               </p>
             </div>
             <Link
@@ -1202,7 +1202,7 @@ const HomePage = () => {
                 }}
                 data-testid="home-kit-band-body"
               >
-                17 CFR-cited documents , written HazCom program, SDS index, training log, monthly inspection checklist, &ldquo;If OSHA Shows Up&rdquo; protocol. Use it before a walkthrough, or as the foundation after. <strong style={{ color: '#C5A059' }}>$600 digital &middot; $700 physical</strong>. Included free with every Compliance Readiness Visit.
+                17 CFR-cited documents, written HazCom program, SDS index, training log, monthly inspection checklist, &ldquo;If OSHA Shows Up&rdquo; protocol. Use it before a walkthrough, or as the foundation after. <strong style={{ color: '#C5A059' }}>$600 digital &middot; $700 physical</strong>. Included free with every Compliance Readiness Visit.
               </p>
             </div>
             <div className="flex-shrink-0 md:text-right">
@@ -1307,7 +1307,7 @@ const HomePage = () => {
                 }}
                 data-testid="home-kit-series-calc-link"
               >
-                &rarr; Or estimate your OSHA exposure first , free calculator
+                &rarr; Or estimate your OSHA exposure first, free calculator
               </Link>
             </div>
 
@@ -1550,7 +1550,7 @@ const HomePage = () => {
               className="text-base md:text-[17px] leading-relaxed max-w-2xl mb-12"
               style={{ color: 'rgba(10,22,40,0.65)', fontFamily: "Georgia, serif" }}
             >
-              Plain-language field notes and mid-year updates , no fluff, no fear-mongering, no consultant-speak.
+              Plain-language field notes and mid-year updates, no fluff, no fear-mongering, no consultant-speak.
             </p>
           </Reveal>
 
@@ -1567,7 +1567,7 @@ const HomePage = () => {
                 type: 'Field Note',
                 to: '/field-notes/ai-generated-safety-programs',
                 title: 'AI-Generated Safety Programs',
-                blurb: 'ChatGPT can write an OSHA program that looks compliant , until an inspector arrives. What AI cannot see on your floor.',
+                blurb: 'ChatGPT can write an OSHA program that looks compliant, until an inspector arrives. What AI cannot see on your floor.',
                 testid: 'latest-field-note-ai-generated',
               },
               {
@@ -1792,7 +1792,7 @@ This is GigLine Safety & Compliance.`}
                       For HR &amp; Safety Coordinators
                     </p>
                     <p className="text-[14.5px] md:text-[15.5px] leading-[1.7]" style={{ color: 'rgba(255,255,255,0.85)' }}>
-                      HR managers and safety coordinators are often the first to hear from OSHA , and the first to be asked for documentation. GigLine helps you know what&rsquo;s in your files before that call comes.
+                      HR managers and safety coordinators are often the first to hear from OSHA, and the first to be asked for documentation. GigLine helps you know what&rsquo;s in your files before that call comes.
                     </p>
                   </div>
                 </Reveal>

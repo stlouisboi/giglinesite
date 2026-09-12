@@ -314,7 +314,7 @@ const FieldNotesPage = () => {
           </blockquote>
 
           <p className="text-lg text-white/70 max-w-2xl leading-relaxed">
-            Practical breakdowns of the safety topics that come up most in small operations. Not theory , what we actually find on the floor.
+            Practical breakdowns of the safety topics that come up most in small operations. Not theory, what we actually find on the floor.
           </p>
         </div>
       </section>

@@ -45,10 +45,10 @@ const VIOLATIONS = [
 ];
 
 const WHEN_CARDS = [
-  { title: "You've had a near-miss or incident", body: 'Before you file anything or talk to anyone, know what else is on the floor.' },
+  { title: "You\u2019ve had a near-miss or incident", body: 'Before you file anything or talk to anyone, know what else is on the floor.' },
   { title: 'A new manager is taking over safety', body: 'Get a baseline picture of where the operation stands before you inherit the liability.' },
-  { title: "You're preparing for a customer audit", body: 'Many customer safety audits look for the same physical hazards OSHA does. Get ahead of both.' },
-  { title: 'You want a second set of eyes', body: "You've been walking this floor for years. Fresh eyes find what familiarity hides." },
+  { title: "You\u2019re preparing for a customer audit", body: 'Many customer safety audits look for the same physical hazards OSHA does. Get ahead of both.' },
+  { title: 'You want a second set of eyes', body: "You\u2019ve been walking this floor for years. Fresh eyes find what familiarity hides." },
 ];
 
 const Eyebrow = ({ children, color = BLUE, className = '' }) => (
@@ -211,7 +211,7 @@ const SafetyWalkthroughPage = () => {
             Is a Safety Walkthrough the right call for you right now?
           </h2>
           <p className="text-base md:text-lg text-[#1C2B2B]/70 leading-[1.85] mb-10 max-w-3xl">
-            The walkthrough is a focused, single-visit engagement. It works best in specific situations , and there are situations where one of the other GigLine services fits better.
+            The walkthrough is a focused, single-visit engagement. It works best in specific situations, and there are situations where one of the other GigLine services fits better.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
             <div
@@ -246,7 +246,7 @@ const SafetyWalkthroughPage = () => {
                 {[
                   { d: 'You\u2019re already in an active OSHA inspection or post-citation window', alt: 'You need legal counsel, not a walkthrough' },
                   { d: 'You need written safety programs built from scratch', alt: 'Choose the Compliance Readiness Visit instead' },
-                  { d: 'You only need a documentation review , binders, SDS, training logs', alt: 'Choose the Documentation Readiness Review' },
+                  { d: 'You only need a documentation review, binders, SDS, training logs', alt: 'Choose the Documentation Readiness Review' },
                   { d: 'You want ongoing month-to-month safety support', alt: 'Ask about the Annual Compliance Partner program' },
                   { d: 'You\u2019re looking for OSHA 10/30 training delivery', alt: 'That\u2019s not what GigLine does' },
                 ].map((row, i) => (
@@ -267,10 +267,10 @@ const SafetyWalkthroughPage = () => {
         <div className="container max-w-5xl">
           <Eyebrow>The Scope</Eyebrow>
           <h2 className="text-3xl md:text-4xl font-extrabold leading-[1.15] mb-4 tracking-tight" style={{ color: NAVY }}>
-            What a GigLine walkthrough is , and what it isn&rsquo;t.
+            What a GigLine walkthrough is, and what it isn&rsquo;t.
           </h2>
           <p className="text-base md:text-lg text-[#1C2B2B]/70 leading-[1.85] mb-10 max-w-3xl">
-            A clear scope protects both sides. Here&rsquo;s exactly what you can expect to walk away with , and the lines GigLine does not cross.
+            A clear scope protects both sides. Here&rsquo;s exactly what you can expect to walk away with, and the lines GigLine does not cross.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
             <div

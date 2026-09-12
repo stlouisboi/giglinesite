@@ -142,7 +142,7 @@ const SupervisorKitThankYouPage = () => {
                 data-testid="kit-thankyou-review-prompt"
               >
                 <p className="text-[14.5px] leading-[1.55]" style={{ color: TEXT_MUTED, ...serif }}>
-                  While you&rsquo;re here , if this saved you time, a short Google review keeps GigLine going for the next small operation.{' '}
+                  While you&rsquo;re here, if this saved you time, a short Google review keeps GigLine going for the next small operation.{' '}
                   <a
                     href="https://g.page/r/CdlAYUu_I3xpEAI/review?utm_source=kit-thank-you&utm_medium=app&utm_campaign=review-request"
                     target="_blank"
@@ -171,14 +171,13 @@ const SupervisorKitThankYouPage = () => {
                 className="font-bold leading-tight tracking-tight mb-5 text-[28px] md:text-[36px]"
                 style={{ ...sans, color: NAVY }}
               >
-                Hang tight , or give Vince a call.
+                Hang tight, or give Vince a call.
               </h1>
               <p
                 className="text-[16.5px] md:text-[17.5px] leading-[1.65] mb-8"
                 style={{ color: TEXT_MUTED, ...serif }}
               >
-                Stripe is finishing up the charge. If you got an email receipt, you&rsquo;re good
-                , Vince will be in touch. If something looks off, call{' '}
+                Stripe is finishing up the charge. If you got an email receipt, you&rsquo;re good, Vince will be in touch. If something looks off, call{' '}
                 <strong>(336) 329-8899</strong>.
               </p>
             </>

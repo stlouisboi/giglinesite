@@ -179,7 +179,7 @@ const AboutPage = () => {
               className="text-base md:text-lg text-white/55 leading-relaxed max-w-3xl mx-auto"
               data-testid="about-credential-line"
             >
-              OSHA 30-Hour Outreach Trained safety compliance consultant , Kernersville, NC
+              OSHA 30-Hour Outreach Trained safety compliance consultant, Kernersville, NC
             </p>
           </Reveal>
         </div>
@@ -323,7 +323,7 @@ This is GigLine Safety & Compliance.`}
                 In the military, your <strong className="text-[#1C2B2B]">gig line</strong> is the straight line formed by your shirt, your belt buckle, and your trouser fly.
               </p>
               <p>
-                If your gig line was out of alignment, it could earn an <span className="font-bold uppercase">unsat</span> , unsatisfactory , during inspection.
+                If your gig line was out of alignment, it could earn an <span className="font-bold uppercase">unsat</span> , unsatisfactory, during inspection.
               </p>
               <p>
                 It was a small detail, but it represented something larger: attention to standards, discipline in execution, and the understanding that inspectors notice what others overlook.
@@ -416,13 +416,13 @@ This is GigLine Safety & Compliance.`}
           <Reveal delay={120}>
             <div className="space-y-5 text-[15.5px] md:text-base text-[#1C2B2B]/75 leading-[1.75]">
               <p>
-                A plant manager at a 30-person fabrication shop is responsible for production, quality, HR, and safety , simultaneously. There&rsquo;s no budget for a full-time safety coordinator. There&rsquo;s no time to read 29 CFR 1910 cover to cover. And there&rsquo;s no one to call when an inspector shows up.
+                A plant manager at a 30-person fabrication shop is responsible for production, quality, HR, and safety, simultaneously. There&rsquo;s no budget for a full-time safety coordinator. There&rsquo;s no time to read 29 CFR 1910 cover to cover. And there&rsquo;s no one to call when an inspector shows up.
               </p>
               <p>
                 Generic training courses teach concepts. Software platforms track inputs. Neither one walks your floor, looks at the pallet blocking your electrical panel, or notices the unlabeled spray bottle next to the grinder.
               </p>
               <p>
-                GigLine exists to give small and mid-size operations the same floor-level safety intelligence that larger companies pay a full-time coordinator to provide , without the retainer, without the overhead, and without the generic checklist.
+                GigLine exists to give small and mid-size operations the same floor-level safety intelligence that larger companies pay a full-time coordinator to provide, without the retainer, without the overhead, and without the generic checklist.
               </p>
               <p className="font-semibold text-[#1C2B2B]">
                 One visit. One report. A clear picture of where you stand and what to fix first.
@@ -457,7 +457,7 @@ This is GigLine Safety & Compliance.`}
                   U.S. Navy Veteran
                 </p>
                 <p className="text-[15px] md:text-base text-white/85 leading-[1.75]">
-                  I served in the U.S. Navy before moving into manufacturing safety. The discipline, the attention to detail, and the understanding that procedures exist to protect people , not to fill binders , came from that experience. It&rsquo;s the same standard I bring to every engagement.
+                  I served in the U.S. Navy before moving into manufacturing safety. The discipline, the attention to detail, and the understanding that procedures exist to protect people, not to fill binders, came from that experience. It&rsquo;s the same standard I bring to every engagement.
                 </p>
               </div>
             </div>
@@ -482,7 +482,7 @@ This is GigLine Safety & Compliance.`}
                 Small operations where safety is handled by whoever has time.
               </h2>
               <p className="text-base md:text-[17px] leading-[1.75] text-[#1C2B2B]/75 max-w-3xl mb-5">
-                GigLine works with small and mid-size manufacturers, warehouses, contractors, and fleet operations in the Piedmont Triad , typically 5 to 150 employees, no full-time safety manager, and a plant manager or owner who knows safety matters but is also expected to run production at the same time.
+                GigLine works with small and mid-size manufacturers, warehouses, contractors, and fleet operations in the Piedmont Triad, typically 5 to 150 employees, no full-time safety manager, and a plant manager or owner who knows safety matters but is also expected to run production at the same time.
               </p>
               <p className="text-base md:text-[17px] leading-[1.75] text-[#1C2B2B]/75 max-w-3xl">
                 <em>I do not show up to impress your team with theory. I show up to look at the same floor your people walk every day and identify what has become normal, overlooked, or undocumented.</em>

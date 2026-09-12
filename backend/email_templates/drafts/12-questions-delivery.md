@@ -1,109 +1,59 @@
 # DRAFT: 12 Questions Delivery Email
 
 **Feature flag**: `OSHA_TWELVE_QUESTIONS_ENABLED` (frontend) + matching backend guard.
-**Trigger**: Day 0, immediately after the requester submits the 12 Questions form on `/12-questions`.
-**Send regardless of marketing consent**: Yes. The resource was requested. Delivery is transactional.
-**Enroll in marketing sequence**: Only if `marketing_consent === true` in the submission payload.
+**Type**: Transactional. Sent because the recipient explicitly requested the PDF.
+**Consent handling**: Marketing-consent branch controls footer wording and unsubscribe link visibility. Do NOT show unsubscribe language to a non-subscriber.
 
 ---
 
-## Subject line options
-
-- Primary: "Your 12 Questions to Answer Before OSHA Walks In"
-- Alternate: "12 Questions, delivered. Here's the PDF."
+## Subject
+Your 12 Questions printable one-pager
 
 ## Preheader
+The printable version of the field guide you requested is attached.
 
-Twelve prompts the site walkthrough asks first, with the paper it needs behind each one.
+## Body
 
-## From
-
-GigLine Safety & Compliance <vince@giglinecompliance.com>
-
-## Reply-to
-
-vince@giglinecompliance.com
-
-## Body (plain text)
-
-```
 Hi {{first_name}},
 
-Attached: 12 Questions to Answer Before OSHA Walks In.
+Here is the printable one-pager for **12 Questions to Answer Before OSHA Walks In**.
 
-The PDF walks the same twelve questions in the order a compliance officer
-typically asks them, and lists the paper each question actually needs. If a
-question does not have an obvious answer at your operation, that is not a
-citation, it is a gap flag worth reviewing in daylight rather than during an
-inspection.
+Attached PDF: `12-Questions-Before-OSHA-Walks-In.pdf`
 
-How to use it:
+Reading time is about six minutes. The value comes from timing yourself against your own operation: walk to where each answer lives, and note the ones that take longer than they should.
 
-1. Print two copies. One for the binder, one for the floor.
-2. Answer each question with the source of your evidence, the specific
-   binder tab, folder, or file name.
-3. Circle every question that does not have a direct source and schedule
-   time to close that item this quarter.
+If a few questions do not have obvious answers, the reasonable next step is one of GigLine's fixed-quote engagements:
 
-If you would like a second set of eyes on the answers, GigLine offers:
+- **Safety Walkthrough** — $1,300 starting. On-site review of physical hazards, written report in 48 hours.
+- **Documentation Readiness Review** — $1,700 starting. Structured review of written programs, training records, evidence.
+- **Compliance Readiness Visit** — $2,500 starting. Both, in a single visit. Saves $500 compared with purchasing the two standard scopes separately.
 
-- Safety Walkthrough , $1,300. On-site review of physical hazards with a
-  written report in 48 hours.
-- Documentation Readiness Review , $1,700. Structured review of written
-  programs and training evidence.
-- Compliance Readiness Visit , $2,500. Both, in one visit. Saves $500 vs.
-  purchasing them separately.
+Fixed quote before scheduling. Private engagement. No retainer required.
 
-All three are fixed-quote and private. No retainer.
-
-Full pricing: https://www.giglinecompliance.com/services
-
-Questions?
-Reply to this email or call (336) 329-8899.
-
-Regards,
 Vince Lawrence
 GigLine Safety & Compliance
-Kernersville, NC
-```
+(336) 329-8899
+https://www.giglinecompliance.com
 
-## Body (HTML variables)
+---
 
-- `{{first_name}}` , first name from the form. Fall back to "there" if empty.
-- `{{unsubscribe_url}}` , appended in the footer of every send. Even
-  transactional sends should include this to match the marketing sends'
-  footer pattern.
-- `{{consent_status}}` , "opted in" or "not enrolled" text used in the
-  confirmation footer so the requester sees what they agreed to.
+## Footer — CONSENT-BASED, choose ONE branch
 
-## Footer (appears on every send)
+### Branch A: consent = false (unchecked)
+> You requested this resource. You are not subscribed to ongoing marketing emails.
+> (No unsubscribe link is included because the recipient was never subscribed.)
 
-```
-This email delivers the resource you requested at
-https://www.giglinecompliance.com/12-questions.
+### Branch B: consent = true (checked)
+> You also opted into occasional practical safety guidance from GigLine.
+> [Unsubscribe or manage preferences]({{unsubscribe_url}})
 
-Marketing consent status for this address: {{consent_status}}
-Unsubscribe from future GigLine safety guidance: {{unsubscribe_url}}
+---
 
-GigLine Safety & Compliance, Kernersville, NC 27284
-(336) 329-8899, vince@giglinecompliance.com
-
-GigLine is a safety consulting practice. GigLine is not a law firm and does
-not provide legal advice. Federal OSHA rules apply broadly, state OSH plans
-may impose additional requirements. Every recommendation must be evaluated
-against your specific operation, equipment, and workforce.
-```
-
-## Attachments
-
-- `12-Questions-Before-OSHA-Walks-In-v1.pdf` (draft PDF asset, to be built
-  from the same content shown on `/12-questions` once the copy is approved).
-
-## Owner review checklist
-
-- [ ] Subject line reads as delivery of a requested resource, not a marketing pitch.
-- [ ] Body voice matches the site (calm, specific, practical, not fear-heavy).
-- [ ] Prices match `frontend/src/data/servicePricing.js` (canonical).
-- [ ] Disclaimer language matches site-wide standard.
-- [ ] Unsubscribe present in footer.
-- [ ] Consent status shown so the requester can verify their choice.
+## Activation checklist
+- [ ] Owner reviewed the field-guide copy at `/12-questions?preview=1`
+- [ ] Owner approved this delivery email
+- [ ] Backend renders the correct consent branch based on the `marketing_consent` flag stored on the lead record
+- [ ] Non-consenting requesters are NOT enrolled in the five-touch sequence
+- [ ] Placeholder PDF replaced with the final approved PDF
+- [ ] Sending domain, SPF, DKIM, DMARC verified in Resend
+- [ ] `OSHA_TWELVE_QUESTIONS_ENABLED` flipped to `true` in `frontend/src/config/features.js`

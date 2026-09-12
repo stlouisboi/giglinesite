@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useSearchParams } from 'react-router-dom';
 import { ArrowRight, Calendar, MapPin, Users, ClipboardCheck, Plus, Minus } from 'lucide-react';
 import SEO from '../components/SEO';
+import { CASE_STUDY_PUBLIC } from '../config/features';
+import { isPreviewBypassAllowed } from '../lib/previewGate';
 
 const NAVY = '#0A1628';
 const GOLD = '#C5A059';
@@ -14,7 +16,7 @@ const mono = { fontFamily: "'JetBrains Mono', monospace" };
 const serif = { fontFamily: "Georgia, 'Times New Roman', serif" };
 
 // GL-WEB-020, 13 corrective actions from an anonymized GigLine engagement (small NC metal fab, mid-2026).
-// 12 of 13 closed within 4 days of the walkthrough. 1 open at reporting point (guarding upgrade, scheduled post-relocation).
+// 12 of 13 closed within 4 days of the walkthrough. 1 open at reporting point (equipment control implementation documented and scheduled).
 // All chemical brands, internal system names, and machine identifiers generalized.
 const CORRECTIVE_ACTIONS = [
   { id: 'CA-001', issue: 'Written Safety & Health Program required an update to reflect the operation\u2019s current facility location and address.', action: 'Updated all safety and training documents so the location and address were consistent across the program.', status: 'Closed, Day 4', open: false },
@@ -28,14 +30,14 @@ const CORRECTIVE_ACTIONS = [
   { id: 'CA-009', issue: 'Bulk hydraulic oil was stored on the production floor adjacent to production equipment without an SDS present at the point of use.', action: 'SDS added to the physical binder and the digital library.', status: 'Closed, Day 4', open: false },
   { id: 'CA-010', issue: 'A compressed-gas cylinder was stored upright without chain, bracket, or restraint, and was positioned adjacent to a flammables cabinet without adequate separation.', action: 'Relocated the cylinder to a storage area away from the flammables cabinet; a permanent restraint solution planned.', status: 'Closed, Day 4', open: false },
   { id: 'CA-011', issue: 'A Bloodborne Pathogen Exposure Control Plan was not present. The standard at 29 CFR 1910.1030 applies where employees have occupational exposure to blood or other potentially infectious materials.', action: 'Wrote a Bloodborne Pathogen Exposure Control Plan and added it to new-hire training.', status: 'Closed, Day 4', open: false },
-  { id: 'CA-012', issue: 'A point-of-operation on one machine was accessible during operation. Point-of-operation guarding is required for equipment covered by 29 CFR 1910.212(a)(3).', action: 'A permanent guarding solution planned. The machine will be set in its final position at the operation\u2019s planned new facility before the guarding solution is installed.', status: 'Open at reporting point, scheduled post-relocation', open: true },
+  { id: 'CA-012', issue: 'A point-of-operation on one machine was accessible during operation. Point-of-operation guarding is required for equipment covered by 29 CFR 1910.212(a)(3).', action: 'Implementation of the remaining equipment control was documented and scheduled. The item remained open at the reporting point.', status: 'Open at reporting point', open: true },
   { id: 'CA-013', issue: 'The Employee Safety Handbook required a material revision.', action: 'Updated the handbook and implemented a revision-number system for version tracking.', status: 'Closed, Day 4', open: false },
 ];
 
 const CASE_FAQS = [
   {
     q: 'What if my walkthrough turns up more than 13 findings?',
-    a: "That depends on the facility. A newer operation with a plant manager actively building programs, like the one in this engagement, is going to look different from a 20-year-old facility that hasn't had a third-party review in a decade. More findings isn't a failure. It's information. The report prioritizes every finding by citation risk so you know what to fix first and what can wait. You leave with a ranked corrective action plan, not a list of problems with no direction attached.",
+    a: "That depends on the facility. A newer operation with a plant manager actively building programs, like the one in this engagement, is going to look different from a 20-year-old facility that hasn\u2019t had a third-party review in a decade. More findings isn\u2019t a failure. It\u2019s information. The report prioritizes every finding by citation risk so you know what to fix first and what can wait. You leave with a ranked corrective action plan, not a list of problems with no direction attached.",
   },
   {
     q: 'Does an 80.3 compliance score mean the facility was OSHA-ready?',
@@ -56,20 +58,31 @@ const CASE_FAQS = [
 ];
 
 const CaseStudyMetalsFabricationPage = () => {
+  const [searchParams] = useSearchParams();
+  const previewBypass = isPreviewBypassAllowed(searchParams.get('preview'));
+
+  // Owner permission gate. When CASE_STUDY_PUBLIC is false and no preview
+  // bypass is present, redirect to /resources. Production builds refuse the
+  // bypass regardless of query string.
+  if (!CASE_STUDY_PUBLIC && !previewBypass) {
+    return <Navigate to="/resources" replace />;
+  }
+
   return (
     <main
       data-testid="case-study-metals-fabrication"
       style={{ backgroundColor: BG_WARM, color: NAVY }}
     >
       <SEO
-        title="What a Safety Walkthrough Actually Finds | GigLine Case Study"
-        description="Anonymized case study of a small North Carolina metal fabrication operation. Combined walkthrough plus documentation review. 13 findings identified, 12 corrected within four days, one open at reporting."
+        title="What a Compliance Readiness Visit Can Surface | GigLine Case Study"
+        description="Anonymized case study of a small North Carolina metal fabrication operation. Compliance Readiness Visit (combined walkthrough plus documentation review). 13 findings identified, 12 corrected within four days, one open at reporting."
         canonical="/case-study/metal-fabrication-readiness"
+        noindex
         schema={[
           {
             '@context': 'https://schema.org',
             '@type': 'Article',
-            headline: 'What a Safety Walkthrough Actually Finds, Small NC Metal Fabrication Case Study',
+            headline: 'What a Compliance Readiness Visit Can Surface, Small NC Metal Fabrication Case Study',
             description:
               "Anonymized case study, small NC metal fabrication operation, walkthrough plus doc review. 13 findings identified. 80.3 compliance score. 12 of 13 corrective actions closed within four days. One finding remained open at the reporting point.",
             author: { '@type': 'Person', name: 'Vince Lawrence', url: 'https://www.giglinecompliance.com/about' },
@@ -97,12 +110,12 @@ const CaseStudyMetalsFabricationPage = () => {
               {
                 '@type': 'Question',
                 name: 'What if my walkthrough turns up more than 13 findings?',
-                acceptedAnswer: { '@type': 'Answer', text: "That depends on the facility. A newer operation with a plant manager actively building programs, like the one in this engagement, is going to look different from a 20-year-old facility that hasn't had a third-party review in a decade. More findings isn't a failure. It's information. The report prioritizes every finding by citation risk so you know what to fix first and what can wait. You leave with a ranked corrective action plan, not a list of problems with no direction attached." },
+                acceptedAnswer: { '@type': 'Answer', text: "That depends on the facility. A newer operation with a plant manager actively building programs, like the one in this engagement, is going to look different from a 20-year-old facility that hasn\u2019t had a third-party review in a decade. More findings isn\u2019t a failure. It\u2019s information. The report prioritizes every finding by citation risk so you know what to fix first and what can wait. You leave with a ranked corrective action plan, not a list of problems with no direction attached." },
               },
               {
                 '@type': 'Question',
                 name: 'Does an 80.3 compliance score mean the facility was OSHA-ready?',
-                acceptedAnswer: { '@type': 'Answer', text: "Not exactly. The compliance score measures written-program coverage, how complete your documentation is relative to what OSHA expects to see. An 80.3 means solid coverage on paper with targeted gaps underneath. The physical findings (the propane cylinder, the unguarded shear blade) are captured separately in the priority ratings. A facility can score well on documentation and still have serious physical hazards. That's exactly why the walkthrough covers both." },
+                acceptedAnswer: { '@type': 'Answer', text: "Not exactly. The compliance score measures written-program coverage, how complete your documentation is relative to what OSHA expects to see. An 80.3 means solid coverage on paper with targeted gaps underneath. The physical findings (the propane cylinder, the unguarded shear blade) are captured separately in the priority ratings. A facility can score well on documentation and still have serious physical hazards. That\u2019s exactly why the walkthrough covers both." },
               },
               {
                 '@type': 'Question',
@@ -112,7 +125,7 @@ const CaseStudyMetalsFabricationPage = () => {
               {
                 '@type': 'Question',
                 name: "What if I can't fix everything before an OSHA inspection arrives?",
-                acceptedAnswer: { '@type': 'Answer', text: "Fix the P2 findings first, those are the serious citation risks with dollar exposure attached. A documented corrective action plan with assigned owners and target dates is evidence of good-faith effort. OSHA distinguishes between a facility that knew about a hazard and ignored it and one that identified it, documented it, and was actively working through remediation. The written report gives you that documentation. It doesn't guarantee anything, but it puts you in a materially better position than having no record at all." },
+                acceptedAnswer: { '@type': 'Answer', text: "Fix the P2 findings first, those are the serious citation risks with dollar exposure attached. A documented corrective action plan with assigned owners and target dates is evidence of good-faith effort. OSHA distinguishes between a facility that knew about a hazard and ignored it and one that identified it, documented it, and was actively working through remediation. The written report gives you that documentation. It doesn\u2019t guarantee anything, but it puts you in a materially better position than having no record at all." },
               },
               {
                 '@type': 'Question',
@@ -158,7 +171,7 @@ const CaseStudyMetalsFabricationPage = () => {
             style={{ fontFamily: "'Manrope', sans-serif", color: NAVY }}
             data-testid="case-headline"
           >
-            What a Safety Walkthrough Actually Finds
+            What a Compliance Readiness Visit Can Surface
           </h1>
 
           <p
@@ -166,7 +179,7 @@ const CaseStudyMetalsFabricationPage = () => {
             style={{ color: TEXT_MUTED, ...serif }}
             data-testid="case-subhead"
           >
-            A small North Carolina metal fabrication operation brought GigLine in for a combined Safety Walkthrough and Documentation Review. Thirteen findings identified. Twelve corrected within four days. One remained open at the reporting point. No inspection ever happened , and that is the point.
+            A small North Carolina metal fabrication operation brought GigLine in for a Compliance Readiness Visit, GigLine's combined floor and documentation review. Thirteen findings identified. Twelve corrected within four days. One remained open at the reporting point. No inspection ever happened, and that is the point.
           </p>
 
           <p
@@ -233,7 +246,7 @@ const CaseStudyMetalsFabricationPage = () => {
 
           {/* THE ENGAGEMENT */}
           <H2>The Engagement</H2>
-          <P>Scope: a Compliance Readiness Visit, GigLine\u2019s combined Safety Walkthrough and Documentation Readiness Review, delivered as a single engagement.</P>
+          <P>Scope: a Compliance Readiness Visit, GigLine's combined Safety Walkthrough and Documentation Readiness Review, delivered as a single engagement.</P>
           <P>Written report delivered four days after the walkthrough. Historical turnaround; the current standard commitment for a Compliance Readiness Visit is a written report within 48 hours of the on-site visit.</P>
 
           {/* WHAT THE WALKTHROUGH FOUND */}
@@ -269,7 +282,7 @@ const CaseStudyMetalsFabricationPage = () => {
             style={{ color: TEXT_MUTED, fontFamily: "'Manrope', sans-serif" }}
             data-testid="case-penalty-disclaimer"
           >
-            Note: Penalty figures are educational estimates based on OSHA published maximum penalty schedules (29 CFR 1903.15 / 2026 adjusted rates). Actual penalties assessed by OSHA vary by employer size, history, good-faith effort, and gravity of the violation.
+            Note: Penalty figures are educational estimates based on the OSHA published maximum penalty schedule (29 CFR 1903.15, current schedule as of the engagement date). Actual penalties assessed by OSHA vary by employer size, history, good-faith effort, and gravity of the violation.
           </p>
 
           <H3>The documentation picture:</H3>
@@ -285,11 +298,11 @@ const CaseStudyMetalsFabricationPage = () => {
           {/* WHAT THE ENGAGEMENT DELIVERED */}
           <H2>What the Engagement Delivered</H2>
           <P>A written report documenting all 13 findings against applicable CFR standards, with photo documentation of the two highest-priority physical hazards and a corrective action summary pre-populated with every finding, priority rating, assigned due date where applicable, and recommended corrective action.</P>
-          <P>The engagement documented specifically where the safety program and floor conditions needed work , before an OSHA inspector, a customer audit, or an incident did.</P>
+          <P>The engagement documented specifically where the safety program and floor conditions needed work, before an OSHA inspector, a customer audit, or an incident did.</P>
 
           {/* AFTER THE REPORT */}
           <H2>After the Report</H2>
-          <P>Twelve of 13 findings were closed within four days of the walkthrough , before the formal due date and without pausing production. One finding remained open at the reporting point , a point-of-operation guarding upgrade on one machine class , with a documented remediation plan: a permanent guarding solution to be installed after the machine is set in its final position at the operation&rsquo;s planned facility move.</P>
+          <P>Twelve of 13 findings were closed within four days of the walkthrough, before the formal due date and without pausing production. One finding remained open at the reporting point, a point-of-operation guarding upgrade on one machine class. Implementation of the remaining equipment control was documented and scheduled.</P>
           <P>That&rsquo;s how a corrective action log is supposed to work. Findings documented. Owners assigned. Plans recorded. Progress trackable. Open items visible.</P>
 
           {/* GL-WEB-017, Standalone Corrective Action Log download (ungated) */}
@@ -375,7 +388,7 @@ const CaseStudyMetalsFabricationPage = () => {
               What We Found. What They Did.
             </h2>
             <p className="text-[15px] md:text-base leading-[1.7] mb-8 max-w-3xl" style={{ color: TEXT_MUTED, ...serif }}>
-              Every finding below was identified during the walkthrough. Corrective actions were assigned to the operation&rsquo;s plant manager. Twelve of 13 findings were closed within four days. One finding remained open at the reporting point pending the operation&rsquo;s planned facility move.
+              Every finding below was identified during the walkthrough. Corrective actions were assigned to the operation&rsquo;s plant manager. Twelve of 13 findings were closed within four days. One finding remained open at the reporting point.
             </p>
 
             <div className="overflow-x-auto" style={{ border: `1px solid ${BORDER}`, borderRadius: '4px' }}>
@@ -439,11 +452,11 @@ const CaseStudyMetalsFabricationPage = () => {
               className="font-bold leading-tight mb-5 text-[26px] md:text-[32px]"
               style={{ fontFamily: "'Manrope', sans-serif", color: NAVY }}
             >
-              From Inspection to Corrective Action in 4 Days.
+              From Findings to Corrective Action in 4 Days.
             </h2>
             <div className="space-y-5 max-w-3xl" style={{ ...serif }}>
               <p className="text-[16px] md:text-[17px] leading-[1.72]" style={{ color: TEXT_MUTED }}>
-                The operation closed 12 of 13 corrective actions within four days of the GigLine walkthrough , before the formal due date and without pausing production. One item, a shear blade point-of-operation guard, remained open at the reporting point, scheduled for installation after the operation completes its planned facility relocation.
+                The operation closed 12 of 13 corrective actions within four days of the GigLine walkthrough, before the formal due date and without pausing production. One item, a point-of-operation guarding upgrade, remained open at the reporting point. Implementation of the remaining equipment control was documented and scheduled.
               </p>
               <p className="text-[16px] md:text-[17px] leading-[1.72]" style={{ color: TEXT_MUTED }}>
                 Twelve of 13 findings closed. Compliance score began at 80.3. The remaining gap is tied to a planned capital improvement rather than a documentation failure. Anonymized engagement, illustrative example. Not a guaranteed or typical outcome.
@@ -473,7 +486,7 @@ const CaseStudyMetalsFabricationPage = () => {
               Want to see what an actual GigLine report looks like?
             </h3>
             <p className="text-[15px] md:text-base leading-[1.65] mb-5" style={{ color: TEXT_MUTED, ...serif }}>
-              A redacted version of a real compliance report , facility name removed, every finding, CFR citation, penalty exposure, and corrective action intact. The format you&rsquo;d receive within 48 hours of your own walkthrough.
+              A redacted version of a real compliance report, facility name removed, every finding, CFR citation, penalty exposure, and corrective action intact. The format you&rsquo;d receive within 48 hours of your own walkthrough.
             </p>
             <Link
               to="/sample-report"
@@ -488,12 +501,12 @@ const CaseStudyMetalsFabricationPage = () => {
           {/* WHAT THIS ENGAGEMENT IS NOT */}
           <H2>What This Engagement Is Not</H2>
           <P>No OSHA inspection followed this walkthrough. There is no citation outcome to report.</P>
-          <P>The value is the written record , a documented baseline of what existed, what was missing, and what needed to change, in the plant manager&rsquo;s hands, before anyone outside the facility looked.</P>
-          <P><strong>A written record of good-faith corrective action is defensible. A belief that things are in order is not.</strong></P>
+          <P>The value is the written record, a documented baseline of what existed, what was missing, and what needed to change, in the plant manager&rsquo;s hands, before anyone outside the facility looked.</P>
+          <P><strong>A written record can help demonstrate that corrective action was identified, assigned, and tracked. A belief that things are in order is not the same.</strong></P>
 
           {/* THE PATTERN */}
           <H2>The Pattern</H2>
-          <P>The findings at this operation are not unusual. Written programs that don&rsquo;t match actual operations, missing machine-specific procedures, chemical hazards without complete SDS coverage, and physical hazards the team has stopped seeing , these are among the most frequently cited violations in general industry OSHA enforcement.</P>
+          <P>The findings at this operation are not unusual. Written programs that don&rsquo;t match actual operations, missing machine-specific procedures, chemical hazards without complete SDS coverage, and physical hazards the team has stopped seeing, these are among the most frequently cited violations in general industry OSHA enforcement.</P>
           <P>They show up across facilities of every size. They are also fixable. Most of them don&rsquo;t require a consultant to fix. They require knowing they exist.</P>
 
         </div>
@@ -547,7 +560,7 @@ const CaseStudyMetalsFabricationPage = () => {
             The equivalent scope today is a Compliance Readiness Visit, starting at $2,500.
           </h2>
           <p className="text-base md:text-lg leading-relaxed mb-10 max-w-2xl mx-auto text-white/65">
-            The Compliance Readiness Visit combines the Safety Walkthrough and the Documentation Readiness Review into a single engagement, and it saves $500 compared with purchasing the two standard scopes separately. Written report within 48 hours of the on-site visit. Fixed quote before scheduling. Everything stays private.
+            The Compliance Readiness Visit combines the Safety Walkthrough and the Documentation Readiness Review into a single engagement, and it saves $500 compared with purchasing the two standard scopes separately. Written report within 48 hours of the on-site visit. Fixed quote before scheduling. Your findings and written report are delivered privately. GigLine does not publicly use client information without permission.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link

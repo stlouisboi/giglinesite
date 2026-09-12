@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ShieldCheck, AlertTriangle, Users } from 'lucide-react';
+import { CASE_STUDY_PUBLIC } from '../config/features';
 
 const NAVY = '#0A1628';
 const GOLD = '#C5A059';
@@ -10,11 +11,12 @@ const mono = { fontFamily: "'JetBrains Mono', monospace" };
   CaseStudyTeaser
   ──────────────────────────────────────────────────────
   Reusable engagement anchor used on Homepage and Services page
-  to surface the anonymized NC metal fabrication case study. Mirrors
-  the navy + gold aesthetic of the case study page's own CTA band so
-  visitors get visual continuity when they click through.
+  to surface the anonymized NC metal fabrication case study. Gated by
+  CASE_STUDY_PUBLIC so the teaser is hidden when the case study is
+  withheld from public promotion pending written client permission.
 */
 const CaseStudyTeaser = ({ source = 'homepage' }) => {
+  if (!CASE_STUDY_PUBLIC) return null;
   return (
     <section
       className="pt-12 pb-14 md:pt-20 md:pb-28"

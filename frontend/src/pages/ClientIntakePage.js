@@ -442,7 +442,7 @@ const ClientIntakePage = () => {
         <section data-testid="intake-quick-contact-section">
           <QuickContactCard variant="dark" />
           <p className="text-xs mt-4 text-center" style={{ color: C.sec, ...mono, letterSpacing: '0.18em' }}>
-            , OR , FILL OUT THE FULL INTAKE BELOW FOR A FIXED QUOTE
+            , OR, FILL OUT THE FULL INTAKE BELOW FOR A FIXED QUOTE
           </p>
         </section>
 
@@ -655,7 +655,7 @@ const ClientIntakePage = () => {
                 <span {...wrap('docReviewApproach')}>
                   <RadioList value={f.docReviewApproach} onChange={(v) => set('docReviewApproach', v)} options={[
                     { value: 'review_existing', label: 'Review what we already have' },
-                    { value: 'start_scratch', label: "Start from scratch, we don't have much" },
+                    { value: 'start_scratch', label: "Start from scratch, we don\u2019t have much" },
                     { value: 'not_sure', label: 'Not sure, let Vince advise' },
                   ]} />
                 </span>
@@ -899,7 +899,7 @@ const ClientIntakePage = () => {
               Vince Lawrence
             </h2>
             <p className="text-base md:text-lg leading-relaxed max-w-3xl mx-auto" style={{ color: 'rgba(255,255,255,0.55)' }}>
-              OSHA 30-Hour Outreach Trained safety compliance consultant , Kernersville, NC
+              OSHA 30-Hour Outreach Trained safety compliance consultant, Kernersville, NC
             </p>
           </div>
 

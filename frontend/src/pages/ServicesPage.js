@@ -685,7 +685,7 @@ const ServicesPage = () => {
                     className="italic text-[#1C2B2B]/65 text-sm md:text-[15px] leading-relaxed mb-6 max-w-2xl"
                     data-testid="crv-anchor-line"
                   >
-                    Booked separately, the Safety Walkthrough and Documentation Review total $3,000. The Compliance Readiness Visit covers both in a single visit , from $2,500. A $500 combined-service savings.
+                    Booked separately, the Safety Walkthrough and Documentation Review total $3,000. The Compliance Readiness Visit covers both in a single visit, from $2,500. A $500 combined-service savings.
                   </p>
                 </div>
 
@@ -786,7 +786,7 @@ const ServicesPage = () => {
                 Want a preview before you schedule?
               </h2>
               <p className="text-[15px] md:text-base text-[#1C2B2B]/65 leading-relaxed max-w-2xl">
-                Download a redacted compliance report , facility name removed, every other detail intact. Findings, CFR citations, penalty exposure, RED/AMBER/GREEN fix list, and the corrective action plan.
+                Download a redacted compliance report, facility name removed, every other detail intact. Findings, CFR citations, penalty exposure, RED/AMBER/GREEN fix list, and the corrective action plan.
               </p>
             </div>
             <Link
@@ -815,7 +815,7 @@ const ServicesPage = () => {
             </h2>
             <div className="mb-8" style={{ width: '56px', height: '3px', background: '#C9A84C', borderRadius: '2px' }} />
             <p className="text-base md:text-lg text-[#1C2B2B]/65 leading-[1.85] max-w-3xl">
-              For operations that already know which side they need reviewed , the floor, the files, or a specific incident. Each engagement is scoped, quoted, and delivered independently.
+              For operations that already know which side they need reviewed, the floor, the files, or a specific incident. Each engagement is scoped, quoted, and delivered independently.
             </p>
           </Reveal>
         </div>
@@ -935,7 +935,7 @@ const ServicesPage = () => {
                         data-testid={`${s.testid}-phone-cta`}
                       >
                         <Phone size={15} />
-                        Call Now , (336) 329-8899
+                        Call Now, (336) 329-8899
                       </a>
                     )}
                   </div>
@@ -1151,7 +1151,7 @@ const ServicesPage = () => {
               <div className="mb-7" style={{ width: '64px', height: '3px', background: '#C9A84C', borderRadius: '2px' }} />
 
               <p className="text-base md:text-lg text-[#CBD5E1] leading-relaxed mb-6">
-                GigLine constructs the complete safety infrastructure your operation needs to pass any OSHA inspection, customer audit, or insurance review , and hands it back to your team with a system they can actually maintain.
+                GigLine constructs the complete safety infrastructure your operation needs to pass any OSHA inspection, customer audit, or insurance review, and hands it back to your team with a system they can actually maintain.
               </p>
               <p
                 className="text-lg md:text-xl font-semibold text-white leading-snug mb-10"
@@ -1466,7 +1466,7 @@ const ServicesPage = () => {
             </h2>
             <div className="mb-8" style={{ width: '56px', height: '3px', background: '#C9A84C', borderRadius: '2px' }} />
             <p className="text-base md:text-lg text-[#1C2B2B]/65 leading-[1.85] mb-12 max-w-3xl">
-              Every operation is different. This table shows exactly what each engagement includes, so you can pick the one that matches where you are today , not one size larger, not one size smaller.
+              Every operation is different. This table shows exactly what each engagement includes, so you can pick the one that matches where you are today, not one size larger, not one size smaller.
             </p>
           </Reveal>
 

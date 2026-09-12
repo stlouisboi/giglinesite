@@ -192,8 +192,8 @@ const FirstPullChecklistTemplate = ({ checklist }) => {
             <p className="text-[14.5px] leading-[1.65]" style={{ color: INK_SOFT, ...serif }}>
               In a live send, GigLine would email the {checklist.program} First-Pull Checklist to <strong>{form.email}</strong> within a few minutes.{' '}
               {form.consent
-                ? 'Your requested resource will be delivered. You will also receive occasional practical safety guidance from GigLine. Unsubscribe at any time.'
-                : 'Your requested resource will be delivered without adding you to ongoing marketing emails.'}
+                ? 'You also opted into occasional practical safety guidance from GigLine.'
+                : 'You requested this resource. You are not subscribed to ongoing marketing emails.'}
             </p>
           </section>
         )}

@@ -24,67 +24,66 @@ const mono = { fontFamily: "'JetBrains Mono', monospace" };
 const serif = { fontFamily: "Georgia, 'Times New Roman', serif" };
 const sans = { fontFamily: "'Manrope', sans-serif" };
 
+const KIND_META = {
+  required:      { label: 'Required',      color: '#0A5C36', bg: 'rgba(10,92,54,0.09)',  border: 'rgba(10,92,54,0.32)' },
+  applicability: { label: 'Applicability', color: '#1B4A78', bg: 'rgba(27,74,120,0.09)', border: 'rgba(27,74,120,0.32)' },
+  gigline:       { label: 'GigLine',       color: '#8E6D1F', bg: 'rgba(201,168,76,0.13)', border: 'rgba(201,168,76,0.42)' },
+};
+
 const QUESTIONS = [
-  {
-    q: 'How does your operation handle Hazard Communication for the chemicals your employees actually use?',
-    evidence: 'A written Hazard Communication program (29 CFR 1910.1200(e)(1)), an employer-maintained list of hazardous chemicals present, safety data sheets readily accessible during each work shift (1910.1200(g)(8)), employee information and training covering the elements at 1910.1200(h)(3), and workplace container labeling under 1910.1200(f)(6).',
-    kind: 'required',
-  },
-  {
-    q: 'For every machine that requires servicing or maintenance, how do employees know the specific steps to shut it down, isolate the energy, and verify it is safe to work on?',
-    evidence: 'A written Energy Control Program (29 CFR 1910.147(c)(4)(i)) and machine-specific written energy control procedures (1910.147(c)(4)(i) and (c)(4)(ii)), employee training for authorized, affected, and other employees (1910.147(c)(7)), and certification of periodic inspection of each energy control procedure at least annually per 1910.147(c)(6)(ii).',
-    kind: 'required',
-  },
-  {
-    q: 'For every operator on every truck class, who trained them, who evaluated them, and when is the next three-year evaluation due?',
-    evidence: 'Operator training and evaluation records per 29 CFR 1910.178(l)(6), truck-type-specific training under (l)(3), refresher training triggers under (l)(4)(ii), and performance evaluation at least once every three years under (l)(4)(iii). Applies when the operation uses powered industrial trucks.',
-    kind: 'applicability',
-  },
-  {
-    q: 'When an employee needs to look up the safety data sheet for a chemical they are about to use, how do they do it?',
-    evidence: 'Safety data sheets readily accessible during each work shift (29 CFR 1910.1200(g)(8)), reachable at or near every work location where hazardous chemicals are used. GigLine readiness benchmark is retrieval within three minutes; the standard does not set a specific retrieval time.',
-    kind: 'required',
-  },
-  {
-    q: 'Who evaluated the PPE hazard assessment for each task, and where is the record?',
-    evidence: 'A workplace hazard assessment with written certification identifying the workplace evaluated, the person certifying, the date, and identification of the document as a certification of hazard assessment, per 29 CFR 1910.132(d). PPE training records under 1910.132(f).',
-    kind: 'required',
-  },
-  {
-    q: 'When a recordable injury or illness occurs, how quickly is the OSHA 300 log entered and how is the 300A posted?',
-    evidence: 'OSHA 300 log entry within seven calendar days after receiving information that a recordable injury or illness occurred (29 CFR 1904.29(b)(3)); 300A summary posted February 1 through April 30 for the previous calendar year (1904.32(b)(6)). Applies to non-exempt employers, see the partial exemption at 1904.1 and industry list at 1904.2.',
-    kind: 'applicability',
-  },
-  {
-    q: 'When a fatality, in-patient hospitalization, amputation, or eye loss occurs, how is it reported to OSHA, and how quickly?',
-    evidence: 'Fatality reported within eight hours; in-patient hospitalization, amputation, or eye loss reported within twenty-four hours, per 29 CFR 1904.39. The contact channels are the OSHA area office, the OSHA hotline at 1-800-321-6742, or the online form.',
-    kind: 'required',
-  },
-  {
-    q: 'For every point-of-operation, ingoing nip point, rotating part, or flying chip hazard, how are employees protected?',
-    evidence: 'Machine guarding provided to protect operators and other employees from those hazards, per 29 CFR 1910.212(a). Guarding requirements specific to certain machinery classes appear at 1910.213 through 1910.219. A written machine-specific analysis is a GigLine readiness practice.',
-    kind: 'applicability',
-  },
-  {
-    q: 'What is your emergency evacuation plan, and how do employees know what to do when the alarm sounds?',
-    evidence: 'A written Emergency Action Plan under 29 CFR 1910.38, required when the standard applies. Content elements at 1910.38(c), employee alarm at 1910.38(d), evacuation procedures at 1910.38(c)(2), and information and training at 1910.38(e) and (f). Applicability, and whether the plan must be written, depends on the applicable standard and the employer size, see 1910.38(b).',
-    kind: 'applicability',
-  },
-  {
-    q: 'When an employee will use a respirator, has medical evaluation and fit testing been completed, and is the written respiratory protection program in place?',
-    evidence: 'Written respiratory protection program including selection, medical evaluation, fit testing, training, cleaning, storage, and program evaluation, per 29 CFR 1910.134(c). Medical evaluation before fit testing under 1910.134(e). Fit testing under 1910.134(f). Applicability-dependent.',
-    kind: 'applicability',
-  },
-  {
-    q: 'When an incident happens, how does the operation record what happened, decide what to fix, and confirm the fix holds?',
-    evidence: 'For non-exempt employers, OSHA 301 or an equivalent incident report within seven calendar days, per 29 CFR 1904.29(b)(3). Root-cause investigation, assigned corrective actions with named owners, and follow-up verification that the correction holds are GigLine readiness practices, not universal federal OSHA requirements.',
-    kind: 'gigline',
-  },
-  {
-    q: 'For every hazardous chemical container in the workplace, what does the label say?',
-    evidence: 'Shipped containers labeled with product identifier, signal word, hazard statement(s), pictogram(s), precautionary statement(s), and supplier identification per 29 CFR 1910.1200(f)(1). Workplace containers labeled with product identifier plus words, pictures, symbols, or a combination that provide general information regarding the hazards, per 1910.1200(f)(6). Portable containers into which chemicals are transferred and used immediately by the same employee are excepted at 1910.1200(f)(8).',
-    kind: 'required',
-  },
+  { q: 'How does your operation handle Hazard Communication for the chemicals your employees actually use?', parts: [
+    { text: 'A written Hazard Communication program describing how the employer will meet the requirements for labels, safety data sheets, and employee information and training.', kind: 'required', cite: '29 CFR 1910.1200(e)(1)' },
+    { text: 'Safety data sheets readily accessible during each work shift to employees when they are in their work area(s).', kind: 'required', cite: '29 CFR 1910.1200(g)(8)' },
+    { text: 'Employee information and training on the elements enumerated at 1910.1200(h)(3).', kind: 'required', cite: '29 CFR 1910.1200(h)(1) and (h)(3)' },
+    { text: 'Workplace container labeling with product identifier and general hazard information.', kind: 'required', cite: '29 CFR 1910.1200(f)(6)' },
+  ] },
+  { q: 'For every machine that requires servicing or maintenance, how do employees know the specific steps to shut it down, isolate the energy, and verify it is safe to work on?', parts: [
+    { text: 'A written Energy Control Program.', kind: 'required', cite: '29 CFR 1910.147(c)(4)(i)' },
+    { text: 'Machine-specific written energy control procedures for each machine or piece of equipment where servicing or maintenance occurs.', kind: 'required', cite: '29 CFR 1910.147(c)(4)(i) and (c)(4)(ii)' },
+    { text: 'Employee training for authorized, affected, and other employees.', kind: 'required', cite: '29 CFR 1910.147(c)(7)' },
+    { text: 'Certification of periodic inspection of each energy control procedure at least annually.', kind: 'required', cite: '29 CFR 1910.147(c)(6)(ii)' },
+  ] },
+  { q: 'For every operator on every truck class, who trained them, who evaluated them, and when is the next three-year evaluation due?', parts: [
+    { text: 'Operator training and evaluation records certifying each operator has been trained and evaluated for the specific truck type used. Applies when the operation uses powered industrial trucks.', kind: 'applicability', cite: '29 CFR 1910.178(l)(6) and (l)(3)' },
+    { text: 'Refresher training when specific conditions occur (unsafe operation, accident or near-miss, evaluation revealing unsafe operation, different truck type, or workplace change).', kind: 'applicability', cite: '29 CFR 1910.178(l)(4)(ii)' },
+    { text: 'Operator performance evaluation at least once every three years.', kind: 'applicability', cite: '29 CFR 1910.178(l)(4)(iii)' },
+  ] },
+  { q: 'When an employee needs to look up the safety data sheet for a chemical they are about to use, how do they do it?', parts: [
+    { text: 'Safety data sheets readily accessible during each work shift, reachable at or near every work location where hazardous chemicals are used.', kind: 'required', cite: '29 CFR 1910.1200(g)(8)' },
+    { text: 'GigLine readiness benchmark: SDS retrieval within three minutes. The standard does not set a specific retrieval time.', kind: 'gigline', cite: 'GigLine practice built on 1910.1200(g)(8)' },
+  ] },
+  { q: 'Who evaluated the PPE hazard assessment for each task, and where is the record?', parts: [
+    { text: 'Workplace hazard assessment with written certification identifying the workplace evaluated, the person certifying, the date, and identification of the document as a certification of hazard assessment.', kind: 'required', cite: '29 CFR 1910.132(d)' },
+    { text: 'PPE training records under 1910.132(f) when the employer determines PPE is required.', kind: 'required', cite: '29 CFR 1910.132(f)' },
+  ] },
+  { q: 'When a recordable injury or illness occurs, how quickly is the OSHA 300 log entered and how is the 300A posted?', parts: [
+    { text: 'OSHA 300 log entry within seven calendar days after receiving information that a recordable injury or illness occurred. Applies to non-exempt employers.', kind: 'applicability', cite: '29 CFR 1904.29(b)(3); partial exemption at 1904.1 and 1904.2' },
+    { text: '300A summary posted February 1 through April 30 for the previous calendar year. Applies to non-exempt employers.', kind: 'applicability', cite: '29 CFR 1904.32(b)(6)' },
+  ] },
+  { q: 'When a fatality, in-patient hospitalization, amputation, or eye loss occurs, how is it reported to OSHA, and how quickly?', parts: [
+    { text: 'Fatality reported within eight hours. In-patient hospitalization, amputation, or eye loss reported within twenty-four hours.', kind: 'required', cite: '29 CFR 1904.39' },
+  ] },
+  { q: 'For every point-of-operation, ingoing nip point, rotating part, or flying chip hazard, how are employees protected?', parts: [
+    { text: 'Machine guarding provided to protect operators and other employees from those hazards where applicable machinery is used.', kind: 'applicability', cite: '29 CFR 1910.212(a); specific machinery classes at 1910.213 through 1910.219' },
+    { text: 'A written machine-specific guarding analysis is a GigLine readiness practice.', kind: 'gigline', cite: 'GigLine practice, not a specific CFR requirement' },
+  ] },
+  { q: 'What is your emergency evacuation plan, and how do employees know what to do when the alarm sounds?', parts: [
+    { text: 'Emergency Action Plan required and written when the standard applies. Applicability, and whether the plan must be written, depends on the applicable standard and employer size.', kind: 'applicability', cite: '29 CFR 1910.38(b)' },
+    { text: 'Content elements, alarm, evacuation procedures, and information and training when an EAP is required.', kind: 'applicability', cite: '29 CFR 1910.38(c) through (f)' },
+  ] },
+  { q: 'When an employee will use a respirator, has medical evaluation and fit testing been completed, and is the written respiratory protection program in place?', parts: [
+    { text: 'Written respiratory protection program including selection, medical evaluation, fit testing, training, cleaning, storage, and program evaluation, when respirators are required.', kind: 'applicability', cite: '29 CFR 1910.134(c)' },
+    { text: 'Medical evaluation before fit testing; fit testing before initial use and at least annually thereafter.', kind: 'applicability', cite: '29 CFR 1910.134(e) and (f)' },
+  ] },
+  { q: 'When an incident happens, how does the operation record what happened, decide what to fix, and confirm the fix holds?', parts: [
+    { text: 'For non-exempt employers, OSHA 301 or an equivalent incident report within seven calendar days.', kind: 'applicability', cite: '29 CFR 1904.29(b)(3)' },
+    { text: 'Root-cause investigation, assigned corrective actions with named owners, and follow-up verification that the correction holds are GigLine readiness practices, not universal federal requirements.', kind: 'gigline', cite: 'GigLine practice' },
+  ] },
+  { q: 'For every hazardous chemical container in the workplace, what does the label say?', parts: [
+    { text: 'Shipped containers labeled with product identifier, signal word, hazard statement(s), pictogram(s), precautionary statement(s), and supplier identification.', kind: 'required', cite: '29 CFR 1910.1200(f)(1)' },
+    { text: 'Workplace containers labeled with product identifier plus words, pictures, symbols, or a combination that provide general information regarding the hazards.', kind: 'required', cite: '29 CFR 1910.1200(f)(6)' },
+    { text: 'Portable containers into which chemicals are transferred and used immediately by the same employee are excepted from the workplace-labeling requirement.', kind: 'applicability', cite: '29 CFR 1910.1200(f)(8)' },
+  ] },
 ];
 
 const OshaTwelveQuestionsPage = () => {
@@ -139,18 +138,39 @@ const OshaTwelveQuestionsPage = () => {
           Reading time, about six minutes. Answering time, longer, because the point is not to read the twelve, it is to walk to where the paper lives and time yourself against your own operation.
         </p>
 
+        <div className="mb-8 flex flex-wrap gap-2" data-testid="tq-legend" aria-label="Item classification key">
+          {Object.entries(KIND_META).map(([k, v]) => (
+            <span key={k} className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] px-2.5 py-1" style={{ ...mono, color: v.color, background: v.bg, border: `1px solid ${v.border}` }}>
+              <span aria-hidden="true">&#9679;</span> {v.label}
+            </span>
+          ))}
+        </div>
         <ol className="space-y-8 mb-14" data-testid="tq-questions">
           {QUESTIONS.map((item, i) => (
             <li key={i} style={{ borderTop: `1px solid ${HAIRLINE}`, paddingTop: '20px' }}>
               <p className="uppercase font-bold tracking-[0.28em] mb-2" style={{ ...mono, fontSize: '10.5px', color: GOLD }}>
                 Question {String(i + 1).padStart(2, '0')}
               </p>
-              <p className="font-bold leading-[1.35] mb-3 text-[19px] md:text-[22px]" style={{ ...sans, color: NAVY }}>
+              <p className="font-bold leading-[1.35] mb-4 text-[19px] md:text-[22px]" style={{ ...sans, color: NAVY }}>
                 {item.q}
               </p>
-              <p className="text-[14.5px] leading-[1.7]" style={{ color: INK_SOFT, ...serif }}>
-                <strong style={{ color: NAVY }}>What strong evidence may look like:</strong> {item.evidence}
-              </p>
+              <p className="uppercase font-bold tracking-[0.22em] mb-2" style={{ ...mono, fontSize: '10px', color: INK_MUTED }}>What strong evidence may look like</p>
+              <ul className="space-y-3">
+                {item.parts.map((part, j) => {
+                  const meta = KIND_META[part.kind] || KIND_META.gigline;
+                  return (
+                    <li key={j} className="pl-0">
+                      <div className="flex flex-wrap items-center gap-2 mb-1">
+                        <span className="inline-flex items-center text-[10px] font-bold uppercase tracking-[0.14em] px-2 py-0.5" style={{ ...mono, color: meta.color, background: meta.bg, border: `1px solid ${meta.border}` }} data-testid={`tq-part-kind-${part.kind}`}>
+                          {meta.label}
+                        </span>
+                      </div>
+                      <p className="text-[14.5px] leading-[1.65] mb-1" style={{ color: INK_SOFT, ...serif }}>{part.text}</p>
+                      <p className="text-[12px] italic" style={{ ...mono, color: INK_MUTED }}>{part.cite}</p>
+                    </li>
+                  );
+                })}
+              </ul>
             </li>
           ))}
         </ol>
@@ -200,8 +220,8 @@ const OshaTwelveQuestionsPage = () => {
             <p className="text-[14.5px] leading-[1.65] mb-4" style={{ color: INK_SOFT, ...serif }}>
               In a live send, GigLine would email the 12 Questions printable one-pager to <strong>{form.email}</strong> within a few minutes.{' '}
               {form.consent
-                ? 'Your requested resource will be delivered. You will also receive occasional practical safety guidance from GigLine. Unsubscribe at any time.'
-                : 'Your requested resource will be delivered without adding you to ongoing marketing emails.'}
+                ? 'You also opted into occasional practical safety guidance from GigLine.'
+                : 'You requested this resource. You are not subscribed to ongoing marketing emails.'}
             </p>
             <a href="/assets/12-Questions-Before-OSHA-Walks-In-DRAFT.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-bold px-5 py-2.5 text-[13px]" style={{ border: `1px solid ${NAVY}`, color: NAVY, ...sans }}>
               <Download size={14} aria-hidden="true" /> Download the draft PDF (placeholder)

@@ -52,7 +52,7 @@ const QuickContactCard = ({ variant = 'light' }) => {
             Just want to talk first?
           </h3>
           <p className="text-sm mt-1" style={{ color: textMuted }}>
-            Skip the full intake. Drop your name and how to reach you , Vince will respond within 24 hours.
+            Skip the full intake. Drop your name and how to reach you, Vince will respond within 24 hours.
           </p>
         </div>
       </div>

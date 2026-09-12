@@ -238,7 +238,7 @@ const HazComPage = () => {
             className="text-[15.5px] md:text-[17px] leading-[1.7] max-w-2xl mx-auto mb-8"
             style={{ color: 'rgba(255,255,255,0.78)', fontFamily: "Georgia, serif" }}
           >
-            SDS management, chemical inventory approval workflow, container label audit, training records tied to your actual chemicals, and audit-ready documentation , all built out.
+            SDS management, chemical inventory approval workflow, container label audit, training records tied to your actual chemicals, and audit-ready documentation, all built out.
             Includes the Chemical Control Index&trade; and SDS Gap Severity Grid&trade;.
           </p>
           <Link

@@ -13,7 +13,6 @@
     { "source": "/documentation-gap-check", "destination": "/services/documentation-readiness-review", "permanent": true },
     { "source": "/services/document-development", "destination": "/services/documentation-readiness-review", "permanent": true },
     { "source": "/case-study/metals-fabrication-statesville", "destination": "/case-study/metal-fabrication-readiness", "permanent": true },
-    { "source": "/case-studies/mocksville-plastics-osha-inspection", "destination": "/case-study/metal-fabrication-readiness", "permanent": true },
     { "source": "/services/annual-compliance-partner", "destination": "/ongoing-safety-support", "permanent": true },
     { "source": "/services/quarterly-compliance-maintenance", "destination": "/ongoing-safety-support", "permanent": true },
     { "source": "/services/ongoing-safety-support", "destination": "/ongoing-safety-support", "permanent": true },

@@ -73,7 +73,7 @@ const BlogOSHAPenaltyNC2026 = () => (
           {defined.headline}
         </h1>
         <p className="text-white/70 text-base leading-relaxed mb-6">
-          Short answer: up to <strong className="text-white">$16,550</strong> per Serious violation and up to <strong className="text-white">$165,514</strong> per Willful or Repeat violation. The longer answer , the one that actually predicts what a citation costs a small NC manufacturer , involves per-instance multipliers, abatement clocks, and gravity adjustments that never show up in the news.
+          Short answer: up to <strong className="text-white">$16,550</strong> per Serious violation and up to <strong className="text-white">$165,514</strong> per Willful or Repeat violation. The longer answer, the one that actually predicts what a citation costs a small NC manufacturer, involves per-instance multipliers, abatement clocks, and gravity adjustments that never show up in the news.
         </p>
         <div className="flex items-center gap-4 text-sm text-white/50">
           <span>By Vince Lawrence</span>
@@ -90,7 +90,7 @@ const BlogOSHAPenaltyNC2026 = () => (
 
         {/* Intro */}
         <p className="text-[17px] leading-[1.8] text-[#1C2B2B]/85 mb-6" style={{ fontFamily: "Georgia, serif" }}>
-          The North Carolina Department of Labor (NC DOL) operates the state&rsquo;s own OSHA-approved State Plan. That means NC OSH , not federal OSHA , issues most of the citations you&rsquo;ll ever see in Kernersville, Winston-Salem, Greensboro, High Point, or Charlotte. NC OSH is required to be at least as effective as federal OSHA, and its penalty schedule mirrors the federal maximums almost exactly. Here&rsquo;s what those maximums are in 2026, and how they actually get applied when a Compliance Safety and Health Officer (CSHO) writes a citation on your floor.
+          The North Carolina Department of Labor (NC DOL) operates the state&rsquo;s own OSHA-approved State Plan. That means NC OSH, not federal OSHA, issues most of the citations you&rsquo;ll ever see in Kernersville, Winston-Salem, Greensboro, High Point, or Charlotte. NC OSH is required to be at least as effective as federal OSHA, and its penalty schedule mirrors the federal maximums almost exactly. Here&rsquo;s what those maximums are in 2026, and how they actually get applied when a Compliance Safety and Health Officer (CSHO) writes a citation on your floor.
         </p>
 
         {/* Penalty table */}
@@ -98,7 +98,7 @@ const BlogOSHAPenaltyNC2026 = () => (
           The 2026 OSHA maximum penalty schedule
         </h2>
         <p className="mb-8 text-[16px] leading-[1.75] text-[#1C2B2B]/80" style={{ fontFamily: "Georgia, serif" }}>
-          Under 29 CFR 1903.15, the maximums are adjusted annually for inflation. The 2026 schedule is frozen at the 2025 numbers , the highest amounts in the agency&rsquo;s history , with no rollback expected in the near term.
+          Under 29 CFR 1903.15, the maximums are adjusted annually for inflation. The 2026 schedule is frozen at the 2025 numbers, the highest amounts in the agency&rsquo;s history, with no rollback expected in the near term.
         </p>
 
         {penaltyTiers.map((t) => {
@@ -147,7 +147,7 @@ const BlogOSHAPenaltyNC2026 = () => (
 
         <div className="my-8 p-5 rounded-lg border-l-4" style={{ borderColor: '#C9A84C', background: '#FAF7F1' }}>
           <p className="text-[15px] leading-[1.7] text-[#1C2B2B]/85" style={{ fontFamily: "Georgia, serif" }}>
-            <strong>Worked example.</strong> A small NC metal fabrication operation had five press brakes without documented lockout/tagout procedures under 29 CFR 1910.147(c)(4)(ii). Instead of one citation at $16,550, that&rsquo;s five citations totaling <strong>$82,750</strong> at the max. Actual assessed penalties are usually below the maximum after gravity + good-faith adjustments , but even at 40% of maximum, that&rsquo;s a $33,100 hit for missing paperwork the shop could have produced in an afternoon.
+            <strong>Worked example.</strong> A small NC metal fabrication operation had five press brakes without documented lockout/tagout procedures under 29 CFR 1910.147(c)(4)(ii). Instead of one citation at $16,550, that&rsquo;s five citations totaling <strong>$82,750</strong> at the max. Actual assessed penalties are usually below the maximum after gravity + good-faith adjustments, but even at 40% of maximum, that&rsquo;s a $33,100 hit for missing paperwork the shop could have produced in an afternoon.
           </p>
         </div>
 
@@ -165,7 +165,7 @@ const BlogOSHAPenaltyNC2026 = () => (
           <li><strong>History</strong> , 10% off if no serious/willful/repeat citations in the last 5 years. 10% <em>added</em> if there were.</li>
         </ol>
         <p className="mb-6 text-[16px] leading-[1.75] text-[#1C2B2B]/80" style={{ fontFamily: "Georgia, serif" }}>
-          For most NC manufacturers with 25-100 employees, the effective proposed penalty on a Serious violation lands around <strong>$4,000-$10,000 per citation</strong> after all adjustments , assuming a clean history and demonstrable good faith. Without good-faith and history reductions, the same citation will run $8,000-$15,000.
+          For most NC manufacturers with 25-100 employees, the effective proposed penalty on a Serious violation lands around <strong>$4,000-$10,000 per citation</strong> after all adjustments, assuming a clean history and demonstrable good faith. Without good-faith and history reductions, the same citation will run $8,000-$15,000.
         </p>
 
         {/* NC-specific */}
@@ -177,10 +177,10 @@ const BlogOSHAPenaltyNC2026 = () => (
         </p>
         <ul className="mb-6 text-[16px] leading-[1.9] pl-6 text-[#1C2B2B]/80" style={{ fontFamily: "Georgia, serif" }}>
           <li><strong>Statutory minimum on Serious violations.</strong> Under NC OSH, a Serious violation carries a minimum proposed penalty of $1,250 per citation and a maximum of $16,550, effective for calendar year 2026. Even with maximum size, good-faith, and history reductions, the assessment floor holds.</li>
-          <li><strong>Faster informal conference availability.</strong> NC OSH area offices typically schedule the informal conference within 10 business days of citation issuance. Federal OSHA can take 30-60. Use it , informal conferences settle 60%+ of citations with penalty reductions of 15-40%.</li>
+          <li><strong>Faster informal conference availability.</strong> NC OSH area offices typically schedule the informal conference within 10 business days of citation issuance. Federal OSHA can take 30-60. Use it, informal conferences settle 60%+ of citations with penalty reductions of 15-40%.</li>
           <li><strong>State-specific standards.</strong> NC has adopted federal standards verbatim in most cases, but with a handful of NC-only rules (e.g., migrant housing, boiler safety, elevator inspection). If you operate in one of those verticals, know which chapter of the NC Administrative Code applies.</li>
           <li><strong>Public-sector coverage.</strong> Unlike federal OSHA, NC OSH covers state and municipal public-sector employees. If you contract with a NC school district, hospital system, or municipality, your subcontractor safety obligations extend to their workforce too.</li>
-          <li><strong>Reporting hotline is 24/7.</strong> 1-800-625-2267. Amputations, hospitalizations, fatalities , report within the federal 24/8 timeline. Late reporting is its own separate citation.</li>
+          <li><strong>Reporting hotline is 24/7.</strong> 1-800-625-2267. Amputations, hospitalizations, fatalities, report within the federal 24/8 timeline. Late reporting is its own separate citation.</li>
         </ul>
 
         {/* Calculator CTA */}
@@ -213,7 +213,7 @@ const BlogOSHAPenaltyNC2026 = () => (
         </h2>
         <ol className="mb-6 text-[16px] leading-[1.9] pl-6 text-[#1C2B2B]/80" style={{ fontFamily: "Georgia, serif" }}>
           <li>
-            <strong>Written programs the CSHO can see.</strong> Not a binder title , the actual document, dated, signed, with a review cadence and named responsible person. This is where the 25% good-faith reduction lives. If your written HazCom program is a two-paragraph company handbook line, you don&rsquo;t get the reduction.
+            <strong>Written programs the CSHO can see.</strong> Not a binder title, the actual document, dated, signed, with a review cadence and named responsible person. This is where the 25% good-faith reduction lives. If your written HazCom program is a two-paragraph company handbook line, you don&rsquo;t get the reduction.
           </li>
           <li>
             <strong>Records of corrective action follow-through.</strong> Every past incident, near miss, or hazard observation with a documented owner, due date, and closure verification. This is how the "history" factor stops working against you. See the <Link to="/citation-proof-kits" className="text-[#2A52A0] hover:underline font-semibold">GigLine Compliance Control Kit Series</Link> for the exact structure.
@@ -229,10 +229,10 @@ const BlogOSHAPenaltyNC2026 = () => (
           <h3 className="text-xl font-bold mb-4" style={{ color: '#102A43' }}>Deeper on the standards OSHA cites most</h3>
           <ul className="space-y-2 text-[15px]">
             <li><Link to="/blog/top-5-osha-violations-small-manufacturing" className="text-[#2A52A0] hover:underline font-bold">Top 5 OSHA Violations for Small Manufacturers &rarr;</Link></li>
-            <li><Link to="/field-notes/hazcom" className="text-[#2A52A0] hover:underline font-bold">HazCom &amp; SDS , the #1 cited standard &rarr;</Link></li>
-            <li><Link to="/field-notes/lockout-tagout" className="text-[#2A52A0] hover:underline font-bold">Lockout/Tagout , per-instance citation risk &rarr;</Link></li>
-            <li><Link to="/field-notes/nc-osha-vs-federal" className="text-[#2A52A0] hover:underline font-bold">NC OSH vs Federal OSHA , the differences that matter &rarr;</Link></li>
-            <li><Link to="/citation-cost-calculator" className="text-[#2A52A0] hover:underline font-bold">Citation Cost Calculator , run your own numbers &rarr;</Link></li>
+            <li><Link to="/field-notes/hazcom" className="text-[#2A52A0] hover:underline font-bold">HazCom &amp; SDS, the #1 cited standard &rarr;</Link></li>
+            <li><Link to="/field-notes/lockout-tagout" className="text-[#2A52A0] hover:underline font-bold">Lockout/Tagout, per-instance citation risk &rarr;</Link></li>
+            <li><Link to="/field-notes/nc-osha-vs-federal" className="text-[#2A52A0] hover:underline font-bold">NC OSH vs Federal OSHA, the differences that matter &rarr;</Link></li>
+            <li><Link to="/citation-cost-calculator" className="text-[#2A52A0] hover:underline font-bold">Citation Cost Calculator, run your own numbers &rarr;</Link></li>
           </ul>
         </div>
 
@@ -242,7 +242,7 @@ const BlogOSHAPenaltyNC2026 = () => (
             Want to know what your exposure actually is?
           </h3>
           <p className="text-white/75 mb-6 leading-relaxed">
-            A Compliance Readiness Visit walks your floor, reviews your binder, and scores your documentation against the exact CFR sections OSHA is enforcing right now , with a written findings report within 48 hours.
+            A Compliance Readiness Visit walks your floor, reviews your binder, and scores your documentation against the exact CFR sections OSHA is enforcing right now, with a written findings report within 48 hours.
           </p>
           <Link
             to="/services/compliance-readiness-visit"

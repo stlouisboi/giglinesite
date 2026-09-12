@@ -107,7 +107,7 @@ const SampleReportSection = () => {
             style={{ color: TEXT_MUTED }}
             data-testid="sample-report-subtext"
           >
-            Three findings from a real engagement , sanitized. Same format, same CFR citations, same penalty ranges your inspector would reference.
+            Three findings from a real engagement, sanitized. Same format, same CFR citations, same penalty ranges your inspector would reference.
           </p>
         </div>
 
@@ -178,7 +178,7 @@ const SampleReportSection = () => {
               style={{ color: TEXT_MUTED }}
               data-testid="sample-report-exec-summary"
             >
-              Three sanitized findings from a real engagement. The two Serious citations , an unsecured propane cylinder adjacent to flammable storage and an unguarded shear point of operation , required immediate corrective action before the next production shift. The Documentation Gap covers a missing Safety Data Sheet for a hydraulic oil in active use at the production line.
+              Three sanitized findings from a real engagement. The two Serious citations, an unsecured propane cylinder adjacent to flammable storage and an unguarded shear point of operation, required immediate corrective action before the next production shift. The Documentation Gap covers a missing Safety Data Sheet for a hydraulic oil in active use at the production line.
             </p>
           </section>
 

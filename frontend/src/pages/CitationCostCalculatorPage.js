@@ -289,7 +289,7 @@ const CitationCostCalculatorPage = () => {
               <strong>How this is calculated.</strong> Each violation multiplies by the DOL&rsquo;s 2026
               maximum: <strong>$16,550</strong> for serious / other-than-serious,{' '}
               <strong>$165,514</strong> for willful or repeat. Actual assessed penalties vary by employer
-              size, history, good-faith factors, and negotiation , this tool shows the ceiling, not
+              size, history, good-faith factors, and negotiation, this tool shows the ceiling, not
               the floor.
             </p>
             <p>

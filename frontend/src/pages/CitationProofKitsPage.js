@@ -535,13 +535,13 @@ const CitationProofKitsPage = () => {
                     className="font-bold text-[19px] md:text-[22px] leading-snug mb-2"
                     style={{ color: NAVY, ...sans }}
                   >
-                    HazCom Starter Pack , $29
+                    HazCom Starter Pack, $29
                   </h3>
                   <p
                     className="text-[14px] md:text-[15px] leading-[1.55]"
                     style={{ color: '#555555', fontFamily: 'Arial, sans-serif' }}
                   >
-                    An 11-page entry pack , written HazCom program, SDS binder checklist, and training verification log. Ramps up to the HazCom Pro Kit when you&rsquo;re ready.
+                    An 11-page entry pack, written HazCom program, SDS binder checklist, and training verification log. Ramps up to the HazCom Pro Kit when you&rsquo;re ready.
                   </p>
                 </div>
                 <Link

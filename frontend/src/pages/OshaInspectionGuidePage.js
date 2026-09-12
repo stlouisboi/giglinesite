@@ -88,7 +88,7 @@ const OshaInspectionGuidePage = () => {
             What OSHA Looks For When They Walk In.
           </h1>
           <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-6">
-            A practical guide for HR managers, safety coordinators, and plant managers , covering what to have ready before the inspection, what happens during it, and what to do in the 15-day window after.
+            A practical guide for HR managers, safety coordinators, and plant managers, covering what to have ready before the inspection, what happens during it, and what to do in the 15-day window after.
           </p>
           <p
             className="text-xs md:text-[13px] text-white/50 leading-snug"

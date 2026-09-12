@@ -51,8 +51,7 @@ const ThankYouIntakePage = () => {
             We&rsquo;ve got it. Vince is on it.
           </h1>
           <p className="text-base md:text-lg leading-relaxed max-w-xl mx-auto" style={{ color: 'rgba(255,255,255,0.72)' }}>
-            Your intake has been received. A confirmation has been sent to your inbox ,
-            check there for the 2026 Triad OSHA Field Manual and a link to your private engagement status page.
+            Your intake has been received. A confirmation has been sent to your inbox,             check there for the 2026 Triad OSHA Field Manual and a link to your private engagement status page.
           </p>
         </div>
       </section>

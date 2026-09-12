@@ -182,7 +182,7 @@ const SafetyCheckPage = () => {
             GigLine Safety Check
           </p>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6" data-testid="safety-check-headline" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
-            {phase === 'results' ? "Here's Where Your Exposure Probably Is" : 'The Six Questions OSHA Asks First'}
+            {phase === 'results' ? "Here\u2019s Where Your Exposure Probably Is" : 'The Six Questions OSHA Asks First'}
           </h1>
           <p className="text-lg text-white/85 leading-relaxed">
             {phase === 'results'

@@ -16,8 +16,7 @@
  *   to hand over first.
  *
  *   NEVER write "Includes Operator / Truck Authorization Matrix."
- *   INSTEAD write "Know exactly who is cleared to operate which truck ,
- *   and when their next evaluation is due."
+ *   INSTEAD write "Know exactly who is cleared to operate which truck,  *   and when their next evaluation is due."
  */
 
 /**

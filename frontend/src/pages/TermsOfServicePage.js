@@ -96,7 +96,7 @@ const TermsOfServicePage = () => {
 
         <Section title="5. Service Warranties &amp; Disclaimers">
           <p>
-            GigLine provides safety consulting based on 25+ years of operational experience and OSHA 30-Hour General Industry certification. Recommendations reflect prevailing OSHA standards as of the engagement date.
+            GigLine provides safety consulting based on 25+ years of operational experience and completion of OSHA 30-Hour General Industry Outreach Training. Recommendations reflect prevailing OSHA standards as of the engagement date.
           </p>
           <p className="mt-3">
             <strong>GigLine does not guarantee that following any recommendation will prevent OSHA citations, workplace injuries, insurance claims, or any other outcome.</strong> Safety is the ongoing responsibility of the operator. GigLine&rsquo;s deliverables are advisory and do not constitute legal advice.

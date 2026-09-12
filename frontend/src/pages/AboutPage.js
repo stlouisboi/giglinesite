@@ -92,7 +92,7 @@ const Reveal = ({ children, className = '', delay = 0 }) => {
 /* Stats grid used in the founder section */
 const STATS = [
   { value: '25+', label: 'Years', sub: 'Safety Leadership' },
-  { value: 'OSHA', label: '30-Hour', sub: 'Certified' },
+  { value: 'OSHA', label: '30-Hour', sub: 'Outreach' },
   { value: 'USN', label: 'Veteran', sub: 'U.S. Navy' },
   { value: 'MFG', label: 'Manufacturing', sub: 'Experience' },
   { value: 'WHSE', label: 'Warehousing', sub: 'Operations' },
@@ -123,7 +123,7 @@ const AboutPage = () => {
     <main data-testid="about-page">
       <SEO
         title="Safety Consultant Kernersville NC, Vince Lawrence | GigLine"
-        description="25+ years on the floor. OSHA 30-Hour certified. Navy veteran. An OSHA-informed floor review before an inspector shows up. (336) 329-8899."
+        description="25+ years on the floor. OSHA 30-Hour Outreach trained. Navy veteran. An OSHA-informed floor review before an inspector shows up. (336) 329-8899."
         canonical="/about"
         schema={[
           {
@@ -142,14 +142,14 @@ const AboutPage = () => {
             "email": "vince@giglinecompliance.com",
             "url": "https://www.giglinecompliance.com/about",
             "image": "https://www.giglinecompliance.com/vince-portrait.webp",
-            "description": "Vince Lawrence, 25+ years in manufacturing/fleet/warehouse safety. OSHA 30-Hour Certified. Navy veteran. Founder of GigLine.",
+            "description": "Vince Lawrence, 25+ years in manufacturing/fleet/warehouse safety. OSHA 30-Hour Outreach Trained. Navy veteran. Founder of GigLine.",
             "sameAs": [
               "https://www.giglinecompliance.com",
               "https://www.giglinecompliance.com/about",
               "https://www.giglinecompliance.com/osha-compliance-guide"
             ],
             "hasCredential": [
-              { "@type": "EducationalOccupationalCredential", "credentialCategory": "certification", "name": "OSHA 30-Hour General Industry Certification" },
+              { "@type": "EducationalOccupationalCredential", "credentialCategory": "training", "name": "OSHA 30-Hour General Industry Outreach Training" },
               { "@type": "EducationalOccupationalCredential", "credentialCategory": "military service", "name": "U.S. Navy Veteran" }
             ],
             "areaServed": { "@type": "State", "name": "North Carolina" }
@@ -179,7 +179,7 @@ const AboutPage = () => {
               className="text-base md:text-lg text-white/55 leading-relaxed max-w-3xl mx-auto"
               data-testid="about-credential-line"
             >
-              OSHA 30-Hour Certified safety compliance consultant , Kernersville, NC
+              OSHA 30-Hour Outreach Trained safety compliance consultant , Kernersville, NC
             </p>
           </Reveal>
         </div>
@@ -586,7 +586,7 @@ This is GigLine Safety & Compliance.`}
             {/* Credential pills */}
             <div className="flex flex-wrap gap-2 mb-10" data-testid="about-credential-pills">
               {[
-                'OSHA 30-Hour Certified',
+                'OSHA 30-Hour Outreach Trained',
                 'U.S. Navy Veteran',
                 '25+ years manufacturing operations',
                 'Founder, GigLine Safety & Compliance',
@@ -610,12 +610,12 @@ This is GigLine Safety & Compliance.`}
 
             <PressCopyBlock
               label="One-Liner (for contributor footnotes)"
-              text="Vince Lawrence, Founder, GigLine Safety & Compliance · 25+ years manufacturing operations · OSHA 30-Hour Certified · U.S. Navy Veteran · Kernersville, NC."
+              text="Vince Lawrence, Founder, GigLine Safety & Compliance · 25+ years manufacturing operations · OSHA 30-Hour Outreach Trained · U.S. Navy Veteran · Kernersville, NC."
               testid="copy-one-liner"
             />
             <PressCopyBlock
               label="Short Bio (~90 words)"
-              text="Vince Lawrence is the founder of GigLine Safety & Compliance, an OSHA compliance consultancy based in Kernersville, NC, serving small manufacturers, warehouses, contractors, and fleet operations across the Piedmont Triad. With 25+ years of manufacturing operations experience and OSHA 30-Hour General Industry certification, he walks the floor before the inspector does, finding what most safety programs miss and what most software cannot see. He is a U.S. Navy veteran and the author of 25+ OSHA compliance field notes published at giglinecompliance.com."
+              text="Vince Lawrence is the founder of GigLine Safety & Compliance, an OSHA compliance consultancy based in Kernersville, NC, serving small manufacturers, warehouses, contractors, and fleet operations across the Piedmont Triad. With 25+ years of manufacturing operations experience and completion of OSHA 30-Hour General Industry Outreach Training, he walks the floor before the inspector does, finding what most safety programs miss and what most software cannot see. He is a U.S. Navy veteran and the author of 25+ OSHA compliance field notes published at giglinecompliance.com."
               testid="copy-short-bio"
             />
             <PressCopyBlock

@@ -40,7 +40,6 @@ const FieldNoteDetailPage             = lazy(() => import('./pages/FieldNoteDeta
 const CityLandingPage                 = lazy(() => import('./pages/CityLandingPage'));
 const FAQPage                         = lazy(() => import('./pages/FAQPage'));
 const ServiceDetailPage               = lazy(() => import('./pages/ServiceDetailPage'));
-const DocumentDevelopmentPage         = lazy(() => import('./pages/DocumentDevelopmentPage'));
 const AnnualCompliancePartnerPage     = lazy(() => import('./pages/AnnualCompliancePartnerPage'));
 const ComplianceReadinessVisitPage    = lazy(() => import('./pages/ComplianceReadinessVisitPage'));
 const ServiceAreasPage                = lazy(() => import('./pages/ServiceAreasPage'));
@@ -140,7 +139,8 @@ function App() {
                   <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/services" element={<ServicesPage />} />
-                    <Route path="/services/document-development" element={<DocumentDevelopmentPage />} />
+                    {/* Sunset (Feb 2026): Document Development replaced by Documentation Readiness Review + Corrective Action Implementation funnel */}
+                    <Route path="/services/document-development" element={<Navigate to="/services/documentation-readiness-review" replace />} />
                     <Route path="/services/annual-compliance-partner" element={<AnnualCompliancePartnerPage />} />
                     <Route path="/services/compliance-readiness-visit" element={<ComplianceReadinessVisitPage />} />
                     {/* 301-equivalent: legacy /services/safety-walkthrough URLs consolidated to /safety-walkthrough */}

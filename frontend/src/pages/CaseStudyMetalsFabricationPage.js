@@ -227,7 +227,7 @@ const CaseStudyMetalsFabricationPage = () => {
           {/* THE SITUATION */}
           <H2>The Situation</H2>
           <P>A 9-person metals fabrication operation in Statesville, NC. Two roll formers, two forklifts, an active flammables cabinet, a growing crew.</P>
-          <P>The plant manager held an OSHA 30-Hour General Industry certification and had built out most of his safety documentation , some of it using AI-generated templates. He believed his programs were largely in order.</P>
+          <P>The plant manager had completed OSHA 30-Hour General Industry Outreach Training and had built out most of his safety documentation , some of it using AI-generated templates. He believed his programs were largely in order.</P>
           <P>He brought GigLine in to confirm that before production scaled.</P>
 
           {/* THE ENGAGEMENT */}
@@ -616,7 +616,7 @@ const CaseStudyMetalsFabricationPage = () => {
               className="text-lg md:text-xl font-bold mb-2"
               style={{ fontFamily: "'Manrope', sans-serif", color: NAVY }}
             >
-              Vince Lawrence, U.S. Navy Veteran, OSHA 30-Hour Certified
+              Vince Lawrence, U.S. Navy Veteran, OSHA 30-Hour Outreach Trained
             </p>
             <p className="text-sm md:text-base leading-relaxed" style={{ color: 'rgba(11,31,51,0.66)' }}>
               Founder of GigLine Safety &amp; Compliance. Twenty-plus years across manufacturing, construction, and utility environments. Every walkthrough, report, and corrective-action call on this page was made by Vince personally.

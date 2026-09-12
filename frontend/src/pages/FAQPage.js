@@ -7,7 +7,7 @@ const mono = { fontFamily: "'JetBrains Mono', monospace" };
 
 // 27 FAQs authored for answer-engine extraction.
 // Each answer is verbatim from approved GL-WEB-009 copy (Feb 2026) and from prior 18-FAQ spec.
-// +5 added Feb 2026 covering CRV / Annual Partner / Document Development / Quarterly per audit recommendation.
+// +5 added Feb 2026 covering CRV / Annual Partner / Corrective Action Implementation / Quarterly per audit recommendation.
 export const FAQS = [
   {
     q: 'How much does an OSHA safety walkthrough cost in North Carolina?',
@@ -15,7 +15,7 @@ export const FAQS = [
   },
   {
     q: 'What does an OSHA safety consultant do on-site?',
-    a: "During a GigLine Safety Walkthrough, Vince Lawrence \u2014 OSHA 30-Hour Certified safety compliance consultant based in Kernersville, NC \u2014 walks every area of your facility. He photographs findings, documents each one against the applicable CFR standard, and provides an estimated penalty exposure based on OSHA published maximums. Within 48 hours you receive a written report with photo documentation, CFR citations, and a prioritized list of corrective actions. The engagement is private \u2014 findings are not shared, published, or referenced without written permission.",
+    a: "During a GigLine Safety Walkthrough, Vince Lawrence \u2014 OSHA 30-Hour Outreach Trained safety compliance consultant based in Kernersville, NC \u2014 walks every area of your facility. He photographs findings, documents each one against the applicable CFR standard, and provides an estimated penalty exposure based on OSHA published maximums. Within 48 hours you receive a written report with photo documentation, CFR citations, and a prioritized list of corrective actions. The engagement is private \u2014 findings are not shared, published, or referenced without written permission.",
   },
   {
     q: 'How do I prepare for an OSHA inspection in a small manufacturing plant?',
@@ -79,7 +79,7 @@ export const FAQS = [
   },
   {
     q: 'Is Vince Lawrence OSHA certified?',
-    a: "Vince Lawrence is OSHA 30-Hour Certified in General Industry and has 25+ years of hands-on experience in manufacturing, fleet, and warehouse safety. He is also a U.S. Navy veteran. GigLine is owner-operated, every walkthrough and report is performed personally by Vince.",
+    a: "Vince Lawrence has completed OSHA 30-Hour General Industry Outreach Training and has 25+ years of hands-on experience in manufacturing, fleet, and warehouse safety. He is also a U.S. Navy veteran. GigLine is owner-operated, every walkthrough and report is performed personally by Vince.",
   },
   {
     q: 'What happens if OSHA shows up after my walkthrough?',
@@ -107,7 +107,7 @@ export const FAQS = [
   },
   {
     q: 'Can GigLine write the safety programs we are missing?',
-    a: "Yes. The Document Development service writes the written programs your operation is missing or that the OSHA Documentation Readiness Review flagged as insufficient. Most-requested programs: Lockout/Tagout (LOTO) with machine-specific procedures, Hazard Communication (HazCom), PPE Hazard Assessment, and Emergency Action Plan (EAP). Pricing is quoted after a Documentation Readiness Review identifies which specific gaps exist \u2014 a single program starts at $350, LOTO with up to five machine-specific procedures starts at $650, and a full written program suite (5+ programs) starts at $2,000. The pricing model is fixed-quote, not hourly. Document Development is scoped to your actual gap list \u2014 GigLine does not sell a template suite that may or may not apply.",
+    a: "Yes. Corrective Action Implementation writes the written programs your operation is missing or that the OSHA Documentation Readiness Review flagged as insufficient. Most-requested programs: Lockout/Tagout (LOTO) with machine-specific procedures, Hazard Communication (HazCom), PPE Hazard Assessment, and Emergency Action Plan (EAP). Scope, timeline, and fixed quote are confirmed after a Documentation Readiness Review identifies which specific gaps exist. Corrective Action Implementation is scoped to your actual gap list, GigLine does not sell a template suite that may or may not apply.",
   },
   {
     q: 'How does Quarterly Compliance Maintenance work?',
@@ -128,7 +128,7 @@ export const FAQS = [
   },
   {
     q: 'Do you provide written programs, or only review them?',
-    a: "Both. The Documentation Readiness Review identifies which written programs are missing or insufficient \u2014 that's a review service. The Document Development service then writes the specific programs flagged as gaps: Lockout/Tagout (with machine-specific procedures), Hazard Communication, PPE Hazard Assessment, Emergency Action Plan, Bloodborne Pathogens, and others. Single programs start at $350. A full 5+ program suite starts at $2,000. GigLine does not sell a generic template package \u2014 every program is scoped to your actual operation, equipment, and hazard inventory.",
+    a: "Both. The Documentation Readiness Review identifies which written programs are missing or insufficient, that's a review service. Corrective Action Implementation then writes the specific programs flagged as gaps: Lockout/Tagout (with machine-specific procedures), Hazard Communication, PPE Hazard Assessment, Emergency Action Plan, Bloodborne Pathogens, and others. Fixed quote confirmed after the review. GigLine does not sell a generic template package, every program is scoped to your actual operation, equipment, and hazard inventory.",
   },
   {
     q: 'Can you help after an incident but before OSHA contacts us?',

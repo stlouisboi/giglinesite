@@ -215,7 +215,7 @@ const HomePage = () => {
                 aria-label="Consultant credentials"
               >
                 {[
-                  { Icon: ShieldCheck, label: 'OSHA 30-Hour Certified' },
+                  { Icon: ShieldCheck, label: 'OSHA 30-Hour Outreach Trained' },
                   { Icon: Anchor, label: 'U.S. Navy Veteran' },
                   { Icon: Factory, label: '25+ Years Floor-Level Experience' },
                   {
@@ -299,7 +299,7 @@ const HomePage = () => {
                 style={mono}
                 data-testid="hero-credentials"
               >
-                OSHA 30-Hour Certified · 25+ Years Experience · U.S. Navy Veteran · Serving the Triad
+                OSHA 30-Hour Outreach Trained · 25+ Years Experience · U.S. Navy Veteran · Serving the Triad
               </p>
             </Reveal>
           </div>

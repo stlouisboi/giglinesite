@@ -170,34 +170,6 @@ const STANDALONE = [
     showPhone: true,
   },
   {
-    eyebrow: 'Document Development',
-    title: 'Document Development',
-    headline: 'When the program is missing, GigLine writes it.',
-    price: 'Quote after review',
-    body: 'GigLine writes the programs you are missing \u2014 LOTO, HazCom, PPE assessments, Emergency Action Plans, machine-specific procedures. Scoped and quoted after the OSHA Documentation Readiness Review identifies specific gaps.',
-    listLabel: "What's Built",
-    bgColor: '#f5f4f0',
-    whatsIncluded: [
-      'LOTO program + machine-specific procedures',
-      'HazCom program',
-      'PPE hazard assessment',
-      'Emergency Action Plan',
-      'Single program or full suite \u2014 scoped to your gap list',
-      'Quoted after Documentation Readiness Review',
-    ],
-    floorPricing: [
-      ['Single written program', 'From $350'],
-      ['LOTO program + up to 5 machine procedures', 'From $650'],
-      ['LOTO program + 6\u201315 machine procedures', 'From $1,200'],
-      ['Full written program suite (5+ programs)', 'From $2,000'],
-    ],
-    best: 'Operations whose Documentation Readiness Review surfaced missing or insufficient written programs and need them built to OSHA standard.',
-    cta: 'Ask About Document Development',
-    intakeService: 'document-development',
-    detailsHref: '/services/document-development',
-    testid: 'svc-standalone-doc-dev',
-  },
-  {
     // Product card, not a service engagement (feature-flagged; see /app/frontend/src/config/features.js)
     __gated: !SUPERVISOR_KIT_ENABLED,
     eyebrow: 'GigLine Supervisor Safety OS',
@@ -1905,7 +1877,7 @@ const ServicesPage = () => {
                   Built by someone who&apos;s worked the floor.
                 </h2>
                 <p className="text-base md:text-lg text-[#F8FAFC] leading-relaxed mb-3 max-w-2xl">
-                  Vince Lawrence is a safety consultant based in Kernersville, NC. OSHA 30-Hour Certified. 25+ years in manufacturing, fleet, and warehouse safety operations. U.S. Navy veteran.
+                  Vince Lawrence is a safety consultant based in Kernersville, NC. OSHA 30-Hour Outreach Trained. 25+ years in manufacturing, fleet, and warehouse safety operations. U.S. Navy veteran.
                 </p>
                 <p className="text-base text-[#CBD5E1] leading-relaxed mb-5 max-w-2xl">
                   GigLine is a private engagement. Nothing leaves your facility except the report I hand you.
@@ -1918,7 +1890,7 @@ const ServicesPage = () => {
                   aria-label="Consultant credentials and third-party verifications"
                 >
                   {[
-                    { Icon: ShieldCheck, label: 'OSHA 30-Hour Certified' },
+                    { Icon: ShieldCheck, label: 'OSHA 30-Hour Outreach Trained' },
                     { Icon: Anchor, label: 'U.S. Navy Veteran' },
                     {
                       Icon: Lock,

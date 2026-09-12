@@ -56,7 +56,7 @@ const BlogHubPage = () => {
         <div className="container max-w-5xl">
           <p className="text-xs font-semibold tracking-widest text-[#C9A84C] uppercase mb-4" style={{ fontFamily: "'JetBrains Mono', monospace" }}>THE GIGLINE BLOG</p>
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 max-w-3xl" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }} data-testid="blog-hub-headline">Long-form OSHA compliance guides, from a consultant who walks the floor.</h1>
-          <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-2xl">Every guide below is written by Vince Lawrence, OSHA 30-Hour certified, after seeing the same citations trip up the same small operations every month. CFR-cited, 2026 penalty amounts current, and specific enough to hand to your plant manager on Monday.</p>
+          <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-2xl">Every guide below is written by Vince Lawrence, OSHA 30-Hour Outreach trained, after seeing the same citations trip up the same small operations every month. CFR-cited, 2026 penalty amounts current, and specific enough to hand to your plant manager on Monday.</p>
         </div>
       </section>
 

@@ -54,7 +54,7 @@ const SERVICES = {
       ['Document request', 'You submit your safety documentation digitally or hand over copies in person. GigLine signs an NDA before review begins.'],
       ['Structured review', 'Each document is checked against a 53-item OSHA compliance checklist spanning 7 categories. Two-layer review: program exists + content is legally sufficient.'],
       ['Compliance score + report', 'You receive a compliance percentage score and a prioritized gap list \u2014 most critical citations first \u2014 within 48 hours.'],
-      ['Optional next step', 'If gaps are found, the Document Development service writes the missing or insufficient programs to OSHA standard.'],
+      ['Optional next step', 'If gaps are found, Corrective Action Implementation writes the missing or insufficient programs to OSHA standard.'],
     ],
     best: 'Operations preparing for an audit, insurance review, or customer pre-qualification who need to know specifically what documentation gaps exist.',
     cta: 'Request a Documentation Review',

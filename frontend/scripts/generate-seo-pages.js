@@ -137,9 +137,9 @@ const VINCE_PERSON = {
   url: `${BASE_URL}/about`,
   image: `${BASE_URL}/vince-portrait.webp`,
   description:
-    'Vince Lawrence, 25+ years in manufacturing/fleet/warehouse safety. OSHA 30-Hour Certified. Navy veteran. Founder of GigLine.',
+    'Vince Lawrence, 25+ years in manufacturing/fleet/warehouse safety. OSHA 30-Hour Outreach Trained. Navy veteran. Founder of GigLine.',
   hasCredential: [
-    { '@type': 'EducationalOccupationalCredential', credentialCategory: 'certification', name: 'OSHA 30-Hour General Industry Certification' },
+    { '@type': 'EducationalOccupationalCredential', credentialCategory: 'training', name: 'OSHA 30-Hour General Industry Outreach Training' },
     { '@type': 'EducationalOccupationalCredential', credentialCategory: 'military service', name: 'U.S. Navy Veteran' },
   ],
   knowsAbout: [
@@ -169,7 +169,7 @@ const HOMEPAGE_FAQS = [
 // Canonical 18-question FAQ for /faq page
 const FULL_FAQS = [
   { q: 'How much does an OSHA safety walkthrough cost in North Carolina?', a: "GigLine safety walkthroughs start at $1,300. Price is scoped based on square footage, machine count, employee count, and hazard complexity. Fixed quote before scheduling. No hourly billing, no retainer, no surprise invoice. For context: a single OSHA serious violation can cost up to $16,550 per citation (2026 adjusted rate). The walkthrough identifies what's exposed before an inspector does." },
-  { q: 'What does an OSHA safety consultant do on-site?', a: "During a GigLine Safety Walkthrough, Vince Lawrence, OSHA 30-Hour Certified safety compliance consultant based in Kernersville, NC, walks every area of your facility. He photographs findings, documents each one against the applicable CFR standard, and provides an estimated penalty exposure based on OSHA published maximums. Within 48 hours you receive a written report with photo documentation, CFR citations, and a prioritized list of corrective actions. The engagement is private, findings are not shared, published, or referenced without written permission." },
+  { q: 'What does an OSHA safety consultant do on-site?', a: "During a GigLine Safety Walkthrough, Vince Lawrence, OSHA 30-Hour Outreach Trained safety compliance consultant based in Kernersville, NC, walks every area of your facility. He photographs findings, documents each one against the applicable CFR standard, and provides an estimated penalty exposure based on OSHA published maximums. Within 48 hours you receive a written report with photo documentation, CFR citations, and a prioritized list of corrective actions. The engagement is private, findings are not shared, published, or referenced without written permission." },
   { q: 'How do I prepare for an OSHA inspection in a small manufacturing plant?', a: "The most effective preparation is a third-party walkthrough before OSHA arrives. OSHA inspections are triggered by employee complaints, referrals, fatalities, or programmed inspections, they do not announce in advance. A GigLine Safety Walkthrough gives you a written report of the conditions an inspector may review, documented against the same standards OSHA uses. The walkthrough starts at $1,300. A single serious citation can cost up to $16,550." },
   { q: 'What is a Compliance Readiness Visit?', a: "GigLine's most complete single engagement. Combines the Safety Walkthrough and Documentation Review in one on-site visit. One consolidated written report covering both physical findings and documentation gaps, with a prioritized corrective action plan. Starts at $2,500. Booking separately starts at $2,500. The combined visit covers both for less." },
   { q: 'What is the difference between a Safety Walkthrough and a Compliance Readiness Visit?', a: "The Safety Walkthrough covers the physical floor, starts at $1,300, report in 48 hours. The CRV adds a full documentation review to the same visit, written programs, training records, HazCom binder, OSHA 300 log, starts at $2,500. If unsure, the walkthrough is the lower-barrier starting point." },
@@ -185,7 +185,7 @@ const FULL_FAQS = [
   { q: 'Can I see a sample safety walkthrough report before I book?', a: "Yes. Email vince@giglinecompliance.com or call (336) 329-8899 and request a sanitized sample. Sensitive client details are redacted but the structure, depth, and OSHA references are identical to what you'll receive." },
   { q: 'What industries does GigLine typically work with?', a: 'Small manufacturers, warehouses, distribution centers, fleet operations, general contractors, and specialty trades. Most clients have 5 to 100 employees. The common thread is operations that do not have a full-time safety manager.' },
   { q: 'Does GigLine offer safety training or just inspections?', a: 'GigLine does not deliver formal OSHA training courses. The walkthrough includes on-site coaching while walking the floor, and the report includes corrective actions that often reference training requirements. For formal certification-based training, GigLine can recommend local providers.' },
-  { q: 'Is Vince Lawrence OSHA certified?', a: 'Vince Lawrence is OSHA 30-Hour Certified in General Industry and has 25+ years of hands-on experience in manufacturing, fleet, and warehouse safety. He is also a U.S. Navy veteran. GigLine is owner-operated, every walkthrough and report is performed personally by Vince.' },
+  { q: 'Is Vince Lawrence OSHA certified?', a: 'Vince Lawrence has completed OSHA 30-Hour General Industry Outreach Training and has 25+ years of hands-on experience in manufacturing, fleet, and warehouse safety. He is also a U.S. Navy veteran. GigLine is owner-operated, every walkthrough and report is performed personally by Vince.' },
   { q: 'What happens if OSHA shows up after my walkthrough?', a: 'You have the written record of every hazard identified, every corrective action taken, and every training record reviewed. A documented corrective-action log may help show good-faith effort, which can matter during an OSHA inspection. Documentation is the single biggest factor in how an OSHA visit goes.' },
   { q: 'Do you offer follow-up walkthroughs for past clients?', a: "Yes. Follow-up walkthroughs for past clients are offered at a reduced rate. Most operations benefit from a semi-annual or annual follow-up to catch the drift that happens when safety isn't the primary focus, and ongoing support is available through Quarterly Compliance Maintenance and the Annual Compliance Control Partner program." },
   { q: 'How should I prepare for a safety walkthrough?', a: 'Nothing special. Do not stage, clean up, or hide anything, the walkthrough is most valuable when the floor looks the way it normally does. Have your written safety programs, SDS binder, and training records accessible. A brief floor manager or supervisor introduction at the start helps.' },
@@ -236,7 +236,7 @@ const routes = [
       <h1>Find the gaps before OSHA does.</h1>
       <p>On-site safety walkthroughs for manufacturers, warehouses, contractors, and fleet operations across the Piedmont Triad. Fixed quote. Private engagement. Report in 48 hours.</p>
       <p><a href="/intake">Request a Walkthrough</a> &middot; <a href="/safety-check">Take the Safety Check</a></p>
-      <p>OSHA 30-Hour Certified · 25+ Years Experience · U.S. Navy Veteran · Serving the Triad</p>
+      <p>OSHA 30-Hour Outreach Trained · 25+ Years Experience · U.S. Navy Veteran · Serving the Triad</p>
       <h2>What We Find on the Floor, Most violations are hiding in plain sight.</h2>
       <p>OSHA doesn't find things your team missed. They find things your team stopped seeing. Here's what shows up on almost every walkthrough.</p>
       <ol>
@@ -282,7 +282,7 @@ const routes = [
       ${HOMEPAGE_FAQS.map((f) => `<h3>${f.q}</h3><p>${f.a}</p>`).join('')}
       <p><a href="/faq">See all 18 frequently asked questions →</a></p>
       <h2>About Vince Lawrence</h2>
-      <p>Vince Lawrence is a safety consultant based in Kernersville, NC. OSHA 30-Hour Certified. 25+ years in manufacturing, fleet, and warehouse safety operations. U.S. Navy veteran.</p>
+      <p>Vince Lawrence is a safety consultant based in Kernersville, NC. OSHA 30-Hour Outreach Trained. 25+ years in manufacturing, fleet, and warehouse safety operations. U.S. Navy veteran.</p>
       <p>I've walked floors in plastics manufacturing, building materials distribution, and trucking operations across the Triad. I know what inspectors look for because I've helped operations correct the same violations hundreds of times.</p>
       <p>GigLine is a private engagement. Nothing leaves your facility except the report I hand you.</p>
       <p>Service area: On-site walkthroughs within 60 miles of Winston-Salem, including Greensboro, High Point, Kernersville, Lexington, Thomasville, Salisbury, Burlington, and surrounding communities.</p>
@@ -302,7 +302,7 @@ const routes = [
     schemas: [VINCE_PERSON, breadcrumb([{ name: 'Home', path: '/' }, { name: 'About', path: '/about' }])],
     content: `
       <h1>About Vince Lawrence</h1>
-      <p>Safety consultant based in Kernersville, NC. OSHA 30-Hour Certified. 25+ years in manufacturing, fleet, and warehouse safety operations. U.S. Navy veteran.</p>
+      <p>Safety consultant based in Kernersville, NC. OSHA 30-Hour Outreach Trained. 25+ years in manufacturing, fleet, and warehouse safety operations. U.S. Navy veteran.</p>
       <p>GigLine Safety &amp; Compliance provides on-site safety walkthroughs, documentation reviews, and incident response support for small manufacturers, warehouses, contractors, and fleets in the Piedmont Triad and surrounding areas.</p>
       <p>Contact: (336) 329-8899 · vince@giglinecompliance.com</p>
     `,
@@ -353,8 +353,8 @@ const routes = [
       <p>Structured review of written programs, training records, OSHA logs, inspection records, and SDS compliance. 53-item checklist across seven OSHA categories.</p>
       <h3>Incident Review & Corrective Action Support, Starting at $1,500</h3>
       <p>Post-injury or post-near-miss response. Root cause analysis. OSHA recordability determination. OSHA 301 completion. Corrective action plan.</p>
-      <h3>Document Development, From $350</h3>
-      <p>GigLine writes the programs you are missing. LOTO, HazCom, PPE hazard assessment, Emergency Action Plan, machine-specific procedures. Floor pricing: single program from $350, LOTO + 5 machines from $650, LOTO + 6–15 machines from $1,200, full suite (5+ programs) from $2,000. Scoped and quoted after a Documentation Readiness Review.</p>
+      <h3>Corrective Action Implementation, From $2,500</h3>
+      <p>Hands-on close-out for gaps identified in a Documentation Readiness Review or Compliance Readiness Visit. GigLine writes the programs you are missing, organizes evidence, and coordinates corrective actions until findings close. Scoped per engagement.</p>
       <h2>GigLine Safety Control System Buildout, Starting at $4,500</h2>
       <p>Premium engagement. Four-binder physical command system, digital folder architecture, training matrix + SDS organization, corrective action tracker, 90-day maintenance calendar, supervisor walkthrough at handoff.</p>
       <h2>The Natural Next Step, Quarterly and Annual Support</h2>
@@ -509,7 +509,7 @@ const routes = [
       <p><strong>Findings stay open. Records go missing. The same hazards return.</strong></p>
       <p>Ongoing safety support for small employers that need consistent follow-through but are not ready for a full-time safety manager. GigLine helps keep inspections, corrective actions, selected safety records, and management follow-up moving month after month.</p>
       <p><strong>Plans start at $1,650 per month following an initial Compliance Readiness Visit.</strong></p>
-      <p>Piedmont Triad-based · OSHA 30-Hour Certified · Manufacturing and operations experience · U.S. Navy veteran-owned</p>
+      <p>Piedmont Triad-based · OSHA 30-Hour Outreach Trained · Manufacturing and operations experience · U.S. Navy veteran-owned</p>
 
       <h2>The problem, Safety usually gets handed to somebody who already has a full-time job.</h2>
       <p>In a small operation, safety often lands on the owner, plant manager, HR manager, maintenance lead, or warehouse supervisor. They care about the work, but production, staffing, quality, customer demands, and daily fires keep pushing it down the list. The result is familiar: inspection findings stay open, training records go missing, written programs stop matching the operation, the same hazards return, nobody can show what was corrected, and management finds out too late that the system was not being maintained. GigLine provides the structure and follow-up to keep that work visible.</p>
@@ -1177,7 +1177,7 @@ const routes = [
     content: `
       <h1>What OSHA Looks For When They Walk In.</h1>
       <p>A practical guide for HR managers, safety coordinators, and plant managers, what to have ready before the inspection, what happens during it, and what to do in the 15-day window after.</p>
-      <p><strong>Vince Lawrence · GigLine Safety &amp; Compliance · OSHA 30-Hour Certified · 25+ Years in Manufacturing</strong></p>
+      <p><strong>Vince Lawrence · GigLine Safety &amp; Compliance · OSHA 30-Hour Outreach Trained · 25+ Years in Manufacturing</strong></p>
       <h2>What's Inside</h2>
       <ul>
         <li><strong>Before the Inspection</strong>, Written programs, OSHA logs, training records, and physical readiness with CFR citations for each.</li>
@@ -1215,7 +1215,7 @@ const routes = [
     content: `
       <h1>The OSHA Compliance Guide for Small Manufacturing &amp; Warehouse Operations</h1>
       <p>25 CFR-cited field notes, organized into six hazard clusters. Hazard Communication. Machine guarding and energy control. Fall and height work. PPE. Recordkeeping and enforcement. Operations and environment. Each note is written from the floor, not the binder.</p>
-      <p><em>By Vince Lawrence, GigLine Safety &amp; Compliance, OSHA 30-Hour Certified, U.S. Navy Veteran, Kernersville, NC</em></p>
+      <p><em>By Vince Lawrence, GigLine Safety &amp; Compliance, OSHA 30-Hour Outreach Trained, U.S. Navy Veteran, Kernersville, NC</em></p>
 
       <h2>Cluster 01, Chemical &amp; Health Exposure</h2>
       <p>Hazard Communication is the #1 most-cited OSHA standard in general industry. The exposure programs below are where the documentation almost always lags behind the floor.</p>
@@ -1584,6 +1584,7 @@ const routes = [
 
       <h2>What's different in North Carolina</h2>
       <ul>
+        <li><strong>Statutory minimum on Serious violations under NC OSH</strong> , $1,250 minimum, $16,550 maximum per Serious citation for calendar year 2026. Even with maximum size, good-faith, and history reductions, the floor holds.</li>
         <li><strong>Faster informal conference availability</strong> , typically 10 business days from citation issuance, vs. 30-60 for federal. Use it , informal conferences settle 60%+ of citations with 15-40% penalty reductions.</li>
         <li><strong>Public-sector coverage</strong> , NC OSH covers state and municipal public-sector employees, unlike federal OSHA.</li>
         <li><strong>State-specific standards</strong> , migrant housing, boiler safety, elevator inspection are NC-only.</li>
@@ -1612,6 +1613,71 @@ const routes = [
       <p><strong>Ready to know what your exposure actually is?</strong> A <a href="/services/compliance-readiness-visit">Compliance Readiness Visit</a> walks your floor, reviews your binder, and scores your documentation against the exact CFR sections OSHA is enforcing right now , with a written findings report within 48 hours.</p>
 
       <p><em>Legal notice: This article summarizes the 2026 OSHA published penalty schedule under 29 CFR 1903.15. Actual issued penalties are determined by OSHA area office review of gravity, good faith, employer size, and history factors. Only OSHA determines final penalty amounts. GigLine Safety &amp; Compliance is not a law firm and does not provide legal advice. Consult a qualified attorney for citation defense.</em></p>
+    `,
+  },
+  {
+    path: '/blog/mid-year-2026-osha-update-nc-manufacturers',
+    title: 'Mid-Year 2026 OSHA Update for NC Manufacturers | GigLine',
+    description: 'Mid-2026 OSHA update for NC manufacturing, Heat NEP, penalty tiers, 300A spot-checks, amputation reporting, silica & combustible dust.',
+    canonical: '/blog/mid-year-2026-osha-update-nc-manufacturers',
+    schemas: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: 'Mid-Year 2026 OSHA Update for NC Manufacturers',
+        description: 'Six things that changed, or moved on the enforcement radar, in the first half of 2026 for NC manufacturing, packaging, and metals fabrication.',
+        image: `${BASE_URL}/og-image.png`,
+        author: { '@id': `${BASE_URL}/#vince` },
+        publisher: { '@id': `${BASE_URL}/#business` },
+        mainEntityOfPage: `${BASE_URL}/blog/mid-year-2026-osha-update-nc-manufacturers`,
+        datePublished: '2026-07-09',
+        dateModified: '2026-07-09',
+        articleSection: 'NC OSHA Enforcement',
+        inLanguage: 'en-US',
+      },
+      breadcrumb([
+        { name: 'Home', path: '/' },
+        { name: 'Blog', path: '/field-notes' },
+        { name: 'Mid-Year 2026 OSHA Update', path: '/blog/mid-year-2026-osha-update-nc-manufacturers' },
+      ]),
+      faqSchema([
+        { q: 'Is the OSHA Heat Illness NEP still active in 2026?', a: 'Yes. The Heat National Emphasis Program (CPL 03-00-024) is active through summer 2026 at the same 80 degrees heat-index trigger. Compliance officers can open programmed inspections at qualifying employers even without a complaint.' },
+        { q: 'What are the 2026 OSHA penalty maximums?', a: 'Serious and Other-Than-Serious cap at $16,550 (up from $16,131 in 2025). Willful and Repeat cap at $165,514 (up from $161,323). Failure-to-Abate accrues up to $16,550 per day, per violation. Adjustment is annual under 29 CFR 1903.15.' },
+        { q: 'When must the OSHA 300A be posted?', a: 'February 1 through April 30 each year. NC OSH has been spot-checking the 300A during unrelated inspections in 2026. A dated photo of the posted 300A is the easiest recordkeeping defense document.' },
+        { q: 'How fast must OSHA amputations be reported?', a: 'Within 24 hours under 29 CFR 1904.39(a)(2). NC OSH has cited multiple 2026 employers for late reporting where a Friday amputation was reported Monday morning. Weekends count.' },
+      ]),
+    ],
+    content: `
+      <h1>Mid-Year 2026 OSHA Update for NC Manufacturers</h1>
+      <p><em>By Vince Lawrence , GigLine Safety &amp; Compliance , July 2026 &middot; 7 min read</em></p>
+      <p>Six things that changed, or moved on the enforcement radar, in the first half of 2026 for NC manufacturing, packaging, and metals fabrication operations.</p>
+
+      <h2>1. Heat Illness NEP renewed through summer 2026</h2>
+      <p>The Heat National Emphasis Program (CPL 03-00-024) is active for a third summer at the same 80 degrees heat-index trigger. In the Piedmont, that means most days from mid-May through mid-September. If a written heat illness prevention plan, water/rest/shade schedule, and acclimatization protocol for new employees do not exist on paper, one complaint can trigger a programmed inspection. The NEP explicitly directs compliance officers to open programmed inspections at qualifying employers, not just complaint-driven ones.</p>
+
+      <h2>2. 2026 penalty schedule, up 2.7% from 2025</h2>
+      <p>Under 29 CFR 1903.15, Serious violations now cap at $16,550 (was $16,131). Willful and Repeat cap at $165,514 (was $161,323). The math matters most on multi-instance citations. One machine-guarding case across six identical machines equals six separate citations, not one.</p>
+
+      <h2>3. 300A posting compliance is being spot-checked</h2>
+      <p>NC OSH has been asking for the 300A during unrelated inspections through May and June, including at facilities opened for a different reason (electrical, machine guarding, complaint). Post the 300A February 1 through April 30. Keep a dated photo on file, it is the single easiest recordkeeping defense document.</p>
+
+      <h2>4. Amputation reporting is the fastest-moving citation</h2>
+      <p>Any amputation must be reported to OSHA within 24 hours per 29 CFR 1904.39(a)(2). NC OSH has cited multiple employers in 2026 for late reporting where the amputation happened Friday afternoon and the report went in Monday morning. 24 hours means 24 hours, including weekends. Even minor amputations (fingertip, no bone) must be reported. Better to over-report than miss the window.</p>
+
+      <h2>5. NC-specific: retail vs manufacturing NAICS reclassifications</h2>
+      <p>Several facilities we have reviewed this year had NAICS codes filed as retail or wholesale when the actual operations are light manufacturing (custom assembly, packaging, small-batch food production). NC OSH has been reclassifying at inspection and applying manufacturing recordkeeping requirements retroactively, including the 300 log if not previously maintained under the retail exemption. Pull your OSHA-cited NAICS from the SUI account and cross-check against actual operations.</p>
+
+      <h2>6. Silica and Combustible Dust, still on the emphasis list</h2>
+      <p>The Respirable Crystalline Silica NEP (CPL 03-00-023) and the Combustible Dust NEP (CPL 03-00-018) both remain active. Metals fabrication, woodworking, plastics, and food processing operations without written housekeeping and exposure-control programs are the two operational categories compliance officers cite most quickly during a walk-through.</p>
+
+      <h2>Related reading</h2>
+      <ul>
+        <li><a href="/blog/osha-penalty-north-carolina-2026">How Much Is an OSHA Violation in North Carolina in 2026?</a></li>
+        <li><a href="/blog/osha-300-log-common-mistakes-citations">OSHA 300 Log , Common Mistakes That Trigger Citations</a></li>
+        <li><a href="/blog/top-5-osha-violations-small-manufacturing">Top 5 OSHA Violations in Small Manufacturing</a></li>
+      </ul>
+
+      <p><strong>Want a floor-level read on where your operation stands right now?</strong> A <a href="/services/compliance-readiness-visit">Compliance Readiness Visit</a> walks the floor, reviews the binder, and gives you a written findings report within 48 hours.</p>
     `,
   },
 ];
@@ -1655,15 +1721,6 @@ const SERVICE_DETAIL_ROUTES = [
     summary: 'Two full walkthroughs per year. Quarterly documentation reviews. Training record maintenance. Pre-inspection readiness review. On-call access between visits. $12,000/year ($1,000/month equivalent).',
     price: '12000',
     breadcrumbName: 'Annual Compliance Control Partner',
-  },
-  {
-    slug: 'document-development',
-    title: 'Safety Document Development, Written OSHA Programs | GigLine',
-    description: 'Custom OSHA safety programs for NC operations, LOTO, HazCom, PPE, EAP. Built to your facility, your equipment. Not a template.',
-    h1: 'Written safety programs that match your operation.',
-    summary: 'Custom-written OSHA safety programs, LOTO, HazCom, PPE, EAP, and more. Built specifically for your facility, equipment, and employees. Not a template. Five program tiers available.',
-    price: '1500',
-    breadcrumbName: 'Safety Document Development',
   },
   {
     slug: 'incident-review',

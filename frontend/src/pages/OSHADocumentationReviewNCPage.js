@@ -41,7 +41,7 @@ const config = {
     'A prioritized corrective action plan with target completion dates',
     'Templates for any missing documents the operation can adopt as-is',
     'A "top 5 documents to fix first" summary',
-    'Optional referral to Document Development if multiple programs need to be written',
+    'Optional next step: Corrective Action Implementation if multiple programs need to be written',
   ],
   cfrRef: '29 CFR Part 1904 (Recordkeeping) and applicable Subpart standards',
   priceFrom: 'From $1,300',

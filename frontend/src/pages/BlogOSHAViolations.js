@@ -484,7 +484,7 @@ const BlogOSHAViolations = () => {
             </div>
             <div>
               <p className="font-semibold text-[#1C2B2B] text-sm">Vince Lawrence</p>
-              <p className="text-xs text-[#1C2B2B]/50 mb-2">Safety Consultant, OSHA 30-Hour Certified, U.S. Navy Veteran</p>
+              <p className="text-xs text-[#1C2B2B]/50 mb-2">Safety Consultant, OSHA 30-Hour Outreach Trained, U.S. Navy Veteran</p>
               <p className="text-xs text-[#1C2B2B]/50">
                 GigLine Safety & Compliance, Kernersville, NC{' '}
                 <span className="text-[#1C2B2B]/30 mx-1">|</span>

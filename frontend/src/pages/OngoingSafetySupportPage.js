@@ -563,7 +563,7 @@ const OngoingSafetySupportPage = () => {
               </div>
 
               <p className="mt-8 text-[13px] text-white/55 leading-[1.75]">
-                Piedmont Triad-based · OSHA 30-Hour Certified · Manufacturing and operations experience · U.S. Navy veteran-owned
+                Piedmont Triad-based · OSHA 30-Hour Outreach Trained · Manufacturing and operations experience · U.S. Navy veteran-owned
               </p>
             </div>
 

@@ -296,7 +296,7 @@ def build():
     # ────────────────────────────────────────────────
     story.append(Paragraph(
         '<b>Vince Lawrence</b> &middot; Founder, GigLine Safety &amp; Compliance &middot; '
-        'OSHA 30-Hour Certified &middot; U.S. Navy Veteran &middot; '
+        'OSHA 30-Hour Outreach Trained &middot; U.S. Navy Veteran &middot; '
         '25+ years in MFG / WHSE / Transportation',
         ParagraphStyle("creds", fontName="Helvetica", fontSize=9, leading=11,
                        textColor=CHARCOAL, alignment=TA_CENTER, spaceAfter=4),

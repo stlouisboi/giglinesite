@@ -106,7 +106,7 @@ const HomePage = () => {
             { "@type": "City", "name": "Salisbury" },
             { "@type": "City", "name": "Burlington" }
           ],
-          "priceRange": "$950–$12000",
+          "priceRange": "$29–$4500",
           "openingHours": "Mo-Fr 08:00-18:00",
           "sameAs": [],
           "hasOfferCatalog": {
@@ -116,7 +116,9 @@ const HomePage = () => {
               { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Safety Walkthrough & Top 10 Fixes Report", "description": "On-site facility walkthrough with written report." }, "price": "1300", "priceCurrency": "USD" },
               { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "OSHA Documentation Readiness Review", "description": "Structured review of written safety programs, training records, and evidence." }, "price": "1700", "priceCurrency": "USD" },
               { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Compliance Readiness Visit", "description": "Combined walkthrough and documentation review in a single engagement." }, "price": "2500", "priceCurrency": "USD" },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Incident Review & Corrective Action Support", "description": "Post-incident documentation and corrective action." }, "price": "1500", "priceCurrency": "USD" }
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Corrective Action Implementation", "description": "Hands-on close-out of selected findings from a GigLine assessment. Custom quote, most projects begin at $2,500." }, "price": "2500", "priceCurrency": "USD" },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Safety Control System Buildout", "description": "Four-binder command system, training matrix, corrective-action tracker." }, "price": "4500", "priceCurrency": "USD" },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ongoing Safety Support", "description": "Recurring monthly safety support: on-site visit, corrective-action tracking, records review, management reporting." }, "price": "1850", "priceCurrency": "USD" }
             ]
           }
         }}
@@ -215,7 +217,7 @@ const HomePage = () => {
                 aria-label="Consultant credentials"
               >
                 {[
-                  { Icon: ShieldCheck, label: 'OSHA 30-Hour Certified' },
+                  { Icon: ShieldCheck, label: 'OSHA 30-Hour Outreach Trained' },
                   { Icon: Anchor, label: 'U.S. Navy Veteran' },
                   { Icon: Factory, label: '25+ Years Floor-Level Experience' },
                   {
@@ -292,15 +294,6 @@ const HomePage = () => {
                   </Link>
                 </p>
               </div>
-
-              {/* Credentials block */}
-              <p
-                className="text-sm text-[#CBD5E1] leading-relaxed"
-                style={mono}
-                data-testid="hero-credentials"
-              >
-                OSHA 30-Hour Certified · 25+ Years Experience · U.S. Navy Veteran · Serving the Triad
-              </p>
             </Reveal>
           </div>
         </div>

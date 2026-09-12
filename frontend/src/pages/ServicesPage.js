@@ -170,34 +170,6 @@ const STANDALONE = [
     showPhone: true,
   },
   {
-    eyebrow: 'Document Development',
-    title: 'Document Development',
-    headline: 'When the program is missing, GigLine writes it.',
-    price: 'Quote after review',
-    body: 'GigLine writes the programs you are missing \u2014 LOTO, HazCom, PPE assessments, Emergency Action Plans, machine-specific procedures. Scoped and quoted after the OSHA Documentation Readiness Review identifies specific gaps.',
-    listLabel: "What's Built",
-    bgColor: '#f5f4f0',
-    whatsIncluded: [
-      'LOTO program + machine-specific procedures',
-      'HazCom program',
-      'PPE hazard assessment',
-      'Emergency Action Plan',
-      'Single program or full suite \u2014 scoped to your gap list',
-      'Quoted after Documentation Readiness Review',
-    ],
-    floorPricing: [
-      ['Single written program', 'From $350'],
-      ['LOTO program + up to 5 machine procedures', 'From $650'],
-      ['LOTO program + 6\u201315 machine procedures', 'From $1,200'],
-      ['Full written program suite (5+ programs)', 'From $2,000'],
-    ],
-    best: 'Operations whose Documentation Readiness Review surfaced missing or insufficient written programs and need them built to OSHA standard.',
-    cta: 'Ask About Document Development',
-    intakeService: 'document-development',
-    detailsHref: '/services/document-development',
-    testid: 'svc-standalone-doc-dev',
-  },
-  {
     // Product card, not a service engagement (feature-flagged; see /app/frontend/src/config/features.js)
     __gated: !SUPERVISOR_KIT_ENABLED,
     eyebrow: 'GigLine Supervisor Safety OS',
@@ -228,54 +200,22 @@ const STANDALONE = [
   },
 ];
 
-/* ═══ Recurring (Quarterly + Annual) ═══ */
+/* ═══ Ongoing Support (MAINTAIN) ═══ */
 const RECURRING = [
   {
-    title: 'Quarterly Compliance Maintenance',
-    eyebrow: 'Quarterly Compliance Maintenance',
-    headline: 'Keep the system alive between annual walkthroughs.',
-    price: '$950/quarter',
-    priceFull: 'From $950/quarter',
-    body: 'Documentation review, training record audit, SDS inventory check, corrective action tracker review, and a brief site visit if needed.',
-    best: 'Operations that want the system kept alive after the Control System is built.',
-    cta: 'Ask About Quarterly Maintenance',
-    intakeService: 'quarterly-compliance-maintenance',
-    detailsHref: '/services/quarterly-compliance-maintenance',
-    testid: 'svc-rec-quarterly',
-    anchor: 'quarterly',
-  },
-  {
-    title: 'Annual Compliance Control Partner',
-    eyebrow: 'Annual Compliance Control Partner',
-    headline: 'When OSHA shows up, when someone gets hurt, when your customer asks for your safety program \u2014 you need someone who already knows your operation.',
-    price: '$12,000/year',
-    priceSecondary: '$1,000/month equivalent',
-    body: 'Two full walkthroughs per year. Quarterly documentation reviews. Training record maintenance. OSHA 300A posting reminders. Pre-inspection readiness review. Management safety review. GigLine becomes your ongoing compliance resource \u2014 available when something happens and proactive between visits.',
-    includes: [
-      { label: 'Two Safety Walkthroughs per year', detail: 'on-site, photographed, reported within 48 hours', value: 'standalone value: $2,400' },
-      { label: 'Four Documentation Reviews per year', detail: 'written programs, training records, OSHA 300 logs, HazCom binder', value: 'standalone value: $5,200' },
-      { label: 'Four Quarterly Review Calls', detail: '30 minutes each, reviewing findings, corrections, and upcoming compliance calendar items' },
-      { label: 'OSHA 300A posting reminders', detail: 'flagged in advance of the February 1 posting requirement' },
-      { label: 'Pre-inspection readiness review', detail: "if OSHA shows up or a complaint is filed, you\u2019re not starting from zero" },
-      { label: 'On-call access between visits', detail: "direct line to Vince for questions, incidents, and situations that can\u2019t wait for a scheduled visit" },
-      { label: 'Annual management safety review', detail: "a written summary of the year\u2019s findings, corrections completed, and open items for the coming year" },
-    ],
-    valueAnchor: {
-      standaloneLabel: 'Standalone value of scheduled services',
-      standalone: '$7,600+',
-      partnerLabel: 'Annual Partner rate',
-      partner: '$12,000',
-      monthlyLabel: 'Monthly equivalent',
-      monthly: '$1,000',
-    },
-    closingLine: 'This is not a retainer that sits in a drawer. It is an active compliance relationship \u2014 scheduled, documented, and available when you need it.',
-    best: 'Operations that want a consultant they can call, not just a one-time report.',
-    cta: 'Ask About Annual Partnership',
-    intakeService: 'annual-compliance-partner',
-    detailsHref: '/services/annual-compliance-partner',
-    testid: 'svc-rec-annual',
-    anchor: 'annual',
-    badge: 'Highest-Value Engagement',
+    title: 'Ongoing Safety Support',
+    eyebrow: 'Ongoing Safety Support',
+    headline: 'Findings stay open. Records go missing. The same hazards return. GigLine keeps the work moving.',
+    price: '$1,850/month',
+    priceFull: 'Starting at $1,850 per month',
+    body: 'Recurring safety support for small employers that need consistent follow-through but are not ready for a full-time safety manager. One scheduled on-site visit each month, corrective-action tracker updates, records review, and a monthly management report. Begins with an initial Compliance Readiness Visit ($2,500) so the recurring scope is set against the actual operation.',
+    best: 'Small manufacturers, warehouses, contractors, and fleets, generally 10 to 50 employees at one primary location, with leadership willing to assign and fund corrective actions.',
+    cta: 'Ask About Ongoing Safety Support',
+    intakeService: 'ongoing-safety-support',
+    detailsHref: '/ongoing-safety-support',
+    testid: 'svc-rec-ongoing',
+    anchor: 'ongoing',
+    badge: 'Recurring Partnership',
   },
 ];
 
@@ -285,7 +225,7 @@ const READINESS_PATH = [
   { stage: 'Check the files', need: 'Are our documents inspection-ready?', offer: 'OSHA Documentation Readiness Review', priceFrom: '$1,700', link: intakeLink('documentation-readiness-review') },
   { stage: 'Review both', need: 'We need the floor and files checked.', offer: 'Compliance Readiness Visit', priceFrom: '$2,500', link: intakeLink('compliance-readiness-visit') },
   { stage: 'Build the system', need: 'We need this organized and defensible.', offer: 'Safety Control System Buildout', priceFrom: '$4,500', link: intakeLink('osha-ready-control-system') },
-  { stage: 'Keep it current', need: 'We need ongoing accountability.', offer: 'Quarterly / Annual Partner', priceFrom: '$950/qtr', link: intakeLink('annual-compliance-partner') },
+  { stage: 'Keep it current', need: 'We need ongoing accountability.', offer: 'Ongoing Safety Support', priceFrom: '$1,850/mo', link: '/ongoing-safety-support' },
 ];
 
 /* ═══ Pricing reference block ═══ */
@@ -294,10 +234,9 @@ const PRICING_REF = [
   { name: 'OSHA Documentation Readiness Review', price: DOC_REVIEW_PRICING_REF_PRICE, category: 'FIND' },
   { name: 'Compliance Readiness Visit', price: 'Starting at $2,500', category: 'FIND', badge: 'BEST VALUE' },
   { name: 'Incident Review & Corrective Action', price: 'Starting at $1,500', category: 'FIND' },
-  { name: 'Corrective Action Implementation', price: 'Custom quote', category: 'PRIORITIZE' },
+  { name: 'Corrective Action Implementation', price: 'Custom quote, most projects begin at $2,500', category: 'PRIORITIZE' },
   { name: 'Safety Control System Buildout', price: 'Starting at $4,500', category: 'BUILD' },
-  { name: 'Quarterly Compliance Maintenance', price: 'Starting at $950/quarter', category: 'MAINTAIN' },
-  { name: 'Annual Compliance Control Partner', price: '$12,000/year', category: 'MAINTAIN' },
+  { name: 'Ongoing Safety Support', price: 'Starting at $1,850 per month', category: 'MAINTAIN' },
 ];
 
 /* ═══ Services FAQ ═══ */
@@ -312,7 +251,7 @@ const SERVICES_FAQ = [
   },
   {
     q: 'Do I have to sign up for ongoing services?',
-    a: 'No. Every service is a single engagement. Quarterly Maintenance and the Annual Compliance Control Partner are optional, they exist for operations that want the system kept current after the Control System is built.',
+    a: 'No. Every service is a single engagement. Ongoing Safety Support ($1,850/month, starting) is optional, it exists for operations that want the system kept current after the initial Compliance Readiness Visit.',
   },
   {
     q: 'Will GigLine share findings with OSHA or my insurance carrier?',
@@ -408,7 +347,7 @@ const ServicesPage = () => {
               { label: 'Corrective Action', href: '/services/corrective-action-implementation' },
               { label: 'Safety Control System Buildout', href: '#control-system' },
               { label: 'Compare', href: '#compare' },
-              { label: 'Annual Partner', href: '#annual' },
+              { label: 'Ongoing Support', href: '/ongoing-safety-support' },
             ].map((l) => (
               <a
                 key={l.href}
@@ -497,12 +436,10 @@ const ServicesPage = () => {
                 title: 'Products & ongoing support',
                 body: 'Keep the control organized. Records, ownership, and evidence retrievable.',
                 items: [
-                  { name: 'Ongoing Safety Support', href: '/ongoing-safety-support', price: 'From $1,650/month', badge: 'NEW' },
+                  { name: 'Ongoing Safety Support', href: '/ongoing-safety-support', price: 'From $1,850/month' },
                   { name: 'GigLine Compliance Control Kit Series', href: '/citation-proof-kits', price: '$150 / $300 / $600' },
                   { name: 'Supervisor Safety OS', href: '/supervisor-kit', price: 'From $600' },
                   { name: 'HazCom Starter Pack', href: '/hazcom-starter-pack', price: '$29' },
-                  { name: 'Quarterly Compliance Maintenance', href: '#annual', price: 'From $950/quarter' },
-                  { name: 'Annual Compliance Control Partner', href: '#annual', price: '$12,000/year' },
                 ],
               },
             ].map((cat) => (
@@ -773,13 +710,13 @@ const ServicesPage = () => {
                   <Link
                     to={intakeLink('compliance-readiness-visit')}
                     onClick={() => {
-                      fireServicesCtaClick('Schedule a Visit', intakeLink('compliance-readiness-visit'));
+                      fireServicesCtaClick('Request a Visit', intakeLink('compliance-readiness-visit'));
                       trackServiceBooking && trackServiceBooking('Compliance Readiness Visit');
                     }}
                     className="w-full inline-flex items-center justify-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-6 py-4 rounded-lg text-base transition-colors shadow-lg shadow-[#2A52A0]/20 mb-2"
                     data-testid="svc-card-compliance-readiness-cta"
                   >
-                    Schedule a Visit
+                    Request a Visit
                     <ArrowRight size={18} />
                   </Link>
                   <Link
@@ -1905,7 +1842,7 @@ const ServicesPage = () => {
                   Built by someone who&apos;s worked the floor.
                 </h2>
                 <p className="text-base md:text-lg text-[#F8FAFC] leading-relaxed mb-3 max-w-2xl">
-                  Vince Lawrence is a safety consultant based in Kernersville, NC. OSHA 30-Hour Certified. 25+ years in manufacturing, fleet, and warehouse safety operations. U.S. Navy veteran.
+                  Vince Lawrence is a safety consultant based in Kernersville, NC. OSHA 30-Hour Outreach Trained. 25+ years in manufacturing, fleet, and warehouse safety operations. U.S. Navy veteran.
                 </p>
                 <p className="text-base text-[#CBD5E1] leading-relaxed mb-5 max-w-2xl">
                   GigLine is a private engagement. Nothing leaves your facility except the report I hand you.
@@ -1918,7 +1855,7 @@ const ServicesPage = () => {
                   aria-label="Consultant credentials and third-party verifications"
                 >
                   {[
-                    { Icon: ShieldCheck, label: 'OSHA 30-Hour Certified' },
+                    { Icon: ShieldCheck, label: 'OSHA 30-Hour Outreach Trained' },
                     { Icon: Anchor, label: 'U.S. Navy Veteran' },
                     {
                       Icon: Lock,

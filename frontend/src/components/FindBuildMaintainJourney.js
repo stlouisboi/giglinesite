@@ -12,7 +12,7 @@ const STAGES = [
   { num: '01', stage: 'FIND', name: 'Compliance Readiness Visit', body: 'Identify field and documentation gaps in a single half-day visit.', to: '/services/compliance-readiness-visit' },
   { num: '02', stage: 'PRIORITIZE', name: 'Corrective Action Implementation', body: 'Named owners, closure evidence, and target dates against selected findings.', to: '/services/corrective-action-implementation' },
   { num: '03', stage: 'BUILD', name: 'Safety Control System Buildout', body: 'A site-specific digital control system inside your own storage platform.', to: '/services/safety-control-system-buildout', featured: true },
-  { num: '04', stage: 'MAINTAIN', name: 'Ongoing Safety Support', body: 'A defined monthly cadence so programs, records, and actions stay current.', to: '/services/ongoing-safety-support' },
+  { num: '04', stage: 'MAINTAIN', name: 'Ongoing Safety Support', body: 'A defined monthly cadence so programs, records, and actions stay current.', to: '/ongoing-safety-support' },
 ];
 
 const FindBuildMaintainJourney = ({ variant = 'light' }) => {

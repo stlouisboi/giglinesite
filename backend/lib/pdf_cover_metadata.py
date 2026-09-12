@@ -53,7 +53,7 @@ COVERS = {
         header_slug='PRICING SHEET | VERSION 2026',
         version_footer='2026 Edition',
         whats_inside_items=[
-            'Safety Walkthrough — From $1,200',
+            'Safety Walkthrough — From $1,300',
             'Documentation Readiness Review — From $1,700',
             'Compliance Readiness Visit — From $2,000',
             'Safety Control System Buildout — From $4,500',

@@ -152,7 +152,7 @@ const Navbar = () => {
               onMouseLeave={e => e.target.style.background = '#2A52A0'}
               data-testid="nav-cta-button"
             >
-              Schedule a Visit
+              Request a Visit
             </Link>
           </div>
 
@@ -208,7 +208,7 @@ const Navbar = () => {
                 onClick={() => setIsOpen(false)}
                 data-testid="mobile-nav-cta-button"
               >
-                Schedule a Visit
+                Request a Visit
               </Link>
             </div>
           </div>

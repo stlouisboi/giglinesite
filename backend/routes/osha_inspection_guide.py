@@ -92,7 +92,7 @@ async def submit_osha_inspection_guide(request: OshaInspectionGuideRequest):
                 <p style="color: #888; font-size: 14px;">
                     &mdash; Vince Lawrence<br/>
                     GigLine Safety &amp; Compliance<br/>
-                    OSHA 30-Hour Certified &middot; 25+ Years in Manufacturing<br/>
+                    OSHA 30-Hour Outreach Trained &middot; 25+ Years in Manufacturing<br/>
                     (336) 329-8899<br/>
                     giglinecompliance.com
                 </p>

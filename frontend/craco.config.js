@@ -38,6 +38,12 @@ let webpackConfig = {
     },
     configure: (webpackConfig) => {
 
+      // Phase 1: Disable production source maps entirely.
+      // Prevents .js.map / .css.map files (and sourcesContent) from shipping to prod.
+      if (!isDevServer) {
+        webpackConfig.devtool = false;
+      }
+
       // Add ignored patterns to reduce watched directories
         webpackConfig.watchOptions = {
           ...webpackConfig.watchOptions,

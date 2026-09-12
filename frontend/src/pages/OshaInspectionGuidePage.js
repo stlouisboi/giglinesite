@@ -95,7 +95,7 @@ const OshaInspectionGuidePage = () => {
             style={{ ...mono, letterSpacing: '0.06em' }}
             data-testid="oig-credentials"
           >
-            Vince Lawrence  ·  GigLine Safety &amp; Compliance  ·  OSHA 30-Hour Certified  ·  25+ Years in Manufacturing
+            Vince Lawrence  ·  GigLine Safety &amp; Compliance  ·  OSHA 30-Hour Outreach Trained  ·  25+ Years in Manufacturing
           </p>
         </div>
       </section>

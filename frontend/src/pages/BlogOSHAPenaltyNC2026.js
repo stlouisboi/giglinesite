@@ -176,6 +176,7 @@ const BlogOSHAPenaltyNC2026 = () => (
           NC OSH follows federal OSHA&rsquo;s penalty structure but with a few practical differences that affect what happens on the ground:
         </p>
         <ul className="mb-6 text-[16px] leading-[1.9] pl-6 text-[#1C2B2B]/80" style={{ fontFamily: "Georgia, serif" }}>
+          <li><strong>Statutory minimum on Serious violations.</strong> Under NC OSH, a Serious violation carries a minimum proposed penalty of $1,250 per citation and a maximum of $16,550, effective for calendar year 2026. Even with maximum size, good-faith, and history reductions, the assessment floor holds.</li>
           <li><strong>Faster informal conference availability.</strong> NC OSH area offices typically schedule the informal conference within 10 business days of citation issuance. Federal OSHA can take 30-60. Use it , informal conferences settle 60%+ of citations with penalty reductions of 15-40%.</li>
           <li><strong>State-specific standards.</strong> NC has adopted federal standards verbatim in most cases, but with a handful of NC-only rules (e.g., migrant housing, boiler safety, elevator inspection). If you operate in one of those verticals, know which chapter of the NC Administrative Code applies.</li>
           <li><strong>Public-sector coverage.</strong> Unlike federal OSHA, NC OSH covers state and municipal public-sector employees. If you contract with a NC school district, hospital system, or municipality, your subcontractor safety obligations extend to their workforce too.</li>

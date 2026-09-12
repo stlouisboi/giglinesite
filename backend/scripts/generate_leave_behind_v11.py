@@ -408,7 +408,7 @@ def build():
     story.append(HRFlowable(width="100%", thickness=0.5, color=GOLD, spaceBefore=0, spaceAfter=4))
     story.append(Paragraph(
         '<b>Vince Lawrence</b> &middot; Founder, GigLine Safety &amp; Compliance &middot; '
-        'OSHA 30-Hour Certified &middot; U.S. Navy Veteran &middot; '
+        'OSHA 30-Hour Outreach Trained &middot; U.S. Navy Veteran &middot; '
         '25+ years in MFG / WHSE / Transportation',
         style["creds"],
     ))

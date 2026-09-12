@@ -215,12 +215,11 @@ const ClientIntakePage = () => {
       'safety-walkthrough-report': 'walkthrough',
       'compliance-readiness-visit': 'compliance_readiness_visit',
       'documentation-readiness-review': 'doc_review',
-      'document-development': 'doc_creation',
       'incident-review': 'incident_review',
       // Premium engagements with no exact radio match, route to "I need guidance" so Vince can scope on call
-      'annual-compliance-partner': 'not_sure',
       'osha-ready-control-system': 'not_sure',
       'corrective-action-implementation': 'not_sure',
+      'ongoing-safety-support': 'not_sure',
     };
     const mapped = serviceParam && map[serviceParam];
     if (mapped) {
@@ -903,7 +902,7 @@ const ClientIntakePage = () => {
               Vince Lawrence
             </h2>
             <p className="text-base md:text-lg leading-relaxed max-w-3xl mx-auto" style={{ color: 'rgba(255,255,255,0.55)' }}>
-              OSHA 30-Hour Certified safety compliance consultant , Kernersville, NC
+              OSHA 30-Hour Outreach Trained safety compliance consultant , Kernersville, NC
             </p>
           </div>
 
@@ -923,7 +922,7 @@ const ClientIntakePage = () => {
               <div className="grid grid-cols-3 gap-3">
                 {[
                   { value: '25+', label: 'Years', sub: 'Safety Leadership' },
-                  { value: 'OSHA', label: '30-Hour', sub: 'Certified' },
+                  { value: 'OSHA', label: '30-Hour', sub: 'Outreach' },
                   { value: 'USN', label: 'Veteran', sub: 'U.S. Navy' },
                   { value: 'MFG', label: 'Manufacturing', sub: 'Experience' },
                   { value: 'WHSE', label: 'Warehousing', sub: 'Operations' },

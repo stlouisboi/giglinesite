@@ -198,7 +198,7 @@ const CTABar = () => (
             onMouseLeave={(e) => (e.currentTarget.style.background = BLUE)}
             data-testid="crv-bar-cta"
           >
-            Schedule a Visit
+            Request a Visit
             <ArrowRight size={14} />
           </Link>
         </div>
@@ -228,7 +228,7 @@ const ComplianceReadinessVisitPage = () => {
             areaServed: { '@type': 'State', name: 'North Carolina' },
             offers: {
               '@type': 'Offer',
-              price: '2000',
+              price: '2500',
               priceCurrency: 'USD',
               description: 'Compliance Readiness Visit from $2,500, combined walkthrough + documentation review.',
             },

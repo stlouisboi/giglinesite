@@ -11,6 +11,10 @@
     { "source": "/services/osha-ready-control-system", "destination": "/services/safety-control-system-buildout", "permanent": true },
     { "source": "/services/osha-ready-control-system/request", "destination": "/services/safety-control-system-buildout/request", "permanent": true },
     { "source": "/documentation-gap-check", "destination": "/services/documentation-readiness-review", "permanent": true },
+    { "source": "/services/document-development", "destination": "/services/documentation-readiness-review", "permanent": true },
+    { "source": "/services/annual-compliance-partner", "destination": "/ongoing-safety-support", "permanent": true },
+    { "source": "/services/quarterly-compliance-maintenance", "destination": "/ongoing-safety-support", "permanent": true },
+    { "source": "/services/ongoing-safety-support", "destination": "/ongoing-safety-support", "permanent": true },
     { "source": "/osha-compliance-gap-check", "destination": "/services/compliance-readiness-visit", "permanent": true },
     { "source": "/walkthrough", "destination": "/intake", "permanent": true },
     {

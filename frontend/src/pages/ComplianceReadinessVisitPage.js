@@ -17,6 +17,7 @@ import {
 import SEO from '../components/SEO';
 import DiagnosticComparisonCard from '../components/DiagnosticComparisonCard';
 import RelatedFieldNotesStrip from '../components/RelatedFieldNotesStrip';
+import { CASE_STUDY_PUBLIC } from '../config/features';
 
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
 
@@ -412,6 +413,8 @@ const ComplianceReadinessVisitPage = () => {
       </section>
 
       {/* ═══ Social proof, real outcome graphic (full-width strip) ═══ */}
+      {/* Phase 2 Batch 2A.3: gated behind CASE_STUDY_PUBLIC */}
+      {CASE_STUDY_PUBLIC && (
       <section
         className="py-14 md:py-16"
         style={{ background: CREAM, borderBottom: '1px solid #e8e5dd' }}
@@ -461,6 +464,7 @@ const ComplianceReadinessVisitPage = () => {
           </figure>
         </div>
       </section>
+      )}
 
       {/* ═══ What You Get, 7 deliverables with 18-page report highlighted ═══ */}
       <section className="py-20 md:py-24 bg-white" data-testid="crv-deliverables">

@@ -8,7 +8,7 @@ import WalkthroughDaySection from '../components/WalkthroughDaySection';
 import FindBuildMaintainJourney from '../components/FindBuildMaintainJourney';
 import AssessmentSelectorModal from '../components/AssessmentSelectorModal';
 import { trackPhoneClick, trackReviewClick, trackEvent } from '../utils/analytics';
-import { SUPERVISOR_KIT_ENABLED } from '../config/features';
+import { SUPERVISOR_KIT_ENABLED, CASE_STUDY_PUBLIC } from '../config/features';
 
 /* ── Scroll-reveal ── */
 const useReveal = () => {
@@ -657,6 +657,9 @@ const HomePage = () => {
       </section>
 
       {/* ═══ RECENT ENGAGEMENT, compact proof block (GL-WEB-020) ═══ */}
+      {/* Phase 2 Batch 2A.3: gated behind CASE_STUDY_PUBLIC. Hidden while owner
+          permission for public case-study promotion is not yet on file. */}
+      {CASE_STUDY_PUBLIC && (
       <section className="py-12 md:py-16" style={{ backgroundColor: '#f5f4f0' }} data-testid="recent-engagement-section">
         <div className="container max-w-5xl">
           <Reveal>
@@ -695,6 +698,7 @@ const HomePage = () => {
           </Reveal>
         </div>
       </section>
+      )}
 
       {/* ═══ SECTION 2, WHY GIGLINE ═══ */}
       <section className="py-20 md:py-24" style={{ backgroundColor: '#f5f4f0' }} data-testid="why-gigline-section">
@@ -879,6 +883,7 @@ const HomePage = () => {
               <p className="text-[15.5px] md:text-[17px] leading-[1.7] text-white/85" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
                 A small metal fabrication operation in North Carolina. One combined walkthrough and documentation review. <strong className="text-white">13 findings identified.</strong> Seven carried serious-citation risk, up to <strong className="text-white">$16,550 per finding</strong> under the 2026 OSHA maximum penalty schedule. One inspection visit could have stacked those into <strong className="text-white">six figures of penalty exposure</strong>. The corrective action plan closed <strong className="text-white">twelve of thirteen findings inside four days</strong>. One remained open at the reporting point.
               </p>
+              {CASE_STUDY_PUBLIC && (
               <Link
                 to="/case-study/metal-fabrication-readiness"
                 className="inline-flex items-center gap-1.5 mt-5 font-semibold text-sm transition-colors"
@@ -887,6 +892,7 @@ const HomePage = () => {
               >
                 Read the engagement &rarr;
               </Link>
+              )}
             </div>
           </Reveal>
         </div>
@@ -1380,7 +1386,7 @@ const HomePage = () => {
 
       {/* ═══ TESTIMONIALS + CASE STUDY + TRACK RECORD (relocated per spec, between Services and How It Works) ═══ */}
       <section className="py-20 md:py-28" style={{ backgroundColor: '#102A43' }} data-testid="trust-section">
-        <div className="container max-w-7xl grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12">
+        <div className={`container max-w-7xl grid grid-cols-1 gap-10 lg:gap-12 ${CASE_STUDY_PUBLIC ? 'lg:grid-cols-3' : 'lg:grid-cols-2'}`}>
 
           {/* LEFT, What Clients Say */}
           <div data-testid="reviews-column">
@@ -1396,7 +1402,8 @@ const HomePage = () => {
             ))}
           </div>
 
-          {/* MIDDLE, Case Study */}
+          {/* MIDDLE, Case Study, Phase 2 Batch 2A.3: gated behind CASE_STUDY_PUBLIC */}
+          {CASE_STUDY_PUBLIC && (
           <div data-testid="case-study-column">
             <p className="uppercase font-bold mb-8" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.55)' }}>Case Study</p>
             <div className="p-8" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.10)', borderRadius: '16px' }}>
@@ -1414,6 +1421,7 @@ const HomePage = () => {
               <Link to="/case-study/metal-fabrication-readiness" className="inline-flex items-center gap-2 mt-6 font-semibold" style={{ color: '#2A52A0' }}>Read the full case study <ArrowRight size={14} /></Link>
             </div>
           </div>
+          )}
 
           {/* RIGHT, Track Record */}
           <div data-testid="track-record-column">

@@ -44,6 +44,16 @@ const DOC_REVIEW_PRICE_LABEL = '$1,300';
 const SERVICES_META_DESCRIPTION = 'OSHA-readiness support for small industrial operations. GigLine helps manufacturers, warehouses, contractors, and fleet operations identify visible hazards, verify documentation compliance element by element, and resolve inspection-readiness issues before they become citations. Fixed pricing. No retainer.';
 
 // ───────────────────────────────────────────────
+// Phase 2 Batch 2A.3: CASE_STUDY_PUBLIC mirrors the frontend flag in
+// src/config/features.js. When false, the anonymized case-study SSR page
+// is skipped entirely and all in-body promotional links to the case study
+// are omitted from other prerendered pages. Flip both flags in tandem when
+// written client permission is on file.
+// ───────────────────────────────────────────────
+const CASE_STUDY_PUBLIC = false;
+const CASE_STUDY_PATH = '/case-study/metal-fabrication-readiness';
+
+// ───────────────────────────────────────────────
 // Shared schema fragments
 // ───────────────────────────────────────────────
 const LOCAL_BUSINESS = {
@@ -274,8 +284,10 @@ const routes = [
       <p><em>Service area: on-site within 60 miles of Winston-Salem, including Greensboro, High Point, Kernersville, Lexington, Thomasville, Salisbury, Burlington, and surrounding communities.</em></p>
       <h2>What Clients Say</h2>
       <p>"If you're looking for a partner that can bridge the gap between compliance and real-world execution, GigLine delivers results.", Demar Archie, Warehouse Receiving Manager</p>
+      ${CASE_STUDY_PUBLIC ? `
       <h2>Recent Engagement , Case Study</h2>
-      <p><a href="/case-study/metal-fabrication-readiness">What a Safety Walkthrough Actually Finds</a>. A 9-person metals fabrication facility in Statesville, NC. Combined walkthrough and documentation review. 13 findings across machine guarding, compressed gas storage, and documentation gaps. 12 of 13 corrective actions closed within four days of the walkthrough.</p>
+      <p><a href="${CASE_STUDY_PATH}">What a Safety Walkthrough Actually Finds</a>. A 9-person metals fabrication facility in Statesville, NC. Combined walkthrough and documentation review. 13 findings across machine guarding, compressed gas storage, and documentation gaps. 12 of 13 corrective actions closed within four days of the walkthrough.</p>
+      ` : ''}
       <h2>Final CTA, Know what's on your floor before OSHA does.</h2>
       <p>The walkthrough takes a few hours. The report is in your hands in 48. The cost is a fraction of a single citation. Questions first? Call or text directly: (336) 329-8899.</p>
       <h2>Frequently Asked Questions</h2>
@@ -361,8 +373,10 @@ const routes = [
       <p>Ongoing Safety Support, Starting at $1,850 per month, includes one scheduled on-site visit, corrective-action tracker updates, records review, and a monthly management report. Begins with an initial Compliance Readiness Visit ($2,500).</p>
       <h2>The GigLine Readiness Path</h2>
       <p>Find the issues, Safety Walkthrough from $1,300. Check the files, OSHA Documentation Readiness Review from ${DOC_REVIEW_PRICE_LABEL}. Review both, Compliance Readiness Visit from $2,500. Build the system, Safety Control System Buildout from $4,500. Keep it current, Ongoing Safety Support from $1,850/month.</p>
+      ${CASE_STUDY_PUBLIC ? `
       <h2>Recent Engagement , Case Study</h2>
-      <p><a href="/case-study/metal-fabrication-readiness">What a Safety Walkthrough Actually Finds</a>.</p>
+      <p><a href="${CASE_STUDY_PATH}">What a Safety Walkthrough Actually Finds</a>.</p>
+      ` : ''}
       <p>After payment, you'll receive a scheduling confirmation within one business day.</p>
       <p>GigLine Safety &amp; Compliance, Kernersville, NC, (336) 329-8899</p>
     `,
@@ -2435,6 +2449,13 @@ function main() {
   let generated = 0;
 
   for (const route of routes) {
+    // Phase 2 Batch 2A.3: skip prerendering the anonymized case-study route
+    // while CASE_STUDY_PUBLIC is false. The runtime component also redirects
+    // to /resources when the flag is off, so there is no user-facing SSR
+    // artifact for the case study until owner permission is documented.
+    if (!CASE_STUDY_PUBLIC && route.path === CASE_STUDY_PATH) {
+      continue;
+    }
     const routePath = route.path === '/' ? '' : route.path;
     const routeDir = routePath ? path.join(BUILD_DIR, routePath) : BUILD_DIR;
     const routeFile = routePath ? path.join(routeDir, 'index.html') : path.join(BUILD_DIR, 'index.html');

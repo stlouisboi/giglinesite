@@ -1,0 +1,24 @@
+{
+  "summary": "Phase 2 Batch 2A.3 close-out verification (frontend only). Ran the required Jest suites (caseStudyGate, legacyRedirect, previewGate) - all 22 tests pass. Verified via Playwright against preview host that CASE_STUDY_PUBLIC=false correctly hides every /case-study/ anchor on Home, Services, CRV, Safety Walkthrough, and /walkthrough. All gated data-testids (recent-engagement-section, case-study-column, cost-scenario-cta, case-study-teaser-*, crv-social-proof, wt-social-proof-section) are absent from the DOM. Canonical /case-study/metal-fabrication-readiness redirects to /resources without ?preview=1. Both legacy URLs (/case-study/metals-fabrication-statesville and /case-studies/mocksville-plastics-osha-inspection) redirect via Navigate through the canonical to /resources. With ?preview=1 the case study renders; case-top-cta block has the correct link href (/intake?service=compliance-readiness-visit&utm_source=case-study&utm_medium=website&utm_campaign=case-top-cta), correct visible text ('Request a Compliance Readiness Visit'), and the tagline containing both 'Starting at $2,500' and 'Saves $500'. Old copy ('Request a Walkthrough Like This' and 'From $1,300') is not present anywhere on the page.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/frontend/src/lib/__tests__/caseStudyGate.test.js",
+    "/app/frontend/src/lib/__tests__/legacyRedirect.test.js",
+    "/app/frontend/src/lib/__tests__/previewGate.test.js"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "CaseStudyMetalsFabricationPage.js is ~890 lines; consider splitting the Finding/FAQItem/StatItem subcomponents into separate files for maintainability (>700 line threshold)."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a (not requested)", "frontend": "100%"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Batch 2A.3 verified end-to-end. When CASE_STUDY_PUBLIC is eventually flipped to true, re-verify Home/Services/CRV/Walkthrough now render the previously-hidden testids and case-study links. Preview bypass path (?preview=1) is exercised only on preview host - production refuses it by design."
+}

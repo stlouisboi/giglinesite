@@ -213,19 +213,26 @@ const CaseStudyMetalsFabricationPage = () => {
             <NumberItem stat="80.3" label="Compliance Score" sub="of 100" />
           </div>
 
-          {/* GL-WEB-022: Inline CTA, keeps the conversion ask visible above the long body */}
+          {/* GL-WEB-022 / Phase 2 Batch 2A.3: Inline CTA points to CRV, the combined scope
+              that mirrors the engagement in this case study. Walkthrough-only CTA retained
+              at the bottom of the page as a lighter-weight secondary option. */}
           <div className="mt-8 mb-2 flex flex-wrap items-center gap-4" data-testid="case-top-cta">
             <Link
-              to="/intake?service=safety-walkthrough-report&utm_source=case-study&utm_medium=website&utm_campaign=case-top-cta"
+              to="/intake?service=compliance-readiness-visit&utm_source=case-study&utm_medium=website&utm_campaign=case-top-cta"
               className="inline-flex items-center gap-2 font-bold px-6 py-3 rounded transition-colors text-white"
               style={{ background: '#102A43', fontFamily: "'Manrope', sans-serif", fontSize: '15px' }}
               onMouseEnter={(e) => (e.currentTarget.style.background = '#1F3F80')}
               onMouseLeave={(e) => (e.currentTarget.style.background = '#2A52A0')}
+              data-testid="case-top-cta-link"
             >
-              Request a Walkthrough Like This <ArrowRight size={16} />
+              Request a Compliance Readiness Visit <ArrowRight size={16} />
             </Link>
-            <span className="text-sm" style={{ color: TEXT_SUBTLE, ...mono }}>
-              From $1,300 · Findings in 48 hours
+            <span
+              className="text-sm max-w-md"
+              style={{ color: TEXT_SUBTLE, ...mono }}
+              data-testid="case-top-cta-tagline"
+            >
+              Starting at $2,500. Combined floor and documentation review. Saves $500 compared with purchasing the two standard scopes separately.
             </span>
           </div>
         </div>

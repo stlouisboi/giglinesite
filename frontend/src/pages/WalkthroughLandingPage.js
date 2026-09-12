@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowRight, Phone, Mail, Check, ChevronDown, Star } from 'lucide-react';
 import SEO from '../components/SEO';
+import { CASE_STUDY_PUBLIC } from '../config/features';
 
 const NAVY = '#0A1628';
 const GOLD = '#C5A059';
@@ -189,8 +190,10 @@ const WalkthroughLandingPage = () => {
 
       {/* ─────────────────────────────────────────────
           SECTION 3.5, SOCIAL PROOF STAT CARD
-          Inline outcome card linking to the CRV case study
+          Inline outcome card linking to the CRV case study.
+          Phase 2 Batch 2A.3: gated behind CASE_STUDY_PUBLIC.
       ───────────────────────────────────────────── */}
+      {CASE_STUDY_PUBLIC && (
       <section
         className="px-5 md:px-8 py-10 md:py-14"
         style={{ backgroundColor: BG_WARM }}
@@ -243,6 +246,7 @@ const WalkthroughLandingPage = () => {
           </a>
         </div>
       </section>
+      )}
 
       {/* ─────────────────────────────────────────────
           SECTION 4, THE FORM (primary conversion)

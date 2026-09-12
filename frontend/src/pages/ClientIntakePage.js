@@ -201,12 +201,17 @@ const ClientIntakePage = () => {
 
   /* ─── Source attribution (which dedicated service page sent this lead) ─── */
   const [sourceServiceSlug, setSourceServiceSlug] = useState('');
+  const [fromRecommendationRouter, setFromRecommendationRouter] = useState(false);
 
   /* ─── URL param pre-selection (?service=<slug>), full slug map across all dedicated service pages ─── */
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const serviceParam = params.get('service') || '';
+    const leadSourceParam = params.get('lead_source') || '';
     if (serviceParam) setSourceServiceSlug(serviceParam);
+    if (leadSourceParam === 'recommendation-router') {
+      setFromRecommendationRouter(true);
+    }
     const map = {
       // New dedicated service pages (Feb 2026)
       'safety-walkthrough': 'walkthrough',
@@ -218,6 +223,8 @@ const ClientIntakePage = () => {
       'osha-ready-control-system': 'not_sure',
       'corrective-action-implementation': 'not_sure',
       'ongoing-safety-support': 'not_sure',
+      // Path D + E targets from the Batch 2B recommendation router
+      'safety-control-system-buildout': 'not_sure',
     };
     const mapped = serviceParam && map[serviceParam];
     if (mapped) {
@@ -515,7 +522,7 @@ const ClientIntakePage = () => {
         {/* ═══ S2, Service Selection ═══ */}
         <section data-testid="intake-section-02" data-source-service-slug={sourceServiceSlug || 'direct'}>
           <SectionHeader number="02" title="What service are you requesting?" subtitle="Pick the closest match. We'll talk through any nuances on the call." />
-          {/* Source attribution banner, visible only when user arrived from a dedicated service page */}
+          {/* Source attribution banner, visible only when user arrived from a dedicated service page or the /recommendation router */}
           {sourceServiceSlug && (
             <div
               className="rounded-md px-4 py-3 mb-5 flex items-center gap-3 flex-wrap"
@@ -524,14 +531,20 @@ const ClientIntakePage = () => {
                 border: '1px solid rgba(42,82,160,0.30)',
               }}
               data-testid="intake-source-banner"
+              data-from-recommendation-router={fromRecommendationRouter ? 'true' : 'false'}
             >
               <span
                 className="uppercase font-bold"
                 style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9.5px', letterSpacing: '0.16em', color: '#2A52A0' }}
+                data-testid="intake-source-banner-label"
               >
-                Inquiry For
+                {fromRecommendationRouter ? 'You are requesting' : 'Inquiry For'}
               </span>
-              <span className="text-white text-sm font-semibold" data-testid="intake-source-banner-slug">
+              <span
+                className="text-sm font-semibold"
+                style={{ color: '#0A1628' }}
+                data-testid="intake-source-banner-slug"
+              >
                 {sourceServiceSlug
                   .replace(/-/g, ' ')
                   .replace(/\b\w/g, (c) => c.toUpperCase())
@@ -539,7 +552,10 @@ const ClientIntakePage = () => {
                   .replace(/\bCrv\b/g, 'CRV')
                   .replace(/\bPpe\b/g, 'PPE')}
               </span>
-              <span className="text-white/50 text-xs" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+              <span
+                className="text-xs"
+                style={{ fontFamily: "'JetBrains Mono', monospace", color: 'rgba(10,22,40,0.55)' }}
+              >
                 · Pre-selected below, change if needed
               </span>
             </div>

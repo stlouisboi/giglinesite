@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { trackSafetyCheckComplete } from '../utils/analytics';
 import SEO from '../components/SEO';
+import SafetyCheckActionPlanPreview from '../components/SafetyCheckActionPlanPreview';
 
 const API = process.env.REACT_APP_BACKEND_URL;
 
@@ -485,6 +486,12 @@ const SafetyCheckPage = () => {
                     ← Start over
                   </button>
                 </div>
+              </div>
+            </section>
+            {/* Batch 2B, non-transmitting Email My Action Plan preview */}
+            <section className="bg-[#FAF7F1] py-10 md:py-14">
+              <div className="container max-w-3xl px-5 md:px-8">
+                <SafetyCheckActionPlanPreview tier={tier} noCount={noCount} recommendation={null} />
               </div>
             </section>
           </>

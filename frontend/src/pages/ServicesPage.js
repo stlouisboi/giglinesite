@@ -5,6 +5,8 @@ import { trackServiceBooking, trackPhoneClick, trackEvent } from '../utils/analy
 import SEO from '../components/SEO';
 import { SUPERVISOR_KIT_ENABLED } from '../config/features';
 import CaseStudyTeaser from '../components/CaseStudyTeaser';
+import RecommendationEntryCard from '../components/RecommendationEntryCard';
+import ObjectionSupport from '../components/ObjectionSupport';
 import SampleReportSection from '../components/SampleReportSection';
 import WalkthroughDaySection from '../components/WalkthroughDaySection';
 import FindBuildMaintainJourney from '../components/FindBuildMaintainJourney';
@@ -1817,6 +1819,12 @@ const ServicesPage = () => {
 
       {/* ═══ 11. CASE STUDY ═══ */}
       <CaseStudyTeaser source="services" />
+      <RecommendationEntryCard source="services" heading="Not sure which GigLine step fits your operation?" />
+      <section className="py-14 md:py-20" style={{ background: '#f5f4f0' }} data-testid="services-objection-support-section">
+        <div className="container max-w-4xl">
+          <ObjectionSupport heading="Common questions before you decide" anchor="services-objections" />
+        </div>
+      </section>
 
       {/* ═══ 12. FOUNDER (compact, links to /about) ═══ */}
       <section className="py-20 md:py-24" style={{ backgroundColor: '#102A43' }} data-testid="services-founder">

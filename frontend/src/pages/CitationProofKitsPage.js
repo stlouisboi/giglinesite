@@ -6,6 +6,8 @@ import ProofGapEngineSteps from '../components/ProofGapEngineSteps';
 import KitPricingTiers from '../components/KitPricingTiers';
 import KitSelector from '../components/KitSelector';
 import { KIT_CATALOG } from '../data/citationProofKits';
+import RecommendationEntryCard from '../components/RecommendationEntryCard';
+import ObjectionSupport from '../components/ObjectionSupport';
 
 const NAVY = '#102A43';
 const GOLD = '#C9A84C';
@@ -708,6 +710,12 @@ const CitationProofKitsPage = () => {
               vince@giglinecompliance.com
             </a>
           </div>
+        </div>
+      </section>
+      <RecommendationEntryCard source="kits" heading="Not sure which kit or edition fits?" />
+      <section className="py-14 md:py-20" style={{ background: '#f5f4f0' }} data-testid="kits-objection-support-section">
+        <div className="container max-w-4xl px-5 md:px-8">
+          <ObjectionSupport heading="Common questions before you decide" anchor="kits-objections" />
         </div>
       </section>
     </main>

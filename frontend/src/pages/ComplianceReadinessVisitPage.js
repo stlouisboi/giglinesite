@@ -18,6 +18,7 @@ import SEO from '../components/SEO';
 import DiagnosticComparisonCard from '../components/DiagnosticComparisonCard';
 import RelatedFieldNotesStrip from '../components/RelatedFieldNotesStrip';
 import { CASE_STUDY_PUBLIC } from '../config/features';
+import ServicePageRecommendationEmbed from '../components/ServicePageRecommendationEmbed';
 
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
 
@@ -879,6 +880,7 @@ const ComplianceReadinessVisitPage = () => {
       </section>
 
       <DiagnosticComparisonCard highlightSlug="crv" showCombinedSavings={true} showCta={false} />
+      <ServicePageRecommendationEmbed source="compliance-readiness-visit" referringRoute="/services/compliance-readiness-visit" />
     </main>
   );
 };

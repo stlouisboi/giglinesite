@@ -15,6 +15,7 @@ import DiagnosticComparisonCard from '../components/DiagnosticComparisonCard';
 import RelatedFieldNotesStrip from '../components/RelatedFieldNotesStrip';
 import AssessmentSelectorModal from '../components/AssessmentSelectorModal';
 import StickySelectorBar from '../components/StickySelectorBar';
+import ServicePageRecommendationEmbed from '../components/ServicePageRecommendationEmbed';
 
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
 
@@ -359,6 +360,7 @@ const SafetyWalkthroughPage = () => {
       </section>
 
       <DiagnosticComparisonCard highlightSlug="walkthrough" showCombinedSavings={true} showCta={true} />
+      <ServicePageRecommendationEmbed source="safety-walkthrough" referringRoute="/services/safety-walkthrough-report" />
       <AssessmentSelectorModal
         open={selectorOpen}
         onClose={() => setSelectorOpen(false)}

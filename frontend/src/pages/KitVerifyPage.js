@@ -64,7 +64,7 @@ const KitVerifyPage = () => {
     <main className="min-h-screen flex items-center justify-center py-16 md:py-24" style={{ background: CREAM }} data-testid="verify-page">
       <SEO
         title="Kit Authenticity Verification | GigLine"
-        description="Scan or paste your GigLine kit token to confirm it is an authenticated Citation-Proof Kit purchase."
+        description="Scan or paste your GigLine kit token to confirm it is an authenticated GigLine Compliance Control Kit purchase."
         canonical={`/verify/${token || ''}`}
       />
 
@@ -76,7 +76,7 @@ const KitVerifyPage = () => {
             <div className="flex items-center gap-3">
               <ShieldCheck size={22} style={{ color: GOLD }} strokeWidth={2.5} />
               <p className="uppercase font-bold text-white" style={{ ...mono, fontSize: '11px', letterSpacing: '0.20em' }}>
-                GigLine Citation-Proof Kit
+                GigLine Compliance Control Kit
               </p>
             </div>
             <h1 className="text-white text-2xl md:text-3xl font-extrabold leading-tight mt-3 tracking-tight">
@@ -119,7 +119,7 @@ const KitVerifyPage = () => {
                   <div>
                     <p className="font-bold text-[15px]" style={{ color: '#166534' }}>Authenticated GigLine kit</p>
                     <p className="text-[13.5px] mt-1 leading-[1.6]" style={{ color: '#166534' }}>
-                      This token matches a paid Citation-Proof Kit order on record.
+                      This token matches a paid Compliance Control Kit order on record.
                     </p>
                   </div>
                 </div>

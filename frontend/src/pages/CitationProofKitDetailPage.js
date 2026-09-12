@@ -572,7 +572,7 @@ const CitationProofKitDetailPage = () => {
       <ProofGapEngineSteps
         kicker="How the Kit Works"
         heading="Score. Sort. Fix. Pull."
-        intro="This kit runs on the same four-step control loop as every kit in the Citation-Proof Series. The sequence is what turns forms into a system."
+        intro="This kit runs on the same four-step control loop as every kit in the GigLine Compliance Control Kit Series. The sequence is what turns forms into a system."
       />
 
       {/* ═══════════ KEY PROOF (what you\'ll be able to produce) ═══════════ */}

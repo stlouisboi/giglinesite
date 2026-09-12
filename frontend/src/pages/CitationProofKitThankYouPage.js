@@ -32,7 +32,7 @@ const CitationProofKitThankYouPage = () => {
   const sessionId = params.get('session_id');
   const tierFromUrl = params.get('tier') || 'digital';
   const kit = KIT_DETAILS[slug];
-  const kitName = kit?.name || 'GigLine Citation-Proof Kit';
+  const kitName = kit?.name || 'GigLine Compliance Control Kit';
 
   // `verifyData` fills in from the verify endpoint on success, it authoritatively
   // tells us the tier, tier_label, whether a physical binder ships, and the ship window.

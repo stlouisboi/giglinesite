@@ -566,7 +566,7 @@ const CitationProofKitsPage = () => {
         universalTiers
         kickerOverride="Simple Pricing Across Every Kit"
         headingOverride="Three tiers. Same across every kit."
-        introOverride="Every kit in the Citation-Proof Series is offered in three tiers. Buy the level that matches how much of the build you want to do yourself, and how quickly you need the physical binder in the supervisor’s hands."
+        introOverride="Every kit in the GigLine Compliance Control Kit Series is offered in three tiers. Buy the level that matches how much of the build you want to do yourself, and how quickly you need the physical binder in the supervisor’s hands."
       />
 
       {/* ═══════════ BUNDLE TEASER ═══════════ */}

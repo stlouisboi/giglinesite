@@ -1307,7 +1307,7 @@ const KitOrdersTab = ({ token }) => {
           <p className="text-2xl font-bold text-orange-700 mt-1" data-testid="kit-orders-needs-shipping-count">{data.counts.needs_shipping}</p>
         </div>
         <div className="bg-white border border-gray-200 rounded-lg p-3">
-          <p className="text-[10px] uppercase tracking-wider text-gray-500 font-semibold">Citation-Proof</p>
+          <p className="text-[10px] uppercase tracking-wider text-gray-500 font-semibold">Compliance Kits</p>
           <p className="text-2xl font-bold text-[#102A43] mt-1">{data.counts.citation_proof_kit_paid}</p>
         </div>
         <div className="bg-white border border-gray-200 rounded-lg p-3">
@@ -1711,7 +1711,7 @@ const PdfLibraryTab = ({ token }) => {
       <p className="text-[10.5px] text-gray-400 mt-6 leading-relaxed">
         Need to replace a PDF? Upload the new file via git/SSH to the same path on the server, then rerun
         <code className="mx-1 px-1.5 py-0.5 bg-gray-100 rounded font-mono text-[10px]">scripts/build_citation_proof_kit_pdfs.py</code>
-        for the Citation-Proof Kit set (DOCX &rarr; PDF conversion). New buyers get the fresh version on their next
+        for the Compliance Control Kit set (DOCX &rarr; PDF conversion). New buyers get the fresh version on their next
         purchase; buyers who already received the old copy can request a re-send from the <strong>/resend-my-kit</strong> page.
       </p>
     </div>

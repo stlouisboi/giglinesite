@@ -681,7 +681,7 @@ const HomePage = () => {
                 Recent Engagement
               </p>
               <p className="text-base md:text-lg leading-[1.7] text-white/90 mb-5 max-w-3xl">
-                9-person fabrication shop. Statesville, NC. 13 findings across machine guarding, compressed gas storage, and documentation gaps. 12 of 13 corrective actions closed within 4 days of the walkthrough.
+                Small metal fabrication operation. North Carolina. 13 findings identified across machine guarding, compressed gas storage, and documentation gaps. 12 of 13 corrective actions closed within 4 days of the walkthrough. One remained open at the reporting point. Anonymized example, not a guaranteed or typical outcome.
               </p>
               <Link
                 to="/case-study/metals-fabrication-statesville"
@@ -858,7 +858,7 @@ const HomePage = () => {
             </p>
           </Reveal>
 
-          {/* Concrete scenario, anchored to the real Statesville case study */}
+          {/* Concrete scenario, anchored to the anonymized NC metal fabrication case study */}
           <Reveal>
             <div
               className="mt-10 p-7 md:p-8 max-w-4xl"
@@ -877,7 +877,7 @@ const HomePage = () => {
                 What That Looks Like
               </p>
               <p className="text-[15.5px] md:text-[17px] leading-[1.7] text-white/85" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
-                A 9-person metals fabrication facility in Statesville. One combined walkthrough and documentation review. <strong className="text-white">13 findings.</strong> Seven carried serious-citation risk , up to <strong className="text-white">$16,550 per finding</strong> under the 2026 OSHA maximum penalty schedule. One inspection visit could have stacked those into <strong className="text-white">six figures of penalty exposure</strong>. The corrective action plan closed <strong className="text-white">twelve of thirteen findings inside four days</strong>.
+                A small metal fabrication operation in North Carolina. One combined walkthrough and documentation review. <strong className="text-white">13 findings identified.</strong> Seven carried serious-citation risk , up to <strong className="text-white">$16,550 per finding</strong> under the 2026 OSHA maximum penalty schedule. One inspection visit could have stacked those into <strong className="text-white">six figures of penalty exposure</strong>. The corrective action plan closed <strong className="text-white">twelve of thirteen findings inside four days</strong>. One remained open at the reporting point.
               </p>
               <Link
                 to="/case-study/metals-fabrication-statesville"

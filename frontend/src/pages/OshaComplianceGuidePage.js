@@ -273,7 +273,7 @@ const OshaComplianceGuidePage = () => {
           >
             {[
               { stat: '25+ Years', label: 'Manufacturing Operations Experience' },
-              { stat: '12 of 13', label: 'Findings Closed in 4 Days · Statesville Case Study' },
+              { stat: '12 of 13', label: 'Findings Closed in 4 Days · Anonymized NC Case Study' },
               { stat: 'NC-Based', label: 'Kernersville · Piedmont Triad · OSHA 30-Hour Outreach Trained' },
             ].map((s, i) => (
               <div

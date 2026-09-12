@@ -141,7 +141,7 @@ const SampleReportSection = () => {
               style={{ color: 'rgba(255,255,255,0.78)' }}
               data-testid="sample-report-client-line"
             >
-              Real engagement &middot; Sanitized for publication &middot; Statesville, NC &middot; June 18, 2026
+              Anonymized example &middot; Small NC metal fabrication operation &middot; 2026 engagement
             </p>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-y-3 gap-x-6 pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.12)' }}>
               <MetaField label="Inspector" value="Vince Lawrence" />

@@ -13,22 +13,22 @@ const TEXT_SUBTLE = 'rgba(10,22,40,0.55)';
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
 const serif = { fontFamily: "Georgia, 'Times New Roman', serif" };
 
-// GL-WEB-020, 13 corrective actions from the June 18, 2026 walkthrough.
-// 12 of 13 closed June 22, 2026 (4 days). 1 open (shear guard, scheduled post-relocation).
+// GL-WEB-020, 13 corrective actions from an anonymized GigLine engagement (small NC metal fab, mid-2026).
+// 12 of 13 closed within 4 days of the walkthrough. 1 open at reporting point (shear guard, scheduled post-relocation).
 const CORRECTIVE_ACTIONS = [
-  { id: 'CA-001', issue: 'Written Safety & Health Program required address update to new facility location', action: 'Updated all safety and training forms and policies to reflect future address at 170/174 Innovation Drive.', status: 'Closed Jun 22', open: false },
-  { id: 'CA-002', issue: 'SDS Library gap, Star Fire AW46 Hydraulic Oil and Simple Green not in digital library or physical binder', action: 'Added SDS for both products to physical binder, digital folder, and internal plant information website.', status: 'Closed Jun 22', open: false },
-  { id: 'CA-003', issue: 'Simple Green spray bottles observed unlabeled, GHS labeling required (product name, signal word, hazard pictograms)', action: 'Labeled both spray bottles with appropriate GHS-compliant labels.', status: 'Closed Jun 22', open: false },
-  { id: 'CA-004', issue: 'Machine Guarding Documentation present but compliance gaps identified', action: 'Added machine guarding policy to new hire orientation.', status: 'Closed Jun 22', open: false },
-  { id: 'CA-005', issue: 'Fire Prevention Plan controls in place informally but not captured in a formal document', action: 'Wrote formal Fire Prevention Plan with job-specific tasks and cross-reference to Emergency Action Plan.', status: 'Closed Jun 22', open: false },
-  { id: 'CA-006', issue: 'Heat Stress Prevention Plan not present, required under 29 CFR 1910 General Duty Clause and NC OSHA guidance', action: 'Wrote Heat Stress Prevention Plan and added to new hire orientation.', status: 'Closed Jun 22', open: false },
-  { id: 'CA-007', issue: 'No Corrective Action Log present at facility', action: 'Created Corrective Action Log; employee training protocol established.', status: 'Closed Jun 22', open: false },
-  { id: 'CA-008', issue: 'Near-Miss / Close-Call Report Log not present, OSHA best practice for identifying and correcting hazardous conditions before injury', action: 'Created Near-Miss Log and reporting document; training scheduled.', status: 'Closed Jun 22', open: false },
-  { id: 'CA-009', issue: 'Four 5-gallon pails of AW46 Hydraulic Oil stored on production floor adjacent to D-coiler with no SDS present', action: 'SDS added to binder, digital folder, and internal plant website.', status: 'Closed Jun 22', open: false },
-  { id: 'CA-010', issue: 'Propane cylinder stored upright without chain, bracket, or restraint, positioned adjacent to flammables cabinet with no separation distance', action: 'Cylinder relocated to forklift storage area away from flammables cabinet; permanent rack planned for new facility.', status: 'Closed Jun 22', open: false },
-  { id: 'CA-011', issue: 'Bloodborne Pathogen Exposure Control Plan not present, required under 29 CFR 1910.1030', action: 'Wrote Bloodborne Pathogen Exposure Control Plan and added to new hire training.', status: 'Closed Jun 22', open: false },
-  { id: 'CA-012', issue: 'Shear blade point-of-operation on roll former cut-off mechanism unguarded and accessible during operation', action: 'Light curtains and safety fence planned post-relocation; machine will be set in final position at new facility before guarding is installed.', status: 'Open, Due Sept 1', open: true },
-  { id: 'CA-013', issue: 'Employee Safety Handbook required material revision to meet General Duty Clause requirements', action: 'Updated all safety documents for compliance; REV numbering system implemented for version tracking.', status: 'Closed Jun 22', open: false },
+  { id: 'CA-001', issue: 'Written Safety & Health Program required address update to new facility location', action: 'Updated all safety and training forms and policies to reflect the operation\u2019s future address post-relocation.', status: 'Closed, Day 4', open: false },
+  { id: 'CA-002', issue: 'SDS Library gap, two chemical products not in digital library or physical binder', action: 'Added SDS for both products to physical binder, digital folder, and internal plant information website.', status: 'Closed, Day 4', open: false },
+  { id: 'CA-003', issue: 'Spray bottles observed unlabeled, GHS labeling required (product name, signal word, hazard pictograms)', action: 'Labeled both spray bottles with appropriate GHS-compliant labels.', status: 'Closed, Day 4', open: false },
+  { id: 'CA-004', issue: 'Machine Guarding Documentation present but compliance gaps identified', action: 'Added machine guarding policy to new hire orientation.', status: 'Closed, Day 4', open: false },
+  { id: 'CA-005', issue: 'Fire Prevention Plan controls in place informally but not captured in a formal document', action: 'Wrote formal Fire Prevention Plan with job-specific tasks and cross-reference to Emergency Action Plan.', status: 'Closed, Day 4', open: false },
+  { id: 'CA-006', issue: 'Heat Stress Prevention Plan not present, required under 29 CFR 1910 General Duty Clause and NC OSH guidance', action: 'Wrote Heat Stress Prevention Plan and added to new hire orientation.', status: 'Closed, Day 4', open: false },
+  { id: 'CA-007', issue: 'No Corrective Action Log present at facility', action: 'Created Corrective Action Log; employee training protocol established.', status: 'Closed, Day 4', open: false },
+  { id: 'CA-008', issue: 'Near-Miss / Close-Call Report Log not present, OSHA best practice for identifying and correcting hazardous conditions before injury', action: 'Created Near-Miss Log and reporting document; training scheduled.', status: 'Closed, Day 4', open: false },
+  { id: 'CA-009', issue: 'Four 5-gallon pails of hydraulic oil stored on production floor adjacent to D-coiler with no SDS present', action: 'SDS added to binder, digital folder, and internal plant website.', status: 'Closed, Day 4', open: false },
+  { id: 'CA-010', issue: 'Propane cylinder stored upright without chain, bracket, or restraint, positioned adjacent to flammables cabinet with no separation distance', action: 'Cylinder relocated to forklift storage area away from flammables cabinet; permanent rack planned for new facility.', status: 'Closed, Day 4', open: false },
+  { id: 'CA-011', issue: 'Bloodborne Pathogen Exposure Control Plan not present, required under 29 CFR 1910.1030', action: 'Wrote Bloodborne Pathogen Exposure Control Plan and added to new hire training.', status: 'Closed, Day 4', open: false },
+  { id: 'CA-012', issue: 'Shear blade point-of-operation on roll former cut-off mechanism unguarded and accessible during operation', action: 'Light curtains and safety fence planned post-relocation; machine will be set in final position at new facility before guarding is installed.', status: 'Open at reporting point, scheduled post-relocation', open: true },
+  { id: 'CA-013', issue: 'Employee Safety Handbook required material revision to meet General Duty Clause requirements', action: 'Updated all safety documents for compliance; REV numbering system implemented for version tracking.', status: 'Closed, Day 4', open: false },
 ];
 
 const CASE_FAQS = [
@@ -62,22 +62,23 @@ const CaseStudyMetalsFabricationPage = () => {
     >
       <SEO
         title="What a Safety Walkthrough Actually Finds | GigLine Case Study"
-        description="Metals fabrication case study in Statesville, NC. Combined walkthrough + doc review. 13 findings. 80.3 compliance score.'s what the engagement delivered."
+        description="Anonymized case study of a small North Carolina metal fabrication operation. Combined walkthrough plus documentation review. 13 findings identified, 12 corrected within four days, one open at reporting."
         canonical="/case-study/metals-fabrication-statesville"
         schema={[
           {
             '@context': 'https://schema.org',
             '@type': 'Article',
-            headline: 'What a Safety Walkthrough Actually Finds, Statesville Metals Fabrication Case Study',
+            headline: 'What a Safety Walkthrough Actually Finds, Small NC Metal Fabrication Case Study',
             description:
-              "Metals fab case study, Statesville NC, walkthrough + doc review. 13 findings. 80.3 score. 12 of 13 actions closed in 4 days.",
+              "Anonymized case study, small NC metal fabrication operation, walkthrough plus doc review. 13 findings identified. 80.3 compliance score. 12 of 13 corrective actions closed within four days. One finding remained open at the reporting point.",
             author: { '@type': 'Person', name: 'Vince Lawrence', url: 'https://www.giglinecompliance.com/about' },
             publisher: { '@type': 'Organization', name: 'GigLine Safety & Compliance', url: 'https://www.giglinecompliance.com' },
             datePublished: '2026-06-22',
             mainEntityOfPage: 'https://www.giglinecompliance.com/case-study/metals-fabrication-statesville',
             image: 'https://www.giglinecompliance.com/og-image.png',
             articleSection: 'Case Study',
-            keywords: 'safety walkthrough, documentation review, metals fabrication, Statesville NC, IIPP, LOTO, SDS, HazCom, machine guarding, propane storage',
+            keywords: 'safety walkthrough, documentation review, metals fabrication, North Carolina, IIPP, LOTO, SDS, HazCom, machine guarding, propane storage',
+            about: 'Anonymized illustrative example based on a real GigLine engagement. Client name and location withheld.',
           },
           {
             '@context': 'https://schema.org',
@@ -85,7 +86,7 @@ const CaseStudyMetalsFabricationPage = () => {
             itemListElement: [
               { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.giglinecompliance.com/' },
               { '@type': 'ListItem', position: 2, name: 'Case Studies', item: 'https://www.giglinecompliance.com/case-studies' },
-              { '@type': 'ListItem', position: 3, name: 'Statesville Metals Fabrication', item: 'https://www.giglinecompliance.com/case-study/metals-fabrication-statesville' },
+              { '@type': 'ListItem', position: 3, name: 'NC Metal Fabrication Case Study', item: 'https://www.giglinecompliance.com/case-study/metals-fabrication-statesville' },
             ],
           },
           {
@@ -147,7 +148,7 @@ const CaseStudyMetalsFabricationPage = () => {
             style={{ color: GOLD, ...mono, fontSize: '11px' }}
           >
             <span style={{ borderBottom: `1px solid ${GOLD}`, paddingBottom: '4px' }}>
-              GL-CA-ASS-2026-06 · Report ID 62FC03EB
+              Anonymized Engagement Example
             </span>
           </p>
 
@@ -164,7 +165,7 @@ const CaseStudyMetalsFabricationPage = () => {
             style={{ color: TEXT_MUTED, ...serif }}
             data-testid="case-subhead"
           >
-            A metals fabrication facility in Statesville, NC brought GigLine in for a combined Safety Walkthrough and Documentation Review. Thirteen findings. One written report. No inspection ever happened , and that is the point.
+            A small North Carolina metal fabrication operation brought GigLine in for a combined Safety Walkthrough and Documentation Review. Thirteen findings identified. Twelve corrected within four days. One remained open at the reporting point. No inspection ever happened , and that is the point.
           </p>
 
           <p
@@ -172,7 +173,7 @@ const CaseStudyMetalsFabricationPage = () => {
             style={{ color: TEXT_SUBTLE, ...serif }}
             data-testid="case-client-note"
           >
-            Client name withheld at the client&rsquo;s request. All findings, citations, and outcomes are accurate to the engagement. Report ID: 62FC03EB. Visit date: June 18, 2026.
+            Anonymized example based on a real GigLine engagement. Client name, location, employee names, addresses, and identifying photographs withheld. Findings, priority ratings, and corrective-action tracking accurately reflect the engagement. Presented for illustration of GigLine's assessment and correction-tracking process. Not a guaranteed or typical customer outcome.
           </p>
 
           {/* ENGAGEMENT SNAPSHOT */}
@@ -181,10 +182,10 @@ const CaseStudyMetalsFabricationPage = () => {
             style={{ borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}` }}
             data-testid="case-stats"
           >
-            <StatItem icon={<MapPin size={14} />} label="Location" value="Statesville, NC" />
-            <StatItem icon={<Users size={14} />} label="Headcount" value="9 employees" />
+            <StatItem icon={<MapPin size={14} />} label="Location" value="North Carolina" />
+            <StatItem icon={<Users size={14} />} label="Headcount" value="Under 15 employees" />
             <StatItem icon={<ClipboardCheck size={14} />} label="Scope" value="Walkthrough + Docs" />
-            <StatItem icon={<Calendar size={14} />} label="Visit" value="Jun 18, 2026" />
+            <StatItem icon={<Calendar size={14} />} label="Report Turnaround" value="4 days" />
           </div>
 
           {/* HEADLINE NUMBERS STRIP */}
@@ -193,9 +194,9 @@ const CaseStudyMetalsFabricationPage = () => {
             style={{ borderBottom: `1px solid ${BORDER}` }}
             data-testid="case-headline-numbers"
           >
-            <NumberItem stat="13" label="Findings" sub="7 serious · 6 documentation" />
-            <NumberItem stat="80.3" label="Compliance" sub="of 100" />
-            <NumberItem stat="4" label="Days" sub="walkthrough → report" />
+            <NumberItem stat="13" label="Findings Identified" sub="7 serious · 6 documentation" />
+            <NumberItem stat="12 of 13" label="Corrected in 4 Days" sub="1 open at reporting point" />
+            <NumberItem stat="80.3" label="Compliance Score" sub="of 100" />
           </div>
 
           {/* GL-WEB-022: Inline CTA, keeps the conversion ask visible above the long body */}
@@ -226,14 +227,14 @@ const CaseStudyMetalsFabricationPage = () => {
 
           {/* THE SITUATION */}
           <H2>The Situation</H2>
-          <P>A 9-person metals fabrication operation in Statesville, NC. Two roll formers, two forklifts, an active flammables cabinet, a growing crew.</P>
+          <P>A small North Carolina metal fabrication operation. Under 15 employees, two roll formers, two forklifts, an active flammables cabinet, a growing crew.</P>
           <P>The plant manager had completed OSHA 30-Hour General Industry Outreach Training and had built out most of his safety documentation , some of it using AI-generated templates. He believed his programs were largely in order.</P>
           <P>He brought GigLine in to confirm that before production scaled.</P>
 
           {/* THE ENGAGEMENT */}
           <H2>The Engagement</H2>
           <P>Scope: Combined Safety Walkthrough and Documentation Review , one visit covering both the physical floor and the written programs.</P>
-          <P>Visit date: June 18, 2026. Written report delivered June 22, 2026 , four days after the walkthrough.</P>
+          <P>Written report delivered four days after the walkthrough.</P>
 
           {/* WHAT THE WALKTHROUGH FOUND */}
           <H2>What the Walkthrough Found</H2>
@@ -250,7 +251,7 @@ const CaseStudyMetalsFabricationPage = () => {
               penalty="Up to $16,550 per violation (2026 Serious max)"
               title="Unsecured propane cylinder adjacent to flammable storage cabinet"
               body="One propane cylinder stored upright with no chain, bracket, or restraint, positioned immediately adjacent to the flammable liquids storage cabinet with no separation distance. In a fire event, that arrangement is accelerant against fuel."
-              corrective="Secure immediately. Relocate minimum 20 feet from the cabinet or install a 30-minute fire-rated barrier. Due date assigned: June 20, 2026, two days out."
+              corrective="Secure immediately. Relocate minimum 20 feet from the cabinet or install a 30-minute fire-rated barrier. Assigned due date, two days out from the walkthrough."
             />
             <Finding
               priority="P2, Serious"
@@ -288,8 +289,8 @@ const CaseStudyMetalsFabricationPage = () => {
 
           {/* AFTER THE REPORT */}
           <H2>After the Report</H2>
-          <P>Twelve of 13 findings were closed within four days of the walkthrough , before the formal due date and without pausing production. The one remaining item , the unguarded shear blade on the roll former , has a documented remediation plan: light curtains and a permanent safety fence, to be installed after the machine is set in its final position at the new facility location. The corrective action log entry reads: &ldquo;No current way to guard shear, will add light curtains and safety fence after moving machine to new location and setting in final place.&rdquo;</P>
-          <P>That&rsquo;s how a corrective action log is supposed to work. Findings documented. Owners assigned. Plans recorded. Progress trackable.</P>
+          <P>Twelve of 13 findings were closed within four days of the walkthrough , before the formal due date and without pausing production. One finding remained open at the reporting point , the unguarded shear blade on the roll former , with a documented remediation plan: light curtains and a permanent safety fence, to be installed after the machine is set in its final position at the operation&rsquo;s planned facility move. The corrective action log entry reads: &ldquo;No current way to guard shear, will add light curtains and safety fence after moving machine to new location and setting in final place.&rdquo;</P>
+          <P>That&rsquo;s how a corrective action log is supposed to work. Findings documented. Owners assigned. Plans recorded. Progress trackable. Open items visible.</P>
 
           {/* GL-WEB-017, Standalone Corrective Action Log download (ungated) */}
           <div
@@ -331,8 +332,8 @@ const CaseStudyMetalsFabricationPage = () => {
             {[
               { stat: '13', label: 'Findings Identified' },
               { stat: '12 of 13', label: 'Closed Within 4 Days' },
-              { stat: '4 Days', label: 'To Close 12 of 13' },
-              { stat: '92.3%', label: 'Closure Rate' },
+              { stat: '1', label: 'Open at Reporting Point' },
+              { stat: '4 Days', label: 'Report Turnaround' },
             ].map((s, i) => (
               <div
                 key={i}
@@ -374,7 +375,7 @@ const CaseStudyMetalsFabricationPage = () => {
               What We Found. What They Did.
             </h2>
             <p className="text-[15px] md:text-base leading-[1.7] mb-8 max-w-3xl" style={{ color: TEXT_MUTED, ...serif }}>
-              Every finding below was identified during the June 18, 2026 walkthrough. Corrective actions were assigned to Kevin Stutts, Plant Manager. 12 of 13 findings were closed within four days of the inspection date. One finding remains open pending the facility&rsquo;s planned move to 170/174 Innovation Drive.
+              Every finding below was identified during the walkthrough. Corrective actions were assigned to the operation&rsquo;s plant manager. Twelve of 13 findings were closed within four days. One finding remained open at the reporting point pending the operation&rsquo;s planned facility move.
             </p>
 
             <div className="overflow-x-auto" style={{ border: `1px solid ${BORDER}`, borderRadius: '4px' }}>
@@ -442,15 +443,15 @@ const CaseStudyMetalsFabricationPage = () => {
             </h2>
             <div className="space-y-5 max-w-3xl" style={{ ...serif }}>
               <p className="text-[16px] md:text-[17px] leading-[1.72]" style={{ color: TEXT_MUTED }}>
-                Amero Steel Supply completed 12 of 13 corrective actions within four days of the GigLine walkthrough , before the formal due date and without pausing production. The one open item, a shear blade point-of-operation guard, is scheduled for installation after the facility relocates to 170/174 Innovation Drive in August 2026.
+                The operation closed 12 of 13 corrective actions within four days of the GigLine walkthrough , before the formal due date and without pausing production. One item, a shear blade point-of-operation guard, remained open at the reporting point, scheduled for installation after the operation completes its planned facility relocation.
               </p>
               <p className="text-[16px] md:text-[17px] leading-[1.72]" style={{ color: TEXT_MUTED }}>
-                The engagement moved Amero from a compliance score of 80.3 to a post-action rate of 92.3% , with the remaining gap tied to a planned capital improvement, not a documentation failure.
+                Twelve of 13 findings closed. Compliance score began at 80.3. The remaining gap is tied to a planned capital improvement rather than a documentation failure. Anonymized engagement, illustrative example. Not a guaranteed or typical outcome.
               </p>
             </div>
           </div>
 
-          {/* ─── GL-WEB-020: Pull Quote, verbatim attribution verified Feb 2026 ─── */}
+          {/* ─── GL-WEB-020: Pull Quote from an anonymized engagement, attribution generalized ─── */}
           <blockquote
             className="not-italic my-14 p-7 md:p-9"
             style={{
@@ -468,7 +469,7 @@ const CaseStudyMetalsFabricationPage = () => {
               className="uppercase tracking-[0.22em] font-bold"
               style={{ color: GOLD, ...mono, fontSize: '10.5px' }}
             >
-             , Kevin Stutts, Plant Manager, Amero Steel Supply
+              , Plant Manager, small NC metal fabrication operation (name withheld)
             </footer>
           </blockquote>
 

@@ -31,7 +31,7 @@ export const SITE_SEARCH_INDEX = [
   { title: 'OSHA Documentation Review (NC)', path: '/osha-documentation-review-nc', type: 'Service', keywords: 'documentation review program written record audit' },
 
   // ── Case Study ─────────────────────────────────────────
-  { title: 'Case Study: Metals Fabrication, Statesville NC', path: '/case-study/metals-fabrication-statesville', type: 'Case Study', keywords: 'case study metals fabrication statesville propane machine guarding hazcom' },
+  { title: 'Case Study: Small NC Metal Fabrication Operation', path: '/case-study/metals-fabrication-statesville', type: 'Case Study', keywords: 'case study metals fabrication north carolina propane machine guarding hazcom anonymized' },
 
   // ── Pillar / Hub pages ─────────────────────────────────
   { title: 'OSHA Compliance Guide', path: '/osha-compliance-guide', type: 'Page', keywords: 'osha compliance guide pillar overview general industry' },

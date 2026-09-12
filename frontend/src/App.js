@@ -35,6 +35,9 @@ const ClientIntakePage                = lazy(() => import('./pages/ClientIntakeP
 const StatusPage                      = lazy(() => import('./pages/StatusPage'));
 const ReportPage                      = lazy(() => import('./pages/ReportPage'));
 const AdminPage                       = lazy(() => import('./pages/AdminPage'));
+// Phase 2 lead-magnet drafts, gated behind feature flags. Not indexed, not in sitemap, not linked from nav.
+const FirstPullChecklistPage          = lazy(() => import('./pages/FirstPullChecklistPage'));
+const OshaTwelveQuestionsPage         = lazy(() => import('./pages/OshaTwelveQuestionsPage'));
 const FieldNotesPage                  = lazy(() => import('./pages/FieldNotesPage'));
 const FieldNoteDetailPage             = lazy(() => import('./pages/FieldNoteDetailPage'));
 const CityLandingPage                 = lazy(() => import('./pages/CityLandingPage'));
@@ -182,6 +185,9 @@ function App() {
                     <Route path="/osha-documentation-review-nc" element={<OSHADocumentationReviewNCPage />} />
                     <Route path="/request-walkthrough" element={<Navigate to="/intake" replace />} />
                     <Route path="/admin" element={<AdminPage />} />
+                    {/* Phase 2 lead-magnet drafts (gated behind feature flags in /config/features.js). Not linked from nav, not indexed, not in sitemap. */}
+                    <Route path="/first-pull/:slug" element={<FirstPullChecklistPage />} />
+                    <Route path="/12-questions" element={<OshaTwelveQuestionsPage />} />
                     <Route path="/field-notes" element={<FieldNotesPage />} />
                     <Route path="/field-notes/:slug" element={<FieldNoteDetailPage />} />
                     {/* Buyer-intent service landing pages (Findability Framework), must be defined

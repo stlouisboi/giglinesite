@@ -147,7 +147,7 @@ const BlogOSHAPenaltyNC2026 = () => (
 
         <div className="my-8 p-5 rounded-lg border-l-4" style={{ borderColor: '#C9A84C', background: '#FAF7F1' }}>
           <p className="text-[15px] leading-[1.7] text-[#1C2B2B]/85" style={{ fontFamily: "Georgia, serif" }}>
-            <strong>Worked example.</strong> A metals fabrication shop in Statesville had five press brakes without documented lockout/tagout procedures under 29 CFR 1910.147(c)(4)(ii). Instead of one citation at $16,550, that&rsquo;s five citations totaling <strong>$82,750</strong> at the max. Actual assessed penalties are usually below the maximum after gravity + good-faith adjustments , but even at 40% of maximum, that&rsquo;s a $33,100 hit for missing paperwork the shop could have produced in an afternoon.
+            <strong>Worked example.</strong> A small NC metal fabrication operation had five press brakes without documented lockout/tagout procedures under 29 CFR 1910.147(c)(4)(ii). Instead of one citation at $16,550, that&rsquo;s five citations totaling <strong>$82,750</strong> at the max. Actual assessed penalties are usually below the maximum after gravity + good-faith adjustments , but even at 40% of maximum, that&rsquo;s a $33,100 hit for missing paperwork the shop could have produced in an afternoon.
           </p>
         </div>
 

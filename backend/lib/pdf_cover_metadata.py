@@ -86,7 +86,7 @@ COVERS = {
     ),
     'gl-case-study-statesville-2026.pdf': dict(
         title='Metals Fabrication Case Study',
-        subtitle='Statesville, NC — June 2026',
+        subtitle='Small NC Metal Fabrication Operation — 2026 (Anonymized)',
         body='A redacted engagement summary from a real Compliance Readiness Visit. Findings, corrective actions, timelines, and outcomes — with client identifiers withheld.',
         header_slug='CASE STUDY | REDACTED',
         version_footer='Report ID 62FC03EB',
@@ -144,7 +144,7 @@ COVERS = {
     ),
     'GigLine_Sample_Corrective_Action_Log.pdf': dict(
         title='Sample Corrective Action Log',
-        subtitle='Metals Fabrication · Statesville, NC · June 2026',
+        subtitle='Metals Fabrication · Small NC Operation · 2026 (Anonymized)',
         body='Pages 7–17 of a real engagement report. Findings, CFR citations, priority ratings, corrective actions, and timelines are accurate to the engagement. Client identifiers withheld.',
         header_slug='REDACTED EXCERPT | REPORT ID 62FC03EB',
         version_footer='2026 Edition',

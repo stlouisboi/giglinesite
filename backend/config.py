@@ -30,6 +30,7 @@ except ImportError:
 import stripe as stripe_lib
 
 stripe_api_key = os.environ.get('STRIPE_API_KEY', 'sk_test_emergent')
+STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET', '')
 
 # Stripe webhook signing secret. When set, incoming webhook requests must present
 # a valid Stripe-Signature header signed with this secret. When missing, the
@@ -60,6 +61,11 @@ if not _admin_password_env:
 else:
     ADMIN_PASSWORD = _admin_password_env
     ADMIN_PASSWORD_CONFIGURED = True
+
+
+def is_admin(token) -> bool:
+    """Constant-time comparison of a caller-supplied token against ADMIN_PASSWORD."""
+    return secrets.compare_digest(str(token or ""), ADMIN_PASSWORD)
 
 # Logging
 logging.basicConfig(

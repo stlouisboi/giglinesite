@@ -852,10 +852,13 @@ SCHEDULING & LOGISTICS
 ───────────────────────────────────────────────────────
 PRICING REFERENCE  (current public floor pricing)
 ───────────────────────────────────────────────────────
-Safety Walkthrough : From $1,200 (small ops typically $1,200–$2,000) + travel fee outside primary area
-Compliance Readiness Visit : From $2,000 (Walkthrough + Doc Review in a single visit; saves up to $500 vs separate)
+Safety Walkthrough : From $1,300 (fixed quote before scheduling; travel fee may apply outside primary area)
+Compliance Readiness Visit : From $2,500 (Walkthrough + Doc Review in a single visit; saves $500 vs separate)
+Documentation Readiness Review : From $1,700 (standalone document review; written 5-day report)
 Incident Review    : From $1,500 (root cause, OSHA recordability, corrective action plan)
-Doc Development    : single program from $350 | LOTO + up to 5 machines from $650 | LOTO + 6–15 machines from $1,200 | full suite (5+ programs) from $2,000
+Corrective Action Implementation : Custom quote, most projects begin at $2,500
+Safety Control System Buildout : Starting at $4,500
+Ongoing Safety Support : Starting at $1,850 per month (recurring)
 Supervisor Safety OS: $600 Digital Kit / $700 Physical Binder Kit (included free with every CRV)
 
 ───────────────────────────────────────────────────────

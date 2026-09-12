@@ -27,7 +27,7 @@ const RESOURCES = [
     gate: 'Ungated',
     icon: ClipboardCheck,
     description:
-      'Free 90-second OSHA self-screen, surfaces exposure points most often missed. Personalized PDF report. No email to start.',
+      'Free 90-second OSHA self-screen, surfaces exposure points most often missed. Instant on-screen risk score and prioritized next steps. No email required.',
     cta: 'Start the Check',
     href: '/safety-check',
     internal: true,

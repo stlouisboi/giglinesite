@@ -83,7 +83,7 @@ const LOCAL_BUSINESS = {
     { '@type': 'City', name: 'Charlotte' },
     { '@type': 'City', name: 'Raleigh' },
   ],
-  priceRange: '$950–$12000',
+  priceRange: '$29–$4500',
   paymentAccepted: 'Credit Card, ACH, Check, Stripe',
   currenciesAccepted: 'USD',
   slogan: 'Find the gaps before OSHA does.',
@@ -112,7 +112,7 @@ const LOCAL_BUSINESS = {
     '@type': 'OfferCatalog',
     name: 'Safety Services',
     itemListElement: [
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Safety Walkthrough & Top 10 Fixes Report' }, price: '1200', priceCurrency: 'USD' },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Safety Walkthrough & Top 10 Fixes Report' }, price: '1300', priceCurrency: 'USD' },
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'OSHA Documentation Readiness Review' }, price: DOC_REVIEW_PRICE_NUM, priceCurrency: 'USD' },
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Incident Review & Corrective Action Support' }, price: '1500', priceCurrency: 'USD' },
     ],
@@ -318,19 +318,19 @@ const routes = [
         '@type': 'ItemList',
         name: 'GigLine Safety Consulting Services',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, item: { '@type': 'Service', name: 'Compliance Readiness Visit', description: 'Combined on-site walkthrough and OSHA Documentation Readiness Review delivered as a single readiness report. Recommended starting point.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '2000', priceCurrency: 'USD' } } },
-          { '@type': 'ListItem', position: 2, item: { '@type': 'Service', name: 'Safety Walkthrough & Top 10 Fixes Report', description: 'A structured on-site review of common OSHA exposure areas with a Top 10 priority report.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '1200', priceCurrency: 'USD' } } },
+          { '@type': 'ListItem', position: 1, item: { '@type': 'Service', name: 'Compliance Readiness Visit', description: 'Combined on-site walkthrough and OSHA Documentation Readiness Review delivered as a single readiness report. Recommended starting point.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '2500', priceCurrency: 'USD' } } },
+          { '@type': 'ListItem', position: 2, item: { '@type': 'Service', name: 'Safety Walkthrough & Top 10 Fixes Report', description: 'A structured on-site review of common OSHA exposure areas with a Top 10 priority report.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '1300', priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 3, item: { '@type': 'Service', name: 'OSHA Documentation Readiness Review', description: DOC_REVIEW_DESCRIPTION, provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: DOC_REVIEW_PRICE_NUM, priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 4, item: { '@type': 'Service', name: 'Incident Review & Corrective Action Support', description: 'Post-incident review, OSHA recordability determination, and corrective action documentation.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '1500', priceCurrency: 'USD' } } },
-          { '@type': 'ListItem', position: 5, item: { '@type': 'Service', name: 'GigLine Safety Control System Buildout', description: 'Four-binder command system + digital folder architecture, training matrix, SDS organization & corrective action tracker. From $4,500.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '4500', priceCurrency: 'USD' } } },
-          { '@type': 'ListItem', position: 6, item: { '@type': 'Service', name: 'Quarterly Compliance Maintenance', description: 'Ongoing quarterly documentation review, training record audit, and corrective action tracker review.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '950', priceCurrency: 'USD' } } },
-          { '@type': 'ListItem', position: 7, item: { '@type': 'Service', name: 'Annual Compliance Control Partner', description: '2 walkthroughs, 4 doc reviews, quarterly calls, 300A reminders, on-call access. Full-year OSHA compliance partnership. $12,000/year.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '12000', priceCurrency: 'USD' } } },
+          { '@type': 'ListItem', position: 5, item: { '@type': 'Service', name: 'Safety Control System Buildout', description: 'Four-binder command system + digital folder architecture, training matrix, SDS organization & corrective action tracker. Starting at $4,500.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '4500', priceCurrency: 'USD' } } },
+          { '@type': 'ListItem', position: 6, item: { '@type': 'Service', name: 'Corrective Action Implementation', description: 'Hands-on close-out of selected findings surfaced by a Documentation Readiness Review or Compliance Readiness Visit. Custom quote, most projects begin at $2,500.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '2500', priceCurrency: 'USD' } } },
+          { '@type': 'ListItem', position: 7, item: { '@type': 'Service', name: 'Ongoing Safety Support', description: 'Recurring monthly safety support for small employers, one scheduled on-site visit, corrective-action tracker updates, records review, and management report.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '1850', priceCurrency: 'USD' } } },
         ],
       },
       faqSchema([
         { q: 'How do I know which service to start with?', a: 'Most clients start with the Compliance Readiness Visit. It reviews both the floor and the documentation in one visit, gives you a single compliance score, and tells you exactly what to fix first. If you only need one side reviewed, start with the Safety Walkthrough or the OSHA Documentation Readiness Review.' },
         { q: 'Are the prices fixed or do they go up later?', a: 'Fixed quote before scheduling. The price you see is the starting point, GigLine confirms scope and confirms the final fixed quote in writing before any visit is scheduled. No hourly billing. No retainer.' },
-        { q: 'Do I have to sign up for ongoing services?', a: 'No. Every service is a single engagement. Quarterly Maintenance and the Annual Compliance Control Partner are optional, they exist for operations that want the system kept current after the Control System is built.' },
+        { q: 'Do I have to sign up for ongoing services?', a: 'No. Every service is a single engagement. Ongoing Safety Support (starting at $1,850 per month) is optional, it exists for operations that want the system kept current after the initial Compliance Readiness Visit.' },
         { q: 'Will GigLine share findings with OSHA or my insurance carrier?', a: 'No. The engagement is private. The only deliverable is the written report handed to you. Nothing is shared with OSHA, insurance carriers, or any third party.' },
         { q: 'What happens after I submit a request?', a: 'GigLine reviews the intake within one business day, confirms scope and fixed pricing, and schedules the visit. Most walkthroughs are scheduled within 5–7 business days of the confirmed quote.' },
       ]),
@@ -358,9 +358,9 @@ const routes = [
       <h2>GigLine Safety Control System Buildout, Starting at $4,500</h2>
       <p>Premium engagement. Four-binder physical command system, digital folder architecture, training matrix + SDS organization, corrective action tracker, 90-day maintenance calendar, supervisor walkthrough at handoff.</p>
       <h2>The Natural Next Step, Quarterly and Annual Support</h2>
-      <p>Quarterly Compliance Maintenance, Starting at $950/quarter. Annual Compliance Control Partner, $12,000/year ($1,000/month equivalent).</p>
+      <p>Ongoing Safety Support, Starting at $1,850 per month, includes one scheduled on-site visit, corrective-action tracker updates, records review, and a monthly management report. Begins with an initial Compliance Readiness Visit ($2,500).</p>
       <h2>The GigLine Readiness Path</h2>
-      <p>Find the issues, Safety Walkthrough from $1,300. Check the files, OSHA Documentation Readiness Review from ${DOC_REVIEW_PRICE_LABEL}. Review both, Compliance Readiness Visit from $2,500. Build the system, Safety Control System Buildout from $4,500. Keep it current, Quarterly Maintenance from $950/quarter.</p>
+      <p>Find the issues, Safety Walkthrough from $1,300. Check the files, OSHA Documentation Readiness Review from ${DOC_REVIEW_PRICE_LABEL}. Review both, Compliance Readiness Visit from $2,500. Build the system, Safety Control System Buildout from $4,500. Keep it current, Ongoing Safety Support from $1,850/month.</p>
       <h2>Recent Engagement , Case Study</h2>
       <p><a href="/case-study/metals-fabrication-statesville">What a Safety Walkthrough Actually Finds</a>.</p>
       <p>After payment, you'll receive a scheduling confirmation within one business day.</p>
@@ -461,7 +461,7 @@ const routes = [
   {
     path: '/ongoing-safety-support',
     title: 'Ongoing Safety Support for Small Employers | GigLine',
-    description: 'Keep inspections, corrective actions, training records, and safety documentation moving with ongoing support from GigLine. Serving small manufacturers, warehouses, contractors, and fleets in the Piedmont Triad. Plans start at $1,650 per month after an initial readiness assessment.',
+    description: 'Keep inspections, corrective actions, training records, and safety documentation moving with ongoing support from GigLine. Serving small manufacturers, warehouses, contractors, and fleets in the Piedmont Triad. Plans start at $1,850 per month after an initial readiness assessment.',
     canonical: '/ongoing-safety-support',
     schemas: [
       {
@@ -472,16 +472,16 @@ const routes = [
         areaServed: { '@type': 'State', name: 'North Carolina' },
         offers: {
           '@type': 'Offer',
-          price: '1650',
+          price: '1850',
           priceCurrency: 'USD',
           priceSpecification: {
             '@type': 'UnitPriceSpecification',
-            price: '1650',
+            price: '1850',
             priceCurrency: 'USD',
             unitCode: 'MON',
             referenceQuantity: { '@type': 'QuantitativeValue', value: 1, unitCode: 'MON' },
           },
-          description: 'Ongoing Safety Support, starting at $1,650 per month following an initial Compliance Readiness Visit.',
+          description: 'Ongoing Safety Support, starting at $1,850 per month following an initial Compliance Readiness Visit.',
         },
         description:
           'Monthly safety support for small employers that need consistent follow-through but are not ready for a full-time safety manager. On-site visit, corrective-action tracking, records review, management reporting.',
@@ -489,7 +489,7 @@ const routes = [
       faqSchema([
         { q: 'Is this the same as hiring a full-time safety manager?', a: 'No. It provides defined, recurring professional support at a lower commitment than a full-time employee. The client continues to manage daily operations, supervise employees, approve spending, and complete corrective actions.' },
         { q: 'Why is an initial Compliance Readiness Visit required?', a: 'GigLine should not agree to support a program it has not evaluated. The initial visit establishes the condition of the floor, documents, and open risks so the recurring scope and price are responsible.' },
-        { q: 'Is every company under 50 employees charged $1,650?', a: 'No. That is the starting price. Hazard level, locations, shifts, incident history, program condition, travel, and requested access affect the final scope.' },
+        { q: 'Is every company under 50 employees charged $1,850?', a: 'No. That is the starting price. Hazard level, locations, shifts, incident history, program condition, travel, and requested access affect the final scope.' },
         { q: 'Does the monthly fee include every safety project?', a: 'No. The agreement defines the monthly capacity and deliverables. Large corrective-action projects, full investigations, new written programs, specialized training, engineering, industrial hygiene, equipment, and other out-of-scope work are quoted separately.' },
         { q: 'What does corrective-action tracking include?', a: 'GigLine records the agreed status, client owner, target date, evidence, and verification status of tracked findings. The monthly service does not include performing physical corrections, directing client labor, purchasing controls, engineering solutions, or completing corrective-action projects unless separately authorized.' },
         { q: 'What happens when the monthly capacity is used?', a: 'GigLine will identify the remaining work and either move an agreed priority to the next service period, reduce another included activity, or issue a separate written scope. Additional work does not begin without authorization.' },
@@ -508,7 +508,7 @@ const routes = [
       <h1>Ongoing Safety Support for Small Employers</h1>
       <p><strong>Findings stay open. Records go missing. The same hazards return.</strong></p>
       <p>Ongoing safety support for small employers that need consistent follow-through but are not ready for a full-time safety manager. GigLine helps keep inspections, corrective actions, selected safety records, and management follow-up moving month after month.</p>
-      <p><strong>Plans start at $1,650 per month following an initial Compliance Readiness Visit.</strong></p>
+      <p><strong>Plans start at $1,850 per month following an initial Compliance Readiness Visit.</strong></p>
       <p>Piedmont Triad-based · OSHA 30-Hour Outreach Trained · Manufacturing and operations experience · U.S. Navy veteran-owned</p>
 
       <h2>The problem, Safety usually gets handed to somebody who already has a full-time job.</h2>
@@ -547,7 +547,7 @@ const routes = [
       <p><em>Employee count alone does not determine the price. Operations with multiple shifts, locations, or higher-risk processes require a custom scope.</em></p>
 
       <h2>Starting investment</h2>
-      <p><strong>Ongoing Safety Support, Starting at $1,650 per month.</strong> The starting plan is designed for one location, one primary shift, and up to eight total hours of monthly service. Base pricing normally applies to facilities within 45 minutes of Kernersville under normal driving conditions.</p>
+      <p><strong>Ongoing Safety Support, Starting at $1,850 per month.</strong> The starting plan is designed for one location, one primary shift, and up to eight total hours of monthly service. Base pricing normally applies to facilities within 45 minutes of Kernersville under normal driving conditions.</p>
       <p>New recurring clients begin with a paid Compliance Readiness Visit ($2,500) so GigLine can see the actual operation before agreeing to maintain the work. For a new client entering the standard 90-day initial term at the starting monthly price, the combined initial investment is <strong>$7,450</strong>, the assessment plus three monthly payments. A recent equivalent assessment may be accepted only when GigLine determines that it provides a reliable baseline.</p>
 
       <h2>What this is and what it is not</h2>
@@ -560,7 +560,7 @@ const routes = [
       <h2>Frequently asked questions</h2>
       <h3>Is this the same as hiring a full-time safety manager?</h3><p>No. It provides defined, recurring professional support at a lower commitment than a full-time employee.</p>
       <h3>Why is an initial Compliance Readiness Visit required?</h3><p>GigLine should not agree to support a program it has not evaluated.</p>
-      <h3>Is every company under 50 employees charged $1,650?</h3><p>No. That is the starting price.</p>
+      <h3>Is every company under 50 employees charged $1,850?</h3><p>No. That is the starting price.</p>
       <h3>Does the monthly fee include every safety project?</h3><p>No. The agreement defines the monthly capacity and deliverables. Large corrective-action projects, full investigations, new written programs, specialized training, engineering, industrial hygiene, equipment, and other out-of-scope work are quoted separately.</p>
       <h3>Can GigLine guarantee OSHA compliance?</h3><p>No responsible consultant can guarantee that every hazard will be identified, that every incident will be prevented, or that an employer will never receive a citation.</p>
 
@@ -1290,7 +1290,7 @@ const routes = [
         description: 'On-site OSHA safety walkthrough for NC manufacturers, warehouses & contractors. Written report in 48 hours. From $1,300.',
         provider: { '@id': `${BASE_URL}/#business` },
         areaServed: { '@type': 'State', name: 'North Carolina' },
-        offers: { '@type': 'Offer', price: '1200', priceCurrency: 'USD' },
+        offers: { '@type': 'Offer', price: '1300', priceCurrency: 'USD' },
       },
       faqSchema([
         { q: 'Who is the safety walkthrough built for?', a: 'Small to mid-size manufacturers, warehouses, distribution centers, contractors, and fleet operations in North Carolina, typically 5 to 100 employees with no full-time safety manager on staff.' },
@@ -1329,7 +1329,7 @@ const routes = [
         provider: { '@id': `${BASE_URL}/#business` },
         areaServed: { '@type': 'State', name: 'North Carolina' },
         serviceType: 'Forklift Compliance Review',
-        offers: { '@type': 'Offer', price: '1200', priceCurrency: 'USD', availability: 'https://schema.org/InStock' },
+        offers: { '@type': 'Offer', price: '1300', priceCurrency: 'USD', availability: 'https://schema.org/InStock' },
       },
       faqSchema([
         { q: 'What does the Forklift Compliance Review cover?', a: 'The written PIT program against your actual fleet, operator certification roster vs. floor operators, daily pre-shift inspection logs, forklift physical condition (forks, seat belt, horn, tires, data plate), pedestrian / forklift separation and aisle marking, charging or propane storage compliance, and refresher training documentation.' },
@@ -1367,7 +1367,7 @@ const routes = [
         provider: { '@id': `${BASE_URL}/#business` },
         areaServed: { '@type': 'State', name: 'North Carolina' },
         serviceType: 'Lockout/Tagout Procedure Review',
-        offers: { '@type': 'Offer', price: '1200', priceCurrency: 'USD', availability: 'https://schema.org/InStock' },
+        offers: { '@type': 'Offer', price: '1300', priceCurrency: 'USD', availability: 'https://schema.org/InStock' },
       },
       faqSchema([
         { q: 'What does the LOTO Procedure Review cover?', a: 'Written Control of Hazardous Energy program against your actual machinery, machine-specific lockout procedures with energy-source identification, authorized vs. affected employee training rosters, lock and tag hardware (sufficient padlocks, dedicated assignments), annual procedure audit documentation, and group lockout / shift change practices.' },
@@ -1479,7 +1479,7 @@ const routes = [
         description: 'Combined on-site walkthrough + OSHA doc review for NC operations preparing for inspection, audit, or insurance. From $2,500.',
         provider: { '@id': `${BASE_URL}/#business` },
         areaServed: { '@type': 'State', name: 'North Carolina' },
-        offers: { '@type': 'Offer', price: '2000', priceCurrency: 'USD' },
+        offers: { '@type': 'Offer', price: '2500', priceCurrency: 'USD' },
       },
       faqSchema([
         { q: 'Who is a Compliance Readiness Visit for?', a: 'Operations with OSHA on the calendar, those that had a recordable injury or workers\' comp flag, businesses where an insurance carrier or major customer asked for documented compliance evidence, or operations going through M&A due diligence.' },
@@ -1692,7 +1692,7 @@ const SERVICE_DETAIL_ROUTES = [
     description: 'On-site OSHA walkthrough, photo-documented findings, CFR citations, 48-hour report. Fixed quote. Piedmont Triad NC. From $1,300.',
     h1: 'Find what\'s exposed. Before OSHA does.',
     summary: 'An on-site walkthrough focused purely on physical hazards. Photo-documented findings, CFR citations, and a prioritized fix list delivered within 48 hours. From $1,300.',
-    price: '1200',
+    price: '1300',
     breadcrumbName: 'Safety Walkthrough Report',
   },
   {
@@ -1710,17 +1710,8 @@ const SERVICE_DETAIL_ROUTES = [
     description: "GigLine's most requested engagement. On-site walkthrough + documentation review in a single visit. 18-page CFR-cited report. 90-day remediation tracker. From $2,500.",
     h1: 'Floor and files reviewed in a single engagement.',
     summary: 'The most requested GigLine engagement. A Safety Walkthrough and OSHA Documentation Readiness Review combined into a single on-site visit. 18-page CFR-cited report delivered in 48 hours. From $2,500.',
-    price: '2000',
+    price: '2500',
     breadcrumbName: 'Compliance Readiness Visit',
-  },
-  {
-    slug: 'annual-compliance-partner',
-    title: 'Annual Compliance Control Partner, $12,000/year | GigLine',
-    description: 'Year-long OSHA compliance partnership, 2 walkthroughs, 4 doc reviews, quarterly calls, on-call access. $12,000/year.',
-    h1: 'When OSHA shows up, you need someone who already knows your operation.',
-    summary: 'Two full walkthroughs per year. Quarterly documentation reviews. Training record maintenance. Pre-inspection readiness review. On-call access between visits. $12,000/year ($1,000/month equivalent).',
-    price: '12000',
-    breadcrumbName: 'Annual Compliance Control Partner',
   },
   {
     slug: 'incident-review',

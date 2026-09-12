@@ -24,7 +24,7 @@ const Footer = () => {
               Safety Walkthroughs and Documentation Readiness Reviews for Small Operations
             </p>
             <a
-              href="https://g.page/r/CdlAYUu_I3xpEAI/review?utm_source=footer&utm_medium=website&utm_campaign=review-request"
+              href="https://www.google.com/search?q=GigLine+Safety+%26+Compliance+Kernersville+NC&stick=&hl=en&reviews=1&utm_source=footer&utm_medium=website&utm_campaign=review-read"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-sm text-white/60 hover:text-white transition-colors mb-4"
@@ -92,7 +92,7 @@ const Footer = () => {
                 {[
                   { name: 'Home', path: '/' },
                   { name: 'Services', path: '/services' },
-                  { name: 'Citation-Proof Kits', path: '/citation-proof-kits' },
+                  { name: 'GigLine Compliance Control Kit Series', path: '/citation-proof-kits' },
                   { name: 'Field Notes', path: '/field-notes' },
                   { name: 'Blog', path: '/blog' },
                   { name: 'Service Areas', path: '/service-areas' },

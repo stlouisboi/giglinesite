@@ -40,7 +40,6 @@ const FieldNoteDetailPage             = lazy(() => import('./pages/FieldNoteDeta
 const CityLandingPage                 = lazy(() => import('./pages/CityLandingPage'));
 const FAQPage                         = lazy(() => import('./pages/FAQPage'));
 const ServiceDetailPage               = lazy(() => import('./pages/ServiceDetailPage'));
-const AnnualCompliancePartnerPage     = lazy(() => import('./pages/AnnualCompliancePartnerPage'));
 const ComplianceReadinessVisitPage    = lazy(() => import('./pages/ComplianceReadinessVisitPage'));
 const ServiceAreasPage                = lazy(() => import('./pages/ServiceAreasPage'));
 const WalkthroughLandingPage          = lazy(() => import('./pages/WalkthroughLandingPage'));
@@ -141,7 +140,10 @@ function App() {
                     <Route path="/services" element={<ServicesPage />} />
                     {/* Sunset (Feb 2026): Document Development replaced by Documentation Readiness Review + Corrective Action Implementation funnel */}
                     <Route path="/services/document-development" element={<Navigate to="/services/documentation-readiness-review" replace />} />
-                    <Route path="/services/annual-compliance-partner" element={<AnnualCompliancePartnerPage />} />
+                    {/* Sunset (Feb 2026): Annual Compliance Partner replaced by Ongoing Safety Support */}
+                    <Route path="/services/annual-compliance-partner" element={<Navigate to="/ongoing-safety-support" replace />} />
+                    <Route path="/services/quarterly-compliance-maintenance" element={<Navigate to="/ongoing-safety-support" replace />} />
+                    <Route path="/services/ongoing-safety-support" element={<Navigate to="/ongoing-safety-support" replace />} />
                     <Route path="/services/compliance-readiness-visit" element={<ComplianceReadinessVisitPage />} />
                     {/* 301-equivalent: legacy /services/safety-walkthrough URLs consolidated to /safety-walkthrough */}
                     <Route path="/services/safety-walkthrough" element={<Navigate to="/safety-walkthrough" replace />} />

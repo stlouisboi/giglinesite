@@ -1,17 +1,87 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Send } from 'lucide-react';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL;
+
+// GigLine Compliance Control Kit Series, slug -> display name
+const KIT_NAMES = {
+  'loto-readiness-kit': 'LOTO Readiness Kit',
+  'forklift-pit-readiness-kit': 'Forklift & PIT Readiness Kit',
+  'hazcom-pro-kit': 'HazCom Pro Kit',
+  'incident-to-correction-kit': 'Incident-to-Correction Kit',
+  'new-hire-orientation-kit': 'New Hire Orientation Kit',
+};
+
+// Tier id -> canonical display name (matches servicePricing.js KIT_PRICES)
+const TIER_NAMES = {
+  'digital': 'Digital Compliance Kit',
+  'control-system': 'Compliance Control System',
+  'binder': 'Compliance Binder Edition',
+};
+
+const formatPrice = (raw) => {
+  if (!raw) return '';
+  const num = Number(String(raw).replace(/[^0-9.]/g, ''));
+  if (!Number.isFinite(num) || num <= 0) return '';
+  return `$${num.toLocaleString('en-US')}`;
+};
 
 /**
  * GL-WEB-024, Simple Contact Form.
  * Fields: name (req), email (req), phone (opt), message (req) + honeypot.
  * Style: matches the intake form's field treatment adapted for a light section.
  * On submit: Resend confirmation to prospect + notification to Vince.
+ *
+ * Kit purchase handoff (Phase 1, Feb 2026):
+ * When the buyer arrives with ?kit=<slug>&tier=<tier>&price=<price>&intent=<purchase|notify>
+ * from KitPricingTiers, render a "You selected" summary block, prefill the
+ * message with the selection, and switch the submit CTA to an
+ * edition-specific label (e.g. "Request My Binder Invoice").
  */
 const ContactMessageForm = () => {
-  const [form, setForm] = useState({ name: '', email: '', phone: '', message: '', website: '' });
+  const [searchParams] = useSearchParams();
+  const selection = useMemo(() => {
+    const kitSlug = searchParams.get('kit') || '';
+    const tierId = searchParams.get('tier') || '';
+    const price = searchParams.get('price') || '';
+    const intent = searchParams.get('intent') || '';
+    if (!kitSlug || !tierId) return null;
+    return {
+      kitSlug,
+      tierId,
+      kitName: KIT_NAMES[kitSlug] || kitSlug,
+      tierName: TIER_NAMES[tierId] || tierId,
+      priceLabel: formatPrice(price),
+      intent,
+    };
+  }, [searchParams]);
+
+  const initialMessage = selection
+    ? `I selected ${selection.kitName}, ${selection.tierName}${selection.priceLabel ? `, ${selection.priceLabel}` : ''}. ${
+        selection.intent === 'notify'
+          ? 'Please notify me when this is available.'
+          : 'Please send the invoice or checkout link so I can complete the purchase.'
+      }`
+    : '';
+
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: initialMessage,
+    website: '',
+  });
   const [status, setStatus] = useState('idle'); // idle | sending | sent | error
+
+  // If the URL selection changes after mount, keep the message in sync,
+  // but do not clobber user edits.
+  useEffect(() => {
+    if (selection && !form.message) {
+      setForm((f) => ({ ...f, message: initialMessage }));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selection && selection.kitSlug, selection && selection.tierId]);
 
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
 
@@ -29,6 +99,10 @@ const ContactMessageForm = () => {
           phone: form.phone.trim(),
           message: form.message.trim(),
           website: form.website, // honeypot
+          kit_slug: selection ? selection.kitSlug : undefined,
+          kit_tier: selection ? selection.tierId : undefined,
+          kit_price: selection ? selection.priceLabel : undefined,
+          kit_intent: selection ? selection.intent : undefined,
         }),
       });
       const data = await res.json();
@@ -76,6 +150,36 @@ const ContactMessageForm = () => {
       style={{ background: '#F9F8F6', border: '1px solid rgba(28,43,43,0.10)' }}
       data-testid="contact-message-form"
     >
+      {selection && (
+        <div
+          className="mb-6 rounded-md px-4 py-4"
+          style={{
+            background: '#F3ECDB',
+            border: '1px solid rgba(201,168,76,0.55)',
+          }}
+          data-testid="contact-kit-selection-banner"
+        >
+          <p
+            className="uppercase font-bold tracking-[0.22em] mb-1.5"
+            style={{ color: '#C9A84C', fontFamily: "'JetBrains Mono', monospace", fontSize: '10.5px' }}
+          >
+            You Selected
+          </p>
+          <p
+            className="text-[15px] md:text-base font-semibold text-[#1C2B2B] leading-snug"
+            style={{ fontFamily: "'Manrope', sans-serif" }}
+            data-testid="contact-kit-selection-line"
+          >
+            {selection.kitName}, {selection.tierName}
+            {selection.priceLabel ? `, ${selection.priceLabel}` : ''}.
+          </p>
+          <p className="text-[13px] text-[#1C2B2B]/70 mt-1.5 leading-relaxed">
+            {selection.intent === 'notify'
+              ? 'Complete the form below and Vince will email you the moment this edition is available.'
+              : 'Complete the form below and Vince will send the invoice or checkout link within one business day.'}
+          </p>
+        </div>
+      )}
       <p
         className="text-base md:text-[17px] leading-[1.65] text-[#1C2B2B] mb-6"
         style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
@@ -171,7 +275,24 @@ const ContactMessageForm = () => {
             style={{ border: '1px solid #C9A84C' }}
             data-testid="contact-form-submit"
           >
-            {status === 'sending' ? 'Sending…' : (<>Send Message <Send size={15} /></>)}
+            {status === 'sending'
+              ? 'Sending…'
+              : selection && selection.intent === 'purchase'
+                ? (
+                  <>
+                    {selection.tierId === 'binder'
+                      ? 'Request My Binder Invoice'
+                      : selection.tierId === 'control-system'
+                        ? 'Request My Control System Invoice'
+                        : selection.tierId === 'digital'
+                          ? 'Request My Digital Kit Invoice'
+                          : 'Request My Invoice'} <Send size={15} />
+                  </>
+                )
+                : selection && selection.intent === 'notify'
+                  ? (<>Notify Me When Available <Send size={15} /></>)
+                  : (<>Send Message <Send size={15} /></>)
+            }
           </button>
           {status === 'error' && (
             <p className="text-xs text-red-600" data-testid="contact-form-error">

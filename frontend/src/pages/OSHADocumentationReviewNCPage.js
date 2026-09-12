@@ -44,7 +44,7 @@ const config = {
     'Optional next step: Corrective Action Implementation if multiple programs need to be written',
   ],
   cfrRef: '29 CFR Part 1904 (Recordkeeping) and applicable Subpart standards',
-  priceFrom: 'From $1,300',
+  priceFrom: 'From $1,700',
   ctaPath: '/intake?service=osha-documentation-review&utm_source=docreview-landing&utm_medium=website&utm_campaign=service-landing',
 };
 

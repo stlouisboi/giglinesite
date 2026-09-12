@@ -22,7 +22,7 @@ export const SITE_SEARCH_INDEX = [
   { title: 'Documentation Readiness Review', path: '/services/documentation-readiness-review', type: 'Service', keywords: 'documentation readiness review written programs training records logs gap analysis' },
   { title: 'Corrective Action Implementation', path: '/services/corrective-action-implementation', type: 'Service', keywords: 'corrective action implementation written programs iipp hazcom loto bloodborne respiratory build fix' },
   { title: 'Incident Review', path: '/services/incident-review', type: 'Service', keywords: 'incident investigation review post-accident root cause corrective action' },
-  { title: 'Annual Compliance Partner', path: '/services/annual-compliance-partner', type: 'Service', keywords: 'annual retainer ongoing partner monthly support recurring' },
+  { title: 'Ongoing Safety Support', path: '/ongoing-safety-support', type: 'Service', keywords: 'ongoing safety support monthly recurring retainer partner maintenance corrective action tracking records review' },
   { title: 'Safety Control System Buildout', path: '/services/safety-control-system-buildout', type: 'Service', keywords: 'control system kit pack starter supervisor' },
 
   // ── Service-area landing pages (P1) ────────────────────

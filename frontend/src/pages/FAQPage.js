@@ -87,7 +87,7 @@ export const FAQS = [
   },
   {
     q: 'Do you offer follow-up walkthroughs for past clients?',
-    a: "Yes. Follow-up walkthroughs for past clients are offered at a reduced rate. Ongoing support is also available through Quarterly Compliance Maintenance ($950/quarter) and the Annual Compliance Control Partner program ($12,000/year, which is $1,000/month equivalent, and includes two walkthroughs, four documentation reviews, quarterly review calls, and direct on-call access between visits).",
+    a: "Yes. Follow-up walkthroughs for past clients are offered at a reduced rate. For a defined monthly cadence, GigLine offers Ongoing Safety Support (starting at $1,850 per month), one scheduled on-site visit each month, corrective-action tracker updates, records review, and a monthly management report. Ongoing Safety Support begins with an initial Compliance Readiness Visit ($2,500) so the recurring scope is set against the actual operation.",
   },
   {
     q: 'How should I prepare for a safety walkthrough?',
@@ -102,16 +102,12 @@ export const FAQS = [
     a: "The Compliance Readiness Visit (from $2,500) combines the Safety Walkthrough with the Documentation Readiness Review in a single engagement. You receive: (1) an on-site walkthrough of the production floor, storage, chemical areas, and egress routes \u2014 typically 1 to 3 hours depending on facility size; (2) a structured documentation review at the baseline scope \u2014 one facility, up to five core safety program or evidence categories, up to 25 uploaded files, and representative training and evidence records; (3) a written findings report delivered within 48 hours; (4) prioritized corrective actions covering both floor and documentation; (5) a 30-day corrective-action roadmap; and (6) one findings-review call. Fixed quote. Private engagement. No retainer. Additional documentation categories, extensive historical cleanup, or program creation are separately scoped.",
   },
   {
-    q: "Who is the Annual Compliance Control Partner program designed for?",
-    a: "The Annual Compliance Control Partner ($12,000/year, or $1,000/month equivalent) is designed for operations that want a compliance partner they can call \u2014 not just a one-time report. Best fit: facilities with 25+ employees, multiple shifts, or recurring customer-audit requirements where OSHA exposure is ongoing. The annual partnership includes two full Safety Walkthroughs per year, four Documentation Reviews per year, four Quarterly Review Calls (30 minutes each), OSHA 300A posting reminders, a pre-inspection readiness review (so you're not starting from zero if OSHA shows up), on-call access to Vince between visits, and an annual written management safety review. Standalone value of the scheduled services alone exceeds $7,600 \u2014 the partnership rate is $12,000 because it also includes the on-call relationship.",
+    q: "Who is Ongoing Safety Support designed for?",
+    a: "Ongoing Safety Support (starting at $1,850 per month) is designed for small employers that need consistent follow-through but are not ready for a full-time safety manager. Best fit: small manufacturers, warehouses, contractors, and fleet operations, generally 10 to 50 employees at one primary location, where safety currently lands on the owner, plant manager, or HR lead alongside their day job. The service provides one scheduled on-site visit each month (up to 2.5 hours on-site), a monthly facility safety walkthrough, corrective-action tracker updates, review of selected training and inspection records, one toolbox talk resource, a concise leadership summary, and up to 45 minutes per month of non-emergency remote support. New recurring clients begin with a paid Compliance Readiness Visit ($2,500) so GigLine can see the actual operation before agreeing to maintain the work.",
   },
   {
     q: 'Can GigLine write the safety programs we are missing?',
     a: "Yes. Corrective Action Implementation writes the written programs your operation is missing or that the OSHA Documentation Readiness Review flagged as insufficient. Most-requested programs: Lockout/Tagout (LOTO) with machine-specific procedures, Hazard Communication (HazCom), PPE Hazard Assessment, and Emergency Action Plan (EAP). Scope, timeline, and fixed quote are confirmed after a Documentation Readiness Review identifies which specific gaps exist. Corrective Action Implementation is scoped to your actual gap list, GigLine does not sell a template suite that may or may not apply.",
-  },
-  {
-    q: 'How does Quarterly Compliance Maintenance work?',
-    a: "Quarterly Compliance Maintenance ($950/quarter) keeps the safety system current between annual walkthroughs. Each quarter GigLine performs a documentation review (training records, OSHA 300 log, written program review, SDS inventory check), a corrective action tracker review, and a brief site visit if any changes warrant one. The quarterly cadence keeps small documentation gaps from becoming citation-level exposures and ensures the system you paid to build does not decay between Annual Partner visits. It is the natural next step after the Safety Control System Buildout buildout for operations that want ongoing accountability without the full Annual Partner commitment.",
   },
   // ─── Added Feb 2026 audit ───
   {
@@ -140,7 +136,7 @@ export const FAQS = [
   },
   {
     q: 'Do you offer monthly safety support?',
-    a: "Not month-to-month, no. GigLine offers three ongoing options: (1) Quarterly Compliance Maintenance at $950/quarter \u2014 the lightest cadence; (2) the Annual Compliance Partner program, billed monthly, which includes the annual walkthrough plus document maintenance, quarterly check-ins, and direct phone support; and (3) one-off engagements as needed. The reason monthly retainer isn't offered is that most small operations don't generate a month's worth of safety work between visits \u2014 the quarterly cadence matches the actual rhythm of small-operation compliance better than a monthly retainer would.",
+    a: "Yes. Ongoing Safety Support (starting at $1,850 per month) is GigLine's recurring option. One scheduled on-site visit each month (up to 2.5 hours on-site), a monthly facility safety walkthrough, corrective-action tracker updates, review of selected training and inspection records, one toolbox talk resource, a monthly management review with leadership summary, and up to 45 minutes per month of non-emergency remote support. Every recurring engagement begins with a paid Compliance Readiness Visit ($2,500) so the scope is set against the actual operation. See the full page at /ongoing-safety-support.",
   },
 ];
 

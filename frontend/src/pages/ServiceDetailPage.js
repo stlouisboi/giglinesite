@@ -118,44 +118,6 @@ const SERVICES = {
     intakeService: 'osha-ready-control-system',
     badge: 'Premium Engagement',
   },
-
-  'annual-compliance-partner': {
-    eyebrow: 'Annual Compliance Control Partner',
-    title: 'Annual Compliance Control Partner',
-    headline: 'When OSHA shows up, when someone gets hurt, when your customer asks for your safety program \u2014 you need someone who already knows your operation.',
-    price: '$12,000/year',
-    priceSecondary: '$1,000/month equivalent',
-    metaTitle: 'Annual Compliance Control Partner, $12,000/year | GigLine',
-    metaDesc: 'Year-long OSHA compliance partnership, 2 walkthroughs, 4 doc reviews, quarterly calls, on-call access. $12,000/year.',
-    body: 'Two full walkthroughs per year. Quarterly documentation reviews. Training record maintenance. OSHA 300A posting reminders. Pre-inspection readiness review. Management safety review. GigLine becomes your ongoing compliance resource \u2014 available when something happens and proactive between visits.',
-    whatsIncluded: [
-      'Two Safety Walkthroughs per year \u2014 on-site, photographed, reported within 48 hours',
-      'Four Documentation Reviews per year \u2014 written programs, training records, OSHA logs',
-      'Four Quarterly Review Calls \u2014 30 minutes each, reviewing findings and corrections',
-      'OSHA 300A posting reminders flagged in advance of February 1',
-      "Pre-inspection readiness review \u2014 you're not starting from zero if OSHA shows up",
-      "On-call access between visits \u2014 direct line to Vince",
-      "Annual management safety review \u2014 written summary of year's findings and open items",
-    ],
-    process: [
-      ['Kickoff Compliance Readiness Visit', "Year begins with a full CRV \u2014 walkthrough + documentation review \u2014 to establish the baseline."],
-      ['Quarterly cadence', "Documentation reviews quarterly, walkthroughs twice per year, review calls scheduled in advance."],
-      ['On-call access', "Direct line to Vince between scheduled visits. For incidents, OSHA inquiries, or questions that can't wait."],
-      ['Annual review', "End-of-year written summary of findings, corrections completed, and the priority list for the next year."],
-    ],
-    valueAnchor: {
-      standalone: '$7,600+',
-      standaloneLabel: 'Standalone value of scheduled services',
-      partner: '$12,000',
-      partnerLabel: 'Annual Partner rate',
-      monthly: '$1,000',
-      monthlyLabel: 'Monthly equivalent',
-    },
-    best: 'Operations that want a consultant they can call, not just a one-time report. Best fit for facilities with 25+ employees, multiple shifts, or recurring customer-audit requirements.',
-    cta: 'Ask About Annual Partnership',
-    intakeService: 'annual-compliance-partner',
-    badge: 'Highest-Value Engagement',
-  },
 };
 
 const intakeLink = (service) => `/intake?service=${encodeURIComponent(service)}`;

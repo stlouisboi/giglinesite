@@ -215,9 +215,9 @@ const ClientIntakePage = () => {
       'documentation-readiness-review': 'doc_review',
       'incident-review': 'incident_review',
       // Premium engagements with no exact radio match, route to "I need guidance" so Vince can scope on call
-      'annual-compliance-partner': 'not_sure',
       'osha-ready-control-system': 'not_sure',
       'corrective-action-implementation': 'not_sure',
+      'ongoing-safety-support': 'not_sure',
     };
     const mapped = serviceParam && map[serviceParam];
     if (mapped) {

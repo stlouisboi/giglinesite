@@ -336,7 +336,7 @@ const SafetyWalkthroughPage = () => {
         ]}
       />
 
-      <section className="py-20 md:py-24" style={{ background: CREAM }} data-testid="sw-closing">
+      <section id="intake" className="py-20 md:py-24 scroll-mt-24" style={{ background: CREAM }} data-testid="sw-closing">
         <div className="container max-w-3xl text-center">
           <Eyebrow>Ready to Start?</Eyebrow>
           <h2 className="text-3xl md:text-4xl font-extrabold leading-[1.15] mb-5 tracking-tight" style={{ color: NAVY }}>Request a Safety Walkthrough.</h2>

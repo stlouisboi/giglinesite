@@ -258,7 +258,7 @@ const ServiceLandingTemplate = ({
       </section>
 
       {/* ── Final CTA ── */}
-      <section className="py-20 md:py-28" style={{ backgroundColor: '#000000' }} data-testid="svc-final-cta">
+      <section id="intake" className="py-20 md:py-28 scroll-mt-24" style={{ backgroundColor: '#000000' }} data-testid="svc-final-cta">
         <div className="container max-w-3xl text-center">
           <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight mb-8" data-testid="svc-closing-headline">
             {closingHeadline}

@@ -217,7 +217,11 @@ const ResultCard = ({ winner, answers, onRestart, onBack, onCtaClick, source }) 
       ? 'Your answers point to the paperwork. Written programs, training records, SDS files, or recordkeeping need a document-by-document review against the standards that apply.'
       : 'Your answers point to both surfaces, or the picture is not clear enough yet to bet on one. The Compliance Readiness Visit covers the floor and the files in one engagement so you know exactly where you stand.';
 
-  const primaryHref = svc.intake;
+  // Deep-link to the service page's intake block instead of the master
+  // intake form. The buyer lands directly at the "Request This Assessment"
+  // section on the specific service page, one more scroll-less step to
+  // action. The service page's closing CTA still routes to /intake?service=…
+  const primaryHref = `${svc.route}#intake`;
   const secondaryHref = '#assessment-compare';
 
   return (

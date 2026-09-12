@@ -476,3 +476,11 @@ See `/app/memory/test_credentials.md`.
   - **Stripe webhook (ops)**: still pending. Runbook: Stripe Dashboard → Developers → Webhooks → Add endpoint pointing at `https://<railway>/api/webhook/stripe`. Events: `checkout.session.completed`, `checkout.session.async_payment_succeeded`, `checkout.session.async_payment_failed`. Copy `whsec_...` → Railway env `STRIPE_WEBHOOK_SECRET` → redeploy → send test event from Stripe; backend returns 200 JSON with `event_id`.
 
 
+
+- **2026-02-11 (fork continued), Assessment selector deep-link**:
+  - AssessmentSelector's primary "Request This Assessment" CTA now routes to `<service.route>#intake` instead of `<service.intake>`. Buyer lands directly on the intake block of the specific service page, one scroll-less step to the confirming CTA.
+  - Added `id="intake"` + `scroll-mt-24` anchor to the closing CTA section in `components/ServiceLandingTemplate.js` (line 261) and `pages/SafetyWalkthroughPage.js` (`sw-closing` section). The `#intake` block still houses the service-specific "Request …" primary CTA that routes to `/intake?service=…`.
+  - Verified end-to-end via Playwright: `/safety-walkthrough#intake`, `/documentation-gap-check#intake`, `/osha-compliance-gap-check#intake` all load and the browser scrolls the intake block into view. Docs-review deep-link screenshot confirms the buyer arrives at "Find the paperwork gaps before OSHA does…" with the correct "Request a Documentation Readiness Review" CTA (from the earlier hardcoded-CTA fix).
+  - Files changed: `frontend/src/components/AssessmentSelector.js` (primaryHref), `frontend/src/components/ServiceLandingTemplate.js` (#intake anchor), `frontend/src/pages/SafetyWalkthroughPage.js` (#intake anchor).
+
+

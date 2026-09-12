@@ -101,7 +101,7 @@ const FAQS = [
     a: 'On termination, GigLine delivers a written engagement transition document listing every open corrective action, its status, and next steps. Records held off-site are either returned to the client or securely destroyed based on the client\u2019s written preference. GigLine retains its own summaries and internal ledgers for six years per the client agreement.',
   },
   {
-    q: 'Is every company under 50 employees charged $1,650?',
+    q: 'Is every company under 50 employees charged $1,850?',
     a: 'No. That is the starting price. Hazard level, locations, shifts, incident history, program condition, travel, and requested access affect the final scope.',
   },
   {
@@ -469,16 +469,16 @@ const OngoingSafetySupportPage = () => {
       areaServed: { '@type': 'State', name: 'North Carolina' },
       offers: {
         '@type': 'Offer',
-        price: '1650',
+        price: '1850',
         priceCurrency: 'USD',
         priceSpecification: {
           '@type': 'UnitPriceSpecification',
-          price: '1650',
+          price: '1850',
           priceCurrency: 'USD',
           unitCode: 'MON',
           referenceQuantity: { '@type': 'QuantitativeValue', value: 1, unitCode: 'MON' },
         },
-        description: 'Ongoing Safety Support, starting at $1,650 per month following an initial Compliance Readiness Visit.',
+        description: 'Ongoing Safety Support, starting at $1,850 per month following an initial Compliance Readiness Visit.',
       },
       description:
         'Monthly safety support for small employers that need consistent follow-through but are not ready for a full-time safety manager. On-site visit, corrective-action tracking, records review, management reporting.',
@@ -511,7 +511,7 @@ const OngoingSafetySupportPage = () => {
     <main data-testid="ongoing-safety-support-page">
       <SEO
         title="Ongoing Safety Support for Small Employers | GigLine"
-        description="Keep inspections, corrective actions, training records, and safety documentation moving with ongoing support from GigLine. Serving small manufacturers, warehouses, contractors, and fleets in the Piedmont Triad. Plans start at $1,650 per month after an initial readiness assessment."
+        description="Keep inspections, corrective actions, training records, and safety documentation moving with ongoing support from GigLine. Serving small manufacturers, warehouses, contractors, and fleets in the Piedmont Triad. Plans start at $1,850 per month after an initial readiness assessment."
         canonical="/ongoing-safety-support"
         schema={[serviceSchema, faqSchema, breadcrumbSchema]}
       />
@@ -533,7 +533,7 @@ const OngoingSafetySupportPage = () => {
                 GigLine keeps selected inspections, corrective actions, safety records, and management follow-up visible and tracked month after month. The employer performs the fixes; GigLine verifies and documents that they happened.
               </p>
               <p className="text-[15px] md:text-base text-white/90 font-semibold mb-9 max-w-3xl" style={mono}>
-                Plans start at $1,650 per month following an initial Compliance Readiness Visit.
+                Plans start at $1,850 per month following an initial Compliance Readiness Visit.
               </p>
 
               <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
@@ -697,7 +697,7 @@ const OngoingSafetySupportPage = () => {
             Ongoing Safety Support
           </h2>
           <p className="text-2xl md:text-3xl font-extrabold mb-8 tracking-tight" style={{ color: BLUE, ...mono }}>
-            Starting at $1,650 per month
+            Starting at $1,850 per month
           </p>
 
           <div
@@ -717,7 +717,7 @@ const OngoingSafetySupportPage = () => {
                 Ongoing Support · 3 Months
               </p>
               <p className="text-2xl font-extrabold mb-1" style={{ color: NAVY, ...mono }}>$4,950</p>
-              <p className="text-[13px] text-[#1C2B2B]/65 leading-[1.6]">$1,650 × 3 (90-day initial term)</p>
+              <p className="text-[13px] text-[#1C2B2B]/65 leading-[1.6]">$1,850 × 3 (90-day initial term)</p>
             </div>
             <div style={{ background: 'rgba(201,168,76,0.10)', border: '1px solid rgba(201,168,76,0.35)', borderRadius: '8px', padding: '20px', margin: '-4px' }}>
               <p className="uppercase font-bold mb-2" style={{ ...mono, fontSize: '10px', letterSpacing: '0.18em', color: '#8B6F1F' }}>
@@ -759,7 +759,7 @@ const OngoingSafetySupportPage = () => {
                   $18,150
                 </p>
                 <p className="text-[11px] text-[#1C2B2B]/60 mt-0.5" style={mono}>
-                  Save $1,650
+                  Save $1,850
                 </p>
               </div>
             </div>

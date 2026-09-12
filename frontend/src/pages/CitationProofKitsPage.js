@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { ArrowRight, ShieldCheck, Lock } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { ArrowRight, ShieldCheck, Lock, X } from 'lucide-react';
 import SEO from '../components/SEO';
 import ProofGapEngineSteps from '../components/ProofGapEngineSteps';
 import KitPricingTiers from '../components/KitPricingTiers';
@@ -25,6 +25,34 @@ const TRUST_STRIP = [
 
 const CitationProofKitsPage = () => {
   const navigate = useNavigate();
+
+  // Referral banner: /citation-proof-kits?rec=<slug>. Confirms outside-link
+  // context, deep-scrolls to the recommended kit card, and briefly highlights
+  // it so the visitor can visually locate what they were referred to.
+  const [searchParams] = useSearchParams();
+  const rec = (searchParams.get('rec') || '').trim();
+  const referredKit = rec ? KIT_CATALOG.find((k) => k.slug === rec) : null;
+  const referredIsHidden = referredKit && referredKit.hiddenFromCatalog;
+  const [bannerDismissed, setBannerDismissed] = useState(false);
+  const [highlightSlug, setHighlightSlug] = useState(null);
+
+  useEffect(() => {
+    if (!referredKit || bannerDismissed) return;
+    // Wait for the grid to render, then scroll the matching card into view
+    // and paint a 3s gold outline so the visitor visually locks onto it.
+    const t = setTimeout(() => {
+      const target = referredIsHidden
+        ? null // hidden kits aren't in the grid, so just leave the banner up
+        : document.querySelector(`[data-testid="kit-card-${referredKit.slug}"]`);
+      if (target && target.scrollIntoView) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setHighlightSlug(referredKit.slug);
+        setTimeout(() => setHighlightSlug(null), 3200);
+      }
+    }, 350);
+    return () => clearTimeout(t);
+  }, [referredKit, referredIsHidden, bannerDismissed]);
+
   return (
     <main data-testid="citation-proof-kits-page" style={{ backgroundColor: BG_WARM, color: NAVY }}>
       {/* Card hover states, nested rules that inline style can't reach */}
@@ -38,7 +66,87 @@ const CitationProofKitsPage = () => {
         .kit-card:hover .kit-card-cta {
           color: #B8902E !important;
         }
+        .kit-card-referred {
+          outline: 2px solid ${GOLD};
+          outline-offset: 4px;
+          animation: gl-ref-pulse 1.6s ease-in-out 2;
+        }
+        @keyframes gl-ref-pulse {
+          0%   { box-shadow: 0 0 0 0 rgba(201,168,76,0.55); }
+          50%  { box-shadow: 0 0 0 10px rgba(201,168,76,0);  }
+          100% { box-shadow: 0 0 0 0 rgba(201,168,76,0);     }
+        }
       `}</style>
+
+      {/* REFERRAL BANNER: /citation-proof-kits?rec=<slug> */}
+      {referredKit && !bannerDismissed && (
+        <div
+          role="status"
+          aria-live="polite"
+          data-testid="kit-referral-banner"
+          style={{
+            background: NAVY,
+            borderBottom: `1px solid ${GOLD}`,
+            color: 'white',
+          }}
+        >
+          <div className="max-w-6xl mx-auto flex items-center gap-3 px-5 md:px-8 py-3">
+            <span
+              aria-hidden="true"
+              className="hidden sm:inline-block flex-shrink-0"
+              style={{ width: 8, height: 8, background: GOLD, borderRadius: 999 }}
+            />
+            <div className="flex-1 min-w-0">
+              <p
+                className="uppercase font-bold tracking-[0.22em] mb-0.5"
+                style={{ ...mono, fontSize: '10px', color: GOLD }}
+              >
+                Referred from your link
+              </p>
+              <p className="text-[13.5px] md:text-[14.5px] leading-[1.35]">
+                You were referred to <span className="font-bold" data-testid="kit-referral-banner-name">{referredKit.name}</span>
+                {referredIsHidden ? ', see the coming-soon waitlist page.' : ', see it below.'}
+              </p>
+            </div>
+            {referredIsHidden ? (
+              <Link
+                to={`/citation-proof-kits/${referredKit.slug}`}
+                className="flex-shrink-0 inline-flex items-center gap-1.5 font-bold py-2 px-3.5 whitespace-nowrap"
+                style={{ background: GOLD, color: NAVY, ...sans, fontSize: '12.5px' }}
+                data-testid="kit-referral-banner-cta"
+              >
+                Open Waitlist <ArrowRight size={12} />
+              </Link>
+            ) : (
+              <button
+                type="button"
+                onClick={() => {
+                  const target = document.querySelector(`[data-testid="kit-card-${referredKit.slug}"]`);
+                  if (target && target.scrollIntoView) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    setHighlightSlug(referredKit.slug);
+                    setTimeout(() => setHighlightSlug(null), 3200);
+                  }
+                }}
+                className="flex-shrink-0 inline-flex items-center gap-1.5 font-bold py-2 px-3.5 whitespace-nowrap"
+                style={{ background: GOLD, color: NAVY, ...sans, fontSize: '12.5px' }}
+                data-testid="kit-referral-banner-cta"
+              >
+                Jump to It <ArrowRight size={12} />
+              </button>
+            )}
+            <button
+              type="button"
+              onClick={() => setBannerDismissed(true)}
+              aria-label="Dismiss referral banner"
+              className="flex-shrink-0 p-1.5 text-white/55 hover:text-white transition-colors"
+              data-testid="kit-referral-banner-dismiss"
+            >
+              <X size={15} />
+            </button>
+          </div>
+        </div>
+      )}
       <SEO
         title="GigLine Compliance Control Kit Series | GigLine Safety & Compliance"
         description="5 practical compliance-control kits for small NC operations. Turn scattered safety activity into inspection-ready proof. From $150."
@@ -155,7 +263,7 @@ const CitationProofKitsPage = () => {
               <Link
                 key={kit.slug}
                 to={kit.externalHref || `/citation-proof-kits/${kit.slug}`}
-                className="kit-card group block h-full overflow-hidden transition-all"
+                className={`kit-card group block h-full overflow-hidden transition-all${highlightSlug === kit.slug ? ' kit-card-referred' : ''}`}
                 style={{
                   background: 'white',
                   border: kit.starterVariant ? `1px dashed ${GOLD}` : '1px solid #E0E0E0',

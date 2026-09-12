@@ -515,3 +515,18 @@ See `/app/memory/test_credentials.md`.
   - **Files changed**: `frontend/src/components/StickySelectorBar.js` (rewritten complete), `frontend/src/components/ServiceLandingTemplate.js` (mount sticky bar), `frontend/src/pages/SafetyWalkthroughPage.js` (mount sticky bar), `frontend/src/components/WalkthroughDaySection.js`, `frontend/src/components/CaseStudyTeaser.js`, `frontend/src/components/FieldManualBand.js`.
 
 
+
+- **2026-02-11 (fork continued), Kit referral banner** (`?rec=<slug>` on `/citation-proof-kits`):
+  - Slim navy banner with gold hairline bottom border, gold pill, mono kicker "REFERRED FROM YOUR LINK", copy "You were referred to <Kit Name>, see it below.", gold "Jump to It" CTA, dismiss X. Renders above the hero.
+  - Auto-scrolls the matching kit card into center view after mount and paints a 3.2s gold outline (via new `.kit-card-referred` CSS class + `gl-ref-pulse` keyframe) so the visitor visually locks onto the referred kit.
+  - Hidden-catalog kits (Incident-to-Correction, New Hire Orientation) are recognized: banner CTA becomes "Open Waitlist" and routes to `/citation-proof-kits/<slug>` (the coming-soon page with the waitlist form) instead of trying to scroll to a non-existent grid entry.
+  - Invalid slug → no banner. No `?rec` param → no banner. Dismiss removes the banner for the session.
+  - Verified end-to-end via Playwright:
+    * `?rec=loto-readiness-kit` → banner name = "Machine-Specific LOTO Readiness Kit", CTA "Jump to It", card gets `kit-card-referred` class during the 3.2s window (confirmed visually with gold outline).
+    * `?rec=incident-to-correction-kit` → CTA becomes "Open Waitlist" pointing at the coming-soon page.
+    * `?rec=nonexistent-kit` → banner absent.
+    * No param → banner absent.
+    * Dismiss click → banner removed.
+  - Files changed: `frontend/src/pages/CitationProofKitsPage.js` (banner + effect + highlight CSS).
+
+

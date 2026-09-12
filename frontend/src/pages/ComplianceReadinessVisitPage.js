@@ -433,7 +433,7 @@ const ComplianceReadinessVisitPage = () => {
             >
               <img
                 src="/assets/case-study-statesville-12-of-13.webp"
-                alt="12 of 13 corrective actions closed in 7 days, outcome of a GigLine Compliance Readiness Visit at a metals fabrication facility in Statesville, NC."
+                alt="12 of 13 corrective actions closed within 4 days, outcome from a GigLine Compliance Readiness Visit at a small North Carolina metal fabrication operation (anonymized example)."
                 loading="lazy"
                 className="w-full h-auto block"
                 data-testid="crv-social-proof-image"
@@ -444,7 +444,7 @@ const ComplianceReadinessVisitPage = () => {
               style={{ color: 'rgba(28,43,43,0.65)' }}
             >
               <span className="italic">
-                Real outcome from a 2026 Compliance Readiness Visit, Statesville, NC.
+                Anonymized outcome from a 2026 Compliance Readiness Visit at a small NC metal fabrication operation. Illustrative, not a guaranteed or typical result.
               </span>
               <Link
                 to="/case-study/metals-fabrication-statesville"

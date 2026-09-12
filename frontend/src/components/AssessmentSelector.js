@@ -321,6 +321,44 @@ const ResultCard = ({ winner, answers, onRestart, onBack, onCtaClick, source }) 
         {STARTING_PRICE_DISCLAIMER}
       </p>
 
+      {/* Ongoing Safety Support gating notice, Phase 2. OSS is never a primary recommendation
+          from this selector, it is surfaced only as a later-step option, and only when the
+          buyer already has a usable foundation (written programs exist, training is current
+          and documented, corrective actions are tracked). If the foundation is still being
+          built, the primary recommendation above is the right next step. */}
+      <div
+        className="mb-8 max-w-2xl"
+        style={{
+          background: 'rgba(201,168,76,0.09)',
+          border: `1px solid rgba(201,168,76,0.35)`,
+          padding: '14px 16px',
+          borderRadius: '3px',
+        }}
+        data-testid="assessment-selector-ongoing-support-note"
+      >
+        <p
+          className="uppercase font-bold mb-2"
+          style={{ ...mono, fontSize: '10px', color: NAVY, letterSpacing: '0.22em' }}
+        >
+          A later step, if the foundation is already in place
+        </p>
+        <p className="text-[13px] leading-[1.65]" style={{ color: INK_SOFT, ...serif }}>
+          Ongoing Safety Support ($1,850 per month) is available once written programs exist,
+          required training is current and documented, corrective actions are being tracked, and
+          the primary need is recurring review and accountability. It is not the right first
+          step when active gaps remain, close those with the recommendation above first.{' '}
+          <Link
+            to="/ongoing-safety-support"
+            className="underline"
+            style={{ color: NAVY, textDecorationColor: 'rgba(10,22,40,0.35)' }}
+            onClick={() => onCtaClick && onCtaClick('ongoing-later-step', 'ongoing-safety-support')}
+            data-testid="assessment-selector-ongoing-support-link"
+          >
+            See what Ongoing Safety Support covers &rarr;
+          </Link>
+        </p>
+      </div>
+
       <div className="flex flex-wrap items-center gap-3 mb-8">
         <Link
           to={primaryHref}

@@ -209,7 +209,7 @@ const WalkthroughLandingPage = () => {
           >
             <img
               src="/assets/case-study-statesville-12-of-13.webp"
-              alt="12 of 13 corrective actions closed in 7 days, GigLine walkthrough + documentation review at a metals fabrication facility in Statesville, NC."
+              alt="12 of 13 corrective actions closed within 4 days, GigLine walkthrough plus documentation review at a small North Carolina metal fabrication operation (anonymized example)."
               loading="lazy"
               className="w-full h-auto block"
               style={{ border: `1px solid ${BORDER}` }}
@@ -229,7 +229,7 @@ const WalkthroughLandingPage = () => {
                 12 of 13 corrective actions closed in 7 days.
               </p>
               <p className="text-[14px] md:text-[15px] leading-[1.6] mb-4" style={{ color: TEXT_MUTED }}>
-                From a Compliance Readiness Visit (walkthrough + doc review combined), Statesville, NC.
+                From a Compliance Readiness Visit (walkthrough plus doc review combined) at a small NC metal fabrication operation. Anonymized example, not a guaranteed or typical outcome.
               </p>
               <span
                 className="inline-flex items-center gap-1.5 font-bold text-[13px] md:text-[14px]"

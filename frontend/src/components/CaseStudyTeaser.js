@@ -10,7 +10,7 @@ const mono = { fontFamily: "'JetBrains Mono', monospace" };
   CaseStudyTeaser
   ──────────────────────────────────────────────────────
   Reusable engagement anchor used on Homepage and Services page
-  to surface the Statesville metals fabrication case study. Mirrors
+  to surface the anonymized NC metal fabrication case study. Mirrors
   the navy + gold aesthetic of the case study page's own CTA band so
   visitors get visual continuity when they click through.
 */
@@ -44,7 +44,7 @@ const CaseStudyTeaser = ({ source = 'homepage' }) => {
               className="text-base md:text-lg leading-relaxed text-white/70 max-w-xl"
               data-testid="case-teaser-summary"
             >
-              A metals fabrication facility in Statesville, NC. Combined walkthrough and documentation review. Thirteen findings against applicable CFR standards. 12 of 13 corrective actions closed within four days of the walkthrough.
+              A small North Carolina metal fabrication operation. Combined walkthrough and documentation review. Thirteen findings identified against applicable CFR standards. 12 of 13 corrective actions closed within four days of the walkthrough. One remained open at the reporting point. Anonymized example, not a guaranteed or typical outcome.
             </p>
           </div>
 

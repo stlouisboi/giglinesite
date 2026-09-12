@@ -67,7 +67,7 @@ const KitComingSoon = ({ slug, kit }) => {
             data-testid="kit-detail-coming-soon-back"
           >
             <ArrowLeft size={13} />
-            Back to Citation-Proof Kits
+            Back to Compliance Control Kits
           </Link>
 
           <p
@@ -87,7 +87,7 @@ const KitComingSoon = ({ slug, kit }) => {
             className="text-[15px] md:text-[17px] leading-[1.75] max-w-2xl mb-6"
             style={{ color: 'rgba(10,22,40,0.72)' }}
           >
-            We do not collect payment for a kit until its deliverables are complete and the automated fulfillment path has been tested end to end. Once this kit is validated, it will appear back on the main Citation-Proof Kit page with live pricing and checkout.
+            We do not collect payment for a kit until its deliverables are complete and the automated fulfillment path has been tested end to end. Once this kit is validated, it will appear back on the main Compliance Control Kit page with live pricing and checkout.
           </p>
           <p
             className="text-[14px] italic leading-[1.75] max-w-2xl mb-10"

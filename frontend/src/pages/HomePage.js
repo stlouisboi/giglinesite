@@ -367,7 +367,7 @@ const HomePage = () => {
                 {
                   num: '04', title: 'Proof',
                   headline: 'Keep the control organized.',
-                  body: 'Citation-Proof Kits and ongoing support so records, ownership, corrective actions, and retrievable evidence stay where they can be retrieved.',
+                  body: 'GigLine Compliance Control Kits and ongoing support so records, ownership, corrective actions, and retrievable evidence stay where they can be retrieved.',
                 },
               ].map((step, i) => (
                 <Reveal key={step.num} delay={i * 120}>
@@ -481,7 +481,7 @@ const HomePage = () => {
                 image: '/card-citation-proof-kits.jpg',
                 imageAlt: 'Navy hardcover safety-compliance binder with color-coded index tabs and a tablet showing a Safety Checklist on a wooden industrial workbench, with a warehouse aisle and forklift softly blurred in the background, GigLine GigLine Compliance Control Kit Series editorial product photograph',
                 overlayEyebrow: 'Kit Series',
-                overlayName: 'Citation-Proof',
+                overlayName: 'Compliance Control',
               },
               {
                 key: 'supervisor',

@@ -52,7 +52,7 @@ const KitPricingTiers = ({
   const kicker = kickerOverride || (universalTiers ? 'Pricing' : 'Choose Your Tier');
   const heading = headingOverride || (universalTiers ? 'Simple pricing across every kit.' : 'Three ways to run this kit.');
   const intro = introOverride || (universalTiers
-    ? 'Every kit in the Citation-Proof Series is offered in three tiers. Buy the level that matches how much of the build you want to do yourself, and how quickly you need the physical binder in the supervisor’s hands.'
+    ? 'Every kit in the GigLine Compliance Control Kit Series is offered in three tiers. Buy the level that matches how much of the build you want to do yourself, and how quickly you need the physical binder in the supervisor’s hands.'
     : 'Buy the tier that matches how much of the build you want to run yourself.');
 
   const stripeEnabled = ready && !universalTiers && STRIPE_ENABLED_SLUGS.has(kitSlug);

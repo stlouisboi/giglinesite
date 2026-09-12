@@ -385,7 +385,7 @@ const OshaReadyControlSystemPage = () => {
             Two shapes of help. One clear line between them.
           </h2>
           <p className="text-[15px] text-[#1C2B2B]/70 leading-[1.85] mb-10 max-w-3xl">
-            The Citation-Proof Kits ($150 to $600) are self-serve, topic-specific templates for teams that will do the work themselves. The Control System is a company-wide, GigLine-led implementation. Both are valid entry points.
+            The GigLine Compliance Control Kits ($150 to $600) are self-serve, topic-specific templates for teams that will do the work themselves. The Control System is a company-wide, GigLine-led implementation. Both are valid entry points.
           </p>
 
           <div className="overflow-x-auto rounded-xl" style={{ border: '1px solid #e8e5dd' }}>
@@ -411,7 +411,7 @@ const OshaReadyControlSystemPage = () => {
 
           <div className="mt-6 flex flex-wrap gap-3">
             <Link to={KITS_HREF} className="inline-flex items-center gap-1.5 text-[14px] font-bold" style={{ color: BLUE }} data-testid="ocs-compare-kits-link">
-              Browse the Citation-Proof Kits <ArrowRight size={14} />
+              Browse the Compliance Control Kits <ArrowRight size={14} />
             </Link>
           </div>
         </div>

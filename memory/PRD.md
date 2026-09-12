@@ -448,3 +448,31 @@ See `/app/memory/test_credentials.md`.
   - **Files changed** (this audit): `frontend/src/components/KitSelector.js` only.
 
 
+
+- **2026-02-11 (fork continued), Shared AssessmentSelector + tier preselection + analytics**:
+  - **Central service catalog** at `frontend/src/data/assessmentCatalog.js`. Imports pricing from `data/servicePricing.js` (single source of truth for amounts) and adds marketing fields: name, best-fit, focus, deliverables, notIncluded, nextStep, route, intake, label, combined-savings statement. Exposes `ASSESSMENT_SERVICES`, `ASSESSMENT_CATALOG` (ordered), `getAssessment(slug)`, and the `STARTING_PRICE_DISCLAIMER` string. Every consumer (selector + service pages + result card) reads from this file.
+  - **Shared `AssessmentSelector` component** (`frontend/src/components/AssessmentSelector.js`, ~520 lines): three weighted questions matching the spec, tie rule (any tie → CRV), full result card (recommended kit + starting price + why + answers echo + What is included + What is not included + Expected next step + starting-price disclaimer + primary "Request This Assessment" CTA + secondary "Compare All Assessments" scroll link + Back + Start Over). Result card also renders the verbatim combined-value statement for CRV with a dedicated data-testid. `AssessmentComparisonStrip` sub-component reads the catalog and renders a 3-column comparison band anchored at `#assessment-compare`.
+  - **Modal wrapper** `frontend/src/components/AssessmentSelectorModal.js`: accessible dialog, Esc closes, body scroll locks on open, focus goes to close button, click-on-backdrop closes.
+  - **Integration**:
+    * `pages/SafetyWalkthroughPage.js` (bespoke page): imported the modal, added a "NOT SURE THIS IS THE RIGHT ASSESSMENT?" gold-hairline button under the hero CTAs, mounted the modal.
+    * `components/ServiceLandingTemplate.js`: added `assessmentSelectorSource`, `showAssessmentSelectorLink`, `primaryCtaLabel`, `primaryCtaHref`, `closingCtaLabel` props. Renders the selector link and mounts the modal, so `DocumentationGapCheckPage` and `OshaComplianceGapCheckPage` inherit both automatically. Also fixed a pre-existing bug where those two template pages hardcoded "Request a Safety Walkthrough" as the primary CTA regardless of service.
+    * `pages/DocumentationGapCheckPage.js` + `pages/OshaComplianceGapCheckPage.js`: pass their correct `primaryCtaLabel` + `primaryCtaHref`.
+    * `pages/HomePage.js`: added a hairline-bounded band in the services section, "Not sure whether the gap is on the floor, in the files, or both?" with a gold "Find the Right Assessment" button. Mounts the same modal.
+  - **KitPricingTiers tier preselection**: reads `?tier=<id>` from `useSearchParams` and paints a 2px gold outline + gold ring shadow on the matching card, adds a "Recommended by selector" tag chip, sets `data-preselected="true"`, and smooth-scrolls the card into center view on mount. No changes to checkout logic.
+  - **GA4 analytics helper** `frontend/src/lib/analytics.js`: `track(name, params)` wraps `window.gtag`, silent no-op when absent. Two namespaced event bundles: `assessmentEvents.{start,answer,result,cta}` and `kitSelectorEvents.{start,answer,result,cta}`. Wired into both selectors so ops can see which gap area is picked most and which edition converts. Debug mode via `window.__GL_ANALYTICS_DEBUG__=true`.
+  - **Verified decision paths** (Playwright, all pass):
+    * Floor / Proactive / Photos → Safety Walkthrough $1,300 → `/intake?service=safety-walkthrough`
+    * Docs / Insurer / Records → Documentation Readiness Review $1,700 → `/intake?service=documentation-readiness-review`
+    * Both / Incident / Baseline → Compliance Readiness Visit $2,500 → `/intake?service=compliance-readiness-visit` + BEST VALUE tag + $500 combined savings statement rendered verbatim
+    * Unknown / New Manager / Scope → Compliance Readiness Visit (tie rule enforced by CRV winning)
+    * Modal opens from all 3 service pages + homepage
+    * Esc closes modal
+    * Back preserves prior answer (aria-pressed=true on Q2 after Back from Q3)
+    * Mobile 390 zero horizontal overflow inside the selector band AND inside the modal
+    * Tier preselection: `?tier=control-system#pricing` on LOTO detail page → gold outline + "Recommended by selector" tag + auto-scroll
+  - **Confirmation that production was not changed**: all edits live in the preview app served from `z-project-9.preview.emergentagent.com`. No Vercel deploy triggered, no Railway backend redeploy. Backend routes untouched (`backend/routes/citation_proof_kits.py`, `payments.py`, `stripe_native.py`, `config.py` all clean). 16/16 backend security tests still pass.
+  - **Preview URL**: https://z-project-9.preview.emergentagent.com/safety-walkthrough (or `/documentation-gap-check`, `/osha-compliance-gap-check`, `/` for the homepage entry point)
+  - **Files changed**: `frontend/src/data/assessmentCatalog.js` (NEW), `frontend/src/lib/analytics.js` (NEW), `frontend/src/components/AssessmentSelector.js` (NEW), `frontend/src/components/AssessmentSelectorModal.js` (NEW), `frontend/src/components/ServiceLandingTemplate.js`, `frontend/src/components/KitPricingTiers.js`, `frontend/src/components/KitSelector.js` (GA4 events), `frontend/src/pages/SafetyWalkthroughPage.js`, `frontend/src/pages/DocumentationGapCheckPage.js`, `frontend/src/pages/OshaComplianceGapCheckPage.js`, `frontend/src/pages/HomePage.js`.
+  - **Stripe webhook (ops)**: still pending. Runbook: Stripe Dashboard → Developers → Webhooks → Add endpoint pointing at `https://<railway>/api/webhook/stripe`. Events: `checkout.session.completed`, `checkout.session.async_payment_succeeded`, `checkout.session.async_payment_failed`. Copy `whsec_...` → Railway env `STRIPE_WEBHOOK_SECRET` → redeploy → send test event from Stripe; backend returns 200 JSON with `event_id`.
+
+

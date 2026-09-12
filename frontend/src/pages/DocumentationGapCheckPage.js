@@ -10,6 +10,8 @@ const DocumentationGapCheckPage = () => (
     seoTitle="OSHA Documentation Readiness Review, Written Programs, SDS & Training Records"
     seoDescription={`Independent OSHA Documentation Readiness Review of your written safety programs, SDS binder, training records, and required OSHA documentation. Written findings report in 48 hours. Starting at ${PRICE_LABEL}. Serving NC manufacturers, warehouses, contractors, and fleets.`}
     canonical="/documentation-gap-check"
+    primaryCtaLabel="Request a Documentation Readiness Review"
+    primaryCtaHref="/intake?service=documentation-readiness-review"
     eyebrow="Service · OSHA Documentation Readiness Review"
     headline="Independent Review of Your Safety Documentation, Programs, SDS & Training Records."
     subheadline="If OSHA opened your binder tomorrow, what would they find? An OSHA Documentation Readiness Review walks every written program, training record, and SDS file against the actual standards, and tells you exactly what is missing, expired, or out of date."

@@ -6,6 +6,8 @@ const OshaComplianceGapCheckPage = () => (
     seoTitle="Compliance Readiness Visit, Pre-Inspection Review for NC Operations"
     seoDescription="Compliance Readiness Visit, walkthrough + doc review in one engagement. Prepare for OSHA inspection, audit, or insurance. From $2,500."
     canonical="/osha-compliance-gap-check"
+    primaryCtaLabel="Request a Compliance Readiness Visit"
+    primaryCtaHref="/intake?service=compliance-readiness-visit"
     eyebrow="Service · Compliance Readiness Visit"
     headline="A Compliance Readiness Visit Before an Inspection, Audit, or Insurance Review."
     subheadline="The most thorough engagement GigLine offers. A combined on-site walkthrough and documentation review, covering the floor AND the binder, so you know exactly where you stand against the OSHA standards that apply to your operation."

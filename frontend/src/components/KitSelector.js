@@ -9,7 +9,7 @@
  * Client-side only. No DB, no form submission, no new checkout. Preserves
  * answers when navigating back. Keyboard accessible via native <button>.
  */
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight,
@@ -23,6 +23,7 @@ import {
   Users,
   Layers,
 } from 'lucide-react';
+import { kitSelectorEvents } from '../lib/analytics';
 
 const NAVY = '#102A43';
 const GOLD = '#C9A84C';
@@ -454,6 +455,7 @@ const ResultCard = ({ answers, recommendation, onRestart, onBack }) => {
       <div className="flex flex-wrap items-center gap-3 mb-8">
         <Link
           to={kitHref}
+          onClick={() => kitSelectorEvents.cta('primary', { recommendation: kit.slug, edition: edition.tierParam })}
           className="inline-flex items-center gap-2 font-bold py-3 px-6 transition-colors"
           style={{ background: GOLD, color: NAVY, ...sans, fontSize: '14px' }}
           data-testid="kit-selector-cta-primary"
@@ -462,6 +464,7 @@ const ResultCard = ({ answers, recommendation, onRestart, onBack }) => {
         </Link>
         <a
           href="#kit-grid"
+          onClick={() => kitSelectorEvents.cta('compare', { recommendation: kit.slug })}
           className="inline-flex items-center gap-2 font-bold py-3 px-5 transition-colors"
           style={{ border: `1px solid ${NAVY}`, color: NAVY, ...sans, fontSize: '14px' }}
           data-testid="kit-selector-cta-compare"
@@ -521,10 +524,27 @@ const KitSelector = () => {
         }
         return next;
       });
+      kitSelectorEvents.answer(questionId, value);
       setStep((s) => s + 1);
     },
     [],
   );
+
+  // Fire 'start' once when the selector first renders on the page.
+  useEffect(() => {
+    kitSelectorEvents.start('citation-proof-kits-page');
+  }, []);
+
+  // Fire 'result' once when we transition into result view.
+  useEffect(() => {
+    const isResultView = step >= flow.length;
+    if (!isResultView) return;
+    const rec = deriveRecommendation(answers);
+    if (!rec) return;
+    const recLabel = rec.kind === 'kit' ? rec.kit.slug : rec.kind; // 'starter' | 'crv' | slug
+    kitSelectorEvents.result(recLabel);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [step]);
 
   const goBack = useCallback(() => {
     setStep((s) => Math.max(0, s - 1));

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight,
@@ -13,6 +13,7 @@ import {
 import SEO from '../components/SEO';
 import DiagnosticComparisonCard from '../components/DiagnosticComparisonCard';
 import RelatedFieldNotesStrip from '../components/RelatedFieldNotesStrip';
+import AssessmentSelectorModal from '../components/AssessmentSelectorModal';
 
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
 
@@ -56,6 +57,7 @@ const Eyebrow = ({ children, color = BLUE, className = '' }) => (
 );
 
 const SafetyWalkthroughPage = () => {
+  const [selectorOpen, setSelectorOpen] = useState(false);
   return (
     <main data-testid="safety-walkthrough-page">
       <SEO
@@ -96,6 +98,16 @@ const SafetyWalkthroughPage = () => {
                 <span className="inline-flex items-center gap-2 text-white/55 text-sm" style={mono}><Clock size={14} />Report in 48 hours</span>
                 <span className="inline-flex items-center gap-2 text-white/55 text-sm" style={mono}><Lock size={14} />Private engagement</span>
               </div>
+              <button
+                type="button"
+                onClick={() => setSelectorOpen(true)}
+                className="mt-4 inline-flex items-center gap-2 text-white/85 hover:text-white transition-colors"
+                style={{ borderBottom: '1px solid rgba(201,168,76,0.55)', paddingBottom: 3, ...mono, fontSize: '12px', letterSpacing: '0.14em' }}
+                data-testid="sw-assessment-selector-link"
+              >
+                NOT SURE THIS IS THE RIGHT ASSESSMENT?  FIND YOUR STARTING POINT
+                <ArrowRight size={12} />
+              </button>
             </div>
             <div
               className="rounded-xl overflow-hidden"
@@ -346,6 +358,11 @@ const SafetyWalkthroughPage = () => {
       </section>
 
       <DiagnosticComparisonCard highlightSlug="walkthrough" showCombinedSavings={true} showCta={true} />
+      <AssessmentSelectorModal
+        open={selectorOpen}
+        onClose={() => setSelectorOpen(false)}
+        source="safety-walkthrough-page"
+      />
     </main>
   );
 };

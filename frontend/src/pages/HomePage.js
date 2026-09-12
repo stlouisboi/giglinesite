@@ -1,11 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, BookOpen, Monitor, FileText, Bot, Zap, ShieldCheck, Star, Anchor, Factory, MapPin, ClipboardList, Shield, CheckCircle2, FileImage, Lock } from 'lucide-react';
+import { ArrowRight, Check, BookOpen, Monitor, FileText, Bot, Zap, ShieldCheck, Star, Anchor, Factory, MapPin, ClipboardList, Shield, CheckCircle2, FileImage, Lock, ChevronRight } from 'lucide-react';
 import SEO from '../components/SEO';
 import CaseStudyTeaser from '../components/CaseStudyTeaser';
 import FieldManualBand from '../components/FieldManualBand';
 import WalkthroughDaySection from '../components/WalkthroughDaySection';
 import FindBuildMaintainJourney from '../components/FindBuildMaintainJourney';
+import AssessmentSelectorModal from '../components/AssessmentSelectorModal';
 import { trackPhoneClick, trackReviewClick, trackEvent } from '../utils/analytics';
 import { SUPERVISOR_KIT_ENABLED } from '../config/features';
 
@@ -58,6 +59,7 @@ const mono = { fontFamily: "'JetBrains Mono', monospace" };
 const heading = { fontFamily: "'Manrope', sans-serif" };
 
 const HomePage = () => {
+  const [homeSelectorOpen, setHomeSelectorOpen] = useState(false);
   return (
     <main className="overflow-x-hidden">
       <SEO
@@ -906,9 +908,32 @@ const HomePage = () => {
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#1C2B2B] leading-[1.15] mb-4 max-w-3xl tracking-tight">
               Four ways to work with GigLine.
             </h2>
-            <p className="text-base md:text-lg text-[#1C2B2B]/70 leading-relaxed mb-12 max-w-3xl">
+            <p className="text-base md:text-lg text-[#1C2B2B]/70 leading-relaxed mb-8 max-w-3xl">
               Every engagement starts with a conversation. If we&apos;re not the right fit, we&apos;ll tell you.
             </p>
+            <div
+              className="flex flex-col sm:flex-row sm:items-center gap-3 mb-12 py-4 px-4 max-w-4xl"
+              style={{ borderTop: '1px solid rgba(10,22,40,0.12)', borderBottom: '1px solid rgba(10,22,40,0.12)' }}
+              data-testid="home-services-selector-band"
+            >
+              <div className="flex-1">
+                <p className="uppercase font-bold mb-1" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10.5px', letterSpacing: '0.22em', color: '#C9A84C' }}>
+                  Not sure whether the gap is on the floor, in the files, or both?
+                </p>
+                <p className="text-[14.5px] md:text-[15.5px] italic leading-[1.6]" style={{ fontFamily: "Georgia, 'Times New Roman', serif", color: 'rgba(10,22,40,0.72)' }}>
+                  Answer three floor-level questions. We&rsquo;ll point you at the right assessment.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setHomeSelectorOpen(true)}
+                className="inline-flex items-center gap-2 font-bold py-3 px-6 whitespace-nowrap"
+                style={{ background: '#C9A84C', color: '#102A43', fontFamily: "'Manrope', sans-serif", fontSize: '14px' }}
+                data-testid="home-find-assessment-cta"
+              >
+                Find the Right Assessment <ChevronRight size={15} />
+              </button>
+            </div>
           </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-7 mb-12" data-testid="home-services-grid">
@@ -1839,6 +1864,11 @@ This is GigLine Safety & Compliance.`}
         </div>
       </section>
 
+      <AssessmentSelectorModal
+        open={homeSelectorOpen}
+        onClose={() => setHomeSelectorOpen(false)}
+        source="homepage-services-band"
+      />
     </main>
   );
 };

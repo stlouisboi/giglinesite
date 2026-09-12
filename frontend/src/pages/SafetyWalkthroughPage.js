@@ -14,6 +14,7 @@ import SEO from '../components/SEO';
 import DiagnosticComparisonCard from '../components/DiagnosticComparisonCard';
 import RelatedFieldNotesStrip from '../components/RelatedFieldNotesStrip';
 import AssessmentSelectorModal from '../components/AssessmentSelectorModal';
+import StickySelectorBar from '../components/StickySelectorBar';
 
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
 
@@ -363,6 +364,7 @@ const SafetyWalkthroughPage = () => {
         onClose={() => setSelectorOpen(false)}
         source="safety-walkthrough-page"
       />
+      <StickySelectorBar source="sticky-safety-walkthrough-page" />
     </main>
   );
 };

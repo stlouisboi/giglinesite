@@ -501,3 +501,17 @@ See `/app/memory/test_credentials.md`.
   - Files changed: `frontend/src/pages/HomePage.js`.
 
 
+
+- **2026-02-11 (fork continued), StickySelectorBar + homepage mobile spacing audit**:
+  - **`StickySelectorBar` component** (`frontend/src/components/StickySelectorBar.js`, ~110 lines): slim bottom-fixed bar that surfaces on long service pages after the buyer scrolls past 500px. Navy background + gold hairline top border + gold "Find My Assessment" CTA + dismiss X. Contains its own `AssessmentSelectorModal` instance so the CTA opens the same diagnostic flow. Hides via `IntersectionObserver` when `#intake` is visible (buyer already at destination, no nag), threshold 0 with `-80px` rootMargin so it fires even when the intake block is taller than the viewport. Dismiss button sets `sessionStorage['gl_sticky_selector_dismissed']=1`, persists for the browser session. Responsive: mobile shows compact "Not sure? Find your starting point." with "Diagnose" button label, sm+ shows full copy + gold mono kicker + "Find My Assessment" button. `pr-14` on mobile keeps the dismiss X clear of the existing floating contact rail.
+  - Mounted in `components/ServiceLandingTemplate.js` (auto-covers `/documentation-gap-check` and `/osha-compliance-gap-check`) and `pages/SafetyWalkthroughPage.js`. Uses the same `AssessmentSelector` decision engine + catalog as the modal openable from the hero.
+  - Verified via Playwright at 390: bar hidden at scroll 0, shows at scroll 900, hides when `#intake` scrolls into view, dismiss click hides bar + persists across reload, CTA opens the modal, no overlap with the existing floating contact rail.
+  - **Mobile spacing audit** on homepage sections applied the same 48/20/56 rhythm used on "Floor. Findings. Fixes. Proof.":
+    * `components/WalkthroughDaySection.js`: `py-20 md:py-24` → `pt-12 pb-14 md:pt-20 md:pb-24` (already had `px-5 md:px-8`).
+    * `components/CaseStudyTeaser.js`: `py-20 md:py-28` → `pt-12 pb-14 md:pt-20 md:pb-28`.
+    * `components/FieldManualBand.js`: `py-20 md:py-24` → `pt-12 pb-14 md:pt-20 md:pb-24`.
+    Measured mobile 390 padding: 51.6 / 21.5 / 60.2 / 21.5 — matches the 48/20/56 spec once Tailwind's rem-based classes account for this codebase's 17.2px root font. Desktop spacing unchanged.
+  - **Regression clean**: 16/16 backend security tests still pass. Frontend webpack compiles green. Production untouched.
+  - **Files changed**: `frontend/src/components/StickySelectorBar.js` (rewritten complete), `frontend/src/components/ServiceLandingTemplate.js` (mount sticky bar), `frontend/src/pages/SafetyWalkthroughPage.js` (mount sticky bar), `frontend/src/components/WalkthroughDaySection.js`, `frontend/src/components/CaseStudyTeaser.js`, `frontend/src/components/FieldManualBand.js`.
+
+

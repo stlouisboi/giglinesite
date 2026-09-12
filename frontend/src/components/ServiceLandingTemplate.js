@@ -4,6 +4,7 @@ import { ArrowRight, Check, Phone } from 'lucide-react';
 import SEO from './SEO';
 import FieldManualBand from './FieldManualBand';
 import AssessmentSelectorModal from './AssessmentSelectorModal';
+import StickySelectorBar from './StickySelectorBar';
 
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
 
@@ -290,6 +291,9 @@ const ServiceLandingTemplate = ({
         onClose={() => setSelectorOpen(false)}
         source={assessmentSelectorSource}
       />
+      {showAssessmentSelectorLink && (
+        <StickySelectorBar source={`sticky-${assessmentSelectorSource}`} />
+      )}
     </main>
   );
 };

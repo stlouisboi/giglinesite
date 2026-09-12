@@ -436,3 +436,15 @@ See `/app/memory/test_credentials.md`.
   - **Files changed**: `frontend/src/components/KitSelector.js` (NEW), `frontend/src/pages/CitationProofKitsPage.js`, `frontend/src/data/citationProofKits.js` (rename + Binder copy fix), `frontend/src/data/fieldNoteContent.js`, `frontend/src/pages/ServicesPage.js`, `frontend/src/pages/CitationProofKitThankYouPage.js`, `frontend/src/pages/CitationCostCalculatorPage.js`, `frontend/src/pages/BlogOSHAPenaltyNC2026.js`, `frontend/src/pages/AdminPage.js`, `frontend/src/pages/CitationProofKitDetailPage.js`, `frontend/src/pages/HomePage.js`, `frontend/src/components/Footer.js`, `frontend/scripts/generate-seo-pages.js`.
 
 
+
+- **2026-02-11 (fork continued), Kit Selector audit fixes**:
+  - Audit against `data/citationProofKits.js` source of truth surfaced three mismatches. Fixed in `components/KitSelector.js`:
+    1. **LOTO name**: "LOTO Readiness Kit" → "Machine-Specific LOTO Readiness Kit" (matches `KIT_DETAILS['loto-readiness-kit'].name`).
+    2. **Product-specific reasoning missing**: added a `whyLine` field per kit that explains why THIS kit closes the buyer's stated gap, rendered above the edition-generic line in the result card. Each `whyLine` cites the relevant CFR reference (1910.147, 1910.178, 1910.1200) to signal authority.
+    3. **Dead `?tier=` param**: appended `#pricing` to released-kit result URLs so the buyer lands directly at the tier block on the detail page, matching the tier the selector recommended.
+  - Result card refinements: control-area subtitle now includes CFR citation, primary CTA copy changed from "Review Recommended Kit" to "Review the {shortName}" (LOTO Kit, Forklift/PIT Kit, HazCom Pro Kit, Incident Kit, New Hire Kit) so the button reads like a next step instead of an announcement. HazCom Starter path CTA reads "Get the HazCom Starter Pack".
+  - **Verified against audit checklist**: exact product names (5/5 match source), exact pricing ($29 Starter, $150 Digital, $300 Control System, $600 Binder — all match `KIT_TIERS`), correct internal routes (5 released kits deep-link `?tier=…#pricing`, 2 hidden kits route to their coming-soon waitlist page, Multi routes to `/intake?service=compliance-readiness-visit`, Starter routes to `/hazcom-starter-pack`), Control System carries "RECOMMENDED FOR MOST FACILITIES" tag, header + footer inherited from `App.js` shell, zero changes to Stripe checkout logic (`backend/routes/citation_proof_kits.py`, `payments.py`, `stripe_native.py`, `config.CITATION_PROOF_KIT_PRODUCTS` all untouched), zero changes to the existing kit catalog grid section, no public deployment triggered.
+  - **Preview URL**: https://z-project-9.preview.emergentagent.com/citation-proof-kits#kit-selector
+  - **Files changed** (this audit): `frontend/src/components/KitSelector.js` only.
+
+

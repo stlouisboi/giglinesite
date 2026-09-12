@@ -57,8 +57,52 @@ const CitationProofKitDetailPage = () => {
             data-testid="kit-detail-back-link"
           >
             <ArrowLeft size={13} />
-            Back to Citation-Proof Kits
+            Back to Compliance Control Kits
           </Link>
+
+          {/* CONTEXTUAL SELECTOR CALLOUT: pulls in undecided visitors */}
+          <div
+            className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 py-4"
+            style={{
+              borderTop: kit.productImages?.hero ? '1px solid rgba(255,255,255,0.18)' : `1px solid ${BORDER}`,
+              borderBottom: kit.productImages?.hero ? '1px solid rgba(255,255,255,0.18)' : `1px solid ${BORDER}`,
+            }}
+            data-testid="kit-detail-selector-callout"
+          >
+            <div>
+              <p
+                className="uppercase font-bold mb-1"
+                style={{ color: GOLD, ...mono, fontSize: '10px', letterSpacing: '0.24em' }}
+              >
+                Not sure this is the right kit?
+              </p>
+              <p
+                className="text-[14px] md:text-[15px] leading-[1.55] italic"
+                style={{
+                  ...serif,
+                  color: kit.productImages?.hero ? 'rgba(255,255,255,0.82)' : 'rgba(10,22,40,0.72)',
+                }}
+              >
+                Take the 30 second selector. We&rsquo;ll point you at the control area and edition that fit your operation.
+              </p>
+            </div>
+            <Link
+              to="/citation-proof-kits#kit-selector"
+              className="inline-flex items-center gap-2 flex-shrink-0 font-bold whitespace-nowrap self-start sm:self-auto py-2"
+              style={{
+                ...mono,
+                fontSize: '11.5px',
+                letterSpacing: '0.14em',
+                color: kit.productImages?.hero ? 'white' : NAVY,
+                borderBottom: `1px solid ${GOLD}`,
+                paddingBottom: '4px',
+              }}
+              data-testid="kit-detail-selector-callout-cta"
+            >
+              FIND MY KIT
+              <ArrowRight size={12} />
+            </Link>
+          </div>
 
           <p
             className="uppercase font-bold tracking-[0.28em] mb-3"

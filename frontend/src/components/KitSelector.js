@@ -78,71 +78,93 @@ const Q_EDITION = {
 
 // Kit metadata used to render the result card. Only fields the selector
 // needs, keeps this file self-contained. Slugs match /citation-proof-kits/:slug.
+// Names + control areas verified against KIT_DETAILS in data/citationProofKits.js
+// on 2026-02-11. If a name changes there, update it here to keep the selector
+// diagnosis honest.
 const KIT_META = {
   loto: {
     slug: 'loto-readiness-kit',
-    name: 'LOTO Readiness Kit',
-    controlArea: 'Hazardous energy control',
+    name: 'Machine-Specific LOTO Readiness Kit',
+    shortName: 'LOTO Kit',
+    controlArea: 'Hazardous energy control, 29 CFR 1910.147',
+    whyLine:
+      'Machine-specific lockout procedures for every energy source on your floor. The kit walks a non-expert through every element 1910.147(c)(4) requires, machine by machine, so your team can produce inspection-ready proof.',
     released: true,
     icon: Lock,
   },
   pit: {
     slug: 'forklift-pit-readiness-kit',
     name: 'Forklift / PIT Readiness Kit',
-    controlArea: 'Powered industrial trucks',
+    shortName: 'Forklift/PIT Kit',
+    controlArea: 'Powered industrial trucks, 29 CFR 1910.178',
+    whyLine:
+      'Operator authorization, evaluation, and refresher training records. Turns a scattered forklift program into a running system with auditable proof for every operator in your building.',
     released: true,
     icon: Truck,
   },
   hazcom: {
     slug: 'hazcom-pro-kit',
     name: 'HazCom Pro Kit',
-    controlArea: 'Chemical safety and hazard communication',
+    shortName: 'HazCom Pro Kit',
+    controlArea: 'Hazard communication, 29 CFR 1910.1200',
+    whyLine:
+      'Chemical inventory, SDS access, container labeling, and training records. The paperwork OSHA looks at first when chemicals are on site.',
     released: true,
     icon: Flame,
   },
   incident: {
     slug: 'incident-to-correction-kit',
     name: 'Incident-to-Correction Kit',
-    controlArea: 'Incident, near miss, corrective action',
+    shortName: 'Incident Kit',
+    controlArea: 'Incident, near miss, corrective action follow-through',
+    whyLine:
+      'Close every incident, near miss, and hazard report with documented owner, closure evidence, and repeat-prevention communication. This is the recordkeeping OSHA looks at when history counts against you.',
     released: false,
     icon: AlertTriangle,
   },
   newhire: {
     slug: 'new-hire-orientation-kit',
     name: 'New Hire Safety Orientation Kit',
-    controlArea: 'Day-one onboarding and authorization',
+    shortName: 'New Hire Kit',
+    controlArea: 'Day-one orientation and authorization',
+    whyLine:
+      'Day-one orientation, PPE issue, restriction matrix, supervisor release, and 7 or 30-day follow-up. Prove every new hire was oriented, restricted, equipped, and released before they touched a machine.',
     released: false,
     icon: Users,
   },
 };
 
+// Edition descriptions are the generic tier language: what a Digital, Control
+// System, or Binder Edition contains regardless of which kit. Product-specific
+// reasoning lives on KIT_META.whyLine so the result card can render both.
 const EDITION_META = {
   digital: {
     label: 'Digital Edition',
     price: '$150',
-    line: 'Complete kit as a branded PDF plus editable core forms.',
+    line: 'The complete kit as a branded PDF plus editable core forms your team can run from Drive or SharePoint.',
     tierParam: 'digital',
   },
   'control-system': {
     label: 'Compliance Control System',
     price: '$300',
-    line: 'Digital plus the full control system: forms, checklists, and log templates.',
+    line: 'Digital plus the full running control system: forms, checklists, log templates, and the operating rhythm supervisors follow every month.',
     tierParam: 'control-system',
     recommended: true,
   },
   binder: {
     label: 'Compliance Binder Edition',
     price: '$600',
-    line: 'Pre-printed, tabbed physical binder with the printed system documents for the selected control area. Digital included.',
+    line: 'A professionally printed, tabbed physical binder that mirrors the Compliance Control System for the selected control area. Digital included.',
     tierParam: 'binder',
   },
 };
 
 const HAZCOM_STARTER = {
   slug: 'hazcom-starter-pack',
+  href: '/hazcom-starter-pack',
   name: 'HazCom Starter Pack',
   price: '$29',
-  line: 'A right-sized foundation to get your HazCom paperwork on paper before you buy the full HazCom Pro Kit.',
+  line: 'An 11-page starter set, written program, SDS binder checklist, and training log, sized for facilities that need HazCom paperwork on paper before graduating to the full HazCom Pro Kit.',
 };
 
 // ── Decision logic ──
@@ -338,12 +360,12 @@ const ResultCard = ({ answers, recommendation, onRestart, onBack }) => {
         </p>
         <div className="flex flex-wrap items-center gap-3 mb-8">
           <Link
-            to="/hazcom-starter-pack"
+            to={HAZCOM_STARTER.href}
             className="inline-flex items-center gap-2 font-bold py-3 px-6 transition-colors"
             style={{ background: GOLD, color: NAVY, ...sans, fontSize: '14px' }}
             data-testid="kit-selector-cta-primary"
           >
-            Review Recommended Kit <ArrowRight size={14} />
+            Get the {HAZCOM_STARTER.name} <ArrowRight size={14} />
           </Link>
           <a
             href="#kit-grid"
@@ -369,7 +391,7 @@ const ResultCard = ({ answers, recommendation, onRestart, onBack }) => {
   const { kit, edition } = recommendation;
   const Icon = kit.icon;
   const kitHref = kit.released
-    ? `/citation-proof-kits/${kit.slug}${edition.tierParam ? `?tier=${edition.tierParam}` : ''}`
+    ? `/citation-proof-kits/${kit.slug}?tier=${edition.tierParam}#pricing`
     : `/citation-proof-kits/${kit.slug}`;
   return (
     <div data-testid={`kit-selector-result-${kit.slug}`}>
@@ -398,9 +420,28 @@ const ResultCard = ({ answers, recommendation, onRestart, onBack }) => {
           </span>
         )}
       </p>
-      <p className="text-[15px] md:text-[16px] leading-[1.75] mb-6 max-w-2xl" style={{ color: INK_SOFT }}>
-        {edition.line}
+
+      {/* Product-specific reasoning, why THIS kit for the stated gap. */}
+      <p
+        className="text-[15px] md:text-[16px] leading-[1.75] mb-4 max-w-2xl"
+        style={{ color: INK_SOFT }}
+        data-testid="kit-selector-result-why-line"
+      >
+        {kit.whyLine}
       </p>
+
+      {/* Edition-generic reasoning, what THIS tier delivers. */}
+      <p
+        className="text-[14px] md:text-[15px] leading-[1.7] italic mb-6 max-w-2xl"
+        style={{ ...serif, color: INK_MUTED }}
+        data-testid="kit-selector-result-edition-line"
+      >
+        <span style={{ ...mono, fontStyle: 'normal', letterSpacing: '0.1em', color: NAVY }}>
+          {edition.label.toUpperCase()}
+        </span>{' '}
+        &mdash; {edition.line}
+      </p>
+
       {!kit.released && (
         <p
           className="text-[13.5px] leading-[1.7] mb-6 max-w-2xl px-3 py-2"
@@ -417,7 +458,7 @@ const ResultCard = ({ answers, recommendation, onRestart, onBack }) => {
           style={{ background: GOLD, color: NAVY, ...sans, fontSize: '14px' }}
           data-testid="kit-selector-cta-primary"
         >
-          Review Recommended Kit <ArrowRight size={14} />
+          Review the {kit.shortName || 'Kit'} <ArrowRight size={14} />
         </Link>
         <a
           href="#kit-grid"

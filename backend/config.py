@@ -32,6 +32,12 @@ import stripe as stripe_lib
 stripe_api_key = os.environ.get('STRIPE_API_KEY', 'sk_test_emergent')
 STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET', '')
 
+# Stripe webhook signing secret. When set, incoming webhook requests must present
+# a valid Stripe-Signature header signed with this secret. When missing, the
+# webhook endpoint rejects every request (fail closed) so unsigned payloads can
+# never forge fulfillment.
+STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET', '')
+
 # Resend
 import resend
 
@@ -40,7 +46,21 @@ SENDER_EMAIL = os.environ.get('SENDER_EMAIL', 'onboarding@resend.dev')
 VINCE_EMAIL = os.environ.get('VINCE_EMAIL', 'vince@giglinecompliance.com')
 
 # Admin
-ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'gigline2026')
+# SEC-001: No hardcoded fallback. If ADMIN_PASSWORD is unset we generate a random
+# per-process secret so no request can ever match, and every admin route fails
+# closed. A CRITICAL log line surfaces the misconfiguration in Railway logs so
+# ops can rotate the env var without the site going dark for public visitors.
+_admin_password_env = os.environ.get('ADMIN_PASSWORD', '').strip()
+if not _admin_password_env:
+    ADMIN_PASSWORD = secrets.token_hex(32)
+    ADMIN_PASSWORD_CONFIGURED = False
+    logging.getLogger('gigline').critical(
+        "SECURITY: ADMIN_PASSWORD environment variable is not set. Admin access "
+        "is disabled until it is configured. Public routes continue to serve."
+    )
+else:
+    ADMIN_PASSWORD = _admin_password_env
+    ADMIN_PASSWORD_CONFIGURED = True
 
 
 def is_admin(token) -> bool:
@@ -53,6 +73,13 @@ logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
 )
 logger = logging.getLogger('gigline')
+
+# ── SERVICE PACKAGES ──
+# Removed Feb 2026. The legacy /api/services and /api/payments/checkout routes
+# were driven by this dict but are no longer wired to any frontend surface —
+# active checkout flows go through the tier-specific endpoints (Citation-Proof
+# Kits, Supervisor Kit, HazCom, etc.). Retaining stale pricing here risked
+# offering a $650 walkthrough that no longer exists in the ladder.
 
 HAZCOM_PRODUCT = {
     "name": "HazCom Starter Pack — Small Shop Edition",

@@ -16,7 +16,7 @@ const heading = { fontFamily: "'Manrope', sans-serif" };
 const FieldManualBand = ({ source = 'homepage' }) => {
   return (
     <section
-      className="py-20 md:py-24"
+      className="pt-12 pb-14 md:pt-20 md:pb-24"
       style={{ backgroundColor: '#F7F9FC' }}
       data-testid={`field-manual-band-${source}`}
     >

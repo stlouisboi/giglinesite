@@ -202,7 +202,7 @@ const CitationProofKitThankYouPage = () => {
                     </li>
                     <li className="flex gap-3">
                       <span className="font-bold" style={{ color: GOLD, ...mono, fontSize: '13px', minWidth: 22 }}>02</span>
-                      <span>Start with the <strong>Citation-Proof Score&trade; Rubric</strong> to see where you stand today , you can begin work now, before your binder arrives.</span>
+                      <span>Start with the <strong>Compliance Readiness Score&trade; Rubric</strong> to see where you stand today , you can begin work now, before your binder arrives.</span>
                     </li>
                     <li className="flex gap-3">
                       <span className="font-bold" style={{ color: GOLD, ...mono, fontSize: '13px', minWidth: 22 }}>03</span>
@@ -221,7 +221,7 @@ const CitationProofKitThankYouPage = () => {
                     </li>
                     <li className="flex gap-3">
                       <span className="font-bold" style={{ color: GOLD, ...mono, fontSize: '13px', minWidth: 22 }}>02</span>
-                      <span>Start with the <strong>Citation-Proof Score&trade; Rubric</strong> to see where you stand today , before you build anything.</span>
+                      <span>Start with the <strong>Compliance Readiness Score&trade; Rubric</strong> to see where you stand today , before you build anything.</span>
                     </li>
                     <li className="flex gap-3">
                       <span className="font-bold" style={{ color: GOLD, ...mono, fontSize: '13px', minWidth: 22 }}>03</span>
@@ -239,7 +239,7 @@ const CitationProofKitThankYouPage = () => {
                   data-testid="kit-thankyou-back-catalog"
                 >
                   <ArrowLeft size={14} />
-                  Back to the Citation-Proof Kit Series
+                  Back to the GigLine Compliance Control Kit Series
                 </Link>
               </div>
 

@@ -17,7 +17,7 @@ const mono = { fontFamily: "'JetBrains Mono', monospace" };
 const CaseStudyTeaser = ({ source = 'homepage' }) => {
   return (
     <section
-      className="py-20 md:py-28"
+      className="pt-12 pb-14 md:pt-20 md:pb-28"
       style={{ backgroundColor: NAVY, color: 'white' }}
       data-testid={`case-study-teaser-${source}`}
     >

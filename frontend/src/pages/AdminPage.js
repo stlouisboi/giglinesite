@@ -3,6 +3,7 @@ import { X, Upload, ChevronRight, Eye, RefreshCw, FileText, Users, Briefcase, Do
 import SEO from '../components/SEO';
 import WalkthroughLeadsCRM from '../components/WalkthroughLeadsCRM';
 import { SUPERVISOR_KIT_ENABLED } from '../config/features';
+import { authFetch, authDownload } from '../lib/adminApi';
 
 const API = process.env.REACT_APP_BACKEND_URL;
 
@@ -77,8 +78,9 @@ const IntakeAttachments = ({ clientToken, token, apiBase }) => {
     (async () => {
       setState({ loading: true, error: null, items: [] });
       try {
-        const res = await fetch(
-          `${apiBase}/api/admin/intake/${encodeURIComponent(clientToken)}/attachments?token=${encodeURIComponent(token)}`
+        const res = await authFetch(
+          token,
+          `${apiBase}/api/admin/intake/${encodeURIComponent(clientToken)}/attachments`
         );
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
@@ -110,15 +112,13 @@ const IntakeAttachments = ({ clientToken, token, apiBase }) => {
       {!state.loading && !state.error && state.items.length > 0 && (
         <ul className="space-y-2" data-testid="intake-attachments-list">
           {state.items.map((att, i) => {
-            const downloadUrl = `${apiBase}/api/admin/intake/attachment/${encodeURIComponent(att.uploadId)}?token=${encodeURIComponent(token)}`;
+            const downloadPath = `${apiBase}/api/admin/intake/attachment/${encodeURIComponent(att.uploadId)}`;
             const uploaded = att.uploadedAt ? new Date(att.uploadedAt).toLocaleDateString() : '';
             return (
               <li key={att.uploadId || i} data-testid={`intake-attachment-${i}`}>
                 <a
-                  href={downloadUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  download={att.originalFilename || ''}
+                  href="#"
+                  onClick={(e) => { e.preventDefault(); authDownload(token, downloadPath, att.originalFilename); }}
                   className="flex items-center justify-between gap-3 rounded-md bg-white border border-gray-200 hover:border-[#2A52A0] hover:bg-[#2A52A0]/5 px-3 py-2 transition-colors"
                   data-testid={`intake-attachment-link-${i}`}
                 >
@@ -190,7 +190,7 @@ const AdminPage = () => {
     }
     setRevenueSubmitting(true);
     try {
-      const res = await fetch(`${API}/api/admin/revenue/manual?token=${token}`, {
+      const res = await authFetch(token, `/api/admin/revenue/manual`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -221,8 +221,9 @@ const AdminPage = () => {
     if (!window.confirm(`${deleteForm.hard ? 'PERMANENTLY DELETE' : 'Archive'} ${deleteForm.kind} '${deleteForm.docId}'?`)) return;
     setDeleteSubmitting(true);
     try {
-      const res = await fetch(
-        `${API}/api/admin/lead/${deleteForm.kind}/${encodeURIComponent(deleteForm.docId)}?token=${token}${deleteForm.hard ? '&hard=true' : ''}`,
+      const res = await authFetch(
+        token,
+        `/api/admin/lead/${deleteForm.kind}/${encodeURIComponent(deleteForm.docId)}${deleteForm.hard ? '?hard=true' : ''}`,
         { method: 'DELETE' }
       );
       if (res.ok) {
@@ -258,11 +259,11 @@ const AdminPage = () => {
   const fetchAll = useCallback(async (t) => {
     try {
       const [psRes, iRes, bRes, sRes, srcRes] = await Promise.all([
-        fetch(`${API}/api/admin/portal-stats?token=${t}`),
-        fetch(`${API}/api/admin/intake-submissions?token=${t}`),
-        fetch(`${API}/api/admin/bookings?token=${t}`),
-        fetch(`${API}/api/admin/stats?token=${t}`),
-        fetch(`${API}/api/admin/leads-by-source?token=${t}`),
+        authFetch(t, `/api/admin/portal-stats`),
+        authFetch(t, `/api/admin/intake-submissions`),
+        authFetch(t, `/api/admin/bookings`),
+        authFetch(t, `/api/admin/stats`),
+        authFetch(t, `/api/admin/leads-by-source`),
       ]);
       if (psRes.status === 401) { logout(); return; }
       setPortalStats(await psRes.json());
@@ -277,13 +278,13 @@ const AdminPage = () => {
   useEffect(() => { if (token) fetchAll(token); }, [token, fetchAll]);
 
   const fetchLeads = async () => {
-    const res = await fetch(`${API}/api/admin/leads?token=${token}&limit=50`);
+    const res = await authFetch(token, `/api/admin/leads?limit=50`);
     if (res.ok) setLeads(await res.json());
   };
 
   const handleStatusUpdate = async () => {
     if (!statusModal || !newStatus) return;
-    await fetch(`${API}/api/admin/intake/${statusModal.clientToken}/status?token=${token}`, {
+    await authFetch(token, `/api/admin/intake/${statusModal.clientToken}/status`, {
       method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ status: newStatus }),
     });
     setStatusModal(null);
@@ -298,8 +299,9 @@ const AdminPage = () => {
     const verb = isHard ? 'PERMANENTLY DELETE' : 'Archive';
     if (!window.confirm(`${verb} this lead?\n\n${label}\n\n${isHard ? '⚠ Permanent, cannot be undone.' : 'Recoverable from the archive collection if needed.'}`)) return;
     try {
-      const res = await fetch(
-        `${API}/api/admin/lead/${kind}/${encodeURIComponent(docId)}?token=${token}${isHard ? '&hard=true' : ''}`,
+      const res = await authFetch(
+        token,
+        `/api/admin/lead/${kind}/${encodeURIComponent(docId)}${isHard ? '?hard=true' : ''}`,
         { method: 'DELETE' }
       );
       if (res.ok) {
@@ -322,14 +324,14 @@ const AdminPage = () => {
     setUploading(true);
     const fd = new FormData();
     fd.append('file', file);
-    await fetch(`${API}/api/admin/intake/${uploadModal.clientToken}/report?token=${token}`, { method: 'POST', body: fd });
+    await authFetch(token, `/api/admin/intake/${uploadModal.clientToken}/report`, { method: 'POST', body: fd });
     setUploading(false);
     setUploadModal(null);
     fetchAll(token);
   };
 
   const sendSummary = async () => {
-    await fetch(`${API}/api/admin/send-summary?token=${token}`, { method: 'POST' });
+    await authFetch(token, `/api/admin/send-summary`, { method: 'POST' });
     alert('Weekly summary sent');
   };
 
@@ -455,7 +457,7 @@ const AdminPage = () => {
           <span className="text-[10px] uppercase font-bold text-gray-400 tracking-widest mr-2">Tools</span>
           {/* Export CSV downloads */}
           <a
-            href={`${API}/api/admin/export/intake.csv?token=${token}`}
+            href="#" onClick={(e)=>{e.preventDefault();authDownload(token, `/api/admin/export/intake.csv`);}}
             download
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-semibold transition-colors"
             style={{ background: '#f3f4f6', color: '#1C2B2B', border: '1px solid #e5e7eb' }}
@@ -464,7 +466,7 @@ const AdminPage = () => {
             <FileText size={13} /> Export Intakes (CSV)
           </a>
           <a
-            href={`${API}/api/admin/export/walkthrough.csv?token=${token}`}
+            href="#" onClick={(e)=>{e.preventDefault();authDownload(token, `/api/admin/export/walkthrough.csv`);}}
             download
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-semibold transition-colors"
             style={{ background: '#f3f4f6', color: '#1C2B2B', border: '1px solid #e5e7eb' }}
@@ -473,7 +475,7 @@ const AdminPage = () => {
             <FileText size={13} /> Walkthroughs (CSV)
           </a>
           <a
-            href={`${API}/api/admin/export/revenue.csv?token=${token}`}
+            href="#" onClick={(e)=>{e.preventDefault();authDownload(token, `/api/admin/export/revenue.csv`);}}
             download
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-semibold transition-colors"
             style={{ background: '#fef9e7', color: '#1C2B2B', border: '1px solid #f5e6a8' }}
@@ -1159,7 +1161,7 @@ const DownloadsTab = ({ token }) => {
   const [events, setEvents] = useState(null);
   useEffect(() => {
     (async () => {
-      try { const res = await fetch(`${API}/api/admin/downloads?token=${token}&limit=100`); if (res.ok) setEvents(await res.json()); } catch (_e) { /* silent */ }
+      try { const res = await authFetch(token, `/api/admin/downloads?limit=100`); if (res.ok) setEvents(await res.json()); } catch (_e) { /* silent */ }
     })();
   }, [token]);
   if (!events) return <p className="text-gray-400">Loading...</p>;
@@ -1202,7 +1204,7 @@ const KitOrdersTab = ({ token }) => {
     setErr('');
     setRefreshing(true);
     try {
-      const res = await fetch(`${API}/api/admin/kit-orders?token=${token}&filter=${filter}`);
+      const res = await authFetch(token, `/api/admin/kit-orders?filter=${filter}`);
       if (!res.ok) { setErr(`HTTP ${res.status}`); return; }
       setData(await res.json());
     } catch (e) {
@@ -1280,7 +1282,7 @@ const KitOrdersTab = ({ token }) => {
         <div>
           <h2 className="text-lg font-bold text-[#1C2B2B]">Kit Orders</h2>
           <p className="text-xs text-gray-500 mt-1 leading-relaxed max-w-2xl">
-            Paid orders across the Citation-Proof Kit Series and the Supervisor Safety OS. Use{' '}
+            Paid orders across the GigLine Compliance Control Kit Series and the Supervisor Safety OS. Use{' '}
             <strong>Needs Shipping</strong> to see $600 binders and $700 physical kits awaiting a printed drop.
           </p>
         </div>
@@ -1502,7 +1504,7 @@ const KitFilesTab = ({ token }) => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await fetch(`${API}/api/admin/kit-files?token=${token}`);
+        const res = await authFetch(token, `/api/admin/kit-files`);
         if (!res.ok) { setErr(`HTTP ${res.status}`); return; }
         setData(await res.json());
       } catch (e) { setErr(String(e)); }
@@ -1544,7 +1546,7 @@ const KitFilesTab = ({ token }) => {
                   <span className="inline-block text-[10px] font-bold px-2 py-1 rounded bg-red-50 text-red-600" data-testid={`kit-pdf-missing-${i}`}>Missing on server</span>
                 ) : (
                   <a
-                    href={`${API}/api/admin/kit-files/${encodeURIComponent(f.filename)}?token=${encodeURIComponent(token)}`}
+                    href="#" onClick={(e)=>{e.preventDefault();authDownload(token, `/api/admin/kit-files/${encodeURIComponent(f.filename)}`);}}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 rounded border border-[#C9A84C] text-[#B8972C] hover:bg-[#C9A84C]/10 transition-colors"
@@ -1565,7 +1567,7 @@ const KitFilesTab = ({ token }) => {
 
 /* ── PDF Library sub-tab, unified view/download of every kit PDF sold online ── */
 const PDF_GROUPS = [
-  { id: 'citation_proof_kit', label: 'Citation-Proof Kit Series', hint: 'LOTO + Forklift/PIT digital & control-system PDFs. Auto-generated from DOCX by build_citation_proof_kit_pdfs.py, rerun that script to refresh from source.' },
+  { id: 'citation_proof_kit', label: 'GigLine Compliance Control Kit Series', hint: 'LOTO + Forklift/PIT digital & control-system PDFs. Auto-generated from DOCX by build_citation_proof_kit_pdfs.py, rerun that script to refresh from source.' },
   { id: 'hazcom',             label: 'HazCom Starter Pack',       hint: 'Written Program, SDS Binder Checklist, and Training Verification Log, attached to every $29 HazCom Starter Pack purchase.' },
   { id: 'supervisor_kit',     label: 'GigLine Supervisor Safety OS', hint: 'The 11 print-ready PDFs auto-attached to every $600 Supervisor Safety OS digital-kit purchase.' },
 ];
@@ -1583,7 +1585,7 @@ const PdfLibraryTab = ({ token }) => {
       try {
         const results = await Promise.all(
           PDF_GROUPS.map(async (g) => {
-            const res = await fetch(`${API}/api/admin/kit-files?token=${token}&group=${g.id}`);
+            const res = await authFetch(token, `/api/admin/kit-files?group=${g.id}`);
             if (!res.ok) throw new Error(`${g.label}: HTTP ${res.status}`);
             return [g.id, await res.json()];
           })
@@ -1662,7 +1664,7 @@ const PdfLibraryTab = ({ token }) => {
                       </thead>
                       <tbody>
                         {data.files.map((f, i) => {
-                          const url = `${API}/api/admin/kit-files/${encodeURIComponent(f.filename)}?token=${encodeURIComponent(token)}&group=${g.id}`;
+                          const filePath = `/api/admin/kit-files/${encodeURIComponent(f.filename)}?group=${g.id}`;
                           return (
                             <tr key={f.filename} className="border-b border-gray-100 hover:bg-gray-50" data-testid={`pdf-library-row-${g.id}-${i}`}>
                               <td className="px-3 py-2.5 text-xs text-gray-400">{String(i + 1).padStart(2, '0')}</td>
@@ -1675,17 +1677,16 @@ const PdfLibraryTab = ({ token }) => {
                                 ) : (
                                   <div className="inline-flex items-center gap-2">
                                     <a
-                                      href={url}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
+                                      href="#"
+                                      onClick={(e) => { e.preventDefault(); authDownload(token, filePath, f.filename); }}
                                       className="inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1.5 rounded border border-gray-300 text-gray-600 hover:bg-gray-100 transition-colors"
                                       data-testid={`pdf-library-preview-${g.id}-${i}`}
                                     >
                                       <Eye size={11} /> Preview
                                     </a>
                                     <a
-                                      href={url}
-                                      download={f.filename}
+                                      href="#"
+                                      onClick={(e) => { e.preventDefault(); authDownload(token, filePath, f.filename); }}
                                       className="inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-1.5 rounded bg-[#C9A84C] text-[#102A43] hover:bg-[#B8972C] transition-colors"
                                       data-testid={`pdf-library-download-${g.id}-${i}`}
                                     >
@@ -1729,7 +1730,7 @@ const PersonalizePdfTab = ({ token }) => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await fetch(`${API}/api/admin/personalized-pdfs?token=${token}`);
+        const res = await authFetch(token, `/api/admin/personalized-pdfs`);
         if (!res.ok) { setErr(`HTTP ${res.status}`); return; }
         const data = await res.json();
         setPdfs(data);
@@ -1828,7 +1829,7 @@ const GoogleIndexingTab = ({ token }) => {
 
   const loadStatus = useCallback(async () => {
     try {
-      const res = await fetch(`${API}/api/admin/google-index/status?token=${encodeURIComponent(token)}`);
+      const res = await authFetch(token, `/api/admin/google-index/status`);
       const data = await res.json();
       setStatus(data);
     } catch (e) { setStatus({ configured: false, error: String(e) }); }
@@ -1837,7 +1838,7 @@ const GoogleIndexingTab = ({ token }) => {
   const loadLog = useCallback(async () => {
     setLogBusy(true);
     try {
-      const res = await fetch(`${API}/api/admin/google-index/log?token=${encodeURIComponent(token)}&limit=50`);
+      const res = await authFetch(token, `/api/admin/google-index/log?limit=50`);
       const data = await res.json();
       setLog(data.items || []);
     } catch (e) { /* ignore */ }

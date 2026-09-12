@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  ArrowRight, Phone, ChevronRight, AlertTriangle, ShieldCheck,
-  FileText, FlaskConical, GraduationCap, ClipboardList, Bandage, Archive, Folder,
+  ArrowRight, Phone, ChevronRight, AlertTriangle, Folder,
 } from 'lucide-react';
 import SEO from '../components/SEO';
 
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
+const serif = { fontFamily: "Georgia, 'Times New Roman', serif" };
 const SLUG = 'osha-ready-control-system';
 const FIT_CALL_HREF = `/services/${SLUG}/request`;
 const KITS_HREF = '/citation-proof-kits';
@@ -28,12 +28,12 @@ const PROBLEM_CARDS = [
 ];
 
 const COMPONENTS = [
-  { icon: FileText, title: 'Written Program Control', body: 'Site-specific programs with assigned owners, effective dates, review dates, and revision history.' },
-  { icon: FlaskConical, title: 'SDS and Chemical Control', body: 'Chemical inventory, SDS library, employee-access instructions, and a process for adding or removing chemicals.' },
-  { icon: GraduationCap, title: 'Training Proof', body: 'Training matrix, attendance records, required topics, renewal dates, and responsibility assignments.' },
-  { icon: ClipboardList, title: 'Inspections and Corrections', body: 'Inspection forms, findings tracker, responsible owners, due dates, closure evidence, and verification.' },
-  { icon: Bandage, title: 'Incident Management', body: 'Incident reporting, investigation documentation, corrective actions, and OSHA recordkeeping organization.' },
-  { icon: Archive, title: 'Document Governance', body: 'Master index, document-control log, permissions, archive procedures, and annual review calendar.' },
+  { title: 'Written Program Control', body: 'Site-specific programs with assigned owners, effective dates, review dates, and revision history.' },
+  { title: 'SDS and Chemical Control', body: 'Chemical inventory, SDS library, employee-access instructions, and a process for adding or removing chemicals.' },
+  { title: 'Training Proof', body: 'Training matrix, attendance records, required topics, renewal dates, and responsibility assignments.' },
+  { title: 'Inspections and Corrections', body: 'Inspection forms, findings tracker, responsible owners, due dates, closure evidence, and verification.' },
+  { title: 'Incident Management', body: 'Incident reporting, investigation documentation, corrective actions, and OSHA recordkeeping organization.' },
+  { title: 'Document Governance', body: 'Master index, document-control log, permissions, archive procedures, and annual review calendar.' },
 ];
 
 /* Folder structure rendered as a proper semantic tree so screen readers see it as a list.
@@ -189,35 +189,67 @@ const OshaReadyControlSystemPage = () => {
         </div>
       </section>
 
-      {/* ═══════ What gets built (6 cards) ═══════ */}
-      <section id="whats-built" className="py-20 md:py-24" style={{ background: CREAM }} data-testid="ocs-components">
+      {/* ═══════ What gets built (editorial 6-stage grid) ═══════ */}
+      <section id="whats-built" className="py-16 md:py-24 lg:py-28" style={{ background: CREAM }} data-testid="ocs-components">
         <div className="container max-w-6xl">
-          <Eyebrow>Your Digital Safety Control System</Eyebrow>
-          <h2 className="text-3xl md:text-4xl font-extrabold leading-[1.15] mb-4 tracking-tight max-w-3xl" style={{ color: NAVY }}>
-            Six connected components. One usable system.
-          </h2>
-          <p className="text-[15px] text-[#1C2B2B]/70 leading-[1.85] mb-12 max-w-3xl">
-            The Control System is built inside your company-owned Google Drive, SharePoint, OneDrive, or other approved platform. Your company retains ownership and access at every step.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" role="list">
-            {COMPONENTS.map((c, i) => {
-              const Icon = c.icon;
-              return (
-                <div
-                  key={i}
-                  role="listitem"
-                  className="rounded-xl p-6 md:p-7 bg-white flex flex-col"
-                  style={{ border: '1px solid #e8e5dd' }}
-                  data-testid={`ocs-component-${i + 1}`}
-                >
-                  <div className="flex items-center justify-center mb-5" style={{ width: 40, height: 40, borderRadius: 8, background: 'rgba(42,82,160,0.10)', color: BLUE }}>
-                    <Icon size={19} strokeWidth={2} />
-                  </div>
-                  <h3 className="text-[16.5px] font-bold mb-2.5 leading-snug" style={{ color: NAVY }}>{c.title}</h3>
-                  <p className="text-[14px] text-[#1C2B2B]/70 leading-[1.75]">{c.body}</p>
-                </div>
-              );
-            })}
+          <div className="max-w-3xl mb-12 md:mb-16 lg:mb-20">
+            <Eyebrow>Your Digital Safety Control System</Eyebrow>
+            <h2 className="text-[32px] sm:text-4xl md:text-5xl leading-[1.05] mb-4 italic" style={{ ...serif, color: NAVY, letterSpacing: '-0.015em' }}>
+              Six connected components. One usable system.
+            </h2>
+            <p className="text-[15px] md:text-lg leading-[1.65]" style={{ color: 'rgba(10,22,40,0.60)' }}>
+              The Control System is built inside your company-owned Google Drive, SharePoint, OneDrive, or other approved platform. Your company retains ownership and access at every step.
+            </p>
+          </div>
+
+          <div className="relative">
+            <div
+              className="hidden lg:block absolute left-0 right-0 h-px"
+              style={{ top: '56px', background: 'linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.45) 6%, rgba(201,168,76,0.45) 94%, transparent 100%)' }}
+              aria-hidden="true"
+            />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 md:gap-x-10 gap-y-12 sm:gap-y-14" role="list">
+              {COMPONENTS.map((c, i) => {
+                const num = String(i + 1).padStart(2, '0');
+                return (
+                  <article
+                    key={i}
+                    role="listitem"
+                    className="relative"
+                    data-testid={`ocs-component-${i + 1}`}
+                  >
+                    <div
+                      aria-hidden="true"
+                      className="select-none leading-none mb-3"
+                      style={{
+                        ...serif,
+                        fontSize: 'clamp(72px, 11vw, 108px)',
+                        fontWeight: 700,
+                        color: 'transparent',
+                        WebkitTextStroke: '1.5px rgba(10,22,40,0.35)',
+                        letterSpacing: '-0.03em',
+                      }}
+                    >
+                      {num}
+                    </div>
+                    <span
+                      aria-hidden="true"
+                      className="hidden lg:block absolute"
+                      style={{ top: '50px', left: '-2px', width: '14px', height: '14px', borderRadius: '50%', background: CREAM, border: `2px solid ${GOLD}` }}
+                    />
+                    <p className="uppercase font-bold mb-2" style={{ ...mono, fontSize: '10px', letterSpacing: '0.20em', color: GOLD }}>
+                      Component {num}
+                    </p>
+                    <h3 className="text-[24px] sm:text-[26px] md:text-[28px] lg:text-[26px] xl:text-[28px] leading-[1.08] mb-3 italic" style={{ ...serif, color: NAVY, letterSpacing: '-0.005em' }}>
+                      {c.title}.
+                    </h3>
+                    <p className="text-[14px] leading-[1.75] max-w-[32ch] sm:max-w-[30ch]" style={{ color: 'rgba(10,22,40,0.70)' }}>
+                      {c.body}
+                    </p>
+                  </article>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>

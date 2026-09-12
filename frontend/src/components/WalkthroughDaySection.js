@@ -68,7 +68,7 @@ export const WalkthroughDaySection = ({ variant = 'crv', surface = 'light' }) =>
 
   return (
     <section
-      className="px-5 md:px-8 py-20 md:py-24"
+      className="px-5 md:px-8 pt-12 pb-14 md:pt-20 md:pb-24"
       style={{ background: bg, borderTop: `1px solid ${BORDER}` }}
       data-testid={`walkthrough-day-section-${variant}`}
     >

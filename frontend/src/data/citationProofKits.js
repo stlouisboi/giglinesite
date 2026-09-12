@@ -1,5 +1,5 @@
 /**
- * Citation-Proof Kit Series, content database.
+ * GigLine Compliance Control Kit Series, content database.
  *
  * Positioning discipline (per Vince):
  *   Sell the OUTCOME, not the download. Every kit hero follows this order:
@@ -21,7 +21,7 @@
  */
 
 /**
- * Citation-Proof Kit Series, Shared kit content database.
+ * GigLine Compliance Control Kit Series, Shared kit content database.
  *
  * Single source of truth used by BOTH:
  *   - React components: CitationProofKitsPage, CitationProofKitDetailPage, KitPricingTiers, ...
@@ -37,7 +37,7 @@ const PROOF_GAP_ENGINE = [
   {
     step: '01',
     name: 'Score',
-    body: 'Use the kit’s Citation-Proof Score™ to measure where the program stands right now, not from memory, from records.',
+    body: 'Use the kit’s Compliance Readiness Score™ to measure where the program stands right now, not from memory, from records.',
   },
   {
     step: '02',
@@ -68,7 +68,7 @@ const KIT_TIERS = [
     bestFor: 'Facilities that want the builders and are prepared to run the system themselves.',
     includes: [
       'Main Builder Tool for this control area',
-      'Citation-Proof Score™ to measure current standing',
+      'Compliance Readiness Score™ to measure current standing',
       'Inspector’s First 10 Questions Card',
       'Core fillable forms',
       'One worked example so the builder is not blank',
@@ -105,7 +105,7 @@ const KIT_TIERS = [
     bestFor: 'Owners, plant managers, and supervisors who need reliable access away from a computer for emergency, employee-access, and floor-use documents.',
     includes: [
       'One heavy-duty 3-inch D-ring binder',
-      'Printed HazCom system documents',
+      'Printed system documents for the selected control area',
       'Full-color cover and section-divider pages',
       'Ten labeled binder sections',
       'Digital product files included',
@@ -179,7 +179,12 @@ const KIT_CATALOG = [
     controlTool: 'Correction Closure Index™ and Root Cause Ladder™',
     startingAt: 150,
     startingAtLabel: 'Starting at $150',
-    ready: true,
+    // Deliverables not yet complete + validated. Preserved internally so the
+    // kit can be re-enabled by flipping ready + hiddenFromCatalog when files
+    // and automated fulfillment are ready. Do NOT list on any public grid,
+    // sitemap, search index, or footer until then.
+    ready: false,
+    hiddenFromCatalog: true,
     cardImage: '/assets/kits/incident/incident-editorial-hero.jpg',
     placeholder: null,
   },
@@ -191,7 +196,12 @@ const KIT_CATALOG = [
     controlTool: 'Day-One Readiness Index™ and Restricted Until Released™ Matrix',
     startingAt: 150,
     startingAtLabel: 'Starting at $150',
-    ready: true,
+    // Deliverables not yet complete + validated. Preserved internally so the
+    // kit can be re-enabled by flipping ready + hiddenFromCatalog when files
+    // and automated fulfillment are ready. Do NOT list on any public grid,
+    // sitemap, search index, or footer until then.
+    ready: false,
+    hiddenFromCatalog: true,
     cardImage: '/assets/kits/new-hire/new-hire-editorial-hero.jpg',
     placeholder: null,
   },
@@ -243,7 +253,7 @@ const KIT_DETAILS = {
     proofPromise: 'This kit walks a non-expert through every required element, machine by machine, with photo isolation maps, a 0–100 self-audit mapped to the CFR sub-paragraphs OSHA cites, and the exact sequence of documents an inspector asks for first.',
     proprietaryToolName: 'Machine-Specific Procedure Builder™ + Photo Lockout Map™',
     proprietaryToolDescription: 'The Procedure Builder™ is the primary control tool, an 11-step generator that produces a compliant (c)(4) procedure for any machine. Photo Lockout Map™ is Step 4A: labeled photos of every isolation point on the actual machine, so any authorized employee, or an inspector, can see the lockout at a glance instead of reading a generic template.',
-    scoreIndexName: 'Citation-Proof Score™ (0–100)',
+    scoreIndexName: 'Compliance Readiness Score™ (0–100)',
     // Flow line for hero support
     flowLine: ['Identify', 'Shut Down', 'Isolate', 'Verify', 'Certify'],
     // Stakes strip, factual, cited to OSHA source
@@ -261,7 +271,7 @@ const KIT_DETAILS = {
     // What this kit gets you (outcome-first, not feature-list)
     outcomes: [
       { headline: 'A defensible procedure for every machine, not a generic template', body: 'The 11-step Procedure Builder™ walks a non-expert through every element required by (c)(4)(ii): use statement, energy survey, shutdown, isolation, stored-energy release, verification, and release. Two fully worked examples (a 50-ton hydraulic press and a Haas VF-2 CNC) show what a completed procedure looks like end to end.' },
-      { headline: 'A 0–100 self-audit that tells you exactly where you stand', body: 'The Citation-Proof Score™ Rubric grades your program against the ten line items OSHA actually cites, each mapped to its exact CFR sub-paragraph. Score 90+ and you’re Citation-Proof. Under 50 and a citation is likely, you know which document closes each gap before OSHA asks for it.' },
+      { headline: 'A 0–100 self-audit that tells you exactly where you stand', body: 'The Compliance Readiness Score™ Rubric grades your program against the ten line items OSHA actually cites, each mapped to its exact CFR sub-paragraph. Score 90+ and you’re Citation-Proof. Under 50 and a citation is likely, you know which document closes each gap before OSHA asks for it.' },
       { headline: 'Photo isolation maps that end the “where do I lock it?” conversation', body: 'Photo Lockout Map™ (Step 4A) attaches labeled photos of the main disconnect, air shutoff, hydraulic bleed, stored-energy point, verification point, and danger zone. Any authorized employee, including one who’s never worked that machine, can see the lockout at a glance.' },
       { headline: 'The Inspector’s First 10 Questions, and the exact document that answers each', body: 'When a CSHO opens a LOTO inspection, they ask for documents in a predictable order. This card gives you the question, why it’s asked, and the item from your binder that answers it. If you can produce items 1–4 in under two minutes, you’ve already shown an active safety-management system.' },
     ],
@@ -274,7 +284,7 @@ const KIT_DETAILS = {
       },
       {
         outcome: 'Know your program’s citation exposure in ten minutes, before OSHA scores it for you.',
-        toolName: 'Citation-Proof Score™ Rubric',
+        toolName: 'Compliance Readiness Score™ Rubric',
         toolNote: '0–100 self-audit mapped to the exact CFR sub-paragraphs.',
       },
       {
@@ -301,7 +311,7 @@ const KIT_DETAILS = {
     faq: [
       { q: 'Do I need a separate procedure for every machine?', a: 'Yes, if the machine has different energy sources, isolation points, or hazard controls. OSHA is explicit under 1910.147(c)(4), procedures must be specific enough that an authorized employee can perform the isolation. Generic templates are the #1 LOTO citation.' },
       { q: 'What does the Photo Lockout Map replace?', a: 'It replaces the assumption that operators know where each isolation point is. Photos of the actual machine make the procedure usable by any authorized employee, including someone who has never worked that machine before, or an inspector reading it in real time.' },
-      { q: 'How does the Citation-Proof Score™ work?', a: 'It’s a 0–100 rubric graded against the ten LOTO line items OSHA actually cites, each mapped to a specific CFR sub-paragraph. Full points if it exists, is signed and dated, and matches the floor. Half points if it’s incomplete or generic. Zero if it’s missing or contradicted by practice. Under 50 = citation likely. 90+ = Citation-Proof. It is a readiness self-assessment, not a legal certification.' },
+      { q: 'How does the Compliance Readiness Score™ work?', a: 'It’s a 0–100 rubric graded against the ten LOTO line items OSHA actually cites, each mapped to a specific CFR sub-paragraph. Full points if it exists, is signed and dated, and matches the floor. Half points if it’s incomplete or generic. Zero if it’s missing or contradicted by practice. Under 50 = citation likely. 90+ = Citation-Proof. It is a readiness self-assessment, not a legal certification.' },
       { q: 'Does this cover contractor lockout?', a: 'Yes, Step 10 of the Procedure Builder addresses (f)(2) host-employer / contractor coordination and (f)(3) group LOTO methods (lockbox, multi-lock hasp). The on-site coordination itself is a facility policy the kit helps you document.' },
     ],
   },
@@ -334,7 +344,7 @@ const KIT_DETAILS = {
     problemStatement: 'Not another training packet. A system that proves training, evaluation, re-evaluation, refresher triggers, and daily readiness, before OSHA does. Most facilities can produce a stack of forklift certificates. Almost none can show a complete four-element certification per operator, per truck type, with the three-year re-evaluation actually tracked.',
     proofPromise: 'This kit walks a non-expert through every required element, the Training & Evaluation Builder™ covers the three parts of (l)(2)(ii) and the 22 required topics of (l)(3), a 0–100 self-audit mapped to the (l) sub-paragraphs OSHA cites, and a fully worked example (Class IV sit-down counterbalance) so the Builder is never blank.',
     proprietaryToolName: 'Operator Training & Evaluation Builder™ + Operator Readiness Index™',
-    proprietaryToolDescription: 'The Training & Evaluation Builder™ is the primary control tool, it documents the three-part program (formal + practical + workplace evaluation) across all 22 required topics for one operator, on one truck type. The Operator Readiness Index™ powers the Citation-Proof Score™: a 0–100 rubric mapped to the exact (l) sub-paragraphs OSHA cites. The 3-Year Re-Evaluation Autopilot Tracker closes the gap that generates the most missed citations.',
+    proprietaryToolDescription: 'The Training & Evaluation Builder™ is the primary control tool, it documents the three-part program (formal + practical + workplace evaluation) across all 22 required topics for one operator, on one truck type. The Operator Readiness Index™ powers the Compliance Readiness Score™: a 0–100 rubric mapped to the exact (l) sub-paragraphs OSHA cites. The 3-Year Re-Evaluation Autopilot Tracker closes the gap that generates the most missed citations.',
     scoreIndexName: 'Operator Readiness Index™',
     flowLine: ['Instruct', 'Train', 'Evaluate', 'Certify', 'Re-Evaluate'],
     // Stakes strip, factual, cited to OSHA source
@@ -352,7 +362,7 @@ const KIT_DETAILS = {
     // What this kit gets you (outcome-first)
     outcomes: [
       { headline: 'A four-element certification for every operator, the record OSHA asks for first', body: 'The Training & Evaluation Certification (Form A) captures the four elements required by (l)(6): operator name, training date, evaluation date, and the identity of the person who performed the training and evaluation. Missing any one of these is a citable recordkeeping failure. The Builder walks you through completing this, with a fully worked example (Marcus Reed on a Class IV counterbalance) so the record is never guess-built.' },
-      { headline: 'A 0–100 self-audit that tells you exactly where you stand', body: 'The Citation-Proof Score™ Rubric grades your program against the ten line items OSHA cites, each mapped to its exact CFR sub-paragraph. Score 90+ and you’re Citation-Proof. Under 50 and a citation is likely, you know which certification, tracker, or evaluation closes each gap before an inspector opens the binder.' },
+      { headline: 'A 0–100 self-audit that tells you exactly where you stand', body: 'The Compliance Readiness Score™ Rubric grades your program against the ten line items OSHA cites, each mapped to its exact CFR sub-paragraph. Score 90+ and you’re Citation-Proof. Under 50 and a citation is likely, you know which certification, tracker, or evaluation closes each gap before an inspector opens the binder.' },
       { headline: 'A 3-Year Re-Evaluation tracker that catches the most-missed citation', body: 'The single most common PIT citation is a lapsed 3-year re-evaluation that nobody tracked. Form B (3-Year Re-Evaluation Autopilot) logs every operator’s last evaluation date and computes the next-due date under (l)(4)(iii). No triennial evaluation lapses because the clock runs on paper, not in someone’s head.' },
       { headline: 'The Inspector’s First 10 Questions, and the exact record that answers each', body: 'When a CSHO opens a forklift inspection, they ask for records in a predictable order, certifications, workplace evaluations, re-evaluation dates, refresher after a near-miss, today’s pre-shift inspection. This card gives you the question, why it’s asked, and the item from your kit that answers it. If you can produce complete four-element certifications for every operator in under two minutes, you’ve already shown an active training program.' },
     ],
@@ -364,7 +374,7 @@ const KIT_DETAILS = {
       },
       {
         outcome: 'Know your program’s citation exposure in ten minutes, before OSHA scores it for you.',
-        toolName: 'Citation-Proof Score™ Rubric',
+        toolName: 'Compliance Readiness Score™ Rubric',
         toolNote: '0–100 self-audit mapped to the exact (l) sub-paragraphs. Powered by the Operator Readiness Index™.',
       },
       {
@@ -384,7 +394,7 @@ const KIT_DETAILS = {
       '3-Year Re-Evaluation Autopilot Tracker (Form B), (l)(4)(iii)',
       'Daily / Pre-Shift Inspection (Form C), (p)(1)',
       'Refresher-Training Trigger Log (Form D), (l)(4)(ii)',
-      'Citation-Proof Score™ Rubric (0–100, mapped to (l) sub-paragraphs)',
+      'Compliance Readiness Score™ Rubric (0–100, mapped to (l) sub-paragraphs)',
       'Inspector’s First 10 Questions Card',
       'Fully worked example, Class IV sit-down counterbalance forklift',
       'Regulatory Basis & Sources page, every requirement cited to 1910.178',
@@ -393,7 +403,7 @@ const KIT_DETAILS = {
       { q: 'Is a wallet card enough proof?', a: 'No. A wallet card proves training happened at some point. It does not prove workplace evaluation on the actual truck type, does not track the three-year re-evaluation, and does not tie the operator to the specific truck class(es) they operate. Under (l)(6) OSHA asks for a certification with four specific elements, operator name, training date, evaluation date, and trainer identity. The kit’s Form A captures all four.' },
       { q: 'Does online-only training satisfy OSHA?', a: 'No. 1910.178(l)(2)(ii) requires three parts, formal instruction (which can be online), practical training (hands-on demonstration + trainee exercises on the actual truck type), and a workplace performance evaluation observed in real conditions. Online-only training fails the standard. The Builder documents all three parts as separate steps so an inspector can see each was completed.' },
       { q: 'What triggers a refresher training?', a: '1910.178(l)(4)(ii) lists them: an operator observed operating unsafely, involvement in an accident or near miss, workplace evaluation showing operator needs additional training, assignment to a different type of truck, or a change in workplace conditions that could affect safe operation. Form D (Refresher-Training Trigger Log) documents each trigger event and links it to the refresher training completed.' },
-      { q: 'How does the Citation-Proof Score™ work?', a: 'It’s a 0–100 rubric graded against ten PIT line items OSHA actually cites, each mapped to its exact CFR sub-paragraph (mostly under (l), plus (p)(1) for daily inspection). Full points if it exists, is signed and dated, and matches practice. Half points if it’s incomplete, unsigned, generic, or outdated. Zero if it’s missing or contradicted by practice. Under 50 = citation likely. 90+ = Citation-Proof. It is a readiness self-assessment, not a legal certification or an operator license, there is no OSHA “forklift license.”' },
+      { q: 'How does the Compliance Readiness Score™ work?', a: 'It’s a 0–100 rubric graded against ten PIT line items OSHA actually cites, each mapped to its exact CFR sub-paragraph (mostly under (l), plus (p)(1) for daily inspection). Full points if it exists, is signed and dated, and matches practice. Half points if it’s incomplete, unsigned, generic, or outdated. Zero if it’s missing or contradicted by practice. Under 50 = citation likely. 90+ = Citation-Proof. It is a readiness self-assessment, not a legal certification or an operator license, there is no OSHA “forklift license.”' },
       { q: 'Do I need one certification per operator per truck type?', a: 'Yes. Under (l)(3)(i), training is truck-type-specific. An operator certified on a Class IV counterbalance is not automatically certified on a reach truck. The Builder is designed to be completed once per operator, per truck type, the Step 1 identification captures the exact class and unit(s) the certification covers.' },
     ],
   },
@@ -489,7 +499,8 @@ const KIT_DETAILS = {
     subtitle: 'Incident, Near-Miss & Corrective Action Control',
     system: 'Incident, Near-Miss & Corrective Action Control System',
     standard: 'OSHA recordkeeping and corrective-action program support (general)',
-    ready: true,
+    ready: false,
+    hiddenFromCatalog: true,
     ctaShortName: 'Incident',
     heroSupportLine: 'Built for facilities that need incident, near-miss, and corrective-action records they can produce the moment leadership, an insurer, or OSHA asks for them.',
     builtFor: [
@@ -535,7 +546,8 @@ const KIT_DETAILS = {
     subtitle: 'Day-One Safety Readiness & Authorization Control',
     system: 'Day-One Safety Readiness & Authorization Control System',
     standard: 'OSHA training and orientation proof support (general)',
-    ready: true,
+    ready: false,
+    hiddenFromCatalog: true,
     ctaShortName: 'New Hire',
     heroSupportLine: 'Built for facilities that need new-hire safety training records they can produce the moment an inspector or a workers-compensation adjuster asks for them.',
     builtFor: [

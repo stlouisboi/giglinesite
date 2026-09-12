@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Check, ArrowRight, Lock, Loader2 } from 'lucide-react';
 import { KIT_TIERS } from '../data/citationProofKits';
 
@@ -58,6 +58,25 @@ const KitPricingTiers = ({
   const stripeEnabled = ready && !universalTiers && STRIPE_ENABLED_SLUGS.has(kitSlug);
   const [checkoutLoadingTier, setCheckoutLoadingTier] = useState(null);
   const [checkoutError, setCheckoutError] = useState(null);
+
+  // ── Tier preselection: when the selector deep-links `?tier=<id>#pricing`,
+  // highlight the matching card with a subtle gold outline + confirmation
+  // note so buyers visually see the recommended tier on arrival. Does not
+  // change checkout logic, only visual emphasis.
+  const [searchParams] = useSearchParams();
+  const preselectedTier = searchParams.get('tier');
+  const validTierIds = ['digital', 'control-system', 'binder'];
+  const preselected = validTierIds.includes(preselectedTier) ? preselectedTier : null;
+
+  useEffect(() => {
+    if (!preselected) return;
+    // Scroll the preselected tier card into view once mounted so the buyer
+    // lands directly on their recommendation.
+    const el = document.querySelector(`[data-testid="kit-tier-${preselected}"]`);
+    if (el && typeof el.scrollIntoView === 'function') {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, [preselected]);
 
   const startTierCheckout = async (tierId) => {
     setCheckoutError(null);
@@ -162,6 +181,7 @@ const KitPricingTiers = ({
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 md:gap-6 items-stretch">
           {KIT_TIERS.map((tier) => {
             const isFeatured = tier.id === 'control-system';
+            const isPreselected = preselected === tier.id;
             return (
               <div
                 key={tier.id}
@@ -169,11 +189,36 @@ const KitPricingTiers = ({
                 style={{
                   background: isFeatured ? NAVY : 'white',
                   color: isFeatured ? 'white' : NAVY,
-                  border: isFeatured ? `1px solid ${GOLD}` : '1px solid #e8e5dd',
-                  boxShadow: isFeatured ? '0 12px 32px rgba(16,42,67,0.18)' : '0 4px 12px rgba(16,42,67,0.05)',
+                  border: isPreselected
+                    ? `2px solid ${GOLD}`
+                    : isFeatured
+                      ? `1px solid ${GOLD}`
+                      : '1px solid #e8e5dd',
+                  boxShadow: isPreselected
+                    ? `0 0 0 3px rgba(201,168,76,0.18), 0 12px 32px rgba(16,42,67,0.18)`
+                    : isFeatured
+                      ? '0 12px 32px rgba(16,42,67,0.18)'
+                      : '0 4px 12px rgba(16,42,67,0.05)',
+                  transition: 'box-shadow 200ms ease',
                 }}
                 data-testid={`kit-tier-${tier.id}`}
+                data-preselected={isPreselected ? 'true' : undefined}
               >
+                {isPreselected && (
+                  <div
+                    className="absolute -top-3 right-6 uppercase font-bold tracking-[0.14em] px-3 py-1 rounded-sm whitespace-nowrap"
+                    style={{
+                      background: 'white',
+                      color: NAVY,
+                      border: `1px solid ${GOLD}`,
+                      fontFamily: "'JetBrains Mono', monospace",
+                      fontSize: '9.5px',
+                    }}
+                    data-testid={`kit-tier-${tier.id}-preselected-tag`}
+                  >
+                    Recommended by selector
+                  </div>
+                )}
                 {isFeatured && (
                   <div
                     className="absolute -top-3 left-6 uppercase font-bold tracking-[0.1em] px-3 py-1 rounded-sm whitespace-nowrap"

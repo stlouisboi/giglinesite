@@ -1,11 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, BookOpen, Monitor, FileText, Bot, Zap, ShieldCheck, Star, Anchor, Factory, MapPin, ClipboardList, Shield, CheckCircle2, FileImage, Lock } from 'lucide-react';
+import { ArrowRight, Check, BookOpen, Monitor, FileText, Bot, Zap, ShieldCheck, Star, Anchor, Factory, MapPin, ClipboardList, Shield, CheckCircle2, FileImage, Lock, ChevronRight } from 'lucide-react';
 import SEO from '../components/SEO';
 import CaseStudyTeaser from '../components/CaseStudyTeaser';
 import FieldManualBand from '../components/FieldManualBand';
 import WalkthroughDaySection from '../components/WalkthroughDaySection';
 import FindBuildMaintainJourney from '../components/FindBuildMaintainJourney';
+import AssessmentSelectorModal from '../components/AssessmentSelectorModal';
 import { trackPhoneClick, trackReviewClick, trackEvent } from '../utils/analytics';
 import { SUPERVISOR_KIT_ENABLED } from '../config/features';
 
@@ -58,6 +59,7 @@ const mono = { fontFamily: "'JetBrains Mono', monospace" };
 const heading = { fontFamily: "'Manrope', sans-serif" };
 
 const HomePage = () => {
+  const [homeSelectorOpen, setHomeSelectorOpen] = useState(false);
   return (
     <main className="overflow-x-hidden">
       <SEO
@@ -312,7 +314,7 @@ const HomePage = () => {
 
       {/* ═══ SECTION 2A, FLOOR → FINDINGS → FIXES → PROOF (buyer journey) ═══ */}
       <section
-        className="py-20 md:py-24"
+        className="px-5 pt-12 pb-14 md:px-0 md:pt-20 md:pb-24"
         style={{ background: '#102A43', color: 'white' }}
         data-testid="home-buyer-journey"
       >
@@ -332,7 +334,7 @@ const HomePage = () => {
             >
               Floor. Findings. Fixes. Proof.
             </h2>
-            <p className="text-base md:text-lg text-white/70 leading-relaxed mb-12 max-w-3xl">
+            <p className="text-base md:text-lg text-white/70 leading-relaxed mb-9 md:mb-12 max-w-3xl">
               A simple operating model. Four connected steps from what is happening on the floor to organized, retrievable evidence.
             </p>
           </Reveal>
@@ -344,7 +346,7 @@ const HomePage = () => {
               style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.35) 8%, rgba(201,168,76,0.35) 92%, transparent 100%)' }}
               aria-hidden="true"
             />
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-10 gap-y-14">
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-10 gap-y-12 lg:gap-y-14">
               {[
                 {
                   num: '01', title: 'Floor',
@@ -370,13 +372,14 @@ const HomePage = () => {
               ].map((step, i) => (
                 <Reveal key={step.num} delay={i * 120}>
                   <article className="relative" data-testid={`buyer-journey-step-${step.num}`}>
-                    {/* Huge outline numeral — the editorial anchor */}
+                    {/* Huge outline numeral — the editorial anchor.
+                        Mobile size 72px (in 68-76px spec), desktop 96px. */}
                     <div
                       aria-hidden="true"
                       className="select-none leading-none mb-4"
                       style={{
                         fontFamily: "Georgia, 'Times New Roman', serif",
-                        fontSize: '96px',
+                        fontSize: 'clamp(72px, 12vw, 96px)',
                         fontWeight: 700,
                         color: 'transparent',
                         WebkitTextStroke: '1.5px rgba(201,168,76,0.55)',
@@ -392,15 +395,15 @@ const HomePage = () => {
                       style={{ top: '46px', left: '-2px', width: '14px', height: '14px', borderRadius: '50%', background: '#0A1628', border: '2px solid #C9A84C' }}
                     />
                     <h3
-                      className="text-[28px] md:text-[32px] font-bold leading-[1.05] mb-2 italic"
+                      className="text-[28px] md:text-[32px] font-bold leading-[1.05] mb-2.5 italic"
                       style={{ fontFamily: "Georgia, 'Times New Roman', serif", color: 'white', letterSpacing: '-0.01em' }}
                     >
                       {step.title}.
                     </h3>
-                    <p className="text-[15px] md:text-base text-white/85 mb-3 leading-[1.45] font-medium" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+                    <p className="text-[15px] md:text-base text-white/85 mb-3.5 leading-[1.45] font-medium" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
                       {step.headline}
                     </p>
-                    <p className="text-[13.5px] text-white/60 leading-[1.75] max-w-[26ch]">
+                    <p className="text-[14px] md:text-[13.5px] text-white/60 leading-[1.75] w-full max-w-[520px] lg:max-w-[26ch]">
                       {step.body}
                     </p>
                     {step.cta && (
@@ -470,13 +473,13 @@ const HomePage = () => {
             {[
               {
                 key: 'kits',
-                title: 'Citation-Proof Kit Series',
+                title: 'GigLine Compliance Control Kit Series',
                 price: '$150–$600',
                 copy: 'For a specific safety-control gap such as PIT, HazCom, LOTO, incident response, or new-hire records.',
                 ctaLabel: 'Explore Control Kits',
                 to: '/citation-proof-kits',
                 image: '/card-citation-proof-kits.jpg',
-                imageAlt: 'Navy hardcover safety-compliance binder with color-coded index tabs and a tablet showing a Safety Checklist on a wooden industrial workbench, with a warehouse aisle and forklift softly blurred in the background, GigLine Citation-Proof Kit Series editorial product photograph',
+                imageAlt: 'Navy hardcover safety-compliance binder with color-coded index tabs and a tablet showing a Safety Checklist on a wooden industrial workbench, with a warehouse aisle and forklift softly blurred in the background, GigLine GigLine Compliance Control Kit Series editorial product photograph',
                 overlayEyebrow: 'Kit Series',
                 overlayName: 'Citation-Proof',
               },
@@ -906,9 +909,32 @@ const HomePage = () => {
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#1C2B2B] leading-[1.15] mb-4 max-w-3xl tracking-tight">
               Four ways to work with GigLine.
             </h2>
-            <p className="text-base md:text-lg text-[#1C2B2B]/70 leading-relaxed mb-12 max-w-3xl">
+            <p className="text-base md:text-lg text-[#1C2B2B]/70 leading-relaxed mb-8 max-w-3xl">
               Every engagement starts with a conversation. If we&apos;re not the right fit, we&apos;ll tell you.
             </p>
+            <div
+              className="flex flex-col sm:flex-row sm:items-center gap-3 mb-12 py-4 px-4 max-w-4xl"
+              style={{ borderTop: '1px solid rgba(10,22,40,0.12)', borderBottom: '1px solid rgba(10,22,40,0.12)' }}
+              data-testid="home-services-selector-band"
+            >
+              <div className="flex-1">
+                <p className="uppercase font-bold mb-1" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10.5px', letterSpacing: '0.22em', color: '#C9A84C' }}>
+                  Not sure whether the gap is on the floor, in the files, or both?
+                </p>
+                <p className="text-[14.5px] md:text-[15.5px] italic leading-[1.6]" style={{ fontFamily: "Georgia, 'Times New Roman', serif", color: 'rgba(10,22,40,0.72)' }}>
+                  Answer three floor-level questions. We&rsquo;ll point you at the right assessment.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setHomeSelectorOpen(true)}
+                className="inline-flex items-center gap-2 font-bold py-3 px-6 whitespace-nowrap"
+                style={{ background: '#C9A84C', color: '#102A43', fontFamily: "'Manrope', sans-serif", fontSize: '14px' }}
+                data-testid="home-find-assessment-cta"
+              >
+                Find the Right Assessment <ChevronRight size={15} />
+              </button>
+            </div>
           </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-7 mb-12" data-testid="home-services-grid">
@@ -1229,7 +1255,7 @@ const HomePage = () => {
                 data-testid="home-kit-series-eyebrow"
               >
                 <span style={{ background: '#C5A059', color: '#0A1628', padding: '2px 8px', borderRadius: '3px', fontSize: '10px', letterSpacing: '0.14em' }}>NEW</span>
-                Citation-Proof Kit Series
+                GigLine Compliance Control Kit Series
               </p>
               <h2
                 className="font-bold leading-[1.15] tracking-tight mb-4 text-[26px] md:text-[32px] lg:text-[36px] text-white"
@@ -1246,12 +1272,11 @@ const HomePage = () => {
                 }}
                 data-testid="home-kit-series-body"
               >
-                Five kits. Three tiers each. One goal: paperwork that survives an inspection.
+                Three kits. Three tiers each. One goal: paperwork that survives an inspection.
                 <strong style={{ color: '#C5A059' }}> LOTO</strong>,{' '}
                 <strong style={{ color: '#C5A059' }}>Forklift/PIT</strong>, and{' '}
                 <strong style={{ color: '#C5A059' }}>HazCom Pro</strong> are shipping now,{' '}
                 <strong style={{ color: 'white' }}>$150 digital &middot; $300 control system &middot; $600 pre-printed binder</strong>.
-                Incident-to-Correction and New Hire Orientation are next.
               </p>
               <div className="flex flex-wrap gap-3 items-center">
                 <Link
@@ -1840,6 +1865,11 @@ This is GigLine Safety & Compliance.`}
         </div>
       </section>
 
+      <AssessmentSelectorModal
+        open={homeSelectorOpen}
+        onClose={() => setHomeSelectorOpen(false)}
+        source="homepage-services-band"
+      />
     </main>
   );
 };

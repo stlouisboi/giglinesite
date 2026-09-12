@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Phone, Mail, Pencil, Trash2, Plus, MessageSquare, ChevronDown, X, Save, Search } from 'lucide-react';
+import { authFetch } from '../lib/adminApi';
 
 const API = process.env.REACT_APP_BACKEND_URL;
 
@@ -71,7 +72,7 @@ const WalkthroughLeadsCRM = ({ token, externalQuery = '' }) => {
   const fetchLeads = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await fetch(`${API}/api/admin/walkthrough-leads?token=${token}&limit=300`);
+      const res = await authFetch(token, `/api/admin/walkthrough-leads?limit=300`);
       if (res.ok) {
         const data = await res.json();
         setLeads(data.leads || []);
@@ -85,7 +86,7 @@ const WalkthroughLeadsCRM = ({ token, externalQuery = '' }) => {
 
   // ── Actions ───────────────────────────────────────────
   const updateStatus = async (id, newStatus) => {
-    await fetch(`${API}/api/admin/walkthrough-leads/${id}/status?token=${token}`, {
+    await authFetch(token, `/api/admin/walkthrough-leads/${id}/status`, {
       method: 'PATCH', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ status: newStatus }),
     });
@@ -95,14 +96,14 @@ const WalkthroughLeadsCRM = ({ token, externalQuery = '' }) => {
 
   const deleteLead = async (id) => {
     if (!confirm('Delete this lead permanently? This cannot be undone.')) return;
-    await fetch(`${API}/api/admin/walkthrough-leads/${id}?token=${token}`, { method: 'DELETE' });
+    await authFetch(token, `/api/admin/walkthrough-leads/${id}`, { method: 'DELETE' });
     setLeads((curr) => curr.filter((l) => l.id !== id));
     if (drawer?.id === id) setDrawer(null);
   };
 
   const saveEdit = async () => {
     const id = drawer.id;
-    const res = await fetch(`${API}/api/admin/walkthrough-leads/${id}?token=${token}`, {
+    const res = await authFetch(token, `/api/admin/walkthrough-leads/${id}`, {
       method: 'PATCH', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(editForm),
     });
@@ -117,7 +118,7 @@ const WalkthroughLeadsCRM = ({ token, externalQuery = '' }) => {
   const addNote = async () => {
     if (!noteText.trim() || !drawer) return;
     setSavingNote(true);
-    const res = await fetch(`${API}/api/admin/walkthrough-leads/${drawer.id}/notes?token=${token}`, {
+    const res = await authFetch(token, `/api/admin/walkthrough-leads/${drawer.id}/notes`, {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ text: noteText.trim() }),
     });
@@ -132,14 +133,14 @@ const WalkthroughLeadsCRM = ({ token, externalQuery = '' }) => {
   };
 
   const deleteNote = async (noteId) => {
-    await fetch(`${API}/api/admin/walkthrough-leads/${drawer.id}/notes/${noteId}?token=${token}`, { method: 'DELETE' });
+    await authFetch(token, `/api/admin/walkthrough-leads/${drawer.id}/notes/${noteId}`, { method: 'DELETE' });
     const updated = { ...drawer, notes: drawer.notes.filter((n) => n.id !== noteId) };
     setDrawer(updated);
     setLeads((curr) => curr.map((l) => (l.id === drawer.id ? updated : l)));
   };
 
   const createLead = async (payload) => {
-    const res = await fetch(`${API}/api/admin/walkthrough-leads?token=${token}`, {
+    const res = await authFetch(token, `/api/admin/walkthrough-leads`, {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     });

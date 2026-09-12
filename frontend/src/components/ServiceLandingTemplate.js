@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check, Phone } from 'lucide-react';
 import SEO from './SEO';
 import FieldManualBand from './FieldManualBand';
+import AssessmentSelectorModal from './AssessmentSelectorModal';
+import StickySelectorBar from './StickySelectorBar';
 
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
 
@@ -35,7 +37,17 @@ const ServiceLandingTemplate = ({
   nextSteps,           // { intro, steps[] }
   // Closing
   closingHeadline,
+  // Assessment selector integration (defaults on for the 3 diagnostic pages)
+  assessmentSelectorSource = 'service-page',
+  showAssessmentSelectorLink = true,
+  // Service-specific primary CTA (default matches Safety Walkthrough for
+  // back-compat, docs review and CRV pages override).
+  primaryCtaLabel = 'Request a Safety Walkthrough',
+  primaryCtaHref = '/intake',
+  closingCtaLabel = null,
 }) => {
+  const [selectorOpen, setSelectorOpen] = useState(false);
+  const _closingCtaLabel = closingCtaLabel || primaryCtaLabel;
   const schema = faqItems && faqItems.length ? [{
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -81,11 +93,11 @@ const ServiceLandingTemplate = ({
 
               <div className="flex flex-col sm:flex-row gap-3 mb-5" data-testid="svc-hero-ctas">
                 <Link
-                  to="/intake"
+                  to={primaryCtaHref}
                   className="bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center justify-center gap-2 shadow-lg shadow-[#2A52A0]/20"
                   data-testid="svc-cta-primary"
                 >
-                  Request a Safety Walkthrough
+                  {primaryCtaLabel}
                   <ArrowRight size={18} />
                 </Link>
                 <Link
@@ -108,6 +120,18 @@ const ServiceLandingTemplate = ({
                 <p className="text-base text-white/85" data-testid="svc-price-line">
                   {priceLine}
                 </p>
+              )}
+              {showAssessmentSelectorLink && (
+                <button
+                  type="button"
+                  onClick={() => setSelectorOpen(true)}
+                  data-testid="svc-assessment-selector-link"
+                  className="mt-4 inline-flex items-center gap-2 text-white/85 hover:text-white transition-colors"
+                  style={{ borderBottom: '1px solid rgba(201,168,76,0.55)', paddingBottom: 3, ...mono, fontSize: '12px', letterSpacing: '0.14em' }}
+                >
+                  NOT SURE THIS IS THE RIGHT ASSESSMENT?  FIND YOUR STARTING POINT
+                  <ArrowRight size={12} />
+                </button>
               )}
             </div>
             {heroImage && (
@@ -235,18 +259,18 @@ const ServiceLandingTemplate = ({
       </section>
 
       {/* ── Final CTA ── */}
-      <section className="py-20 md:py-28" style={{ backgroundColor: '#000000' }} data-testid="svc-final-cta">
+      <section id="intake" className="py-20 md:py-28 scroll-mt-24" style={{ backgroundColor: '#000000' }} data-testid="svc-final-cta">
         <div className="container max-w-3xl text-center">
           <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight mb-8" data-testid="svc-closing-headline">
             {closingHeadline}
           </h2>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
             <Link
-              to="/intake"
+              to={primaryCtaHref}
               className="bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded transition-colors inline-flex items-center gap-2 shadow-lg shadow-[#2A52A0]/20"
               data-testid="svc-closing-cta-primary"
             >
-              Request a Safety Walkthrough
+              {_closingCtaLabel}
               <ArrowRight size={18} />
             </Link>
             <Link
@@ -262,6 +286,14 @@ const ServiceLandingTemplate = ({
           </p>
         </div>
       </section>
+      <AssessmentSelectorModal
+        open={selectorOpen}
+        onClose={() => setSelectorOpen(false)}
+        source={assessmentSelectorSource}
+      />
+      {showAssessmentSelectorLink && (
+        <StickySelectorBar source={`sticky-${assessmentSelectorSource}`} />
+      )}
     </main>
   );
 };

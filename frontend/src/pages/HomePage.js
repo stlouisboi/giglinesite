@@ -314,7 +314,7 @@ const HomePage = () => {
 
       {/* ═══ SECTION 2A, FLOOR → FINDINGS → FIXES → PROOF (buyer journey) ═══ */}
       <section
-        className="py-20 md:py-24"
+        className="px-5 pt-12 pb-14 md:px-0 md:pt-20 md:pb-24"
         style={{ background: '#102A43', color: 'white' }}
         data-testid="home-buyer-journey"
       >
@@ -334,7 +334,7 @@ const HomePage = () => {
             >
               Floor. Findings. Fixes. Proof.
             </h2>
-            <p className="text-base md:text-lg text-white/70 leading-relaxed mb-12 max-w-3xl">
+            <p className="text-base md:text-lg text-white/70 leading-relaxed mb-9 md:mb-12 max-w-3xl">
               A simple operating model. Four connected steps from what is happening on the floor to organized, retrievable evidence.
             </p>
           </Reveal>
@@ -346,7 +346,7 @@ const HomePage = () => {
               style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.35) 8%, rgba(201,168,76,0.35) 92%, transparent 100%)' }}
               aria-hidden="true"
             />
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-10 gap-y-14">
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-10 gap-y-12 lg:gap-y-14">
               {[
                 {
                   num: '01', title: 'Floor',
@@ -372,13 +372,14 @@ const HomePage = () => {
               ].map((step, i) => (
                 <Reveal key={step.num} delay={i * 120}>
                   <article className="relative" data-testid={`buyer-journey-step-${step.num}`}>
-                    {/* Huge outline numeral — the editorial anchor */}
+                    {/* Huge outline numeral — the editorial anchor.
+                        Mobile size 72px (in 68-76px spec), desktop 96px. */}
                     <div
                       aria-hidden="true"
                       className="select-none leading-none mb-4"
                       style={{
                         fontFamily: "Georgia, 'Times New Roman', serif",
-                        fontSize: '96px',
+                        fontSize: 'clamp(72px, 12vw, 96px)',
                         fontWeight: 700,
                         color: 'transparent',
                         WebkitTextStroke: '1.5px rgba(201,168,76,0.55)',
@@ -394,15 +395,15 @@ const HomePage = () => {
                       style={{ top: '46px', left: '-2px', width: '14px', height: '14px', borderRadius: '50%', background: '#0A1628', border: '2px solid #C9A84C' }}
                     />
                     <h3
-                      className="text-[28px] md:text-[32px] font-bold leading-[1.05] mb-2 italic"
+                      className="text-[28px] md:text-[32px] font-bold leading-[1.05] mb-2.5 italic"
                       style={{ fontFamily: "Georgia, 'Times New Roman', serif", color: 'white', letterSpacing: '-0.01em' }}
                     >
                       {step.title}.
                     </h3>
-                    <p className="text-[15px] md:text-base text-white/85 mb-3 leading-[1.45] font-medium" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+                    <p className="text-[15px] md:text-base text-white/85 mb-3.5 leading-[1.45] font-medium" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
                       {step.headline}
                     </p>
-                    <p className="text-[13.5px] text-white/60 leading-[1.75] max-w-[26ch]">
+                    <p className="text-[14px] md:text-[13.5px] text-white/60 leading-[1.75] w-full max-w-[520px] lg:max-w-[26ch]">
                       {step.body}
                     </p>
                     {step.cta && (

@@ -484,3 +484,20 @@ See `/app/memory/test_credentials.md`.
   - Files changed: `frontend/src/components/AssessmentSelector.js` (primaryHref), `frontend/src/components/ServiceLandingTemplate.js` (#intake anchor), `frontend/src/pages/SafetyWalkthroughPage.js` (#intake anchor).
 
 
+
+- **2026-02-11 (fork continued), Mobile spacing fixes for "Floor. Findings. Fixes. Proof." homepage section**:
+  - Section (`data-testid="home-buyer-journey"` in `pages/HomePage.js`) had inherited desktop spacing on mobile that pushed step 02 near the bottom of a 390px viewport. Applied the mobile spec:
+    * Section padding `py-20 md:py-24` → `px-5 pt-12 pb-14 md:px-0 md:pt-20 md:pb-24` (48/20/56 mobile, 80/inherit/96 desktop).
+    * Intro paragraph margin-bottom `mb-12` → `mb-9 md:mb-12` (36px mobile, 48px desktop).
+    * Grid gap `gap-y-14` → `gap-y-12 lg:gap-y-14` (48px mobile, 56px desktop).
+    * Outline number `fontSize: '96px'` → `fontSize: 'clamp(72px, 12vw, 96px)'` (72px mobile, 96px desktop).
+    * Title bottom margin `mb-2` (8px) → `mb-2.5` (10px).
+    * Bold headline bottom margin `mb-3` (12px) → `mb-3.5` (14px).
+    * Body copy width `max-w-[26ch]` → `w-full max-w-[520px] lg:max-w-[26ch]` (full-width up to 520px cap on mobile, narrow 26ch on desktop 4-col grid).
+    * Body copy font-size `text-[13.5px]` → `text-[14px] md:text-[13.5px]` (slightly larger for mobile readability).
+    * No fixed heights or min-heights added; grid `grid-cols-1 lg:grid-cols-4` already stacks vertically in normal flow.
+    * Preserved navy background, gold outlined numbers, white italic serif titles, existing typography.
+  - Measured verification via Playwright at 390 viewport: section padding 51.6/21.5/60.2, number 72px, num→title 17px, title→headline 11px, headline→body 15px, step-to-step gap 54-56px, body-copy width 312px (container-constrained). Screenshot confirms step 02 begins immediately after step 01 body copy, not near viewport bottom.
+  - Files changed: `frontend/src/pages/HomePage.js`.
+
+

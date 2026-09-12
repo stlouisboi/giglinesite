@@ -384,7 +384,7 @@ const CitationProofKitDetailPage = () => {
           <div className="max-w-6xl mx-auto">
             <img
               src={kit.productImages.whatsInside}
-              alt={`What's inside the ${kit.name}, Citation-Proof Score, Main Builder Tool, Inspector's First 10 Questions, Worked Example, Core Fillable Forms, Regulatory Basis`}
+              alt={`What's inside the ${kit.name}, Compliance Readiness Score, Main Builder Tool, Inspector's First 10 Questions, Worked Example, Core Fillable Forms, Regulatory Basis`}
               className="w-full h-auto"
               style={{ display: 'block' }}
             />

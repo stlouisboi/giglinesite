@@ -4,6 +4,7 @@ import { ArrowRight, ShieldCheck, Lock } from 'lucide-react';
 import SEO from '../components/SEO';
 import ProofGapEngineSteps from '../components/ProofGapEngineSteps';
 import KitPricingTiers from '../components/KitPricingTiers';
+import KitSelector from '../components/KitSelector';
 import { KIT_CATALOG } from '../data/citationProofKits';
 
 const NAVY = '#102A43';
@@ -39,7 +40,7 @@ const CitationProofKitsPage = () => {
         }
       `}</style>
       <SEO
-        title="Citation-Proof Kit Series | GigLine Safety & Compliance"
+        title="GigLine Compliance Control Kit Series | GigLine Safety & Compliance"
         description="5 practical compliance-control kits for small NC operations. Turn scattered safety activity into inspection-ready proof. From $150."
         canonical="/citation-proof-kits"
       />
@@ -51,7 +52,7 @@ const CitationProofKitsPage = () => {
             className="uppercase font-bold tracking-[0.28em] mb-4"
             style={{ color: GOLD, ...mono, fontSize: '11px' }}
           >
-            Citation-Proof Kit Series
+            GigLine Compliance Control Kit Series
           </p>
           <h1
             className="font-bold leading-[1.08] tracking-tight mb-6 text-[32px] md:text-[44px] lg:text-[52px]"
@@ -74,6 +75,15 @@ const CitationProofKitsPage = () => {
             Most safety problems do not start with a lack of effort. They start when the work was done, but the proof is missing, weak, outdated, or does not match the floor. GigLine kits help you close that proof gap.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
+            <a
+              href="#kit-selector"
+              className="inline-flex items-center gap-2 font-bold py-3 px-6 rounded transition-all text-[14px]"
+              style={{ background: GOLD, color: NAVY, ...sans }}
+              data-testid="kits-hero-find-my-kit-cta"
+            >
+              Find My Kit
+              <ArrowRight size={14} />
+            </a>
             <a
               href="#kit-grid"
               className="inline-flex items-center gap-2 font-bold py-3 px-6 rounded transition-all text-[14px]"
@@ -111,8 +121,11 @@ const CitationProofKitsPage = () => {
       <ProofGapEngineSteps
         kicker="Built on the GigLine Proof Gap Engine™"
         heading="One method. Four steps. Every kit."
-        intro="Every kit in the Citation-Proof Series runs on the same four-step method. It doesn’t matter which control area you’re fixing, the sequence is always the same: Score where you stand, Sort every gap by type, Fix in the right order, and Pull the records that get handed over first."
+        intro="Every kit in the Compliance Control Series runs on the same four-step method. It doesn’t matter which control area you’re fixing, the sequence is always the same: Score where you stand, Sort every gap by type, Fix in the right order, and Pull the records that get handed over first."
       />
+
+      {/* ═══════════ KIT SELECTOR (decision layer) ═══════════ */}
+      <KitSelector />
 
       {/* ═══════════ KIT GRID ═══════════ */}
       <section id="kit-grid" className="px-5 md:px-8 py-20 md:py-24" style={{ background: PANEL }} data-testid="kits-grid-section">

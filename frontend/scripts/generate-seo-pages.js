@@ -19,7 +19,7 @@ const path = require('path');
 // prospects can see on the client is now mirrored into the SSR HTML.
 const { NOTES: FIELD_NOTE_CONTENT } = require('../src/data/fieldNoteContent');
 
-// GL-WEB-KIT-SSR, Shared Citation-Proof Kit Series content database (same source
+// GL-WEB-KIT-SSR, Shared GigLine Compliance Control Kit Series content database (same source
 // used by the React CitationProofKits pages). Mirrored into SSR HTML so
 // reviewers, non-JS crawlers, and AI answer engines see kit content + tier
 // structure + brand terms + disclaimer without executing JavaScript.
@@ -1596,7 +1596,7 @@ const routes = [
       <h2>Three things that reliably reduce a proposed penalty</h2>
       <ol>
         <li><strong>Written programs the CSHO can see.</strong> Not a binder title , the actual document, dated, signed, with a review cadence and named responsible person. This is where the 25% good-faith reduction lives.</li>
-        <li><strong>Records of corrective action follow-through.</strong> Every past incident, near miss, or hazard observation with documented owner, due date, and closure verification. See the <a href="/citation-proof-kits">Citation-Proof Kit Series</a> for the exact structure.</li>
+        <li><strong>Records of corrective action follow-through.</strong> Every past incident, near miss, or hazard observation with documented owner, due date, and closure verification. See the <a href="/citation-proof-kits">GigLine Compliance Control Kit Series</a> for the exact structure.</li>
         <li><strong>An informal conference done well.</strong> Show up with a written abatement plan for every citation, evidence of programs already in place, and specific per-item adjustments requested.</li>
       </ol>
 
@@ -2119,7 +2119,7 @@ function generateRouteHTML(templateHTML, route) {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// GL-WEB-KIT-SSR, Citation-Proof Kit Series SSR pass.
+// GL-WEB-KIT-SSR, GigLine Compliance Control Kit Series SSR pass.
 // Pre-renders the catalog page + all 5 kit detail pages so non-JS reviewers
 // (curl, AI browsing tools, Bing, LinkedIn/X preview scrapers, older search
 // crawlers) see the full tier structure, brand terms, disclaimer, and every
@@ -2129,7 +2129,7 @@ function generateRouteHTML(templateHTML, route) {
 // ═══════════════════════════════════════════════════════════════════════════
 
 const KIT_SERIES_DISCLAIMER =
-  'Citation-Proof Kit Series and Citation-Proof Score are GigLine trade names, not OSHA certifications. These kits support documentation and self-audit. They do not guarantee OSHA compliance, prevent citations, eliminate hazards, or replace the employer\u2019s responsibility to maintain a safe workplace. Employers remain responsible for identifying applicable standards, correcting recognized hazards, training employees, and maintaining accurate records.';
+  'GigLine Compliance Control Kit Series and Compliance Readiness Score are GigLine trade names, not OSHA certifications. These kits support documentation and self-audit. They do not guarantee OSHA compliance, prevent citations, eliminate hazards, or replace the employer\u2019s responsibility to maintain a safe workplace. Employers remain responsible for identifying applicable standards, correcting recognized hazards, training employees, and maintaining accurate records.';
 
 // SSR only covers the 3 publicly-available Citation-Proof Kits. The other
 // two slugs (incident-to-correction-kit, new-hire-orientation-kit) are kept
@@ -2244,7 +2244,7 @@ function renderKitDetailRoute(slug) {
     ${faq ? `<h2>Frequently Asked Questions</h2>${faq}` : ''}
     <h2>Disclaimer</h2>
     <p>${escapeHtml(KIT_SERIES_DISCLAIMER)}</p>
-    <p><a href="/citation-proof-kits">Back to the Citation-Proof Kit Series &rarr;</a></p>
+    <p><a href="/citation-proof-kits">Back to the GigLine Compliance Control Kit Series &rarr;</a></p>
     <p>GigLine Safety &amp; Compliance , (336) 329-8899 , vince@giglinecompliance.com</p>
   `;
 }
@@ -2344,7 +2344,7 @@ routes.push({
 
 routes.push({
   path: '/citation-proof-kits',
-  title: 'Citation-Proof Kit Series | GigLine Safety & Compliance',
+  title: 'GigLine Compliance Control Kit Series | GigLine Safety & Compliance',
   description: '3 compliance-control kits, LOTO, Forklift/PIT, HazCom Pro. Digital, Control System, or Binder Edition. From $150.',
   canonical: '/citation-proof-kits',
   schemas: [
@@ -2359,7 +2359,7 @@ CITATION_PROOF_KIT_SLUGS.forEach((slug) => {
   if (!kit) return;
   routes.push({
     path: `/citation-proof-kits/${slug}`,
-    title: `${kit.name} | Citation-Proof Kit Series | GigLine`,
+    title: `${kit.name} | GigLine Compliance Control Kit Series | GigLine`,
     description: `${(kit.outcomeHeadline || '').replace(/[""]/g, '"')} ${kit.heroSupportLine || ''}`.trim().slice(0, 300),
     canonical: `/citation-proof-kits/${slug}`,
     schemas: [

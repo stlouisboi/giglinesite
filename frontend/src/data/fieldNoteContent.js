@@ -1113,7 +1113,7 @@ Corrective action: implement a written hot work permit program based on NFPA 51B
       headline: 'Adjust every grinder in the shop. Document it. Prove it.',
       intro: 'A 10-minute daily grinder check log with pre-printed 1/8-inch and 1/4-inch tolerance callouts, plus training-verification and wheel-mounting record forms. Part of the GigLine Machine-Specific LOTO / Guarding kit series, CFR-cited and print-ready.',
       ctaTo: '/citation-proof-kits',
-      ctaLabel: 'Explore the Citation-Proof Kit Series',
+      ctaLabel: 'Explore the GigLine Compliance Control Kit Series',
       cards: [
         { num: '1', title: 'Daily Grinder Check Log', body: 'One-line per grinder with pre-printed 1/8-inch work-rest and 1/4-inch tongue-guard callouts. Supervisor initial column.' },
         { num: '2', title: 'Wheel Mounting Record', body: 'Ring test, RPM verification, one-minute run-in, signed and dated per wheel change. Retention field built in.' },

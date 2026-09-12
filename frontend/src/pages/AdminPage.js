@@ -1282,7 +1282,7 @@ const KitOrdersTab = ({ token }) => {
         <div>
           <h2 className="text-lg font-bold text-[#1C2B2B]">Kit Orders</h2>
           <p className="text-xs text-gray-500 mt-1 leading-relaxed max-w-2xl">
-            Paid orders across the Citation-Proof Kit Series and the Supervisor Safety OS. Use{' '}
+            Paid orders across the GigLine Compliance Control Kit Series and the Supervisor Safety OS. Use{' '}
             <strong>Needs Shipping</strong> to see $600 binders and $700 physical kits awaiting a printed drop.
           </p>
         </div>
@@ -1567,7 +1567,7 @@ const KitFilesTab = ({ token }) => {
 
 /* ── PDF Library sub-tab, unified view/download of every kit PDF sold online ── */
 const PDF_GROUPS = [
-  { id: 'citation_proof_kit', label: 'Citation-Proof Kit Series', hint: 'LOTO + Forklift/PIT digital & control-system PDFs. Auto-generated from DOCX by build_citation_proof_kit_pdfs.py, rerun that script to refresh from source.' },
+  { id: 'citation_proof_kit', label: 'GigLine Compliance Control Kit Series', hint: 'LOTO + Forklift/PIT digital & control-system PDFs. Auto-generated from DOCX by build_citation_proof_kit_pdfs.py, rerun that script to refresh from source.' },
   { id: 'hazcom',             label: 'HazCom Starter Pack',       hint: 'Written Program, SDS Binder Checklist, and Training Verification Log, attached to every $29 HazCom Starter Pack purchase.' },
   { id: 'supervisor_kit',     label: 'GigLine Supervisor Safety OS', hint: 'The 11 print-ready PDFs auto-attached to every $600 Supervisor Safety OS digital-kit purchase.' },
 ];

@@ -228,7 +228,7 @@ const CitationCostCalculatorPage = () => {
                 </div>
                 <div>
                   <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] leading-tight">Your {fmt(total)} exposure vs. the kits that close these gaps</h2>
-                  <p className="text-[13.5px] text-gray-500 mt-1">The Citation-Proof Kit Series delivers the exact paperwork OSHA asks about first.</p>
+                  <p className="text-[13.5px] text-gray-500 mt-1">The GigLine Compliance Control Kit Series delivers the exact paperwork OSHA asks about first.</p>
                 </div>
               </div>
 

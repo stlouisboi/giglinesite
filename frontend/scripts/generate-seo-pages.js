@@ -1675,9 +1675,9 @@ const SERVICE_DETAIL_ROUTES = [
     breadcrumbName: 'Incident Review',
   },
   {
-    slug: 'osha-ready-control-system',
+    slug: 'safety-control-system-buildout',
     title: 'Safety Control System Buildout, Premium Engagement | GigLine',
-    description: 'Complete OSHA control system for small NC manufacturers, written programs, training, recordkeeping, audit-ready docs. From $4,500.',
+    description: 'Complete OSHA safety control system for small NC manufacturers, written programs, training, recordkeeping, audit-ready docs. From $4,500.',
     h1: 'A complete OSHA control system built around your operation.',
     summary: 'A premium engagement for small manufacturers ready to operate at full OSHA-ready status. Written programs, training, recordkeeping, and audit-ready documentation built and maintained by GigLine.',
     price: '4500',

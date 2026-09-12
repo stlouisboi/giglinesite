@@ -12,7 +12,7 @@ import logging
 
 import resend
 from config import (
-    db, ADMIN_PASSWORD, SENDER_EMAIL, VINCE_EMAIL,
+    db, ADMIN_PASSWORD, is_admin, SENDER_EMAIL, VINCE_EMAIL,
     SUPERVISOR_KIT_FILES, HAZCOM_FILES, CITATION_PROOF_KIT_PRODUCTS,
 )
 
@@ -70,7 +70,7 @@ async def list_kit_files(token: str = "", group: str = "supervisor_kit"):
     Uses the same source-of-truth manifests the buyer-email attachment code
     reads from, so the admin sees exactly what customers receive.
     """
-    if token != ADMIN_PASSWORD:
+    if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
     groups = _pdf_groups()
     if group not in groups:
@@ -108,7 +108,7 @@ async def list_kit_files(token: str = "", group: str = "supervisor_kit"):
 @router.get("/admin/kit-files/{filename}")
 async def download_kit_file(filename: str, token: str = "", group: str = "supervisor_kit"):
     """Admin-only: download a PDF from the given product group."""
-    if token != ADMIN_PASSWORD:
+    if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
     groups = _pdf_groups()
     if group not in groups:
@@ -133,7 +133,7 @@ COLLATERAL_DIR = Path("/app/frontend/public/assets")
 @router.get("/admin/personalized-pdfs")
 async def list_personalizable_pdfs(token: str = ""):
     """Return the list of collateral PDFs that can be personalized."""
-    if token != ADMIN_PASSWORD:
+    if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
     from lib.pdf_cover_metadata import COVERS
     items = []
@@ -160,7 +160,7 @@ async def download_personalized_pdf(
     File is generated in-memory each request (no disk write) so nothing leaks
     into the public /assets directory.
     """
-    if token != ADMIN_PASSWORD:
+    if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
 
     safe_name = os.path.basename(filename)
@@ -198,7 +198,7 @@ async def download_personalized_pdf(
 @router.get("/admin/internal-docs/{filename}")
 async def download_internal_doc(filename: str, token: str = ""):
     """Admin-only: download internal reference docs (field checklists, SOPs, etc.)."""
-    if token != ADMIN_PASSWORD:
+    if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
     # Prevent path traversal
     safe_name = os.path.basename(filename)
@@ -211,7 +211,7 @@ async def download_internal_doc(filename: str, token: str = ""):
 @router.post("/admin/login")
 async def admin_login(body: dict):
     """Simple password auth for admin dashboard."""
-    if body.get("password") != ADMIN_PASSWORD:
+    if not is_admin(body.get("password")):
         raise HTTPException(status_code=401, detail="Invalid password")
     return {"status": "ok", "token": ADMIN_PASSWORD}
 
@@ -219,7 +219,7 @@ async def admin_login(body: dict):
 @router.get("/admin/stats")
 async def admin_stats(token: str = ""):
     """Dashboard stats: leads, downloads, risk breakdown."""
-    if token != ADMIN_PASSWORD:
+    if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
 
     now = datetime.now(timezone.utc)
@@ -336,7 +336,7 @@ async def admin_stats(token: str = ""):
 @router.get("/admin/leads")
 async def admin_leads(token: str = "", limit: int = 50):
     """Recent leads: safety checks + walkthrough requests."""
-    if token != ADMIN_PASSWORD:
+    if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
 
     checks = await db.safety_check_submissions.find({}, {"_id": 0}).sort("timestamp", -1).to_list(limit)
@@ -355,7 +355,7 @@ async def admin_leads(token: str = "", limit: int = 50):
 @router.get("/admin/downloads")
 async def admin_downloads(token: str = "", limit: int = 100):
     """Recent download events."""
-    if token != ADMIN_PASSWORD:
+    if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
 
     events = await db.download_events.find({}, {"_id": 0}).sort("timestamp", -1).to_list(limit)
@@ -365,7 +365,7 @@ async def admin_downloads(token: str = "", limit: int = 100):
 @router.post("/admin/send-summary")
 async def send_admin_summary(token: str = ""):
     """Manually trigger the weekly summary email to Vince."""
-    if token != ADMIN_PASSWORD:
+    if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
     await send_weekly_summary()
     return {"status": "sent"}
@@ -431,7 +431,7 @@ async def seo_health_check_endpoint(token: str = "", email: bool = False):
     Designed to be hit weekly by an external cron service (e.g. cron-job.org)
     with email=1 to get an alert only when something breaks.
     """
-    if token != ADMIN_PASSWORD:
+    if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
 
     import sys as _sys
@@ -478,7 +478,7 @@ async def delete_lead(kind: str, doc_id: str, token: str = "", hard: bool = Fals
     `hard=true` skips the archive copy (permanent delete).
     Recoverable: archived rows live in `<collection>_archive` and can be restored manually if needed.
     """
-    if token != ADMIN_PASSWORD:
+    if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
     if kind not in LEAD_COLLECTIONS:
         raise HTTPException(status_code=400, detail=f"Unknown lead kind '{kind}'. Valid: {list(LEAD_COLLECTIONS)}")
@@ -515,7 +515,7 @@ async def add_manual_revenue(body: dict, token: str = ""):
       date: ISO date string (optional — defaults to now)
     }
     """
-    if token != ADMIN_PASSWORD:
+    if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
     try:
         amount = float(body.get("amount") or 0)
@@ -548,7 +548,7 @@ async def add_manual_revenue(body: dict, token: str = ""):
 @router.get("/admin/revenue/list")
 async def list_revenue(token: str = "", limit: int = 200):
     """List recent gl_bookings (both Stripe + manual) for admin display."""
-    if token != ADMIN_PASSWORD:
+    if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
     rows = await db.gl_bookings.find({"paid": True}, {"_id": 0}).sort("paidAt", -1).to_list(limit)
     total = sum((r.get("totalCharged") or 0) for r in rows)
@@ -586,7 +586,7 @@ async def export_csv(kind: str, token: str = ""):
 
     `kind` options: intake, walkthrough, safety_check, heat_guide, revenue.
     """
-    if token != ADMIN_PASSWORD:
+    if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     if kind == "revenue":
@@ -620,7 +620,7 @@ async def admin_kit_orders(token: str = "", filter: str = "all"):
     "needs_shipping" surfaces the physical/binder orders whose PDFs have been
     auto-delivered but that still need a printed binder mailed out.
     """
-    if token != ADMIN_PASSWORD:
+    if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
 
     valid_filters = {"all", "needs_shipping", "auto_delivered", "pending_manual", "shipped"}
@@ -741,7 +741,7 @@ async def admin_mark_kit_shipped(session_id: str, body: dict):
     Side effect: fires a Resend "your kit is on its way" email to the buyer.
     """
     token = body.get("token", "")
-    if token != ADMIN_PASSWORD:
+    if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
 
     tracking_number = (body.get("tracking_number") or "").strip()

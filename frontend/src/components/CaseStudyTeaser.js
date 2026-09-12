@@ -56,7 +56,7 @@ const CaseStudyTeaser = ({ source = 'homepage' }) => {
               <Stat icon={<ShieldCheck size={14} />} label="Compliance" value="80.3 / 100" />
             </div>
             <Link
-              to="/case-study/metals-fabrication-statesville"
+              to="/case-study/metal-fabrication-readiness"
               className="group inline-flex items-center justify-center gap-2 font-bold py-4 px-7 transition-all text-[15px] md:text-base w-full md:w-auto"
               style={{
                 backgroundColor: GOLD,

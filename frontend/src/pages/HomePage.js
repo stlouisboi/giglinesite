@@ -684,7 +684,7 @@ const HomePage = () => {
                 Small metal fabrication operation. North Carolina. 13 findings identified across machine guarding, compressed gas storage, and documentation gaps. 12 of 13 corrective actions closed within 4 days of the walkthrough. One remained open at the reporting point. Anonymized example, not a guaranteed or typical outcome.
               </p>
               <Link
-                to="/case-study/metals-fabrication-statesville"
+                to="/case-study/metal-fabrication-readiness"
                 className="inline-flex items-center gap-2 font-semibold text-[#C9A84C] hover:text-white transition-colors"
                 style={{ fontSize: '15px' }}
                 data-testid="recent-engagement-cta"
@@ -880,7 +880,7 @@ const HomePage = () => {
                 A small metal fabrication operation in North Carolina. One combined walkthrough and documentation review. <strong className="text-white">13 findings identified.</strong> Seven carried serious-citation risk , up to <strong className="text-white">$16,550 per finding</strong> under the 2026 OSHA maximum penalty schedule. One inspection visit could have stacked those into <strong className="text-white">six figures of penalty exposure</strong>. The corrective action plan closed <strong className="text-white">twelve of thirteen findings inside four days</strong>. One remained open at the reporting point.
               </p>
               <Link
-                to="/case-study/metals-fabrication-statesville"
+                to="/case-study/metal-fabrication-readiness"
                 className="inline-flex items-center gap-1.5 mt-5 font-semibold text-sm transition-colors"
                 style={{ color: '#c8922a', fontFamily: "'JetBrains Mono', monospace" }}
                 data-testid="cost-scenario-cta"
@@ -1411,7 +1411,7 @@ const HomePage = () => {
                   <span className="font-bold text-right" style={{ color: s.highlight ? '#22c55e' : '#fff', fontSize: '15px' }}>{s.value}</span>
                 </div>
               ))}
-              <Link to="/case-study/metals-fabrication-statesville" className="inline-flex items-center gap-2 mt-6 font-semibold" style={{ color: '#2A52A0' }}>Read the full case study <ArrowRight size={14} /></Link>
+              <Link to="/case-study/metal-fabrication-readiness" className="inline-flex items-center gap-2 mt-6 font-semibold" style={{ color: '#2A52A0' }}>Read the full case study <ArrowRight size={14} /></Link>
             </div>
           </div>
 

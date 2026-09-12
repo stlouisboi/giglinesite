@@ -420,7 +420,7 @@ const ComplianceReadinessVisitPage = () => {
         <div className="container max-w-5xl">
           <figure>
             <Link
-              to="/case-study/metals-fabrication-statesville"
+              to="/case-study/metal-fabrication-readiness"
               className="block rounded-xl overflow-hidden transition-shadow"
               style={{
                 background: '#ffffff',
@@ -447,7 +447,7 @@ const ComplianceReadinessVisitPage = () => {
                 Anonymized outcome from a 2026 Compliance Readiness Visit at a small NC metal fabrication operation. Illustrative, not a guaranteed or typical result.
               </span>
               <Link
-                to="/case-study/metals-fabrication-statesville"
+                to="/case-study/metal-fabrication-readiness"
                 className="inline-flex items-center gap-1.5 font-bold transition-colors"
                 style={{ color: BLUE }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = NAVY)}

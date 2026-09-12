@@ -198,7 +198,7 @@ const WalkthroughLandingPage = () => {
       >
         <div className="max-w-3xl mx-auto">
           <a
-            href="/case-study/metals-fabrication-statesville"
+            href="/case-study/metal-fabrication-readiness"
             className="group grid grid-cols-1 md:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] items-center gap-6 md:gap-8 p-5 md:p-6 transition-shadow"
             style={{
               backgroundColor: BG_CARD,

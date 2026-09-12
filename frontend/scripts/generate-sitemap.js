@@ -75,7 +75,7 @@ const ROUTES = [
   { loc: '/sample-corrective-action-log', priority: '0.7', changefreq: 'monthly' },
 
   // ── Case studies ───────────────────────────────────────────────────
-  { loc: '/case-study/metals-fabrication-statesville', priority: '0.9', changefreq: 'yearly' },
+  { loc: '/case-study/metal-fabrication-readiness', priority: '0.9', changefreq: 'yearly' },
 
   // ── GigLine Compliance Control Kit Series (released only) ──────────
   { loc: '/citation-proof-kits', priority: '0.9', changefreq: 'weekly' },

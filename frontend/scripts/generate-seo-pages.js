@@ -275,7 +275,7 @@ const routes = [
       <h2>What Clients Say</h2>
       <p>"If you're looking for a partner that can bridge the gap between compliance and real-world execution, GigLine delivers results.", Demar Archie, Warehouse Receiving Manager</p>
       <h2>Recent Engagement , Case Study</h2>
-      <p><a href="/case-study/metals-fabrication-statesville">What a Safety Walkthrough Actually Finds</a>. A 9-person metals fabrication facility in Statesville, NC. Combined walkthrough and documentation review. 13 findings across machine guarding, compressed gas storage, and documentation gaps. 12 of 13 corrective actions closed within four days of the walkthrough.</p>
+      <p><a href="/case-study/metal-fabrication-readiness">What a Safety Walkthrough Actually Finds</a>. A 9-person metals fabrication facility in Statesville, NC. Combined walkthrough and documentation review. 13 findings across machine guarding, compressed gas storage, and documentation gaps. 12 of 13 corrective actions closed within four days of the walkthrough.</p>
       <h2>Final CTA, Know what's on your floor before OSHA does.</h2>
       <p>The walkthrough takes a few hours. The report is in your hands in 48. The cost is a fraction of a single citation. Questions first? Call or text directly: (336) 329-8899.</p>
       <h2>Frequently Asked Questions</h2>
@@ -362,7 +362,7 @@ const routes = [
       <h2>The GigLine Readiness Path</h2>
       <p>Find the issues, Safety Walkthrough from $1,300. Check the files, OSHA Documentation Readiness Review from ${DOC_REVIEW_PRICE_LABEL}. Review both, Compliance Readiness Visit from $2,500. Build the system, Safety Control System Buildout from $4,500. Keep it current, Ongoing Safety Support from $1,850/month.</p>
       <h2>Recent Engagement , Case Study</h2>
-      <p><a href="/case-study/metals-fabrication-statesville">What a Safety Walkthrough Actually Finds</a>.</p>
+      <p><a href="/case-study/metal-fabrication-readiness">What a Safety Walkthrough Actually Finds</a>.</p>
       <p>After payment, you'll receive a scheduling confirmation within one business day.</p>
       <p>GigLine Safety &amp; Compliance, Kernersville, NC, (336) 329-8899</p>
     `,
@@ -985,10 +985,10 @@ const routes = [
     `,
   },
   {
-    path: '/case-study/metals-fabrication-statesville',
+    path: '/case-study/metal-fabrication-readiness',
     title: 'What a Safety Walkthrough Actually Finds | GigLine Case Study',
     description: "Metals fabrication case study in Statesville, NC. Combined walkthrough + doc review. 13 findings. 80.3 compliance score.'s what the engagement delivered.",
-    canonical: '/case-study/metals-fabrication-statesville',
+    canonical: '/case-study/metal-fabrication-readiness',
     schemas: [
       {
         '@context': 'https://schema.org',
@@ -998,7 +998,7 @@ const routes = [
         image: `${BASE_URL}/og-image.png`,
         author: { '@id': `${BASE_URL}/#vince` },
         publisher: { '@id': `${BASE_URL}/#business` },
-        mainEntityOfPage: `${BASE_URL}/case-study/metals-fabrication-statesville`,
+        mainEntityOfPage: `${BASE_URL}/case-study/metal-fabrication-readiness`,
         datePublished: '2026-01-20',
         dateModified: '2026-02-28',
         articleSection: 'Case Study',
@@ -1007,7 +1007,7 @@ const routes = [
       breadcrumb([
         { name: 'Home', path: '/' },
         { name: 'Case Studies', path: '/case-studies' },
-        { name: 'Statesville Metals Fabrication', path: '/case-study/metals-fabrication-statesville' },
+        { name: 'Statesville Metals Fabrication', path: '/case-study/metal-fabrication-readiness' },
       ]),
       {
         '@context': 'https://schema.org',

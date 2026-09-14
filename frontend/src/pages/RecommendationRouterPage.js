@@ -37,10 +37,9 @@ const RecommendationRouterPage = () => {
       data-testid="recommendation-router-page"
     >
       <SEO
-        title="Recommendation Router (Private Preview) | GigLine"
-        description="Internal decision-support preview. Not indexed. Not for production traffic."
+        title="Which GigLine Step Fits Your Operation? | GigLine Safety & Compliance"
+        description="Answer up to five short questions and get a single recommended next step from GigLine Safety and Compliance. One primary path, one alternative, and clear inclusions. No email required to see your result."
         canonical="/recommendation"
-        noindex
       />
 
       <section className="px-5 md:px-8 pt-16 pb-8 md:pt-20">
@@ -50,7 +49,7 @@ const RecommendationRouterPage = () => {
             style={{ color: GOLD, ...mono, fontSize: '11px' }}
             data-testid="rr-page-kicker"
           >
-            Private preview, decision support
+            Decision support
           </p>
           <h1
             className="font-bold leading-[1.1] mb-5 text-[32px] sm:text-[40px] md:text-[48px] tracking-tight"
@@ -88,9 +87,7 @@ const RecommendationRouterPage = () => {
           style={{ color: INK_MUTED }}
           data-testid="rr-page-preview-notice"
         >
-          Private preview build. This route is not indexed, not linked from
-          navigation, and does not transmit any email or payment. Copy and
-          logic will be reviewed before public launch.
+          Your answers stay in your browser. No email, phone number, or company name is required to see the result. GigLine only receives the answers if you continue to a request-a-visit form.
         </p>
       </section>
 

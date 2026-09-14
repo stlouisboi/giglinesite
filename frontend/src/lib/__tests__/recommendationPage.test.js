@@ -25,8 +25,7 @@ describe('Recommendation router, page gating', () => {
     expect(app).toMatch(/path="\/recommendation"/);
   });
 
-  test('page emits noindex and redirects to /resources when the flag is off', () => {
-    expect(page).toContain('noindex');
+  test('page emits SEO tags and redirects to /resources when the flag is off', () => {
     expect(page).toMatch(/RECOMMENDATION_ROUTER_ENABLED/);
     expect(page).toMatch(/Navigate to="\/resources"/);
   });
@@ -35,12 +34,12 @@ describe('Recommendation router, page gating', () => {
     expect(page).toMatch(/isPreviewBypassAllowed/);
   });
 
-  test('sitemap does not include /recommendation', () => {
+  test('sitemap includes /recommendation (Batch 2B live)', () => {
     const sitemap = fs.readFileSync(
       path.join(SRC, '..', 'public', 'sitemap.xml'),
       'utf8',
     );
-    expect(sitemap).not.toMatch(/\/recommendation/);
+    expect(sitemap).toMatch(/\/recommendation/);
   });
 
   test('router source contains no fetch/axios calls and no transactional-email SDK imports', () => {
@@ -54,8 +53,8 @@ describe('Recommendation router, page gating', () => {
 
 describe('Feature flag registration', () => {
   const features = read('config/features.js');
-  test('RECOMMENDATION_ROUTER_ENABLED exported as false', () => {
-    expect(features).toMatch(/export\s+const\s+RECOMMENDATION_ROUTER_ENABLED\s*=\s*false\s*;/);
+  test('RECOMMENDATION_ROUTER_ENABLED exported as true (Batch 2B live)', () => {
+    expect(features).toMatch(/export\s+const\s+RECOMMENDATION_ROUTER_ENABLED\s*=\s*true\s*;/);
   });
   test('EXIT_FEEDBACK_ENABLED exported as false', () => {
     expect(features).toMatch(/export\s+const\s+EXIT_FEEDBACK_ENABLED\s*=\s*false\s*;/);

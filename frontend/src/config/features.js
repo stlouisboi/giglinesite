@@ -56,7 +56,17 @@ export const OSHA_TWELVE_QUESTIONS_ENABLED = false;
  *   Flip to `true` only after owner approval, and only in coordination
  *   with the transactional-email wiring in Batch 2C.
  */
-export const RECOMMENDATION_ROUTER_ENABLED = false;
+export const RECOMMENDATION_ROUTER_ENABLED = true;
+
+/**
+ * EMAIL_DELIVERY_LIVE
+ *   Phase 2 Batch 2B, held at `false` until real transactional email is
+ *   wired (Batch 2C). When `false`, the "Email my recommendation" and
+ *   "Email my action plan" toggles are hidden entirely so buyers never
+ *   see a "Preview only, no email was sent" confirmation. The router
+ *   result itself and every other decision-support surface stays visible.
+ */
+export const EMAIL_DELIVERY_LIVE = false;
 
 /**
  * EXIT_FEEDBACK_ENABLED

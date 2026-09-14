@@ -24,6 +24,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Check, Mail, RefreshCw, ChevronRight } from 'lucide-react';
 import { RESULT_KIND } from '../data/recommendationEngine';
 import { writeHandoffToSession } from '../lib/recommendationHandoff';
+import { EMAIL_DELIVERY_LIVE } from '../config/features';
 
 const NAVY = '#102A43';
 const GOLD = '#C9A84C';
@@ -482,6 +483,7 @@ const RecommendationResultCard = ({ result, referringRoute, source, onRestart })
               background: 'white',
               color: NAVY,
               border: `1px solid ${GOLD}`,
+              display: EMAIL_DELIVERY_LIVE ? 'inline-flex' : 'none',
             }}
             data-testid="rr-result-email-toggle"
             aria-expanded={showEmailForm}
@@ -504,7 +506,7 @@ const RecommendationResultCard = ({ result, referringRoute, source, onRestart })
         </div>
       </div>
 
-      {showEmailForm && <EmailPreviewForm result={result} />}
+      {showEmailForm && EMAIL_DELIVERY_LIVE && <EmailPreviewForm result={result} />}
     </article>
   );
 };

@@ -48,8 +48,8 @@ const {
 } = require('../../config/features');
 
 describe('Feature flags default off (preview only)', () => {
-  test('RECOMMENDATION_ROUTER_ENABLED is false', () => {
-    expect(RECOMMENDATION_ROUTER_ENABLED).toBe(false);
+  test('RECOMMENDATION_ROUTER_ENABLED is true (Batch 2B live)', () => {
+    expect(RECOMMENDATION_ROUTER_ENABLED).toBe(true);
   });
   test('EXIT_FEEDBACK_ENABLED is false', () => {
     expect(EXIT_FEEDBACK_ENABLED).toBe(false);

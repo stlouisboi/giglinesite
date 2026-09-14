@@ -25,7 +25,7 @@ const readRepo = (rel) => fs.readFileSync(path.join(REPO, rel), 'utf8');
 
 describe('RecommendationEntryCard, flag gating', () => {
   const card = read('components/RecommendationEntryCard.js');
-  test('returns null when RECOMMENDATION_ROUTER_ENABLED is false', () => {
+  test('is gated by the RECOMMENDATION_ROUTER_ENABLED flag', () => {
     expect(card).toMatch(/if\s*\(\s*!RECOMMENDATION_ROUTER_ENABLED\s*\)\s*return\s+null\s*;/);
   });
   test('links to /recommendation and never renders a purchase CTA', () => {
@@ -132,8 +132,8 @@ describe('ExitFeedbackStub', () => {
 
 describe('Safety Check action-plan preview', () => {
   const ap = read('components/SafetyCheckActionPlanPreview.js');
-  test('is gated by the router flag and does not fetch or claim delivery', () => {
-    expect(ap).toMatch(/if\s*\(\s*!RECOMMENDATION_ROUTER_ENABLED\s*\)\s*return\s+null\s*;/);
+  test('is gated by BOTH the router flag AND EMAIL_DELIVERY_LIVE and does not fetch or claim delivery', () => {
+    expect(ap).toMatch(/if\s*\(\s*!RECOMMENDATION_ROUTER_ENABLED\s*\|\|\s*!EMAIL_DELIVERY_LIVE\s*\)\s*return\s+null\s*;/);
     expect(ap).not.toMatch(/\bfetch\s*\(/);
     expect(ap).not.toMatch(/email sent|delivered to your inbox|check your email/i);
     expect(ap).toContain('Preview only, no email was sent');
@@ -141,6 +141,18 @@ describe('Safety Check action-plan preview', () => {
   test('marketing consent is a separate unchecked checkbox', () => {
     expect(ap).toMatch(/marketing[\s\S]{0,60}useState\(false\)/i);
     expect(ap).toMatch(/opted in|not opted in/);
+  });
+});
+
+describe('EMAIL_DELIVERY_LIVE flag gating', () => {
+  const features = read('config/features.js');
+  const card = read('components/RecommendationResultCard.js');
+  test('EMAIL_DELIVERY_LIVE exported as false', () => {
+    expect(features).toMatch(/export\s+const\s+EMAIL_DELIVERY_LIVE\s*=\s*false\s*;/);
+  });
+  test('RecommendationResultCard imports EMAIL_DELIVERY_LIVE and hides the email toggle when off', () => {
+    expect(card).toMatch(/EMAIL_DELIVERY_LIVE/);
+    expect(card).toMatch(/showEmailForm\s*&&\s*EMAIL_DELIVERY_LIVE/);
   });
 });
 

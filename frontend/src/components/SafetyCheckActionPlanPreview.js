@@ -11,7 +11,7 @@
  */
 import React, { useState } from 'react';
 import { Mail, ArrowRight } from 'lucide-react';
-import { RECOMMENDATION_ROUTER_ENABLED } from '../config/features';
+import { RECOMMENDATION_ROUTER_ENABLED, EMAIL_DELIVERY_LIVE } from '../config/features';
 
 const NAVY = '#102A43';
 const GOLD = '#C9A84C';
@@ -28,7 +28,7 @@ const SafetyCheckActionPlanPreview = ({ tier, noCount, recommendation, source = 
   const [submitted, setSubmitted] = useState(false);
   const [expanded, setExpanded] = useState(false);
 
-  if (!RECOMMENDATION_ROUTER_ENABLED) return null;
+  if (!RECOMMENDATION_ROUTER_ENABLED || !EMAIL_DELIVERY_LIVE) return null;
 
   const disabled = !firstName.trim() || !email.trim();
 

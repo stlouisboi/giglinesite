@@ -636,6 +636,80 @@ const AdminPage = () => {
                 ))}
               </div>
 
+              {/* ── Batch 2B follow-up, /recommendation router attribution tile ── */}
+              {stats.recommendation_router && (
+                <div
+                  className="mb-8 border border-[#2A52A0]/30 rounded-lg p-5 bg-gradient-to-br from-[#f5f8ff] to-white"
+                  data-testid="recommendation-router-tile"
+                >
+                  <div className="flex items-baseline justify-between mb-3 flex-wrap gap-2">
+                    <div>
+                      <p className="text-[11px] uppercase tracking-[0.2em] text-[#2A52A0] font-bold">
+                        Recommendation Router
+                      </p>
+                      <p className="text-xs text-gray-500 mt-0.5">
+                        Intakes tagged lead_source = recommendation-router
+                      </p>
+                    </div>
+                    <a
+                      href="/recommendation"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[11px] text-[#2A52A0] hover:underline font-semibold"
+                    >
+                      Open /recommendation ↗
+                    </a>
+                  </div>
+                  <div className="grid grid-cols-3 gap-3">
+                    <div>
+                      <p className="text-[10px] text-gray-400 uppercase tracking-[0.15em]">This month</p>
+                      <p
+                        className="text-2xl font-bold text-[#1C2B2B]"
+                        data-testid="recommendation-router-this-month"
+                      >
+                        {stats.recommendation_router.this_month}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-[10px] text-gray-400 uppercase tracking-[0.15em]">Last 30 days</p>
+                      <p
+                        className="text-2xl font-bold text-[#1C2B2B]"
+                        data-testid="recommendation-router-last-30d"
+                      >
+                        {stats.recommendation_router.last_30d}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-[10px] text-gray-400 uppercase tracking-[0.15em]">All time</p>
+                      <p
+                        className="text-2xl font-bold text-[#1C2B2B]"
+                        data-testid="recommendation-router-total"
+                      >
+                        {stats.recommendation_router.total}
+                      </p>
+                    </div>
+                  </div>
+                  {stats.recommendation_router.paths_this_month && stats.recommendation_router.paths_this_month.length > 0 && (
+                    <div className="mt-4 pt-3 border-t border-[#2A52A0]/10">
+                      <p className="text-[10px] text-gray-400 uppercase tracking-[0.15em] mb-2">
+                        Path mix this month
+                      </p>
+                      <div className="flex flex-wrap gap-2" data-testid="recommendation-router-paths">
+                        {stats.recommendation_router.paths_this_month.map((p) => (
+                          <span
+                            key={p.path}
+                            className="inline-flex items-center gap-1.5 text-xs bg-[#2A52A0]/10 text-[#102A43] px-2 py-1 rounded"
+                          >
+                            <strong>Path {p.path}</strong>
+                            <span className="text-gray-500">×{p.count}</span>
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+
               {/* ── Quick Contact micro-form tile (GL-WEB-018) ── */}
               {stats.quick_contacts && (
                 <div

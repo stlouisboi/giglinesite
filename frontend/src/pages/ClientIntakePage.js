@@ -328,6 +328,21 @@ const ClientIntakePage = () => {
         attribution: getAttribution(),
         // Source-page attribution, which dedicated service page sent this lead
         source_service_slug: sourceServiceSlug || 'direct',
+        // Batch 2B: recommendation-router attribution so Vince can see which
+        // leads came through the guided decision flow. Safe to include, only
+        // structural aim codes, never free-text or workplace conditions.
+        lead_source: fromRecommendationRouter ? 'recommendation-router' : '',
+        recommendation_answers: (() => {
+          try {
+            if (typeof window === 'undefined' || !window.sessionStorage) return null;
+            const raw = window.sessionStorage.getItem('gl_recommendation_handoff');
+            if (!raw) return null;
+            const parsed = JSON.parse(raw);
+            return parsed && parsed.answers ? parsed.answers : null;
+          } catch (e) {
+            return null;
+          }
+        })(),
       };
       const res = await fetch(`${API}/api/intake/submit`, {
         method: 'POST',
@@ -340,6 +355,7 @@ const ClientIntakePage = () => {
           service_requested: f.serviceSelected || 'unknown',
           source_service_slug: sourceServiceSlug || 'direct',
           source_form: 'client-intake',
+          lead_source: fromRecommendationRouter ? 'recommendation-router' : 'direct',
           page_path: typeof window !== 'undefined' ? window.location.pathname : '/intake',
         });
         navigate(`/thank-you-intake?token=${encodeURIComponent(d.clientToken)}`);

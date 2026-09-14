@@ -320,6 +320,16 @@ class IntakeSubmission(BaseModel):
     uploadedFileUrls: list = []
     attribution: Optional[dict] = None
 
+    # ─── Batch 2B, recommendation-router attribution ───
+    # source_service_slug is which dedicated service page sent this lead
+    # (e.g. "compliance-readiness-visit"). lead_source flags whether the
+    # guided /recommendation router sent them, and recommendation_answers
+    # stores the structural aim codes (never PII, never free-text) so
+    # Vince can see the path the buyer walked.
+    source_service_slug: str = ""
+    lead_source: str = ""
+    recommendation_answers: Optional[dict] = None
+
     # ─── Legacy field aliases kept for backward compatibility ───
     facilityAddress: str = ""
     shiftPattern: str = ""
@@ -805,6 +815,35 @@ FACILITY HAZARDS PROFILE
 {pad('Safety board posted:')}{L(YNS, data.safetyBoardPosted)}
 {pad('Other facility notes:')}{data.facilityAdditionalNotes or '—'}"""
 
+    # ─── Batch 2B, recommendation-router attribution block ───
+    # Only rendered when the buyer arrived through /recommendation. Vince can
+    # see which path (A-E), which control area, and which edition were picked.
+    router_block = ""
+    if data.lead_source == 'recommendation-router':
+        ans = data.recommendation_answers or {}
+        AIM_LABELS = {
+            'A': 'Path A, one known control area',
+            'B': 'Path B, review the operation',
+            'C': 'Path C, close known findings',
+            'D': 'Path D, build the safety-control system',
+            'E': 'Path E, maintain a working foundation',
+        }
+        aim_display = AIM_LABELS.get(ans.get('primaryAim') or '', '—')
+        answer_rows = []
+        for key in ('primaryAim', 'controlArea', 'edition', 'reviewFocus', 'hasFindingsList', 'programsExist', 'trainingCurrent', 'correctiveActionsTracked', 'primaryNeedRecurring'):
+            if key in ans and ans[key] not in (None, ''):
+                answer_rows.append(f"{pad(key + ':')}{ans[key]}")
+        answer_block = "\n".join(answer_rows) if answer_rows else "(no answer codes recorded)"
+        router_block = f"""
+
+───────────────────────────────────────────────────────
+RECOMMENDATION ROUTER ATTRIBUTION
+───────────────────────────────────────────────────────
+{pad('Lead source:')}Guided recommendation router
+{pad('Primary aim:')}{aim_display}
+{answer_block}
+{pad('Referring page:')}{data.source_service_slug or 'direct'}"""
+
     vince_plaintext = f"""\
 NEW MASTER INTAKE — {service_display.upper()}
 ═══════════════════════════════════════════════════════
@@ -839,6 +878,7 @@ CORE SAFETY SETUP
 {pad('OSHA 300 log kept:')}{L(YNS, data.q_osha_logs)}
 {pad('Prior OSHA inspection:')}{L(YNS, data.q_osha_inspection_ever)} {f'({data.oshaInspectionYear}, citations: {data.oshaInspectionCitations})' if data.q_osha_inspection_ever == 'yes' else ''}
 {lane_block}{s5_block}
+{router_block}
 
 ───────────────────────────────────────────────────────
 SCHEDULING & LOGISTICS

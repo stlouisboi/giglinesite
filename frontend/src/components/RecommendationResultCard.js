@@ -21,7 +21,7 @@
  */
 import React, { useState, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, Mail, RefreshCw, ChevronRight } from 'lucide-react';
+import { ArrowRight, Check, Mail, RefreshCw, ChevronRight, Share2 } from 'lucide-react';
 import { RESULT_KIND } from '../data/recommendationEngine';
 import { writeHandoffToSession } from '../lib/recommendationHandoff';
 import { EMAIL_DELIVERY_LIVE } from '../config/features';
@@ -304,10 +304,43 @@ const EmailPreviewForm = ({ result }) => {
 // ──────────────────────────────────────────────────────────────
 // Main card
 // ──────────────────────────────────────────────────────────────
-const RecommendationResultCard = ({ result, referringRoute, source, onRestart }) => {
+const RecommendationResultCard = ({ result, referringRoute, source, onRestart, shareFragment = '' }) => {
   const [showEmailForm, setShowEmailForm] = useState(false);
+  const [shareState, setShareState] = useState('idle'); // idle | copied | error
 
   const isComingSoon = result.kind === RESULT_KIND.KIT_COMING_SOON;
+
+  const shareableUrl = useMemo(() => {
+    if (typeof window === 'undefined') return '';
+    const origin = window.location.origin;
+    // Attach a short attribution ref so Vince can see share-driven traffic
+    // when the recipient continues to /intake. The fragment stays client-side.
+    return `${origin}/recommendation?ref=share${shareFragment || ''}`;
+  }, [shareFragment]);
+
+  const onShareClick = useCallback(async () => {
+    if (typeof window === 'undefined') return;
+    try {
+      if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(shareableUrl);
+      } else {
+        // Legacy fallback, execCommand copy
+        const ta = document.createElement('textarea');
+        ta.value = shareableUrl;
+        ta.style.position = 'fixed';
+        ta.style.left = '-1000px';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
+      setShareState('copied');
+      setTimeout(() => setShareState('idle'), 2500);
+    } catch (e) {
+      setShareState('error');
+      setTimeout(() => setShareState('idle'), 2500);
+    }
+  }, [shareableUrl]);
 
   const onPrimaryClick = useCallback(
     (e) => {
@@ -492,7 +525,32 @@ const RecommendationResultCard = ({ result, referringRoute, source, onRestart })
             {showEmailForm ? 'Hide the email preview' : 'Email my recommendation'}
           </button>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 flex-wrap">
+          <button
+            type="button"
+            onClick={onShareClick}
+            className="inline-flex items-center gap-1.5 text-[12.5px] font-bold uppercase tracking-[0.2em] transition-colors"
+            style={{ color: shareState === 'copied' ? '#0f7a52' : NAVY, ...mono }}
+            data-testid="rr-result-share"
+            aria-live="polite"
+          >
+            {shareState === 'copied' ? (
+              <>
+                <Check size={12} aria-hidden="true" />
+                Link copied
+              </>
+            ) : shareState === 'error' ? (
+              <>
+                <Share2 size={12} aria-hidden="true" />
+                Copy failed, try again
+              </>
+            ) : (
+              <>
+                <Share2 size={12} aria-hidden="true" />
+                Share this recommendation
+              </>
+            )}
+          </button>
           <button
             type="button"
             onClick={onRestart}
@@ -505,6 +563,13 @@ const RecommendationResultCard = ({ result, referringRoute, source, onRestart })
           </button>
         </div>
       </div>
+      <p
+        className="mt-3 text-[11.5px]"
+        style={{ color: INK_MUTED, fontStyle: 'italic' }}
+        data-testid="rr-result-share-hint"
+      >
+        The share link recreates this exact recommendation for whoever opens it. Your answers stay in your browser and are not visible to GigLine unless you continue to a request-a-visit form.
+      </p>
 
       {showEmailForm && EMAIL_DELIVERY_LIVE && <EmailPreviewForm result={result} />}
     </article>

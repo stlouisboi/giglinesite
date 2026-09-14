@@ -24,7 +24,7 @@
  *     was sent." Marketing consent is a separate unchecked checkbox and
  *     does not gate the delivery preview.
  */
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowLeft, Check, RefreshCw, Mail } from 'lucide-react';
 import {
@@ -37,6 +37,7 @@ import {
   OSS_QUALIFICATION_KEYS,
 } from '../data/recommendationEngine';
 import RecommendationResultCard from './RecommendationResultCard';
+import { encodeShareFragment, decodeShareFragment } from '../lib/shareFragment';
 
 const NAVY = '#102A43';
 const GOLD = '#C9A84C';
@@ -268,6 +269,18 @@ const RecommendationRouter = ({
     seedPrimaryAim ? { primaryAim: seedPrimaryAim } : {},
   );
 
+  // On mount, restore any shared answer path from the URL fragment. Fragments
+  // are client-only; nothing was ever transmitted to a server to reach us.
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (compact) return; // compact embeds always start fresh
+    if (seedPrimaryAim) return; // seeded flows ignore share fragments
+    const restored = decodeShareFragment(window.location.hash);
+    if (restored) {
+      setAnswers(restored);
+    }
+  }, [compact, seedPrimaryAim]);
+
   const setAnswer = useCallback((key, value) => {
     setAnswers((prev) => ({ ...prev, [key]: value }));
   }, []);
@@ -311,6 +324,7 @@ const RecommendationRouter = ({
           referringRoute={referringRoute}
           source={source}
           onRestart={reset}
+          shareFragment={encodeShareFragment(answers)}
         />
       )}
 

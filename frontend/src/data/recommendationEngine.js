@@ -47,45 +47,48 @@ import {
   COMBINED_SAVINGS_STATEMENT,
 } from './servicePricing';
 import { STARTING_PRICE_DISCLAIMER } from './assessmentCatalog';
+import { getKitReleaseStatus } from './citationProofKits';
 
 // ────────────────────────────────────────────────────────────────
-// Kit catalog for the router. Slug + ready-flag matches
-// citationProofKits.js exactly. Do not duplicate copy from there,
-// import only the facts the engine needs.
+// Kit catalog for the router. Release state is read from the SHARED
+// getKitReleaseStatus helper in citationProofKits.js so this file and
+// KitSelector.js can never disagree about whether a kit is purchasable.
 // ────────────────────────────────────────────────────────────────
 export const KIT_REGISTRY = {
   'loto-readiness-kit': {
     slug: 'loto-readiness-kit',
     name: 'Machine-Specific LOTO Readiness Kit',
-    ready: true,
+    ready: getKitReleaseStatus('loto-readiness-kit').ready,
     route: '/citation-proof-kits/loto-readiness-kit',
   },
   'forklift-pit-readiness-kit': {
     slug: 'forklift-pit-readiness-kit',
     name: 'Forklift / PIT Readiness Kit',
-    ready: true,
+    ready: getKitReleaseStatus('forklift-pit-readiness-kit').ready,
     route: '/citation-proof-kits/forklift-pit-readiness-kit',
   },
   'hazcom-pro-kit': {
     slug: 'hazcom-pro-kit',
     name: 'HazCom Pro Kit',
-    ready: true,
+    ready: getKitReleaseStatus('hazcom-pro-kit').ready,
     route: '/citation-proof-kits/hazcom-pro-kit',
   },
   'incident-to-correction-kit': {
     slug: 'incident-to-correction-kit',
     name: 'Incident-to-Correction Kit',
-    ready: false,
+    ready: getKitReleaseStatus('incident-to-correction-kit').ready,
     route: '/citation-proof-kits/incident-to-correction-kit',
   },
   'new-hire-orientation-kit': {
     slug: 'new-hire-orientation-kit',
     name: 'New Hire Safety Orientation Kit',
-    ready: false,
+    ready: getKitReleaseStatus('new-hire-orientation-kit').ready,
     route: '/citation-proof-kits/new-hire-orientation-kit',
   },
   'hazcom-starter-pack': {
     slug: 'hazcom-starter-pack',
+    // HazCom Starter Pack lives on its own /hazcom-starter-pack page,
+    // not in the KIT_DETAILS catalog. Always released.
     name: 'HazCom Starter Pack',
     ready: true,
     route: '/hazcom-starter-pack',
@@ -484,7 +487,7 @@ function buildKitResult({ kitSlug, edition, why, alternativeSlug, pathId, answer
   };
 }
 
-function editionIncluded(edition) {
+export function editionIncluded(edition) {
   if (edition === 'binder') {
     return [
       'Everything in the Digital kit',
@@ -507,7 +510,7 @@ function editionIncluded(edition) {
   ];
 }
 
-function editionNotIncluded(edition) {
+export function editionNotIncluded(edition) {
   if (edition === 'binder') {
     return [
       'On-site GigLine visit (see Safety Walkthrough or CRV)',

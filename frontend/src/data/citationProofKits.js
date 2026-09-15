@@ -591,10 +591,41 @@ const KIT_DETAILS = {
 // Everything a kit page needs to render, in one lookup.
 const getKitBySlug = (slug) => KIT_DETAILS[slug] || null;
 
+/**
+ * getKitReleaseStatus, single source of truth for kit release state.
+ *
+ * Both KitSelector.js (on /citation-proof-kits) and recommendationEngine.js
+ * (behind /recommendation) must consume THIS helper so the two selectors
+ * cannot drift. Consumers get a small explicit shape rather than a raw
+ * boolean so future release-state changes (e.g., "in beta") do not force
+ * a wide code sweep.
+ *
+ *   ready: true  → purchasable path (kit detail page has active Stripe on
+ *                  the wired slugs, otherwise the /contact lead-capture
+ *                  flow. Never a hardcoded assumption.)
+ *   ready: false → coming-soon. Selectors must render a "Not released"
+ *                  badge, no purchasable price presentation, and a
+ *                  waitlist-style CTA. Backend also refuses checkout
+ *                  attempts with HTTP 410 on these slugs.
+ */
+const getKitReleaseStatus = (slug) => {
+  const detail = KIT_DETAILS[slug];
+  if (!detail) {
+    return { slug, name: null, ready: false, exists: false };
+  }
+  return {
+    slug,
+    name: detail.name,
+    ready: detail.ready === true,
+    exists: true,
+  };
+};
+
 module.exports = {
   PROOF_GAP_ENGINE,
   KIT_TIERS,
   KIT_CATALOG,
   KIT_DETAILS,
   getKitBySlug,
+  getKitReleaseStatus,
 };

@@ -24,6 +24,9 @@ import {
   Layers,
 } from 'lucide-react';
 import { kitSelectorEvents } from '../lib/analytics';
+import { KIT_PRICES, HAZCOM_STARTER_PACK } from '../data/servicePricing';
+import { getKitReleaseStatus } from '../data/citationProofKits';
+import { editionIncluded, editionNotIncluded } from '../data/recommendationEngine';
 
 const NAVY = '#102A43';
 const GOLD = '#C9A84C';
@@ -82,6 +85,10 @@ const Q_EDITION = {
 // Names + control areas verified against KIT_DETAILS in data/citationProofKits.js
 // on 2026-02-11. If a name changes there, update it here to keep the selector
 // diagnosis honest.
+//
+// NOTE, `released` is NOT a field here. Release status is read from the
+// shared getKitReleaseStatus() helper in citationProofKits.js so the router
+// and this selector can never drift. See kitReleaseStatus() below.
 const KIT_META = {
   loto: {
     slug: 'loto-readiness-kit',
@@ -90,7 +97,6 @@ const KIT_META = {
     controlArea: 'Hazardous energy control, 29 CFR 1910.147',
     whyLine:
       'Machine-specific lockout procedures for every energy source on your floor. The kit walks a non-expert through every element 1910.147(c)(4) requires, machine by machine, so your team can produce inspection-ready proof.',
-    released: true,
     icon: Lock,
   },
   pit: {
@@ -100,7 +106,6 @@ const KIT_META = {
     controlArea: 'Powered industrial trucks, 29 CFR 1910.178',
     whyLine:
       'Operator authorization, evaluation, and refresher training records. Turns a scattered forklift program into a running system with auditable proof for every operator in your building.',
-    released: true,
     icon: Truck,
   },
   hazcom: {
@@ -110,7 +115,6 @@ const KIT_META = {
     controlArea: 'Hazard communication, 29 CFR 1910.1200',
     whyLine:
       'Chemical inventory, SDS access, container labeling, and training records. The paperwork OSHA looks at first when chemicals are on site.',
-    released: true,
     icon: Flame,
   },
   incident: {
@@ -120,7 +124,6 @@ const KIT_META = {
     controlArea: 'Incident, near miss, corrective action follow-through',
     whyLine:
       'Close every incident, near miss, and hazard report with documented owner, closure evidence, and repeat-prevention communication. This is the recordkeeping OSHA looks at when history counts against you.',
-    released: false,
     icon: AlertTriangle,
   },
   newhire: {
@@ -130,33 +133,45 @@ const KIT_META = {
     controlArea: 'Day-one orientation and authorization',
     whyLine:
       'Day-one orientation, PPE issue, restriction matrix, supervisor release, and 7 or 30-day follow-up. Prove every new hire was oriented, restricted, equipped, and released before they touched a machine.',
-    released: false,
     icon: Users,
   },
 };
 
+// Central helper. Never trust an inline boolean in this file; always
+// route through the shared source so the two selectors cannot drift.
+function kitReleaseStatus(gapKey) {
+  const kit = KIT_META[gapKey];
+  if (!kit) return { ready: false, exists: false };
+  return getKitReleaseStatus(kit.slug);
+}
+
 // Edition descriptions are the generic tier language: what a Digital, Control
 // System, or Binder Edition contains regardless of which kit. Product-specific
 // reasoning lives on KIT_META.whyLine so the result card can render both.
+// Prices come from KIT_PRICES in servicePricing.js so a future price change
+// propagates automatically.
 const EDITION_META = {
   digital: {
     label: 'Digital Edition',
-    price: '$150',
+    price: KIT_PRICES.digital.displayPrice,
     line: 'The complete kit as a branded PDF plus editable core forms your team can run from Drive or SharePoint.',
     tierParam: 'digital',
+    engineKey: 'digital',
   },
   'control-system': {
     label: 'Compliance Control System',
-    price: '$300',
+    price: KIT_PRICES.controlSystem.displayPrice,
     line: 'Digital plus the full running control system: forms, checklists, log templates, and the operating rhythm supervisors follow every month.',
     tierParam: 'control-system',
+    engineKey: 'controlSystem',
     recommended: true,
   },
   binder: {
     label: 'Compliance Binder Edition',
-    price: '$600',
+    price: KIT_PRICES.binder.displayPrice,
     line: 'A professionally printed, tabbed physical binder that mirrors the Compliance Control System for the selected control area. Digital included.',
     tierParam: 'binder',
+    engineKey: 'binder',
   },
 };
 
@@ -164,7 +179,7 @@ const HAZCOM_STARTER = {
   slug: 'hazcom-starter-pack',
   href: '/hazcom-starter-pack',
   name: 'HazCom Starter Pack',
-  price: '$29',
+  price: HAZCOM_STARTER_PACK.displayPrice,
   line: 'An 11-page starter set, written program, SDS binder checklist, and training log, sized for facilities that need HazCom paperwork on paper before graduating to the full HazCom Pro Kit.',
 };
 
@@ -179,7 +194,8 @@ function deriveRecommendation({ gap, state, edition }) {
   const kit = KIT_META[gap];
   const ed = EDITION_META[edition];
   if (!kit || !ed) return null;
-  return { kind: 'kit', kit, edition: ed };
+  const release = getKitReleaseStatus(kit.slug);
+  return { kind: 'kit', kit, edition: ed, ready: release.ready === true };
 }
 
 // ── Small UI primitives, hairline-only aesthetic ──
@@ -389,15 +405,17 @@ const ResultCard = ({ answers, recommendation, onRestart, onBack }) => {
   }
 
   // Kit path.
-  const { kit, edition } = recommendation;
+  const { kit, edition, ready } = recommendation;
   const Icon = kit.icon;
-  const kitHref = kit.released
+  const kitHref = ready
     ? `/citation-proof-kits/${kit.slug}?tier=${edition.tierParam}#pricing`
     : `/citation-proof-kits/${kit.slug}`;
+  const includedList = editionIncluded(edition.engineKey);
+  const notIncludedList = editionNotIncluded(edition.engineKey);
   return (
-    <div data-testid={`kit-selector-result-${kit.slug}`}>
+    <div data-testid={`kit-selector-result-${kit.slug}`} data-ready={ready ? 'true' : 'false'}>
       <Kicker>Your recommendation</Kicker>
-      <div className="flex items-start gap-4 mb-3">
+      <div className="flex items-start gap-4 mb-3 flex-wrap">
         {Icon ? (
           <span aria-hidden="true" style={{ color: GOLD, marginTop: 6 }}>
             <Icon size={26} strokeWidth={1.6} />
@@ -409,20 +427,43 @@ const ResultCard = ({ answers, recommendation, onRestart, onBack }) => {
         >
           {kit.name}, <span style={{ color: GOLD }}>{edition.label}</span>.
         </h3>
+        {!ready && (
+          <span
+            className="uppercase font-bold px-2 py-0.5"
+            style={{ background: INK, color: '#F5D97A', fontSize: '10px', letterSpacing: '0.2em', ...mono, alignSelf: 'center' }}
+            data-testid="kit-selector-result-coming-soon-badge"
+          >
+            Not released
+          </span>
+        )}
       </div>
       <p className="text-[13.5px] mb-6" style={{ ...mono, color: INK_MUTED, letterSpacing: '0.12em' }}>
-        {kit.controlArea} &middot; {edition.price}
-        {edition.recommended && (
-          <span
-            className="ml-3 inline-block px-2 py-0.5"
-            style={{ background: GOLD, color: NAVY, fontSize: '10px', letterSpacing: '0.2em' }}
-          >
-            RECOMMENDED FOR MOST FACILITIES
-          </span>
+        {kit.controlArea}
+        {ready && (
+          <>
+            {' '}&middot;{' '}
+            <span data-testid="kit-selector-result-price">{edition.price}</span>
+            {edition.recommended && (
+              <span
+                className="ml-3 inline-block px-2 py-0.5"
+                style={{ background: GOLD, color: NAVY, fontSize: '10px', letterSpacing: '0.2em' }}
+              >
+                RECOMMENDED FOR MOST FACILITIES
+              </span>
+            )}
+          </>
+        )}
+        {!ready && (
+          <>
+            {' '}&middot;{' '}
+            <span data-testid="kit-selector-result-price-unavailable" style={{ color: INK_MUTED }}>
+              Not currently available
+            </span>
+          </>
         )}
       </p>
 
-      {/* Product-specific reasoning, why THIS kit for the stated gap. */}
+      {/* Why this fits, product-specific reasoning */}
       <p
         className="text-[15px] md:text-[16px] leading-[1.75] mb-4 max-w-2xl"
         style={{ color: INK_SOFT }}
@@ -443,38 +484,117 @@ const ResultCard = ({ answers, recommendation, onRestart, onBack }) => {
         &mdash; {edition.line}
       </p>
 
-      {!kit.released && (
+      {/* Batch 2B follow-up, parity with the /recommendation result card,
+          What is included + What is not included, sourced from the shared
+          editionIncluded/editionNotIncluded helpers so both selectors show
+          exactly the same content. */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-8 max-w-3xl">
+        <div data-testid="kit-selector-result-included">
+          <p className="uppercase font-bold mb-2" style={{ ...mono, color: NAVY, letterSpacing: '0.2em', fontSize: '10.5px' }}>
+            What this edition includes
+          </p>
+          <ul className="space-y-2 text-[14px]" style={{ color: INK_SOFT, ...sans }}>
+            {includedList.map((item, i) => (
+              <li key={i} className="flex items-start gap-2">
+                <span aria-hidden="true" style={{ color: GOLD, marginTop: 4 }}>
+                  <Check size={13} strokeWidth={2.2} />
+                </span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div data-testid="kit-selector-result-not-included">
+          <p className="uppercase font-bold mb-2" style={{ ...mono, color: NAVY, letterSpacing: '0.2em', fontSize: '10.5px' }}>
+            Where this edition stops
+          </p>
+          <ul className="space-y-2 text-[14px]" style={{ color: INK_MUTED, ...sans }}>
+            {notIncludedList.map((item, i) => (
+              <li key={i} className="flex items-start gap-2">
+                <span aria-hidden="true" style={{ color: INK_MUTED, marginTop: 4, fontSize: '18px', lineHeight: 1 }}>·</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      {!ready && (
         <p
           className="text-[13.5px] leading-[1.7] mb-6 max-w-2xl px-3 py-2"
           style={{ background: 'rgba(201,168,76,0.10)', borderLeft: `2px solid ${GOLD}`, color: NAVY }}
           data-testid="kit-selector-result-unreleased-note"
         >
-          This kit is in final build. The product page has a waitlist form so you get first access when it ships.
+          This kit is in final build. Join the waitlist to get first access when it ships. There is no purchase option today.
         </p>
       )}
-      <div className="flex flex-wrap items-center gap-3 mb-8">
-        <Link
-          to={kitHref}
-          onClick={() => kitSelectorEvents.cta('primary', { recommendation: kit.slug, edition: edition.tierParam })}
-          className="inline-flex items-center gap-2 font-bold py-3 px-6 transition-colors"
-          style={{ background: GOLD, color: NAVY, ...sans, fontSize: '14px' }}
-          data-testid="kit-selector-cta-primary"
+
+      {ready ? (
+        <div className="flex flex-wrap items-center gap-3 mb-8">
+          <Link
+            to={kitHref}
+            onClick={() => kitSelectorEvents.cta('primary', { recommendation: kit.slug, edition: edition.tierParam })}
+            className="inline-flex items-center gap-2 font-bold py-3 px-6 transition-colors"
+            style={{ background: GOLD, color: NAVY, ...sans, fontSize: '14px' }}
+            data-testid="kit-selector-cta-primary"
+            data-action-kind="kit"
+          >
+            Review the {kit.shortName || 'Kit'} <ArrowRight size={14} />
+          </Link>
+          <a
+            href="#kit-grid"
+            onClick={() => kitSelectorEvents.cta('compare', { recommendation: kit.slug })}
+            className="inline-flex items-center gap-2 font-bold py-3 px-5 transition-colors"
+            style={{ border: `1px solid ${NAVY}`, color: NAVY, ...sans, fontSize: '14px' }}
+            data-testid="kit-selector-cta-compare"
+          >
+            Compare All Kits
+          </a>
+        </div>
+      ) : (
+        <div className="flex flex-wrap items-center gap-3 mb-8">
+          <Link
+            to={kitHref}
+            onClick={() => kitSelectorEvents.cta('primary', { recommendation: kit.slug, edition: edition.tierParam })}
+            className="inline-flex items-center gap-2 font-bold py-3 px-6 transition-colors"
+            style={{ background: 'white', color: NAVY, border: `1px solid ${NAVY}`, ...sans, fontSize: '14px' }}
+            data-testid="kit-selector-cta-primary"
+            data-action-kind="waitlist"
+          >
+            Join the {kit.shortName || 'Kit'} waitlist <ArrowRight size={14} />
+          </Link>
+        </div>
+      )}
+
+      {/* Currently available service path for unreleased kits, so the buyer
+          always has a way to get help now. Do not recommend an unrelated
+          released kit as an alternative. */}
+      {!ready && (
+        <p
+          className="text-[13.5px] italic leading-[1.7] mb-6 max-w-2xl"
+          style={{ ...serif, color: INK_MUTED }}
+          data-testid="kit-selector-result-service-alternative"
         >
-          Review the {kit.shortName || 'Kit'} <ArrowRight size={14} />
-        </Link>
-        <a
-          href="#kit-grid"
-          onClick={() => kitSelectorEvents.cta('compare', { recommendation: kit.slug })}
-          className="inline-flex items-center gap-2 font-bold py-3 px-5 transition-colors"
-          style={{ border: `1px solid ${NAVY}`, color: NAVY, ...sans, fontSize: '14px' }}
-          data-testid="kit-selector-cta-compare"
-        >
-          Compare All Kits
-        </a>
-      </div>
-      <p className="text-[13.5px] italic leading-[1.7] mb-6 max-w-2xl" style={{ ...serif, color: INK_MUTED }}>
-        More than one major gap? <Link to="/intake?service=compliance-readiness-visit" className="underline" style={{ color: NAVY }}>Request a Compliance Readiness Visit.</Link>
-      </p>
+          Need help now?{' '}
+          <Link
+            to="/intake?service=compliance-readiness-visit&utm_source=kit-selector&utm_medium=website&utm_campaign=waitlist-fallback"
+            className="underline"
+            style={{ color: NAVY }}
+          >
+            Request a Compliance Readiness Visit.
+          </Link>{' '}
+          Starting at $2,500, combined floor and documentation review.
+        </p>
+      )}
+
+      {ready && (
+        <p className="text-[13.5px] italic leading-[1.7] mb-6 max-w-2xl" style={{ ...serif, color: INK_MUTED }}>
+          More than one major gap?{' '}
+          <Link to="/intake?service=compliance-readiness-visit" className="underline" style={{ color: NAVY }}>
+            Request a Compliance Readiness Visit.
+          </Link>
+        </p>
+      )}
       <div className="flex items-center gap-6 pt-5" style={{ borderTop: `1px solid ${HAIRLINE}` }}>
         {back}
         {restart}

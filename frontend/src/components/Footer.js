@@ -92,7 +92,7 @@ const Footer = () => {
                 {[
                   { name: 'Home', path: '/' },
                   { name: 'Services', path: '/services' },
-                  { name: 'GigLine Compliance Control Kit Series', path: '/citation-proof-kits' },
+                  { name: 'GigLine Compliance Readiness Kits', path: '/citation-proof-kits' },
                   { name: 'Field Notes', path: '/field-notes' },
                   { name: 'Blog', path: '/blog' },
                   { name: 'Service Areas', path: '/service-areas' },
@@ -136,7 +136,7 @@ const Footer = () => {
                     desc: '17 documents. CFR-cited. $600 digital · $700 physical. Included free with every Compliance Readiness Visit.',
                   }] : []),
                   {
-                    name: 'GigLine Compliance Control Kit Series',
+                    name: 'GigLine Compliance Readiness Kits',
                     path: '/citation-proof-kits',
                     desc: 'Three compliance-control kits: LOTO, Forklift/PIT, and HazCom Pro. Starting at $150.',
                   },

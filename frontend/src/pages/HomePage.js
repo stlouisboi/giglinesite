@@ -467,13 +467,13 @@ const HomePage = () => {
             {[
               {
                 key: 'kits',
-                title: 'GigLine Compliance Control Kit Series',
+                title: 'GigLine Compliance Readiness Kits',
                 price: '$150–$600',
                 copy: 'For a specific safety-control gap such as PIT, HazCom, LOTO, incident response, or new-hire records.',
                 ctaLabel: 'Explore Control Kits',
                 to: '/citation-proof-kits',
                 image: '/card-citation-proof-kits.jpg',
-                imageAlt: 'Navy hardcover safety-compliance binder with color-coded index tabs and a tablet showing a Safety Checklist on a wooden industrial workbench, with a warehouse aisle and forklift softly blurred in the background, GigLine GigLine Compliance Control Kit Series editorial product photograph',
+                imageAlt: 'Navy hardcover safety-compliance binder with color-coded index tabs and a tablet showing a Safety Checklist on a wooden industrial workbench, with a warehouse aisle and forklift softly blurred in the background, GigLine Compliance Readiness Kits editorial product photograph',
                 overlayEyebrow: 'Kit Series',
                 overlayName: 'Compliance Control',
               },
@@ -1257,7 +1257,7 @@ const HomePage = () => {
                 data-testid="home-kit-series-eyebrow"
               >
                 <span style={{ background: '#C5A059', color: '#0A1628', padding: '2px 8px', borderRadius: '3px', fontSize: '10px', letterSpacing: '0.14em' }}>NEW</span>
-                GigLine Compliance Control Kit Series
+                GigLine Compliance Readiness Kits
               </p>
               <h2
                 className="font-bold leading-[1.15] tracking-tight mb-4 text-[26px] md:text-[32px] lg:text-[36px] text-white"

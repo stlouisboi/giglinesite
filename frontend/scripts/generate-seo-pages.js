@@ -62,7 +62,7 @@ const SAFETY_WALKTHROUGH_DISPLAY = `$${SAFETY_WALKTHROUGH_AMOUNT.toLocaleString(
 // ───────────────────────────────────────────────
 const GL_WEB_008 = process.env.REACT_APP_GL_WEB_008_ENABLED === 'true';
 const DOC_REVIEW_DESCRIPTION = 'Two-layer review of your safety documentation. The first layer checks whether required programs exist, 53 items across seven OSHA categories. The second layer checks whether each document contains what it’s legally required to contain, element by element, standard by standard. You get a single compliance report covering both.';
-const DOC_REVIEW_PRICE_NUM = '2500';
+const DOC_REVIEW_PRICE_NUM = '1700';
 const DOC_REVIEW_PRICE_LABEL = '$1,700';
 const SERVICES_META_DESCRIPTION = 'OSHA-readiness support for small industrial operations. GigLine helps manufacturers, warehouses, contractors, and fleet operations identify visible hazards, verify documentation compliance element by element, and resolve inspection-readiness issues before they become citations. Fixed pricing. No retainer.';
 
@@ -332,7 +332,7 @@ const routes = [
   {
     path: '/about',
     title: 'Safety Consultant Kernersville NC, Vince Lawrence | GigLine',
-    description: '25+ years on the floor. OSHA 30-Hour certified. Navy veteran. An OSHA-informed floor review before an inspector shows up. (336) 329-8899.',
+    description: '25+ years on the floor. OSHA 30-Hour Outreach Trained. Navy veteran. An OSHA-informed floor review before an inspector shows up. (336) 329-8899.',
     canonical: '/about',
     schemas: [VINCE_PERSON, breadcrumb([{ name: 'Home', path: '/' }, { name: 'About', path: '/about' }])],
     content: `
@@ -1634,7 +1634,7 @@ const routes = [
       <h2>Three things that reliably reduce a proposed penalty</h2>
       <ol>
         <li><strong>Written programs the CSHO can see.</strong> Not a binder title , the actual document, dated, signed, with a review cadence and named responsible person. This is where the 25% good-faith reduction lives.</li>
-        <li><strong>Records of corrective action follow-through.</strong> Every past incident, near miss, or hazard observation with documented owner, due date, and closure verification. See the <a href="/citation-proof-kits">GigLine Compliance Control Kit Series</a> for the exact structure.</li>
+        <li><strong>Records of corrective action follow-through.</strong> Every past incident, near miss, or hazard observation with documented owner, due date, and closure verification. See the <a href="/citation-proof-kits">GigLine Compliance Readiness Kits</a> for the exact structure.</li>
         <li><strong>An informal conference done well.</strong> Show up with a written abatement plan for every citation, evidence of programs already in place, and specific per-item adjustments requested.</li>
       </ol>
 
@@ -2219,7 +2219,7 @@ function generateRouteHTML(templateHTML, route) {
 // ═══════════════════════════════════════════════════════════════════════════
 
 const KIT_SERIES_DISCLAIMER =
-  'GigLine Compliance Control Kit Series and Compliance Readiness Score are GigLine trade names, not OSHA certifications. These kits support documentation and self-audit. They do not guarantee OSHA compliance, prevent citations, eliminate hazards, or replace the employer\u2019s responsibility to maintain a safe workplace. Employers remain responsible for identifying applicable standards, correcting recognized hazards, training employees, and maintaining accurate records.';
+  'GigLine Compliance Readiness Kits and Compliance Readiness Score are GigLine trade names, not OSHA certifications. These kits support documentation and self-audit. They do not guarantee OSHA compliance, prevent citations, eliminate hazards, or replace the employer\u2019s responsibility to maintain a safe workplace. Employers remain responsible for identifying applicable standards, correcting recognized hazards, training employees, and maintaining accurate records.';
 
 // SSR only covers the 3 publicly-available Citation-Proof Kits. The other
 // two slugs (incident-to-correction-kit, new-hire-orientation-kit) are kept
@@ -2334,7 +2334,7 @@ function renderKitDetailRoute(slug) {
     ${faq ? `<h2>Frequently Asked Questions</h2>${faq}` : ''}
     <h2>Disclaimer</h2>
     <p>${escapeHtml(KIT_SERIES_DISCLAIMER)}</p>
-    <p><a href="/citation-proof-kits">Back to the GigLine Compliance Control Kit Series &rarr;</a></p>
+    <p><a href="/citation-proof-kits">Back to the GigLine Compliance Readiness Kits &rarr;</a></p>
     <p>GigLine Safety &amp; Compliance , (336) 329-8899 , vince@giglinecompliance.com</p>
   `;
 }
@@ -2434,7 +2434,7 @@ routes.push({
 
 routes.push({
   path: '/citation-proof-kits',
-  title: 'GigLine Compliance Control Kit Series | GigLine Safety & Compliance',
+  title: 'GigLine Compliance Readiness Kits | GigLine Safety & Compliance',
   description: '3 compliance-control kits, LOTO, Forklift/PIT, HazCom Pro. Digital, Control System, or Binder Edition. From $150.',
   canonical: '/citation-proof-kits',
   schemas: [
@@ -2449,7 +2449,7 @@ CITATION_PROOF_KIT_SLUGS.forEach((slug) => {
   if (!kit) return;
   routes.push({
     path: `/citation-proof-kits/${slug}`,
-    title: `${kit.name} | GigLine Compliance Control Kit Series | GigLine`,
+    title: `${kit.name} | GigLine Compliance Readiness Kits | GigLine`,
     description: `${(kit.outcomeHeadline || '').replace(/[""]/g, '"')} ${kit.heroSupportLine || ''}`.trim().slice(0, 300),
     canonical: `/citation-proof-kits/${slug}`,
     schemas: [

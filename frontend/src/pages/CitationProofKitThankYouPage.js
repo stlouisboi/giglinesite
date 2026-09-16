@@ -239,7 +239,7 @@ const CitationProofKitThankYouPage = () => {
                   data-testid="kit-thankyou-back-catalog"
                 >
                   <ArrowLeft size={14} />
-                  Back to the GigLine Compliance Control Kit Series
+                  Back to the GigLine Compliance Readiness Kits
                 </Link>
               </div>
 

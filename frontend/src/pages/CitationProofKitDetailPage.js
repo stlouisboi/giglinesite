@@ -150,7 +150,7 @@ const CitationProofKitDetailPage = () => {
             style={{ color: kit.productImages?.hero ? 'rgba(255,255,255,0.92)' : NAVY, ...serif }}
             data-testid="kit-detail-proof-promise"
           >
-            <strong style={{ ...sans, color: kit.productImages?.hero ? 'white' : NAVY }}>What this kit does:</strong> {kit.proofPromise}
+            <strong style={{ ...sans, color: kit.productImages?.hero ? 'white' : NAVY }}>What changes after you put it to work:</strong> {kit.proofPromise}
           </p>
 
           {/* 4. PROPRIETARY TOOL CALLOUT (as mechanism, not product) */}

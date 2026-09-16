@@ -66,17 +66,18 @@ const HazComPage = () => {
                 style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
                 data-testid="hazcom-headline"
               >
-                HazCom Starter Pack
+                Build a usable HazCom starting point without beginning with a blank page.
               </h1>
-              <p className="text-xl md:text-2xl text-white/80 mb-8">
-                Small Shop Edition, <span className="text-[#C9A84C] font-bold">$29</span>
+              <p className="text-xl md:text-2xl text-white/80 mb-8" data-testid="hazcom-price">
+                HazCom Starter Pack, <span className="text-[#C9A84C] font-bold">$29</span>
               </p>
-              <div className="border-l-2 border-[#C9A84C] pl-6">
-                <p className="text-lg text-white/90 font-medium mb-2">
-                  #1 OSHA citation in general industry.
+              <div className="border-l-2 border-[#C9A84C] pl-6" data-testid="hazcom-hero-lede">
+                <p className="text-lg text-white/90 font-medium mb-3">
+                  In one focused setup, organize the written program, SDS binder index, and training verification records your operation needs to stop treating HazCom informally.
                 </p>
-                <p className="text-white/60">
-                  Every shop has chemicals. Most don't have the paperwork.
+                <p className="text-white/60 text-sm">
+                  Designed for a basic starting need. Facilities needing chemical inventory control, label auditing, approval workflow, and ongoing maintenance should use{' '}
+                  <a href="/citation-proof-kits/hazcom-pro-kit" className="text-[#C9A84C] underline">HazCom Pro</a>.
                 </p>
               </div>
             </div>

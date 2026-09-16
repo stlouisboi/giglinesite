@@ -66,7 +66,6 @@ const ROUTES = [
 
   // ── Free tools & lead magnets ──────────────────────────────────────
   { loc: '/safety-check', priority: '0.9', changefreq: 'monthly' },
-  { loc: '/recommendation', priority: '0.85', changefreq: 'monthly' },
   { loc: '/citation-cost-calculator', priority: '0.85', changefreq: 'monthly' },
   { loc: '/hazcom', priority: '0.8', changefreq: 'monthly' },
   { loc: '/hazcom-starter-pack', priority: '0.85', changefreq: 'monthly' },

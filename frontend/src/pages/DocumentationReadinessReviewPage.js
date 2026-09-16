@@ -61,11 +61,11 @@ const DocumentationReadinessReviewPage = () => (
         <p className="uppercase font-bold mb-4" style={{ ...mono, fontSize: '11px', letterSpacing: '0.22em', color: GOLD }}>
           FIND &middot; Documentation Readiness Review
         </p>
-        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
-          Your paperwork, reviewed against what OSHA actually asks for.
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }} data-testid="drr-hero-headline">
+          If OSHA opened your binder tomorrow, what would they find?
         </h1>
-        <p className="text-base md:text-lg text-white/80 leading-relaxed mb-8 max-w-2xl">
-          A documentation-only diagnostic. GigLine reviews the agreed written programs, required records, and training documentation, then reports where the paperwork will hold up and where it will not.
+        <p className="text-base md:text-lg text-white/80 leading-relaxed mb-8 max-w-2xl" data-testid="drr-hero-sub">
+          Know which programs, training records, certifications, logs, and SDS records are complete, which are weak, and which are missing before someone else asks for them. Starting at $1,700.
         </p>
 
         <div className="rounded-xl p-7 md:p-8 grid grid-cols-1 md:grid-cols-[minmax(260px,320px)_1fr] gap-7 md:gap-10 items-start mb-8" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.10)' }} data-testid="drr-price-block">

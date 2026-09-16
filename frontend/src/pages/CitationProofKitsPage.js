@@ -151,7 +151,7 @@ const CitationProofKitsPage = () => {
       )}
       <SEO
         title="GigLine Compliance Control Kit Series | GigLine Safety & Compliance"
-        description="5 practical compliance-control kits for small NC operations. Turn scattered safety activity into inspection-ready proof. From $150."
+        description="5 practical GigLine Compliance Readiness Kits for small NC operations. Organize the work, identify missing evidence, maintain a system your supervisors can use. From $150."
         canonical="/citation-proof-kits"
       />
 
@@ -162,27 +162,27 @@ const CitationProofKitsPage = () => {
             className="uppercase font-bold tracking-[0.28em] mb-4"
             style={{ color: GOLD, ...mono, fontSize: '11px' }}
           >
-            GigLine Compliance Control Kit Series
+            GigLine Compliance Readiness Kits
           </p>
           <h1
             className="font-bold leading-[1.08] tracking-tight mb-6 text-[32px] md:text-[44px] lg:text-[52px]"
             style={{ ...sans, color: NAVY }}
             data-testid="kits-hero-headline"
           >
-            Three kits that turn scattered safety activity into inspection-ready proof.
+            Build the proof behind the safety work your team is already doing.
           </h1>
           <p
             className="text-[17px] md:text-[19px] leading-[1.65] max-w-3xl mx-auto mb-6"
             style={{ color: 'rgba(10,22,40,0.72)', ...serif }}
             data-testid="kits-hero-subhead"
           >
-            Practical compliance-control kits for small manufacturers, warehouses, contractors, and fleet operations that need inspection-ready proof before OSHA, an insurer, customer, or owner asks for it.
+            Choose the control area creating the most exposure or confusion. Each GigLine kit helps you organize the work, identify missing evidence, and maintain a system your supervisors can actually use.
           </p>
           <p
             className="text-[15.5px] md:text-[17px] leading-[1.7] max-w-3xl mx-auto mb-10 italic"
             style={{ color: 'rgba(10,22,40,0.6)', ...serif }}
           >
-            Most safety problems do not start with a lack of effort. They start when the work was done, but the proof is missing, weak, outdated, or does not match the floor. GigLine kits help you close that proof gap.
+            Most safety problems do not start with a lack of effort. They start when the work was done, but the documentation is missing, weak, outdated, or does not match the floor. GigLine kits help you close that gap.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
             <a

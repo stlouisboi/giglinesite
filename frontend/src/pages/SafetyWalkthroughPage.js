@@ -86,12 +86,11 @@ const SafetyWalkthroughPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-14 items-center mb-12">
             <div>
               <Eyebrow color={GOLD}>Safety Walkthrough</Eyebrow>
-              <h1 className="text-3xl md:text-4xl lg:text-[52px] font-extrabold leading-[1.08] mb-7 tracking-tight text-white max-w-5xl">
-                <span className="block">Find what&apos;s exposed.</span>
-                <span className="block" style={{ color: GOLD }}>Before OSHA does.</span>
+              <h1 className="text-3xl md:text-4xl lg:text-[52px] font-extrabold leading-[1.08] mb-7 tracking-tight text-white max-w-5xl" data-testid="sw-hero-headline">
+                See the hazards your team has stopped seeing, and know what to fix first.
               </h1>
-              <p className="text-base md:text-lg text-white/75 leading-[1.8] mb-9 max-w-3xl">
-                An on-site walkthrough focused purely on physical hazards. Photo-documented findings with CFR citations and a prioritized fix list, delivered within 48 hours. The fastest way to know where your operation stands.
+              <p className="text-base md:text-lg text-white/75 leading-[1.8] mb-9 max-w-3xl" data-testid="sw-hero-sub">
+                GigLine provides an independent look at the conditions your operation sees every day, then gives you photo-documented findings and prioritized corrective actions within 48 hours. Starting at $1,300.
               </p>
               <div className="flex flex-wrap items-center gap-x-7 gap-y-3">
                 <Link to={INTAKE_HREF} className="inline-flex items-center justify-center gap-2 font-bold px-6 py-3.5 rounded-lg text-[15px] transition-colors text-white" style={{ background: BLUE }} onMouseEnter={(e) => (e.currentTarget.style.background = '#1F3F80')} onMouseLeave={(e) => (e.currentTarget.style.background = BLUE)} data-testid="sw-cta-hero">

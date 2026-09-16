@@ -37,9 +37,10 @@ const RecommendationRouterPage = () => {
       data-testid="recommendation-router-page"
     >
       <SEO
-        title="Which GigLine Step Fits Your Operation? | GigLine Safety & Compliance"
-        description="Answer up to five short questions and get a single recommended next step from GigLine Safety and Compliance. One primary path, one alternative, and clear inclusions. No email required to see your result."
+        title="Recommendation Router (Private Preview) | GigLine"
+        description="Internal decision-support preview. Not indexed. Not for production traffic."
         canonical="/recommendation"
+        noindex
       />
 
       <section className="px-5 md:px-8 pt-16 pb-8 md:pt-20">

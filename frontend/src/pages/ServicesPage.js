@@ -17,7 +17,7 @@ const DOC_REVIEW_DESCRIPTION = 'A structured review of your safety documentation
 const DOC_REVIEW_PRICE = 'From $1,700';
 const DOC_REVIEW_PRICING_REF_PRICE = 'Starting at $1,700';
 const DOC_REVIEW_PATH_OFFER = 'OSHA Documentation Readiness Review \u2014 from $1,700';
-const SERVICES_META_DESCRIPTION = 'OSHA readiness for NC manufacturers, warehouses & contractors. Find gaps, review documentation, close corrective actions. From $1,300. Find. Build. Maintain. Fixed pricing. No retainer.';
+const SERVICES_META_DESCRIPTION = 'Choose the level of safety clarity and control your operation needs. Start with the floor, the files, or both. Compliance Readiness Visit from $2,500. Safety Walkthrough from $1,300. Documentation Readiness Review from $1,700. Fixed pricing. No retainer.';
 
 /* ── Scroll-reveal, mirrors HomePage.js exactly ── */
 const useReveal = () => {
@@ -318,13 +318,13 @@ const ServicesPage = () => {
                 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.15] mb-5 max-w-2xl"
                 data-testid="services-headline"
               >
-                On-Site Safety Support for NC Manufacturers &amp; Warehouses
+                Choose the level of safety clarity and control your operation needs.
               </h1>
               <p
                 className="text-base md:text-lg text-[#CBD5E1] leading-relaxed max-w-2xl"
                 data-testid="services-sub"
               >
-                Every engagement is scoped to your operation, priced before scheduling, and delivered with a written report. No retainer. No ongoing obligation unless you want one.
+                Start with the floor, the files, or both. GigLine helps you see what is missing, understand what comes first, and know what a completed correction should look like. Every engagement is scoped to your operation, priced before scheduling, and delivered with a written report.
               </p>
             </Reveal>
           </div>

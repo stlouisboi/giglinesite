@@ -40,7 +40,7 @@ const BASE_URL = 'https://www.giglinecompliance.com';
 const GL_WEB_008 = process.env.REACT_APP_GL_WEB_008_ENABLED === 'true';
 const DOC_REVIEW_DESCRIPTION = 'Two-layer review of your safety documentation. The first layer checks whether required programs exist, 53 items across seven OSHA categories. The second layer checks whether each document contains what it’s legally required to contain, element by element, standard by standard. You get a single compliance report covering both.';
 const DOC_REVIEW_PRICE_NUM = '2500';
-const DOC_REVIEW_PRICE_LABEL = '$1,300';
+const DOC_REVIEW_PRICE_LABEL = '$1,700';
 const SERVICES_META_DESCRIPTION = 'OSHA-readiness support for small industrial operations. GigLine helps manufacturers, warehouses, contractors, and fleet operations identify visible hazards, verify documentation compliance element by element, and resolve inspection-readiness issues before they become citations. Fixed pricing. No retainer.';
 
 // ───────────────────────────────────────────────
@@ -268,7 +268,7 @@ const routes = [
       <ul>
         <li><a href="/safety-walkthrough">Safety Walkthrough</a>, From $1,300. Documented on-site walkthrough with photo evidence, CFR citations, estimated penalty exposure based on OSHA published maximums, and a Top 10 Fixes report within 48 hours.</li>
         <li><a href="/osha-compliance-gap-check">Compliance Readiness Visit</a>, From $2,500. Walkthrough plus a full Documentation Review in a single visit. Most Requested.</li>
-        <li><a href="/documentation-gap-check">OSHA Documentation Readiness Review (standalone)</a>, From $1,300.</li>
+        <li><a href="/documentation-gap-check">OSHA Documentation Readiness Review (standalone)</a>, Starting at $1,700.</li>
         <li><a href="/safety-check">Safety Check</a>, Free 90-second self-assessment of the six most common OSHA violations in general industry. No contact info required.</li>
       </ul>
       <h2>How It Works, Four steps. No surprises.</h2>
@@ -1425,7 +1425,7 @@ const routes = [
         { q: 'What is reviewed in the OSHA Documentation Review?', a: 'Written safety programs (HazCom, LOTO, IIPP, Bloodborne Pathogens, Emergency Action Plan, Heat Stress, PPE Hazard Assessment), training records and refresher cycles, OSHA 300 / 300A logs and posting compliance, SDS inventory against chemicals in active use, and retention practices for required documents.' },
         { q: 'Is the review remote or on-site?', a: 'Off-site / remote-friendly. We send a secure upload link and a prep checklist by email, no need to mail physical binders. On-site option available if preferred.' },
         { q: 'How long does the review take?', a: 'Once documents are received, written findings report is delivered within 48 hours.' },
-        { q: 'How much does an OSHA Documentation Review cost?', a: 'From $1,300. Fixed quote provided before any documents are reviewed.' },
+        { q: 'How much does an OSHA Documentation Review cost?', a: 'Starting at $1,700. Fixed quote provided before any documents are reviewed.' },
       ]),
       breadcrumb([{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }, { name: 'OSHA Documentation Review', path: '/osha-documentation-review-nc' }]),
     ],
@@ -1505,7 +1505,7 @@ const routes = [
     ],
     content: `
       <h1>A Compliance Readiness Visit Before an Inspection, Audit, or Insurance Review</h1>
-      <p>The most thorough engagement GigLine offers. A combined on-site walkthrough and documentation review, covering the floor AND the binder, so you know exactly where you stand against the OSHA standards that apply to your operation. Most engagements between $1,300 and $2,400.</p>
+      <p>The most thorough engagement GigLine offers. A combined on-site walkthrough and documentation review, covering the floor AND the binder, so you know exactly where you stand against the OSHA standards that apply to your operation. Starting at $2,500.</p>
       <h2>Who It's For</h2>
       <p>OSHA inspection on the calendar. Recent recordable injury, severe near-miss, or workers' comp flag. Insurance carrier or major customer requesting documented compliance evidence. M&amp;A due diligence. New safety responsibility and need a full independent baseline.</p>
       <h2>What's Reviewed</h2>

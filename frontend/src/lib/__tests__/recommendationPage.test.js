@@ -34,12 +34,12 @@ describe('Recommendation router, page gating', () => {
     expect(page).toMatch(/isPreviewBypassAllowed/);
   });
 
-  test('sitemap includes /recommendation (Batch 2B live)', () => {
+  test('sitemap does not include /recommendation (private preview only)', () => {
     const sitemap = fs.readFileSync(
       path.join(SRC, '..', 'public', 'sitemap.xml'),
       'utf8',
     );
-    expect(sitemap).toMatch(/\/recommendation/);
+    expect(sitemap).not.toMatch(/\/recommendation/);
   });
 
   test('router source contains no fetch/axios calls and no transactional-email SDK imports', () => {
@@ -53,8 +53,8 @@ describe('Recommendation router, page gating', () => {
 
 describe('Feature flag registration', () => {
   const features = read('config/features.js');
-  test('RECOMMENDATION_ROUTER_ENABLED exported as true (Batch 2B live)', () => {
-    expect(features).toMatch(/export\s+const\s+RECOMMENDATION_ROUTER_ENABLED\s*=\s*true\s*;/);
+  test('RECOMMENDATION_ROUTER_ENABLED exported as false (private preview only)', () => {
+    expect(features).toMatch(/export\s+const\s+RECOMMENDATION_ROUTER_ENABLED\s*=\s*false\s*;/);
   });
   test('EXIT_FEEDBACK_ENABLED exported as false', () => {
     expect(features).toMatch(/export\s+const\s+EXIT_FEEDBACK_ENABLED\s*=\s*false\s*;/);

@@ -314,16 +314,25 @@ const ComplianceReadinessVisitPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-14 items-center mb-12">
             <div>
               <Eyebrow color={GOLD}>Compliance Readiness Visit</Eyebrow>
-              <h1 className="text-3xl md:text-4xl lg:text-[52px] font-extrabold leading-[1.08] mb-7 tracking-tight text-white max-w-5xl">
-                <span className="block">The floor and the files.</span>
-                <span className="block italic" style={{ color: GOLD, fontStyle: 'italic' }}>
-                  One visit. One report.
-                </span>
+              <h1 className="text-3xl md:text-4xl lg:text-[52px] font-extrabold leading-[1.08] mb-7 tracking-tight text-white max-w-5xl" data-testid="crv-hero-headline">
+                Stop wondering whether your floor and your safety records tell the same story.
               </h1>
-              <p className="text-base md:text-lg text-white/75 leading-[1.8] mb-9 max-w-3xl">
-                The most complete picture of where your operation stands before OSHA shows up. Physical walkthrough plus
-                full documentation review, delivered as a single, CFR-cited field audit report within 48 hours.
+              <p className="text-base md:text-lg text-white/75 leading-[1.8] mb-6 max-w-3xl" data-testid="crv-hero-sub">
+                The Compliance Readiness Visit reviews both in one engagement. You leave knowing what needs immediate attention, what evidence is missing, who should own each correction, and what can wait.
               </p>
+              <ul className="mb-9 space-y-2 max-w-3xl" data-testid="crv-hero-outcomes">
+                {[
+                  'The largest floor and documentation exposures identified',
+                  'Missing or weak evidence separated from confirmed controls',
+                  'Corrective actions prioritized into a practical sequence',
+                  'Leadership given one clear roadmap for what happens next',
+                ].map((line, i) => (
+                  <li key={i} className="flex items-start gap-2 text-white/85 text-[15px]">
+                    <span aria-hidden="true" style={{ color: GOLD, marginTop: 6, lineHeight: 1 }}>▸</span>
+                    <span>{line}</span>
+                  </li>
+                ))}
+              </ul>
 
               {/* CTA row, GOLD button for the recommended starting engagement */}
               <div className="flex flex-wrap items-center gap-x-7 gap-y-3">

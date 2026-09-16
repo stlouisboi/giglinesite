@@ -207,7 +207,7 @@ const HomePage = () => {
                 className="text-base md:text-lg text-[#CBD5E1] leading-relaxed mb-8 max-w-md"
                 data-testid="hero-sub"
               >
-                On-site safety walkthroughs for manufacturers, warehouses, contractors, and fleet operations across the Piedmont Triad. Fixed quote. Private findings. Written report within 48 hours.
+                Know what needs attention, what must be fixed first, and what evidence you need before OSHA, an insurer, or a customer asks. GigLine reviews the floor and the files, then gives you prioritized findings and practical next steps.
               </p>
 
               {/* ═══ GL-WEB-023: Trust badges above the fold ═══ */}

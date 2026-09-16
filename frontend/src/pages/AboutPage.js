@@ -173,13 +173,19 @@ const AboutPage = () => {
               className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.1] tracking-tight mb-3"
               data-testid="about-headline"
             >
-              Vince Lawrence
+              Safety support built by someone who has worked inside production pressure.
             </h1>
             <p
-              className="text-base md:text-lg text-white/55 leading-relaxed max-w-3xl mx-auto"
+              className="text-base md:text-lg text-white/80 leading-relaxed max-w-3xl mx-auto mb-4"
+              data-testid="about-lede"
+            >
+              I know what it is like to balance production, staffing, customer demands, safety responsibilities, and records that never seem to stay current. GigLine was built to give small operations practical clarity without pretending they have the time or staff of a large corporate safety department.
+            </p>
+            <p
+              className="text-sm md:text-base text-white/55 leading-relaxed max-w-3xl mx-auto"
               data-testid="about-credential-line"
             >
-              OSHA 30-Hour Outreach Trained safety compliance consultant, Kernersville, NC
+              Vince Lawrence, OSHA 30-Hour Outreach Trained safety compliance consultant, Kernersville, NC. U.S. Navy Veteran. 25+ years across manufacturing, warehouse, fleet, and supervisory roles.
             </p>
           </Reveal>
         </div>

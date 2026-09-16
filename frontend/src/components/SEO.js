@@ -28,7 +28,7 @@ const SEO = ({
       <link rel="canonical" href={canonicalUrl} />
       <link rel="alternate" hrefLang="en-us" href={canonicalUrl} />
       <link rel="alternate" hrefLang="x-default" href={canonicalUrl} />
-      {noindex && <meta name="robots" content="noindex, nofollow" />}
+      {noindex && <meta name="robots" content="noindex, nofollow, noarchive" />}
       
       {/* Open Graph */}
       <meta property="og:type" content={ogType} />

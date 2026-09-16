@@ -103,7 +103,7 @@ const STANDALONE = [
     headline: 'The first step when you need exposure identified quickly.',
     price: 'From $1,300',
     body: 'An on-site walkthrough focused purely on physical hazards. You get a photo-documented report and a prioritized fix list in 48 hours. No retainer. No follow-up obligation.',
-    priceAnchor: 'Most operations fall between $1,300 and $2,100.',
+    priceAnchor: 'Starting at $1,300. Fixed quote before scheduling.',
     listLabel: "What's Included",
     bgColor: '#ffffff',
     whatsIncluded: [

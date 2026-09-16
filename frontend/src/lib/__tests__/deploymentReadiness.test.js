@@ -237,22 +237,24 @@ describe('Final production micro-cleanup', () => {
     expect(offerBlock).not.toBeNull();
   });
 
-  test('About-page meta description says "OSHA 30-Hour Outreach Trained"', () => {
+  test('About-page meta description says "OSHA 30-Hour General Industry Trained"', () => {
     const aboutMeta = gen.match(
       /path:\s*'\/about'[\s\S]{0,600}?description:\s*'([^']+)'/,
     );
     expect(aboutMeta).not.toBeNull();
-    expect(aboutMeta[1]).toContain('OSHA 30-Hour Outreach Trained');
+    expect(aboutMeta[1]).toContain('OSHA 30-Hour General Industry Trained');
     expect(aboutMeta[1]).not.toMatch(/OSHA[\s-]*30-Hour\s+certified/i);
+    expect(aboutMeta[1]).not.toMatch(/OSHA[\s-]*30-Hour\s+Outreach\s+Trained/);
   });
 
-  test('React About page also uses "OSHA 30-Hour Outreach Trained" in its SEO description', () => {
+  test('React About page also uses "OSHA 30-Hour General Industry Trained" in its SEO description', () => {
     const about = readRepo('frontend/src/pages/AboutPage.js');
     // Match the SEO description prop specifically to ignore other page text.
     const seoDesc = about.match(/description=\s*"([^"]{20,300})"/);
     expect(seoDesc).not.toBeNull();
-    expect(seoDesc[1]).toContain('OSHA 30-Hour Outreach');
+    expect(seoDesc[1]).toContain('OSHA 30-Hour General Industry Trained');
     expect(seoDesc[1]).not.toMatch(/OSHA[\s-]*30-Hour\s+certified/i);
+    expect(seoDesc[1]).not.toMatch(/OSHA[\s-]*30-Hour\s+Outreach\s+Trained/);
   });
 
   // ─── Kit-series terminology ──────────────────────────────────────────────

@@ -170,7 +170,7 @@ const VINCE_PERSON = {
   url: `${BASE_URL}/about`,
   image: `${BASE_URL}/vince-portrait.webp`,
   description:
-    'Vince Lawrence, 25+ years in manufacturing/fleet/warehouse safety. OSHA 30-Hour Outreach Trained. Navy veteran. Founder of GigLine.',
+    'Vince Lawrence, 25+ years in manufacturing/fleet/warehouse safety. OSHA 30-Hour General Industry Trained. Navy veteran. Founder of GigLine.',
   hasCredential: [
     { '@type': 'EducationalOccupationalCredential', credentialCategory: 'training', name: 'OSHA 30-Hour General Industry Outreach Training' },
     { '@type': 'EducationalOccupationalCredential', credentialCategory: 'military service', name: 'U.S. Navy Veteran' },
@@ -202,7 +202,7 @@ const HOMEPAGE_FAQS = [
 // Canonical 18-question FAQ for /faq page
 const FULL_FAQS = [
   { q: 'How much does an OSHA safety walkthrough cost in North Carolina?', a: "GigLine safety walkthroughs start at $1,300. Price is scoped based on square footage, machine count, employee count, and hazard complexity. Fixed quote before scheduling. No hourly billing, no retainer, no surprise invoice. For context: a single OSHA serious violation can cost up to $16,550 per citation (2026 adjusted rate). The walkthrough identifies what's exposed before an inspector does." },
-  { q: 'What does an OSHA safety consultant do on-site?', a: "During a GigLine Safety Walkthrough, Vince Lawrence, OSHA 30-Hour Outreach Trained safety compliance consultant based in Kernersville, NC, walks every area of your facility. He photographs findings, documents each one against the applicable CFR standard, and provides an estimated penalty exposure based on OSHA published maximums. Within 48 hours you receive a written report with photo documentation, CFR citations, and a prioritized list of corrective actions. The engagement is private, findings are not shared, published, or referenced without written permission." },
+  { q: 'What does an OSHA safety consultant do on-site?', a: "During a GigLine Safety Walkthrough, Vince Lawrence, OSHA 30-Hour General Industry Trained safety compliance consultant based in Kernersville, NC, walks every area of your facility. He photographs findings, documents each one against the applicable CFR standard, and provides an estimated penalty exposure based on OSHA published maximums. Within 48 hours you receive a written report with photo documentation, CFR citations, and a prioritized list of corrective actions. The engagement is private, findings are not shared, published, or referenced without written permission." },
   { q: 'How do I prepare for an OSHA inspection in a small manufacturing plant?', a: "The most effective preparation is a third-party walkthrough before OSHA arrives. OSHA inspections are triggered by employee complaints, referrals, fatalities, or programmed inspections, they do not announce in advance. A GigLine Safety Walkthrough gives you a written report of the conditions an inspector may review, documented against the same standards OSHA uses. The walkthrough starts at $1,300. A single serious citation can cost up to $16,550." },
   { q: 'What is a Compliance Readiness Visit?', a: "GigLine's most complete single engagement. Combines the Safety Walkthrough and Documentation Review in one on-site visit. One consolidated written report covering both physical findings and documentation gaps, with a prioritized corrective action plan. Starts at $2,500. Booking separately starts at $2,500. The combined visit covers both for less." },
   { q: 'What is the difference between a Safety Walkthrough and a Compliance Readiness Visit?', a: "The Safety Walkthrough covers the physical floor, starts at $1,300, report in 48 hours. The CRV adds a full documentation review to the same visit, written programs, training records, HazCom binder, OSHA 300 log, starts at $2,500. If unsure, the walkthrough is the lower-barrier starting point." },
@@ -269,7 +269,7 @@ const routes = [
       <h1>Find the gaps before OSHA does.</h1>
       <p>On-site safety walkthroughs for manufacturers, warehouses, contractors, and fleet operations across the Piedmont Triad. Fixed quote. Private engagement. Report in 48 hours.</p>
       <p><a href="/intake">Request a Walkthrough</a> &middot; <a href="/safety-check">Take the Safety Check</a></p>
-      <p>OSHA 30-Hour Outreach Trained · 25+ Years Experience · U.S. Navy Veteran · Serving the Triad</p>
+      <p>OSHA 30-Hour General Industry Trained · 25+ Years Experience · U.S. Navy Veteran · Serving the Triad</p>
       <h2>What We Find on the Floor, Most violations are hiding in plain sight.</h2>
       <p>OSHA doesn't find things your team missed. They find things your team stopped seeing. Here's what shows up on almost every walkthrough.</p>
       <ol>
@@ -317,7 +317,7 @@ const routes = [
       ${HOMEPAGE_FAQS.map((f) => `<h3>${f.q}</h3><p>${f.a}</p>`).join('')}
       <p><a href="/faq">See all 18 frequently asked questions →</a></p>
       <h2>About Vince Lawrence</h2>
-      <p>Vince Lawrence is a safety consultant based in Kernersville, NC. OSHA 30-Hour Outreach Trained. 25+ years in manufacturing, fleet, and warehouse safety operations. U.S. Navy veteran.</p>
+      <p>Vince Lawrence is a safety consultant based in Kernersville, NC. OSHA 30-Hour General Industry Trained. 25+ years in manufacturing, fleet, and warehouse safety operations. U.S. Navy veteran.</p>
       <p>I've walked floors in plastics manufacturing, building materials distribution, and trucking operations across the Triad. I know what inspectors look for because I've helped operations correct the same violations hundreds of times.</p>
       <p>GigLine is a private engagement. Nothing leaves your facility except the report I hand you.</p>
       <p>Service area: On-site walkthroughs within 60 miles of Winston-Salem, including Greensboro, High Point, Kernersville, Lexington, Thomasville, Salisbury, Burlington, and surrounding communities.</p>
@@ -332,12 +332,12 @@ const routes = [
   {
     path: '/about',
     title: 'Safety Consultant Kernersville NC, Vince Lawrence | GigLine',
-    description: '25+ years on the floor. OSHA 30-Hour Outreach Trained. Navy veteran. An OSHA-informed floor review before an inspector shows up. (336) 329-8899.',
+    description: '25+ years on the floor. OSHA 30-Hour General Industry Trained. Navy veteran. An OSHA-informed floor review before an inspector shows up. (336) 329-8899.',
     canonical: '/about',
     schemas: [VINCE_PERSON, breadcrumb([{ name: 'Home', path: '/' }, { name: 'About', path: '/about' }])],
     content: `
       <h1>About Vince Lawrence</h1>
-      <p>Safety consultant based in Kernersville, NC. OSHA 30-Hour Outreach Trained. 25+ years in manufacturing, fleet, and warehouse safety operations. U.S. Navy veteran.</p>
+      <p>Safety consultant based in Kernersville, NC. OSHA 30-Hour General Industry Trained. 25+ years in manufacturing, fleet, and warehouse safety operations. U.S. Navy veteran.</p>
       <p>GigLine Safety &amp; Compliance provides on-site safety walkthroughs, documentation reviews, and incident response support for small manufacturers, warehouses, contractors, and fleets in the Piedmont Triad and surrounding areas.</p>
       <p>Contact: (336) 329-8899 · vince@giglinecompliance.com</p>
     `,
@@ -546,7 +546,7 @@ const routes = [
       <p><strong>Findings stay open. Records go missing. The same hazards return.</strong></p>
       <p>Ongoing safety support for small employers that need consistent follow-through but are not ready for a full-time safety manager. GigLine helps keep inspections, corrective actions, selected safety records, and management follow-up moving month after month.</p>
       <p><strong>Plans start at $1,850 per month following an initial Compliance Readiness Visit.</strong></p>
-      <p>Piedmont Triad-based · OSHA 30-Hour Outreach Trained · Manufacturing and operations experience · U.S. Navy veteran-owned</p>
+      <p>Piedmont Triad-based · OSHA 30-Hour General Industry Trained · Manufacturing and operations experience · U.S. Navy veteran-owned</p>
 
       <h2>The problem, Safety usually gets handed to somebody who already has a full-time job.</h2>
       <p>In a small operation, safety often lands on the owner, plant manager, HR manager, maintenance lead, or warehouse supervisor. They care about the work, but production, staffing, quality, customer demands, and daily fires keep pushing it down the list. The result is familiar: inspection findings stay open, training records go missing, written programs stop matching the operation, the same hazards return, nobody can show what was corrected, and management finds out too late that the system was not being maintained. GigLine provides the structure and follow-up to keep that work visible.</p>
@@ -1214,7 +1214,7 @@ const routes = [
     content: `
       <h1>What OSHA Looks For When They Walk In.</h1>
       <p>A practical guide for HR managers, safety coordinators, and plant managers, what to have ready before the inspection, what happens during it, and what to do in the 15-day window after.</p>
-      <p><strong>Vince Lawrence · GigLine Safety &amp; Compliance · OSHA 30-Hour Outreach Trained · 25+ Years in Manufacturing</strong></p>
+      <p><strong>Vince Lawrence · GigLine Safety &amp; Compliance · OSHA 30-Hour General Industry Trained · 25+ Years in Manufacturing</strong></p>
       <h2>What's Inside</h2>
       <ul>
         <li><strong>Before the Inspection</strong>, Written programs, OSHA logs, training records, and physical readiness with CFR citations for each.</li>
@@ -1252,7 +1252,7 @@ const routes = [
     content: `
       <h1>The OSHA Compliance Guide for Small Manufacturing &amp; Warehouse Operations</h1>
       <p>25 CFR-cited field notes, organized into six hazard clusters. Hazard Communication. Machine guarding and energy control. Fall and height work. PPE. Recordkeeping and enforcement. Operations and environment. Each note is written from the floor, not the binder.</p>
-      <p><em>By Vince Lawrence, GigLine Safety &amp; Compliance, OSHA 30-Hour Outreach Trained, U.S. Navy Veteran, Kernersville, NC</em></p>
+      <p><em>By Vince Lawrence, GigLine Safety &amp; Compliance, OSHA 30-Hour General Industry Trained, U.S. Navy Veteran, Kernersville, NC</em></p>
 
       <h2>Cluster 01, Chemical &amp; Health Exposure</h2>
       <p>Hazard Communication is the #1 most-cited OSHA standard in general industry. The exposure programs below are where the documentation almost always lags behind the floor.</p>

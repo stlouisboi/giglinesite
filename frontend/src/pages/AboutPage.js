@@ -123,7 +123,7 @@ const AboutPage = () => {
     <main data-testid="about-page">
       <SEO
         title="Safety Consultant Kernersville NC, Vince Lawrence | GigLine"
-        description="25+ years on the floor. OSHA 30-Hour Outreach Trained. Navy veteran. An OSHA-informed floor review before an inspector shows up. (336) 329-8899."
+        description="25+ years on the floor. OSHA 30-Hour General Industry Trained. Navy veteran. An OSHA-informed floor review before an inspector shows up. (336) 329-8899."
         canonical="/about"
         schema={[
           {
@@ -142,7 +142,7 @@ const AboutPage = () => {
             "email": "vince@giglinecompliance.com",
             "url": "https://www.giglinecompliance.com/about",
             "image": "https://www.giglinecompliance.com/vince-portrait.webp",
-            "description": "Vince Lawrence, 25+ years in manufacturing/fleet/warehouse safety. OSHA 30-Hour Outreach Trained. Navy veteran. Founder of GigLine.",
+            "description": "Vince Lawrence, 25+ years in manufacturing/fleet/warehouse safety. OSHA 30-Hour General Industry Trained. Navy veteran. Founder of GigLine.",
             "sameAs": [
               "https://www.giglinecompliance.com",
               "https://www.giglinecompliance.com/about",
@@ -185,7 +185,7 @@ const AboutPage = () => {
               className="text-sm md:text-base text-white/55 leading-relaxed max-w-3xl mx-auto"
               data-testid="about-credential-line"
             >
-              Vince Lawrence, OSHA 30-Hour Outreach Trained safety compliance consultant, Kernersville, NC. U.S. Navy Veteran. 25+ years across manufacturing, warehouse, fleet, and supervisory roles.
+              Vince Lawrence, OSHA 30-Hour General Industry Trained safety compliance consultant, Kernersville, NC. U.S. Navy Veteran. 25+ years across manufacturing, warehouse, fleet, and supervisory roles.
             </p>
           </Reveal>
         </div>
@@ -592,7 +592,7 @@ This is GigLine Safety & Compliance.`}
             {/* Credential pills */}
             <div className="flex flex-wrap gap-2 mb-10" data-testid="about-credential-pills">
               {[
-                'OSHA 30-Hour Outreach Trained',
+                'OSHA 30-Hour General Industry Trained',
                 'U.S. Navy Veteran',
                 '25+ years manufacturing operations',
                 'Founder, GigLine Safety & Compliance',
@@ -616,7 +616,7 @@ This is GigLine Safety & Compliance.`}
 
             <PressCopyBlock
               label="One-Liner (for contributor footnotes)"
-              text="Vince Lawrence, Founder, GigLine Safety & Compliance · 25+ years manufacturing operations · OSHA 30-Hour Outreach Trained · U.S. Navy Veteran · Kernersville, NC."
+              text="Vince Lawrence, Founder, GigLine Safety & Compliance · 25+ years manufacturing operations · OSHA 30-Hour General Industry Trained · U.S. Navy Veteran · Kernersville, NC."
               testid="copy-one-liner"
             />
             <PressCopyBlock

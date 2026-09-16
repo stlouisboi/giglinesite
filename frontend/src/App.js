@@ -38,6 +38,7 @@ const AdminPage                       = lazy(() => import('./pages/AdminPage'));
 // Phase 2 lead-magnet drafts, gated behind feature flags. Not indexed, not in sitemap, not linked from nav.
 const FirstPullChecklistPage          = lazy(() => import('./pages/FirstPullChecklistPage'));
 const OshaTwelveQuestionsPage         = lazy(() => import('./pages/OshaTwelveQuestionsPage'));
+const RecommendationRouterPage        = lazy(() => import('./pages/RecommendationRouterPage'));
 const FieldNotesPage                  = lazy(() => import('./pages/FieldNotesPage'));
 const FieldNoteDetailPage             = lazy(() => import('./pages/FieldNoteDetailPage'));
 const CityLandingPage                 = lazy(() => import('./pages/CityLandingPage'));
@@ -188,6 +189,7 @@ function App() {
                     {/* Phase 2 lead-magnet drafts (gated behind feature flags in /config/features.js). Not linked from nav, not indexed, not in sitemap. */}
                     <Route path="/first-pull/:slug" element={<FirstPullChecklistPage />} />
                     <Route path="/12-questions" element={<OshaTwelveQuestionsPage />} />
+                    <Route path="/recommendation" element={<RecommendationRouterPage />} />
                     <Route path="/field-notes" element={<FieldNotesPage />} />
                     <Route path="/field-notes/:slug" element={<FieldNoteDetailPage />} />
                     {/* Buyer-intent service landing pages (Findability Framework), must be defined
@@ -202,8 +204,10 @@ function App() {
                     <Route path="/safety-walkthrough/:city" element={<CityLandingPage />} />
                     <Route path="/faq" element={<FAQPage />} />
                     <Route path="/service-areas" element={<ServiceAreasPage />} />
-                    <Route path="/case-study/metals-fabrication-statesville" element={<CaseStudyMetalsFabricationPage />} />
-                    <Route path="/case-studies/mocksville-plastics-osha-inspection" element={<Navigate to="/case-study/metals-fabrication-statesville" replace />} />
+                    <Route path="/case-study/metal-fabrication-readiness" element={<CaseStudyMetalsFabricationPage />} />
+                    {/* Legacy anonymized route, city-based URL kept only as permanent redirect (Phase 2A.1). */}
+                    <Route path="/case-study/metals-fabrication-statesville" element={<Navigate to="/case-study/metal-fabrication-readiness" replace />} />
+                    <Route path="/case-studies/mocksville-plastics-osha-inspection" element={<Navigate to="/case-study/metal-fabrication-readiness" replace />} />
                     {/* Citation-Proof Kit Series */}
                     <Route path="/citation-proof-kits" element={<CitationProofKitsPage />} />
                     <Route path="/citation-proof-kits/:slug/thank-you" element={<CitationProofKitThankYouPage />} />

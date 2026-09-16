@@ -65,7 +65,7 @@ const FieldNotesNewsletter = ({ source = 'field-notes' }) => {
               One topic a month.<br className="hidden md:block" /> No spam.
             </h3>
             <p className="text-white/65 text-base md:text-[15px] leading-relaxed">
-              Real safety topics from real walkthroughs , the CFR, the citation, the fix. Written by Vince. Reply anytime.
+              Real safety topics from real walkthroughs, the CFR, the citation, the fix. Written by Vince. Reply anytime.
             </p>
           </div>
 
@@ -83,7 +83,7 @@ const FieldNotesNewsletter = ({ source = 'field-notes' }) => {
                   <Check size={22} color="#fff" strokeWidth={3} />
                 </span>
                 <p className="text-white font-bold text-lg mb-1">
-                  {alreadySubscribed ? "You're already on the list." : 'You\u2019re in.'}
+                  {alreadySubscribed ? "You\u2019re already on the list." : 'You\u2019re in.'}
                 </p>
                 <p className="text-white/55 text-sm">
                   {alreadySubscribed

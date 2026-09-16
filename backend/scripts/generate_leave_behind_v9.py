@@ -9,8 +9,8 @@ Run once:  python3 /app/backend/scripts/generate_leave_behind_v9.py
 Output:    /app/backend/internal_docs/GigLine_LeaveBehind_v9.pdf
 
 Pricing (Feb 2026, verified against /services live page):
-  - Safety Walkthrough          starting at $1,200
-  - Compliance Readiness Visit  starting at $2,000
+  - Safety Walkthrough          starting at $1,300
+  - Compliance Readiness Visit  starting at $2,500
   - Supervisor Safety Starter   $600 digital · $700 physical
 """
 
@@ -207,9 +207,9 @@ def build():
     story.append(Paragraph("SERVICES &amp; STARTING PRICES", s["section"]))
 
     svc_rows = [
-        ("Safety Walkthrough", "Starting at $1,200",
+        ("Safety Walkthrough", "Starting at $1,300",
          "Floor walkthrough, written report in 48 hours. Best when you want fresh eyes on the floor."),
-        ("Compliance Readiness Visit", "Starting at $2,000",
+        ("Compliance Readiness Visit", "Starting at $2,500",
          "Floor + files. Reviews written programs, training records, OSHA 300 log, and HazCom binder. Includes the GigLine Supervisor Safety OS."),
         ("GigLine Supervisor Safety OS", "$600 digital · $700 physical",
          "17 CFR-cited documents. Written HazCom program, SDS index, training log, inspection checklist, \"If OSHA Shows Up\" protocol. Standalone product."),

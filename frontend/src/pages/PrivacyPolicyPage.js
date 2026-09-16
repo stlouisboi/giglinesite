@@ -65,7 +65,7 @@ const PrivacyPolicyPage = () => {
           <ul className="list-disc pl-6 space-y-1.5 mt-3">
             <li>Contact you about your safety request and confirm a quote</li>
             <li>Deliver agreed-upon services (walkthroughs, documentation reviews, incident response)</li>
-            <li>Send periodic emails relevant to your industry , Field Notes, OSHA updates, the annual Triad Field Manual</li>
+            <li>Send periodic emails relevant to your industry, Field Notes, OSHA updates, the annual Triad Field Manual</li>
             <li>Improve the GigLine website by reviewing aggregated traffic patterns (page views, form completions)</li>
           </ul>
           <p className="mt-3">

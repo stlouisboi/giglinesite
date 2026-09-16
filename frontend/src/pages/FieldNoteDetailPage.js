@@ -507,7 +507,7 @@ const FieldNoteDetailPage = () => {
                 className="text-[13.5px] italic"
                 style={{ color: 'rgba(10,22,40,0.55)', fontFamily: "Georgia, 'Times New Roman', serif" }}
               >
-                Or call <a href="tel:+13363298899" className="font-bold hover:underline" style={{ color: '#0A1628' }}>(336) 329-8899</a> to scope a Compliance Readiness Visit , the kit ships included.
+                Or call <a href="tel:+13363298899" className="font-bold hover:underline" style={{ color: '#0A1628' }}>(336) 329-8899</a> to scope a Compliance Readiness Visit, the kit ships included.
               </p>
             </div>
           </div>
@@ -518,8 +518,7 @@ const FieldNoteDetailPage = () => {
       <section className="py-16 md:py-24 bg-[#102A43]" data-testid="note-cta">
         <div className="container max-w-3xl text-center">
           <p className="text-lg text-white/60 mb-2">
-            If you're not sure how this looks in your operation ,
-          </p>
+            If you're not sure how this looks in your operation,           </p>
           <p className="text-lg text-white font-medium mb-8">
             start with a walkthrough.
           </p>

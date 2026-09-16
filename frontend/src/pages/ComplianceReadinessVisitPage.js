@@ -17,6 +17,8 @@ import {
 import SEO from '../components/SEO';
 import DiagnosticComparisonCard from '../components/DiagnosticComparisonCard';
 import RelatedFieldNotesStrip from '../components/RelatedFieldNotesStrip';
+import { CASE_STUDY_PUBLIC } from '../config/features';
+import ServicePageRecommendationEmbed from '../components/ServicePageRecommendationEmbed';
 
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
 
@@ -312,16 +314,25 @@ const ComplianceReadinessVisitPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-14 items-center mb-12">
             <div>
               <Eyebrow color={GOLD}>Compliance Readiness Visit</Eyebrow>
-              <h1 className="text-3xl md:text-4xl lg:text-[52px] font-extrabold leading-[1.08] mb-7 tracking-tight text-white max-w-5xl">
-                <span className="block">The floor and the files.</span>
-                <span className="block italic" style={{ color: GOLD, fontStyle: 'italic' }}>
-                  One visit. One report.
-                </span>
+              <h1 className="text-3xl md:text-4xl lg:text-[52px] font-extrabold leading-[1.08] mb-7 tracking-tight text-white max-w-5xl" data-testid="crv-hero-headline">
+                Stop wondering whether your floor and your safety records tell the same story.
               </h1>
-              <p className="text-base md:text-lg text-white/75 leading-[1.8] mb-9 max-w-3xl">
-                The most complete picture of where your operation stands before OSHA shows up. Physical walkthrough plus
-                full documentation review, delivered as a single, CFR-cited field audit report within 48 hours.
+              <p className="text-base md:text-lg text-white/75 leading-[1.8] mb-6 max-w-3xl" data-testid="crv-hero-sub">
+                The Compliance Readiness Visit reviews both in one engagement. You leave knowing what needs immediate attention, what evidence is missing, who should own each correction, and what can wait.
               </p>
+              <ul className="mb-9 space-y-2 max-w-3xl" data-testid="crv-hero-outcomes">
+                {[
+                  'The largest floor and documentation exposures identified',
+                  'Missing or weak evidence separated from confirmed controls',
+                  'Corrective actions prioritized into a practical sequence',
+                  'Leadership given one clear roadmap for what happens next',
+                ].map((line, i) => (
+                  <li key={i} className="flex items-start gap-2 text-white/85 text-[15px]">
+                    <span aria-hidden="true" style={{ color: GOLD, marginTop: 6, lineHeight: 1 }}>▸</span>
+                    <span>{line}</span>
+                  </li>
+                ))}
+              </ul>
 
               {/* CTA row, GOLD button for the recommended starting engagement */}
               <div className="flex flex-wrap items-center gap-x-7 gap-y-3">
@@ -412,6 +423,8 @@ const ComplianceReadinessVisitPage = () => {
       </section>
 
       {/* ═══ Social proof, real outcome graphic (full-width strip) ═══ */}
+      {/* Phase 2 Batch 2A.3: gated behind CASE_STUDY_PUBLIC */}
+      {CASE_STUDY_PUBLIC && (
       <section
         className="py-14 md:py-16"
         style={{ background: CREAM, borderBottom: '1px solid #e8e5dd' }}
@@ -420,7 +433,7 @@ const ComplianceReadinessVisitPage = () => {
         <div className="container max-w-5xl">
           <figure>
             <Link
-              to="/case-study/metals-fabrication-statesville"
+              to="/case-study/metal-fabrication-readiness"
               className="block rounded-xl overflow-hidden transition-shadow"
               style={{
                 background: '#ffffff',
@@ -447,7 +460,7 @@ const ComplianceReadinessVisitPage = () => {
                 Anonymized outcome from a 2026 Compliance Readiness Visit at a small NC metal fabrication operation. Illustrative, not a guaranteed or typical result.
               </span>
               <Link
-                to="/case-study/metals-fabrication-statesville"
+                to="/case-study/metal-fabrication-readiness"
                 className="inline-flex items-center gap-1.5 font-bold transition-colors"
                 style={{ color: BLUE }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = NAVY)}
@@ -461,6 +474,7 @@ const ComplianceReadinessVisitPage = () => {
           </figure>
         </div>
       </section>
+      )}
 
       {/* ═══ What You Get, 7 deliverables with 18-page report highlighted ═══ */}
       <section className="py-20 md:py-24 bg-white" data-testid="crv-deliverables">
@@ -875,6 +889,7 @@ const ComplianceReadinessVisitPage = () => {
       </section>
 
       <DiagnosticComparisonCard highlightSlug="crv" showCombinedSavings={true} showCta={false} />
+      <ServicePageRecommendationEmbed source="compliance-readiness-visit" referringRoute="/services/compliance-readiness-visit" />
     </main>
   );
 };

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { trackSafetyCheckComplete } from '../utils/analytics';
 import SEO from '../components/SEO';
+import SafetyCheckActionPlanPreview from '../components/SafetyCheckActionPlanPreview';
 
 const API = process.env.REACT_APP_BACKEND_URL;
 
@@ -182,7 +183,7 @@ const SafetyCheckPage = () => {
             GigLine Safety Check
           </p>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6" data-testid="safety-check-headline" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
-            {phase === 'results' ? "Here's Where Your Exposure Probably Is" : 'The Six Questions OSHA Asks First'}
+            {phase === 'results' ? "Here\u2019s Where Your Exposure Probably Is" : 'The Six Questions OSHA Asks First'}
           </h1>
           <p className="text-lg text-white/85 leading-relaxed">
             {phase === 'results'
@@ -485,6 +486,12 @@ const SafetyCheckPage = () => {
                     ← Start over
                   </button>
                 </div>
+              </div>
+            </section>
+            {/* Batch 2B, non-transmitting Email My Action Plan preview */}
+            <section className="bg-[#FAF7F1] py-10 md:py-14">
+              <div className="container max-w-3xl px-5 md:px-8">
+                <SafetyCheckActionPlanPreview tier={tier} noCount={noCount} recommendation={null} />
               </div>
             </section>
           </>

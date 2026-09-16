@@ -32,6 +32,29 @@ const {
 const BUILD_DIR = path.join(__dirname, '..', 'build');
 const BASE_URL = 'https://www.giglinecompliance.com';
 
+// ── Canonical Safety Walkthrough price ──
+// The single source of truth for public-facing pricing is
+// frontend/src/data/servicePricing.js, which is authored as ES modules and
+// consumed by every React page, JSON-LD block, and analytics event. This
+// generator script is CommonJS, so we parse the SAFETY_WALKTHROUGH block at
+// startup rather than duplicating the constant. If the parse fails we fail
+// the build loudly instead of silently drifting.
+function readCanonicalSafetyWalkthroughAmount() {
+  const src = fs.readFileSync(
+    path.join(__dirname, '..', 'src', 'data', 'servicePricing.js'),
+    'utf-8',
+  );
+  const block = src.match(/SAFETY_WALKTHROUGH\s*=\s*\{[^}]*?amount:\s*(\d+)/);
+  if (!block) {
+    throw new Error(
+      'generate-seo-pages: failed to parse SAFETY_WALKTHROUGH.amount from servicePricing.js. Refusing to emit city pages with unknown pricing.',
+    );
+  }
+  return parseInt(block[1], 10);
+}
+const SAFETY_WALKTHROUGH_AMOUNT = readCanonicalSafetyWalkthroughAmount();
+const SAFETY_WALKTHROUGH_DISPLAY = `$${SAFETY_WALKTHROUGH_AMOUNT.toLocaleString()}`;
+
 // ───────────────────────────────────────────────
 // GL-WEB-008, Staged content update for OSHA Documentation Readiness Review
 // (Document Review Module / GL-SPEC-APP-002 launch). Flag stays false until
@@ -40,8 +63,18 @@ const BASE_URL = 'https://www.giglinecompliance.com';
 const GL_WEB_008 = process.env.REACT_APP_GL_WEB_008_ENABLED === 'true';
 const DOC_REVIEW_DESCRIPTION = 'Two-layer review of your safety documentation. The first layer checks whether required programs exist, 53 items across seven OSHA categories. The second layer checks whether each document contains what it’s legally required to contain, element by element, standard by standard. You get a single compliance report covering both.';
 const DOC_REVIEW_PRICE_NUM = '2500';
-const DOC_REVIEW_PRICE_LABEL = '$1,300';
+const DOC_REVIEW_PRICE_LABEL = '$1,700';
 const SERVICES_META_DESCRIPTION = 'OSHA-readiness support for small industrial operations. GigLine helps manufacturers, warehouses, contractors, and fleet operations identify visible hazards, verify documentation compliance element by element, and resolve inspection-readiness issues before they become citations. Fixed pricing. No retainer.';
+
+// ───────────────────────────────────────────────
+// Phase 2 Batch 2A.3: CASE_STUDY_PUBLIC mirrors the frontend flag in
+// src/config/features.js. When false, the anonymized case-study SSR page
+// is skipped entirely and all in-body promotional links to the case study
+// are omitted from other prerendered pages. Flip both flags in tandem when
+// written client permission is on file.
+// ───────────────────────────────────────────────
+const CASE_STUDY_PUBLIC = false;
+const CASE_STUDY_PATH = '/case-study/metal-fabrication-readiness';
 
 // ───────────────────────────────────────────────
 // Shared schema fragments
@@ -258,7 +291,7 @@ const routes = [
       <ul>
         <li><a href="/safety-walkthrough">Safety Walkthrough</a>, From $1,300. Documented on-site walkthrough with photo evidence, CFR citations, estimated penalty exposure based on OSHA published maximums, and a Top 10 Fixes report within 48 hours.</li>
         <li><a href="/osha-compliance-gap-check">Compliance Readiness Visit</a>, From $2,500. Walkthrough plus a full Documentation Review in a single visit. Most Requested.</li>
-        <li><a href="/documentation-gap-check">OSHA Documentation Readiness Review (standalone)</a>, From $1,300.</li>
+        <li><a href="/documentation-gap-check">OSHA Documentation Readiness Review (standalone)</a>, Starting at $1,700.</li>
         <li><a href="/safety-check">Safety Check</a>, Free 90-second self-assessment of the six most common OSHA violations in general industry. No contact info required.</li>
       </ul>
       <h2>How It Works, Four steps. No surprises.</h2>
@@ -274,8 +307,10 @@ const routes = [
       <p><em>Service area: on-site within 60 miles of Winston-Salem, including Greensboro, High Point, Kernersville, Lexington, Thomasville, Salisbury, Burlington, and surrounding communities.</em></p>
       <h2>What Clients Say</h2>
       <p>"If you're looking for a partner that can bridge the gap between compliance and real-world execution, GigLine delivers results.", Demar Archie, Warehouse Receiving Manager</p>
+      ${CASE_STUDY_PUBLIC ? `
       <h2>Recent Engagement , Case Study</h2>
-      <p><a href="/case-study/metals-fabrication-statesville">What a Safety Walkthrough Actually Finds</a>. A 9-person metals fabrication facility in Statesville, NC. Combined walkthrough and documentation review. 13 findings across machine guarding, compressed gas storage, and documentation gaps. 12 of 13 corrective actions closed within four days of the walkthrough.</p>
+      <p><a href="${CASE_STUDY_PATH}">What a Safety Walkthrough Actually Finds</a>. A 9-person metals fabrication facility in Statesville, NC. Combined walkthrough and documentation review. 13 findings across machine guarding, compressed gas storage, and documentation gaps. 12 of 13 corrective actions closed within four days of the walkthrough.</p>
+      ` : ''}
       <h2>Final CTA, Know what's on your floor before OSHA does.</h2>
       <p>The walkthrough takes a few hours. The report is in your hands in 48. The cost is a fraction of a single citation. Questions first? Call or text directly: (336) 329-8899.</p>
       <h2>Frequently Asked Questions</h2>
@@ -361,8 +396,10 @@ const routes = [
       <p>Ongoing Safety Support, Starting at $1,850 per month, includes one scheduled on-site visit, corrective-action tracker updates, records review, and a monthly management report. Begins with an initial Compliance Readiness Visit ($2,500).</p>
       <h2>The GigLine Readiness Path</h2>
       <p>Find the issues, Safety Walkthrough from $1,300. Check the files, OSHA Documentation Readiness Review from ${DOC_REVIEW_PRICE_LABEL}. Review both, Compliance Readiness Visit from $2,500. Build the system, Safety Control System Buildout from $4,500. Keep it current, Ongoing Safety Support from $1,850/month.</p>
+      ${CASE_STUDY_PUBLIC ? `
       <h2>Recent Engagement , Case Study</h2>
-      <p><a href="/case-study/metals-fabrication-statesville">What a Safety Walkthrough Actually Finds</a>.</p>
+      <p><a href="${CASE_STUDY_PATH}">What a Safety Walkthrough Actually Finds</a>.</p>
+      ` : ''}
       <p>After payment, you'll receive a scheduling confirmation within one business day.</p>
       <p>GigLine Safety &amp; Compliance, Kernersville, NC, (336) 329-8899</p>
     `,
@@ -1227,10 +1264,10 @@ const routes = [
     `,
   },
   {
-    path: '/case-study/metals-fabrication-statesville',
+    path: '/case-study/metal-fabrication-readiness',
     title: 'What a Safety Walkthrough Actually Finds | GigLine Case Study',
     description: "Metals fabrication case study in Statesville, NC. Combined walkthrough + doc review. 13 findings. 80.3 compliance score.'s what the engagement delivered.",
-    canonical: '/case-study/metals-fabrication-statesville',
+    canonical: '/case-study/metal-fabrication-readiness',
     schemas: [
       {
         '@context': 'https://schema.org',
@@ -1240,7 +1277,7 @@ const routes = [
         image: `${BASE_URL}/og-image.png`,
         author: { '@id': `${BASE_URL}/#vince` },
         publisher: { '@id': `${BASE_URL}/#business` },
-        mainEntityOfPage: `${BASE_URL}/case-study/metals-fabrication-statesville`,
+        mainEntityOfPage: `${BASE_URL}/case-study/metal-fabrication-readiness`,
         datePublished: '2026-01-20',
         dateModified: '2026-02-28',
         articleSection: 'Case Study',
@@ -1249,7 +1286,7 @@ const routes = [
       breadcrumb([
         { name: 'Home', path: '/' },
         { name: 'Case Studies', path: '/case-studies' },
-        { name: 'Statesville Metals Fabrication', path: '/case-study/metals-fabrication-statesville' },
+        { name: 'Statesville Metals Fabrication', path: '/case-study/metal-fabrication-readiness' },
       ]),
       {
         '@context': 'https://schema.org',
@@ -1538,7 +1575,7 @@ const routes = [
         { q: 'Who is the safety walkthrough built for?', a: 'Small to mid-size manufacturers, warehouses, distribution centers, contractors, and fleet operations in North Carolina, typically 5 to 100 employees with no full-time safety manager on staff.' },
         { q: 'What gets reviewed during a safety walkthrough?', a: 'Walking-working surfaces and egress, electrical panel clearance, machine guarding and energy control, powered industrial trucks, hazard communication, PPE and fall protection, and recordkeeping, the same OSHA standards an inspector would focus on.' },
         { q: 'What do I receive after the walkthrough?', a: 'A PDF report within 48 hours with photo-documented findings, OSHA-related references where applicable, prioritized corrective action recommendations, and color-coded priorities (RED, AMBER, GREEN).' },
-        { q: 'How much does a safety walkthrough cost?', a: 'Walkthroughs start at $1,300. Most engagements fall between $1,300 and $2,100 depending on size and scope. Fixed quote before scheduling. No retainer.' },
+        { q: 'How much does a safety walkthrough cost?', a: 'Walkthroughs start at $1,300. Fixed quote before scheduling. No retainer.' },
       ]),
       breadcrumb([{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }, { name: 'Safety Walkthrough', path: '/safety-walkthrough' }]),
     ],
@@ -1653,7 +1690,7 @@ const routes = [
         { q: 'What is reviewed in the OSHA Documentation Review?', a: 'Written safety programs (HazCom, LOTO, IIPP, Bloodborne Pathogens, Emergency Action Plan, Heat Stress, PPE Hazard Assessment), training records and refresher cycles, OSHA 300 / 300A logs and posting compliance, SDS inventory against chemicals in active use, and retention practices for required documents.' },
         { q: 'Is the review remote or on-site?', a: 'Off-site / remote-friendly. We send a secure upload link and a prep checklist by email, no need to mail physical binders. On-site option available if preferred.' },
         { q: 'How long does the review take?', a: 'Once documents are received, written findings report is delivered within 48 hours.' },
-        { q: 'How much does an OSHA Documentation Review cost?', a: 'From $1,300. Fixed quote provided before any documents are reviewed.' },
+        { q: 'How much does an OSHA Documentation Review cost?', a: 'Starting at $1,700. Fixed quote provided before any documents are reviewed.' },
       ]),
       breadcrumb([{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }, { name: 'OSHA Documentation Review', path: '/osha-documentation-review-nc' }]),
     ],
@@ -1733,7 +1770,7 @@ const routes = [
     ],
     content: `
       <h1>A Compliance Readiness Visit Before an Inspection, Audit, or Insurance Review</h1>
-      <p>The most thorough engagement GigLine offers. A combined on-site walkthrough and documentation review, covering the floor AND the binder, so you know exactly where you stand against the OSHA standards that apply to your operation. Most engagements between $1,300 and $2,400.</p>
+      <p>The most thorough engagement GigLine offers. A combined on-site walkthrough and documentation review, covering the floor AND the binder, so you know exactly where you stand against the OSHA standards that apply to your operation. Starting at $2,500.</p>
       <h2>Who It's For</h2>
       <p>OSHA inspection on the calendar. Recent recordable injury, severe near-miss, or workers' comp flag. Insurance carrier or major customer requesting documented compliance evidence. M&amp;A due diligence. New safety responsibility and need a full independent baseline.</p>
       <h2>What's Reviewed</h2>
@@ -2015,29 +2052,34 @@ SERVICE_DETAIL_ROUTES.forEach((svc) => {
 });
 
 // City landing pages
+// Pricing intentionally NOT stored per city. Every city inherits the canonical
+// Safety Walkthrough price parsed from servicePricing.js at generator startup
+// (SAFETY_WALKTHROUGH_AMOUNT). travelNote:true markets add a "plus applicable
+// travel fee" qualifier to the visible copy; the JSON-LD Offer price is the
+// canonical base amount for every city, no upper-bound range.
 const CITY_META = {
-  'winston-salem':  { name: 'Winston-Salem',  distance: '10 miles from Kernersville', industries: 'manufacturing plants, food processing facilities, and distribution centers', price: 1200 },
-  'greensboro':     { name: 'Greensboro',     distance: '15 miles from Kernersville', industries: 'warehouses, light manufacturing, and logistics operations', price: 1200 },
-  'high-point':     { name: 'High Point',     distance: '12 miles from Kernersville', industries: 'furniture manufacturing, warehousing, and small fabrication shops', price: 1200 },
-  'charlotte':      { name: 'Charlotte',      distance: '75 miles from Kernersville', industries: 'manufacturing, construction contractors, and warehouse operations', price: 1200 },
-  'raleigh':        { name: 'Raleigh',        distance: '75 miles from Kernersville', industries: 'growing manufacturing operations, warehouse facilities, and construction sites', price: 1200 },
-  'burlington':     { name: 'Burlington',     distance: '30 miles from Kernersville', industries: 'textile operations, small manufacturers, and distribution facilities', price: 1200 },
-  'kernersville':   { name: 'Kernersville',   distance: 'GigLine HQ',                  industries: 'manufacturing, light industrial operations, and warehousing', price: 1200 },
-  'lexington':      { name: 'Lexington',      distance: '20 miles from Kernersville', industries: 'furniture manufacturing, food production, and small fabrication shops', price: 1200 },
-  'thomasville':    { name: 'Thomasville',    distance: '15 miles from Kernersville', industries: 'furniture manufacturing, cabinetry, and small production operations', price: 1200 },
-  'clemmons':       { name: 'Clemmons',       distance: '15 miles from Kernersville', industries: 'small manufacturers, trade contractors, and light industrial operations', price: 1200 },
-  'mocksville':     { name: 'Mocksville',     distance: '25 miles from Kernersville', industries: 'manufacturing, agricultural operations, and small fabrication shops', price: 1200 },
-  'salisbury':      { name: 'Salisbury',      distance: '50 miles from Kernersville', industries: 'manufacturing plants, distribution centers, and industrial operations', price: 1200, travelNote: true },
-  'asheboro':       { name: 'Asheboro',       distance: '35 miles from Kernersville', industries: 'manufacturing, metal fabrication, and distribution operations', price: 1200, travelNote: true },
+  'winston-salem':  { name: 'Winston-Salem',  distance: '10 miles from Kernersville', industries: 'manufacturing plants, food processing facilities, and distribution centers' },
+  'greensboro':     { name: 'Greensboro',     distance: '15 miles from Kernersville', industries: 'warehouses, light manufacturing, and logistics operations' },
+  'high-point':     { name: 'High Point',     distance: '12 miles from Kernersville', industries: 'furniture manufacturing, warehousing, and small fabrication shops' },
+  'charlotte':      { name: 'Charlotte',      distance: '75 miles from Kernersville', industries: 'manufacturing, construction contractors, and warehouse operations' },
+  'raleigh':        { name: 'Raleigh',        distance: '75 miles from Kernersville', industries: 'growing manufacturing operations, warehouse facilities, and construction sites' },
+  'burlington':     { name: 'Burlington',     distance: '30 miles from Kernersville', industries: 'textile operations, small manufacturers, and distribution facilities' },
+  'kernersville':   { name: 'Kernersville',   distance: 'GigLine HQ',                  industries: 'manufacturing, light industrial operations, and warehousing' },
+  'lexington':      { name: 'Lexington',      distance: '20 miles from Kernersville', industries: 'furniture manufacturing, food production, and small fabrication shops' },
+  'thomasville':    { name: 'Thomasville',    distance: '15 miles from Kernersville', industries: 'furniture manufacturing, cabinetry, and small production operations' },
+  'clemmons':       { name: 'Clemmons',       distance: '15 miles from Kernersville', industries: 'small manufacturers, trade contractors, and light industrial operations' },
+  'mocksville':     { name: 'Mocksville',     distance: '25 miles from Kernersville', industries: 'manufacturing, agricultural operations, and small fabrication shops' },
+  'salisbury':      { name: 'Salisbury',      distance: '50 miles from Kernersville', industries: 'manufacturing plants, distribution centers, and industrial operations', travelNote: true },
+  'asheboro':       { name: 'Asheboro',       distance: '35 miles from Kernersville', industries: 'manufacturing, metal fabrication, and distribution operations', travelNote: true },
 };
 
 Object.keys(CITY_META).forEach((city) => {
   const m = CITY_META[city];
-  const priceTop = 2100;
-  const priceStartLabel = m.travelNote ? `$1,300 + travel fee` : `$${m.price.toLocaleString()}`;
-  const priceRangeLabel = `$${m.price.toLocaleString()}–$${priceTop.toLocaleString()}`;
+  const priceStartLabel = m.travelNote
+    ? `Starting at ${SAFETY_WALKTHROUGH_DISPLAY} plus applicable travel fee`
+    : `Starting at ${SAFETY_WALKTHROUGH_DISPLAY}`;
   const cityFaqs = [
-    { q: `How much does a safety walkthrough cost in ${m.name}, NC?`, a: `Safety walkthroughs for ${m.name}-area operations start at ${priceStartLabel}. Most small operations fall in the ${priceRangeLabel} range depending on square footage and scope. You'll receive a fixed quote before scheduling.${m.travelNote ? ` ${m.name} is outside the Triad core, so a travel fee applies in addition to the base walkthrough price.` : ''}` },
+    { q: `How much does a safety walkthrough cost in ${m.name}, NC?`, a: `Safety walkthroughs for ${m.name}-area operations start at ${SAFETY_WALKTHROUGH_DISPLAY} with a fixed quote issued before scheduling.${m.travelNote ? ` ${m.name} is outside the Triad core, so an applicable travel fee is added to the base walkthrough price. The quote is confirmed in writing before any visit is scheduled.` : ''}` },
     { q: `How quickly can GigLine get on-site in ${m.name}?`, a: `${m.name} is ${m.distance}, so most walkthroughs are scheduled within 5–10 business days of the initial request. Urgent or post-incident visits can often be scheduled the same week.` },
     { q: `What kind of operations does GigLine walk through in ${m.name}?`, a: `${m.industries.charAt(0).toUpperCase() + m.industries.slice(1)}. Typical client size is 5 to 100 employees, operations without a full-time safety manager that need a trained outside eye on the floor.` },
     { q: `Will findings from my ${m.name} walkthrough be reported to OSHA?`, a: `No. The engagement is private. The only deliverable is the written report handed to you, nothing is shared with OSHA, insurance carriers, or any third party.` },
@@ -2046,24 +2088,24 @@ Object.keys(CITY_META).forEach((city) => {
   routes.push({
     path: `/safety-walkthrough/${city}`,
     title: `Safety Walkthrough ${m.name}, NC | GigLine Safety & Compliance`,
-    description: `On-site OSHA safety walkthroughs for small manufacturers and warehouses in ${m.name}, NC. Written report with findings, photos, and corrective actions. Starting at ${priceStartLabel}.`,
+    description: `On-site OSHA safety walkthroughs for small manufacturers and warehouses in ${m.name}, NC. Written report with findings, photos, and corrective actions. ${priceStartLabel}.`,
     canonical: `/safety-walkthrough/${city}`,
     schemas: [
       {
         '@context': 'https://schema.org',
         '@type': 'Service',
         name: `Safety Walkthrough in ${m.name}, NC`,
-        description: `On-site OSHA safety walkthroughs for ${m.industries} in ${m.name} and surrounding areas. Written report delivered within 48 hours. Starting at ${priceStartLabel}.`,
+        description: `On-site OSHA safety walkthroughs for ${m.industries} in ${m.name} and surrounding areas. Written report delivered within 48 hours. ${priceStartLabel}.`,
         provider: { '@id': `${BASE_URL}/#business` },
         areaServed: { '@type': 'City', name: m.name, containedInPlace: { '@type': 'State', name: 'North Carolina' } },
-        offers: { '@type': 'Offer', price: String(m.price), priceCurrency: 'USD' },
+        offers: { '@type': 'Offer', price: String(SAFETY_WALKTHROUGH_AMOUNT), priceCurrency: 'USD' },
       },
       faqSchema(cityFaqs),
       breadcrumb([{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }, { name: `${m.name} Walkthrough`, path: `/safety-walkthrough/${city}` }]),
     ],
     content: `
       <h1>Safety Walkthrough, ${m.name}, NC</h1>
-      <p>On-site OSHA safety walkthroughs for ${m.industries} in ${m.name} and surrounding areas. Starting at ${priceStartLabel}. Written report delivered within 48 hours.</p>
+      <p>On-site OSHA safety walkthroughs for ${m.industries} in ${m.name} and surrounding areas. ${priceStartLabel}. Written report delivered within 48 hours.</p>
       <h2>${m.name} Safety Walkthrough FAQ</h2>
       ${cityFaqs.map((f) => `<h3>${f.q}</h3><p>${f.a}</p>`).join('')}
       <p><a href="/faq">See all 18 frequently asked questions →</a></p>
@@ -2444,7 +2486,7 @@ function renderTierGrid() {
   }).join('');
   return `
     <h2>Three tiers per kit.</h2>
-    <p>Every Citation-Proof Kit ships in three tiers. Pick the tier that matches how much of the build you want to do yourself and how quickly you need the physical binder in the supervisor&rsquo;s hands.</p>
+    <p>Every GigLine Compliance Readiness Kit ships in three tiers. Pick the tier that matches how much of the build you want to do yourself and how quickly you need the physical binder in the supervisor&rsquo;s hands.</p>
     ${tiers}
   `;
 }
@@ -2623,7 +2665,7 @@ routes.push({
     <p>This calculator sizes the exposure. The next step is closing it. GigLine offers two direct paths, depending on how ready you are today:</p>
     <ul>
       <li><a href="/safety-walkthrough">Book an on-site Safety Walkthrough</a> , a written findings report within 48 hours mapped to the CFR standard OSHA cites for each finding. Priced from $1,300.</li>
-      <li><a href="/citation-proof-kits">Start with a Citation-Proof Kit</a> , self-build documentation systems for LOTO, Forklift/PIT, and HazCom Pro. Digital tier starts at $150.</li>
+      <li><a href="/citation-proof-kits">Start with a GigLine Compliance Readiness Kit</a> , self-build documentation systems for LOTO, Forklift/PIT, and HazCom Pro. Digital tier starts at $150.</li>
     </ul>
 
     <p><strong>Legal Notice:</strong> The Citation Cost Calculator is a planning benchmark, not a legal quote. Actual OSHA-assessed penalties are determined by OSHA area office review of gravity, good faith, employer size, and history factors under 29 CFR 1903.15. Only OSHA determines final penalty amounts. GigLine Safety &amp; Compliance is not a law firm and does not provide legal advice. Consult a qualified attorney for citation defense.</p>
@@ -2639,7 +2681,7 @@ routes.push({
   canonical: '/citation-proof-kits',
   schemas: [
     LOCAL_BUSINESS,
-    breadcrumb([{ name: 'Home', path: '/' }, { name: 'Citation-Proof Kits', path: '/citation-proof-kits' }]),
+    breadcrumb([{ name: 'Home', path: '/' }, { name: 'GigLine Compliance Readiness Kits', path: '/citation-proof-kits' }]),
   ],
   content: renderCatalogRoute(),
 });
@@ -2656,7 +2698,7 @@ CITATION_PROOF_KIT_SLUGS.forEach((slug) => {
       LOCAL_BUSINESS,
       breadcrumb([
         { name: 'Home', path: '/' },
-        { name: 'Citation-Proof Kits', path: '/citation-proof-kits' },
+        { name: 'GigLine Compliance Readiness Kits', path: '/citation-proof-kits' },
         { name: kit.name, path: `/citation-proof-kits/${slug}` },
       ]),
       ...(kit.faq && kit.faq.length ? [faqSchema(kit.faq)] : []),
@@ -2677,6 +2719,13 @@ function main() {
   let generated = 0;
 
   for (const route of routes) {
+    // Phase 2 Batch 2A.3: skip prerendering the anonymized case-study route
+    // while CASE_STUDY_PUBLIC is false. The runtime component also redirects
+    // to /resources when the flag is off, so there is no user-facing SSR
+    // artifact for the case study until owner permission is documented.
+    if (!CASE_STUDY_PUBLIC && route.path === CASE_STUDY_PATH) {
+      continue;
+    }
     const routePath = route.path === '/' ? '' : route.path;
     const routeDir = routePath ? path.join(BUILD_DIR, routePath) : BUILD_DIR;
     const routeFile = routePath ? path.join(routeDir, 'index.html') : path.join(BUILD_DIR, 'index.html');

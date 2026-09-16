@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, Search } from 'lucide-react';
 import { trackPhoneClick } from '../utils/analytics';
 import SiteSearch from './SiteSearch';
+import { RECOMMENDATION_ROUTER_ENABLED } from '../config/features';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,6 +32,7 @@ const Navbar = () => {
     { name: 'Home', path: '/' },
     { name: 'Services', path: '/services' },
     { name: 'Kits', path: '/citation-proof-kits' },
+    ...(RECOMMENDATION_ROUTER_ENABLED ? [{ name: 'Find the Right Step', path: '/recommendation' }] : []),
     { name: 'Field Notes', path: '/field-notes' },
     { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },

@@ -5,6 +5,8 @@ import { trackServiceBooking, trackPhoneClick, trackEvent } from '../utils/analy
 import SEO from '../components/SEO';
 import { SUPERVISOR_KIT_ENABLED } from '../config/features';
 import CaseStudyTeaser from '../components/CaseStudyTeaser';
+import RecommendationEntryCard from '../components/RecommendationEntryCard';
+import ObjectionSupport from '../components/ObjectionSupport';
 import SampleReportSection from '../components/SampleReportSection';
 import WalkthroughDaySection from '../components/WalkthroughDaySection';
 import FindBuildMaintainJourney from '../components/FindBuildMaintainJourney';
@@ -15,7 +17,7 @@ const DOC_REVIEW_DESCRIPTION = 'A structured review of your safety documentation
 const DOC_REVIEW_PRICE = 'From $1,700';
 const DOC_REVIEW_PRICING_REF_PRICE = 'Starting at $1,700';
 const DOC_REVIEW_PATH_OFFER = 'OSHA Documentation Readiness Review \u2014 from $1,700';
-const SERVICES_META_DESCRIPTION = 'OSHA readiness for NC manufacturers, warehouses & contractors. Find gaps, review documentation, close corrective actions. From $1,300. Find. Build. Maintain. Fixed pricing. No retainer.';
+const SERVICES_META_DESCRIPTION = 'Choose the level of safety clarity and control your operation needs. Start with the floor, the files, or both. Compliance Readiness Visit from $2,500. Safety Walkthrough from $1,300. Documentation Readiness Review from $1,700. Fixed pricing. No retainer.';
 
 /* ── Scroll-reveal, mirrors HomePage.js exactly ── */
 const useReveal = () => {
@@ -101,7 +103,7 @@ const STANDALONE = [
     headline: 'The first step when you need exposure identified quickly.',
     price: 'From $1,300',
     body: 'An on-site walkthrough focused purely on physical hazards. You get a photo-documented report and a prioritized fix list in 48 hours. No retainer. No follow-up obligation.',
-    priceAnchor: 'Most operations fall between $1,300 and $2,100.',
+    priceAnchor: 'Starting at $1,300. Fixed quote before scheduling.',
     listLabel: "What's Included",
     bgColor: '#ffffff',
     whatsIncluded: [
@@ -316,13 +318,13 @@ const ServicesPage = () => {
                 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.15] mb-5 max-w-2xl"
                 data-testid="services-headline"
               >
-                On-Site Safety Support for NC Manufacturers &amp; Warehouses
+                Choose the level of safety clarity and control your operation needs.
               </h1>
               <p
                 className="text-base md:text-lg text-[#CBD5E1] leading-relaxed max-w-2xl"
                 data-testid="services-sub"
               >
-                Every engagement is scoped to your operation, priced before scheduling, and delivered with a written report. No retainer. No ongoing obligation unless you want one.
+                Start with the floor, the files, or both. GigLine helps you see what is missing, understand what comes first, and know what a completed correction should look like. Every engagement is scoped to your operation, priced before scheduling, and delivered with a written report.
               </p>
             </Reveal>
           </div>
@@ -685,7 +687,7 @@ const ServicesPage = () => {
                     className="italic text-[#1C2B2B]/65 text-sm md:text-[15px] leading-relaxed mb-6 max-w-2xl"
                     data-testid="crv-anchor-line"
                   >
-                    Booked separately, the Safety Walkthrough and Documentation Review total $3,000. The Compliance Readiness Visit covers both in a single visit , from $2,500. A $500 combined-service savings.
+                    Booked separately, the Safety Walkthrough and Documentation Review total $3,000. The Compliance Readiness Visit covers both in a single visit, from $2,500. A $500 combined-service savings.
                   </p>
                 </div>
 
@@ -786,7 +788,7 @@ const ServicesPage = () => {
                 Want a preview before you schedule?
               </h2>
               <p className="text-[15px] md:text-base text-[#1C2B2B]/65 leading-relaxed max-w-2xl">
-                Download a redacted compliance report , facility name removed, every other detail intact. Findings, CFR citations, penalty exposure, RED/AMBER/GREEN fix list, and the corrective action plan.
+                Download a redacted compliance report, facility name removed, every other detail intact. Findings, CFR citations, penalty exposure, RED/AMBER/GREEN fix list, and the corrective action plan.
               </p>
             </div>
             <Link
@@ -815,7 +817,7 @@ const ServicesPage = () => {
             </h2>
             <div className="mb-8" style={{ width: '56px', height: '3px', background: '#C9A84C', borderRadius: '2px' }} />
             <p className="text-base md:text-lg text-[#1C2B2B]/65 leading-[1.85] max-w-3xl">
-              For operations that already know which side they need reviewed , the floor, the files, or a specific incident. Each engagement is scoped, quoted, and delivered independently.
+              For operations that already know which side they need reviewed, the floor, the files, or a specific incident. Each engagement is scoped, quoted, and delivered independently.
             </p>
           </Reveal>
         </div>
@@ -935,7 +937,7 @@ const ServicesPage = () => {
                         data-testid={`${s.testid}-phone-cta`}
                       >
                         <Phone size={15} />
-                        Call Now , (336) 329-8899
+                        Call Now, (336) 329-8899
                       </a>
                     )}
                   </div>
@@ -1151,7 +1153,7 @@ const ServicesPage = () => {
               <div className="mb-7" style={{ width: '64px', height: '3px', background: '#C9A84C', borderRadius: '2px' }} />
 
               <p className="text-base md:text-lg text-[#CBD5E1] leading-relaxed mb-6">
-                GigLine constructs the complete safety infrastructure your operation needs to pass any OSHA inspection, customer audit, or insurance review , and hands it back to your team with a system they can actually maintain.
+                GigLine constructs the complete safety infrastructure your operation needs to pass any OSHA inspection, customer audit, or insurance review, and hands it back to your team with a system they can actually maintain.
               </p>
               <p
                 className="text-lg md:text-xl font-semibold text-white leading-snug mb-10"
@@ -1466,7 +1468,7 @@ const ServicesPage = () => {
             </h2>
             <div className="mb-8" style={{ width: '56px', height: '3px', background: '#C9A84C', borderRadius: '2px' }} />
             <p className="text-base md:text-lg text-[#1C2B2B]/65 leading-[1.85] mb-12 max-w-3xl">
-              Every operation is different. This table shows exactly what each engagement includes, so you can pick the one that matches where you are today , not one size larger, not one size smaller.
+              Every operation is different. This table shows exactly what each engagement includes, so you can pick the one that matches where you are today, not one size larger, not one size smaller.
             </p>
           </Reveal>
 
@@ -1817,6 +1819,12 @@ const ServicesPage = () => {
 
       {/* ═══ 11. CASE STUDY ═══ */}
       <CaseStudyTeaser source="services" />
+      <RecommendationEntryCard source="services" heading="Not sure which GigLine step fits your operation?" />
+      <section className="py-14 md:py-20" style={{ background: '#f5f4f0' }} data-testid="services-objection-support-section">
+        <div className="container max-w-4xl">
+          <ObjectionSupport heading="Common questions before you decide" anchor="services-objections" />
+        </div>
+      </section>
 
       {/* ═══ 12. FOUNDER (compact, links to /about) ═══ */}
       <section className="py-20 md:py-24" style={{ backgroundColor: '#102A43' }} data-testid="services-founder">

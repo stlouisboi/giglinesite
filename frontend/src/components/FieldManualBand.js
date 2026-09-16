@@ -74,7 +74,7 @@ const FieldManualBand = ({ source = 'homepage' }) => {
               style={{ color: 'rgba(11,31,51,0.72)' }}
               data-testid="field-manual-summary"
             >
-              The 7 violations OSHA cites Piedmont Triad manufacturers for most often , with CFR citations, real penalty ranges, what they look like on the floor, and the fix for each one. The same reference I hand to clients.
+              The 7 violations OSHA cites Piedmont Triad manufacturers for most often, with CFR citations, real penalty ranges, what they look like on the floor, and the fix for each one. The same reference I hand to clients.
             </p>
 
             <a

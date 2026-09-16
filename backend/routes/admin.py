@@ -314,6 +314,35 @@ async def admin_stats(token: str = ""):
         reverse=True,
     )[:10]
 
+    # ── Batch 2B follow-up: /recommendation router lead counter ──
+    # How many intake submissions were tagged lead_source == "recommendation-router"?
+    # Reports three windows so Vince can see the return on the tool at a glance:
+    #   this_month (calendar month), last_30d (rolling), total (all-time).
+    # Also produces a compact path breakdown for the current calendar month so
+    # Vince can see which decision paths (A-E) are actually converting.
+    start_of_month = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0).isoformat()
+    router_query = {"lead_source": "recommendation-router"}
+    router_total = await db.gl_intake_submissions.count_documents(router_query)
+    router_this_month = await db.gl_intake_submissions.count_documents(
+        {**router_query, "submittedAt": {"$gte": start_of_month}}
+    )
+    router_last_30d = await db.gl_intake_submissions.count_documents(
+        {**router_query, "submittedAt": {"$gte": thirty_days_ago}}
+    )
+    path_counts: dict[str, int] = {}
+    async for d in db.gl_intake_submissions.find(
+        {**router_query, "submittedAt": {"$gte": start_of_month}},
+        {"_id": 0, "recommendation_answers": 1},
+    ):
+        ans = d.get("recommendation_answers") or {}
+        aim = (ans.get("primaryAim") or "").upper()
+        if aim in ("A", "B", "C", "D", "E"):
+            path_counts[aim] = path_counts.get(aim, 0) + 1
+    router_paths_this_month = [
+        {"path": k, "count": path_counts[k]}
+        for k in sorted(path_counts.keys())
+    ]
+
     return {
         "safety_checks": {"total": total_checks, "last_7d": checks_7d, "last_30d": checks_30d},
         "risk_breakdown": {"high": high_risk, "medium": medium_risk, "low": low_risk},
@@ -330,6 +359,12 @@ async def admin_stats(token: str = ""):
         "sample_reports": sample_reports_stats,
         "hr_osha_guide": hr_osha_guide_stats,
         "lead_sources_30d": lead_sources_30d,
+        "recommendation_router": {
+            "this_month": router_this_month,
+            "last_30d": router_last_30d,
+            "total": router_total,
+            "paths_this_month": router_paths_this_month,
+        },
     }
 
 

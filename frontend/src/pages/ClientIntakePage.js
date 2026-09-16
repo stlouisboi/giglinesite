@@ -203,12 +203,17 @@ const ClientIntakePage = () => {
 
   /* ─── Source attribution (which dedicated service page sent this lead) ─── */
   const [sourceServiceSlug, setSourceServiceSlug] = useState('');
+  const [fromRecommendationRouter, setFromRecommendationRouter] = useState(false);
 
   /* ─── URL param pre-selection (?service=<slug>), full slug map across all dedicated service pages ─── */
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const serviceParam = params.get('service') || '';
+    const leadSourceParam = params.get('lead_source') || '';
     if (serviceParam) setSourceServiceSlug(serviceParam);
+    if (leadSourceParam === 'recommendation-router') {
+      setFromRecommendationRouter(true);
+    }
     const map = {
       // New dedicated service pages (Feb 2026)
       'safety-walkthrough': 'walkthrough',
@@ -220,6 +225,8 @@ const ClientIntakePage = () => {
       'osha-ready-control-system': 'not_sure',
       'corrective-action-implementation': 'not_sure',
       'ongoing-safety-support': 'not_sure',
+      // Path D + E targets from the Batch 2B recommendation router
+      'safety-control-system-buildout': 'not_sure',
     };
     const mapped = serviceParam && map[serviceParam];
     if (mapped) {
@@ -324,6 +331,21 @@ const ClientIntakePage = () => {
         attribution: getAttribution(),
         // Source-page attribution, which dedicated service page sent this lead
         source_service_slug: sourceServiceSlug || 'direct',
+        // Batch 2B: recommendation-router attribution so Vince can see which
+        // leads came through the guided decision flow. Safe to include, only
+        // structural aim codes, never free-text or workplace conditions.
+        lead_source: fromRecommendationRouter ? 'recommendation-router' : '',
+        recommendation_answers: (() => {
+          try {
+            if (typeof window === 'undefined' || !window.sessionStorage) return null;
+            const raw = window.sessionStorage.getItem('gl_recommendation_handoff');
+            if (!raw) return null;
+            const parsed = JSON.parse(raw);
+            return parsed && parsed.answers ? parsed.answers : null;
+          } catch (e) {
+            return null;
+          }
+        })(),
       };
       const res = await fetch(`${API}/api/intake/submit`, {
         method: 'POST',
@@ -336,6 +358,7 @@ const ClientIntakePage = () => {
           service_requested: f.serviceSelected || 'unknown',
           source_service_slug: sourceServiceSlug || 'direct',
           source_form: 'client-intake',
+          lead_source: fromRecommendationRouter ? 'recommendation-router' : 'direct',
           page_path: typeof window !== 'undefined' ? window.location.pathname : '/intake',
         });
         navigate(`/thank-you-intake?token=${encodeURIComponent(d.clientToken)}`);
@@ -445,7 +468,7 @@ const ClientIntakePage = () => {
         <section data-testid="intake-quick-contact-section">
           <QuickContactCard variant="dark" />
           <p className="text-xs mt-4 text-center" style={{ color: C.sec, ...mono, letterSpacing: '0.18em' }}>
-            , OR , FILL OUT THE FULL INTAKE BELOW FOR A FIXED QUOTE
+            , OR, FILL OUT THE FULL INTAKE BELOW FOR A FIXED QUOTE
           </p>
         </section>
 
@@ -518,7 +541,7 @@ const ClientIntakePage = () => {
         {/* ═══ S2, Service Selection ═══ */}
         <section data-testid="intake-section-02" data-source-service-slug={sourceServiceSlug || 'direct'}>
           <SectionHeader number="02" title="What service are you requesting?" subtitle="Pick the closest match. We'll talk through any nuances on the call." />
-          {/* Source attribution banner, visible only when user arrived from a dedicated service page */}
+          {/* Source attribution banner, visible only when user arrived from a dedicated service page or the /recommendation router */}
           {sourceServiceSlug && (
             <div
               className="rounded-md px-4 py-3 mb-5 flex items-center gap-3 flex-wrap"
@@ -527,14 +550,20 @@ const ClientIntakePage = () => {
                 border: '1px solid rgba(42,82,160,0.30)',
               }}
               data-testid="intake-source-banner"
+              data-from-recommendation-router={fromRecommendationRouter ? 'true' : 'false'}
             >
               <span
                 className="uppercase font-bold"
                 style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9.5px', letterSpacing: '0.16em', color: '#2A52A0' }}
+                data-testid="intake-source-banner-label"
               >
-                Inquiry For
+                {fromRecommendationRouter ? 'You are requesting' : 'Inquiry For'}
               </span>
-              <span className="text-white text-sm font-semibold" data-testid="intake-source-banner-slug">
+              <span
+                className="text-sm font-semibold"
+                style={{ color: '#0A1628' }}
+                data-testid="intake-source-banner-slug"
+              >
                 {sourceServiceSlug
                   .replace(/-/g, ' ')
                   .replace(/\b\w/g, (c) => c.toUpperCase())
@@ -542,7 +571,10 @@ const ClientIntakePage = () => {
                   .replace(/\bCrv\b/g, 'CRV')
                   .replace(/\bPpe\b/g, 'PPE')}
               </span>
-              <span className="text-white/50 text-xs" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+              <span
+                className="text-xs"
+                style={{ fontFamily: "'JetBrains Mono', monospace", color: 'rgba(10,22,40,0.55)' }}
+              >
                 · Pre-selected below, change if needed
               </span>
             </div>
@@ -658,7 +690,7 @@ const ClientIntakePage = () => {
                 <span {...wrap('docReviewApproach')}>
                   <RadioList value={f.docReviewApproach} onChange={(v) => set('docReviewApproach', v)} options={[
                     { value: 'review_existing', label: 'Review what we already have' },
-                    { value: 'start_scratch', label: "Start from scratch, we don't have much" },
+                    { value: 'start_scratch', label: "Start from scratch, we don\u2019t have much" },
                     { value: 'not_sure', label: 'Not sure, let Vince advise' },
                   ]} />
                 </span>
@@ -902,7 +934,7 @@ const ClientIntakePage = () => {
               Vince Lawrence
             </h2>
             <p className="text-base md:text-lg leading-relaxed max-w-3xl mx-auto" style={{ color: 'rgba(255,255,255,0.55)' }}>
-              OSHA 30-Hour Outreach Trained safety compliance consultant , Kernersville, NC
+              OSHA 30-Hour Outreach Trained safety compliance consultant, Kernersville, NC
             </p>
           </div>
 

@@ -83,7 +83,7 @@ const SERVICES = {
       ['Quote and schedule', 'Single fixed quote covering both walkthrough and documentation review. Visit scheduled within 1\u20132 weeks.'],
       ['On-site visit', 'Vince conducts the walkthrough and reviews documentation on-site over a single 4\u20136 hour engagement.'],
       ['Combined report', 'Single 18-page CFR-cited report covering floor + files. One compliance score. One prioritized fix list. Delivered within 48 hours.'],
-      ['30-day check-in call', "A scheduled call to review what's been corrected, answer questions, and prioritize the next 60 days."],
+      ['30-day check-in call', "A scheduled call to review what\u2019s been corrected, answer questions, and prioritize the next 60 days."],
     ],
     best: "The right starting point for any operation that hasn't had a structured compliance review in the past 12 months and wants both the floor and the files reviewed at once.",
     cta: 'Schedule a Compliance Readiness Visit',

@@ -9,8 +9,8 @@ Run once:  python3 /app/backend/scripts/generate_leave_behind_v10.py
 Output:    /app/backend/internal_docs/GigLine_LeaveBehind_v10.pdf
 
 Pricing (Feb 2026, verified against /services live page):
-  - Safety Walkthrough          starting at $1,200
-  - Compliance Readiness Visit  starting at $2,000
+  - Safety Walkthrough          starting at $1,300
+  - Compliance Readiness Visit  starting at $2,500
   - Supervisor Safety Starter   $600 digital · $700 physical
 """
 
@@ -203,7 +203,7 @@ def build():
 
     # ────────────────────────────────────────────────
     #  COST-OF-INACTION STAT ROW (v10 — above services)
-    #  Reframes the $2,000 CRV as the cheaper option
+    #  Reframes the $2,500 CRV as the cheaper option
     #  before the reader even sees the service list.
     # ────────────────────────────────────────────────
     COI_NAVY = HexColor("#0B1F3A")
@@ -226,7 +226,7 @@ def build():
     coi_row = Table(
         [[coi_cell("$16,550", "Max serious violation"),
           coi_cell("$165,514", "Willful or repeat violation"),
-          coi_cell("$2,000", "Compliance Readiness Visit")]],
+          coi_cell("$2,500", "Compliance Readiness Visit")]],
         colWidths=[2.47 * inch, 2.47 * inch, 2.46 * inch],
         style=TableStyle([
             ("BACKGROUND", (0, 0), (-1, -1), COI_NAVY),
@@ -239,7 +239,7 @@ def build():
     )
     story.append(coi_row)
     story.append(Paragraph(
-        '<font color="#FAF7F1"><i>The CRV costs $2,000 and takes one visit. A single serious citation costs more.</i></font>',
+        '<font color="#FAF7F1"><i>The CRV costs $2,500 and takes one visit. A single serious citation costs more.</i></font>',
         ParagraphStyle(
             "coi_caption", fontName="Helvetica-Oblique", fontSize=8.5, leading=11,
             textColor=CREAM, alignment=TA_CENTER, spaceBefore=0, spaceAfter=10,
@@ -254,9 +254,9 @@ def build():
     story.append(Paragraph("SERVICES &amp; STARTING PRICES", s["section"]))
 
     svc_rows = [
-        ("Safety Walkthrough", "Starting at $1,200",
+        ("Safety Walkthrough", "Starting at $1,300",
          "Floor walkthrough, written report in 48 hours. Best when you want fresh eyes on the floor."),
-        ("Compliance Readiness Visit", "Starting at $2,000",
+        ("Compliance Readiness Visit", "Starting at $2,500",
          "Floor + files. Reviews written programs, training records, OSHA 300 log, and HazCom binder. Includes the GigLine Supervisor Safety OS."),
         ("GigLine Supervisor Safety OS", "$600 digital · $700 physical",
          "17 CFR-cited documents. Written HazCom program, SDS index, training log, inspection checklist, \"If OSHA Shows Up\" protocol. Standalone product."),

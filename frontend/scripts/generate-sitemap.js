@@ -75,7 +75,10 @@ const ROUTES = [
   { loc: '/sample-corrective-action-log', priority: '0.7', changefreq: 'monthly' },
 
   // ── Case studies ───────────────────────────────────────────────────
-  { loc: '/case-study/metals-fabrication-statesville', priority: '0.9', changefreq: 'yearly' },
+  // Case study excluded from sitemap while CASE_STUDY_PUBLIC=false (Phase 2 Batch 2A.2).
+  // Restore this entry only after written client permission is documented and the
+  // flag is flipped to true.
+  // { loc: '/case-study/metal-fabrication-readiness', priority: '0.9', changefreq: 'yearly' },
 
   // ── GigLine Compliance Control Kit Series (released only) ──────────
   { loc: '/citation-proof-kits', priority: '0.9', changefreq: 'weekly' },

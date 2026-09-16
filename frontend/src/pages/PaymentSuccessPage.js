@@ -78,7 +78,7 @@ const PaymentSuccessPage = () => {
               <CheckCircle size={64} className="mx-auto text-green-600 mb-4" />
               <h1 className="text-2xl font-bold text-primary mb-2">Payment Successful!</h1>
               <p className="text-muted-foreground mb-6">
-                Thank you for your payment. I'll be in touch within one business day to schedule your {paymentData?.metadata?.service_name || 'service'}.
+                Thank you for your payment. I\u2019ll be in touch within one business day to schedule your {paymentData?.metadata?.service_name || 'service'}.
               </p>
               
               {paymentData && (

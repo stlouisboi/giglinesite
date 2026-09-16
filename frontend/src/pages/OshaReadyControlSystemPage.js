@@ -19,7 +19,7 @@ const CREAM = '#f5f4f0';
 /* ── Content ── */
 
 const PROBLEM_CARDS = [
-  { title: 'Programs copied from generic templates', body: "They read like someone else's operation because they are. Auditors and inspectors spot it immediately." },
+  { title: 'Programs copied from generic templates', body: "They read like someone else\u2019s operation because they are. Auditors and inspectors spot it immediately." },
   { title: 'SDSs stored in multiple locations', body: 'A binder near the mixing room. A folder on a shared drive. A PDF someone emailed. None of them current.' },
   { title: 'Training records that cannot be located', body: 'You know it happened. You cannot prove when, who conducted it, or which topics were covered.' },
   { title: 'Inspections without corrective-action follow-up', body: 'The forklift pre-shift log has entries. Nobody can point to what was done with the last three findings.' },
@@ -59,7 +59,7 @@ const PROCESS_STEPS = [
   { title: 'Program customization', body: 'Configure the included documents using verified client information.' },
   { title: 'Management review', body: 'Company leadership verifies responsibilities, contacts, procedures, and site-specific information.' },
   { title: 'Handoff and training', body: 'Train the designated administrator and show management how to operate and maintain the system.' },
-  { title: 'Optional ongoing support', body: "Continue through GigLine's monthly Ongoing Safety Support if the program benefits from external maintenance." },
+  { title: 'Optional ongoing support', body: "Continue through GigLine\u2019s monthly Ongoing Safety Support if the program benefits from external maintenance." },
 ];
 
 const SCOPE_INCLUDED = [

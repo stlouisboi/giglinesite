@@ -378,7 +378,7 @@ const SupervisorKitPage = () => {
             style={{ ...sans, color: NAVY }}
             data-testid="kit-hero-headline"
           >
-            Install a Repeatable Supervisor Safety System , Without Building It From Scratch.
+            Install a Repeatable Supervisor Safety System, Without Building It From Scratch.
           </h1>
           <p
             className="text-[17px] md:text-[19px] leading-[1.65] max-w-3xl mx-auto mb-6"
@@ -392,7 +392,7 @@ const SupervisorKitPage = () => {
             style={{ color: TEXT_SUBTLE, ...serif }}
             data-testid="kit-hero-audience"
           >
-            Built for small manufacturers, warehouses, contractors, and fleet operations that need stronger safety control , but do not have a full-time safety manager.
+            Built for small manufacturers, warehouses, contractors, and fleet operations that need stronger safety control, but do not have a full-time safety manager.
           </p>
 
           {/* Single primary CTA, anchors to pricing/edition selection */}
@@ -539,7 +539,7 @@ const SupervisorKitPage = () => {
               className="font-bold leading-[1.4] text-[18px] md:text-[22px]"
               style={{ ...sans, color: NAVY }}
             >
-              Safety documentation is not about having forms , it is about proving the work is being followed through.
+              Safety documentation is not about having forms, it is about proving the work is being followed through.
             </p>
           </div>
         </div>

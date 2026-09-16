@@ -55,7 +55,7 @@ COVERS = {
         whats_inside_items=[
             'Safety Walkthrough — From $1,300',
             'Documentation Readiness Review — From $1,700',
-            'Compliance Readiness Visit — From $2,000',
+            'Compliance Readiness Visit, Starting at $2,500',
             'Safety Control System Buildout — From $4,500',
             'Annual Compliance Control Partner',
             'Quarterly Support Retainer',

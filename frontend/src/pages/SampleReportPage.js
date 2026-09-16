@@ -66,7 +66,7 @@ const SampleReportPage = () => {
             See exactly what you get.
           </h1>
           <p className="text-lg md:text-xl text-white/70 leading-relaxed">
-            A real compliance report , facility name redacted. This is what your team receives within 48 hours of the walkthrough.
+            A real compliance report, facility name redacted. This is what your team receives within 48 hours of the walkthrough.
           </p>
         </div>
       </section>

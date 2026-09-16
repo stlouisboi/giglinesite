@@ -1,5 +1,6 @@
 import React from 'react';
 import ServiceLandingPage from '../components/ServiceLandingPage';
+import ServicePageRecommendationEmbed from '../components/ServicePageRecommendationEmbed';
 
 const config = {
   slug: 'osha-documentation-review-nc',
@@ -48,6 +49,14 @@ const config = {
   ctaPath: '/intake?service=osha-documentation-review&utm_source=docreview-landing&utm_medium=website&utm_campaign=service-landing',
 };
 
-const OSHADocumentationReviewNCPage = () => <ServiceLandingPage config={config} />;
+const OSHADocumentationReviewNCPage = () => (
+  <>
+    <ServiceLandingPage config={config} />
+    <ServicePageRecommendationEmbed
+      source="documentation-readiness-review"
+      referringRoute="/osha-documentation-review-nc"
+    />
+  </>
+);
 
 export default OSHADocumentationReviewNCPage;

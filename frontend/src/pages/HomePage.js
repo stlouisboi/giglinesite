@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Check, BookOpen, Monitor, FileText, Bot, Zap, ShieldCheck, Star, Anchor, Factory, MapPin, ClipboardList, Shield, CheckCircle2, FileImage, Lock, ChevronRight } from 'lucide-react';
 import SEO from '../components/SEO';
 import CaseStudyTeaser from '../components/CaseStudyTeaser';
+import RecommendationEntryCard from '../components/RecommendationEntryCard';
 import FieldManualBand from '../components/FieldManualBand';
 import WalkthroughDaySection from '../components/WalkthroughDaySection';
 import FindBuildMaintainJourney from '../components/FindBuildMaintainJourney';
 import AssessmentSelectorModal from '../components/AssessmentSelectorModal';
 import { trackPhoneClick, trackReviewClick, trackEvent } from '../utils/analytics';
-import { SUPERVISOR_KIT_ENABLED } from '../config/features';
+import { SUPERVISOR_KIT_ENABLED, CASE_STUDY_PUBLIC } from '../config/features';
 
 /* ── Scroll-reveal ── */
 const useReveal = () => {
@@ -206,7 +207,7 @@ const HomePage = () => {
                 className="text-base md:text-lg text-[#CBD5E1] leading-relaxed mb-8 max-w-md"
                 data-testid="hero-sub"
               >
-                On-site safety walkthroughs for manufacturers, warehouses, contractors, and fleet operations across the Piedmont Triad. Fixed quote. Private findings. Written report within 48 hours.
+                Know what needs attention, what must be fixed first, and what evidence you need before OSHA, an insurer, or a customer asks. GigLine reviews the floor and the files, then gives you prioritized findings and practical next steps.
               </p>
 
               {/* ═══ GL-WEB-023: Trust badges above the fold ═══ */}
@@ -650,13 +651,16 @@ const HomePage = () => {
 
           <Reveal>
             <p className="text-sm text-[#1C2B2B]/55 italic mt-12 max-w-3xl">
-              These are findings from real walkthroughs , not a checklist from a textbook. Every facility is different.
+              These are findings from real walkthroughs, not a checklist from a textbook. Every facility is different.
             </p>
           </Reveal>
         </div>
       </section>
 
       {/* ═══ RECENT ENGAGEMENT, compact proof block (GL-WEB-020) ═══ */}
+      {/* Phase 2 Batch 2A.3: gated behind CASE_STUDY_PUBLIC. Hidden while owner
+          permission for public case-study promotion is not yet on file. */}
+      {CASE_STUDY_PUBLIC && (
       <section className="py-12 md:py-16" style={{ backgroundColor: '#f5f4f0' }} data-testid="recent-engagement-section">
         <div className="container max-w-5xl">
           <Reveal>
@@ -684,7 +688,7 @@ const HomePage = () => {
                 Small metal fabrication operation. North Carolina. 13 findings identified across machine guarding, compressed gas storage, and documentation gaps. 12 of 13 corrective actions closed within 4 days of the walkthrough. One remained open at the reporting point. Anonymized example, not a guaranteed or typical outcome.
               </p>
               <Link
-                to="/case-study/metals-fabrication-statesville"
+                to="/case-study/metal-fabrication-readiness"
                 className="inline-flex items-center gap-2 font-semibold text-[#C9A84C] hover:text-white transition-colors"
                 style={{ fontSize: '15px' }}
                 data-testid="recent-engagement-cta"
@@ -695,6 +699,9 @@ const HomePage = () => {
           </Reveal>
         </div>
       </section>
+      )}
+
+      <RecommendationEntryCard source="homepage" />
 
       {/* ═══ SECTION 2, WHY GIGLINE ═══ */}
       <section className="py-20 md:py-24" style={{ backgroundColor: '#f5f4f0' }} data-testid="why-gigline-section">
@@ -720,7 +727,7 @@ const HomePage = () => {
                 kicker: 'Confidentiality',
                 Icon: Shield,
                 title: 'Private by Default.',
-                body: 'Your findings stay between us. GigLine does not share, publish, or reference client facility data. What we find on your floor is yours \u2014 not a case study, not a portfolio piece.',
+                body: 'Client information is handled confidentially. GigLine does not publicly identify clients or publish site-specific materials without permission. Any approved examples are anonymized.',
                 featured: true,
               },
               {
@@ -782,7 +789,7 @@ const HomePage = () => {
                 The Template Trap
               </p>
               <p className="text-[15px] md:text-base text-white/85 leading-[1.7] max-w-4xl">
-                We&apos;re seeing more written programs built with AI and templates , but without floor context, they create false confidence. A written program can come from a template or ChatGPT. Exposure still shows up on the floor.{' '}
+                We&apos;re seeing more written programs built with AI and templates, but without floor context, they create false confidence. A written program can come from a template or ChatGPT. Exposure still shows up on the floor.{' '}
                 <span className="text-white font-semibold">This is not a full audit. It is a signal.</span>
               </p>
             </div>
@@ -853,7 +860,7 @@ const HomePage = () => {
 
           <Reveal>
             <p className="text-base md:text-lg text-[#1C2B2B]/80 leading-[1.75] max-w-4xl">
-              OSHA doesn&apos;t announce inspections. They arrive after a complaint, a referral, or a fatality , or as part of a programmed inspection targeting your industry. By the time they&apos;re on your floor, the window to fix things has closed.{' '}
+              OSHA doesn&apos;t announce inspections. They arrive after a complaint, a referral, or a fatality, or as part of a programmed inspection targeting your industry. By the time they&apos;re on your floor, the window to fix things has closed.{' '}
               <span className="font-semibold text-[#1C2B2B]">The walkthrough is that window.</span>
             </p>
           </Reveal>
@@ -877,16 +884,18 @@ const HomePage = () => {
                 What That Looks Like
               </p>
               <p className="text-[15.5px] md:text-[17px] leading-[1.7] text-white/85" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
-                A small metal fabrication operation in North Carolina. One combined walkthrough and documentation review. <strong className="text-white">13 findings identified.</strong> Seven carried serious-citation risk , up to <strong className="text-white">$16,550 per finding</strong> under the 2026 OSHA maximum penalty schedule. One inspection visit could have stacked those into <strong className="text-white">six figures of penalty exposure</strong>. The corrective action plan closed <strong className="text-white">twelve of thirteen findings inside four days</strong>. One remained open at the reporting point.
+                A small metal fabrication operation in North Carolina. One combined walkthrough and documentation review. <strong className="text-white">13 findings identified.</strong> Seven carried serious-citation risk, up to <strong className="text-white">$16,550 per finding</strong> under the 2026 OSHA maximum penalty schedule. One inspection visit could have stacked those into <strong className="text-white">six figures of penalty exposure</strong>. The corrective action plan closed <strong className="text-white">twelve of thirteen findings inside four days</strong>. One remained open at the reporting point.
               </p>
+              {CASE_STUDY_PUBLIC && (
               <Link
-                to="/case-study/metals-fabrication-statesville"
+                to="/case-study/metal-fabrication-readiness"
                 className="inline-flex items-center gap-1.5 mt-5 font-semibold text-sm transition-colors"
                 style={{ color: '#c8922a', fontFamily: "'JetBrains Mono', monospace" }}
                 data-testid="cost-scenario-cta"
               >
                 Read the engagement &rarr;
               </Link>
+              )}
             </div>
           </Reveal>
         </div>
@@ -1106,7 +1115,7 @@ const HomePage = () => {
                 Want to see what a report looks like before you schedule?
               </h2>
               <p className="text-[15px] md:text-base text-[#1C2B2B]/65 leading-relaxed max-w-2xl">
-                Download a redacted compliance report , findings, CFR citations, penalty exposure, and the prioritized fix list. Real engagement, facility name removed.
+                Download a redacted compliance report, findings, CFR citations, penalty exposure, and the prioritized fix list. Real engagement, facility name removed.
               </p>
             </div>
             <Link
@@ -1202,7 +1211,7 @@ const HomePage = () => {
                 }}
                 data-testid="home-kit-band-body"
               >
-                17 CFR-cited documents , written HazCom program, SDS index, training log, monthly inspection checklist, &ldquo;If OSHA Shows Up&rdquo; protocol. Use it before a walkthrough, or as the foundation after. <strong style={{ color: '#C5A059' }}>$600 digital &middot; $700 physical</strong>. Included free with every Compliance Readiness Visit.
+                17 CFR-cited documents, written HazCom program, SDS index, training log, monthly inspection checklist, &ldquo;If OSHA Shows Up&rdquo; protocol. Use it before a walkthrough, or as the foundation after. <strong style={{ color: '#C5A059' }}>$600 digital &middot; $700 physical</strong>. Included free with every Compliance Readiness Visit.
               </p>
             </div>
             <div className="flex-shrink-0 md:text-right">
@@ -1307,7 +1316,7 @@ const HomePage = () => {
                 }}
                 data-testid="home-kit-series-calc-link"
               >
-                &rarr; Or estimate your OSHA exposure first , free calculator
+                &rarr; Or estimate your OSHA exposure first, free calculator
               </Link>
             </div>
 
@@ -1380,7 +1389,7 @@ const HomePage = () => {
 
       {/* ═══ TESTIMONIALS + CASE STUDY + TRACK RECORD (relocated per spec, between Services and How It Works) ═══ */}
       <section className="py-20 md:py-28" style={{ backgroundColor: '#102A43' }} data-testid="trust-section">
-        <div className="container max-w-7xl grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12">
+        <div className={`container max-w-7xl grid grid-cols-1 gap-10 lg:gap-12 ${CASE_STUDY_PUBLIC ? 'lg:grid-cols-3' : 'lg:grid-cols-2'}`}>
 
           {/* LEFT, What Clients Say */}
           <div data-testid="reviews-column">
@@ -1396,7 +1405,8 @@ const HomePage = () => {
             ))}
           </div>
 
-          {/* MIDDLE, Case Study */}
+          {/* MIDDLE, Case Study, Phase 2 Batch 2A.3: gated behind CASE_STUDY_PUBLIC */}
+          {CASE_STUDY_PUBLIC && (
           <div data-testid="case-study-column">
             <p className="uppercase font-bold mb-8" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.55)' }}>Case Study</p>
             <div className="p-8" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.10)', borderRadius: '16px' }}>
@@ -1411,9 +1421,10 @@ const HomePage = () => {
                   <span className="font-bold text-right" style={{ color: s.highlight ? '#22c55e' : '#fff', fontSize: '15px' }}>{s.value}</span>
                 </div>
               ))}
-              <Link to="/case-study/metals-fabrication-statesville" className="inline-flex items-center gap-2 mt-6 font-semibold" style={{ color: '#2A52A0' }}>Read the full case study <ArrowRight size={14} /></Link>
+              <Link to="/case-study/metal-fabrication-readiness" className="inline-flex items-center gap-2 mt-6 font-semibold" style={{ color: '#2A52A0' }}>Read the full case study <ArrowRight size={14} /></Link>
             </div>
           </div>
+          )}
 
           {/* RIGHT, Track Record */}
           <div data-testid="track-record-column">
@@ -1550,7 +1561,7 @@ const HomePage = () => {
               className="text-base md:text-[17px] leading-relaxed max-w-2xl mb-12"
               style={{ color: 'rgba(10,22,40,0.65)', fontFamily: "Georgia, serif" }}
             >
-              Plain-language field notes and mid-year updates , no fluff, no fear-mongering, no consultant-speak.
+              Plain-language field notes and mid-year updates, no fluff, no fear-mongering, no consultant-speak.
             </p>
           </Reveal>
 
@@ -1567,7 +1578,7 @@ const HomePage = () => {
                 type: 'Field Note',
                 to: '/field-notes/ai-generated-safety-programs',
                 title: 'AI-Generated Safety Programs',
-                blurb: 'ChatGPT can write an OSHA program that looks compliant , until an inspector arrives. What AI cannot see on your floor.',
+                blurb: 'ChatGPT can write an OSHA program that looks compliant, until an inspector arrives. What AI cannot see on your floor.',
                 testid: 'latest-field-note-ai-generated',
               },
               {
@@ -1792,7 +1803,7 @@ This is GigLine Safety & Compliance.`}
                       For HR &amp; Safety Coordinators
                     </p>
                     <p className="text-[14.5px] md:text-[15.5px] leading-[1.7]" style={{ color: 'rgba(255,255,255,0.85)' }}>
-                      HR managers and safety coordinators are often the first to hear from OSHA , and the first to be asked for documentation. GigLine helps you know what&rsquo;s in your files before that call comes.
+                      HR managers and safety coordinators are often the first to hear from OSHA, and the first to be asked for documentation. GigLine helps you know what&rsquo;s in your files before that call comes.
                     </p>
                   </div>
                 </Reveal>

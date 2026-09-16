@@ -150,7 +150,7 @@ const CitationProofKitDetailPage = () => {
             style={{ color: kit.productImages?.hero ? 'rgba(255,255,255,0.92)' : NAVY, ...serif }}
             data-testid="kit-detail-proof-promise"
           >
-            <strong style={{ ...sans, color: kit.productImages?.hero ? 'white' : NAVY }}>What this kit does:</strong> {kit.proofPromise}
+            <strong style={{ ...sans, color: kit.productImages?.hero ? 'white' : NAVY }}>What changes after you put it to work:</strong> {kit.proofPromise}
           </p>
 
           {/* 4. PROPRIETARY TOOL CALLOUT (as mechanism, not product) */}
@@ -457,7 +457,7 @@ const CitationProofKitDetailPage = () => {
                 Four tools. Each one does a specific job.
               </h2>
               <p className="text-base md:text-[17px] leading-relaxed" style={{ color: 'rgba(10,22,40,0.68)', ...serif }}>
-                You&rsquo;re not buying a folder of forms. You&rsquo;re buying a set of control mechanisms , each engineered to close a specific proof gap.
+                You&rsquo;re not buying a folder of forms. You&rsquo;re buying a set of control mechanisms, each engineered to close a specific proof gap.
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
@@ -559,7 +559,7 @@ const CitationProofKitDetailPage = () => {
               className="mt-6 pt-5 text-[14px] md:text-[15px] leading-[1.6] border-t"
               style={{ color: 'rgba(10,22,40,0.70)', ...serif, borderColor: 'rgba(197,160,89,0.35)' }}
             >
-              This kit is a folder of answers to that exact list , mapped to the CFR standard, ready to hand over
+              This kit is a folder of answers to that exact list, mapped to the CFR standard, ready to hand over
               on the day. That&rsquo;s the difference between <em>closeable in days</em> and <em>exposed for months</em>.
             </p>
           </div>

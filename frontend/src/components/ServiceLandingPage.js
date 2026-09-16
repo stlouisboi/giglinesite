@@ -185,7 +185,7 @@ export const ServiceLandingPage = ({ config }) => {
         <div className="container max-w-3xl text-center">
           <p className="text-sm leading-relaxed" style={{ color: '#1C2B2B', ...mono }}>
             <MapPin size={14} className="inline-block mr-1.5 -mt-0.5" />
-            Serving NC Piedmont Triad , Kernersville, Winston-Salem, Greensboro, High Point, Burlington, Lexington, Thomasville, Salisbury, Statesville, Asheboro, and surrounding.
+            Serving NC Piedmont Triad, Kernersville, Winston-Salem, Greensboro, High Point, Burlington, Lexington, Thomasville, Salisbury, Statesville, Asheboro, and surrounding.
           </p>
         </div>
       </section>

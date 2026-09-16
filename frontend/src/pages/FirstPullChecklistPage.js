@@ -3,6 +3,7 @@ import { useParams, Navigate, useSearchParams } from 'react-router-dom';
 import FirstPullChecklistTemplate from '../components/FirstPullChecklistTemplate';
 import { FIRST_PULL_CHECKLISTS } from '../data/firstPullChecklists';
 import { FIRST_PULL_CHECKLISTS_ENABLED } from '../config/features';
+import { isPreviewBypassAllowed } from '../lib/previewGate';
 
 /**
  * /first-pull/:slug page, Phase 2 draft.
@@ -11,14 +12,13 @@ import { FIRST_PULL_CHECKLISTS_ENABLED } from '../config/features';
  * to /resources so the checklist is not accessible from public traffic.
  *
  * Owner review bypass: appending ?preview=1 to the URL bypasses the flag
- * for a single visit so the owner can review the draft without flipping the
- * flag globally. This is intentional , the direct-link preview URL is not
- * indexed and not linked from nav.
+ * ONLY on the private preview / dev hostnames. In production builds on the
+ * public giglinecompliance.com hostname the bypass is refused.
  */
 const FirstPullChecklistPage = () => {
   const { slug } = useParams();
   const [searchParams] = useSearchParams();
-  const previewBypass = searchParams.get('preview') === '1';
+  const previewBypass = isPreviewBypassAllowed(searchParams.get('preview'));
 
   if (!FIRST_PULL_CHECKLISTS_ENABLED && !previewBypass) {
     return <Navigate to="/resources" replace />;

@@ -283,7 +283,7 @@ def build():
     coi_table = Table(
         [[coi_cell("$16,550", "Max serious violation"),
           coi_cell("$165,514", "Willful or repeat violation"),
-          coi_cell("$2,000", "Compliance Readiness Visit")]],
+          coi_cell("$2,500", "Compliance Readiness Visit")]],
         colWidths=[col_w, col_w, col_w],
         style=TableStyle([
             ("BACKGROUND", (0, 0), (-1, -1), NAVY),
@@ -299,7 +299,7 @@ def build():
     )
     story.append(coi_table)
     story.append(Paragraph(
-        '<i>"The CRV costs $2,000 and takes one visit. A single serious citation costs more."</i>',
+        '<i>"The CRV costs $2,500 and takes one visit. A single serious citation costs more."</i>',
         style["coi_caption"],
     ))
 
@@ -314,13 +314,13 @@ def build():
     svc_rows = [
         {
             "name": "Safety Walkthrough",
-            "price": "Starting at $1,200",
+            "price": "Starting at $1,300",
             "desc": "Floor walkthrough, written report in 48 hours. Best when you want fresh eyes on the floor.",
             "highlight": False,
         },
         {
             "name": "Compliance Readiness Visit",
-            "price": "Starting at $2,000",
+            "price": "Starting at $2,500",
             "desc": "Floor + files. Reviews written programs, training records, OSHA 300 log, and HazCom binder. Includes the GigLine Supervisor Safety OS.",
             "highlight": True,
         },

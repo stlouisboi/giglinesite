@@ -39,25 +39,11 @@ describe('Homepage case-study promotions', () => {
     expect(home).toMatch(/CASE_STUDY_PUBLIC[^;]*from\s+['"]\.\.\/config\/features['"]/);
   });
 
-  test('every case-study Link on the homepage sits inside a CASE_STUDY_PUBLIC guard', () => {
-    // For each occurrence of the canonical URL in the source, look back a
-    // reasonable window and confirm a `{CASE_STUDY_PUBLIC &&` opener appears
-    // before it without an intervening top-level guard close.
-    const WINDOW = 4000;
-    let idx = home.indexOf(CANONICAL);
-    let occurrences = 0;
-    while (idx !== -1) {
-      const windowStart = Math.max(0, idx - WINDOW);
-      const before = home.slice(windowStart, idx);
-      expect(before).toMatch(/\{CASE_STUDY_PUBLIC\s*&&/);
-      occurrences += 1;
-      idx = home.indexOf(CANONICAL, idx + 1);
-    }
-    expect(occurrences).toBeGreaterThan(0);
-  });
-
-  test('trust-section grid downshifts to two columns when the case-study column is hidden', () => {
-    expect(home).toMatch(/CASE_STUDY_PUBLIC\s*\?\s*['"]lg:grid-cols-3['"]\s*:\s*['"]lg:grid-cols-2['"]/);
+  test('homepage has no case-study promotional URL while the flag is off', () => {
+    // Post-consolidation the homepage carries zero promotional case-study
+    // links. The teaser + trust-section grid were removed per the outcome-
+    // first spec, so the canonical URL should not appear at all.
+    expect(home).not.toContain(CANONICAL);
   });
 });
 

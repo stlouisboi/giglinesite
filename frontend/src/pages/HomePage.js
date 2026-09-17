@@ -227,7 +227,7 @@ const HomePage = () => {
           className="absolute inset-0"
           style={{
             background:
-              `linear-gradient(90deg, ${NAVY_DEEP}F2 0%, ${NAVY_DEEP}D9 40%, ${NAVY_DEEP}66 70%, transparent 100%)`,
+              `linear-gradient(90deg, ${NAVY_DEEP}F2 0%, ${NAVY_DEEP}E6 50%, ${NAVY_DEEP}80 75%, transparent 100%)`,
           }}
           aria-hidden="true"
         />
@@ -239,8 +239,19 @@ const HomePage = () => {
           }}
           aria-hidden="true"
         />
+        {/* Tablet-only additional scrim: keeps copy fully legible in the
+            hybrid range where copy width still occupies most of the viewport
+            but the desktop asymmetric gradient alone is not enough. */}
+        <div
+          className="absolute inset-0 hidden md:block xl:hidden"
+          style={{
+            background:
+              `linear-gradient(90deg, ${NAVY_DEEP}CC 0%, ${NAVY_DEEP}99 65%, transparent 100%)`,
+          }}
+          aria-hidden="true"
+        />
         <div className="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-10 py-20 md:py-28">
-          <div className="max-w-2xl">
+          <div className="max-w-md sm:max-w-lg md:max-w-lg lg:max-w-xl xl:max-w-2xl">
             <Reveal>
             <p
               className="uppercase mb-5"

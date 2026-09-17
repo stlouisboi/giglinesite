@@ -219,23 +219,23 @@ const HomePage = () => {
           width="1600"
           height="900"
         />
-        {/* Dark navy overlay — heavier on the left where the copy sits, fading
-            to transparent on the right so the image remains clearly visible. */}
+        {/* Dark navy overlay — heavier on the left where copy sits, fading
+            to near-transparent on the right so the image stays visible at
+            every viewport width. A gentle bottom scrim keeps mobile copy
+            legible without wiping the image out. */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              `linear-gradient(90deg, ${NAVY_DEEP} 0%, ${NAVY_DEEP}F2 35%, ${NAVY_DEEP}80 60%, transparent 100%)`,
+              `linear-gradient(90deg, ${NAVY_DEEP}F2 0%, ${NAVY_DEEP}D9 40%, ${NAVY_DEEP}66 70%, transparent 100%)`,
           }}
           aria-hidden="true"
         />
-        {/* Mobile fallback: image is squeezed, add bottom-up scrim for text
-            legibility only on narrow viewports. */}
         <div
-          className="absolute inset-0 xl:hidden"
+          className="absolute inset-0 md:hidden"
           style={{
             background:
-              `linear-gradient(180deg, ${NAVY_DEEP}E6 0%, ${NAVY_DEEP}CC 60%, ${NAVY_DEEP}F2 100%)`,
+              `linear-gradient(180deg, ${NAVY_DEEP}CC 0%, ${NAVY_DEEP}80 50%, ${NAVY_DEEP}CC 100%)`,
           }}
           aria-hidden="true"
         />

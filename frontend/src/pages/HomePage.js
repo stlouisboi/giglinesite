@@ -1,22 +1,63 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, BookOpen, Monitor, FileText, Bot, Zap, ShieldCheck, Star, Anchor, Factory, MapPin, ClipboardList, Shield, CheckCircle2, FileImage, Lock, ChevronRight } from 'lucide-react';
+import {
+  ArrowRight,
+  Check,
+  ShieldCheck,
+  Anchor,
+  Factory,
+  Truck,
+  HardHat,
+  Warehouse,
+  Building2,
+  Search,
+  ClipboardCheck,
+  Wrench,
+  FileCheck,
+  Lock,
+  ExternalLink,
+  ChevronDown,
+} from 'lucide-react';
 import SEO from '../components/SEO';
-import CaseStudyTeaser from '../components/CaseStudyTeaser';
-import RecommendationEntryCard from '../components/RecommendationEntryCard';
-import FieldManualBand from '../components/FieldManualBand';
-import WalkthroughDaySection from '../components/WalkthroughDaySection';
-import FindBuildMaintainJourney from '../components/FindBuildMaintainJourney';
-import AssessmentSelectorModal from '../components/AssessmentSelectorModal';
-import { trackPhoneClick, trackReviewClick, trackEvent } from '../utils/analytics';
-import { SUPERVISOR_KIT_ENABLED, CASE_STUDY_PUBLIC } from '../config/features';
+import {
+  SAFETY_WALKTHROUGH,
+  DOCUMENTATION_REVIEW,
+  COMPLIANCE_READINESS_VISIT,
+  CORRECTIVE_ACTION_IMPLEMENTATION,
+  SAFETY_CONTROL_SYSTEM_BUILDOUT,
+  ONGOING_SAFETY_SUPPORT,
+  HAZCOM_STARTER_PACK,
+  KIT_PRICES,
+  COMBINED_SAVINGS,
+  PRICE_RANGE,
+} from '../data/servicePricing';
+import { RECOMMENDATION_ROUTER_ENABLED, CASE_STUDY_PUBLIC } from '../config/features';
+import { trackEvent } from '../utils/analytics';
 
-/* ── Scroll-reveal ── */
+/* ── Approved OSHA 2026 penalty schedule ───────────────────────────────────
+ * Values verified against 29 CFR 1903.15 annual DOL Federal Register
+ * adjustment. Also used by CitationCostCalculatorPage, citationProofKits,
+ * and BlogOSHAPenaltyNC2026. Do not diverge without updating those three
+ * sources of truth at the same time.
+ */
+const OSHA_PENALTY = {
+  year: 2026,
+  serious: '$16,550',
+  willfulOrRepeat: '$165,514',
+  failureToAbate: '$16,550 per day',
+  source: 'https://www.osha.gov/penalties',
+};
+
+/* ── Motion helper (respects reduced-motion) ───────────────────────────── */
 const useReveal = () => {
   const ref = useRef(null);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      el.classList.add('revealed');
+      return;
+    }
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -24,7 +65,7 @@ const useReveal = () => {
           io.unobserve(el);
         }
       },
-      { threshold: 0.12 }
+      { threshold: 0.1 },
     );
     io.observe(el);
     return () => io.disconnect();
@@ -32,1848 +73,1060 @@ const useReveal = () => {
   return ref;
 };
 
-const Reveal = ({ children, className = '', delay = 0 }) => {
+const Reveal = ({ children, className = '' }) => {
   const ref = useReveal();
   return (
-    <div
-      ref={ref}
-      className={`reveal-fade ${className}`}
-      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
-    >
+    <div ref={ref} className={`reveal-fade ${className}`}>
       {children}
     </div>
   );
 };
 
-/* ── Stock images ── */
-const IMG = {
-  hero: 'https://www.giglinecompliance.com/vince-inspecting.webp',
-  grid1: '/cluttered-aisles.webp',
-  grid2: '/blocked-electrical-panel.webp',
-  grid3: '/machine-guarding.webp',
-  grid4: '/blocked-fire-riser.webp',
-  proof: 'https://images.unsplash.com/photo-1644079446600-219068676743?w=1400&q=80&fit=crop&auto=format',
-};
-
-/* ── Mono font helper ── */
+/* ── Design tokens ─────────────────────────────────────────────────────── */
+const NAVY = '#102A43';
+const NAVY_DEEP = '#0A1F35';
+const GOLD = '#C9A84C';
+const CARD_BG = '#F8FAFC';
+const TEXT_MUTED = '#4A5568';
 const mono = { fontFamily: "'JetBrains Mono', monospace" };
-const heading = { fontFamily: "'Manrope', sans-serif" };
+
+/* ── Secondary-CTA helper ──────────────────────────────────────────────── */
+const secondaryCtaProps = () =>
+  RECOMMENDATION_ROUTER_ENABLED
+    ? { label: 'Find My Starting Point', to: '/recommendation' }
+    : { label: 'Compare Services', to: '/services' };
+
+/* ── FAQ accordion item ────────────────────────────────────────────────── */
+const FaqItem = ({ q, a, index, isOpen, onToggle }) => (
+  <div
+    className="border-b border-slate-200"
+    data-testid={`home-faq-item-${index}`}
+  >
+    <button
+      type="button"
+      onClick={() => onToggle(index)}
+      aria-expanded={isOpen}
+      aria-controls={`home-faq-panel-${index}`}
+      className="w-full flex items-center justify-between text-left py-5 min-h-[44px]"
+    >
+      <span className="text-base md:text-lg font-semibold text-slate-900 pr-4">{q}</span>
+      <ChevronDown
+        size={20}
+        className={`flex-shrink-0 text-slate-500 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+        aria-hidden="true"
+      />
+    </button>
+    <div
+      id={`home-faq-panel-${index}`}
+      hidden={!isOpen}
+      className="pb-5 text-[15px] md:text-base text-slate-700 leading-relaxed"
+    >
+      {a}
+    </div>
+  </div>
+);
 
 const HomePage = () => {
-  const [homeSelectorOpen, setHomeSelectorOpen] = useState(false);
+  const [openFaq, setOpenFaq] = useState(null);
+  const secondary = secondaryCtaProps();
+  const savingsDollars = `$${COMBINED_SAVINGS}`;
+
+  const handlePrimaryCta = (location) => {
+    trackEvent('cta_click', { cta: 'request_crv', location });
+  };
+  const handleSecondaryCta = (location) => {
+    trackEvent('cta_click', { cta: secondary.to === '/recommendation' ? 'find_starting_point' : 'compare_services', location });
+  };
+
   return (
-    <main className="overflow-x-hidden">
+    <main className="overflow-x-hidden bg-white" data-testid="home-main">
       <SEO
-        title="OSHA Safety Walkthrough, Piedmont Triad NC | GigLine"
-        description="Safety becomes the thing you'll get to. On-site OSHA walkthroughs for NC manufacturers & warehouses. 48-hour report, from $1,300."
+        title="OSHA Safety & Documentation Readiness | GigLine Safety & Compliance"
+        description="On-site OSHA safety walkthroughs and documentation readiness reviews for small NC manufacturers, warehouses, contractors, and fleets. Combined Compliance Readiness Visit starts at $2,500."
         canonical="/"
         schema={{
-          "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          "@id": "https://www.giglinecompliance.com",
-          "name": "GigLine Safety & Compliance",
-          "description": "On-site safety walkthroughs, documentation reviews, and incident response for small manufacturers, warehouses, and contractors.",
-          "url": "https://www.giglinecompliance.com",
-          "telephone": "+13363298899",
-          "email": "vince@giglinecompliance.com",
-          "image": "https://www.giglinecompliance.com/og-image.png",
-          "founder": {
-            "@type": "Person",
-            "name": "Vince Lawrence"
+          '@context': 'https://schema.org',
+          '@type': 'LocalBusiness',
+          '@id': 'https://www.giglinecompliance.com',
+          name: 'GigLine Safety & Compliance',
+          description:
+            'On-site safety walkthroughs, documentation readiness reviews, and combined Compliance Readiness Visits for small manufacturers, warehouses, contractors, and fleet operations in the North Carolina Piedmont Triad.',
+          url: 'https://www.giglinecompliance.com',
+          telephone: '+13363298899',
+          email: 'vince@giglinecompliance.com',
+          image: 'https://www.giglinecompliance.com/og-image.png',
+          founder: { '@type': 'Person', name: 'Vince Lawrence' },
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Kernersville',
+            addressRegion: 'NC',
+            postalCode: '27107',
+            addressCountry: 'US',
           },
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Kernersville",
-            "addressRegion": "NC",
-            "postalCode": "27107",
-            "addressCountry": "US"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 36.1198,
-            "longitude": -80.0735
-          },
-          "areaServed": [
-            { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 36.0999, "longitude": -80.2442 }, "geoRadius": "60 mi" },
-            { "@type": "City", "name": "Winston-Salem" },
-            { "@type": "City", "name": "Greensboro" },
-            { "@type": "City", "name": "High Point" },
-            { "@type": "City", "name": "Kernersville", "sameAs": "https://en.wikipedia.org/wiki/Kernersville,_North_Carolina" },
-            { "@type": "City", "name": "Clemmons" },
-            { "@type": "City", "name": "Lexington" },
-            { "@type": "City", "name": "Thomasville" },
-            { "@type": "City", "name": "Mocksville" },
-            { "@type": "City", "name": "Asheboro" },
-            { "@type": "City", "name": "Salisbury" },
-            { "@type": "City", "name": "Burlington" }
+          areaServed: [
+            { '@type': 'City', name: 'Winston-Salem' },
+            { '@type': 'City', name: 'Greensboro' },
+            { '@type': 'City', name: 'High Point' },
+            { '@type': 'City', name: 'Kernersville' },
+            { '@type': 'City', name: 'Clemmons' },
+            { '@type': 'City', name: 'Lexington' },
+            { '@type': 'City', name: 'Thomasville' },
+            { '@type': 'City', name: 'Mocksville' },
+            { '@type': 'City', name: 'Asheboro' },
+            { '@type': 'City', name: 'Salisbury' },
+            { '@type': 'City', name: 'Burlington' },
           ],
-          "priceRange": "$29–$4500",
-          "openingHours": "Mo-Fr 08:00-18:00",
-          "sameAs": [],
-          "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Safety Services",
-            "itemListElement": [
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Safety Walkthrough & Top 10 Fixes Report", "description": "On-site facility walkthrough with written report." }, "price": "1300", "priceCurrency": "USD" },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "OSHA Documentation Readiness Review", "description": "Structured review of written safety programs, training records, and evidence." }, "price": "1700", "priceCurrency": "USD" },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Compliance Readiness Visit", "description": "Combined walkthrough and documentation review in a single engagement." }, "price": "2500", "priceCurrency": "USD" },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Corrective Action Implementation", "description": "Hands-on close-out of selected findings from a GigLine assessment. Custom quote, most projects begin at $2,500." }, "price": "2500", "priceCurrency": "USD" },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Safety Control System Buildout", "description": "Four-binder command system, training matrix, corrective-action tracker." }, "price": "4500", "priceCurrency": "USD" },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ongoing Safety Support", "description": "Recurring monthly safety support: on-site visit, corrective-action tracking, records review, management reporting." }, "price": "1850", "priceCurrency": "USD" }
-            ]
-          }
+          priceRange: PRICE_RANGE,
+          openingHours: 'Mo-Fr 08:00-18:00',
+          hasOfferCatalog: {
+            '@type': 'OfferCatalog',
+            name: 'Safety Services',
+            itemListElement: [
+              { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Safety Walkthrough' }, price: SAFETY_WALKTHROUGH.amountStr, priceCurrency: 'USD' },
+              { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'OSHA Documentation Readiness Review' }, price: DOCUMENTATION_REVIEW.amountStr, priceCurrency: 'USD' },
+              { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Compliance Readiness Visit' }, price: COMPLIANCE_READINESS_VISIT.amountStr, priceCurrency: 'USD' },
+              { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Corrective Action Implementation' }, price: CORRECTIVE_ACTION_IMPLEMENTATION.amountStr, priceCurrency: 'USD' },
+              { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Safety Control System Buildout' }, price: SAFETY_CONTROL_SYSTEM_BUILDOUT.amountStr, priceCurrency: 'USD' },
+              { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Ongoing Safety Support' }, price: ONGOING_SAFETY_SUPPORT.amountStr, priceCurrency: 'USD' },
+            ],
+          },
         }}
       />
 
-      {/* FAQPage JSON-LD lives only in the pre-rendered static HTML via
-          /scripts/generate-seo-pages.js. We do NOT emit it from React to avoid
-          Google "Duplicate field FAQPage" warnings. */}
-
       <style>{`
-        .reveal-fade{opacity:0;transform:translateY(20px);transition:opacity 500ms ease-out,transform 500ms ease-out}
-        .reveal-fade.revealed{opacity:1;transform:translateY(0)}
-        .img-zoom{transition:transform 6s ease-out}
-        .img-zoom:hover{transform:scale(1.04)}
+        .reveal-fade { opacity: 0; transform: translateY(16px); transition: opacity 400ms ease-out, transform 400ms ease-out; }
+        .reveal-fade.revealed { opacity: 1; transform: translateY(0); }
+        @media (prefers-reduced-motion: reduce) { .reveal-fade { opacity: 1 !important; transform: none !important; transition: none !important; } }
       `}</style>
 
-      {/* ═══════════════════════════════════════════════
-          S1, ASYMMETRIC HERO  (60 image / 40 text)
-      ═══════════════════════════════════════════════ */}
+      {/* ══════════════ S1 · HERO ══════════════ */}
       <section
-        className="relative min-h-[60vh] xl:min-h-[85vh] overflow-hidden"
-        style={{ backgroundColor: '#102A43' }}
+        className="relative min-h-[80vh] flex items-center overflow-hidden"
+        style={{ backgroundColor: NAVY_DEEP }}
         data-testid="hero-section"
+        aria-label="Hero"
       >
-        <div className="flex flex-col xl:flex-row h-full min-h-[60vh] xl:min-h-[85vh]">
-          {/* Left, Photo */}
-          <div className="relative w-full xl:w-3/5 h-[45vh] xl:h-auto overflow-hidden">
-            <img src="/vince-inspecting.webp"
-              srcSet="/vince-inspecting-400w.webp 400w, /vince-inspecting-600w.webp 600w, /vince-inspecting-843w.webp 843w, /vince-inspecting.webp 1024w"
-              sizes="(max-width: 1280px) 100vw, 60vw"
-              alt="Vince Lawrence of GigLine Safety & Compliance inspecting a facility during an on-site OSHA safety walkthrough"
-              className="absolute inset-0 w-full h-full object-cover img-zoom"
-              loading="eager"
-              fetchPriority="high"
-              width="843"
-              height="1264"
-              data-testid="hero-image" />
-            {/* Gradient bleed into text column */}
-            <div className="hidden xl:block absolute inset-y-0 right-0 w-1/3 bg-gradient-to-r from-transparent to-[#102A43]" />
-            <div className="xl:hidden absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#102A43] to-transparent" />
-          </div>
-
-          {/* Right, Copy */}
-          <div className="w-full xl:w-2/5 flex items-center px-6 md:px-10 lg:px-14 xl:px-20 py-12 xl:py-0 relative z-10">
+        <img
+          src="/vince-inspecting.webp"
+          srcSet="/vince-inspecting-400w.webp 400w, /vince-inspecting-600w.webp 600w, /vince-inspecting-843w.webp 843w, /vince-inspecting.webp 1600w"
+          sizes="100vw"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ objectPosition: 'right center' }}
+          loading="eager"
+          fetchPriority="high"
+          width="1600"
+          height="900"
+        />
+        {/* Dark navy overlay — heavier on the left where copy sits, fading
+            to near-transparent on the right so the image stays visible at
+            every viewport width. A gentle bottom scrim keeps mobile copy
+            legible without wiping the image out. */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              `linear-gradient(90deg, ${NAVY_DEEP}F2 0%, ${NAVY_DEEP}E6 50%, ${NAVY_DEEP}80 75%, transparent 100%)`,
+          }}
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0 md:hidden"
+          style={{
+            background:
+              `linear-gradient(180deg, ${NAVY_DEEP}CC 0%, ${NAVY_DEEP}80 50%, ${NAVY_DEEP}CC 100%)`,
+          }}
+          aria-hidden="true"
+        />
+        {/* Tablet-only additional scrim: keeps copy fully legible in the
+            hybrid range where copy width still occupies most of the viewport
+            but the desktop asymmetric gradient alone is not enough. */}
+        <div
+          className="absolute inset-0 hidden md:block xl:hidden"
+          style={{
+            background:
+              `linear-gradient(90deg, ${NAVY_DEEP}CC 0%, ${NAVY_DEEP}99 65%, transparent 100%)`,
+          }}
+          aria-hidden="true"
+        />
+        <div className="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-10 py-20 md:py-28">
+          <div className="max-w-md sm:max-w-lg md:max-w-lg lg:max-w-xl xl:max-w-2xl">
             <Reveal>
-              <p
-                className="uppercase tracking-[3px] mb-5"
-                style={{
-                  ...mono,
-                  fontSize: '11px',
-                  color: '#C9A84C',
-                  fontWeight: 700,
-                  letterSpacing: '0.28em',
-                }}
-                data-testid="hero-label"
-              >
-                GigLine Safety & Compliance
-              </p>
+            <p
+              className="uppercase mb-5"
+              style={{ ...mono, fontSize: '12px', color: GOLD, letterSpacing: '0.24em' }}
+              data-testid="hero-eyebrow"
+            >
+              Find the gaps before OSHA does.
+            </p>
+            <h1
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 max-w-3xl"
+              data-testid="hero-headline"
+            >
+              Know what to fix before OSHA walks in.
+            </h1>
+            <p
+              className="text-lg md:text-xl text-slate-200 leading-relaxed mb-8 max-w-2xl"
+              data-testid="hero-sub"
+            >
+              GigLine helps small manufacturers, warehouses, contractors, and fleet operations
+              identify workplace hazards, uncover documentation gaps, and build proof of
+              correction. You leave knowing what requires attention, what to address first, and
+              what to do next.
+            </p>
 
-              <h1
-                className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.15] mb-5"
-                data-testid="hero-headline"
+            <div className="flex flex-col sm:flex-row gap-3 mb-4" data-testid="hero-ctas">
+              <Link
+                to="/intake?service=compliance-readiness-visit"
+                onClick={() => handlePrimaryCta('hero')}
+                className="inline-flex items-center justify-center gap-2 min-h-[48px] px-8 py-3 rounded-md font-semibold text-base transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-400/60"
+                style={{ backgroundColor: GOLD, color: NAVY_DEEP }}
+                data-testid="hero-cta-primary"
               >
-                Find the gaps before OSHA does.
-              </h1>
-
-              <div
-                className="mb-7 max-w-md"
-                style={{
-                  fontFamily: "'Manrope', sans-serif",
-                  fontWeight: 300,
-                  fontStyle: 'italic',
-                  fontSize: 'clamp(20px, 2.4vw, 26px)',
-                  lineHeight: 1.35,
-                  letterSpacing: '-0.005em',
-                  color: '#c8922a',
-                }}
-                data-testid="hero-standout-line"
+                Request a Compliance Readiness Visit
+                <ArrowRight size={18} aria-hidden="true" />
+              </Link>
+              <Link
+                to={secondary.to}
+                onClick={() => handleSecondaryCta('hero')}
+                className="inline-flex items-center justify-center gap-2 min-h-[48px] px-8 py-3 rounded-md font-semibold text-base border-2 border-white/80 text-white hover:bg-white/10 transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-white/40"
+                data-testid="hero-cta-secondary"
               >
-                <p>Safety becomes the thing you will get to.</p>
-                <p>OSHA does not wait for you to get to it.</p>
-              </div>
+                {secondary.label}
+              </Link>
+            </div>
 
-              <p
-                className="text-base md:text-lg text-[#CBD5E1] leading-relaxed mb-8 max-w-md"
-                data-testid="hero-sub"
-              >
-                Know what needs attention, what must be fixed first, and what evidence you need before OSHA, an insurer, or a customer asks. GigLine reviews the floor and the files, then gives you prioritized findings and practical next steps.
-              </p>
+            <p className="text-sm text-slate-300 mb-6" data-testid="hero-price-line">
+              Compliance Readiness Visits start at {COMPLIANCE_READINESS_VISIT.displayPrice}. Scope
+              and scheduling are confirmed before work begins.
+            </p>
 
-              {/* ═══ GL-WEB-023: Trust badges above the fold ═══ */}
-              <div
-                className="flex flex-wrap gap-x-6 gap-y-3 mb-6"
-                data-testid="hero-trust-badges"
-                role="list"
-                aria-label="Consultant credentials"
-              >
-                {[
-                  { Icon: ShieldCheck, label: 'OSHA 30-Hour Outreach Trained' },
-                  { Icon: Anchor, label: 'U.S. Navy Veteran' },
-                  { Icon: Factory, label: '25+ Years Floor-Level Experience' },
-                  {
-                    Icon: Lock,
-                    label: 'A+ Security Rating',
-                    href: 'https://developer.mozilla.org/en-US/observatory/analyze?host=www.giglinecompliance.com',
-                    title: 'Verified A+ by Mozilla Observatory. Click to view live scan.',
-                  },
-                ].map((b, i) => {
-                  const inner = (
-                    <>
-                      <b.Icon size={16} className="text-[#C9A84C] flex-shrink-0" strokeWidth={1.8} />
-                      <span className="font-medium">{b.label}</span>
-                    </>
-                  );
-                  return b.href ? (
-                    <a
-                      key={i}
-                      role="listitem"
-                      href={b.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title={b.title}
-                      className="flex items-center gap-2 text-[13px] text-[#CBD5E1] hover:text-white transition-colors"
-                      data-testid={`hero-trust-badge-${i}`}
-                    >
-                      {inner}
-                    </a>
-                  ) : (
-                    <div
-                      key={i}
-                      role="listitem"
-                      className="flex items-center gap-2 text-[13px] text-[#CBD5E1]"
-                      data-testid={`hero-trust-badge-${i}`}
-                    >
-                      {inner}
-                    </div>
-                  );
-                })}
-              </div>
-
-              <div className="flex flex-col items-start gap-3 mb-5" data-testid="hero-ctas">
-                <div className="flex flex-col sm:flex-row sm:items-center gap-4 w-full sm:w-auto">
-                  <Link
-                    to="/intake?service=compliance-readiness-visit"
-                    onClick={() => trackEvent('hero_cta_primary', {
-                      cta_text: 'Request a Compliance Readiness Visit',
-                      cta_destination: '/intake?service=compliance-readiness-visit',
-                      page_path: typeof window !== 'undefined' ? window.location.pathname : '/',
-                    })}
-                    className="bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-8 py-4 rounded-lg text-base transition-colors inline-flex items-center justify-center gap-2 shadow-lg shadow-[#2A52A0]/20"
-                    data-testid="hero-cta-primary"
-                  >
-                    Request a Compliance Readiness Visit
-                    <ArrowRight size={18} />
-                  </Link>
-                  <Link
-                    to="/safety-check"
-                    onClick={() => trackEvent('hero_cta_secondary', {
-                      cta_text: 'Take the Safety Check',
-                      cta_destination: '/safety-check',
-                      page_path: typeof window !== 'undefined' ? window.location.pathname : '/',
-                    })}
-                    className="text-white/80 hover:text-white font-semibold text-base underline underline-offset-4 decoration-white/30 hover:decoration-white transition-colors"
-                    data-testid="hero-cta-secondary"
-                  >
-                    Take the Safety Check &rarr;
-                  </Link>
-                </div>
-                <p className="text-sm text-[#CBD5E1] leading-relaxed max-w-md" data-testid="hero-pricing-direction">
-                  Fixed quote before scheduling. Written report in 48 hours. No retainer.{' '}
-                  <Link to="/services" className="text-[#2A52A0] hover:text-white underline decoration-[#2A52A0]/40 hover:decoration-white transition-colors font-semibold">
-                    See service options &rarr;
-                  </Link>
-                </p>
-              </div>
-            </Reveal>
+            <div
+              className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-300"
+              data-testid="hero-trust-line"
+              role="list"
+              aria-label="Consultant credentials"
+            >
+              <span className="inline-flex items-center gap-2" role="listitem">
+                <ShieldCheck size={16} className="text-amber-400" aria-hidden="true" />
+                OSHA 30-Hour General Industry Trained
+              </span>
+              <span className="inline-flex items-center gap-2" role="listitem">
+                <Anchor size={16} className="text-amber-400" aria-hidden="true" />
+                U.S. Navy Veteran
+              </span>
+              <span className="inline-flex items-center gap-2" role="listitem">
+                <Factory size={16} className="text-amber-400" aria-hidden="true" />
+                25+ years floor-level experience
+              </span>
+            </div>
+          </Reveal>
           </div>
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════
-          POST-HERO REBUILD, Reference: giglinehome-fduza8jl.manus.space
-          Institutional / restrained. Inter throughout. No gradients,
-          no decorative backgrounds, no Unsplash stock photos.
-      ═══════════════════════════════════════════════════════════════ */}
-
-      {/* ═══ SECTION 2A, FLOOR → FINDINGS → FIXES → PROOF (buyer journey) ═══ */}
+      {/* ══════════════ S2 · OUTCOME FRAMEWORK ══════════════ */}
       <section
-        className="px-5 pt-12 pb-14 md:px-0 md:pt-20 md:pb-24"
-        style={{ background: '#102A43', color: 'white' }}
-        data-testid="home-buyer-journey"
+        className="py-20 md:py-24 bg-white"
+        data-testid="outcome-framework-section"
+        aria-labelledby="outcome-framework-heading"
       >
-        <div className="container max-w-6xl">
+        <div className="max-w-6xl mx-auto px-6 md:px-10">
           <Reveal>
-            <p
-              className="uppercase tracking-[0.18em] font-semibold mb-3"
-              style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', color: '#C9A84C' }}
-              data-testid="buyer-journey-eyebrow"
-            >
-              The GigLine Buyer Journey
+            <p className="uppercase mb-3" style={{ ...mono, fontSize: '11px', color: GOLD, letterSpacing: '0.24em' }}>
+              From uncertainty to a clear plan
             </p>
             <h2
-              className="text-3xl md:text-5xl font-bold mb-4 max-w-3xl"
-              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
-              data-testid="buyer-journey-headline"
+              id="outcome-framework-heading"
+              className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 max-w-3xl"
             >
               Floor. Findings. Fixes. Proof.
             </h2>
-            <p className="text-base md:text-lg text-white/70 leading-relaxed mb-9 md:mb-12 max-w-3xl">
-              A simple operating model. Four connected steps from what is happening on the floor to organized, retrievable evidence.
+            <p className="text-base md:text-lg text-slate-700 leading-relaxed mb-12 max-w-3xl">
+              A safety program is only useful when it connects what is happening on the floor to
+              what leadership documents, corrects, and verifies.
+            </p>
+          </Reveal>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {[
+              { Icon: Search, title: 'Floor', body: 'See what is happening where the work is actually performed.', slug: 'floor' },
+              { Icon: ClipboardCheck, title: 'Findings', body: 'Document observable hazards and readiness gaps in clear language.', slug: 'findings' },
+              { Icon: Wrench, title: 'Fixes', body: 'Prioritize what requires attention and determine the appropriate corrective action.', slug: 'fixes' },
+              { Icon: FileCheck, title: 'Proof', body: 'Build records showing what was corrected, when it was addressed, and how it was verified.', slug: 'proof' },
+            ].map(({ Icon, title, body, slug }) => (
+              <Reveal key={slug}>
+                <div
+                  className="h-full p-6 rounded-lg border border-slate-200 bg-white"
+                  data-testid={`outcome-column-${slug}`}
+                >
+                  <Icon size={28} className="text-amber-500 mb-4" aria-hidden="true" />
+                  <h3 className="text-lg font-semibold text-slate-900 mb-2">{title}</h3>
+                  <p className="text-[15px] text-slate-700 leading-relaxed">{body}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════ S3 · WHO GIGLINE HELPS ══════════════ */}
+      <section
+        className="py-20 md:py-24"
+        style={{ backgroundColor: CARD_BG }}
+        data-testid="who-section"
+        aria-labelledby="who-heading"
+      >
+        <div className="max-w-6xl mx-auto px-6 md:px-10">
+          <Reveal>
+            <p className="uppercase mb-3" style={{ ...mono, fontSize: '11px', color: GOLD, letterSpacing: '0.24em' }}>
+              Built for small operations
+            </p>
+            <h2
+              id="who-heading"
+              className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 max-w-3xl"
+            >
+              Practical compliance support for the places where work gets done.
+            </h2>
+            <p className="text-base md:text-lg text-slate-700 leading-relaxed mb-12 max-w-3xl">
+              GigLine works with small and growing operations that need experienced, hands-on
+              safety support without immediately adding a full-time safety position.
+            </p>
+          </Reveal>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {[
+              { Icon: Factory, title: 'Manufacturers', body: 'Machine guarding, lockout/tagout, hazard communication, training, documentation, and corrective-action readiness.', slug: 'manufacturers' },
+              { Icon: Warehouse, title: 'Warehouses', body: 'Powered industrial trucks, pedestrian traffic, storage, loading areas, inspections, and employee training records.', slug: 'warehouses' },
+              { Icon: HardHat, title: 'Contractors', body: 'Jobsite hazards, required programs, field documentation, employee readiness, and corrective-action tracking.', slug: 'contractors' },
+              { Icon: Truck, title: 'Fleet Operations', body: 'Driver and facility safety, inspections, training records, shop conditions, and operational documentation.', slug: 'fleet' },
+            ].map(({ Icon, title, body, slug }) => (
+              <Reveal key={slug}>
+                <div
+                  className="h-full p-6 rounded-lg bg-white border border-slate-200"
+                  data-testid={`who-card-${slug}`}
+                >
+                  <Icon size={26} className="text-slate-700 mb-4" aria-hidden="true" />
+                  <h3 className="text-lg font-semibold text-slate-900 mb-2">{title}</h3>
+                  <p className="text-[15px] text-slate-700 leading-relaxed">{body}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════ S4 · CHOOSE THE RIGHT STARTING POINT ══════════════ */}
+      <section
+        className="py-20 md:py-24 bg-white"
+        data-testid="starting-point-section"
+        aria-labelledby="starting-point-heading"
+      >
+        <div className="max-w-6xl mx-auto px-6 md:px-10">
+          <Reveal>
+            <p className="uppercase mb-3" style={{ ...mono, fontSize: '11px', color: GOLD, letterSpacing: '0.24em' }}>
+              Start with the level of review you need
+            </p>
+            <h2 id="starting-point-heading" className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 max-w-3xl">
+              Three ways to understand where your operation stands.
+            </h2>
+            <p className="text-base md:text-lg text-slate-700 leading-relaxed mb-12 max-w-3xl">
+              Choose a focused review or combine the floor and documentation review through the
+              Compliance Readiness Visit.
             </p>
           </Reveal>
 
-          <div className="relative" data-testid="buyer-journey-steps">
-            {/* Connecting hairline: horizontal on desktop, vertical on mobile */}
+          <div className="grid gap-6 lg:grid-cols-3 items-stretch">
+            {/* Card 1 · Safety Walkthrough */}
             <div
-              className="hidden lg:block absolute top-[52px] left-0 right-0 h-px"
-              style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.35) 8%, rgba(201,168,76,0.35) 92%, transparent 100%)' }}
+              className="flex flex-col rounded-lg border border-slate-200 bg-white p-7"
+              data-testid="service-card-safety-walkthrough"
+            >
+              <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Focused</p>
+              <h3 className="text-xl font-semibold text-slate-900 mb-2">Safety Walkthrough</h3>
+              <p className="text-2xl font-bold text-slate-900 mb-3" data-testid="service-card-walkthrough-price">
+                {SAFETY_WALKTHROUGH.displayPrice}
+              </p>
+              <p className="text-[15px] text-slate-700 leading-relaxed mb-5 flex-grow">
+                A focused review of observable workplace conditions and work practices. Written
+                report of findings with photo documentation and prioritized next steps.
+              </p>
+              <Link
+                to="/services/safety-walkthrough-report"
+                className="inline-flex items-center gap-2 text-[15px] font-semibold text-slate-900 hover:text-amber-700 transition-colors"
+                data-testid="service-card-walkthrough-cta"
+              >
+                Review the Safety Walkthrough
+                <ArrowRight size={16} aria-hidden="true" />
+              </Link>
+            </div>
+
+            {/* Card 2 · Documentation Readiness Review */}
+            <div
+              className="flex flex-col rounded-lg border border-slate-200 bg-white p-7"
+              data-testid="service-card-documentation-review"
+            >
+              <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Focused</p>
+              <h3 className="text-xl font-semibold text-slate-900 mb-2">Documentation Readiness Review</h3>
+              <p className="text-2xl font-bold text-slate-900 mb-3" data-testid="service-card-docreview-price">
+                {DOCUMENTATION_REVIEW.displayPrice}
+              </p>
+              <p className="text-[15px] text-slate-700 leading-relaxed mb-5 flex-grow">
+                A focused review of safety programs, records, training documentation, and other
+                approved documentation categories. Prioritized findings and one review call.
+              </p>
+              <Link
+                to="/services/documentation-readiness-review"
+                className="inline-flex items-center gap-2 text-[15px] font-semibold text-slate-900 hover:text-amber-700 transition-colors"
+                data-testid="service-card-docreview-cta"
+              >
+                Review Documentation Readiness
+                <ArrowRight size={16} aria-hidden="true" />
+              </Link>
+            </div>
+
+            {/* Card 3 · Compliance Readiness Visit (RECOMMENDED) */}
+            <div
+              className="flex flex-col rounded-lg p-7 relative shadow-lg"
+              style={{ backgroundColor: NAVY, color: 'white', border: `2px solid ${GOLD}` }}
+              data-testid="service-card-crv"
+            >
+              <span
+                className="absolute -top-3 left-6 inline-flex items-center gap-1 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider"
+                style={{ backgroundColor: GOLD, color: NAVY_DEEP, letterSpacing: '0.12em' }}
+                data-testid="crv-recommended-badge"
+              >
+                Recommended Starting Point
+              </span>
+              <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: GOLD }}>Combined</p>
+              <h3 className="text-xl font-semibold text-white mb-2">Compliance Readiness Visit</h3>
+              <p className="text-2xl font-bold text-white mb-1" data-testid="service-card-crv-price">
+                {COMPLIANCE_READINESS_VISIT.displayPrice}
+              </p>
+              <p className="text-xs text-amber-300 mb-3" data-testid="crv-savings-line">
+                A {savingsDollars} savings compared with purchasing both reviews separately.
+              </p>
+              <p className="text-[15px] text-slate-200 leading-relaxed mb-5 flex-grow">
+                Combines the floor-level Safety Walkthrough and Documentation Readiness Review
+                into one coordinated assessment. One visit, one prioritized findings package.
+              </p>
+              <Link
+                to="/intake?service=compliance-readiness-visit"
+                onClick={() => handlePrimaryCta('starting-point-crv-card')}
+                className="inline-flex items-center justify-center gap-2 min-h-[48px] px-5 py-3 rounded-md font-semibold text-base focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-400/60"
+                style={{ backgroundColor: GOLD, color: NAVY_DEEP }}
+                data-testid="crv-primary-cta"
+              >
+                Request a Compliance Readiness Visit
+                <ArrowRight size={18} aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════ S5 · WHAT THE CLIENT ACHIEVES ══════════════ */}
+      <section
+        className="py-20 md:py-24"
+        style={{ backgroundColor: CARD_BG }}
+        data-testid="outcomes-section"
+        aria-labelledby="outcomes-heading"
+      >
+        <div className="max-w-4xl mx-auto px-6 md:px-10">
+          <Reveal>
+            <p className="uppercase mb-3" style={{ ...mono, fontSize: '11px', color: GOLD, letterSpacing: '0.24em' }}>
+              What you leave with
+            </p>
+            <h2 id="outcomes-heading" className="text-3xl md:text-4xl font-bold text-slate-900 mb-8">
+              Clear priorities instead of compliance guesswork.
+            </h2>
+          </Reveal>
+          <ul className="space-y-3 mb-8" data-testid="outcomes-checklist">
+            {[
+              'A clearer picture of observable workplace hazards',
+              'Identification of documentation readiness gaps',
+              'Priorities based on the significance of the findings',
+              'A defined path for addressing identified issues',
+              'A structure for tracking corrective actions',
+              'Better evidence that identified problems were addressed',
+            ].map((item) => (
+              <li key={item} className="flex items-start gap-3">
+                <Check size={20} className="text-amber-500 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                <span className="text-base text-slate-800 leading-relaxed">{item}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="text-[15px] text-slate-600 leading-relaxed italic border-l-4 border-slate-300 pl-4">
+            GigLine identifies and organizes the work. The client remains responsible for
+            operating decisions, implementation, and ongoing compliance unless additional
+            implementation services are included in a separate written scope.
+          </p>
+        </div>
+      </section>
+
+      {/* ══════════════ S6 · AFTER FINDINGS ══════════════ */}
+      <section
+        className="py-20 md:py-24 bg-white"
+        data-testid="after-findings-section"
+        aria-labelledby="after-findings-heading"
+      >
+        <div className="max-w-6xl mx-auto px-6 md:px-10">
+          <Reveal>
+            <p className="uppercase mb-3" style={{ ...mono, fontSize: '11px', color: GOLD, letterSpacing: '0.24em' }}>
+              From findings to action
+            </p>
+            <h2 id="after-findings-heading" className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 max-w-3xl">
+              You decide how the corrective work gets completed.
+            </h2>
+            <p className="text-base md:text-lg text-slate-700 leading-relaxed mb-12 max-w-3xl">
+              A Compliance Readiness Visit identifies and prioritizes the gaps. After the review,
+              your team can complete the corrective work internally or request a separate
+              implementation proposal from GigLine.
+            </p>
+          </Reveal>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            <div className="p-6 rounded-lg border border-slate-200 bg-white" data-testid="after-card-fix-internally">
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">Fix It Internally</h3>
+              <p className="text-[15px] text-slate-700 leading-relaxed">
+                Use the findings and priorities to assign and complete corrective actions with
+                your own team.
+              </p>
+            </div>
+            <div className="p-6 rounded-lg border border-slate-200 bg-white" data-testid="after-card-corrective-action">
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">Request Corrective Action Implementation</h3>
+              <p className="text-[15px] text-slate-700 leading-relaxed mb-3">
+                GigLine can scope selected corrective-action work through a separate fixed-price
+                proposal.
+              </p>
+              <p className="text-sm font-semibold text-slate-900">
+                Most Corrective Action Implementation projects begin at $2,500.
+              </p>
+            </div>
+            <div className="p-6 rounded-lg border border-slate-200 bg-white" data-testid="after-card-control-system">
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">Build a Larger Control System</h3>
+              <p className="text-[15px] text-slate-700 leading-relaxed mb-3">
+                For operations needing broader implementation, the OSHA-Ready Control System
+                begins at {SAFETY_CONTROL_SYSTEM_BUILDOUT.displayPrice}.
+              </p>
+              <Link
+                to="/services/safety-control-system-buildout"
+                className="inline-flex items-center gap-2 text-[15px] font-semibold text-slate-900 hover:text-amber-700 transition-colors"
+              >
+                Learn more
+                <ArrowRight size={16} aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════ S7 · DIFFERENTIATION ══════════════ */}
+      <section
+        className="py-20 md:py-24"
+        style={{ backgroundColor: NAVY }}
+        data-testid="differentiation-section"
+        aria-labelledby="diff-heading"
+      >
+        <div className="max-w-6xl mx-auto px-6 md:px-10 text-white">
+          <Reveal>
+            <p className="uppercase mb-3" style={{ ...mono, fontSize: '11px', color: GOLD, letterSpacing: '0.24em' }}>
+              Hands-on support
+            </p>
+            <h2 id="diff-heading" className="text-3xl md:text-4xl font-bold text-white mb-4 max-w-3xl">
+              Not a software tool. Not a template mill. A person who walks your floor.
+            </h2>
+            <p className="text-base md:text-lg text-slate-200 leading-relaxed mb-12 max-w-3xl">
+              Templates and software can store information. They cannot observe how work is being
+              performed, ask follow-up questions, compare practice with documentation, or help
+              leadership prioritize what matters most.
+            </p>
+          </Reveal>
+          <div className="grid gap-6 md:grid-cols-3">
+            {[
+              { title: 'Real Workplaces', body: 'The review considers the conditions, tasks, equipment, and practices present in the operation.', slug: 'real' },
+              { title: 'Clear Priorities', body: 'Findings are organized so leadership can understand what requires attention first.', slug: 'priorities' },
+              { title: 'Evidence of Action', body: 'Corrective-action tracking helps turn identified problems into documented follow-through.', slug: 'evidence' },
+            ].map((c) => (
+              <div key={c.slug} className="p-6 rounded-lg bg-white/5 border border-white/10" data-testid={`diff-card-${c.slug}`}>
+                <h3 className="text-lg font-semibold text-white mb-2">{c.title}</h3>
+                <p className="text-[15px] text-slate-200 leading-relaxed">{c.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════ S8 · COST OF WAITING ══════════════ */}
+      <section
+        className="py-20 md:py-24 bg-white"
+        data-testid="cost-of-waiting-section"
+        aria-labelledby="cost-heading"
+      >
+        <div className="max-w-5xl mx-auto px-6 md:px-10">
+          <Reveal>
+            <p className="uppercase mb-3" style={{ ...mono, fontSize: '11px', color: GOLD, letterSpacing: '0.24em' }}>
+              The cost of waiting
+            </p>
+            <h2 id="cost-heading" className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 max-w-3xl">
+              Unaddressed safety gaps can become expensive problems.
+            </h2>
+            <p className="text-base md:text-lg text-slate-700 leading-relaxed mb-10 max-w-3xl">
+              Workplace hazards can affect employees, operations, insurance relationships,
+              customer confidence, and regulatory exposure. Finding problems before an inspection
+              or incident gives leadership time to respond deliberately.
+            </p>
+          </Reveal>
+
+          <div className="grid gap-4 md:grid-cols-3 mb-6">
+            <div className="p-5 rounded-lg border border-slate-200 bg-slate-50" data-testid="penalty-serious">
+              <p className="text-3xl font-bold text-slate-900 mb-1">{OSHA_PENALTY.serious}</p>
+              <p className="text-sm font-semibold text-slate-800 mb-1">Per Serious or Other-Than-Serious violation</p>
+              <p className="text-xs text-slate-600">Maximum, {OSHA_PENALTY.year}</p>
+            </div>
+            <div className="p-5 rounded-lg border border-slate-200 bg-slate-50" data-testid="penalty-willful">
+              <p className="text-3xl font-bold text-slate-900 mb-1">{OSHA_PENALTY.willfulOrRepeat}</p>
+              <p className="text-sm font-semibold text-slate-800 mb-1">Per Willful or Repeat violation</p>
+              <p className="text-xs text-slate-600">Maximum, {OSHA_PENALTY.year}</p>
+            </div>
+            <div className="p-5 rounded-lg border border-slate-200 bg-slate-50" data-testid="penalty-failure-to-abate">
+              <p className="text-3xl font-bold text-slate-900 mb-1">{OSHA_PENALTY.failureToAbate}</p>
+              <p className="text-sm font-semibold text-slate-800 mb-1">Failure to Abate</p>
+              <p className="text-xs text-slate-600">Per day, maximum, {OSHA_PENALTY.year}</p>
+            </div>
+          </div>
+          <p className="text-sm text-slate-600 leading-relaxed max-w-3xl">
+            Penalty amounts and circumstances vary. Not every violation is assessed at the
+            maximum; actual assessed penalties reflect gravity, good faith, employer size, and
+            history.{' '}
+            <a
+              href={OSHA_PENALTY.source}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 font-semibold text-slate-900 underline underline-offset-2 hover:text-amber-700"
+              data-testid="penalty-source-link"
+            >
+              OSHA penalties, official schedule
+              <ExternalLink size={14} aria-hidden="true" />
+            </a>
+            .
+          </p>
+        </div>
+      </section>
+
+      {/* ══════════════ S9 · RECOMMENDATION ENTRY ══════════════ */}
+      <section
+        className="py-20 md:py-24"
+        style={{ backgroundColor: CARD_BG }}
+        data-testid="rec-entry-section"
+        aria-labelledby="rec-entry-heading"
+      >
+        <div className="max-w-3xl mx-auto px-6 md:px-10 text-center">
+          <Reveal>
+            <p className="uppercase mb-3" style={{ ...mono, fontSize: '11px', color: GOLD, letterSpacing: '0.24em' }}>
+              Not sure where to begin?
+            </p>
+            <h2 id="rec-entry-heading" className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+              Find the right starting point for your operation.
+            </h2>
+            <p className="text-base md:text-lg text-slate-700 leading-relaxed mb-8">
+              Answer a few questions about your workplace, documentation, and current safety
+              needs. GigLine will direct you toward the most appropriate service or self-serve
+              resource.
+            </p>
+            <Link
+              to={secondary.to}
+              onClick={() => handleSecondaryCta('rec-entry')}
+              className="inline-flex items-center justify-center gap-2 min-h-[48px] px-8 py-3 rounded-md font-semibold text-base border-2 border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-slate-400/60"
+              data-testid="rec-entry-cta"
+            >
+              {RECOMMENDATION_ROUTER_ENABLED ? 'Find My Starting Point' : 'Compare GigLine Services'}
+              <ArrowRight size={18} aria-hidden="true" />
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ══════════════ S10 · SELF-SERVE KITS ══════════════ */}
+      <section
+        className="py-16 md:py-20 bg-white"
+        data-testid="kits-section"
+        aria-labelledby="kits-heading"
+      >
+        <div className="max-w-6xl mx-auto px-6 md:px-10">
+          <Reveal>
+            <p className="uppercase mb-3" style={{ ...mono, fontSize: '11px', color: GOLD, letterSpacing: '0.24em' }}>
+              For teams starting with a specific need
+            </p>
+            <h2 id="kits-heading" className="text-2xl md:text-3xl font-bold text-slate-900 mb-3 max-w-3xl">
+              Practical tools for focused compliance work.
+            </h2>
+          </Reveal>
+          <div className="grid gap-4 md:grid-cols-3 mt-8">
+            <Link
+              to="/hazcom-starter-pack"
+              className="block p-5 rounded-lg border border-slate-200 bg-white hover:border-slate-400 transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-slate-400/50"
+              data-testid="kit-card-hazcom-starter"
+            >
+              <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Starter</p>
+              <h3 className="text-base font-semibold text-slate-900 mb-1">HazCom Starter Pack</h3>
+              <p className="text-sm font-bold text-slate-900 mb-2">{HAZCOM_STARTER_PACK.displayPrice}</p>
+              <p className="text-sm text-slate-700 leading-relaxed">
+                Written program, SDS binder checklist, and training log. The entry pack for teams
+                not yet ready for the full HazCom Pro Kit.
+              </p>
+            </Link>
+            <Link
+              to="/citation-proof-kits/loto-readiness-kit"
+              className="block p-5 rounded-lg border border-slate-200 bg-white hover:border-slate-400 transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-slate-400/50"
+              data-testid="kit-card-loto"
+            >
+              <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Readiness Kit</p>
+              <h3 className="text-base font-semibold text-slate-900 mb-1">Machine-Specific LOTO Readiness Kit</h3>
+              <p className="text-sm font-bold text-slate-900 mb-2">Starting at {KIT_PRICES.digital.displayPrice}</p>
+              <p className="text-sm text-slate-700 leading-relaxed">
+                Build machine-specific lockout procedures your team can follow and verify.
+              </p>
+            </Link>
+            <Link
+              to="/citation-proof-kits/forklift-pit-readiness-kit"
+              className="block p-5 rounded-lg border border-slate-200 bg-white hover:border-slate-400 transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-slate-400/50"
+              data-testid="kit-card-forklift-pit"
+            >
+              <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Readiness Kit</p>
+              <h3 className="text-base font-semibold text-slate-900 mb-1">Forklift / PIT Readiness Kit</h3>
+              <p className="text-sm font-bold text-slate-900 mb-2">Starting at {KIT_PRICES.digital.displayPrice}</p>
+              <p className="text-sm text-slate-700 leading-relaxed">
+                Know exactly who is cleared to operate which truck, and when the next evaluation
+                is due.
+              </p>
+            </Link>
+          </div>
+          <div className="mt-8">
+            <Link
+              to="/citation-proof-kits"
+              className="inline-flex items-center gap-2 text-[15px] font-semibold text-slate-900 hover:text-amber-700 transition-colors"
+              data-testid="kits-all-cta"
+            >
+              View All Readiness Kits
+              <ArrowRight size={16} aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════ S11 · WHY GIGLINE ══════════════ */}
+      <section
+        className="py-20 md:py-24"
+        style={{ backgroundColor: CARD_BG }}
+        data-testid="why-section"
+        aria-labelledby="why-heading"
+      >
+        <div className="max-w-5xl mx-auto px-6 md:px-10">
+          <Reveal>
+            <p className="uppercase mb-3" style={{ ...mono, fontSize: '11px', color: GOLD, letterSpacing: '0.24em' }}>
+              Practical safety support
+            </p>
+            <h2 id="why-heading" className="text-3xl md:text-4xl font-bold text-slate-900 mb-8 max-w-3xl">
+              Built around real operations, not generic paperwork.
+            </h2>
+          </Reveal>
+          <div className="grid gap-3 md:grid-cols-2" data-testid="why-benefits">
+            {[
+              'On-site observation of actual conditions and work practices',
+              'Plain-language findings, no acronym soup',
+              'Prioritized corrective actions leadership can act on',
+              'Documentation readiness structured for inspection or audit',
+              'Leadership-focused communication of what needs attention',
+              'Flexible implementation options after the review',
+            ].map((b) => (
+              <div key={b} className="flex items-start gap-3">
+                <Check size={20} className="text-amber-500 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                <span className="text-[15px] text-slate-800 leading-relaxed">{b}</span>
+              </div>
+            ))}
+          </div>
+          <div
+            className="mt-10 flex flex-wrap gap-x-6 gap-y-3 text-sm text-slate-700"
+            data-testid="why-badges"
+            role="list"
+            aria-label="Approved credentials and positioning"
+          >
+            <span className="inline-flex items-center gap-2" role="listitem">
+              <ShieldCheck size={16} className="text-amber-500" aria-hidden="true" />
+              OSHA 30-Hour General Industry Trained
+            </span>
+            <span className="inline-flex items-center gap-2" role="listitem">
+              <Anchor size={16} className="text-amber-500" aria-hidden="true" />
+              U.S. Navy Veteran-Owned
+            </span>
+            <span className="inline-flex items-center gap-2" role="listitem">
+              <Building2 size={16} className="text-amber-500" aria-hidden="true" />
+              Carolina-Built, Kernersville NC
+            </span>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════ S12 · HOW ENGAGEMENT WORKS ══════════════ */}
+      <section
+        className="py-20 md:py-24 bg-white"
+        data-testid="process-section"
+        aria-labelledby="process-heading"
+      >
+        <div className="max-w-6xl mx-auto px-6 md:px-10">
+          <Reveal>
+            <p className="uppercase mb-3" style={{ ...mono, fontSize: '11px', color: GOLD, letterSpacing: '0.24em' }}>
+              A clear process
+            </p>
+            <h2 id="process-heading" className="text-3xl md:text-4xl font-bold text-slate-900 mb-12 max-w-3xl">
+              From the first request to documented next steps.
+            </h2>
+          </Reveal>
+          <ol className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {[
+              { n: '1', t: 'Request', b: 'Tell GigLine about the operation, location, workforce, and primary concerns.' },
+              { n: '2', t: 'Confirm', b: 'GigLine confirms the appropriate service, scope, price, preparation requirements, and schedule.' },
+              { n: '3', t: 'Review', b: 'The agreed floor, documentation, or combined assessment is completed.' },
+              { n: '4', t: 'Act', b: 'Leadership receives the approved findings and next-step information, then determines how corrective work will be completed.' },
+            ].map((s) => (
+              <li
+                key={s.n}
+                className="p-6 rounded-lg border border-slate-200 bg-white"
+                data-testid={`process-step-${s.n}`}
+              >
+                <p className="text-3xl font-bold mb-3" style={{ color: GOLD, ...mono }}>{s.n}</p>
+                <h3 className="text-lg font-semibold text-slate-900 mb-2">{s.t}</h3>
+                <p className="text-[15px] text-slate-700 leading-relaxed">{s.b}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* ══════════════ S13 · HOMEPAGE FAQ ══════════════ */}
+      <section
+        className="py-20 md:py-24"
+        style={{ backgroundColor: CARD_BG }}
+        data-testid="home-faq-section"
+        aria-labelledby="home-faq-heading"
+      >
+        <div className="max-w-3xl mx-auto px-6 md:px-10">
+          <Reveal>
+            <p className="uppercase mb-3" style={{ ...mono, fontSize: '11px', color: GOLD, letterSpacing: '0.24em' }}>
+              Common questions
+            </p>
+            <h2 id="home-faq-heading" className="text-3xl md:text-4xl font-bold text-slate-900 mb-8">
+              Frequently asked questions
+            </h2>
+          </Reveal>
+          <div className="rounded-lg bg-white border border-slate-200 px-6">
+            {[
+              {
+                q: 'Does a Compliance Readiness Visit guarantee OSHA compliance?',
+                a: 'No. GigLine provides an independent readiness review based on the approved scope. The service identifies observable conditions and documentation gaps, but it does not guarantee regulatory compliance, prevent citations, or replace legal advice.',
+              },
+              {
+                q: 'Are corrective actions included in the Compliance Readiness Visit?',
+                a: 'No. The visit identifies and prioritizes findings. Your team may complete corrective actions internally, or GigLine can provide a separate implementation proposal when appropriate.',
+              },
+              {
+                q: 'What is the difference between the three reviews?',
+                a: 'The Safety Walkthrough focuses on observable workplace conditions. The Documentation Readiness Review focuses on programs and records. The Compliance Readiness Visit combines both reviews into one coordinated assessment.',
+              },
+              {
+                q: 'What happens before the visit is scheduled?',
+                a: 'GigLine confirms the operation, location, workforce, requested service, scope, price, preparation needs, and scheduling details.',
+              },
+              {
+                q: 'Can we begin with a readiness kit instead?',
+                a: (
+                  <>
+                    Yes. Self-serve kits may be appropriate when the need is narrow and leadership
+                    is prepared to implement the material internally. If the need is unclear or
+                    spans multiple areas, begin with{' '}
+                    <Link to={secondary.to} className="underline underline-offset-2 font-semibold text-slate-900 hover:text-amber-700">
+                      {RECOMMENDATION_ROUTER_ENABLED ? 'the recommendation tool' : 'the services comparison'}
+                    </Link>{' '}
+                    or request a Compliance Readiness Visit.
+                  </>
+                ),
+              },
+            ].map((item, i) => (
+              <FaqItem
+                key={i}
+                index={i}
+                q={item.q}
+                a={item.a}
+                isOpen={openFaq === i}
+                onToggle={(idx) => setOpenFaq((cur) => (cur === idx ? null : idx))}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════ S14 · FOUNDER ══════════════ */}
+      <section
+        className="py-20 md:py-24 bg-white"
+        data-testid="founder-section"
+        aria-labelledby="founder-heading"
+      >
+        <div className="max-w-5xl mx-auto px-6 md:px-10 grid gap-10 lg:grid-cols-[240px_1fr] items-start">
+          <img
+            src="/vince-founder.webp"
+            alt="Vince Lawrence, founder of GigLine Safety & Compliance"
+            width="240"
+            height="240"
+            loading="lazy"
+            className="w-full max-w-[240px] rounded-lg object-cover"
+            data-testid="founder-photo"
+          />
+          <div>
+            <Reveal>
+              <p className="uppercase mb-3" style={{ ...mono, fontSize: '11px', color: GOLD, letterSpacing: '0.24em' }}>
+                Meet the founder
+              </p>
+              <h2 id="founder-heading" className="text-3xl md:text-4xl font-bold text-slate-900 mb-5" data-testid="founder-name">
+                Safety experience shaped by the realities of work.
+              </h2>
+            </Reveal>
+            <div className="space-y-4 text-base md:text-[17px] text-slate-700 leading-relaxed" data-testid="founder-body">
+              <p>
+                Vince Lawrence founded GigLine Safety &amp; Compliance to help small operations
+                recognize safety and documentation gaps before those gaps become larger problems.
+              </p>
+              <p>
+                His background includes production leadership, workplace safety coordination,
+                employee training, corrective-action follow-through, and support for manufacturing
+                and operational environments. As a U.S. Navy veteran, he brings a direct,
+                structured approach to helping leaders understand what requires attention and what
+                should happen next.
+              </p>
+              <p>
+                GigLine was built for owners and operational leaders who need practical answers,
+                clear priorities, and a workable path forward.
+              </p>
+            </div>
+            <div className="mt-6">
+              <Link
+                to="/about"
+                className="inline-flex items-center gap-2 text-[15px] font-semibold text-slate-900 hover:text-amber-700 transition-colors"
+                data-testid="founder-learn-more"
+              >
+                Learn More About GigLine
+                <ArrowRight size={16} aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════ S15 · RESOURCES ══════════════ */}
+      <section
+        className="py-16 md:py-20"
+        style={{ backgroundColor: CARD_BG }}
+        data-testid="resources-section"
+        aria-labelledby="resources-heading"
+      >
+        <div className="max-w-5xl mx-auto px-6 md:px-10">
+          <Reveal>
+            <p className="uppercase mb-3" style={{ ...mono, fontSize: '11px', color: GOLD, letterSpacing: '0.24em' }}>
+              Safety and compliance resources
+            </p>
+            <h2 id="resources-heading" className="text-2xl md:text-3xl font-bold text-slate-900 mb-8 max-w-3xl">
+              Start strengthening your operation today.
+            </h2>
+          </Reveal>
+          <div className="grid gap-4 md:grid-cols-3">
+            <div className="p-5 rounded-lg bg-white border border-slate-200" data-testid="resource-card-0">
+              <h3 className="text-base font-semibold text-slate-900 mb-1">OSHA Penalty Calculator</h3>
+              <p className="text-sm text-slate-700 leading-relaxed mb-3">
+                Estimate {OSHA_PENALTY.year} exposure across your open gaps.
+              </p>
+              <Link to="/tools/citation-cost-calculator" className="text-[14px] font-semibold text-slate-900 hover:text-amber-700 inline-flex items-center gap-1">
+                Open the calculator <ArrowRight size={14} aria-hidden="true" />
+              </Link>
+            </div>
+            <div className="p-5 rounded-lg bg-white border border-slate-200" data-testid="resource-card-1">
+              <h3 className="text-base font-semibold text-slate-900 mb-1">OSHA Penalty Guide, NC 2026</h3>
+              <p className="text-sm text-slate-700 leading-relaxed mb-3">
+                What Serious, Willful, Repeat, and Failure-to-Abate citations actually cost.
+              </p>
+              <Link to="/blog/osha-penalty-north-carolina-2026" className="text-[14px] font-semibold text-slate-900 hover:text-amber-700 inline-flex items-center gap-1">
+                Read the guide <ArrowRight size={14} aria-hidden="true" />
+              </Link>
+            </div>
+            <div className="p-5 rounded-lg bg-white border border-slate-200" data-testid="resource-card-2">
+              <h3 className="text-base font-semibold text-slate-900 mb-1">Field Notes</h3>
+              <p className="text-sm text-slate-700 leading-relaxed mb-3">
+                Practical write-ups from the floor on the standards small operations miss.
+              </p>
+              <Link to="/field-notes" className="text-[14px] font-semibold text-slate-900 hover:text-amber-700 inline-flex items-center gap-1">
+                Browse field notes <ArrowRight size={14} aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
+          <div className="mt-8">
+            <Link
+              to="/resources"
+              className="inline-flex items-center gap-2 text-[15px] font-semibold text-slate-900 hover:text-amber-700 transition-colors"
+              data-testid="resources-all-cta"
+            >
+              View All Resources
+              <ArrowRight size={16} aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════ S16 · FINAL CONVERSION ══════════════ */}
+      <section
+        className="py-20 md:py-28"
+        style={{ backgroundColor: NAVY_DEEP }}
+        data-testid="final-cta-section"
+        aria-labelledby="final-cta-heading"
+      >
+        <div className="max-w-3xl mx-auto px-6 md:px-10 text-center text-white">
+          <Reveal>
+            <div
+              className="mx-auto mb-6 w-12 h-0.5"
+              style={{ backgroundColor: GOLD }}
               aria-hidden="true"
             />
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-10 gap-y-12 lg:gap-y-14">
-              {[
-                {
-                  num: '01', title: 'Floor',
-                  headline: 'See what is actually happening.',
-                  body: 'The work environment, the equipment, the work practices, and the observable safety-control conditions. Read as they are, not as they were written to be.',
-                },
-                {
-                  num: '02', title: 'Findings',
-                  headline: 'Know what matters most.',
-                  body: 'Documented and, where appropriate, photographed. Prioritized by consequence, not sequence. Documentation and evidence weaknesses named alongside physical conditions.',
-                },
-                {
-                  num: '03', title: 'Fixes',
-                  headline: 'Close the priority gaps.',
-                  body: 'Your internal team, or GigLine engaged for hands-on Corrective Action Implementation against a defined subset of findings.',
-                  cta: { label: 'Corrective Action Implementation', to: '/services/corrective-action-implementation' },
-                },
-                {
-                  num: '04', title: 'Proof',
-                  headline: 'Keep the control organized.',
-                  body: 'GigLine Compliance Control Kits and ongoing support so records, ownership, corrective actions, and retrievable evidence stay where they can be retrieved.',
-                },
-              ].map((step, i) => (
-                <Reveal key={step.num} delay={i * 120}>
-                  <article className="relative" data-testid={`buyer-journey-step-${step.num}`}>
-                    {/* Huge outline numeral — the editorial anchor.
-                        Mobile size 72px (in 68-76px spec), desktop 96px. */}
-                    <div
-                      aria-hidden="true"
-                      className="select-none leading-none mb-4"
-                      style={{
-                        fontFamily: "Georgia, 'Times New Roman', serif",
-                        fontSize: 'clamp(72px, 12vw, 96px)',
-                        fontWeight: 700,
-                        color: 'transparent',
-                        WebkitTextStroke: '1.5px rgba(201,168,76,0.55)',
-                        letterSpacing: '-0.03em',
-                      }}
-                    >
-                      {step.num}
-                    </div>
-                    {/* Milestone dot on the connecting line (desktop only) */}
-                    <span
-                      aria-hidden="true"
-                      className="hidden lg:block absolute"
-                      style={{ top: '46px', left: '-2px', width: '14px', height: '14px', borderRadius: '50%', background: '#0A1628', border: '2px solid #C9A84C' }}
-                    />
-                    <h3
-                      className="text-[28px] md:text-[32px] font-bold leading-[1.05] mb-2.5 italic"
-                      style={{ fontFamily: "Georgia, 'Times New Roman', serif", color: 'white', letterSpacing: '-0.01em' }}
-                    >
-                      {step.title}.
-                    </h3>
-                    <p className="text-[15px] md:text-base text-white/85 mb-3.5 leading-[1.45] font-medium" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
-                      {step.headline}
-                    </p>
-                    <p className="text-[14px] md:text-[13.5px] text-white/60 leading-[1.75] w-full max-w-[520px] lg:max-w-[26ch]">
-                      {step.body}
-                    </p>
-                    {step.cta && (
-                      <Link
-                        to={step.cta.to}
-                        className="inline-flex items-center gap-2 mt-4 text-[12px] font-semibold uppercase tracking-[0.16em] hover:text-white transition-colors pb-1"
-                        style={{ color: '#C9A84C', fontFamily: "'JetBrains Mono', monospace", borderBottom: '1px solid rgba(201,168,76,0.35)' }}
-                        data-testid={`buyer-journey-step-${step.num}-cta`}
-                      >
-                        {step.cta.label}
-                        <ArrowRight size={12} />
-                      </Link>
-                    )}
-                  </article>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-
-          <Reveal delay={400}>
-            <p
-              className="text-sm md:text-[15px] italic text-white/55 mt-10 max-w-3xl leading-relaxed"
-              data-testid="buyer-journey-footnote"
-            >
-              Safety paperwork is not the same as safety control. GigLine helps connect policy, execution, ownership, corrective action, and evidence.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ═══ SECTION 2A2, SECONDARY PRODUCT DISCOVERY STRIP (Feb 2026)
-           Lightweight product-discovery band beneath the buyer journey.
-           Intentionally quieter than the primary CRV CTA and the Citation-Proof
-           Kit Series strip further down. For self-directed buyers, not a
-           replacement for Walkthroughs or Compliance Readiness Visits. ═══ */}
-      <section
-        className="py-16 md:py-20 border-b"
-        style={{ background: '#f5f4f0', borderColor: '#dde3ea' }}
-        data-testid="home-product-discovery-strip"
-      >
-        <div className="container max-w-6xl">
-          <Reveal>
-            <p
-              className="uppercase font-bold mb-3"
-              style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10.5px', letterSpacing: '0.18em', color: '#2A52A0' }}
-              data-testid="home-product-discovery-eyebrow"
-            >
-              GigLine Tools
-            </p>
-            <h2
-              className="text-2xl md:text-[34px] font-bold text-[#1C2B2B] leading-tight mb-3 max-w-3xl tracking-tight"
-              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
-              data-testid="home-product-discovery-headline"
-            >
-              Build the control your team can run.
+            <h2 id="final-cta-heading" className="text-3xl md:text-4xl font-bold text-white leading-tight mb-6">
+              Know what requires attention before an inspection, incident, or customer demand
+              forces the issue.
             </h2>
-            <div className="mb-6" style={{ width: '48px', height: '3px', background: '#C9A84C', borderRadius: '2px' }} />
-            <p
-              className="text-[15px] md:text-[16.5px] text-[#1C2B2B]/70 leading-[1.75] max-w-3xl mb-10"
-              data-testid="home-product-discovery-body"
-            >
-              GigLine tools help operations turn safety expectations into assigned ownership, usable records, corrective-action follow-up, and retrievable proof.
+            <p className="text-base md:text-lg text-slate-200 leading-relaxed mb-8 max-w-2xl mx-auto">
+              Start with a coordinated review of the floor and documentation. GigLine will confirm
+              the scope, price, preparation requirements, and scheduling details before the work
+              begins.
             </p>
-          </Reveal>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6" data-testid="home-product-discovery-grid">
-            {[
-              {
-                key: 'kits',
-                title: 'GigLine Compliance Control Kit Series',
-                price: '$150–$600',
-                copy: 'For a specific safety-control gap such as PIT, HazCom, LOTO, incident response, or new-hire records.',
-                ctaLabel: 'Explore Control Kits',
-                to: '/citation-proof-kits',
-                image: '/card-citation-proof-kits.jpg',
-                imageAlt: 'Navy hardcover safety-compliance binder with color-coded index tabs and a tablet showing a Safety Checklist on a wooden industrial workbench, with a warehouse aisle and forklift softly blurred in the background, GigLine GigLine Compliance Control Kit Series editorial product photograph',
-                overlayEyebrow: 'Kit Series',
-                overlayName: 'Compliance Control',
-              },
-              {
-                key: 'supervisor',
-                title: 'Supervisor Safety OS',
-                price: 'From $600',
-                copy: 'For supervisors and operations leaders who need a practical system for running daily safety responsibility.',
-                ctaLabel: 'Explore Supervisor Safety OS',
-                to: '/supervisor-kit',
-                image: '/card-supervisor-safety-os.jpg',
-                imageAlt: 'Operations supervisor in a manufacturing facility holding a clipboard and tablet, performing a routine floor inspection with a forklift and machinists softly blurred in the background, GigLine Supervisor Safety OS editorial product photograph',
-                overlayEyebrow: 'Operating System',
-                overlayName: 'Supervisor Safety',
-              },
-              {
-                key: 'hazcom',
-                title: 'HazCom Starter Pack',
-                price: '$29',
-                copy: 'A practical first step for getting basic chemical and SDS organization under control.',
-                ctaLabel: 'Start With HazCom',
-                to: '/hazcom-starter-pack',
-                image: '/card-hazcom-starter-pack.jpg',
-                imageAlt: 'Yellow SDS binder with labeled chemical containers, printed Hazard Communication checklist, safety glasses, and gloves organized on an industrial shop workbench, GigLine HazCom Starter Pack editorial product photograph',
-                overlayEyebrow: 'Starter Pack',
-                overlayName: 'HazCom',
-              },
-            ].map((card, i) => (
-              <Reveal key={card.key} delay={i * 90}>
-                <div
-                  className="h-full flex flex-col rounded-xl bg-white overflow-hidden transition-all hover:-translate-y-0.5"
-                  style={{
-                    border: '1px solid #dde3ea',
-                    borderTop: '3px solid #C9A84C',
-                  }}
-                  data-testid={`home-product-discovery-card-${card.key}`}
-                >
-                  <div
-                    className="relative w-full overflow-hidden"
-                    style={{ aspectRatio: '16 / 9', background: '#102A43' }}
-                    data-testid={`home-product-discovery-card-${card.key}-image-wrap`}
-                  >
-                    <img
-                      src={card.image}
-                      alt={card.imageAlt}
-                      loading="lazy"
-                      width="1600"
-                      height="900"
-                      className="w-full h-full object-cover block"
-                      data-testid={`home-product-discovery-card-${card.key}-image`}
-                    />
-                    {/* Design-layer branded product label overlay */}
-                    <div
-                      className="absolute left-3 top-3 md:left-4 md:top-4 rounded-md backdrop-blur-sm"
-                      style={{
-                        background: 'rgba(16,42,67,0.86)',
-                        borderLeft: '3px solid #C9A84C',
-                        padding: '6px 10px 7px 10px',
-                        maxWidth: '70%',
-                      }}
-                      data-testid={`home-product-discovery-card-${card.key}-overlay`}
-                    >
-                      <p
-                        className="uppercase font-bold text-white/70 leading-none mb-0.5"
-                        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8.5px', letterSpacing: '0.16em' }}
-                      >
-                        {card.overlayEyebrow}
-                      </p>
-                      <p
-                        className="font-bold text-[#C9A84C] leading-tight"
-                        style={{ fontFamily: "Georgia, serif", fontSize: '13px' }}
-                      >
-                        {card.overlayName}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="p-6 flex flex-col flex-1">
-                    <h3
-                      className="text-[19px] md:text-[20px] font-bold text-[#102A43] leading-snug mb-1"
-                      style={{ fontFamily: "Georgia, serif" }}
-                      data-testid={`home-product-discovery-card-${card.key}-title`}
-                    >
-                      {card.title}
-                    </h3>
-                    <p
-                      className="mb-3 text-[13px] font-semibold text-[#1C2B2B]/70"
-                      style={{ fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.04em' }}
-                      data-testid={`home-product-discovery-card-${card.key}-price`}
-                    >
-                      {card.price}
-                    </p>
-                    <p className="text-[14.5px] text-[#1C2B2B]/75 leading-[1.65] mb-5 flex-1">
-                      {card.copy}
-                    </p>
-                    <Link
-                      to={card.to}
-                      className="inline-flex items-center gap-1.5 font-semibold text-[14px] text-[#2A52A0] hover:text-[#102A43] transition-colors self-start"
-                      data-testid={`home-product-discovery-card-${card.key}-cta`}
-                    >
-                      {card.ctaLabel}
-                      <ArrowRight size={15} />
-                    </Link>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal delay={320}>
-            <p
-              className="italic text-[13px] md:text-[14px] text-[#1C2B2B]/55 mt-8 max-w-3xl leading-relaxed"
-              data-testid="home-product-discovery-footnote"
-            >
-              Tools support control and evidence organization. They do not replace a Safety Walkthrough, Documentation Readiness Review, or Compliance Readiness Visit for facilities that need a professional review.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ═══ FIND → PRIORITIZE → BUILD → MAINTAIN journey ═══ */}
-      <FindBuildMaintainJourney variant="light" />
-
-      {/* ═══ SECTION 2, WHAT WE FIND ON THE FLOOR (GL-WEB-008) ═══ */}
-      <section className="py-20 md:py-24 bg-white border-t border-b" style={{ borderColor: '#dde3ea' }} data-testid="floor-findings-section">
-        <div className="container max-w-6xl">
-          <Reveal>
-            <p className="uppercase tracking-[0.18em] text-[#2A52A0] font-semibold mb-3" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }} data-testid="floor-findings-eyebrow">
-              What We Find on the Floor
-            </p>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#1C2B2B] leading-[1.15] mb-4 max-w-3xl">
-              Most violations are hiding in plain sight.
-            </h2>
-            <p className="text-base text-[#1C2B2B]/70 leading-relaxed mb-12 max-w-3xl">
-              OSHA doesn&apos;t find things your team missed. They find things your team stopped seeing. Here&apos;s what shows up on almost every walkthrough.
-            </p>
-          </Reveal>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10">
-            {[
-              { num: '01', title: 'Incomplete LOTO Procedures', body: 'Machine-specific written procedures missing or not posted at the point of use. One of the most cited serious violations in manufacturing \u2014 and one of the easiest to correct before an inspection.', image: '/floor-findings/loto-tag.webp', alt: 'A red lockout/tagout padlock and DANGER DO NOT OPERATE tag signed and dated by a maintenance worker on industrial equipment' },
-              { num: '02', title: 'Forklift & PIT Gaps', body: 'Expired operator certifications, missing pre-shift inspection logs, and unmarked pedestrian zones. These show up on nearly every floor we walk.', image: '/floor-findings/forklift-pit.webp', alt: 'A warehouse aisle with a forklift showing an expired operator certification sticker and a pre-shift inspection station with no forms available' },
-              { num: '03', title: 'Hazard Communication Failures', body: 'SDSs not accessible at point of use, unlabeled secondary containers, and training records that don\u2019t match the chemical inventory. OSHA\u2019s most frequently cited standard.', image: '/floor-findings/hazcom-sds.webp', alt: 'A worker stands puzzled in front of a wall-mounted HazCom training log, chemical inventory list, and empty Safety Data Sheets binder beside a bench of unlabeled spray bottles and chemical containers' },
-              { num: '04', title: 'Electrical Hazard Exposures', body: 'Open junction boxes, missing knockouts, and energized equipment without proper guarding. Often overlooked because they\u2019ve been that way for years.', image: '/floor-findings/electrical-junction.webp', alt: 'An open electrical junction box with exposed wires and missing knockouts, partially blocked by stacked cardboard inventory boxes against a wooden wall' },
-              { num: '05', title: 'Blocked or Unmarked Egress', body: 'Exit routes obstructed by inventory, emergency lighting not tested, and exit signs missing or burned out. Simple to fix. Expensive to ignore.', image: '/floor-findings/blocked-egress.webp', alt: 'A warehouse exit corridor with shrink-wrapped pallets stacked directly in front of an exit door, the exit sign and emergency lighting fixture above the doorway obscured, between tall pallet racking and a yellow guard rail' },
-              { num: '06', title: 'Recordkeeping Deficiencies', body: 'OSHA 300 logs not current, 300A summaries not posted during the required February\u2013April window, and incident records that don\u2019t meet the retention standard.', image: '/floor-findings/recordkeeping.webp', alt: 'A safety coordinator reviewing an OSHA 300 log at a desk stacked with old incident report binders labeled by year and a paper stack marked INCOMPLETE, beneath a Safety Postings corkboard with Job Safety and Health poster and Emergency Action Plan forms' },
-            ].map((c, i) => (
-              <Reveal key={c.num} delay={i * 70}>
-                <div className="flex flex-col" data-testid={`floor-finding-${c.num}`}>
-                  {c.image && (
-                    <div
-                      className="mb-5 overflow-hidden rounded-lg"
-                      style={{ aspectRatio: '16 / 10', border: '1px solid #dde3ea' }}
-                      data-testid={`floor-finding-image-${c.num}`}
-                    >
-                      <img src={c.image}
-                        alt={c.alt}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                        width="800"
-                        height="500" />
-                    </div>
-                  )}
-                  <span
-                    className="font-bold mb-3"
-                    style={{ ...mono, fontSize: '13px', letterSpacing: '0.12em', color: '#2A52A0' }}
-                  >
-                    {c.num}
-                  </span>
-                  <h3 className="text-lg md:text-xl font-bold text-[#1C2B2B] leading-tight mb-3">{c.title}</h3>
-                  <p className="text-[15px] text-[#1C2B2B]/70 leading-[1.65]">{c.body}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal>
-            <p className="text-sm text-[#1C2B2B]/55 italic mt-12 max-w-3xl">
-              These are findings from real walkthroughs, not a checklist from a textbook. Every facility is different.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ═══ RECENT ENGAGEMENT, compact proof block (GL-WEB-020) ═══ */}
-      {/* Phase 2 Batch 2A.3: gated behind CASE_STUDY_PUBLIC. Hidden while owner
-          permission for public case-study promotion is not yet on file. */}
-      {CASE_STUDY_PUBLIC && (
-      <section className="py-12 md:py-16" style={{ backgroundColor: '#f5f4f0' }} data-testid="recent-engagement-section">
-        <div className="container max-w-5xl">
-          <Reveal>
-            <div
-              className="p-7 md:p-9 rounded-md"
-              style={{
-                background: '#102A43',
-                borderLeft: '4px solid #C9A84C',
-                color: 'white',
-              }}
-              data-testid="recent-engagement-card"
-            >
-              <p
-                className="uppercase font-bold mb-4"
-                style={{
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: '10.5px',
-                  letterSpacing: '0.20em',
-                  color: '#C9A84C',
-                }}
-              >
-                Recent Engagement
-              </p>
-              <p className="text-base md:text-lg leading-[1.7] text-white/90 mb-5 max-w-3xl">
-                Small metal fabrication operation. North Carolina. 13 findings identified across machine guarding, compressed gas storage, and documentation gaps. 12 of 13 corrective actions closed within 4 days of the walkthrough. One remained open at the reporting point. Anonymized example, not a guaranteed or typical outcome.
-              </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
               <Link
-                to="/case-study/metal-fabrication-readiness"
-                className="inline-flex items-center gap-2 font-semibold text-[#C9A84C] hover:text-white transition-colors"
-                style={{ fontSize: '15px' }}
-                data-testid="recent-engagement-cta"
+                to="/intake?service=compliance-readiness-visit"
+                onClick={() => handlePrimaryCta('final-cta')}
+                className="inline-flex items-center justify-center gap-2 min-h-[48px] px-8 py-3 rounded-md font-semibold text-base focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-400/60"
+                style={{ backgroundColor: GOLD, color: NAVY_DEEP }}
+                data-testid="final-cta-primary"
               >
-                See what a walkthrough actually finds →
+                Request a Compliance Readiness Visit
+                <ArrowRight size={18} aria-hidden="true" />
               </Link>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-      )}
-
-      <RecommendationEntryCard source="homepage" />
-
-      {/* ═══ SECTION 2, WHY GIGLINE ═══ */}
-      <section className="py-20 md:py-24" style={{ backgroundColor: '#f5f4f0' }} data-testid="why-gigline-section">
-        <div className="container max-w-6xl">
-          <Reveal>
-            <p className="uppercase font-bold mb-6" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', letterSpacing: '0.2em', color: '#2A52A0' }}>
-              Why GigLine
-            </p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#1C2B2B] leading-[1.1] mb-12 max-w-4xl tracking-tight">
-              Not a software tool. Not a template audit. A person who walks your floor.
-            </h2>
-          </Reveal>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
-            {[
-              {
-                kicker: 'Fixed Pricing',
-                Icon: ShieldCheck,
-                title: 'Fixed Quote. No Surprises.',
-                body: 'You know the price before we schedule. No hourly billing, no scope creep, no invoice you weren\u2019t expecting. Every engagement is quoted in advance and held.',
-              },
-              {
-                kicker: 'Confidentiality',
-                Icon: Shield,
-                title: 'Private by Default.',
-                body: 'Client information is handled confidentially. GigLine does not publicly identify clients or publish site-specific materials without permission. Any approved examples are anonymized.',
-                featured: true,
-              },
-              {
-                kicker: 'Floor Experience',
-                Icon: Factory,
-                title: 'Built on the Floor, Not in a Classroom.',
-                body: 'Vince Lawrence spent years inside manufacturing operations \u2014 glass and vinyl, rubber compounding, metals fabrication. He learned what OSHA looks for by doing Gemba walks, not by reading about them.',
-              },
-            ].map((c, i) => (
-              <Reveal key={c.kicker} delay={i * 90}>
-                <div
-                  className="h-full p-8 flex flex-col bg-white"
-                  style={{
-                    border: c.featured ? '2px solid #2A52A0' : '1px solid #dde3ea',
-                    borderRadius: '16px',
-                    boxShadow: c.featured ? '0 4px 12px -4px rgba(42,82,160,0.15)' : '0 1px 0 rgba(28,43,43,0.02)',
-                  }}
-                  data-testid={`why-gigline-card-${i + 1}`}
-                >
-                  <div
-                    className="mb-5 flex items-center justify-center"
-                    style={{
-                      width: '48px',
-                      height: '48px',
-                      borderRadius: '50%',
-                      backgroundColor: c.featured ? 'rgba(42,82,160,0.10)' : 'rgba(28,43,43,0.06)',
-                    }}
-                  >
-                    <c.Icon size={22} strokeWidth={1.75} style={{ color: c.featured ? '#2A52A0' : '#6b7280' }} />
-                  </div>
-                  <p
-                    className="uppercase font-semibold mb-3"
-                    style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', letterSpacing: '0.16em', color: c.featured ? '#2A52A0' : '#6b7280' }}
-                  >
-                    {c.kicker}
-                  </p>
-                  <h3 className="text-lg md:text-xl font-bold text-[#1C2B2B] leading-snug mb-3">{c.title}</h3>
-                  <p className="text-[15px] text-[#6b7280] leading-[1.65]">{c.body}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          {/* AI / Template warning block */}
-          <Reveal delay={350}>
-            <div
-              className="mt-12 md:mt-14 p-7 md:p-8"
-              style={{
-                background: '#102A43',
-                borderLeft: '4px solid #c8922a',
-                borderRadius: '0 8px 8px 0',
-              }}
-              data-testid="ai-warning-block"
-            >
-              <p
-                className="uppercase font-bold mb-3"
-                style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', letterSpacing: '0.18em', color: '#c8922a' }}
-              >
-                The Template Trap
-              </p>
-              <p className="text-[15px] md:text-base text-white/85 leading-[1.7] max-w-4xl">
-                We&apos;re seeing more written programs built with AI and templates, but without floor context, they create false confidence. A written program can come from a template or ChatGPT. Exposure still shows up on the floor.{' '}
-                <span className="text-white font-semibold">This is not a full audit. It is a signal.</span>
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-
-      {/* ═══ SECTION 4, COST OF WAITING (GL-WEB-008) ═══ */}
-      <section className="py-20 md:py-24 bg-white border-t" style={{ borderColor: '#dde3ea' }} data-testid="cost-of-waiting-section">
-        <div className="container max-w-6xl">
-          <Reveal>
-            <p className="uppercase font-bold mb-3" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', letterSpacing: '0.2em', color: '#8B2500' }} data-testid="cost-eyebrow">
-              The Cost of Waiting
-            </p>
-
-            <div
-              className="mb-8 max-w-3xl"
-              style={{
-                fontFamily: "Georgia, 'Times New Roman', serif",
-                fontStyle: 'italic',
-                fontSize: 'clamp(22px, 2.8vw, 32px)',
-                lineHeight: 1.35,
-                color: '#8B2500',
-              }}
-              data-testid="cost-standout-line"
-            >
-              <p>Safety becomes the thing you will get to.</p>
-              <p>OSHA does not wait for you to get to it.</p>
-            </div>
-
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#1C2B2B] leading-[1.15] mb-4 max-w-4xl tracking-tight">
-              A serious OSHA violation can cost up to $16,550 per citation.
-            </h2>
-            <p className="text-base md:text-lg text-[#1C2B2B]/70 leading-relaxed mb-12 max-w-3xl">
-              That&apos;s per citation. A single inspection can produce multiple citations across multiple standards. The Safety Walkthrough starts at $1,300.
-            </p>
-          </Reveal>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-12">
-            {[
-              { stat: '$16,550', label: 'Max. OSHA serious violation (2026)' },
-              { stat: '$165,514', label: 'Max penalty per willful or repeat violation' },
-              { stat: '48 hrs', label: 'Time from walkthrough to written report' },
-            ].map((s, i) => (
-              <Reveal key={s.label} delay={i * 100}>
-                <div
-                  className="p-7 md:p-8 h-full"
-                  style={{
-                    background: '#f5f4f0',
-                    borderTop: '3px solid #8B2500',
-                    borderRadius: '16px',
-                  }}
-                  data-testid={`cost-stat-${i + 1}`}
-                >
-                  <p
-                    className="font-extrabold mb-3 text-[#1C2B2B] leading-none tracking-tight"
-                    style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 'clamp(36px, 5vw, 52px)' }}
-                    data-testid={`cost-stat-${i + 1}-value`}
-                  >
-                    {s.stat}
-                  </p>
-                  <p className="text-sm md:text-[15px] text-[#1C2B2B]/70 leading-snug">{s.label}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal>
-            <p className="text-base md:text-lg text-[#1C2B2B]/80 leading-[1.75] max-w-4xl">
-              OSHA doesn&apos;t announce inspections. They arrive after a complaint, a referral, or a fatality, or as part of a programmed inspection targeting your industry. By the time they&apos;re on your floor, the window to fix things has closed.{' '}
-              <span className="font-semibold text-[#1C2B2B]">The walkthrough is that window.</span>
-            </p>
-          </Reveal>
-
-          {/* Concrete scenario, anchored to the anonymized NC metal fabrication case study */}
-          <Reveal>
-            <div
-              className="mt-10 p-7 md:p-8 max-w-4xl"
-              style={{
-                background: '#102A43',
-                borderLeft: '4px solid #c8922a',
-                borderRadius: '12px',
-                color: 'white',
-              }}
-              data-testid="cost-scenario"
-            >
-              <p
-                className="uppercase font-bold mb-3"
-                style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10.5px', letterSpacing: '0.22em', color: '#c8922a' }}
-              >
-                What That Looks Like
-              </p>
-              <p className="text-[15.5px] md:text-[17px] leading-[1.7] text-white/85" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
-                A small metal fabrication operation in North Carolina. One combined walkthrough and documentation review. <strong className="text-white">13 findings identified.</strong> Seven carried serious-citation risk, up to <strong className="text-white">$16,550 per finding</strong> under the 2026 OSHA maximum penalty schedule. One inspection visit could have stacked those into <strong className="text-white">six figures of penalty exposure</strong>. The corrective action plan closed <strong className="text-white">twelve of thirteen findings inside four days</strong>. One remained open at the reporting point.
-              </p>
-              {CASE_STUDY_PUBLIC && (
               <Link
-                to="/case-study/metal-fabrication-readiness"
-                className="inline-flex items-center gap-1.5 mt-5 font-semibold text-sm transition-colors"
-                style={{ color: '#c8922a', fontFamily: "'JetBrains Mono', monospace" }}
-                data-testid="cost-scenario-cta"
+                to={secondary.to}
+                onClick={() => handleSecondaryCta('final-cta')}
+                className="inline-flex items-center gap-2 text-[15px] font-semibold text-white/90 hover:text-white underline underline-offset-4"
+                data-testid="final-cta-secondary"
               >
-                Read the engagement &rarr;
+                {RECOMMENDATION_ROUTER_ENABLED ? 'Find My Starting Point' : 'Compare Services'}
               </Link>
-              )}
             </div>
+            {/* CASE_STUDY_PUBLIC gated: intentionally no promotional case-study link */}
+            {CASE_STUDY_PUBLIC && null}
           </Reveal>
         </div>
       </section>
-
-      {/* ═══ SECTION 5, SERVICES SNAPSHOT (GL-WEB-008) ═══ */}
-      <section className="py-16 md:py-24" style={{ backgroundColor: '#f5f4f0' }} data-testid="services-section">
-        <div className="container max-w-6xl">
-          <Reveal>
-            <p className="uppercase font-bold mb-3" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', letterSpacing: '0.2em', color: '#2A52A0' }}>
-              Services
-            </p>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#1C2B2B] leading-[1.15] mb-4 max-w-3xl tracking-tight">
-              Four ways to work with GigLine.
-            </h2>
-            <p className="text-base md:text-lg text-[#1C2B2B]/70 leading-relaxed mb-8 max-w-3xl">
-              Every engagement starts with a conversation. If we&apos;re not the right fit, we&apos;ll tell you.
-            </p>
-            <div
-              className="flex flex-col sm:flex-row sm:items-center gap-3 mb-12 py-4 px-4 max-w-4xl"
-              style={{ borderTop: '1px solid rgba(10,22,40,0.12)', borderBottom: '1px solid rgba(10,22,40,0.12)' }}
-              data-testid="home-services-selector-band"
-            >
-              <div className="flex-1">
-                <p className="uppercase font-bold mb-1" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10.5px', letterSpacing: '0.22em', color: '#C9A84C' }}>
-                  Not sure whether the gap is on the floor, in the files, or both?
-                </p>
-                <p className="text-[14.5px] md:text-[15.5px] italic leading-[1.6]" style={{ fontFamily: "Georgia, 'Times New Roman', serif", color: 'rgba(10,22,40,0.72)' }}>
-                  Answer three floor-level questions. We&rsquo;ll point you at the right assessment.
-                </p>
-              </div>
-              <button
-                type="button"
-                onClick={() => setHomeSelectorOpen(true)}
-                className="inline-flex items-center gap-2 font-bold py-3 px-6 whitespace-nowrap"
-                style={{ background: '#C9A84C', color: '#102A43', fontFamily: "'Manrope', sans-serif", fontSize: '14px' }}
-                data-testid="home-find-assessment-cta"
-              >
-                Find the Right Assessment <ChevronRight size={15} />
-              </button>
-            </div>
-          </Reveal>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-7 mb-12" data-testid="home-services-grid">
-            {[
-              {
-                Icon: ClipboardList,
-                title: 'Safety Walkthrough',
-                price: 'Starting at $1,300',
-                body: 'A documented on-site walkthrough of your facility. Photo-evidenced findings, prioritized fixes, and a written report delivered within 48 hours. Best for operations that primarily want fresh eyes on what is happening on the floor.',
-                outcome: 'You leave with: a written report you can hand to a supervisor and a prioritized fix list.',
-                cta: { label: 'Request a Walkthrough', to: '/intake?service=safety-walkthrough-report' },
-                testid: 'home-service-walkthrough',
-              },
-              {
-                Icon: FileText,
-                title: 'Documentation Readiness Review',
-                price: 'Starting at $1,700',
-                body: 'A structured review of your safety documentation and evidence. Baseline scope covers one facility, up to five core categories, up to 25 uploaded files, and one findings-review call. Best when the floor may be under control but the records need checking.',
-                outcome: 'You leave with: a prioritized list of documentation gaps and the corrective-action sequence to close them.',
-                cta: { label: 'Request a Documentation Review', to: '/intake?service=documentation-readiness-review' },
-                testid: 'home-service-doc-review',
-              },
-              {
-                Icon: Shield,
-                title: 'Compliance Readiness Visit',
-                price: 'Starting at $2,500',
-                body: 'The Safety Walkthrough combined with the Documentation Readiness Review in a single engagement. Best when you don\u2019t know whether the priority gaps are on the floor, in the documentation, or both.',
-                outcome: 'You leave with: floor and documentation findings, a prioritized corrective-action list, and a 30-day roadmap.',
-                cta: { label: 'Request a Compliance Readiness Visit', to: '/intake?service=compliance-readiness-visit' },
-                featured: true,
-                badge: 'BEST VALUE',
-                testid: 'home-service-readiness-visit',
-              },
-              {
-                Icon: CheckCircle2,
-                title: 'Safety Check',
-                price: 'Free',
-                body: 'Not sure where to start? A free 90-second self-assessment covering the most common OSHA exposures in general industry. No contact information required.',
-                outcome: 'You leave with: a personalized exposure score and a short list of the gaps most worth checking on your floor.',
-                cta: { label: 'Take the Safety Check', to: '/safety-check' },
-                testid: 'home-service-safety-check',
-              },
-            ].map((s, i) => (
-              <Reveal key={s.title} delay={i * 100}>
-                <div
-                  className="relative h-full bg-white flex flex-col"
-                  style={{
-                    border: s.featured ? '2px solid #2A52A0' : '1px solid #dde3ea',
-                    borderRadius: '16px',
-                    padding: s.featured ? '44px 32px 36px' : '36px 32px',
-                    boxShadow: s.featured ? '0 4px 12px -4px rgba(31,111,235,0.18)' : '0 1px 0 rgba(28,43,43,0.02)',
-                  }}
-                  data-testid={s.testid}
-                >
-                  {s.featured && (
-                    <span
-                      className="absolute uppercase font-bold"
-                      style={{
-                        top: 0,
-                        left: '50%',
-                        transform: 'translate(-50%, -50%)',
-                        background: '#102A43',
-                        color: '#fff',
-                        fontSize: '10.5px',
-                        letterSpacing: '0.14em',
-                        padding: '8px 18px',
-                        borderRadius: '999px',
-                        whiteSpace: 'nowrap',
-                        fontFamily: "'JetBrains Mono', monospace",
-                      }}
-                    >
-                      {s.badge}
-                    </span>
-                  )}
-
-                  <div
-                    className="mb-7 flex items-center justify-center"
-                    style={{
-                      width: '52px',
-                      height: '52px',
-                      borderRadius: '50%',
-                      background: s.featured ? 'rgba(31,111,235,0.10)' : 'rgba(28,43,43,0.05)',
-                    }}
-                  >
-                    <s.Icon size={22} strokeWidth={1.75} style={{ color: s.featured ? '#2A52A0' : '#1C2B2B' }} />
-                  </div>
-
-                  <h3 className="text-lg md:text-xl font-bold text-[#1C2B2B] mb-1 leading-tight">{s.title}</h3>
-                  <p
-                    className="font-bold mb-4"
-                    style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '15px', color: s.featured ? '#2A52A0' : '#1C2B2B', letterSpacing: '-0.01em' }}
-                    data-testid={`${s.testid}-price`}
-                  >
-                    {s.price}
-                  </p>
-                  <p className="text-[14px] text-[#1C2B2B]/65 leading-[1.65] mb-4 flex-grow">{s.body}</p>
-
-                  {s.outcome && (
-                    <p
-                      className="mb-6 px-3 py-2.5 text-[13px] leading-[1.5] rounded"
-                      style={{
-                        background: s.featured ? 'rgba(31,111,235,0.06)' : 'rgba(28,43,43,0.035)',
-                        borderLeft: `2px solid ${s.featured ? '#2A52A0' : '#c8922a'}`,
-                        color: '#1C2B2B',
-                        fontFamily: "Georgia, 'Times New Roman', serif",
-                        fontStyle: 'italic',
-                      }}
-                      data-testid={`${s.testid}-outcome`}
-                    >
-                      {s.outcome}
-                    </p>
-                  )}
-
-                  <Link
-                    to={s.cta.to}
-                    className="inline-flex items-center gap-1.5 text-[#2A52A0] hover:text-[#1F3F80] font-semibold self-start transition-colors"
-                    style={{ fontSize: '14px' }}
-                  >
-                    {s.cta.label} <ArrowRight size={14} />
-                  </Link>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal>
-            <p
-              className="text-sm md:text-[15px] italic text-[#1C2B2B]/65 mb-6 max-w-3xl text-center mx-auto leading-relaxed"
-              data-testid="home-services-savings-note"
-            >
-              At the standard starting scope, the Safety Walkthrough and Documentation Readiness Review total $3,000 when purchased separately. The combined Compliance Readiness Visit starts at $2,500, a $500 combined-service savings.
-            </p>
-            <p className="text-sm text-[#1C2B2B]/60 italic mb-8 max-w-3xl text-center mx-auto">
-              Incident review, document development, ongoing compliance partnerships, and OSHA-ready control systems are also available.
-            </p>
-            <div className="flex justify-center">
-              <Link
-                to="/services"
-                className="inline-flex items-center gap-2 font-semibold transition-colors"
-                style={{
-                  color: '#2A52A0',
-                  border: '1.5px solid #2A52A0',
-                  padding: '12px 24px',
-                  borderRadius: '4px',
-                  fontSize: '14px',
-                }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = '#2A52A0'; e.currentTarget.style.color = '#fff'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#2A52A0'; }}
-              >
-                See full services &amp; pricing
-              </Link>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ═══ SAMPLE REPORT CTA BAND, secondary download cross-sell ═══ */}
-      <section
-        className="py-12 md:py-16"
-        style={{ backgroundColor: '#F9F8F6', borderTop: '1px solid rgba(28,43,43,0.08)' }}
-        data-testid="home-sample-report-band"
-      >
-        <div className="container max-w-4xl">
-          <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-start md:items-center justify-between">
-            <div>
-              <p
-                className="uppercase font-bold tracking-[0.22em] mb-2"
-                style={{ color: '#2A52A0', fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }}
-              >
-                Free Sample
-              </p>
-              <h2
-                className="font-bold leading-tight text-[#1C2B2B] mb-2 text-[22px] md:text-[26px]"
-                style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
-              >
-                Want to see what a report looks like before you schedule?
-              </h2>
-              <p className="text-[15px] md:text-base text-[#1C2B2B]/65 leading-relaxed max-w-2xl">
-                Download a redacted compliance report, findings, CFR citations, penalty exposure, and the prioritized fix list. Real engagement, facility name removed.
-              </p>
-            </div>
-            <Link
-              to="/sample-report"
-              className="inline-flex items-center justify-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-semibold px-6 py-3.5 rounded transition-colors whitespace-nowrap text-sm md:text-base"
-              data-testid="home-sample-report-cta"
-            >
-              Download a Sample Report &rarr;
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ OSHA GUIDES BAND, pillar-content hub cross-sell ═══ */}
-      <section
-        className="py-16 md:py-20 bg-white border-t"
-        style={{ borderColor: '#dde3ea' }}
-        data-testid="home-guides-band"
-      >
-        <div className="container max-w-5xl">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
-            <div>
-              <p className="uppercase font-bold tracking-[0.22em] mb-2" style={{ color: '#2A52A0', fontFamily: "'JetBrains Mono', monospace", fontSize: '11px' }}>OSHA Compliance Guides</p>
-              <h2 className="font-bold leading-tight text-[#1C2B2B] text-[22px] md:text-[26px]" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
-                Long-form guides for the citations you&rsquo;re most likely to see.
-              </h2>
-            </div>
-            <Link to="/blog" className="text-sm font-semibold text-[#2A52A0] hover:text-[#1F3F80] transition-colors whitespace-nowrap inline-flex items-center gap-1.5" data-testid="home-guides-viewall">
-              View all guides <ArrowRight size={14} />
-            </Link>
-          </div>
-          <div className="grid md:grid-cols-3 gap-5">
-            {[
-              { slug: 'osha-300-log-common-mistakes-citations', topic: 'RECORDKEEPING', title: 'OSHA 300 Log: Common Mistakes That Trigger Citations', minutes: '11 min' },
-              { slug: 'osha-machine-guarding-checklist-small-manufacturers', topic: 'MACHINE GUARDING', title: 'OSHA Machine Guarding Checklist for Small Manufacturers', minutes: '11 min' },
-              { slug: 'osha-forklift-compliance-inspector-checklist', topic: 'FORKLIFT', title: 'OSHA Forklift Compliance: What Inspectors Actually Check', minutes: '10 min' },
-            ].map((g) => (
-              <Link key={g.slug} to={`/blog/${g.slug}`} className="group block" data-testid={`home-guide-${g.slug}`}>
-                <article className="bg-[#F9F8F6] border border-[#2A52A0]/10 rounded p-5 md:p-6 h-full flex flex-col hover:border-[#2A52A0]/40 hover:bg-white transition-all">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-[10px] font-semibold tracking-widest text-[#2A52A0] uppercase px-2 py-0.5 bg-[#2A52A0]/8 rounded" style={{ fontFamily: "'JetBrains Mono', monospace" }}>{g.topic}</span>
-                    <span className="text-[11px] text-[#1C2B2B]/40">{g.minutes} read</span>
-                  </div>
-                  <h3 className="text-[15px] font-bold text-[#1C2B2B] leading-snug mb-4 group-hover:text-[#1F3F80] transition-colors flex-grow" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>{g.title}</h3>
-                  <span className="text-xs font-semibold text-[#2A52A0] inline-flex items-center gap-1.5 group-hover:gap-2 transition-all mt-auto">Read the guide <ArrowRight size={12} /></span>
-                </article>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ WHAT HAPPENS ON THE DAY OF YOUR WALKTHROUGH ═══ */}
-      <WalkthroughDaySection variant="crv" surface="light" />
-
-      {/* ═══ SUPERVISOR KIT BAND, single-CTA cross-sell (gated by feature flag) ═══ */}
-      {SUPERVISOR_KIT_ENABLED && (
-      <section
-        className="py-16 md:py-20"
-        style={{
-          background: '#0A1628',
-          borderTop: '1px solid rgba(197,160,89,0.30)',
-          borderBottom: '1px solid rgba(197,160,89,0.30)',
-        }}
-        data-testid="home-kit-band"
-      >
-        <div className="container max-w-5xl">
-          <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 md:gap-12 items-center">
-            <div>
-              <p
-                className="uppercase font-bold tracking-[0.28em] mb-3"
-                style={{
-                  color: '#C5A059',
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: '11px',
-                }}
-                data-testid="home-kit-band-eyebrow"
-              >
-                GigLine Supervisor Safety OS
-              </p>
-              <h2
-                className="font-bold leading-tight tracking-tight mb-3 text-[24px] md:text-[30px] lg:text-[34px] text-white"
-                style={{ fontFamily: "'Manrope', sans-serif" }}
-                data-testid="home-kit-band-headline"
-              >
-                Need the documentation layer?
-              </h2>
-              <p
-                className="text-[15.5px] md:text-[17px] leading-[1.65] max-w-2xl"
-                style={{
-                  color: 'rgba(255,255,255,0.72)',
-                  fontFamily: "Georgia, 'Times New Roman', serif",
-                }}
-                data-testid="home-kit-band-body"
-              >
-                17 CFR-cited documents, written HazCom program, SDS index, training log, monthly inspection checklist, &ldquo;If OSHA Shows Up&rdquo; protocol. Use it before a walkthrough, or as the foundation after. <strong style={{ color: '#C5A059' }}>$600 digital &middot; $700 physical</strong>. Included free with every Compliance Readiness Visit.
-              </p>
-            </div>
-            <div className="flex-shrink-0 md:text-right">
-              <Link
-                to="/supervisor-kit"
-                className="inline-flex items-center justify-center gap-2 font-bold py-3.5 px-7 transition-all text-[15px] whitespace-nowrap"
-                style={{
-                  background: '#C5A059',
-                  color: '#0A1628',
-                  fontFamily: "'Manrope', sans-serif",
-                }}
-                data-testid="home-kit-band-cta"
-              >
-                See the Kit &rarr;
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-      )}
-
-      {/* ═══ CITATION-PROOF KIT SERIES STRIP, always on, front-and-center for the 5-kit lineup ═══ */}
-      <section
-        className="py-16 md:py-20"
-        style={{
-          background: '#0A1628',
-          borderTop: '1px solid rgba(197,160,89,0.30)',
-          borderBottom: '1px solid rgba(197,160,89,0.30)',
-        }}
-        data-testid="home-kit-series-band"
-      >
-        <div className="container max-w-6xl">
-          <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-14 items-center">
-            {/* LEFT, copy */}
-            <div>
-              <p
-                className="uppercase font-bold tracking-[0.28em] mb-3 inline-flex items-center gap-2"
-                style={{
-                  color: '#C5A059',
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: '11px',
-                }}
-                data-testid="home-kit-series-eyebrow"
-              >
-                <span style={{ background: '#C5A059', color: '#0A1628', padding: '2px 8px', borderRadius: '3px', fontSize: '10px', letterSpacing: '0.14em' }}>NEW</span>
-                GigLine Compliance Control Kit Series
-              </p>
-              <h2
-                className="font-bold leading-[1.15] tracking-tight mb-4 text-[26px] md:text-[32px] lg:text-[36px] text-white"
-                style={{ fontFamily: "'Manrope', sans-serif" }}
-                data-testid="home-kit-series-headline"
-              >
-                Shelf-ready proof for the standards OSHA cites most.
-              </h2>
-              <p
-                className="text-[15.5px] md:text-[17px] leading-[1.7] mb-6"
-                style={{
-                  color: 'rgba(255,255,255,0.75)',
-                  fontFamily: "Georgia, 'Times New Roman', serif",
-                }}
-                data-testid="home-kit-series-body"
-              >
-                Three kits. Three tiers each. One goal: paperwork that survives an inspection.
-                <strong style={{ color: '#C5A059' }}> LOTO</strong>,{' '}
-                <strong style={{ color: '#C5A059' }}>Forklift/PIT</strong>, and{' '}
-                <strong style={{ color: '#C5A059' }}>HazCom Pro</strong> are shipping now,{' '}
-                <strong style={{ color: 'white' }}>$150 digital &middot; $300 control system &middot; $600 pre-printed binder</strong>.
-              </p>
-              <div className="flex flex-wrap gap-3 items-center">
-                <Link
-                  to="/citation-proof-kits"
-                  className="inline-flex items-center justify-center gap-2 font-bold py-3.5 px-7 transition-all text-[15px] whitespace-nowrap"
-                  style={{
-                    background: '#C5A059',
-                    color: '#0A1628',
-                    fontFamily: "'Manrope', sans-serif",
-                  }}
-                  data-testid="home-kit-series-cta"
-                >
-                  See the Kit Series &rarr;
-                </Link>
-                <Link
-                  to="/hazcom-starter-pack"
-                  className="inline-flex items-center justify-center gap-2 font-bold py-3.5 px-5 transition-all text-[13.5px] whitespace-nowrap border"
-                  style={{
-                    color: 'rgba(255,255,255,0.85)',
-                    borderColor: 'rgba(197,160,89,0.45)',
-                    fontFamily: "'Manrope', sans-serif",
-                  }}
-                  data-testid="home-kit-series-starter"
-                >
-                  Or start with the $29 HazCom Starter &rarr;
-                </Link>
-              </div>
-              <Link
-                to="/citation-cost-calculator"
-                className="inline-flex items-center gap-1.5 mt-5 text-[13px] transition-colors hover:opacity-100"
-                style={{
-                  color: 'rgba(197,160,89,0.85)',
-                  fontFamily: "'JetBrains Mono', monospace",
-                  letterSpacing: '0.06em',
-                }}
-                data-testid="home-kit-series-calc-link"
-              >
-                &rarr; Or estimate your OSHA exposure first, free calculator
-              </Link>
-            </div>
-
-            {/* RIGHT, 2 shipping-now kit chips */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4" data-testid="home-kit-series-chips">
-              {[
-                {
-                  slug: 'loto-readiness-kit',
-                  name: 'LOTO Readiness Kit',
-                  hook: 'Machine-specific procedures your team can follow and verify.',
-                  cfr: '29 CFR 1910.147',
-                },
-                {
-                  slug: 'forklift-pit-readiness-kit',
-                  name: 'Forklift / PIT Readiness Kit',
-                  hook: 'Know exactly who is cleared to operate which truck.',
-                  cfr: '29 CFR 1910.178',
-                },
-              ].map((k) => (
-                <Link
-                  key={k.slug}
-                  to={`/citation-proof-kits/${k.slug}`}
-                  className="block p-5 transition-all hover:translate-y-[-2px]"
-                  style={{
-                    background: 'rgba(255,255,255,0.04)',
-                    border: '1px solid rgba(197,160,89,0.35)',
-                    borderRadius: '12px',
-                  }}
-                  data-testid={`home-kit-series-chip-${k.slug}`}
-                >
-                  <p
-                    className="uppercase font-bold tracking-[0.18em] mb-2"
-                    style={{
-                      color: '#C5A059',
-                      fontFamily: "'JetBrains Mono', monospace",
-                      fontSize: '10px',
-                    }}
-                  >
-                    {k.cfr}
-                  </p>
-                  <h3
-                    className="font-bold text-white text-[15px] md:text-[16px] leading-[1.3] mb-2"
-                    style={{ fontFamily: "'Manrope', sans-serif" }}
-                  >
-                    {k.name}
-                  </h3>
-                  <p
-                    className="text-[13px] leading-[1.55]"
-                    style={{
-                      color: 'rgba(255,255,255,0.65)',
-                      fontFamily: "Georgia, 'Times New Roman', serif",
-                    }}
-                  >
-                    {k.hook}
-                  </p>
-                  <p
-                    className="mt-3 font-semibold text-[12px]"
-                    style={{ color: '#C5A059', fontFamily: "'Manrope', sans-serif" }}
-                  >
-                    Starting at $150 &rarr;
-                  </p>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-
-      {/* ═══ TESTIMONIALS + CASE STUDY + TRACK RECORD (relocated per spec, between Services and How It Works) ═══ */}
-      <section className="py-20 md:py-28" style={{ backgroundColor: '#102A43' }} data-testid="trust-section">
-        <div className={`container max-w-7xl grid grid-cols-1 gap-10 lg:gap-12 ${CASE_STUDY_PUBLIC ? 'lg:grid-cols-3' : 'lg:grid-cols-2'}`}>
-
-          {/* LEFT, What Clients Say */}
-          <div data-testid="reviews-column">
-            <p className="uppercase font-bold mb-8" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.55)' }}>What Clients Say</p>
-            {[
-              { text: 'They don\u2019t just point out issues \u2014 they understand how operations actually run and provide solutions that can be executed on the floor. Where they really stand out is in incident investigations. Their approach is disciplined and focused on true root cause.', name: 'Demar Archie', role: 'Warehouse Receiving Manager' },
-              { text: 'Most consultants show up with a binder and a checklist. Vince showed up in work boots and asked to see the press line first. Practical guy. Knows the floor. Report came back clear and short \u2014 the way it should.', name: 'David R.', role: 'Plant Manager, Small Manufacturer, Piedmont Triad' },
-            ].map((r, i) => (
-              <div key={r.name} className="p-7 mb-5" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.10)', borderRadius: '16px' }} data-testid={`review-card-${i + 1}`}>
-                <p className="mb-6" style={{ fontStyle: 'italic', fontFamily: "Georgia, 'Times New Roman', serif", fontSize: '17px', lineHeight: 1.6, color: 'rgba(255,255,255,0.92)' }}>&ldquo;{r.text}&rdquo;</p>
-                <p className="text-sm font-semibold" style={{ color: 'rgba(255,255,255,0.55)' }}>{r.name} , <span style={{ fontWeight: 400 }}>{r.role}</span></p>
-              </div>
-            ))}
-          </div>
-
-          {/* MIDDLE, Case Study, Phase 2 Batch 2A.3: gated behind CASE_STUDY_PUBLIC */}
-          {CASE_STUDY_PUBLIC && (
-          <div data-testid="case-study-column">
-            <p className="uppercase font-bold mb-8" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.55)' }}>Case Study</p>
-            <div className="p-8" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.10)', borderRadius: '16px' }}>
-              <h3 className="text-xl md:text-2xl font-bold text-white leading-tight mb-8">What a Safety Walkthrough Actually Finds.</h3>
-              {[
-                { label: 'Operation Size', value: '9 employees', highlight: false },
-                { label: 'GigLine Findings', value: '13 (7 serious · 6 docs)', highlight: false },
-                { label: 'Compliance Score', value: '80.3 / 100', highlight: true },
-              ].map((s, i) => (
-                <div key={s.label} className="flex items-center justify-between py-4" style={{ borderTop: i === 0 ? 'none' : '1px solid rgba(255,255,255,0.08)' }}>
-                  <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: '14px' }}>{s.label}</span>
-                  <span className="font-bold text-right" style={{ color: s.highlight ? '#22c55e' : '#fff', fontSize: '15px' }}>{s.value}</span>
-                </div>
-              ))}
-              <Link to="/case-study/metal-fabrication-readiness" className="inline-flex items-center gap-2 mt-6 font-semibold" style={{ color: '#2A52A0' }}>Read the full case study <ArrowRight size={14} /></Link>
-            </div>
-          </div>
-          )}
-
-          {/* RIGHT, Track Record */}
-          <div data-testid="track-record-column">
-            <p className="uppercase font-bold mb-8" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.55)' }}>The Track Record</p>
-            {[
-              { Icon: Star, title: '5.0 Google Review Rating', sub: 'Verified client reviews' },
-              { Icon: Anchor, title: 'U.S. Navy Veteran Owned', sub: 'Discipline. Accountability. Precision.' },
-              { Icon: Factory, title: '25+ Years Operations Leadership', sub: 'Glass, vinyl, manufacturing, distribution' },
-              { Icon: MapPin, title: 'Based in Kernersville, NC', sub: 'Serving the Piedmont Triad' },
-            ].map((c, i) => (
-              <div key={c.title} className="flex items-start gap-4 py-5" style={{ borderTop: i === 0 ? 'none' : '1px solid rgba(255,255,255,0.08)' }}>
-                <div className="flex items-center justify-center flex-shrink-0" style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(255,255,255,0.05)' }}>
-                  <c.Icon size={18} strokeWidth={1.5} style={{ color: 'rgba(255,255,255,0.65)' }} />
-                </div>
-                <div>
-                  <p className="font-bold text-white mb-1" style={{ fontSize: '15px' }}>{c.title}</p>
-                  <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: '13px' }}>{c.sub}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ SECTION 6, HOW IT WORKS (connected horizontal timeline) ═══ */}
-      <section className="py-16 md:py-24" style={{ backgroundColor: '#f5f4f0' }} data-testid="how-it-works-section">
-        <div className="container max-w-6xl">
-          <Reveal>
-            <p className="uppercase font-bold mb-3" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', letterSpacing: '0.2em', color: '#2A52A0' }}>
-              How It Works
-            </p>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#1C2B2B] leading-[1.15] mb-14 max-w-3xl tracking-tight">
-              Four steps. No surprises.
-            </h2>
-          </Reveal>
-
-          {(() => {
-            const steps = [
-              { n: '01', title: 'You reach out.', body: 'Fill out the intake form or call directly. Tell us your facility type, approximate square footage, and what\u2019s on your mind. No commitment required.' },
-              { n: '02', title: 'We give you a fixed quote.', body: 'Based on your facility size, complexity, and the scope of the engagement. You\u2019ll have a number before we schedule anything.' },
-              { n: '03', title: 'We walk your floor.', body: 'Vince comes to your facility. He walks every area, photographs findings, and documents what he sees against the applicable OSHA standards. Typically 1\u20133 hours on-site depending on facility size and complexity.', boldTail: 'Minimal disruption to production.' },
-              { n: '04', title: 'You get a written report in 48 hours.', body: 'Photo documentation, CFR citations, estimated penalty exposure based on OSHA published maximums, and a prioritized list of corrective actions. Yours to keep, act on, and share with your team.' },
-            ];
-            return (
-              <div className="relative mb-14" data-testid="how-it-works-timeline">
-                {/* Connecting line, desktop only, sits behind the circles */}
-                <div
-                  className="hidden md:block absolute"
-                  style={{
-                    top: '24px',
-                    left: '10%',
-                    right: '10%',
-                    height: '1px',
-                    background: 'rgba(28,43,43,0.18)',
-                    zIndex: 0,
-                  }}
-                />
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8 relative" style={{ zIndex: 1 }}>
-                  {steps.map((s, i) => (
-                    <Reveal key={s.n} delay={i * 100}>
-                      <div className="flex flex-col items-center text-center" data-testid={`how-step-${s.n}`}>
-                        {/* Numbered circle */}
-                        <div
-                          className="flex items-center justify-center mb-5"
-                          style={{
-                            width: '52px',
-                            height: '52px',
-                            borderRadius: '50%',
-                            background: '#102A43',
-                            color: '#fff',
-                            fontSize: '14px',
-                            fontWeight: 700,
-                            fontFamily: "'JetBrains Mono', monospace",
-                            letterSpacing: '0.05em',
-                            boxShadow: '0 6px 16px -8px rgba(28,43,43,0.5)',
-                          }}
-                        >
-                          {s.n}
-                        </div>
-                        <h3 className="text-base md:text-lg font-bold text-[#1C2B2B] mb-2 leading-snug">{s.title}</h3>
-                        <p className="text-[13.5px] text-[#1C2B2B]/65 leading-[1.6] max-w-[230px]">
-                          {s.body}
-                          {s.boldTail && (
-                            <>
-                              {' '}
-                              <strong className="text-[#1C2B2B] font-semibold">{s.boldTail}</strong>
-                            </>
-                          )}
-                        </p>
-                      </div>
-                    </Reveal>
-                  ))}
-                </div>
-              </div>
-            );
-          })()}
-
-          <Reveal>
-            <div className="flex justify-center">
-              <Link
-                to="/intake"
-                className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold transition-colors"
-                style={{ padding: '13px 28px', borderRadius: '4px', fontSize: '14px', boxShadow: '0 10px 24px -10px rgba(31,111,235,0.55)' }}
-                data-testid="how-it-works-cta"
-              >
-                Request a Walkthrough <ArrowRight size={15} />
-              </Link>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ═══ LATEST FROM THE FIELD, 3 recent Field Notes + Mid-Year 2026 blog ═══ */}
-      <section
-        className="py-16 md:py-24 bg-white border-t"
-        style={{ borderColor: '#e8e5dd' }}
-        data-testid="latest-from-field-section"
-      >
-        <div className="container max-w-6xl mx-auto px-5 md:px-8">
-          <Reveal>
-            <p
-              className="uppercase font-bold tracking-[0.28em] mb-3"
-              style={{ color: '#C9A84C', ...mono, fontSize: '11px' }}
-            >
-              Latest From the Field
-            </p>
-            <h2
-              className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#102A43] leading-[1.15] mb-3 tracking-tight"
-              style={heading}
-            >
-              What Vince is seeing on Piedmont Triad floors right now.
-            </h2>
-            <p
-              className="text-base md:text-[17px] leading-relaxed max-w-2xl mb-12"
-              style={{ color: 'rgba(10,22,40,0.65)', fontFamily: "Georgia, serif" }}
-            >
-              Plain-language field notes and mid-year updates, no fluff, no fear-mongering, no consultant-speak.
-            </p>
-          </Reveal>
-
-          {(() => {
-            const cards = [
-              {
-                type: 'Blog Post',
-                to: '/blog/mid-year-2026-osha-update-nc-manufacturers',
-                title: 'Mid-Year 2026 OSHA Update for NC Manufacturers',
-                blurb: 'Heat rule progress, silica enforcement, penalty adjustments, and 4 more shifts Piedmont operations need to know before Q3.',
-                testid: 'latest-blog-mid-year-2026',
-              },
-              {
-                type: 'Field Note',
-                to: '/field-notes/ai-generated-safety-programs',
-                title: 'AI-Generated Safety Programs',
-                blurb: 'ChatGPT can write an OSHA program that looks compliant, until an inspector arrives. What AI cannot see on your floor.',
-                testid: 'latest-field-note-ai-generated',
-              },
-              {
-                type: 'Field Note',
-                to: '/field-notes/heat-stress',
-                title: 'Heat Stress',
-                blurb: 'How heat exposure gets missed, what triggers the OSHA NEP, and what small operations can do about it before July.',
-                testid: 'latest-field-note-heat-stress',
-              },
-              {
-                type: 'Field Note',
-                to: '/field-notes/forklift-safety',
-                title: 'Forklift Safety',
-                blurb: 'Certification gets the headlines. Daily inspections and pedestrian separation are where most operations break down.',
-                testid: 'latest-field-note-forklift',
-              },
-            ];
-            return (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5" data-testid="latest-from-field-grid">
-                {cards.map((c, i) => (
-                  <Reveal key={c.to} delay={i * 80}>
-                    <Link
-                      to={c.to}
-                      className="group block h-full rounded-md p-5 md:p-6 transition-shadow"
-                      style={{
-                        background: '#FBFBF9',
-                        border: '1px solid #e8e5dd',
-                        boxShadow: '0 4px 12px rgba(16,42,67,0.04)',
-                      }}
-                      onMouseEnter={(e) => (e.currentTarget.style.boxShadow = '0 10px 28px rgba(16,42,67,0.10)')}
-                      onMouseLeave={(e) => (e.currentTarget.style.boxShadow = '0 4px 12px rgba(16,42,67,0.04)')}
-                      data-testid={c.testid}
-                    >
-                      <p
-                        className="uppercase font-bold tracking-[0.18em] mb-3"
-                        style={{
-                          color: c.type === 'Blog Post' ? '#C9A84C' : 'rgba(10,22,40,0.5)',
-                          ...mono,
-                          fontSize: '10.5px',
-                        }}
-                      >
-                        {c.type}
-                      </p>
-                      <h3
-                        className="font-bold text-[17px] md:text-[18px] leading-snug mb-2.5"
-                        style={{ color: '#102A43', ...heading }}
-                      >
-                        {c.title}
-                      </h3>
-                      <p
-                        className="text-[14px] md:text-[14.5px] leading-[1.6] mb-4"
-                        style={{ color: 'rgba(10,22,40,0.65)', fontFamily: "Georgia, serif" }}
-                        dangerouslySetInnerHTML={{ __html: c.blurb }}
-                      />
-                      <span
-                        className="inline-flex items-center gap-1.5 font-bold text-[13px]"
-                        style={{ color: '#102A43' }}
-                      >
-                        Read {c.type === 'Blog Post' ? 'the post' : 'the note'}
-                        <ArrowRight size={13} className="transition-transform group-hover:translate-x-0.5" />
-                      </span>
-                    </Link>
-                  </Reveal>
-                ))}
-              </div>
-            );
-          })()}
-
-          <Reveal>
-            <div className="mt-10 text-center">
-              <Link
-                to="/field-notes"
-                className="inline-flex items-center gap-2 font-bold text-[14px] md:text-[15px] underline hover:no-underline"
-                style={{ color: '#102A43' }}
-                data-testid="latest-from-field-view-all"
-              >
-                Browse all Field Notes
-                <ArrowRight size={14} />
-              </Link>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ═══ SECTION 8, ABOUT GIGLINE (dark navy, two-column) ═══ */}
-      <section className="py-16 md:py-24" style={{ backgroundColor: '#102A43' }} data-testid="about-section">
-        <div className="container max-w-6xl">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-
-            {/* LEFT, Vince portrait + Carolina-Built veteran badge */}
-            <div className="lg:col-span-4">
-              <Reveal>
-                <div
-                  className="overflow-hidden"
-                  style={{
-                    border: '1px solid rgba(255,255,255,0.10)',
-                    borderRadius: '16px',
-                    background: 'rgba(255,255,255,0.04)',
-                  }}
-                  data-testid="about-photo-panel"
-                >
-                  <img src="/vince-about.webp" height="900" width="711"
-                    alt="Vince Lawrence, Founder, GigLine Safety & Compliance"
-                    className="w-full h-auto block"
-                    style={{ filter: 'brightness(0.95) contrast(1.05)' }}
-                    loading="lazy" />
-                </div>
-                <div className="mt-6 flex items-center gap-4" data-testid="about-carolina-badge-block">
-                  <img src="/assets/carolina-built-badge.webp" height="1200" width="1200"
-                    alt="Carolina-Built · Navy Veteran Owned · Kernersville NC"
-                    className="select-none flex-shrink-0"
-                    style={{
-                      width: '72px',
-                      height: 'auto',
-                      filter: 'drop-shadow(0 6px 14px rgba(0,0,0,0.45))',
-                    }}
-                    loading="lazy" />
-                  <p
-                    className="uppercase font-semibold leading-snug"
-                    style={{
-                      fontSize: '10.5px',
-                      letterSpacing: '0.14em',
-                      color: 'rgba(255,255,255,0.55)',
-                      fontFamily: "'JetBrains Mono', monospace",
-                    }}
-                  >
-                    Carolina-Built<br />
-                    Navy Veteran Owned<br />
-                    Kernersville, NC
-                  </p>
-                </div>
-              </Reveal>
-            </div>
-
-            {/* RIGHT, Copy (GL-WEB-008 Section 7 spec) */}
-            <div className="lg:col-span-8">
-              <Reveal>
-                <p
-                  className="uppercase font-bold mb-4"
-                  style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', letterSpacing: '0.2em', color: '#c8922a' }}
-                  data-testid="about-eyebrow"
-                >
-                  About Vince
-                </p>
-                <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-white leading-[1.15] mb-7 tracking-tight">
-                  &ldquo;I didn&rsquo;t learn this by visiting other people&rsquo;s facilities.&rdquo;
-                </h2>
-              </Reveal>
-
-              <div className="space-y-5 text-[14.5px] md:text-[15.5px] leading-[1.75]" style={{ color: 'rgba(255,255,255,0.82)' }}>
-                <Reveal>
-                  <div
-                    style={{ whiteSpace: 'pre-line' }}
-                    data-testid="about-body-copy"
-                  >
-{`Before I started GigLine, I spent years inside manufacturing.
-
-Not visiting facilities.
-Working in them.
-
-Glass and vinyl. Rubber compounding. Metals fabrication.
-
-I was on the floor, supervising crews, coordinating safety, doing Gemba walks, creating safety orientation for new hires, training people on the standards they were expected to follow, and seeing firsthand where safety systems broke down under production pressure.
-
-I know what a facility looks like when safety is managed by whoever had time that week.
-
-I know what happens when near-misses are not tracked. Small warnings get missed, hazards stay in place, and eventually the OSHA 300 log starts telling the story.
-
-I know what it feels like to walk a floor and see things that have been there so long the team stops seeing them.
-
-Sometimes a facility does not need a lecture.
-It needs fresh eyes.
-
-That is not a criticism.
-That is how it works in a small operation.
-
-You are running production. Solving problems. Covering call-outs. Meeting deadlines. Chasing quality issues. Keeping customers satisfied.
-
-And when the pressure stacks up, safety can quietly become the thing people work around instead of the thing they work through.
-
-Safety becomes the thing you will get to.
-OSHA does not wait for you to get to it.
-
-That is why GigLine exists.
-
-I come to your facility, walk the areas that matter, photograph what I find, document the gaps against the applicable safety standards, and put it in writing within 48 hours.
-
-No retainer.
-No long-term contract.
-No pressure to buy a program you do not need.
-
-One engagement. One written report. Clear findings. Practical next steps.
-
-You decide what to do with it.
-
-And everything I find stays between us.
-
-I'm Vince Lawrence.
-This is GigLine Safety & Compliance.`}
-                  </div>
-                </Reveal>
-
-                <Reveal>
-                  <div
-                    className="mt-2 p-5 md:p-6"
-                    style={{
-                      background: 'rgba(200,146,42,0.08)',
-                      borderLeft: '3px solid #c8922a',
-                      borderRadius: '4px',
-                    }}
-                    data-testid="about-hr-callout"
-                  >
-                    <p
-                      className="uppercase font-bold mb-2"
-                      style={{
-                        fontFamily: "'JetBrains Mono', monospace",
-                        fontSize: '10.5px',
-                        letterSpacing: '0.22em',
-                        color: '#c8922a',
-                      }}
-                    >
-                      For HR &amp; Safety Coordinators
-                    </p>
-                    <p className="text-[14.5px] md:text-[15.5px] leading-[1.7]" style={{ color: 'rgba(255,255,255,0.85)' }}>
-                      HR managers and safety coordinators are often the first to hear from OSHA, and the first to be asked for documentation. GigLine helps you know what&rsquo;s in your files before that call comes.
-                    </p>
-                  </div>
-                </Reveal>
-
-                <Reveal>
-                  <p
-                    className="text-[13px] md:text-[13.5px] pt-4"
-                    style={{
-                      color: 'rgba(255,255,255,0.55)',
-                      borderTop: '1px solid rgba(255,255,255,0.10)',
-                      fontFamily: "'JetBrains Mono', monospace",
-                      lineHeight: 1.7,
-                    }}
-                    data-testid="about-service-area"
-                  >
-                    Service area: on-site within 60 miles of Winston-Salem, including Greensboro, High Point, Kernersville, Lexington, Thomasville, Salisbury, Burlington, and surrounding communities.
-                  </p>
-                </Reveal>
-              </div>
-
-              <Reveal>
-                <Link
-                  to="/about"
-                  className="inline-flex items-center gap-2 font-semibold mt-8 transition-colors hover:opacity-80"
-                  style={{ color: '#c8922a', fontSize: '14px' }}
-                  data-testid="about-link"
-                >
-                  Read full bio <ArrowRight size={14} />
-                </Link>
-              </Reveal>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ SECTION 8, FINAL CTA (GL-WEB-008) ═══ */}
-      <section className="py-16 md:py-20 bg-white" data-testid="bottom-cta-section">
-        <div className="container max-w-4xl">
-          <Reveal>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#1C2B2B] leading-[1.15] mb-5 max-w-3xl tracking-tight">
-              Know what&apos;s on your floor before OSHA does.
-            </h2>
-            <p className="text-base md:text-lg text-[#1C2B2B]/70 leading-relaxed mb-9 max-w-2xl">
-              The walkthrough takes a few hours. The report is in your hands in 48. The cost is a fraction of a single citation.
-            </p>
-            <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-              <Link
-                to="/intake"
-                className="inline-flex items-center justify-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold transition-colors"
-                style={{ padding: '15px 30px', borderRadius: '4px', fontSize: '15px', boxShadow: '0 10px 24px -10px rgba(31,111,235,0.55)' }}
-                data-testid="bottom-cta-primary"
-              >
-                Request a Walkthrough <ArrowRight size={16} />
-              </Link>
-              <p className="text-sm text-[#1C2B2B]/70" data-testid="bottom-cta-secondary-line">
-                Questions first? Call or text directly:{' '}
-                <a href="tel:3363298899" className="font-semibold text-[#1C2B2B] hover:text-[#2A52A0] transition-colors whitespace-nowrap">
-                  (336) 329-8899
-                </a>
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <AssessmentSelectorModal
-        open={homeSelectorOpen}
-        onClose={() => setHomeSelectorOpen(false)}
-        source="homepage-services-band"
-      />
     </main>
   );
 };

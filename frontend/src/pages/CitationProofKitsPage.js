@@ -150,7 +150,7 @@ const CitationProofKitsPage = () => {
         </div>
       )}
       <SEO
-        title="GigLine Compliance Control Kit Series | GigLine Safety & Compliance"
+        title="GigLine Compliance Readiness Kits | GigLine Safety & Compliance"
         description="5 practical GigLine Compliance Readiness Kits for small NC operations. Organize the work, identify missing evidence, maintain a system your supervisors can use. From $150."
         canonical="/citation-proof-kits"
       />
@@ -231,7 +231,7 @@ const CitationProofKitsPage = () => {
       <ProofGapEngineSteps
         kicker="Built on the GigLine Proof Gap Engine™"
         heading="One method. Four steps. Every kit."
-        intro="Every kit in the Compliance Control Series runs on the same four-step method. It doesn’t matter which control area you’re fixing, the sequence is always the same: Score where you stand, Sort every gap by type, Fix in the right order, and Pull the records that get handed over first."
+        intro="Every kit in the GigLine Compliance Readiness Kits collection runs on the same four-step method. It doesn’t matter which control area you’re fixing, the sequence is always the same: Score where you stand, Sort every gap by type, Fix in the right order, and Pull the records that get handed over first."
       />
 
       {/* ═══════════ KIT SELECTOR (decision layer) ═══════════ */}
@@ -568,7 +568,7 @@ const CitationProofKitsPage = () => {
         universalTiers
         kickerOverride="Simple Pricing Across Every Kit"
         headingOverride="Three tiers. Same across every kit."
-        introOverride="Every kit in the GigLine Compliance Control Kit Series is offered in three tiers. Buy the level that matches how much of the build you want to do yourself, and how quickly you need the physical binder in the supervisor’s hands."
+        introOverride="Every kit in the GigLine Compliance Readiness Kits is offered in three tiers. Buy the level that matches how much of the build you want to do yourself, and how quickly you need the physical binder in the supervisor’s hands."
       />
 
       {/* ═══════════ BUNDLE TEASER ═══════════ */}

@@ -111,7 +111,10 @@ describe('Feature flags remain preview-only', () => {
 describe('Benefit-led copy leads are present on the primary pages', () => {
   test('Homepage sub carries the mandated benefit lede', () => {
     const s = readSrc('pages/HomePage.js');
-    expect(s).toMatch(/Know what needs attention, what must be fixed first/);
+    // Post-consolidation the homepage lede was rewritten per the owner-approved
+    // Outcome-First spec. The mandated phrase is now the third sentence of the
+    // hero supporting paragraph.
+    expect(s).toMatch(/what requires attention,\s+what to address first,\s+and\s+what to do next/);
   });
   test('Services page headline is the mandated clarity lead', () => {
     const s = readSrc('pages/ServicesPage.js');

@@ -198,3 +198,112 @@ describe('SEO robots directives', () => {
     }
   });
 });
+
+// ─── 4. Final production micro-cleanup ─────────────────────────────────────
+// Locks in three surgical corrections:
+//   a. Sitewide LocalBusiness hasOfferCatalog offer for
+//      "OSHA Documentation Readiness Review" must carry price "1700".
+//      Source of truth: DOC_REVIEW_PRICE_NUM in generate-seo-pages.js.
+//   b. About-page meta description must say
+//      "OSHA 30-Hour Outreach Trained" and never "OSHA 30-Hour certified".
+//   c. The public kit-series name is standardized to
+//      "GigLine Compliance Readiness Kits". No customer-facing
+//      "GigLine Compliance Control Kit Series" or "Compliance Control Series"
+//      strings remain. The $300 edition name "Compliance Control System"
+//      must remain untouched.
+describe('Final production micro-cleanup', () => {
+  const gen = readRepo('frontend/scripts/generate-seo-pages.js');
+
+  test('static index.html LocalBusiness offer for Doc Review is $1,700', () => {
+    const staticIndex = readRepo('frontend/public/index.html');
+    // Extract the Offer block for Doc Review.
+    const block = staticIndex.match(
+      /"name":\s*"OSHA Documentation Readiness Review"[\s\S]{0,600}?"priceSpecification":\s*\{[\s\S]*?\}/,
+    );
+    expect(block).not.toBeNull();
+    expect(block[0]).toMatch(/"price":\s*"1700"/);
+    expect(block[0]).not.toMatch(/"price":\s*"1300"/);
+    expect(block[0]).not.toMatch(/"price":\s*"2500"/);
+  });
+
+  test('DOC_REVIEW_PRICE_NUM is 1700 and drives the LocalBusiness offer', () => {
+    expect(gen).toMatch(/const\s+DOC_REVIEW_PRICE_NUM\s*=\s*'1700'\s*;/);
+    // The stale $2,500 value must not resurface for the Doc-Review price.
+    expect(gen).not.toMatch(/const\s+DOC_REVIEW_PRICE_NUM\s*=\s*'2500'\s*;/);
+    // Sitewide LocalBusiness offer uses the constant.
+    const offerBlock = gen.match(
+      /'OSHA Documentation Readiness Review'[\s\S]{0,200}?price:\s*DOC_REVIEW_PRICE_NUM/,
+    );
+    expect(offerBlock).not.toBeNull();
+  });
+
+  test('About-page meta description says "OSHA 30-Hour General Industry Trained"', () => {
+    const aboutMeta = gen.match(
+      /path:\s*'\/about'[\s\S]{0,600}?description:\s*'([^']+)'/,
+    );
+    expect(aboutMeta).not.toBeNull();
+    expect(aboutMeta[1]).toContain('OSHA 30-Hour General Industry Trained');
+    expect(aboutMeta[1]).not.toMatch(/OSHA[\s-]*30-Hour\s+certified/i);
+    expect(aboutMeta[1]).not.toMatch(/OSHA[\s-]*30-Hour\s+Outreach\s+Trained/);
+  });
+
+  test('React About page also uses "OSHA 30-Hour General Industry Trained" in its SEO description', () => {
+    const about = readRepo('frontend/src/pages/AboutPage.js');
+    // Match the SEO description prop specifically to ignore other page text.
+    const seoDesc = about.match(/description=\s*"([^"]{20,300})"/);
+    expect(seoDesc).not.toBeNull();
+    expect(seoDesc[1]).toContain('OSHA 30-Hour General Industry Trained');
+    expect(seoDesc[1]).not.toMatch(/OSHA[\s-]*30-Hour\s+certified/i);
+    expect(seoDesc[1]).not.toMatch(/OSHA[\s-]*30-Hour\s+Outreach\s+Trained/);
+  });
+
+  // ─── Kit-series terminology ──────────────────────────────────────────────
+  // Every customer-facing source file must use "GigLine Compliance Readiness
+  // Kits". Admin surfaces and code comments are exempt because they are not
+  // customer-facing.
+  const CUSTOMER_FACING_KIT_FILES = [
+    'frontend/src/pages/HomePage.js',
+    'frontend/src/pages/ServicesPage.js',
+    'frontend/src/pages/CitationProofKitsPage.js',
+    'frontend/src/pages/CitationProofKitDetailPage.js',
+    'frontend/src/pages/CitationProofKitThankYouPage.js',
+    'frontend/src/pages/CitationCostCalculatorPage.js',
+    'frontend/src/pages/BlogOSHAPenaltyNC2026.js',
+    'frontend/src/components/Footer.js',
+    'frontend/src/components/KitPricingTiers.js',
+    'frontend/src/components/ProofGapEngineSteps.js',
+    'frontend/src/data/fieldNoteContent.js',
+  ];
+
+  test.each(CUSTOMER_FACING_KIT_FILES)(
+    'no "Compliance Control Kit Series" or "Compliance Control Series" in %s',
+    (rel) => {
+      const src = readRepo(rel);
+      expect(src).not.toMatch(/Compliance Control Kit Series/);
+      expect(src).not.toMatch(/Compliance Control Series/);
+    },
+  );
+
+  test('SSR generator emits "GigLine Compliance Readiness Kits" in customer-facing content and titles', () => {
+    // Runtime code (not comments) must not reference the old series names.
+    // Strip line comments and block comments before scanning.
+    const stripped = gen
+      .replace(/\/\*[\s\S]*?\*\//g, '')
+      .replace(/^\s*\/\/[^\n]*$/gm, '');
+    expect(stripped).not.toMatch(/Compliance Control Kit Series/);
+    expect(stripped).not.toMatch(/Compliance Control Series/);
+    // Confirm the new phrase is actually present in the generator's runtime output.
+    expect(stripped).toMatch(/GigLine Compliance Readiness Kits/);
+  });
+
+  test('$300 tier name "Compliance Control System" is preserved intact', () => {
+    // The tier label lives in the shared KitSelector data.
+    const selector = readRepo('frontend/src/components/KitSelector.js');
+    expect(selector).toMatch(/label:\s*'Compliance Control System'/);
+    // A few known consumers must still show the tier name for buyers.
+    const objection = readRepo('frontend/src/components/ObjectionSupport.js');
+    expect(objection).toMatch(/\$300 Compliance Control System/);
+    const thankyou = readRepo('frontend/src/pages/CitationProofKitThankYouPage.js');
+    expect(thankyou).toMatch(/Compliance Control System/);
+  });
+});

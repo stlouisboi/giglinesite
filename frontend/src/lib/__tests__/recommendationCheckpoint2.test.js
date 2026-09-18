@@ -39,8 +39,18 @@ describe('Consuming surfaces embed the entry card', () => {
   const home = read('pages/HomePage.js');
   const services = read('pages/ServicesPage.js');
   const kits = read('pages/CitationProofKitsPage.js');
-  test('Homepage imports RecommendationEntryCard', () => {
-    expect(home).toMatch(/RecommendationEntryCard/);
+  test('Homepage exposes exactly one recommendation entry point gated by the router flag', () => {
+    // Post-consolidation the homepage inlines its single rec-entry CTA and
+    // guards the label on RECOMMENDATION_ROUTER_ENABLED rather than importing
+    // the standalone RecommendationEntryCard. Enforce three constraints:
+    //   1. Homepage imports the flag from features.
+    //   2. Homepage swaps the CTA label based on the flag.
+    //   3. Homepage renders a single rec-entry section, not a repeating card.
+    expect(home).toMatch(/RECOMMENDATION_ROUTER_ENABLED[^;]*from\s+['"]\.\.\/config\/features['"]/);
+    expect(home).toMatch(/Find My Starting Point/);
+    expect(home).toMatch(/Compare (GigLine )?Services/);
+    const recEntrySections = (home.match(/data-testid="rec-entry-section"/g) || []).length;
+    expect(recEntrySections).toBe(1);
   });
   test('/services imports RecommendationEntryCard + ObjectionSupport', () => {
     expect(services).toMatch(/RecommendationEntryCard/);

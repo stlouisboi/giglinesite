@@ -26,6 +26,7 @@ const BlogHazComRequirements          = lazy(() => import('./pages/BlogHazComReq
 const HeatGuidePage                   = lazy(() => import('./pages/HeatGuidePage'));
 const SampleReportPage                = lazy(() => import('./pages/SampleReportPage'));
 const ResourcesPage                   = lazy(() => import('./pages/ResourcesPage'));
+const NcDolComparisonPage             = lazy(() => import('./pages/NcDolComparisonPage'));
 const OshaInspectionGuidePage         = lazy(() => import('./pages/OshaInspectionGuidePage'));
 const OshaComplianceGuidePage         = lazy(() => import('./pages/OshaComplianceGuidePage'));
 const ForkliftComplianceReviewNCPage  = lazy(() => import('./pages/ForkliftComplianceReviewNCPage'));
@@ -179,6 +180,7 @@ function App() {
                     <Route path="/heat-guide" element={<HeatGuidePage />} />
                     <Route path="/sample-report" element={<SampleReportPage />} />
                     <Route path="/resources" element={<ResourcesPage />} />
+                    <Route path="/nc-dol-consultation-vs-private-consultant" element={<NcDolComparisonPage />} />
                     <Route path="/osha-inspection-guide" element={<OshaInspectionGuidePage />} />
                     <Route path="/osha-compliance-guide" element={<OshaComplianceGuidePage />} />
                     <Route path="/forklift-compliance-review-nc" element={<ForkliftComplianceReviewNCPage />} />

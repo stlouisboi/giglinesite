@@ -457,6 +457,35 @@ const routes = [
     `,
   },
   {
+    path: '/nc-dol-consultation-vs-private-consultant',
+    title: 'NC DOL Consultation vs. Private Consultant | GigLine',
+    description: 'Compare NC DOL\u2019s free On-Site Consultation Program with private safety support from GigLine for Piedmont Triad manufacturers, warehouses, and contractors.',
+    canonical: '/nc-dol-consultation-vs-private-consultant',
+    schemas: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        '@id': `${BASE_URL}/nc-dol-consultation-vs-private-consultant#webpage`,
+        url: `${BASE_URL}/nc-dol-consultation-vs-private-consultant`,
+        name: 'NC DOL Free Safety Consultation vs. a Private Consultant',
+        description: 'Plain-language comparison of North Carolina\u2019s free On-Site Consultation Program and a private GigLine engagement for Piedmont Triad employers.',
+        inLanguage: 'en-US',
+        isPartOf: { '@type': 'WebSite', name: 'GigLine Safety & Compliance', url: `${BASE_URL}/` },
+        dateModified: '2026-09-18',
+      },
+      breadcrumb([
+        { name: 'Home', path: '/' },
+        { name: 'Resources', path: '/resources' },
+        { name: 'NC DOL Consultation vs. Private Consultant', path: '/nc-dol-consultation-vs-private-consultant' },
+      ]),
+    ],
+    content: `
+      <h1>NC DOL Free Safety Consultation vs. a Private Consultant</h1>
+      <p>North Carolina offers small employers confidential, no-cost workplace safety consultation. This page compares the NC DOL On-Site Consultation Program with a privately scoped GigLine engagement so Piedmont Triad manufacturers, warehouses, contractors, and fleet operations can choose the right fit.</p>
+      <p>Read the official NC DOL consultation program details at <a href="https://www.labor.nc.gov/occupational-safety-and-health-consultation-program">labor.nc.gov</a>. GigLine Safety &amp; Compliance is an independent private consultancy and does not represent OSHA or the North Carolina Department of Labor.</p>
+    `,
+  },
+  {
     path: '/contact',
     title: 'Contact | GigLine Safety & Compliance',
     description: 'Contact GigLine Safety & Compliance. Request a walkthrough, doc review, or incident support. Vince Lawrence, (336) 329-8899.',

@@ -118,7 +118,9 @@ describe('Benefit-led copy leads are present on the primary pages', () => {
   });
   test('Services page headline is the mandated clarity lead', () => {
     const s = readSrc('pages/ServicesPage.js');
-    expect(s).toMatch(/Choose the level of safety clarity and control/);
+    // Services-page consolidation, 2026-09-18: the H1 was rewritten per the
+    // owner-approved spec to lead with the outcome the client selects.
+    expect(s).toMatch(/Choose the right level of safety support for what your operation needs now/);
   });
   test('CRV page headline is the mandated floor-vs-files line', () => {
     const s = readSrc('pages/ComplianceReadinessVisitPage.js');

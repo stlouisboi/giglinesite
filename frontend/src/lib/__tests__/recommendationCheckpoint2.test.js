@@ -52,9 +52,15 @@ describe('Consuming surfaces embed the entry card', () => {
     const recEntrySections = (home.match(/data-testid="rec-entry-section"/g) || []).length;
     expect(recEntrySections).toBe(1);
   });
-  test('/services imports RecommendationEntryCard + ObjectionSupport', () => {
-    expect(services).toMatch(/RecommendationEntryCard/);
-    expect(services).toMatch(/ObjectionSupport/);
+  test('/services carries exactly one recommendation entry point gated by the router flag', () => {
+    // Services-page consolidation, 2026-09-18: per Section 12 of the owner-
+    // approved spec the page keeps one compact lower-page decision-support
+    // block that swaps the CTA label on RECOMMENDATION_ROUTER_ENABLED.
+    expect(services).toMatch(/RECOMMENDATION_ROUTER_ENABLED[^;]*from\s+['"]\.\.\/config\/features['"]/);
+    const recEntry = (services.match(/data-testid="services-rec-entry-section"/g) || []).length;
+    expect(recEntry).toBe(1);
+    expect(services).toMatch(/Find My Starting Point/);
+    expect(services).toMatch(/Compare the Three Reviews/);
   });
   test('/citation-proof-kits imports RecommendationEntryCard + ObjectionSupport', () => {
     expect(kits).toMatch(/RecommendationEntryCard/);

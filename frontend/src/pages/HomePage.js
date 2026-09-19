@@ -264,7 +264,8 @@ const HomePage = () => {
               className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 max-w-3xl"
               data-testid="hero-headline"
             >
-              Know what to fix before OSHA walks in.
+              Know what to fix before OSHA{' '}
+              <span style={{ whiteSpace: 'nowrap' }}>walks in.</span>
             </h1>
             <p
               className="text-lg md:text-xl text-slate-200 leading-relaxed mb-8 max-w-2xl"
@@ -677,21 +678,30 @@ const HomePage = () => {
             </p>
           </Reveal>
 
+          <div className="mb-3">
+            <p
+              className="uppercase text-slate-600"
+              style={{ ...mono, fontSize: '11px', letterSpacing: '0.16em' }}
+              data-testid="penalty-source-label"
+            >
+              2026 Federal OSHA maximum penalties
+            </p>
+          </div>
           <div className="grid gap-4 md:grid-cols-3 mb-6">
             <div className="p-5 rounded-lg border border-slate-200 bg-slate-50" data-testid="penalty-serious">
               <p className="text-3xl font-bold text-slate-900 mb-1">{OSHA_PENALTY.serious}</p>
               <p className="text-sm font-semibold text-slate-800 mb-1">Per Serious or Other-Than-Serious violation</p>
-              <p className="text-xs text-slate-600">Maximum, {OSHA_PENALTY.year}</p>
+              <p className="text-xs text-slate-600">Up to, {OSHA_PENALTY.year}</p>
             </div>
             <div className="p-5 rounded-lg border border-slate-200 bg-slate-50" data-testid="penalty-willful">
               <p className="text-3xl font-bold text-slate-900 mb-1">{OSHA_PENALTY.willfulOrRepeat}</p>
               <p className="text-sm font-semibold text-slate-800 mb-1">Per Willful or Repeat violation</p>
-              <p className="text-xs text-slate-600">Maximum, {OSHA_PENALTY.year}</p>
+              <p className="text-xs text-slate-600">Up to, {OSHA_PENALTY.year}</p>
             </div>
             <div className="p-5 rounded-lg border border-slate-200 bg-slate-50" data-testid="penalty-failure-to-abate">
               <p className="text-3xl font-bold text-slate-900 mb-1">{OSHA_PENALTY.failureToAbate}</p>
               <p className="text-sm font-semibold text-slate-800 mb-1">Failure to Abate</p>
-              <p className="text-xs text-slate-600">Per day, maximum, {OSHA_PENALTY.year}</p>
+              <p className="text-xs text-slate-600">Per day, up to, {OSHA_PENALTY.year}</p>
             </div>
           </div>
           <p className="text-sm text-slate-600 leading-relaxed max-w-3xl">

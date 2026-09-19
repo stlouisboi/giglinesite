@@ -30,7 +30,10 @@ describe('Homepage · Hero', () => {
   });
 
   test('hero headline is the mandated spec headline', () => {
-    expect(home).toMatch(/Know what to fix before OSHA walks in\./);
+    // Hero H1 uses a nonbreaking span around "walks in." to prevent an
+    // orphan "in." from wrapping alone at desktop widths. Assertion tolerates
+    // the wrapping markup between the two halves.
+    expect(home).toMatch(/Know what to fix before OSHA[\s\S]{0,200}walks in\./);
   });
 
   test('hero eyebrow is the mandated spec eyebrow', () => {

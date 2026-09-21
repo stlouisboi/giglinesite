@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Shield, AlertTriangle, Wrench, ClipboardCheck, Eye, Printer, RotateCcw } from 'lucide-react';
 import SEO from '../components/SEO';
 import StickyTOC from '../components/StickyTOC';
+import MachineGuardingLeadMagnet from '../components/MachineGuardingLeadMagnet';
 
 const tocItems = [
   { id: "what-standard-requires", label: "What 1910.212 actually says" },
@@ -336,6 +337,9 @@ const BlogMachineGuardingChecklist = () => {
           </div>
         </div>
       </section>
+
+      {/* Optional lead magnet, gated behind MG_LEAD_MAGNET_ENABLED */}
+      <MachineGuardingLeadMagnet />
 
       {/* Top citation traps */}
       <section className="py-12 md:py-16 border-b border-[#2A52A0]/10" id="top-citations">

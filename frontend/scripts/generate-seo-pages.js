@@ -331,7 +331,7 @@ const routes = [
   },
   {
     path: '/about',
-    title: 'Safety Consultant Kernersville NC, Vince Lawrence | GigLine',
+    title: 'Vince Lawrence, GigLine Safety & Compliance - Navy Veteran & OSHA Consultant, Kernersville NC',
     description: '25+ years on the floor. OSHA 30-Hour General Industry Trained. Navy veteran. An OSHA-informed floor review before an inspector shows up. (336) 329-8899.',
     canonical: '/about',
     schemas: [VINCE_PERSON, breadcrumb([{ name: 'Home', path: '/' }, { name: 'About', path: '/about' }])],
@@ -851,27 +851,29 @@ const routes = [
   },
   {
     path: '/blog/osha-forklift-compliance-inspector-checklist',
-    title: 'OSHA Forklift Compliance: What Inspectors Check | GigLine',
-    description: 'OSHA forklift compliance, operator certifications, daily inspections, traffic controls. CFR + 2026 penalty exposure.',
+    title: 'OSHA Forklift Inspection Requirements: Daily Checks, Certs & Records | GigLine',
+    description: 'OSHA forklift inspection requirements: daily pre-shift checks, operator certifications every 3 years, and how long to keep forklift inspection records. Full 1910.178 checklist with 2026 penalty exposure.',
     canonical: '/blog/osha-forklift-compliance-inspector-checklist',
     schemas: [
       {
         '@context': 'https://schema.org', '@type': 'Article',
-        headline: 'OSHA Forklift Compliance: What Inspectors Actually Check',
-        description: 'The forklift-related items OSHA inspectors ask for first, operator certifications, daily inspection logs, traffic controls.',
+        headline: 'OSHA Forklift Inspection Requirements (29 CFR 1910.178)',
+        description: 'The forklift-related items OSHA inspectors ask for first, operator certifications, daily inspection logs, records retention, and traffic controls.',
         image: `${BASE_URL}/og-image.png`,
         author: { '@id': `${BASE_URL}/#vince` },
         publisher: { '@id': `${BASE_URL}/#business` },
         mainEntityOfPage: `${BASE_URL}/blog/osha-forklift-compliance-inspector-checklist`,
-        datePublished: '2025-11-11', dateModified: '2026-02-28',
+        datePublished: '2025-11-11', dateModified: '2026-09-21',
         articleSection: 'OSHA Compliance', inLanguage: 'en-US',
       },
-      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Blog', path: '/field-notes' }, { name: 'OSHA Forklift Compliance', path: '/blog/osha-forklift-compliance-inspector-checklist' }]),
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Blog', path: '/field-notes' }, { name: 'OSHA Forklift Inspection Requirements', path: '/blog/osha-forklift-compliance-inspector-checklist' }]),
     ],
     content: `
-      <h1>OSHA Forklift Compliance: What Inspectors Actually Check</h1>
+      <h1>OSHA Forklift Inspection Requirements (29 CFR 1910.178)</h1>
       <p>By Vince Lawrence, GigLine Safety &amp; Compliance</p>
-      <p>The powered industrial truck standard (29 CFR 1910.178) is one of OSHA's most-cited every year. Two subsections generate most citations: operator training (l) and inspection logs (q).</p>
+      <p>The powered industrial truck standard (29 CFR 1910.178) is one of OSHA's most-cited every year. Two subsections generate most citations: operator training (l) and inspection logs (q). This guide covers daily pre-shift checks, operator certification requirements, records retention, and traffic controls.</p>
+      <h2>How long to keep forklift inspection records</h2>
+      <p>OSHA does not publish a single retention number in 1910.178. In practice: keep daily inspection logs for one year minimum (two is safer), keep operator certifications for the active 3-year cycle plus one prior cycle, and keep repair and out-of-service records for the life of the truck.</p>
       <h2>Operator certification (1910.178(l))</h2><p>Formal instruction + practical training + evaluation of performance. Evaluation must be re-performed every three years, 1910.178(l)(4)(iii).</p>
       <h2>Daily inspection logs (1910.178(q)(7))</h2><p>Pre-shift inspection before every use. Written log, truck ID, date, operator, defects noted. Defects that make the truck unsafe remove it from service.</p>
       <h2>Traffic controls</h2><p>Painted pedestrian lanes, convex mirrors at blind intersections, defined loading zones, and signage. Not prescribed by rule name, but cited under the general duty clause when struck-by hazards exist.</p>
@@ -2016,7 +2018,7 @@ const fieldNotes = [
   { slug: 'respiratory-protection', title: 'Respiratory Protection', desc: 'OSHA respiratory protection program, written program, medical evaluation, fit testing, training, and cartridge change-out schedules under 29 CFR 1910.134.' },
   { slug: 'silica-respirable-crystalline', title: 'Respirable Crystalline Silica', desc: 'OSHA silica standard for stone fab, concrete, foundries. Exposure assessment, engineering controls, medical surveillance under 29 CFR 1910.1053.' },
   { slug: 'hot-work-welding', title: 'Hot Work, Welding & Cutting', desc: 'OSHA Subpart Q. Hot work permits, fire watch, compressed gas cylinder safety, ventilation, and welding PPE for small NC fab shops.' },
-  { slug: 'abrasive-wheels', title: 'Abrasive Wheels & Bench Grinders', desc: 'Tongue guards within 1/4 inch, work rests within 1/8 inch, ring testing, RPM matching, 29 CFR 1910.215 in plain language.' },
+  { slug: 'abrasive-wheels', title: 'Abrasive Wheels & Bench Grinders', desc: 'Tongue guards within 1/4 inch, work rests within 1/8 inch, ring testing, RPM matching, 29 CFR 1910.215 in plain language.', customSeoTitle: 'OSHA Bench Grinder Requirements: Work Rest 1/8", Tongue Guard 1/4" | GigLine' },
   { slug: 'ladder-safety', title: 'Portable Ladder Safety', desc: 'OSHA portable ladder requirements. Inspection, 4-to-1 angle, 3-foot extension above landing, three-point contact, load rating, 29 CFR 1910.23.' },
   { slug: 'eye-face-protection', title: 'Eye & Face Protection', desc: 'OSHA Z87.1 eye and face protection requirements, side shields, face shields for grinding and chemical handling, and the PPE hazard assessment, 29 CFR 1910.133.' },
   { slug: 'trenching-excavation', title: 'Trenching & Excavation', desc: 'OSHA trenching standard (29 CFR 1926.651). Protective systems, competent person, soil classification, egress, and the rules that prevent collapses.' },
@@ -2162,7 +2164,7 @@ fieldNotes.forEach((note, idx) => {
 
   routes.push({
     path: `/field-notes/${note.slug}`,
-    title: note.customSeoTitle || `${note.title}, Field Notes | GigLine Safety & Compliance`,
+    title: note.customSeoTitle || note.seoTitle || `${note.title}, Field Notes | GigLine Safety & Compliance`,
     description: note.desc,
     canonical: `/field-notes/${note.slug}`,
     ogImage: note.ogImage || NOTE_HERO_IMAGES[note.slug],

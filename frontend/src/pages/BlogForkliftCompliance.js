@@ -17,8 +17,8 @@ const tocItems = [
 ];
 
 const defined = {
-  headline: "OSHA Forklift Compliance: What Inspectors Actually Check",
-  description: "OSHA forklift compliance, operator certifications, daily inspections, traffic controls. CFR + 2026 penalty exposure.",
+  headline: "OSHA Forklift Inspection Requirements (29 CFR 1910.178)",
+  description: "OSHA forklift inspection requirements: daily pre-shift checks, operator certifications every 3 years, and how long to keep forklift inspection records. Full 1910.178 checklist with 2026 penalty exposure.",
   canonical: "/blog/osha-forklift-compliance-inspector-checklist",
   datePublished: "2025-11-11",
   dateModified: "2025-11-11",
@@ -167,6 +167,38 @@ const BlogForkliftCompliance = () => {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="py-12 md:py-16 border-b border-[#2A52A0]/10 bg-[#F9F8F6]" id="records-retention">
+        <div className="container max-w-3xl">
+          <p className="uppercase font-bold mb-3" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10.4px', letterSpacing: '2.08px', color: '#2A52A0' }}>
+            29 CFR 1910.178 &middot; RECORDS RETENTION
+          </p>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#1C2B2B] mb-4" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>How long to keep forklift inspection records</h2>
+          <p className="text-[#1C2B2B]/70 leading-relaxed mb-4">
+            OSHA does not publish a single retention number in 1910.178. What OSHA <em>does</em> require is that daily inspection records be available for inspection on request, and that operator certifications be current. In practice, three retention windows drive every citation we see in Piedmont Triad warehouses:
+          </p>
+          <div className="grid md:grid-cols-3 gap-4 mb-6">
+            <div className="bg-white p-5 rounded-lg" style={{ border: '1px solid #dde3ea' }} data-testid="retention-daily-logs">
+              <p className="text-xs font-bold uppercase tracking-wider text-[#2A52A0] mb-2">Daily inspection logs</p>
+              <p className="text-lg font-bold text-[#1C2B2B] mb-1">1 year, minimum</p>
+              <p className="text-sm text-[#1C2B2B]/70">1910.178(q)(7) requires the log itself but is silent on how long. Most OSHA Area Offices treat one full rolling year as the practical floor. Keep two years to be safe.</p>
+            </div>
+            <div className="bg-white p-5 rounded-lg" style={{ border: '1px solid #dde3ea' }} data-testid="retention-operator-certs">
+              <p className="text-xs font-bold uppercase tracking-wider text-[#2A52A0] mb-2">Operator certifications</p>
+              <p className="text-lg font-bold text-[#1C2B2B] mb-1">3 years, active</p>
+              <p className="text-sm text-[#1C2B2B]/70">1910.178(l)(4)(iii) requires evaluation of every operator at least once every three years. Keep the current certification plus the two prior evaluation cycles on file.</p>
+            </div>
+            <div className="bg-white p-5 rounded-lg" style={{ border: '1px solid #dde3ea' }} data-testid="retention-repair-records">
+              <p className="text-xs font-bold uppercase tracking-wider text-[#2A52A0] mb-2">Repair and out-of-service records</p>
+              <p className="text-lg font-bold text-[#1C2B2B] mb-1">Life of the truck</p>
+              <p className="text-sm text-[#1C2B2B]/70">Any record showing a truck was tagged out of service under 1910.178(p)(1), or repaired to restore safe operation, should live with the truck's history file until the truck leaves the operation.</p>
+            </div>
+          </div>
+          <p className="text-[#1C2B2B]/70 leading-relaxed">
+            <strong>What we recommend on the floor:</strong> keep the last 12 months of daily logs in the maintenance office in a labeled binder or shared drive folder, keep operator training and evaluation records in the personnel file for the current 3-year cycle plus one prior cycle, and keep a truck history file for each unit that stays with the unit until it&apos;s sold or retired. That's what an OSHA officer, an insurance auditor, and a customer-audit team will each ask to see, and that combination survives every one of them.
+          </p>
         </div>
       </section>
 

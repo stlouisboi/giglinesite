@@ -491,6 +491,16 @@ const ServicesPage = () => {
               <Link to="/contact" className="text-sm text-slate-600 underline underline-offset-4 hover:text-slate-900" data-testid="services-rec-entry-secondary-link">
                 Contact GigLine
               </Link>
+              <p className="text-sm text-slate-600 mt-4 max-w-xl">
+                Not sure whether you need a private consultant?{' '}
+                <Link
+                  to="/nc-dol-consultation-vs-private-consultant"
+                  className="text-[#2A52A0] underline underline-offset-4 hover:text-slate-900"
+                  data-testid="services-nc-dol-comparison-link"
+                >
+                  Compare GigLine with the NC DOL On-Site Consultation Program
+                </Link>.
+              </p>
             </div>
           </Reveal>
         </div>

@@ -1084,6 +1084,7 @@ Corrective action: implement a written hot work permit program based on NFPA 51B
   },
   'abrasive-wheels': {
     title: 'Abrasive Wheels & Bench Grinders',
+    seoTitle: 'OSHA Bench Grinder Requirements: Work Rest 1/8", Tongue Guard 1/4" | GigLine',
     subtitle: 'The Tongue Guard at 1/8 of an Inch',
     seo: 'OSHA abrasive wheel safety (29 CFR 1910.215) for bench grinders in NC shops. Work rest 1/8 inch, tongue guard 1/4 inch, ring test, RPM limits, with a free daily-check log.',
     cfrCitation: '29 CFR 1910.215',

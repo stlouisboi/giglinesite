@@ -1,14 +1,18 @@
 /**
  * Machine Guarding lead-magnet regression tests.
  *
- * Locks in:
- *   - Feature flag `MG_LEAD_MAGNET_ENABLED` is defined and starts `false`
- *     so the form does not render in production until Batch 2C.
- *   - The component source contains no live-email transmission code
- *     (no fetch, no axios, no transactional-email SDK imports).
+ * Locks in the live-send integration (Feb 2026):
+ *   - Feature flag `MG_LEAD_MAGNET_ENABLED` is defined.
+ *   - Component early-returns null when flag is false.
+ *   - Component POSTs to /api/machine-guarding-checklist/submit using the
+ *     REACT_APP_BACKEND_URL env var (never a hardcoded host).
  *   - Consent checkbox defaults to unchecked.
+ *   - Honeypot input is present and hidden from a11y tree.
+ *   - Confirmation state exposes an accessible PDF download trigger that
+ *     opens the backend PDF endpoint (real file, not a browser print dialog).
+ *   - Every required input has a matching label + stable testid.
  *   - Article page imports and mounts the component.
- *   - Honeypot is present and hidden from a11y tree.
+ *   - Post-submit copy correctly claims the email was sent (no draft copy).
  */
 const fs = require('fs');
 const path = require('path');
@@ -30,16 +34,14 @@ describe('Machine Guarding lead magnet', () => {
     expect(componentSrc).toMatch(/if\s*\(\s*!\s*MG_LEAD_MAGNET_ENABLED\s*\)\s*return\s+null/);
   });
 
-  test('component performs no live email transmission (no fetch, axios, or email SDK)', () => {
-    expect(componentSrc).not.toMatch(/\bfetch\s*\(/);
-    expect(componentSrc).not.toMatch(/\baxios\b/);
-    expect(componentSrc).not.toMatch(/from\s+['"]@?resend/);
-    expect(componentSrc).not.toMatch(/from\s+['"]@?mailerlite/);
-    expect(componentSrc).not.toMatch(/from\s+['"]@?sendgrid/);
+  test('component POSTs to the machine-guarding submit endpoint via REACT_APP_BACKEND_URL', () => {
+    expect(componentSrc).toMatch(/process\.env\.REACT_APP_BACKEND_URL/);
+    expect(componentSrc).toMatch(/\/api\/machine-guarding-checklist\/submit/);
+    expect(componentSrc).toMatch(/method:\s*['"]POST['"]/);
+    expect(componentSrc).not.toMatch(/https?:\/\/(?!\$\{)/); // no hardcoded absolute hosts
   });
 
   test('marketing consent checkbox defaults to unchecked', () => {
-    // useState initialiser must set consent: false
     expect(componentSrc).toMatch(/consent:\s*false/);
   });
 
@@ -49,9 +51,10 @@ describe('Machine Guarding lead magnet', () => {
     expect(componentSrc).toMatch(/tabIndex=\{-1\}/);
   });
 
-  test('confirmation state exposes an accessible download-PDF trigger', () => {
+  test('confirmation state exposes a PDF download trigger that opens the backend PDF endpoint', () => {
     expect(componentSrc).toMatch(/data-testid="mg-lead-magnet-download"/);
-    expect(componentSrc).toMatch(/window\.print/);
+    expect(componentSrc).toMatch(/\/api\/machine-guarding-checklist\/pdf/);
+    expect(componentSrc).toMatch(/window\.open/);
   });
 
   test('every required form field has a matching label and stable testid', () => {
@@ -81,9 +84,9 @@ describe('Machine Guarding lead magnet', () => {
     expect(pageSrc).toMatch(/<MachineGuardingLeadMagnet\s*\/>/);
   });
 
-  test('draft-state confirmation copy does not falsely claim an email was sent', () => {
-    expect(componentSrc).toMatch(/In a live send/);
-    expect(componentSrc).not.toMatch(/We (just )?sent your (checklist|PDF)/i);
-    expect(componentSrc).not.toMatch(/Check your inbox/i);
+  test('confirmation copy reflects a real send (no leftover draft-state phrasing)', () => {
+    expect(componentSrc).not.toMatch(/In a live send/);
+    expect(componentSrc).not.toMatch(/REQUESTED\s*\(DRAFT\)/);
+    expect(componentSrc).toMatch(/We just emailed/);
   });
 });

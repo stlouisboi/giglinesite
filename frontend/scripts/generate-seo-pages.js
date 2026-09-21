@@ -85,7 +85,7 @@ const LOCAL_BUSINESS = {
   '@id': `${BASE_URL}/#business`,
   name: 'GigLine Safety & Compliance',
   description:
-    'On-site OSHA safety walkthroughs, documentation reviews, and incident response for small manufacturers, warehouses, and contractors in North Carolina.',
+    'On-site OSHA safety walkthroughs, documentation readiness reviews, and corrective action implementation for small manufacturers, warehouses, contractors, and fleet operations in North Carolina.',
   url: BASE_URL,
   telephone: '+13363298899',
   email: 'vince@giglinecompliance.com',
@@ -145,9 +145,9 @@ const LOCAL_BUSINESS = {
     '@type': 'OfferCatalog',
     name: 'Safety Services',
     itemListElement: [
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Safety Walkthrough & Top 10 Fixes Report' }, price: '1300', priceCurrency: 'USD' },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'OSHA Documentation Readiness Review' }, price: DOC_REVIEW_PRICE_NUM, priceCurrency: 'USD' },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Incident Review & Corrective Action Support' }, price: '1500', priceCurrency: 'USD' },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Safety Walkthrough' }, price: '1300', priceCurrency: 'USD' },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Documentation Readiness Review' }, price: DOC_REVIEW_PRICE_NUM, priceCurrency: 'USD' },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Corrective Action Implementation' }, price: '2500', priceCurrency: 'USD' },
     ],
   },
 };
@@ -256,8 +256,8 @@ function breadcrumb(items) {
 const routes = [
   {
     path: '/',
-    title: 'OSHA Safety Walkthrough, Piedmont Triad NC | GigLine',
-    description: "Safety becomes the thing you'll get to. On-site OSHA walkthroughs for NC manufacturers & warehouses. 48-hour report, from $1,300.",
+    title: 'OSHA Safety & Documentation Readiness | GigLine Safety & Compliance',
+    description: 'On-site OSHA safety walkthroughs and documentation readiness reviews for small NC manufacturers, warehouses, contractors, and fleets. Combined Compliance Readiness Visit starts at $2,500.',
     canonical: '/',
     schemas: [
       LOCAL_BUSINESS,

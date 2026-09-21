@@ -2,74 +2,72 @@
 
 ## Status
 
-DRAFT ONLY. Do not publish, merge, deploy, index, add to the blog hub, or add to the sitemap until Vince explicitly approves the article.
+DRAFT ONLY. Do not publish, merge, index, add to the blog hub, or add to the sitemap until Vince approves the revised article.
 
-## Source package
+## Preview
 
-Use `osha-safety-consultant-cost-2026.json` in this folder as the content source of truth. Preserve the title, body copy, table, TL;DR points, comparison image, quote, CTA and all seven FAQ items. Do not invent prices, credentials, client examples, facility details or claims.
+Use `/previews/osha-safety-consultant-cost/` as the current source of truth for copy, order, and layout.
 
-## Required route after approval
+## Voice and service rules
+
+- Write as Vince speaking directly to a plant manager or fleet operator.
+- Use first person for judgment and floor-earned guidance.
+- Do not use em dashes anywhere.
+- Do not use generic SEO labels such as `THE SHORT ANSWER`.
+- Do not describe GigLine in institutional third person.
+- Only use these locked services: Safety Walkthrough, Documentation Readiness Review, Compliance Readiness Visit, Corrective Action Implementation, OSHA-Ready Control System, Quarterly Maintenance, and Annual Control Partner.
+- Check all copy against FIND, BUILD, MAINTAIN and Floor, Findings, Fixes, Proof.
+- Do not advertise incident response as a GigLine service.
+
+## Route after approval
 
 `/blog/how-much-does-an-osha-safety-consultant-cost-in`
 
-Use the slug exactly as supplied unless Vince approves a change. Canonical URL must use `https://www.giglinecompliance.com`.
+Canonical URL must use `https://www.giglinecompliance.com`.
 
-## Match the site's existing article layout
+## Layout
 
-Build the page from the same visual system used by `frontend/src/pages/BlogMachineGuardingChecklist.js`:
+Match the site's existing article system:
 
-- Full-width dark navy hero: `#102A43`.
-- Small uppercase eyebrow in JetBrains Mono using gold `#C9A84C`.
-- Article title in the same responsive serif heading treatment used on existing blog pages.
-- Content width: the existing `container max-w-3xl` article column.
-- Body color: `#1C2B2B` with the existing muted opacity levels.
-- Section rhythm: `py-12 md:py-16`, with the existing light blue dividers.
-- Alternate white and `#F9F8F6` section backgrounds where this brief specifies a panel.
-- Reuse the current Navbar, Footer, SEO component and StickyTOC. Do not create a separate visual language.
+- Dark navy hero using `#102A43`.
+- Gold eyebrow using `#C9A84C` and JetBrains Mono.
+- Responsive serif article title.
+- Existing `container max-w-3xl` content width.
+- Body color `#1C2B2B`.
+- White and `#F9F8F6` alternating sections.
+- Reuse the existing Navbar, Footer, SEO component, and StickyTOC.
+- Keep the three-service table readable on mobile by stacking its rows.
 
-## Exact content order
+## Current content order
 
-1. Hero: eyebrow `PRICING GUIDE`, title, opening paragraph, author, date and calculated read time.
-2. Table of contents linking to every H2.
-3. Intro paragraph.
-4. TL;DR panel with all four supplied points.
-5. `Why this matters`.
-6. `How much does an OSHA safety consultant cost in 2026?` with the three-column comparison table.
-7. Three service sections: on-site walkthroughs, documentation readiness reviews and incident response.
-8. Supplied three-column comparison image with alt text and caption.
-9. `Why OSHA safety consultant cost varies` as a six-item list.
-10. Pull quote panel using the supplied quote verbatim.
-11. Three question sections: worth the cost, hourly vs project pricing, and manufacturing vs warehouse pricing.
-12. CTA panel.
-13. FAQ accordion with all seven supplied questions and answers.
-14. `One last thing` closing section.
-15. Related-resources panel linking to the Compliance Readiness Visit and the Documentation Readiness Review.
+1. First-person answer in the hero.
+2. `What I cover` contents list.
+3. `The direct answer`.
+4. `What I need to know first` callout.
+5. `Why this matters on your floor`.
+6. Three locked services: Safety Walkthrough, Documentation Readiness Review, and Corrective Action Implementation.
+7. FIND, BUILD, MAINTAIN framework.
+8. Floor, Findings, Fixes, Proof framework.
+9. Cost drivers.
+10. First-person quote comparison guidance.
+11. Compliance Readiness Visit call to action.
+12. `Questions plant managers ask me` accordion.
+13. Closing note and related services.
 
-## Component mapping for Ryze blocks
+## Search requirements after approval
 
-- `ryze-tldr`: bordered light panel, gold left rule, heading `THE SHORT ANSWER`, four check-mark rows.
-- Markdown table: responsive wrapper; on narrow screens display each service as a stacked card so no horizontal overflow occurs.
-- `ryze-image`: full article-column width, rounded corners consistent with the blog, descriptive alt text, caption directly below.
-- `ryze-quote`: navy panel with gold left rule; quote is not a client testimonial and must not be styled or attributed as one.
-- `ryze-cta`: dark navy panel. Change the supplied generic button label to `Request a Compliance Readiness Visit` and link to `/services/compliance-readiness-visit`; this matches the approved primary next step. Do not publish that copy change until Vince approves the final page.
-- `ryze-faq`: accessible accordion plus matching FAQPage structured data generated from the same seven answers.
-
-## Search and structured-data requirements
-
-- Page title: `OSHA Safety Consultant Cost in 2026: What Drives Price`.
-- Meta description: use the package value exactly.
+- Page title: `OSHA Safety Consultant Cost: How I Scope It in 2026`.
+- Meta description: `OSHA safety consultant cost depends on scope. Vince explains how floor checks, document reviews, corrective work, and ongoing support change the quote.`
 - Add Article structured data using Vince Lawrence as author and GigLine Safety & Compliance as publisher.
-- Add FAQPage structured data from the seven supplied FAQ items.
-- Add BreadcrumbList: Home → Blog → article title.
-- Add the route to `frontend/src/App.js`, the article card to `frontend/src/pages/BlogHubPage.js`, and the pre-render route to `frontend/scripts/generate-seo-pages.js` only after approval.
-- Add the final URL to the sitemap only after approval.
+- Add question structured data only if it matches visible copy exactly.
+- Add BreadcrumbList for Home, Blog, and the article title.
+- Add the route, blog card, pre-render route, and sitemap entry only after approval.
 
-## Final checks before showing Vince
+## Final checks
 
-- Test at desktop and mobile widths.
-- Confirm no body copy or table columns are clipped.
-- Confirm every table/list/FAQ item from the package appears once.
-- Confirm the body image loads and its alt text is present.
-- Confirm the CTA opens the Compliance Readiness Visit page.
-- Confirm title, description, canonical, Article schema, FAQ schema and breadcrumb schema are present in the pre-rendered page.
-- Keep the page out of production until Vince explicitly approves it.
+- Test desktop and mobile.
+- Confirm there are no em dashes in visible copy, metadata, alt text, or structured data.
+- Confirm incident response does not appear as a GigLine service.
+- Confirm every named service is on the locked list.
+- Confirm the Compliance Readiness Visit link works.
+- Keep the page out of production until Vince approves it.

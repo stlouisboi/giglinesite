@@ -54,16 +54,22 @@ Match the site's existing article system:
 12. `Questions plant managers ask me` accordion.
 13. Closing note and related services.
 
-## Search requirements after approval
+## Production requirements after final approval
 
+- Remove `Preview` from the browser title and every `DRAFT PREVIEW` label.
+- Remove `noindex`, `nofollow`, and `noarchive`.
+- Use the normal GigLine Navbar and Footer components.
 - Page title: `OSHA Safety Consultant Cost in 2026 | GigLine`.
 - Meta description: `See what a private workplace safety consultant costs in 2026. Compare GigLine walkthrough, documentation review, and combined readiness visit pricing.`
 - Use one H1 only.
+- Set the canonical to the confirmed final production article route.
+- Set Open Graph title, description, and image through the existing SEO component.
 - Add Article structured data using Vince Lawrence as author and GigLine Safety & Compliance as publisher.
 - Add FAQ structured data only when it matches the visible questions and answers exactly.
 - Add BreadcrumbList for Home, Blog, and the article title.
-- Add the canonical URL only after the final production route is confirmed.
-- Add the route, blog card, pre-render route, and sitemap entry only after approval.
+- Import `trackEvent` from `frontend/src/utils/analytics.js`. Both fixed-quote buttons must send `article_cta_click` with `article: osha-safety-consultant-cost`, `service: compliance-readiness-visit`, and `placement: mid` or `placement: final` before routing to `/intake?service=compliance-readiness-visit`.
+- The intake page already maps `service=compliance-readiness-visit` to `compliance_readiness_visit`; verify that option is selected after production deployment.
+- Add the route, blog card, pre-render route, and sitemap entry only after final approval.
 
 ## Final checks
 
@@ -73,4 +79,7 @@ Match the site's existing article system:
 - Confirm every named service is on the locked list.
 - Confirm the Safety Walkthrough shows from $1,300, the Documentation Readiness Review shows $1,700, and the Compliance Readiness Visit shows from $2,500 with a BEST VALUE label.
 - Confirm the fixed-quote and comparison links work.
+- Confirm the intake form automatically selects Compliance Readiness Visit.
+- Confirm both fixed-quote buttons produce the `article_cta_click` event in analytics debug mode.
+- Confirm the Vince Lawrence headshot and About link work.
 - Keep the page out of production until Vince approves it.

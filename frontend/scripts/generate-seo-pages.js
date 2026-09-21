@@ -1151,12 +1151,51 @@ const routes = [
     content: `
       <h1>OSHA Forklift Inspection Requirements (29 CFR 1910.178)</h1>
       <p>By Vince Lawrence, GigLine Safety &amp; Compliance</p>
-      <p>The powered industrial truck standard (29 CFR 1910.178) is one of OSHA's most-cited every year. Two subsections generate most citations: operator training (l) and inspection logs (q). This guide covers daily pre-shift checks, operator certification requirements, records retention, and traffic controls.</p>
+      <p>The powered industrial truck standard, 29 CFR 1910.178, is one of OSHA's most cited standards year after year. Two subsections generate most citations: operator training (1910.178(l)) and inspection logs (1910.178(q)). Here is what OSHA actually asks for during a forklift-focused inspection, what the daily pre-shift check must cover, how long to keep records, and the 2026 penalty exposure.</p>
+      <h2>What OSHA 1910.178 covers</h2>
+      <p>The standard applies to high-lift trucks, lift trucks, tractors, platform trucks, motorized hand trucks, and other specialized industrial vehicles powered by electric motors or internal combustion engines. It does not apply to vehicles mainly used on public highways or agricultural tractors used in agricultural operations.</p>
+      <h2>Six things a forklift inspector checks first</h2>
+      <ul>
+        <li>Operator certifications for every operator on the clock.</li>
+        <li>The last thirty days of daily inspection logs.</li>
+        <li>Current data plates on every truck in the fleet.</li>
+        <li>Repair records for trucks reported defective — and evidence defective trucks were taken out of service.</li>
+        <li>Refresher training after any incident, near-miss, or unsafe operation.</li>
+        <li>Pedestrian and truck traffic separation on the floor.</li>
+      </ul>
+      <h2>Operator certification, what it actually requires (1910.178(l))</h2>
+      <p>OSHA does not license forklift operators. The employer certifies them. Certification must include three parts: formal instruction, practical training, and an evaluation of performance. Refresher evaluation must be re-performed every three years under 1910.178(l)(4)(iii), and sooner after any incident or observed unsafe operation.</p>
+      <h2>The daily inspection log (1910.178(q)(7))</h2>
+      <p>Pre-shift inspection before every use, split into two phases:</p>
+      <ul>
+        <li><strong>Pre-start, engine off</strong> — tires, forks and retention pin, chains, hoses, overhead guard, data plate legible, fluid levels, seat belt.</li>
+        <li><strong>Start-up and running, engine on</strong> — horn, backup alarm, lights and strobes, steering play, brakes and parking brake, lift and tilt controls, no unusual noises or smells.</li>
+      </ul>
+      <p>Written log, truck ID, date, operator, defects noted. Any defect that makes the truck unsafe removes it from service until repaired.</p>
       <h2>How long to keep forklift inspection records</h2>
       <p>OSHA does not publish a single retention number in 1910.178. In practice: keep daily inspection logs for one year minimum (two is safer), keep operator certifications for the active 3-year cycle plus one prior cycle, and keep repair and out-of-service records for the life of the truck.</p>
-      <h2>Operator certification (1910.178(l))</h2><p>Formal instruction + practical training + evaluation of performance. Evaluation must be re-performed every three years, 1910.178(l)(4)(iii).</p>
-      <h2>Daily inspection logs (1910.178(q)(7))</h2><p>Pre-shift inspection before every use. Written log, truck ID, date, operator, defects noted. Defects that make the truck unsafe remove it from service.</p>
-      <h2>Traffic controls</h2><p>Painted pedestrian lanes, convex mirrors at blind intersections, defined loading zones, and signage. Not prescribed by rule name, but cited under the general duty clause when struck-by hazards exist.</p>
+      <h2>Traffic controls, what OSHA looks for</h2>
+      <p>Struck-by-forklift is one of the top mechanisms of fatality in warehouse operations. OSHA does not prescribe specific engineering controls, but during any inspection with forklift activity the officer will note traffic separation between pedestrians and trucks: painted pedestrian lanes, convex mirrors at blind intersections, defined loading zones, and signage. When struck-by hazards exist and controls are missing, citations come under the general duty clause.</p>
+      <h2>The five forklift citations that hit small warehouses</h2>
+      <ol>
+        <li>No daily pre-shift inspection logs.</li>
+        <li>Operator certifications expired or missing the practical evaluation.</li>
+        <li>No refresher training after an incident or near-miss.</li>
+        <li>Defective trucks left in service after a reported defect.</li>
+        <li>No pedestrian separation in mixed traffic aisles.</li>
+      </ol>
+      <h2>2026 penalty exposure</h2>
+      <p>Serious violations run up to $16,550 each under the 2026 OSHA penalty schedule; willful or repeated violations run up to $165,514 each. Missing logs and lapsed certifications are the two citations that show up in pairs — and both are preventable with paperwork, not capital.</p>
+      <h2>30-day forklift cleanup plan</h2>
+      <ol>
+        <li>Pull every operator's certification file; calendar the 3-year re-evaluations.</li>
+        <li>Start daily written pre-shift inspections with a simple two-phase log.</li>
+        <li>Tag out any truck with an open defect until repaired.</li>
+        <li>Paint or re-paint pedestrian lanes at blind intersections; add convex mirrors.</li>
+        <li>Re-evaluate any operator involved in an incident or near-miss, and log it.</li>
+      </ol>
+      <h2>Get a second pair of eyes</h2>
+      <p>A <a href="/services/compliance-readiness-visit">Compliance Readiness Visit</a> reviews certifications, logs, and traffic controls on the floor and hands you a prioritized fix list. Fixed quote. No surprises.</p>
     `,
   },
   {

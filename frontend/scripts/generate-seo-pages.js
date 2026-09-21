@@ -480,7 +480,46 @@ const routes = [
     content: `
       <h1>NC DOL Free Safety Consultation vs. a Private Consultant</h1>
       <p>North Carolina offers small employers confidential, no-cost workplace safety consultation. This page compares the NC DOL On-Site Consultation Program with a privately scoped GigLine engagement so Piedmont Triad manufacturers, warehouses, contractors, and fleet operations can choose the right fit.</p>
+      <h2>Let's start with the truth about the free program</h2>
+      <p>The free program is genuinely free and genuinely useful. It is not a sales funnel, and it is not a trap. For many small employers it is the right first call. The question is what you need: a compliance check, or a fixes-and-proof engagement built around your schedule and your documentation.</p>
+      <h2>What the NC DOL consultation program provides</h2>
+      <ul>
+        <li>Confidential, no-cost on-site safety and health surveys for small, high-hazard employers in North Carolina.</li>
+        <li>Hazard findings with abatement guidance — no citations and no penalties for hazards found through the program.</li>
+        <li>Access to free written programs, checklists, and training materials.</li>
+        <li>A scheduled visit with a state consultant, typically delivered on a queue that can run weeks to months depending on demand.</li>
+      </ul>
+      <h2>What employers agree to when they use the program</h2>
+      <ul>
+        <li>Correct serious hazards identified during the survey within agreed timeframes, documented as corrections.</li>
+        <li>Allow the consultant to involve employees in the walkthrough.</li>
+        <li>Post or share results per program rules while corrections are in progress.</li>
+      </ul>
+      <h2>Where GigLine fits</h2>
+      <ul>
+        <li><strong>Fixed quotes, fast scheduling</strong> — a scoped floor visit priced before you commit, typically scheduled in days, not months.</li>
+        <li><strong>Documentation readiness</strong> — written programs, OSHA 300 logs, HazCom binders, LOTO procedures, and training records built or corrected, not just flagged.</li>
+        <li><strong>Corrective action implementation</strong> — the fix list comes with photos, priorities, and help getting the fixes done.</li>
+        <li><strong>Proof for insurers, customers, and OSHA</strong> — a paper trail that shows the floor, the findings, and the fixes.</li>
+      </ul>
+      <h2>Side-by-side comparison</h2>
+      <ul>
+        <li><strong>Cost:</strong> NC DOL — free. GigLine — fixed quote per engagement, stated before scheduling.</li>
+        <li><strong>Scheduling:</strong> NC DOL — state consultant queue, often weeks to months. GigLine — typically days.</li>
+        <li><strong>Scope:</strong> NC DOL — hazard survey with abatement plan. GigLine — hazard survey plus documentation build and corrective-action implementation.</li>
+        <li><strong>Citations:</strong> neither reports hazards to OSHA enforcement; both are confidential.</li>
+        <li><strong>Deliverable:</strong> NC DOL — findings and abatement guidance. GigLine — findings, priorities, written documentation, and proof.</li>
+      </ul>
+      <h2>Which option fits your operation?</h2>
+      <ul>
+        <li><strong>Consider NC DOL when:</strong> budget is the constraint, you can wait for a queue, and you have someone in-house who can turn findings into written programs and corrections.</li>
+        <li><strong>Consider GigLine when:</strong> you need the visit scheduled now, you need written programs and records brought to ready, or you want a single accountable partner from findings through fixes to proof.</li>
+      </ul>
+      <h2>My honest recommendation</h2>
+      <p>If the free program fits your timeline and your in-house capability, use it — I would rather you get the survey done than wait on it. If you are staring down an inspection date, a contract requirement, or a documentation gap nobody has time to close, that is where a scoped private engagement earns its price.</p>
       <p>Read the official NC DOL consultation program details at <a href="https://www.labor.nc.gov/occupational-safety-and-health-consultation-program">labor.nc.gov</a>. GigLine Safety &amp; Compliance is an independent private consultancy and does not represent OSHA or the North Carolina Department of Labor.</p>
+      <h2>Need help deciding where to start?</h2>
+      <p>A <a href="/services/compliance-readiness-visit">Compliance Readiness Visit</a> is the fixed-price starting point: one visit, findings with photos, priorities, and a fix list. No guesswork about what to fix or why.</p>
     `,
   },
   {

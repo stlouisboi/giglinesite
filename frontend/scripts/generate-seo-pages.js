@@ -1055,10 +1055,50 @@ const routes = [
     content: `
       <h1>OSHA Machine Guarding Checklist for Small Manufacturers</h1>
       <p>By Vince Lawrence, GigLine Safety &amp; Compliance</p>
-      <p>Machine guarding sits in OSHA's Top 10 most-cited standards every year. This guide walks through what an OSHA inspector actually looks for and what the 2026 penalty exposure is.</p>
-      <h2>The four hazard categories (29 CFR 1910.212)</h2><p>Point of operation, ingoing nip points, rotating parts, and flying chips or sparks. If any of these hazards exists on a machine and can be reached by an employee, a guard is required.</p>
-      <h2>Abrasive wheels (29 CFR 1910.215)</h2><p>Work rest gap ≤ 1/8 inch. Tongue guard gap ≤ 1/4 inch. Ring test every wheel before mounting.</p>
-      <h2>Common citations</h2><p>Bench grinder work rest gaps, unguarded shear points on roll formers, missing chip guards on lathes, and guards removed for jam clearing.</p>
+      <p>Machine guarding sits in OSHA's Top 10 most-cited standards every year. This guide gives you the full walkthrough as a printable, tickable checklist: 33 items across six categories, with CFR citations, penalty exposures, and a supervisor sign-off page. Print it, walk the floor with a pen, and hand it back with the findings.</p>
+      <h2>What OSHA 1910.212 actually says</h2>
+      <p>The general machine guarding standard runs about half a page. Compliance officers reduce it to one sentence: one or more methods of machine guarding shall be provided to protect the operator and other employees in the machine area from hazards such as those created by the point of operation, ingoing nip points, rotating parts, and flying chips and sparks. If a hazard exists and can be reached by an employee, a guard is required.</p>
+      <h2>The four hazard categories OSHA cites</h2>
+      <ul>
+        <li><strong>Point of operation (1910.212(a)(3)(ii))</strong> — where the machine does its work: shearing, bending, punching, cutting. The most-cited sub-part in the standard.</li>
+        <li><strong>Ingoing nip points (1910.212(a)(1), 1910.219)</strong> — rollers, belts, gears, and chain drives that pull fingers, gloves, and clothing in.</li>
+        <li><strong>Rotating and reciprocating parts</strong> — exposed shafts, couplings, set screws, and crank throws.</li>
+        <li><strong>Flying chips and sparks</strong> — lathes, mills, and grinders throwing material that needs chip guards and shields.</li>
+      </ul>
+      <h2>The printable walkthrough checklist (33 items)</h2>
+      <ul>
+        <li><strong>1. Point of Operation (1910.212(a)(3)(ii))</strong> — every press, shear, punch, and cutter has a fixed, interlocked, or presence-sensing guard; two-hand controls are anti-tie-down and require concurrent activation; light curtains are tested weekly with a documented log at the machine.</li>
+        <li><strong>2. Rotating &amp; Reciprocating Parts (1910.212(a)(1), 1910.219)</strong> — shafts, couplings, pulleys, and belt drives guarded; set screws replaced with flush or cup-point fasteners on exposed rotating parts.</li>
+        <li><strong>3. Abrasive Wheels (1910.215)</strong> — work rest gap ≤ 1/8 inch, tongue guard gap ≤ 1/4 inch, ring test before mounting, wheel RPM rated at or above spindle speed.</li>
+        <li><strong>4. Saws, Presses &amp; Cutters (1910.212, 1910.213)</strong> — table saw blade guards and riving knives in place; radial arm saws return automatically; band saw blade enclosures intact.</li>
+        <li><strong>5. Guard Integrity &amp; Bypass Prevention (1910.212(a)(2))</strong> — no guards removed for jam clearing, no zip-tied or bypassed interlocks, guard fasteners all present and tight.</li>
+        <li><strong>6. Documentation &amp; Training (1910.212, 1910.132)</strong> — operators trained on the specific machine hazards, training records on file, guard inspection and maintenance documented.</li>
+      </ul>
+      <p>Any unchecked item at the end of the walk is either a finding waiting to be documented or an active citation risk.</p>
+      <h2>The five citations that trip up small manufacturers</h2>
+      <ol>
+        <li>Bench grinder work rest gaps wider than 1/8 inch.</li>
+        <li>Unguarded shear points on roll formers and press brakes.</li>
+        <li>Missing chip guards on lathes and drill presses.</li>
+        <li>Guards removed for jam clearing and never reinstalled.</li>
+        <li>Bypassed or defeated interlocks on light curtains and gates.</li>
+      </ol>
+      <h2>2026 penalty exposure</h2>
+      <p>Serious or other-than-serious violations run up to $16,550 each under the 2026 OSHA penalty schedule; willful or repeated violations run up to $165,514 each. A single unguarded point of operation found on several machines can be cited per machine, so exposure compounds quickly.</p>
+      <h2>Training and documentation</h2>
+      <p>Physical guards fail the audit if there is no record showing operators knew how to use them. OSHA does not prescribe a training curriculum for machine guarding under 1910.212, but the general duty clause and 1910.132 (PPE hazard assessment) effectively require documented training on the specific hazards of each machine.</p>
+      <h2>The abrasive wheel problem (1910.215)</h2>
+      <p>Bench and pedestal grinders generate more machine guarding citations than any other equipment in general industry. Three geometric requirements, and most shops fail at least one: work rest gap ≤ 1/8 inch, tongue guard gap ≤ 1/4 inch, and a ring test of every wheel before mounting.</p>
+      <h2>The 30-day action plan</h2>
+      <ol>
+        <li>Walk the floor with the checklist and photo every gap.</li>
+        <li>Fix the grinder geometry first — work rest and tongue guard gaps take minutes.</li>
+        <li>Order or fabricate missing guards; document every interim measure.</li>
+        <li>Retrain operators on changed machines and log it.</li>
+        <li>Set a recurring guard-integrity check so guards stay on.</li>
+      </ol>
+      <h2>Get a second pair of eyes</h2>
+      <p>Not sure what to fix first? A <a href="/services/compliance-readiness-visit">Compliance Readiness Visit</a> puts a fixed-price floor walkthrough on the calendar: findings with photos, priorities, and a fix list. No guesswork about what to fix or why.</p>
     `,
   },
   {

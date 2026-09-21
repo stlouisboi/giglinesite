@@ -1047,7 +1047,7 @@ const routes = [
         author: { '@id': `${BASE_URL}/#vince` },
         publisher: { '@id': `${BASE_URL}/#business` },
         mainEntityOfPage: `${BASE_URL}/blog/osha-machine-guarding-checklist-small-manufacturers`,
-        datePublished: '2025-10-14', dateModified: '2026-02-28',
+        datePublished: '2025-10-14', dateModified: '2026-09-21',
         articleSection: 'OSHA Compliance', inLanguage: 'en-US',
       },
       breadcrumb([{ name: 'Home', path: '/' }, { name: 'Blog', path: '/field-notes' }, { name: 'Machine Guarding Checklist', path: '/blog/osha-machine-guarding-checklist-small-manufacturers' }]),

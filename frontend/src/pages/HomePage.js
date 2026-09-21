@@ -720,6 +720,16 @@ const HomePage = () => {
             </a>
             .
           </p>
+          <div className="mt-6">
+            <Link
+              to="/blog/how-much-does-an-osha-safety-consultant-cost-in"
+              className="inline-flex items-center gap-2 text-[15px] font-semibold text-slate-900 hover:text-amber-700 transition-colors"
+              data-testid="pricing-guide-link"
+            >
+              What does an OSHA safety consultant cost? See the full breakdown
+              <ArrowRight size={16} aria-hidden="true" />
+            </Link>
+          </div>
         </div>
       </section>
 

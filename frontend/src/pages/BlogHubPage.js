@@ -65,7 +65,7 @@ const BlogHubPage = () => {
       <section className="py-14 md:py-20 border-b border-[#2A52A0]/10" data-testid="blog-hub-featured">
         <div className="container max-w-5xl">
           <p className="text-xs font-semibold tracking-widest text-[#2A52A0] uppercase mb-6" style={{ fontFamily: "'JetBrains Mono', monospace" }}>LATEST GUIDE</p>
-          <Link to={`/blog/${featured.slug}`} className="group block" data-testid={`blog-featured-${featured.slug}`}>
+          <a href={`/blog/${featured.slug}`} className="group block" data-testid={`blog-featured-${featured.slug}`}>
             <article className="bg-white border border-[#2A52A0]/15 rounded-lg overflow-hidden hover:border-[#2A52A0]/40 transition-colors">
               <div className="grid md:grid-cols-5 gap-0">
                 <div className="md:col-span-2 bg-[#102A43] text-white p-8 md:p-10 flex flex-col justify-between">
@@ -85,7 +85,7 @@ const BlogHubPage = () => {
                 </div>
               </div>
             </article>
-          </Link>
+          </a>
         </div>
       </section>
 
@@ -95,7 +95,7 @@ const BlogHubPage = () => {
           <p className="text-xs font-semibold tracking-widest text-[#2A52A0] uppercase mb-8" style={{ fontFamily: "'JetBrains Mono', monospace" }}>ALL GUIDES</p>
           <div className="grid md:grid-cols-2 gap-6" data-testid="blog-hub-grid">
             {rest.map((p) => (
-              <Link key={p.slug} to={`/blog/${p.slug}`} className="group block" data-testid={`blog-card-${p.slug}`}>
+              <a key={p.slug} href={`/blog/${p.slug}`} className="group block" data-testid={`blog-card-${p.slug}`}>
                 <article className="bg-white border border-[#2A52A0]/10 rounded-lg p-6 md:p-7 h-full flex flex-col hover:border-[#2A52A0]/40 hover:shadow-sm transition-all">
                   <div className="flex items-center gap-3 mb-4">
                     <span className="text-[10px] font-semibold tracking-widest text-[#2A52A0] uppercase px-2.5 py-1 bg-[#2A52A0]/8 rounded" style={{ fontFamily: "'JetBrains Mono', monospace" }}>{p.topic}</span>
@@ -106,7 +106,7 @@ const BlogHubPage = () => {
                   <p className="text-sm text-[#1C2B2B]/70 leading-relaxed mb-5 flex-grow">{p.excerpt}</p>
                   <span className="inline-flex items-center gap-2 text-sm font-semibold text-[#2A52A0] group-hover:gap-3 transition-all mt-auto">Read the guide <ArrowRight size={16} /></span>
                 </article>
-              </Link>
+              </a>
             ))}
           </div>
         </div>

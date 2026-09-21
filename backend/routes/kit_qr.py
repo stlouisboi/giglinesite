@@ -17,7 +17,7 @@ from typing import Optional
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
-from config import ADMIN_PASSWORD, db
+from config import ADMIN_PASSWORD, db, is_admin
 from lib.kit_qr import QR_COLLECTION, mint_kit_qr, render_qr_png_b64
 
 router = APIRouter()
@@ -68,7 +68,7 @@ class MintPayload(BaseModel):
 
 @router.get("/admin/kit-qr/list")
 async def list_records(token: str = "", limit: int = 50):
-    if token != ADMIN_PASSWORD:
+    if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
     limit = max(1, min(limit, 200))
     cursor = db[QR_COLLECTION].find({}, {"_id": 0}).sort("minted_at", -1).limit(limit)
@@ -78,7 +78,7 @@ async def list_records(token: str = "", limit: int = 50):
 
 @router.post("/admin/kit-qr/mint")
 async def admin_mint(payload: MintPayload):
-    if payload.token != ADMIN_PASSWORD:
+    if not is_admin(payload.token):
         raise HTTPException(status_code=401, detail="Unauthorized")
     result = await mint_kit_qr(
         session_id=payload.session_id,

@@ -18,7 +18,7 @@ from typing import Optional
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
-from config import db, ADMIN_PASSWORD
+from config import db, ADMIN_PASSWORD, is_admin
 from integrations.bing_indexnow import (
     IndexNowApiError,
     IndexNowConfigError,
@@ -37,7 +37,7 @@ LOG_COLLECTION = "bing_indexnow_log"
 
 
 def _require_admin(token: str) -> None:
-    if token != ADMIN_PASSWORD:
+    if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
 
 

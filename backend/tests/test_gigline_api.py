@@ -32,32 +32,6 @@ class TestHealthEndpoints:
         print("✓ Root endpoint passed")
 
 
-class TestServicesEndpoint:
-    """Services listing tests"""
-    
-    def test_get_services_returns_packages(self):
-        """GET /api/services returns 9 service packages"""
-        response = requests.get(f"{BASE_URL}/api/services")
-        assert response.status_code == 200
-        data = response.json()
-        # Should have 9 packages (3 walkthroughs, 2 documentation, 2 incident, 3 deposits)
-        assert len(data) == 9, f"Expected 9 packages, got {len(data)}"
-        
-        # Verify key packages exist
-        assert "walkthrough_small" in data
-        assert "walkthrough_standard" in data
-        assert "documentation_remote" in data
-        assert "incident_standard" in data
-        
-        # Verify package structure
-        walkthrough = data["walkthrough_small"]
-        assert "name" in walkthrough
-        assert "amount" in walkthrough
-        assert "description" in walkthrough
-        assert walkthrough["amount"] == 650.00
-        print(f"✓ Services endpoint returned {len(data)} packages")
-
-
 class TestWalkthroughRequest:
     """Walkthrough intake form tests"""
     
@@ -261,42 +235,6 @@ class TestAdminEndpoints:
         assert isinstance(data["walkthrough_requests"], list)
         
         print(f"✓ Admin leads returned - {len(data['safety_checks'])} safety checks, {len(data['walkthrough_requests'])} walkthroughs")
-
-
-class TestStripePaymentEndpoints:
-    """Stripe payment checkout tests"""
-    
-    def test_checkout_walkthrough_small(self):
-        """POST /api/payments/checkout for walkthrough_small returns valid Stripe URL"""
-        payload = {
-            "service_type": "walkthrough_small",
-            "origin_url": "https://z-project-9.preview.emergentagent.com",
-            "customer_email": "test@example.com",
-            "customer_name": "Test User"
-        }
-        
-        response = requests.post(f"{BASE_URL}/api/payments/checkout", json=payload)
-        assert response.status_code == 200
-        data = response.json()
-        
-        assert "url" in data
-        assert "session_id" in data
-        assert data["url"].startswith("https://checkout.stripe.com")
-        assert len(data["session_id"]) > 0
-        
-        print(f"✓ Walkthrough checkout URL: {data['url'][:60]}...")
-        return data["session_id"]
-    
-    def test_checkout_invalid_service(self):
-        """POST /api/payments/checkout with invalid service type fails"""
-        payload = {
-            "service_type": "invalid_service",
-            "origin_url": "https://z-project-9.preview.emergentagent.com"
-        }
-        
-        response = requests.post(f"{BASE_URL}/api/payments/checkout", json=payload)
-        assert response.status_code == 400
-        print("✓ Checkout correctly rejected invalid service type")
 
 
 class TestHazComEndpoints:

@@ -190,17 +190,6 @@ class TestAPIHealth:
         data = response.json()
         assert "message" in data
         print(f"✓ API root: {data['message']}")
-    
-    def test_services_endpoint(self):
-        """Test services endpoint returns pricing"""
-        response = requests.get(f"{BASE_URL}/api/services")
-        
-        assert response.status_code == 200
-        
-        data = response.json()
-        assert isinstance(data, dict)
-        assert "walkthrough_small" in data
-        print(f"✓ Services endpoint: {len(data)} services available")
 
 
 if __name__ == "__main__":

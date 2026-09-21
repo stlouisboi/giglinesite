@@ -24,6 +24,7 @@ function stripPrerenderedMeta() {
     'meta[name="twitter:image"]',
     'link[rel="canonical"]',
     'link[rel="alternate"]',
+    'head > title',
   ].join(', ');
   document.head.querySelectorAll(selector).forEach((el) => el.remove());
 }

@@ -100,7 +100,7 @@ export const CASE_STUDY_PUBLIC = false;
  *   interactive on-page checklist remain fully public. Flip to `true` only
  *   after Batch 2C wires live transactional email (Resend / MailerLite).
  */
-export const MG_LEAD_MAGNET_ENABLED = false;
+export const MG_LEAD_MAGNET_ENABLED = true;
 
 // Legacy helper used by CitationProofKits routing. Ghost / waitlisted kits
 // return false so their pages route to the waitlist rather than checkout.

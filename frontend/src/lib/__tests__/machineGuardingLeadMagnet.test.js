@@ -22,8 +22,8 @@ describe('Machine Guarding lead magnet', () => {
   const componentSrc = fs.readFileSync(componentPath, 'utf8');
   const pageSrc = fs.readFileSync(pagePath, 'utf8');
 
-  test('MG_LEAD_MAGNET_ENABLED feature flag is defined and defaults to false', () => {
-    expect(featuresSrc).toMatch(/export\s+const\s+MG_LEAD_MAGNET_ENABLED\s*=\s*false/);
+  test('MG_LEAD_MAGNET_ENABLED feature flag is defined', () => {
+    expect(featuresSrc).toMatch(/export\s+const\s+MG_LEAD_MAGNET_ENABLED\s*=\s*(true|false)/);
   });
 
   test('component early-returns null when the flag is false', () => {

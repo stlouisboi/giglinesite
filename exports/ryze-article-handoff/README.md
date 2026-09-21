@@ -56,11 +56,13 @@ Match the site's existing article system:
 
 ## Search requirements after approval
 
-- Page title: `OSHA Safety Consultant Cost: How I Scope It in 2026`.
-- Meta description: `OSHA safety consultant cost depends on scope. Vince explains how floor checks, document reviews, corrective work, and ongoing support change the quote.`
+- Page title: `OSHA Safety Consultant Cost in 2026 | GigLine`.
+- Meta description: `See what a private workplace safety consultant costs in 2026. Compare GigLine walkthrough, documentation review, and combined readiness visit pricing.`
+- Use one H1 only.
 - Add Article structured data using Vince Lawrence as author and GigLine Safety & Compliance as publisher.
-- Add question structured data only if it matches visible copy exactly.
+- Add FAQ structured data only when it matches the visible questions and answers exactly.
 - Add BreadcrumbList for Home, Blog, and the article title.
+- Add the canonical URL only after the final production route is confirmed.
 - Add the route, blog card, pre-render route, and sitemap entry only after approval.
 
 ## Final checks
@@ -69,5 +71,6 @@ Match the site's existing article system:
 - Confirm there are no em dashes in visible copy, metadata, alt text, or structured data.
 - Confirm incident response does not appear as a GigLine service.
 - Confirm every named service is on the locked list.
-- Confirm the Compliance Readiness Visit link works.
+- Confirm the Safety Walkthrough shows from $1,300, the Documentation Readiness Review shows $1,700, and the Compliance Readiness Visit shows from $2,500 with a BEST VALUE label.
+- Confirm the fixed-quote and comparison links work.
 - Keep the page out of production until Vince approves it.

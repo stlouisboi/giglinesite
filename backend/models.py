@@ -102,9 +102,14 @@ class MachineGuardingLeadRequest(BaseModel):
     `website` is a required honeypot field: it MUST arrive empty on real
     submissions. Bots that autofill every input will populate it, and the route
     silently drops those requests.
+
+    `send_forklift_upsell` opts the visitor in to the FREE Forklift/PIT
+    walkthrough companion checklist — a second PDF sent alongside the primary
+    Machine Guarding checklist. Distinct from the paid Readiness Kit product.
     """
     first_name: str
     email: EmailStr
     company: Optional[str] = ""
     marketing_consent: bool = False
+    send_forklift_upsell: bool = False
     website: Optional[str] = ""  # honeypot — must be empty

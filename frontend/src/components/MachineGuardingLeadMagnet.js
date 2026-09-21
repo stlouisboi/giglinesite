@@ -25,7 +25,7 @@ const SUBMIT_ENDPOINT = `${API}/api/machine-guarding-checklist/submit`;
 const PDF_ENDPOINT = `${API}/api/machine-guarding-checklist/pdf`;
 
 const MachineGuardingLeadMagnet = () => {
-  const [form, setForm] = useState({ firstName: '', email: '', company: '', consent: false, website: '' });
+  const [form, setForm] = useState({ firstName: '', email: '', company: '', consent: false, sendForklift: false, website: '' });
   const [submitted, setSubmitted] = useState(false);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState(null);
@@ -55,6 +55,7 @@ const MachineGuardingLeadMagnet = () => {
           email: form.email.trim(),
           company: (form.company || '').trim(),
           marketing_consent: !!form.consent,
+          send_forklift_upsell: !!form.sendForklift,
           website: form.website || '',
         }),
       });
@@ -88,7 +89,7 @@ const MachineGuardingLeadMagnet = () => {
               Send the printable version to my inbox
             </h2>
             <p id="mg-lead-magnet-help" className="text-sm text-[#1C2B2B]/60 leading-relaxed mb-6">
-              You can print or save this page as a PDF right now with the Print button above. If you would like a copy emailed for a supervisor or a binder, share your work email below. Draft state, form is not wired to live delivery.
+              You can print or save this page as a PDF right now with the Print button above. If you would like a branded copy emailed for a supervisor or a binder, share your work email below.
             </p>
 
             <form
@@ -164,6 +165,21 @@ const MachineGuardingLeadMagnet = () => {
                 />
               </div>
 
+              <div className="flex items-start gap-2.5 p-3 bg-[#F9F8F6] border border-[#C9A84C]/30 rounded">
+                <input
+                  id="mg-send-forklift"
+                  type="checkbox"
+                  checked={form.sendForklift}
+                  onChange={set('sendForklift')}
+                  className="mt-1 h-4 w-4 flex-shrink-0 accent-[#C9A84C] cursor-pointer"
+                  data-testid="mg-lead-magnet-send-forklift"
+                />
+                <label htmlFor="mg-send-forklift" className="text-[13px] leading-snug text-[#1C2B2B]/80 cursor-pointer">
+                  <span className="font-bold text-[#102A43]">Also send me the free Forklift / PIT walkthrough checklist.</span>{' '}
+                  <span className="text-[#1C2B2B]/60">25 checks across operator training, pre-shift inspection, traveling and load handling, tied to 29 CFR 1910.178. Separate PDF, same email.</span>
+                </label>
+              </div>
+
               <div className="flex items-start gap-2.5">
                 <input
                   id="mg-consent"
@@ -205,7 +221,7 @@ const MachineGuardingLeadMagnet = () => {
               CHECK YOUR INBOX
             </p>
             <p className="text-sm leading-relaxed text-[#1C2B2B]/70 mb-5">
-              We just emailed the Machine Guarding printable checklist to <strong className="text-[#1C2B2B]">{form.email}</strong>. It should arrive within a few minutes. If you do not see it, check your spam or promotions tab. {form.consent
+              We just emailed the Machine Guarding{form.sendForklift ? ' and Forklift / PIT walkthrough' : ''} printable checklist{form.sendForklift ? 's' : ''} to <strong className="text-[#1C2B2B]">{form.email}</strong>. It should arrive within a few minutes. If you do not see it, check your spam or promotions tab. {form.consent
                 ? 'You also opted into occasional practical safety guidance from GigLine.'
                 : 'You requested this resource. You are not subscribed to ongoing marketing emails.'}
             </p>

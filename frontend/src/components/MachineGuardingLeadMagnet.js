@@ -1,27 +1,34 @@
 /**
  * Machine Guarding printable-checklist lead-magnet form.
  *
- * Mirrors the First-Pull draft pattern:
+ * Mirrors the First-Pull accessible-form shape with LIVE Resend delivery
+ * wired through the /api/machine-guarding-checklist/submit endpoint:
  *   - accessible labels with for/id, autocomplete, aria-describedby
  *   - honeypot input absolutely off-screen AND aria-hidden AND tabIndex=-1
  *   - unchecked marketing consent by default
- *   - DRAFT STATE: no live email delivery, no fetch, no transactional-email SDK
+ *   - POSTs to backend which stores the lead, sends the branded PDF via
+ *     Resend, alerts Vince, and (when consent is on) enrols in MailerLite
  *
  * Gated behind `MG_LEAD_MAGNET_ENABLED` in features.js. When the flag is off,
  * the component renders null so nothing appears in production.
  *
- * The "Download the PDF" button on the confirmation state triggers the same
- * `window.print()` flow the article's header Print button uses, letting
- * visitors capture the checklist as a PDF via their browser's Save-as-PDF
- * dialog immediately after submitting the form.
+ * The "Download PDF" button on the confirmation state hits the same backend
+ * PDF endpoint so visitors can grab the checklist immediately even if the
+ * email takes a minute (or their inbox filters it).
  */
 import React, { useRef, useState } from 'react';
-import { CheckCircle2, Mail, FileDown, Printer } from 'lucide-react';
+import { CheckCircle2, Mail, FileDown, Loader2 } from 'lucide-react';
 import { MG_LEAD_MAGNET_ENABLED } from '../config/features';
+
+const API = process.env.REACT_APP_BACKEND_URL;
+const SUBMIT_ENDPOINT = `${API}/api/machine-guarding-checklist/submit`;
+const PDF_ENDPOINT = `${API}/api/machine-guarding-checklist/pdf`;
 
 const MachineGuardingLeadMagnet = () => {
   const [form, setForm] = useState({ firstName: '', email: '', company: '', consent: false, website: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [pending, setPending] = useState(false);
+  const [error, setError] = useState(null);
   const firstNameRef = useRef(null);
   const emailRef = useRef(null);
 
@@ -32,18 +39,37 @@ const MachineGuardingLeadMagnet = () => {
     setForm((f) => ({ ...f, [k]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!form.firstName.trim()) { firstNameRef.current && firstNameRef.current.focus(); return; }
     if (!form.email.trim())     { emailRef.current && emailRef.current.focus(); return; }
     if (form.website) return; // honeypot triggered, silently drop
-    // DRAFT STATE: no live delivery, no fetch, no SDK.
-    setSubmitted(true);
+    setPending(true);
+    setError(null);
+    try {
+      const resp = await fetch(SUBMIT_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          first_name: form.firstName.trim(),
+          email: form.email.trim(),
+          company: (form.company || '').trim(),
+          marketing_consent: !!form.consent,
+          website: form.website || '',
+        }),
+      });
+      if (!resp.ok) throw new Error(`status ${resp.status}`);
+      setSubmitted(true);
+    } catch (err) {
+      setError('We had trouble sending. Please try again in a moment, or grab the PDF directly.');
+    } finally {
+      setPending(false);
+    }
   };
 
   const handleDownload = () => {
-    if (typeof window !== 'undefined' && typeof window.print === 'function') {
-      window.print();
+    if (typeof window !== 'undefined') {
+      window.open(PDF_ENDPOINT, '_blank', 'noopener');
     }
   };
 
@@ -154,11 +180,18 @@ const MachineGuardingLeadMagnet = () => {
 
               <button
                 type="submit"
-                className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-6 py-3 rounded transition-colors"
+                disabled={pending}
+                className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-6 py-3 rounded transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                 data-testid="mg-lead-magnet-submit"
               >
-                <Mail size={16} /> Email me this checklist
+                {pending ? <Loader2 size={16} className="animate-spin" /> : <Mail size={16} />}
+                {pending ? 'Sending...' : 'Email me this checklist'}
               </button>
+              {error && (
+                <p role="alert" className="text-sm text-[#8A1F1F] mt-2" data-testid="mg-lead-magnet-error">
+                  {error}
+                </p>
+              )}
             </form>
           </div>
         ) : (
@@ -169,25 +202,24 @@ const MachineGuardingLeadMagnet = () => {
           >
             <CheckCircle2 size={28} className="text-[#C9A84C]" aria-hidden="true" />
             <p className="text-xs font-semibold tracking-widest text-[#102A43] uppercase mt-3 mb-1" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-              REQUESTED (DRAFT)
+              CHECK YOUR INBOX
             </p>
             <p className="text-sm leading-relaxed text-[#1C2B2B]/70 mb-5">
-              In a live send, GigLine would email the Machine Guarding printable checklist to <strong className="text-[#1C2B2B]">{form.email}</strong> within a few minutes.{' '}
-              {form.consent
+              We just emailed the Machine Guarding printable checklist to <strong className="text-[#1C2B2B]">{form.email}</strong>. It should arrive within a few minutes. If you do not see it, check your spam or promotions tab. {form.consent
                 ? 'You also opted into occasional practical safety guidance from GigLine.'
                 : 'You requested this resource. You are not subscribed to ongoing marketing emails.'}
             </p>
-            <p className="text-sm text-[#1C2B2B]/60 mb-4">You can save a PDF copy right now:</p>
+            <p className="text-sm text-[#1C2B2B]/60 mb-4">Or grab the PDF right now:</p>
             <button
               type="button"
               onClick={handleDownload}
               data-testid="mg-lead-magnet-download"
               className="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#B8972C] text-[#102A43] font-bold px-6 py-3 rounded transition-colors"
             >
-              <FileDown size={16} /> Download PDF (save from print dialog)
+              <FileDown size={16} /> Download PDF now
             </button>
-            <p className="text-[11.5px] italic text-[#1C2B2B]/40 mt-3 flex items-center gap-1.5">
-              <Printer size={12} aria-hidden="true" /> Opens your browser's print dialog, choose "Save as PDF" as the destination.
+            <p className="text-[11.5px] italic text-[#1C2B2B]/40 mt-3">
+              Opens the branded GigLine checklist PDF in a new tab.
             </p>
           </div>
         )}

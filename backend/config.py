@@ -97,6 +97,13 @@ HAZCOM_FILES = {
 
 HEAT_STRESS_PDF = ROOT_DIR / "heat_files" / "GL_Heat_Stress_Print_2026.pdf"
 
+# ── Machine Guarding Checklist Lead Magnet (Feb 2026) ──
+# Delivered via Resend after visitors submit the /blog/osha-machine-guarding-
+# checklist-small-manufacturers lead-magnet form. Regenerate with
+# scripts/generate_machine_guarding_checklist.py whenever the on-site
+# interactive checklist content changes so the printed artifact stays in sync.
+MACHINE_GUARDING_PDF = ROOT_DIR / "machine_guarding_files" / "GigLine_Machine_Guarding_Checklist.pdf"
+
 # ── Sample Compliance Report (GL-WEB-017 Item 2) ──
 # Placeholder PDF in place. Swap the file at this path to update the deliverable.
 SAMPLE_REPORT_PDF = ROOT_DIR / "sample_report_files" / "GL_Sample_Compliance_Report.pdf"

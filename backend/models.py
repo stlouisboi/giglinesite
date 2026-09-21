@@ -86,3 +86,18 @@ class OshaInspectionGuideRequest(BaseModel):
     email: EmailStr
     first_name: Optional[str] = ""
     company: Optional[str] = ""
+
+
+
+class MachineGuardingLeadRequest(BaseModel):
+    """Lead-magnet form on /blog/osha-machine-guarding-checklist-small-manufacturers.
+
+    `website` is a required honeypot field: it MUST arrive empty on real
+    submissions. Bots that autofill every input will populate it, and the route
+    silently drops those requests.
+    """
+    first_name: str
+    email: EmailStr
+    company: Optional[str] = ""
+    marketing_consent: bool = False
+    website: Optional[str] = ""  # honeypot — must be empty

@@ -386,8 +386,6 @@ const routes = [
       <p>On-site walkthrough (1–3 hours). Photo-documented hazard findings. CFR citations + estimated penalty exposure based on OSHA published maximums. Top 10 Fixes report, RED / AMBER / GREEN priority. Delivered within 48 hours.</p>
       <h3>OSHA Documentation Readiness Review, Starting at ${DOC_REVIEW_PRICE_LABEL}</h3>
       <p>Structured review of written programs, training records, OSHA logs, inspection records, and SDS compliance. 53-item checklist across seven OSHA categories.</p>
-      <h3>Incident Review & Corrective Action Support, Starting at $1,500</h3>
-      <p>Post-injury or post-near-miss response. Root cause analysis. OSHA recordability determination. OSHA 301 completion. Corrective action plan.</p>
       <h3>Corrective Action Implementation, From $2,500</h3>
       <p>Hands-on close-out for gaps identified in a Documentation Readiness Review or Compliance Readiness Visit. GigLine writes the programs you are missing, organizes evidence, and coordinates corrective actions until findings close. Scoped per engagement.</p>
       <h2>GigLine Safety Control System Buildout, Starting at $4,500</h2>

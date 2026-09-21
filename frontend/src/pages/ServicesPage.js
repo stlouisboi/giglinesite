@@ -277,6 +277,17 @@ const ServicesPage = () => {
               </tbody>
             </table>
           </div>
+          <div className="mt-6">
+            <Link
+              to="/blog/how-much-does-an-osha-safety-consultant-cost-in"
+              className="inline-flex items-center gap-2 text-[15px] font-semibold text-slate-900 hover:text-amber-700 transition-colors"
+              data-testid="pricing-guide-link"
+              onClick={() => trackEvent('services_pricing_guide_click', {})}
+            >
+              See the full OSHA safety consultant cost breakdown
+              <ArrowRight size={16} aria-hidden="true" />
+            </Link>
+          </div>
 
           {/* Mobile: service selector showing one column at a time */}
           <div className="md:hidden" data-testid="services-compare-mobile">

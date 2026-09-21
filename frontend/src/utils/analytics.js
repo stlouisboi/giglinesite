@@ -3,7 +3,7 @@
  * Usage: import { trackEvent, initAttribution } from '../utils/analytics';
  */
 
-const GA_ID = 'G-FNX42NP1QT';
+const GA_ID = 'G-BEB6MLY2G2';
 
 const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
 const CLICK_IDS = ['gclid', 'fbclid', 'msclkid'];

@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Shield, AlertTriangle, Wrench, ClipboardCheck, Eye, FileText } from 'lucide-react';
+import { ArrowRight, Shield, AlertTriangle, Wrench, ClipboardCheck, Eye, Printer, RotateCcw } from 'lucide-react';
 import SEO from '../components/SEO';
 import StickyTOC from '../components/StickyTOC';
+import MachineGuardingLeadMagnet from '../components/MachineGuardingLeadMagnet';
 
 const tocItems = [
   { id: "what-standard-requires", label: "What 1910.212 actually says" },
   { id: "four-hazards", label: "The four hazard categories" },
-  { id: "checklist", label: "The walkthrough checklist" },
+  { id: "checklist", label: "The printable walkthrough checklist" },
   { id: "top-citations", label: "Top citation traps" },
   { id: "penalties", label: "2026 penalty exposure" },
   { id: "training", label: "Training & documentation" },
@@ -17,10 +18,10 @@ const tocItems = [
 
 const defined = {
   headline: "OSHA Machine Guarding Checklist for Small Manufacturers",
-  description: "OSHA machine guarding for small manufacturers, practical checklist, CFR citations, 2026 penalty exposures.",
+  description: "OSHA machine guarding checklist for small manufacturers, print and walk the floor. CFR citations, item-by-item verifications, and 2026 penalty exposures.",
   canonical: "/blog/osha-machine-guarding-checklist-small-manufacturers",
   datePublished: "2025-10-14",
-  dateModified: "2025-10-14",
+  dateModified: "2026-02-01",
 };
 
 const articleSchema = {
@@ -57,66 +58,143 @@ const hazards = [
   { icon: Eye, cfr: "1910.212(a)(1)", title: "Flying chips and sparks", desc: "Grinding, cutting, welding, and abrasive operations. Requires either enclosed guarding, shields, or supplementary PPE, not just safety glasses." },
 ];
 
+// Expanded, print-ready walkthrough checklist. Each item has a stable id so
+// interactive check state survives re-renders and prints deterministically.
 const checklist = [
-  { area: "Point of Operation", items: [
-    "Every press, shear, punch, and cutter has a fixed, interlocked, or presence-sensing guard covering the point of operation",
-    "Two-hand controls where used are anti-tie-down type and require concurrent activation",
-    "Light curtains are tested weekly with a documented log",
-    "Foot switches have covers to prevent inadvertent activation",
+  { area: "1. Point of Operation", cfr: "1910.212(a)(3)(ii)", items: [
+    { id: "poo-01", text: "Every press, shear, punch, and cutter has a fixed, interlocked, or presence-sensing guard covering the point of operation" },
+    { id: "poo-02", text: "Two-hand controls where used are anti-tie-down type and require concurrent activation" },
+    { id: "poo-03", text: "Light curtains are tested weekly with a documented log at the machine" },
+    { id: "poo-04", text: "Foot switches have covers to prevent inadvertent activation" },
+    { id: "poo-05", text: "Perimeter fencing or interlocked gates surround robotic cells and roll formers" },
+    { id: "poo-06", text: "Emergency stops within reach of the operator position, tested this month" },
   ]},
-  { area: "Rotating & Reciprocating Parts", items: [
-    "All exposed shafts, couplings, and set screws below 7 feet from the floor are guarded",
-    "Belts, pulleys, chains, and sprockets within 7 feet of the floor are enclosed",
-    "Gears with any part exposed below 7 feet are fully enclosed",
-    "Flywheels within 7 feet of the floor are fully guarded",
+  { area: "2. Rotating & Reciprocating Parts", cfr: "1910.212(a)(1), 1910.219", items: [
+    { id: "rot-01", text: "All exposed shafts, couplings, and set screws below 7 feet from the floor are guarded" },
+    { id: "rot-02", text: "Belts, pulleys, chains, and sprockets within 7 feet of the floor are enclosed" },
+    { id: "rot-03", text: "Gears with any part exposed below 7 feet are fully enclosed" },
+    { id: "rot-04", text: "Flywheels within 7 feet of the floor are fully guarded" },
+    { id: "rot-05", text: "Rotating tool holders on lathes and mills have chuck guards or interlocked shields" },
+    { id: "rot-06", text: "Fan blades on floor-level blowers and dust collectors are behind guarding of ≤ 1/2\" mesh" },
   ]},
-  { area: "Abrasive Wheels (1910.215)", items: [
-    "Wheel safety guards installed on all bench, pedestal, and portable grinders",
-    "Work rest gap ≤ 1/8 inch from wheel face",
-    "Tongue guard gap ≤ 1/4 inch from wheel periphery",
-    "Wheels ring-tested before mounting and inspected for damage before each use",
+  { area: "3. Abrasive Wheels (Grinders)", cfr: "1910.215", items: [
+    { id: "abr-01", text: "Wheel safety guards installed on all bench, pedestal, and portable grinders" },
+    { id: "abr-02", text: "Work rest gap ≤ 1/8 inch from wheel face (measure with a shim, don't eyeball)" },
+    { id: "abr-03", text: "Tongue guard gap ≤ 1/4 inch from wheel periphery" },
+    { id: "abr-04", text: "Wheels ring-tested before mounting and inspected for damage before each use" },
+    { id: "abr-05", text: "RPM rating on wheel meets or exceeds spindle RPM (verified in mounting log)" },
+    { id: "abr-06", text: "Eye/face protection stationed within 6 feet of every grinder" },
   ]},
-  { area: "Documentation", items: [
-    "Machine guarding hazard assessment completed and dated for every machine",
-    "Guard removal/reinstallation logged (typically tied into LOTO records)",
-    "Operator training documented with employee name, machine, and date",
-    "Monthly supervisor guarding walk-through documented on a checklist",
+  { area: "4. Saws, Presses & Cutters", cfr: "1910.212, 1910.213", items: [
+    { id: "saw-01", text: "Table saw arbor guarded above and below the table, splitter and anti-kickback pawls installed" },
+    { id: "saw-02", text: "Radial arm saw returns to the back of the table on release (self-retracting)" },
+    { id: "saw-03", text: "Band saw wheels fully enclosed; blade guarded above the point of operation to within 1/2\" of the workpiece" },
+    { id: "saw-04", text: "Power press dies covered by a Type A or B gate, light curtain, or presence-sensing mat" },
+    { id: "saw-05", text: "Hydraulic and pneumatic press pinch points enclosed on all four sides" },
+  ]},
+  { area: "5. Guard Integrity & Bypass Prevention", cfr: "1910.212(a)(2)", items: [
+    { id: "int-01", text: "No guards visibly modified, removed, or held on with wire, zip ties, or tape" },
+    { id: "int-02", text: "Interlocks tested monthly; test results signed and dated at the machine" },
+    { id: "int-03", text: "Guard removal for jam clearing is tied into a written LOTO procedure (1910.147)" },
+    { id: "int-04", text: "Bolt-on guards secured with fasteners requiring a tool to remove (no wing nuts)" },
+    { id: "int-05", text: "No supervisor or operator can name a machine that \"runs without the guard\"" },
+  ]},
+  { area: "6. Documentation & Training", cfr: "1910.212, 1910.132", items: [
+    { id: "doc-01", text: "Machine guarding hazard assessment completed and dated for every machine" },
+    { id: "doc-02", text: "Guard removal/reinstallation logged (typically tied into LOTO records)" },
+    { id: "doc-03", text: "Operator training documented with employee name, machine, and date" },
+    { id: "doc-04", text: "Monthly supervisor guarding walk-through documented on a signed checklist" },
+    { id: "doc-05", text: "Written guarding policy present in IIPP or Safety & Health Program binder" },
   ]},
 ];
 
+const totalItems = checklist.reduce((sum, section) => sum + section.items.length, 0);
+
 const BlogMachineGuardingChecklist = () => {
+  const [checked, setChecked] = useState({});
+
+  const toggle = useCallback((id) => {
+    setChecked((prev) => ({ ...prev, [id]: !prev[id] }));
+  }, []);
+
+  const resetAll = useCallback(() => setChecked({}), []);
+
+  const handlePrint = useCallback(() => {
+    if (typeof window !== 'undefined' && typeof window.print === 'function') {
+      window.print();
+    }
+  }, []);
+
+  const checkedCount = useMemo(
+    () => Object.values(checked).filter(Boolean).length,
+    [checked]
+  );
+
+  const percent = totalItems ? Math.round((checkedCount / totalItems) * 100) : 0;
+
   return (
     <main data-testid="blog-machine-guarding-checklist">
       <SEO title={defined.headline} description={defined.description} canonical={defined.canonical} schema={combinedSchema} />
       <StickyTOC items={tocItems} />
 
+      {/* Print-only styles: hide chrome & interactive controls so the checklist prints cleanly */}
+      <style>{`
+        @media print {
+          @page { margin: 0.5in; }
+          nav, header, footer, .no-print,
+          [data-testid="sticky-toc"], [data-testid="mg-blog-cta"],
+          [data-testid="mg-walkthrough-callout"], [data-testid="mg-author"] {
+            display: none !important;
+          }
+          main { background: white !important; }
+          section { page-break-inside: avoid; padding: 12pt 0 !important; background: white !important; border: none !important; }
+          h1, h2, h3 { color: #000 !important; }
+          .container { max-width: 100% !important; padding: 0 !important; }
+          [data-testid="mg-checklist"] .print-checkbox {
+            width: 14pt; height: 14pt; border: 1.5pt solid #000; display: inline-block;
+            margin-right: 8pt; vertical-align: middle;
+          }
+          [data-testid="mg-checklist"] input[type="checkbox"] { display: none; }
+          [data-testid="mg-signoff"] { display: block !important; page-break-before: always; }
+        }
+        .print-only { display: none; }
+        @media print { .print-only { display: block; } }
+      `}</style>
+
       {/* Hero */}
       <section className="bg-[#102A43] text-white py-16 md:py-24">
         <div className="container max-w-3xl">
-          <p className="text-xs font-semibold tracking-widest text-[#2A52A0] uppercase mb-4" style={{ fontFamily: "'JetBrains Mono', monospace" }}>COMPLIANCE GUIDE</p>
+          <p className="text-xs font-semibold tracking-widest text-[#2A52A0] uppercase mb-4" style={{ fontFamily: "'JetBrains Mono', monospace" }}>PRINTABLE COMPLIANCE CHECKLIST</p>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }} data-testid="blog-machine-guarding-headline">{defined.headline}</h1>
-          <p className="text-white/70 text-base leading-relaxed mb-6">Machine guarding sits in the OSHA Top 10 every single year. Not because employers are careless, because there are dozens of nip points, pinch points, and points of operation in a small production shop, and it only takes one missing guard to draw a citation. This checklist walks you through what an OSHA inspector actually looks for, in the order they look for it.</p>
-          <div className="flex items-center gap-4 text-sm text-white/50">
-            <span>Vince Lawrence</span><span className="text-white/20">|</span><span>October 2025</span><span className="text-white/20">|</span><span>11 min read</span>
+          <p className="text-white/70 text-base leading-relaxed mb-6">Machine guarding sits in OSHA's Top 10 every single year. This guide gives you the full walkthrough as a printable, tickable checklist, {totalItems} items across six categories, with CFR citations, penalty exposures, and a supervisor sign-off page. Print it, walk the floor with a pen, and hand it back with the findings.</p>
+          <div className="flex flex-wrap items-center gap-3 no-print">
+            <button
+              type="button"
+              onClick={handlePrint}
+              data-testid="mg-print-btn"
+              className="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#B8972C] text-[#102A43] font-bold px-6 py-3 rounded transition-colors"
+            >
+              <Printer size={18} /> Print Checklist
+            </button>
+            <a
+              href="#checklist"
+              className="inline-flex items-center gap-2 border border-white/30 hover:border-[#C9A84C] text-white font-bold px-6 py-3 rounded transition-colors"
+            >
+              Jump to Checklist <ArrowRight size={16} />
+            </a>
+          </div>
+          <div className="flex items-center gap-4 text-sm text-white/50 mt-6">
+            <span>Vince Lawrence</span><span className="text-white/20">|</span><span>Updated Feb 2026</span><span className="text-white/20">|</span><span>11 min read</span>
           </div>
         </div>
       </section>
 
       {/* TOC */}
-      <section className="py-8 border-b border-[#2A52A0]/10">
+      <section className="py-8 border-b border-[#2A52A0]/10 no-print">
         <div className="container max-w-3xl">
           <p className="text-xs font-semibold tracking-widest text-[#1C2B2B]/40 uppercase mb-4" style={{ fontFamily: "'JetBrains Mono', monospace" }}>IN THIS GUIDE</p>
           <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-2">
-            {[
-              { id: "what-standard-requires", label: "What 1910.212 actually says" },
-              { id: "four-hazards", label: "The four hazard categories" },
-              { id: "checklist", label: "The walkthrough checklist" },
-              { id: "top-citations", label: "Top citation traps" },
-              { id: "penalties", label: "2026 penalty exposure" },
-              { id: "training", label: "Training & documentation" },
-              { id: "abrasive-wheels", label: "Abrasive wheels (1910.215)" },
-              { id: "action-plan", label: "30-day action plan" },
-            ].map((item) => (
+            {tocItems.map((item) => (
               <li key={item.id}><a href={`#${item.id}`} className="text-sm text-[#1C2B2B]/60 hover:text-[#1F3F80] transition-colors">{item.label}</a></li>
             ))}
           </ul>
@@ -154,25 +232,114 @@ const BlogMachineGuardingChecklist = () => {
         </div>
       </section>
 
-      {/* Checklist */}
+      {/* Printable walkthrough checklist */}
       <section className="py-12 md:py-16 border-b border-[#2A52A0]/10" id="checklist" data-testid="mg-checklist">
         <div className="container max-w-3xl">
-          <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-8" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>The walkthrough checklist</h2>
-          <p className="text-[#1C2B2B]/60 text-sm mb-8">Print this and walk the floor with it. If any item is unchecked, it is either a finding waiting to be documented or an active citation risk.</p>
+          <div className="flex items-start justify-between gap-4 mb-2 flex-wrap">
+            <div>
+              <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-2" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>The printable walkthrough checklist</h2>
+              <p className="text-[#1C2B2B]/60 text-sm max-w-xl">Print this page, or tick items on-screen as you walk the floor. Any unchecked item at the end of the walk is either a finding waiting to be documented or an active citation risk.</p>
+            </div>
+            <div className="flex items-center gap-2 no-print">
+              <button
+                type="button"
+                onClick={resetAll}
+                data-testid="mg-reset-btn"
+                className="inline-flex items-center gap-1.5 border border-[#2A52A0]/30 text-[#1F3F80] text-xs font-semibold px-3 py-2 rounded hover:bg-[#2A52A0]/5 transition-colors"
+              >
+                <RotateCcw size={13} /> Reset
+              </button>
+              <button
+                type="button"
+                onClick={handlePrint}
+                className="inline-flex items-center gap-1.5 bg-[#102A43] hover:bg-[#1F3F80] text-white text-xs font-semibold px-3 py-2 rounded transition-colors"
+              >
+                <Printer size={13} /> Print
+              </button>
+            </div>
+          </div>
+
+          {/* Progress meter (screen only) */}
+          <div className="mb-8 no-print" data-testid="mg-progress">
+            <div className="flex justify-between text-xs text-[#1C2B2B]/60 mb-1.5" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+              <span>{checkedCount} of {totalItems} verified</span>
+              <span>{percent}%</span>
+            </div>
+            <div className="h-1.5 bg-[#2A52A0]/10 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-[#C9A84C] transition-all duration-300"
+                style={{ width: `${percent}%` }}
+                data-testid="mg-progress-bar"
+              />
+            </div>
+          </div>
+
+          {/* Print-only header block with company/date fields */}
+          <div className="print-only mb-6" style={{ borderBottom: '1pt solid #000', paddingBottom: '8pt' }}>
+            <p style={{ fontSize: '10pt', margin: 0 }}><strong>Machine Guarding Walkthrough</strong> — 29 CFR 1910.212 &amp; 1910.215</p>
+            <p style={{ fontSize: '9pt', margin: '4pt 0 0 0' }}>Facility: ____________________________  Date: __________  Walked by: ____________________________</p>
+          </div>
+
           <div className="space-y-8">
-            {checklist.map((c, i) => (
-              <div key={i} className="border-l-4 border-[#C9A84C] pl-5">
-                <h3 className="text-base font-bold text-[#1C2B2B] mb-3">{c.area}</h3>
-                <ul className="space-y-2">
-                  {c.items.map((item, j) => (
-                    <li key={j} className="flex items-start gap-3 text-sm text-[#1C2B2B]/70"><ClipboardCheck size={16} className="text-[#2A52A0] flex-shrink-0 mt-0.5" />{item}</li>
+            {checklist.map((section) => (
+              <div key={section.area} className="border-l-4 border-[#C9A84C] pl-5" data-testid={`mg-section-${section.area.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}`}>
+                <div className="mb-3">
+                  <h3 className="text-base font-bold text-[#1C2B2B]">{section.area}</h3>
+                  <p className="text-[10px] font-semibold tracking-widest text-[#2A52A0] uppercase" style={{ fontFamily: "'JetBrains Mono', monospace" }}>{section.cfr}</p>
+                </div>
+                <ul className="space-y-2.5">
+                  {section.items.map((item) => (
+                    <li key={item.id} className="flex items-start gap-3 text-sm text-[#1C2B2B]/80">
+                      <span className="print-checkbox" aria-hidden="true" />
+                      <input
+                        id={`chk-${item.id}`}
+                        type="checkbox"
+                        checked={!!checked[item.id]}
+                        onChange={() => toggle(item.id)}
+                        data-testid={`mg-check-${item.id}`}
+                        className="mt-0.5 h-4 w-4 flex-shrink-0 accent-[#2A52A0] cursor-pointer"
+                      />
+                      <label
+                        htmlFor={`chk-${item.id}`}
+                        className={`cursor-pointer leading-snug ${checked[item.id] ? 'line-through text-[#1C2B2B]/40' : ''}`}
+                      >
+                        {item.text}
+                      </label>
+                    </li>
                   ))}
                 </ul>
               </div>
             ))}
           </div>
+
+          {/* Supervisor sign-off block */}
+          <div className="mt-10 border border-[#2A52A0]/20 rounded-lg p-6 bg-[#F9F8F6]" data-testid="mg-signoff">
+            <p className="text-xs font-semibold tracking-widest text-[#2A52A0] uppercase mb-4" style={{ fontFamily: "'JetBrains Mono', monospace" }}>SUPERVISOR SIGN-OFF</p>
+            <p className="text-sm text-[#1C2B2B]/70 leading-relaxed mb-4">All items checked above verified in place, or captured as findings on a separate corrective-action log with a scheduled fix date.</p>
+            <div className="grid sm:grid-cols-2 gap-6 text-sm">
+              <div>
+                <p className="text-[#1C2B2B]/60 text-xs mb-1">Supervisor name (printed)</p>
+                <div className="h-6 border-b border-[#1C2B2B]/40" />
+              </div>
+              <div>
+                <p className="text-[#1C2B2B]/60 text-xs mb-1">Signature</p>
+                <div className="h-6 border-b border-[#1C2B2B]/40" />
+              </div>
+              <div>
+                <p className="text-[#1C2B2B]/60 text-xs mb-1">Date</p>
+                <div className="h-6 border-b border-[#1C2B2B]/40" />
+              </div>
+              <div>
+                <p className="text-[#1C2B2B]/60 text-xs mb-1">Findings routed to</p>
+                <div className="h-6 border-b border-[#1C2B2B]/40" />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
+
+      {/* Optional lead magnet, gated behind MG_LEAD_MAGNET_ENABLED */}
+      <MachineGuardingLeadMagnet />
 
       {/* Top citation traps */}
       <section className="py-12 md:py-16 border-b border-[#2A52A0]/10" id="top-citations">
@@ -251,7 +418,7 @@ const BlogMachineGuardingChecklist = () => {
           <h2 className="text-xl md:text-2xl font-bold text-[#1C2B2B] mb-8" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>The 30-day action plan</h2>
           <ol className="space-y-6">
             {[
-              { title: "Week 1: Inventory & assess", desc: "Walk the floor with the checklist above. Photograph every guard. Flag every missing, damaged, or bypassed guard with a red tag. Do not judge yet, just catalog." },
+              { title: "Week 1: Inventory & assess", desc: "Walk the floor with the printed checklist above. Photograph every guard. Flag every missing, damaged, or bypassed guard with a red tag. Do not judge yet, just catalog." },
               { title: "Week 2: Fix the P1 items", desc: "Anything creating immediate injury risk gets fixed this week. Grinder gaps, missing point-of-operation guards, unlocked floor-level belt drives. Reinstall or replace." },
               { title: "Week 3: Documentation", desc: "Write or update the guarding portion of your IIPP. Create a per-machine hazard assessment. Assemble training records. Print laminated cards for grinder stations." },
               { title: "Week 4: Train & verify", desc: "Retrain every operator on the machines they touch. Sign each training record. Establish a monthly supervisor guarding walk-through with a signed checklist. Post the OSHA 300A if you haven't." },
@@ -266,7 +433,7 @@ const BlogMachineGuardingChecklist = () => {
       </section>
 
       {/* Related Resources */}
-      <section className="py-14 md:py-20 bg-[#102A43] text-white" data-testid="mg-blog-cta">
+      <section className="py-14 md:py-20 bg-[#102A43] text-white no-print" data-testid="mg-blog-cta">
         <div className="container max-w-3xl">
           <h2 className="text-xl md:text-2xl font-bold mb-8" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>Related Resources</h2>
           <div className="space-y-4 mb-10">
@@ -296,7 +463,7 @@ const BlogMachineGuardingChecklist = () => {
       </section>
 
       {/* Walkthrough Callout */}
-      <section className="py-12 bg-[#F9F8F6]">
+      <section className="py-12 bg-[#F9F8F6] no-print" data-testid="mg-walkthrough-callout">
         <div className="container max-w-3xl">
           <div className="border border-[#2A52A0]/20 bg-white rounded-lg p-6 md:p-8 text-center">
             <p className="text-lg font-bold text-[#1C2B2B] mb-2">Not sure which guards are missing in your shop?</p>
@@ -307,13 +474,13 @@ const BlogMachineGuardingChecklist = () => {
       </section>
 
       {/* Author */}
-      <section className="py-10 border-t border-[#2A52A0]/10">
+      <section className="py-10 border-t border-[#2A52A0]/10 no-print" data-testid="mg-author">
         <div className="container max-w-3xl">
           <div className="flex items-start gap-4">
             <div className="w-12 h-12 rounded-full bg-[#102A43] flex items-center justify-center flex-shrink-0"><span className="text-white font-bold text-sm">VL</span></div>
             <div>
               <p className="font-semibold text-[#1C2B2B] text-sm">Vince Lawrence</p>
-              <p className="text-xs text-[#1C2B2B]/50 mb-2">Safety Consultant, OSHA 30-Hour Outreach Trained, U.S. Navy Veteran</p>
+              <p className="text-xs text-[#1C2B2B]/50 mb-2">Safety Consultant, OSHA 30-Hour General Industry Trained, U.S. Navy Veteran</p>
               <p className="text-xs text-[#1C2B2B]/50">GigLine Safety & Compliance, Kernersville, NC <span className="text-[#1C2B2B]/30 mx-1">|</span> <a href="tel:3363298899" className="text-[#1F3F80] hover:underline">(336) 329-8899</a> <span className="text-[#1C2B2B]/30 mx-1">|</span> <a href="mailto:vince@giglinecompliance.com" className="text-[#1F3F80] hover:underline">vince@giglinecompliance.com</a></p>
               <p className="text-xs text-[#1C2B2B]/40 mt-2 italic">Penalty amounts reflect OSHA&rsquo;s 2026 maximum penalty adjustments effective after January 15, 2026. Actual penalties depend on classification, employer size, gravity, history, and good-faith factors.</p>
             </div>

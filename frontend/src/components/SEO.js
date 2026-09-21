@@ -1,5 +1,32 @@
-import React, { useLayoutEffect } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
+
+// The build pre-renders a set of per-page meta tags into the static HTML so
+// crawlers that don't run JavaScript still see them. react-helmet-async does
+// not mark the tags it manages, so we strip the pre-rendered copies exactly
+// once, during the first client render — BEFORE Helmet inserts its own tags —
+// leaving a single, current set. Fully static pages (blog articles) never
+// mount this component and keep their own set untouched.
+let prerenderedMetaStripped = false;
+
+function stripPrerenderedMeta() {
+  const selector = [
+    'meta[name="description"]',
+    'meta[property="og:url"]',
+    'meta[property="og:title"]',
+    'meta[property="og:description"]',
+    'meta[property="og:type"]',
+    'meta[property="og:site_name"]',
+    'meta[property="og:image"]',
+    'meta[name="twitter:card"]',
+    'meta[name="twitter:title"]',
+    'meta[name="twitter:description"]',
+    'meta[name="twitter:image"]',
+    'link[rel="canonical"]',
+    'link[rel="alternate"]',
+  ].join(', ');
+  document.head.querySelectorAll(selector).forEach((el) => el.remove());
+}
 
 const SEO = ({ 
   title, 
@@ -10,6 +37,11 @@ const SEO = ({
   noindex = false,
   schema
 }) => {
+  if (typeof document !== 'undefined' && !prerenderedMetaStripped) {
+    prerenderedMetaStripped = true;
+    stripPrerenderedMeta();
+  }
+
   const siteName = 'GigLine Safety & Compliance';
   const defaultTitle = `${siteName} | Safety Walkthroughs & Documentation Readiness Reviews for Small Operations`;
   // Smart suffix: only append site name if title doesn't already end with it (or with "GigLine")
@@ -20,32 +52,6 @@ const SEO = ({
   const baseUrl = 'https://www.giglinecompliance.com';
   const canonicalUrl = canonical ? `${baseUrl}${canonical}` : baseUrl;
   const ogImageUrl = ogImage ? `${baseUrl}${ogImage}` : `${baseUrl}/og-image.png`;
-
-  // The build pre-renders a set of meta tags into the static HTML (serves crawlers
-  // that don't run JS). react-helmet-async marks the tags it manages with data-rh,
-  // so before Helmet's tags settle we strip any pre-rendered copies of the same
-  // per-page tags. Tags Helmet doesn't manage (og:image:width/height/alt, the
-  // Pinterest og:image variant) survive because they don't match these selectors.
-  useLayoutEffect(() => {
-    const selector = [
-      'meta[name="description"]',
-      'meta[property="og:url"]',
-      'meta[property="og:title"]',
-      'meta[property="og:description"]',
-      'meta[property="og:type"]',
-      'meta[property="og:site_name"]',
-      'meta[property="og:image"]',
-      'meta[name="twitter:card"]',
-      'meta[name="twitter:title"]',
-      'meta[name="twitter:description"]',
-      'meta[name="twitter:image"]',
-      'link[rel="canonical"]',
-      'link[rel="alternate"]',
-    ].join(',');
-    document.head.querySelectorAll(selector).forEach((el) => {
-      if (!el.hasAttribute('data-rh')) el.remove();
-    });
-  }, [canonical]);
 
   return (
     <Helmet>

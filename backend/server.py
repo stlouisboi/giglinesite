@@ -44,6 +44,7 @@ from routes.kit_resend import router as kit_resend_router
 from routes.kit_waitlist import router as kit_waitlist_router
 from routes.machine_guarding import router as machine_guarding_router
 from routes.first_pull import router as first_pull_router
+from routes.recommendation_email import router as recommendation_email_router
 
 app = FastAPI()
 
@@ -78,6 +79,7 @@ api_router.include_router(kit_resend_router)
 api_router.include_router(kit_waitlist_router)
 api_router.include_router(machine_guarding_router)
 api_router.include_router(first_pull_router)
+api_router.include_router(recommendation_email_router)
 
 app.include_router(api_router)
 

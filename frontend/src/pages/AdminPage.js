@@ -628,6 +628,7 @@ const AdminPage = () => {
                   { l: 'Heat Guide Leads', v: stats.heat_guide_leads },
                   { l: 'Machine Guarding Leads', v: stats.machine_guarding_leads?.total ?? 0, s: `${stats.machine_guarding_leads?.last_7d ?? 0} last 7d, ${stats.machine_guarding_leads?.dual_hazard ?? 0} dual-hazard` },
                   { l: 'First-Pull Leads', v: stats.first_pull_leads?.total ?? 0, s: `${stats.first_pull_leads?.last_7d ?? 0} last 7d` },
+                  { l: 'Recommendation Emails', v: stats.recommendation_email_leads?.total ?? 0, s: `${stats.recommendation_email_leads?.last_7d ?? 0} last 7d` },
                   { l: 'Downloads (7d)', v: stats.downloads.last_7d },
                 ].map((s, i) => (
                   <div key={i} className="border border-gray-100 rounded-lg p-4" data-testid={`admin-tile-${s.l.toLowerCase().replace(/\s+/g, '-')}`}>
@@ -1247,6 +1248,7 @@ const DownloadsTab = ({ token }) => {
     if (t === 'heat_guide') return 'Heat Guide';
     if (t === 'machine_guarding_checklist') return 'Machine Guarding';
     if (t === 'first_pull_checklist') return 'First-Pull';
+    if (t === 'recommendation_email') return 'Recommendation Email';
     return t;
   };
   return (

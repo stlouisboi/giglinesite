@@ -467,8 +467,8 @@ const BlogMachineGuardingChecklist = () => {
         <div className="container max-w-3xl">
           <div className="border border-[#2A52A0]/20 bg-white rounded-lg p-6 md:p-8 text-center">
             <p className="text-lg font-bold text-[#1C2B2B] mb-2">Not sure which guards are missing in your shop?</p>
-            <p className="text-sm text-[#1C2B2B]/60 mb-5">A GigLine Safety Walkthrough documents every unguarded hazard with photos and CFR citations, usually within 48 hours.</p>
-            <Link to="/intake" className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-6 py-3 rounded transition-colors">Request a Safety Walkthrough <ArrowRight size={16} /></Link>
+            <p className="text-sm text-[#1C2B2B]/60 mb-5">A Compliance Readiness Visit checks your floor and documentation in one on-site engagement. You get photo-documented findings and a prioritized fix list.</p>
+            <Link to="/intake?service=compliance-readiness-visit" className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-6 py-3 rounded transition-colors">Request a Compliance Readiness Visit <ArrowRight size={16} /></Link>
           </div>
         </div>
       </section>

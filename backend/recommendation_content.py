@@ -92,6 +92,52 @@ BASE_DISCLAIMER = (
     "additional requirements. Every item must be evaluated against the specific operation."
 )
 
+# ── Curated field-note reading list per recommendation slug ──
+# Each entry: {slug, title, why}. `why` is 2–3 sentences framing why THIS
+# field note matters for THIS specific recommendation. Titles and site
+# URLs come from the frontend at /field-notes/<slug>.
+FIELD_NOTES_BASE_URL = "https://www.giglinecompliance.com/field-notes"
+
+FIELD_NOTES_BY_SLUG = {
+    "safety-walkthrough": [
+        {"slug": "machine-guarding", "title": "Machine Guarding", "why": "Machine guarding is the single most-cited standard for small manufacturers. Read this before Vince arrives so you can pre-walk the shop with the same eye and know which items are already close."},
+        {"slug": "abrasive-wheels-bench-grinders", "title": "Abrasive Wheels & Bench Grinders", "why": "Bench grinders trip almost every walkthrough — the 1/8\" tongue-guard and 1/4\" work-rest tolerances are easy to fix once you see them. This note is the fastest pre-walk win."},
+        {"slug": "walking-working-surfaces", "title": "Walking Surfaces", "why": "Slip, trip, and fall hazards get called out on more walkthroughs than any category besides guarding. Fixing these before the visit turns a citation risk into a 'no findings' bullet."},
+        {"slug": "ppe-assessment-use", "title": "PPE Assessment & Use", "why": "OSHA does not just want PPE on the floor — it wants a written hazard assessment justifying each PPE zone. This note shows what that assessment looks like."},
+    ],
+    "documentation-review": [
+        {"slug": "hazcom-sds", "title": "HazCom & SDS", "why": "HazCom is the #2 most-cited standard in general industry. Every documentation review starts here — read this to know what a compliant SDS binder and label system actually look like."},
+        {"slug": "recordkeeping-300-log", "title": "OSHA Recordkeeping & the 300 Log", "why": "Most 300 Logs Vince sees are either missing entries, miscoded, or posted for the wrong dates. This note shows the specific mistakes that get flagged."},
+        {"slug": "ai-safety-program-not-working", "title": "An AI-Generated Program Is Not a Working Program", "why": "If your written programs came from ChatGPT or a template site, this note explains what OSHA looks for that generic content cannot pass. It sets expectations before Vince returns your gap report."},
+        {"slug": "nc-osha-vs-federal", "title": "NC OSH vs Federal OSHA", "why": "North Carolina operates a State Plan with rules that go beyond federal OSHA in specific areas. This note tells you which NC-specific requirements your written programs must address."},
+    ],
+    "compliance-readiness-visit": [
+        {"slug": "nc-osha-vs-federal", "title": "NC OSH vs Federal OSHA", "why": "Since the CRV covers both floor and paper, and NC OSH has state-specific requirements, this note frames what NC compliance actually demands beyond the federal baseline."},
+        {"slug": "machine-guarding", "title": "Machine Guarding", "why": "The floor half of the CRV opens with guarding. This is the primer for what Vince will photograph and cite in the report."},
+        {"slug": "hazcom-sds", "title": "HazCom & SDS", "why": "The paper half of the CRV opens with HazCom. Read this to understand which parts of your written program and label system Vince will audit."},
+        {"slug": "recordkeeping-300-log", "title": "OSHA Recordkeeping & the 300 Log", "why": "The CRV combined report checks whether your 300 Log matches your training records and incident history. This note shows the specific mismatches that get called out."},
+    ],
+    "corrective-action-implementation": [
+        {"slug": "recordkeeping-300-log", "title": "OSHA Recordkeeping & the 300 Log", "why": "Corrective-action work depends on a clean incident and audit trail. This note shows what the record trail needs to look like so each closed finding has evidence behind it."},
+        {"slug": "machine-guarding", "title": "Machine Guarding", "why": "If your open findings include guarding items, this note tells you which fixes are inexpensive and immediate versus which require a purchase order."},
+        {"slug": "loto-lockout-tagout", "title": "Lockout/Tagout (LOTO)", "why": "LOTO findings usually cluster together: missing energy-control procedures, gaps in authorized-employee training, or a device inventory that is stale. This note names the pattern so you can group corrective actions efficiently."},
+        {"slug": "hazcom-sds", "title": "HazCom & SDS", "why": "HazCom corrective actions look small on paper but require label audits, SDS refresh, and training documentation to actually close. This note lays out the full closure evidence."},
+    ],
+    "safety-control-system-buildout": [
+        {"slug": "emergency-action-plans", "title": "Emergency Action Plans", "why": "Every Safety Control System delivery includes an EAP. This note shows what a site-specific EAP looks like versus the template PDFs most software delivers."},
+        {"slug": "recordkeeping-300-log", "title": "OSHA Recordkeeping & the 300 Log", "why": "The buildout hands the supervisor a records structure. Read this first to understand what the receiving team must maintain once the system is delivered."},
+        {"slug": "hazcom-sds", "title": "HazCom & SDS", "why": "HazCom is a foundational element of every control system. This note is the blueprint for the section Vince will write for your operation."},
+        {"slug": "ppe-assessment-use", "title": "PPE Assessment & Use", "why": "Most control systems fail their PPE section because the underlying hazard assessment is missing. This note is the assessment format Vince will use."},
+    ],
+    "ongoing-safety-support": [
+        {"slug": "recordkeeping-300-log", "title": "OSHA Recordkeeping & the 300 Log", "why": "Ongoing Support is anchored on monthly records review. Read this note to see what Vince checks each month and how quarterly / annual events are staged."},
+        {"slug": "nc-osha-vs-federal", "title": "NC OSH vs Federal OSHA", "why": "NC OSH inspection cadence and outreach programs are different from federal OSHA. This note names what to watch for in your specific NC industry code."},
+        {"slug": "hazcom-sds", "title": "HazCom & SDS", "why": "HazCom is the standard that changes most often (new chemicals, new SDS revisions, new labels). Monthly review always includes this."},
+        {"slug": "ai-safety-program-not-working", "title": "An AI-Generated Program Is Not a Working Program", "why": "Ongoing support only works if the underlying program is real. This note is the honest gut-check to run before you renew."},
+    ],
+}
+
+
 RECOMMENDATION_CONTENT = {
     "safety-walkthrough": {
         "slug": "safety-walkthrough",

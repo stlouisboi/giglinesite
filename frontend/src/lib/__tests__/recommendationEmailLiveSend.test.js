@@ -65,6 +65,12 @@ describe('Recommendation-as-PDF live-send wiring', () => {
     expect(card).toMatch(/aria-hidden="true"/);
     expect(card).toMatch(/tabIndex=\{-1\}/);
   });
+
+  test('Field Notes companion checkbox is present, unchecked by default, and sent as include_field_notes in the POST body', () => {
+    expect(card).toMatch(/data-testid="rr-email-preview-include-field-notes"/);
+    expect(card).toMatch(/const\s+\[includeFieldNotes,\s*setIncludeFieldNotes\]\s*=\s*useState\(false\)/);
+    expect(card).toMatch(/include_field_notes:\s*!!includeFieldNotes/);
+  });
 });
 
 describe('Admin CRM surfaces recommendation-email leads', () => {

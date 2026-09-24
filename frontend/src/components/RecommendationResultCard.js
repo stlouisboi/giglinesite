@@ -133,6 +133,7 @@ const EmailPreviewForm = ({ result, answersSummary }) => {
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
   const [marketing, setMarketing] = useState(false);
+  const [includeFieldNotes, setIncludeFieldNotes] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState('');
@@ -164,6 +165,7 @@ const EmailPreviewForm = ({ result, answersSummary }) => {
             email: email.trim(),
             company: (company || '').trim(),
             marketing_consent: !!marketing,
+            include_field_notes: !!includeFieldNotes,
             answers: answersPayload,
             website,
           }),
@@ -176,7 +178,7 @@ const EmailPreviewForm = ({ result, answersSummary }) => {
         setPending(false);
       }
     },
-    [firstName, email, company, marketing, website, result.slug, answersSummary],
+    [firstName, email, company, marketing, includeFieldNotes, website, result.slug, answersSummary],
   );
 
   if (submitted) {
@@ -190,7 +192,7 @@ const EmailPreviewForm = ({ result, answersSummary }) => {
           Check your inbox
         </Kicker>
         <p className="text-[15px] md:text-base leading-[1.7]" style={{ color: INK_SOFT }}>
-          We just emailed your GigLine recommendation and a branded one-page PDF summary to <strong style={{ color: NAVY }}>{email}</strong>. It should arrive within a few minutes. If you do not see it, check your spam or promotions tab.
+          We just emailed your GigLine recommendation{includeFieldNotes ? ' and a Field Notes companion PDF' : ' and a branded one-page PDF summary'} to <strong style={{ color: NAVY }}>{email}</strong>. It should arrive within a few minutes. If you do not see it, check your spam or promotions tab.
         </p>
         <p
           className="mt-4 text-[13px] md:text-[14px] leading-[1.7]"
@@ -296,6 +298,26 @@ const EmailPreviewForm = ({ result, answersSummary }) => {
             />
           </label>
         </div>
+
+        {/* Optional companion PDF: curated field-note reading list */}
+        <label
+          className="mt-4 flex items-start gap-3 cursor-pointer p-3"
+          style={{ background: CREAM, border: `1px solid ${GOLD}` }}
+          htmlFor="rr-email-include-field-notes"
+        >
+          <input
+            id="rr-email-include-field-notes"
+            type="checkbox"
+            checked={includeFieldNotes}
+            onChange={(e) => setIncludeFieldNotes(e.target.checked)}
+            style={{ marginTop: 3 }}
+            data-testid="rr-email-preview-include-field-notes"
+          />
+          <span className="text-[13.5px] leading-[1.6]" style={{ color: INK_SOFT }}>
+            <strong style={{ color: NAVY }}>Also send me a curated Field Notes reading list for {result.name}.</strong>{' '}
+            <span style={{ color: INK_MUTED }}>A second one-page PDF pairing this recommendation with four related field notes from Vince, tied to CFR citations.</span>
+          </span>
+        </label>
 
         {/* Explicit and separate marketing consent, unchecked by default. */}
         <label

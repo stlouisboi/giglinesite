@@ -177,3 +177,67 @@ def build_recommendation_pdf(
 
     doc.build(story, onFirstPage=_header_footer, onLaterPages=_header_footer)
     return buf.getvalue()
+
+
+
+def build_field_notes_companion_pdf(
+    *,
+    content: dict,
+    field_notes: List[dict],
+    first_name: str,
+    base_url: str,
+) -> bytes:
+    """Second companion PDF: a curated field-note reading list for the
+    visitor's specific recommendation. Delivered only when the visitor
+    ticks the optional "Also send me a curated field-note reading list"
+    checkbox on the recommendation email form.
+    """
+    buf = BytesIO()
+    doc = SimpleDocTemplate(
+        buf,
+        pagesize=letter,
+        leftMargin=0.65 * inch,
+        rightMargin=0.65 * inch,
+        topMargin=0.85 * inch,
+        bottomMargin=0.75 * inch,
+        title="GigLine Field Notes Companion",
+        author="Vince Lawrence, GigLine Safety & Compliance",
+    )
+    story = []
+
+    story.append(Paragraph("FIELD NOTES COMPANION", _STYLES["kicker"]))
+    story.append(Paragraph(f"For your {content['name']} recommendation", _STYLES["title"]))
+    story.append(Paragraph(
+        f"Prepared for {first_name.strip() or 'you'}. Read these before the engagement so "
+        f"you and your supervisor walk in with the same eye.",
+        _STYLES["meta"],
+    ))
+    story.append(Spacer(1, 6))
+    story.append(HRFlowable(width="100%", thickness=0.5, color=LIGHT_GRAY))
+    story.append(Spacer(1, 10))
+
+    for i, note in enumerate(field_notes, start=1):
+        note_url = f"{base_url}/{note.get('slug', '').strip()}"
+        story.append(KeepTogether([
+            Paragraph(f"{i}. {note.get('title', '(untitled)')}", _STYLES["section"]),
+            Paragraph(note.get("why", ""), _STYLES["body"]),
+            Paragraph(f'Read online: <link href="{note_url}" color="#0B1F33"><u>{note_url}</u></link>', _STYLES["small"]),
+            Spacer(1, 4),
+        ]))
+
+    story.append(Spacer(1, 10))
+    story.append(HRFlowable(width="100%", thickness=0.5, color=LIGHT_GRAY))
+    story.append(Spacer(1, 8))
+    story.append(Paragraph(
+        "These field notes are educational and pair with the recommendation summary attached alongside "
+        "this file. They are not a substitute for a written program review or on-site walkthrough.",
+        _STYLES["small"],
+    ))
+    story.append(Paragraph(
+        "Prepared by Vince Lawrence, GigLine Safety & Compliance. OSHA 30-Hour General Industry Trained. "
+        "Kernersville, NC. (336) 329-8899.",
+        _STYLES["small"],
+    ))
+
+    doc.build(story, onFirstPage=_header_footer, onLaterPages=_header_footer)
+    return buf.getvalue()

@@ -139,6 +139,9 @@ class RecommendationEmailRequest(BaseModel):
     caller can direct arbitrary marketing content through the domain.
 
     `answers` is an optional shallow key/value dict captured for context.
+
+    `include_field_notes` opts the visitor into a second attached PDF —
+    a curated field-note reading list keyed to the recommendation slug.
     """
     slug: str
     first_name: str
@@ -146,6 +149,7 @@ class RecommendationEmailRequest(BaseModel):
     company: Optional[str] = ""
     marketing_consent: bool = False
     answers: Optional[Dict[str, str]] = None
+    include_field_notes: bool = False
     website: Optional[str] = ""  # honeypot — must be empty
 
     website: Optional[str] = ""  # honeypot — must be empty

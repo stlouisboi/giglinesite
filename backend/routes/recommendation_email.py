@@ -30,8 +30,8 @@ import logging
 
 import resend
 from config import db, SENDER_EMAIL, VINCE_EMAIL
-from recommendation_content import RECOMMENDATION_CONTENT
-from scripts.generate_recommendation_pdf import build_recommendation_pdf
+from recommendation_content import RECOMMENDATION_CONTENT, FIELD_NOTES_BY_SLUG, FIELD_NOTES_BASE_URL
+from scripts.generate_recommendation_pdf import build_recommendation_pdf, build_field_notes_companion_pdf
 from integrations.mailerlite import add_to_lead_nurture
 from models import RecommendationEmailRequest
 
@@ -67,6 +67,7 @@ async def email_recommendation(request: RecommendationEmailRequest):
         "first_name": first_name,
         "company": company,
         "marketing_consent": bool(request.marketing_consent),
+        "include_field_notes": bool(request.include_field_notes),
         "answers": answers_summary,
         "created_at": datetime.now(timezone.utc).isoformat(),
     })
@@ -75,6 +76,7 @@ async def email_recommendation(request: RecommendationEmailRequest):
         "slug": slug,
         "service_name": content["name"],
         "email": email,
+        "with_field_notes": bool(request.include_field_notes),
         "timestamp": datetime.now(timezone.utc).isoformat(),
     })
 
@@ -82,6 +84,7 @@ async def email_recommendation(request: RecommendationEmailRequest):
         asyncio.create_task(add_to_lead_nurture(email=email, source_form=f"recommendation_{slug}"))
 
     display_name = first_name or "there"
+    with_field_notes = bool(request.include_field_notes)
 
     try:
         pdf_bytes = build_recommendation_pdf(
@@ -93,10 +96,42 @@ async def email_recommendation(request: RecommendationEmailRequest):
         pdf_b64 = base64.b64encode(pdf_bytes).decode("utf-8")
         pdf_filename = f"GigLine_Recommendation_{content['slug']}.pdf"
 
+        attachments = [{"filename": pdf_filename, "content": pdf_b64}]
+
+        # Optional second attachment: curated field-notes companion PDF
+        field_notes = FIELD_NOTES_BY_SLUG.get(slug) or []
+        field_notes_html_block = ""
+        if with_field_notes and field_notes:
+            companion_bytes = build_field_notes_companion_pdf(
+                content=content,
+                field_notes=field_notes,
+                first_name=first_name,
+                base_url=FIELD_NOTES_BASE_URL,
+            )
+            attachments.append({
+                "filename": f"GigLine_Field_Notes_Companion_{content['slug']}.pdf",
+                "content": base64.b64encode(companion_bytes).decode("utf-8"),
+            })
+            note_bullets = "".join(
+                f'<li style="margin-bottom:8px;"><strong>{escape(n["title"])}</strong> — {escape(n["why"])} '
+                f'<a href="{FIELD_NOTES_BASE_URL}/{escape(n["slug"])}" style="color:#102A43;">Read online</a></li>'
+                for n in field_notes
+            )
+            field_notes_html_block = (
+                '<h3 style="margin-top:24px;margin-bottom:8px;color:#102A43;">Also attached — Field Notes companion</h3>'
+                '<p style="color:#4A5568;">You also asked for a curated field-note reading list for this '
+                f'engagement. The four notes below pair with the {escape(content["name"])} recommendation:</p>'
+                f'<ul style="color:#4A5568;padding-left:18px;margin-top:8px;">{note_bullets}</ul>'
+            )
+
         resend.Emails.send({
             "from": SENDER_EMAIL,
             "to": [email],
-            "subject": f"Your GigLine recommendation, {content['name']}",
+            "subject": (
+                f"Your GigLine recommendation + Field Notes companion, {content['name']}"
+                if with_field_notes and field_notes
+                else f"Your GigLine recommendation, {content['name']}"
+            ),
             "html": f"""
             <div style="font-family: Georgia, serif; max-width: 640px; margin: 0 auto; color: #1C2B2B;">
                 <p style="font-size:11px;color:#8E6D1F;letter-spacing:0.24em;text-transform:uppercase;font-weight:bold;margin:0 0 8px 0;">YOUR GIGLINE RECOMMENDATION</p>
@@ -105,6 +140,7 @@ async def email_recommendation(request: RecommendationEmailRequest):
                 <p>Hi {escape(display_name)},</p>
                 <p style="color:#4A5568;">Here is your GigLine recommendation. The one-page summary is attached as a PDF you can print, forward to a supervisor, or drop into a compliance binder.</p>
                 <p style="color:#4A5568;">{escape(content['why'])}</p>
+                {field_notes_html_block}
                 <p style="margin-top:22px;">
                     <a href="{escape(content['route'])}"
                        style="background:#102A43;color:white;display:inline-block;padding:12px 20px;font-weight:bold;text-decoration:none;font-size:14px;">
@@ -122,31 +158,38 @@ async def email_recommendation(request: RecommendationEmailRequest):
                 </p>
             </div>
             """,
-            "attachments": [{
-                "filename": pdf_filename,
-                "content": pdf_b64,
-            }],
+            "attachments": attachments,
             "reply_to": VINCE_EMAIL,
         })
 
         resend.Emails.send({
             "from": SENDER_EMAIL,
             "to": [VINCE_EMAIL],
-            "subject": f"Recommendation ({content['name']}) emailed — {email}",
+            "subject": (
+                f"Recommendation ({content['name']}) + Field Notes emailed — {email}"
+                if with_field_notes and field_notes
+                else f"Recommendation ({content['name']}) emailed — {email}"
+            ),
             "html": (
                 f"<p>New recommendation-email download from the /recommendation router.</p>"
                 f"<p><strong>Service:</strong> {escape(content['name'])} ({escape(content['price'])})<br/>"
                 f"<strong>Email:</strong> {email}<br/>"
                 f"<strong>First name:</strong> {escape(display_name or '(not provided)')}<br/>"
                 f"<strong>Company:</strong> {escape(company or '(not provided)')}<br/>"
-                f"<strong>Marketing consent:</strong> {'YES' if request.marketing_consent else 'no'}</p>"
+                f"<strong>Marketing consent:</strong> {'YES' if request.marketing_consent else 'no'}<br/>"
+                f"<strong>Also took Field Notes companion:</strong> {'YES' if with_field_notes and field_notes else 'no'}</p>"
                 f"<p>The visitor is warm — they just chose to receive their recommendation in writing. "
-                f"Personal follow-up within 24 hours converts these quickly.</p>"
+                f"Personal follow-up within 24 hours converts these quickly"
+                f"{' — bonus signal: they also asked for the field-note reading list, so they are actively researching.' if with_field_notes and field_notes else '.'}"
+                f"</p>"
             ),
             "reply_to": email,
         })
 
-        logger.info(f"Recommendation ({slug}) sent to {email}")
+        logger.info(
+            f"Recommendation ({slug}) sent to {email}"
+            + (" (+ Field Notes companion)" if with_field_notes and field_notes else "")
+        )
     except Exception as e:
         logger.error(f"Recommendation email error: {str(e)}")
 

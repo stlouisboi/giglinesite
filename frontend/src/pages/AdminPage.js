@@ -626,9 +626,11 @@ const AdminPage = () => {
                   { l: 'Safety Checks', v: stats.safety_checks.total, s: `${stats.safety_checks.last_7d} last 7d` },
                   { l: 'Walkthrough Requests', v: stats.walkthrough_requests.total, s: `${stats.walkthrough_requests.last_7d} last 7d` },
                   { l: 'Heat Guide Leads', v: stats.heat_guide_leads },
+                  { l: 'Machine Guarding Leads', v: stats.machine_guarding_leads?.total ?? 0, s: `${stats.machine_guarding_leads?.last_7d ?? 0} last 7d, ${stats.machine_guarding_leads?.dual_hazard ?? 0} dual-hazard` },
+                  { l: 'First-Pull Leads', v: stats.first_pull_leads?.total ?? 0, s: `${stats.first_pull_leads?.last_7d ?? 0} last 7d` },
                   { l: 'Downloads (7d)', v: stats.downloads.last_7d },
                 ].map((s, i) => (
-                  <div key={i} className="border border-gray-100 rounded-lg p-4">
+                  <div key={i} className="border border-gray-100 rounded-lg p-4" data-testid={`admin-tile-${s.l.toLowerCase().replace(/\s+/g, '-')}`}>
                     <p className="text-xs text-gray-400 mb-1">{s.l}</p>
                     <p className="text-2xl font-bold text-[#1C2B2B]">{s.v}</p>
                     {s.s && <p className="text-[10px] text-gray-300 mt-0.5">{s.s}</p>}
@@ -1239,7 +1241,14 @@ const DownloadsTab = ({ token }) => {
     })();
   }, [token]);
   if (!events) return <p className="text-gray-400">Loading...</p>;
-  const typeLabel = t => t === 'safety_check_pdf' ? 'Safety Check' : t === 'hazcom_pdf' ? 'HazCom' : 'Heat Guide';
+  const typeLabel = t => {
+    if (t === 'safety_check_pdf') return 'Safety Check';
+    if (t === 'hazcom_pdf') return 'HazCom';
+    if (t === 'heat_guide') return 'Heat Guide';
+    if (t === 'machine_guarding_checklist') return 'Machine Guarding';
+    if (t === 'first_pull_checklist') return 'First-Pull';
+    return t;
+  };
   return (
     <div data-testid="downloads-tab">
       <h2 className="text-lg font-bold text-[#1C2B2B] mb-4">Recent Downloads</h2>
@@ -1252,7 +1261,12 @@ const DownloadsTab = ({ token }) => {
             <tr key={i} className="border-b border-gray-100 hover:bg-gray-50">
               <td className="px-3 py-3 text-xs text-gray-400">{new Date(ev.timestamp).toLocaleString()}</td>
               <td className="px-3 py-3"><Badge color="bg-gray-100 text-gray-600">{typeLabel(ev.type)}</Badge></td>
-              <td className="px-3 py-3 text-gray-500 text-xs">{ev.email || ev.submission_id || ev.filename || ','}</td>
+              <td className="px-3 py-3 text-gray-500 text-xs">
+                {ev.email || ev.submission_id || ev.filename || ','}
+                {ev.with_forklift_upsell && (
+                  <Badge color="bg-[#FFF6D8] text-[#7a5d0a] ml-2" data-testid="admin-mg-dual-badge">+ Forklift</Badge>
+                )}
+              </td>
             </tr>
           ))}
         </tbody>

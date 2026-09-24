@@ -43,6 +43,7 @@ from routes.pilot import router as pilot_router
 from routes.kit_resend import router as kit_resend_router
 from routes.kit_waitlist import router as kit_waitlist_router
 from routes.machine_guarding import router as machine_guarding_router
+from routes.first_pull import router as first_pull_router
 
 app = FastAPI()
 
@@ -76,6 +77,7 @@ api_router.include_router(pilot_router)
 api_router.include_router(kit_resend_router)
 api_router.include_router(kit_waitlist_router)
 api_router.include_router(machine_guarding_router)
+api_router.include_router(first_pull_router)
 
 app.include_router(api_router)
 

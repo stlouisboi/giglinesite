@@ -113,3 +113,18 @@ class MachineGuardingLeadRequest(BaseModel):
     marketing_consent: bool = False
     send_forklift_upsell: bool = False
     website: Optional[str] = ""  # honeypot — must be empty
+
+
+
+class FirstPullLeadRequest(BaseModel):
+    """First-Pull checklist series lead-magnet form (per-slug).
+
+    `slug` must match a known First-Pull checklist key on the server;
+    unknown slugs are rejected. `website` is the honeypot — must be empty.
+    """
+    slug: str
+    first_name: str
+    email: EmailStr
+    company: Optional[str] = ""
+    marketing_consent: bool = False
+    website: Optional[str] = ""  # honeypot — must be empty

@@ -40,8 +40,8 @@ for (const name of fs.readdirSync(source).filter((f) => f.endsWith('.json')).sor
     ...(image ? { image } : {}),
     ...(date ? { datePublished: date, dateModified: article.updated_at || date } : {}),
   };
-  // Ryze supplies rendered, trusted body HTML. Remove active scripting rather than embedding it in the page.
-  const body = article.body_html.replace(/<script\\b[^>]*>[\\s\\S]*?<\\/script\\s*>/gi, '');
+  // Ryze supplies rendered, trusted body HTML. Remove embedded scripts and keep tables scrollable on phones.
+  const body = article.body_html.replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, '').replace(/<table\b/gi, '<div class="table-scroll"><table').replace(/<\/table>/gi, '</table></div>');
   const html = `${marker}
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">

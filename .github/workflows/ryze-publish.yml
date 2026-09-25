@@ -30,6 +30,8 @@ jobs:
             if (article.status !== 'published') continue;
             const file = path.join('frontend/public/blog', article.slug, 'index.html');
             const html = fs.readFileSync(file, 'utf8');
+            // Keep editorial hand-built pages unchanged; they use their own copy and layout.
+            if (!html.startsWith('<!-- Generated from Ryze published article JSON.')) continue;
             if (!html.includes(article.title.replace(/&/g,'&amp;')) || !html.includes('rel="canonical"') || !html.includes('name="description"') || !html.includes('Request a Compliance Readiness Visit')) {
               throw new Error(`Incomplete article page: ${article.slug}`);
             }

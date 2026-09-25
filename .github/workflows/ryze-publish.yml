@@ -1,0 +1,47 @@
+name: Publish approved Ryze articles
+on:
+  push:
+    paths:
+      - 'blog/data/**'
+      - 'frontend/scripts/ryze-convert.cjs'
+      - '.github/workflows/ryze-publish.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Generate static pages from approved published articles
+        run: node frontend/scripts/ryze-convert.cjs
+      - name: Verify pages and metadata
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          for (const name of fs.readdirSync('blog/data').filter(x => x.endsWith('.json'))) {
+            const article = JSON.parse(fs.readFileSync(path.join('blog/data', name), 'utf8'));
+            if (article.status !== 'published') continue;
+            const file = path.join('frontend/public/blog', article.slug, 'index.html');
+            const html = fs.readFileSync(file, 'utf8');
+            if (!html.includes(article.title.replace(/&/g,'&amp;')) || !html.includes('rel="canonical"') || !html.includes('name="description"') || !html.includes('Request a Compliance Readiness Visit')) {
+              throw new Error(`Incomplete article page: ${article.slug}`);
+            }
+            if (html.includes('[object Object]')) throw new Error(`Invalid image: ${article.slug}`);
+          }
+          NODE
+      - name: Commit generated pages
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add frontend/public/blog
+          if ! git diff --cached --quiet; then
+            git commit -m 'Generate approved article pages [skip ci]'
+            git push
+          fi

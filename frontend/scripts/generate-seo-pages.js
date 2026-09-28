@@ -548,6 +548,48 @@ const routes = [
       <p>GigLine Safety &amp; Compliance, (336) 329-8899</p>
     `,
   },
+  // ── GL-FIX duplicate-title: /hazcom, /privacy-policy and /terms-of-service
+  // are real React routes but had no prerendered HTML, so the host served the
+  // homepage build file for all three (same title, description, canonical).
+  // Each now gets its own prerendered page with a unique title/description.
+  {
+    path: '/hazcom',
+    title: 'HazCom Compliance — Written Program, SDS Binder & Training | GigLine',
+    description: "Hazard Communication (29 CFR 1910.1200) resources: written HazCom program, SDS binder checklist, and training log. Start with the $29 HazCom Starter Pack.",
+    canonical: '/hazcom-starter-pack',
+    schemas: [LOCAL_BUSINESS],
+    content: `
+      <h1>Hazard Communication (HazCom) Compliance</h1>
+      <p>HazCom is OSHA's #1 most-cited standard in general industry (29 CFR 1910.1200). The three pieces inspectors ask for first: a written program, an accessible SDS binder, and training records.</p>
+      <p>The <a href="/hazcom-starter-pack">HazCom Starter Pack, $29</a> gives you all three templates in one download — fill in your company name, print, done.</p>
+      <p>For a full floor-and-files review, see the <a href="/services/compliance-readiness-visit">Compliance Readiness Visit</a>.</p>
+      <p>GigLine Safety &amp; Compliance, (336) 329-8899, vince@giglinecompliance.com</p>
+    `,
+  },
+  {
+    path: '/privacy-policy',
+    title: 'Privacy Policy | GigLine Safety & Compliance',
+    description: 'How GigLine Safety & Compliance collects, uses, and protects the information you provide through this website.',
+    canonical: '/privacy-policy',
+    schemas: [],
+    content: `
+      <h1>Privacy Policy</h1>
+      <p>GigLine engagements are private by default. This page describes how information submitted through this website is collected and used.</p>
+      <p>The full interactive privacy policy is available in the app. Questions: vince@giglinecompliance.com or (336) 329-8899.</p>
+    `,
+  },
+  {
+    path: '/terms-of-service',
+    title: 'Terms of Service | GigLine Safety & Compliance',
+    description: 'Terms of service for GigLine Safety & Compliance — scope of services, payment, and engagement terms.',
+    canonical: '/terms-of-service',
+    schemas: [],
+    content: `
+      <h1>Terms of Service</h1>
+      <p>Terms governing engagements with GigLine Safety & Compliance, a private safety consultancy based in Kernersville, NC.</p>
+      <p>The full interactive terms are available in the app. Questions: vince@giglinecompliance.com or (336) 329-8899.</p>
+    `,
+  },
   {
     path: '/hazcom-starter-pack',
     title: 'HazCom Starter Pack — $29 | GigLine Safety & Compliance',

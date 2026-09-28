@@ -4,6 +4,7 @@ on:
     paths:
       - 'blog/data/**'
       - 'frontend/scripts/ryze-convert.cjs'
+      - 'frontend/scripts/generate-sitemap.js'
       - '.github/workflows/ryze-publish.yml'
   workflow_dispatch:
 permissions:
@@ -38,11 +39,13 @@ jobs:
             if (html.includes('[object Object]')) throw new Error(`Invalid image: ${article.slug}`);
           }
           NODE
+      - name: Add built published articles to sitemap
+        run: node frontend/scripts/generate-sitemap.js
       - name: Commit generated pages
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add frontend/public/blog
+          git add frontend/public/blog frontend/public/sitemap.xml
           if ! git diff --cached --quiet; then
             git commit -m 'Generate approved article pages [skip ci]'
             git push

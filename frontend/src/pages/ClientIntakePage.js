@@ -1032,7 +1032,7 @@ OSHA does not wait for you to get to it.
 
 That is why GigLine exists.
 
-I come to your facility, walk the areas that matter, photograph what I find, document the gaps against the applicable safety standards, and put it in writing within 48 hours.
+I come to your facility, walk the areas that matter, photograph what I find, document the gaps against the applicable safety standards, and put it in writing on a fixed timeline you know before we start.
 
 No retainer.
 No long-term contract.

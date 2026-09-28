@@ -50,7 +50,7 @@ const DELIVERABLES = [
     icon: FileBarChart2,
     title: '18-Page CFR-Cited Field Audit Report',
     body:
-      'Delivered within 48 hours. Compliance score, at-a-glance dashboard, executive summary, and a prioritized remediation sequence, not just a list of violations.',
+      'Delivered within 5 business days. Compliance score, at-a-glance dashboard, executive summary, and a prioritized remediation sequence, not just a list of violations.',
     highlight: true,
     fullWidth: true,
   },
@@ -147,7 +147,7 @@ const PROCESS_STEPS = [
       'Written programs, training records, OSHA logs, and SDS library reviewed against a 53-point checklist.',
   },
   {
-    title: 'Report Delivered in 48 Hours',
+    title: 'Report Delivered in 5 Business Days',
     body:
       '18-page CFR-cited report with compliance score, executive summary, and prioritized remediation sequence. Plus the tracker, the OSHA guidance sheet, and the 30-day check-in call.',
   },
@@ -214,7 +214,7 @@ const ComplianceReadinessVisitPage = () => {
     <main data-testid="compliance-readiness-visit-page">
       <SEO
         title="Compliance Readiness Visit, From $2,500 | GigLine"
-        description="The floor + the files in one visit. CFR-cited 48-hour report, 30-day corrective-action roadmap, findings-review call. From $2,500."
+        description="The floor + the files in one visit. CFR-cited report in 5 business days, 30-day corrective-action roadmap, findings-review call. From $2,500."
         canonical={`/services/${SLUG}`}
         schema={[
           {
@@ -235,7 +235,7 @@ const ComplianceReadinessVisitPage = () => {
               description: 'Compliance Readiness Visit from $2,500, combined walkthrough + documentation review.',
             },
             description:
-              'On-site walkthrough plus full documentation review delivered as a single 18-page CFR-cited field audit report within 48 hours.',
+              'On-site walkthrough plus full documentation review delivered as a single 18-page CFR-cited field audit report within 5 business days.',
           },
           {
             '@context': 'https://schema.org',
@@ -260,7 +260,7 @@ const ComplianceReadinessVisitPage = () => {
                 name: 'What is a Compliance Readiness Visit?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'A Compliance Readiness Visit is a combined on-site safety walkthrough and full OSHA documentation review delivered as a single CFR-cited field audit report within 48 hours. It is the most complete way for a small manufacturer, warehouse, or contractor to know where they stand before an OSHA inspection, insurance audit, or corporate compliance review.',
+                  text: 'A Compliance Readiness Visit is a combined on-site safety walkthrough and full OSHA documentation review delivered as a single CFR-cited field audit report within 5 business days. It is the most complete way for a small manufacturer, warehouse, or contractor to know where they stand before an OSHA inspection, insurance audit, or corporate compliance review.',
                 },
               },
               {
@@ -276,7 +276,7 @@ const ComplianceReadinessVisitPage = () => {
                 name: 'How fast is the report delivered?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'The written field audit report is delivered within 48 hours of the on-site visit. The report includes photo-documented findings, CFR citations, estimated penalty exposure, and a prioritized 30-day corrective-action roadmap.',
+                  text: 'The written field audit report is delivered within 5 business days of the on-site visit. The report includes photo-documented findings, CFR citations, estimated penalty exposure, and a prioritized 30-day corrective-action roadmap.',
                 },
               },
               {
@@ -349,7 +349,7 @@ const ComplianceReadinessVisitPage = () => {
                 </Link>
                 <span className="inline-flex items-center gap-2 text-white/55 text-sm" style={mono}>
                   <Clock size={14} />
-                  Report delivered within 48 hours
+                  Report delivered within 5 business days
                 </span>
                 <span className="inline-flex items-center gap-2 text-white/55 text-sm" style={mono}>
                   <Lock size={14} />
@@ -845,7 +845,7 @@ const ComplianceReadinessVisitPage = () => {
             Schedule a Compliance Readiness Visit.
           </h2>
           <p className="text-base md:text-lg text-[#1C2B2B]/75 leading-[1.85] mb-10 max-w-3xl mx-auto">
-            Fixed price. Private engagement. Report in 48 hours. If you&rsquo;re not sure this is the right starting
+            Fixed price. Private engagement. Report in 5 business days. If you&rsquo;re not sure this is the right starting
             point, start with a Safety Walkthrough instead.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

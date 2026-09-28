@@ -143,7 +143,7 @@ const Footer = () => {
                   {
                     name: 'Sample Compliance Report',
                     path: '/sample-report',
-                    desc: 'A redacted real report. See exactly what you get within 48 hours of the walkthrough.',
+                    desc: 'A redacted real report. See exactly what a GigLine compliance report looks like.',
                   },
                   {
                     name: 'Safety Check',

@@ -67,7 +67,7 @@ export const ASSESSMENT_SERVICES = {
       'Cross-check between binder and floor reality',
     ],
     nextStep:
-      'Request the review, share your programs and records securely, and receive the written findings report within 48 hours.',
+      'Request the review, share your programs and records securely, and receive the written findings report within 5 business days.',
     label: null,
   },
   'compliance-readiness-visit': {

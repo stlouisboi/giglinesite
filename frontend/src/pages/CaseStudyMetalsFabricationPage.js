@@ -254,7 +254,7 @@ const CaseStudyMetalsFabricationPage = () => {
           {/* THE ENGAGEMENT */}
           <H2>The Engagement</H2>
           <P>Scope: a Compliance Readiness Visit, GigLine's combined Safety Walkthrough and Documentation Readiness Review, delivered as a single engagement.</P>
-          <P>Written report delivered four days after the walkthrough. Historical turnaround; the current standard commitment for a Compliance Readiness Visit is a written report within 48 hours of the on-site visit.</P>
+          <P>Written report delivered four days after the walkthrough. Historical turnaround; the current standard commitment for a Compliance Readiness Visit is a written report within 5 business days of the on-site visit.</P>
 
           {/* WHAT THE WALKTHROUGH FOUND */}
           <H2>What the Walkthrough Found</H2>
@@ -493,7 +493,7 @@ const CaseStudyMetalsFabricationPage = () => {
               Want to see what an actual GigLine report looks like?
             </h3>
             <p className="text-[15px] md:text-base leading-[1.65] mb-5" style={{ color: TEXT_MUTED, ...serif }}>
-              A redacted version of a real compliance report, facility name removed, every finding, CFR citation, penalty exposure, and corrective action intact. The format you&rsquo;d receive within 48 hours of your own walkthrough.
+              A redacted version of a real compliance report, facility name removed, every finding, CFR citation, penalty exposure, and corrective action intact. The format you&rsquo;d receive within 5 business days of your own walkthrough.
             </p>
             <Link
               to="/sample-report"
@@ -567,7 +567,7 @@ const CaseStudyMetalsFabricationPage = () => {
             The equivalent scope today is a Compliance Readiness Visit, starting at $2,500.
           </h2>
           <p className="text-base md:text-lg leading-relaxed mb-10 max-w-2xl mx-auto text-white/65">
-            The Compliance Readiness Visit combines the Safety Walkthrough and the Documentation Readiness Review into a single engagement, and it saves $500 compared with purchasing the two standard scopes separately. Written report within 48 hours of the on-site visit. Fixed quote before scheduling. Your findings and written report are delivered privately. GigLine does not publicly use client information without permission.
+            The Compliance Readiness Visit combines the Safety Walkthrough and the Documentation Readiness Review into a single engagement, and it saves $500 compared with purchasing the two standard scopes separately. Written report within 5 business days of the on-site visit. Fixed quote before scheduling. Your findings and written report are delivered privately. GigLine does not publicly use client information without permission.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link

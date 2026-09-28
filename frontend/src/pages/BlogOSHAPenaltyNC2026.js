@@ -242,7 +242,7 @@ const BlogOSHAPenaltyNC2026 = () => (
             Want to know what your exposure actually is?
           </h3>
           <p className="text-white/75 mb-6 leading-relaxed">
-            A Compliance Readiness Visit walks your floor, reviews your binder, and scores your documentation against the exact CFR sections OSHA is enforcing right now, with a written findings report within 48 hours.
+            A Compliance Readiness Visit walks your floor, reviews your binder, and scores your documentation against the exact CFR sections OSHA is enforcing right now, with a written findings report within 5 business days.
           </p>
           <Link
             to="/services/compliance-readiness-visit"

@@ -9,7 +9,7 @@ const config = {
   seoDescription: 'OSHA documentation readiness review for NC manufacturers. Written programs, training records, 300 log, SDS binder. From $1,700.',
   eyebrow: 'OSHA Documentation Review',
   headline: 'OSHA Documentation Review for NC operations.',
-  subhead: 'The paperwork OSHA, your insurance carrier, or a customer auditor asks for first. An off-site readiness review of your written programs, training records, OSHA 300/300A logs, SDS inventory, and retention practices \u2014 written report in 48 hours.',
+  subhead: 'The paperwork OSHA, your insurance carrier, or a customer auditor asks for first. An off-site readiness review of your written programs, training records, OSHA 300/300A logs, SDS inventory, and retention practices \u2014 written report in 5 business days.',
   whoFor: {
     title: 'Built for operations whose binder may not match their floor.',
     items: [

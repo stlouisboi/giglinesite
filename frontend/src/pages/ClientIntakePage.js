@@ -415,28 +415,43 @@ const ClientIntakePage = () => {
           WHAT HAPPENS NEXT
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-          {[
-            {
-              n: '1',
-              title: 'We review your submission',
-              body: "You'll get a confirmation email within a few minutes. Vince reviews every intake personally, usually same day.",
-            },
-            {
-              n: '2',
-              title: 'You get a fixed quote',
-              body: "Based on your facility size, employee count, and what you're asking for. No hourly billing. No estimate ranges. One number before anything is scheduled.",
-            },
-            {
-              n: '3',
-              title: 'We schedule the visit',
-              body: 'Once you approve the quote, we pick a date that works for your operation. Most visits are scheduled within 5–10 business days.',
-            },
-            {
-              n: '4',
-              title: 'You get the report in writing',
-              body: 'Within 48 hours of the walkthrough. Photo documentation, CFR citations, estimated penalty exposure based on OSHA published maximums, and a prioritized corrective action plan. Yours to keep.',
-            },
-          ].map((step) => (
+          {(() => {
+            /* Per-service copy for steps 3 and 4 so the intake accurately reflects
+               the service page the visitor arrived from. Falls back to
+               scope-agnostic language when no ?service=<slug> is present. */
+            const scheduleBySlug = {
+              'safety-walkthrough': 'Once you approve the quote, we pick a date that works for your operation. Most walkthroughs are scheduled within 5–10 business days.',
+              'safety-walkthrough-report': 'Once you approve the quote, we pick a date that works for your operation. Most walkthroughs are scheduled within 5–10 business days.',
+              'compliance-readiness-visit': 'Once you approve the quote, we pick a visit date that works for your operation and collect your program binder in parallel. Most CRVs are scheduled within 5–10 business days.',
+              'documentation-readiness-review': 'Once you approve the quote, you send the program binder or shared-drive access. No on-site visit is required for this scope.',
+              'incident-review': 'Once you approve the quote, we agree on the interview schedule with the people involved and start collecting documentation in parallel.',
+              'osha-ready-control-system': 'Once you approve the quote, we agree on a delivery timeline for the program set and records structure. Most buildouts run 3–6 weeks.',
+              'safety-control-system-buildout': 'Once you approve the quote, we agree on a delivery timeline for the program set and records structure. Most buildouts run 3–6 weeks.',
+              'corrective-action-implementation': 'Once you approve the quote, we lock in the closure sprint and assign an owner and evidence checkpoint for each open finding.',
+              'ongoing-safety-support': 'Once you approve the monthly quote, we set the first on-site visit and standing monthly cadence with your named point of contact.',
+            };
+            const reportBySlug = {
+              'safety-walkthrough': 'Within 48 hours of the walkthrough. Photo documentation, CFR citations, estimated penalty exposure based on OSHA published maximums, and a prioritized corrective action plan. Yours to keep.',
+              'safety-walkthrough-report': 'Within 48 hours of the walkthrough. Photo documentation, CFR citations, estimated penalty exposure based on OSHA published maximums, and a prioritized corrective action plan. Yours to keep.',
+              'compliance-readiness-visit': 'Within 5 business days of the visit. A combined floor + documentation report with a 30/60/90 action ladder, CFR citations, photo evidence, and a prioritized remediation list. Yours to keep.',
+              'documentation-readiness-review': 'Within 5 business days. A gap report tied to specific CFR paragraphs, a prioritized documentation remediation list, and a supervisor walkthrough call. Yours to keep.',
+              'incident-review': 'A written incident timeline with contributing factors, corrective actions with owners and target dates, and evidence closeouts as work completes.',
+              'osha-ready-control-system': 'A delivered program set — site-specific written programs, records structure, and a corrective-action log baseline — so the supervisor inherits a working system, not a template.',
+              'safety-control-system-buildout': 'A delivered program set — site-specific written programs, records structure, and a corrective-action log baseline — so the supervisor inherits a working system, not a template.',
+              'corrective-action-implementation': 'An owner, target date, and evidence trail on every open finding. Written closeouts as work completes so nothing sits in limbo.',
+              'ongoing-safety-support': 'A monthly on-site visit, records review, and a management report you can hand to leadership every month.',
+            };
+            const step3Default = 'Once you approve the quote, we agree on the schedule that fits the scope. Most engagements start within 5–10 business days.';
+            const step4Default = 'In writing. A dated report with the findings, corrective actions, and CFR citations for the scope you selected. Yours to keep.';
+            const step3Body = scheduleBySlug[sourceServiceSlug] || step3Default;
+            const step4Body = reportBySlug[sourceServiceSlug] || step4Default;
+            return [
+              { n: '1', title: 'We review your submission', body: "You'll get a confirmation email within a few minutes. Vince reviews every intake personally, usually same day." },
+              { n: '2', title: 'You get a fixed quote', body: "Based on your facility size, employee count, and what you're asking for. No hourly billing. No estimate ranges. One number before anything is scheduled." },
+              { n: '3', title: 'We schedule the engagement', body: step3Body },
+              { n: '4', title: 'You get the deliverable in writing', body: step4Body },
+            ];
+          })().map((step) => (
             <div
               key={step.n}
               className="rounded-lg p-5"

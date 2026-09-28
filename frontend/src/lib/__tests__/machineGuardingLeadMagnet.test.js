@@ -58,7 +58,7 @@ describe('Machine Guarding lead magnet', () => {
   });
 
   test('every required form field has a matching label and stable testid', () => {
-    const requiredIds = ['mg-first-name', 'mg-email', 'mg-company', 'mg-consent'];
+    const requiredIds = ['mg-first-name', 'mg-email', 'mg-company', 'mg-consent', 'mg-send-forklift'];
     for (const id of requiredIds) {
       expect(componentSrc).toMatch(new RegExp(`htmlFor="${id}"`));
       expect(componentSrc).toMatch(new RegExp(`id="${id}"`));
@@ -70,6 +70,7 @@ describe('Machine Guarding lead magnet', () => {
       'mg-lead-magnet-email',
       'mg-lead-magnet-company',
       'mg-lead-magnet-consent',
+      'mg-lead-magnet-send-forklift',
       'mg-lead-magnet-submit',
       'mg-lead-magnet-confirmation',
       'mg-lead-magnet-download',
@@ -77,6 +78,11 @@ describe('Machine Guarding lead magnet', () => {
     for (const tid of requiredTestIds) {
       expect(componentSrc).toMatch(new RegExp(`data-testid="${tid}"`));
     }
+  });
+
+  test('Forklift upsell checkbox defaults to unchecked and is sent as send_forklift_upsell in the POST body', () => {
+    expect(componentSrc).toMatch(/sendForklift:\s*false/);
+    expect(componentSrc).toMatch(/send_forklift_upsell:\s*!!form\.sendForklift/);
   });
 
   test('the article page imports and mounts the lead-magnet component', () => {

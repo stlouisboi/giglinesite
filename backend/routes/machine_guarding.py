@@ -21,7 +21,7 @@ import base64
 import logging
 
 import resend
-from config import db, SENDER_EMAIL, VINCE_EMAIL, MACHINE_GUARDING_PDF
+from config import db, SENDER_EMAIL, VINCE_EMAIL, MACHINE_GUARDING_PDF, FORKLIFT_WALKTHROUGH_PDF
 from integrations.mailerlite import add_to_lead_nurture
 from models import MachineGuardingLeadRequest
 
@@ -40,6 +40,19 @@ async def download_machine_guarding_pdf():
         media_type="application/pdf",
         filename="GigLine_Machine_Guarding_Checklist.pdf",
         headers={"Content-Disposition": 'inline; filename="GigLine_Machine_Guarding_Checklist.pdf"'},
+    )
+
+
+@router.get("/forklift-pit-walkthrough/pdf")
+async def download_forklift_walkthrough_pdf():
+    """Direct PDF download for the free Forklift/PIT walkthrough companion."""
+    if not FORKLIFT_WALKTHROUGH_PDF.exists():
+        raise HTTPException(status_code=404, detail="Forklift/PIT walkthrough checklist not available.")
+    return FileResponse(
+        path=str(FORKLIFT_WALKTHROUGH_PDF),
+        media_type="application/pdf",
+        filename="GigLine_Forklift_PIT_Walkthrough_Checklist.pdf",
+        headers={"Content-Disposition": 'inline; filename="GigLine_Forklift_PIT_Walkthrough_Checklist.pdf"'},
     )
 
 
@@ -66,11 +79,13 @@ async def submit_machine_guarding_lead(request: MachineGuardingLeadRequest):
         "first_name": first_name,
         "company": company,
         "marketing_consent": bool(request.marketing_consent),
+        "send_forklift_upsell": bool(request.send_forklift_upsell),
         "created_at": datetime.now(timezone.utc).isoformat(),
     })
     await db.download_events.insert_one({
         "type": "machine_guarding_checklist",
         "email": email,
+        "with_forklift_upsell": bool(request.send_forklift_upsell),
         "timestamp": datetime.now(timezone.utc).isoformat(),
     })
 
@@ -80,17 +95,45 @@ async def submit_machine_guarding_lead(request: MachineGuardingLeadRequest):
         asyncio.create_task(add_to_lead_nurture(email=email, source_form="machine_guarding_checklist"))
 
     display_name = first_name or "there"
+    upsell = bool(request.send_forklift_upsell)
 
     try:
-        attachment_content = ""
+        attachments = []
         if MACHINE_GUARDING_PDF.exists():
             with open(MACHINE_GUARDING_PDF, "rb") as f:
-                attachment_content = base64.b64encode(f.read()).decode("utf-8")
+                attachments.append({
+                    "filename": "GigLine_Machine_Guarding_Checklist.pdf",
+                    "content": base64.b64encode(f.read()).decode("utf-8"),
+                })
+        if upsell and FORKLIFT_WALKTHROUGH_PDF.exists():
+            with open(FORKLIFT_WALKTHROUGH_PDF, "rb") as f:
+                attachments.append({
+                    "filename": "GigLine_Forklift_PIT_Walkthrough_Checklist.pdf",
+                    "content": base64.b64encode(f.read()).decode("utf-8"),
+                })
+
+        upsell_html_block = (
+            (
+                '<h3 style="margin-top: 24px; margin-bottom: 8px;">ALSO ATTACHED — FORKLIFT / PIT WALKTHROUGH:</h3>'
+                '<p style="color: #555;">You also asked for the free Forklift / Powered Industrial Truck walkthrough companion — '
+                '25 checks across operator training, pre-shift inspection, traveling and load handling, charging and refueling, '
+                'rack and aisle, and documentation. Same shop-floor format, tied to 29 CFR 1910.178.</p>'
+                '<p style="color: #555;">For the complete Forklift/PIT Readiness Kit — written PIT program, operator training '
+                'curriculum, binder-ready inspection forms — see <a href="https://www.giglinecompliance.com/kits/forklift-pit-readiness-kit" '
+                'style="color: #102A43;">giglinecompliance.com/kits/forklift-pit-readiness-kit</a>.</p>'
+            ) if upsell else ""
+        )
+
+        subject = (
+            "Your OSHA Machine Guarding + Forklift walkthrough checklists"
+            if upsell
+            else "Your OSHA Machine Guarding walkthrough checklist"
+        )
 
         resend.Emails.send({
             "from": SENDER_EMAIL,
             "to": [email],
-            "subject": "Your OSHA Machine Guarding walkthrough checklist",
+            "subject": subject,
             "html": f"""
             <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; color: #1C2B2B;">
                 <h1 style="font-size: 22px; margin-bottom: 16px;">Your Machine Guarding walkthrough checklist</h1>
@@ -106,7 +149,8 @@ async def submit_machine_guarding_lead(request: MachineGuardingLeadRequest):
                     <li>Documentation and Training (4 checks)</li>
                     <li>Supervisor sign-off block on page 2</li>
                 </ul>
-                <h3 style="margin-top: 24px; margin-bottom: 8px;">HOW TO USE IT:</h3>
+                {upsell_html_block}
+                <h3 style="margin-top: 24px; margin-bottom: 8px;">HOW TO USE THEM:</h3>
                 <ol style="color: #555;">
                     <li>Print and walk your shop with a supervisor who runs the machines.</li>
                     <li>Any unchecked box is a corrective action — route it to a log with an owner and a due date.</li>
@@ -129,30 +173,32 @@ async def submit_machine_guarding_lead(request: MachineGuardingLeadRequest):
                 </p>
             </div>
             """,
-            "attachments": [{
-                "filename": "GigLine_Machine_Guarding_Checklist.pdf",
-                "content": attachment_content,
-            }] if attachment_content else [],
+            "attachments": attachments,
             "reply_to": VINCE_EMAIL,
         })
 
         resend.Emails.send({
             "from": SENDER_EMAIL,
             "to": [VINCE_EMAIL],
-            "subject": f"Machine Guarding checklist download — {email}",
+            "subject": f"Machine Guarding{' + Forklift' if upsell else ''} checklist download — {email}",
             "html": (
-                f"<p>New Machine Guarding checklist download from the blog article.</p>"
+                f"<p>New checklist download from the blog article.</p>"
                 f"<p><strong>Email:</strong> {email}<br/>"
                 f"<strong>First name:</strong> {display_name or '(not provided)'}<br/>"
                 f"<strong>Company:</strong> {company or '(not provided)'}<br/>"
-                f"<strong>Marketing consent:</strong> {'YES' if request.marketing_consent else 'no'}</p>"
+                f"<strong>Marketing consent:</strong> {'YES' if request.marketing_consent else 'no'}<br/>"
+                f"<strong>Also took Forklift upsell:</strong> {'YES' if upsell else 'no'}</p>"
                 f"<p>Consider a personal follow-up within 24 hours — this visitor is actively "
-                f"researching machine-guarding compliance.</p>"
+                f"researching machine-guarding compliance"
+                f"{' AND forklift compliance — strong dual-hazard lead.' if upsell else '.'}</p>"
             ),
             "reply_to": email,
         })
 
-        logger.info(f"Machine Guarding checklist sent to {email}")
+        logger.info(
+            f"Machine Guarding checklist sent to {email}"
+            + (" (+ Forklift upsell)" if upsell else "")
+        )
     except Exception as e:
         logger.error(f"Machine Guarding email error: {str(e)}")
 

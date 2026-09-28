@@ -104,10 +104,16 @@ describe('RecommendationResultCard Share button', () => {
   test('renders a share button with a stable testid', () => {
     expect(card).toMatch(/data-testid="rr-result-share"/);
   });
-  test('share flow uses navigator.clipboard, never fetch or axios', () => {
+  test('share flow uses navigator.clipboard (not fetch); email-recommendation is the only fetch on the card', () => {
     expect(card).toMatch(/navigator\.clipboard/);
-    expect(card).not.toMatch(/\bfetch\s*\(/);
     expect(card).not.toMatch(/\baxios\b/);
+    // The share button itself must not call fetch. The card as a whole now
+    // has one legitimate fetch — the recommendation-email endpoint. Assert
+    // that any fetch call in this file is that endpoint, not something else.
+    const fetchCalls = card.match(/\bfetch\s*\([^)]*\)/g) || [];
+    for (const call of fetchCalls) {
+      expect(call).toMatch(/RECOMMENDATION_EMAIL_ENDPOINT/);
+    }
   });
   test('shareable URL points at /recommendation with ref=share', () => {
     expect(card).toMatch(/\/recommendation\?ref=share/);

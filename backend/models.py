@@ -95,9 +95,54 @@ class MachineGuardingLeadRequest(BaseModel):
     `website` is a required honeypot field: it MUST arrive empty on real
     submissions. Bots that autofill every input will populate it, and the route
     silently drops those requests.
+
+    `send_forklift_upsell` opts the visitor in to the FREE Forklift/PIT
+    walkthrough companion checklist — a second PDF sent alongside the primary
+    Machine Guarding checklist. Distinct from the paid Readiness Kit product.
     """
     first_name: str
     email: EmailStr
     company: Optional[str] = ""
     marketing_consent: bool = False
+    send_forklift_upsell: bool = False
+    website: Optional[str] = ""  # honeypot — must be empty
+
+
+
+class FirstPullLeadRequest(BaseModel):
+    """First-Pull checklist series lead-magnet form (per-slug).
+
+    `slug` must match a known First-Pull checklist key on the server;
+    unknown slugs are rejected. `website` is the honeypot — must be empty.
+    """
+    slug: str
+    first_name: str
+    email: EmailStr
+    company: Optional[str] = ""
+    marketing_consent: bool = False
+
+
+class RecommendationEmailRequest(BaseModel):
+    """Payload for `/api/recommendation/email`.
+
+    `slug` MUST match a server-side allow-list of released service slugs
+    (safety-walkthrough, documentation-review, compliance-readiness-visit,
+    corrective-action-implementation, safety-control-system-buildout,
+    ongoing-safety-support). Unknown slugs are rejected with 400 so no
+    caller can direct arbitrary marketing content through the domain.
+
+    `answers` is an optional shallow key/value dict captured for context.
+
+    `include_field_notes` opts the visitor into a second attached PDF —
+    a curated field-note reading list keyed to the recommendation slug.
+    """
+    slug: str
+    first_name: str
+    email: EmailStr
+    company: Optional[str] = ""
+    marketing_consent: bool = False
+    answers: Optional[Dict[str, str]] = None
+    include_field_notes: bool = False
+    website: Optional[str] = ""  # honeypot — must be empty
+
     website: Optional[str] = ""  # honeypot — must be empty

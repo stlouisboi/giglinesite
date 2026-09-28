@@ -21,34 +21,34 @@ const CARD_SRC = fs.readFileSync(
   'utf8',
 );
 
-describe('RecommendationResultCard, non-transmission contract', () => {
-  test('the card source contains NO fetch/axios calls or transactional-email API calls', () => {
-    // Guard against real network egress. Comment mentions are fine so long
-    // as no actual call expression or import ever hits this file.
-    expect(CARD_SRC).not.toMatch(/\bfetch\s*\(/);
+describe('RecommendationResultCard, transactional-email contract', () => {
+  test('the card only fetches the GigLine /api/recommendation/email endpoint and no third-party email SDK', () => {
+    // Guard: the live-send fetch must hit our own backend via
+    // REACT_APP_BACKEND_URL, and no direct email SDK may be imported client-side.
+    expect(CARD_SRC).toMatch(/process\.env\.REACT_APP_BACKEND_URL/);
+    expect(CARD_SRC).toMatch(/\/api\/recommendation\/email/);
     expect(CARD_SRC).not.toMatch(/\baxios\b/);
-    // No import from a transactional-email SDK
     expect(CARD_SRC).not.toMatch(/from\s+['"](resend|@mailerlite\/|mailerlite-nodejs|sendgrid)/i);
-    // No call expression like Resend(...) or new MailerLite()
     expect(CARD_SRC).not.toMatch(/\bResend\s*\(/);
     expect(CARD_SRC).not.toMatch(/new\s+MailerLite\b/);
     expect(CARD_SRC).not.toMatch(/mailerlite\./i);
   });
-  test('preview confirmation string explicitly states no email was sent', () => {
-    expect(CARD_SRC).toContain('Preview only, no email was sent');
+  test('confirmation state signals a real send now that live delivery is wired', () => {
+    // Live-send copy replaces the earlier "preview only" phrasing.
+    expect(CARD_SRC).toMatch(/We just emailed/);
+    expect(CARD_SRC).not.toContain('Preview only, no email was sent');
   });
   test('marketing consent is unchecked by default (state initialized to false)', () => {
-    // useState is called with `false` for the marketing consent hook.
     expect(CARD_SRC).toMatch(/marketing[\s\S]{0,60}useState\(false\)/i);
   });
-  test('marketing consent checkbox is separate from the transactional preview flow', () => {
-    // Two independent things: the "generate preview" submit path always runs,
-    // and the marketing checkbox is optional.
-    expect(CARD_SRC).toMatch(/marketing/i);
-    expect(CARD_SRC).toMatch(/marketing consent status/i);
+  test('email form is only rendered for slugs in the server-side allow-list', () => {
+    expect(CARD_SRC).toMatch(/EMAILABLE_SLUGS/);
+    expect(CARD_SRC).toMatch(/EMAILABLE_SLUGS\.has\(result\.slug\)/);
   });
-  test('preview state cannot claim delivery', () => {
-    expect(CARD_SRC).not.toMatch(/email sent|delivered to your inbox|check your email/i);
+  test('honeypot field is present and hidden from the a11y tree', () => {
+    expect(CARD_SRC).toMatch(/name="website"/);
+    expect(CARD_SRC).toMatch(/aria-hidden="true"/);
+    expect(CARD_SRC).toMatch(/tabIndex=\{-1\}/);
   });
 });
 

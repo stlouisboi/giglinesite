@@ -1577,6 +1577,42 @@ const routes = [
       <p>GigLine Safety &amp; Compliance, (336) 329-8899</p>
     `,
   },
+  // ── GL-FIX desc-missing: /sample-corrective-action-log was previously a
+  // vercel.json rewrite straight to the PDF asset, so crawlers saw a PDF with
+  // no title, description, or canonical. It is now a real pre-rendered HTML
+  // page; the PDF stays downloadable at /assets/GigLine_Sample_Corrective_Action_Log.pdf.
+  // (Vercel serves the filesystem before rewrites, so once this build artifact
+  // exists the HTML wins and the old PDF rewrite becomes a fallback only.)
+  {
+    path: '/sample-corrective-action-log',
+    title: 'Sample Corrective Action Log — Free PDF Download | GigLine Safety & Compliance',
+    description: 'A real corrective action log from a North Carolina metals fabrication facility, redacted. Findings, CFR citations, priorities, target dates. Free PDF, no form required.',
+    canonical: '/sample-corrective-action-log',
+    schemas: [
+      LOCAL_BUSINESS,
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Resources', path: '/resources' }, { name: 'Sample Corrective Action Log', path: '/sample-corrective-action-log' }]),
+    ],
+    content: `
+      <h1>Sample Corrective Action Log</h1>
+      <p>This is the corrective-action section of a real GigLine engagement report — a metals fabrication facility in North Carolina, client name and facility identifiers redacted. The findings, CFR citations, priority ratings, and timelines are accurate to the engagement. Nothing else has been altered.</p>
+      <p><a href="/assets/GigLine_Sample_Corrective_Action_Log.pdf">Download the Sample Corrective Action Log (PDF) &rarr;</a></p>
+      <p>No form. No email required. The PDF opens in a new tab.</p>
+      <h2>What&rsquo;s inside the log</h2>
+      <ul>
+        <li>Each finding photographed on the floor and documented against the CFR standard OSHA cites for it</li>
+        <li>Priority ratings — RED for urgent, AMBER for near-term, GREEN for what the team is doing well</li>
+        <li>A corrective action for every finding, with an owner and a target date</li>
+        <li>A 30 / 60 / 90-day remediation schedule with owners, not a wish list</li>
+      </ul>
+      <h2>Why I publish this</h2>
+      <p>Most safety consultants hide the deliverable until after you sign. I don&rsquo;t. You should see exactly what you&rsquo;re buying before you spend a dollar. This log is part of the written report your team receives within 48 hours of the walkthrough.</p>
+      <h2>Want a report like this for your own floor?</h2>
+      <p>The full deliverable — cover, methodology, coverage summary, appendices, and a printable action tracker — comes with a <a href="/services/compliance-readiness-visit">Compliance Readiness Visit</a>. It combines the on-site walkthrough and a full documentation review in one visit, one consolidated report, one prioritized corrective action plan. Starts at $2,500.</p>
+      <p><a href="/intake">Request a Compliance Readiness Visit &rarr;</a> or call (336) 329-8899.</p>
+      <p>Prefer to start smaller? See the full <a href="/sample-report">Sample Compliance Report</a> or the rest of the <a href="/resources">resources page</a>.</p>
+      <p>GigLine Safety &amp; Compliance &middot; Veteran-owned &middot; Kernersville, NC &middot; (336) 329-8899</p>
+    `,
+  },
   {
     path: '/sample-report',
     title: 'Sample Compliance Report | GigLine Safety & Compliance',

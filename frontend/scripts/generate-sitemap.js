@@ -124,6 +124,29 @@ const ROUTES = [
   })),
 ];
 
+// Include only approved published articles whose public page has actually been built.
+// Keeping this tied to the source status prevents drafts from entering the sitemap.
+const articleSource = path.resolve(__dirname, '../../blog/data');
+const articlePages = path.resolve(__dirname, '../public/blog');
+if (fs.existsSync(articleSource)) {
+  for (const name of fs.readdirSync(articleSource).filter((file) => file.endsWith('.json')).sort()) {
+    const article = JSON.parse(fs.readFileSync(path.join(articleSource, name), 'utf8'));
+    if (article.status !== 'published') continue;
+    const slug = article.slug;
+    if (typeof slug !== 'string' || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug) || name !== `${slug}.json`) {
+      throw new Error(`Invalid published article slug: ${name}`);
+    }
+    if (!fs.existsSync(path.join(articlePages, slug, 'index.html'))) {
+      console.warn(`[sitemap] skipping published article without a built page: ${slug}`);
+      continue;
+    }
+    const updated = article.updated_at || article.published_at;
+    const lastmod = typeof updated === 'string' && /^\d{4}-\d{2}-\d{2}/.test(updated)
+      ? updated.slice(0, 10) : TODAY;
+    ROUTES.push({ loc: `/blog/${slug}`, priority: '0.7', changefreq: 'monthly', lastmod });
+  }
+}
+
 // Dedupe by loc while preserving the first occurrence.
 const seen = new Set();
 const deduped = ROUTES.filter((r) => {

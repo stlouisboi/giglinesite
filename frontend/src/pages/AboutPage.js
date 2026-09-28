@@ -122,7 +122,7 @@ const AboutPage = () => {
   return (
     <main data-testid="about-page">
       <SEO
-        title="Safety Consultant Kernersville NC, Vince Lawrence | GigLine"
+        title="Vince Lawrence, GigLine Safety & Compliance - Navy Veteran & OSHA Consultant, Kernersville NC"
         description="25+ years on the floor. OSHA 30-Hour General Industry Trained. Navy veteran. An OSHA-informed floor review before an inspector shows up. (336) 329-8899."
         canonical="/about"
         schema={[
@@ -268,7 +268,7 @@ OSHA does not wait for you to get to it.
 
 That is why GigLine exists.
 
-I come to your facility, walk the areas that matter, photograph what I find, document the gaps against the applicable safety standards, and put it in writing within 48 hours.
+I come to your facility, walk the areas that matter, photograph what I find, document the gaps against the applicable safety standards, and put it in writing on a fixed timeline you know before we start.
 
 No retainer.
 No long-term contract.

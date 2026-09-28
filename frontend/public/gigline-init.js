@@ -11,7 +11,7 @@
   function gtag() { window.dataLayer.push(arguments); }
   window.gtag = window.gtag || gtag;
   gtag('js', new Date());
-  gtag('config', 'G-FNX42NP1QT', { send_page_view: false });
+  gtag('config', 'G-BEB6MLY2G2', { send_page_view: false });
 
   // Microsoft Clarity: activates only when a real ID was templated in.
   var scriptEl = document.currentScript;

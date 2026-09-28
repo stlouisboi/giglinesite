@@ -97,6 +97,7 @@ const ROUTES = [
   { loc: '/blog/written-hazcom-program-before-osha-inspection', priority: '0.7', changefreq: 'monthly' },
   { loc: '/blog/mid-year-2026-osha-update-nc-manufacturers', priority: '0.85', changefreq: 'monthly' },
   { loc: '/blog/osha-penalty-north-carolina-2026', priority: '0.9', changefreq: 'monthly' },
+  { loc: '/blog/how-much-does-an-osha-safety-consultant-cost-in', priority: '0.9', changefreq: 'monthly' },
 
   // ── Field notes (25 articles) ──────────────────────────────────────
   ...[

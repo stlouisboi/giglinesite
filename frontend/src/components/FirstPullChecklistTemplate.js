@@ -1,5 +1,5 @@
 /**
- * First-Pull Checklist template (Phase 2 draft, Batch 2A.1).
+ * First-Pull Checklist template (Phase 2, LIVE Resend delivery).
  *
  * Renders a single First-Pull Checklist page from the entry in
  * data/firstPullChecklists.js. Each item is now an object
@@ -11,12 +11,17 @@
  * Form is accessible: persistent <label> with for/id, type="email",
  * autocomplete, aria-describedby, focus moves to first invalid field,
  * unchecked marketing consent, honeypot hidden from keyboard AND screen readers.
- * Draft state, form is not wired to live delivery.
+ * POSTs to /api/first-pull/submit which sends the checklist inline via Resend
+ * and notifies Vince. Body is rendered server-side from the slug allow-list
+ * so callers never supply HTML.
  */
 import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CheckCircle2, Mail, ArrowLeft } from 'lucide-react';
+import { CheckCircle2, Mail, ArrowLeft, Loader2 } from 'lucide-react';
 import SEO from './SEO';
+
+const API = process.env.REACT_APP_BACKEND_URL;
+const SUBMIT_ENDPOINT = `${API}/api/first-pull/submit`;
 
 const NAVY = '#102A43';
 const GOLD = '#C9A84C';
@@ -62,6 +67,8 @@ const KitLink = ({ slug }) => {
 const FirstPullChecklistTemplate = ({ checklist }) => {
   const [form, setForm] = useState({ firstName: '', email: '', company: '', consent: false, website: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [pending, setPending] = useState(false);
+  const [error, setError] = useState(null);
   const firstNameRef = useRef(null);
   const emailRef = useRef(null);
 
@@ -70,13 +77,33 @@ const FirstPullChecklistTemplate = ({ checklist }) => {
     setForm((f) => ({ ...f, [k]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!form.firstName.trim()) { firstNameRef.current && firstNameRef.current.focus(); return; }
     if (!form.email.trim())     { emailRef.current && emailRef.current.focus(); return; }
     if (form.website) return; // honeypot triggered, silently drop
-    // DRAFT STATE, no live submission.
-    setSubmitted(true);
+    setPending(true);
+    setError(null);
+    try {
+      const resp = await fetch(SUBMIT_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          slug: checklist.slug,
+          first_name: form.firstName.trim(),
+          email: form.email.trim(),
+          company: (form.company || '').trim(),
+          marketing_consent: !!form.consent,
+          website: form.website || '',
+        }),
+      });
+      if (!resp.ok) throw new Error(`status ${resp.status}`);
+      setSubmitted(true);
+    } catch (_err) {
+      setError('We had trouble sending. Please try again in a moment.');
+    } finally {
+      setPending(false);
+    }
   };
 
   const slug = checklist.slug;
@@ -153,7 +180,7 @@ const FirstPullChecklistTemplate = ({ checklist }) => {
               Optional. Email me the checklist
             </h2>
             <p id={`first-pull-form-help-${slug}`} className="text-[13.5px] leading-[1.65] mb-5" style={{ color: INK_SOFT, ...serif }}>
-              You can copy this checklist directly from the page. If you would like a printable PDF version emailed, share your work email below. Draft state, form is not wired to live delivery.
+              You can copy this checklist directly from the page. If you would like it emailed for your inbox or a supervisor, share your work email below.
             </p>
             <form onSubmit={handleSubmit} className="space-y-4" data-testid="first-pull-form" aria-describedby={`first-pull-form-help-${slug}`} noValidate>
               {/* Honeypot: absolutely hidden AND removed from a11y tree */}
@@ -178,20 +205,25 @@ const FirstPullChecklistTemplate = ({ checklist }) => {
                   Also send occasional practical safety guidance from GigLine. Unchecked by default. Unsubscribe any time.
                 </label>
               </div>
-              <button type="submit" className="inline-flex items-center gap-2 font-bold px-5 py-3 text-[14px]" style={{ background: NAVY, color: 'white', ...sans }} data-testid="first-pull-submit">
-                <Mail size={15} /> Email me this checklist
+              <button type="submit" disabled={pending} className="inline-flex items-center gap-2 font-bold px-5 py-3 text-[14px] disabled:opacity-60 disabled:cursor-not-allowed" style={{ background: NAVY, color: 'white', ...sans }} data-testid="first-pull-submit">
+                {pending ? <Loader2 size={15} className="animate-spin" /> : <Mail size={15} />}
+                {pending ? 'Sending...' : 'Email me this checklist'}
               </button>
+              {error && (
+                <p role="alert" className="text-[13px] mt-2" style={{ color: '#8A1F1F' }} data-testid="first-pull-error">
+                  {error}
+                </p>
+              )}
             </form>
           </section>
         ) : (
           <section className="p-6 md:p-7 mb-10" style={{ background: 'white', border: `1px solid ${GOLD}`, borderRadius: '3px' }} data-testid="first-pull-confirmation" aria-live="polite">
             <CheckCircle2 size={28} style={{ color: GOLD }} aria-hidden="true" />
             <p className="uppercase font-bold tracking-[0.22em] mt-3 mb-1" style={{ ...mono, fontSize: '11px', color: NAVY }}>
-              Requested (draft)
+              Check your inbox
             </p>
             <p className="text-[14.5px] leading-[1.65]" style={{ color: INK_SOFT, ...serif }}>
-              In a live send, GigLine would email the {checklist.program} First-Pull Checklist to <strong>{form.email}</strong> within a few minutes.{' '}
-              {form.consent
+              We just emailed the {checklist.program} First-Pull Checklist to <strong>{form.email}</strong>. It should arrive within a few minutes. If you do not see it, check your spam or promotions tab. {form.consent
                 ? 'You also opted into occasional practical safety guidance from GigLine.'
                 : 'You requested this resource. You are not subscribed to ongoing marketing emails.'}
             </p>

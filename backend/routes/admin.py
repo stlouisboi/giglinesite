@@ -240,9 +240,20 @@ async def admin_stats(token: str = ""):
     sc_downloads = await db.download_events.count_documents({"type": "safety_check_pdf"})
     hazcom_downloads = await db.download_events.count_documents({"type": "hazcom_pdf"})
     heat_downloads = await db.download_events.count_documents({"type": "heat_guide"})
+    mg_downloads = await db.download_events.count_documents({"type": "machine_guarding_checklist"})
+    mg_dual_downloads = await db.download_events.count_documents({"type": "machine_guarding_checklist", "with_forklift_upsell": True})
     downloads_7d = await db.download_events.count_documents({"timestamp": {"$gte": seven_days_ago}})
 
     heat_leads = await db.heat_guide_leads.count_documents({})
+    mg_leads_total = await db.machine_guarding_leads.count_documents({})
+    mg_leads_7d = await db.machine_guarding_leads.count_documents({"created_at": {"$gte": seven_days_ago}})
+    mg_leads_dual = await db.machine_guarding_leads.count_documents({"send_forklift_upsell": True})
+    fp_leads_total = await db.first_pull_leads.count_documents({})
+    fp_leads_7d = await db.first_pull_leads.count_documents({"created_at": {"$gte": seven_days_ago}})
+    fp_downloads = await db.download_events.count_documents({"type": "first_pull_checklist"})
+    re_leads_total = await db.recommendation_email_leads.count_documents({})
+    re_leads_7d = await db.recommendation_email_leads.count_documents({"created_at": {"$gte": seven_days_ago}})
+    re_downloads = await db.download_events.count_documents({"type": "recommendation_email"})
 
     # ── Generic helper: counts + downstream-conversion stats for any lead-magnet collection
     # Each lead-magnet collection stores a "created_at" ISO timestamp and a "contact-like" field
@@ -353,8 +364,27 @@ async def admin_stats(token: str = ""):
             "safety_check_pdfs": sc_downloads,
             "hazcom_pdfs": hazcom_downloads,
             "heat_guide": heat_downloads,
+            "machine_guarding": mg_downloads,
+            "machine_guarding_dual": mg_dual_downloads,
         },
         "heat_guide_leads": heat_leads,
+        "machine_guarding_leads": {
+            "total": mg_leads_total,
+            "last_7d": mg_leads_7d,
+            "dual_hazard": mg_leads_dual,
+            "downloads": mg_downloads,
+            "downloads_dual": mg_dual_downloads,
+        },
+        "first_pull_leads": {
+            "total": fp_leads_total,
+            "last_7d": fp_leads_7d,
+            "downloads": fp_downloads,
+        },
+        "recommendation_email_leads": {
+            "total": re_leads_total,
+            "last_7d": re_leads_7d,
+            "downloads": re_downloads,
+        },
         "quick_contacts": quick_contacts_stats,
         "sample_reports": sample_reports_stats,
         "hr_osha_guide": hr_osha_guide_stats,
@@ -378,12 +408,18 @@ async def admin_leads(token: str = "", limit: int = 50):
     walkthroughs = await db.walkthrough_requests.find({}, {"_id": 0}).sort("timestamp", -1).to_list(limit)
     heat_leads = await db.heat_guide_leads.find({}, {"_id": 0}).sort("created_at", -1).to_list(limit)
     quick_contacts = await db.quick_contact_leads.find({}, {"_id": 0}).sort("created_at", -1).to_list(limit)
+    machine_guarding_leads = await db.machine_guarding_leads.find({}, {"_id": 0}).sort("created_at", -1).to_list(limit)
+    first_pull_leads = await db.first_pull_leads.find({}, {"_id": 0}).sort("created_at", -1).to_list(limit)
+    recommendation_email_leads = await db.recommendation_email_leads.find({}, {"_id": 0}).sort("created_at", -1).to_list(limit)
 
     return {
         "safety_checks": checks,
         "walkthrough_requests": walkthroughs,
         "heat_guide_leads": heat_leads,
         "quick_contacts": quick_contacts,
+        "machine_guarding_leads": machine_guarding_leads,
+        "first_pull_leads": first_pull_leads,
+        "recommendation_email_leads": recommendation_email_leads,
     }
 
 
@@ -418,6 +454,10 @@ async def send_weekly_summary():
     sc_dl_7d = await db.download_events.count_documents({"timestamp": {"$gte": seven_days_ago}, "type": "safety_check_pdf"})
     hazcom_dl_7d = await db.download_events.count_documents({"timestamp": {"$gte": seven_days_ago}, "type": "hazcom_pdf"})
     heat_dl_7d = await db.download_events.count_documents({"timestamp": {"$gte": seven_days_ago}, "type": "heat_guide"})
+    mg_dl_7d = await db.download_events.count_documents({"timestamp": {"$gte": seven_days_ago}, "type": "machine_guarding_checklist"})
+    mg_dual_7d = await db.download_events.count_documents({"timestamp": {"$gte": seven_days_ago}, "type": "machine_guarding_checklist", "with_forklift_upsell": True})
+    fp_dl_7d = await db.download_events.count_documents({"timestamp": {"$gte": seven_days_ago}, "type": "first_pull_checklist"})
+    re_dl_7d = await db.download_events.count_documents({"timestamp": {"$gte": seven_days_ago}, "type": "recommendation_email"})
 
     html = f"""
     <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;">
@@ -436,6 +476,10 @@ async def send_weekly_summary():
         <tr><td style="padding:6px 0;color:#666;">Safety Check PDFs</td><td style="font-weight:bold;text-align:right;">{sc_dl_7d}</td></tr>
         <tr><td style="padding:6px 0;color:#666;">HazCom Starter Packs</td><td style="font-weight:bold;text-align:right;">{hazcom_dl_7d}</td></tr>
         <tr><td style="padding:6px 0;color:#666;">Heat Guide downloads</td><td style="font-weight:bold;text-align:right;">{heat_dl_7d}</td></tr>
+        <tr><td style="padding:6px 0;color:#666;">Machine Guarding checklists</td><td style="font-weight:bold;text-align:right;">{mg_dl_7d}</td></tr>
+        <tr><td style="padding:6px 0;color:#666;">  — dual-hazard (with Forklift upsell)</td><td style="font-weight:bold;text-align:right;color:#B8972C;">{mg_dual_7d}</td></tr>
+        <tr><td style="padding:6px 0;color:#666;">First-Pull Checklists</td><td style="font-weight:bold;text-align:right;">{fp_dl_7d}</td></tr>
+        <tr><td style="padding:6px 0;color:#666;">Recommendation Emails</td><td style="font-weight:bold;text-align:right;">{re_dl_7d}</td></tr>
         <tr style="border-top:1px solid #ddd;"><td style="padding:6px 0;font-weight:bold;">Total downloads</td><td style="font-weight:bold;text-align:right;">{downloads_7d}</td></tr>
       </table>
       <hr style="border:none;border-top:1px solid #ddd;margin:20px 0;">

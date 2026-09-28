@@ -8,7 +8,7 @@ const PRICE_LABEL = '$1,700';
 const DocumentationGapCheckPage = () => (
   <ServiceLandingTemplate
     seoTitle="OSHA Documentation Readiness Review, Written Programs, SDS & Training Records"
-    seoDescription={`Independent OSHA Documentation Readiness Review of your written safety programs, SDS binder, training records, and required OSHA documentation. Written findings report in 48 hours. Starting at ${PRICE_LABEL}. Serving NC manufacturers, warehouses, contractors, and fleets.`}
+    seoDescription={`Independent OSHA Documentation Readiness Review of your written safety programs, SDS binder, training records, and required OSHA documentation. Written findings report in 5 business days. Starting at ${PRICE_LABEL}. Serving NC manufacturers, warehouses, contractors, and fleets.`}
     canonical="/documentation-gap-check"
     primaryCtaLabel="Request a Documentation Readiness Review"
     primaryCtaHref="/intake?service=documentation-readiness-review"
@@ -21,9 +21,9 @@ const DocumentationGapCheckPage = () => (
       alt: 'GigLine Documentation Readiness Review, stack of navy hardcover safety-compliance binders with color-coded tabs, printed safety-program pages with highlighter and red pen, and a laptop showing a checklist on a manufacturing office desk',
     }}
     faqItems={[
-      { question: 'What is an OSHA Documentation Readiness Review?', answer: 'An OSHA Documentation Readiness Review is an independent review of every written safety program, training record, SDS binder, and OSHA-required document in your operation. GigLine walks each document against the current OSHA standard and returns a written findings report within 48 hours listing what is in place, what is missing, and what needs updating.' },
+      { question: 'What is an OSHA Documentation Readiness Review?', answer: 'An OSHA Documentation Readiness Review is an independent review of every written safety program, training record, SDS binder, and OSHA-required document in your operation. GigLine walks each document against the current OSHA standard and returns a written findings report within 5 business days listing what is in place, what is missing, and what needs updating.' },
       { question: 'How much does a Documentation Readiness Review cost?', answer: 'The Documentation Readiness Review starts at $1,700 with a fixed quote issued before scheduling. That price covers the full independent review, the written findings report, a document-by-document inventory, a prioritized corrective-action list, and an optional 30-minute follow-up call.' },
-      { question: 'Is the review remote or on-site?', answer: 'Documentation Readiness Reviews are usually remote. You share a small batch of programs and records through a secure upload link, and the written findings report comes back within 48 hours. On-site reviews are available if preferred at no additional cost within a 30-mile radius of Kernersville.' },
+      { question: 'Is the review remote or on-site?', answer: 'Documentation Readiness Reviews are usually remote. You share a small batch of programs and records through a secure upload link, and the written findings report comes back within 5 business days. On-site reviews are available if preferred at no additional cost within a 30-mile radius of Kernersville.' },
       { question: 'How is a Documentation Readiness Review different from a Safety Walkthrough?', answer: 'A Safety Walkthrough looks at the physical floor: hazards, guarding, signage, PPE, walking surfaces. A Documentation Readiness Review looks at the paperwork: written programs, training records, SDS binder, OSHA 300 log. Most operations need both. The Compliance Readiness Visit at $2,500 combines them in one engagement.' },
       { question: 'What documents does OSHA actually ask for during an inspection?', answer: 'The OSHA compliance officer opens with a list: the written Hazard Communication program, the SDS binder, Lockout/Tagout written procedures, machine-specific LOTO procedures, forklift operator training records with 3-year refreshers, PPE hazard assessments, the Emergency Action Plan, and the OSHA 300 log with signed 300A summaries for the past 5 years. GigLine reviews every one of these.' },
       { question: 'What if my written programs were copied off the internet?', answer: 'That is the single most common finding. Generic template programs typically fail OSHA review because they reference chemicals, machines, or job classifications that do not exist at your facility. The Documentation Readiness Review flags every generic section and delivers plain-language templates tailored to your operation as part of the report.' },
@@ -78,12 +78,12 @@ const DocumentationGapCheckPage = () => (
     }}
     nextSteps={{
       intro:
-        'OSHA Documentation Readiness Reviews are usually remote-friendly. We ask you to share a small batch of programs and records securely, and the findings report comes back within 48 hours.',
+        'OSHA Documentation Readiness Reviews are usually remote-friendly. We ask you to share a small batch of programs and records securely, and the findings report comes back within 5 business days.',
       steps: [
         { label: 'Request a Documentation Readiness Review', desc: 'Use the master intake form and select "OSHA Documentation Readiness Review" as the service. You get a response within one business day.' },
         { label: 'Share Your Documents Securely', desc: 'We send a secure upload link or a prep checklist by email so you know exactly what to gather. No mailing physical binders.' },
         { label: 'Independent Review', desc: 'Vince reviews each program and record against the current OSHA standards. Most reviews complete in 4 to 8 hours of independent work.' },
-        { label: 'Written Findings Report in 48 Hours', desc: 'PDF delivered to your inbox with the document-by-document inventory, readiness analysis, and prioritized corrective action recommendations.' },
+        { label: 'Written Findings Report in 5 Business Days', desc: 'PDF delivered to your inbox with the document-by-document inventory, readiness analysis, and prioritized corrective action recommendations.' },
         { label: 'Follow-Up Call (Optional)', desc: 'Schedule a 30-minute call to walk through findings, ask questions, and decide on next steps.' },
       ],
     }}

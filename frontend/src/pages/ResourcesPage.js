@@ -105,6 +105,18 @@ const RESOURCES = [
     href: `${API_URL}/api/field-checklist`,
     internal: false,
   },
+  {
+    id: 'nc-dol-comparison',
+    title: 'NC DOL Consultation vs. a Private Consultant',
+    type: 'Comparison',
+    gate: 'Ungated',
+    icon: Compass,
+    description:
+      'A plain-language comparison of North Carolina\u2019s free consultation program and privately scoped safety support.',
+    cta: 'Read the Comparison',
+    href: '/nc-dol-consultation-vs-private-consultant',
+    internal: true,
+  },
 ];
 
 const ResourcesPage = () => {

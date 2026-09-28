@@ -89,6 +89,19 @@ export const EXIT_FEEDBACK_ENABLED = false;
  */
 export const CASE_STUDY_PUBLIC = false;
 
+/**
+ * MG_LEAD_MAGNET_ENABLED
+ *   Phase 2 (Feb 2026). Optional "Email me the printable Machine Guarding
+ *   Checklist" lead-magnet form on the /blog/osha-machine-guarding-checklist-
+ *   small-manufacturers article. Mirrors the First-Pull draft pattern:
+ *   accessible labels, honeypot, marketing consent unchecked by default,
+ *   NOT wired to live email delivery. When `false`, the form section is not
+ *   rendered at all in production; the rest of the article and its
+ *   interactive on-page checklist remain fully public. Flip to `true` only
+ *   after Batch 2C wires live transactional email (Resend / MailerLite).
+ */
+export const MG_LEAD_MAGNET_ENABLED = true;
+
 // Legacy helper used by CitationProofKits routing. Ghost / waitlisted kits
 // return false so their pages route to the waitlist rather than checkout.
 export function isKitLive(slug) {

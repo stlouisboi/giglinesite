@@ -114,30 +114,71 @@ const List = ({ items, testid, muted }) => (
 // ──────────────────────────────────────────────────────────────
 // Email My Recommendation, preview only. No fetch, no email.
 // ──────────────────────────────────────────────────────────────
-const EmailPreviewForm = ({ result }) => {
+const RECOMMENDATION_EMAIL_ENDPOINT = `${process.env.REACT_APP_BACKEND_URL}/api/recommendation/email`;
+
+// Server-side allow-list mirrors backend `recommendation_content.py`. The
+// endpoint 400s on any slug outside this set; showing the form only for
+// eligible slugs keeps the UI honest.
+const EMAILABLE_SLUGS = new Set([
+  'safety-walkthrough',
+  'documentation-review',
+  'compliance-readiness-visit',
+  'corrective-action-implementation',
+  'safety-control-system-buildout',
+  'ongoing-safety-support',
+]);
+
+const EmailPreviewForm = ({ result, answersSummary }) => {
   const [firstName, setFirstName] = useState('');
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
   const [marketing, setMarketing] = useState(false);
+  const [includeFieldNotes, setIncludeFieldNotes] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [pending, setPending] = useState(false);
   const [error, setError] = useState('');
+  const [website, setWebsite] = useState(''); // honeypot
 
-  const disabled = !firstName.trim() || !email.trim();
+  const disabled = !firstName.trim() || !email.trim() || pending;
 
   const onSubmit = useCallback(
-    (e) => {
+    async (e) => {
       e.preventDefault();
-      if (disabled) {
-        setError('First name and work email are required to generate the preview.');
+      if (!firstName.trim() || !email.trim()) {
+        setError('First name and work email are required.');
         return;
       }
-      // Explicit non-transmission: this is a preview only. Do NOT call
-      // any transactional-email API here. The card cannot imply
-      // delivery until Batch 2C wiring is separately approved.
+      if (website) return; // honeypot triggered — silent drop
       setError('');
-      setSubmitted(true);
+      setPending(true);
+      try {
+        const answersPayload = {};
+        for (const a of answersSummary || []) {
+          if (a && a.key) answersPayload[a.key] = a.value;
+        }
+        const resp = await fetch(RECOMMENDATION_EMAIL_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            slug: result.slug,
+            first_name: firstName.trim(),
+            email: email.trim(),
+            company: (company || '').trim(),
+            marketing_consent: !!marketing,
+            include_field_notes: !!includeFieldNotes,
+            answers: answersPayload,
+            website,
+          }),
+        });
+        if (!resp.ok) throw new Error(`status ${resp.status}`);
+        setSubmitted(true);
+      } catch (_err) {
+        setError('We had trouble sending. Please try again in a moment.');
+      } finally {
+        setPending(false);
+      }
     },
-    [disabled],
+    [firstName, email, company, marketing, includeFieldNotes, website, result.slug, answersSummary],
   );
 
   if (submitted) {
@@ -148,22 +189,19 @@ const EmailPreviewForm = ({ result }) => {
         data-testid="rr-email-preview-confirmation"
       >
         <Kicker testid="rr-email-preview-confirmation-kicker">
-          Preview only, no email was sent
+          Check your inbox
         </Kicker>
         <p className="text-[15px] md:text-base leading-[1.7]" style={{ color: INK_SOFT }}>
-          The requested delivery has not been transmitted. GigLine will connect the
-          transactional-email pipeline after owner review in a later batch.
+          We just emailed your GigLine recommendation{includeFieldNotes ? ' and a Field Notes companion PDF' : ' and a branded one-page PDF summary'} to <strong style={{ color: NAVY }}>{email}</strong>. It should arrive within a few minutes. If you do not see it, check your spam or promotions tab.
         </p>
         <p
           className="mt-4 text-[13px] md:text-[14px] leading-[1.7]"
           style={{ color: INK_MUTED }}
           data-testid="rr-email-preview-consent-status"
         >
-          Marketing consent status recorded for preview:{' '}
-          <strong style={{ color: NAVY }}>{marketing ? 'opted in' : 'not opted in'}</strong>.
           {marketing
-            ? ' Your recommendation would be delivered. You would also receive occasional practical safety guidance from GigLine. Unsubscribe at any time.'
-            : ' Your recommendation would be delivered without adding you to ongoing marketing emails.'}
+            ? 'You also opted into occasional practical safety guidance from GigLine. Unsubscribe at any time.'
+            : 'You requested this recommendation. You are not subscribed to ongoing marketing emails.'}
         </p>
       </div>
     );
@@ -187,10 +225,20 @@ const EmailPreviewForm = ({ result }) => {
           className="text-[13.5px] leading-[1.65] mb-4"
           style={{ color: INK_MUTED }}
         >
-          The recommendation above is already yours. Filling this out generates a
-          transactional-email preview only. GigLine is not sending real email in this
-          preview.
+          Share your work email and we will send your recommendation with a branded one-page PDF summary you can print, forward, or drop into a compliance binder.
         </p>
+
+        {/* Honeypot — off-screen, aria-hidden */}
+        <input
+          type="text"
+          name="website"
+          value={website}
+          onChange={(e) => setWebsite(e.target.value)}
+          tabIndex={-1}
+          autoComplete="off"
+          style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, width: 0, pointerEvents: 'none' }}
+          aria-hidden="true"
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <label className="block">
@@ -251,6 +299,26 @@ const EmailPreviewForm = ({ result }) => {
           </label>
         </div>
 
+        {/* Optional companion PDF: curated field-note reading list */}
+        <label
+          className="mt-4 flex items-start gap-3 cursor-pointer p-3"
+          style={{ background: CREAM, border: `1px solid ${GOLD}` }}
+          htmlFor="rr-email-include-field-notes"
+        >
+          <input
+            id="rr-email-include-field-notes"
+            type="checkbox"
+            checked={includeFieldNotes}
+            onChange={(e) => setIncludeFieldNotes(e.target.checked)}
+            style={{ marginTop: 3 }}
+            data-testid="rr-email-preview-include-field-notes"
+          />
+          <span className="text-[13.5px] leading-[1.6]" style={{ color: INK_SOFT }}>
+            <strong style={{ color: NAVY }}>Also send me a curated Field Notes reading list for {result.name}.</strong>{' '}
+            <span style={{ color: INK_MUTED }}>A second one-page PDF pairing this recommendation with four related field notes from Vince, tied to CFR citations.</span>
+          </span>
+        </label>
+
         {/* Explicit and separate marketing consent, unchecked by default. */}
         <label
           className="mt-4 flex items-start gap-3 cursor-pointer"
@@ -293,7 +361,7 @@ const EmailPreviewForm = ({ result }) => {
           }}
           data-testid="rr-email-preview-submit"
         >
-          Generate preview
+          {pending ? 'Sending...' : 'Email my recommendation'}
           <ArrowRight size={14} />
         </button>
       </div>
@@ -571,7 +639,7 @@ const RecommendationResultCard = ({ result, referringRoute, source, onRestart, s
         The share link recreates this exact recommendation for whoever opens it. Your answers stay in your browser and are not visible to GigLine unless you continue to a request-a-visit form.
       </p>
 
-      {showEmailForm && EMAIL_DELIVERY_LIVE && <EmailPreviewForm result={result} />}
+      {showEmailForm && EMAIL_DELIVERY_LIVE && EMAILABLE_SLUGS.has(result.slug) && <EmailPreviewForm result={result} answersSummary={answersSummary} />}
     </article>
   );
 };

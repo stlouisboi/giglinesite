@@ -85,7 +85,7 @@ const LOCAL_BUSINESS = {
   '@id': `${BASE_URL}/#business`,
   name: 'GigLine Safety & Compliance',
   description:
-    'On-site OSHA safety walkthroughs, documentation reviews, and incident response for small manufacturers, warehouses, and contractors in North Carolina.',
+    'On-site OSHA safety walkthroughs, documentation readiness reviews, and corrective action implementation for small manufacturers, warehouses, contractors, and fleet operations in North Carolina.',
   url: BASE_URL,
   telephone: '+13363298899',
   email: 'vince@giglinecompliance.com',
@@ -145,9 +145,9 @@ const LOCAL_BUSINESS = {
     '@type': 'OfferCatalog',
     name: 'Safety Services',
     itemListElement: [
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Safety Walkthrough & Top 10 Fixes Report' }, price: '1300', priceCurrency: 'USD' },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'OSHA Documentation Readiness Review' }, price: DOC_REVIEW_PRICE_NUM, priceCurrency: 'USD' },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Incident Review & Corrective Action Support' }, price: '1500', priceCurrency: 'USD' },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Safety Walkthrough' }, price: '1300', priceCurrency: 'USD' },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Documentation Readiness Review' }, price: DOC_REVIEW_PRICE_NUM, priceCurrency: 'USD' },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Corrective Action Implementation' }, price: '2500', priceCurrency: 'USD' },
     ],
   },
 };
@@ -256,8 +256,8 @@ function breadcrumb(items) {
 const routes = [
   {
     path: '/',
-    title: 'OSHA Safety Walkthrough, Piedmont Triad NC | GigLine',
-    description: "Safety becomes the thing you'll get to. On-site OSHA walkthroughs for NC manufacturers & warehouses. 48-hour report, from $1,300.",
+    title: 'OSHA Safety & Documentation Readiness | GigLine Safety & Compliance',
+    description: 'On-site OSHA safety walkthroughs and documentation readiness reviews for small NC manufacturers, warehouses, contractors, and fleets. Combined Compliance Readiness Visit starts at $2,500.',
     canonical: '/',
     schemas: [
       LOCAL_BUSINESS,
@@ -331,7 +331,7 @@ const routes = [
   },
   {
     path: '/about',
-    title: 'Safety Consultant Kernersville NC, Vince Lawrence | GigLine',
+    title: 'Vince Lawrence, GigLine Safety & Compliance - Navy Veteran & OSHA Consultant, Kernersville NC',
     description: '25+ years on the floor. OSHA 30-Hour General Industry Trained. Navy veteran. An OSHA-informed floor review before an inspector shows up. (336) 329-8899.',
     canonical: '/about',
     schemas: [VINCE_PERSON, breadcrumb([{ name: 'Home', path: '/' }, { name: 'About', path: '/about' }])],
@@ -356,7 +356,7 @@ const routes = [
           { '@type': 'ListItem', position: 1, item: { '@type': 'Service', name: 'Compliance Readiness Visit', description: 'Combined on-site walkthrough and OSHA Documentation Readiness Review delivered as a single readiness report. Recommended starting point.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '2500', priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 2, item: { '@type': 'Service', name: 'Safety Walkthrough & Top 10 Fixes Report', description: 'A structured on-site review of common OSHA exposure areas with a Top 10 priority report.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '1300', priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 3, item: { '@type': 'Service', name: 'OSHA Documentation Readiness Review', description: DOC_REVIEW_DESCRIPTION, provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: DOC_REVIEW_PRICE_NUM, priceCurrency: 'USD' } } },
-          { '@type': 'ListItem', position: 4, item: { '@type': 'Service', name: 'Incident Review & Corrective Action Support', description: 'Post-incident review, OSHA recordability determination, and corrective action documentation.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '1500', priceCurrency: 'USD' } } },
+          { '@type': 'ListItem', position: 4, item: { '@type': 'Service', name: 'Corrective Action Implementation', description: 'Hands-on close-out of selected findings surfaced by a Documentation Readiness Review or Compliance Readiness Visit. Custom quote, most projects begin at $2,500.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '2500', priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 5, item: { '@type': 'Service', name: 'Safety Control System Buildout', description: 'Four-binder command system + digital folder architecture, training matrix, SDS organization & corrective action tracker. Starting at $4,500.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '4500', priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 6, item: { '@type': 'Service', name: 'Corrective Action Implementation', description: 'Hands-on close-out of selected findings surfaced by a Documentation Readiness Review or Compliance Readiness Visit. Custom quote, most projects begin at $2,500.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '2500', priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 7, item: { '@type': 'Service', name: 'Ongoing Safety Support', description: 'Recurring monthly safety support for small employers, one scheduled on-site visit, corrective-action tracker updates, records review, and management report.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '1850', priceCurrency: 'USD' } } },
@@ -386,8 +386,6 @@ const routes = [
       <p>On-site walkthrough (1–3 hours). Photo-documented hazard findings. CFR citations + estimated penalty exposure based on OSHA published maximums. Top 10 Fixes report, RED / AMBER / GREEN priority. Delivered within 48 hours.</p>
       <h3>OSHA Documentation Readiness Review, Starting at ${DOC_REVIEW_PRICE_LABEL}</h3>
       <p>Structured review of written programs, training records, OSHA logs, inspection records, and SDS compliance. 53-item checklist across seven OSHA categories.</p>
-      <h3>Incident Review & Corrective Action Support, Starting at $1,500</h3>
-      <p>Post-injury or post-near-miss response. Root cause analysis. OSHA recordability determination. OSHA 301 completion. Corrective action plan.</p>
       <h3>Corrective Action Implementation, From $2,500</h3>
       <p>Hands-on close-out for gaps identified in a Documentation Readiness Review or Compliance Readiness Visit. GigLine writes the programs you are missing, organizes evidence, and coordinates corrective actions until findings close. Scoped per engagement.</p>
       <h2>GigLine Safety Control System Buildout, Starting at $4,500</h2>
@@ -457,6 +455,74 @@ const routes = [
     `,
   },
   {
+    path: '/nc-dol-consultation-vs-private-consultant',
+    title: 'NC DOL Consultation vs. Private Consultant | GigLine',
+    description: 'Compare NC DOL\u2019s free On-Site Consultation Program with private safety support from GigLine for Piedmont Triad manufacturers, warehouses, and contractors.',
+    canonical: '/nc-dol-consultation-vs-private-consultant',
+    schemas: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        '@id': `${BASE_URL}/nc-dol-consultation-vs-private-consultant#webpage`,
+        url: `${BASE_URL}/nc-dol-consultation-vs-private-consultant`,
+        name: 'NC DOL Free Safety Consultation vs. a Private Consultant',
+        description: 'Plain-language comparison of North Carolina\u2019s free On-Site Consultation Program and a private GigLine engagement for Piedmont Triad employers.',
+        inLanguage: 'en-US',
+        isPartOf: { '@type': 'WebSite', name: 'GigLine Safety & Compliance', url: `${BASE_URL}/` },
+        dateModified: '2026-09-18',
+      },
+      breadcrumb([
+        { name: 'Home', path: '/' },
+        { name: 'Resources', path: '/resources' },
+        { name: 'NC DOL Consultation vs. Private Consultant', path: '/nc-dol-consultation-vs-private-consultant' },
+      ]),
+    ],
+    content: `
+      <h1>NC DOL Free Safety Consultation vs. a Private Consultant</h1>
+      <p>North Carolina offers small employers confidential, no-cost workplace safety consultation. This page compares the NC DOL On-Site Consultation Program with a privately scoped GigLine engagement so Piedmont Triad manufacturers, warehouses, contractors, and fleet operations can choose the right fit.</p>
+      <h2>Let's start with the truth about the free program</h2>
+      <p>The free program is genuinely free and genuinely useful. It is not a sales funnel, and it is not a trap. For many small employers it is the right first call. The question is what you need: a compliance check, or a fixes-and-proof engagement built around your schedule and your documentation.</p>
+      <h2>What the NC DOL consultation program provides</h2>
+      <ul>
+        <li>Confidential, no-cost on-site safety and health surveys for small, high-hazard employers in North Carolina.</li>
+        <li>Hazard findings with abatement guidance — no citations and no penalties for hazards found through the program.</li>
+        <li>Access to free written programs, checklists, and training materials.</li>
+        <li>A scheduled visit with a state consultant, typically delivered on a queue that can run weeks to months depending on demand.</li>
+      </ul>
+      <h2>What employers agree to when they use the program</h2>
+      <ul>
+        <li>Correct serious hazards identified during the survey within agreed timeframes, documented as corrections.</li>
+        <li>Allow the consultant to involve employees in the walkthrough.</li>
+        <li>Post or share results per program rules while corrections are in progress.</li>
+      </ul>
+      <h2>Where GigLine fits</h2>
+      <ul>
+        <li><strong>Fixed quotes, fast scheduling</strong> — a scoped floor visit priced before you commit, typically scheduled in days, not months.</li>
+        <li><strong>Documentation readiness</strong> — written programs, OSHA 300 logs, HazCom binders, LOTO procedures, and training records built or corrected, not just flagged.</li>
+        <li><strong>Corrective action implementation</strong> — the fix list comes with photos, priorities, and help getting the fixes done.</li>
+        <li><strong>Proof for insurers, customers, and OSHA</strong> — a paper trail that shows the floor, the findings, and the fixes.</li>
+      </ul>
+      <h2>Side-by-side comparison</h2>
+      <ul>
+        <li><strong>Cost:</strong> NC DOL — free. GigLine — fixed quote per engagement, stated before scheduling.</li>
+        <li><strong>Scheduling:</strong> NC DOL — state consultant queue, often weeks to months. GigLine — typically days.</li>
+        <li><strong>Scope:</strong> NC DOL — hazard survey with abatement plan. GigLine — hazard survey plus documentation build and corrective-action implementation.</li>
+        <li><strong>Citations:</strong> neither reports hazards to OSHA enforcement; both are confidential.</li>
+        <li><strong>Deliverable:</strong> NC DOL — findings and abatement guidance. GigLine — findings, priorities, written documentation, and proof.</li>
+      </ul>
+      <h2>Which option fits your operation?</h2>
+      <ul>
+        <li><strong>Consider NC DOL when:</strong> budget is the constraint, you can wait for a queue, and you have someone in-house who can turn findings into written programs and corrections.</li>
+        <li><strong>Consider GigLine when:</strong> you need the visit scheduled now, you need written programs and records brought to ready, or you want a single accountable partner from findings through fixes to proof.</li>
+      </ul>
+      <h2>My honest recommendation</h2>
+      <p>If the free program fits your timeline and your in-house capability, use it — I would rather you get the survey done than wait on it. If you are staring down an inspection date, a contract requirement, or a documentation gap nobody has time to close, that is where a scoped private engagement earns its price.</p>
+      <p>Read the official NC DOL consultation program details at <a href="https://www.labor.nc.gov/occupational-safety-and-health-consultation-program">labor.nc.gov</a>. GigLine Safety &amp; Compliance is an independent private consultancy and does not represent OSHA or the North Carolina Department of Labor.</p>
+      <h2>Need help deciding where to start?</h2>
+      <p>A <a href="/services/compliance-readiness-visit">Compliance Readiness Visit</a> is the fixed-price starting point: one visit, findings with photos, priorities, and a fix list. No guesswork about what to fix or why.</p>
+    `,
+  },
+  {
     path: '/contact',
     title: 'Contact | GigLine Safety & Compliance',
     description: 'Contact GigLine Safety & Compliance. Request a walkthrough, doc review, or incident support. Vince Lawrence, (336) 329-8899.',
@@ -480,6 +546,48 @@ const routes = [
       <p>Six yes-or-no questions mapped to OSHA's most-cited violations. Get an immediate risk score and clear next steps, free, no email required to start.</p>
       <p>Questions cover: Hazard Communication (SDS), Forklift Certification, Lockout/Tagout, Machine Guarding, Ladder Safety, and Training Records.</p>
       <p>GigLine Safety &amp; Compliance, (336) 329-8899</p>
+    `,
+  },
+  // ── GL-FIX duplicate-title: /hazcom, /privacy-policy and /terms-of-service
+  // are real React routes but had no prerendered HTML, so the host served the
+  // homepage build file for all three (same title, description, canonical).
+  // Each now gets its own prerendered page with a unique title/description.
+  {
+    path: '/hazcom',
+    title: 'HazCom Compliance — Written Program, SDS Binder & Training | GigLine',
+    description: "Hazard Communication (29 CFR 1910.1200) resources: written HazCom program, SDS binder checklist, and training log. Start with the $29 HazCom Starter Pack.",
+    canonical: '/hazcom-starter-pack',
+    schemas: [LOCAL_BUSINESS],
+    content: `
+      <h1>Hazard Communication (HazCom) Compliance</h1>
+      <p>HazCom is OSHA's #1 most-cited standard in general industry (29 CFR 1910.1200). The three pieces inspectors ask for first: a written program, an accessible SDS binder, and training records.</p>
+      <p>The <a href="/hazcom-starter-pack">HazCom Starter Pack, $29</a> gives you all three templates in one download — fill in your company name, print, done.</p>
+      <p>For a full floor-and-files review, see the <a href="/services/compliance-readiness-visit">Compliance Readiness Visit</a>.</p>
+      <p>GigLine Safety &amp; Compliance, (336) 329-8899, vince@giglinecompliance.com</p>
+    `,
+  },
+  {
+    path: '/privacy-policy',
+    title: 'Privacy Policy | GigLine Safety & Compliance',
+    description: 'How GigLine Safety & Compliance collects, uses, and protects the information you provide through this website.',
+    canonical: '/privacy-policy',
+    schemas: [],
+    content: `
+      <h1>Privacy Policy</h1>
+      <p>GigLine engagements are private by default. This page describes how information submitted through this website is collected and used.</p>
+      <p>The full interactive privacy policy is available in the app. Questions: vince@giglinecompliance.com or (336) 329-8899.</p>
+    `,
+  },
+  {
+    path: '/terms-of-service',
+    title: 'Terms of Service | GigLine Safety & Compliance',
+    description: 'Terms of service for GigLine Safety & Compliance — scope of services, payment, and engagement terms.',
+    canonical: '/terms-of-service',
+    schemas: [],
+    content: `
+      <h1>Terms of Service</h1>
+      <p>Terms governing engagements with GigLine Safety & Compliance, a private safety consultancy based in Kernersville, NC.</p>
+      <p>The full interactive terms are available in the app. Questions: vince@giglinecompliance.com or (336) 329-8899.</p>
     `,
   },
   {
@@ -1020,7 +1128,7 @@ const routes = [
         author: { '@id': `${BASE_URL}/#vince` },
         publisher: { '@id': `${BASE_URL}/#business` },
         mainEntityOfPage: `${BASE_URL}/blog/osha-machine-guarding-checklist-small-manufacturers`,
-        datePublished: '2025-10-14', dateModified: '2026-02-28',
+        datePublished: '2025-10-14', dateModified: '2026-09-21',
         articleSection: 'OSHA Compliance', inLanguage: 'en-US',
       },
       breadcrumb([{ name: 'Home', path: '/' }, { name: 'Blog', path: '/field-notes' }, { name: 'Machine Guarding Checklist', path: '/blog/osha-machine-guarding-checklist-small-manufacturers' }]),
@@ -1028,10 +1136,50 @@ const routes = [
     content: `
       <h1>OSHA Machine Guarding Checklist for Small Manufacturers</h1>
       <p>By Vince Lawrence, GigLine Safety &amp; Compliance</p>
-      <p>Machine guarding sits in OSHA's Top 10 most-cited standards every year. This guide walks through what an OSHA inspector actually looks for and what the 2026 penalty exposure is.</p>
-      <h2>The four hazard categories (29 CFR 1910.212)</h2><p>Point of operation, ingoing nip points, rotating parts, and flying chips or sparks. If any of these hazards exists on a machine and can be reached by an employee, a guard is required.</p>
-      <h2>Abrasive wheels (29 CFR 1910.215)</h2><p>Work rest gap ≤ 1/8 inch. Tongue guard gap ≤ 1/4 inch. Ring test every wheel before mounting.</p>
-      <h2>Common citations</h2><p>Bench grinder work rest gaps, unguarded shear points on roll formers, missing chip guards on lathes, and guards removed for jam clearing.</p>
+      <p>Machine guarding sits in OSHA's Top 10 most-cited standards every year. This guide gives you the full walkthrough as a printable, tickable checklist: 33 items across six categories, with CFR citations, penalty exposures, and a supervisor sign-off page. Print it, walk the floor with a pen, and hand it back with the findings.</p>
+      <h2>What OSHA 1910.212 actually says</h2>
+      <p>The general machine guarding standard runs about half a page. Compliance officers reduce it to one sentence: one or more methods of machine guarding shall be provided to protect the operator and other employees in the machine area from hazards such as those created by the point of operation, ingoing nip points, rotating parts, and flying chips and sparks. If a hazard exists and can be reached by an employee, a guard is required.</p>
+      <h2>The four hazard categories OSHA cites</h2>
+      <ul>
+        <li><strong>Point of operation (1910.212(a)(3)(ii))</strong> — where the machine does its work: shearing, bending, punching, cutting. The most-cited sub-part in the standard.</li>
+        <li><strong>Ingoing nip points (1910.212(a)(1), 1910.219)</strong> — rollers, belts, gears, and chain drives that pull fingers, gloves, and clothing in.</li>
+        <li><strong>Rotating and reciprocating parts</strong> — exposed shafts, couplings, set screws, and crank throws.</li>
+        <li><strong>Flying chips and sparks</strong> — lathes, mills, and grinders throwing material that needs chip guards and shields.</li>
+      </ul>
+      <h2>The printable walkthrough checklist (33 items)</h2>
+      <ul>
+        <li><strong>1. Point of Operation (1910.212(a)(3)(ii))</strong> — every press, shear, punch, and cutter has a fixed, interlocked, or presence-sensing guard; two-hand controls are anti-tie-down and require concurrent activation; light curtains are tested weekly with a documented log at the machine.</li>
+        <li><strong>2. Rotating &amp; Reciprocating Parts (1910.212(a)(1), 1910.219)</strong> — shafts, couplings, pulleys, and belt drives guarded; set screws replaced with flush or cup-point fasteners on exposed rotating parts.</li>
+        <li><strong>3. Abrasive Wheels (1910.215)</strong> — work rest gap ≤ 1/8 inch, tongue guard gap ≤ 1/4 inch, ring test before mounting, wheel RPM rated at or above spindle speed.</li>
+        <li><strong>4. Saws, Presses &amp; Cutters (1910.212, 1910.213)</strong> — table saw blade guards and riving knives in place; radial arm saws return automatically; band saw blade enclosures intact.</li>
+        <li><strong>5. Guard Integrity &amp; Bypass Prevention (1910.212(a)(2))</strong> — no guards removed for jam clearing, no zip-tied or bypassed interlocks, guard fasteners all present and tight.</li>
+        <li><strong>6. Documentation &amp; Training (1910.212, 1910.132)</strong> — operators trained on the specific machine hazards, training records on file, guard inspection and maintenance documented.</li>
+      </ul>
+      <p>Any unchecked item at the end of the walk is either a finding waiting to be documented or an active citation risk.</p>
+      <h2>The five citations that trip up small manufacturers</h2>
+      <ol>
+        <li>Bench grinder work rest gaps wider than 1/8 inch.</li>
+        <li>Unguarded shear points on roll formers and press brakes.</li>
+        <li>Missing chip guards on lathes and drill presses.</li>
+        <li>Guards removed for jam clearing and never reinstalled.</li>
+        <li>Bypassed or defeated interlocks on light curtains and gates.</li>
+      </ol>
+      <h2>2026 penalty exposure</h2>
+      <p>Serious or other-than-serious violations run up to $16,550 each under the 2026 OSHA penalty schedule; willful or repeated violations run up to $165,514 each. A single unguarded point of operation found on several machines can be cited per machine, so exposure compounds quickly.</p>
+      <h2>Training and documentation</h2>
+      <p>Physical guards fail the audit if there is no record showing operators knew how to use them. OSHA does not prescribe a training curriculum for machine guarding under 1910.212, but the general duty clause and 1910.132 (PPE hazard assessment) effectively require documented training on the specific hazards of each machine.</p>
+      <h2>The abrasive wheel problem (1910.215)</h2>
+      <p>Bench and pedestal grinders generate more machine guarding citations than any other equipment in general industry. Three geometric requirements, and most shops fail at least one: work rest gap ≤ 1/8 inch, tongue guard gap ≤ 1/4 inch, and a ring test of every wheel before mounting.</p>
+      <h2>The 30-day action plan</h2>
+      <ol>
+        <li>Walk the floor with the checklist and photo every gap.</li>
+        <li>Fix the grinder geometry first — work rest and tongue guard gaps take minutes.</li>
+        <li>Order or fabricate missing guards; document every interim measure.</li>
+        <li>Retrain operators on changed machines and log it.</li>
+        <li>Set a recurring guard-integrity check so guards stay on.</li>
+      </ol>
+      <h2>Get a second pair of eyes</h2>
+      <p>Not sure what to fix first? A <a href="/services/compliance-readiness-visit">Compliance Readiness Visit</a> puts a fixed-price floor walkthrough on the calendar: findings with photos, priorities, and a fix list. No guesswork about what to fix or why.</p>
     `,
   },
   {
@@ -1064,30 +1212,71 @@ const routes = [
   },
   {
     path: '/blog/osha-forklift-compliance-inspector-checklist',
-    title: 'OSHA Forklift Compliance: What Inspectors Check | GigLine',
-    description: 'OSHA forklift compliance, operator certifications, daily inspections, traffic controls. CFR + 2026 penalty exposure.',
+    title: 'OSHA Forklift Inspection Requirements: Daily Checks, Certs & Records | GigLine',
+    description: 'OSHA forklift inspection requirements: daily pre-shift checks, operator certifications every 3 years, and how long to keep forklift inspection records. Full 1910.178 checklist with 2026 penalty exposure.',
     canonical: '/blog/osha-forklift-compliance-inspector-checklist',
     schemas: [
       {
         '@context': 'https://schema.org', '@type': 'Article',
-        headline: 'OSHA Forklift Compliance: What Inspectors Actually Check',
-        description: 'The forklift-related items OSHA inspectors ask for first, operator certifications, daily inspection logs, traffic controls.',
+        headline: 'OSHA Forklift Inspection Requirements (29 CFR 1910.178)',
+        description: 'The forklift-related items OSHA inspectors ask for first, operator certifications, daily inspection logs, records retention, and traffic controls.',
         image: `${BASE_URL}/og-image.png`,
         author: { '@id': `${BASE_URL}/#vince` },
         publisher: { '@id': `${BASE_URL}/#business` },
         mainEntityOfPage: `${BASE_URL}/blog/osha-forklift-compliance-inspector-checklist`,
-        datePublished: '2025-11-11', dateModified: '2026-02-28',
+        datePublished: '2025-11-11', dateModified: '2026-09-21',
         articleSection: 'OSHA Compliance', inLanguage: 'en-US',
       },
-      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Blog', path: '/field-notes' }, { name: 'OSHA Forklift Compliance', path: '/blog/osha-forklift-compliance-inspector-checklist' }]),
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Blog', path: '/field-notes' }, { name: 'OSHA Forklift Inspection Requirements', path: '/blog/osha-forklift-compliance-inspector-checklist' }]),
     ],
     content: `
-      <h1>OSHA Forklift Compliance: What Inspectors Actually Check</h1>
+      <h1>OSHA Forklift Inspection Requirements (29 CFR 1910.178)</h1>
       <p>By Vince Lawrence, GigLine Safety &amp; Compliance</p>
-      <p>The powered industrial truck standard (29 CFR 1910.178) is one of OSHA's most-cited every year. Two subsections generate most citations: operator training (l) and inspection logs (q).</p>
-      <h2>Operator certification (1910.178(l))</h2><p>Formal instruction + practical training + evaluation of performance. Evaluation must be re-performed every three years, 1910.178(l)(4)(iii).</p>
-      <h2>Daily inspection logs (1910.178(q)(7))</h2><p>Pre-shift inspection before every use. Written log, truck ID, date, operator, defects noted. Defects that make the truck unsafe remove it from service.</p>
-      <h2>Traffic controls</h2><p>Painted pedestrian lanes, convex mirrors at blind intersections, defined loading zones, and signage. Not prescribed by rule name, but cited under the general duty clause when struck-by hazards exist.</p>
+      <p>The powered industrial truck standard, 29 CFR 1910.178, is one of OSHA's most cited standards year after year. Two subsections generate most citations: operator training (1910.178(l)) and inspection logs (1910.178(q)). Here is what OSHA actually asks for during a forklift-focused inspection, what the daily pre-shift check must cover, how long to keep records, and the 2026 penalty exposure.</p>
+      <h2>What OSHA 1910.178 covers</h2>
+      <p>The standard applies to high-lift trucks, lift trucks, tractors, platform trucks, motorized hand trucks, and other specialized industrial vehicles powered by electric motors or internal combustion engines. It does not apply to vehicles mainly used on public highways or agricultural tractors used in agricultural operations.</p>
+      <h2>Six things a forklift inspector checks first</h2>
+      <ul>
+        <li>Operator certifications for every operator on the clock.</li>
+        <li>The last thirty days of daily inspection logs.</li>
+        <li>Current data plates on every truck in the fleet.</li>
+        <li>Repair records for trucks reported defective — and evidence defective trucks were taken out of service.</li>
+        <li>Refresher training after any incident, near-miss, or unsafe operation.</li>
+        <li>Pedestrian and truck traffic separation on the floor.</li>
+      </ul>
+      <h2>Operator certification, what it actually requires (1910.178(l))</h2>
+      <p>OSHA does not license forklift operators. The employer certifies them. Certification must include three parts: formal instruction, practical training, and an evaluation of performance. Refresher evaluation must be re-performed every three years under 1910.178(l)(4)(iii), and sooner after any incident or observed unsafe operation.</p>
+      <h2>The daily inspection log (1910.178(q)(7))</h2>
+      <p>Pre-shift inspection before every use, split into two phases:</p>
+      <ul>
+        <li><strong>Pre-start, engine off</strong> — tires, forks and retention pin, chains, hoses, overhead guard, data plate legible, fluid levels, seat belt.</li>
+        <li><strong>Start-up and running, engine on</strong> — horn, backup alarm, lights and strobes, steering play, brakes and parking brake, lift and tilt controls, no unusual noises or smells.</li>
+      </ul>
+      <p>Written log, truck ID, date, operator, defects noted. Any defect that makes the truck unsafe removes it from service until repaired.</p>
+      <h2>How long to keep forklift inspection records</h2>
+      <p>OSHA does not publish a single retention number in 1910.178. In practice: keep daily inspection logs for one year minimum (two is safer), keep operator certifications for the active 3-year cycle plus one prior cycle, and keep repair and out-of-service records for the life of the truck.</p>
+      <h2>Traffic controls, what OSHA looks for</h2>
+      <p>Struck-by-forklift is one of the top mechanisms of fatality in warehouse operations. OSHA does not prescribe specific engineering controls, but during any inspection with forklift activity the officer will note traffic separation between pedestrians and trucks: painted pedestrian lanes, convex mirrors at blind intersections, defined loading zones, and signage. When struck-by hazards exist and controls are missing, citations come under the general duty clause.</p>
+      <h2>The five forklift citations that hit small warehouses</h2>
+      <ol>
+        <li>No daily pre-shift inspection logs.</li>
+        <li>Operator certifications expired or missing the practical evaluation.</li>
+        <li>No refresher training after an incident or near-miss.</li>
+        <li>Defective trucks left in service after a reported defect.</li>
+        <li>No pedestrian separation in mixed traffic aisles.</li>
+      </ol>
+      <h2>2026 penalty exposure</h2>
+      <p>Serious violations run up to $16,550 each under the 2026 OSHA penalty schedule; willful or repeated violations run up to $165,514 each. Missing logs and lapsed certifications are the two citations that show up in pairs — and both are preventable with paperwork, not capital.</p>
+      <h2>30-day forklift cleanup plan</h2>
+      <ol>
+        <li>Pull every operator's certification file; calendar the 3-year re-evaluations.</li>
+        <li>Start daily written pre-shift inspections with a simple two-phase log.</li>
+        <li>Tag out any truck with an open defect until repaired.</li>
+        <li>Paint or re-paint pedestrian lanes at blind intersections; add convex mirrors.</li>
+        <li>Re-evaluate any operator involved in an incident or near-miss, and log it.</li>
+      </ol>
+      <h2>Get a second pair of eyes</h2>
+      <p>A <a href="/services/compliance-readiness-visit">Compliance Readiness Visit</a> reviews certifications, logs, and traffic controls on the floor and hands you a prioritized fix list. Fixed quote. No surprises.</p>
     `,
   },
   {
@@ -2229,7 +2418,7 @@ const fieldNotes = [
   { slug: 'respiratory-protection', title: 'Respiratory Protection', desc: 'OSHA respiratory protection program, written program, medical evaluation, fit testing, training, and cartridge change-out schedules under 29 CFR 1910.134.' },
   { slug: 'silica-respirable-crystalline', title: 'Respirable Crystalline Silica', desc: 'OSHA silica standard for stone fab, concrete, foundries. Exposure assessment, engineering controls, medical surveillance under 29 CFR 1910.1053.' },
   { slug: 'hot-work-welding', title: 'Hot Work, Welding & Cutting', desc: 'OSHA Subpart Q. Hot work permits, fire watch, compressed gas cylinder safety, ventilation, and welding PPE for small NC fab shops.' },
-  { slug: 'abrasive-wheels', title: 'Abrasive Wheels & Bench Grinders', desc: 'Tongue guards within 1/4 inch, work rests within 1/8 inch, ring testing, RPM matching, 29 CFR 1910.215 in plain language.' },
+  { slug: 'abrasive-wheels', title: 'Abrasive Wheels & Bench Grinders', desc: 'Tongue guards within 1/4 inch, work rests within 1/8 inch, ring testing, RPM matching, 29 CFR 1910.215 in plain language.', customSeoTitle: 'OSHA Bench Grinder Requirements: Work Rest 1/8", Tongue Guard 1/4" | GigLine' },
   { slug: 'ladder-safety', title: 'Portable Ladder Safety', desc: 'OSHA portable ladder requirements. Inspection, 4-to-1 angle, 3-foot extension above landing, three-point contact, load rating, 29 CFR 1910.23.' },
   { slug: 'eye-face-protection', title: 'Eye & Face Protection', desc: 'OSHA Z87.1 eye and face protection requirements, side shields, face shields for grinding and chemical handling, and the PPE hazard assessment, 29 CFR 1910.133.' },
   { slug: 'trenching-excavation', title: 'Trenching & Excavation', desc: 'OSHA trenching standard (29 CFR 1926.651). Protective systems, competent person, soil classification, egress, and the rules that prevent collapses.' },
@@ -2375,7 +2564,7 @@ fieldNotes.forEach((note, idx) => {
 
   routes.push({
     path: `/field-notes/${note.slug}`,
-    title: note.customSeoTitle || `${note.title}, Field Notes | GigLine Safety & Compliance`,
+    title: note.customSeoTitle || note.seoTitle || `${note.title}, Field Notes | GigLine Safety & Compliance`,
     description: note.desc,
     canonical: `/field-notes/${note.slug}`,
     ogImage: note.ogImage || NOTE_HERO_IMAGES[note.slug],

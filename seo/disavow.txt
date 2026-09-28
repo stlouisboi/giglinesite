@@ -1,0 +1,27 @@
+# GigLine Safety & Compliance — Google Disavow File
+# Uploaded to: https://search.google.com/search-console/disavow-links
+# Property: sc-domain:giglinecompliance.com
+# Drafted: 2026-09-21
+# Source: All 16 referring domains in GSC (Jun 24 – Sep 21, 2026) with spam scores 60–75.
+# Categories: link farms, betting sites, scraped-content blogs. Zero legitimate or editorial links.
+#
+# Usage: this file is the source of truth kept in the repo. To activate, an
+# account owner uploads it manually to Google's Disavow Links tool (there is
+# no API). Refresh this file whenever GSC surfaces new spam referrers.
+
+domain:mediaboooster.com
+domain:fashionclothingnews.com
+domain:quotesblom.com
+domain:uncledspizza.com
+domain:theforbestimes.com
+domain:thepublishinghouse.com
+domain:betwinnermirror.com
+domain:seo-growth-authority-boost-hub.shop
+domain:m98ufa.com
+domain:seopxl-authority-boost-hub.shop
+domain:seopxl-signal-boost-hub.shop
+domain:seopxl-visibility-hub.shop
+domain:seo-growth-signal-boost-hub.shop
+domain:seo-growth-visibility-hub.shop
+domain:seopxl-authority-hub.shop
+domain:seo-growth-rank-boost-hub.shop

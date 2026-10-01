@@ -44,8 +44,8 @@ const SampleReportPage = () => {
   return (
     <main data-testid="sample-report-page">
       <SEO
-        title="Sample Compliance Report | GigLine Safety & Compliance"
-        description="See exactly what you get, a real GigLine compliance report. Findings, CFR citations, penalty exposure, fix list. Download free."
+        title="Illustrative Sample Compliance Report | GigLine Safety & Compliance"
+        description="See an illustrative example of a GigLine compliance report, how findings, CFR citations, and prioritized next steps are documented. Not from a real engagement. Download free."
         canonical="/sample-report"
       />
 
@@ -56,17 +56,17 @@ const SampleReportPage = () => {
             className="uppercase font-bold mb-4"
             style={{ ...mono, fontSize: '11px', letterSpacing: '0.2em', color: '#c8922a' }}
           >
-            Free Download, Sample Report
+            Free Download, Illustrative Report Example
           </p>
           <h1
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight"
             style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
             data-testid="sample-report-headline"
           >
-            See exactly what you get.
+            See how the written report is structured.
           </h1>
-          <p className="text-lg md:text-xl text-white/70 leading-relaxed">
-            A real compliance report, facility name redacted. This is what your team receives within 48 hours of the walkthrough.
+          <p className="text-lg md:text-xl text-white/70 leading-relaxed" data-testid="sample-report-illustrative-notice">
+            Illustrative report example, not from a real engagement. Shows the structure and style of the written report your team would receive, how findings are documented, CFR standards referenced, and next steps prioritized.
           </p>
         </div>
       </section>

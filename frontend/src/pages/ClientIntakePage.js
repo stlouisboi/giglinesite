@@ -235,6 +235,19 @@ const ClientIntakePage = () => {
     // Only run on mount / when query string changes
   }, [location.search]);
 
+  /* ─── Scroll to in-page anchor (#talk-to-vince) when linked from external CTAs ─── */
+  useEffect(() => {
+    if (!location.hash) return;
+    const id = location.hash.replace('#', '');
+    if (!id) return;
+    // Defer to next paint so section exists in the DOM.
+    const t = setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 60);
+    return () => clearTimeout(t);
+  }, [location.hash]);
+
   /* ─── Hybrid pricing computation for Doc Creation lane ─── */
   const docCreationPricing = useMemo(() => {
     const fixedSelected = f.docCreationItems.filter((i) => i in DOC_CREATION_FIXED_ITEMS);
@@ -480,7 +493,7 @@ const ClientIntakePage = () => {
       <main className="max-w-3xl mx-auto px-5 md:px-8 py-12 md:py-16 space-y-16 md:space-y-20">
 
         {/* ── Quick-contact alternative (low-friction path for prospects who want to talk first) ── */}
-        <section data-testid="intake-quick-contact-section">
+        <section id="talk-to-vince" data-testid="intake-quick-contact-section">
           <QuickContactCard variant="dark" />
           <p className="text-xs mt-4 text-center" style={{ color: C.sec, ...mono, letterSpacing: '0.18em' }}>
             , OR, FILL OUT THE FULL INTAKE BELOW FOR A FIXED QUOTE
@@ -949,7 +962,7 @@ const ClientIntakePage = () => {
               Vince Lawrence
             </h2>
             <p className="text-base md:text-lg leading-relaxed max-w-3xl mx-auto" style={{ color: 'rgba(255,255,255,0.55)' }}>
-              OSHA 30-Hour Outreach Trained safety compliance consultant, Kernersville, NC
+              OSHA 30-Hour General Industry Trained safety compliance consultant, Kernersville, NC
             </p>
           </div>
 

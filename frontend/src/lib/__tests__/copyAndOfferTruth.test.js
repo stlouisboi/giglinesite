@@ -89,7 +89,7 @@ describe('Coming-soon kits show no purchasable price or purchase CTA', () => {
 
 describe('Feature flags remain preview-only', () => {
   const features = readSrc('config/features.js');
-  test('RECOMMENDATION_ROUTER_ENABLED is true (owner approved go-live)', () => {
+  test('RECOMMENDATION_ROUTER_ENABLED is true (owner-approved go-live, 2026-02)', () => {
     expect(features).toMatch(/export\s+const\s+RECOMMENDATION_ROUTER_ENABLED\s*=\s*true\s*;/);
   });
   test('EMAIL_DELIVERY_LIVE remains false', () => {
@@ -118,9 +118,10 @@ describe('Benefit-led copy leads are present on the primary pages', () => {
   });
   test('Services page headline is the mandated clarity lead', () => {
     const s = readSrc('pages/ServicesPage.js');
-    // Services-page consolidation, 2026-09-18: the H1 was rewritten per the
-    // owner-approved spec to lead with the outcome the client selects.
-    expect(s).toMatch(/Choose the right level of safety support for what your operation needs now/);
+    // Services-page rebuild, 2026-02 refresh: owner-approved spec replaces
+    // the "choose the right level" lead with a result-focused clarity lead
+    // that names the outcome the buyer is actually trying to get.
+    expect(s).toMatch(/Know what needs attention\. Know what to fix first\./);
   });
   test('CRV page headline is the mandated floor-vs-files line', () => {
     const s = readSrc('pages/ComplianceReadinessVisitPage.js');

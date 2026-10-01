@@ -53,7 +53,7 @@ describe('Recommendation router, page gating', () => {
 
 describe('Feature flag registration', () => {
   const features = read('config/features.js');
-  test('RECOMMENDATION_ROUTER_ENABLED exported as true (owner approved go-live)', () => {
+  test('RECOMMENDATION_ROUTER_ENABLED exported as true (owner-approved go-live, 2026-02)', () => {
     expect(features).toMatch(/export\s+const\s+RECOMMENDATION_ROUTER_ENABLED\s*=\s*true\s*;/);
   });
   test('EXIT_FEEDBACK_ENABLED exported as false', () => {

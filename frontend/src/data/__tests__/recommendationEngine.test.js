@@ -48,7 +48,7 @@ const {
 } = require('../../config/features');
 
 describe('Feature flags default off (preview only)', () => {
-  test('RECOMMENDATION_ROUTER_ENABLED is true (owner approved go-live)', () => {
+  test('RECOMMENDATION_ROUTER_ENABLED is true (owner-approved go-live, 2026-02)', () => {
     expect(RECOMMENDATION_ROUTER_ENABLED).toBe(true);
   });
   test('EXIT_FEEDBACK_ENABLED is false', () => {

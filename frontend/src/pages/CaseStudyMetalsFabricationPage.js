@@ -634,7 +634,7 @@ const CaseStudyMetalsFabricationPage = () => {
               className="text-lg md:text-xl font-bold mb-2"
               style={{ fontFamily: "'Manrope', sans-serif", color: NAVY }}
             >
-              Vince Lawrence, U.S. Navy Veteran, OSHA 30-Hour Outreach Trained
+              Vince Lawrence, U.S. Navy Veteran, OSHA 30-Hour General Industry Trained
             </p>
             <p className="text-sm md:text-base leading-relaxed" style={{ color: 'rgba(11,31,51,0.66)' }}>
               Founder of GigLine Safety &amp; Compliance. Twenty-plus years across manufacturing, construction, and utility environments. Every walkthrough, report, and corrective-action call on this page was made by Vince personally.

@@ -24,7 +24,7 @@
  *     was sent." Marketing consent is a separate unchecked checkbox and
  *     does not gate the delivery preview.
  */
-import React, { useState, useCallback, useMemo, useEffect } from 'react';
+import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowLeft, Check, RefreshCw, Mail } from 'lucide-react';
 import {
@@ -305,8 +305,28 @@ const RecommendationRouter = ({
 
   const testidPrefix = compact ? 'rr-compact' : 'rr';
 
+  // Each answer can swap in a question with far fewer options (or the
+  // result card), shrinking the card's height. Without this, a user who
+  // scrolled down to reach a lower option can end up below the new,
+  // shorter content with no visual sign that anything changed. Scroll the
+  // card back into view on every step/result change, but not on first
+  // mount (seeded flows and share-link restores shouldn't jump the page).
+  const sectionRef = useRef(null);
+  const hasMounted = useRef(false);
+  const visibleStepKey = result && result.kind !== 'incomplete'
+    ? `result-${result.kind}-${result.slug || result.pathId || ''}`
+    : `question-${currentStep.id}`;
+  useEffect(() => {
+    if (!hasMounted.current) {
+      hasMounted.current = true;
+      return;
+    }
+    sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [visibleStepKey]);
+
   return (
     <section
+      ref={sectionRef}
       className="w-full"
       data-testid={compact ? 'recommendation-router-compact' : 'recommendation-router'}
       data-source={source}

@@ -401,8 +401,9 @@ function computeResult(answers) {
       answers,
     });
     if (out.kind === 'route-to-path' && out.routeToPath === PATH_ID.B) {
-      // Not sure -> ask Path B focus question.
-      return { kind: 'incomplete' };
+      // Not sure -> ask Path B focus question, then compute its result.
+      if (!answers.reviewFocus) return { kind: 'incomplete' };
+      return recommend({ primaryAim: PATH_ID.B, reviewFocus: answers.reviewFocus, answers });
     }
     return out;
   }
@@ -455,7 +456,7 @@ function resolveCurrentStep(answers, result) {
       return Q_A_EDITION;
     }
     // "not sure" -> ask Q_B_FOCUS
-    if (!entry.kitSlug && entry.routeTo === 'service-assessment') {
+    if (!entry.kitSlug && entry.routeTo === 'service-assessment' && !answers.reviewFocus) {
       return Q_B_FOCUS;
     }
     return Q_A_CONTROL;

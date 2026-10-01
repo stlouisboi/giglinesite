@@ -79,12 +79,12 @@ const Navbar = () => {
             >
               <img src="/gigline-logo-3d.png?v=9"
                 alt="GigLine Safety & Compliance"
-                className="h-20 md:h-24 lg:h-28 xl:h-32 2xl:h-36 w-auto"
+                className="h-20 md:h-24 lg:h-28 xl:h-32 2xl:h-36 w-auto max-w-none shrink-0 object-contain"
                 style={{ filter: 'drop-shadow(0 2px 8px rgba(28,43,43,0.10))' }}
                 loading="eager"
                 fetchPriority="high"
-                width="180"
-                height="100" />
+                width="1254"
+                height="697" />
             </Link>
             {/* Carolina-Built credentials, Full 3-line stack at xl+ (1280px+) only. Below xl there's no room without crowding the nav. */}
             <div

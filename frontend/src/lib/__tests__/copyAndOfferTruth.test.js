@@ -89,8 +89,8 @@ describe('Coming-soon kits show no purchasable price or purchase CTA', () => {
 
 describe('Feature flags remain preview-only', () => {
   const features = readSrc('config/features.js');
-  test('RECOMMENDATION_ROUTER_ENABLED is false', () => {
-    expect(features).toMatch(/export\s+const\s+RECOMMENDATION_ROUTER_ENABLED\s*=\s*false\s*;/);
+  test('RECOMMENDATION_ROUTER_ENABLED is true (owner approved go-live)', () => {
+    expect(features).toMatch(/export\s+const\s+RECOMMENDATION_ROUTER_ENABLED\s*=\s*true\s*;/);
   });
   test('EMAIL_DELIVERY_LIVE remains false', () => {
     expect(features).toMatch(/export\s+const\s+EMAIL_DELIVERY_LIVE\s*=\s*false\s*;/);

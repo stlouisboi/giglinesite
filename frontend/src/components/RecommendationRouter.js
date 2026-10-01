@@ -343,6 +343,7 @@ const RecommendationRouter = ({
           result={result}
           referringRoute={referringRoute}
           source={source}
+          onBack={Object.keys(answers).length > 0 ? goBack : null}
           onRestart={reset}
           shareFragment={encodeShareFragment(answers)}
         />

@@ -166,10 +166,16 @@ class TestSafetyCheckSubmission:
 
 class TestEmailDripStatus:
     """Email drip queue tests"""
-    
-    def test_get_drip_status(self):
-        """GET /api/email-drip/status returns drip queue list"""
+
+    def test_get_drip_status_requires_admin(self):
+        """GET /api/email-drip/status with no token is rejected"""
         response = requests.get(f"{BASE_URL}/api/email-drip/status")
+        assert response.status_code == 401
+        print("✓ Email drip status rejects unauthenticated requests")
+
+    def test_get_drip_status(self):
+        """GET /api/email-drip/status returns drip queue list for an admin"""
+        response = requests.get(f"{BASE_URL}/api/email-drip/status?token=gigline2026")
         assert response.status_code == 200
         data = response.json()
         assert isinstance(data, list)

@@ -372,8 +372,8 @@ const routes = [
       breadcrumb([{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }]),
     ],
     content: `
-      <h1>OSHA-Readiness Support for Small Industrial Operations</h1>
-      <p>GigLine helps manufacturers, warehouses, contractors, and fleet operations identify visible safety hazards, documentation gaps, and inspection-readiness issues before they become citations, insurance problems, or customer-audit failures.</p>
+      <h1>Know what needs attention. Know what to fix first.</h1>
+      <p>Start with a focused floor review, a documentation review, or a combined Compliance Readiness Visit. If gaps are identified, your team can address them internally or request separately scoped implementation support.</p>
       <p><em>Built for small operations that need practical safety support without hiring a full-time safety manager.</em></p>
       <h2>Not sure where to start?</h2>
       <p>Take the free 90-Second Safety Check, six yes-or-no questions, immediate risk score, no email required to start. Ready for a professional review? <a href="/intake?service=compliance-readiness-visit">Schedule a Compliance Readiness Visit</a>.</p>

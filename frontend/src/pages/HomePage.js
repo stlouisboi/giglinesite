@@ -720,6 +720,16 @@ const HomePage = () => {
             </a>
             .
           </p>
+          <div className="mt-6">
+            <Link
+              to="/services"
+              className="inline-flex items-center gap-2 text-[15px] font-semibold text-slate-900 hover:text-amber-700 transition-colors"
+              data-testid="pricing-guide-link"
+            >
+              What does an OSHA safety consultant cost? See the full breakdown
+              <ArrowRight size={16} aria-hidden="true" />
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -1053,7 +1063,7 @@ const HomePage = () => {
               <p className="text-sm text-slate-700 leading-relaxed mb-3">
                 Estimate {OSHA_PENALTY.year} exposure across your open gaps.
               </p>
-              <Link to="/tools/citation-cost-calculator" className="text-[14px] font-semibold text-slate-900 hover:text-amber-700 inline-flex items-center gap-1">
+              <Link to="/citation-cost-calculator" className="text-[14px] font-semibold text-slate-900 hover:text-amber-700 inline-flex items-center gap-1">
                 Open the calculator <ArrowRight size={14} aria-hidden="true" />
               </Link>
             </div>

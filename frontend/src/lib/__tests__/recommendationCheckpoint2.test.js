@@ -52,15 +52,16 @@ describe('Consuming surfaces embed the entry card', () => {
     const recEntrySections = (home.match(/data-testid="rec-entry-section"/g) || []).length;
     expect(recEntrySections).toBe(1);
   });
-  test('/services carries exactly one recommendation entry point gated by the router flag', () => {
-    // Services-page consolidation, 2026-09-18: per Section 12 of the owner-
-    // approved spec the page keeps one compact lower-page decision-support
-    // block that swaps the CTA label on RECOMMENDATION_ROUTER_ENABLED.
-    expect(services).toMatch(/RECOMMENDATION_ROUTER_ENABLED[^;]*from\s+['"]\.\.\/config\/features['"]/);
-    const recEntry = (services.match(/data-testid="services-rec-entry-section"/g) || []).length;
-    expect(recEntry).toBe(1);
-    expect(services).toMatch(/Find My Starting Point/);
-    expect(services).toMatch(/Compare the Three Reviews/);
+  test('/services decommissioned the public recommendation-router entry (Feb 2026 rebuild)', () => {
+    // Services-page rebuild, 2026-02 refresh: owner-approved spec moved the
+    // page away from the compact lower-page decision-support block and from
+    // any direct /recommendation surface. The router remains live at its
+    // dedicated page, and the service-detail compact embeds still mount it.
+    expect(services).not.toMatch(/data-testid="services-rec-entry-section"/);
+    expect(services).not.toMatch(/data-testid="services-rec-entry-cta"/);
+    expect(services).not.toMatch(/Find My Starting Point/);
+    expect(services).not.toMatch(/RecommendationEntryCard/);
+    expect(services).not.toMatch(/to="\/recommendation"/);
   });
   test('/citation-proof-kits imports RecommendationEntryCard + ObjectionSupport', () => {
     expect(kits).toMatch(/RecommendationEntryCard/);

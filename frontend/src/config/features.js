@@ -56,7 +56,7 @@ export const OSHA_TWELVE_QUESTIONS_ENABLED = false;
  *   Flip to `true` only after owner approval, and only in coordination
  *   with the transactional-email wiring in Batch 2C.
  */
-export const RECOMMENDATION_ROUTER_ENABLED = false;
+export const RECOMMENDATION_ROUTER_ENABLED = true;
 
 /**
  * EMAIL_DELIVERY_LIVE

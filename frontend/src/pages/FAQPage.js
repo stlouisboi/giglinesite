@@ -15,7 +15,7 @@ export const FAQS = [
   },
   {
     q: 'What does an OSHA safety consultant do on-site?',
-    a: "During a GigLine Safety Walkthrough, Vince Lawrence \u2014 OSHA 30-Hour Outreach Trained safety compliance consultant based in Kernersville, NC \u2014 walks every area of your facility. He photographs findings, documents each one against the applicable CFR standard, and provides an estimated penalty exposure based on OSHA published maximums. Within 48 hours you receive a written report with photo documentation, CFR citations, and a prioritized list of corrective actions. The engagement is private \u2014 findings are not shared, published, or referenced without written permission.",
+    a: "During a GigLine Safety Walkthrough, Vince Lawrence \u2014 OSHA 30-Hour General Industry Trained safety compliance consultant based in Kernersville, NC \u2014 walks every area of your facility. He photographs findings, documents each one against the applicable CFR standard, and provides an estimated penalty exposure based on OSHA published maximums. Within 48 hours you receive a written report with photo documentation, CFR citations, and a prioritized list of corrective actions. Client information is held in confidence per our engagement letter and privacy policy; GigLine does not publish or reference an engagement in marketing without written permission, and complies with lawful subpoenas and regulatory requests as required by law.",
   },
   {
     q: 'How do I prepare for an OSHA inspection in a small manufacturing plant?',

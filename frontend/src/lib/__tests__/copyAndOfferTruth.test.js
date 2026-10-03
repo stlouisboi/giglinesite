@@ -92,8 +92,8 @@ describe('Feature flags remain preview-only', () => {
   test('RECOMMENDATION_ROUTER_ENABLED is true (owner-approved go-live, 2026-02)', () => {
     expect(features).toMatch(/export\s+const\s+RECOMMENDATION_ROUTER_ENABLED\s*=\s*true\s*;/);
   });
-  test('EMAIL_DELIVERY_LIVE remains false', () => {
-    expect(features).toMatch(/export\s+const\s+EMAIL_DELIVERY_LIVE\s*=\s*false\s*;/);
+  test('EMAIL_DELIVERY_LIVE is true (owner-approved go-live, 2026-10)', () => {
+    expect(features).toMatch(/export\s+const\s+EMAIL_DELIVERY_LIVE\s*=\s*true\s*;/);
   });
   test('EXIT_FEEDBACK_ENABLED remains false', () => {
     expect(features).toMatch(/export\s+const\s+EXIT_FEEDBACK_ENABLED\s*=\s*false\s*;/);

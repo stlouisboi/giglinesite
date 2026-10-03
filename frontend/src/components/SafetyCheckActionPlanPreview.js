@@ -6,12 +6,13 @@
  * import. Marketing consent is a separate unchecked checkbox that does
  * not gate the delivery preview.
  *
- * Gated behind RECOMMENDATION_ROUTER_ENABLED so the preview only surfaces
- * to owner review; production Safety Check keeps its current behavior.
+ * Gated behind RECOMMENDATION_ROUTER_ENABLED and SAFETY_CHECK_ACTION_PLAN_EMAIL_LIVE
+ * so the preview only surfaces to owner review; production Safety Check
+ * keeps its current behavior until this pipeline gets a real go-live.
  */
 import React, { useState } from 'react';
 import { Mail, ArrowRight } from 'lucide-react';
-import { RECOMMENDATION_ROUTER_ENABLED, EMAIL_DELIVERY_LIVE } from '../config/features';
+import { RECOMMENDATION_ROUTER_ENABLED, SAFETY_CHECK_ACTION_PLAN_EMAIL_LIVE } from '../config/features';
 
 const NAVY = '#102A43';
 const GOLD = '#C9A84C';
@@ -28,7 +29,7 @@ const SafetyCheckActionPlanPreview = ({ tier, noCount, recommendation, source = 
   const [submitted, setSubmitted] = useState(false);
   const [expanded, setExpanded] = useState(false);
 
-  if (!RECOMMENDATION_ROUTER_ENABLED || !EMAIL_DELIVERY_LIVE) return null;
+  if (!RECOMMENDATION_ROUTER_ENABLED || !SAFETY_CHECK_ACTION_PLAN_EMAIL_LIVE) return null;
 
   const disabled = !firstName.trim() || !email.trim();
 

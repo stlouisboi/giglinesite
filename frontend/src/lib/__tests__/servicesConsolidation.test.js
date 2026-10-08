@@ -108,6 +108,36 @@ describe('Services · Credibility strip', () => {
     expect(window).toContain('/sample-report');
     expect(window).toMatch(/data-testid="services-sample-report-cta"/);
   });
+
+  // ──────────────────────────────────────────────────────────────────────
+  // Verified Google Review pull-quote lock-in.
+  // Source: public Google Review by Demar Archie (Local Guide, 30 reviews).
+  // Owner-approved for publication on 2026-02 via screenshot evidence in chat.
+  // Changing the quote text or attribution requires a new owner approval and
+  // a corresponding update to the schema.org/Review structured data payload.
+  // ──────────────────────────────────────────────────────────────────────
+  test('verified Google Review pull-quote renders in the credibility section', () => {
+    const idx = src.indexOf('data-testid="services-credibility-pullquote"');
+    expect(idx).toBeGreaterThan(-1);
+    const block = src.slice(idx, idx + 3600);
+    // Owner-approved verbatim excerpt from Demar Archie\'s Google Review.
+    expect(block).toMatch(/Gigline operates at a different level than most safety consultants/);
+    expect(block).toMatch(/understand how operations actually run and provide solutions/);
+    expect(block).toMatch(/incident investigations/);
+    expect(block).toMatch(/focused on true root cause/);
+    // Attribution: name + Local Guide on Google + Verified review.
+    expect(block).toMatch(/Demar Archie/);
+    expect(block).toMatch(/Local Guide on Google/);
+    expect(block).toMatch(/Verified review/);
+    // Structured data: schema.org/Review with 5/5 rating + author Person.
+    expect(block).toMatch(/itemType="https:\/\/schema\.org\/Review"/);
+    expect(block).toMatch(/itemProp="itemReviewed"[^>]*GigLine Safety & Compliance/);
+    expect(block).toMatch(/itemProp="ratingValue"[^>]*content="5"/);
+    expect(block).toMatch(/itemType="https:\/\/schema\.org\/Person"/);
+    expect(block).toMatch(/itemProp="reviewBody"/);
+    // Read-on-Google source link preserved.
+    expect(block).toMatch(/data-testid="services-credibility-pullquote-source"/);
+  });
 });
 
 describe('Services · Featured CRV section', () => {

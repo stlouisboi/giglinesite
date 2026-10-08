@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, ChevronDown, ChevronRight, Phone, Star } from 'lucide-react';
+import { ArrowRight, Check, ChevronDown, ChevronRight, Phone, Quote, Star } from 'lucide-react';
 import SEO from '../components/SEO';
 import { trackEvent, trackPhoneClick } from '../utils/analytics';
 import {
@@ -235,6 +235,73 @@ const ServicesPage = () => {
                 </Link>
               </div>
             </div>
+          </Reveal>
+
+          {/* Verified Google Review, pull-quote. Rendered as a <figure>/<blockquote>
+              with Review schema markup so Google can surface it as structured data.
+              Content is a direct excerpt from a public Google Review authored by
+              Demar Archie (Local Guide, 30 reviews, 1 photo on Google Maps). */}
+          <Reveal>
+            <figure
+              className="mt-12 md:mt-14 max-w-4xl mx-auto"
+              data-testid="services-credibility-pullquote"
+              itemScope
+              itemType="https://schema.org/Review"
+            >
+              <meta itemProp="itemReviewed" content="GigLine Safety & Compliance" />
+              <div
+                itemProp="reviewRating"
+                itemScope
+                itemType="https://schema.org/Rating"
+                className="sr-only"
+              >
+                <meta itemProp="ratingValue" content="5" />
+                <meta itemProp="bestRating" content="5" />
+              </div>
+              <div
+                className="relative rounded-xl border bg-white p-6 md:p-8 shadow-sm"
+                style={{ borderColor: '#e8d9b5' }}
+              >
+                <Quote
+                  size={28}
+                  strokeWidth={1.6}
+                  aria-hidden="true"
+                  className="absolute -top-3 left-6 bg-white px-1"
+                  style={{ color: GOLD }}
+                />
+                <div className="flex items-center gap-1 mb-3" aria-label="5 out of 5 stars">
+                  {[0, 1, 2, 3, 4].map((i) => (
+                    <Star key={i} size={14} strokeWidth={2} fill={GOLD} style={{ color: GOLD }} aria-hidden="true" />
+                  ))}
+                </div>
+                <blockquote
+                  className="text-base md:text-lg leading-relaxed text-slate-800 italic"
+                  itemProp="reviewBody"
+                >
+                  &ldquo;Gigline operates at a different level than most safety consultants. They don&rsquo;t just point out issues&mdash;they understand how operations actually run and provide solutions that can be executed on the floor. Where they really stand out is in incident investigations. Their approach is disciplined, focused on true root cause, and built around preventing repeat events&mdash;not just checking a box.&rdquo;
+                </blockquote>
+                <figcaption className="mt-5 flex flex-wrap items-center justify-between gap-3">
+                  <div
+                    itemProp="author"
+                    itemScope
+                    itemType="https://schema.org/Person"
+                    className="text-sm"
+                  >
+                    <span className="font-semibold text-slate-900" itemProp="name">Demar Archie</span>
+                    <span className="text-slate-600"> &middot; Local Guide on Google &middot; Verified review</span>
+                  </div>
+                  <a
+                    href="https://www.google.com/search?q=GigLine+Safety+%26+Compliance+Kernersville+NC&stick=&hl=en&reviews=1&utm_source=services&utm_medium=website&utm_campaign=pullquote-read-all"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-sm font-semibold text-slate-900 underline underline-offset-4 hover:text-slate-700"
+                    data-testid="services-credibility-pullquote-source"
+                  >
+                    Read on Google <ChevronRight size={14} aria-hidden="true" />
+                  </a>
+                </figcaption>
+              </div>
+            </figure>
           </Reveal>
         </div>
       </section>

@@ -38,20 +38,6 @@ import { SUPERVISOR_KIT_ENABLED } from '../config/features';
 
 const GOLD = '#C9A84C';
 
-const QUICK_LINKS = [
-  { name: 'Home', path: '/' },
-  { name: 'Services', path: '/services' },
-  { name: 'GigLine Compliance Readiness Kits', path: '/citation-proof-kits' },
-  { name: 'Field Notes', path: '/field-notes' },
-  { name: 'Blog', path: '/blog' },
-  { name: 'Service Areas', path: '/service-areas' },
-  { name: 'About', path: '/about' },
-  { name: 'FAQ', path: '/faq' },
-  { name: 'Contact', path: '/contact' },
-];
-
-/* Resource groups. The `name` and `path` keys match the original data so the
-   footer-resource-<slug> testids stay stable. */
 const RESOURCE_GROUPS_LEFT = [
   {
     label: 'Start Here',
@@ -108,16 +94,16 @@ const ResourceLink = ({ name, path, short }) => (
   <li className="group">
     <Link
       to={path}
-      className="relative flex items-center gap-1.5 text-sm text-white/75 transition-colors duration-200 hover:text-[color:var(--gl-gold)]"
+      className="relative inline-flex items-start gap-1.5 text-sm text-white/75 transition-colors duration-200 hover:text-[color:var(--gl-gold)]"
       style={{ '--gl-gold': GOLD }}
       data-testid={`footer-resource-${name.toLowerCase().replace(/\s+/g, '-')}`}
     >
-      <span className="truncate">{short || name}</span>
+      <span>{short || name}</span>
       <ArrowUpRight
         size={13}
         strokeWidth={2}
         aria-hidden="true"
-        className="shrink-0 opacity-0 -translate-x-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0"
+        className="mt-0.5 shrink-0 opacity-0 -translate-x-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0"
         style={{ color: GOLD }}
       />
     </Link>
@@ -163,9 +149,9 @@ const Footer = () => {
       />
 
       <div className="container py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12">
           {/* ─── Brand ─────────────────────────────────────────── */}
-          <div className="md:col-span-2 lg:col-span-4">
+          <div className="md:col-span-5">
             <div className="mb-4">
               <img
                 src="/gigline-logo-dark-bg.png?v=9"
@@ -261,34 +247,8 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* ─── Quick Links ──────────────────────────────────── */}
-          <div className="lg:col-span-2">
-            <h4
-              className="mb-4 text-[11px] font-semibold uppercase tracking-[0.2em]"
-              style={{ color: GOLD }}
-            >
-              Quick Links
-            </h4>
-            <nav aria-label="Footer navigation">
-              <ul className="space-y-1.5">
-                {QUICK_LINKS.map((link) => (
-                  <li key={link.path} className="group">
-                    <Link
-                      to={link.path}
-                      className="inline-flex items-center gap-1 text-sm text-white/75 transition-colors hover:text-[color:var(--gl-gold)]"
-                      style={{ '--gl-gold': GOLD }}
-                      data-testid={`footer-link-${link.name.toLowerCase().replace(' ', '-')}`}
-                    >
-                      <span>{link.name}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
-
           {/* ─── Resources, grouped into 2 sub-columns ───────── */}
-          <div className="md:col-span-2 lg:col-span-6">
+          <div className="md:col-span-7">
             <h4
               className="mb-5 text-[11px] font-semibold uppercase tracking-[0.2em]"
               style={{ color: GOLD }}

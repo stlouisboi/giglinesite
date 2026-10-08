@@ -56,7 +56,7 @@ const AFTER_SUBMIT_STEPS = [
   { t: 'You send the inquiry', d: 'Submitting the short form or the full intake requests a discussion, scope, and quote. It does not purchase a service or begin a paid engagement.' },
   { t: 'Vince reviews and reaches back out', d: 'Vince reviews what you shared and follows up to confirm the operation, requested service, location, workforce, and any scheduling constraints.' },
   { t: 'Written scope and price', d: 'Final scope and fixed price are confirmed in writing before the visit is scheduled.' },
-  { t: 'On-site visit and written report', d: 'The Safety Walkthrough report is delivered within 48 hours of the visit. The Compliance Readiness Visit and Documentation Readiness Review reports are delivered within 5 business days of the on-site visit.' },
+  { t: 'Service completed and written report delivered', d: 'The Safety Walkthrough report is delivered within 48 hours of the on-site visit. The Compliance Readiness Visit report is delivered within 5 business days of the on-site visit. The Documentation Readiness Review report is delivered within 5 business days.' },
 ];
 
 const ServicesPage = () => {
@@ -96,7 +96,7 @@ const ServicesPage = () => {
     { q: 'Which service should I start with?', a: 'If both floor conditions and documentation are uncertain, begin with the Compliance Readiness Visit. If the concern is limited to one area, choose the focused Safety Walkthrough or Documentation Readiness Review.' },
     { q: 'Are corrections included in the Compliance Readiness Visit?', a: 'No. The CRV identifies and prioritizes gaps. Corrective implementation is scoped and quoted separately.' },
     { q: 'Why does the CRV cost less than purchasing both reviews separately?', a: `For standard scope, the two reviews total $${COMBINED_SEPARATE_TOTAL.toLocaleString()} when purchased separately. The combined CRV is $${COMPLIANCE_READINESS_VISIT.amount.toLocaleString()}, a $${COMBINED_SAVINGS} difference reflecting a coordinated single visit. Final scope and price are confirmed in writing before scheduling and may vary when scope expands.` },
-    { q: 'When is the written report delivered?', a: 'The Safety Walkthrough report is delivered within 48 hours of the on-site visit. The Compliance Readiness Visit and Documentation Readiness Review reports are delivered within 5 business days of the on-site visit.' },
+    { q: 'When is the written report delivered?', a: 'The Safety Walkthrough report is delivered within 48 hours of the on-site visit. The Compliance Readiness Visit report is delivered within 5 business days of the on-site visit. The Documentation Readiness Review report is delivered within 5 business days.' },
     { q: 'Does submitting an inquiry commit me to purchasing a service?', a: 'No. Submitting the short form or the full intake requests a discussion, scope, and quote. Nothing is purchased and no visit is scheduled until the written scope and fixed price are agreed.' },
     { q: 'Does GigLine guarantee OSHA compliance?', a: 'No. GigLine provides independent readiness, implementation, and support services according to the written scope. These services do not guarantee compliance, prevent citations, or replace legal advice.' },
     { q: 'Can we start with a readiness kit?', a: 'Yes, when the need is focused and the organization is prepared to implement the material internally.' },
@@ -227,7 +227,7 @@ const ServicesPage = () => {
       </section>
 
       {/* ── S3 · FEATURED COMPLIANCE READINESS VISIT ── */}
-      <section className="py-20 md:py-24 bg-slate-50" data-testid="services-crv-feature-section">
+      <section className="py-20 md:py-24 bg-slate-50 md:pr-16 lg:pr-20" data-testid="services-crv-feature-section">
         <div className="max-w-5xl mx-auto px-6 md:px-10">
           <Reveal>
             <p className="uppercase mb-3" style={{ ...mono, fontSize: '11px', color: GOLD, letterSpacing: '0.24em' }}>The most complete diagnostic starting point</p>
@@ -300,7 +300,7 @@ const ServicesPage = () => {
       </section>
 
       {/* ── S4 · THREE-REVIEW COMPARISON ── */}
-      <section id="services-compare" className="py-20 md:py-24 bg-white" data-testid="services-comparison-section">
+      <section id="services-compare" className="py-20 md:py-24 bg-white md:pr-16 lg:pr-20" data-testid="services-comparison-section">
         <div className="max-w-6xl mx-auto px-6 md:px-10">
           <Reveal>
             <p className="uppercase mb-3" style={{ ...mono, fontSize: '11px', color: GOLD, letterSpacing: '0.24em' }}>Compare the three reviews</p>
@@ -367,7 +367,7 @@ const ServicesPage = () => {
                 <tr className="border-t border-slate-200 bg-white">
                   <td className="p-4 text-slate-900 font-semibold">Written report delivered</td>
                   <td className="p-4 text-center text-slate-800">Within 48 hours of visit</td>
-                  <td className="p-4 text-center text-slate-800">Within 5 business days of visit</td>
+                  <td className="p-4 text-center text-slate-800">Within 5 business days</td>
                   <td className="p-4 text-center font-semibold text-slate-900" style={{ backgroundColor: '#fffaf0' }}>Within 5 business days of visit</td>
                 </tr>
               </tbody>
@@ -408,7 +408,7 @@ const ServicesPage = () => {
               </p>
               <p className="text-xs text-slate-600 mb-4">
                 {mobileCompareKey === 'walkthrough' && 'Report within 48 hours of visit.'}
-                {mobileCompareKey === 'docreview' && 'Report within 5 business days of visit.'}
+                {mobileCompareKey === 'docreview' && 'Report within 5 business days.'}
                 {mobileCompareKey === 'crv' && 'Report within 5 business days of visit.'}
               </p>
               <ul className="space-y-2 text-sm text-slate-800">

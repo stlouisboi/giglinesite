@@ -234,16 +234,48 @@ const ClientIntakePage = () => {
   }, [location.search]);
 
   /* ─── Scroll to in-page anchor (#talk-to-vince) when linked from external CTAs ─── */
+  // GL-WEB-022 (Feb 2026): the intake page has heavy conditional rendering and
+  // image-heavy sections. A single short timeout fired before the anchor existed
+  // or before images shifted the layout, so the scroll either silently failed
+  // or landed on the wrong offset. We now retry up to 1 s and re-align on the
+  // window `load` event once images finish and the final layout is stable.
   useEffect(() => {
     if (!location.hash) return;
     const id = location.hash.replace('#', '');
     if (!id) return;
-    // Defer to next paint so section exists in the DOM.
-    const t = setTimeout(() => {
+    let cancelled = false;
+    const scrollTo = () => {
       const el = document.getElementById(id);
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 60);
-    return () => clearTimeout(t);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return true;
+      }
+      return false;
+    };
+    // Retry a few times while the page finishes mounting.
+    const tryScroll = (attempt = 0) => {
+      if (cancelled) return;
+      if (scrollTo()) return;
+      if (attempt < 10) {
+        setTimeout(() => tryScroll(attempt + 1), 100);
+      }
+    };
+    const initial = setTimeout(() => tryScroll(0), 80);
+    // Re-anchor once images have loaded so the final offset is correct.
+    const onLoad = () => {
+      if (!cancelled) scrollTo();
+    };
+    if (document.readyState === 'complete') {
+      // Allow React to paint the current frame first.
+      requestAnimationFrame(() => requestAnimationFrame(onLoad));
+    } else {
+      window.addEventListener('load', onLoad, { once: true });
+    }
+    return () => {
+      cancelled = true;
+      clearTimeout(initial);
+      window.removeEventListener('load', onLoad);
+    };
   }, [location.hash]);
 
   /* ─── Hybrid pricing computation for Doc Creation lane ─── */

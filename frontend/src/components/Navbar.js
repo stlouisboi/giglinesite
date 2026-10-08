@@ -45,9 +45,9 @@ const Navbar = () => {
       <nav className="container" aria-label="Main navigation">
         {/* Mobile + Tablet: 3-column grid (icons | logo | icons) so logo stays centered. Desktop: flex justify-between. */}
         {/* Row height is auto (grows with logo); minimal py-* since the tall logo is already the vertical anchor. */}
-        <div className="grid grid-cols-3 items-center py-1 md:py-1 lg:flex lg:justify-between lg:py-1.5 xl:py-2">
+        <div className="grid grid-cols-3 items-center py-1 md:py-1 xl:flex xl:justify-between xl:py-2">
           {/* LEFT cell (mobile/tablet): phone icon + search. Desktop: nothing here, logo lives in LEFT of flex */}
-          <div className="flex items-center justify-start gap-2 lg:hidden" data-testid="mobile-left-cell">
+          <div className="flex items-center justify-start gap-2 xl:hidden" data-testid="mobile-left-cell">
             <a
               href="tel:3363298899"
               onClick={() => trackPhoneClick('navbar_mobile_icon')}
@@ -71,7 +71,7 @@ const Navbar = () => {
           </div>
 
           {/* CENTER cell (mobile/tablet): logo centered. Desktop: logo + Carolina-Built credentials block, left-aligned */}
-          <div className="flex items-center justify-center lg:justify-start gap-4 xl:gap-5">
+          <div className="flex items-center justify-center xl:justify-start gap-4 xl:gap-5">
             <Link
               to="/"
               className="flex items-center"
@@ -88,7 +88,7 @@ const Navbar = () => {
             </Link>
             {/* Carolina-Built credentials, Full 3-line stack at xl+ (1280px+) only. Below xl there's no room without crowding the nav. */}
             <div
-              className="hidden xl:flex flex-col leading-tight pl-4"
+              className="hidden 2xl:flex flex-col leading-tight pl-4"
               style={{ borderLeft: '1px solid #dde3ea' }}
               data-testid="navbar-credentials"
             >
@@ -113,8 +113,8 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Desktop Navigation, appears at lg (1024px+); tablet portrait gets the hamburger menu */}
-          <div className="hidden lg:flex items-center space-x-5 xl:space-x-7 pl-6 xl:pl-10" data-testid="desktop-nav">
+          {/* Desktop Navigation, appears at xl (1280px+); tablet landscape gets the hamburger menu */}
+          <div className="hidden xl:flex items-center space-x-4 2xl:space-x-7 pl-4 2xl:pl-10" data-testid="desktop-nav">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -148,7 +148,7 @@ const Navbar = () => {
             </button>
             <Link
               to="/intake?service=compliance-readiness-visit"
-              className="text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors whitespace-nowrap"
+              className="text-sm font-semibold px-3 py-2 2xl:px-5 2xl:py-2.5 rounded-lg transition-colors whitespace-nowrap"
               style={{ background: '#2A52A0', color: '#FFFFFF' }}
               onMouseEnter={e => e.target.style.background = '#1F3F80'}
               onMouseLeave={e => e.target.style.background = '#2A52A0'}
@@ -159,7 +159,7 @@ const Navbar = () => {
           </div>
 
           {/* RIGHT cell (mobile/tablet): hamburger menu button */}
-          <div className="flex items-center justify-end lg:hidden" data-testid="mobile-right-cell">
+          <div className="flex items-center justify-end xl:hidden" data-testid="mobile-right-cell">
             <button
               type="button"
               className="flex items-center justify-center w-11 h-11 rounded-md"
@@ -177,7 +177,7 @@ const Navbar = () => {
 
         {/* Mobile Navigation Drawer */}
         {isOpen && (
-          <div id="mobile-menu" className="lg:hidden bg-white" style={{ borderTop: '1px solid #D9E2EC' }} data-testid="mobile-menu">
+          <div id="mobile-menu" className="xl:hidden bg-white" style={{ borderTop: '1px solid #D9E2EC' }} data-testid="mobile-menu">
             <div className="px-4 py-6 space-y-1">
               {navLinks.map((link) => (
                 <Link

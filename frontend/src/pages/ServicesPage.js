@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check, ChevronDown, ChevronRight, Phone, Star } from 'lucide-react';
 import SEO from '../components/SEO';
-import { trackEvent } from '../utils/analytics';
+import { trackEvent, trackPhoneClick } from '../utils/analytics';
 import {
   SAFETY_WALKTHROUGH,
   DOCUMENTATION_REVIEW,
@@ -120,7 +120,7 @@ const ServicesPage = () => {
       />
 
       {/* ── S1 · RESULT-FOCUSED HERO ── */}
-      <section className="relative py-20 md:py-28 text-white overflow-hidden" style={{ backgroundColor: NAVY_DEEP }} data-testid="services-hero-section">
+      <section className="relative py-20 md:py-28 md:pr-16 lg:pr-20 text-white overflow-hidden" style={{ backgroundColor: NAVY_DEEP }} data-testid="services-hero-section">
         <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${NAVY_DEEP} 0%, #12253f 100%)` }} aria-hidden="true" />
         <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-10">
           <Reveal>
@@ -169,7 +169,7 @@ const ServicesPage = () => {
               <a
                 href={PHONE_HREF}
                 className="text-white font-semibold underline underline-offset-4 hover:text-slate-100"
-                onClick={() => trackEvent('services_hero_phone_click', {})}
+                onClick={() => trackPhoneClick('services_hero')}
                 data-testid="services-hero-phone-link"
               >
                 {PHONE_DISPLAY}
@@ -180,7 +180,7 @@ const ServicesPage = () => {
       </section>
 
       {/* ── S2 · CREDIBILITY + SAMPLE REPORT PREVIEW ── */}
-      <section className="py-16 md:py-20 bg-white" data-testid="services-credibility-section">
+      <section className="py-16 md:py-20 md:pr-16 lg:pr-20 bg-white" data-testid="services-credibility-section">
         <div className="max-w-6xl mx-auto px-6 md:px-10">
           <Reveal>
             <div className="grid gap-8 md:grid-cols-[200px_1fr_1fr] items-start">
@@ -199,6 +199,19 @@ const ServicesPage = () => {
                 <p className="text-sm text-slate-700 mb-4" data-testid="services-credibility-credential">
                   OSHA 30-Hour General Industry Trained · U.S. Navy Veteran · 25+ years in manufacturing, fleet, and warehouse safety.
                 </p>
+                <a
+                  href="https://www.google.com/search?q=GigLine+Safety+%26+Compliance+Kernersville+NC&stick=&hl=en&reviews=1&utm_source=services&utm_medium=website&utm_campaign=credibility-review-read"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 mb-4 px-2.5 py-1 rounded-full text-xs font-semibold border transition-colors hover:bg-amber-50"
+                  style={{ borderColor: '#c8922a', color: '#8c6a28', background: '#fffaf0' }}
+                  data-testid="services-credibility-reviews-chip"
+                  aria-label="Read 5.0-star Google reviews for GigLine Safety and Compliance"
+                >
+                  <Star size={12} strokeWidth={2.5} fill="#c8922a" aria-hidden="true" />
+                  <span>5.0 on Google Reviews</span>
+                  <ChevronRight size={12} aria-hidden="true" />
+                </a>
                 <p className="text-sm text-slate-700 leading-relaxed mb-4">
                   Every engagement is scoped and priced in writing before work begins. You know what Vince will review, how long it will take, and what the written report will cover.
                 </p>
@@ -425,7 +438,7 @@ const ServicesPage = () => {
       </section>
 
       {/* ── S5 · WHAT HAPPENS AFTER SUBMITTING A REQUEST ── */}
-      <section className="py-20 md:py-24 bg-slate-50" data-testid="services-after-submit-section">
+      <section className="py-20 md:py-24 md:pr-16 lg:pr-20 bg-slate-50" data-testid="services-after-submit-section">
         <div className="max-w-5xl mx-auto px-6 md:px-10">
           <Reveal>
             <p className="uppercase mb-3" style={{ ...mono, fontSize: '11px', color: GOLD, letterSpacing: '0.24em' }}>After you submit a request</p>
@@ -459,7 +472,7 @@ const ServicesPage = () => {
             </Link>
             <a
               href={PHONE_HREF}
-              onClick={() => trackEvent('services_after_submit_phone_click', {})}
+              onClick={() => trackPhoneClick('services_after_submit')}
               data-testid="services-after-submit-phone-link"
               className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-md font-semibold border border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white transition-colors min-h-[44px]"
             >
@@ -470,7 +483,7 @@ const ServicesPage = () => {
       </section>
 
       {/* ── S6 · CORRECTIVE IMPLEMENTATION · CONTROL SYSTEM · ONGOING SUPPORT ── */}
-      <section className="py-20 md:py-24 bg-white" data-testid="services-after-section">
+      <section className="py-20 md:py-24 md:pr-16 lg:pr-20 bg-white" data-testid="services-after-section">
         <div className="max-w-6xl mx-auto px-6 md:px-10">
           <Reveal>
             <p className="uppercase mb-3" style={{ ...mono, fontSize: '11px', color: GOLD, letterSpacing: '0.24em' }}>Beyond the assessment</p>
@@ -503,7 +516,7 @@ const ServicesPage = () => {
       </section>
 
       {/* ── S7 · COMPACT SELF-SERVE KITS ── */}
-      <section className="py-16 md:py-20 bg-slate-50" data-testid="services-kits-section">
+      <section className="py-16 md:py-20 md:pr-16 lg:pr-20 bg-slate-50" data-testid="services-kits-section">
         <div className="max-w-6xl mx-auto px-6 md:px-10">
           <Reveal>
             <p className="uppercase mb-3" style={{ ...mono, fontSize: '11px', color: GOLD, letterSpacing: '0.24em' }}>For a focused, self-serve need</p>
@@ -530,7 +543,7 @@ const ServicesPage = () => {
       </section>
 
       {/* ── S8 · FAQ + FINAL CTA ── */}
-      <section className="py-20 md:py-24 bg-white" data-testid="services-faq-section">
+      <section className="py-20 md:py-24 md:pr-16 lg:pr-20 bg-white" data-testid="services-faq-section">
         <div className="max-w-3xl mx-auto px-6 md:px-10">
           <Reveal>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-8">Frequently asked questions</h2>
@@ -563,7 +576,7 @@ const ServicesPage = () => {
       </section>
 
       {/* ── S9 · FINAL CTA ── */}
-      <section className="py-20 md:py-24 text-white" style={{ backgroundColor: NAVY_DEEP }} data-testid="services-final-cta-section">
+      <section className="py-20 md:py-24 md:pr-16 lg:pr-20 text-white" style={{ backgroundColor: NAVY_DEEP }} data-testid="services-final-cta-section">
         <div className="max-w-4xl mx-auto px-6 md:px-10 text-center">
           <Reveal>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Start by seeing where you stand.</h2>
@@ -602,7 +615,7 @@ const ServicesPage = () => {
               <a
                 href={PHONE_HREF}
                 className="text-white font-semibold underline underline-offset-4 hover:text-slate-100"
-                onClick={() => trackEvent('services_final_phone_click', {})}
+                onClick={() => trackPhoneClick('services_final')}
                 data-testid="services-final-phone-link"
               >
                 {PHONE_DISPLAY}

@@ -85,7 +85,7 @@ const LOCAL_BUSINESS = {
   '@id': `${BASE_URL}/#business`,
   name: 'GigLine Safety & Compliance',
   description:
-    'On-site OSHA safety walkthroughs, documentation reviews, and incident response for small manufacturers, warehouses, and contractors in North Carolina.',
+    'On-site OSHA safety walkthroughs, documentation readiness reviews, and corrective action implementation for small manufacturers, warehouses, contractors, and fleet operations in North Carolina.',
   url: BASE_URL,
   telephone: '+13363298899',
   email: 'vince@giglinecompliance.com',
@@ -145,9 +145,9 @@ const LOCAL_BUSINESS = {
     '@type': 'OfferCatalog',
     name: 'Safety Services',
     itemListElement: [
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Safety Walkthrough & Top 10 Fixes Report' }, price: '1300', priceCurrency: 'USD' },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'OSHA Documentation Readiness Review' }, price: DOC_REVIEW_PRICE_NUM, priceCurrency: 'USD' },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Incident Review & Corrective Action Support' }, price: '1500', priceCurrency: 'USD' },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Safety Walkthrough' }, price: '1300', priceCurrency: 'USD' },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Documentation Readiness Review' }, price: DOC_REVIEW_PRICE_NUM, priceCurrency: 'USD' },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Corrective Action Implementation' }, price: '2500', priceCurrency: 'USD' },
     ],
   },
 };
@@ -256,8 +256,8 @@ function breadcrumb(items) {
 const routes = [
   {
     path: '/',
-    title: 'OSHA Safety Walkthrough, Piedmont Triad NC | GigLine',
-    description: "Safety becomes the thing you'll get to. On-site OSHA walkthroughs for NC manufacturers & warehouses. 48-hour report, from $1,300.",
+    title: 'OSHA Safety & Documentation Readiness | GigLine Safety & Compliance',
+    description: 'On-site OSHA safety walkthroughs and documentation readiness reviews for small NC manufacturers, warehouses, contractors, and fleets. Combined Compliance Readiness Visit starts at $2,500.',
     canonical: '/',
     schemas: [
       LOCAL_BUSINESS,
@@ -356,7 +356,7 @@ const routes = [
           { '@type': 'ListItem', position: 1, item: { '@type': 'Service', name: 'Compliance Readiness Visit', description: 'Combined on-site walkthrough and OSHA Documentation Readiness Review delivered as a single readiness report. Recommended starting point.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '2500', priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 2, item: { '@type': 'Service', name: 'Safety Walkthrough & Top 10 Fixes Report', description: 'A structured on-site review of common OSHA exposure areas with a Top 10 priority report.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '1300', priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 3, item: { '@type': 'Service', name: 'OSHA Documentation Readiness Review', description: DOC_REVIEW_DESCRIPTION, provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: DOC_REVIEW_PRICE_NUM, priceCurrency: 'USD' } } },
-          { '@type': 'ListItem', position: 4, item: { '@type': 'Service', name: 'Incident Review & Corrective Action Support', description: 'Post-incident review, OSHA recordability determination, and corrective action documentation.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '1500', priceCurrency: 'USD' } } },
+          { '@type': 'ListItem', position: 4, item: { '@type': 'Service', name: 'Corrective Action Implementation', description: 'Hands-on close-out of selected findings surfaced by a Documentation Readiness Review or Compliance Readiness Visit. Custom quote, most projects begin at $2,500.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '2500', priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 5, item: { '@type': 'Service', name: 'Safety Control System Buildout', description: 'Four-binder command system + digital folder architecture, training matrix, SDS organization & corrective action tracker. Starting at $4,500.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '4500', priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 6, item: { '@type': 'Service', name: 'Corrective Action Implementation', description: 'Hands-on close-out of selected findings surfaced by a Documentation Readiness Review or Compliance Readiness Visit. Custom quote, most projects begin at $2,500.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '2500', priceCurrency: 'USD' } } },
           { '@type': 'ListItem', position: 7, item: { '@type': 'Service', name: 'Ongoing Safety Support', description: 'Recurring monthly safety support for small employers, one scheduled on-site visit, corrective-action tracker updates, records review, and management report.', provider: { '@id': `${BASE_URL}/#business` }, areaServed: 'North Carolina', offers: { '@type': 'Offer', price: '1850', priceCurrency: 'USD' } } },
@@ -372,8 +372,8 @@ const routes = [
       breadcrumb([{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }]),
     ],
     content: `
-      <h1>OSHA-Readiness Support for Small Industrial Operations</h1>
-      <p>GigLine helps manufacturers, warehouses, contractors, and fleet operations identify visible safety hazards, documentation gaps, and inspection-readiness issues before they become citations, insurance problems, or customer-audit failures.</p>
+      <h1>Know what needs attention. Know what to fix first.</h1>
+      <p>Start with a focused floor review, a documentation review, or a combined Compliance Readiness Visit. If gaps are identified, your team can address them internally or request separately scoped implementation support.</p>
       <p><em>Built for small operations that need practical safety support without hiring a full-time safety manager.</em></p>
       <h2>Not sure where to start?</h2>
       <p>Take the free 90-Second Safety Check, six yes-or-no questions, immediate risk score, no email required to start. Ready for a professional review? <a href="/intake?service=compliance-readiness-visit">Schedule a Compliance Readiness Visit</a>.</p>
@@ -386,8 +386,6 @@ const routes = [
       <p>On-site walkthrough (1–3 hours). Photo-documented hazard findings. CFR citations + estimated penalty exposure based on OSHA published maximums. Top 10 Fixes report, RED / AMBER / GREEN priority. Delivered within 48 hours.</p>
       <h3>OSHA Documentation Readiness Review, Starting at ${DOC_REVIEW_PRICE_LABEL}</h3>
       <p>Structured review of written programs, training records, OSHA logs, inspection records, and SDS compliance. 53-item checklist across seven OSHA categories.</p>
-      <h3>Incident Review & Corrective Action Support, Starting at $1,500</h3>
-      <p>Post-injury or post-near-miss response. Root cause analysis. OSHA recordability determination. OSHA 301 completion. Corrective action plan.</p>
       <h3>Corrective Action Implementation, From $2,500</h3>
       <p>Hands-on close-out for gaps identified in a Documentation Readiness Review or Compliance Readiness Visit. GigLine writes the programs you are missing, organizes evidence, and coordinates corrective actions until findings close. Scoped per engagement.</p>
       <h2>GigLine Safety Control System Buildout, Starting at $4,500</h2>
@@ -482,7 +480,46 @@ const routes = [
     content: `
       <h1>NC DOL Free Safety Consultation vs. a Private Consultant</h1>
       <p>North Carolina offers small employers confidential, no-cost workplace safety consultation. This page compares the NC DOL On-Site Consultation Program with a privately scoped GigLine engagement so Piedmont Triad manufacturers, warehouses, contractors, and fleet operations can choose the right fit.</p>
+      <h2>Let's start with the truth about the free program</h2>
+      <p>The free program is genuinely free and genuinely useful. It is not a sales funnel, and it is not a trap. For many small employers it is the right first call. The question is what you need: a compliance check, or a fixes-and-proof engagement built around your schedule and your documentation.</p>
+      <h2>What the NC DOL consultation program provides</h2>
+      <ul>
+        <li>Confidential, no-cost on-site safety and health surveys for small, high-hazard employers in North Carolina.</li>
+        <li>Hazard findings with abatement guidance — no citations and no penalties for hazards found through the program.</li>
+        <li>Access to free written programs, checklists, and training materials.</li>
+        <li>A scheduled visit with a state consultant, typically delivered on a queue that can run weeks to months depending on demand.</li>
+      </ul>
+      <h2>What employers agree to when they use the program</h2>
+      <ul>
+        <li>Correct serious hazards identified during the survey within agreed timeframes, documented as corrections.</li>
+        <li>Allow the consultant to involve employees in the walkthrough.</li>
+        <li>Post or share results per program rules while corrections are in progress.</li>
+      </ul>
+      <h2>Where GigLine fits</h2>
+      <ul>
+        <li><strong>Fixed quotes, fast scheduling</strong> — a scoped floor visit priced before you commit, typically scheduled in days, not months.</li>
+        <li><strong>Documentation readiness</strong> — written programs, OSHA 300 logs, HazCom binders, LOTO procedures, and training records built or corrected, not just flagged.</li>
+        <li><strong>Corrective action implementation</strong> — the fix list comes with photos, priorities, and help getting the fixes done.</li>
+        <li><strong>Proof for insurers, customers, and OSHA</strong> — a paper trail that shows the floor, the findings, and the fixes.</li>
+      </ul>
+      <h2>Side-by-side comparison</h2>
+      <ul>
+        <li><strong>Cost:</strong> NC DOL — free. GigLine — fixed quote per engagement, stated before scheduling.</li>
+        <li><strong>Scheduling:</strong> NC DOL — state consultant queue, often weeks to months. GigLine — typically days.</li>
+        <li><strong>Scope:</strong> NC DOL — hazard survey with abatement plan. GigLine — hazard survey plus documentation build and corrective-action implementation.</li>
+        <li><strong>Citations:</strong> neither reports hazards to OSHA enforcement; both are confidential.</li>
+        <li><strong>Deliverable:</strong> NC DOL — findings and abatement guidance. GigLine — findings, priorities, written documentation, and proof.</li>
+      </ul>
+      <h2>Which option fits your operation?</h2>
+      <ul>
+        <li><strong>Consider NC DOL when:</strong> budget is the constraint, you can wait for a queue, and you have someone in-house who can turn findings into written programs and corrections.</li>
+        <li><strong>Consider GigLine when:</strong> you need the visit scheduled now, you need written programs and records brought to ready, or you want a single accountable partner from findings through fixes to proof.</li>
+      </ul>
+      <h2>My honest recommendation</h2>
+      <p>If the free program fits your timeline and your in-house capability, use it — I would rather you get the survey done than wait on it. If you are staring down an inspection date, a contract requirement, or a documentation gap nobody has time to close, that is where a scoped private engagement earns its price.</p>
       <p>Read the official NC DOL consultation program details at <a href="https://www.labor.nc.gov/occupational-safety-and-health-consultation-program">labor.nc.gov</a>. GigLine Safety &amp; Compliance is an independent private consultancy and does not represent OSHA or the North Carolina Department of Labor.</p>
+      <h2>Need help deciding where to start?</h2>
+      <p>A <a href="/services/compliance-readiness-visit">Compliance Readiness Visit</a> is the fixed-price starting point: one visit, findings with photos, priorities, and a fix list. No guesswork about what to fix or why.</p>
     `,
   },
   {
@@ -511,11 +548,53 @@ const routes = [
       <p>GigLine Safety &amp; Compliance, (336) 329-8899</p>
     `,
   },
+  // ── GL-FIX duplicate-title: /hazcom, /privacy-policy and /terms-of-service
+  // are real React routes but had no prerendered HTML, so the host served the
+  // homepage build file for all three (same title, description, canonical).
+  // Each now gets its own prerendered page with a unique title/description.
   {
     path: '/hazcom',
-    title: 'HazCom Starter Pack, $29 | GigLine Safety & Compliance',
-    description: "HazCom Starter Pack, $29. Written HazCom program, SDS binder checklist, and training log. 11 pages. Fixes OSHA's #1 citation in general industry.",
-    canonical: '/hazcom',
+    title: 'HazCom Compliance — Written Program, SDS Binder & Training | GigLine',
+    description: "Hazard Communication (29 CFR 1910.1200) resources: written HazCom program, SDS binder checklist, and training log. Start with the $29 HazCom Starter Pack.",
+    canonical: '/hazcom-starter-pack',
+    schemas: [LOCAL_BUSINESS],
+    content: `
+      <h1>Hazard Communication (HazCom) Compliance</h1>
+      <p>HazCom is OSHA's #1 most-cited standard in general industry (29 CFR 1910.1200). The three pieces inspectors ask for first: a written program, an accessible SDS binder, and training records.</p>
+      <p>The <a href="/hazcom-starter-pack">HazCom Starter Pack, $29</a> gives you all three templates in one download — fill in your company name, print, done.</p>
+      <p>For a full floor-and-files review, see the <a href="/services/compliance-readiness-visit">Compliance Readiness Visit</a>.</p>
+      <p>GigLine Safety &amp; Compliance, (336) 329-8899, vince@giglinecompliance.com</p>
+    `,
+  },
+  {
+    path: '/privacy-policy',
+    title: 'Privacy Policy | GigLine Safety & Compliance',
+    description: 'How GigLine Safety & Compliance collects, uses, and protects the information you provide through this website.',
+    canonical: '/privacy-policy',
+    schemas: [],
+    content: `
+      <h1>Privacy Policy</h1>
+      <p>GigLine engagements are private by default. This page describes how information submitted through this website is collected and used.</p>
+      <p>The full interactive privacy policy is available in the app. Questions: vince@giglinecompliance.com or (336) 329-8899.</p>
+    `,
+  },
+  {
+    path: '/terms-of-service',
+    title: 'Terms of Service | GigLine Safety & Compliance',
+    description: 'Terms of service for GigLine Safety & Compliance — scope of services, payment, and engagement terms.',
+    canonical: '/terms-of-service',
+    schemas: [],
+    content: `
+      <h1>Terms of Service</h1>
+      <p>Terms governing engagements with GigLine Safety & Compliance, a private safety consultancy based in Kernersville, NC.</p>
+      <p>The full interactive terms are available in the app. Questions: vince@giglinecompliance.com or (336) 329-8899.</p>
+    `,
+  },
+  {
+    path: '/hazcom-starter-pack',
+    title: 'HazCom Starter Pack — $29 | GigLine Safety & Compliance',
+    description: "HazCom Starter Pack — $29. Written HazCom program, SDS binder checklist, and training log. 11 pages. Fixes OSHA's #1 citation in general industry.",
+    canonical: '/hazcom-starter-pack',
     schemas: [LOCAL_BUSINESS],
     content: `
       <h1>HazCom Starter Pack, $29</h1>
@@ -631,6 +710,248 @@ const routes = [
       <h3>Can GigLine guarantee OSHA compliance?</h3><p>No responsible consultant can guarantee that every hazard will be identified, that every incident will be prevented, or that an employer will never receive a citation.</p>
 
       <p><strong>Stop restarting your safety program every time something happens.</strong> Vince Lawrence · GigLine Safety &amp; Compliance · (336) 329-8899 · vince@giglinecompliance.com</p>
+    `,
+  },
+  {
+    path: '/citation-proof-kits',
+    title: 'Citation-Proof Kit Series | GigLine Safety & Compliance',
+    description: 'Five practical compliance-control kits for small manufacturers, warehouses, contractors, and fleet operations. Turn scattered safety activity into inspection-ready proof — before OSHA, an insurer, or a customer asks for it.',
+    canonical: '/citation-proof-kits',
+    schemas: [
+      LOCAL_BUSINESS,
+      {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        name: 'Citation-Proof Kit Series',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, item: { '@type': 'Product', name: 'Machine-Specific LOTO Readiness Kit', url: `${BASE_URL}/citation-proof-kits/loto-readiness-kit`, offers: { '@type': 'Offer', price: '150', priceCurrency: 'USD' } } },
+          { '@type': 'ListItem', position: 2, item: { '@type': 'Product', name: 'Forklift / PIT Readiness Kit', url: `${BASE_URL}/citation-proof-kits/forklift-pit-readiness-kit`, offers: { '@type': 'Offer', price: '150', priceCurrency: 'USD' } } },
+          { '@type': 'ListItem', position: 3, item: { '@type': 'Product', name: 'HazCom Pro Kit', url: `${BASE_URL}/citation-proof-kits/hazcom-pro-kit`, offers: { '@type': 'Offer', price: '150', priceCurrency: 'USD' } } },
+          { '@type': 'ListItem', position: 4, item: { '@type': 'Product', name: 'Incident-to-Correction Kit', url: `${BASE_URL}/citation-proof-kits/incident-to-correction-kit`, offers: { '@type': 'Offer', price: '150', priceCurrency: 'USD' } } },
+          { '@type': 'ListItem', position: 5, item: { '@type': 'Product', name: 'New Hire Safety Orientation Kit', url: `${BASE_URL}/citation-proof-kits/new-hire-orientation-kit`, offers: { '@type': 'Offer', price: '150', priceCurrency: 'USD' } } },
+        ],
+      },
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Citation-Proof Kits', path: '/citation-proof-kits' }]),
+    ],
+    content: `
+      <h1>Five kits that turn scattered safety activity into inspection-ready proof.</h1>
+      <p>Practical compliance-control kits for small manufacturers, warehouses, contractors, and fleet operations that need inspection-ready proof before OSHA, an insurer, customer, or owner asks for it.</p>
+      <p>Most safety problems do not start with a lack of effort. They start when the work was done, but the proof is missing, weak, outdated, or does not match the floor. Every kit runs on the same method — the GigLine Proof Gap Engine™: Score where you stand, Sort every gap by type, Fix in the right order, and Pull the records that get handed over first.</p>
+      <ul>
+        <li><a href="/citation-proof-kits/loto-readiness-kit">Machine-Specific LOTO Readiness Kit</a> — Starting at $150. Build machine-specific lockout procedures your team can follow and verify. 29 CFR 1910.147.</li>
+        <li><a href="/citation-proof-kits/forklift-pit-readiness-kit">Forklift / PIT Readiness Kit</a> — Starting at $150. Know exactly who is cleared to operate which truck, and when their next evaluation is due. 29 CFR 1910.178(l).</li>
+        <li><a href="/citation-proof-kits/hazcom-pro-kit">HazCom Pro Kit</a> — Starting at $150. Turn scattered SDS, chemical inventory, and training records into a controlled program. 29 CFR 1910.1200.</li>
+        <li><a href="/citation-proof-kits/incident-to-correction-kit">Incident-to-Correction Kit</a> — Starting at $150. Close the loop on every incident, near miss, and hazard report, with proof it got fixed.</li>
+        <li><a href="/citation-proof-kits/new-hire-orientation-kit">New Hire Safety Orientation Kit</a> — Starting at $150. Prove every new hire was oriented, restricted, equipped, and released before they touched a machine.</li>
+      </ul>
+      <p>Each kit is available as a Digital Compliance Kit ($150), a Compliance Control System ($300), or an Inspector-Ready Binder Edition ($600, physical binder shipped to your facility).</p>
+      <p>Also available: the <a href="/hazcom-starter-pack">HazCom Starter Pack</a> — an $29 entry-level written program, SDS binder checklist, and training log.</p>
+      <p>GigLine Safety &amp; Compliance — (336) 329-8899</p>
+    `,
+  },
+  {
+    path: '/citation-proof-kits/loto-readiness-kit',
+    title: 'Machine-Specific LOTO Readiness Kit | Machine-Specific Energy-Control Documentation & Self-Audit System | GigLine Safety & Compliance',
+    description: 'Build machine-specific LOTO proof your team can actually follow on the floor. This kit walks a non-expert through every required element of 29 CFR 1910.147, machine by machine, with photo isolation maps and a 0–100 self-audit. Starting at $150.',
+    canonical: '/citation-proof-kits/loto-readiness-kit',
+    schemas: [
+      LOCAL_BUSINESS,
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: 'Machine-Specific LOTO Readiness Kit',
+        description: 'Machine-Specific Energy-Control Documentation & Self-Audit System covering 29 CFR 1910.147. Includes the Machine-Specific Procedure Builder™, Photo Lockout Map™, and Citation-Proof Score™.',
+        brand: { '@type': 'Brand', name: 'GigLine Safety & Compliance' },
+        offers: { '@type': 'AggregateOffer', lowPrice: '150', highPrice: '600', priceCurrency: 'USD', offerCount: '3' },
+      },
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Citation-Proof Kits', path: '/citation-proof-kits' }, { name: 'LOTO Readiness Kit', path: '/citation-proof-kits/loto-readiness-kit' }]),
+    ],
+    content: `
+      <h1>Build machine-specific LOTO proof your team can actually follow on the floor.</h1>
+      <p>Machine-Specific Energy-Control Documentation &amp; Self-Audit System — 29 CFR 1910.147.</p>
+      <p>OSHA cites employers for missing machine-specific lockout procedures more than any other 1910.147 failure. A one-page policy that says "lock out equipment before servicing" does not satisfy the standard — (c)(4)(i) requires a documented procedure for each machine, and (c)(4)(ii) defines the exact elements it must contain.</p>
+      <p>This kit walks a non-expert through every required element, machine by machine, with photo isolation maps (Photo Lockout Map™), a 0–100 self-audit mapped to the CFR sub-paragraphs OSHA cites (Citation-Proof Score™), and the exact sequence of documents an inspector asks for first.</p>
+      <h2>What's included</h2>
+      <ul>
+        <li>Written Energy-Control Program (Form A) — (c)(1)</li>
+        <li>Machine-specific procedures with Photo Lockout Maps — (c)(4)(i)(ii)</li>
+        <li>Periodic Inspection Certification (Form B) — (c)(6)</li>
+        <li>Training Certification Log (Form C) — (c)(7)(iv)</li>
+        <li>Lock &amp; Tag Assignment Register (Form D) — (c)(5)</li>
+        <li>Two fully worked examples — a 50-ton hydraulic press and a Haas VF-2 CNC</li>
+      </ul>
+      <h2>Pricing</h2>
+      <p>Digital Compliance Kit — $150. Compliance Control System — $300. Inspector-Ready Binder Edition — $600 (physical binder shipped).</p>
+      <h2>FAQ</h2>
+      <h3>Do I need a separate procedure for every machine?</h3>
+      <p>Yes, if the machine has different energy sources, isolation points, or hazard controls. OSHA is explicit under 1910.147(c)(4) — procedures must be specific enough that an authorized employee can perform the isolation. Generic templates are the #1 LOTO citation.</p>
+      <h3>How does the Citation-Proof Score™ work?</h3>
+      <p>It's a 0–100 rubric graded against the ten LOTO line items OSHA actually cites, each mapped to a specific CFR sub-paragraph. Under 50 means a citation is likely; 90+ is Citation-Proof. It is a readiness self-assessment, not a legal certification.</p>
+      <p>GigLine Safety &amp; Compliance — (336) 329-8899</p>
+    `,
+  },
+  {
+    path: '/citation-proof-kits/forklift-pit-readiness-kit',
+    title: 'Forklift / PIT Readiness Kit | Forklift Compliance Control System | GigLine Safety & Compliance',
+    description: 'Know exactly who is cleared to operate which truck, and when their next evaluation is due. Turns forklift compliance from a stack of certificates into a running control system under 29 CFR 1910.178(l). Starting at $150.',
+    canonical: '/citation-proof-kits/forklift-pit-readiness-kit',
+    schemas: [
+      LOCAL_BUSINESS,
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: 'Forklift / PIT Readiness Kit',
+        description: 'Forklift Compliance Control System covering 29 CFR 1910.178(l). Includes the Operator / Truck Authorization Matrix and Operator Readiness Index™.',
+        brand: { '@type': 'Brand', name: 'GigLine Safety & Compliance' },
+        offers: { '@type': 'AggregateOffer', lowPrice: '150', highPrice: '600', priceCurrency: 'USD', offerCount: '3' },
+      },
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Citation-Proof Kits', path: '/citation-proof-kits' }, { name: 'Forklift / PIT Readiness Kit', path: '/citation-proof-kits/forklift-pit-readiness-kit' }]),
+    ],
+    content: `
+      <h1>Know exactly who is cleared to operate which truck, and when their next evaluation is due.</h1>
+      <p>Forklift Compliance Control System — 29 CFR 1910.178(l).</p>
+      <p>Most facilities can produce a stack of forklift certificates. Almost none can show which operator is cleared on which class of truck, when their three-year re-evaluation is due, or whether their last workplace evaluation was actually observed, not just signed.</p>
+      <p>This kit turns forklift compliance from a stack of certificates into a running control system: authorization, evaluation, re-evaluation, refresher triggers, daily inspection, and trainer credentials, all in one place, via the Operator / Truck Authorization Matrix.</p>
+      <h2>What's included</h2>
+      <ul>
+        <li>Operator certifications tied to truck class(es)</li>
+        <li>Workplace evaluations — initial and periodic</li>
+        <li>Three-year re-evaluation tracker with due dates</li>
+        <li>Refresher trigger log (near miss, damage, accident, new equipment)</li>
+        <li>Pre-shift inspection record</li>
+        <li>Trainer qualification record</li>
+      </ul>
+      <h2>Pricing</h2>
+      <p>Digital Compliance Kit — $150. Compliance Control System — $300. Inspector-Ready Binder Edition — $600 (physical binder shipped).</p>
+      <h2>FAQ</h2>
+      <h3>Is a wallet card enough proof?</h3>
+      <p>No. The wallet card proves training happened at some point. It does not prove workplace evaluation, does not track the three-year re-evaluation, and does not tie the operator to the specific truck class(es) they operate. OSHA asks for all four.</p>
+      <h3>What triggers a refresher?</h3>
+      <p>1910.178(l)(4)(i) lists them: unsafe operation observed, involvement in an accident or near miss, a workplace evaluation showing the operator needs additional training, assignment to a different type of truck, or a change in workplace conditions that could affect safe operation.</p>
+      <p>GigLine Safety &amp; Compliance — (336) 329-8899</p>
+    `,
+  },
+  {
+    path: '/citation-proof-kits/hazcom-pro-kit',
+    title: 'HazCom Pro Kit | Chemical Inventory, SDS, Labeling & Training Control System | GigLine Safety & Compliance',
+    description: 'Turn a scattered SDS drawer and a mystery chemical list into a controlled program you can hand OSHA in ten minutes. Covers 29 CFR 1910.1200 — the #1 cited standard in general industry. Starting at $150.',
+    canonical: '/citation-proof-kits/hazcom-pro-kit',
+    schemas: [
+      LOCAL_BUSINESS,
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: 'HazCom Pro Kit',
+        description: 'Chemical Inventory, SDS, Labeling & Training Control System covering 29 CFR 1910.1200. Includes the Chemical Control Index™ and SDS Gap Severity Grid™.',
+        brand: { '@type': 'Brand', name: 'GigLine Safety & Compliance' },
+        offers: { '@type': 'AggregateOffer', lowPrice: '150', highPrice: '600', priceCurrency: 'USD', offerCount: '3' },
+      },
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Citation-Proof Kits', path: '/citation-proof-kits' }, { name: 'HazCom Pro Kit', path: '/citation-proof-kits/hazcom-pro-kit' }]),
+    ],
+    content: `
+      <h1>Turn a scattered SDS drawer and a mystery chemical list into a controlled program you can hand OSHA in ten minutes.</h1>
+      <p>Chemical Inventory, SDS, Labeling &amp; Training Control System — 29 CFR 1910.1200.</p>
+      <p>HazCom is the #1 cited standard in general industry, not because chemicals are rare, but because the paperwork trailing behind them almost never lines up. The inventory says one thing, the SDS binder says another, and half the labels are missing.</p>
+      <p>This kit builds a chemical program you can actually control: every chemical inventoried, every SDS current, every label verified, every employee trained, and every new chemical routed through an approval step before it comes in the door, via the Chemical Control Index™ and SDS Gap Severity Grid™.</p>
+      <h2>What's included</h2>
+      <ul>
+        <li>Written HazCom program aligned to 1910.1200</li>
+        <li>Chemical inventory with approval trail</li>
+        <li>SDS index with severity-graded gap list</li>
+        <li>Container label audit</li>
+        <li>HazCom training certification</li>
+        <li>New chemical approval form</li>
+      </ul>
+      <h2>Pricing</h2>
+      <p>Digital Compliance Kit — $150. Compliance Control System — $300. Inspector-Ready Binder Edition — $600 (physical binder shipped).</p>
+      <h2>FAQ</h2>
+      <h3>Do I need an SDS for every chemical, even office cleaners?</h3>
+      <p>Consumer products used in a way that matches consumer use are generally exempt, but the moment a product is used in higher frequency, larger quantity, or a different way than a consumer would use it, the exemption drops. Safer default: keep the SDS.</p>
+      <h3>What counts as a "secondary container"?</h3>
+      <p>Any container the chemical was transferred into from the original manufacturer container — spray bottles, buckets, dispensers, dip tanks. Under 1910.1200(f)(6), these must be labeled unless the transferring employee uses the entire amount within their own shift.</p>
+      <p>GigLine Safety &amp; Compliance — (336) 329-8899</p>
+    `,
+  },
+  {
+    path: '/citation-proof-kits/incident-to-correction-kit',
+    title: 'Incident-to-Correction Kit | Incident, Near-Miss & Corrective Action Control System | GigLine Safety & Compliance',
+    description: 'Close the loop on every incident, near miss, and hazard report, with proof it actually got fixed. A controlled sequence: report, investigate, correct, verify, communicate, and prevent repeat. Starting at $150.',
+    canonical: '/citation-proof-kits/incident-to-correction-kit',
+    schemas: [
+      LOCAL_BUSINESS,
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: 'Incident-to-Correction Kit',
+        description: 'Incident, Near-Miss & Corrective Action Control System. Includes the Correction Closure Index™ and Root Cause Ladder™.',
+        brand: { '@type': 'Brand', name: 'GigLine Safety & Compliance' },
+        offers: { '@type': 'AggregateOffer', lowPrice: '150', highPrice: '600', priceCurrency: 'USD', offerCount: '3' },
+      },
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Citation-Proof Kits', path: '/citation-proof-kits' }, { name: 'Incident-to-Correction Kit', path: '/citation-proof-kits/incident-to-correction-kit' }]),
+    ],
+    content: `
+      <h1>Close the loop on every incident, near miss, and hazard report, with proof it actually got fixed.</h1>
+      <p>Incident, Near-Miss &amp; Corrective Action Control System.</p>
+      <p>Most facilities are decent at writing the incident report. Almost none can show what changed as a result. The corrective action is either verbal, undocumented, or "in progress" for six months. That gap is what turns a near miss into the next injury.</p>
+      <p>This kit takes the reporting-to-closure loop and turns it into a controlled sequence: report, investigate, correct, verify, communicate, and prevent repeat, using the Correction Closure Index™ and Root Cause Ladder™. No item stays open without an owner and a due date.</p>
+      <h2>What's included</h2>
+      <ul>
+        <li>Incident report form and near-miss report form</li>
+        <li>Witness statement template and photo evidence log</li>
+        <li>Root cause worksheet</li>
+        <li>Corrective action tracker (owner, due date, closure evidence)</li>
+        <li>Verification-of-correction form</li>
+        <li>Employee communication record</li>
+      </ul>
+      <h2>Pricing</h2>
+      <p>Digital Compliance Kit — $150. Compliance Control System — $300. Inspector-Ready Binder Edition — $600 (physical binder shipped).</p>
+      <h2>FAQ</h2>
+      <h3>Is this a 300-log replacement?</h3>
+      <p>No. This kit sits on top of your OSHA 300/300A/301 recordkeeping. The 300 log records what qualifies. This kit tracks what got fixed, which is what an inspector, insurer, or plaintiff's attorney will ask about next.</p>
+      <h3>Why include near misses?</h3>
+      <p>Because near-miss investigation is where recordable prevention actually happens. A pattern of near misses at the same task is the exact evidence trail behind "the employer knew or should have known" — the phrase inside most General Duty Clause citations.</p>
+      <p>GigLine Safety &amp; Compliance — (336) 329-8899</p>
+    `,
+  },
+  {
+    path: '/citation-proof-kits/new-hire-orientation-kit',
+    title: 'New Hire Safety Orientation Kit | Day-One Safety Readiness & Authorization Control System | GigLine Safety & Compliance',
+    description: 'Prove every new hire was oriented, restricted, equipped, and released before they touched a machine. A defined sequence with a paper trail at each step. Starting at $150.',
+    canonical: '/citation-proof-kits/new-hire-orientation-kit',
+    schemas: [
+      LOCAL_BUSINESS,
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: 'New Hire Safety Orientation Kit',
+        description: 'Day-One Safety Readiness & Authorization Control System. Includes the Day-One Readiness Index™ and Restricted Until Released™ Matrix.',
+        brand: { '@type': 'Brand', name: 'GigLine Safety & Compliance' },
+        offers: { '@type': 'AggregateOffer', lowPrice: '150', highPrice: '600', priceCurrency: 'USD', offerCount: '3' },
+      },
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Citation-Proof Kits', path: '/citation-proof-kits' }, { name: 'New Hire Safety Orientation Kit', path: '/citation-proof-kits/new-hire-orientation-kit' }]),
+    ],
+    content: `
+      <h1>Prove every new hire was oriented, restricted, equipped, and released before they touched a machine.</h1>
+      <p>Day-One Safety Readiness &amp; Authorization Control System.</p>
+      <p>Most facilities orient new hires. Very few can prove it in the level of detail an inspector, insurer, or defense attorney will want. And almost none document the equipment or task restrictions in place until training and evaluation are complete.</p>
+      <p>This kit runs the new hire through a defined sequence — orient, restrict, equip, train, release, follow up — with a paper trail at each step, using the Day-One Readiness Index™ and Restricted Until Released™ Matrix.</p>
+      <h2>What's included</h2>
+      <ul>
+        <li>Orientation checklist and PPE acknowledgment</li>
+        <li>Emergency action plan orientation</li>
+        <li>Hazard reporting / stop-work card</li>
+        <li>Equipment restriction notice</li>
+        <li>Training matrix placement form</li>
+        <li>7-day follow-up form and 30-day check-in form</li>
+      </ul>
+      <h2>Pricing</h2>
+      <p>Digital Compliance Kit — $150. Compliance Control System — $300. Inspector-Ready Binder Edition — $600 (physical binder shipped).</p>
+      <h2>FAQ</h2>
+      <h3>Isn't this just an HR onboarding form?</h3>
+      <p>HR onboarding proves the employee was hired. This kit proves the employee was oriented to the actual safety hazards of your facility, which is what OSHA, an insurer, or a workers' comp reviewer is going to ask for after any first-90-day incident.</p>
+      <h3>Do I need the follow-ups if the employee is doing fine?</h3>
+      <p>The follow-ups are what document that the employee was doing fine, and that safety concerns, near misses, or restrictions were reviewed at the 7-day and 30-day mark. Skipping them removes the paper trail that protects the facility.</p>
+      <p>GigLine Safety &amp; Compliance — (336) 329-8899</p>
     `,
   },
   {
@@ -807,7 +1128,7 @@ const routes = [
         author: { '@id': `${BASE_URL}/#vince` },
         publisher: { '@id': `${BASE_URL}/#business` },
         mainEntityOfPage: `${BASE_URL}/blog/osha-machine-guarding-checklist-small-manufacturers`,
-        datePublished: '2025-10-14', dateModified: '2026-02-28',
+        datePublished: '2025-10-14', dateModified: '2026-09-21',
         articleSection: 'OSHA Compliance', inLanguage: 'en-US',
       },
       breadcrumb([{ name: 'Home', path: '/' }, { name: 'Blog', path: '/field-notes' }, { name: 'Machine Guarding Checklist', path: '/blog/osha-machine-guarding-checklist-small-manufacturers' }]),
@@ -815,10 +1136,50 @@ const routes = [
     content: `
       <h1>OSHA Machine Guarding Checklist for Small Manufacturers</h1>
       <p>By Vince Lawrence, GigLine Safety &amp; Compliance</p>
-      <p>Machine guarding sits in OSHA's Top 10 most-cited standards every year. This guide walks through what an OSHA inspector actually looks for and what the 2026 penalty exposure is.</p>
-      <h2>The four hazard categories (29 CFR 1910.212)</h2><p>Point of operation, ingoing nip points, rotating parts, and flying chips or sparks. If any of these hazards exists on a machine and can be reached by an employee, a guard is required.</p>
-      <h2>Abrasive wheels (29 CFR 1910.215)</h2><p>Work rest gap ≤ 1/8 inch. Tongue guard gap ≤ 1/4 inch. Ring test every wheel before mounting.</p>
-      <h2>Common citations</h2><p>Bench grinder work rest gaps, unguarded shear points on roll formers, missing chip guards on lathes, and guards removed for jam clearing.</p>
+      <p>Machine guarding sits in OSHA's Top 10 most-cited standards every year. This guide gives you the full walkthrough as a printable, tickable checklist: 33 items across six categories, with CFR citations, penalty exposures, and a supervisor sign-off page. Print it, walk the floor with a pen, and hand it back with the findings.</p>
+      <h2>What OSHA 1910.212 actually says</h2>
+      <p>The general machine guarding standard runs about half a page. Compliance officers reduce it to one sentence: one or more methods of machine guarding shall be provided to protect the operator and other employees in the machine area from hazards such as those created by the point of operation, ingoing nip points, rotating parts, and flying chips and sparks. If a hazard exists and can be reached by an employee, a guard is required.</p>
+      <h2>The four hazard categories OSHA cites</h2>
+      <ul>
+        <li><strong>Point of operation (1910.212(a)(3)(ii))</strong> — where the machine does its work: shearing, bending, punching, cutting. The most-cited sub-part in the standard.</li>
+        <li><strong>Ingoing nip points (1910.212(a)(1), 1910.219)</strong> — rollers, belts, gears, and chain drives that pull fingers, gloves, and clothing in.</li>
+        <li><strong>Rotating and reciprocating parts</strong> — exposed shafts, couplings, set screws, and crank throws.</li>
+        <li><strong>Flying chips and sparks</strong> — lathes, mills, and grinders throwing material that needs chip guards and shields.</li>
+      </ul>
+      <h2>The printable walkthrough checklist (33 items)</h2>
+      <ul>
+        <li><strong>1. Point of Operation (1910.212(a)(3)(ii))</strong> — every press, shear, punch, and cutter has a fixed, interlocked, or presence-sensing guard; two-hand controls are anti-tie-down and require concurrent activation; light curtains are tested weekly with a documented log at the machine.</li>
+        <li><strong>2. Rotating &amp; Reciprocating Parts (1910.212(a)(1), 1910.219)</strong> — shafts, couplings, pulleys, and belt drives guarded; set screws replaced with flush or cup-point fasteners on exposed rotating parts.</li>
+        <li><strong>3. Abrasive Wheels (1910.215)</strong> — work rest gap ≤ 1/8 inch, tongue guard gap ≤ 1/4 inch, ring test before mounting, wheel RPM rated at or above spindle speed.</li>
+        <li><strong>4. Saws, Presses &amp; Cutters (1910.212, 1910.213)</strong> — table saw blade guards and riving knives in place; radial arm saws return automatically; band saw blade enclosures intact.</li>
+        <li><strong>5. Guard Integrity &amp; Bypass Prevention (1910.212(a)(2))</strong> — no guards removed for jam clearing, no zip-tied or bypassed interlocks, guard fasteners all present and tight.</li>
+        <li><strong>6. Documentation &amp; Training (1910.212, 1910.132)</strong> — operators trained on the specific machine hazards, training records on file, guard inspection and maintenance documented.</li>
+      </ul>
+      <p>Any unchecked item at the end of the walk is either a finding waiting to be documented or an active citation risk.</p>
+      <h2>The five citations that trip up small manufacturers</h2>
+      <ol>
+        <li>Bench grinder work rest gaps wider than 1/8 inch.</li>
+        <li>Unguarded shear points on roll formers and press brakes.</li>
+        <li>Missing chip guards on lathes and drill presses.</li>
+        <li>Guards removed for jam clearing and never reinstalled.</li>
+        <li>Bypassed or defeated interlocks on light curtains and gates.</li>
+      </ol>
+      <h2>2026 penalty exposure</h2>
+      <p>Serious or other-than-serious violations run up to $16,550 each under the 2026 OSHA penalty schedule; willful or repeated violations run up to $165,514 each. A single unguarded point of operation found on several machines can be cited per machine, so exposure compounds quickly.</p>
+      <h2>Training and documentation</h2>
+      <p>Physical guards fail the audit if there is no record showing operators knew how to use them. OSHA does not prescribe a training curriculum for machine guarding under 1910.212, but the general duty clause and 1910.132 (PPE hazard assessment) effectively require documented training on the specific hazards of each machine.</p>
+      <h2>The abrasive wheel problem (1910.215)</h2>
+      <p>Bench and pedestal grinders generate more machine guarding citations than any other equipment in general industry. Three geometric requirements, and most shops fail at least one: work rest gap ≤ 1/8 inch, tongue guard gap ≤ 1/4 inch, and a ring test of every wheel before mounting.</p>
+      <h2>The 30-day action plan</h2>
+      <ol>
+        <li>Walk the floor with the checklist and photo every gap.</li>
+        <li>Fix the grinder geometry first — work rest and tongue guard gaps take minutes.</li>
+        <li>Order or fabricate missing guards; document every interim measure.</li>
+        <li>Retrain operators on changed machines and log it.</li>
+        <li>Set a recurring guard-integrity check so guards stay on.</li>
+      </ol>
+      <h2>Get a second pair of eyes</h2>
+      <p>Not sure what to fix first? A <a href="/services/compliance-readiness-visit">Compliance Readiness Visit</a> puts a fixed-price floor walkthrough on the calendar: findings with photos, priorities, and a fix list. No guesswork about what to fix or why.</p>
     `,
   },
   {
@@ -871,12 +1232,51 @@ const routes = [
     content: `
       <h1>OSHA Forklift Inspection Requirements (29 CFR 1910.178)</h1>
       <p>By Vince Lawrence, GigLine Safety &amp; Compliance</p>
-      <p>The powered industrial truck standard (29 CFR 1910.178) is one of OSHA's most-cited every year. Two subsections generate most citations: operator training (l) and inspection logs (q). This guide covers daily pre-shift checks, operator certification requirements, records retention, and traffic controls.</p>
+      <p>The powered industrial truck standard, 29 CFR 1910.178, is one of OSHA's most cited standards year after year. Two subsections generate most citations: operator training (1910.178(l)) and inspection logs (1910.178(q)). Here is what OSHA actually asks for during a forklift-focused inspection, what the daily pre-shift check must cover, how long to keep records, and the 2026 penalty exposure.</p>
+      <h2>What OSHA 1910.178 covers</h2>
+      <p>The standard applies to high-lift trucks, lift trucks, tractors, platform trucks, motorized hand trucks, and other specialized industrial vehicles powered by electric motors or internal combustion engines. It does not apply to vehicles mainly used on public highways or agricultural tractors used in agricultural operations.</p>
+      <h2>Six things a forklift inspector checks first</h2>
+      <ul>
+        <li>Operator certifications for every operator on the clock.</li>
+        <li>The last thirty days of daily inspection logs.</li>
+        <li>Current data plates on every truck in the fleet.</li>
+        <li>Repair records for trucks reported defective — and evidence defective trucks were taken out of service.</li>
+        <li>Refresher training after any incident, near-miss, or unsafe operation.</li>
+        <li>Pedestrian and truck traffic separation on the floor.</li>
+      </ul>
+      <h2>Operator certification, what it actually requires (1910.178(l))</h2>
+      <p>OSHA does not license forklift operators. The employer certifies them. Certification must include three parts: formal instruction, practical training, and an evaluation of performance. Refresher evaluation must be re-performed every three years under 1910.178(l)(4)(iii), and sooner after any incident or observed unsafe operation.</p>
+      <h2>The daily inspection log (1910.178(q)(7))</h2>
+      <p>Pre-shift inspection before every use, split into two phases:</p>
+      <ul>
+        <li><strong>Pre-start, engine off</strong> — tires, forks and retention pin, chains, hoses, overhead guard, data plate legible, fluid levels, seat belt.</li>
+        <li><strong>Start-up and running, engine on</strong> — horn, backup alarm, lights and strobes, steering play, brakes and parking brake, lift and tilt controls, no unusual noises or smells.</li>
+      </ul>
+      <p>Written log, truck ID, date, operator, defects noted. Any defect that makes the truck unsafe removes it from service until repaired.</p>
       <h2>How long to keep forklift inspection records</h2>
       <p>OSHA does not publish a single retention number in 1910.178. In practice: keep daily inspection logs for one year minimum (two is safer), keep operator certifications for the active 3-year cycle plus one prior cycle, and keep repair and out-of-service records for the life of the truck.</p>
-      <h2>Operator certification (1910.178(l))</h2><p>Formal instruction + practical training + evaluation of performance. Evaluation must be re-performed every three years, 1910.178(l)(4)(iii).</p>
-      <h2>Daily inspection logs (1910.178(q)(7))</h2><p>Pre-shift inspection before every use. Written log, truck ID, date, operator, defects noted. Defects that make the truck unsafe remove it from service.</p>
-      <h2>Traffic controls</h2><p>Painted pedestrian lanes, convex mirrors at blind intersections, defined loading zones, and signage. Not prescribed by rule name, but cited under the general duty clause when struck-by hazards exist.</p>
+      <h2>Traffic controls, what OSHA looks for</h2>
+      <p>Struck-by-forklift is one of the top mechanisms of fatality in warehouse operations. OSHA does not prescribe specific engineering controls, but during any inspection with forklift activity the officer will note traffic separation between pedestrians and trucks: painted pedestrian lanes, convex mirrors at blind intersections, defined loading zones, and signage. When struck-by hazards exist and controls are missing, citations come under the general duty clause.</p>
+      <h2>The five forklift citations that hit small warehouses</h2>
+      <ol>
+        <li>No daily pre-shift inspection logs.</li>
+        <li>Operator certifications expired or missing the practical evaluation.</li>
+        <li>No refresher training after an incident or near-miss.</li>
+        <li>Defective trucks left in service after a reported defect.</li>
+        <li>No pedestrian separation in mixed traffic aisles.</li>
+      </ol>
+      <h2>2026 penalty exposure</h2>
+      <p>Serious violations run up to $16,550 each under the 2026 OSHA penalty schedule; willful or repeated violations run up to $165,514 each. Missing logs and lapsed certifications are the two citations that show up in pairs — and both are preventable with paperwork, not capital.</p>
+      <h2>30-day forklift cleanup plan</h2>
+      <ol>
+        <li>Pull every operator's certification file; calendar the 3-year re-evaluations.</li>
+        <li>Start daily written pre-shift inspections with a simple two-phase log.</li>
+        <li>Tag out any truck with an open defect until repaired.</li>
+        <li>Paint or re-paint pedestrian lanes at blind intersections; add convex mirrors.</li>
+        <li>Re-evaluate any operator involved in an incident or near-miss, and log it.</li>
+      </ol>
+      <h2>Get a second pair of eyes</h2>
+      <p>A <a href="/services/compliance-readiness-visit">Compliance Readiness Visit</a> reviews certifications, logs, and traffic controls on the floor and hands you a prioritized fix list. Fixed quote. No surprises.</p>
     `,
   },
   {
@@ -1175,6 +1575,42 @@ const routes = [
       <h1>2026 Heat Stress Action Template</h1>
       <p>Free heat stress prevention template for NC manufacturing and warehouse operations. Daily heat check with three trigger levels, required controls, and HIIPP checklist.</p>
       <p>GigLine Safety &amp; Compliance, (336) 329-8899</p>
+    `,
+  },
+  // ── GL-FIX desc-missing: /sample-corrective-action-log was previously a
+  // vercel.json rewrite straight to the PDF asset, so crawlers saw a PDF with
+  // no title, description, or canonical. It is now a real pre-rendered HTML
+  // page; the PDF stays downloadable at /assets/GigLine_Sample_Corrective_Action_Log.pdf.
+  // (Vercel serves the filesystem before rewrites, so once this build artifact
+  // exists the HTML wins and the old PDF rewrite becomes a fallback only.)
+  {
+    path: '/sample-corrective-action-log',
+    title: 'Sample Corrective Action Log — Free PDF Download | GigLine Safety & Compliance',
+    description: 'A real corrective action log from a North Carolina metals fabrication facility, redacted. Findings, CFR citations, priorities, target dates. Free PDF, no form required.',
+    canonical: '/sample-corrective-action-log',
+    schemas: [
+      LOCAL_BUSINESS,
+      breadcrumb([{ name: 'Home', path: '/' }, { name: 'Resources', path: '/resources' }, { name: 'Sample Corrective Action Log', path: '/sample-corrective-action-log' }]),
+    ],
+    content: `
+      <h1>Sample Corrective Action Log</h1>
+      <p>This is the corrective-action section of a real GigLine engagement report — a metals fabrication facility in North Carolina, client name and facility identifiers redacted. The findings, CFR citations, priority ratings, and timelines are accurate to the engagement. Nothing else has been altered.</p>
+      <p><a href="/assets/GigLine_Sample_Corrective_Action_Log.pdf">Download the Sample Corrective Action Log (PDF) &rarr;</a></p>
+      <p>No form. No email required. The PDF opens in a new tab.</p>
+      <h2>What&rsquo;s inside the log</h2>
+      <ul>
+        <li>Each finding photographed on the floor and documented against the CFR standard OSHA cites for it</li>
+        <li>Priority ratings — RED for urgent, AMBER for near-term, GREEN for what the team is doing well</li>
+        <li>A corrective action for every finding, with an owner and a target date</li>
+        <li>A 30 / 60 / 90-day remediation schedule with owners, not a wish list</li>
+      </ul>
+      <h2>Why I publish this</h2>
+      <p>Most safety consultants hide the deliverable until after you sign. I don&rsquo;t. You should see exactly what you&rsquo;re buying before you spend a dollar. This log is part of the written report your team receives within 48 hours of the walkthrough.</p>
+      <h2>Want a report like this for your own floor?</h2>
+      <p>The full deliverable — cover, methodology, coverage summary, appendices, and a printable action tracker — comes with a <a href="/services/compliance-readiness-visit">Compliance Readiness Visit</a>. It combines the on-site walkthrough and a full documentation review in one visit, one consolidated report, one prioritized corrective action plan. Starts at $2,500.</p>
+      <p><a href="/intake">Request a Compliance Readiness Visit &rarr;</a> or call (336) 329-8899.</p>
+      <p>Prefer to start smaller? See the full <a href="/sample-report">Sample Compliance Report</a> or the rest of the <a href="/resources">resources page</a>.</p>
+      <p>GigLine Safety &amp; Compliance &middot; Veteran-owned &middot; Kernersville, NC &middot; (336) 329-8899</p>
     `,
   },
   {
@@ -2020,7 +2456,7 @@ const fieldNotes = [
   { slug: 'hot-work-welding', title: 'Hot Work, Welding & Cutting', desc: 'OSHA Subpart Q. Hot work permits, fire watch, compressed gas cylinder safety, ventilation, and welding PPE for small NC fab shops.' },
   { slug: 'abrasive-wheels', title: 'Abrasive Wheels & Bench Grinders', desc: 'Tongue guards within 1/4 inch, work rests within 1/8 inch, ring testing, RPM matching, 29 CFR 1910.215 in plain language.', customSeoTitle: 'OSHA Bench Grinder Requirements: Work Rest 1/8", Tongue Guard 1/4" | GigLine' },
   { slug: 'ladder-safety', title: 'Portable Ladder Safety', desc: 'OSHA portable ladder requirements. Inspection, 4-to-1 angle, 3-foot extension above landing, three-point contact, load rating, 29 CFR 1910.23.' },
-  { slug: 'eye-face-protection', title: 'Eye & Face Protection', desc: 'OSHA Z87.1 eye and face protection requirements, side shields, face shields for grinding and chemical handling, and the PPE hazard assessment, 29 CFR 1910.133.' },
+  { slug: 'eye-face-protection', title: 'Eye & Face Protection', customSeoTitle: 'OSHA Eye & Face Protection Requirements: Z87.1, Side Shields | GigLine', desc: 'OSHA Z87.1 eye and face protection requirements, side shields, face shields for grinding and chemical handling, and the PPE hazard assessment, 29 CFR 1910.133.' },
   { slug: 'trenching-excavation', title: 'Trenching & Excavation', desc: 'OSHA trenching standard (29 CFR 1926.651). Protective systems, competent person, soil classification, egress, and the rules that prevent collapses.' },
   { slug: 'cranes-rigging', title: 'Overhead Cranes & Rigging', desc: 'Daily inspections, annual inspections, sling condition, rated capacity, operator training, OSHA 29 CFR 1910.179 and 1910.184 for fab and metals shops.' },
   { slug: 'nc-osha-vs-federal', title: 'NC State Plan vs. Federal OSHA', desc: 'How North Carolina OSHA differs from federal OSHA. NCDOL inspections, free consultation through BETS, and what changes for Triad operations.' },

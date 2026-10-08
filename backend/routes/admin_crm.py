@@ -13,7 +13,7 @@ from datetime import datetime, timezone
 import uuid
 import logging
 
-from config import db, ADMIN_PASSWORD
+from config import db, ADMIN_PASSWORD, is_admin
 
 router = APIRouter()
 logger = logging.getLogger("gigline")
@@ -50,7 +50,7 @@ class NoteCreate(BaseModel):
 
 # ── Helpers ───────────────────────────────────────────────────────────
 def _require_auth(token: str):
-    if token != ADMIN_PASSWORD:
+    if not is_admin(token):
         raise HTTPException(status_code=401, detail="Unauthorized")
 
 

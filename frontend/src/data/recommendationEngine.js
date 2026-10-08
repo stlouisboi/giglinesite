@@ -732,7 +732,7 @@ export function recommendPathE({ qualifications, primaryGap, answers }) {
     return buildServiceResult({
       slug: 'corrective-action-implementation',
       why:
-        'Ongoing Safety Support fits operations whose corrective actions are already being tracked to closure. You have known open findings, Corrective Action Implementation is the correct next scope.',
+        'Ongoing Safety Support works best once existing gaps are already closed, it is built to maintain a clean system, not create one. Since you have open findings that are not yet tracked to closure, Corrective Action Implementation closes those out first. Afterward, Ongoing Safety Support becomes the right fit to keep things that way.',
       alternativeSlug: 'compliance-readiness-visit',
       pathId: PATH_ID.E,
       answers,

@@ -309,8 +309,8 @@ const BlogForkliftCompliance = () => {
         <div className="container max-w-3xl">
           <div className="border border-[#2A52A0]/20 bg-white rounded-lg p-6 md:p-8 text-center">
             <p className="text-lg font-bold text-[#1C2B2B] mb-2">Not sure your forklift program would survive an inspection?</p>
-            <p className="text-sm text-[#1C2B2B]/60 mb-5">A Safety Walkthrough documents the state of your certifications, inspection logs, and traffic controls before OSHA does, with photos and a fix list in 48 hours.</p>
-            <Link to="/intake" className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-6 py-3 rounded transition-colors">Request a Safety Walkthrough <ArrowRight size={16} /></Link>
+            <p className="text-sm text-[#1C2B2B]/60 mb-5">A Compliance Readiness Visit reviews your forklift controls on the floor and your certifications and inspection logs together. You get photo-documented findings and a prioritized fix list.</p>
+            <Link to="/intake?service=compliance-readiness-visit" className="inline-flex items-center gap-2 bg-[#102A43] hover:bg-[#1F3F80] text-white font-bold px-6 py-3 rounded transition-colors">Request a Compliance Readiness Visit <ArrowRight size={16} /></Link>
           </div>
         </div>
       </section>

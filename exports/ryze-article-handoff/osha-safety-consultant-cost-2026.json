@@ -1,0 +1,51 @@
+{
+  "status": "DRAFT. DO NOT PUBLISH WITHOUT VINCE'S APPROVAL.",
+  "preview_path": "/previews/osha-safety-consultant-cost/",
+  "slug": "how-much-does-an-osha-safety-consultant-cost-in",
+  "title": "How much does an OSHA safety consultant cost in 2026?",
+  "production_meta_title": "OSHA Safety Consultant Cost in 2026 | GigLine",
+  "production_meta_description": "See what a private workplace safety consultant costs in 2026. Compare GigLine walkthrough, documentation review, and combined readiness visit pricing.",
+  "canonical": "Add only after the final production route is confirmed.",
+  "primary_keyword": "osha safety consultant cost",
+  "author": "Vince Lawrence",
+  "copy_source": "The rendered preview is the source of truth for copy, order, pricing, and layout.",
+  "pricing": [
+    {"service":"Safety Walkthrough","price":"From $1,300"},
+    {"service":"Documentation Readiness Review","price":"$1,700"},
+    {"service":"Compliance Readiness Visit","price":"From $2,500","label":"BEST VALUE"},
+    {"service":"Corrective Action Implementation","price":"Custom quoted; most projects begin at $2,500"}
+  ],
+  "primary_action": {
+    "label": "Request a Fixed Compliance Quote",
+    "path": "/intake?service=compliance-readiness-visit"
+  },
+  "secondary_action": {
+    "label": "Compare the Three Diagnostic Options",
+    "path": "/services/compliance-readiness-visit"
+  },
+  "official_sources": [
+    "https://www.labor.nc.gov/occupational-safety-and-health-consultation-program",
+    "https://www.labor.nc.gov/frequently-asked-questions"
+  ],
+  "locked_services": [
+    "Safety Walkthrough",
+    "Documentation Readiness Review",
+    "Compliance Readiness Visit",
+    "Corrective Action Implementation",
+    "OSHA-Ready Control System",
+    "Quarterly Maintenance",
+    "Annual Control Partner"
+  ],
+  "production_schema": ["Article", "FAQPage", "BreadcrumbList"],
+  "preview_controls": ["noindex", "nofollow", "noarchive", "DRAFT PREVIEW label", "not in sitemap"],
+  "related_article_status": "The NC DOL free consultation versus private consultant comparison route does not exist yet. Leave unlinked.",
+  "do_not_use": [
+    "Incident response as a GigLine service",
+    "Claims that the state consultation program moves slower",
+    "Compliance guarantees",
+    "Em dashes",
+    "OSHA certified",
+    "OSHA authorized consultant",
+    "OSHA Outreach Trained"
+  ]
+}

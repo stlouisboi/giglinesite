@@ -184,7 +184,7 @@ const ContactPage = () => {
                 </a>
 
                 <a
-                  href="tel:336-329-8899"
+                  href="tel:+13363298899"
                   className="flex items-start gap-4 group"
                   data-testid="contact-page-phone"
                 >
@@ -194,7 +194,7 @@ const ContactPage = () => {
                   <div>
                     <p className="text-sm text-muted-foreground">Phone</p>
                     <p className="font-medium text-primary group-hover:text-accent transition-colors">
-                      336-329-8899
+                      (336) 329-8899
                     </p>
                   </div>
                 </a>

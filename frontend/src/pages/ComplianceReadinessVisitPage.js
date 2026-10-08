@@ -877,6 +877,20 @@ const ComplianceReadinessVisitPage = () => {
               Start with a Walkthrough Instead
             </Link>
           </div>
+          <p className="text-sm text-[#1C2B2B]/60 mt-6">
+            Compare this visit with the standalone services and typical{' '}
+            <Link
+              to="/blog/how-much-does-an-osha-safety-consultant-cost-in"
+              className="underline underline-offset-2 font-semibold transition-colors"
+              style={{ color: NAVY }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = BLUE)}
+              onMouseLeave={(e) => (e.currentTarget.style.color = NAVY)}
+              data-testid="crv-pricing-guide-link"
+            >
+              OSHA safety consultant costs in North Carolina
+            </Link>
+            .
+          </p>
           <a
             href="tel:3363298899"
             className="inline-flex items-center gap-2 text-[#1C2B2B]/60 hover:text-[#1C2B2B] text-sm mt-8 transition-colors"

@@ -12,7 +12,7 @@ from integrations.mailerlite import add_to_lead_nurture
 import logging
 
 import resend
-from config import db, SENDER_EMAIL, VINCE_EMAIL
+from config import db, SENDER_EMAIL, VINCE_EMAIL, is_admin
 from models import SafetyCheckSubmission
 from email_sequences import get_flow_for_score, render_email
 from pdf_generator import generate_safety_check_pdf
@@ -235,15 +235,19 @@ async def get_safety_check_report(submission_id: str):
 
 
 @router.get("/email-drip/status")
-async def get_drip_status():
+async def get_drip_status(token: str = ""):
     """Get status of all email drip sequences."""
+    if not is_admin(token):
+        raise HTTPException(status_code=401, detail="Unauthorized")
     queues = await db.email_drip_queue.find({}, {"_id": 0}).sort("created_at", -1).to_list(1000)
     return queues
 
 
 @router.post("/email-drip/process")
-async def trigger_drip_processing():
+async def trigger_drip_processing(token: str = ""):
     """Manually trigger drip email processing."""
+    if not is_admin(token):
+        raise HTTPException(status_code=401, detail="Unauthorized")
     sent_count = await process_drip_emails()
     return {"status": "processed", "emails_sent": sent_count}
 

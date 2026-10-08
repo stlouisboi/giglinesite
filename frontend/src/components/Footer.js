@@ -234,7 +234,7 @@ const Footer = () => {
                 data-testid="footer-phone"
               >
                 <Phone size={16} />
-                336-329-8899
+                (336) 329-8899
               </a>
               <Link
                 to="/intake?service=compliance-readiness-visit"

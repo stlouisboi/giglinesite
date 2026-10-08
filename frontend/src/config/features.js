@@ -60,13 +60,30 @@ export const RECOMMENDATION_ROUTER_ENABLED = true;
 
 /**
  * EMAIL_DELIVERY_LIVE
- *   Phase 2 Batch 2B, held at `false` until real transactional email is
- *   wired (Batch 2C). When `false`, the "Email my recommendation" and
- *   "Email my action plan" toggles are hidden entirely so buyers never
- *   see a "Preview only, no email was sent" confirmation. The router
- *   result itself and every other decision-support surface stays visible.
+ *   Phase 2 Batch 2C (owner approved go-live, Oct 2026). Real
+ *   transactional email is wired end to end for the recommendation
+ *   router: /api/recommendation/email generates a per-visitor PDF and
+ *   sends it via Resend. When `true`, the "Email my recommendation"
+ *   toggle on the router result card is shown and performs a real send.
+ *
+ *   Does NOT control the Safety Check "Email my action plan" preview,
+ *   see SAFETY_CHECK_ACTION_PLAN_EMAIL_LIVE below, that pipeline was
+ *   never built and still needs its own go-live decision.
  */
-export const EMAIL_DELIVERY_LIVE = false;
+export const EMAIL_DELIVERY_LIVE = true;
+
+/**
+ * SAFETY_CHECK_ACTION_PLAN_EMAIL_LIVE
+ *   Phase 2 Batch 2B, Checkpoint 2 (Feb 2026). The Safety Check result
+ *   page's "Email my action plan" preview (SafetyCheckActionPlanPreview)
+ *   was built as a non-transmitting, owner-review-only mockup: no fetch,
+ *   no backend route, and its own confirmation copy tells the visitor
+ *   nothing was sent. Unlike the recommendation router's email flow,
+ *   this one was never wired to a real send. Keep `false` until that
+ *   backend work happens and the owner approves a real go-live for it,
+ *   same as EMAIL_DELIVERY_LIVE was approved for the router.
+ */
+export const SAFETY_CHECK_ACTION_PLAN_EMAIL_LIVE = false;
 
 /**
  * EXIT_FEEDBACK_ENABLED

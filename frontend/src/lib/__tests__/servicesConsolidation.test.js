@@ -108,6 +108,64 @@ describe('Services · Credibility strip', () => {
     expect(window).toContain('/sample-report');
     expect(window).toMatch(/data-testid="services-sample-report-cta"/);
   });
+
+  // ──────────────────────────────────────────────────────────────────────
+  // Verified Google Review pull-quote strip, three-card lock-in.
+  // Source: public Google Reviews by Demar Archie (Local Guide, 30 reviews),
+  // Micheal Humphrey, and Kevin Stutts. Owner-approved for publication on
+  // 2026-02 via screenshot evidence in chat. Changing any quote text,
+  // author name, or schema.org/Review payload requires a fresh owner
+  // approval and a corresponding update here.
+  //
+  // Note: "Micheal" (not "Michael") preserves the reviewer's own spelling
+  // on their public Google profile and must not be auto-corrected.
+  // ──────────────────────────────────────────────────────────────────────
+  test('three verified Google Reviews render as a pull-quote strip', () => {
+    const idx = src.indexOf('data-testid="services-credibility-pullquote"');
+    expect(idx).toBeGreaterThan(-1);
+    const block = src.slice(idx, idx + 12000);
+
+    // Section heading.
+    expect(block).toMatch(/data-testid="services-credibility-pullquote-heading"/);
+    expect(block).toMatch(/What clients say/);
+
+    // Card 1, Demar Archie.
+    expect(block).toMatch(/data-testid="services-credibility-pullquote-archie"/);
+    expect(block).toMatch(/Gigline operates at a different level than most safety consultants/);
+    expect(block).toMatch(/understand how operations actually run and provide solutions/);
+    expect(block).toMatch(/incident investigations/);
+    expect(block).toMatch(/focused on true root cause/);
+    expect(block).toMatch(/Demar Archie/);
+    expect(block).toMatch(/Local Guide/);
+
+    // Card 2, Micheal Humphrey, preserve non-standard spelling.
+    expect(block).toMatch(/data-testid="services-credibility-pullquote-humphrey"/);
+    expect(block).toMatch(/Vince knows OSHA compliance cold/);
+    expect(block).toMatch(/complex situations on the floor/);
+    expect(block).toMatch(/Straightforward, knowledgeable, and no wasted time/);
+    expect(block).toMatch(/Exactly what a small business needs/);
+    expect(block).toMatch(/Micheal Humphrey/);
+    expect(block).not.toMatch(/Michael Humphrey/);
+
+    // Card 3, Kevin Stutts.
+    expect(block).toMatch(/data-testid="services-credibility-pullquote-stutts"/);
+    expect(block).toMatch(/Very thorough, a pleasure to deal with/);
+    expect(block).toMatch(/Kevin Stutts/);
+
+    // Each card carries its own schema.org/Review payload.
+    const reviewSchemaCount = (block.match(/itemType="https:\/\/schema\.org\/Review"/g) || []).length;
+    expect(reviewSchemaCount).toBe(3);
+    const ratingCount = (block.match(/itemProp="ratingValue"[^>]*content="5"/g) || []).length;
+    expect(ratingCount).toBe(3);
+    const authorCount = (block.match(/itemType="https:\/\/schema\.org\/Person"/g) || []).length;
+    expect(authorCount).toBe(3);
+    const reviewedCount = (block.match(/itemProp="itemReviewed"[^>]*GigLine Safety & Compliance/g) || []).length;
+    expect(reviewedCount).toBe(3);
+
+    // Universal "read all on Google" link preserved.
+    expect(block).toMatch(/data-testid="services-credibility-pullquote-source"/);
+    expect(block).toMatch(/Read all reviews on Google/);
+  });
 });
 
 describe('Services · Featured CRV section', () => {

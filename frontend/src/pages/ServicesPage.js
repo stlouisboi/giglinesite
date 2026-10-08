@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, ChevronDown, ChevronRight, Phone, Star } from 'lucide-react';
+import { ArrowRight, Check, ChevronDown, ChevronRight, Phone, Quote, Star } from 'lucide-react';
 import SEO from '../components/SEO';
 import { trackEvent, trackPhoneClick } from '../utils/analytics';
 import {
@@ -233,6 +233,179 @@ const ServicesPage = () => {
                 >
                   See a Sample Report <ArrowRight size={14} aria-hidden="true" />
                 </Link>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Verified Google Reviews, three-card pull-quote strip.
+              All three reviews are public Google Reviews, owner-cleared
+              for publication in chat on 2026-02 with screenshot evidence.
+              Each card renders as a <figure>/<blockquote> with
+              schema.org/Review structured data so Google can index each
+              one individually as a review rich-snippet. */}
+          <Reveal>
+            <div className="mt-12 md:mt-14" data-testid="services-credibility-pullquote">
+              <p
+                className="text-center uppercase mb-6"
+                style={{ ...mono, fontSize: '11px', color: GOLD, letterSpacing: '0.24em' }}
+                data-testid="services-credibility-pullquote-heading"
+              >
+                What clients say
+              </p>
+
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {/* Review 1, Demar Archie, Local Guide on Google */}
+                <figure
+                  className="relative flex flex-col rounded-xl border bg-white p-6 md:p-7 shadow-sm"
+                  style={{ borderColor: '#e8d9b5' }}
+                  data-testid="services-credibility-pullquote-archie"
+                  itemScope
+                  itemType="https://schema.org/Review"
+                >
+                  <meta itemProp="itemReviewed" content="GigLine Safety & Compliance" />
+                  <div
+                    itemProp="reviewRating"
+                    itemScope
+                    itemType="https://schema.org/Rating"
+                    className="sr-only"
+                  >
+                    <meta itemProp="ratingValue" content="5" />
+                    <meta itemProp="bestRating" content="5" />
+                  </div>
+                  <Quote
+                    size={26}
+                    strokeWidth={1.6}
+                    aria-hidden="true"
+                    className="absolute -top-3 left-6 bg-white px-1"
+                    style={{ color: GOLD }}
+                  />
+                  <div className="flex items-center gap-1 mb-3" aria-label="5 out of 5 stars">
+                    {[0, 1, 2, 3, 4].map((i) => (
+                      <Star key={i} size={13} strokeWidth={2} fill={GOLD} style={{ color: GOLD }} aria-hidden="true" />
+                    ))}
+                  </div>
+                  <blockquote
+                    className="text-sm md:text-[15px] leading-relaxed text-slate-800 italic flex-grow"
+                    itemProp="reviewBody"
+                  >
+                    &ldquo;Gigline operates at a different level than most safety consultants. They don&rsquo;t just point out issues&mdash;they understand how operations actually run and provide solutions that can be executed on the floor. Where they really stand out is in incident investigations. Their approach is disciplined, focused on true root cause, and built around preventing repeat events&mdash;not just checking a box.&rdquo;
+                  </blockquote>
+                  <figcaption
+                    className="mt-5 text-sm"
+                    itemProp="author"
+                    itemScope
+                    itemType="https://schema.org/Person"
+                  >
+                    <span className="font-semibold text-slate-900" itemProp="name">Demar Archie</span>
+                    <span className="block text-xs text-slate-600 mt-0.5">Local Guide &middot; Verified Google Review</span>
+                  </figcaption>
+                </figure>
+
+                {/* Review 2, Micheal Humphrey */}
+                <figure
+                  className="relative flex flex-col rounded-xl border bg-white p-6 md:p-7 shadow-sm"
+                  style={{ borderColor: '#e8d9b5' }}
+                  data-testid="services-credibility-pullquote-humphrey"
+                  itemScope
+                  itemType="https://schema.org/Review"
+                >
+                  <meta itemProp="itemReviewed" content="GigLine Safety & Compliance" />
+                  <div
+                    itemProp="reviewRating"
+                    itemScope
+                    itemType="https://schema.org/Rating"
+                    className="sr-only"
+                  >
+                    <meta itemProp="ratingValue" content="5" />
+                    <meta itemProp="bestRating" content="5" />
+                  </div>
+                  <Quote
+                    size={26}
+                    strokeWidth={1.6}
+                    aria-hidden="true"
+                    className="absolute -top-3 left-6 bg-white px-1"
+                    style={{ color: GOLD }}
+                  />
+                  <div className="flex items-center gap-1 mb-3" aria-label="5 out of 5 stars">
+                    {[0, 1, 2, 3, 4].map((i) => (
+                      <Star key={i} size={13} strokeWidth={2} fill={GOLD} style={{ color: GOLD }} aria-hidden="true" />
+                    ))}
+                  </div>
+                  <blockquote
+                    className="text-sm md:text-[15px] leading-relaxed text-slate-800 italic flex-grow"
+                    itemProp="reviewBody"
+                  >
+                    &ldquo;Vince knows OSHA compliance cold. I watched him work through complex situations on the floor and always trusted his judgment. Straightforward, knowledgeable, and no wasted time. Exactly what a small business needs.&rdquo;
+                  </blockquote>
+                  <figcaption
+                    className="mt-5 text-sm"
+                    itemProp="author"
+                    itemScope
+                    itemType="https://schema.org/Person"
+                  >
+                    <span className="font-semibold text-slate-900" itemProp="name">Micheal Humphrey</span>
+                    <span className="block text-xs text-slate-600 mt-0.5">Verified Google Review</span>
+                  </figcaption>
+                </figure>
+
+                {/* Review 3, Kevin Stutts */}
+                <figure
+                  className="relative flex flex-col rounded-xl border bg-white p-6 md:p-7 shadow-sm"
+                  style={{ borderColor: '#e8d9b5' }}
+                  data-testid="services-credibility-pullquote-stutts"
+                  itemScope
+                  itemType="https://schema.org/Review"
+                >
+                  <meta itemProp="itemReviewed" content="GigLine Safety & Compliance" />
+                  <div
+                    itemProp="reviewRating"
+                    itemScope
+                    itemType="https://schema.org/Rating"
+                    className="sr-only"
+                  >
+                    <meta itemProp="ratingValue" content="5" />
+                    <meta itemProp="bestRating" content="5" />
+                  </div>
+                  <Quote
+                    size={26}
+                    strokeWidth={1.6}
+                    aria-hidden="true"
+                    className="absolute -top-3 left-6 bg-white px-1"
+                    style={{ color: GOLD }}
+                  />
+                  <div className="flex items-center gap-1 mb-3" aria-label="5 out of 5 stars">
+                    {[0, 1, 2, 3, 4].map((i) => (
+                      <Star key={i} size={13} strokeWidth={2} fill={GOLD} style={{ color: GOLD }} aria-hidden="true" />
+                    ))}
+                  </div>
+                  <blockquote
+                    className="text-sm md:text-[15px] leading-relaxed text-slate-800 italic flex-grow"
+                    itemProp="reviewBody"
+                  >
+                    &ldquo;Very thorough, a pleasure to deal with.&rdquo;
+                  </blockquote>
+                  <figcaption
+                    className="mt-5 text-sm"
+                    itemProp="author"
+                    itemScope
+                    itemType="https://schema.org/Person"
+                  >
+                    <span className="font-semibold text-slate-900" itemProp="name">Kevin Stutts</span>
+                    <span className="block text-xs text-slate-600 mt-0.5">Verified Google Review</span>
+                  </figcaption>
+                </figure>
+              </div>
+
+              <div className="mt-6 text-center">
+                <a
+                  href="https://www.google.com/search?q=GigLine+Safety+%26+Compliance+Kernersville+NC&stick=&hl=en&reviews=1&utm_source=services&utm_medium=website&utm_campaign=pullquote-read-all"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-sm font-semibold text-slate-900 underline underline-offset-4 hover:text-slate-700"
+                  data-testid="services-credibility-pullquote-source"
+                >
+                  Read all reviews on Google <ChevronRight size={14} aria-hidden="true" />
+                </a>
               </div>
             </div>
           </Reveal>

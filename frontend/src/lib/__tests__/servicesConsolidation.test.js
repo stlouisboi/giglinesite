@@ -208,9 +208,17 @@ describe('Services · After-submit section (no-commit expectation)', () => {
     const entries = (arrBlock.match(/\{\s*t:\s*'/g) || []).length;
     expect(entries).toBe(4);
   });
-  test('step 4 mirrors the two turnaround promises verbatim', () => {
-    expect(src).toMatch(/Safety Walkthrough report is delivered within 48 hours of the visit/);
-    expect(src).toMatch(/Compliance Readiness Visit and Documentation Readiness Review reports are delivered within 5 business days/);
+  test('step 4 mirrors the three turnaround promises per approved clock-start policy', () => {
+    // DRR has no on-site visit by definition; the step must not say the DRR
+    // report starts "of visit." Owner-approved Feb 2026 revision: Walkthrough
+    // and CRV name the on-site visit as the clock reference, DRR is left as
+    // "within 5 business days" because the formal clock-start policy for DRR
+    // has not been established in the approved scope and must not be invented.
+    expect(src).toMatch(/Safety Walkthrough report is delivered within 48 hours of the on-site visit/);
+    expect(src).toMatch(/Compliance Readiness Visit report is delivered within 5 business days of the on-site visit/);
+    expect(src).toMatch(/Documentation Readiness Review report is delivered within 5 business days\./);
+    // Guard against the regression that lumps DRR into "of visit".
+    expect(src).not.toMatch(/Documentation Readiness Review[^.]*within 5 business days of (the )?(on-site )?visit/);
   });
   test('after-submit section exposes Talk-to-Vince and phone CTAs', () => {
     expect(src).toMatch(/data-testid="services-after-submit-talk-cta"/);

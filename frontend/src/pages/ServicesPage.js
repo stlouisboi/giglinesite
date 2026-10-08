@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check, ChevronDown, ChevronRight, Phone, Star } from 'lucide-react';
 import SEO from '../components/SEO';
-import { trackEvent } from '../utils/analytics';
+import { trackEvent, trackPhoneClick } from '../utils/analytics';
 import {
   SAFETY_WALKTHROUGH,
   DOCUMENTATION_REVIEW,
@@ -56,7 +56,7 @@ const AFTER_SUBMIT_STEPS = [
   { t: 'You send the inquiry', d: 'Submitting the short form or the full intake requests a discussion, scope, and quote. It does not purchase a service or begin a paid engagement.' },
   { t: 'Vince reviews and reaches back out', d: 'Vince reviews what you shared and follows up to confirm the operation, requested service, location, workforce, and any scheduling constraints.' },
   { t: 'Written scope and price', d: 'Final scope and fixed price are confirmed in writing before the visit is scheduled.' },
-  { t: 'On-site visit and written report', d: 'The Safety Walkthrough report is delivered within 48 hours of the visit. The Compliance Readiness Visit and Documentation Readiness Review reports are delivered within 5 business days of the on-site visit.' },
+  { t: 'Service completed and written report delivered', d: 'The Safety Walkthrough report is delivered within 48 hours of the on-site visit. The Compliance Readiness Visit report is delivered within 5 business days of the on-site visit. The Documentation Readiness Review report is delivered within 5 business days.' },
 ];
 
 const ServicesPage = () => {
@@ -96,7 +96,7 @@ const ServicesPage = () => {
     { q: 'Which service should I start with?', a: 'If both floor conditions and documentation are uncertain, begin with the Compliance Readiness Visit. If the concern is limited to one area, choose the focused Safety Walkthrough or Documentation Readiness Review.' },
     { q: 'Are corrections included in the Compliance Readiness Visit?', a: 'No. The CRV identifies and prioritizes gaps. Corrective implementation is scoped and quoted separately.' },
     { q: 'Why does the CRV cost less than purchasing both reviews separately?', a: `For standard scope, the two reviews total $${COMBINED_SEPARATE_TOTAL.toLocaleString()} when purchased separately. The combined CRV is $${COMPLIANCE_READINESS_VISIT.amount.toLocaleString()}, a $${COMBINED_SAVINGS} difference reflecting a coordinated single visit. Final scope and price are confirmed in writing before scheduling and may vary when scope expands.` },
-    { q: 'When is the written report delivered?', a: 'The Safety Walkthrough report is delivered within 48 hours of the on-site visit. The Compliance Readiness Visit and Documentation Readiness Review reports are delivered within 5 business days of the on-site visit.' },
+    { q: 'When is the written report delivered?', a: 'The Safety Walkthrough report is delivered within 48 hours of the on-site visit. The Compliance Readiness Visit report is delivered within 5 business days of the on-site visit. The Documentation Readiness Review report is delivered within 5 business days.' },
     { q: 'Does submitting an inquiry commit me to purchasing a service?', a: 'No. Submitting the short form or the full intake requests a discussion, scope, and quote. Nothing is purchased and no visit is scheduled until the written scope and fixed price are agreed.' },
     { q: 'Does GigLine guarantee OSHA compliance?', a: 'No. GigLine provides independent readiness, implementation, and support services according to the written scope. These services do not guarantee compliance, prevent citations, or replace legal advice.' },
     { q: 'Can we start with a readiness kit?', a: 'Yes, when the need is focused and the organization is prepared to implement the material internally.' },
@@ -120,7 +120,7 @@ const ServicesPage = () => {
       />
 
       {/* ── S1 · RESULT-FOCUSED HERO ── */}
-      <section className="relative py-20 md:py-28 text-white overflow-hidden" style={{ backgroundColor: NAVY_DEEP }} data-testid="services-hero-section">
+      <section className="relative py-20 md:py-28 md:pr-16 lg:pr-20 text-white overflow-hidden" style={{ backgroundColor: NAVY_DEEP }} data-testid="services-hero-section">
         <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${NAVY_DEEP} 0%, #12253f 100%)` }} aria-hidden="true" />
         <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-10">
           <Reveal>
@@ -169,7 +169,7 @@ const ServicesPage = () => {
               <a
                 href={PHONE_HREF}
                 className="text-white font-semibold underline underline-offset-4 hover:text-slate-100"
-                onClick={() => trackEvent('services_hero_phone_click', {})}
+                onClick={() => trackPhoneClick('services_hero')}
                 data-testid="services-hero-phone-link"
               >
                 {PHONE_DISPLAY}
@@ -180,7 +180,7 @@ const ServicesPage = () => {
       </section>
 
       {/* ── S2 · CREDIBILITY + SAMPLE REPORT PREVIEW ── */}
-      <section className="py-16 md:py-20 bg-white" data-testid="services-credibility-section">
+      <section className="py-16 md:py-20 md:pr-16 lg:pr-20 bg-white" data-testid="services-credibility-section">
         <div className="max-w-6xl mx-auto px-6 md:px-10">
           <Reveal>
             <div className="grid gap-8 md:grid-cols-[200px_1fr_1fr] items-start">
@@ -199,6 +199,19 @@ const ServicesPage = () => {
                 <p className="text-sm text-slate-700 mb-4" data-testid="services-credibility-credential">
                   OSHA 30-Hour General Industry Trained · U.S. Navy Veteran · 25+ years in manufacturing, fleet, and warehouse safety.
                 </p>
+                <a
+                  href="https://www.google.com/search?q=GigLine+Safety+%26+Compliance+Kernersville+NC&stick=&hl=en&reviews=1&utm_source=services&utm_medium=website&utm_campaign=credibility-review-read"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 mb-4 px-2.5 py-1 rounded-full text-xs font-semibold border transition-colors hover:bg-amber-50"
+                  style={{ borderColor: '#c8922a', color: '#8c6a28', background: '#fffaf0' }}
+                  data-testid="services-credibility-reviews-chip"
+                  aria-label="Read 5.0-star Google reviews for GigLine Safety and Compliance"
+                >
+                  <Star size={12} strokeWidth={2.5} fill="#c8922a" aria-hidden="true" />
+                  <span>5.0 on Google Reviews</span>
+                  <ChevronRight size={12} aria-hidden="true" />
+                </a>
                 <p className="text-sm text-slate-700 leading-relaxed mb-4">
                   Every engagement is scoped and priced in writing before work begins. You know what Vince will review, how long it will take, and what the written report will cover.
                 </p>
@@ -227,7 +240,7 @@ const ServicesPage = () => {
       </section>
 
       {/* ── S3 · FEATURED COMPLIANCE READINESS VISIT ── */}
-      <section className="py-20 md:py-24 bg-slate-50" data-testid="services-crv-feature-section">
+      <section className="py-20 md:py-24 bg-slate-50 md:pr-16 lg:pr-20" data-testid="services-crv-feature-section">
         <div className="max-w-5xl mx-auto px-6 md:px-10">
           <Reveal>
             <p className="uppercase mb-3" style={{ ...mono, fontSize: '11px', color: GOLD, letterSpacing: '0.24em' }}>The most complete diagnostic starting point</p>
@@ -300,7 +313,7 @@ const ServicesPage = () => {
       </section>
 
       {/* ── S4 · THREE-REVIEW COMPARISON ── */}
-      <section id="services-compare" className="py-20 md:py-24 bg-white" data-testid="services-comparison-section">
+      <section id="services-compare" className="py-20 md:py-24 bg-white md:pr-16 lg:pr-20" data-testid="services-comparison-section">
         <div className="max-w-6xl mx-auto px-6 md:px-10">
           <Reveal>
             <p className="uppercase mb-3" style={{ ...mono, fontSize: '11px', color: GOLD, letterSpacing: '0.24em' }}>Compare the three reviews</p>
@@ -367,7 +380,7 @@ const ServicesPage = () => {
                 <tr className="border-t border-slate-200 bg-white">
                   <td className="p-4 text-slate-900 font-semibold">Written report delivered</td>
                   <td className="p-4 text-center text-slate-800">Within 48 hours of visit</td>
-                  <td className="p-4 text-center text-slate-800">Within 5 business days of visit</td>
+                  <td className="p-4 text-center text-slate-800">Within 5 business days</td>
                   <td className="p-4 text-center font-semibold text-slate-900" style={{ backgroundColor: '#fffaf0' }}>Within 5 business days of visit</td>
                 </tr>
               </tbody>
@@ -419,7 +432,7 @@ const ServicesPage = () => {
               </p>
               <p className="text-xs text-slate-600 mb-4">
                 {mobileCompareKey === 'walkthrough' && 'Report within 48 hours of visit.'}
-                {mobileCompareKey === 'docreview' && 'Report within 5 business days of visit.'}
+                {mobileCompareKey === 'docreview' && 'Report within 5 business days.'}
                 {mobileCompareKey === 'crv' && 'Report within 5 business days of visit.'}
               </p>
               <ul className="space-y-2 text-sm text-slate-800">
@@ -436,7 +449,7 @@ const ServicesPage = () => {
       </section>
 
       {/* ── S5 · WHAT HAPPENS AFTER SUBMITTING A REQUEST ── */}
-      <section className="py-20 md:py-24 bg-slate-50" data-testid="services-after-submit-section">
+      <section className="py-20 md:py-24 md:pr-16 lg:pr-20 bg-slate-50" data-testid="services-after-submit-section">
         <div className="max-w-5xl mx-auto px-6 md:px-10">
           <Reveal>
             <p className="uppercase mb-3" style={{ ...mono, fontSize: '11px', color: GOLD, letterSpacing: '0.24em' }}>After you submit a request</p>
@@ -470,7 +483,7 @@ const ServicesPage = () => {
             </Link>
             <a
               href={PHONE_HREF}
-              onClick={() => trackEvent('services_after_submit_phone_click', {})}
+              onClick={() => trackPhoneClick('services_after_submit')}
               data-testid="services-after-submit-phone-link"
               className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-md font-semibold border border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white transition-colors min-h-[44px]"
             >
@@ -481,7 +494,7 @@ const ServicesPage = () => {
       </section>
 
       {/* ── S6 · CORRECTIVE IMPLEMENTATION · CONTROL SYSTEM · ONGOING SUPPORT ── */}
-      <section className="py-20 md:py-24 bg-white" data-testid="services-after-section">
+      <section className="py-20 md:py-24 md:pr-16 lg:pr-20 bg-white" data-testid="services-after-section">
         <div className="max-w-6xl mx-auto px-6 md:px-10">
           <Reveal>
             <p className="uppercase mb-3" style={{ ...mono, fontSize: '11px', color: GOLD, letterSpacing: '0.24em' }}>Beyond the assessment</p>
@@ -514,7 +527,7 @@ const ServicesPage = () => {
       </section>
 
       {/* ── S7 · COMPACT SELF-SERVE KITS ── */}
-      <section className="py-16 md:py-20 bg-slate-50" data-testid="services-kits-section">
+      <section className="py-16 md:py-20 md:pr-16 lg:pr-20 bg-slate-50" data-testid="services-kits-section">
         <div className="max-w-6xl mx-auto px-6 md:px-10">
           <Reveal>
             <p className="uppercase mb-3" style={{ ...mono, fontSize: '11px', color: GOLD, letterSpacing: '0.24em' }}>For a focused, self-serve need</p>
@@ -541,7 +554,7 @@ const ServicesPage = () => {
       </section>
 
       {/* ── S8 · FAQ + FINAL CTA ── */}
-      <section className="py-20 md:py-24 bg-white" data-testid="services-faq-section">
+      <section className="py-20 md:py-24 md:pr-16 lg:pr-20 bg-white" data-testid="services-faq-section">
         <div className="max-w-3xl mx-auto px-6 md:px-10">
           <Reveal>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-8">Frequently asked questions</h2>
@@ -574,7 +587,7 @@ const ServicesPage = () => {
       </section>
 
       {/* ── S9 · FINAL CTA ── */}
-      <section className="py-20 md:py-24 text-white" style={{ backgroundColor: NAVY_DEEP }} data-testid="services-final-cta-section">
+      <section className="py-20 md:py-24 md:pr-16 lg:pr-20 text-white" style={{ backgroundColor: NAVY_DEEP }} data-testid="services-final-cta-section">
         <div className="max-w-4xl mx-auto px-6 md:px-10 text-center">
           <Reveal>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Start by seeing where you stand.</h2>
@@ -613,7 +626,7 @@ const ServicesPage = () => {
               <a
                 href={PHONE_HREF}
                 className="text-white font-semibold underline underline-offset-4 hover:text-slate-100"
-                onClick={() => trackEvent('services_final_phone_click', {})}
+                onClick={() => trackPhoneClick('services_final')}
                 data-testid="services-final-phone-link"
               >
                 {PHONE_DISPLAY}

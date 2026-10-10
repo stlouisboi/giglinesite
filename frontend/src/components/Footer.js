@@ -311,29 +311,30 @@ const Footer = () => {
                 Resend My Kit
               </Link>
               <span className="text-white/20">&middot;</span>
-              <a
-                href="https://www.linkedin.com/in/vincenttlawrence/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Vince Lawrence on LinkedIn"
-                className="text-white/55 transition-colors hover:text-[color:var(--gl-gold)] inline-flex items-center"
-                style={{ '--gl-gold': GOLD }}
-                data-testid="footer-linkedin-link"
-              >
-                <Linkedin size={16} />
-              </a>
-              <span className="text-white/20">&middot;</span>
-              <a
-                href="https://www.facebook.com/profile.php?id=61592797426556"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GigLine Safety & Compliance on Facebook"
-                className="text-white/55 transition-colors hover:text-[color:var(--gl-gold)] inline-flex items-center"
-                style={{ '--gl-gold': GOLD }}
-                data-testid="footer-facebook-link"
-              >
-                <Facebook size={16} />
-              </a>
+              <span className="inline-flex items-center gap-2" data-testid="footer-social-group">
+                <a
+                  href="https://www.linkedin.com/in/vincenttlawrence/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Vince Lawrence on LinkedIn"
+                  className="text-white/55 transition-colors hover:text-[color:var(--gl-gold)] inline-flex items-center"
+                  style={{ '--gl-gold': GOLD }}
+                  data-testid="footer-linkedin-link"
+                >
+                  <Linkedin size={20} strokeWidth={1.75} />
+                </a>
+                <a
+                  href="https://www.facebook.com/profile.php?id=61592797426556"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GigLine Safety & Compliance on Facebook"
+                  className="text-white/55 transition-colors hover:text-[color:var(--gl-gold)] inline-flex items-center"
+                  style={{ '--gl-gold': GOLD }}
+                  data-testid="footer-facebook-link"
+                >
+                  <Facebook size={20} strokeWidth={1.75} />
+                </a>
+              </span>
             </nav>
           </div>
           <p

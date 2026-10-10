@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, Linkedin, ShieldCheck, Star, ArrowUpRight } from 'lucide-react';
+import { Mail, Phone, Linkedin, Facebook, ShieldCheck, Star, ArrowUpRight } from 'lucide-react';
 import { SUPERVISOR_KIT_ENABLED } from '../config/features';
 
 /* ──────────────────────────────────────────────────────────────────────────
@@ -321,6 +321,18 @@ const Footer = () => {
                 data-testid="footer-linkedin-link"
               >
                 <Linkedin size={16} />
+              </a>
+              <span className="text-white/20">&middot;</span>
+              <a
+                href="https://www.facebook.com/profile.php?id=61592797426556"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GigLine Safety & Compliance on Facebook"
+                className="text-white/55 transition-colors hover:text-[color:var(--gl-gold)] inline-flex items-center"
+                style={{ '--gl-gold': GOLD }}
+                data-testid="footer-facebook-link"
+              >
+                <Facebook size={16} />
               </a>
             </nav>
           </div>

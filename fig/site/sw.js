@@ -1,5 +1,5 @@
 // Offline cache. Static files are cache-first, pages are network-first, /api is never cached.
-const V = 'fig-v1', PRE = ['./', 'support.js', 'vendor/react.production.min.js', 'vendor/react-dom.production.min.js', 'vendor/babel.min.js', 'manifest.webmanifest', 'brand/fig-logo.png', 'brand/fig-logo-dark.png', 'brand/fig-logo-cream.png', 'brand/fig-favicon-64.png'];
+const V = 'fig-v2', PRE = ['./', 'support.js', 'vendor/react.production.min.js', 'vendor/react-dom.production.min.js', 'vendor/babel.min.js', 'manifest.webmanifest', 'brand/fig-logo.png', 'brand/fig-logo-dark.png', 'brand/fig-logo-cream.png', 'brand/fig-favicon-64.png', 'brand/fig-icon-192.png', 'brand/fig-icon-512.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(V).then(c => c.addAll(PRE)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== V).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
 self.addEventListener('fetch', e => {

@@ -1251,7 +1251,7 @@ class Component extends DCLogic {
   state = (() => {
     let stored = null; try { stored = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) {}
     const base = {dark: false, step:'welcome', name:'', goals:[], faith:'faith', styles:[], sDoubt:null, sDecide:null,
-      shelves:[], sits:[], sitText:'', liked:[], bookIdx:0, goal:5, buildPct:0, proPlan:'yearly', tab:'home', filter:null, dFilter:null, saved:[], read:[], done:[], days:{}, reviews:{}, mine:[],
+      shelves:[], sits:[], sitText:'', moreSits:false, liked:[], bookIdx:0, goal:5, buildPct:0, proPlan:'yearly', tab:'home', filter:null, dFilter:null, saved:[], read:[], done:[], days:{}, reviews:{}, mine:[],
       reader:null, pos:0, query:'', libSeg:'revisit', recall:null, remembered:0, journal:[], jc:null, ic:null, since:null, decisions:[],
       dr:{step:0, text:'', clarify:'', principle:null, after:null, action:'', commit:true}, guideSeen:false, guideOpen:false, w: window.innerWidth,
       askLog:[], drChat:[], drMode:'talk', pro:false, aiDay:{d:'', n:0}, plan:null, planSheet:null, chatBusy:null, askInput:'', drInput:''};
@@ -1496,7 +1496,7 @@ class Component extends DCLogic {
       dueTitle: dueIds.length ? dueIds.length + ' insights to revisit' : 'All caught up',
       dueSub: dueIds.length ? 'One recall question each. About 2 minutes.' : 'Nothing due right now.', dueOpacity: dueIds.length ? 1 : 0.35,
       startRecall: () => { if (dueIds.length) this.setState({recall: {ids: dueIds, i: 0, shown: false, got: 0}}); },
-      sitChips: [{k: null, label: 'For you'}, ...SITS.filter(o => s.sits.includes(o.k)), ...SITS.filter(o => !s.sits.includes(o.k))].map(c => ({label: c.label, ...chip(s.filter === c.k), pick: () => this.setState({filter: c.k})})),
+      sitChips: [{k: null, label: 'For you'}, ...SITS.filter(o => s.sits.includes(o.k)), ...SITS.filter(o => !s.sits.includes(o.k) && (s.moreSits || s.filter === o.k))].map(c => ({label: c.label, ...chip(s.filter === c.k), pick: () => this.setState({filter: c.k})})).concat(SITS.every(o => s.sits.includes(o.k)) ? [] : [{label: s.moreSits ? 'Fewer' : 'More +', ...chip(false), pick: () => this.setState(st => ({moreSits: !st.moreSits}))}]),
       feedNote: s.filter ? feedIds.length + ' insights for ' + SIT_LABEL[s.filter].toLowerCase() + (s.faith === 'faith' ? ' · Scripture first' : '') : 'Picked from your shelves and situations' + (s.faith === 'faith' ? ' · Scripture first' : ''),
       feed: feedIds.map((id, i) => view(id, i, feedIds)), heroImg: figImg('himg-' + (Math.floor((Date.now() - new Date().getTimezoneOffset() * 6e4) / 864e5) % 6)), heroTitle: feedIds.length ? byId(feedIds[0]).title : 'Today’s wisdom', heroOpen: () => { if (feedIds.length) view(feedIds[0], 0, feedIds).open(); },
       query: s.query, onQuery: e => this.setState({query: e.target.value}),

@@ -126,7 +126,11 @@
       <button onClick="{{ o.toggle }}" style="min-height:58px; padding:9px 13px; border-radius:18px; border:1.5px solid {{ o.border }}; background:{{ o.bg }}; color:{{ t.ink }}; text-align:left; display:flex; flex-direction:column; justify-content:center; gap:2px;"><span style="font-size:14.5px; font-weight:600;">{{ o.label }}</span><span style="font-size:12px; color:{{ t.muted }};">{{ o.sub }}</span></button>
     </sc-for>
   </div>
-  <div style="flex:1;"></div>
+  <div style="margin-top:10px; display:flex; flex-direction:column; gap:6px;">
+    <label style="font-size:13px; font-weight:600; color:{{ t.muted }};">Something else? Tell us in your own words.</label>
+    <textarea value="{{ sitText }}" onChange="{{ onSitText }}" rows="2" maxlength="200" placeholder="e.g. My dad is sick and I feel stretched thin" style="width:100%; box-sizing:border-box; padding:12px 14px; border-radius:16px; border:1px solid {{ t.line }}; background:{{ t.surface }}; color:{{ t.ink }}; font:inherit; font-size:16px; line-height:1.45; outline:0; resize:none;"></textarea>
+  </div>
+  <div style="flex:1; min-height:12px;"></div>
   <button onClick="{{ next }}" style="flex:none; height:54px; padding:0 22px; border:0; border-radius:27px; background:{{ t.accent }}; color:{{ t.accentInk }}; font-size:16px; font-weight:600;">{{ sitsLabel }}</button>
 </div>
 </sc-if>
@@ -1138,7 +1142,7 @@ let ORDER = BASE_ORDER;
 const KEY = 'brightminds-v1';
 const SHOT = (() => { try { return new URLSearchParams(location.search).get('shot'); } catch (e) { return null; } })();
 const FREE_AI = 3;
-const PERSIST = ['pro','aiDay','askLog','drChat','drMode','plan','guideSeen','dark','step','name','goals','faith','styles','sDoubt','sDecide','shelves','sits','liked','goal','tab','saved','read','done','days','reviews','mine','journal','decisions','remembered','libSeg','since','dr'];
+const PERSIST = ['pro','aiDay','askLog','drChat','drMode','plan','guideSeen','dark','step','name','goals','faith','styles','sDoubt','sDecide','shelves','sits','sitText','liked','goal','tab','saved','read','done','days','reviews','mine','journal','decisions','remembered','libSeg','since','dr'];
 const dkey = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
 const TODAY = () => dkey(new Date());
 const addDays = n => { const d = new Date(); d.setDate(d.getDate() + n); return dkey(d); };
@@ -1247,7 +1251,7 @@ class Component extends DCLogic {
   state = (() => {
     let stored = null; try { stored = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) {}
     const base = {dark: false, step:'welcome', name:'', goals:[], faith:'faith', styles:[], sDoubt:null, sDecide:null,
-      shelves:[], sits:[], liked:[], bookIdx:0, goal:5, buildPct:0, proPlan:'yearly', tab:'home', filter:null, dFilter:null, saved:[], read:[], done:[], days:{}, reviews:{}, mine:[],
+      shelves:[], sits:[], sitText:'', liked:[], bookIdx:0, goal:5, buildPct:0, proPlan:'yearly', tab:'home', filter:null, dFilter:null, saved:[], read:[], done:[], days:{}, reviews:{}, mine:[],
       reader:null, pos:0, query:'', libSeg:'revisit', recall:null, remembered:0, journal:[], jc:null, ic:null, since:null, decisions:[],
       dr:{step:0, text:'', clarify:'', principle:null, after:null, action:'', commit:true}, guideSeen:false, guideOpen:false, w: window.innerWidth,
       askLog:[], drChat:[], drMode:'talk', pro:false, aiDay:{d:'', n:0}, plan:null, planSheet:null, chatBusy:null, askInput:'', drInput:''};
@@ -1299,7 +1303,7 @@ class Component extends DCLogic {
       this.setState({step, shelves: [...new Set(this.state.goals.flatMap(g => GOAL_SHELF[g] || []))]});
     } else this.setState({step});
   }
-  nextStep() { const fl = this.flow(), i = fl.indexOf(this.state.step); if (i < 0 || i >= fl.length - 1) this.finish(); else this.go(fl[i + 1]); }
+  nextStep() { if (this.state.step === 'sits' && this.state.sitText.trim()) { const extra = KW.filter(([re]) => re.test(this.state.sitText)).map(([, k]) => k).filter(k => !this.state.sits.includes(k)); if (extra.length) this.setState(st => ({sits: [...st.sits, ...extra]})); } const fl = this.flow(), i = fl.indexOf(this.state.step); if (i < 0 || i >= fl.length - 1) this.finish(); else this.go(fl[i + 1]); }
   prevStep() { const s = this.state; if (s.step === 'books' && s.bookIdx > 0) { this.setState({bookIdx: s.bookIdx - 1}); return; } const fl = this.flow(), i = fl.indexOf(s.step); if (i > 0) this.go(fl[i - 1]); }
   finish() { clearInterval(this._t); this.setState(st => ({step: 'app', tab: st.since ? st.tab : 'home', since: st.since || new Date().toISOString(), shelves: st.shelves.length ? st.shelves : ['bible','stoic','steward']})); }
   toggleIn(key, val) { this.setState(st => ({[key]: st[key].includes(val) ? st[key].filter(x => x !== val) : [...st[key], val]})); }
@@ -1331,7 +1335,7 @@ class Component extends DCLogic {
       let raw;
       if (window.claude && window.claude.complete) raw = await window.claude.complete({system, max_tokens: 700, messages: msgs});
       else {
-        const r = await fetch('/api/ask', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({mode, name: first, faith: s.faith, cards: ids.map(cardCtx), messages: msgs, device: this.deviceId(), pro: !!s.pro})});
+        const r = await fetch('/api/ask', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({mode, name: first, faith: s.faith, focus: s.sitText, cards: ids.map(cardCtx), messages: msgs, device: this.deviceId(), pro: !!s.pro})});
         if (!r.ok) throw new Error('offline');
         raw = (await r.json()).text;
       }
@@ -1472,7 +1476,7 @@ class Component extends DCLogic {
       shelvesLabel: s.shelves.length >= 2 ? 'Continue' : 'Pick ' + (2 - s.shelves.length) + ' more', shelvesOpacity: s.shelves.length >= 2 ? 1 : 0.4,
       shelvesCta: () => { if (this.state.shelves.length >= 2) this.nextStep(); },
       sitOpts: SITS.map(o => ({...o, ...sel(s.sits.includes(o.k)), toggle: () => this.toggleIn('sits', o.k)})),
-      sitsLabel: s.sits.length ? 'Continue' : 'Skip for now',
+      sitsLabel: s.sits.length || s.sitText.trim() ? 'Continue' : 'Skip for now', sitText: s.sitText, onSitText: e => this.setState({sitText: e.target.value.slice(0, 200)}),
       bk: {...b, counter: (s.bookIdx + 1) + ' of ' + BOOKS.length, yes: () => this.answerBook(true), no: () => this.answerBook(false)},
       goalOpts: GOALS.map(g => ({...g, ...sel(s.goal === g.n), pick: () => this.setState({goal: g.n})})),
       buildPlan: () => this.go('build'),

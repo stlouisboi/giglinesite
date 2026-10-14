@@ -4,7 +4,7 @@
 Fig is a mobile-first personal wisdom app. 500 cards across six shelves (Relationships 125, Stoic 100, Scripture 100, Habits 59, Stewardship 58, Christian formation 58). Features: onboarding, personalized Today feed with daily hero photo, guided plans, card reader with spaced recall, Ask Fig and Decision Room (AI via Anthropic Claude), journaling, custom cards, light/dark themes, free tier (3 AI answers/day) and Pro ($39.99/yr, $5.99/mo). All data is device-local (localStorage). No accounts yet.
 
 ## About the files
-- `current_build/` is a **working, deployable static site** (Netlify). `index.html` is a self-contained bundle (all JS, images and the 500-card library inlined). `netlify/functions/ask.js` proxies AI requests to Anthropic using `ANTHROPIC_API_KEY`.
+- `site/` replaces `current_build/` as the deployable multi-file app (see DEPLOY.md).
 - `design/Fig.dc.html` is the **readable source** of the app. Markup is the template between `<x-dc>` tags. Logic, data (cards in `MORE` arrays, `BASE_ORDER`, `THEMES`, `BOOKS`, plans) is in the `<script data-dc-script>` class. `support.js` is the small runtime that renders it. Open it in a browser over a local server to run it.
 - Treat these as **high-fidelity references**. Two paths:
   1. **Ship as-is:** deploy `current_build/` to Netlify (fastest path to launch).
